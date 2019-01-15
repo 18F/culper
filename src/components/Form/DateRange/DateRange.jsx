@@ -3,18 +3,20 @@ import ValidationElement from '../ValidationElement'
 import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
 import Svg from '../Svg'
-import { now } from '../../Section/History/dateranges'
 import Show from '../Show'
-import { extractDate, validDate } from '../../Section/History/dateranges'
+import { now, extractDate, validDate } from '../../Section/History/dateranges'
+import DateRangeValidator from '../../../validators/daterange'
 
 export default class DateRange extends ValidationElement {
   constructor(props) {
     super(props)
-
+    const touched =
+      this.isTouched(props.to.year, props.to.month, props.to.day) ||
+      this.isTouched(props.from.year, props.from.month, props.from.day)
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
-      from: props.from,
-      to: props.to,
+      from: { ...props.from, touched: touched },
+      to: { ...props.to, touched: touched },
       present: props.present,
       presentClicked: false,
       title: props.title || 'Date Range',
@@ -32,6 +34,17 @@ export default class DateRange extends ValidationElement {
     this.handleErrorPresent = this.handleErrorPresent.bind(this)
     this.handleDisable = this.handleDisable.bind(this)
     this.errors = []
+  }
+
+  isTouched(year, month, day) {
+    return (
+      year != '' &&
+      month != '' &&
+      day != '' &&
+      month >= 1 &&
+      day >= 1 &&
+      year >= 1
+    )
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,8 +72,8 @@ export default class DateRange extends ValidationElement {
   update(queue) {
     this.props.onUpdate({
       name: this.props.name,
-      from: this.state.from,
-      to: this.state.to,
+      from: { ...this.state.from, touched: true },
+      to: { ...this.state.to, touched: true },
       present: this.state.present,
       ...queue
     })
@@ -150,7 +163,9 @@ export default class DateRange extends ValidationElement {
   handleError(code, value, arr) {
     arr = arr.map(err => {
       return {
-        code: `${this.props.dateRangePrefix ? this.props.dateRangePrefix : 'daterange'}.${err.code.replace('date.', '')}`,
+        code: `${
+          this.props.dateRangePrefix ? this.props.dateRangePrefix : 'daterange'
+        }.${code}.${err.code.replace('date.', '')}`,
         valid: err.valid,
         uid: err.uid
       }
@@ -212,12 +227,12 @@ export default class DateRange extends ValidationElement {
   }
 
   render() {
-    const klass = `daterange usa-grid ${this.props.className || ''}`.trim()
+    const klass = `daterange ${this.props.className || ''}`.trim()
     const klassTo = `to ${this.state.error ? 'usa-input-error' : ''}`.trim()
 
     return (
       <div className={klass}>
-        <div className="usa-grid from-grid">
+        <div className="from-grid">
           <div className="from-label">From date</div>
           <DateControl
             name="from"
@@ -236,12 +251,9 @@ export default class DateRange extends ValidationElement {
           />
         </div>
         <div className="arrow">
-          <Svg
-            src="/img/date-down-arrow.svg"
-            alt="Range spanning from one date to another"
-          />
+          <i className="fa fa-long-arrow-right fa-2x" />
         </div>
-        <div className="usa-grid to-grid">
+        <div className="to-grid">
           <div className="from-label">To date</div>
           <DateControl
             name="to"
@@ -262,7 +274,9 @@ export default class DateRange extends ValidationElement {
               this.props.required && !this.state.present && !this.props.disabled
             }
           />
-          <Show when={this.props.allowPresent}>
+        </div>
+        <Show when={this.props.allowPresent}>
+          <div className="or-present">
             <div className="from-present">
               <span className="or"> or </span>
             </div>
@@ -278,16 +292,20 @@ export default class DateRange extends ValidationElement {
                 onError={this.handleErrorPresent}
               />
             </div>
-          </Show>
-        </div>
+          </div>
+        </Show>
       </div>
     )
   }
 }
 
 DateRange.defaultProps = {
-  from: {},
-  to: {},
+  from: {
+    touched: false
+  },
+  to: {
+    touched: false
+  },
   present: false,
   prefix: '',
   dateRangePrefix: '',
@@ -308,10 +326,7 @@ DateRange.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required && !props.disabled) {
-        const hasParts = dateObj => {
-          return validDate(dateObj)
-        }
-        return hasParts(value.from) && hasParts(value.to)
+        return validDate(value.from) && validDate(value.to)
       }
       return true
     }
@@ -322,7 +337,7 @@ DateRange.errors = [
       if (!props.from || !props.to) {
         return null
       }
-      return extractDate(props.from) <= extractDate(props.to)
+      return new DateRangeValidator(props).isValid()
     }
   }
 ]

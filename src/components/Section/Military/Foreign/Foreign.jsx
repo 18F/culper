@@ -26,11 +26,11 @@ export default class Foreign extends SubsectionElement {
           {...this.props.List}
           branchName="has_foreign"
           label={i18n.t('military.foreign.para.served')}
-          labelSize="h2"
+          labelSize="h4"
           appendLabel={i18n.t(
             'military.foreign.collection.foreign.appendTitle'
           )}
-          appendSize="h2"
+          appendSize="h4"
           onUpdate={this.updateList}
           scrollToBottom={this.props.scrollToBottom}
           required={this.props.required}

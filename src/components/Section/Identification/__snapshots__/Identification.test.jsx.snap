@@ -7,6 +7,11 @@ exports[`The identification section renders the IdentificationSections component
     data-section="identification"
     data-subsection="name"
   >
+    <h1
+      className="section-header"
+    >
+      Full name
+    </h1>
     <div
       aria-label="Provide your full name"
       className="field"
@@ -18,11 +23,11 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         Provide your full name
-      </h2>
+      </h4>
       <span
         className="icon"
       />
@@ -85,7 +90,7 @@ exports[`The identification section renders the IdentificationSections component
             >
               <div
                 aria-label="First name"
-                className="field required"
+                className="field required  usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -215,7 +220,7 @@ exports[`The identification section renders the IdentificationSections component
               </div>
               <div
                 aria-label="Middle name"
-                className="field required"
+                className="field required  usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -370,7 +375,7 @@ exports[`The identification section renders the IdentificationSections component
               </div>
               <div
                 aria-label="Last name"
-                className="field required"
+                className="field required  usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -478,7 +483,7 @@ exports[`The identification section renders the IdentificationSections component
               />
               <div
                 aria-label="Suffix"
-                className="field"
+                className="field   usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -551,359 +556,72 @@ exports[`The identification section renders the IdentificationSections component
                       className="component"
                     >
                       <div
-                        className="blocks option-list suffix"
+                        className="option-list suffix usa-small-input"
                       >
-                        <div
-                          className="suffix-jr block"
+                        <select
+                          className=""
+                          disabled={false}
+                          name="suffix"
+                          onChange={[Function]}
+                          value=""
                         >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="Jr for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="Jr"
-                            />
-                            <span>
-                              Jr
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-sr block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="Sr for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="Sr"
-                            />
-                            <span>
-                              Sr
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-i block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="I for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="I"
-                            />
-                            <span>
-                              I
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-ii block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="II for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="II"
-                            />
-                            <span>
-                              II
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-iii block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="III for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="III"
-                            />
-                            <span>
-                              III
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-iv block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="IV for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="IV"
-                            />
-                            <span>
-                              IV
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-v block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="V for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="V"
-                            />
-                            <span>
-                              V
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-vi block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="VI for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="VI"
-                            />
-                            <span>
-                              VI
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-vii block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="VII for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="VII"
-                            />
-                            <span>
-                              VII
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-viii block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="VIII for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="VIII"
-                            />
-                            <span>
-                              VIII
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-ix block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="IX for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="IX"
-                            />
-                            <span>
-                              IX
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-x block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="X for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="X"
-                            />
-                            <span>
-                              X
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="suffix-more block"
-                        >
-                          <label
-                            className=""
-                            htmlFor="suffix-MOCK-GUID"
-                          >
-                            <input
-                              aria-label="Other for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="suffix-MOCK-GUID"
-                              name="suffix-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="Other"
-                            />
-                            <span>
-                              Other
-                            </span>
-                          </label>
-                        </div>
+                          <option
+                            label=""
+                            value=""
+                          />
+                          <option
+                            label="Jr"
+                            value="Jr"
+                          />
+                          <option
+                            label="Sr"
+                            value="Sr"
+                          />
+                          <option
+                            label="I"
+                            value="I"
+                          />
+                          <option
+                            label="II"
+                            value="II"
+                          />
+                          <option
+                            label="III"
+                            value="III"
+                          />
+                          <option
+                            label="IV"
+                            value="IV"
+                          />
+                          <option
+                            label="V"
+                            value="V"
+                          />
+                          <option
+                            label="VI"
+                            value="VI"
+                          />
+                          <option
+                            label="VII"
+                            value="VII"
+                          />
+                          <option
+                            label="VIII"
+                            value="VIII"
+                          />
+                          <option
+                            label="IX"
+                            value="IX"
+                          />
+                          <option
+                            label="X"
+                            value="X"
+                          />
+                          <option
+                            label="Other"
+                            value="Other"
+                          />
+                        </select>
                       </div>
                     </span>
                   </span>
@@ -919,674 +637,15 @@ exports[`The identification section renders the IdentificationSections component
     className="section-divider"
   />
   <div
-    className="section-content other-names"
-    data-section="identification"
-    data-subsection="othernames"
-  >
-    <div
-      aria-label="Provide your other names used and the period of time you used them"
-      className="field   no-margin-bottom"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <h2
-        className="title h2"
-      >
-        Provide your other names used and the period of time you used them
-      </h2>
-      <span
-        className="icon"
-      >
-        <a
-          aria-label="Show help for Provide your other names used and the period of time you used them"
-          className="toggle h2"
-          href="javascript:;"
-          onClick={[Function]}
-          title="Show help for Provide your other names used and the period of time you used them"
-        >
-          <svg
-            alt="Scalable vector graphic"
-            focusable="false"
-            height="14.57px"
-            tabIndex="-1"
-            viewBox="0 0 14.57 14.57"
-            width="14.57px"
-          >
-            <g>
-              <path
-                className="eapp-help-icon"
-                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-              />
-            </g>
-          </svg>
-        </a>
-      </span>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          >
-            <div>
-              <p>
-                For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).
-              </p>
-            </div>
-          </span>
-        </span>
-      </div>
-    </div>
-    <div
-      aria-label="Have you used any other names?"
-      className="field required  branch"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <h3
-        className="title h3"
-      >
-        Have you used any other names?
-      </h3>
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error usa-alert usa-alert-error"
-            role="alert"
-          >
-            <div
-              className="usa-alert-body"
-            >
-              <div
-                data-i18n="error.required"
-              >
-                <h5
-                  className="usa-alert-heading"
-                >
-                  Your response is required
-                </h5>
-                
-                
-              </div>
-            </div>
-          </div>
-        </span>
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component shrink"
-          >
-            <div
-              className="content"
-            />
-            <div
-              className="blocks option-list branch usa-input-error"
-            >
-              <div
-                className="yes block"
-              >
-                <label
-                  className=""
-                  htmlFor="has_othernames-MOCK-GUID"
-                >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_othernames-MOCK-GUID"
-                    name="has_othernames-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
-                  <span>
-                    Yes
-                  </span>
-                </label>
-              </div>
-              <div
-                className="no block"
-              >
-                <label
-                  className=""
-                  htmlFor="has_othernames-MOCK-GUID"
-                >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_othernames-MOCK-GUID"
-                    name="has_othernames-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
-                  <span>
-                    No
-                  </span>
-                </label>
-              </div>
-            </div>
-          </span>
-        </span>
-      </div>
-    </div>
-  </div>
-  <hr
-    className="section-divider"
-  />
-  <div
-    className="section-content contact"
-    data-section="identification"
-    data-subsection="contacts"
-  >
-    <div
-      aria-label="Provide your contact information"
-      className="field   no-margin-bottom"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <h2
-        className="title h2"
-      >
-        Provide your contact information
-      </h2>
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          />
-        </span>
-      </div>
-    </div>
-    <div
-      aria-label="Your email addresses"
-      className="field   no-margin-bottom"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <h3
-        className="title h3"
-      >
-        Your email addresses
-      </h3>
-      <span
-        className="icon"
-      >
-        <a
-          aria-label="Show help for Your email addresses"
-          className="toggle h3"
-          href="javascript:;"
-          onClick={[Function]}
-          title="Show help for Your email addresses"
-        >
-          <svg
-            alt="Scalable vector graphic"
-            focusable="false"
-            height="14.57px"
-            tabIndex="-1"
-            viewBox="0 0 14.57 14.57"
-            width="14.57px"
-          >
-            <g>
-              <path
-                className="eapp-help-icon"
-                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-              />
-            </g>
-          </svg>
-        </a>
-      </span>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          >
-            <div>
-              <p>
-                Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.
-              </p>
-            </div>
-          </span>
-        </span>
-      </div>
-    </div>
-    <div
-      aria-label="Home email address"
-      className="field"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <label
-        className="title label"
-      >
-        Home email address
-      </label>
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          >
-            <div
-              className="hide-for-print email email-home"
-            >
-              <input
-                aria-describedby="HomeEmail-error"
-                aria-label={null}
-                autoCapitalize={false}
-                autoComplete={true}
-                autoCorrect={false}
-                className=""
-                id="HomeEmail-MOCK-GUID"
-                maxLength={255}
-                name="HomeEmail"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
-                spellCheck={false}
-                type="text"
-                value=""
-              />
-              <div
-                className="text-print print-only"
-              >
-                
-              </div>
-            </div>
-          </span>
-        </span>
-      </div>
-    </div>
-    <div
-      aria-label="Work email address"
-      className="field"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <label
-        className="title label"
-      >
-        Work email address
-      </label>
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          >
-            <div
-              className="hide-for-print email email-work"
-            >
-              <input
-                aria-describedby="WorkEmail-error"
-                aria-label={null}
-                autoCapitalize={false}
-                autoComplete={true}
-                autoCorrect={false}
-                className=""
-                id="WorkEmail-MOCK-GUID"
-                maxLength={255}
-                name="WorkEmail"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
-                spellCheck={false}
-                type="text"
-                value=""
-              />
-              <div
-                className="text-print print-only"
-              >
-                
-              </div>
-            </div>
-          </span>
-        </span>
-      </div>
-    </div>
-    <div
-      aria-label="Your phone numbers"
-      className="field   no-margin-bottom"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <h3
-        className="title h3"
-      >
-        Your phone numbers
-      </h3>
-      <span
-        className="icon"
-      >
-        <a
-          aria-label="Show help for Your phone numbers"
-          className="toggle h3"
-          href="javascript:;"
-          onClick={[Function]}
-          title="Show help for Your phone numbers"
-        >
-          <svg
-            alt="Scalable vector graphic"
-            focusable="false"
-            height="14.57px"
-            tabIndex="-1"
-            viewBox="0 0 14.57 14.57"
-            width="14.57px"
-          >
-            <g>
-              <path
-                className="eapp-help-icon"
-                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-              />
-            </g>
-          </svg>
-        </a>
-      </span>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          >
-            <div>
-              <p>
-                Provide three contact numbers. 
-                <strong>
-                  At least one number is required
-                </strong>
-                . Additional numbers may assist in the completion of your background investigation.
-              </p>
-            </div>
-          </span>
-        </span>
-      </div>
-    </div>
-    <div
-      aria-label=""
-      className="field required  hidden"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          />
-        </span>
-      </div>
-    </div>
-    <div
-      className=" telephone-collection"
-    >
-      <div>
-        <div
-          className="accordion"
-        >
-          <strong
-            className="aria-description"
-          >
-            Summary of phone numbers
-          </strong>
-          <div
-            className="items"
-          />
-          <div
-            className="append-button"
-          >
-            <button
-              className="add usa-button-outline"
-              onClick={[Function]}
-            >
-              Add another phone number
-              <i
-                className="fa fa-plus-circle"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr
-    className="section-divider"
-  />
-  <div
     className="section-content birthdate"
     data-section="identification"
     data-subsection="birthdate"
   >
+    <h1
+      className="section-header"
+    >
+      Date of birth
+    </h1>
     <div
       aria-label="Provide your date of birth"
       className="field required"
@@ -1598,17 +657,17 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         Provide your date of birth
-      </h2>
+      </h4>
       <span
         className="icon"
       >
         <a
           aria-label="Show help for Provide your date of birth"
-          className="toggle h2"
+          className="toggle h4"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Provide your date of birth"
@@ -1854,6 +913,11 @@ exports[`The identification section renders the IdentificationSections component
     data-section="identification"
     data-subsection="birthplace"
   >
+    <h1
+      className="section-header"
+    >
+      Place of birth
+    </h1>
     <div
       aria-label="Provide your place of birth"
       className="field required"
@@ -1865,11 +929,11 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         Provide your place of birth
-      </h2>
+      </h4>
       <span
         className="icon"
       />
@@ -2006,37 +1070,29 @@ exports[`The identification section renders the IdentificationSections component
                             <div
                               className="yes block"
                             >
+                              <input
+                                aria-label="[object Object] for null"
+                                checked={false}
+                                className="usa-input-success"
+                                disabled={false}
+                                id="birthplace-MOCK-GUID"
+                                name="birthplace-MOCK-GUID"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                type="radio"
+                                value="Yes"
+                              />
                               <label
                                 className=""
                                 htmlFor="birthplace-MOCK-GUID"
                               >
-                                <input
-                                  aria-label="[object Object] for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="birthplace-MOCK-GUID"
-                                  name="birthplace-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
                                 <span>
                                   <div>
                                     <p>
-                                      In the
-                                      <span
-                                        dangerouslySetInnerHTML={
-                                          Object {
-                                            "__html": "<br>",
-                                          }
-                                        }
-                                      />
-                                      United States
+                                      In the U.S.
                                     </p>
                                   </div>
                                 </span>
@@ -2045,37 +1101,29 @@ exports[`The identification section renders the IdentificationSections component
                             <div
                               className="no block"
                             >
+                              <input
+                                aria-label="[object Object] for null"
+                                checked={false}
+                                className="usa-input-success"
+                                disabled={false}
+                                id="birthplace-MOCK-GUID"
+                                name="birthplace-MOCK-GUID"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onClick={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                type="radio"
+                                value="No"
+                              />
                               <label
                                 className=""
                                 htmlFor="birthplace-MOCK-GUID"
                               >
-                                <input
-                                  aria-label="[object Object] for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="birthplace-MOCK-GUID"
-                                  name="birthplace-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
                                 <span>
                                   <div>
                                     <p>
-                                      Outside of the
-                                      <span
-                                        dangerouslySetInnerHTML={
-                                          Object {
-                                            "__html": "<br>",
-                                          }
-                                        }
-                                      />
-                                      United States
+                                      Outside the U.S.
                                     </p>
                                   </div>
                                 </span>
@@ -2102,6 +1150,11 @@ exports[`The identification section renders the IdentificationSections component
     data-section="identification"
     data-subsection="ssn"
   >
+    <h1
+      className="section-header"
+    >
+      Social security number
+    </h1>
     <div
       aria-label="Provide your U.S. Social Security Number"
       className="field required"
@@ -2113,17 +1166,17 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         Provide your U.S. Social Security Number
-      </h2>
+      </h4>
       <span
         className="icon"
       >
         <a
           aria-label="Show help for Provide your U.S. Social Security Number"
-          className="toggle h2"
+          className="toggle h4"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Provide your U.S. Social Security Number"
@@ -2331,12 +1384,17 @@ exports[`The identification section renders the IdentificationSections component
     className="section-divider"
   />
   <div
-    className="section-content physical"
+    className="section-content other-names"
     data-section="identification"
-    data-subsection="physical"
+    data-subsection="othernames"
   >
+    <h1
+      className="section-header"
+    >
+      Other names used
+    </h1>
     <div
-      aria-label="Provide your identifying information"
+      aria-label="Provide your other names used and the period of time you used them"
       className="field   no-margin-bottom"
       data-uuid="field-MOCK-GUID"
     >
@@ -2346,11 +1404,544 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h3
+        className="title h3"
       >
-        Provide your identifying information
-      </h2>
+        Provide your other names used and the period of time you used them
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Provide your other names used and the period of time you used them"
+          className="toggle h3"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Provide your other names used and the period of time you used them"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div>
+              <p>
+                For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).
+              </p>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="Have you used any other names?"
+      className="field required  branch"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h4
+        className="title h4"
+      >
+        Have you used any other names?
+      </h4>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            />
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_othernames-MOCK-GUID"
+                  name="has_othernames-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
+                <label
+                  className=""
+                  htmlFor="has_othernames-MOCK-GUID"
+                >
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_othernames-MOCK-GUID"
+                  name="has_othernames-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
+                <label
+                  className=""
+                  htmlFor="has_othernames-MOCK-GUID"
+                >
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content contact"
+    data-section="identification"
+    data-subsection="contacts"
+  >
+    <h1
+      className="section-header"
+    >
+      Your contact information
+    </h1>
+    <div
+      aria-label="Your email addresses"
+      className="field   no-margin-bottom"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Your email addresses
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Your email addresses"
+          className="toggle h3"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Your email addresses"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div>
+              <p>
+                Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.
+              </p>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="Home email address"
+      className="field"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h4
+        className="title h4"
+      >
+        Home email address
+      </h4>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className="hide-for-print email email-home"
+            >
+              <input
+                aria-describedby="HomeEmail-error"
+                aria-label={null}
+                autoCapitalize={false}
+                autoComplete={true}
+                autoCorrect={false}
+                className=""
+                id="HomeEmail-MOCK-GUID"
+                maxLength={255}
+                name="HomeEmail"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                spellCheck={false}
+                type="text"
+                value=""
+              />
+              <div
+                className="text-print print-only"
+              >
+                
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="Work email address"
+      className="field"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h4
+        className="title h4"
+      >
+        Work email address
+      </h4>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className="hide-for-print email email-work"
+            >
+              <input
+                aria-describedby="WorkEmail-error"
+                aria-label={null}
+                autoCapitalize={false}
+                autoComplete={true}
+                autoCorrect={false}
+                className=""
+                id="WorkEmail-MOCK-GUID"
+                maxLength={255}
+                name="WorkEmail"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                spellCheck={false}
+                type="text"
+                value=""
+              />
+              <div
+                className="text-print print-only"
+              >
+                
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="Your phone numbers"
+      className="field   no-margin-bottom"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Your phone numbers
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Your phone numbers"
+          className="toggle h3"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Your phone numbers"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div>
+              <p>
+                Provide three contact numbers. 
+                <strong>
+                  At least one number is required
+                </strong>
+                . Additional numbers may assist in the completion of your background investigation.
+              </p>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label=""
+      className="field required  hidden"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
       <span
         className="icon"
       />
@@ -2384,6 +1975,51 @@ exports[`The identification section renders the IdentificationSections component
       </div>
     </div>
     <div
+      className=" telephone-collection"
+    >
+      <div>
+        <div
+          className="accordion"
+        >
+          <strong
+            className="aria-description"
+          >
+            Summary of phone numbers
+          </strong>
+          <div
+            className="items"
+          />
+          <div
+            className="append-button"
+          >
+            <button
+              className="add usa-button-outline"
+              onClick={[Function]}
+            >
+              Add another phone number
+              <i
+                className="fa fa-plus-circle"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content physical"
+    data-section="identification"
+    data-subsection="physical"
+  >
+    <h1
+      className="section-header"
+    >
+      Your identifying information
+    </h1>
+    <div
       aria-label="Height"
       className="field required"
       data-uuid="field-MOCK-GUID"
@@ -2394,17 +2030,17 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h3
-        className="title h3"
+      <h4
+        className="title h4"
       >
         Height
-      </h3>
+      </h4>
       <span
         className="icon"
       >
         <a
           aria-label="Show help for Height"
-          className="toggle h3  adjust-for-labels"
+          className="toggle h4  adjust-for-labels"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Height"
@@ -2571,17 +2207,17 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h3
-        className="title h3"
+      <h4
+        className="title h4"
       >
         Weight
-      </h3>
+      </h4>
       <span
         className="icon"
       >
         <a
           aria-label="Show help for Weight"
-          className="toggle h3  adjust-for-labels"
+          className="toggle h4  adjust-for-labels"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Weight"
@@ -2709,17 +2345,17 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h3
-        className="title h3"
+      <h4
+        className="title h4"
       >
         Hair color
-      </h3>
+      </h4>
       <span
         className="icon"
       >
         <a
           aria-label="Show help for Hair color"
-          className="toggle h3  adjust-for-big-buttons"
+          className="toggle h4  adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Hair color"
@@ -2794,30 +2430,30 @@ exports[`The identification section renders the IdentificationSections component
             >
               <label />
               <div
-                className="blocks option-list eapp-extend-labels usa-input-error"
+                className="blocks option-list eapp-extend-labels physical-radio usa-input-error"
               >
                 <div
                   className="black block extended"
                 >
+                  <input
+                    aria-label="Black for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-black-MOCK-GUID"
+                    name="hair-black-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Black"
+                  />
                   <label
                     className=""
                     htmlFor="hair-black-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Black for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-black-MOCK-GUID"
-                      name="hair-black-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Black"
-                    />
                     <div
                       className="hair-icon black"
                     >
@@ -2841,25 +2477,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="brown block extended"
                 >
+                  <input
+                    aria-label="Brown for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-brown-MOCK-GUID"
+                    name="hair-brown-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Brown"
+                  />
                   <label
                     className=""
                     htmlFor="hair-brown-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Brown for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-brown-MOCK-GUID"
-                      name="hair-brown-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Brown"
-                    />
                     <div
                       className="hair-icon brown"
                     >
@@ -2883,25 +2519,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="red block extended"
                 >
+                  <input
+                    aria-label="Red or auburn for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-red-MOCK-GUID"
+                    name="hair-red-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Red"
+                  />
                   <label
                     className=""
                     htmlFor="hair-red-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Red or auburn for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-red-MOCK-GUID"
-                      name="hair-red-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Red"
-                    />
                     <div
                       className="hair-icon red"
                     >
@@ -2925,25 +2561,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="blonde block extended"
                 >
+                  <input
+                    aria-label="Blonde or strawberry for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-blonde-MOCK-GUID"
+                    name="hair-blonde-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Blonde"
+                  />
                   <label
                     className=""
                     htmlFor="hair-blonde-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Blonde or strawberry for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-blonde-MOCK-GUID"
-                      name="hair-blonde-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Blonde"
-                    />
                     <div
                       className="hair-icon blonde"
                     >
@@ -2967,25 +2603,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="sandy block extended"
                 >
+                  <input
+                    aria-label="Sandy for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-sandy-MOCK-GUID"
+                    name="hair-sandy-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Sandy"
+                  />
                   <label
                     className=""
                     htmlFor="hair-sandy-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Sandy for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-sandy-MOCK-GUID"
-                      name="hair-sandy-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Sandy"
-                    />
                     <div
                       className="hair-icon sandy"
                     >
@@ -3009,25 +2645,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="gray block extended"
                 >
+                  <input
+                    aria-label="Gray or partially gray for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-gray-MOCK-GUID"
+                    name="hair-gray-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Gray"
+                  />
                   <label
                     className=""
                     htmlFor="hair-gray-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Gray or partially gray for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-gray-MOCK-GUID"
-                      name="hair-gray-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Gray"
-                    />
                     <div
                       className="hair-icon gray"
                     >
@@ -3051,25 +2687,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="white block extended"
                 >
+                  <input
+                    aria-label="White for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-white-MOCK-GUID"
+                    name="hair-white-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="White"
+                  />
                   <label
                     className=""
                     htmlFor="hair-white-MOCK-GUID"
                   >
-                    <input
-                      aria-label="White for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-white-MOCK-GUID"
-                      name="hair-white-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="White"
-                    />
                     <div
                       className="hair-icon white"
                     >
@@ -3093,25 +2729,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="bald block extended"
                 >
+                  <input
+                    aria-label="Bald for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-bald-MOCK-GUID"
+                    name="hair-bald-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Bald"
+                  />
                   <label
                     className=""
                     htmlFor="hair-bald-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Bald for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-bald-MOCK-GUID"
-                      name="hair-bald-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Bald"
-                    />
                     <div
                       className="hair-icon bald"
                     >
@@ -3143,25 +2779,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="blue block extended"
                 >
+                  <input
+                    aria-label="Blue for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-blue-MOCK-GUID"
+                    name="hair-blue-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Blue"
+                  />
                   <label
                     className=""
                     htmlFor="hair-blue-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Blue for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-blue-MOCK-GUID"
-                      name="hair-blue-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Blue"
-                    />
                     <div
                       className="hair-icon blue"
                     >
@@ -3185,25 +2821,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="green block extended"
                 >
+                  <input
+                    aria-label="Green for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-green-MOCK-GUID"
+                    name="hair-green-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Green"
+                  />
                   <label
                     className=""
                     htmlFor="hair-green-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Green for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-green-MOCK-GUID"
-                      name="hair-green-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Green"
-                    />
                     <div
                       className="hair-icon green"
                     >
@@ -3227,25 +2863,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="orange block extended"
                 >
+                  <input
+                    aria-label="Orange for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-orange-MOCK-GUID"
+                    name="hair-orange-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Orange"
+                  />
                   <label
                     className=""
                     htmlFor="hair-orange-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Orange for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-orange-MOCK-GUID"
-                      name="hair-orange-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Orange"
-                    />
                     <div
                       className="hair-icon orange"
                     >
@@ -3269,25 +2905,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="pink block extended"
                 >
+                  <input
+                    aria-label="Pink for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-pink-MOCK-GUID"
+                    name="hair-pink-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Pink"
+                  />
                   <label
                     className=""
                     htmlFor="hair-pink-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Pink for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-pink-MOCK-GUID"
-                      name="hair-pink-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Pink"
-                    />
                     <div
                       className="hair-icon pink"
                     >
@@ -3311,25 +2947,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="purple block extended"
                 >
+                  <input
+                    aria-label="Purple for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-purple-MOCK-GUID"
+                    name="hair-purple-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Purple"
+                  />
                   <label
                     className=""
                     htmlFor="hair-purple-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Purple for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-purple-MOCK-GUID"
-                      name="hair-purple-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Purple"
-                    />
                     <div
                       className="hair-icon purple"
                     >
@@ -3353,25 +2989,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="unknown block extended"
                 >
+                  <input
+                    aria-label="Unspecified or unknown for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hair-unknown-MOCK-GUID"
+                    name="hair-unknown-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Unknown"
+                  />
                   <label
                     className=""
                     htmlFor="hair-unknown-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Unspecified or unknown for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="hair-unknown-MOCK-GUID"
-                      name="hair-unknown-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Unknown"
-                    />
                     <div
                       className="hair-icon unknown"
                     >
@@ -3408,17 +3044,17 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h3
-        className="title h3"
+      <h4
+        className="title h4"
       >
         Eye color
-      </h3>
+      </h4>
       <span
         className="icon"
       >
         <a
           aria-label="Show help for Eye color"
-          className="toggle h3  adjust-for-big-buttons"
+          className="toggle h4  adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Eye color"
@@ -3493,30 +3129,30 @@ exports[`The identification section renders the IdentificationSections component
             >
               <label />
               <div
-                className="blocks option-list eapp-extend-labels usa-input-error"
+                className="blocks option-list eapp-extend-labels physical-radio usa-input-error"
               >
                 <div
                   className="brown block extended"
                 >
+                  <input
+                    aria-label="Brown for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-brown-MOCK-GUID"
+                    name="eye-brown-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Brown"
+                  />
                   <label
                     className=""
                     htmlFor="eye-brown-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Brown for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-brown-MOCK-GUID"
-                      name="eye-brown-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Brown"
-                    />
                     <div
                       className="eye-icon brown"
                     >
@@ -3540,25 +3176,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="hazel block extended"
                 >
+                  <input
+                    aria-label="Hazel for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-hazel-MOCK-GUID"
+                    name="eye-hazel-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Hazel"
+                  />
                   <label
                     className=""
                     htmlFor="eye-hazel-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Hazel for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-hazel-MOCK-GUID"
-                      name="eye-hazel-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Hazel"
-                    />
                     <div
                       className="eye-icon hazel"
                     >
@@ -3582,25 +3218,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="blue block extended"
                 >
+                  <input
+                    aria-label="Blue for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-blue-MOCK-GUID"
+                    name="eye-blue-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Blue"
+                  />
                   <label
                     className=""
                     htmlFor="eye-blue-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Blue for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-blue-MOCK-GUID"
-                      name="eye-blue-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Blue"
-                    />
                     <div
                       className="eye-icon blue"
                     >
@@ -3624,25 +3260,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="green block extended"
                 >
+                  <input
+                    aria-label="Green for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-green-MOCK-GUID"
+                    name="eye-green-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Green"
+                  />
                   <label
                     className=""
                     htmlFor="eye-green-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Green for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-green-MOCK-GUID"
-                      name="eye-green-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Green"
-                    />
                     <div
                       className="eye-icon green"
                     >
@@ -3666,25 +3302,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="gray block extended"
                 >
+                  <input
+                    aria-label="Gray for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-gray-MOCK-GUID"
+                    name="eye-gray-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Gray"
+                  />
                   <label
                     className=""
                     htmlFor="eye-gray-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Gray for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-gray-MOCK-GUID"
-                      name="eye-gray-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Gray"
-                    />
                     <div
                       className="eye-icon gray"
                     >
@@ -3708,25 +3344,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="maroon block extended"
                 >
+                  <input
+                    aria-label="Maroon for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-maroon-MOCK-GUID"
+                    name="eye-maroon-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Maroon"
+                  />
                   <label
                     className=""
                     htmlFor="eye-maroon-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Maroon for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-maroon-MOCK-GUID"
-                      name="eye-maroon-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Maroon"
-                    />
                     <div
                       className="eye-icon maroon"
                     >
@@ -3750,25 +3386,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="black block extended"
                 >
+                  <input
+                    aria-label="Black for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-black-MOCK-GUID"
+                    name="eye-black-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Black"
+                  />
                   <label
                     className=""
                     htmlFor="eye-black-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Black for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-black-MOCK-GUID"
-                      name="eye-black-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Black"
-                    />
                     <div
                       className="eye-icon black"
                     >
@@ -3792,25 +3428,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="multi block extended"
                 >
+                  <input
+                    aria-label="Multicolored for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-multi-MOCK-GUID"
+                    name="eye-multi-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Multicolored"
+                  />
                   <label
                     className=""
                     htmlFor="eye-multi-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Multicolored for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-multi-MOCK-GUID"
-                      name="eye-multi-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Multicolored"
-                    />
                     <div
                       className="eye-icon multi"
                     >
@@ -3828,25 +3464,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="pink block extended"
                 >
+                  <input
+                    aria-label="Pink for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-pink-MOCK-GUID"
+                    name="eye-pink-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Pink"
+                  />
                   <label
                     className=""
                     htmlFor="eye-pink-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Pink for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-pink-MOCK-GUID"
-                      name="eye-pink-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Pink"
-                    />
                     <div
                       className="eye-icon pink"
                     >
@@ -3870,25 +3506,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="unknown block extended"
                 >
+                  <input
+                    aria-label="Unknown for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="eye-unknown-MOCK-GUID"
+                    name="eye-unknown-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Unknown"
+                  />
                   <label
                     className=""
                     htmlFor="eye-unknown-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Unknown for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="eye-unknown-MOCK-GUID"
-                      name="eye-unknown-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Unknown"
-                    />
                     <div
                       className="eye-icon unknown"
                     >
@@ -3925,17 +3561,17 @@ exports[`The identification section renders the IdentificationSections component
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h3
-        className="title h3"
+      <h4
+        className="title h4"
       >
         Select your sex
-      </h3>
+      </h4>
       <span
         className="icon"
       >
         <a
           aria-label="Show help for Select your sex"
-          className="toggle h3  adjust-for-big-buttons"
+          className="toggle h4  adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Select your sex"
@@ -4010,30 +3646,30 @@ exports[`The identification section renders the IdentificationSections component
             >
               <label />
               <div
-                className="blocks  usa-input-error"
+                className="blocks option-list physical-radio usa-input-error"
               >
                 <div
                   className="female block extended"
                 >
+                  <input
+                    aria-label="Female for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="sex-MOCK-GUID"
+                    name="sex-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Female"
+                  />
                   <label
                     className=""
                     htmlFor="sex-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Female for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="sex-MOCK-GUID"
-                      name="sex-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Female"
-                    />
                     <div
                       className="sex-icon"
                     >
@@ -4056,25 +3692,25 @@ exports[`The identification section renders the IdentificationSections component
                 <div
                   className="male block extended"
                 >
+                  <input
+                    aria-label="Male for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="sex-MOCK-GUID"
+                    name="sex-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Male"
+                  />
                   <label
                     className=""
                     htmlFor="sex-MOCK-GUID"
                   >
-                    <input
-                      aria-label="Male for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="sex-MOCK-GUID"
-                      name="sex-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Male"
-                    />
                     <div
                       className="sex-icon"
                     >

@@ -297,10 +297,10 @@ BranchCollection.defaultProps = {
   valueKey: 'Has',
 
   label: '',
-  labelSize: 'h3',
+  labelSize: 'h4',
   content: null,
   appendLabel: '',
-  appendSize: 'h3',
+  appendSize: 'h4',
   appendContent: null,
 
   onUpdate: () => {

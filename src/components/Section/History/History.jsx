@@ -364,9 +364,8 @@ class History extends SectionElement {
             backLabel={i18n.t('identification.destination.review')}
             next="history/residence"
             nextLabel={i18n.t('history.destination.residence')}>
+            <h1 className="section-header">{i18n.t('history.intro.title')}</h1>
             <Field
-              title={i18n.t('history.intro.title')}
-              titleSize="h2"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.intro.body')}
@@ -393,13 +392,7 @@ class History extends SectionElement {
             </Show>
 
             <hr className="section-divider" />
-            <span className="section-heading">
-              <Svg
-                src="/img/residence-house.svg"
-                alt={i18n.t('history.residence.summary.svgAlt')}
-              />
-              {i18n.t('history.residence.collection.caption')}
-            </span>
+            <h1 className="section-header">{i18n.t('history.residence.collection.caption')}</h1>
             <Residence
               {...this.props.Residence}
               section="history"
@@ -417,13 +410,7 @@ class History extends SectionElement {
             />
 
             <hr className="section-divider" />
-            <span className="section-heading">
-              <Svg
-                src="/img/employer-briefcase.svg"
-                alt={i18n.t('history.employment.summary.svgAlt')}
-              />
-              {i18n.t('history.employment.default.collection.caption')}
-            </span>
+            <h1 className="section-header">{i18n.t('history.employment.default.collection.caption')}</h1>
             <Employment
               {...this.props.Employment}
               section="history"
@@ -441,17 +428,10 @@ class History extends SectionElement {
             />
 
             <hr className="section-divider" />
-            <span className="section-heading">
-              <Svg
-                src="/img/school-cap.svg"
-                alt={i18n.t('history.education.summary.svgAlt')}
-              />
-              {i18n.t('history.education.collection.caption')}
-            </span>
-
+            <h1 className="section-header">{i18n.t('history.education.collection.caption')}</h1>
             <Field
               title={i18n.t('history.education.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.education.info')}
@@ -503,6 +483,7 @@ class History extends SectionElement {
             </Show>
 
             <hr className="section-divider" />
+            <h1 className="section-header">{i18n.t('history.destination.federal')}</h1>
             <Federal
               name="federal"
               {...this.props.Federal}
@@ -523,9 +504,10 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.intro')}
             next="history/employment"
             nextLabel={i18n.t('history.destination.employment')}>
+            <h1 className="section-header">{i18n.t('history.residence.title')}</h1>
             <Field
               title={i18n.t('history.residence.info')}
-              titleSize="h2"
+              titleSize="h3"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.residence.info2')}
@@ -554,7 +536,7 @@ class History extends SectionElement {
                 <hr className="section-divider" />
                 <Field
                   title={i18n.t('history.residence.heading.exiting')}
-                  titleSize="h2"
+                  titleSize="h4"
                   optional={true}
                   className="no-margin-bottom">
                   {i18n.m('history.residence.para.exiting')}
@@ -569,9 +551,10 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.residence')}
             next="history/education"
             nextLabel={i18n.t('history.destination.education')}>
+            <h1 className="section-header">{i18n.t('history.employment.summary.title')}</h1>
             <Field
               title={i18n.t('history.employment.heading.employment')}
-              titleSize="h2"
+              titleSize="h3"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.employment.para.employment')}
@@ -597,7 +580,7 @@ class History extends SectionElement {
                 <hr className="section-divider" />
                 <Field
                   title={i18n.t('history.employment.heading.exiting')}
-                  titleSize="h2"
+                  titleSize="h4"
                   optional={true}
                   className="no-margin-bottom">
                   {i18n.m('history.employment.para.exiting')}
@@ -612,9 +595,10 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.employment')}
             next="history/federal"
             nextLabel={i18n.t('history.destination.federal')}>
+            <h1 className="section-header">{i18n.t('history.education.summary.title')}</h1>
             <Field
               title={i18n.t('history.education.title')}
-              titleSize="h2"
+              titleSize="h3"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.education.info')}
@@ -625,7 +609,7 @@ class History extends SectionElement {
               {...this.props.Education.HasAttended}
               help="history.education.help.attendance"
               label={i18n.t('history.education.label.attendance')}
-              labelSize="h3"
+              labelSize="h4"
               warning={true}
               onUpdate={this.updateBranchAttendance}
             />
@@ -635,7 +619,7 @@ class History extends SectionElement {
                 {...this.props.Education.HasDegree10}
                 help="history.education.help.degree10"
                 label={i18n.t('history.education.label.degree10')}
-                labelSize="h3"
+                labelSize="h4"
                 warning={true}
                 onUpdate={this.updateBranchDegree10}
               />
@@ -669,6 +653,7 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.education')}
             next="history/review"
             nextLabel={i18n.t('history.destination.review')}>
+            <h1 className="section-header">{i18n.t('history.destination.federal')}</h1>
             <Federal
               name="federal"
               {...this.props.Federal}

@@ -462,7 +462,7 @@ export default class Field extends ValidationElement {
 
 Field.defaultProps = {
   title: '',
-  titleSize: 'h3',
+  titleSize: 'h4',
   className: '',
   errors: [],
   errorPrefix: '',

@@ -28,7 +28,7 @@ export default class TravelPurpose extends ValidationElement {
   render() {
     return (
       <CheckboxGroup
-        className={`travel-purpose ${this.props.className || ''}`.trim()}
+        className={`travel-purpose option-list option-list-vertical ${this.props.className || ''}`.trim()}
         onError={this.props.onError}
         required={this.props.required}
         selectedValues={this.props.values || []}>

@@ -155,7 +155,7 @@ export default class VoluntaryCounseling extends ValidationElement {
           label={i18n.t(
             'substance.alcohol.voluntaryCounseling.heading.completedTreatment'
           )}
-          labelSize="h3"
+          labelSize="h4"
           className="completed-treatment no-margin-bottom"
           {...this.props.CompletedTreatment}
           onUpdate={this.updateCompletedTreatment}

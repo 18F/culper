@@ -26,6 +26,7 @@ describe('The legal associations membership overthrow item component', () => {
       }
     }
     const component = createComponent(expected)
+    console.log(component.find('.legal-associations-overthrow-positions-na').debug())
     component
       .find('.legal-associations-overthrow-organization input')
       .simulate('change')
@@ -45,10 +46,10 @@ describe('The legal associations membership overthrow item component', () => {
       .find('.legal-associations-overthrow-reasons textarea')
       .simulate('change')
     component
-      .find('.legal-associations-overthrow-positions-na .block label input')
+      .find('.legal-associations-overthrow-positions-na.button input')
       .simulate('change')
     component
-      .find('.legal-associations-overthrow-contributions-na .block label input')
+      .find('.legal-associations-overthrow-contributions-na.button input')
       .simulate('change')
     expect(updates).toBe(8)
   })

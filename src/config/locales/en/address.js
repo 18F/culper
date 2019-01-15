@@ -14,13 +14,13 @@ export const address = {
   },
   options: {
     us: {
-      label: 'In the<br>United States'
+      label: 'In the U.S.'
     },
     apoFpo: {
       label: 'APO/FPO/DPO'
     },
     international: {
-      label: 'Outside of the<br>United States'
+      label: 'Outside the U.S.'
     }
   },
   us: {

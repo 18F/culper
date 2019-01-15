@@ -31,13 +31,12 @@ export default class Infractions extends ValidationElement {
       <div>
         {i18n.m('financial.delinquent.para.checkAll')}
         <CheckboxGroup
-          className={`option-list ${this.props.className || ''}`.trim()}
+          className={`option-list option-list-vertical ${this.props.className || ''}`.trim()}
           selectedValues={this.props.values}>
           <Checkbox
             label={i18n.m('financial.delinquent.para.alimony')}
             value="Alimony"
             className="delinquent-alimony"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -45,7 +44,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.delinquent.para.judgement')}
             value="Judgement"
             className="delinquent-judgement"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -53,7 +51,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.delinquent.para.lien')}
             value="Lien"
             className="delinquent-lien"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -61,7 +58,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.delinquent.para.federal')}
             value="Federal"
             className="delinquent-federal"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />

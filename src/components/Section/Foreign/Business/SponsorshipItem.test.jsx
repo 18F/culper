@@ -34,7 +34,7 @@ describe('The foreign business sponsorship component', () => {
       .find('.foreign-business-sponsorship-birthdate .day input')
       .simulate('change')
     component
-      .find('.foreign-business-sponsorship-birthdate-na .block label input')
+      .find('.foreign-business-sponsorship-birthdate-na.button .block input')
       .simulate('change')
     component
       .find('.foreign-business-sponsorship-birthplace .yes input')

@@ -102,7 +102,7 @@ export default class Procedure extends ValidationElement {
           <Text
             name="Name"
             {...this.props.Name}
-            label={i18n.m('military.disciplinary.label.name')}
+            label={i18n.t('military.disciplinary.label.name')}
             className="procedure-name"
             maxlength="100"
             onUpdate={this.updateName}

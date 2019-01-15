@@ -197,23 +197,23 @@ export default class Checkbox extends ValidationElement {
 
     return (
       <div className={this.divClass()}>
+        <input
+          className={this.inputClass()}
+          id={this.state.uid}
+          name={this.props.name}
+          type="checkbox"
+          ref="checkbox"
+          disabled={this.props.disabled}
+          readOnly={this.props.readonly}
+          value={this.props.value}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyPress}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          checked={this.state.checked}
+          aria-label={speech}
+        />
         <label className={this.labelClass()} htmlFor={this.state.uid}>
-          <input
-            className={this.inputClass()}
-            id={this.state.uid}
-            name={this.props.name}
-            type="checkbox"
-            ref="checkbox"
-            disabled={this.props.disabled}
-            readOnly={this.props.readonly}
-            value={this.props.value}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyPress}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            checked={this.state.checked}
-            aria-label={speech}
-          />
           {this.props.children}
           <span>{this.props.label}</span>
         </label>

@@ -73,7 +73,7 @@ export class SectionViews extends React.Component {
 
         let title = null
         if (child.props.title) {
-          title = <h2 className="title">{child.props.title}</h2>
+          title = <h1 className="title">{child.props.title}</h1>
         }
 
         let topButtons = null

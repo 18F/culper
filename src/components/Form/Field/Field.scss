@@ -4,7 +4,8 @@
 .field {
   border-left: 0.75rem solid transparent;
   margin-left: -0.75rem;
-  margin-bottom: 3rem;
+  margin-bottom: 8rem;
+  max-width: 64rem;
 
   &.with-comments {
     border-left: 0.75rem solid $eapp-grey-light;
@@ -21,7 +22,7 @@
   > .title {
     display: inline;
     max-width: 64rem;
-    line-height: 1.3;
+    line-height: 1.5;
     font-family: $eapp-serif;
     font-weight: 700;
 
@@ -33,29 +34,24 @@
     }
 
     &.h2 {
-      font-size: 2.3rem;
-      line-height: 1.6;
+      font-size: 2.5rem;
     }
 
     &.h3 {
-      font-size: 1.85rem;
+      font-size: 2rem;
       margin-top: 1.5rem;
-      line-height: 1.7;
     }
 
     &.h4 {
       font-size: 1.7rem;
-      line-height: 1.7;
     }
 
     &.h5 {
-      font-size: 1.6rem;
-      line-height: 1.6;
+      font-size: 1.3rem;
     }
 
     &.h6 {
-      font-size: 1.5rem;
-      line-height: 1.7;
+      font-size: 1rem;
     }
   }
 
@@ -268,4 +264,9 @@
 
 .no-margin-bottom {
   margin-bottom: 0 !important;
+}
+
+.field.usa-form-control,
+.usa-form-control {
+  margin-bottom: 1rem;
 }

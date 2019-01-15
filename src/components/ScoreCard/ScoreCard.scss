@@ -7,8 +7,8 @@
   color: $eapp-grey-darker;
   text-align: center;
   margin: 0;
-  padding-bottom: 3.8rem;
-  border-bottom: 3px solid $eapp-grey;
+  padding: 2rem 0;
+  border-bottom: 2px solid $eapp-grey;
 
   &.completed {
     color: $eapp-green;
@@ -17,6 +17,5 @@
   .score-card-text {
     display: block;
     font-size: 1.9rem;
-    line-height: 0.5;
   }
 }

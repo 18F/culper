@@ -42,7 +42,7 @@ export default class InvestigatingAgency extends ValidationElement {
     return (
       <div className={this.props.className}>
         <RadioGroup
-          className="investigative-agencies"
+          className="investigative-agencies option-list option-list-vertical"
           selectedValue={(this.props.Agency || {}).value}
           onError={this.props.onError}
           required={this.props.required}

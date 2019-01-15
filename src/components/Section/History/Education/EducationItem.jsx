@@ -197,12 +197,12 @@ export default class EducationItem extends ValidationElement {
         <div className="content">
           <Field
             title={i18n.t('history.education.heading.name')}
+            titleSize="h4"
             adjustFor="labels"
             scrollIntoView={this.props.scrollIntoView}>
             <Text
               name="Name"
               {...this.props.Name}
-              label={i18n.t('history.education.label.name')}
               className="school-name"
               maxlength="100"
               onUpdate={this.updateName}
@@ -213,6 +213,7 @@ export default class EducationItem extends ValidationElement {
 
           <Field
             title={i18n.t('history.education.heading.dates')}
+            titleSize="h4"
             help="history.education.help.dates"
             adjustFor="daterange"
             shrink={true}
@@ -233,6 +234,7 @@ export default class EducationItem extends ValidationElement {
 
           <Field
             title={i18n.t('history.education.heading.address')}
+            titleSize="h4"
             optional={true}
             help="history.education.help.address"
             comments={true}
@@ -261,11 +263,12 @@ export default class EducationItem extends ValidationElement {
 
           <Field
             title={i18n.t('history.education.heading.type')}
+            titleSize="h4"
             adjustFor="big-buttons"
             shrink={true}
             scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup
-              className="type option-list"
+              className="type option-list option-list-vertical"
               required={this.props.required}
               onError={this.props.onError}
               selectedValue={(this.props.Type || {}).value}>
@@ -308,7 +311,7 @@ export default class EducationItem extends ValidationElement {
             <div className="reference">
               <Field
                 title={i18n.t('history.education.heading.reference')}
-                titleSize="h2"
+                titleSize="h3"
                 className="no-margin-bottom"
                 scrollIntoView={this.props.scrollIntoView}>
                 {i18n.m('history.education.para.reference')}
@@ -316,7 +319,7 @@ export default class EducationItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.name')}
-                titleSize="h3"
+                titleSize="h4"
                 optional={true}
                 filterErrors={Name.requiredErrorsOnly}
                 scrollIntoView={this.props.scrollIntoView}>
@@ -344,7 +347,7 @@ export default class EducationItem extends ValidationElement {
               <Show when={!nameIsEmpty(this.props.ReferenceName)}>
                 <Field
                   title={i18n.t('reference.heading.correspondence')}
-                  titleSize="h2"
+                  titleSize="h4"
                   optional={true}
                   className="no-margin-bottom"
                   scrollIntoView={this.props.scrollIntoView}>
@@ -353,6 +356,7 @@ export default class EducationItem extends ValidationElement {
 
                 <Field
                   title={i18n.t('reference.heading.phone.default')}
+                  titleSize="h4"
                   className="override-required"
                   help={'reference.help.phone'}
                   adjustFor="telephone"
@@ -369,6 +373,7 @@ export default class EducationItem extends ValidationElement {
 
                 <Field
                   title={i18n.t('reference.heading.email')}
+                  titleSize="h4"
                   help={'reference.help.email'}
                   adjustFor="label"
                   scrollIntoView={this.props.scrollIntoView}>
@@ -392,6 +397,7 @@ export default class EducationItem extends ValidationElement {
 
                 <Field
                   title={i18n.t('reference.heading.address')}
+                  titleSize="h4"
                   optional={true}
                   help={'reference.help.address'}
                   adjustFor="address"
@@ -418,6 +424,7 @@ export default class EducationItem extends ValidationElement {
 
           <BranchCollection
             label={i18n.t('history.education.heading.degree')}
+            titleSize="h4"
             appendLabel={i18n.t('history.education.heading.degreeTail')}
             className="receive-degree"
             {...this.props.Diplomas}

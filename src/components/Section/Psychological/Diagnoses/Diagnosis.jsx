@@ -84,7 +84,7 @@ export default class Diagnosis extends ValidationElement {
             title={i18n.t(`psychological.diagnosis.heading.condition`)}
             scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup
-              className="diagnosis-condition"
+              className="diagnosis-condition option-list option-list-vertical"
               onError={this.props.onError}
               required={this.props.required}
               selectedValue={(this.props.Condition || {}).value}>
@@ -168,7 +168,7 @@ export default class Diagnosis extends ValidationElement {
           title={i18n.t(
             `psychological.${prefix}.heading.healthcareProfessional`
           )}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom"
         />
@@ -188,7 +188,7 @@ export default class Diagnosis extends ValidationElement {
 
         <Field
           title={i18n.t(`psychological.${prefix}.heading.facility`)}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom"
         />
@@ -214,7 +214,7 @@ export default class Diagnosis extends ValidationElement {
               adjustFor="buttons"
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
-                className="effective"
+                className="effective option-list"
                 selectedValue={(this.props.Effective || {}).value}
                 onError={this.props.onError}
                 required={this.props.required}>

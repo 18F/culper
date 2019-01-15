@@ -140,7 +140,7 @@ export default class ForeignService extends ValidationElement {
           shrink={true}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="organization option-list"
+            className="organization option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValue={(this.props.Organization || {}).value}>
@@ -308,7 +308,7 @@ export default class ForeignService extends ValidationElement {
         <Branch
           name="has_maintainscontact"
           label={i18n.t('military.foreign.heading.maintainscontact')}
-          labelSize="h3"
+          labelSize="h4"
           className="maintainscontact"
           {...this.props.MaintainsContact}
           help="military.foreign.help.maintainscontact"
@@ -322,7 +322,7 @@ export default class ForeignService extends ValidationElement {
           <div>
             <Field
               title={i18n.t('military.foreign.heading.contact.details')}
-              titleSize="h2"
+              titleSize="h3"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('military.foreign.para.contact')}

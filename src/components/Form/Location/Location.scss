@@ -18,22 +18,6 @@
     }
   }
 
-  .branch {
-    margin-bottom: 0;
-  }
-
-  .state-zip-wrap {
-    display: table;
-
-    .state,
-    .apofpo,
-    .zipcode {
-      display: table-cell;
-      padding-right: 2rem;
-      vertical-align: top;
-    }
-  }
-
   .domestic.block label > span > div,
   .international.block label > span > div {
     top: 25%;

@@ -111,7 +111,7 @@ class AlternateAddress extends ValidationElement {
         <Show when={this.props.forceAPO || this.isForeignAddress()}>
           <Branch
             label={this.props.militaryAddressLabel}
-            labelSize="h3"
+            labelSize="h4"
             onUpdate={this.setAlternateAddress}
             value={this.props.address.HasDifferentAddress.value}
           />
@@ -134,7 +134,9 @@ class AlternateAddress extends ValidationElement {
           </Field>
         </Show>
         <Show when={this.isMilitaryAddress()}>
-          <Field title={i18n.t('address.physicalLocationRequired')}>
+          <Field 
+            title={i18n.t('address.physicalLocationRequired')}
+            titleSize="h4">
             <Location
               {...this.prepareProps({
                 addressBook: this.props.addressBook,

@@ -72,40 +72,6 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link"
-              href="/form/identification/othernames"
-              onClick={[Function]}
-            >
-              <span
-                className="section-name"
-              >
-                Other names used
-              </span>
-              <span
-                className="eapp-status-icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              aria-current={false}
-              className="section-link"
-              href="/form/identification/contacts"
-              onClick={[Function]}
-            >
-              <span
-                className="section-name"
-              >
-                Your contact information
-              </span>
-              <span
-                className="eapp-status-icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              aria-current={false}
-              className="section-link"
               href="/form/identification/birthdate"
               onClick={[Function]}
             >
@@ -147,6 +113,40 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Social security number
+              </span>
+              <span
+                className="eapp-status-icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              aria-current={false}
+              className="section-link"
+              href="/form/identification/othernames"
+              onClick={[Function]}
+            >
+              <span
+                className="section-name"
+              >
+                Other names used
+              </span>
+              <span
+                className="eapp-status-icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              aria-current={false}
+              className="section-link"
+              href="/form/identification/contacts"
+              onClick={[Function]}
+            >
+              <span
+                className="section-name"
+              >
+                Your contact information
               </span>
               <span
                 className="eapp-status-icon"
@@ -666,23 +666,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 U.S. military
-              </span>
-              <span
-                className="eapp-status-icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              aria-current={false}
-              className="section-link"
-              href="/form/military/disciplinary"
-              onClick={[Function]}
-            >
-              <span
-                className="section-name"
-              >
-                Disciplinary procedures
               </span>
               <span
                 className="eapp-status-icon"
@@ -2216,23 +2199,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Diagnoses
-              </span>
-              <span
-                className="eapp-status-icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              aria-current={false}
-              className="section-link"
-              href="/form/psychological/conditions"
-              onClick={[Function]}
-            >
-              <span
-                className="section-name"
-              >
-                Existing Conditions
               </span>
               <span
                 className="eapp-status-icon"

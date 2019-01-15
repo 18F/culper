@@ -52,12 +52,13 @@ export class DiplomaItem extends ValidationElement {
       <div>
         <Field
           title={i18n.t('history.education.heading.diploma')}
+          titleSize="h4"
           help="history.education.help.diploma"
           adjustFor="big-buttons"
           shrink={true}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="diploma option-list"
+            className="diploma option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Diploma || {}).value}>
@@ -139,6 +140,7 @@ export class DiplomaItem extends ValidationElement {
 
         <Field
           title={i18n.t('history.education.heading.date')}
+          titleSize="h4"
           help="history.education.help.date"
           adjustFor="label"
           shrink={true}

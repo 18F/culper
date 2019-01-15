@@ -56,7 +56,7 @@ export const military = {
         note: ''
       },
       remember: {
-        title: 'Can&rsquo;t remember your registration number?',
+        title: "Can't remember your registration number?",
         message:
           'The Selective Service website can help provide the registration number for persons who have registered. Use this link to look up your registration number then come back and enter it above.',
         note: ''
@@ -195,7 +195,7 @@ export const military = {
     },
     label: {
       name:
-        'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
+        "Such as Court Martial, Article 15, Captain's mast, Article 135 Court of Inquiry, etc.",
       court:
         'Title of court or convening authority, address, to include city and state or country if overseas',
       outcome:
@@ -284,7 +284,7 @@ export const military = {
     },
     label: {
       organization: {
-        military: ['Military', '(Army, Navy, Air Force, Marines, etc.)'],
+        military: 'Military (Army, Navy, Air Force, Marines, etc.)',
         intelligence: 'Intelligence Service',
         diplomatic: 'Diplomatic Service',
         security: 'Security Forces',

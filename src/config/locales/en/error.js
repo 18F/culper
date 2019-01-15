@@ -164,7 +164,8 @@ export const error = {
     year: {
       max: {
         title: 'There is a problem with the date',
-        message: "For the **additional employment** date range, the dates should be before the main entry's **from** date.",
+        message:
+          "For the **additional employment** date range, the dates should be before the main entry's **from** date.",
         note: ''
       },
       min: {
@@ -175,7 +176,8 @@ export const error = {
     },
     max: {
       title: 'There is a problem with the date',
-      message: "For the **additional employment** date range, the dates should be before the main entry's **from** date.",
+      message:
+        "For the **additional employment** date range, the dates should be before the main entry's **from** date."
     },
     min: {
       title: 'There is a problem with the date',
@@ -299,7 +301,7 @@ export const error = {
     },
     min: {
       title: 'There is a problem with the date',
-      message: "This date is before either you or your relative was born."
+      message: 'This date is before either you or your relative was born.'
     },
     required: {
       title: 'Your response is required',
@@ -561,22 +563,13 @@ export const error = {
       foreignNationalSponsorship: {
         min: {
           title: 'There is a problem with your entry',
-          message: 'For the **from** date, the date should be after their date of birth.'
+          message:
+            'For the **from** date, the date should be after their date of birth.'
         },
         required: {
           title: 'Your response is required',
           message: ''
-       }
-      }
-    },
-    foreignNationalSponsorship: {
-      min: {
-        title: 'There is a problem with your entry',
-        message: 'For the **from** date, the date should be after their date of birth.'
-      },
-      required: {
-        title: 'Your response is required',
-        message: ''
+        }
       }
     },
     order: {
@@ -1167,7 +1160,7 @@ export const error = {
   civilUnion: {
     min: {
       title: 'There is a problem with the date',
-      message: "This date is before either you or your partner was born."
+      message: 'This date is before either you or your partner was born.'
     },
     max: {
       title: 'There is a problem with the date',
@@ -1181,7 +1174,8 @@ export const error = {
   divorceDate: {
     min: {
       title: 'There is a problem with the date',
-      message: "This date is before the date your civil marriage, civil union, or domestic partnership was legally recognized"
+      message:
+        'This date is before the date your civil marriage, civil union, or domestic partnership was legally recognized'
     },
     max: {
       title: 'There is a problem with the date',
@@ -1195,7 +1189,7 @@ export const error = {
   cohabitant: {
     min: {
       title: 'There is a problem with the date',
-      message: "This date is before either you or your cohabitant was born."
+      message: 'This date is before either you or your cohabitant was born.'
     },
     max: {
       title: 'There is a problem with the date',
@@ -1209,7 +1203,8 @@ export const error = {
   foreignContact: {
     min: {
       title: 'There is a problem with the date',
-      message: "This date is before either you or your foriegn contact was born."
+      message:
+        'This date is before either you or your foriegn contact was born.'
     },
     max: {
       title: 'There is a problem with the date',
@@ -1251,7 +1246,8 @@ export const error = {
     },
     min: {
       title: 'There is a problem with your entry',
-      message: 'The date satisfied is before the date you failed to file or pay.'
+      message:
+        'The date satisfied is before the date you failed to file or pay.'
     }
   },
   drugUsage: {

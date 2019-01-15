@@ -128,7 +128,7 @@ export default class OrderedTreatment extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('substance.drugs.ordered.para.orderedBy')}
           <CheckboxGroup
-            className="ordered-by"
+            className="ordered-by option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValues={(this.props.OrderedBy || {}).values}>
@@ -195,8 +195,8 @@ export default class OrderedTreatment extends ValidationElement {
         <Branch
           name="ActionTaken"
           label={i18n.t('substance.drugs.ordered.heading.actionTaken')}
-          labelSize="h3"
-          className="action-taken no-margin-bottom"
+          labelSize="h4"
+          className="action-taken"
           {...this.props.ActionTaken}
           onError={this.props.onError}
           required={this.props.required}
@@ -209,7 +209,7 @@ export default class OrderedTreatment extends ValidationElement {
             title={i18n.t(
               'substance.drugs.ordered.heading.noActionTakenExplanation'
             )}
-            titleSize="label"
+            titleSize="h4"
             scrollIntoView={this.props.scrollIntoView}>
             <Textarea
               name="NoActionTakenExplanation"
@@ -243,8 +243,8 @@ export default class OrderedTreatment extends ValidationElement {
                 'substance.drugs.ordered.heading.treatmentProvider'
               )}
               scrollIntoView={this.props.scrollIntoView}>
-              {i18n.m('substance.drugs.ordered.para.treatmentProvider')}
               <Text
+                label={i18n.t('substance.drugs.ordered.para.treatmentProvider')}
                 name="TreatmentProvider"
                 className="treatment-provider"
                 {...this.props.TreatmentProvider}
@@ -317,7 +317,7 @@ export default class OrderedTreatment extends ValidationElement {
               label={i18n.t(
                 'substance.drugs.ordered.heading.treatmentCompleted'
               )}
-              labelSize="h3"
+              labelSize="h4"
               className="treatment-completed no-margin-bottom"
               {...this.props.TreatmentCompleted}
               onError={this.props.onError}

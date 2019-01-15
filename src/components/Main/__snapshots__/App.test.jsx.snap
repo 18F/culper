@@ -112,9 +112,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   How to save your progress
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -133,9 +133,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   Purpose of this form
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -161,9 +161,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   Authority to request this information
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -179,9 +179,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   The investigative process
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -202,9 +202,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   Your personal interview
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -220,9 +220,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   Final determination on your eligibility
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -233,9 +233,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   Penalties for inaccurate or false statements
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -246,9 +246,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   Disclosure information
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -269,9 +269,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   Office of Personnel Management (OPM) routine uses
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -532,9 +532,9 @@ exports[`Renders homepage 1`] = `
                 <hr />
               </div>
               <div>
-                <h1>
+                <h2>
                   Public burden information
-                </h1>
+                </h2>
               </div>
               <div>
                 <p>
@@ -548,7 +548,7 @@ exports[`Renders homepage 1`] = `
             </div>
             <div
               aria-label="Persons completing this form should begin after carefully reading the preceding instructions"
-              className="field   branch introduction-acceptance"
+              className="field   branch introduction-acceptance no-margin-bottom"
               data-uuid="field-MOCK-GUID"
             >
               <a
@@ -606,25 +606,25 @@ exports[`Renders homepage 1`] = `
                       <div
                         className="yes block"
                       >
+                        <input
+                          aria-label="Yes, I agree to this agreement"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="acceptance_of_terms-MOCK-GUID"
+                          name="acceptance_of_terms-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="Yes"
+                        />
                         <label
                           className=""
                           htmlFor="acceptance_of_terms-MOCK-GUID"
                         >
-                          <input
-                            aria-label="Yes, I agree to this agreement"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="acceptance_of_terms-MOCK-GUID"
-                            name="acceptance_of_terms-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="Yes"
-                          />
                           <span>
                             Yes
                           </span>
@@ -633,25 +633,25 @@ exports[`Renders homepage 1`] = `
                       <div
                         className="no block"
                       >
+                        <input
+                          aria-label="No, I do not agree to this agreement"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="acceptance_of_terms-MOCK-GUID"
+                          name="acceptance_of_terms-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="No"
+                        />
                         <label
                           className=""
                           htmlFor="acceptance_of_terms-MOCK-GUID"
                         >
-                          <input
-                            aria-label="No, I do not agree to this agreement"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="acceptance_of_terms-MOCK-GUID"
-                            name="acceptance_of_terms-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="No"
-                          />
                           <span>
                             No
                           </span>
@@ -775,7 +775,7 @@ exports[`Renders homepage 1`] = `
                 id="logo"
               >
                 <div
-                  className="text-center"
+                  className="eapp-logo-container"
                 >
                   <img
                     alt="National Background Investigation Services"

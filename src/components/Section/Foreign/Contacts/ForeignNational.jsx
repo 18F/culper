@@ -367,7 +367,7 @@ export default class ForeignNational extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup
-            className="methods"
+            className="methods option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValues={(this.props.Methods || {}).values}>
@@ -443,7 +443,7 @@ export default class ForeignNational extends ValidationElement {
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="frequency"
+            className="frequency option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Frequency || {}).value}>
@@ -528,7 +528,7 @@ export default class ForeignNational extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup
-            className="relationship"
+            className="relationship option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValues={(this.props.Relationship || {}).values}>
@@ -755,7 +755,7 @@ export default class ForeignNational extends ValidationElement {
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="has-affiliations"
+            className="has-affiliations option-list"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.HasAffiliations || {}).value}>

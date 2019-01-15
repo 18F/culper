@@ -31,13 +31,12 @@ export default class Infractions extends ValidationElement {
       <div>
         {i18n.m('financial.nonpayment.para.checkAll')}
         <CheckboxGroup
-          className={`option-list ${this.props.className || ''}`.trim()}
+          className={`option-list option-list-vertical ${this.props.className || ''}`.trim()}
           selectedValues={this.props.values}>
           <Checkbox
             label={i18n.m('financial.nonpayment.para.repo')}
             value="Repossession"
             className="nonpayment-repossession"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -45,7 +44,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.nonpayment.para.defaulted')}
             value="Defaulted"
             className="nonpayment-defaulted"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -53,7 +51,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.nonpayment.para.collections')}
             value="Collections"
             className="nonpayment-collections"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -61,7 +58,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.nonpayment.para.cancelled')}
             value="Cancelled"
             className="nonpayment-cancelled"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -69,7 +65,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.nonpayment.para.evicted')}
             value="Evicted"
             className="nonpayment-evicted"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -77,7 +72,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.nonpayment.para.garnished')}
             value="Garnished"
             className="nonpayment-garnished"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -85,7 +79,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.nonpayment.para.delinquent')}
             value="Delinquent"
             className="nonpayment-delinquent"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />
@@ -93,7 +86,6 @@ export default class Infractions extends ValidationElement {
             label={i18n.m('financial.nonpayment.para.any')}
             value="Any"
             className="nonpayment-any"
-            toggle="false"
             onUpdate={this.update}
             onError={this.props.onError}
           />

@@ -42,13 +42,11 @@ $breakpoints: (
 }
 
 .accordion {
-  background-color: #e5e5e5;
-  padding: 1rem;
 
   > .caption {
     display: block;
     padding: 1rem 10%;
-    background-color: #fff;
+    background-color: $color-white;
     border-bottom: solid 1px #e5e5e5;
     font-weight: 600;
     color: $eapp-grey-darker;
@@ -74,14 +72,19 @@ $breakpoints: (
   }
 
   .item {
-    background-color: #fff;
+    background-color: $color-white;
     margin-top: 0.8rem;
 
     .details {
       line-height: 1.6;
-      padding: 1rem 10% 0;
+      padding: 4rem;
       overflow: hidden;
-      border-left: 0.4rem solid $eapp-blue;
+      border: 3px solid $color-gray-lightest;
+      border-top: none;
+
+      @media all and (max-width: 980px) {
+        padding: 2rem;
+      }
 
       h2 {
         margin-top: 10rem;
@@ -113,16 +116,7 @@ $breakpoints: (
   .byline {
     width: 100%;
     padding: 1rem;
-    transition: border-left-color 0.3s;
-    border-right: 0.4rem solid #fff;
-
-    &.close {
-      border-left: 0.4rem solid #fff;
-    }
-
-    &.open {
-      border-left: 0.4rem solid $eapp-blue;
-    }
+    border: 3px solid $color-gray-lightest;
 
     .incomplete {
       padding: 1rem 2rem;
@@ -137,8 +131,12 @@ $breakpoints: (
     }
   }
 
+  .summary-container {
+    background-color: $color-gray-lightest;
+  }
+
   .summary {
-    transition: box-shadow 0.3s, color 0.3s;
+    transition: color 0.3s;
 
     .left,
     .right {
@@ -148,12 +146,8 @@ $breakpoints: (
       text-decoration: none;
       overflow: hidden;
       vertical-align: top;
-      transition: box-shadow 0.3s, color 0.3s;
+      transition: color 0.3s;
       padding: 2rem .4rem 1rem;
-
-      &:hover {
-        box-shadow: 6px 1px 13px -3px rgba(0, 0, 0, 0.4);
-      }
 
       .button-with-icon {
         display: block;
@@ -186,12 +180,10 @@ $breakpoints: (
     .left {
       width: 90%;
       color: #000;
-      transition: border-left-color 0.3s;
-      border-left: 0.4rem solid #fff;
       padding-left: 2.4rem;
 
-      &.open {
-        border-left-color: $eapp-blue;
+      @media all and (max-width: 980px) {
+        width: 80%;
       }
 
       .toggle {
@@ -246,14 +238,6 @@ $breakpoints: (
         > .dates {
           float: right;
           text-align: right;
-
-          // Hide on smaller screens to allow more context
-          @media only screen and (max-width: 650px) {
-            display: block;
-            float: none;
-            text-align: left;
-            margin-top: -5rem;
-          }
         }
       }
 
@@ -283,12 +267,17 @@ $breakpoints: (
     }
 
     .right {
-      color: #6a6a6a;
+      background-color: $color-gray-light;
+      color: $color-white;
       float: right;
       width: 10%;
 
+      @media all and (max-width: 980px) {
+        width: 20%;
+      }
+
       &:hover {
-        color: $eapp-red;
+        background-color: $eapp-red;
       }
     }
   }
@@ -318,10 +307,6 @@ $breakpoints: (
     &.animate {
       animation-name: closebox;
     }
-  }
-
-  .append-button {
-    padding: 0 10%;
   }
 }
 
@@ -354,15 +339,19 @@ button.usa-button-outline {
   }
 }
 
+.gap button.usa-button-outline {
+  margin: 1rem 0;
+}
+
 @media screen and (min-width: 1000px) {
   .accordion > .items > .item.sticky-accordion {
     .summary-container {
       .summary {
         z-index: 1001;
         box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+        background-color: $color-gray-lightest;
         position: fixed;
         top: 6.7rem;
-        background-color: #fff;
 
         .left.close,
         .left.open {

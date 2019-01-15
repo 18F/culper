@@ -90,7 +90,7 @@ export default class ReasonOptions extends React.Component {
           shrink={true}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="employment-left option-list"
+            className="employment-left option-list option-list-vertical"
             selectedValue={(this.state.Reason || {}).value}
             required={this.props.required}
             onError={this.props.onError}>
@@ -139,7 +139,7 @@ export default class ReasonOptions extends React.Component {
                 />
               </div>
               <div className="date-left">
-                <label>{date}</label>
+                <label className="h4">{date}</label>
                 <DateControl
                   name="Date"
                   {...this.state.Date}

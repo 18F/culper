@@ -2,11 +2,24 @@
 
 .summary-progress {
   color: $eapp-grey-darker;
-  margin-bottom: 4.9rem;
+  margin: 4rem 0 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid $color-gray-lighter;
+  border-radius: 4px;
+
+  @media all and (max-width: 980px) {
+    text-align: center;
+  }
 
   .content {
     display: inline-block;
     width: 80%;
+
+    @media all and (max-width: 980px) {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
 
     .summary-icon {
       display: inline-block;

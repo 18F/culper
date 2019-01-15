@@ -82,7 +82,7 @@ export default class Marital extends SubsectionElement {
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
             name="status"
-            className="status-options"
+            className="status-options option-list option-list-vertical"
             selectedValue={this.props.Status.value}
             required={this.props.required}
             onError={this.handleError}>
