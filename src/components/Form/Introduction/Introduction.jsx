@@ -53,6 +53,7 @@ export class Introduction extends React.Component {
           closeable={this.props.forceOpen}
           onDismiss={this.props.onDismiss}>
           <div>
+            <h2>{i18n.t('introduction.acceptance.title')}</h2>
             <div className="introduction-legal">
               {i18n.m('introduction.contents')}
             </div>
@@ -60,8 +61,6 @@ export class Introduction extends React.Component {
               <Branch
                 name="acceptance_of_terms"
                 {...this.props.settings.acceptedTerms}
-                label={i18n.t('introduction.acceptance.title')}
-                labelSize="h3"
                 yesAriaLabel={i18n.t('introduction.acceptance.aria.yes')}
                 noAriaLabel={i18n.t('introduction.acceptance.aria.no')}
                 optional={true}

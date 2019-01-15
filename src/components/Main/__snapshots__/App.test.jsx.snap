@@ -560,7 +560,7 @@ exports[`Renders homepage 1`] = `
               <h3
                 className="title h3"
               >
-                Persons completing this form should begin after carefully reading the preceding instructions
+                Persons completing this form should begin after carefully reading the following instructions
               </h3>
               <span
                 className="icon"
