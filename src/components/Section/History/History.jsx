@@ -535,8 +535,7 @@ class History extends SectionElement {
               </div>
             </Show>
 
-            {['86'].indexOf(formType) > -1 && (
-              <span>
+            <Show when={['86'].indexOf(formType) > -1}>
                 <hr className="section-divider" />
                 <h1 className="section-header">{i18n.t('history.destination.federal')}</h1>
                 <Federal
@@ -551,8 +550,7 @@ class History extends SectionElement {
                   scrollIntoView={false}
                   required={true}
                 />
-              </span>
-            )}
+            </Show>
           </SectionView>
 
           <SectionView
@@ -867,7 +865,7 @@ export class HistorySections extends React.Component {
         </Show>
 
         <hr className="section-divider" />
-        {['86'].indexOf(formType) > -1 && (
+        <Show when={['86'].indexOf(formType) > -1}>
           <Federal
             name="federal"
             {...this.props.Federal}
@@ -879,7 +877,7 @@ export class HistorySections extends React.Component {
             required={true}
             formType={formType}
           />
-        )}
+        </Show>
       </div>
     )
   }

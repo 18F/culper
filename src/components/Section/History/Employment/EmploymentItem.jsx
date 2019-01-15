@@ -568,6 +568,7 @@ export default class EmploymentItem extends ValidationElement {
             onError={this.props.onError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
+            formType={formType}
           />
         </Show>
 

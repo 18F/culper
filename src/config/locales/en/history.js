@@ -1795,6 +1795,10 @@ export const history = {
         },
         reprimand: {
           label: 'For this employment, in the last five (5) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?'
+        },
+        left: {
+          branch: 'For this employment have any of the following happened to you in the last five (5) years?',
+          append: 'In the last five (5) years do you have another reason for leaving to report for this employment?',
         }
       },
       gap: {
