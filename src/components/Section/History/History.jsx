@@ -883,4 +883,8 @@ export class HistorySections extends React.Component {
   }
 }
 
+HistorySections.defaultProps = {
+  formType: '86'
+}
+
 export default connect(mapStateToProps)(AuthenticatedView(History))
