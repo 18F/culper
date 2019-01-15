@@ -784,7 +784,9 @@ exports[`Renders homepage 1`] = `
                   />
                   <span
                     className="eapp-logo-text"
-                  />
+                  >
+                    SF86
+                  </span>
                 </div>
               </div>
               <div
