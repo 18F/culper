@@ -1792,6 +1792,9 @@ export const history = {
       default: {
         employmentRecord: {
           title: 'Have any of the following happened to you in the last five (5) years at employment activities that you have not previously listed?',
+        },
+        reprimand: {
+          label: 'For this employment, in the last five (5) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?'
         }
       },
       gap: {
@@ -1800,7 +1803,9 @@ export const history = {
     },
     education: {
       label: {
-        attendance: 'Have you attended any schools in the last 5 years?'
+        attendance: 'Have you attended any schools in the last 5 years?',
+        // Confusing, but leave the key as degree10 so we don't need to updated everything
+        degree10: 'Have you received a degree or diploma more than 5 years ago?',
       },
       collection: {
         school: {

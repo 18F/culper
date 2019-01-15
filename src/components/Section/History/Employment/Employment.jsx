@@ -163,6 +163,7 @@ export default class Employment extends SubsectionElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div
         className="section-content employment"
@@ -195,6 +196,7 @@ export default class Employment extends SubsectionElement {
             bind
             name="Item"
             addressBooks={this.props.addressBooks}
+            formType={formType}
             dispatch={this.props.dispatch}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
