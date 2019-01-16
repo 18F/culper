@@ -18,7 +18,7 @@ function substanceUse(formType) {
       {
         name: 'Illegal use of drugs and drug activity',
         url: 'drugs',
-        subsections: [
+        subsections: compact([
           {
             name: 'Usage',
             url: 'usage',
@@ -31,18 +31,18 @@ function substanceUse(formType) {
             store: 'DrugInvolvements',
             validator: validators.DrugInvolvementsValidator
           },
-          {
+          ['86'].indexOf(formType) > -1 && {
             name: 'Security clearance position',
             url: 'clearance',
             store: 'DrugClearanceUses',
             validator: validators.DrugClearanceUsesValidator
           },
-          {
+          ['86'].indexOf(formType) > -1 ? {
             name: 'Public safety position',
             url: 'publicsafety',
             store: 'DrugPublicSafetyUses',
             validator: validators.DrugPublicSafetyUsesValidator
-          },
+          } : null,
           {
             name: 'Misuse',
             url: 'misuse',
@@ -61,9 +61,9 @@ function substanceUse(formType) {
             store: 'VoluntaryTreatments',
             validator: validators.DrugVoluntaryTreatmentsValidator
           }
-        ]
+        ])
       },
-      ['86'].indexOf(formType) > -1 ? {
+      ['86'].indexOf(formType) > -1 && {
         name: 'Use of alcohol',
         url: 'alcohol',
         subsections: [
@@ -92,7 +92,7 @@ function substanceUse(formType) {
             validator: validators.AlcoholReceivedCounselingsValidator
           }
         ]
-      } : null,
+      },
       {
         exclude: true,
         name: 'Review',
