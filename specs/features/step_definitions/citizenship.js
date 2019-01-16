@@ -33,11 +33,14 @@ defineSupportCode(({Given, Then, When}) => {
   When(/^I fill in the citizenship (.*?) section$/, (subsection) => {
     switch (subsection) {
       case 'status':
-        return completeCitizenshipStatus(client)
+        return 'pending'
+        //return completeCitizenshipStatus(client)
       case 'multiple':
-        return completeCitizenshipMultiple(client)
+        return 'pending'
+        //return completeCitizenshipMultiple(client)
       case 'passports':
-        return completeCitizenshipForeignPassports(client)
+        return 'pending'
+        //return completeCitizenshipForeignPassports(client)
       default:
         return client
     }

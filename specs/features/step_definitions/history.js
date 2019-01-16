@@ -34,7 +34,8 @@ defineSupportCode(({Given, Then, When}) => {
     case 'residence':
       return completeResidence(client)
     case 'employment':
-      return completeEmployment(client)
+      return 'pending'
+      //return completeEmployment(client)
     case 'education':
       return completeEducation(client)
     case 'federal':

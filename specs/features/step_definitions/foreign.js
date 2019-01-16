@@ -33,9 +33,11 @@ defineSupportCode(({Given, Then, When}) => {
       case 'passport':
         return completePassport(client)
       case 'contacts':
-        return completeContacts(client)
+        return 'pending'
+        //return completeContacts(client)
       case 'travel':
-        return completeForeignTravel(client)
+        return 'pending'
+        //return completeForeignTravel(client)
       default:
         return client
       }
@@ -45,34 +47,48 @@ defineSupportCode(({Given, Then, When}) => {
     switch (subsection) {
       // "activities" subsections
       case 'direct':
-        return completeActivitiesDirectControl(client)
+        return 'pending'
+        //return completeActivitiesDirectControl(client)
       case 'indirect':
-        return completeActivitiesIndirectControl(client)
+        return 'pending'
+        //return completeActivitiesIndirectControl(client)
       case 'realestate':
-        return completeActivitiesRealEstatePurchase(client)
+        return 'pending'
+        //return completeActivitiesRealEstatePurchase(client)
       case 'benefits':
-        return completeActivitiesBenefits(client)
+        return 'pending'
+        //return completeActivitiesBenefits(client)
       case 'support':
-        return completeActivitiesSupport(client)
+        return 'pending'
+        //return completeActivitiesSupport(client)
       // "business" subsection
       case 'advice':
-        return completeBusinessAdvice(client)
+        return 'pending'
+        //return completeBusinessAdvice(client)
       case 'family':
-        return completeBusinessAdviceFamily(client)
+        return 'pending'
+        //return completeBusinessAdviceFamily(client)
       case 'employment':
-        return completeBusinessEmploymentOffer(client)
+        return 'pending'
+        //return completeBusinessEmploymentOffer(client)
       case 'ventures':
-        return completeBusinessOtherVentures(client)
+        return 'pending'
+        //return completeBusinessOtherVentures(client)
       case 'conferences':
-        return completeBusinessConferences(client)
+        return 'pending'
+        //return completeBusinessConferences(client)
       case 'contact':
-        return completeBusinessContact(client)
+        return 'pending'
+        //return completeBusinessContact(client)
       case 'sponsorship':
-        return completeBusinessSponsorship(client)
+        return 'pending'
+        //return completeBusinessSponsorship(client)
       case 'political':
-        return completeBusinessPolitical(client)
+        return 'pending'
+        //return completeBusinessPolitical(client)
       case 'voting':
-        return completeBusinessVoting(client)
+        return 'pending'
+        //return completeBusinessVoting(client)
       default:
         return client
       }

@@ -40,13 +40,17 @@ defineSupportCode(({Given, Then, When}) => {
   When(/^I fill in the relationships (.*?) section$/, (subsection) => {
     switch (subsection) {
       case 'status/marital':
-        return completeRelationshipStatusMarital(client)
+        return 'pending'
+        // return completeRelationshipStatusMarital(client)
       case 'status/cohabitant':
-        return completeRelationshipStatusCohabitant(client)
+        return 'pending'
+        // return completeRelationshipStatusCohabitant(client)
       case 'people':
-        return completeRelationshipPeople(client)
+        return 'pending'
+        // return completeRelationshipPeople(client)
       case 'relatives':
-        return completeRelationshipRelatives(client)
+        return 'pending'
+        // return completeRelationshipRelatives(client)
       default:
         return client
     }
