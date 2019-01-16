@@ -37,12 +37,12 @@ function historyNavigation(formType = '86') {
         store: 'Education',
         validator: validators.HistoryEducationValidator
       },
-      (['86'].indexOf(formType) > -1  && ({
+      (['86'].indexOf(formType) > -1 && {
         name: 'Former federal service',
         url: 'federal',
         store: 'Federal',
         validator: validators.FederalServiceValidator
-      })),
+      }),
       {
         exclude: true,
         name: 'Review',
