@@ -48,6 +48,10 @@
         border: 2px solid $eapp-grey;
         box-shadow: inset 0 11px 8px -10px #ccc, inset 0 -11px 8px -10px #ccc;
 
+        @media all and (max-width: 980px) {
+          box-shadow: none;
+        }
+
         hr {
           margin-top: 4rem;
         }
