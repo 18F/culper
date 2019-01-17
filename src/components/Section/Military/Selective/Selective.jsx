@@ -4,7 +4,14 @@ import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { SelectiveServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Text, Textarea, Field } from '../../../Form'
+import {
+  Branch,
+  Show,
+  Text,
+  Textarea,
+  Field,
+  NotApplicable
+} from '../../../Form'
 
 export default class Selective extends SubsectionElement {
   constructor(props) {
@@ -13,6 +20,9 @@ export default class Selective extends SubsectionElement {
     this.update = this.update.bind(this)
     this.updateBornAfter = this.updateBornAfter.bind(this)
     this.updateRegistered = this.updateRegistered.bind(this)
+    this.updateRegisteredNotApplicable = this.updateRegisteredNotApplicable.bind(
+      this
+    )
     this.updateRegistrationNumber = this.updateRegistrationNumber.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
   }
@@ -21,6 +31,7 @@ export default class Selective extends SubsectionElement {
     this.props.onUpdate({
       WasBornAfter: this.props.WasBornAfter,
       HasRegistered: this.props.HasRegistered,
+      HasRegisteredNotApplicable: this.props.HasRegisteredNotApplicable,
       RegistrationNumber: this.props.RegistrationNumber,
       Explanation: this.props.Explanation,
       ...queue
@@ -48,6 +59,17 @@ export default class Selective extends SubsectionElement {
       RegistrationNumber:
         values.value === 'Yes' ? this.props.RegistrationNumber : emptyValue,
       Explanation: values.value === 'Yes' ? emptyValue : this.props.Explanation
+    })
+  }
+
+  updateRegisteredNotApplicable(values) {
+    const emptyValue = { value: '' }
+    // If there is no history clear out any previously entered data
+    this.update({
+      HasRegistered: emptyValue,
+      HasRegisteredNotApplicable: values,
+      RegistrationNumber: emptyValue,
+      Explanation: values.applicable ? emptyValue : this.props.Explanation
     })
   }
 
@@ -84,18 +106,26 @@ export default class Selective extends SubsectionElement {
 
         <Show when={this.props.WasBornAfter.value === 'Yes'}>
           <div>
-            <Branch
-              name="has_registered"
-              className="registered"
-              label={i18n.t('military.selective.heading.registered')}
-              labelSize="h4"
-              {...this.props.HasRegistered}
-              warning={true}
-              onUpdate={this.updateRegistered}
-              required={this.props.required}
-              onError={this.handleError}
-              scrollIntoView={this.props.scrollIntoView}
-            />
+            <NotApplicable
+              {...this.props.HasRegisteredNotApplicable}
+              name="HasRegisteredNotApplicable"
+              label={i18n.t('military.selective.label.idk')}
+              or={i18n.m('military.selective.para.or')}
+              onError={this.props.onError}
+              onUpdate={this.updateRegisteredNotApplicable}>
+              <Branch
+                name="has_registered"
+                className="registered"
+                label={i18n.t('military.selective.heading.registered')}
+                labelSize="h4"
+                {...this.props.HasRegistered}
+                warning={true}
+                onUpdate={this.updateRegistered}
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}
+              />
+            </NotApplicable>
 
             <Show when={this.props.HasRegistered.value === 'Yes'}>
               <div>
@@ -142,7 +172,11 @@ export default class Selective extends SubsectionElement {
               </div>
             </Show>
 
-            <Show when={this.props.HasRegistered.value === 'No'}>
+            <Show
+              when={
+                this.props.HasRegistered.value === 'No' ||
+                !(this.props.HasRegisteredNotApplicable || {}).applicable
+              }>
               <Field
                 title={i18n.t('military.selective.label.explanation')}
                 titleSize="h4"
@@ -169,6 +203,7 @@ export default class Selective extends SubsectionElement {
 Selective.defaultProps = {
   WasBornAfter: {},
   HasRegistered: { value: '' },
+  HasRegisteredNotApplicable: { applicable: true },
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr

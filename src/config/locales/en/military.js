@@ -25,7 +25,11 @@ export const military = {
         'Have you registered with the Selective Service System (SSS)?',
       number: 'Provide registration number'
     },
+    para: {
+      or: 'or'
+    },
     label: {
+      idk: "I don't know",
       number:
         'Note: Selective Service Number is not your Social Security Number',
       explanation: 'Provide an explanation'

@@ -3886,6 +3886,12 @@
             "value": "Yes"
           }
         },
+        "HasRegisteredNotApplicable": {
+          "type": "notapplicable",
+          "props": {
+            "applicable": true
+          }
+        },
         "RegistrationNumber": {
           "type": "text",
           "props": {

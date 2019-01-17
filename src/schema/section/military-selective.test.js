@@ -6,6 +6,7 @@ describe('Schema for financial taxes', () => {
     const data = {
       WasBornAfter: {},
       HasRegistered: {},
+      HasRegisteredNotApplicable: {},
       RegistrationNumber: {},
       Explanation: {}
     }
