@@ -601,7 +601,10 @@ class History extends SectionElement {
                   titleSize="h4"
                   optional={true}
                   className="no-margin-bottom">
-                  {i18n.m('history.residence.para.exiting')}
+                  {{
+                    85: i18n.m('history.85.residence.para.exiting'),
+                    86: i18n.m('history.residence.para.exiting')
+                  }[formType]}
                 </Field>
               </div>
             </Show>
@@ -649,7 +652,10 @@ class History extends SectionElement {
                   titleSize="h4"
                   optional={true}
                   className="no-margin-bottom">
-                  {i18n.m('history.employment.para.exiting')}
+                  {{
+                    85: i18n.m('history.85.employment.para.exiting'),
+                    86: i18n.m('history.employment.para.exiting')
+                  }[formType]}
                 </Field>
               </div>
             </Show>

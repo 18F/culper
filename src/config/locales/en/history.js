@@ -1786,9 +1786,15 @@ export const history = {
         para: 'There is a gap in your residence history. The entire 5 year period must be covered with no gaps'
       },
       info: 'List the places where you have lived beginning with your present residence and working back 5 years.',
+      para: {
+        exiting: '**The full 5 year period of residence history is not covered.** Your SF85 cannot be submitted until all 5 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.'
+      }
     },
     employment: {
-      para: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 5 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
+      para: {
+        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 5 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
+        exiting: '**The full 5 year period of employment history is not covered.** Your SF85 cannot be submitted until all 5 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.'
+      },
       default: {
         employmentRecord: {
           title: 'Have any of the following happened to you in the last five (5) years at employment activities that you have not previously listed?',

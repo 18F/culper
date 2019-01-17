@@ -543,7 +543,7 @@ export default class EmploymentItem extends ValidationElement {
             className="no-margin-bottom"
             scrollIntoView={this.props.scrollIntoView}>
             {{
-              85: i18n.m(`history.85.employment.para`),
+              85: i18n.m(`history.85.employment.para.additionalActivity`),
               86: i18n.m(`history.para.additionalActivity`)
             }[formType]}
           </Field>
