@@ -503,7 +503,10 @@ class History extends SectionElement {
                 name="branch_degree10"
                 {...this.props.Education.HasDegree10}
                 help="history.education.help.degree10"
-                label={i18n.t('history.education.label.degree10')}
+                label={{
+                  85: i18n.t('history.85.education.label.degree10'),
+                  86: i18n.t('history.education.label.degree10')
+                }[formType]}
                 labelSize="h3"
                 warning={true}
                 onUpdate={this.updateBranchDegree10}
@@ -690,7 +693,10 @@ class History extends SectionElement {
                 name="branch_degree10"
                 {...this.props.Education.HasDegree10}
                 help="history.education.help.degree10"
-                label={i18n.t('history.education.label.degree10')}
+                label={{
+                  85: i18n.t('history.85.education.label.degree10'),
+                  86: i18n.t('history.education.label.degree10')
+                }[formType]}
                 labelSize="h4"
                 warning={true}
                 onUpdate={this.updateBranchDegree10}

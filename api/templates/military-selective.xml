@@ -9,6 +9,12 @@
     <LegalExemptionExplanation>{{textarea .props.Explanation}}</LegalExemptionExplanation>
     <LegalExemptionExplanationComment></LegalExemptionExplanationComment>
     <NumberComment></NumberComment>
+    <DNKExplanation></DNKExplanation>
+    <DNKExplanationComment></DNKExplanationComment>
+    {{- else if notApplicable .props.HasRegisteredNotApplicable | eq "True"}}
+    <LegalExemptionExplanation></LegalExemptionExplanation>
+    <LegalExemptionExplanationComment></LegalExemptionExplanationComment>
+    <NumberComment></NumberComment>
     <DNKExplanation>{{textarea .props.Explanation}}</DNKExplanation>
     <DNKExplanationComment></DNKExplanationComment>
     {{end}}

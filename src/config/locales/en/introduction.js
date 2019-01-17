@@ -2,7 +2,7 @@
 
 export const introduction = {
   contents: [
-    '# Questionnaire for National Security Positions',
+    '## Questionnaire for National Security Positions',
     `National Background Investigation System (NBIS) eApp version ${EAPP_VERSION}`,
     '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
     '## Instructions for completing this form ',
@@ -88,7 +88,7 @@ export const introduction = {
     heading:
       'Statement of Understanding',
     title:
-      'Persons completing this form should begin after carefully reading the preceding instructions',
+      'Persons completing this form should begin after carefully reading the following instructions',
     para: [
       'I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.'
     ],

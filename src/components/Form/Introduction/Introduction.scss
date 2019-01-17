@@ -30,17 +30,27 @@
   .modal {
     .introduction-content {
       max-width: 100rem;
-      padding: 1rem;
+      padding: 2rem;
       border: none;
       box-shadow: none;
       margin-bottom: 2rem;
       margin-top: 5vh !important;
 
+      h2 {
+        margin-top: 0;
+        margin-bottom: 2rem;
+      }
+
       .introduction-legal {
         overflow-y: scroll;
         max-height: 55vh;
-        padding: 0 3rem;
+        padding: 3rem;
         border: 2px solid $eapp-grey;
+        box-shadow: inset 0 11px 8px -10px #ccc, inset 0 -11px 8px -10px #ccc;
+
+        @media all and (max-width: 980px) {
+          box-shadow: none;
+        }
 
         hr {
           margin-top: 4rem;
@@ -55,7 +65,7 @@
       }
 
       .introduction-acceptance {
-        padding: 3rem 3rem 0;
+        padding: 0;
       }
 
       .field {
