@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import ReceivedCounseling from './ReceivedCounseling'
+import { today } from '../../History/dateranges'
 
 describe('The ReceivedCounseling component', () => {
   const mockStore = configureMockStore()
@@ -21,6 +22,13 @@ describe('The ReceivedCounseling component', () => {
   it('Renders without errors', () => {
     const component = createComponent()
     expect(component.find('.voluntary-counseling').length).toBe(0)
+  })
+
+  it('renders start date with max', () => {
+    const component = createComponent()
+    expect(component.find('DateControl').length).toBe(2)
+    expect(component.find('DateControl').at(0).prop('name')).toBe('TreatmentBeganDate')
+    expect(component.find('DateControl').at(0).prop('maxDate')).toBe(today)
   })
 
   it('Renders with action taken marked as yes', () => {
@@ -69,16 +77,23 @@ describe('The ReceivedCounseling component', () => {
 
   it('present returns todays date', () => {
     let checked = false
+    let treatmentEndDate = null
     const props = {
       PresentTreatmentEndDate: false,
       onUpdate: values => {
         checked = true
+        treatmentEndDate = values.TreatmentEndDate
       }
     }
 
+    const expectedDate = new Date()
     const component = createComponent(props)
     component.find('.present-treatment-end-date input').simulate('change')
     expect(checked).toBe(true)
+    expect(treatmentEndDate.day).toBe(String(expectedDate.getDate()))
+    expect(treatmentEndDate.month).toBe(String(expectedDate.getMonth()+1))
+    expect(treatmentEndDate.year).toBe(String(expectedDate.getFullYear()))
+    expect(treatmentEndDate.estimated).toBe(false)
   })
 
   it('present can be unchecked', () => {
