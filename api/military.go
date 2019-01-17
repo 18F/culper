@@ -8,12 +8,14 @@ type MilitarySelective struct {
 	PayloadHasRegistered      Payload `json:"HasRegistered" sql:"-"`
 	PayloadRegistrationNumber Payload `json:"RegistrationNumber" sql:"-"`
 	PayloadExplanation        Payload `json:"Explanation" sql:"-"`
+	PayloadHasRegisteredNotApplicable Payload `json:"HasRegisteredNotApplicable" sql:"-"`
 
 	// Validator specific fields
 	WasBornAfter       *Branch   `json:"-"`
 	HasRegistered      *Branch   `json:"-"`
 	RegistrationNumber *Text     `json:"-"`
 	Explanation        *Textarea `json:"-"`
+	HasRegisteredNotApplicable *NotApplicable `json:"-"`
 
 	// Persister specific fields
 	ID                   int `json:"-"`
@@ -21,6 +23,7 @@ type MilitarySelective struct {
 	HasRegisteredID      int `json:"-" pg:", fk:HasRegistered"`
 	RegistrationNumberID int `json:"-" pg:", fk:RegistrationNumber"`
 	ExplanationID        int `json:"-" pg:", fk:Explanation"`
+	HasRegisteredNotApplicableID int `json:"-" pg:", fk:HasRegisteredNotApplicable"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -54,6 +57,12 @@ func (entity *MilitarySelective) Unmarshal(raw []byte) error {
 	}
 	entity.Explanation = explanation.(*Textarea)
 
+	hasRegisteredNotApplicable, err := entity.PayloadHasRegisteredNotApplicable.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasRegisteredNotApplicable = hasRegisteredNotApplicable.(*NotApplicable)
+
 	return err
 }
 
@@ -70,6 +79,9 @@ func (entity *MilitarySelective) Marshal() Payload {
 	}
 	if entity.Explanation != nil {
 		entity.PayloadExplanation = entity.Explanation.Marshal()
+	}
+	if entity.HasRegisteredNotApplicable != nil {
+		entity.PayloadHasRegisteredNotApplicable = entity.HasRegisteredNotApplicable.Marshal()
 	}
 	return MarshalPayloadEntity("military.selective", entity)
 }
@@ -95,6 +107,12 @@ func (entity *MilitarySelective) Valid() (bool, error) {
 					stack.Append("MilitarySelective", err)
 				}
 			}
+		}
+	}
+
+	if entity.HasRegisteredNotApplicable != nil {
+		if ok, err := entity.HasRegisteredNotApplicable.Valid(); !ok {
+			return false, err
 		}
 	}
 
@@ -137,6 +155,12 @@ func (entity *MilitarySelective) Save(context DatabaseService, account int) (int
 	}
 	entity.ExplanationID = explanationID
 
+	hasRegisteredNotApplicableID, err := entity.HasRegisteredNotApplicable.Save(context, account)
+	if err != nil {
+		return hasRegisteredNotApplicableID, err
+	}
+	entity.HasRegisteredNotApplicableID = hasRegisteredNotApplicableID
+
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -175,6 +199,10 @@ func (entity *MilitarySelective) Delete(context DatabaseService, account int) (i
 	}
 
 	if _, err := entity.Explanation.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.HasRegisteredNotApplicable.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
@@ -223,6 +251,13 @@ func (entity *MilitarySelective) Get(context DatabaseService, account int) (int,
 		}
 	}
 
+	if entity.HasRegisteredNotApplicableID != 0 {
+		entity.HasRegisteredNotApplicable = &NotApplicable{ID: entity.HasRegisteredNotApplicableID}
+		if _, err := entity.HasRegisteredNotApplicable.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	return entity.ID, nil
 }
 
@@ -260,6 +295,11 @@ func (entity *MilitarySelective) Find(context DatabaseService) error {
 		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
+		if entity.HasRegisteredNotApplicable == nil {
+			entity.HasRegisteredNotApplicable = &NotApplicable{}
+		}
+		entity.HasRegisteredNotApplicable.ID = previous.HasRegisteredNotApplicableID
+		entity.HasRegisteredNotApplicableID = previous.HasRegisteredNotApplicableID
 	})
 	return nil
 }
