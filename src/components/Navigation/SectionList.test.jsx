@@ -5,7 +5,6 @@ import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import SectionList from './SectionList'
-import { navigation } from '../../config'
 import * as validators from '../../validators/index'
 
 describe('The SectionList component', () => {

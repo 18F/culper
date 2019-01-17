@@ -14,6 +14,11 @@ describe('Root Reducer', function() {
       Identification: {},
       Legal: {},
       Military: {},
+      Navigation: {
+        completedSectionsTotal: 0,
+        sections: [],
+        totalSections: 0
+      },
       Psychological: {},
       Relationships: {},
       Settings: {},
@@ -23,6 +28,7 @@ describe('Root Reducer', function() {
     },
     authentication: {
       authenticated: false,
+      formType: '86',
       token: null
     },
     section: {

@@ -1779,5 +1779,43 @@ export const history = {
         'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
       append: 'Add another former federal service'
     }
+  },
+  85: {
+    residence: {
+      gap: {
+        para: 'There is a gap in your residence history. The entire 5 year period must be covered with no gaps'
+      },
+      info: 'List the places where you have lived beginning with your present residence and working back 5 years.',
+    },
+    employment: {
+      para: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 5 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
+      default: {
+        employmentRecord: {
+          title: 'Have any of the following happened to you in the last five (5) years at employment activities that you have not previously listed?',
+        },
+        reprimand: {
+          label: 'For this employment, in the last five (5) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?'
+        },
+        left: {
+          branch: 'For this employment have any of the following happened to you in the last five (5) years?',
+          append: 'In the last five (5) years do you have another reason for leaving to report for this employment?',
+        }
+      },
+      gap: {
+        para: 'There is a gap in your employment. The entire 5 year period must be covered with no gaps',
+      }
+    },
+    education: {
+      label: {
+        attendance: 'Have you attended any schools in the last 5 years?',
+        // Confusing, but leave the key as degree10 so we don't need to updated everything
+        degree10: 'Have you received a degree or diploma more than 5 years ago?',
+      },
+      collection: {
+        school: {
+          appendTitle: 'Do you have additional education (include education within the last 5 years, as well as degrees or diplomas more than 5 years ago)?'
+        }
+      }
+    }
   }
 }

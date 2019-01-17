@@ -7,9 +7,12 @@ import { mount } from 'enzyme'
 import { api } from '../../../services'
 import Print from './Print'
 import { testSnapshot } from '../../test-helpers'
-
+import navigationSections from './../../Main/navigationSections'
 const applicationState = {
-  Application: {}
+  Application: {},
+  Navigation: {
+    sections: navigationSections('86')
+  }
 }
 
 // give a fake GUID so the field IDs don't differ between snapshots

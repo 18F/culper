@@ -2,7 +2,8 @@ import AuthConstants from '../actions/AuthConstants'
 
 const defaultState = {
   authenticated: false,
-  token: null
+  token: null,
+  formType: '86'
 }
 
 // Defines the authentication sub-state for the application.
@@ -14,6 +15,7 @@ const authentication = function(state = defaultState, action) {
         ...state,
         authenticated: true,
         token: action.token,
+        formType: action.formType || '86',
         error: ''
       }
 

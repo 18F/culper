@@ -45,6 +45,7 @@ export class Login extends React.Component {
     if (token) {
       deleteCookie('token')
       api.setToken(token)
+      // TODO: Need to check for formType to ensure we set that in Redux
       this.props.dispatch(handleLoginSuccess())
       this.props.history.push('/loading')
       return

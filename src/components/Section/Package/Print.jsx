@@ -1,7 +1,7 @@
 import React from 'react'
 import FileSaver from 'file-saver'
 import { connect } from 'react-redux'
-import { i18n, navigation } from '../../../config'
+import { i18n } from '../../../config'
 import { api } from '../../../services'
 import { RadioGroup, Radio, Show, Svg } from '../../Form'
 
@@ -126,7 +126,7 @@ class Print extends React.Component {
   }
 
   sections() {
-    return navigation.map((section, index, arr) => {
+    return this.props.Navigation.sections.map((section, index, arr) => {
       let sectionComponent = null
       switch (section.url) {
         case 'identification':
@@ -140,7 +140,7 @@ class Print extends React.Component {
           )
           break
         case 'history':
-          sectionComponent = <HistorySections {...this.props.History} />
+          sectionComponent = <HistorySections {...this.props.History} formType={this.props.formType} />
           break
         case 'citizenship':
           sectionComponent = <CitizenshipSections {...this.props.Citizenship} />
@@ -287,6 +287,7 @@ function mapStateToProps(state) {
   const legal = app.Legal || {}
   const psychological = app.Psychological || {}
   const settings = app.Settings || { locked: false, hash: '' }
+  const navigation = app.Navigation
 
   let errors = app.Errors || {}
   let completed = app.Completed || {}
@@ -309,7 +310,9 @@ function mapStateToProps(state) {
     Psychological: psychological,
     Settings: settings,
     Errors: errors.releases || [],
-    Completed: completed.releases || []
+    Completed: completed.releases || [],
+    Navigation: navigation,
+    formType: state.authentication.formType
   }
 }
 

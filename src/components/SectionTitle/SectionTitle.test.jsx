@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import SectionTitle from './SectionTitle'
 import { mount } from 'enzyme'
+import navigationSections from './../Main/navigationSections'
 
 describe('The title section', () => {
   // Setup
@@ -12,10 +13,14 @@ describe('The title section', () => {
   const mockStore = configureMockStore(middlewares)
 
   it('can handle no title', () => {
-    const store = mockStore({ section: { section: '' } })
+    const store = mockStore({
+      section: {
+        section: ''
+      }
+    })
     const component = mount(
       <Provider store={store}>
-        <SectionTitle />
+        <SectionTitle sections={navigationSections('86')} />
       </Provider>
     )
     expect(component.find('h1').length).toEqual(1)
@@ -26,7 +31,7 @@ describe('The title section', () => {
     const store = mockStore({ section: { section: 'legal', subsection: '' } })
     const component = mount(
       <Provider store={store}>
-        <SectionTitle />
+        <SectionTitle sections={navigationSections('86')} />
       </Provider>
     )
     expect(component.find('h1').length).toEqual(1)
@@ -41,7 +46,7 @@ describe('The title section', () => {
     })
     const component = mount(
       <Provider store={store}>
-        <SectionTitle />
+        <SectionTitle sections={navigationSections('86')} />
       </Provider>
     )
     expect(component.find('h1').length).toEqual(1)
@@ -56,7 +61,7 @@ describe('The title section', () => {
     })
     const component = mount(
       <Provider store={store}>
-        <SectionTitle />
+        <SectionTitle sections={navigationSections('86')} />
       </Provider>
     )
     expect(component.find('h1').length).toEqual(1)

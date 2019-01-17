@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router'
 import Section from './Section'
 import { mount } from 'enzyme'
 import { testSnapshot } from '../test-helpers'
-import navigation from '../../config/navigation'
+import navigationSections from './../Main/navigationSections'
 
 // give a fake GUID so the field IDs don't differ between snapshots
 // https://github.com/facebook/jest/issues/936#issuecomment-404246102
@@ -32,13 +32,17 @@ describe('The section component', () => {
   it('is visible', () => {
     const component = mount(
       <MemoryRouter>
-        <Section />
+        <Section
+          navigation={{
+            sections: navigationSections('86')
+          }}
+        />
       </MemoryRouter>
     )
     expect(component.find('div').length > 0).toBe(true)
   })
 
-  navigation.forEach(section => {
+  navigationSections('86').forEach(section => {
     section.subsections.forEach(subsection => {
       if (shouldSkip(section, subsection)) {
         return
@@ -51,7 +55,13 @@ describe('The section component', () => {
         testSnapshot(
           <Provider store={store}>
             <MemoryRouter>
-              <Section section={section.url} subsection={subsection.url} />
+              <Section
+                section={section.url}
+                subsection={subsection.url}
+                navigation={{
+                  sections: navigationSections('86')
+                }}
+              />
             </MemoryRouter>
           </Provider>
         )
