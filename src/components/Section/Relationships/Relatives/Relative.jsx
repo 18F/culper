@@ -594,7 +594,7 @@ export default class Relative extends ValidationElement {
               name="maiden_diff"
               label={i18n.t('relationships.relatives.heading.maiden')}
               labelSize="h4"
-              className="eapp-field-wrap relative-maiden-diff no-margin-bottom"
+              className="eapp-field-wrap relative-maiden-diff"
               {...this.props.MaidenSameAsListed}
               yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
               noLabel={i18n.t('relationships.relatives.label.maiden.diff')}
@@ -701,13 +701,13 @@ export default class Relative extends ValidationElement {
                 title={i18n.t(
                   'relationships.relatives.heading.us.documentation'
                 )}
-                titleSize="h3"
+                titleSize="label"
                 className="relative-citizenship-documentation no-margin-bottom"
               />
 
               <label>{i18n.t('relationships.relatives.para.abroad')}</label>
               <RadioGroup
-                className="relative-abroad option-list"
+                className="relative-abroad option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.props.onError}
                 selectedValue={
@@ -735,7 +735,7 @@ export default class Relative extends ValidationElement {
                 {i18n.t('relationships.relatives.para.naturalized')}
               </label>
               <RadioGroup
-                className="relative-naturalized option-list"
+                className="relative-naturalized option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.props.onError}
                 selectedValue={
@@ -775,7 +775,7 @@ export default class Relative extends ValidationElement {
 
               <label>{i18n.t('relationships.relatives.para.derived')}</label>
               <RadioGroup
-                className="relative-derived option-list"
+                className="relative-derived option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.props.onError}
                 selectedValue={
@@ -835,8 +835,7 @@ export default class Relative extends ValidationElement {
 
             <Field
               title={i18n.t('relationships.relatives.heading.us.number')}
-              scrollIntoView={this.props.scrollIntoView}
-              titleSize="h3">
+              scrollIntoView={this.props.scrollIntoView}>
               <Text
                 name="DocumentNumber"
                 className="relative-documentnumber"
@@ -852,8 +851,7 @@ export default class Relative extends ValidationElement {
 
             <Field
               title={i18n.t('relationships.relatives.heading.us.name')}
-              scrollIntoView={this.props.scrollIntoView}
-              titleSize="h3">
+              scrollIntoView={this.props.scrollIntoView}>
               <Text
                 name="CourtName"
                 className="relative-courtname"
@@ -866,7 +864,6 @@ export default class Relative extends ValidationElement {
 
             <Field
               title={i18n.t('relationships.relatives.heading.us.address')}
-              titleSize="h3"
               optional={true}
               scrollIntoView={this.props.scrollIntoView}
               help="relationships.relatives.help.courtaddress"
@@ -909,7 +906,7 @@ export default class Relative extends ValidationElement {
                   <div>
                     {i18n.t('relationships.relatives.para.notcitizen')}
                     <RadioGroup
-                      className="relative-document option-list"
+                      className="relative-document option-list option-list-vertical"
                       required={this.props.required}
                       onError={this.props.onError}
                       selectedValue={(this.props.Document || {}).value}>
@@ -1093,7 +1090,7 @@ export default class Relative extends ValidationElement {
               <div>
                 {i18n.m('relationships.relatives.para.checkall')}
                 <CheckboxGroup
-                  className="relative-methods option-list"
+                  className="relative-methods option-list option-list-vertical"
                   required={this.props.required}
                   onError={this.props.onError}
                   selectedValues={(this.props.Methods || {}).values}>
@@ -1165,7 +1162,7 @@ export default class Relative extends ValidationElement {
               scrollIntoView={this.props.scrollIntoView}
               adjustFor="big-buttons">
               <RadioGroup
-                className="relative-frequency option-list"
+                className="relative-frequency option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.props.onError}
                 selectedValue={this.props.Frequency.value}>
@@ -1292,7 +1289,7 @@ export default class Relative extends ValidationElement {
                 label={i18n.t(
                   'relationships.relatives.heading.employer.affiliated'
                 )}
-                labelSize="h3"
+                labelSize="h4"
                 className="relative-affiliation"
                 {...this.props.HasAffiliation}
                 onUpdate={this.updateHasAffiliation}
