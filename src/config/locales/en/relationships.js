@@ -121,29 +121,20 @@ export const relationships = {
         ds: 'DS 1350'
       },
       naturalized: {
-        alien: [
-          'Alien Registration',
-          '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
-        ],
-        permanent: ['Permanent resident card', '(I-551)'],
-        certificate: ['Certificate of naturalization', '(N550 or N570)']
+        alien: 'Alien Registration (on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)',
+        permanent: 'Permanent resident card (I-551)',
+        certificate: 'Certificate of naturalization (N550 or N570)'
       },
       derived: {
-        alien: [
-          'Alien Registration',
-          '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
-        ],
-        permanent: ['Permanent resident card', '(I-551)'],
-        certificate: ['Certificate of naturalization', '(N550 or N570)'],
+        alien: 'Alien Registration (on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)',
+        permanent: 'Permanent resident card (I-551)',
+        certificate: 'Certificate of naturalization (N550 or N570)',
         other: 'Other (provide explanation)'
       },
       methods: {
         inperson: 'In person',
         telephone: 'Telephone',
-        electronic: [
-          'Electronic',
-          '(such as email, texting, chat rooms, etc.)'
-        ],
+        electronic: 'Electronic (such as email, texting, chat rooms, etc.)',
         written: 'Written correspondence',
         other: 'Other (provide explanation)'
       },
@@ -159,12 +150,9 @@ export const relationships = {
         permanent: 'I-551 Permanent Resident',
         employment: 'I-766 Employment Authorization',
         arrival: 'I-94 Arrival-Departure Record',
-        visa: ['U.S. Visa', '(red foil number)'],
-        f1: ['I-20 Certificate of Eligibility', '(non-immigrant F1 student)'],
-        j1: [
-          'DS-2019 Certificate of Eligibility',
-          '(exchange visitor J1 status)'
-        ],
+        visa: 'U.S. Visa (red foil number)',
+        f1: 'I-20 Certificate of Eligibility (non-immigrant F1 student)',
+        j1: 'DS-2019 Certificate of Eligibility (exchange visitor J1 status)',
         other: 'Other (provide explanation)'
       },
       maiden: {
