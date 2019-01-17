@@ -5,7 +5,7 @@ import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import { Field } from '../../Form'
+import { Field, Show } from '../../Form'
 import NegativeImpacts from './Alcohol/NegativeImpacts'
 import OrderedCounselings from './Alcohol/OrderedCounselings'
 import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
@@ -92,6 +92,7 @@ class SubstanceUse extends SectionElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div>
         <SectionViews
@@ -104,7 +105,12 @@ class SubstanceUse extends SectionElement {
             backLabel={i18n.t('financial.destination.review')}
             next="substance/drugs/usage"
             nextLabel={i18n.t('substance.destination.drugs.usage')}>
-            <h1 className="section-header">{i18n.t('substance.intro.title')}</h1>
+            <h1 className="section-header">
+              {{
+                85: i18n.t('substance.85.intro.title'),
+                86: i18n.t('substance.intro.title')
+              }[formType]}
+            </h1>
             <Field
               optional={true}
               className="no-margin-bottom">
@@ -125,6 +131,7 @@ class SubstanceUse extends SectionElement {
               onError={this.handleError}
               onUpdate={this.updateDrugUses}
               scrollToBottom={this.props.scrollToBottom}
+              formType={formType}
             />
           </SectionView>
 
@@ -132,8 +139,14 @@ class SubstanceUse extends SectionElement {
             name="drugs/purchase"
             back="substance/drugs/usage"
             backLabel={i18n.t('substance.destination.drugs.usage')}
-            next="substance/drugs/clearance"
-            nextLabel={i18n.t('substance.destination.drugs.clearance')}>
+            next={{
+              85: 'substance/drugs/misuse',
+              86: 'substance/drugs/clearance'
+            }[formType]}
+            nextLabel={{
+              85: i18n.t('substance.destination.drugs.misuse'),
+              86: i18n.t('substance.destination.drugs.clearance')
+            }[formType]}>
             <DrugInvolvements
               name="druginvolvements"
               {...this.props.DrugInvolvements}
@@ -141,45 +154,56 @@ class SubstanceUse extends SectionElement {
               onError={this.handleError}
               onUpdate={this.updateDrugInvolvements}
               scrollToBottom={this.props.scrollToBottom}
+              formType={formType}
             />
           </SectionView>
 
-          <SectionView
-            name="drugs/clearance"
-            back="substance/drugs/purchase"
-            backLabel={i18n.t('substance.destination.drugs.purchase')}
-            next="substance/drugs/publicsafety"
-            nextLabel={i18n.t('substance.destination.drugs.publicsafety')}>
-            <DrugClearanceUses
-              name="drugclearanceuses"
-              {...this.props.DrugClearanceUses}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateDrugClearanceUses}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+          {['86'].indexOf(formType) > -1 && (
+            <SectionView
+              name="drugs/clearance"
+              back="substance/drugs/purchase"
+              backLabel={i18n.t('substance.destination.drugs.purchase')}
+              next="substance/drugs/publicsafety"
+              nextLabel={i18n.t('substance.destination.drugs.publicsafety')}>
+              <DrugClearanceUses
+                name="drugclearanceuses"
+                {...this.props.DrugClearanceUses}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateDrugClearanceUses}
+                scrollToBottom={this.props.scrollToBottom}
+              />
+            </SectionView>
+          )}
 
-          <SectionView
-            name="drugs/publicsafety"
-            back="substance/drugs/clearance"
-            backLabel={i18n.t('substance.destination.drugs.clearance')}
-            next="substance/drugs/misuse"
-            nextLabel={i18n.t('substance.destination.drugs.misuse')}>
-            <DrugPublicSafetyUses
-              name="drugpublicsafety"
-              {...this.props.DrugPublicSafetyUses}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateDrugPublicSafetyUses}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+          {['86'].indexOf(formType) > -1 && (
+            <SectionView
+              name="drugs/publicsafety"
+              back="substance/drugs/clearance"
+              backLabel={i18n.t('substance.destination.drugs.clearance')}
+              next="substance/drugs/misuse"
+              nextLabel={i18n.t('substance.destination.drugs.misuse')}>
+              <DrugPublicSafetyUses
+                name="drugpublicsafety"
+                {...this.props.DrugPublicSafetyUses}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateDrugPublicSafetyUses}
+                scrollToBottom={this.props.scrollToBottom}
+              />
+            </SectionView>
+          )}
 
           <SectionView
             name="drugs/misuse"
-            back="substance/drugs/publicsafety"
-            backLabel={i18n.t('substance.destination.drugs.publicsafety')}
+            back={{
+              85: 'substance/drugs/purchase',
+              86: 'substance/drugs/publicsafety'
+            }[formType]}
+            backLabel={{
+              85: i18n.t('substance.destination.drugs.purchase'),
+              86: i18n.t('substance.destination.drugs.publicsafety')
+            }[formType]}
             next="substance/drugs/ordered"
             nextLabel={i18n.t('substance.destination.drugs.ordered')}>
             <PrescriptionUses
@@ -189,6 +213,7 @@ class SubstanceUse extends SectionElement {
               onError={this.handleError}
               onUpdate={this.updatePrescriptionUses}
               scrollToBottom={this.props.scrollToBottom}
+              formType={formType}
             />
           </SectionView>
 
@@ -206,6 +231,7 @@ class SubstanceUse extends SectionElement {
               onError={this.handleError}
               onUpdate={this.updateOrderedTreatments}
               scrollToBottom={this.props.scrollToBottom}
+              formType={formType}
             />
           </SectionView>
 
@@ -213,8 +239,14 @@ class SubstanceUse extends SectionElement {
             name="drugs/voluntary"
             back="substance/drugs/ordered"
             backLabel={i18n.t('substance.destination.drugs.ordered')}
-            next="substance/alcohol/negative"
-            nextLabel={i18n.t('substance.destination.police.negative')}>
+            next={{
+              85: 'substance/review',
+              86: 'substance/alcohol/negative'
+            }[formType]}
+            nextLabel={{
+              85: i18n.t('substance.destination.review'),
+              86: i18n.t('substance.destination.police.negative')
+            }[formType]}>
             <VoluntaryTreatments
               name="voluntary"
               {...this.props.VoluntaryTreatments}
@@ -223,80 +255,95 @@ class SubstanceUse extends SectionElement {
               onError={this.handleError}
               onUpdate={this.updateVoluntaryTreatments}
               scrollToBottom={this.props.scrollToBottom}
+              formType={formType}
             />
           </SectionView>
 
-          <SectionView
-            name="alcohol/negative"
-            back="substance/drugs/voluntary"
-            backLabel={i18n.t('substance.destination.drugs.voluntary')}
-            next="substance/alcohol/ordered"
-            nextLabel={i18n.t('substance.destination.police.ordered')}>
-            <NegativeImpacts
-              name="negative"
-              {...this.props.NegativeImpacts}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateNegativeImpacts}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+          {['86'].indexOf(formType) > -1 && (
+            <SectionView
+              name="alcohol/negative"
+              back="substance/drugs/voluntary"
+              backLabel={i18n.t('substance.destination.drugs.voluntary')}
+              next="substance/alcohol/ordered"
+              nextLabel={i18n.t('substance.destination.police.ordered')}>
+              <NegativeImpacts
+                name="negative"
+                {...this.props.NegativeImpacts}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateNegativeImpacts}
+                scrollToBottom={this.props.scrollToBottom}
+              />
+            </SectionView>
+          )}
 
-          <SectionView
-            name="alcohol/ordered"
-            back="substance/alcohol/negative"
-            backLabel={i18n.t('substance.destination.police.negative')}
-            next="substance/alcohol/voluntary"
-            nextLabel={i18n.t('substance.destination.police.voluntary')}>
-            <OrderedCounselings
-              name="ordered"
-              {...this.props.OrderedCounselings}
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateOrderedCounselings}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+          {['86'].indexOf(formType) > -1 && (
+            <SectionView
+              name="alcohol/ordered"
+              back="substance/alcohol/negative"
+              backLabel={i18n.t('substance.destination.police.negative')}
+              next="substance/alcohol/voluntary"
+              nextLabel={i18n.t('substance.destination.police.voluntary')}>
+              <OrderedCounselings
+                name="ordered"
+                {...this.props.OrderedCounselings}
+                addressBooks={this.props.AddressBooks}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateOrderedCounselings}
+                scrollToBottom={this.props.scrollToBottom}
+              />
+            </SectionView>
+          )}
 
-          <SectionView
-            name="alcohol/voluntary"
-            back="substance/alcohol/ordered"
-            backLabel={i18n.t('substance.destination.police.ordered')}
-            next="substance/alcohol/additional"
-            nextLabel={i18n.t('substance.destination.police.additional')}>
-            <VoluntaryCounselings
-              name="voluntary"
-              {...this.props.VoluntaryCounselings}
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateVoluntaryCounselings}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+          {['86'].indexOf(formType) > -1 && (
+            <SectionView
+              name="alcohol/voluntary"
+              back="substance/alcohol/ordered"
+              backLabel={i18n.t('substance.destination.police.ordered')}
+              next="substance/alcohol/additional"
+              nextLabel={i18n.t('substance.destination.police.additional')}>
+              <VoluntaryCounselings
+                name="voluntary"
+                {...this.props.VoluntaryCounselings}
+                addressBooks={this.props.AddressBooks}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateVoluntaryCounselings}
+                scrollToBottom={this.props.scrollToBottom}
+              />
+            </SectionView>
+          )}
 
-          <SectionView
-            name="alcohol/additional"
-            back="substance/alcohol/voluntary"
-            backLabel={i18n.t('substance.destination.police.voluntary')}
-            next="substance/review"
-            nextLabel={i18n.t('substance.destination.review')}>
-            <ReceivedCounselings
-              name="additional"
-              {...this.props.ReceivedCounselings}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateReceivedCounselings}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+          {['86'].indexOf(formType) > -1 && (
+            <SectionView
+              name="alcohol/additional"
+              back="substance/alcohol/voluntary"
+              backLabel={i18n.t('substance.destination.police.voluntary')}
+              next="substance/review"
+              nextLabel={i18n.t('substance.destination.review')}>
+              <ReceivedCounselings
+                name="additional"
+                {...this.props.ReceivedCounselings}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateReceivedCounselings}
+                scrollToBottom={this.props.scrollToBottom}
+              />
+            </SectionView>
+          )}
 
           <SectionView
             name="review"
             title={i18n.t('substance.review.title')}
-            back="substance/alcohol/additional"
-            backLabel={i18n.t('substance.destination.police.additional')}
+            back={{
+              85: 'substance/drugs/voluntary',
+              86: 'substance/alcohol/additional'
+            }[formType]}
+            backLabel={{
+              85: i18n.t('substance.destination.drugs.voluntary'),
+              86: i18n.t('substance.destination.police.additional')
+            }[formType]}
             showTop={true}
             next="legal/intro"
             nextLabel={i18n.t('legal.destination.intro')}>
@@ -310,6 +357,7 @@ class SubstanceUse extends SectionElement {
               onUpdate={this.updateDrugUses}
               required={true}
               scrollIntoView={false}
+              formType={formType}
             />
 
             <hr className="section-divider" />
@@ -323,33 +371,38 @@ class SubstanceUse extends SectionElement {
               onUpdate={this.updateDrugInvolvements}
               required={true}
               scrollIntoView={false}
+              formType={formType}
             />
 
-            <hr className="section-divider" />
-            <DrugClearanceUses
-              name="drugclearanceuses"
-              {...this.props.DrugClearanceUses}
-              section="substance"
-              subsection="substance/drugs/clearance"
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateDrugClearanceUses}
-              required={true}
-              scrollIntoView={false}
-            />
+            <Show when={['86'].indexOf(formType) > -1}>
+              <hr className="section-divider" />
+              <DrugClearanceUses
+                name="drugclearanceuses"
+                {...this.props.DrugClearanceUses}
+                section="substance"
+                subsection="substance/drugs/clearance"
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateDrugClearanceUses}
+                required={true}
+                scrollIntoView={false}
+              />
+            </Show>
 
-            <hr className="section-divider" />
-            <DrugPublicSafetyUses
-              name="drugpublicsafety"
-              {...this.props.DrugPublicSafetyUses}
-              section="substance"
-              subsection="substance/drugs/publicsafety"
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateDrugPublicSafetyUses}
-              required={true}
-              scrollIntoView={false}
-            />
+            <Show when={['86'].indexOf(formType) > -1}>
+              <hr className="section-divider" />
+              <DrugPublicSafetyUses
+                name="drugpublicsafety"
+                {...this.props.DrugPublicSafetyUses}
+                section="substance"
+                subsection="substance/drugs/publicsafety"
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateDrugPublicSafetyUses}
+                required={true}
+                scrollIntoView={false}
+              />
+            </Show>
 
             <hr className="section-divider" />
             <PrescriptionUses
@@ -362,6 +415,7 @@ class SubstanceUse extends SectionElement {
               onUpdate={this.updatePrescriptionUses}
               required={true}
               scrollIntoView={false}
+              formType={formType}
             />
 
             <hr className="section-divider" />
@@ -375,6 +429,7 @@ class SubstanceUse extends SectionElement {
               onUpdate={this.updateOrderedTreatments}
               required={true}
               scrollIntoView={false}
+              formType={formType}
             />
 
             <hr className="section-divider" />
@@ -388,59 +443,68 @@ class SubstanceUse extends SectionElement {
               onUpdate={this.updateVoluntaryTreatments}
               required={true}
               scrollIntoView={false}
+              formType={formType}
             />
 
-            <hr className="section-divider" />
-            <NegativeImpacts
-              name="negative"
-              {...this.props.NegativeImpacts}
-              section="substance"
-              subsection="substance/alcohol/negative"
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateNegativeImpacts}
-              required={true}
-              scrollIntoView={false}
-            />
+            <Show when={['86'].indexOf(formType) > -1}>
+              <hr className="section-divider" />
+              <NegativeImpacts
+                name="negative"
+                {...this.props.NegativeImpacts}
+                section="substance"
+                subsection="substance/alcohol/negative"
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateNegativeImpacts}
+                required={true}
+                scrollIntoView={false}
+              />
+            </Show>
 
-            <hr className="section-divider" />
-            <OrderedCounselings
-              name="ordered"
-              {...this.props.OrderedCounselings}
-              section="substance"
-              subsection="substance/alcohol/ordered"
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateOrderedCounselings}
-              required={true}
-              scrollIntoView={false}
-            />
+            <Show when={['86'].indexOf(formType) > -1}>
+              <hr className="section-divider" />
+              <OrderedCounselings
+                name="ordered"
+                {...this.props.OrderedCounselings}
+                section="substance"
+                subsection="substance/alcohol/ordered"
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateOrderedCounselings}
+                required={true}
+                scrollIntoView={false}
+              />
+            </Show>
 
-            <hr className="section-divider" />
-            <VoluntaryCounselings
-              name="voluntary"
-              {...this.props.VoluntaryCounselings}
-              section="substance"
-              subsection="substance/alcohol/voluntary"
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateVoluntaryCounselings}
-              required={true}
-              scrollIntoView={false}
-            />
+            <Show when={['86'].indexOf(formType) > -1}>
+              <hr className="section-divider" />
+              <VoluntaryCounselings
+                name="voluntary"
+                {...this.props.VoluntaryCounselings}
+                section="substance"
+                subsection="substance/alcohol/voluntary"
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateVoluntaryCounselings}
+                required={true}
+                scrollIntoView={false}
+              />
+            </Show>
 
-            <hr className="section-divider" />
-            <ReceivedCounselings
-              name="additional"
-              {...this.props.ReceivedCounselings}
-              section="substance"
-              subsection="substance/alcohol/additional"
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-              onUpdate={this.updateReceivedCounselings}
-              required={true}
-              scrollIntoView={false}
-            />
+            <Show when={['86'].indexOf(formType) > -1}>
+              <hr className="section-divider" />
+              <ReceivedCounselings
+                name="additional"
+                {...this.props.ReceivedCounselings}
+                section="substance"
+                subsection="substance/alcohol/additional"
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                onUpdate={this.updateReceivedCounselings}
+                required={true}
+                scrollIntoView={false}
+              />
+            </Show>
           </SectionView>
         </SectionViews>
       </div>
@@ -477,11 +541,13 @@ function mapStateToProps(state) {
 SubstanceUse.defaultProps = {
   section: 'substance',
   store: 'Substance',
-  scrollToBottom: SectionView.BottomButtonsSelector
+  scrollToBottom: SectionView.BottomButtonsSelector,
+  formType: '86'
 }
 
 export class SubstanceUseSections extends React.Component {
   render() {
+    const { formType } = this.props
     return (
       <div>
         <DrugUses
@@ -492,6 +558,7 @@ export class SubstanceUseSections extends React.Component {
           onError={this.props.onError}
           required={true}
           scrollIntoView={false}
+          formType={formType}
         />
 
         <hr className="section-divider" />
@@ -503,6 +570,7 @@ export class SubstanceUseSections extends React.Component {
           onError={this.props.onError}
           required={true}
           scrollIntoView={false}
+          formType={formType}
         />
 
         <hr className="section-divider" />
@@ -537,6 +605,7 @@ export class SubstanceUseSections extends React.Component {
           onError={this.props.onError}
           required={true}
           scrollIntoView={false}
+          formType={formType}
         />
 
         <hr className="section-divider" />
@@ -548,6 +617,7 @@ export class SubstanceUseSections extends React.Component {
           onError={this.props.onError}
           required={true}
           scrollIntoView={false}
+          formType={formType}
         />
 
         <hr className="section-divider" />
@@ -559,6 +629,7 @@ export class SubstanceUseSections extends React.Component {
           onError={this.props.onError}
           required={true}
           scrollIntoView={false}
+          formType={formType}
         />
 
         <hr className="section-divider" />
@@ -607,6 +678,10 @@ export class SubstanceUseSections extends React.Component {
       </div>
     )
   }
+}
+
+SubstanceUseSections.defaultProps = {
+  formType: '86'
 }
 
 export default withRouter(

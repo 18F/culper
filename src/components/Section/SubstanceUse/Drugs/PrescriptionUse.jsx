@@ -55,6 +55,8 @@ export default class PrescriptionUse extends ValidationElement {
   }
 
   render() {
+    const { formType } = this.props
+
     return (
       <div className="prescription-use">
         <Field
@@ -103,33 +105,37 @@ export default class PrescriptionUse extends ValidationElement {
           />
         </Field>
 
-        <Branch
-          name="UseWhileEmployed"
-          label={i18n.t(
-            'substance.drugs.prescription.heading.useWhileEmployed'
-          )}
-          labelSize="h4"
-          className="use-while-employed"
-          {...this.props.UseWhileEmployed}
-          onError={this.props.onError}
-          onUpdate={this.updateUseWhileEmployed}
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="UseWhileEmployed"
+            label={i18n.t(
+              'substance.drugs.prescription.heading.useWhileEmployed'
+            )}
+            labelSize="h4"
+            className="use-while-employed"
+            {...this.props.UseWhileEmployed}
+            onError={this.props.onError}
+            onUpdate={this.updateUseWhileEmployed}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
 
-        <Branch
-          name="UseWithClearance"
-          label={i18n.t(
-            'substance.drugs.prescription.heading.useWithClearance'
-          )}
-          labelSize="h4"
-          className="use-with-clearance"
-          {...this.props.UseWithClearance}
-          onError={this.props.onError}
-          onUpdate={this.updateUseWithClearance}
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="UseWithClearance"
+            label={i18n.t(
+              'substance.drugs.prescription.heading.useWithClearance'
+            )}
+            labelSize="h4"
+            className="use-with-clearance"
+            {...this.props.UseWithClearance}
+            onError={this.props.onError}
+            onUpdate={this.updateUseWithClearance}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
       </div>
     )
   }

@@ -54,6 +54,7 @@ export default class PrescriptionUses extends SubsectionElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div
         className="section-content prescription-uses"
@@ -61,7 +62,10 @@ export default class PrescriptionUses extends SubsectionElement {
         <h1 className="section-header">{i18n.t('substance.destination.drugs.misuse')}</h1>
         <Branch
           name="Misused"
-          label={i18n.t('substance.drugs.heading.prescriptionUses')}
+          label={{
+            85: i18n.t('substance.85.drugs.heading.prescriptionUses'),
+            86: i18n.t('substance.drugs.heading.prescriptionUses')
+          }[formType]}
           labelSize="h4"
           className="misused"
           {...this.props.MisusedDrugs}
@@ -84,9 +88,10 @@ export default class PrescriptionUses extends SubsectionElement {
             description={i18n.t(
               'substance.drugs.prescription.collection.description'
             )}
-            appendTitle={i18n.t(
-              'substance.drugs.prescription.collection.appendTitle'
-            )}
+            appendTitle={{
+              85: i18n.t('substance.85.drugs.prescription.collection.appendTitle'),
+              86: i18n.t('substance.drugs.prescription.collection.appendTitle')
+            }[formType]}
             appendLabel={i18n.t(
               'substance.drugs.prescription.collection.appendLabel'
             )}
@@ -97,6 +102,7 @@ export default class PrescriptionUses extends SubsectionElement {
               bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              formType={formType}
             />
           </Accordion>
         </Show>

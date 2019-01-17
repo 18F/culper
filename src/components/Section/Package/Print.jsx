@@ -126,6 +126,7 @@ class Print extends React.Component {
   }
 
   sections() {
+    const { formType } = this.props
     return this.props.Navigation.sections.map((section, index, arr) => {
       let sectionComponent = null
       switch (section.url) {
@@ -140,7 +141,7 @@ class Print extends React.Component {
           )
           break
         case 'history':
-          sectionComponent = <HistorySections {...this.props.History} formType={this.props.formType} />
+          sectionComponent = <HistorySections {...this.props.History} formType={formType} />
           break
         case 'citizenship':
           sectionComponent = <CitizenshipSections {...this.props.Citizenship} />
@@ -161,7 +162,7 @@ class Print extends React.Component {
           break
         case 'substance':
           sectionComponent = (
-            <SubstanceUseSections {...this.props.SubstanceUse} />
+            <SubstanceUseSections {...this.props.SubstanceUse} formType={formType} />
           )
           break
         case 'legal':

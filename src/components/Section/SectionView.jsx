@@ -12,7 +12,9 @@ export class SectionViews extends React.Component {
 
   render() {
     // Iterate through child <SectionView /> components and check their props
-    const children = React.Children.map(this.props.children, child => {
+    // Need to use Reach.Children.toArray to remove all of the false and null
+    // children (from conditional statements)
+    const children = React.Children.toArray(this.props.children).map(child => {
       const currentSection = this.props.current || ''
       // If the current route name matches one of the section view child component names
       if (currentSection === child.props.name) {

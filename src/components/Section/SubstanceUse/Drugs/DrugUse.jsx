@@ -73,6 +73,7 @@ export default class DrugUse extends ValidationElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div className="drug-use">
         <Field
@@ -139,54 +140,62 @@ export default class DrugUse extends ValidationElement {
           />
         </Field>
 
-        <Branch
-          name="UseWhileEmployed"
-          label={i18n.t('substance.drugs.use.heading.useWhileEmployed')}
-          labelSize="h4"
-          className="use-while-employed"
-          {...this.props.UseWhileEmployed}
-          onError={this.props.onError}
-          required={this.props.required}
-          onUpdate={this.updateUseWhileEmployed}
-          scrollIntoView={this.props.scrollIntoView}
-        />
-
-        <Branch
-          name="UseWithClearance"
-          label={i18n.t('substance.drugs.use.heading.useWithClearance')}
-          labelSize="h4"
-          className="use-with-clearance"
-          {...this.props.UseWithClearance}
-          onError={this.props.onError}
-          required={this.props.required}
-          onUpdate={this.updateUseWithClearance}
-          scrollIntoView={this.props.scrollIntoView}
-        />
-
-        <Branch
-          name="UseInFuture"
-          label={i18n.t('substance.drugs.use.heading.useInFuture')}
-          labelSize="h4"
-          className="use-in-future"
-          {...this.props.UseInFuture}
-          onError={this.props.onError}
-          required={this.props.required}
-          onUpdate={this.updateUseInFuture}
-          scrollIntoView={this.props.scrollIntoView}
-        />
-
-        <Field
-          title={i18n.t('substance.drugs.use.heading.explanation')}
-          scrollIntoView={this.props.scrollIntoView}>
-          <Textarea
-            name="Explanation"
-            className="explanation"
-            {...this.props.Explanation}
-            onUpdate={this.updateExplanation}
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="UseWhileEmployed"
+            label={i18n.t('substance.drugs.use.heading.useWhileEmployed')}
+            labelSize="h4"
+            className="use-while-employed"
+            {...this.props.UseWhileEmployed}
             onError={this.props.onError}
             required={this.props.required}
+            onUpdate={this.updateUseWhileEmployed}
+            scrollIntoView={this.props.scrollIntoView}
           />
-        </Field>
+        )}
+
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="UseWithClearance"
+            label={i18n.t('substance.drugs.use.heading.useWithClearance')}
+            labelSize="h4"
+            className="use-with-clearance"
+            {...this.props.UseWithClearance}
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateUseWithClearance}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
+
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="UseInFuture"
+            label={i18n.t('substance.drugs.use.heading.useInFuture')}
+            labelSize="h4"
+            className="use-in-future"
+            {...this.props.UseInFuture}
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateUseInFuture}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
+
+        {['86'].indexOf(formType) > -1 && (
+          <Field
+            title={i18n.t('substance.drugs.use.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
+            <Textarea
+              name="Explanation"
+              className="explanation"
+              {...this.props.Explanation}
+              onUpdate={this.updateExplanation}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
+          </Field>
+        )}
       </div>
     )
   }

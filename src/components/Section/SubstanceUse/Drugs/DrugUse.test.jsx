@@ -9,7 +9,11 @@ describe('The DrugUse component', () => {
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
+    const store = mockStore({
+      authentication: {
+        formType: '86'
+      }
+    })
     createComponent = (expected = {}) =>
       mount(
         <Provider store={store}>
@@ -28,7 +32,8 @@ describe('The DrugUse component', () => {
     const expected = {
       onUpdate: () => {
         updates++
-      }
+      },
+      formType: '86'
     }
     const component = createComponent(expected)
     expect(component.find('.drug-use').length).toBe(1)

@@ -56,6 +56,7 @@ export default class DrugInvolvements extends SubsectionElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div
         className="section-content drug-involvements"
@@ -63,7 +64,10 @@ export default class DrugInvolvements extends SubsectionElement {
         <h1 className="section-header">{i18n.t('substance.destination.drugs.purchase')}</h1>
         <Branch
           name="Involved"
-          label={i18n.t('substance.drugs.heading.drugInvolvement')}
+          label={{
+            85: i18n.t('substance.85.drugs.heading.drugInvolvement'),
+            86: i18n.t('substance.drugs.heading.drugInvolvement')
+          }[formType]}
           labelSize="h4"
           className="involved"
           {...this.props.Involved}

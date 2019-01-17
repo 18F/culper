@@ -19,7 +19,11 @@ describe('The PrescriptionUse component', () => {
   })
 
   it('Renders without errors', () => {
-    const component = createComponent()
+    const component = createComponent({
+      authentication: {
+        formType: '86'
+      }
+    })
     expect(component.find('.prescription-use').length).toBe(1)
   })
 
@@ -28,7 +32,8 @@ describe('The PrescriptionUse component', () => {
     const expected = {
       onUpdate: () => {
         updates++
-      }
+      },
+      formType: '86'
     }
     const component = createComponent(expected)
     expect(component.find('.prescription-use').length).toBe(1)

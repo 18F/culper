@@ -56,6 +56,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div
         className="section-content voluntary-treatments"
@@ -63,7 +64,10 @@ export default class VoluntaryTreatments extends SubsectionElement {
         <h1 className="section-header">{i18n.t('substance.destination.drugs.voluntary')}</h1>
         <Branch
           name="TreatmentVoluntary"
-          label={i18n.t('substance.drugs.heading.voluntaryTreatments')}
+          label={{
+            85: i18n.t('substance.85.drugs.heading.voluntaryTreatments'),
+            86: i18n.t('substance.drugs.heading.voluntaryTreatments')
+          }[formType]}
           labelSize="h4"
           className="treatment-voluntary"
           {...this.props.TreatmentVoluntary}
@@ -86,9 +90,10 @@ export default class VoluntaryTreatments extends SubsectionElement {
             description={i18n.t(
               'substance.drugs.voluntary.collection.description'
             )}
-            appendTitle={i18n.t(
-              'substance.drugs.voluntary.collection.appendTitle'
-            )}
+            appendTitle={{
+              85: i18n.t('substance.85.drugs.voluntary.collection.appendTitle'),
+              86: i18n.t('substance.drugs.voluntary.collection.appendTitle')
+            }[formType]}
             appendLabel={i18n.t(
               'substance.drugs.voluntary.collection.appendLabel'
             )}

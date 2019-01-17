@@ -322,7 +322,7 @@ export const substance = {
       drugPublicSafetyUses:
         'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
       prescriptionUses:
-        'In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?',
+        'In the last seven (7) years, have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?',
       orderedTreatments:
         'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
       voluntaryTreatments:
@@ -805,10 +805,34 @@ export const substance = {
         ketamine: 'Ketamine (Such as special K, jet, etc.)',
         narcotics: 'Narcotics (Such as opium, morphine, codeine, heroin, etc.)',
         hallucinogenic: 'Hallucinogenic (Such as LSD, PCP, mushrooms, etc.)',
-        steroids: 'Steroids(Such as the clear, juice, etc.)',
+        steroids: 'Steroids (Such as the clear, juice, etc.)',
         inhalants: 'Inhalants (Such as toluene, amyl nitrate, etc.)',
         other: 'Other (Provide explanation)',
         drugTypeOther: 'Provide explanation'
+      }
+    }
+  },
+  85: {
+    intro: {
+      title: 'Section 7: Substance use'
+    },
+    drugs: {
+      heading: {
+        drugUses: 'In the last year, have you illegally used any drugs or controlled substances?',
+        drugInvolvement: 'In the last year, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
+        prescriptionUses: 'In the last year, have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?',
+        orderedTreatments: 'In the last year, have you been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
+        voluntaryTreatments: 'In the last year, have you voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?'
+      },
+      prescription: {
+        collection: {
+          appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last year?',
+        }
+      },
+      voluntary: {
+        collection: {
+          appendTitle: 'Do you have another instance of voluntarily seeking counseling or treatment as a result of your use of a drug or controlled substance in the last year?',
+        }
       }
     }
   }

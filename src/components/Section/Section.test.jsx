@@ -50,7 +50,11 @@ describe('The section component', () => {
       window.token = 'fake-token'
       it(`renders ${section.url}.${subsection.url}`, () => {
         const store = mockStore({
-          authentication: { authenticated: true, token: 'fake-token' }
+          authentication: {
+            authenticated: true,
+            token: 'fake-token',
+            formType: '86'
+          }
         })
         testSnapshot(
           <Provider store={store}>

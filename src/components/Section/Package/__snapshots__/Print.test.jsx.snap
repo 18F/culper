@@ -11134,7 +11134,7 @@ exports[`The print section renders properly 1`] = `
             Misuse
           </h1>
           <div
-            aria-label="In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?"
+            aria-label="In the last seven (7) years, have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?"
             className="field required  branch misused"
             data-uuid="field-MOCK-GUID"
           >
@@ -11147,7 +11147,7 @@ exports[`The print section renders properly 1`] = `
             <h4
               className="title h4"
             >
-              In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?
+              In the last seven (7) years, have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?
             </h4>
             <span
               className="icon"
