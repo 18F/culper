@@ -297,7 +297,6 @@ export default class Name extends ValidationElement {
         <Field
           title={i18n.t(`${prefix}.label.last`)}
           titleSize="label"
-          help="identification.name.last.help"
           errorPrefix="name"
           className="usa-form-control"
           filterErrors={this.filterErrors.bind(this)}
