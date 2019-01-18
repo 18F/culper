@@ -110,16 +110,12 @@ export default class PhysicalAddress extends ValidationElement {
             )}
             titleSize="h4"
             className="override-required"
-            help="history.employment.default.physicalAddress.telephone.help"
             adjustFor="telephone"
             scrollIntoView={this.props.scrollIntoView}>
             <Telephone
               name="telephone"
               {...this.props.Telephone}
               className="physical-address-telephone"
-              label={i18n.t(
-                'history.employment.default.physicalAddress.telephone.label'
-              )}
               onUpdate={this.updateTelephone}
               onError={this.props.onError}
               required={this.props.required}
