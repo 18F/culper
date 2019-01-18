@@ -140,56 +140,56 @@ export default class MilitaryService extends ValidationElement {
               label={i18n.t('military.history.label.airforce')}
               value="AirForce"
               onUpdate={this.updateService}
-              onError={this.props.onError}>
-            </Radio>
+              onError={this.props.onError}
+            />
             <Radio
               name="service-airnationalguard"
               className="service-airnationalguard"
               label={i18n.t('military.history.label.airnationalguard')}
               value="AirNationalGuard"
               onUpdate={this.updateService}
-              onError={this.props.onError}>
-            </Radio>
+              onError={this.props.onError}
+            />
             <Radio
               name="service-army"
               className="service-army"
               label={i18n.t('military.history.label.army')}
               value="Army"
               onUpdate={this.updateService}
-              onError={this.props.onError}>
-            </Radio>
+              onError={this.props.onError}
+            />
             <Radio
               name="service-armynationalguard"
               className="service-armynationalguard"
               label={i18n.t('military.history.label.armynationalguard')}
               value="ArmyNationalGuard"
               onUpdate={this.updateService}
-              onError={this.props.onError}>
-            </Radio>
+              onError={this.props.onError}
+            />
             <Radio
               name="service-coastguard"
               className="service-coastguard"
               label={i18n.t('military.history.label.coastguard')}
               value="CoastGuard"
               onUpdate={this.updateService}
-              onError={this.props.onError}>
-            </Radio>
+              onError={this.props.onError}
+            />
             <Radio
               name="service-marinecorps"
               className="service-marinecorps"
               label={i18n.t('military.history.label.marinecorps')}
               value="MarineCorps"
               onUpdate={this.updateService}
-              onError={this.props.onError}>
-            </Radio>
+              onError={this.props.onError}
+            />
             <Radio
               name="service-navy"
               className="service-navy"
               label={i18n.t('military.history.label.navy')}
               value="Navy"
               onUpdate={this.updateService}
-              onError={this.props.onError}>
-            </Radio>
+              onError={this.props.onError}
+            />
           </RadioGroup>
         </Field>
 
@@ -291,7 +291,6 @@ export default class MilitaryService extends ValidationElement {
             name="Dates"
             className="dates"
             {...this.props.Dates}
-            label={i18n.t('military.history.label.dates')}
             minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
