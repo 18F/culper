@@ -9,13 +9,12 @@ import AuthConstants from './AuthConstants'
  * home page.
  */
 export function login(username, password) {
-  // TEMP SOUTION FOR DEVELOPMENT
-  let formType
-  if (env.IsDevelopment()) {
-    const params = location.search
-    const query = queryString.parse(params)
-    formType = query.formType ? query.formType : '86'
-  }
+  const params = location.search
+  const query = queryString.parse(params)
+
+  // formType defaults to SF86
+  const formType = query.formType ? query.formType : '86'
+
   return function(dispatch, getState) {
     return api
       .login(username, password)
