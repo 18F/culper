@@ -67,7 +67,10 @@ describe('The print section', () => {
 
   it('renders properly', () => {
     const store = mockStore({
-      authentication: { authenticated: true },
+      authentication: {
+        authenticated: true,
+        formType: '86'
+      },
       application: applicationState
     })
     testSnapshot(

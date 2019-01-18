@@ -6048,153 +6048,155 @@ exports[`The print section renders properly 1`] = `
             </div>
           </div>
         </div>
-        <hr
-          className="section-divider"
-        />
-        <div
-          className="section-content passports"
-          data-section="citizenship"
-          data-subsection="passports"
-        >
+        <span>
+          <hr
+            className="section-divider"
+          />
           <div
-            className="has-foreignpassport"
+            className="section-content passports"
+            data-section="citizenship"
+            data-subsection="passports"
           >
-            <div>
-              <div
-                aria-label="Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?"
-                className="field required  branch"
-                data-uuid="field-MOCK-GUID"
-              >
-                <a
-                  aria-hidden="true"
-                  className="anchor"
-                  id="field-MOCK-GUID"
-                  name="field-MOCK-GUID"
-                />
-                <h4
-                  className="title h4"
-                >
-                  Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?
-                </h4>
-                <span
-                  className="icon"
-                />
+            <div
+              className="has-foreignpassport"
+            >
+              <div>
                 <div
-                  className="table expand"
+                  aria-label="Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?"
+                  className="field required  branch"
+                  data-uuid="field-MOCK-GUID"
                 >
-                  <span
-                    aria-live="polite"
-                    className="messages help-messages"
+                  <a
+                    aria-hidden="true"
+                    className="anchor"
+                    id="field-MOCK-GUID"
+                    name="field-MOCK-GUID"
                   />
-                </div>
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages error-messages"
-                    role="alert"
+                  <h4
+                    className="title h4"
                   >
-                    <div
+                    Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?
+                  </h4>
+                  <span
+                    className="icon"
+                  />
+                  <div
+                    className="table expand"
+                  >
+                    <span
                       aria-live="polite"
-                      className="message error usa-alert usa-alert-error"
+                      className="messages help-messages"
+                    />
+                  </div>
+                  <div
+                    className="table expand"
+                  >
+                    <span
+                      aria-live="polite"
+                      className="messages error-messages"
                       role="alert"
                     >
                       <div
-                        className="usa-alert-body"
+                        aria-live="polite"
+                        className="message error usa-alert usa-alert-error"
+                        role="alert"
                       >
                         <div
-                          data-i18n="error.required"
+                          className="usa-alert-body"
                         >
-                          <h5
-                            className="usa-alert-heading"
+                          <div
+                            data-i18n="error.required"
                           >
-                            Your response is required
-                          </h5>
-                          
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </span>
-                </div>
-                <div
-                  className="table"
-                >
-                  <span
-                    className="content"
-                  >
-                    <span
-                      className="component shrink"
-                    >
-                      <div
-                        className="content"
-                      />
-                      <div
-                        className="blocks option-list branch usa-input-error"
-                      >
-                        <div
-                          className="yes block"
-                        >
-                          <input
-                            aria-label="Yes for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="branchcollection-MOCK-GUID"
-                            name="branchcollection-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="Yes"
-                          />
-                          <label
-                            className=""
-                            htmlFor="branchcollection-MOCK-GUID"
-                          >
-                            <span>
-                              Yes
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="no block"
-                        >
-                          <input
-                            aria-label="No for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="branchcollection-MOCK-GUID"
-                            name="branchcollection-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="No"
-                          />
-                          <label
-                            className=""
-                            htmlFor="branchcollection-MOCK-GUID"
-                          >
-                            <span>
-                              No
-                            </span>
-                          </label>
+                            <h5
+                              className="usa-alert-heading"
+                            >
+                              Your response is required
+                            </h5>
+                            
+                            
+                          </div>
                         </div>
                       </div>
                     </span>
-                  </span>
+                  </div>
+                  <div
+                    className="table"
+                  >
+                    <span
+                      className="content"
+                    >
+                      <span
+                        className="component shrink"
+                      >
+                        <div
+                          className="content"
+                        />
+                        <div
+                          className="blocks option-list branch usa-input-error"
+                        >
+                          <div
+                            className="yes block"
+                          >
+                            <input
+                              aria-label="Yes for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="branchcollection-MOCK-GUID"
+                              name="branchcollection-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="Yes"
+                            />
+                            <label
+                              className=""
+                              htmlFor="branchcollection-MOCK-GUID"
+                            >
+                              <span>
+                                Yes
+                              </span>
+                            </label>
+                          </div>
+                          <div
+                            className="no block"
+                          >
+                            <input
+                              aria-label="No for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="branchcollection-MOCK-GUID"
+                              name="branchcollection-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="No"
+                            />
+                            <label
+                              className=""
+                              htmlFor="branchcollection-MOCK-GUID"
+                            >
+                              <span>
+                                No
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </span>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </span>
       </div>
     </div>
     <div

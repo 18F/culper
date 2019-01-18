@@ -71,7 +71,8 @@ describe('The citizenship item component', () => {
       Current: { value: 'Yes' },
       onUpdate: () => {
         updates++
-      }
+      },
+      formType: '86'
     }
     const component = createComponent(expected)
     component.find('.citizenship-country .country input').simulate('change', {
