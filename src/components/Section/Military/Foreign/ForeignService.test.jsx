@@ -46,7 +46,8 @@ describe('The foreign service component', () => {
       name: 'foreign-service',
       onUpdate: () => {
         updates++
-      }
+      },
+      formType: '86'
     }
     const component = createComponent(expected)
     component

@@ -390,5 +390,18 @@ export const military = {
         append: 'Add another contact'
       }
     }
+  },
+  85: {
+    intro: {
+      title: 'Section 4: Military history'
+    },
+    disciplinary: {
+      para: {
+        info: "In the last 5 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain's mast, Article 135 Court of Inquiry, etc?"
+      },
+      collection: {
+        appendTitle: 'In the last 5 years, do you have an additional instance of military discipline to report?'
+      }
+    }
   }
 }

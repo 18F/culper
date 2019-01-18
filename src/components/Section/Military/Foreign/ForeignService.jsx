@@ -132,6 +132,7 @@ export default class ForeignService extends ValidationElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div className="foreign-service">
         <Field
@@ -305,18 +306,20 @@ export default class ForeignService extends ValidationElement {
           />
         </Field>
 
-        <Branch
-          name="has_maintainscontact"
-          label={i18n.t('military.foreign.heading.maintainscontact')}
-          labelSize="h4"
-          className="maintainscontact"
-          {...this.props.MaintainsContact}
-          help="military.foreign.help.maintainscontact"
-          onUpdate={this.updateMaintainsContact}
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-          onError={this.props.onError}
-        />
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="has_maintainscontact"
+            label={i18n.t('military.foreign.heading.maintainscontact')}
+            labelSize="h4"
+            className="maintainscontact"
+            {...this.props.MaintainsContact}
+            help="military.foreign.help.maintainscontact"
+            onUpdate={this.updateMaintainsContact}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+            onError={this.props.onError}
+          />
+        )}
 
         <Show when={this.props.MaintainsContact.value === 'Yes'}>
           <div>

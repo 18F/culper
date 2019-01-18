@@ -126,6 +126,8 @@ class Print extends React.Component {
   }
 
   sections() {
+    const { formType } = this.props
+
     return this.props.Navigation.sections.map((section, index, arr) => {
       let sectionComponent = null
       switch (section.url) {
@@ -150,6 +152,7 @@ class Print extends React.Component {
             <MilitarySections
               {...this.props.Military}
               Application={this.props.Application}
+              formType={formType}
             />
           )
           break

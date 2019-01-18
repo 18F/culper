@@ -18,6 +18,7 @@ export default class Foreign extends SubsectionElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div
         className="section-content foreign"
@@ -45,6 +46,7 @@ export default class Foreign extends SubsectionElement {
             onError={this.handleError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
+            formType={formType}
           />
         </BranchCollection>
       </div>

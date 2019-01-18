@@ -63,13 +63,17 @@ export default class Disciplinary extends SubsectionElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div
         className="section-content disciplinary"
         {...super.dataAttributes(this.props)}>
         <Branch
           name="has_disciplinary"
-          label={i18n.t('military.disciplinary.para.info')}
+          label={{
+            85: i18n.t('military.85.disciplinary.para.info'),
+            86: i18n.t('military.disciplinary.para.info')
+          }[formType]}
           labelSize="h4"
           {...this.props.HasDisciplinary}
           weight={true}
@@ -91,7 +95,10 @@ export default class Disciplinary extends SubsectionElement {
             description={i18n.t(
               'military.disciplinary.collection.summary.title'
             )}
-            appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
+            appendTitle={{
+              85: i18n.t('military.85.disciplinary.collection.appendTitle'),
+              86: i18n.t('military.disciplinary.collection.appendTitle')
+            }[formType]}
             appendLabel={i18n.t('military.disciplinary.collection.append')}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}>

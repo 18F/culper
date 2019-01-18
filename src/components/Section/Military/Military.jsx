@@ -39,6 +39,7 @@ class Military extends SectionElement {
   }
 
   render() {
+    const { formType } = this.props
     const showDisciplinary = !hideDisciplinaryProcedures(this.props.Application)
     const showSelectiveService = !hideSelectiveService(this.props.Application)
     return (
@@ -59,7 +60,12 @@ class Military extends SectionElement {
                 ? i18n.t('military.destination.selective')
                 : i18n.t('military.destination.history')
             }>
-            <h1 className="section-header">{i18n.t('military.intro.title')}</h1>
+            <h1 className="section-header">
+              {{
+                85: i18n.t('military.85.intro.title'),
+                86: i18n.t('military.intro.title')
+              }[formType]}
+            </h1>
             <Field
               optional={true}
               className="no-margin-bottom">
@@ -117,6 +123,7 @@ class Military extends SectionElement {
                 onError={this.handleError}
                 required={true}
                 scrollIntoView={false}
+                formType={formType}
               />
             </Show>
 
@@ -133,6 +140,7 @@ class Military extends SectionElement {
               onError={this.handleError}
               required={true}
               scrollIntoView={false}
+              formType={formType}
             />
           </SectionView>
 
@@ -195,6 +203,7 @@ class Military extends SectionElement {
               onUpdate={this.updateDisciplinary}
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
+              formType={formType}
             />
           </SectionView>
 
@@ -219,6 +228,7 @@ class Military extends SectionElement {
               onUpdate={this.updateForeign}
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
+              formType={formType}
             />
           </SectionView>
         </SectionViews>
@@ -250,11 +260,13 @@ function mapStateToProps(state) {
 Military.defaultProps = {
   section: 'military',
   store: 'Military',
-  scrollToBottom: SectionView.BottomButtonsSelector
+  scrollToBottom: SectionView.BottomButtonsSelector,
+  formType: '86'
 }
 
 export class MilitarySections extends React.Component {
   render() {
+    const { formType } = this.props
     const showDisciplinary = !hideDisciplinaryProcedures(this.props.Application)
     const showSelectiveService = !hideSelectiveService(this.props.Application)
     return (
@@ -291,6 +303,7 @@ export class MilitarySections extends React.Component {
             onError={this.props.onError}
             required={true}
             scrollIntoView={false}
+            formType={formType}
           />
         </Show>
 
@@ -304,10 +317,15 @@ export class MilitarySections extends React.Component {
           onError={this.props.onError}
           required={true}
           scrollIntoView={false}
+          formType={formType}
         />
       </div>
     )
   }
+}
+
+MilitarySections.defaultProps = {
+  formType: '86'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Military))
