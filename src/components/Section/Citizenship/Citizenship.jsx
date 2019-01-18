@@ -4,7 +4,7 @@ import { i18n } from '../../../config'
 import SectionElement from '../SectionElement'
 import { SectionViews, SectionView } from '../SectionView'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Field } from '../../Form'
+import { Field, Show } from '../../Form'
 import Status from './Status'
 import Multiple from './Multiple'
 import Passports from './Multiple/Passports'
@@ -32,7 +32,12 @@ class Citizenship extends SectionElement {
             }[formType]}
             next="citizenship/status"
             nextLabel={i18n.t('citizenship.destination.status')}>
-            <h1 className="section-header">{i18n.t('citizenship.intro.title')}</h1>
+            <h1 className="section-header">
+              {{
+                85: i18n.t('citizenship.85.intro.title'),
+                86: i18n.t('citizenship.intro.title')
+              }[formType]}
+            </h1>
             <div>
               <Field
                 optional={true}
@@ -132,6 +137,7 @@ class Citizenship extends SectionElement {
               scrollIntoView={false}
               formType={formType}
             />
+
             <hr className="section-divider" />
             <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
             <Multiple
@@ -146,19 +152,22 @@ class Citizenship extends SectionElement {
               scrollIntoView={false}
               formType={formType}
             />
-            <hr className="section-divider" />
-            <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
-            <Passports
-              name="passports"
-              {...this.props.Passports}
-              section="citizenship"
-              subsection="passports"
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Passports')}
-              onError={this.handleError}
-              required={true}
-              scrollIntoView={false}
-            />
+
+            <Show when={['86'].indexOf(formType) > -1}>
+              <hr className="section-divider" />
+              <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
+              <Passports
+                name="passports"
+                {...this.props.Passports}
+                section="citizenship"
+                subsection="passports"
+                dispatch={this.props.dispatch}
+                onUpdate={this.handleUpdate.bind(this, 'Passports')}
+                onError={this.handleError}
+                required={true}
+                scrollIntoView={false}
+              />
+            </Show>
           </SectionView>
 
         </SectionViews>
@@ -218,16 +227,18 @@ export class CitizenshipSections extends React.Component {
           formType={formType}
         />
 
-        <hr className="section-divider" />
-        <Passports
-          name="passports"
-          {...this.props.Passports}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+        <Show when={['86'].indexOf(formType) > -1}>
+          <hr className="section-divider" />
+          <Passports
+            name="passports"
+            {...this.props.Passports}
+            defaultState={false}
+            dispatch={this.props.dispatch}
+            onError={this.props.onError}
+            required={true}
+            scrollIntoView={false}
+          />
+        </Show>
       </div>
     )
   }
