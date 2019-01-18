@@ -418,5 +418,14 @@ export const citizenship = {
         }
       }
     }
+  },
+  85: {
+    status: {
+      label: {
+        documenttype: {
+          visa: 'U.S. Visa (red foil number)'
+        }
+      }
+    }
   }
 }

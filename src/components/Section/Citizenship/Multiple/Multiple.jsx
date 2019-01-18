@@ -63,6 +63,7 @@ export default class Multiple extends SubsectionElement {
   }
 
   render() {
+    const { formType } = this.props
     return (
       <div
         className="section-content multiple"
@@ -116,6 +117,7 @@ export default class Multiple extends SubsectionElement {
               bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              formType={formType}
             />
           </Accordion>
         </Show>

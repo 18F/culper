@@ -242,6 +242,8 @@ export default class Status extends SubsectionElement {
   }
 
   render() {
+    const { formType } = this.props
+
     return (
       <div
         className="section-content status"
@@ -982,7 +984,7 @@ export default class Status extends SubsectionElement {
               adjustFor="buttons"
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
-                className="citizenship-document-type"
+                className="citizenship-document-type option-list-vertical"
                 required={this.props.required}
                 onError={this.handleError}
                 selectedValue={(this.props.DocumentType || {}).value}>
@@ -990,15 +992,18 @@ export default class Status extends SubsectionElement {
                   name="document-type-i94"
                   label={i18n.t('citizenship.status.label.documenttype.i94')}
                   value="I-94"
-                  className="document-type-i94"
+                  className="document-type-i94 option-list"
                   onUpdate={this.updateDocumentType}
                   onError={this.handleError}
                 />
                 <Radio
                   name="document-type-visa"
-                  label={i18n.t('citizenship.status.label.documenttype.visa')}
+                  label={{
+                    85: i18n.t('citizenship.85.status.label.documenttype.visa'),
+                    86: i18n.t('citizenship.status.label.documenttype.visa')
+                  }[formType]}
                   value="U.S. Visa"
-                  className="document-type-visa"
+                  className="document-type-visa option-list"
                   onUpdate={this.updateDocumentType}
                   onError={this.handleError}
                 />
@@ -1006,7 +1011,7 @@ export default class Status extends SubsectionElement {
                   name="document-type-i20"
                   label={i18n.t('citizenship.status.label.documenttype.i20')}
                   value="I-20"
-                  className="document-type-i20"
+                  className="document-type-i20 option-list"
                   onUpdate={this.updateDocumentType}
                   onError={this.handleError}
                 />
@@ -1014,7 +1019,7 @@ export default class Status extends SubsectionElement {
                   name="document-type-ds2019"
                   label={i18n.t('citizenship.status.label.documenttype.ds2019')}
                   value="DS-2019"
-                  className="document-type-ds2019"
+                  className="document-type-ds2019 option-list"
                   onUpdate={this.updateDocumentType}
                   onError={this.handleError}
                 />
@@ -1022,7 +1027,7 @@ export default class Status extends SubsectionElement {
                   name="document-type-other"
                   label={i18n.t('citizenship.status.label.documenttype.other')}
                   value="Other"
-                  className="document-type-other"
+                  className="document-type-other option-list"
                   onUpdate={this.updateDocumentType}
                   onError={this.handleError}
                 />

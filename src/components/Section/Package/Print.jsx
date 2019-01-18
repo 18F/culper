@@ -144,7 +144,7 @@ class Print extends React.Component {
           sectionComponent = <HistorySections {...this.props.History} formType={formType} />
           break
         case 'citizenship':
-          sectionComponent = <CitizenshipSections {...this.props.Citizenship} />
+          sectionComponent = <CitizenshipSections {...this.props.Citizenship} formType={formType} />
           break
         case 'military':
           sectionComponent = (

@@ -17,7 +17,9 @@ class Citizenship extends SectionElement {
         <SectionViews
           current={this.props.subsection}
           dispatch={this.props.dispatch}
-          update={this.props.update}>
+          update={this.props.update}
+        >
+
           <SectionView
             name="intro"
             back={{
@@ -41,12 +43,80 @@ class Citizenship extends SectionElement {
           </SectionView>
 
           <SectionView
+            name="status"
+            back="citizenship/intro"
+            backLabel={i18n.t('citizenship.destination.intro')}
+            next="citizenship/multiple"
+            nextLabel={i18n.t('citizenship.destination.multiple')}>
+            <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
+            <Status
+              name="status"
+              {...this.props.Status}
+              dispatch={this.props.dispatch}
+              onUpdate={this.handleUpdate.bind(this, 'Status')}
+              onError={this.handleError}
+              formType={formType}
+            />
+          </SectionView>
+
+          <SectionView
+            name="multiple"
+            back="citizenship/status"
+            backLabel={i18n.t('citizenship.destination.status')}
+            next={{
+              85: 'citizenship/review',
+              86: 'citizenship/passports'
+            }[formType]}
+            nextLabel={{
+              85: i18n.t('citizenship.destination.review'),
+              86: i18n.t('citizenship.destination.passports')
+            }[formType]}>
+            <h1 className="section-header">
+              {i18n.t('citizenship.destination.multiple')}
+            </h1>
+            <Multiple
+              name="multiple"
+              {...this.props.Multiple}
+              dispatch={this.props.dispatch}
+              onUpdate={this.handleUpdate.bind(this, 'Multiple')}
+              onError={this.handleError}
+              scrollToBottom={this.props.scrollToBottom}
+              formType={formType}
+            />
+          </SectionView>
+
+          {['86'].indexOf(formType) > -1 && (
+            <SectionView
+              name="passports"
+              back="citizenship/multiple"
+              backLabel={i18n.t('citizenship.destination.multiple')}
+              next="citizenship/review"
+              nextLabel={i18n.t('citizenship.destination.review')}>
+              <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
+              <Passports
+                name="passports"
+                {...this.props.Passports}
+                dispatch={this.props.dispatch}
+                onUpdate={this.handleUpdate.bind(this, 'Passports')}
+                onError={this.handleError}
+                scrollToBottom={this.props.scrollToBottom}
+              />
+            </SectionView>
+          )}
+
+          <SectionView
             name="review"
             title={i18n.t('review.title')}
             para={i18n.m('review.para')}
             showTop={true}
-            back="citizenship/passports"
-            backLabel={i18n.t('citizenship.destination.passports')}
+            back={{
+              85: 'citizenship/status',
+              86: 'citizenship/passports'
+            }[formType]}
+            backLabel={{
+              85: i18n.t('citizenship.destination.status'),
+              86: i18n.t('citizenship.destination.passports')
+            }[formType]}
             next="military/intro"
             nextLabel={i18n.t('military.destination.intro')}>
             <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
@@ -60,6 +130,7 @@ class Citizenship extends SectionElement {
               onError={this.handleError}
               required={true}
               scrollIntoView={false}
+              formType={formType}
             />
             <hr className="section-divider" />
             <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
@@ -73,6 +144,7 @@ class Citizenship extends SectionElement {
               onError={this.handleError}
               required={true}
               scrollIntoView={false}
+              formType={formType}
             />
             <hr className="section-divider" />
             <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
@@ -89,54 +161,6 @@ class Citizenship extends SectionElement {
             />
           </SectionView>
 
-          <SectionView
-            name="status"
-            back="citizenship/intro"
-            backLabel={i18n.t('citizenship.destination.intro')}
-            next="citizenship/multiple"
-            nextLabel={i18n.t('citizenship.destination.multiple')}>
-            <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
-            <Status
-              name="status"
-              {...this.props.Status}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Status')}
-              onError={this.handleError}
-            />
-          </SectionView>
-
-          <SectionView
-            name="multiple"
-            back="citizenship/status"
-            backLabel={i18n.t('citizenship.destination.status')}
-            next="citizenship/passports"
-            nextLabel={i18n.t('citizenship.destination.passports')}>
-            <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
-            <Multiple
-              name="multiple"
-              {...this.props.Multiple}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Multiple')}
-              onError={this.handleError}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
-          <SectionView
-            name="passports"
-            back="citizenship/multiple"
-            backLabel={i18n.t('citizenship.destination.multiple')}
-            next="citizenship/review"
-            nextLabel={i18n.t('citizenship.destination.review')}>
-            <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
-            <Passports
-              name="passports"
-              {...this.props.Passports}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Passports')}
-              onError={this.handleError}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
         </SectionViews>
       </div>
     )
@@ -168,6 +192,7 @@ Citizenship.defaultProps = {
 
 export class CitizenshipSections extends React.Component {
   render() {
+    const { formType } = this.props
     return (
       <div>
         <Status
@@ -178,6 +203,7 @@ export class CitizenshipSections extends React.Component {
           onError={this.props.onError}
           required={true}
           scrollIntoView={false}
+          formType={formType}
         />
 
         <hr className="section-divider" />
@@ -189,6 +215,7 @@ export class CitizenshipSections extends React.Component {
           onError={this.props.onError}
           required={true}
           scrollIntoView={false}
+          formType={formType}
         />
 
         <hr className="section-divider" />
@@ -204,6 +231,10 @@ export class CitizenshipSections extends React.Component {
       </div>
     )
   }
+}
+
+CitizenshipSections.defualtProps = {
+  formType: '86'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Citizenship))

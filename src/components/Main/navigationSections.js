@@ -3,7 +3,7 @@ import Identification from './../../components/Section/Identification/navigation
 // disambiguate from History class in browser
 import historyNavigation from './../../components/Section/History/navigation'
 import relationshipsNavigation from './../../components/Section/Relationships/navigation'
-import Citizenship from './../../components/Section/Citizenship/navigation'
+import citizenshipNavigation from './../../components/Section/Citizenship/navigation'
 import Military from './../../components/Section/Military/navigation'
 import Foreign from './../../components/Section/Foreign/navigation'
 import Financial from './../../components/Section/Financial/navigation'
@@ -17,7 +17,7 @@ function navigationSections(formType) {
     Identification,
     historyNavigation(formType),
     relationshipsNavigation(formType),
-    Citizenship,
+    citizenshipNavigation(formType),
     Military,
     Foreign,
     Financial,

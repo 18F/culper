@@ -81,6 +81,7 @@ export default class CitizenshipItem extends ValidationElement {
   }
 
   render() {
+    const { formType } = this.props
     const d = this.props.Dates || {}
     const to = extractDate(d.to)
     const from = extractDate(d.from)
@@ -142,33 +143,35 @@ export default class CitizenshipItem extends ValidationElement {
             />
           </Field>
 
-          <Branch
-            name="Renounced"
-            label={i18n.t('citizenship.multiple.heading.citizenship.renounced')}
-            labelSize="h4"
-            className="citizenship-renounced no-margin-bottom"
-            {...this.props.Renounced}
-            onUpdate={this.updateRenounced}
-            onError={this.props.onError}
-            required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}
-          />
-
-          <Field
-            title={i18n.t(
-              'citizenship.multiple.heading.citizenship.renouncedexplanation'
-            )}
-            titleSize="label"
-            scrollIntoView={this.props.scrollIntoView}>
-            <Textarea
-              name="RenouncedExplanation"
-              {...this.props.RenouncedExplanation}
-              className="citizenship-renounced-explanation"
-              onUpdate={this.updateRenouncedExplanation}
+          <Show when={['86'].indexOf(formType) > -1}>
+            <Branch
+              name="Renounced"
+              label={i18n.t('citizenship.multiple.heading.citizenship.renounced')}
+              labelSize="h4"
+              className="citizenship-renounced no-margin-bottom"
+              {...this.props.Renounced}
+              onUpdate={this.updateRenounced}
               onError={this.props.onError}
               required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
             />
-          </Field>
+
+            <Field
+              title={i18n.t(
+                'citizenship.multiple.heading.citizenship.renouncedexplanation'
+              )}
+              titleSize="label"
+              scrollIntoView={this.props.scrollIntoView}>
+              <Textarea
+                name="RenouncedExplanation"
+                {...this.props.RenouncedExplanation}
+                className="citizenship-renounced-explanation"
+                onUpdate={this.updateRenouncedExplanation}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+          </Show>
         </Show>
 
         <Show when={showCurrentQuestion}>
