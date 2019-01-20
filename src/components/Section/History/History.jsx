@@ -623,7 +623,7 @@ class History extends SectionElement {
               optional={true}
               className="no-margin-bottom">
               {{
-                85: i18n.m('history.85.employment.para'),
+                85: i18n.m('history.85.employment.para.additionalActivity'),
                 86: i18n.m('history.employment.para.employment')
               }[formType]}
               {i18n.m('history.employment.para.employment2')}
