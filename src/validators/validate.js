@@ -256,10 +256,16 @@ const validators = {
     return new logic.DrugPublicSafetyUsesValidator(data).isValid()
   },
   'substance.drugs.purchase': data => {
-    return new logic.DrugInvolvementsValidator(data).isValid()
+    return {
+      85: new logic.DrugInvolvements85Validator(data).isValid(),
+      86: new logic.DrugInvolvementsValidator(data).isValid()
+    }[data.formType]
   },
   'substance.drugs.usage': data => {
-    return new logic.DrugUsesValidator(data).isValid()
+    return {
+      85: new logic.DrugUses85Validator(data).isValid(),
+      86: new logic.DrugUsesValidator(data).isValid()
+    }[data.formType]
   },
   'substance.drugs.voluntary': data => {
     return new logic.DrugVoluntaryTreatmentsValidator(data).isValid()

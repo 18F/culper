@@ -23,7 +23,10 @@ function substanceUse(formType) {
             name: 'Usage',
             url: 'usage',
             store: 'DrugUses',
-            validator: validators.DrugUsesValidator
+            validator: {
+              85: validators.DrugUses85Validator,
+              86: validators.DrugUsesValidator
+            }[formType]
           },
           {
             name: 'Purchase',

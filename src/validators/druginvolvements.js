@@ -66,3 +66,47 @@ export class DrugInvolvementValidator {
     )
   }
 }
+
+export class DrugInvolvements85Validator {
+  constructor(data = {}) {
+    this.involved = (data.Involved || {}).value
+    this.list = data.List
+  }
+
+  validInvolved() {
+    return validBranch(this.involved)
+  }
+
+  validDrugInvolvements() {
+    if (this.validInvolved() && this.involved === 'No') {
+      return true
+    }
+
+    return validAccordion(this.list, item => {
+      return new DrugInvolvement85Validator(item).isValid()
+    })
+  }
+
+  isValid() {
+    return this.validInvolved() && this.validDrugInvolvements()
+  }
+}
+
+export class DrugInvolvement85Validator {
+  constructor(data = {}) {
+    this.drugType = data.DrugType
+    this.firstInvolvement = data.FirstInvolvement
+    this.recentInvolvement = data.RecentInvolvement
+    this.natureOfInvolvement = data.NatureOfInvolvement
+    this.reasons = data.Reasons
+  }
+
+  isValid() {
+    return (
+      validGenericMonthYear(this.firstInvolvement) &&
+      validGenericMonthYear(this.recentInvolvement) &&
+      validGenericTextfield(this.natureOfInvolvement) &&
+      validGenericTextfield(this.reasons)
+    )
+  }
+}

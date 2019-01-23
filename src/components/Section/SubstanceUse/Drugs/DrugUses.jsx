@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate, { DrugUseValidator } from '../../../../validators'
+import validate, { DrugUseValidator, DrugUse85Validator } from '../../../../validators'
 import { Summary } from '../../../Summary'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -85,7 +85,10 @@ export default class DrugUses extends SubsectionElement {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DrugUseValidator}
+            validator={{
+              85: DrugUse85Validator,
+              86: DrugUseValidator
+            }[formType]}
             description={i18n.t('substance.drugs.use.collection.description')}
             appendTitle={i18n.t('substance.drugs.use.collection.appendTitle')}
             appendLabel={i18n.t('substance.drugs.use.collection.appendLabel')}

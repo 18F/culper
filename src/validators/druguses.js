@@ -54,3 +54,45 @@ export class DrugUseValidator {
     )
   }
 }
+
+// TODO: Duplicate Validation: Quick and Dirty for SF85
+export class DrugUses85Validator {
+  constructor(data = {}) {
+    this.usedDrugs = (data.UsedDrugs || {}).value
+    this.list = data.List
+  }
+
+  validUsedDrugs() {
+    return validBranch(this.usedDrugs)
+  }
+
+  validDrugUses() {
+    if (this.validUsedDrugs() && this.usedDrugs === 'No') {
+      return true
+    }
+
+    return validAccordion(this.list, item => {
+      return new DrugUse85Validator(item).isValid()
+    })
+  }
+
+  isValid() {
+    return this.validUsedDrugs() && this.validDrugUses()
+  }
+}
+export class DrugUse85Validator {
+  constructor(data = {}) {
+    this.drugType = data.DrugType
+    this.firstUse = data.FirstUse
+    this.recentUse = data.RecentUse
+    this.natureOfUse = data.NatureOfUse
+  }
+
+  isValid() {
+    return (
+      validGenericMonthYear(this.firstUse) &&
+      validGenericMonthYear(this.recentUse) &&
+      validGenericTextfield(this.natureOfUse)
+    )
+  }
+}

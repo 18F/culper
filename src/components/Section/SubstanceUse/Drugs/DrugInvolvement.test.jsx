@@ -28,7 +28,8 @@ describe('The DrugInvolvement component', () => {
     const expected = {
       onUpdate: () => {
         updates++
-      }
+      },
+      formType: '86'
     }
     const component = createComponent(expected)
     expect(component.find('.drug-involvement').length).toBe(1)
@@ -49,7 +50,8 @@ describe('The DrugInvolvement component', () => {
       onUpdate: () => {
         updates++
       },
-      InvolvementInFuture: { value: 'Yes' }
+      InvolvementInFuture: { value: 'Yes' },
+      formType: '86'
     }
     const component = createComponent(expected)
     expect(component.find('.drug-involvement').length).toBe(1)

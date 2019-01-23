@@ -159,9 +159,15 @@ import AlcoholVoluntaryCounselingsValidator, {
 import AlcoholReceivedCounselingsValidator, {
   ReceivedCounselingValidator
 } from './alcoholreceivedcounseling'
-import DrugUsesValidator, { DrugUseValidator } from './druguses'
+import DrugUsesValidator, {
+  DrugUseValidator,
+  DrugUse85Validator,
+  DrugUses85Validator
+} from './druguses'
 import DrugInvolvementsValidator, {
-  DrugInvolvementValidator
+  DrugInvolvementValidator,
+  DrugInvolvement85Validator,
+  DrugInvolvements85Validator
 } from './druginvolvements'
 import DrugClearanceUsesValidator, {
   DrugClearanceUseValidator
@@ -334,9 +340,13 @@ export {
   AlcoholReceivedCounselingsValidator,
   ReceivedCounselingValidator,
   DrugUsesValidator,
+  DrugUses85Validator,
   DrugUseValidator,
+  DrugUse85Validator,
   DrugInvolvementsValidator,
+  DrugInvolvements85Validator,
   DrugInvolvementValidator,
+  DrugInvolvement85Validator,
   DrugClearanceUsesValidator,
   DrugClearanceUseValidator,
   DrugPublicSafetyUsesValidator,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate, { DrugInvolvementValidator } from '../../../../validators'
+import validate, { DrugInvolvementValidator, DrugInvolvement85Validator } from '../../../../validators'
 import { Summary } from '../../../Summary'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -86,7 +86,10 @@ export default class DrugInvolvements extends SubsectionElement {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DrugInvolvementValidator}
+            validator={{
+              85: DrugInvolvement85Validator,
+              86: DrugInvolvementValidator
+            }[formType]}
             description={i18n.t(
               'substance.drugs.involvement.collection.description'
             )}
@@ -103,6 +106,7 @@ export default class DrugInvolvements extends SubsectionElement {
               bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              formType={formType}
             />
           </Accordion>
         </Show>

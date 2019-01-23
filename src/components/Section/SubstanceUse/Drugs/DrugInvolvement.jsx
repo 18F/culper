@@ -84,6 +84,8 @@ export default class DrugInvolvement extends ValidationElement {
   }
 
   render() {
+    const { formType } = this.props
+
     return (
       <div className="drug-involvement">
         <Field
@@ -166,63 +168,71 @@ export default class DrugInvolvement extends ValidationElement {
           />
         </Field>
 
-        <Branch
-          name="InvolvementWhileEmployed"
-          label={i18n.t(
-            'substance.drugs.involvement.heading.involvementWhileEmployed'
-          )}
-          labelSize="h4"
-          className="involvement-while-employed"
-          {...this.props.InvolvementWhileEmployed}
-          onError={this.props.onError}
-          required={this.props.required}
-          onUpdate={this.updateInvolvementWhileEmployed}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="InvolvementWhileEmployed"
+            label={i18n.t(
+              'substance.drugs.involvement.heading.involvementWhileEmployed'
+            )}
+            labelSize="h4"
+            className="involvement-while-employed"
+            {...this.props.InvolvementWhileEmployed}
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateInvolvementWhileEmployed}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
 
-        <Branch
-          name="InvolvementWithClearance"
-          label={i18n.t(
-            'substance.drugs.involvement.heading.involvementWithClearance'
-          )}
-          labelSize="h4"
-          className="involvement-with-clearance"
-          {...this.props.InvolvementWithClearance}
-          onError={this.props.onError}
-          required={this.props.required}
-          onUpdate={this.updateInvolvementWithClearance}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="InvolvementWithClearance"
+            label={i18n.t(
+              'substance.drugs.involvement.heading.involvementWithClearance'
+            )}
+            labelSize="h4"
+            className="involvement-with-clearance"
+            {...this.props.InvolvementWithClearance}
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateInvolvementWithClearance}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
 
-        <Branch
-          name="InvolvementInFuture"
-          label={i18n.t(
-            'substance.drugs.involvement.heading.involvementInFuture'
-          )}
-          labelSize="h4"
-          className="involvement-in-future no-margin-bottom"
-          {...this.props.InvolvementInFuture}
-          onError={this.props.onError}
-          required={this.props.required}
-          onUpdate={this.updateInvolvementInFuture}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {['86'].indexOf(formType) > -1 && (
+          <Branch
+            name="InvolvementInFuture"
+            label={i18n.t(
+              'substance.drugs.involvement.heading.involvementInFuture'
+            )}
+            labelSize="h4"
+            className="involvement-in-future no-margin-bottom"
+            {...this.props.InvolvementInFuture}
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateInvolvementInFuture}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
 
-        <Show when={this.props.InvolvementInFuture.value === 'Yes'}>
-          <Field
-            title={i18n.t('substance.drugs.involvement.heading.explanation')}
-            titleSize="label"
-            scrollIntoView={this.props.scrollIntoView}>
-            <Textarea
-              name="Explanation"
-              className="explanation"
-              {...this.props.Explanation}
-              onUpdate={this.updateExplanation}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </Field>
-        </Show>
+        {['86'].indexOf(formType) > -1 && (
+          <Show when={this.props.InvolvementInFuture.value === 'Yes'}>
+            <Field
+              title={i18n.t('substance.drugs.involvement.heading.explanation')}
+              titleSize="label"
+              scrollIntoView={this.props.scrollIntoView}>
+              <Textarea
+                name="Explanation"
+                className="explanation"
+                {...this.props.Explanation}
+                onUpdate={this.updateExplanation}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+          </Show>
+        )}
       </div>
     )
   }
