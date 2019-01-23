@@ -5,7 +5,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import PrescriptionUse from './PrescriptionUse'
-import validate, { DrugPrescriptionUseValidator } from '../../../../validators'
+import validate, { DrugPrescriptionUseValidator, DrugPrescriptionUse85Validator } from '../../../../validators'
 
 export default class PrescriptionUses extends SubsectionElement {
   constructor(props) {
@@ -84,7 +84,10 @@ export default class PrescriptionUses extends SubsectionElement {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DrugPrescriptionUseValidator}
+            validator={{
+              85: DrugPrescriptionUse85Validator,
+              86: DrugPrescriptionUseValidator
+            }[formType]}
             description={i18n.t(
               'substance.drugs.prescription.collection.description'
             )}

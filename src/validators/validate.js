@@ -247,7 +247,10 @@ const validators = {
     return new logic.DrugClearanceUsesValidator(data).isValid()
   },
   'substance.drugs.misuse': data => {
-    return new logic.DrugPrescriptionUsesValidator(data).isValid()
+    return {
+      85: new logic.DrugPrescriptionUses85Validator(data).isValid(),
+      86: new logic.DrugPrescriptionUsesValidator(data).isValid()
+    }[data.formType]
   },
   'substance.drugs.ordered': data => {
     return new logic.DrugOrderedTreatmentsValidator(data).isValid()

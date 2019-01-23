@@ -176,7 +176,9 @@ import DrugPublicSafetyUsesValidator, {
   DrugPublicSafetyUseValidator
 } from './drugpublicsafetyuses'
 import DrugPrescriptionUsesValidator, {
-  DrugPrescriptionUseValidator
+  DrugPrescriptionUses85Validator,
+  DrugPrescriptionUseValidator,
+  DrugPrescriptionUse85Validator
 } from './drugprescriptionuses'
 import DrugOrderedTreatmentsValidator, {
   DrugOrderedTreatmentValidator
@@ -352,7 +354,9 @@ export {
   DrugPublicSafetyUsesValidator,
   DrugPublicSafetyUseValidator,
   DrugPrescriptionUsesValidator,
+  DrugPrescriptionUses85Validator,
   DrugPrescriptionUseValidator,
+  DrugPrescriptionUse85Validator,
   DrugOrderedTreatmentsValidator,
   DrugOrderedTreatmentValidator,
   DrugVoluntaryTreatmentsValidator,

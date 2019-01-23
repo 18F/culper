@@ -50,7 +50,10 @@ function substanceUse(formType) {
             name: 'Misuse',
             url: 'misuse',
             store: 'PrescriptionUses',
-            validator: validators.DrugPrescriptionUsesValidator
+            validator: {
+              85: validators.DrugPrescriptionUses85Validator,
+              86: validators.DrugPrescriptionUsesValidator
+            }[formType]
           },
           {
             name: 'Mandatory counseling or treatment',
