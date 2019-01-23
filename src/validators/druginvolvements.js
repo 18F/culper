@@ -67,6 +67,7 @@ export class DrugInvolvementValidator {
   }
 }
 
+// TODO: Duplicate Validation: Quick and Dirty for SF85
 export class DrugInvolvements85Validator {
   constructor(data = {}) {
     this.involved = (data.Involved || {}).value
