@@ -68,7 +68,9 @@ import CompetenceValidator from './competence'
 import TreatmentValidator from './treatment'
 import CitizenshipValidator from './citizenship'
 import CitizenshipMultipleValidator, {
-  CitizenshipItemValidator
+  CitizenshipMultiple85Validator,
+  CitizenshipItemValidator,
+  CitizenshipItem85Validator
 } from './citizenship-multiple'
 import CitizenshipPassportsValidator, {
   TravelItemValidator
@@ -281,7 +283,9 @@ export {
   HospitalizationValidator,
   CitizenshipValidator,
   CitizenshipMultipleValidator,
+  CitizenshipMultiple85Validator,
   CitizenshipItemValidator,
+  CitizenshipItem85Validator,
   CitizenshipPassportsValidator,
   TravelItemValidator,
   CivilUnionValidator,

@@ -26,7 +26,10 @@ function citizenshipNavigation(formType) {
         name: 'Dual/multiple citizenship',
         url: 'multiple',
         store: 'Multiple',
-        validator: validators.CitizenshipMultipleValidator
+        validator: {
+          85: validators.CitizenshipMultiple85Validator,
+          86: validators.CitizenshipMultipleValidator
+        }[formType]
       },
       ['86'].indexOf(formType) > -1 && {
         name: 'Foreign passports',

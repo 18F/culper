@@ -3,7 +3,9 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate, {
   CitizenshipMultipleValidator,
-  CitizenshipItemValidator
+  CitizenshipMultiple85Validator,
+  CitizenshipItemValidator,
+  CitizenshipItem85Validator
 } from '../../../../validators'
 import { countryString } from '../../../../validators/location'
 import SubsectionElement from '../../SubsectionElement'
@@ -57,6 +59,13 @@ export default class Multiple extends SubsectionElement {
   }
 
   validMinimumCitizenships() {
+    const { formType } = this.props
+    if (formType === '85') {
+      return new CitizenshipMultiple85Validator(
+        this.props
+      ).validMinimumCitizenships()
+    }
+
     return new CitizenshipMultipleValidator(
       this.props
     ).validMinimumCitizenships()
@@ -99,7 +108,10 @@ export default class Multiple extends SubsectionElement {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={CitizenshipItemValidator}
+            validator={{
+              85: CitizenshipItem85Validator,
+              86: CitizenshipItemValidator
+            }[formType]}
             summary={this.summaryList}
             description={i18n.t(
               'citizenship.multiple.collection.citizenship.summary.title'

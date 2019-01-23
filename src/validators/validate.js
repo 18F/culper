@@ -160,7 +160,10 @@ const validators = {
     return new logic.RelativesValidator(data).isValid()
   },
   'citizenship.multiple': data => {
-    return new logic.CitizenshipMultipleValidator(data).isValid()
+    return {
+      85: new logic.CitizenshipMultiple85Validator(data).isValid(),
+      86: new logic.CitizenshipMultipleValidator(data).isValid()
+    }[data.formType]
   },
   'citizenship.passports': data => {
     return new logic.CitizenshipPassportsValidator(data).isValid()

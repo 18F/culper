@@ -1,7 +1,7 @@
 import DateRangeValidator from './daterange'
 import { validAccordion, validGenericTextfield } from './helpers'
 
-export default class CitizenshipMultipleValidator {
+class CitizenshipMultipleBase {
   constructor(data = {}) {
     this.hasMultiple = (data.HasMultiple || {}).value
     this.list = data.List || {}
@@ -27,6 +27,15 @@ export default class CitizenshipMultipleValidator {
     return true
   }
 
+  isValid() {
+    return (
+      this.validHasMultiple() &&
+      this.validMinimumCitizenships() &&
+      this.validCitizenships()
+    )
+  }
+}
+export default class CitizenshipMultipleValidator extends CitizenshipMultipleBase {
   validCitizenships() {
     if (this.hasMultiple !== 'Yes') {
       return true
@@ -36,17 +45,22 @@ export default class CitizenshipMultipleValidator {
       return new CitizenshipItemValidator(item).isValid()
     })
   }
+}
 
-  isValid() {
-    return (
-      this.validHasMultiple() &&
-      this.validMinimumCitizenships() &&
-      this.validCitizenships()
-    )
+
+export class CitizenshipMultiple85Validator extends CitizenshipMultipleBase {
+  validCitizenships() {
+    if (this.hasMultiple !== 'Yes') {
+      return true
+    }
+
+    return validAccordion(this.list, item => {
+      return new CitizenshipItem85Validator(item).isValid()
+    })
   }
 }
 
-export class CitizenshipItemValidator {
+class CitizenshipItemBase {
   constructor(data = {}) {
     this.country = data.Country
     this.dates = data.Dates
@@ -81,6 +95,21 @@ export class CitizenshipItemValidator {
     return !!this.how && validGenericTextfield(this.how)
   }
 
+  validCurrent() {
+    if (!this.dates || this.dates.present) {
+      return true
+    }
+
+    return (
+      !!this.current &&
+      (this.current === 'No' || this.current === 'Yes') &&
+      validGenericTextfield(this.currentExplanation)
+    )
+  }
+}
+
+export class CitizenshipItemValidator extends CitizenshipItemBase {
+
   validRenounced() {
     if (this.isUnitedStates()) {
       return true
@@ -93,24 +122,23 @@ export class CitizenshipItemValidator {
     )
   }
 
-  validCurrent() {
-    if (!this.dates || this.dates.present) {
-      return true
-    }
-
-    return (
-      !!this.current &&
-      (this.current === 'No' || this.current === 'Yes') &&
-      validGenericTextfield(this.currentExplanation)
-    )
-  }
-
   isValid() {
     return (
       this.validCountry() &&
       this.validDates() &&
       this.validHow() &&
       this.validRenounced() &&
+      this.validCurrent()
+    )
+  }
+}
+
+export class CitizenshipItem85Validator extends CitizenshipItemBase {
+  isValid() {
+    return (
+      this.validCountry() &&
+      this.validDates() &&
+      this.validHow() &&
       this.validCurrent()
     )
   }
