@@ -10,9 +10,13 @@ import AuthConstants from './AuthConstants'
  */
 export function login(username, password) {
   // TEMP SOUTION FOR DEVELOPMENT
-  const params = location.search
-  const query = queryString.parse(params)
-  const formType = query.formType ? query.formType : '86'
+  // URL param is only available on development and staging
+  let formType
+  if (env.IsDevelopment() || env.IsStaging()) {
+    const params = location.search
+    const query = queryString.parse(params)
+    formType = query.formType ? query.formType : '86'
+  }
 
   return function(dispatch, getState) {
     return api
