@@ -3,6 +3,8 @@ import {
   isActive,
   hasErrors,
   isValid,
+  sectionsTotal,
+  sectionsCompleted,
   findPosition,
   didRouteChange
 } from './navigation-helpers'
@@ -107,13 +109,39 @@ describe('Navigation component validation', function() {
       }
     }
 
-    // Not sure how to test isValid because findNode relies on
-    // the redux store
-    // expect(isValid('/form/foreign', props)).toBe(false)
+    expect(isValid('/form/foreign', props)).toBe(false)
     expect(isValid('/form/identification', props)).toBe(false)
     expect(isValid('/form/citizenship', props)).toBe(true)
     expect(isValid('/form/citizenship/multiple', props)).toBe(true)
     expect(isValid('/form/citizenship/passports', props)).toBe(true)
+  })
+
+  it('can get total number of sections', () => {
+    expect(sectionsTotal()).toBe(10)
+  })
+
+  it('can get number of sections completed', () => {
+    const store = {
+      completed: {
+        foreign: [
+          { section: 'foreign', subsection: 'activities/direct', valid: false },
+          { section: 'foreign', subsection: 'activities/direct', valid: true },
+          {
+            section: 'foreign',
+            subsection: 'activities/indirect',
+            valid: false
+          }
+        ],
+        identification: [],
+        citizenship: [
+          { section: 'citizenship', subsection: 'status', valid: true },
+          { section: 'citizenship', subsection: 'multiple', valid: true },
+          { section: 'citizenship', subsection: 'passports', valid: true }
+        ]
+      }
+    }
+
+    expect(sectionsCompleted(store.completed, { application: store })).toBe(1)
   })
 })
 

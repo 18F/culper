@@ -55,10 +55,7 @@ export class Introduction extends React.Component {
           <div>
             <h2>{i18n.t('introduction.acceptance.title')}</h2>
             <div className="introduction-legal">
-              {{
-                85: i18n.m('introduction.85.contents'),
-                86: i18n.m('introduction.contents')
-              }[this.props.auth.formType]}
+              {i18n.m('introduction.contents')}
             </div>
             <Show when={!this.props.forceOpen}>
               <Branch
@@ -91,8 +88,7 @@ function mapStateToProps(state) {
   const settings = app.Settings || { acceptedTerms: { value: '' } }
 
   return {
-    settings: settings,
-    auth: state.authentication
+    settings: settings
   }
 }
 

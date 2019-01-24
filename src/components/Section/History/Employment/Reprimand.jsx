@@ -16,13 +16,9 @@ export default class Reprimand extends ValidationElement {
   }
 
   render() {
-    const { formType } = this.props
     return (
       <BranchCollection
-        label={{
-          85: i18n.t('history.85.employment.default.reprimand.label'),
-          86: i18n.t('history.employment.default.reprimand.label')
-        }[formType]}
+        label={i18n.t('history.employment.default.reprimand.label')}
         appendLabel={i18n.t('history.employment.default.reprimand.append')}
         help="history.employment.default.reprimand.help"
         {...this.props}

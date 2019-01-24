@@ -65,10 +65,9 @@ export default class Education extends SubsectionElement {
           description={i18n.t(
             'history.education.collection.school.summary.title'
           )}
-          appendTitle={{
-            85: i18n.t('history.85.education.collection.school.appendTitle'),
-            86: i18n.t('history.education.collection.school.appendTitle')
-          }[this.props.formType]}
+          appendTitle={i18n.t(
+            'history.education.collection.school.appendTitle'
+          )}
           appendLabel={i18n.t('history.education.collection.school.append')}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>

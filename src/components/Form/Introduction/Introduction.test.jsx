@@ -15,9 +15,6 @@ describe('The Introduction component', () => {
     const props = {
       dispatch: () => {
         dispatched++
-      },
-      auth: {
-        formType: '86'
       }
     }
     const component = mount(<Introduction {...props} />)
@@ -31,9 +28,6 @@ describe('The Introduction component', () => {
     const props = {
       dispatch: () => {
         dispatched++
-      },
-      auth: {
-        formType: '86'
       }
     }
     const component = mount(<Introduction {...props} />)
@@ -43,11 +37,7 @@ describe('The Introduction component', () => {
   })
 
   it("displays when terms aren't accepted", () => {
-    const store = mockStore({
-      authentication: {
-        formType: '86'
-      }
-    })
+    const store = mockStore()
     const component = mount(
       <Provider store={store}>
         <ConnectedIntroduction />
@@ -62,9 +52,6 @@ describe('The Introduction component', () => {
         Settings: {
           acceptedTerms: { value: 'Yes' }
         }
-      },
-      authentication: {
-        formType: '86'
       }
     })
     const component = mount(
@@ -82,11 +69,7 @@ describe('The Introduction component', () => {
   })
 
   it('renders properly', () => {
-    const store = mockStore({
-      authentication: {
-        formType: '86'
-      }
-    })
+    const store = mockStore()
     testSnapshot(
       <Provider store={store}>
         <ConnectedIntroduction forceOpen={true} />

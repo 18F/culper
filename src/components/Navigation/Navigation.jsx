@@ -1,19 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
+import AuthenticatedView from '../../views/AuthenticatedView'
+import { navigation } from '../../config'
 import SectionList from './SectionList'
 
-function Navigation({ sections }) {
-  return (
-    <nav className="form-navigation" role="navigation">
-      <SectionList sections={sections} />
-    </nav>
-  )
+class Navigation extends React.Component {
+  render() {
+    return (
+      <nav className="form-navigation" role="navigation">
+        <SectionList sections={navigation} />
+      </nav>
+    )
+  }
 }
 
-Navigation.propTypes = {
-  sections: PropTypes.array.isRequired,
+Navigation.propTypes = {}
 
-}
-
-export default Navigation
+export default AuthenticatedView(Navigation)

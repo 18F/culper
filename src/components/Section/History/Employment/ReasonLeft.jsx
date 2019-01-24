@@ -74,7 +74,6 @@ export default class ReasonLeft extends ValidationElement {
   }
 
   render() {
-    const { formType } = this.props
     return (
       <div className="reason-leaving">
         <Show when={this.showDescription()}>
@@ -98,14 +97,8 @@ export default class ReasonLeft extends ValidationElement {
 
         <Show when={this.showOptions()}>
           <BranchCollection
-            label={{
-              85: i18n.t('history.85.employment.default.left.branch'),
-              86: i18n.t('history.employment.default.left.branch')
-            }[formType]}
-            appendLabel={{
-              85: i18n.t('history.85.employment.default.left.append'),
-              86: i18n.t('history.employment.default.left.append')
-            }[formType]}
+            label={i18n.t('history.employment.default.left.branch')}
+            appendLabel={i18n.t('history.employment.default.left.append')}
             content={i18n.m('history.employment.default.left.list')}
             {...this.props.Reasons || {}}
             className="reason-options"
