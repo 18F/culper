@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import { env } from '../config'
 import { api } from '../services/api'
 import AuthConstants from './AuthConstants'
@@ -9,19 +8,12 @@ import AuthConstants from './AuthConstants'
  * home page.
  */
 export function login(username, password) {
-  // TEMP SOUTION FOR DEVELOPMENT
-  let formType
-  if (env.IsDevelopment()) {
-    const params = location.search
-    const query = queryString.parse(params)
-    formType = query.formType ? query.formType : '86'
-  }
   return function(dispatch, getState) {
     return api
       .login(username, password)
       .then(response => {
         api.setToken(response.data)
-        dispatch(handleLoginSuccess(response.data, formType))
+        dispatch(handleLoginSuccess(response.data))
         env.History().push('/loading')
       })
       .catch(error => {
@@ -64,17 +56,16 @@ export function tokenError() {
   }
 }
 
-export function handleLoginSuccess(token, formType = '86') {
+export function handleLoginSuccess(token) {
   return {
     type: AuthConstants.LOGIN_SUCCESS,
-    token,
-    formType
+    token: token
   }
 }
 
 export function handleLoginError(error) {
   return {
     type: AuthConstants.LOGIN_ERROR,
-    error
+    error: error
   }
 }

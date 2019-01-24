@@ -1,93 +1,116 @@
+import env from './environment'
 import * as validators from '../validators/index'
+import Identification from '../components/Section/Identification/navigation'
+// disambiguate from History class in browser
+import HistoryNav from '../components/Section/History/navigation'
+import Relationships from '../components/Section/Relationships/navigation'
+import Citizenship from '../components/Section/Citizenship/navigation'
+import Military from '../components/Section/Military/navigation'
+import Foreign from '../components/Section/Foreign/navigation'
+import Financial from '../components/Section/Financial/navigation'
+import SubstanceUse from '../components/Section/SubstanceUse/navigation'
+import Legal from '../components/Section/Legal/navigation'
+import Psychological from '../components/Section/Psychological/navigation'
 
-import store from './../services/store'
+const navigation = [
+  Identification,
+  HistoryNav,
+  Relationships,
+  Citizenship,
+  Military,
+  Foreign,
+  Financial,
+  SubstanceUse,
+  Legal,
+  Psychological,
+  {
+    title: 'Review and submit',
+    name: 'Review and submit',
+    url: 'package',
+    showNumber: false,
+    exclude: true,
+    subsections: [
+      /* XXX See: https://github.com/18F/e-QIP-prototype/issues/795
+                  https://github.com/18F/e-QIP-prototype/issues/787
+      {
+        name: 'Attachments',
+        url: 'attachments',
+        locked: validators.formIsLocked,
+        hiddenFunc: application => {
+          return !env.AttachmentsEnabled()
+        }
+      },
+      */
+      {
+        name: 'Review',
+        url: 'review',
+        locked: validators.formIsLocked
+      },
+      {
+        name: 'Submit',
+        url: 'submit',
+        locked: store => {
+          const hasErrors = store => {
+            let errors = 0
 
-export const Review = {
-  title: 'Review and submit',
-  name: 'Review and submit',
-  url: 'package',
-  showNumber: false,
-  exclude: true,
-  subsections: [
-    /* XXX See: https://github.com/18F/e-QIP-prototype/issues/795
-                https://github.com/18F/e-QIP-prototype/issues/787
-    {
-      name: 'Attachments',
-      url: 'attachments',
-      locked: validators.formIsLocked,
-      hiddenFunc: application => {
-        return !env.AttachmentsEnabled()
-      }
-    },
-    */
-    {
-      name: 'Review',
-      url: 'review',
-      locked: validators.formIsLocked
-    },
-    {
-      name: 'Submit',
-      url: 'submit',
-      locked: store => {
-        const hasErrors = store => {
-          let errors = 0
-
-          navigationWalker((path, child) => {
-            if (
-              path.length &&
-              path[0].store &&
-              child.store &&
-              child.validator
-            ) {
+            navigationWalker((path, child) => {
               if (
-                child.excluded ||
-                child.hidden ||
-                (child.hiddenFunc && child.hiddenFunc(store))
+                path.length &&
+                path[0].store &&
+                child.store &&
+                child.validator
               ) {
-                return
-              }
+                if (
+                  child.excluded ||
+                  child.hidden ||
+                  (child.hiddenFunc && child.hiddenFunc(store))
+                ) {
+                  return
+                }
 
-              const data = (store[path[0].store] || {})[child.store] || {}
-              let subsectionName = child.url
-              if (path.length > 1) {
-                for (let i = path.length - 1; i > 0; i--) {
-                  subsectionName = `${path[i].url}/${subsectionName}`
+                const data = (store[path[0].store] || {})[child.store] || {}
+                let subsectionName = child.url
+                if (path.length > 1) {
+                  for (let i = path.length - 1; i > 0; i--) {
+                    subsectionName = `${path[i].url}/${subsectionName}`
+                  }
+                }
+
+                let valid = null
+                try {
+                  // eslint-disable-next-line new-cap
+                  valid = new child.validator(data, data).isValid()
+                } catch (e) {
+                  valid = null
+                }
+
+                if (valid !== true) {
+                  errors++
                 }
               }
+            })
 
-              let valid = null
-              try {
-                // eslint-disable-next-line new-cap
-                valid = new child.validator(data, data).isValid()
-              } catch (e) {
-                valid = null
-              }
+            return errors > 0
+          }
 
-              if (valid !== true) {
-                errors++
-              }
-            }
-          })
-
-          return errors > 0
+          return validators.formIsLocked(store) || hasErrors(store)
         }
+      },
+      {
+        name: 'Print',
+        url: 'print',
+        locked: store => {
+          return !validators.formIsLocked(store)
+        }
+      }
+    ]
+  }
+]
 
-        return validators.formIsLocked(store) || hasErrors(store)
-      }
-    },
-    {
-      name: 'Print',
-      url: 'print',
-      locked: store => {
-        return !validators.formIsLocked(store)
-      }
-    }
-  ]
-}
+export default navigation
 
 export const navigationWalker = action => {
-  const eAppStore = store.getState()
-  eAppStore.application.Navigation.sections.forEach(section => {
+  navigation.forEach(section => {
     walk(section, action)
   })
 }

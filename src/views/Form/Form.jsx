@@ -141,16 +141,10 @@ class Form extends React.Component {
     // Splat is a react-router param added when wildcard (/**/) route paths are designated
     const splat = params.splat ? `/${params.splat}` : ''
     const subsection = `${params.subsection || ''}${splat}`.trim()
-    const { formType, navigation } = this.props
     return (
       <div id="eapp-form" className="eapp-form">
         <div id="info">
-          <Section
-            section={params.section}
-            subsection={subsection}
-            formType={formType}
-            navigation={navigation}
-          />
+          <Section section={params.section} subsection={subsection} />
           <SavedIndicator interval="30000" />
           <TimeoutWarning timeout={env.SessionTimeout()} />
         </div>

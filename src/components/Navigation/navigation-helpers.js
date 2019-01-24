@@ -1,4 +1,4 @@
-import store from './../../services/store'
+import { navigation } from '../../config'
 
 export const validations = (section, props = {}) => {
   if (!section || !section.subsections) {
@@ -71,14 +71,10 @@ export const hasErrors = (route, errors = {}) => {
 
 // Find the navigation object that corresponds to this route
 const findNode = crumbs => {
-  const eAppStore = store.getState()
   let node = null
-
   for (const crumb of crumbs) {
     if (!node) {
-      node = eAppStore.application.Navigation.sections.find(x => (
-        x.url.toLowerCase() === crumb
-      ))
+      node = navigation.find(x => x.url.toLowerCase() === crumb)
     } else if (node.subsections) {
       node = node.subsections.find(x => x.url.toLowerCase() === crumb)
     }
@@ -129,6 +125,25 @@ export const isValid = (route, props = {}) => {
 // Return `true` when at this exact section or one under it, `false` otherwise.
 export const isActive = (route, pathname) => {
   return pathname.startsWith(route)
+}
+
+export const sectionsTotal = () => {
+  return navigation.filter(x => !x.hidden).filter(x => !x.exclude).length
+}
+
+export const sectionsCompleted = (store, props) => {
+  let sections = 0
+
+  for (const section in store) {
+    const valid = store[section].filter(
+      e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true
+    ).length
+    if (valid >= validations(navigation.find(n => n.url === section), props)) {
+      sections++
+    }
+  }
+
+  return sections
 }
 
 export const findPosition = el => {

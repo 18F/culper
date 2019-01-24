@@ -22,8 +22,7 @@ describe('Auth actions', function() {
     const expectedActions = [
       {
         type: AuthConstants.LOGIN_SUCCESS,
-        token: 'faketoken',
-        formType: '86'
+        token: 'faketoken'
       }
     ]
 
@@ -36,12 +35,7 @@ describe('Auth actions', function() {
 
   it('should create an action to handle a successful login', function() {
     const token = 'faketoken'
-    const formType = '86'
-    const expectedAction = {
-      type: AuthConstants.LOGIN_SUCCESS,
-      token,
-      formType
-    }
+    const expectedAction = { type: AuthConstants.LOGIN_SUCCESS, token: token }
     expect(handleLoginSuccess(token)).toEqual(expectedAction)
   })
 
