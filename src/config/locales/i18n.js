@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import { env } from '../../config'
 import en from './en'
 import removeMd from 'remove-markdown'
 
@@ -33,6 +34,9 @@ class I18n {
   t(id, locale = 'en') {
     const text = this.value(id, locale)
     if (!this.valid(text)) {
+      if (env.IsDevelopment()) {
+        console.warn('Missing i18n string: ', this.localeId(id, locale))
+      }
       return this.localeId(id, locale)
     }
 
@@ -47,6 +51,9 @@ class I18n {
     const text = this.value(id, locale)
     const localeId = this.localeId(id, locale)
     if (!this.valid(text)) {
+      if (env.IsDevelopment()) {
+        console.warn('Missing i18n string: ', localeId)
+      }
       return localeId
     }
 

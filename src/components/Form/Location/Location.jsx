@@ -474,20 +474,20 @@ export default class Location extends ValidationElement {
           )
         case 'city':
           return (
-              <City
-                name="city"
-                className="city"
-                key={field}
-                label={this.props.cityLabel}
-                placeholder={this.props.cityPlaceholder}
-                value={this.props.city}
-                disabled={this.props.disabled}
-                onUpdate={this.updateCity}
-                onError={this.handleError}
-                onFocus={this.props.onFocus}
-                onBlur={this.handleBlur}
-                required={this.props.required}
-              />
+            <City
+              name="city"
+              className="city"
+              key={field}
+              label={this.props.cityLabel}
+              placeholder={this.props.cityPlaceholder}
+              value={this.props.city}
+              disabled={this.props.disabled}
+              onUpdate={this.updateCity}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.handleBlur}
+              required={this.props.required}
+            />
           )
         case 'state':
           return (
@@ -688,20 +688,22 @@ export default class Location extends ValidationElement {
     const show = this.state.suggestions && this.showSuggestions()
     const suggestions = this.state.geocodeResult.Suggestions || []
     return (
-      <Suggestions
-        show={show}
-        suggestions={suggestions}
-        renderSuggestion={this.renderSuggestion}
-        suggestionTitle={this.suggestionTitle()}
-        suggestionLabel={this.suggestionLabel()}
-        suggestionParagraph={this.suggestionParagraph()}
-        suggestionDismissLabel={i18n.t('suggestions.address.dismiss')}
-        suggestionDismissContent={this.suggestionDismissContent()}
-        suggestionDismissAlternate={this.dismissAlternative()}
-        suggestionUseLabel={i18n.t('suggestions.address.use')}
-        onSuggestion={this.onSuggestion}
-        onDismiss={this.onSuggestionDismiss}
-      />
+      show && (
+        <Suggestions
+          show={show}
+          suggestions={suggestions}
+          renderSuggestion={this.renderSuggestion}
+          suggestionTitle={this.suggestionTitle()}
+          suggestionLabel={this.suggestionLabel()}
+          suggestionParagraph={this.suggestionParagraph()}
+          suggestionDismissLabel={i18n.t('suggestions.address.dismiss')}
+          suggestionDismissContent={this.suggestionDismissContent()}
+          suggestionDismissAlternate={this.dismissAlternative()}
+          suggestionUseLabel={i18n.t('suggestions.address.use')}
+          onSuggestion={this.onSuggestion}
+          onDismiss={this.onSuggestionDismiss}
+        />
+      )
     )
   }
 
@@ -739,7 +741,10 @@ export default class Location extends ValidationElement {
   }
 
   suggestionLabel() {
-    return i18n.t(`${this.state.geocodeResult.Error}.label`)
+    const e = this.state.geocodeResult.Error
+    if (e === 'error.geocode.partial') {
+      return i18n.t(`${e}.label`)
+    }
   }
 
   suggestionParagraph() {
