@@ -99,7 +99,6 @@ const customRenderers = {
       'a',
       {
         target: '_blank',
-        rel: 'noopener noreferrer',
         title: props.title || undefined,
         href: props.href
       },

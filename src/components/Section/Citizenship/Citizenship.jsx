@@ -11,7 +11,6 @@ import Passports from './Multiple/Passports'
 
 class Citizenship extends SectionElement {
   render() {
-    const { formType } = this.props
     return (
       <div>
         <SectionViews
@@ -20,14 +19,8 @@ class Citizenship extends SectionElement {
           update={this.props.update}>
           <SectionView
             name="intro"
-            back={{
-              85: 'history/review',
-              86: 'relationships/review'
-            }[formType]}
-            backLabel={{
-              85: i18n.t('history.destination.review'),
-              86: i18n.t('relationships.destination.review')
-            }[formType]}
+            back="relationships/review"
+            backLabel={i18n.t('relationships.destination.review')}
             next="citizenship/status"
             nextLabel={i18n.t('citizenship.destination.status')}>
             <h1 className="section-header">{i18n.t('citizenship.intro.title')}</h1>
@@ -162,8 +155,7 @@ function mapStateToProps(state) {
 Citizenship.defaultProps = {
   section: 'citizenship',
   store: 'Citizenship',
-  scrollToBottom: SectionView.BottomButtonsSelector,
-  formType: '86'
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export class CitizenshipSections extends React.Component {

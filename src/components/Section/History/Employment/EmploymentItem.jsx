@@ -279,7 +279,6 @@ export default class EmploymentItem extends ValidationElement {
   }
 
   render() {
-    const { formType } = this.props
     const prefix = `history.employment.${this.localizeByActivity()}`.trim()
     return (
       <div>
@@ -542,12 +541,7 @@ export default class EmploymentItem extends ValidationElement {
             optional={true}
             className="no-margin-bottom"
             scrollIntoView={this.props.scrollIntoView}>
-            {
-              {
-                85: i18n.m(`history.85.employment.para`),
-                86: i18n.m(`history.employment.default.para.additionalActivity`)
-              }[formType]
-            }
+            {i18n.m(`${prefix}.para.additionalActivity`)}
           </Field>
 
           <AdditionalActivity
@@ -570,7 +564,6 @@ export default class EmploymentItem extends ValidationElement {
             onError={this.props.onError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
-            formType={formType}
           />
         </Show>
 
@@ -582,7 +575,6 @@ export default class EmploymentItem extends ValidationElement {
             onError={this.props.onError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
-            formType={formType}
           />
         </Show>
       </div>

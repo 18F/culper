@@ -19,19 +19,11 @@ test('Renders homepage', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
   const store = mockStore({
-    authentication: {
-      formType: '86'
-    },
+    authentication: [],
     application: {
       Settings: {
         mobileNavigation: false
-      },
-      Navigation: {
-        sections: [],
-        totalSections: 10,
-        completedSectionsTotal: 0
-      },
-      Completed: {}
+      }
     }
   })
 

@@ -813,19 +813,6 @@ exports[`Renders homepage 1`] = `
         <div
           className="usa-overlay"
         />
-        <div
-          className="eapp-progress"
-        >
-          <div
-            className="eapp-progress-current"
-            id="progress-bar"
-            style={
-              Object {
-                "width": "0%",
-              }
-            }
-          />
-        </div>
       </div>
     </div>
   </div>
@@ -838,34 +825,6 @@ exports[`Renders homepage 1`] = `
       <div
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
-        <div
-          className="score-card"
-        >
-          <span
-            className="score-card-done"
-          >
-            0
-          </span>
-          /
-          <span
-            className="score-card-total"
-          >
-            10
-          </span>
-          <span
-            className="score-card-text"
-          >
-            Sections complete
-          </span>
-        </div>
-        <nav
-          className="form-navigation"
-          role="navigation"
-        >
-          <ol
-            className="usa-accordion usa-sidenav-list"
-          />
-        </nav>
         <button
           className="instructions mobile-visible"
           onClick={[Function]}

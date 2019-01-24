@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { navigation } from '../../config'
 
 class SectionTitle extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class SectionTitle extends React.Component {
     const splitSubsections = (this.props.section.subsection || '').split('/')
 
     let title = null
-    this.props.sections.forEach(s => {
+    navigation.forEach(s => {
       if (s.url === this.props.section.section) {
         title = trail(breadcrumbs(splitSubsections, s))
       }
