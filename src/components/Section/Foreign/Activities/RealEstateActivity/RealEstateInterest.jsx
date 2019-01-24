@@ -222,9 +222,6 @@ export default class RealEstateInterest extends ValidationElement {
             name="Acquired"
             className="acquired"
             {...this.props.Acquired}
-            label={i18n.t(
-              'foreign.activities.realestate.interest.label.acquired'
-            )}
             minDateEqualTo={true}
             noMaxDate={true}
             onUpdate={this.updateAcquired}
@@ -269,9 +266,6 @@ export default class RealEstateInterest extends ValidationElement {
               name="Sold"
               className="sold"
               {...this.props.Sold}
-              label={i18n.t(
-                'foreign.activities.realestate.interest.label.sold'
-              )}
               onUpdate={this.updateSold}
               onError={this.props.onError}
               required={this.props.required}
