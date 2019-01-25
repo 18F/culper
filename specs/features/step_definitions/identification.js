@@ -135,9 +135,9 @@ defineSupportCode(({Given, Then, When}) => {
 
 const reviewPhysicalAttributes = () => {
   return client
-    .assert.value('.physical input[name="feet"]', person.physical.feet)
-    .assert.value('.physical input[name="inches"]', person.physical.inches)
-    .assert.value('.physical input[name="pounds"]', person.physical.pounds)
+    .assert.value('.physical .feet input', person.physical.feet)
+    .assert.value('.physical .inches input', person.physical.inches)
+    .assert.value('.physical .pounds input', person.physical.pounds)
     .assert.cssClassPresent(`.physical .hair-colors .${person.physical.hair} input`, 'selected')
     .assert.cssClassPresent(`.physical .eye-colors .${person.physical.eye} input`, 'selected')
     .assert.cssClassPresent(`.physical .sex .${person.physical.sex} input`, 'selected')
@@ -247,9 +247,12 @@ const completeSocialSecurityNumber = (promise) => {
 
 const completePhysicalAttributes = (promise) => {
   return promise
-      .then(() => { return setText('input[name="feet"]', person.physical.feet) })
-      .then(() => { return setText('input[name="inches"]', person.physical.inches) })
-      .then(() => { return setText('input[name="pounds"]', person.physical.pounds) })
+      .then(() => {
+        return setText('.height .feet input', person.physical.feet)
+          .assert.value('.height .feet input', person.physical.feet)
+          .setText('.height .inches input', person.physical.inches)
+          .setText('.weight .pounds input', person.physical.pounds)
+      })
       .then(() => { return setOption(`.hair-colors .${person.physical.hair}.block.extended label`) })
       .then(() => { return setOption(`.eye-colors .${person.physical.eye}.block.extended label`) })
       .then(() => { return setOption(`.sex .${person.physical.sex} label`) })
