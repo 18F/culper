@@ -66,3 +66,19 @@ make docs
 ```
 
 All of the documentation may then be found in the respective directories under `doc/`.
+
+
+## Docker
+
+The current build process generates a lot of orphaned docker volumes in the host environment over time. Developers must periodically run `docker volume prune` in order to reclaim disk space. For example:
+```
+# docker volume prune
+WARNING! This will remove all volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Deleted Volumes:
+5d9da5bc4aaf2f7712441c5987467b790701c9c51be23276f7c68210e81c6268
+...
+4fb67c37880afd51eb775631cf9d227bb5afbf256393c91dd78f1c8ac0c75279
+
+Total reclaimed space: 2.539 GB
+```
