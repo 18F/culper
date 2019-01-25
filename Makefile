@@ -87,6 +87,11 @@ specs:
 	$(info Running integration test suite)
 	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch $(COMMAND)
 
+.PHONY: specs-ci
+specs-ci:
+	$(info Running integration test suite)
+	docker-compose -f docker-compose.yml -f docker-compose.specs.yml up --abort-on-container-exit --build api db nightwatch
+
 #
 # Coverage
 #

@@ -1,5 +1,17 @@
 version: 2
 jobs:
+  specs:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Setup
+          command: |
+            cp .env.test .env
+            make setup
+      - run:
+          name: Run spec tests
+          command: make specs-ci
   test:
     machine: true
     parallelism: 4
@@ -47,6 +59,9 @@ workflows:
   build_and_deploy:
     jobs:
       - test
+      - specs:
+          requires:
+            - test
       - cloudgov:
           requires:
             - test
