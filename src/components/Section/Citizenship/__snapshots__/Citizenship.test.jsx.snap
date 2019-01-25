@@ -8,54 +8,6 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
     data-subsection="status"
   >
     <div
-      aria-label="Citizenship status"
-      className="field   no-margin-bottom"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <h2
-        className="title h2"
-      >
-        Citizenship status
-      </h2>
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          />
-        </span>
-      </div>
-    </div>
-    <div
       aria-label="Provide your current citizenship status"
       className="field required"
       data-uuid="field-MOCK-GUID"
@@ -66,11 +18,11 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h3
-        className="title h3"
+      <h4
+        className="title h4"
       >
         Provide your current citizenship status
-      </h3>
+      </h4>
       <span
         className="icon"
       />
@@ -123,30 +75,30 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
             className="component"
           >
             <div
-              className="blocks citizenship-status usa-input-error"
+              className="blocks citizenship-status option-list option-list-vertical usa-input-error"
             >
               <div
                 className="citizenship-status-citizen block"
               >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-citizen-MOCK-GUID"
+                  name="citizenship-status-citizen-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Citizen"
+                />
                 <label
                   className=""
                   htmlFor="citizenship-status-citizen-MOCK-GUID"
                 >
-                  <input
-                    aria-label="[object Object] for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="citizenship-status-citizen-MOCK-GUID"
-                    name="citizenship-status-citizen-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Citizen"
-                  />
                   <span>
                     <div>
                       <p>
@@ -159,25 +111,25 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
               <div
                 className="citizenship-status-foreignborn block"
               >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-foreignborn-MOCK-GUID"
+                  name="citizenship-status-foreignborn-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="ForeignBorn"
+                />
                 <label
                   className=""
                   htmlFor="citizenship-status-foreignborn-MOCK-GUID"
                 >
-                  <input
-                    aria-label="[object Object] for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="citizenship-status-foreignborn-MOCK-GUID"
-                    name="citizenship-status-foreignborn-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="ForeignBorn"
-                  />
                   <span>
                     <div>
                       <p>
@@ -190,25 +142,25 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
               <div
                 className="citizenship-status-naturalized block"
               >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-naturalized-MOCK-GUID"
+                  name="citizenship-status-naturalized-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Naturalized"
+                />
                 <label
                   className=""
                   htmlFor="citizenship-status-naturalized-MOCK-GUID"
                 >
-                  <input
-                    aria-label="[object Object] for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="citizenship-status-naturalized-MOCK-GUID"
-                    name="citizenship-status-naturalized-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Naturalized"
-                  />
                   <span>
                     <div>
                       <p>
@@ -221,25 +173,25 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
               <div
                 className="citizenship-status-derived block"
               >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-derived-MOCK-GUID"
+                  name="citizenship-status-derived-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Derived"
+                />
                 <label
                   className=""
                   htmlFor="citizenship-status-derived-MOCK-GUID"
                 >
-                  <input
-                    aria-label="[object Object] for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="citizenship-status-derived-MOCK-GUID"
-                    name="citizenship-status-derived-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Derived"
-                  />
                   <span>
                     <div>
                       <p>
@@ -252,25 +204,25 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
               <div
                 className="citizenship-status-notcitizen block"
               >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-notcitizen-MOCK-GUID"
+                  name="citizenship-status-notcitizen-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="NotCitizen"
+                />
                 <label
                   className=""
                   htmlFor="citizenship-status-notcitizen-MOCK-GUID"
                 >
-                  <input
-                    aria-label="[object Object] for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="citizenship-status-notcitizen-MOCK-GUID"
-                    name="citizenship-status-notcitizen-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="NotCitizen"
-                  />
                   <span>
                     <div>
                       <p>
@@ -295,54 +247,6 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
     data-subsection="multiple"
   >
     <div
-      aria-label="Dual/multiple citizenship"
-      className="field   no-margin-bottom"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <h2
-        className="title h2"
-      >
-        Dual/multiple citizenship
-      </h2>
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          />
-        </span>
-      </div>
-    </div>
-    <div
       aria-label="Do you now or have you EVER held dual/multiple citizenships?"
       className="field required  branch has-multiple"
       data-uuid="field-MOCK-GUID"
@@ -353,11 +257,11 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h3
-        className="title h3"
+      <h4
+        className="title h4"
       >
         Do you now or have you EVER held dual/multiple citizenships?
-      </h3>
+      </h4>
       <span
         className="icon"
       />
@@ -418,25 +322,25 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
               <div
                 className="yes block"
               >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_multiple-MOCK-GUID"
+                  name="has_multiple-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
                 <label
                   className=""
                   htmlFor="has_multiple-MOCK-GUID"
                 >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_multiple-MOCK-GUID"
-                    name="has_multiple-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
                   <span>
                     Yes
                   </span>
@@ -445,25 +349,25 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
               <div
                 className="no block"
               >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_multiple-MOCK-GUID"
+                  name="has_multiple-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
                 <label
                   className=""
                   htmlFor="has_multiple-MOCK-GUID"
                 >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_multiple-MOCK-GUID"
-                    name="has_multiple-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
                   <span>
                     No
                   </span>
@@ -484,54 +388,6 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
     data-subsection="passports"
   >
     <div
-      aria-label="Foreign passport information"
-      className="field   no-margin-bottom"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <h2
-        className="title h2"
-      >
-        Foreign passport information
-      </h2>
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          />
-        </span>
-      </div>
-    </div>
-    <div
       className="has-foreignpassport"
     >
       <div>
@@ -546,11 +402,11 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
             id="field-MOCK-GUID"
             name="field-MOCK-GUID"
           />
-          <h3
-            className="title h3"
+          <h4
+            className="title h4"
           >
             Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?
-          </h3>
+          </h4>
           <span
             className="icon"
           />
@@ -611,25 +467,25 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
                   <div
                     className="yes block"
                   >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="branchcollection-MOCK-GUID"
+                      name="branchcollection-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
                     <label
                       className=""
                       htmlFor="branchcollection-MOCK-GUID"
                     >
-                      <input
-                        aria-label="Yes for null"
-                        checked={false}
-                        className="usa-input-success"
-                        disabled={false}
-                        id="branchcollection-MOCK-GUID"
-                        name="branchcollection-MOCK-GUID"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        type="radio"
-                        value="Yes"
-                      />
                       <span>
                         Yes
                       </span>
@@ -638,25 +494,25 @@ exports[`The citizenship section renders the CitizenshipSections component 1`] =
                   <div
                     className="no block"
                   >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="branchcollection-MOCK-GUID"
+                      name="branchcollection-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
                     <label
                       className=""
                       htmlFor="branchcollection-MOCK-GUID"
                     >
-                      <input
-                        aria-label="No for null"
-                        checked={false}
-                        className="usa-input-success"
-                        disabled={false}
-                        id="branchcollection-MOCK-GUID"
-                        name="branchcollection-MOCK-GUID"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        type="radio"
-                        value="No"
-                      />
                       <span>
                         No
                       </span>
