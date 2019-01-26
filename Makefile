@@ -80,6 +80,10 @@ test-go:
 #
 .PHONY: specs
 specs:
+	docker-compose down --remove-orphans
+	$(info Running local development server)
+	docker-compose up --detach --build
+	sleep 1m
 	$(info Running integration test suite)
 	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch $(COMMAND)
 
