@@ -1,0 +1,530 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The citizenship section renders the CitizenshipSections component 1`] = `
+<div>
+  <div
+    className="section-content status"
+    data-section="citizenship"
+    data-subsection="status"
+  >
+    <div
+      aria-label="Provide your current citizenship status"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h4
+        className="title h4"
+      >
+        Provide your current citizenship status
+      </h4>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className="blocks citizenship-status option-list option-list-vertical usa-input-error"
+            >
+              <div
+                className="citizenship-status-citizen block"
+              >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-citizen-MOCK-GUID"
+                  name="citizenship-status-citizen-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Citizen"
+                />
+                <label
+                  className=""
+                  htmlFor="citizenship-status-citizen-MOCK-GUID"
+                >
+                  <span>
+                    <div>
+                      <p>
+                        I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth
+                      </p>
+                    </div>
+                  </span>
+                </label>
+              </div>
+              <div
+                className="citizenship-status-foreignborn block"
+              >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-foreignborn-MOCK-GUID"
+                  name="citizenship-status-foreignborn-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="ForeignBorn"
+                />
+                <label
+                  className=""
+                  htmlFor="citizenship-status-foreignborn-MOCK-GUID"
+                >
+                  <span>
+                    <div>
+                      <p>
+                        I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country
+                      </p>
+                    </div>
+                  </span>
+                </label>
+              </div>
+              <div
+                className="citizenship-status-naturalized block"
+              >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-naturalized-MOCK-GUID"
+                  name="citizenship-status-naturalized-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Naturalized"
+                />
+                <label
+                  className=""
+                  htmlFor="citizenship-status-naturalized-MOCK-GUID"
+                >
+                  <span>
+                    <div>
+                      <p>
+                        I am a naturalized U.S. citizen
+                      </p>
+                    </div>
+                  </span>
+                </label>
+              </div>
+              <div
+                className="citizenship-status-derived block"
+              >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-derived-MOCK-GUID"
+                  name="citizenship-status-derived-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Derived"
+                />
+                <label
+                  className=""
+                  htmlFor="citizenship-status-derived-MOCK-GUID"
+                >
+                  <span>
+                    <div>
+                      <p>
+                        I am a derived U.S. citizen
+                      </p>
+                    </div>
+                  </span>
+                </label>
+              </div>
+              <div
+                className="citizenship-status-notcitizen block"
+              >
+                <input
+                  aria-label="[object Object] for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="citizenship-status-notcitizen-MOCK-GUID"
+                  name="citizenship-status-notcitizen-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="NotCitizen"
+                />
+                <label
+                  className=""
+                  htmlFor="citizenship-status-notcitizen-MOCK-GUID"
+                >
+                  <span>
+                    <div>
+                      <p>
+                        I am not a U.S. citizen
+                      </p>
+                    </div>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content multiple"
+    data-section="citizenship"
+    data-subsection="multiple"
+  >
+    <div
+      aria-label="Do you now or have you EVER held dual/multiple citizenships?"
+      className="field required  branch has-multiple"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h4
+        className="title h4"
+      >
+        Do you now or have you EVER held dual/multiple citizenships?
+      </h4>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            />
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_multiple-MOCK-GUID"
+                  name="has_multiple-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
+                <label
+                  className=""
+                  htmlFor="has_multiple-MOCK-GUID"
+                >
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_multiple-MOCK-GUID"
+                  name="has_multiple-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
+                <label
+                  className=""
+                  htmlFor="has_multiple-MOCK-GUID"
+                >
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content passports"
+    data-section="citizenship"
+    data-subsection="passports"
+  >
+    <div
+      className="has-foreignpassport"
+    >
+      <div>
+        <div
+          aria-label="Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?"
+          className="field required  branch"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="branchcollection-MOCK-GUID"
+                      name="branchcollection-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="branchcollection-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="branchcollection-MOCK-GUID"
+                      name="branchcollection-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="branchcollection-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

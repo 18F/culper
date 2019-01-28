@@ -23,55 +23,53 @@ exports[`The section component renders citizenship.intro 1`] = `
                   >
                     Section 4: Citizenship
                   </h1>
-                  <div>
+                  <div
+                    aria-label=""
+                    className="field   no-margin-bottom"
+                    data-uuid="field-MOCK-GUID"
+                  >
+                    <a
+                      aria-hidden="true"
+                      className="anchor"
+                      id="field-MOCK-GUID"
+                      name="field-MOCK-GUID"
+                    />
+                    <span
+                      className="icon"
+                    />
                     <div
-                      aria-label=""
-                      className="field   no-margin-bottom"
-                      data-uuid="field-MOCK-GUID"
+                      className="table expand"
                     >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
                       <span
-                        className="icon"
+                        aria-live="polite"
+                        className="messages help-messages"
                       />
-                      <div
-                        className="table expand"
+                    </div>
+                    <div
+                      className="table expand"
+                    >
+                      <span
+                        aria-live="polite"
+                        className="messages error-messages"
+                        role="alert"
+                      />
+                    </div>
+                    <div
+                      className="table"
+                    >
+                      <span
+                        className="content"
                       >
                         <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
+                          className="component"
                         >
-                          <span
-                            className="component"
-                          >
-                            <div>
-                              <p>
-                                You will be asked questions about your citizenship status and history and be asked to provide details if necessary.
-                              </p>
-                            </div>
-                          </span>
+                          <div>
+                            <p>
+                              You will be asked questions about your citizenship status and history and be asked to provide details if necessary.
+                            </p>
+                          </div>
                         </span>
-                      </div>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -184,11 +182,6 @@ exports[`The section component renders citizenship.multiple 1`] = `
                 className="view view-multiple"
               >
                 <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Dual/multiple citizenship
-                  </h1>
                   <div
                     className="section-content multiple"
                     data-section="citizenship"
@@ -415,11 +408,6 @@ exports[`The section component renders citizenship.passports 1`] = `
                 className="view view-passports"
               >
                 <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Foreign passports
-                  </h1>
                   <div
                     className="section-content passports"
                     data-section="citizenship"
@@ -665,11 +653,6 @@ exports[`The section component renders citizenship.review 1`] = `
                   className="top-btns"
                 />
                 <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Citizenship status
-                  </h1>
                   <div
                     className="section-content status"
                     data-section="citizenship"
@@ -909,11 +892,6 @@ exports[`The section component renders citizenship.review 1`] = `
                   <hr
                     className="section-divider"
                   />
-                  <h1
-                    className="section-header"
-                  >
-                    Dual/multiple citizenship
-                  </h1>
                   <div
                     className="section-content multiple"
                     data-section="citizenship"
@@ -1055,11 +1033,6 @@ exports[`The section component renders citizenship.review 1`] = `
                   <hr
                     className="section-divider"
                   />
-                  <h1
-                    className="section-header"
-                  >
-                    Foreign passports
-                  </h1>
                   <div
                     className="section-content passports"
                     data-section="citizenship"
@@ -1314,11 +1287,6 @@ exports[`The section component renders citizenship.status 1`] = `
                 className="view view-status"
               >
                 <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Citizenship status
-                  </h1>
                   <div
                     className="section-content status"
                     data-section="citizenship"
