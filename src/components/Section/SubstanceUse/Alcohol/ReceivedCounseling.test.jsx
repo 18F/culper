@@ -27,8 +27,22 @@ describe('The ReceivedCounseling component', () => {
   it('renders start date with max', () => {
     const component = createComponent()
     expect(component.find('DateControl').length).toBe(2)
-    expect(component.find('DateControl').at(0).prop('name')).toBe('TreatmentBeganDate')
-    expect(component.find('DateControl').at(0).prop('maxDate')).toBe(today)
+    expect(
+      component
+        .find('DateControl')
+        .at(0)
+        .prop('name')
+    ).toBe('TreatmentBeganDate')
+    expect(
+      component
+        .find('DateControl')
+        .at(0)
+        .prop('maxDate')
+    ).toEqual({
+      month: `${new Date().getMonth() + 1}`,
+      day: `${new Date().getDate()}`,
+      year: `${new Date().getFullYear()}`
+    })
   })
 
   it('Renders with action taken marked as yes', () => {
@@ -91,7 +105,7 @@ describe('The ReceivedCounseling component', () => {
     component.find('.present-treatment-end-date input').simulate('change')
     expect(checked).toBe(true)
     expect(treatmentEndDate.day).toBe(String(expectedDate.getDate()))
-    expect(treatmentEndDate.month).toBe(String(expectedDate.getMonth()+1))
+    expect(treatmentEndDate.month).toBe(String(expectedDate.getMonth() + 1))
     expect(treatmentEndDate.year).toBe(String(expectedDate.getFullYear()))
     expect(treatmentEndDate.estimated).toBe(false)
   })
