@@ -1549,7 +1549,6 @@
                       "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
-                      "hideMiddleName": true,
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
@@ -1731,7 +1730,6 @@
                       "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
-                      "hideMiddleName": true,
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
@@ -3014,12 +3012,6 @@
             "value": "Yes"
           }
         },
-        "HasRegisteredNotApplicable": {
-          "type": "notapplicable",
-          "props": {
-            "applicable": true
-          }
-        },
         "RegistrationNumber": {
           "type": "text",
           "props": {
@@ -3030,6 +3022,12 @@
           "type": "textarea",
           "props": {
             "value": ""
+          }
+        },
+        "HasRegisteredNotApplicable": {
+          "type": "notapplicable",
+          "props": {
+            "applicable": true
           }
         }
       }
@@ -3199,7 +3197,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -3212,8 +3213,7 @@
         "Status": {
           "type": "radio",
           "props": {
-            "value": "NeverMarried",
-            "checked": true
+            "value": "Divorced"
           }
         },
         "CivilUnion": {
@@ -3427,10 +3427,127 @@
             "branch": {
               "type": "branch",
               "props": {
-                "value": ""
+                "value": "No"
               }
             },
-            "items": []
+            "items": [
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "Las Vegas",
+                      "state": "NV",
+                      "country": "United States"
+                    }
+                  },
+                  "BirthPlace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "Salem",
+                      "state": "CA",
+                      "country": "United States"
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "11",
+                      "day": "07",
+                      "year": "1985",
+                      "estimated": false
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "DateDivorced": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "02",
+                      "day": "13",
+                      "year": "2004",
+                      "estimated": false
+                    }
+                  },
+                  "Deceased": {
+                    "type": "radio",
+                    "props": {
+                      "value": "DK"
+                    }
+                  },
+                  "DeceasedAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "DeceasedAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "DivorceLocation": {
+                    "type": "location",
+                    "props": {
+                      "layout": "US City, State, Zipcode International city",
+                      "city": "Las Vegas",
+                      "state": "NV",
+                      "zipcode": "88901",
+                      "country": "United States"
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Joanne",
+                      "firstInitialOnly": false,
+                      "middle": "Mary",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "Roderick",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "Recognized": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "01",
+                      "day": "22",
+                      "year": "2003",
+                      "estimated": false
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Divorced"
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": true
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       }
@@ -3885,6 +4002,35 @@
                       ]
                     }
                   },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
                   "Birthdate": {
                     "type": "datecontrol",
                     "props": {
@@ -4009,6 +4155,12 @@
                       "value": ""
                     }
                   },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "HasAffiliation": {
                     "type": "branch",
                     "props": {
@@ -4072,6 +4224,12 @@
                       "last": "Chris",
                       "suffix": "",
                       "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
                     }
                   },
                   "Relation": {
@@ -4165,6 +4323,35 @@
                           }
                         }
                       ]
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
                     }
                   },
                   "Birthdate": {
@@ -4291,6 +4478,12 @@
                       "value": ""
                     }
                   },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "HasAffiliation": {
                     "type": "branch",
                     "props": {
@@ -4354,6 +4547,12 @@
                       "last": "Chris",
                       "suffix": "",
                       "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
                     }
                   },
                   "Relation": {
