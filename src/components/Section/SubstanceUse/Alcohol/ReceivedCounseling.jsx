@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { validDate, today } from '../../History/dateranges'
+import { validDate } from '../../History/dateranges'
 import {
   Location,
   DateControl,
@@ -16,11 +16,6 @@ import {
 export default class ReceivedCounseling extends ValidationElement {
   constructor(props) {
     super(props)
-
-    this.state = {
-      presentClicked: false,
-      TreatmentEndDate: this.props.TreatmentEndDate
-    }
 
     this.update = this.update.bind(this)
     this.updateTreatmentProviderName = this.updateTreatmentProviderName.bind(
@@ -43,30 +38,24 @@ export default class ReceivedCounseling extends ValidationElement {
     )
   }
 
-  update(updateValues, clicked = false) {
-    const endDate = updateValues.TreatmentEndDate || this.props.TreatmentEndDate
-    this.setState(
-      { presentClicked: clicked, TreatmentEndDate: endDate },
-      () => {
-        if (this.props.onUpdate) {
-          this.props.onUpdate({
-            CounselingDates: this.props.CounselingDates,
-            TreatmentProviderName: this.props.TreatmentProviderName,
-            TreatmentProviderAddress: this.props.TreatmentProviderAddress,
-            AgencyName: this.props.AgencyName,
-            AgencyAddress: this.props.AgencyAddress,
-            UseSameAddress: this.props.UseSameAddress,
-            TreatmentBeganDate: this.props.TreatmentBeganDate,
-            TreatmentEndDate: this.props.TreatmentEndDate,
-            PresentTreatmentEndDate: this.props.PresentTreatmentEndDate,
-            CompletedTreatment: this.props.CompletedTreatment,
-            NoCompletedTreatmentExplanation: this.props
-              .NoCompletedTreatmentExplanation,
-            ...updateValues
-          })
-        }
-      }
-    )
+  update(updateValues) {
+    if (this.props.onUpdate) {
+      this.props.onUpdate({
+        CounselingDates: this.props.CounselingDates,
+        TreatmentProviderName: this.props.TreatmentProviderName,
+        TreatmentProviderAddress: this.props.TreatmentProviderAddress,
+        AgencyName: this.props.AgencyName,
+        AgencyAddress: this.props.AgencyAddress,
+        UseSameAddress: this.props.UseSameAddress,
+        TreatmentBeganDate: this.props.TreatmentBeganDate,
+        TreatmentEndDate: this.props.TreatmentEndDate,
+        PresentTreatmentEndDate: this.props.PresentTreatmentEndDate,
+        CompletedTreatment: this.props.CompletedTreatment,
+        NoCompletedTreatmentExplanation: this.props
+          .NoCompletedTreatmentExplanation,
+        ...updateValues
+      })
+    }
   }
 
   updateTreatmentProviderName(values) {
@@ -97,27 +86,24 @@ export default class ReceivedCounseling extends ValidationElement {
 
   updateTreatmentEndDate(values) {
     this.update({
-      TreatmentEndDate: values,
-      PresentTreatmentEndDate: false
+      TreatmentEndDate: values
     })
   }
 
   updatePresentTreatmentEndDate(values) {
     const checked = values.checked
-    let endDate = { ...this.props.TreatmentEndDate }
+    let endDate
 
     if (checked) {
       const date = new Date()
       endDate = {
-        date: date,
         estimated: false,
-        month: String(date.getMonth()+1),
+        month: String(date.getMonth() + 1),
         year: String(date.getFullYear()),
         day: String(date.getDate())
       }
     } else {
       endDate = {
-        date: '',
         year: '',
         month: '',
         day: '',
@@ -125,10 +111,7 @@ export default class ReceivedCounseling extends ValidationElement {
       }
     }
 
-    this.update(
-      { TreatmentEndDate: endDate, PresentTreatmentEndDate: checked },
-      true
-    )
+    this.update({ TreatmentEndDate: endDate, PresentTreatmentEndDate: values })
   }
 
   updateAgencyAddress(values) {
@@ -140,7 +123,14 @@ export default class ReceivedCounseling extends ValidationElement {
   }
 
   render() {
-    const maxDate = validDate(this.props.TreatmentEndDate) ? this.props.TreatmentEndDate : today
+    const date = new Date()
+    const maxDate = validDate(this.props.TreatmentEndDate)
+      ? this.props.TreatmentEndDate
+      : {
+          month: `${date.getMonth() + 1}`,
+          day: `${date.getDate()}`,
+          year: `${date.getFullYear()}`
+        }
     const minDate = this.props.TreatmentBeganDate
     return (
       <div className="received-counseling">
@@ -261,12 +251,11 @@ export default class ReceivedCounseling extends ValidationElement {
           <DateControl
             name="TreatmentEndDate"
             className="treatment-end-date"
-            {...this.state.TreatmentEndDate}
-            receiveProps={this.state.presentClicked}
+            {...this.props.TreatmentEndDate}
             prefix="treatment.end"
             minDate={minDate}
             minDateEqualTo={true}
-            disabled={this.props.PresentTreatmentEndDate}
+            disabled={(this.props.PresentTreatmentEndDate || {}).checked}
             onUpdate={this.updateTreatmentEndDate}
             onError={this.props.onError}
             required={this.props.required}
@@ -278,9 +267,9 @@ export default class ReceivedCounseling extends ValidationElement {
             <Checkbox
               name="PresentTreatmentEndDate"
               className="present-treatment-end-date"
+              {...this.props.PresentTreatmentEndDate}
               label="Present"
               value="present"
-              checked={this.props.PresentTreatmentEndDate}
               onUpdate={this.updatePresentTreatmentEndDate}
               onError={this.props.onError}
             />

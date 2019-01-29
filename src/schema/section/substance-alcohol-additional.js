@@ -12,6 +12,7 @@ export const substanceAlcoholAdditional = (data = {}) => {
         UseSameAddress: form.branch(xitem.UseSameAddress),
         TreatmentBeganDate: form.datecontrol(xitem.TreatmentBeganDate),
         TreatmentEndDate: form.datecontrol(xitem.TreatmentEndDate),
+        PresentTreatmentEndDate: form.checkbox(xitem.PresentTreatmentEndDate),
         CompletedTreatment: form.branch(xitem.CompletedTreatment),
         NoCompletedTreatmentExplanation: form.textarea(
           xitem.NoCompletedTreatmentExplanation
