@@ -7,9 +7,10 @@ import { mount } from 'enzyme'
 import { api } from '../../../services'
 import Print from './Print'
 import { testSnapshot } from '../../test-helpers'
-
+import { sf86 } from './../../../config/form'
 const applicationState = {
-  Application: {}
+  Application: {},
+  Form: sf86
 }
 
 // give a fake GUID so the field IDs don't differ between snapshots

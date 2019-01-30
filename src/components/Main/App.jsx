@@ -1,5 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
+import _ from 'lodash'
 import { i18n } from '../../config'
 import {
   SectionTitle,
@@ -8,10 +10,20 @@ import {
   Navigation,
   NavigationToggle
 } from '..'
+import { Form } from './../../views'
 import { Introduction, Show } from '../Form'
 import Logout from '../Navigation/Logout'
 import StickyHeader from '../Sticky/StickyHeader'
-import { connect } from 'react-redux'
+import {
+  sf85,
+  sf86
+} from './../../config/form'
+import { validations } from './../Navigation/navigation-helpers'
+import {
+  handleUpdateForm,
+  handleUpdateTotalSectionTotal,
+  handleUpdateCompletedSectionTotal
+} from './../../actions/FormActions'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish
@@ -45,6 +57,9 @@ class App extends React.Component {
     }
     this.showInstructions = this.showInstructions.bind(this)
     this.dismissInstructions = this.dismissInstructions.bind(this)
+    this.getForm = this.getForm.bind(this)
+    this.getTotalSections = this.getTotalSections.bind(this)
+    this.getCompletedSectionsTotal = this.getCompletedSectionsTotal.bind(this)
 
     // workaround for not having React.createRef(), introduced in React 16.3
     // https://reactjs.org/docs/refs-and-the-dom.html#dont-overuse-refs
@@ -54,10 +69,34 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const {
+      formType,
+      handleUpdateForm,
+      handleUpdateTotalSectionTotal,
+      handleUpdateCompletedSectionTotal
+    } = this.props
+
+    const form = this.getForm(formType)
+    handleUpdateForm(form)
+    handleUpdateTotalSectionTotal(this.getTotalSections(form.sections))
+    handleUpdateCompletedSectionTotal(this.getCompletedSectionsTotal())
+  }
+
   componentDidUpdate(prevProps) {
     // for keyboard navigation accessbility, focus on the main content area after a new section is navigated to
+    const {
+      location,
+      navigation,
+      handleUpdateCompletedSectionTotal
+    } = this.props
+
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.sectionFocusEl.focus()
+    }
+
+    if (this.getCompletedSectionsTotal() !== prevProps.navigation.completedSectionsTotal) {
+      handleUpdateCompletedSectionTotal(this.getCompletedSectionsTotal())
     }
   }
 
@@ -90,7 +129,40 @@ class App extends React.Component {
     return ''
   }
 
+  getForm(formType) {
+    switch(formType) {
+      case 'sf86':
+        return sf86
+      case 'sf85':
+        return sf85
+      default:
+      return sf86
+    }
+  }
+
+  getTotalSections(navigationSections) {
+    return navigationSections
+      .filter(section => !section.hidden)
+      .filter(section => !section.exclude)
+      .length
+  }
+
+  getCompletedSectionsTotal() {
+    const { app, navigation } = this.props
+    let completedSectionsTotal = 0
+    for (const key of Object.keys(app.Completed)) {
+      const validSectionTotal = app.Completed[key].filter(e => (
+        e.section.toLowerCase() === key.toLowerCase() && e.valid === true
+      )).length
+      if (validSectionTotal >= validations(navigation.sections.find(n => n.url === key), { application: app })) {
+        completedSectionsTotal++
+      }
+    }
+    return completedSectionsTotal
+  }
+
   render() {
+    const { form, formType } = this.props
     const klassApp = `${this.designClass()} ${
       this.props.settings.modalOpen ? 'modal-open' : ''
     }`.trim()
@@ -185,7 +257,7 @@ class App extends React.Component {
                           src="/img/nbis-seal-small.png"
                           alt="National Background Investigation Services"
                         />
-                        <span className="eapp-logo-text">SF86</span>
+                        <span className="eapp-logo-text">{form.name}</span>
                       </div>
                     </div>
                     <div className={klassTitle}>
@@ -199,22 +271,31 @@ class App extends React.Component {
                           <Logout />
                         </Show>
                       </div>
-                      <SectionTitle hidden={mobileNavigation} />
+                      <SectionTitle
+                        hidden={mobileNavigation}
+                        sections={form.sections}
+                      />
                     </div>
                   </div>
                 </div>
               </header>
               <div id="scrollToProgress" />
               <div className="usa-overlay" />
-              <ProgressBar />
+              <ProgressBar
+                completedSectionsTotal={form.completedSectionsTotal}
+                totalSections={form.totalSections}
+              />
             </div>
           </div>
         </StickyHeader>
         <main className={klassMain}>
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <ScoreCard />
-              <Navigation />
+              <ScoreCard
+                totalSections={form.totalSections}
+                completedSectionsTotal={form.completedSectionsTotal}
+              />
+              <Navigation sections={form.sections} />
               <button
                 onClick={this.showInstructions}
                 className="instructions mobile-visible">
@@ -229,7 +310,10 @@ class App extends React.Component {
               ref={this.setSectionFocusEl}
             />
             <div id="main-content" className={klassCore}>
-              {this.props.children}
+              <Form
+                formType={formType}
+                navigation={form.sections}
+              />
               &nbsp;
             </div>
           </div>
@@ -252,11 +336,28 @@ function mapStateToProps(state) {
   const settings = app.Settings || { mobileNavigation: false, modalOpen: false }
 
   return {
+    app: app,
     settings: settings,
-    authenticated: auth.authenticated
+    authenticated: auth.authenticated,
+    formType: auth.formType,
+    form: app.Form
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleUpdateForm: form => {
+      dispatch(handleUpdateForm(form))
+    },
+    handleUpdateTotalSectionTotal: total => {
+      dispatch(handleUpdateTotalSectionTotal(total))
+    },
+    handleUpdateCompletedSectionTotal: completed => {
+      dispatch(handleUpdateCompletedSectionTotal(completed))
+    }
   }
 }
 
 // Wraps the the App component with connect() which adds the dispatch()
 // function to the props property for this component
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

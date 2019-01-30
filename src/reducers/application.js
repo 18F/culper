@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import relationshipsReducer from './relationships'
 import historyReducer from './history'
 import errorReducer from './error'
+import formReducer from './form'
 
 const defaultState = {}
 
@@ -41,14 +42,6 @@ export default combineReducers({
   Submission: reducer('Submission'),
   Completed: errorReducer('Completed'),
   Errors: errorReducer('Errors'),
-  AddressBooks: reducer('AddressBooks')
+  AddressBooks: reducer('AddressBooks'),
+  Form: formReducer
 })
-
-// Or alternative...
-// export const appReducer = function (state = defaultState, action) {
-// return merge(state, {
-// [action.section]: {
-// [action.property]: action.values
-// }
-// })
-// }

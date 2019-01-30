@@ -10,6 +10,14 @@ describe('Root Reducer', function() {
       Errors: {},
       Financial: {},
       Foreign: {},
+      Form: {
+        name: '',
+        formType: '',
+        formNumber: '',
+        sections: [],
+        totalSections: 0,
+        completedSectionsTotal: 0,
+      },
       History: {},
       Identification: {},
       Legal: {},
@@ -23,7 +31,8 @@ describe('Root Reducer', function() {
     },
     authentication: {
       authenticated: false,
-      token: null
+      token: null,
+      formType: '86',
     },
     section: {
       section: 'identification',

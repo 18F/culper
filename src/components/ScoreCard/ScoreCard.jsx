@@ -1,39 +1,28 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { i18n } from '../../config'
-import AuthenticatedView from '../../views/AuthenticatedView'
-import {
-  sectionsTotal,
-  sectionsCompleted
-} from '../Navigation/navigation-helpers'
 
 class ScoreCard extends React.Component {
   render() {
-    const completed = sectionsCompleted(this.props.completed, this.props)
-    const total = sectionsTotal()
-
+    const { completedSectionsTotal, totalSections } = this.props
+    const classNames = [
+      'score-card',
+      completedSectionsTotal >= totalSections ? 'completed' : ''
+    ].join(' ').trim()
     return (
       <div
-        className={`score-card ${
-          completed >= total ? 'completed' : ''
-        }`.trim()}>
-        <span className="score-card-done">{completed}</span>/
-        <span className="score-card-total">{total}</span>
+        className={classNames}>
+        <span className="score-card-done">{completedSectionsTotal}</span>/
+        <span className="score-card-total">{totalSections}</span>
         <span className="score-card-text">{i18n.t('scorecard.complete')}</span>
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
-  const section = state.section || {}
-  const app = state.application || {}
-  const completed = app.Completed || {}
-  return {
-    application: app,
-    section: section,
-    completed: completed
-  }
+ScoreCard.propTypes = {
+  completedSectionsTotal: PropTypes.number.isRequired,
+  totalSections: PropTypes.number.isRequired
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(ScoreCard))
+export default ScoreCard

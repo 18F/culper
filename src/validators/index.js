@@ -208,7 +208,8 @@ import OrderValidator, {
   CompetenceOrderValidator,
   ConsultationOrderValidator
 } from './order'
-import { hideReleases, hideHippa, formIsSigned, formIsLocked } from './releases'
+// import { hideReleases, hideHippa, formIsSigned, formIsLocked } from './releases'
+import { hideHippa, formIsSigned, formIsLocked } from './releases'
 
 export default validate
 export {
@@ -386,7 +387,6 @@ export {
   hideDisciplinaryProcedures,
   hideExistingConditions,
   hideSelectiveService,
-  hideReleases,
   hideHippa,
   formIsSigned,
   formIsLocked

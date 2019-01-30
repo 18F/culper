@@ -1,20 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import AuthenticatedView from '../../views/AuthenticatedView'
-import {
-  sectionsTotal,
-  sectionsCompleted
-} from '../Navigation/navigation-helpers'
+import PropTypes from 'prop-types'
 
 class ProgressBar extends React.Component {
   render() {
+    const {
+      completedSectionsTotal,
+      totalSections
+    } = this.props
     const styles = {
-      width:
-        '' +
-        (sectionsCompleted(this.props.completed, this.props) /
-          sectionsTotal()) *
-          100 +
-        '%'
+      width: `${(completedSectionsTotal / totalSections) * 100}%`
     }
 
     return (
@@ -29,15 +23,9 @@ class ProgressBar extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  let section = state.section || {}
-  let app = state.application || {}
-  let completed = app.Completed || {}
-  return {
-    application: app,
-    section: section,
-    completed: completed
-  }
+ProgressBar.propTypes = {
+  completedSectionsTotal: PropTypes.number.isRequired,
+  totalSections: PropTypes.number.isRequired,
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(ProgressBar))
+export default ProgressBar

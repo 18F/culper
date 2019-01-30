@@ -12,7 +12,6 @@ import Psychological from './Psychological'
 import Substance from './SubstanceUse'
 import Package from './Package'
 import { SectionViews, SectionView } from './SectionView'
-import navigation from '../../config/navigation'
 import { getComponentByName } from './generators'
 
 const storeToComponentMap = {
@@ -53,13 +52,15 @@ class Section extends React.Component {
   }
 
   createSections() {
-    return navigation.map(section => {
+    const { form } = this.props
+    return form.sections.map(section => {
       const SectionComponent = this.getComponent(section)
       return (
         <SectionView key={section.url} name={section.url}>
           <SectionComponent
             subsection={this.props.subsection}
             update={this.update}
+            formType={form.formType}
           />
         </SectionView>
       )
