@@ -82,3 +82,22 @@ Deleted Volumes:
 
 Total reclaimed space: 2.539 GB
 ```
+
+## Cloud Foundry (cloud.gov) deployments
+
+There is a known issue with [cloud.gov](https://cloud.gov/) [blue-green deployments](https://docs.cloudfoundry.org/devguide/deploy-apps/blue-green.html), where occasionally a deploy will fail. Below is an example error from [CircleCI](https://circleci.com/gh/18F/e-QIP-prototype/2831):
+
+```
+Renaming app eqip-prototype-dev to eqip-prototype-dev-venerable in org gsa-acq-eqip / space dev as 7c68f775-0a9e-4be4-be4c-b34c3ec76daf...
+error: Server error, status code: 400, error code: 100002, message: The app name is taken: eqip-prototype-dev-venerable
+Exited with code 1
+```
+The resolution requires a cloud.gov user, with admin rights on the eApp space (i.e., `gsa-acq-eqip`) to manually delete the app name with the `venerable` suffix, using the [Cloud Foundry command line interface](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html):
+```
+cf login -a api.fr.cloud.gov -u INSERT-USERNAME-HERE -o gsa-acq-eqip -s production --sso
+cf target -s dev
+cf delete eqip-prototype-dev-venerable
+```
+Make sure that the `venerable` application displayed in the error log is the application that is being deleted; it will be a variant of the frontend (`eqip-prototype`) or the backend (`eqip-prototype-api`). The presence of `dev`, `staging`, or no moniker in the application name will indicate whether your target space should be `dev`, `staging`, or `production` respectively.
+
+The application should re-deploy correctly at this point, either on the next commit to the associated GitHub branch, or through a manual rerun of the failed CircleCI job. 
