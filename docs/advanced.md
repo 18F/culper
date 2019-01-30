@@ -108,7 +108,7 @@ The application should re-deploy correctly at this point, either on the next com
 
 To execute the [database purge script](https://github.com/18F/e-QIP-prototype/blob/develop/docs/test-scenarios.md) against the cloud.gov PostgreSQL, the following approach may be used. It requires `cf`, the [`cf-service-connect`](cf-service-connect) plug-in and the PostgreSQL `psql` client. Additional details can be found in the [cloud.gov database documentation](https://cloud.gov/docs/services/relational-database/#manually-access-a-database).
 
-In one terminal window:
+This example purges the `dev` database, which is a service used by the api backend. In one terminal window:
 ```
 cf login -a api.fr.cloud.gov -u INSERT-USERNAME-HERE -o gsa-acq-eqip -s production --sso
 cf target -s dev
