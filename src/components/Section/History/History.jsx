@@ -514,6 +514,7 @@ class History extends SectionElement {
               {i18n.m('history.residence.info3a')}
               {i18n.m('history.residence.info3b')}
               {i18n.m('history.residence.info3c')}
+              {i18n.m('history.residence.info3d')}
             </Field>
 
             <span id="scrollToHistory" />

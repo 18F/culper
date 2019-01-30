@@ -57,6 +57,8 @@ export const history = {
       ' - **If you split your time between one or more residences during a time period**, you must list all residences.',
     info3c:
       ' - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history.',
+    info3d:
+      ' - **You are not required to list temporary locations of less than 90 days** that did not serve as your permanent or mailing address.',
     summary: {
       title: 'Where you have lived',
       unit: 'Years covered',
