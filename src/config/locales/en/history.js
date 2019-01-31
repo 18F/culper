@@ -1637,14 +1637,14 @@ export const history = {
       comments:
         'If you need to provide additional comments about this information enter them below',
       type: 'Select the most appropriate option to describe your school',
-      reference: 'Add a person that knows you',
+      reference: 'List a person who can verify that you attened this school',
       diploma: 'Provide type of degree(s)/diploma(s) received',
       date: 'Date awarded'
     },
     para: {
       exiting: '',
       reference:
-        'For any school in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for education completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+        'For schools you attended in the last 3 years, list a person who knew you at the school (instructor, student, etc.). Do not list people for education periods completed more than 3 years ago. For correspondence/distance/extension/online schools, list someone who knew you while you received this education.'
     },
     label: {
       attendance: 'Have you attended any schools in the last 10 years?',
