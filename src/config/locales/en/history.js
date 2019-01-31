@@ -1653,6 +1653,7 @@ export const history = {
         'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       name: 'School name',
       address: 'This address is',
+      addressLink: 'For assistance determining the school address, refer to',
       comments: 'Add optional comment',
       type: {
         highschool: 'High school',

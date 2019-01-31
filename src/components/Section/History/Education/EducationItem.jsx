@@ -245,6 +245,15 @@ export default class EducationItem extends ValidationElement {
             adjustFor="address"
             shrink={true}
             scrollIntoView={this.props.scrollIntoView}>
+            <label className="into-label">
+              <span>{i18n.t('history.education.label.addressLink')} </span>
+              <a
+                href="http://ope.ed.gov/accreditation/search.aspx"
+                target="_blank"
+                rel="noopener noreferrer">
+                 http://ope.ed.gov/accreditation/search.aspx
+              </a>
+            </label>
             <Location
               name="Address"
               {...this.props.Address}
