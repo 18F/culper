@@ -280,10 +280,66 @@
               </Relatives>
             </RelativesAndAssociates>
             <Spouse Version="1" Type="Pooled">
+              <MaritalStatus>Divorced</MaritalStatus>
               <Cohabitants>
                 <Answer>No</Answer>
               </Cohabitants>
-              <MaritalStatus>NeverMarried</MaritalStatus>
+              <FormerSpouses>
+                <FormerSpouse ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>11</Month>
+                      <Day>07</Day>
+                      <Year>1985</Year>
+                    </Date>
+                    <Place>
+                      <City>Salem</City>
+                      <State>CA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>IDontKnow</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Roderick</Last>
+                    <First>Joanne</First>
+                    <Middle>Mary</Middle>
+                  </LegalName>
+                  <Marriage>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>22</Day>
+                      <Year>2003</Year>
+                    </Date>
+                    <Place>
+                      <City>Las Vegas</City>
+                      <State>NV</State>
+                    </Place>
+                  </Marriage>
+                  <Separation Type="Divorced">
+                    <Date>
+                      <Month>02</Month>
+                      <Day>13</Day>
+                      <Year>2004</Year>
+                    </Date>
+                    <DivorceRecordLocation>
+                      <Place>
+                        <City>Las Vegas</City>
+                        <State>NV</State>
+                        <ZipCode>88901</ZipCode>
+                      </Place>
+                    </DivorceRecordLocation>
+                  </Separation>
+                  <Telephone DoNotKnow="True"/>
+                </FormerSpouse>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </FormerSpouses>
             </Spouse>
             <ResidenceHistory Version="1" Type="Pooled">
               <Residencies>

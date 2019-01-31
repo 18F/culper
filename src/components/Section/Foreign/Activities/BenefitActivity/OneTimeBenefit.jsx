@@ -94,7 +94,6 @@ export default class OneTimeBenefit extends ValidationElement {
             className="received"
             {...this.props.Received}
             minDateEqualTo={true}
-            label={i18n.t('foreign.activities.benefit.oneTime.label.received')}
             onUpdate={this.updateReceived}
             onError={this.props.onError}
             required={this.props.required}

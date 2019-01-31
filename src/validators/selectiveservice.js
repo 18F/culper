@@ -14,6 +14,7 @@ export default class SelectiveServiceValidator {
   constructor(data = {}) {
     this.wasBornAfter = (data.WasBornAfter || {}).value
     this.hasRegistered = (data.HasRegistered || {}).value
+    this.hasRegisteredNotApplicable = data.HasRegisteredNotApplicable
     this.registrationNumber = data.RegistrationNumber
     this.explanation = data.Explanation
   }
@@ -26,7 +27,9 @@ export default class SelectiveServiceValidator {
     return (
       this.wasBornAfter === 'No' ||
       (this.wasBornAfter === 'Yes' &&
-        (this.hasRegistered === 'Yes' || this.hasRegistered === 'No'))
+        (this.hasRegistered === 'Yes' ||
+          this.hasRegistered === 'No' ||
+          !this.hasRegisteredNotApplicable.applicable))
     )
   }
 
@@ -43,7 +46,11 @@ export default class SelectiveServiceValidator {
   }
 
   validExplanation() {
-    if (this.wasBornAfter === 'Yes' && this.hasRegistered === 'No') {
+    if (
+      this.wasBornAfter === 'Yes' &&
+      (this.hasRegistered === 'No' ||
+        !this.hasRegisteredNotApplicable.applicable)
+    ) {
       return validGenericTextfield(this.explanation)
     }
 

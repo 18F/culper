@@ -102,21 +102,32 @@ describe('Selective service validation', function() {
       {
         state: {
           WasBornAfter: { value: 'Yes' },
-          HasRegistered: { value: '' }
+          HasRegistered: { value: '' },
+          HasRegisteredNotApplicable: { applicable: true }
         },
         expected: false
       },
       {
         state: {
           WasBornAfter: { value: 'Yes' },
-          HasRegistered: { value: 'No' }
+          HasRegistered: { value: 'No' },
+          HasRegisteredNotApplicable: { applicable: true }
         },
         expected: true
       },
       {
         state: {
           WasBornAfter: { value: 'Yes' },
-          HasRegistered: { value: 'Yes' }
+          HasRegistered: { value: 'Yes' },
+          HasRegisteredNotApplicable: { applicable: true }
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: '' },
+          HasRegisteredNotApplicable: { applicable: false }
         },
         expected: true
       }
@@ -135,6 +146,7 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'Yes' },
+          HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: null
         },
         expected: false
@@ -143,6 +155,7 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'Yes' },
+          HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: {
             value: ''
           }
@@ -153,6 +166,7 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'Yes' },
+          HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: {
             value: '123abc7890'
           }
@@ -163,6 +177,7 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'Yes' },
+          HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: {
             value: '1234567890'
           }
@@ -187,6 +202,7 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'No' },
+          HasRegisteredNotApplicable: { applicable: true },
           Explanation: null
         },
         expected: false
@@ -195,6 +211,7 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'No' },
+          HasRegisteredNotApplicable: { applicable: true },
           Explanation: {
             value: ''
           }
@@ -205,6 +222,29 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'No' },
+          HasRegisteredNotApplicable: { applicable: true },
+          Explanation: {
+            value: 'Never knew about it'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: '' },
+          HasRegisteredNotApplicable: { applicable: false },
+          Explanation: {
+            value: ''
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: '' },
+          HasRegisteredNotApplicable: { applicable: false },
           Explanation: {
             value: 'Never knew about it'
           }
@@ -226,6 +266,7 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'Yes' },
+          HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: {
             value: '1234567890'
           }
@@ -236,6 +277,18 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'No' },
+          HasRegisteredNotApplicable: { applicable: true },
+          Explanation: {
+            value: 'Never knew about it'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: '' },
+          HasRegisteredNotApplicable: { applicable: false },
           Explanation: {
             value: 'Never knew about it'
           }

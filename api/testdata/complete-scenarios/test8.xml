@@ -271,10 +271,10 @@
               </Relatives>
             </RelativesAndAssociates>
             <Spouse Version="1" Type="Pooled">
+              <MaritalStatus>NeverMarried</MaritalStatus>
               <Cohabitants>
                 <Answer>No</Answer>
               </Cohabitants>
-              <MaritalStatus>NeverMarried</MaritalStatus>
             </Spouse>
             <ResidenceHistory Version="1" Type="Pooled">
               <Residencies>

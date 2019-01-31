@@ -284,9 +284,6 @@ export default class IndirectInterest extends ValidationElement {
             name="Acquired"
             className="acquired"
             {...this.props.Acquired}
-            label={i18n.t(
-              `foreign.activities.indirect.interest.label.acquired`
-            )}
             minDateEqualTo={true}
             onUpdate={this.updateAcquired}
             onError={this.props.onError}
@@ -387,7 +384,6 @@ export default class IndirectInterest extends ValidationElement {
               {...this.props.Sold}
               minDate={this.props.Acquired}
               minDateEqualTo={true}
-              label={i18n.t(`foreign.activities.indirect.interest.label.sold`)}
               onUpdate={this.updateSold}
               onError={this.props.onError}
               required={this.props.required}

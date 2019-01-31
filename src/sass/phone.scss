@@ -88,13 +88,11 @@
           overflow-y: visible;
           max-height: none;
           border: none;
-          padding: 0 1rem;
+          padding: 0;
         }
 
         .introduction-acceptance {
           max-height: auto;
-          margin: 0;
-          padding: 4rem 1rem;
 
           .block label {
             width: 11rem;

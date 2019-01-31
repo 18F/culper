@@ -46,6 +46,20 @@ describe('The selective service component', () => {
     expect(component.find('.registration-number').length).toBe(0)
   })
 
+  it('selects "I dont know" on registered and is presented with explanation', () => {
+    const expected = {
+      name: 'selective',
+      WasBornAfter: { value: 'Yes' },
+      HasRegisteredNotApplicable: { applicable: false }
+    }
+    const component = mount(<Selective {...expected} />)
+    component.find('.born .yes input').simulate('change')
+    component.find('.registered .no input').simulate('change')
+    component.find('.explanation textarea').simulate('change')
+    expect(component.find('.explanation').length).toBe(1)
+    expect(component.find('.registration-number').length).toBe(0)
+  })
+
   it('selects yes on registered and is presented with registration number', () => {
     const expected = {
       name: 'selective',

@@ -21,6 +21,7 @@ describe('Schema for financial taxes', () => {
               UseSameAddress: {},
               TreatmentBeganDate: {},
               TreatmentEndDate: {},
+              PresentTreatmentEndDate: {},
               CompletedTreatment: {},
               NoCompletedTreatmentExplanation: {}
             }
