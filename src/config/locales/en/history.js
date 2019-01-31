@@ -1636,7 +1636,7 @@ export const history = {
       address: 'Provide the street address of the school',
       comments:
         'If you need to provide additional comments about this information enter them below',
-      type: 'Select the most appropriate code to describe your school',
+      type: 'Select the most appropriate option to describe your school',
       reference: 'Add a person that knows you',
       diploma: 'Provide type of degree(s)/diploma(s) received',
       date: 'Date awarded'
@@ -1700,8 +1700,8 @@ export const history = {
           'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       type: {
-        title: 'Need help with the school code?',
-        message: 'Select the most appropriate code to describe your school',
+        title: 'Need help with the school options?',
+        message: 'Select the most appropriate option to describe your school',
         note: ''
       },
       comments: {
