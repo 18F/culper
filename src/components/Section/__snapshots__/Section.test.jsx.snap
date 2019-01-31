@@ -10143,6 +10143,16 @@ exports[`The section component renders history.residence 1`] = `
                               </li>
                             </ul>
                           </div>
+                          <div>
+                            <ul>
+                              <li>
+                                <strong>
+                                  You are not required to list temporary locations of less than 90 days
+                                </strong>
+                                 that did not serve as your permanent or mailing address.
+                              </li>
+                            </ul>
+                          </div>
                         </span>
                       </span>
                     </div>
