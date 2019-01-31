@@ -58,7 +58,7 @@ export const citizenship = {
       entrylocation: 'Provide your place of entry in the U.S.',
       priorcitizenship: {
         naturalized: 'Provide country(ies) of prior citizenship',
-        notcitizen: 'Provide your countr(ies) of citizenship'
+        notcitizen: 'Provide your country(ies) of citizenship'
       },
       hasalienregistration: 'Do/did you have a U.S. alien registration number?',
       alienregistrationnumber: {
