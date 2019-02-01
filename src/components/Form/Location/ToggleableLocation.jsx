@@ -36,7 +36,7 @@ export default class ToggleableLocation extends ValidationElement {
     this.updateZipcode = this.updateZipcode.bind(this)
     this.zipcodeInstate = this.zipcodeInstate.bind(this)
     this.onError = this.onError.bind(this)
-
+    this.addressType = this.addressType.bind(this)
     this.state = {
       suggestions: [],
       uid: `${this.props.name}-${super.guid()}`
@@ -116,6 +116,24 @@ export default class ToggleableLocation extends ValidationElement {
     const validator = new LocationValidator(this.props)
 
     return validator.validZipcodeState()
+  }
+
+  addressType() {
+    let country = this.props.country
+    if (typeof country === 'object') {
+      country = countryString(this.props.country)
+      if (country === '') {
+        return 'International'
+      }
+    }
+
+    if (country === '') {
+      return ''
+    } else if (country === 'United States') {
+      return country
+    }
+
+    return 'International'
   }
 
   render() {
@@ -262,7 +280,7 @@ export default class ToggleableLocation extends ValidationElement {
       }
     })
 
-    const countryName = country(this.props.country)
+    const countryName = countryString(this.props.country)
     return (
       <div className="toggleable-location">
         <Branch
@@ -275,10 +293,10 @@ export default class ToggleableLocation extends ValidationElement {
           yesLabel={i18n.m('address.options.us.label')}
           value={branchValue(this.props.country)}
         />
-        <Show when={countryName !== null && countryName === 'United States'}>
+        <Show when={this.addressType() === 'United States'}>
           {domesticFields}
         </Show>
-        <Show when={countryName !== null && countryName !== 'United States'}>
+        <Show when={this.addressType() === 'International'}>
           {internationalFields}
         </Show>
       </div>
@@ -325,16 +343,21 @@ export default class ToggleableLocation extends ValidationElement {
 }
 
 const branchValue = value => {
-  const countryName = country(value)
-
-  if (countryName === null) {
-    // Neutral state
-    return ''
+  let country = value
+  if (typeof country === 'object') {
+    country = countryString(value)
+    if (country === '') {
+      return 'No'
+    } else if (country === null) {
+      return ''
+    }
   }
 
-  switch (countryName) {
+  switch (country) {
     case 'United States':
       return 'Yes'
+    case '':
+      return ''
     default:
       // For all other cases, country is an empty string (user intends to select country) or
       // user has selected a country
