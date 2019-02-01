@@ -345,7 +345,7 @@ export default class ToggleableLocation extends ValidationElement {
 const branchValue = value => {
   let country = value
   if (typeof country === 'object') {
-    country = countryString(value)
+    country = country.value
     if (country === '') {
       return 'No'
     } else if (country === null) {
