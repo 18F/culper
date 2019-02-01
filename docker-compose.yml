@@ -56,20 +56,6 @@ services:
     networks:
       - eapp
 
-  css:
-    build:
-      context: .
-      dockerfile: conf/docker/Dockerfile.frontend
-    env_file:
-      - .env
-    command: yarn watch-css
-    volumes:
-      - .:/usr/src/app
-      # ditto above
-      - /usr/src/app/node_modules
-    networks:
-      - eapp
-
   api:
     build:
       context: .
