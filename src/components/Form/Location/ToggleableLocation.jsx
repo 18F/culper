@@ -121,7 +121,7 @@ export default class ToggleableLocation extends ValidationElement {
   addressType() {
     let country = this.props.country
     if (typeof country === 'object') {
-      country = countryString(this.props.country)
+      country = country.value
       if (country === '') {
         return 'International'
       }
@@ -131,9 +131,9 @@ export default class ToggleableLocation extends ValidationElement {
       return ''
     } else if (country === 'United States') {
       return country
+    } else if (country) {
+      return 'International'
     }
-
-    return 'International'
   }
 
   render() {
