@@ -10,12 +10,16 @@ export const isInternational = location => {
 }
 
 export const countryString = country => {
-  if (country && isDefined(country.value)) {
-    if (Array.isArray(country.value)) {
-      return country.value[0]
-    }
+  if (country) {
+    if (isDefined(country.value)) {
+      if (Array.isArray(country.value)) {
+        return country.value[0]
+      }
 
-    return country.value
+      return country.value
+    } else if (country.value === null) {
+      return null
+    }
   }
 
   return country

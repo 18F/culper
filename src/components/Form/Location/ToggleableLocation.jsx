@@ -9,8 +9,6 @@ import Country from '../Country'
 import County from '../County'
 import ZipCode from '../ZipCode'
 import Show from '../Show'
-import Radio from '../Radio'
-import RadioGroup from '../RadioGroup'
 import { country, countryValueResolver } from './Location'
 import LocationValidator, { countryString } from '../../../validators/location'
 import Layouts from './Layouts'
@@ -121,7 +119,7 @@ export default class ToggleableLocation extends ValidationElement {
   addressType() {
     let country = this.props.country
     if (typeof country === 'object') {
-      country = country.value
+      country = countryString(country)
       if (country === '') {
         return 'International'
       }
@@ -345,7 +343,7 @@ export default class ToggleableLocation extends ValidationElement {
 const branchValue = value => {
   let country = value
   if (typeof country === 'object') {
-    country = country.value
+    country = countryString(value)
     if (country === '') {
       return 'No'
     } else if (country === null) {
