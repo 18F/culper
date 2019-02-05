@@ -12,10 +12,7 @@ import ApoFpo from '../ApoFpo'
 import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
-import LocationValidator, {
-  countryString,
-  isInternational
-} from '../../../validators/location'
+import LocationValidator, { countryString } from '../../../validators/location'
 import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
