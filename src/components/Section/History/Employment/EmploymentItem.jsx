@@ -455,16 +455,9 @@ export default class EmploymentItem extends ValidationElement {
         </Show>
 
         <Show when={this.showReference()}>
-          <Field
-            title={i18n.t(`${prefix}.heading.reference`)}
-            titleSize="h3"
-            className="no-margin-bottom"
-            scrollIntoView={this.props.scrollIntoView}
-          />
-
           <div className="reference">
             <Field
-              title={i18n.t('reference.heading.name')}
+              title={i18n.t(`${prefix}.heading.reference`)}
               titleSize="h4"
               optional={true}
               filterErrors={Name.requiredErrorsOnly}
@@ -501,7 +494,7 @@ export default class EmploymentItem extends ValidationElement {
             </Field>
 
             <Field
-              title={i18n.t('reference.heading.address')}
+              title={i18n.t('reference.heading.employment.address')}
               titleSize="h4"
               optional={true}
               help={'reference.help.address'}
@@ -512,7 +505,7 @@ export default class EmploymentItem extends ValidationElement {
                 name="ReferenceAddress"
                 className="reference-address"
                 {...this.props.ReferenceAddress}
-                label={i18n.t('reference.label.address')}
+                label={i18n.t('reference.label.employment.address')}
                 layout={Location.ADDRESS}
                 geocode={true}
                 addressBooks={this.props.addressBooks}

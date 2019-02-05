@@ -161,7 +161,7 @@ export default class Selective extends SubsectionElement {
                               href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form"
                               target="_blank"
                               rel="noopener noreferrer">
-                              https://www.sss.gov/Registration/Check-a-Registration/Verification-Form
+                              www.sss.gov
                             </a>
                           </p>
                         </div>

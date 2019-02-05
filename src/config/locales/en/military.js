@@ -203,7 +203,7 @@ export const military = {
       court:
         'Title of court or convening authority, address, to include city and state or country if overseas',
       outcome:
-        'Such as found guilty, found not guilty, reduction in rank, imprisonment, etc.'
+        'Such as found guilty, found not guilty, fine, reduction in rank, imprisonment, etc.'
     },
     help: {
       branch: {
@@ -239,7 +239,7 @@ export const military = {
       outcome: {
         title: 'Need help with the outcome?',
         message:
-          'Such as found guilty, found not guilty, reduction in rank, imprisonment, etc.',
+          'Such as found guilty, found not guilty, fine, reduction in rank, imprisonment, etc.',
         note: ''
       }
     },

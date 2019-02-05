@@ -57,6 +57,8 @@ export const history = {
       ' - **If you split your time between one or more residences during a time period**, you must list all residences.',
     info3c:
       ' - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history.',
+    info3d:
+      ' - **You are not required to list temporary locations of less than 90 days** that did not serve as your permanent or mailing address.',
     summary: {
       title: 'Where you have lived',
       unit: 'Years covered',
@@ -1634,15 +1636,15 @@ export const history = {
       address: 'Provide the street address of the school',
       comments:
         'If you need to provide additional comments about this information enter them below',
-      type: 'Select the most appropriate code to describe your school',
-      reference: 'Add a person that knows you',
+      type: 'Select the most appropriate option to describe your school',
+      reference: 'List a person who can verify that you attened this school',
       diploma: 'Provide type of degree(s)/diploma(s) received',
       date: 'Date awarded'
     },
     para: {
       exiting: '',
       reference:
-        'For any school in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for education completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+        'For schools you attended in the last 3 years, list a person who knew you at the school (instructor, student, etc.). Do not list people for education periods completed more than 3 years ago. For correspondence/distance/extension/online schools, list someone who knew you while you received this education.'
     },
     label: {
       attendance: 'Have you attended any schools in the last 10 years?',
@@ -1651,6 +1653,7 @@ export const history = {
         'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       name: 'School name',
       address: 'This address is',
+      addressLink: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
       comments: 'Add optional comment',
       type: {
         highschool: 'High school',
@@ -1698,8 +1701,8 @@ export const history = {
           'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       type: {
-        title: 'Need help with the school code?',
-        message: 'Select the most appropriate code to describe your school',
+        title: 'Need help with the school options?',
+        message: 'Select the most appropriate option to describe your school',
         note: ''
       },
       comments: {

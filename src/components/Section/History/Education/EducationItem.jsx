@@ -245,6 +245,9 @@ export default class EducationItem extends ValidationElement {
             adjustFor="address"
             shrink={true}
             scrollIntoView={this.props.scrollIntoView}>
+            <label className="into-label">
+              {i18n.m('history.education.label.addressLink')}
+            </label>
             <Location
               name="Address"
               {...this.props.Address}
