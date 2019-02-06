@@ -22,7 +22,7 @@ exports[`Renders homepage 1`] = `
         >
           <div>
             <h2>
-              Persons completing this form should begin after carefully reading the following instructions
+              Persons completing this form should begin after carefully reading the preceding instructions
             </h2>
             <div
               className="introduction-legal"
