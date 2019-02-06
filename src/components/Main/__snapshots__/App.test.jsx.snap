@@ -21,9 +21,6 @@ exports[`Renders homepage 1`] = `
           onClick={[Function]}
         >
           <div>
-            <h2>
-              Persons completing this form should begin after carefully reading the following instructions
-            </h2>
             <div
               className="introduction-legal"
             >
@@ -550,7 +547,7 @@ exports[`Renders homepage 1`] = `
               </div>
             </div>
             <div
-              aria-label=""
+              aria-label="Persons completing this form should begin after carefully reading the preceding instructions"
               className="field   branch introduction-acceptance no-margin-bottom"
               data-uuid="field-MOCK-GUID"
             >
@@ -560,6 +557,11 @@ exports[`Renders homepage 1`] = `
                 id="field-MOCK-GUID"
                 name="field-MOCK-GUID"
               />
+              <h4
+                className="title h4"
+              >
+                Persons completing this form should begin after carefully reading the preceding instructions
+              </h4>
               <span
                 className="icon"
               />
