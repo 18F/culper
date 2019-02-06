@@ -49,6 +49,10 @@
 }
 
 @media only print {
+  .screen-only {
+    display: none
+  }
+
   .print-only {
     display: unset;
     visibility: visible;
