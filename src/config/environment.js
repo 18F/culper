@@ -57,6 +57,10 @@ class Env {
     return process.env.NODE_ENV === 'development'
   }
 
+  IsStaging() {
+    return process.env.NODE_ENV === 'staging'
+  }
+
   BasicAuthenticationEnabled() {
     return parseBool(process.env.BASIC_ENABLED)
   }
