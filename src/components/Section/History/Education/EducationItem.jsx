@@ -144,7 +144,8 @@ export default class EducationItem extends ValidationElement {
 
   updateReferenceEmailNotApplicable(values) {
     this.update({
-      ReferenceEmailNotApplicable: values
+      ReferenceEmailNotApplicable: values,
+      ReferenceEmail: values.applicable ? this.props.ReferenceEmail : {}
     })
   }
 
