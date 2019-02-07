@@ -312,6 +312,14 @@ describe('The Telephone component', () => {
     expect(component.find('.phonetype').length).toBe(0)
   })
 
+  it('can hide time of day', () => {
+    const props = {
+      showTimeOfDay: false
+    }
+    const component = mount(<Telephone {...props} />)
+    expect(component.find('.time.day input').length).toBe(0)
+  })
+
   it('can disable not applicable on on telephone', () => {
     const props = {
       allowNotApplicable: false
