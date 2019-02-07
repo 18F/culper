@@ -9089,6 +9089,9 @@ exports[`The section component renders history.employment 1`] = `
                             <p>
                               List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.
                             </p>
+                            <p>
+                              Provide separate entries for employment activities with the same employer but having different physical addresses.
+                            </p>
                           </div>
                           <div>
                             <p>
