@@ -414,36 +414,36 @@ export default class ResidenceItem extends ValidationElement {
                     className="reference-relationship-neighbor"
                     label={i18n.t('reference.label.relationship.neighbor')}
                     value="Neighbor"
-                    onUpdate={this.updateReferenceRelationship}>
-                  </Checkbox>
+                    onUpdate={this.updateReferenceRelationship}
+                  />
                   <Checkbox
                     name="relationship-friend"
                     className="reference-relationship-friend"
                     label={i18n.t('reference.label.relationship.friend')}
                     value="Friend"
-                    onUpdate={this.updateReferenceRelationship}>
-                  </Checkbox>
+                    onUpdate={this.updateReferenceRelationship}
+                  />
                   <Checkbox
                     name="relationship-landlord"
                     className="reference-relationship-landlord"
                     label={i18n.t('reference.label.relationship.landlord')}
                     value="Landlord"
-                    onUpdate={this.updateReferenceRelationship}>
-                  </Checkbox>
+                    onUpdate={this.updateReferenceRelationship}
+                  />
                   <Checkbox
                     name="relationship-business"
                     className="reference-relationship-business"
                     label={i18n.t('reference.label.relationship.business')}
                     value="Business"
-                    onUpdate={this.updateReferenceRelationship}>
-                  </Checkbox>
+                    onUpdate={this.updateReferenceRelationship}
+                  />
                   <Checkbox
                     name="relationship-other"
                     className="reference-relationship-other"
                     label={i18n.t('reference.label.relationship.other')}
                     value="Other"
-                    onUpdate={this.updateReferenceRelationship}>
-                  </Checkbox>
+                    onUpdate={this.updateReferenceRelationship}
+                  />
                 </CheckboxGroup>
                 <Show
                   when={(
@@ -487,6 +487,7 @@ export default class ResidenceItem extends ValidationElement {
                   onUpdate={this.updateReferencePhoneEvening}
                   onError={this.props.onError}
                   required={this.props.required}
+                  showTimeOfDay={false}
                 />
               </Field>
 
@@ -504,6 +505,7 @@ export default class ResidenceItem extends ValidationElement {
                   onUpdate={this.updateReferencePhoneDay}
                   onError={this.props.onError}
                   required={this.props.required}
+                  showTimeOfDay={false}
                 />
               </Field>
 
@@ -521,6 +523,7 @@ export default class ResidenceItem extends ValidationElement {
                   onUpdate={this.updateReferencePhoneMobile}
                   onError={this.props.onError}
                   required={this.props.required}
+                  showTimeOfDay={false}
                 />
               </Field>
 
