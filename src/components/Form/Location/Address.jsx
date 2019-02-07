@@ -12,10 +12,7 @@ import ApoFpo from '../ApoFpo'
 import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
-import LocationValidator, {
-  countryString,
-  isInternational
-} from '../../../validators/location'
+import LocationValidator, { countryString } from '../../../validators/location'
 import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
@@ -163,13 +160,23 @@ export default class Address extends ValidationElement {
   }
 
   addressType() {
-    const country = countryString(this.props.country)
+    let country = this.props.country
+    if (typeof country === 'object') {
+      country = countryString(this.props.country)
+      if (country === '') {
+        return 'International'
+      } else if (country === null) {
+        return 'United States'
+      }
+    }
 
     if (['United States', 'POSTOFFICE'].includes(country)) {
       return country
+    } else if (country === '') {
+      return 'United States'
     }
 
-    return "International"
+    return 'International'
   }
 
   openAddressBook() {
@@ -317,7 +324,7 @@ export default class Address extends ValidationElement {
         </Show>
 
         <div className="fields">
-          <Show when={locationValidator.isDomestic()}>
+          <Show when={this.addressType() === 'United States'}>
             <div>
               <div className="usa-form-control">
                 <Street
@@ -394,7 +401,7 @@ export default class Address extends ValidationElement {
               </div>
             </div>
           </Show>
-          <Show when={isInternational(this.props)}>
+          <Show when={this.addressType() === 'International'}>
             <div className="usa-form-control">
               <Street
                 name="street"
@@ -454,7 +461,7 @@ export default class Address extends ValidationElement {
               />
             </div>
           </Show>
-          <Show when={locationValidator.isPostOffice()}>
+          <Show when={this.addressType() === 'POSTOFFICE'}>
             <div>
               <div className="usa-form-control">
                 <Street

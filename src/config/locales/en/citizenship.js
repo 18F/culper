@@ -58,12 +58,12 @@ export const citizenship = {
       entrylocation: 'Provide your place of entry in the U.S.',
       priorcitizenship: {
         naturalized: 'Provide country(ies) of prior citizenship',
-        notcitizen: 'Provide your countr(ies) of citizenship'
+        notcitizen: 'Provide your country(ies) of citizenship'
       },
       hasalienregistration: 'Do/did you have a U.S. alien registration number?',
       alienregistrationnumber: {
         naturalized:
-          'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
+          'Provide your U.S. alien registration number on Certificate of Naturalization-utilize USCIS, CIS, or INS registration, I-551, I-766',
         derived:
           'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS registration number)',
         notcitizen: 'Provide your alien registration number (I-551, I-766)'

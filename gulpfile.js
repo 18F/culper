@@ -10,65 +10,58 @@ var paths = {
     },
     local: './src/**/*.s+(a|c)ss'
   },
-  html: [
-    './src/**/*.html',
-    './lib/**/*.js',
-    './Staticfile'
-  ],
+  js: ['./lib/**/*.js'],
+  misc: ['./Staticfile'],
   fonts: [
     './node_modules/font-awesome/fonts/**/*',
     './node_modules/uswds/dist/fonts/**/*'
   ],
-  images: [
-    './node_modules/uswds/dist/img/**/*',
-    './src/img/*'
-  ],
-  css: 'eqip.css',
-  printCss: 'eqip.print.css',
+  images: ['./node_modules/uswds/dist/img/**/*', './src/img/*'],
   destination: {
     root: './dist',
-    css: './dist/css',
     fonts: './dist/fonts',
     images: './dist/img'
   }
 }
 
 gulp.task('clean', clean)
-gulp.task('copy', copy)
+gulp.task('js', js)
+gulp.task('misc', misc)
 gulp.task('fonts', fonts)
 gulp.task('images', images)
 gulp.task('lint', sasslint(paths.sass.local, paths.sass.rules))
-gulp.task('build',
-  gulp.series('clean',
-    gulp.parallel('copy', 'fonts', 'images')))
+gulp.task(
+  'build',
+  gulp.series('clean', gulp.parallel('js', 'misc', 'fonts', 'images'))
+)
 gulp.task('default', gulp.series('build'))
 
-function clean () {
+function clean() {
   'use strict'
   return del([
     paths.destination.root + '/*',
     // don't delete JS files created by Webpack
-    '!' + paths.destination.root + '/eqip.js'
+    '!' + paths.destination.root + '/js',
+    '!' + paths.destination.root + '/css'
   ])
 }
 
-function copy () {
+function js() {
   'use strict'
-  return gulp
-    .src(paths.html)
-    .pipe(gulp.dest(paths.destination.root))
+  return gulp.src(paths.js).pipe(gulp.dest(paths.destination.root))
 }
 
-function fonts () {
+function misc() {
   'use strict'
-  return gulp
-    .src(paths.fonts)
-    .pipe(gulp.dest(paths.destination.fonts))
+  return gulp.src(paths.misc).pipe(gulp.dest(paths.destination.root))
 }
 
-function images () {
+function fonts() {
   'use strict'
-  return gulp
-    .src(paths.images)
-    .pipe(gulp.dest(paths.destination.images))
+  return gulp.src(paths.fonts).pipe(gulp.dest(paths.destination.fonts))
+}
+
+function images() {
+  'use strict'
+  return gulp.src(paths.images).pipe(gulp.dest(paths.destination.images))
 }

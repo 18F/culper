@@ -88,7 +88,7 @@ export const introduction = {
     heading:
       'Statement of Understanding',
     title:
-      'Persons completing this form should begin after carefully reading the following instructions',
+      'Persons completing this form should begin after carefully reading the preceding instructions',
     para: [
       'I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.'
     ],

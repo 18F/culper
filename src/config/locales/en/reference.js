@@ -11,7 +11,10 @@ export const reference = {
     },
     email: "Provide this person's email address",
     correspondence: 'Their contact information',
-    address: "Provide this person's street address"
+    address: "Provide this person's street address",
+    employment: {
+      address: 'Provide the address of this verifier'
+    }
   },
   para: {
     correspondence:
@@ -33,7 +36,10 @@ export const reference = {
     },
     email: 'Provide email address for this person',
     idk: "I don't know",
-    address: 'The address of your contact during this time period'
+    address: 'The address of your contact during this time period',
+    employment: {
+      address: 'The address of your verifier'
+    }
   },
   name: {
     label: {

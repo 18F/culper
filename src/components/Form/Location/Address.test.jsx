@@ -174,4 +174,32 @@ describe('The Address component', () => {
     const component = shallow(<Address {...props} />)
     expect(component.find('.reuse-address').length).toEqual(1)
   })
+
+  it('defaults to United States when country is an empty string', () => {
+    const component = shallow(
+      <Address country="" />
+    )
+    expect(component.instance().addressType()).toEqual('United States')
+  })
+
+  it('defaults to International when country object is empty string', () => {
+    const component = shallow(
+      <Address country={{ value: '' }} />
+    )
+    expect(component.instance().addressType()).toEqual('International')
+  })
+
+  it('defaults to United States when country is an object with US', () => {
+    const component = shallow(
+      <Address country={{ value: 'United States'}} />
+    )
+    expect(component.instance().addressType()).toEqual('United States')
+  })
+
+  it('defaults to United States when country is a string  with US', () => {
+    const component = shallow(
+      <Address country="United States" />
+    )
+    expect(component.instance().addressType()).toEqual('United States')
+  })
 })
