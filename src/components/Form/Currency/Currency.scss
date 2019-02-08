@@ -12,7 +12,8 @@
     display: inline-block;
   }
 
-  input[type='text'] {
+  input[type='text'],
+  .print-only {
     padding-left: 3rem;
   }
 }

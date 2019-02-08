@@ -691,7 +691,7 @@ export default class Telephone extends ValidationElement {
         <Show when={this.props.label}>
           <span>{this.props.label}</span>
         </Show>
-        <div className="type">
+        <div className="type screen-only">
           Switch to:
           <Show when={phoneType !== 'Domestic'}>
             <span className="type">
