@@ -101,7 +101,7 @@ export const history = {
       details:
         'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
       reference:
-        'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+        'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives as the verifier for period of residence.'
     },
     label: {
       dates:
@@ -162,7 +162,8 @@ export const history = {
       exiting:
         '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
       employment:
-        'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
+        'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\n Provide separate entries for employment activities with the same employer but having different physical addresses.',
+
       employment2:
         'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
     },
@@ -476,7 +477,7 @@ export const history = {
         employment:
           'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       }
     },
     activemilitary: {
@@ -618,7 +619,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       }
     },
     nationalguard: {
@@ -759,7 +760,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       }
     },
     usphs: {
@@ -900,7 +901,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       }
     },
     otherfederal: {
@@ -917,7 +918,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       },
       employer: {
         label: 'Employer name',
@@ -1028,7 +1029,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       },
       employer: {
         label: 'Employer name',
@@ -1139,7 +1140,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       },
       employer: {
         label: 'Employer name',
@@ -1250,7 +1251,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       },
       employer: {
         label: 'Employer name',
@@ -1457,7 +1458,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       }
     },
     unemployment: {
@@ -1587,7 +1588,7 @@ export const history = {
       },
       para: {
         additionalActivity:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+          'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).'
       }
     }
   },
