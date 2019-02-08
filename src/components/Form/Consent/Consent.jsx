@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
-import { updateApplication } from '../../../actions/ApplicationActions'
-import Modal from '../Modal'
+import { i18n } from 'config'
+import { updateApplication } from '@actions/ApplicationActions'
+import Modal from '@components/Form/Modal'
 
 export class Consent extends React.Component {
   constructor(props) {

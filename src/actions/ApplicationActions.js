@@ -1,7 +1,7 @@
-import { env, navigationWalker } from '../config'
-import { api } from '../services'
-import schema, { unschema } from '../schema'
-import validate from '../validators'
+import { env, navigationWalker } from '@config'
+import { api } from '@services'
+import schema, { unschema } from '@schema'
+import validate from '@validators'
 
 export function getApplicationState(done) {
   return function(dispatch, getState) {
