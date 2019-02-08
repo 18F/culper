@@ -6,11 +6,6 @@ export default class Email extends ValidationElement {
   constructor(props) {
     super(props)
 
-    this.state = {
-      pattern: props.pattern,
-      value: props.value
-    }
-
     this.handleError = this.handleError.bind(this)
   }
 
@@ -18,15 +13,14 @@ export default class Email extends ValidationElement {
    * Handle the change event.
    */
   handleChange(event) {
-    this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          value: this.state.value
-        })
-      }
-    })
+    const { onUpdate, name} = this.props
+    const { value } = event.target
+
+    super.handleChange(event)
+
+    if (onUpdate) {
+      onUpdate({ name, value })
+    }
   }
 
   handleError(value, arr) {
@@ -42,6 +36,8 @@ export default class Email extends ValidationElement {
   }
 
   render() {
+    const { pattern, value } = this.props
+
     return (
       <Generic
         name={this.props.name}
@@ -52,14 +48,14 @@ export default class Email extends ValidationElement {
         type="text"
         disabled={this.props.disabled}
         maxlength={this.props.maxlength}
-        pattern={this.state.pattern}
+        pattern={pattern}
         readonly={this.props.readonly}
         required={this.props.required}
         autocapitalize={this.props.autocapitalize}
         autocorrect={this.props.autocorrect}
         autocomplete={this.props.autocomplete}
         spellcheck={this.props.spellcheck}
-        value={this.state.value}
+        value={value}
         onChange={this.handleChange}
         onFocus={this.props.Focus}
         onBlur={this.props.Blur}

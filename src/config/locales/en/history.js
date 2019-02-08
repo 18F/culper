@@ -1638,7 +1638,7 @@ export const history = {
       comments:
         'If you need to provide additional comments about this information enter them below',
       type: 'Select the most appropriate option to describe your school',
-      reference: 'List a person who can verify that you attened this school',
+      reference: 'List a person who can verify that you attended this school',
       diploma: 'Provide type of degree(s)/diploma(s) received',
       date: 'Date awarded'
     },
