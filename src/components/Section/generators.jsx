@@ -4,12 +4,10 @@ import { Field } from '../Form'
 import { SectionView } from './SectionView'
 
 import identification from './Identification/subsections'
-import financial from './Financial/subsections'
 
 // section name (lower case) -> subsection store name -> subsection component
 const componentsBySectionAndStore = {
-  identification,
-  financial
+  identification
 }
 
 export const getComponentByName = (storeToComponentMap, name) => {
