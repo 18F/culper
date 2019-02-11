@@ -156,9 +156,8 @@ class Legal extends SectionElement {
             backLabel={i18n.t('legal.destination.intro')}
             next="legal/police/offenses"
             nextLabel={i18n.t('legal.destination.offenses')}>
+            <h1 className="section-header">{i18n.t('legal.police.heading.title')}</h1>
             <Field
-              title={i18n.t('legal.police.heading.title')}
-              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('legal.police.para.intro1')}
