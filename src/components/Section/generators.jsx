@@ -3,15 +3,13 @@ import { i18n } from '../../config'
 import { Field } from '../Form'
 import { SectionView } from './SectionView'
 
-import citizenship from './Citizenship/subsections'
-import financial from './Financial/subsections'
 import identification from './Identification/subsections'
+import financial from './Financial/subsections'
 
 // section name (lower case) -> subsection store name -> subsection component
 const componentsBySectionAndStore = {
-  citizenship,
-  financial,
-  identification
+  identification,
+  financial
 }
 
 export const getComponentByName = (storeToComponentMap, name) => {

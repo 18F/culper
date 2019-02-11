@@ -4,20 +4,11 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
-import Citizenship, { CitizenshipSections } from './Citizenship'
-import { testSnapshot } from '../../test-helpers'
+import Citizenship from './Citizenship'
 
 const applicationState = {
   Citizenship: {}
 }
-
-// give a fake GUID so the field IDs don't differ between snapshots
-// https://github.com/facebook/jest/issues/936#issuecomment-404246102
-jest.mock('../../Form/ValidationElement/helpers', () =>
-  Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
-    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
-  })
-)
 
 describe('The citizenship section', () => {
   // Setup
@@ -74,9 +65,5 @@ describe('The citizenship section', () => {
       )
       expect(component.find('div').length).toBeGreaterThan(0)
     })
-  })
-
-  it('renders the CitizenshipSections component', () => {
-    testSnapshot(<CitizenshipSections />)
   })
 })

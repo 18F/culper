@@ -18,58 +18,60 @@ exports[`The section component renders citizenship.intro 1`] = `
                 className="view view-intro"
               >
                 <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Section 4: Citizenship
-                  </h1>
-                  <div
-                    aria-label=""
-                    className="field   no-margin-bottom"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <span
-                      className="icon"
-                    />
+                  <div>
                     <div
-                      className="table expand"
+                      aria-label="Section 4: Citizenship"
+                      className="field   no-margin-bottom"
+                      data-uuid="field-MOCK-GUID"
                     >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
+                      <a
+                        aria-hidden="true"
+                        className="anchor"
+                        id="field-MOCK-GUID"
+                        name="field-MOCK-GUID"
                       />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
+                      <h2
+                        className="title h2"
+                      >
+                        Section 4: Citizenship
+                      </h2>
                       <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
+                        className="icon"
                       />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
+                      <div
+                        className="table expand"
                       >
                         <span
-                          className="component"
+                          aria-live="polite"
+                          className="messages help-messages"
+                        />
+                      </div>
+                      <div
+                        className="table expand"
+                      >
+                        <span
+                          aria-live="polite"
+                          className="messages error-messages"
+                          role="alert"
+                        />
+                      </div>
+                      <div
+                        className="table"
+                      >
+                        <span
+                          className="content"
                         >
-                          <div>
-                            <p>
-                              You will be asked questions about your citizenship status and history and be asked to provide details if necessary.
-                            </p>
-                          </div>
+                          <span
+                            className="component"
+                          >
+                            <div>
+                              <p>
+                                You will be asked questions about your citizenship status and history and be asked to provide details if necessary.
+                              </p>
+                            </div>
+                          </span>
                         </span>
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </div>
