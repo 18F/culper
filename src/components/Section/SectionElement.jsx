@@ -4,13 +4,6 @@ import {
   updateApplication,
   reportErrors
 } from '../../actions/ApplicationActions'
-import { i18n } from '../../config'
-import {
-  createIntroSubsection,
-  createReviewGroups,
-  createSectionViews
-} from './generators'
-import { SectionView, SectionViews } from './SectionView'
 
 export default class SectionElement extends React.Component {
   constructor(props) {
@@ -30,73 +23,6 @@ export default class SectionElement extends React.Component {
     // const id = `${this.props.section}/${this.props.subsection}`.replace(/\//g, '.')
     // this.props.dispatch(updateApplication(this.props.store, field, schema(id, values, false)))
     this.props.dispatch(updateApplication(this.props.store, field, values))
-  }
-
-  // meant to be overridden
-  getSubsectionProps(subsection) {
-    return {
-      ...this.props[subsection.store],
-      dispatch: this.props.dispatch,
-      onUpdate: this.handleUpdate.bind(this, subsection.store),
-      onError: this.handleError
-    }
-  }
-
-  createReviewGroups(navigation) {
-    return createReviewGroups(navigation, subsection => {
-      return this.getSubsectionProps(subsection)
-    })
-  }
-
-  createReviewSubsection(navigation, nextSection) {
-    const section = navigation.url
-    const subsections = navigation.subsections
-    // should be the last in the array, but just in case
-    const reviewIndex = subsections.findIndex(ss => ss.url === 'review')
-    const prevSubsection = subsections[reviewIndex - 1].url
-    const reviewComponents = this.createReviewGroups(navigation)
-
-    return (
-      <SectionView
-        name="review"
-        title={i18n.t('review.title')}
-        para={i18n.m('review.para')}
-        showTop={true}
-        back={`${section}/${prevSubsection}`}
-        backLabel={i18n.t(`${section}.destination.${prevSubsection}`)}
-        next={`${nextSection}/intro`}
-        nextLabel={i18n.t(`${nextSection}.destination.intro`)}>
-        {reviewComponents}
-      </SectionView>
-    )
-  }
-
-  createSectionViews(navigation) {
-    return createSectionViews(navigation, subsection => {
-      return this.getSubsectionProps(subsection)
-    })
-  }
-
-  createSection(navigation, nextSection, prevSection = undefined) {
-    const introSubsection = createIntroSubsection(navigation, prevSection)
-    const sectionViews = this.createSectionViews(navigation)
-    const reviewSubsection = this.createReviewSubsection(
-      navigation,
-      nextSection
-    )
-
-    return (
-      <div>
-        <SectionViews
-          current={this.props.subsection}
-          dispatch={this.props.dispatch}
-          update={this.props.update}>
-          {introSubsection}
-          {sectionViews}
-          {reviewSubsection}
-        </SectionViews>
-      </div>
-    )
   }
 }
 
