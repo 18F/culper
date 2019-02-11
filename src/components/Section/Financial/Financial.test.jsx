@@ -1,15 +1,22 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import Financial from './Financial'
+import Financial, { FinancialSections } from './Financial'
 import { mount } from 'enzyme'
 import { testSnapshot } from '../../test-helpers'
 
 const applicationState = {
   Financial: {}
 }
+
+// give a fake GUID so the field IDs don't differ between snapshots
+// https://github.com/facebook/jest/issues/936#issuecomment-404246102
+jest.mock('../../Form/ValidationElement/helpers', () =>
+  Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
+    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
+  })
+)
 
 describe('The financial section', () => {
   // Setup
@@ -74,5 +81,9 @@ describe('The financial section', () => {
       )
       expect(component.find('div').length).toBeGreaterThan(0)
     })
+  })
+
+  it('renders the FinancialSections component', () => {
+    testSnapshot(<FinancialSections />)
   })
 })

@@ -24,9 +24,8 @@ class Citizenship extends SectionElement {
             next="citizenship/status"
             nextLabel={i18n.t('citizenship.destination.status')}>
             <div>
+              <h1 className="section-header">{i18n.t('citizenship.intro.title')}</h1>
               <Field
-                title={i18n.t('citizenship.intro.title')}
-                titleSize="h2"
                 optional={true}
                 className="no-margin-bottom">
                 {i18n.m('citizenship.intro.body')}

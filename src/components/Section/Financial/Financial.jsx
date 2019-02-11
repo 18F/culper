@@ -27,9 +27,8 @@ class Financial extends SectionElement {
             backLabel={i18n.t('foreign.destination.review')}
             next="financial/bankruptcy"
             nextLabel={i18n.t('financial.destination.bankruptcy')}>
+            <h1 className="section-header">{i18n.t('financial.intro.title')}</h1>
             <Field
-              title={i18n.t('financial.intro.title')}
-              titleSize="h2"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('financial.intro.body')}

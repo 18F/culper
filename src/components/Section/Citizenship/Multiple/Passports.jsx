@@ -33,7 +33,7 @@ export default class Passports extends SubsectionElement {
       <div
         className="section-content passports"
         {...super.dataAttributes(this.props)}>
-
+        <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
         <BranchCollection
           label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
           appendLabel={i18n.t(
