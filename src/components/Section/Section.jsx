@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router'
+import { Route, withRouter } from 'react-router'
 import Identification from './Identification'
 import Financial from './Financial'
 import Relationships from './Relationships'
@@ -70,8 +70,21 @@ class Section extends React.Component {
   }
 
   render() {
-    const sections = this.createSections()
-    return <SectionViews current={this.props.section}>{sections}</SectionViews>
+    return (
+      <div>
+        <Route path="/form/identification" component={Identification} />
+        <Route path="/form/history" component={History} />
+        <Route path="/form/relationships" component={Relationships} />
+        <Route path="/form/citizenship" component={Citizenship} />
+        <Route path="/form/military" component={Military} />
+        <Route path="/form/foreign" component={Foreign} />
+        <Route path="/form/financial" component={Financial} />
+        <Route path="/form/substance" component={Substance} />
+        <Route path="/form/legal" component={Legal} />
+        <Route path="/form/psychological" component={Psychological} />
+        <Route path="/form/package" component={Package} />
+      </div>
+    )
   }
 }
 
