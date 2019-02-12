@@ -85,13 +85,9 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps) {
     // for keyboard navigation accessbility, focus on the main content area after a new section is navigated to
-    const {
-      location,
-      form,
-      handleUpdateCompletedSectionTotal
-    } = this.props
+    const { location, handleUpdateCompletedSectionTotal } = this.props
 
-    if (this.props.location.pathname !== prevProps.location.pathname) {
+    if (location.pathname !== prevProps.location.pathname) {
       this.sectionFocusEl.focus()
     }
 
