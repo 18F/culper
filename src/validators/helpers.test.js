@@ -309,6 +309,17 @@ describe('Helpers for validators', function() {
       {
         phone: null,
         expected: false
+      },
+      {
+        phone: {
+          noNumber: '',
+          number: '7031112222',
+          numberType: 'Home',
+          timeOfDay: '',
+          type: 'Domestic',
+          extension: ''
+        },
+        expected: false
       }
     ]
 

@@ -22,4 +22,6 @@ Also, here are some additional findings:
 {{- if ne .props.extension ""}}
 <Extension>{{.props.extension}}</Extension>
 {{- end}}
+{{- if ne .props.timeOfDay "NA"}}
 <Time>{{.props.timeOfDay}}</Time>
+{{- end}}
