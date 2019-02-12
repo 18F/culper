@@ -87,7 +87,7 @@ class App extends React.Component {
     // for keyboard navigation accessbility, focus on the main content area after a new section is navigated to
     const {
       location,
-      navigation,
+      form,
       handleUpdateCompletedSectionTotal
     } = this.props
 
@@ -95,7 +95,7 @@ class App extends React.Component {
       this.sectionFocusEl.focus()
     }
 
-    if (this.getCompletedSectionsTotal() !== prevProps.navigation.completedSectionsTotal) {
+    if (this.getCompletedSectionsTotal() !== prevProps.form.completedSectionsTotal) {
       handleUpdateCompletedSectionTotal(this.getCompletedSectionsTotal())
     }
   }
@@ -131,9 +131,9 @@ class App extends React.Component {
 
   getForm(formType) {
     switch(formType) {
-      case 'sf86':
+      case '86':
         return sf86
-      case 'sf85':
+      case '85':
         return sf85
       default:
       return sf86
@@ -148,13 +148,13 @@ class App extends React.Component {
   }
 
   getCompletedSectionsTotal() {
-    const { app, navigation } = this.props
+    const { app, form } = this.props
     let completedSectionsTotal = 0
     for (const key of Object.keys(app.Completed)) {
       const validSectionTotal = app.Completed[key].filter(e => (
         e.section.toLowerCase() === key.toLowerCase() && e.valid === true
       )).length
-      if (validSectionTotal >= validations(navigation.sections.find(n => n.url === key), { application: app })) {
+      if (validSectionTotal >= validations(form.sections.find(n => n.url === key), { application: app })) {
         completedSectionsTotal++
       }
     }
@@ -310,10 +310,7 @@ class App extends React.Component {
               ref={this.setSectionFocusEl}
             />
             <div id="main-content" className={klassCore}>
-              <Form
-                formType={formType}
-                navigation={form.sections}
-              />
+              <Form form={this.getForm(formType)} />
               &nbsp;
             </div>
           </div>
