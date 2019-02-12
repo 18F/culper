@@ -17,6 +17,7 @@ class Citizenship extends SectionElement {
           current={this.props.subsection}
           dispatch={this.props.dispatch}
           update={this.props.update}>
+
           <SectionView
             name="intro"
             back="relationships/review"
@@ -53,6 +54,7 @@ class Citizenship extends SectionElement {
               required={true}
               scrollIntoView={false}
             />
+
             <hr className="section-divider" />
             <Multiple
               name="multiple"
@@ -65,6 +67,7 @@ class Citizenship extends SectionElement {
               required={true}
               scrollIntoView={false}
             />
+
             <hr className="section-divider" />
             <Passports
               name="passports"
@@ -109,6 +112,7 @@ class Citizenship extends SectionElement {
               scrollToBottom={this.props.scrollToBottom}
             />
           </SectionView>
+
           <SectionView
             name="passports"
             back="citizenship/multiple"
