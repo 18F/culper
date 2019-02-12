@@ -8,8 +8,8 @@ export const substance = {
     para: 'Take a guided tour through the section'
   },
   review: {
-    title: "Let's make sure everything looks right",
-    para: 'View all the sections associated with substance abuse'
+    title: "Review your answers",
+    para: 'View the full section to make sure everything looks right and make changes if needed.'
   },
   destination: {
     intro: 'Substance use intro',
