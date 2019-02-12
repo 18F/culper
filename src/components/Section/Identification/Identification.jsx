@@ -8,6 +8,9 @@ import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import Field from './../../Form/Field'
 
+import { ErrorList } from '../../ErrorList'
+import SectionNavButton from '../shared/SectionNavButton'
+
 import Intro from './Intro'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
@@ -25,17 +28,63 @@ import Review from './Review'
 
 class Identification extends SectionElement {
   render() {
+    const { subsection } = this.props
+
+    const subsectionClasses = `view view-${subsection || 'unknown'}`
+
+    const title = subsection === 'review' && i18n.t('review.title')
+    const para = subsection === 'review' && i18n.m('review.para')
+    const showTop = subsection === 'review'
+
+    let back = 'FPO Back'
+    let next = 'FPO Next'
+
+    const prevButton = back ? (
+      <SectionNavButton
+        direction="back"
+        label={back} />
+    ) : <SectionNavButton direction="back" isEmpty={true} />
+
+    const nextButton = back ? (
+      <SectionNavButton
+        direction="next"
+        label={next} />
+    ) : <SectionNavButton direction="next" isEmpty={true} />
+
+    const navButtons = (prevButton || nextButton) && (
+      <div className="bottom-btns">
+        <div className="btn-wrap">
+          <div className="btn-container">
+            {prevButton}
+            <div className="btn-spacer" />
+            {nextButton}
+          </div>
+        </div>
+      </div>
+    )
+
     return (
-      <div>
-        <Route path="/form/identification/intro" component={Intro} />
-        <Route path="/form/identification/name" component={ApplicantName} />
-        <Route path="/form/identification/birthdate" component={ApplicantBirthDate} />
-        <Route path="/form/identification/birthplace" component={ApplicantBirthPlace} />
-        <Route path="/form/identification/ssn" component={ApplicantSSN} />
-        <Route path="/form/identification/othernames" component={OtherNames} />
-        <Route path="/form/identification/contacts" component={ContactInformation} />
-        <Route path="/form/identification/physical" component={Physical} />
-        <Route path="/form/identification/review" component={Review} />
+      <div className="section-view">
+        {title && <h1 className="title">{title}</h1>}
+        {para}
+
+        <div className={subsectionClasses}>
+          {showTop && navButtons && (
+            <div className="top-btns"><ErrorList /></div>
+          )}
+
+          <Route path="/form/identification/intro" component={Intro} />
+          <Route path="/form/identification/name" component={ApplicantName} />
+          <Route path="/form/identification/birthdate" component={ApplicantBirthDate} />
+          <Route path="/form/identification/birthplace" component={ApplicantBirthPlace} />
+          <Route path="/form/identification/ssn" component={ApplicantSSN} />
+          <Route path="/form/identification/othernames" component={OtherNames} />
+          <Route path="/form/identification/contacts" component={ContactInformation} />
+          <Route path="/form/identification/physical" component={Physical} />
+          <Route path="/form/identification/review" component={Review} />
+
+          {navButtons}
+        </div>
       </div>
     )
 
@@ -274,11 +323,14 @@ class Identification extends SectionElement {
 }
 
 function mapStateToProps(state) {
+  const { section } = state
+
   const app = state.application || {}
   const identification = app.Identification || {}
   const errors = app.Errors || {}
   const completed = app.Completed || {}
   return {
+    ...section,
     Identification: identification,
     ApplicantName: identification.ApplicantName || {},
     ApplicantBirthDate: identification.ApplicantBirthDate || {},
