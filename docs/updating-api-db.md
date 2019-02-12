@@ -30,7 +30,9 @@ Next, update the API code to include the new data. In most cases this will invol
 
 ## Update XML template and test data
 
-After finding the corresponding XML file in `/api/templates`, make sure that the data is properly represented within the XML. It is also important to make sure that the new input is added to the corresponding `.json` file found within `/api/testdata` which is used to test the generated XML. Lastly, it's also ideal to add the new input to at least one of the complete scenarios in `/api/testdata/complete-scenarios`. This will allow the data to be pre-loaded and tested using the [load-scenario](https://github.com/18F/e-QIP-prototype/blob/develop/docs/test-scenarios.md#loading-existing-test-json-files) script.
+After finding the corresponding XML file in `/api/templates`, make sure that the data is properly represented within the XML. It is also important to make sure that the new input is added to the corresponding `.json` file found within `/api/testdata` which is used to test the generated XML.
+
+Lastly, if the new data is not already found in at least one of the complete scenarios (in `/api/testdata/complete-scenarios`), then update test case 6 to include the data. This will allow the data to be pre-loaded and tested using the [load-scenario](https://github.com/18F/e-QIP-prototype/blob/develop/docs/test-scenarios.md#loading-existing-test-json-files) script.
 
 ## Test the change
 
