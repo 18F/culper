@@ -21,14 +21,21 @@ import Physical from './Physical'
 import ContactInformation from './ContactInformation'
 import Review from './Review'
 
-/** TODO
- * - SectionViews navigation
- * - errors updating?
- */
+const navigationConfig = [
+  { name: 'intro', path: '/form/identification/intro' },
+  { name: 'name', path: '/form/identification/name' },
+  { name: 'birthdate', path: '/form/identification/birthdate' },
+  { name: 'birthplace', path: '/form/identification/birthplace' },
+  { name: 'ssn', path: '/form/identification/ssn' },
+  { name: 'othernames', path: '/form/identification/othernames' },
+  { name: 'contacts', path: '/form/identification/contacts' },
+  { name: 'physical', path: '/form/identification/physical' },
+  { name: 'review', path: '/form/identification/review' }
+]
 
 class Identification extends SectionElement {
   render() {
-    const { subsection } = this.props
+    const { subsection, history } = this.props
 
     const subsectionClasses = `view view-${subsection || 'unknown'}`
 
@@ -36,19 +43,26 @@ class Identification extends SectionElement {
     const para = subsection === 'review' && i18n.m('review.para')
     const showTop = subsection === 'review'
 
-    let back = 'FPO Back'
-    let next = 'FPO Next'
+    const subsectionIndex = navigationConfig.findIndex(s => s.name === subsection)
+    const back = subsectionIndex > 0 && navigationConfig[subsectionIndex - 1]
+    const next = subsectionIndex < navigationConfig.length - 1 && navigationConfig[subsectionIndex + 1]
+
+    const goToSection = (path) => {
+      history.push(path)
+    }
 
     const prevButton = back ? (
       <SectionNavButton
         direction="back"
-        label={back} />
+        label={i18n.t(`identification.destination.${back.name}`)}
+        onClick={() => { goToSection(back.path) }} />
     ) : <SectionNavButton direction="back" isEmpty={true} />
 
-    const nextButton = back ? (
+    const nextButton = next ? (
       <SectionNavButton
         direction="next"
-        label={next} />
+        label={i18n.t(`identification.destination.${next.name}`)}
+        onClick={() => { goToSection(next.path) }} />
     ) : <SectionNavButton direction="next" isEmpty={true} />
 
     const navButtons = (prevButton || nextButton) && (
@@ -346,7 +360,8 @@ function mapStateToProps(state) {
 
 Identification.defaultProps = {
   section: 'identification',
-  store: 'Identification'
+  store: 'Identification',
+  subsection: 'intro',
 }
 
 export class IdentificationSections extends React.Component {
