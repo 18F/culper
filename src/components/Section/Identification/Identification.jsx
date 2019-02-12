@@ -1,10 +1,14 @@
 import React from 'react'
+import { Route } from 'react-router'
 import { connect } from 'react-redux'
+
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import Field from './../../Form/Field'
+
+import Intro from './Intro'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
@@ -12,9 +16,30 @@ import ApplicantBirthDate from './ApplicantBirthDate'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
+import Review from './Review'
+
+/** TODO
+ * - SectionViews navigation
+ * - errors updating?
+ */
 
 class Identification extends SectionElement {
   render() {
+    return (
+      <div>
+        <Route path="/form/identification/intro" component={Intro} />
+        <Route path="/form/identification/name" component={ApplicantName} />
+        <Route path="/form/identification/birthdate" component={ApplicantBirthDate} />
+        <Route path="/form/identification/birthplace" component={ApplicantBirthPlace} />
+        <Route path="/form/identification/ssn" component={ApplicantSSN} />
+        <Route path="/form/identification/othernames" component={OtherNames} />
+        <Route path="/form/identification/contacts" component={ContactInformation} />
+        <Route path="/form/identification/physical" component={Physical} />
+        <Route path="/form/identification/review" component={Review} />
+      </div>
+    )
+
+    /*
     return (
       <SectionViews
         current={this.props.subsection}
@@ -244,6 +269,7 @@ class Identification extends SectionElement {
         </SectionView>
       </SectionViews>
     )
+    */
   }
 }
 
