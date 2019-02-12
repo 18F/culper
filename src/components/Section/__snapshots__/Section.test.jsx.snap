@@ -29115,8 +29115,13 @@ exports[`The section component renders substance.review 1`] = `
               <h1
                 className="title"
               >
-                Let's make sure everything looks right
+                Review your answers
               </h1>
+              <div>
+                <p>
+                  View the full section to make sure everything looks right and make changes if needed.
+                </p>
+              </div>
               <div
                 className="view view-review"
               >
