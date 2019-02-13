@@ -8,6 +8,10 @@ See [documentation](../docs/multi-host.md).
 
 See [documentation](../docs/saml.md).
 
+## Changes requiring API and database updates
+
+See [documentation](../docs/updating-api-db.md).
+
 ## Reset locked app submission
 
 In the terminal run the following:
@@ -67,10 +71,10 @@ make docs
 
 All of the documentation may then be found in the respective directories under `doc/`.
 
-
 ## Docker
 
 The current build process generates a lot of orphaned docker volumes in the host environment over time. Developers must periodically run `docker volume prune` in order to reclaim disk space. For example:
+
 ```
 # docker volume prune
 WARNING! This will remove all volumes not used by at least one container.
@@ -94,21 +98,25 @@ Renaming app eqip-prototype-dev to eqip-prototype-dev-venerable in org gsa-acq-e
 error: Server error, status code: 400, error code: 100002, message: The app name is taken: eqip-prototype-dev-venerable
 Exited with code 1
 ```
+
 The resolution requires a cloud.gov user, with admin rights on the eApp space (i.e., `gsa-acq-eqip`) to manually delete the app name with the `venerable` suffix, using the [Cloud Foundry command line interface](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html):
+
 ```
 cf login -a api.fr.cloud.gov -u INSERT-USERNAME-HERE -o gsa-acq-eqip -s production --sso
 cf target -s dev
 cf delete eqip-prototype-dev-venerable
 ```
+
 Make sure that the `venerable` application displayed in the error log is the application that is being deleted; it will be a variant of the frontend (`eqip-prototype`) or the backend (`eqip-prototype-api`). The presence of `dev`, `staging`, or no moniker in the application name will indicate whether your target space should be `dev`, `staging`, or `production` respectively.
 
-The application should re-deploy correctly at this point, either on the next commit to the associated GitHub branch, or through a manual rerun of the failed CircleCI job. 
+The application should re-deploy correctly at this point, either on the next commit to the associated GitHub branch, or through a manual rerun of the failed CircleCI job.
 
 ### Purging the database
 
 To execute the [database purge script](https://github.com/18F/e-QIP-prototype/blob/develop/docs/test-scenarios.md) against the cloud.gov PostgreSQL, the following approach may be used. It requires `cf`, the [`cf-service-connect`](cf-service-connect) plug-in and the PostgreSQL `psql` client. Additional details can be found in the [cloud.gov database documentation](https://cloud.gov/docs/services/relational-database/#manually-access-a-database).
 
 This example purges the `dev` database, which is a service used by the api backend. In one terminal window:
+
 ```
 cf login -a api.fr.cloud.gov -u INSERT-USERNAME-HERE -o gsa-acq-eqip -s production --sso
 cf target -s dev
@@ -116,6 +124,7 @@ cf connect-to-service -no-client eqip-prototype-api-dev eqip-postgres
 ```
 
 `cf connect-to-service` will print out something similar to:
+
 ```
 Host: localhost
 Port: GENERATED-PORT
@@ -125,6 +134,7 @@ Name: GENERATED-DB
 ```
 
 In a second terminal window, you can connect `psql` to the local port, and `cf` will proxy those commands to the remote cloud.gov instance. When prompted for a password, supply `GENERATED-PASS` from the `cf connect-to-service` output:
+
 ```
-psql -h localhost -p GENERATED-PORT -U GENERATED-USER -W GENERATED-DB -f purge-all-user-data.sql 
+psql -h localhost -p GENERATED-PORT -U GENERATED-USER -W GENERATED-DB -f purge-all-user-data.sql
 ```

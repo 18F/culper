@@ -15,6 +15,7 @@
                 "@validators": "./src/validators",
                 "@views": "./src/views"
             }
-        }]
+        }],
+	"transform-class-properties"
     ]
 }

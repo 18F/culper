@@ -18,20 +18,12 @@ export default class ValidForm extends ValidationElement {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateComments = this.updateComments.bind(this)
-    this.updateGeneral = this.updateGeneral.bind(this)
-    this.updateMedical = this.updateMedical.bind(this)
-    this.updateCredit = this.updateCredit.bind(this)
-    this.accordionItems = this.accordionItems.bind(this)
-    this.submit = this.submit.bind(this)
-
     this.state = {
       accordionItems: this.accordionItems()
     }
   }
 
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       AdditionalComments: this.props.AdditionalComments,
       General: this.props.General,
@@ -42,31 +34,31 @@ export default class ValidForm extends ValidationElement {
     })
   }
 
-  updateComments(values) {
+  updateComments = (values) => {
     this.update({
       AdditionalComments: values
     })
   }
 
-  updateGeneral(values) {
+  updateGeneral = (values) => {
     this.update({
       General: values
     })
   }
 
-  updateMedical(values) {
+  updateMedical = (values) => {
     this.update({
       Medical: values
     })
   }
 
-  updateCredit(values) {
+  updateCredit = (values) => {
     this.update({
       Credit: values
     })
   }
 
-  submit() {
+  submit = () => {
     if (window.confirm('Are you sure you want to submit this application?')) {
       this.props.onSubmit()
     }
@@ -91,7 +83,7 @@ export default class ValidForm extends ValidationElement {
     }
   }
 
-  accordionItems() {
+  accordionItems = () => {
     const self = this
     return [
       {
