@@ -60,7 +60,7 @@ export default class Treatment extends ValidationElement {
         </Field>
 
         <Field
-          className="override-required"
+          className="override-required treatment-telephone"
           adjustFor="telephone"
           scrollIntoView={this.props.scrollIntoView}>
           <Telephone

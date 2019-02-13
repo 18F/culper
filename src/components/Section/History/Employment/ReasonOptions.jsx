@@ -125,21 +125,29 @@ export default class ReasonOptions extends React.Component {
               onError={this.props.onError}
             />
           </RadioGroup>
-          <Show when={(this.state.Reason || {}).value}>
-            <div>
-              <div className="explanation-left">
+        </Field>
+        <Show when={(this.state.Reason || {}).value}>
+          <div>
+            <div className="explanation-left">
+              <Field
+                title={text}
+                shrink={true}
+                scrollIntoView={this.props.scrollIntoView}>
                 <Textarea
                   name="Text"
-                  label={text}
                   maxlength="100"
                   {...this.state.Text}
                   onUpdate={this.updateText}
                   onError={this.props.onError}
                   required={this.props.required}
                 />
-              </div>
-              <div className="date-left">
-                <label className="h4">{date}</label>
+              </Field>
+            </div>
+            <div className="date-left">
+              <Field
+                title={date}
+                shrink={true}
+                scrollIntoView={this.props.scrollIntoView}>
                 <DateControl
                   name="Date"
                   {...this.state.Date}
@@ -148,10 +156,10 @@ export default class ReasonOptions extends React.Component {
                   onError={this.props.onError}
                   required={this.props.required}
                 />
-              </div>
+              </Field>
             </div>
-          </Show>
-        </Field>
+          </div>
+        </Show>
       </div>
     )
   }

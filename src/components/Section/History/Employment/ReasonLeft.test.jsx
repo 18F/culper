@@ -229,10 +229,10 @@ describe('The reason left component', () => {
         }
       }
       const component = createComponent(expected)
-      expect(component.find('.explanation-left label').text()).toEqual(
+      expect(component.find('.explanation-left h4').text()).toEqual(
         dreams.explanationText
       )
-      expect(component.find('.date-left > label').text()).toEqual(
+      expect(component.find('.date-left h4').text()).toEqual(
         dreams.dateText
       )
       component
