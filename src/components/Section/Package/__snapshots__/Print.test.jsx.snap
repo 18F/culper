@@ -11107,7 +11107,7 @@ exports[`The print section renders properly 1`] = `
           <h1
             className="section-header"
           >
-            Misuse
+            Prescription drug misuse
           </h1>
           <div
             aria-label="In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?"
