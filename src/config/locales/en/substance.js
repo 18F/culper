@@ -24,7 +24,7 @@ export const substance = {
       purchase: 'Purchase',
       clearance: 'Security clearance position',
       publicsafety: 'Public safety position',
-      misuse: 'Misuse',
+      misuse: 'Prescription drug misuse',
       ordered: 'Mandatory counseling or treatment',
       voluntary: 'Voluntary counseling or treatment'
     },

@@ -10090,7 +10090,7 @@ exports[`The print section renders properly 1`] = `
             Delinquent payments
           </h1>
           <div
-            aria-label="Other than previously listed, have any of the following happened to you?"
+            aria-label="Other than previously listed, has the following happened to you?"
             className="field required  branch delinquent-branch eapp-field-wrap"
             data-uuid="field-MOCK-GUID"
           >
@@ -10103,7 +10103,7 @@ exports[`The print section renders properly 1`] = `
             <h4
               className="title h4"
             >
-              Other than previously listed, have any of the following happened to you?
+              Other than previously listed, has the following happened to you?
             </h4>
             <span
               className="icon"
@@ -10516,7 +10516,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div>
             <p>
-              We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding. As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions pertain to the illegal use of drugs or controlled substances or drug or controlled substance activity in accordance with Federal laws, even though permissible under state laws.
+              We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding. This particular section applies whether or not you are currently employed by the Federal government. The following questions pertain to the illegal use of drugs or controlled substances or drug or controlled substance activity not in accordance with Federal laws, even though permissible under state laws.
             </p>
           </div>
           <div
