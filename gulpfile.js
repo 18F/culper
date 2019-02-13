@@ -17,14 +17,10 @@ var paths = {
     './node_modules/uswds/dist/fonts/**/*'
   ],
   images: ['./node_modules/uswds/dist/img/**/*', './src/img/*'],
-  css: 'eqip.css',
-  printCss: 'eqip.print.css',
   destination: {
     root: './dist',
-    css: './dist/css',
     fonts: './dist/fonts',
-    images: './dist/img',
-    js: './dist/js'
+    images: './dist/img'
   }
 }
 
@@ -45,7 +41,8 @@ function clean() {
   return del([
     paths.destination.root + '/*',
     // don't delete JS files created by Webpack
-    '!' + paths.destination.root + '/js'
+    '!' + paths.destination.root + '/js',
+    '!' + paths.destination.root + '/css'
   ])
 }
 

@@ -59,7 +59,7 @@ lint-js:
 	@docker-compose run --rm js yarn lint-js
 lint-css:
 	$(info Running SCSS linter)
-	@docker-compose run --rm css yarn lint-css
+	@docker-compose run --rm js yarn lint-css
 lint-go:
 	$(info Running Go linter)
 	@docker-compose run --rm api ./bin/lint
@@ -106,13 +106,9 @@ coverage-go:
 # Building
 #
 build: build-frontend build-go build-cmd reset-permissions
-build-css:
-	$(info Compiling CSS)
-	@docker-compose run --rm css yarn build-css
-build-js:
-	$(info Compiling JS)
+build-frontend:
+	$(info Compiling JS and CSS)
 	@docker-compose run --rm js yarn build-js
-build-frontend: build-css build-js
 build-go:
 	$(info Compiling Go application)
 	@docker-compose run --rm api make build
@@ -180,7 +176,7 @@ start:
 stop:
 	docker-compose stop
 run:
-	docker-compose rm -f api css js
+	docker-compose rm -f api js
 	$(info Running local development server)
 	docker-compose up --abort-on-container-exit --build
 identity:

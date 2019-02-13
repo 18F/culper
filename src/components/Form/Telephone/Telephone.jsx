@@ -116,7 +116,7 @@ export default class Telephone extends ValidationElement {
   update(queue) {
     this.props.onUpdate({
       name: this.props.name,
-      timeOfDay: this.props.timeOfDay,
+      timeOfDay: this.props.showTimeOfDay ? this.props.timeOfDay : 'NA',
       type: this.props.type || 'Domestic',
       numberType: this.props.numberType,
       number: this.getFormattedNumber(),
@@ -691,7 +691,7 @@ export default class Telephone extends ValidationElement {
         <Show when={this.props.label}>
           <span>{this.props.label}</span>
         </Show>
-        <div className="type">
+        <div className="type screen-only">
           Switch to:
           <Show when={phoneType !== 'Domestic'}>
             <span className="type">
@@ -734,43 +734,45 @@ export default class Telephone extends ValidationElement {
 
         <Show when={phoneType === 'International'}>{this.international()}</Show>
 
-        <div className="timeofday">
-          <RadioGroup
-            selectedValue={this.props.timeOfDay}
-            name="timeofday"
-            disabled={this.props.noNumber}>
-            <Radio
-              native={true}
-              className="time day"
-              label={i18n.t('telephone.timeOfDay.day')}
-              value="Day"
-              ariaLabel={i18n.t('telephone.aria.day')}
-              disabled={this.props.noNumber}
-              onUpdate={this.updateTimeOfDay}
-              onError={this.handleErrorTime}
-            />
-            <Radio
-              native={true}
-              className="time night"
-              label={i18n.t('telephone.timeOfDay.night')}
-              value="Night"
-              ariaLabel={i18n.t('telephone.aria.night')}
-              disabled={this.props.noNumber}
-              onUpdate={this.updateTimeOfDay}
-              onError={this.handleErrorTime}
-            />
-            <Radio
-              native={true}
-              className="time both"
-              label={i18n.t('telephone.timeOfDay.both')}
-              value="Both"
-              ariaLabel={i18n.t('telephone.aria.both')}
-              disabled={this.props.noNumber}
-              onUpdate={this.updateTimeOfDay}
-              onError={this.handleErrorTime}
-            />
-          </RadioGroup>
-        </div>
+        <Show when={this.props.showTimeOfDay}>
+          <div className="timeofday">
+            <RadioGroup
+              selectedValue={this.props.timeOfDay}
+              name="timeofday"
+              disabled={this.props.noNumber}>
+              <Radio
+                native={true}
+                className="time day"
+                label={i18n.t('telephone.timeOfDay.day')}
+                value="Day"
+                ariaLabel={i18n.t('telephone.aria.day')}
+                disabled={this.props.noNumber}
+                onUpdate={this.updateTimeOfDay}
+                onError={this.handleErrorTime}
+              />
+              <Radio
+                native={true}
+                className="time night"
+                label={i18n.t('telephone.timeOfDay.night')}
+                value="Night"
+                ariaLabel={i18n.t('telephone.aria.night')}
+                disabled={this.props.noNumber}
+                onUpdate={this.updateTimeOfDay}
+                onError={this.handleErrorTime}
+              />
+              <Radio
+                native={true}
+                className="time both"
+                label={i18n.t('telephone.timeOfDay.both')}
+                value="Both"
+                ariaLabel={i18n.t('telephone.aria.both')}
+                disabled={this.props.noNumber}
+                onUpdate={this.updateTimeOfDay}
+                onError={this.handleErrorTime}
+              />
+            </RadioGroup>
+          </div>
+        </Show>
 
         <Show when={this.props.showNumberType}>
           <div
@@ -831,6 +833,7 @@ Telephone.defaultProps = {
   extension: '',
   noNumber: false,
   showNumberType: false,
+  showTimeOfDay: true,
   allowNotApplicable: true,
   tab: input => {
     input.focus()
