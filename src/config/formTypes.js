@@ -1,6 +1,22 @@
-import * as sections from '../constants/sections'
+import formSections from './formSections'
 
 export const SF85 = [
+  {
+    ...formSections.IDENTIFICATION,
+    subsections: [
+      formSections.IDENTIFICATION_INTRO,
+      formSections.IDENTIFICATION_NAME,
+      formSections.IDENTIFICATION_BIRTH_DATE,
+      formSections.IDENTIFICATION_BIRTH_PLACE,
+      formSections.IDENTIFICATION_SSN,
+      formSections.IDENTIFICATION_OTHER_NAMES,
+      formSections.IDENTIFICATION_CONTACTS,
+      formSections.IDENTIFICATION_PHYSICAL,
+      formSections.IDENTIFICATION_REVIEW,
+    ],
+  },
+
+  /*
   sections.IDENTIFICATION_INTRO,
   sections.IDENTIFICATION_NAME,
   sections.IDENTIFICATION_BIRTH_DATE,
@@ -72,9 +88,11 @@ export const SF85 = [
   sections.LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
   sections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
   sections.LEGAL_REVIEW,
+  */
 ]
 
 export const SF85P = [
+  /*
   sections.IDENTIFICATION_INTRO,
   sections.IDENTIFICATION_NAME,
   sections.IDENTIFICATION_BIRTH_DATE,
@@ -166,9 +184,11 @@ export const SF85P = [
   sections.LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
   sections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
   sections.LEGAL_REVIEW,
+  */
 ]
 
 export const SF86 = [
+  /*
   sections.IDENTIFICATION_INTRO,
   sections.IDENTIFICATION_NAME,
   sections.IDENTIFICATION_BIRTH_DATE,
@@ -271,4 +291,5 @@ export const SF86 = [
   sections.PSYCHOLOGICAL_DIAGNOSES,
   sections.PSYCHOLOGICAL_CONDITIONS,
   sections.PSYCHOLOGICAL_REVIEW,
+  */
 ]
