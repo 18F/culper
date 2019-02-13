@@ -28,4 +28,17 @@ rules:
     - error
     - skipUndeclared: true
 settings:
-  import/resolver: webpack
+  import/resolver:
+    babel-module:
+      root: ['./src']
+      alias:
+        '@actions': './src/actions'
+        '@components': './src/components'
+        '@config': './src/config'
+        '@img': './src/img'
+        '@plugins': './src/plugins'
+        '@reducers': './src/reducers'
+        '@schema': './src/schema'
+        '@services': './src/services'
+        '@validators': './src/validators'
+        '@views': './src/views'
