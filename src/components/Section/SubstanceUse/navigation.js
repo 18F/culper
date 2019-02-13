@@ -42,7 +42,7 @@ const navigation = {
           validator: validators.DrugPublicSafetyUsesValidator
         },
         {
-          name: 'Misuse',
+          name: 'Prescription drug misuse',
           url: 'misuse',
           store: 'PrescriptionUses',
           validator: validators.DrugPrescriptionUsesValidator

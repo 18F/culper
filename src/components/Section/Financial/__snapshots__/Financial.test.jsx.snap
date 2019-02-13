@@ -767,7 +767,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
       Delinquent payments
     </h1>
     <div
-      aria-label="Other than previously listed, have any of the following happened to you?"
+      aria-label="Other than previously listed, has the following happened to you?"
       className="field required  branch delinquent-branch eapp-field-wrap"
       data-uuid="field-MOCK-GUID"
     >
@@ -780,7 +780,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
       <h4
         className="title h4"
       >
-        Other than previously listed, have any of the following happened to you?
+        Other than previously listed, has the following happened to you?
       </h4>
       <span
         className="icon"

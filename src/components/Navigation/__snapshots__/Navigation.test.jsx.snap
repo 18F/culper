@@ -1448,7 +1448,7 @@ exports[`Navigation component renders correctly 1`] = `
                     <span
                       className="section-name"
                     >
-                      Misuse
+                      Prescription drug misuse
                     </span>
                     <span
                       className="eapp-status-icon"
