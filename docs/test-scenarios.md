@@ -116,6 +116,8 @@ submit: import into e-QIP successful: agencyKey=XXXXX, requestKey=XXXXX
 
 (`requestKey` is the unique identifier that e-QIP assigns to the incoming investigation request.)
 
+Finally, it should be noted that the `submit` tool does not currently generate nor submit any of the digital signature forms (e.g., medical release, general release, certification, credit release). These attachments to the incoming request are required if eApp was actually directly submitting requests to e-QIP in a true production workflow, but as the current use is limited to using the test e-QIP instance as an XML validation tool, that feature is no longer present.
+
 
 ## Generating new test JSON files
 
