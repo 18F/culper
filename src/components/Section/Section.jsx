@@ -13,7 +13,6 @@ import Substance from './SubstanceUse'
 import Package from './Package'
 import { SectionViews, SectionView } from './SectionView'
 import navigation from '../../config/navigation'
-import { getComponentByName } from './generators'
 
 const storeToComponentMap = {
   Identification,
@@ -49,7 +48,11 @@ class Section extends React.Component {
   getComponent(section) {
     // workaround for the fact that the Package section doesn't have an associated store
     const name = section.url === 'package' ? 'Package' : section.store
-    return getComponentByName(storeToComponentMap, name)
+    if (storeToComponentMap[name]) {
+      return storeToComponentMap[name]
+    }
+
+    console.log(`${name} component not found`)
   }
 
   createSections() {

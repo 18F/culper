@@ -246,6 +246,7 @@ export default class Status extends SubsectionElement {
       <div
         className="section-content status"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
         <Field
           title={i18n.t('citizenship.status.heading.citizenshipstatus')}
           adjustFor="buttons"
