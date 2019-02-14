@@ -216,9 +216,8 @@ export const SF86 = [
       formSections.IDENTIFICATION_CONTACTS,
       formSections.IDENTIFICATION_PHYSICAL,
       formSections.IDENTIFICATION_REVIEW,
-    ],
+    ]
   },
-
   {
     ...formSections.HISTORY,
     subsections: [
@@ -228,9 +227,8 @@ export const SF86 = [
       formSections.HISTORY_EDUCATION,
       formSections.HISTORY_FEDERAL,
       formSections.HISTORY_REVIEW,
-    ],
+    ]
   },
-
   {
     ...formSections.RELATIONSHIPS,
     subsections: [
@@ -240,10 +238,19 @@ export const SF86 = [
       formSections.RELATIONSHIPS_STATUS_COHABITANTS,
       formSections.RELATIONSHIPS_PEOPLE,
       formSections.RELATIONSHIPS_RELATIVES,
-      formSections.RELATIONSHIPS_REVIEW,
+      formSections.RELATIONSHIPS_REVIEW
+    ]
+  },
+  {
+    ...formSections.CITIZENSHIP,
+    subsections: [
+      formSections.CITIZENSHIP_INTRO,
+      formSections.CITIZENSHIP_STATUS,
+      formSections.CITIZENSHIP_MULTIPLE,
+      formSections.CITIZENSHIP_PASSPORTS,
+      formSections.CITIZENSHIP_REVIEW
     ]
   }
-
   /*
 
 
