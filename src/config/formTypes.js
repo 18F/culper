@@ -1,4 +1,4 @@
-import formSections from './formSections'
+import formSections from './formSections/index'
 
 export const SF85 = [
   {
@@ -92,6 +92,20 @@ export const SF85 = [
 ]
 
 export const SF85P = [
+  {
+    ...formSections.IDENTIFICATION,
+    subsections: [
+      formSections.IDENTIFICATION_INTRO,
+      formSections.IDENTIFICATION_NAME,
+      formSections.IDENTIFICATION_BIRTH_DATE,
+      formSections.IDENTIFICATION_BIRTH_PLACE,
+      formSections.IDENTIFICATION_SSN,
+      formSections.IDENTIFICATION_OTHER_NAMES,
+      formSections.IDENTIFICATION_CONTACTS,
+      formSections.IDENTIFICATION_PHYSICAL,
+      formSections.IDENTIFICATION_REVIEW,
+    ],
+  },
   /*
   sections.IDENTIFICATION_INTRO,
   sections.IDENTIFICATION_NAME,
@@ -188,6 +202,20 @@ export const SF85P = [
 ]
 
 export const SF86 = [
+  {
+    ...formSections.IDENTIFICATION,
+    subsections: [
+      formSections.IDENTIFICATION_INTRO,
+      formSections.IDENTIFICATION_NAME,
+      formSections.IDENTIFICATION_BIRTH_DATE,
+      formSections.IDENTIFICATION_BIRTH_PLACE,
+      formSections.IDENTIFICATION_SSN,
+      formSections.IDENTIFICATION_OTHER_NAMES,
+      formSections.IDENTIFICATION_CONTACTS,
+      formSections.IDENTIFICATION_PHYSICAL,
+      formSections.IDENTIFICATION_REVIEW,
+    ],
+  },
   /*
   sections.IDENTIFICATION_INTRO,
   sections.IDENTIFICATION_NAME,
