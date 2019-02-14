@@ -16,23 +16,18 @@ export const SF85 = [
     ],
   },
 
+  {
+    ...formSections.HISTORY,
+    subsections: [
+      formSections.HISTORY_INTRO,
+      formSections.HISTORY_RESIDENCE,
+      formSections.HISTORY_EMPLOYMENT,
+      formSections.HISTORY_EDUCATION,
+      formSections.HISTORY_REVIEW,
+    ],
+  },
+
   /*
-  sections.IDENTIFICATION_INTRO,
-  sections.IDENTIFICATION_NAME,
-  sections.IDENTIFICATION_BIRTH_DATE,
-  sections.IDENTIFICATION_BIRTH_PLACE,
-  sections.IDENTIFICATION_SSN,
-  sections.IDENTIFICATION_OTHER_NAMES,
-  sections.IDENTIFICATION_CONTACTS,
-  sections.IDENTIFICATION_PHYSICAL,
-  sections.IDENTIFICATION_REVIEW,
-
-  sections.HISTORY_INTRO,
-  sections.HISTORY_RESIDENCE,
-  sections.HISTORY_EMPLOYMENT,
-  sections.HISTORY_EDUCATION,
-  sections.HISTORY_REVIEW,
-
   sections.CITIZENSHIP_INTRO,
   sections.CITIZENSHIP_STATUS,
   sections.CITIZENSHIP_MULTIPLE,
@@ -106,24 +101,20 @@ export const SF85P = [
       formSections.IDENTIFICATION_REVIEW,
     ],
   },
+
+  {
+    ...formSections.HISTORY,
+    subsections: [
+      formSections.HISTORY_INTRO,
+      formSections.HISTORY_RESIDENCE,
+      formSections.HISTORY_EMPLOYMENT,
+      formSections.HISTORY_EDUCATION,
+      formSections.HISTORY_FEDERAL,
+      formSections.HISTORY_REVIEW,
+    ],
+  },
+
   /*
-  sections.IDENTIFICATION_INTRO,
-  sections.IDENTIFICATION_NAME,
-  sections.IDENTIFICATION_BIRTH_DATE,
-  sections.IDENTIFICATION_BIRTH_PLACE,
-  sections.IDENTIFICATION_SSN,
-  sections.IDENTIFICATION_OTHER_NAMES,
-  sections.IDENTIFICATION_CONTACTS,
-  sections.IDENTIFICATION_PHYSICAL,
-  sections.IDENTIFICATION_REVIEW,
-
-  sections.HISTORY_INTRO,
-  sections.HISTORY_RESIDENCE,
-  sections.HISTORY_EMPLOYMENT,
-  sections.HISTORY_EDUCATION,
-  sections.HISTORY_FEDERAL,
-  sections.HISTORY_REVIEW,
-
   sections.RELATIONSHIPS_INTRO,
   sections.RELATIONSHIPS_STATUS,
   sections.RELATIONSHIPS_STATUS_MARITAL,
@@ -216,24 +207,20 @@ export const SF86 = [
       formSections.IDENTIFICATION_REVIEW,
     ],
   },
+
+  {
+    ...formSections.HISTORY,
+    subsections: [
+      formSections.HISTORY_INTRO,
+      formSections.HISTORY_RESIDENCE,
+      formSections.HISTORY_EMPLOYMENT,
+      formSections.HISTORY_EDUCATION,
+      formSections.HISTORY_FEDERAL,
+      formSections.HISTORY_REVIEW,
+    ],
+  },
+
   /*
-  sections.IDENTIFICATION_INTRO,
-  sections.IDENTIFICATION_NAME,
-  sections.IDENTIFICATION_BIRTH_DATE,
-  sections.IDENTIFICATION_BIRTH_PLACE,
-  sections.IDENTIFICATION_SSN,
-  sections.IDENTIFICATION_OTHER_NAMES,
-  sections.IDENTIFICATION_CONTACTS,
-  sections.IDENTIFICATION_PHYSICAL,
-  sections.IDENTIFICATION_REVIEW,
-
-  sections.HISTORY_INTRO,
-  sections.HISTORY_RESIDENCE,
-  sections.HISTORY_EMPLOYMENT,
-  sections.HISTORY_EDUCATION,
-  sections.HISTORY_FEDERAL,
-  sections.HISTORY_REVIEW,
-
   sections.RELATIONSHIPS_INTRO,
   sections.RELATIONSHIPS_STATUS,
   sections.RELATIONSHIPS_STATUS_MARITAL,
