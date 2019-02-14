@@ -12,13 +12,13 @@ const RELATIONSHIPS_INTRO = {
   key: sections.RELATIONSHIPS_INTRO,
   name: 'intro',
   path: `${RELATIONSHIPS.path}/intro`,
-  label: i18n.t('relationships.subsections.intro')
+  label: i18n.t('relationships.subsection.intro')
 }
 
 const RELATIONSHIPS_STATUS = {
   key: sections.RELATIONSHIPS_STATUS,
   name: 'status',
-  label: i18n.t('relationships.subsections.status')
+  label: i18n.t('relationships.subsection.status')
 }
 
 const RELATIONSHIPS_STATUS_MARITAL = {
@@ -26,7 +26,7 @@ const RELATIONSHIPS_STATUS_MARITAL = {
   name: 'marital',
   path: `${RELATIONSHIPS_STATUS.path}/marital`,
   storeKey: 'Marital',
-  label: i18n.t('relationships.subsections.marital')
+  label: i18n.t('relationships.subsection.marital')
 }
 
 const RELATIONSHIPS_STATUS_COHABITANTS = {
@@ -34,7 +34,7 @@ const RELATIONSHIPS_STATUS_COHABITANTS = {
   name: 'cohabitants',
   path: `${RELATIONSHIPS_STATUS.path}/cohabitants`,
   storeKey: 'Cohabitants',
-  label: i18n.t('relationships.subsections.cohabitants')
+  label: i18n.t('relationships.subsection.cohabitants')
 }
 
 const RELATIONSHIPS_PEOPLE = {
@@ -42,7 +42,7 @@ const RELATIONSHIPS_PEOPLE = {
   name: 'people',
   path: `${RELATIONSHIPS.path}/people`,
   storeKey: 'People',
-  label: i18n.t('relationships.subsections.people')
+  label: i18n.t('relationships.subsection.people')
 }
 
 const RELATIONSHIPS_RELATIVES = {
@@ -50,14 +50,14 @@ const RELATIONSHIPS_RELATIVES = {
   name: 'relatives',
   path: `${RELATIONSHIPS.path}/relatives`,
   storeKey: 'Relatives',
-  label: i18n.t('relationships.subsections.relatives')
+  label: i18n.t('relationships.subsection.relatives')
 }
 
 const RELATIONSHIPS_REVIEW = {
   key: sections.RELATIONSHIPS_REVIEW,
   name: 'review',
   path: `${RELATIONSHIPS.path}/review`,
-  label: i18n.t('relationships.subsections.review')
+  label: i18n.t('relationships.subsection.review')
 }
 
 export default {
