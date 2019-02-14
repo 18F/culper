@@ -35,6 +35,7 @@ settings:
         '@actions': './src/actions'
         '@components': './src/components'
         '@config': './src/config'
+        '@constants': './src/constants'
         '@img': './src/img'
         '@plugins': './src/plugins'
         '@reducers': './src/reducers'

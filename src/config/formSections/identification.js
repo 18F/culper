@@ -1,4 +1,4 @@
-import * as sections from '../../constants/sections'
+import * as sections from '@constants/sections'
 
 const IDENTIFICATION = {
   key: sections.IDENTIFICATION,
