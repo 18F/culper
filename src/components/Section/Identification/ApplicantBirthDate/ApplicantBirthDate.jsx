@@ -1,13 +1,35 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+import { i18n } from '@config'
+
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, DateControl, Show, Checkbox } from '../../../Form'
 
-export default class ApplicantBirthDate extends SubsectionElement {
+import connectIdentificationSection from '../IdentificationConnector'
+
+import {
+  IDENTIFICATION,
+  IDENTIFICATION_BIRTH_DATE,
+} from '@config/formSections/identification'
+
+const sectionConfig = {
+  section: IDENTIFICATION.name,
+  subsection: IDENTIFICATION_BIRTH_DATE.name,
+  store: IDENTIFICATION.store,
+  storeKey: IDENTIFICATION_BIRTH_DATE.storeKey,
+}
+
+export class ApplicantBirthDate extends SubsectionElement {
   constructor(props) {
     super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
 
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
@@ -26,7 +48,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
    * Handle the change event.
    */
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       Date: this.props.Date,
       Confirmed: this.props.Confirmed,
       ...queue
@@ -58,11 +80,13 @@ export default class ApplicantBirthDate extends SubsectionElement {
         : hasMinMaxError
           ? false
           : null
+
     local.push({
       code: 'birthdate.age',
       valid: birthdateValid,
       uid: this.state.uid
     })
+
     local = local.filter(x => x.code !== 'date.min' && x.code !== 'date.max')
 
     // Store the errors
@@ -91,8 +115,9 @@ export default class ApplicantBirthDate extends SubsectionElement {
   render() {
     const klass = `section-content birthdate ${this.props.className ||
       ''}`.trim()
+
     return (
-      <div className={klass} {...super.dataAttributes(this.props)}>
+      <div className={klass} {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('identification.destination.birthdate')}</h1>
         <Field
           title={i18n.t('identification.birthdate.title')}
@@ -108,6 +133,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
             onError={this.handleError}
             required={this.props.required}
           />
+
           <Show when={this.state.needsConfirmation}>
             <Checkbox
               {...this.props.Confirmed}
@@ -133,10 +159,10 @@ ApplicantBirthDate.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  section: 'identification',
-  subsection: 'birthdate',
   dispatch: () => {},
   validator: data => {
     return validate(schema('identification.birthdate', data))
   }
 }
+
+export default connectIdentificationSection(ApplicantBirthDate, sectionConfig)

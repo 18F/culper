@@ -28,6 +28,7 @@ export class ApplicantName extends SubsectionElement {
 
     this.section = section
     this.subsection = subsection
+    this.store = store
     this.storeKey = storeKey
 
     this.update = this.update.bind(this)
@@ -52,7 +53,7 @@ export class ApplicantName extends SubsectionElement {
       ''}`.trim()
 
     return (
-      <div className={klass} {...this.dataAttributes()}>
+      <div className={klass} {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('identification.destination.name')}</h1>
         <Field
           title={i18n.t('identification.name.title')}
