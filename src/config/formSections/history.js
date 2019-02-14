@@ -28,7 +28,7 @@ const HISTORY_EMPLOYMENT = {
 }
 
 const HISTORY_EDUCATION = {
-  key: sections.HISTORY_EDUCATION
+  key: sections.HISTORY_EDUCATION,
   name: 'education',
   path: `${HISTORY.path}/education`,
   storeKey: 'Education',
