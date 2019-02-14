@@ -3,10 +3,10 @@ import { i18n } from '@config'
 
 import schema from '../../../../schema'
 import validate from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
 import { Field, DateControl, Show, Checkbox } from '../../../Form'
 
 import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
 
 import {
   IDENTIFICATION,
@@ -20,7 +20,7 @@ const sectionConfig = {
   storeKey: IDENTIFICATION_BIRTH_DATE.storeKey,
 }
 
-export class ApplicantBirthDate extends SubsectionElement {
+export class ApplicantBirthDate extends Subsection {
   constructor(props) {
     super(props)
 

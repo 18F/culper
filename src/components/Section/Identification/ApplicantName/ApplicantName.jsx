@@ -6,7 +6,7 @@ import validate from '../../../../validators'
 import { Name, Field } from '../../../Form'
 
 import connectIdentificationSection from '../IdentificationConnector'
-import SubsectionElement from '../../SubsectionElement'
+import Subsection from '../../shared/Subsection'
 
 import {
   IDENTIFICATION,
@@ -20,7 +20,7 @@ const sectionConfig = {
   storeKey: IDENTIFICATION_NAME.storeKey,
 }
 
-export class ApplicantName extends SubsectionElement {
+export class ApplicantName extends Subsection {
   constructor(props) {
     super(props)
 
