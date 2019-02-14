@@ -1,5 +1,5 @@
 import React from 'react'
-import { reportCompletion } from '../../actions/ApplicationActions'
+import { reportCompletion } from '@actions/ApplicationActions'
 import { newGuid } from '../Form/ValidationElement'
 
 export default class SubsectionElement extends React.Component {
@@ -15,10 +15,11 @@ export default class SubsectionElement extends React.Component {
       ...this.props,
       ...this.state
     }
+
     this.props.dispatch(
       reportCompletion(
-        this.props.section,
-        this.props.subsection,
+        this.section,
+        this.subsection,
         this.props.validator(data)
       )
     )
@@ -30,10 +31,11 @@ export default class SubsectionElement extends React.Component {
       return {
         ...err,
         // note the original subsection the field is associated with, as it could be appearing under 'review'
-        section: this.props.section,
-        subsection: this.props.subsection
+        section: this.section,
+        subsection: this.subsection
       }
     })
+
     return this.props.onError(value, arr)
   }
 
@@ -41,10 +43,10 @@ export default class SubsectionElement extends React.Component {
     return newGuid()
   }
 
-  dataAttributes(props = {}) {
+  dataAttributes() {
     return {
-      'data-section': props.section,
-      'data-subsection': props.subsection
+      'data-section': this.section,
+      'data-subsection': this.subsection
     }
   }
 }

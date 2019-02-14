@@ -2,7 +2,8 @@ import React from 'react'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 
-import { i18n } from '../../../config'
+import { i18n } from '@config'
+
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
@@ -31,7 +32,7 @@ import Review from './Review'
 
 class Identification extends SectionElement {
   render() {
-    const { subsection, history } = this.props
+    const { subsection } = this.props
 
     const subsectionClasses = `view view-${subsection || 'unknown'}`
 
