@@ -9,7 +9,9 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import Field from './../../Form/Field'
 
 import { ErrorList } from '../../ErrorList'
-import SectionNavButton from '../shared/SectionNavButton'
+import SectionNavigation from '../shared/SectionNavigation'
+
+import * as sections from '@constants/sections'
 
 import Intro from './Intro'
 import ApplicantName from './ApplicantName'
@@ -43,38 +45,11 @@ class Identification extends SectionElement {
     const para = subsection === 'review' && i18n.m('review.para')
     const showTop = subsection === 'review'
 
-    const subsectionIndex = navigationConfig.findIndex(s => s.name === subsection)
-    const back = subsectionIndex > 0 && navigationConfig[subsectionIndex - 1]
-    const next = subsectionIndex < navigationConfig.length - 1 && navigationConfig[subsectionIndex + 1]
-
-    const goToSection = (path) => {
-      history.push(path)
-    }
-
-    const prevButton = back ? (
-      <SectionNavButton
-        direction="back"
-        label={i18n.t(`identification.destination.${back.name}`)}
-        onClick={() => { goToSection(back.path) }} />
-    ) : <SectionNavButton direction="back" isEmpty={true} />
-
-    const nextButton = next ? (
-      <SectionNavButton
-        direction="next"
-        label={i18n.t(`identification.destination.${next.name}`)}
-        onClick={() => { goToSection(next.path) }} />
-    ) : <SectionNavButton direction="next" isEmpty={true} />
-
-    const navButtons = (prevButton || nextButton) && (
-      <div className="bottom-btns">
-        <div className="btn-wrap">
-          <div className="btn-container">
-            {prevButton}
-            <div className="btn-spacer" />
-            {nextButton}
-          </div>
-        </div>
-      </div>
+    const navButtons = (
+      <SectionNavigation
+        section={sections.IDENTIFICATION}
+        subsection={subsection || 'intro'}
+        formType={'SF85'} />
     )
 
     return (
