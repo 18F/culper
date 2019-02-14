@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
-import { alphaNumericRegEx } from 'validators/helpers'
+import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
 import schema from 'schema'
 import validate from 'validators'
 import SubsectionElement from 'components/Section/SubsectionElement'
@@ -202,6 +202,24 @@ export default class Status extends SubsectionElement {
     this.update({
       DocumentExpiration: values
     })
+  }
+
+  derivedAlienRegistrationNumberRequired = () => {
+    return this.props.required &&
+      !validGenericTextfield(this.props.PermanentResidentCardNumber) &&
+      !validGenericTextfield(this.props.CertificateNumber)
+  }
+
+  derivedPermanentResidentCardNumberRequired = () => {
+    return this.props.required &&
+      !validGenericTextfield(this.props.AlienRegistrationNumber) &&
+      !validGenericTextfield(this.props.CertificateNumber)
+  }
+
+  derivedCertificateNumberRequired = () => {
+    return this.props.required &&
+      !validGenericTextfield(this.props.AlienRegistrationNumber) &&
+      !validGenericTextfield(this.props.PermanentResidentCardNumber)
   }
 
   render() {
@@ -720,7 +738,7 @@ export default class Status extends SubsectionElement {
                 {...this.props.AlienRegistrationNumber}
                 onUpdate={this.updateAlienRegistrationNumber}
                 onError={this.handleError}
-                required={this.props.required}
+                required={this.derivedAlienRegistrationNumberRequired()}
               />
             </Field>
 
@@ -738,7 +756,7 @@ export default class Status extends SubsectionElement {
                 {...this.props.PermanentResidentCardNumber}
                 onUpdate={this.updatePermanentResidentCardNumber}
                 onError={this.handleError}
-                required={this.props.required}
+                required={this.derivedPermanentResidentCardNumberRequired()}
               />
             </Field>
 
@@ -756,7 +774,7 @@ export default class Status extends SubsectionElement {
                 prefix="alphanumeric"
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
-                required={this.props.required}
+                required={this.derivedCertificateNumberRequired()}
               />
             </Field>
 
