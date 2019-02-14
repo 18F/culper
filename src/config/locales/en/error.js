@@ -124,6 +124,11 @@ export const error = {
       title: 'Oops, there’s a problem.',
       message: 'Your Selective Service Number should only be numbers.',
       note: ''
+    },
+    required: {
+      title: 'Your response is required',
+      message: 'Your Selective Service Number is required.',
+      note: ''
     }
   },
   additionalActivity: {
