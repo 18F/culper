@@ -1,4 +1,5 @@
 import formSections from './formSections/index'
+import { FOREIGN_BUSINESS_ADVICE, FOREIGN_BUSINESS_FAMILY, FOREIGN_BUSINESS_EMPLOYMENT, FOREIGN_BUSINESS_VENTURES, FOREIGN_BUSINESS_CONFERENCES, FOREIGN_BUSINESS_CONTACT, FOREIGN_BUSINESS_SPONSORSHIP, FOREIGN_BUSINESS_POLITICAL, FOREIGN_BUSINESS_VOTING } from '../constants/sections';
 
 export const SF85 = [
   {
@@ -259,7 +260,41 @@ export const SF86 = [
       formSections.MILITARY_HISTORY,
       formSections.MILITARY_DISCIPLINARY,
       formSections.MILITARY_FOREIGN,
-      formSections.MILITARY_REVIEW,
+      formSections.MILITARY_REVIEW
+    ]
+  },
+  {
+    ...formSections.FOREIGN,
+    subsections: [
+      formSections.FOREIGN_INTRO,
+      formSections.FOREIGN_PASSPORT,
+      formSections.FOREIGN_CONTACTS,
+      {
+        ...formSections.FOREIGN_ACTIVITIES,
+        subsections: [
+          formSections.FOREIGN_ACTIVITIES_DIRECT,
+          formSections.FOREIGN_ACTIVITIES_INDIRECT,
+          formSections.FOREIGN_ACTIVITIES_REAL_ESTATE,
+          formSections.FOREIGN_ACTIVITIES_BENEFITS,
+          formSections.FOREIGN_ACTIVITIES_SUPPORT
+        ]
+      },
+      {
+        ...formSections.FOREIGN_BUSINESS,
+        susections: [
+          formSections.FOREIGN_BUSINESS_ADVICE,
+          formSections.FOREIGN_BUSINESS_FAMILY,
+          formSections.FOREIGN_BUSINESS_EMPLOYMENT,
+          formSections.FOREIGN_BUSINESS_VENTURES,
+          formSections.FOREIGN_BUSINESS_CONFERENCES,
+          formSections.FOREIGN_BUSINESS_CONTACT,
+          formSections.FOREIGN_BUSINESS_SPONSORSHIP,
+          formSections.FOREIGN_BUSINESS_POLITICAL,
+          formSections.FOREIGN_BUSINESS_VOTING
+        ]
+      },
+      formSections.FOREIGN_TRAVEL,
+      formSections.FOREIGN_REVIEW
     ]
   }
   /*
