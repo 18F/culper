@@ -10,6 +10,14 @@ export const military = {
   review: {
     para: 'View all the sections associated with military history at once'
   },
+  subsection: {
+    intro: 'Introduction',
+    selective: 'Selective service record',
+    history: 'U.S. military',
+    disciplinary: 'Disciplinary procedures',
+    foreign: 'Foreign military',
+    review: 'Review'
+  },
   destination: {
     intro: 'Military intro',
     selective: 'Selective service record',

@@ -250,21 +250,19 @@ export const SF86 = [
       formSections.CITIZENSHIP_PASSPORTS,
       formSections.CITIZENSHIP_REVIEW
     ]
+  },
+  {
+    ...formSections.MILITARY,
+    subsections: [
+      formSections.MILITARY_INTRO,
+      formSections.MILITARY_SELECTIVE,
+      formSections.MILITARY_HISTORY,
+      formSections.MILITARY_DISCIPLINARY,
+      formSections.MILITARY_FOREIGN,
+      formSections.MILITARY_REVIEW,
+    ]
   }
   /*
-
-
-  sections.CITIZENSHIP_INTRO,
-  sections.CITIZENSHIP_STATUS,
-  sections.CITIZENSHIP_MULTIPLE,
-  sections.CITIZENSHIP_PASSPORTS,
-  sections.CITIZENSHIP_REVIEW,
-
-  sections.MILITARY_INTRO,
-  sections.MILITARY_SELECTIVE,
-  sections.MILITARY_HISTORY,
-  sections.MILITARY_FOREIGN,
-  sections.MILITARY_REVIEW,
 
   sections.FOREIGN_INTRO,
   sections.FOREIGN_PASSPORT,
