@@ -21,46 +21,9 @@ import {
 export default class Status extends SubsectionElement {
   constructor(props) {
     super(props)
-
-    this.update = this.update.bind(this)
-    this.updateCitizenshipStatus = this.updateCitizenshipStatus.bind(this)
-    this.updateAbroadDocumentation = this.updateAbroadDocumentation.bind(this)
-    this.updateExplanation = this.updateExplanation.bind(this)
-    this.updateDocumentNumber = this.updateDocumentNumber.bind(this)
-    this.updateDocumentIssued = this.updateDocumentIssued.bind(this)
-    this.updatePlaceIssued = this.updatePlaceIssued.bind(this)
-    this.updateDocumentName = this.updateDocumentName.bind(this)
-    this.updateCertificateNumber = this.updateCertificateNumber.bind(this)
-    this.updateCertificateIssued = this.updateCertificateIssued.bind(this)
-    this.updateCertificateName = this.updateCertificateName.bind(this)
-    this.updateBornOnMilitaryInstallation = this.updateBornOnMilitaryInstallation.bind(
-      this
-    )
-    this.updateMilitaryBase = this.updateMilitaryBase.bind(this)
-    this.updateEntryDate = this.updateEntryDate.bind(this)
-    this.updateEntryLocation = this.updateEntryLocation.bind(this)
-    this.updatePriorCitizenship = this.updatePriorCitizenship.bind(this)
-    this.updateHasAlienRegistration = this.updateHasAlienRegistration.bind(this)
-    this.updateAlienRegistrationNumber = this.updateAlienRegistrationNumber.bind(
-      this
-    )
-    this.updateAlienRegistrationExpiration = this.updateAlienRegistrationExpiration.bind(
-      this
-    )
-    this.updateCertificateCourtName = this.updateCertificateCourtName.bind(this)
-    this.updateCertificateCourtAddress = this.updateCertificateCourtAddress.bind(
-      this
-    )
-    this.updateBasis = this.updateBasis.bind(this)
-    this.updatePermanentResidentCardNumber = this.updatePermanentResidentCardNumber.bind(
-      this
-    )
-    this.updateResidenceStatus = this.updateResidenceStatus.bind(this)
-    this.updateDocumentType = this.updateDocumentType.bind(this)
-    this.updateDocumentExpiration = this.updateDocumentExpiration.bind(this)
   }
 
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       CitizenshipStatus: this.props.CitizenshipStatus,
       AbroadDocumentation: this.props.AbroadDocumentation,
@@ -91,151 +54,151 @@ export default class Status extends SubsectionElement {
     })
   }
 
-  updateCitizenshipStatus(values) {
+  updateCitizenshipStatus = (values) => {
     this.update({
       CitizenshipStatus: values
     })
   }
 
-  updateAbroadDocumentation(values) {
+  updateAbroadDocumentation = (values) => {
     this.update({
       AbroadDocumentation: values
     })
   }
 
-  updateExplanation(values) {
+  updateExplanation = (values) => {
     this.update({
       Explanation: values
     })
   }
 
-  updateDocumentNumber(values) {
+  updateDocumentNumber = (values) => {
     this.update({
       DocumentNumber: values
     })
   }
 
-  updateDocumentIssued(values) {
+  updateDocumentIssued = (values) => {
     this.update({
       DocumentIssued: values
     })
   }
 
-  updatePlaceIssued(values) {
+  updatePlaceIssued = (values) => {
     this.update({
       PlaceIssued: values
     })
   }
 
-  updateDocumentName(values) {
+  updateDocumentName = (values) => {
     this.update({
       DocumentName: values
     })
   }
 
-  updateCertificateNumber(values) {
+  updateCertificateNumber = (values) => {
     this.update({
       CertificateNumber: values
     })
   }
 
-  updateCertificateIssued(values) {
+  updateCertificateIssued = (values) => {
     this.update({
       CertificateIssued: values
     })
   }
 
-  updateCertificateName(values) {
+  updateCertificateName = (values) => {
     this.update({
       CertificateName: values
     })
   }
 
-  updateBornOnMilitaryInstallation(values) {
+  updateBornOnMilitaryInstallation = (values) => {
     this.update({
       BornOnMilitaryInstallation: values
     })
   }
 
-  updateMilitaryBase(values) {
+  updateMilitaryBase = (values) => {
     this.update({
       MilitaryBase: values
     })
   }
 
-  updateEntryDate(values) {
+  updateEntryDate = (values) => {
     this.update({
       EntryDate: values
     })
   }
 
-  updateEntryLocation(values) {
+  updateEntryLocation = (values) => {
     this.update({
       EntryLocation: values
     })
   }
 
-  updatePriorCitizenship(values) {
+  updatePriorCitizenship = (values) => {
     this.update({
       PriorCitizenship: values
     })
   }
 
-  updateHasAlienRegistration(values) {
+  updateHasAlienRegistration = (values) => {
     this.update({
       HasAlienRegistration: values
     })
   }
 
-  updateAlienRegistrationNumber(values) {
+  updateAlienRegistrationNumber = (values) => {
     this.update({
       AlienRegistrationNumber: values
     })
   }
 
-  updateAlienRegistrationExpiration(values) {
+  updateAlienRegistrationExpiration = (values) => {
     this.update({
       AlienRegistrationExpiration: values
     })
   }
 
-  updateCertificateCourtName(values) {
+  updateCertificateCourtName = (values) => {
     this.update({
       CertificateCourtName: values
     })
   }
 
-  updateCertificateCourtAddress(values) {
+  updateCertificateCourtAddress = (values) => {
     this.update({
       CertificateCourtAddress: values
     })
   }
 
-  updateBasis(values) {
+  updateBasis = (values) => {
     this.update({
       Basis: values
     })
   }
 
-  updatePermanentResidentCardNumber(values) {
+  updatePermanentResidentCardNumber = (values) => {
     this.update({
       PermanentResidentCardNumber: values
     })
   }
 
-  updateResidenceStatus(values) {
+  updateResidenceStatus = (values) => {
     this.update({
       ResidenceStatus: values
     })
   }
 
-  updateDocumentType(values) {
+  updateDocumentType = (values) => {
     this.update({
       DocumentType: values
     })
   }
 
-  updateDocumentExpiration(values) {
+  updateDocumentExpiration = (values) => {
     this.update({
       DocumentExpiration: values
     })
