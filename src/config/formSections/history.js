@@ -12,7 +12,7 @@ const HISTORY_INTRO = {
   key: sections.HISTORY_INTRO,
   name: 'intro',
   path: `${HISTORY.path}/intro`,
-  label: i18n.t('history.subsections.intro')
+  label: i18n.t('history.subsection.intro')
 }
 
 const HISTORY_RESIDENCE = {
@@ -20,7 +20,7 @@ const HISTORY_RESIDENCE = {
   name: 'residence',
   path: `${HISTORY.path}/residence`,
   storeKey: 'Residence',
-  label: i18n.t('history.subsections.residence')
+  label: i18n.t('history.subsection.residence')
 }
 
 const HISTORY_EMPLOYMENT = {
@@ -28,7 +28,7 @@ const HISTORY_EMPLOYMENT = {
   name: 'employment',
   path: `${HISTORY.path}/employment`,
   storeKey: 'Employment',
-  label: i18n.t('history.subsections.employment')
+  label: i18n.t('history.subsection.employment')
 }
 
 const HISTORY_EDUCATION = {
@@ -36,7 +36,7 @@ const HISTORY_EDUCATION = {
   name: 'education',
   path: `${HISTORY.path}/education`,
   storeKey: 'Education',
-  label: i18n.t('history.subsections.education')
+  label: i18n.t('history.subsection.education')
 }
 
 const HISTORY_FEDERAL = {
@@ -44,14 +44,14 @@ const HISTORY_FEDERAL = {
   name: 'federal',
   path: `${HISTORY.path}/federal`,
   storeKey: 'Federal',
-  label: i18n.t('history.subsections.federal')
+  label: i18n.t('history.subsection.federal')
 }
 
 const HISTORY_REVIEW = {
   key: sections.HISTORY_REVIEW,
   name: 'review',
   path: `${HISTORY.path}/review`,
-  label: i18n.t('history.subsections.review')
+  label: i18n.t('history.subsection.review')
 }
 
 export default {
