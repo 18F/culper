@@ -234,9 +234,13 @@ export const SF86 = [
     ...formSections.RELATIONSHIPS,
     subsections: [
       formSections.RELATIONSHIPS_INTRO,
-      formSections.RELATIONSHIPS_STATUS,
-      formSections.RELATIONSHIPS_STATUS_MARITAL,
-      formSections.RELATIONSHIPS_STATUS_COHABITANTS,
+      {
+        ...formSections.RELATIONSHIPS_STATUS,
+        subsections: [
+          formSections.RELATIONSHIPS_STATUS_MARITAL,
+          formSections.RELATIONSHIPS_STATUS_COHABITANTS,
+        ]
+      },
       formSections.RELATIONSHIPS_PEOPLE,
       formSections.RELATIONSHIPS_RELATIVES,
       formSections.RELATIONSHIPS_REVIEW

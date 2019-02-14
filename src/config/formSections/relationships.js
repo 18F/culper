@@ -6,6 +6,7 @@ const RELATIONSHIPS = {
   name: 'relationships',
   path: '/relationships',
   store: 'Relationships',
+  label: i18n.t('relationships.section.name')
 }
 
 const RELATIONSHIPS_INTRO = {
