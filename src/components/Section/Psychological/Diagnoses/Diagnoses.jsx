@@ -7,7 +7,7 @@ import validate, {
   TreatmentValidator
 } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show } from '../../../Form'
+import { Accordion, Branch, Show, Field } from '../../../Form'
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
 
@@ -195,6 +195,14 @@ export default class Diagnoses extends SubsectionElement {
                 )}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}>
+                <Field
+                  title={i18n.t(
+                    'psychological.diagnosis.heading.healthcareProfessional'
+                  )}
+                  titleSize="h4"
+                  optional={true}
+                  className="no-margin-bottom"
+                />
                 <Treatment
                   name="Item"
                   prefix="diagnoses.professional"

@@ -290,8 +290,12 @@ func TestScenario5(t *testing.T) {
 	executeScenario(t, "test5")
 }
 
-// `test6` is a basic smoke test, a bare bones application plus:
+// `test6` is a basic smoke test, originally just created for NBIB to reject.
+// `test6` is a good coarse-grained test case to extend for newly discovered
+// edge cases if specific fine-grained tests don't exist. It is a bare bones
+// application plus:
 // * Other Foreign Benefit with Other Frequency Type and received at Other interval
+// * Divorced and not currently married
 func TestScenario6(t *testing.T) {
 	executeScenario(t, "test6")
 }

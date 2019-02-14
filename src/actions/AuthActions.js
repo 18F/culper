@@ -1,6 +1,6 @@
 import queryString from 'query-string'
-import { env } from '../config'
-import { api } from '../services/api'
+import { env } from '@config'
+import { api } from '@services/api'
 import AuthConstants from './AuthConstants'
 
 /**

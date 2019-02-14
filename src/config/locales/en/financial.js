@@ -447,7 +447,7 @@ export const financial = {
   },
   delinquent: {
     title:
-      'Other than previously listed, have any of the following happened to you?',
+      'Other than previously listed, has the following happened to you?',
     para: {
       details:
         'You will be asked to provide details about each financial obligation that pertains to the items identified below.',

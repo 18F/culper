@@ -4,6 +4,9 @@ const debug = !production && !staging
 const webpack = require('webpack')
 const path = require('path')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: production ? 'production' : 'development',
@@ -12,8 +15,9 @@ module.exports = {
     eqip: './src/boot.jsx'
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'dist', 'js'),
+    publicPath: '/js/'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -24,8 +28,34 @@ module.exports = {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, 'src'),
         use: ['cache-loader', 'babel-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { url: false, sourceMap: true } },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              includePaths: [path.resolve(__dirname, 'src', 'sass')]
+            }
+          }
+        ]
       }
     ]
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   },
   devtool: debug ? 'cheap-module-source-map' : 'source-map',
   plugins: [
@@ -47,6 +77,14 @@ module.exports = {
           versionCommand: 'describe --tags --always'
         }).version()
       )
+    }),
+    new CleanWebpackPlugin(['dist/js', 'dist/css']),
+    new MiniCssExtractPlugin({
+      filename: '../css/[name].[contenthash].css'
+    }),
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: './src/index.html'
     })
   ]
 }

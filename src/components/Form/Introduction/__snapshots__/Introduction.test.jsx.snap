@@ -31,9 +31,6 @@ exports[`The Introduction component renders properly 1`] = `
           />
         </a>
         <div>
-          <h2>
-            Persons completing this form should begin after carefully reading the following instructions
-          </h2>
           <div
             className="introduction-legal"
           >

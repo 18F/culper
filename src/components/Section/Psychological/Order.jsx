@@ -79,7 +79,6 @@ export default class Order extends ValidationElement {
           <DateControl
             name="Occurred"
             {...this.props.Occurred}
-            label={i18n.t(`psychological${prefix}.label.occurred`)}
             hideDay={true}
             minDateEqualTo={true}
             onUpdate={this.updateOccurred}

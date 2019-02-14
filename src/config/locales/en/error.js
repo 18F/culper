@@ -73,7 +73,7 @@ export const error = {
     age: {
       title: 'The applicant age is not approved',
       message: [
-        'Your date of birth indicates you are under the age of 16, please confirm the date is correct using the button above.',
+        'Your date of birth indicates you are under the age of 16, please confirm the date is correct using the button below.',
         '*or*',
         'Applicants must be younger than 130 years old.'
       ],
@@ -127,65 +127,137 @@ export const error = {
     }
   },
   additionalActivity: {
-    month: {
-      notfound: {
-        title: 'There is a problem with the Month',
-        message: 'The month should be between 01 (January) and 12 (December).',
-        note: ''
+    to: {
+      month: {
+        notfound: {
+          title: 'There is a problem with the Month',
+          message:
+            'The month should be between 01 (January) and 12 (December).',
+          note: ''
+        },
+        min: {
+          title: 'There is a problem with the Month',
+          message:
+            'The month should be between 01 (January) and 12 (December).',
+          note: ''
+        },
+        max: {
+          title: 'There is a problem with the Month',
+          message:
+            'The month should be between 01 (January) and 12 (December).',
+          note: ''
+        }
       },
-      min: {
-        title: 'There is a problem with the Month',
-        message: 'The month should be between 01 (January) and 12 (December).',
-        note: ''
+      day: {
+        length: {
+          title: 'There is a problem with the Day',
+          message: 'There is not that many days in this month.',
+          note: ''
+        },
+        min: {
+          title: 'There is a problem with the Day',
+          message: 'There are not that many days in this month.',
+          note: ''
+        },
+        max: {
+          title: 'There is a problem with the Day',
+          message: 'There are not that many days in this month.',
+          note: ''
+        }
       },
-      max: {
-        title: 'There is a problem with the Month',
-        message: 'The month should be between 01 (January) and 12 (December).',
-        note: ''
-      }
-    },
-    day: {
-      length: {
-        title: 'There is a problem with the Day',
-        message: 'There is not that many days in this month.',
-        note: ''
+      year: {
+        max: {
+          title: 'There is a problem with the date',
+          message:
+            "For the **additional employment** date range, the dates should be before the main entry's **from** date.",
+          note: ''
+        },
+        min: {
+          title: 'There is a problem with the Year',
+          message: 'This year is too far in the past.',
+          note: ''
+        }
       },
-      min: {
-        title: 'There is a problem with the Day',
-        message: 'There are not that many days in this month.',
-        note: ''
-      },
-      max: {
-        title: 'There is a problem with the Day',
-        message: 'There are not that many days in this month.',
-        note: ''
-      }
-    },
-    year: {
       max: {
         title: 'There is a problem with the date',
         message:
-          "For the **additional employment** date range, the dates should be before the main entry's **from** date.",
-        note: ''
+          "For the **additional employment** date range, the dates should be before the main entry's **from** date."
       },
       min: {
-        title: 'There is a problem with the Year',
-        message: 'This year is too far in the past.',
-        note: ''
+        title: 'There is a problem with the date',
+        message: 'The date should be after your date of birth.'
+      },
+      required: {
+        title: 'Your response is required',
+        message:
+          'All parts of the date are required even if it is **estimated**.'
       }
     },
-    max: {
-      title: 'There is a problem with the date',
-      message:
-        "For the **additional employment** date range, the dates should be before the main entry's **from** date."
-    },
-    min: {
-      title: 'There is a problem with the date',
-      message: 'The date should be after your date of birth.'
-    },
-    required: {
-      title: 'Your response is required',
-      message: 'All parts of the date are required even if it is **estimated**.'
+    from: {
+      month: {
+        notfound: {
+          title: 'There is a problem with the Month',
+          message:
+            'The month should be between 01 (January) and 12 (December).',
+          note: ''
+        },
+        min: {
+          title: 'There is a problem with the Month',
+          message:
+            'The month should be between 01 (January) and 12 (December).',
+          note: ''
+        },
+        max: {
+          title: 'There is a problem with the Month',
+          message:
+            'The month should be between 01 (January) and 12 (December).',
+          note: ''
+        }
+      },
+      day: {
+        length: {
+          title: 'There is a problem with the Day',
+          message: 'There is not that many days in this month.',
+          note: ''
+        },
+        min: {
+          title: 'There is a problem with the Day',
+          message: 'There are not that many days in this month.',
+          note: ''
+        },
+        max: {
+          title: 'There is a problem with the Day',
+          message: 'There are not that many days in this month.',
+          note: ''
+        }
+      },
+      year: {
+        max: {
+          title: 'There is a problem with the date',
+          message:
+            "For the **additional employment** date range, the dates should be before the main entry's **from** date.",
+          note: ''
+        },
+        min: {
+          title: 'There is a problem with the Year',
+          message: 'This year is too far in the past.',
+          note: ''
+        }
+      },
+      max: {
+        title: 'There is a problem with the date',
+        message:
+          "For the **additional employment** date range, the dates should be before the main entry's **from** date."
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after your date of birth.'
+      },
+      required: {
+        title: 'Your response is required',
+        message:
+          'All parts of the date are required even if it is **estimated**.'
+      }
     }
   },
   date: {

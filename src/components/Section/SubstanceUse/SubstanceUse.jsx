@@ -295,6 +295,7 @@ class SubstanceUse extends SectionElement {
           <SectionView
             name="review"
             title={i18n.t('substance.review.title')}
+            para={i18n.m('substance.review.para')}
             back="substance/alcohol/additional"
             backLabel={i18n.t('substance.destination.police.additional')}
             showTop={true}

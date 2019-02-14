@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import Main from './components/Main/Main'
 import store from './services/store'
 import tabology from './plugins/tabology'
+import './eqip.scss'
 
 // This polyfill gives us more control over smooth scrolling throughout the application
 import smoothscroll from 'smoothscroll-polyfill'

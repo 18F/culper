@@ -213,7 +213,7 @@ const ActivitySummary = (item, errors) => {
 
     if ((activity.Position || {}).value && dates) {
       return Summary({
-        type: i18n.t('history.education.default.collection.summary.item2'),
+        type: i18n.t('history.employment.default.collection.summary.item2'),
         left: activity.Position.value,
         right: dates
       })

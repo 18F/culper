@@ -383,6 +383,7 @@
               </Relatives>
             </RelativesAndAssociates>
             <Spouse Version="1" Type="Pooled">
+              <MaritalStatus>Married</MaritalStatus>
               <Cohabitants>
                 <Answer>Yes</Answer>
                 <Cohabitant ID="1">
@@ -466,7 +467,6 @@
               <HaveFormerSpouse>
                 <Answer>No</Answer>
               </HaveFormerSpouse>
-              <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
                   <Address>
