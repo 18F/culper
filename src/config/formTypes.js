@@ -27,6 +27,17 @@ export const SF85 = [
     ],
   },
 
+  // {
+  //   ...formSections.CITIZENSHIP,
+  //   subsections: [
+  //     formSections.CITIZENSHIP_INTRO,
+  //     formSections.CITIZENSHIP_STATUS,
+  //     formSections.CITIZENSHIP_MULTIPLE,
+  //     formSections.CITIZENSHIP_PASSPORTS,
+  //     formSections.CITIZENSHIP_REVIEW,
+  //   ]
+  // }
+
   /*
   sections.CITIZENSHIP_INTRO,
   sections.CITIZENSHIP_STATUS,
@@ -220,14 +231,21 @@ export const SF86 = [
     ],
   },
 
+  {
+    ...formSections.RELATIONSHIPS,
+    subsections: [
+      formSections.RELATIONSHIPS_INTRO,
+      formSections.RELATIONSHIPS_STATUS,
+      formSections.RELATIONSHIPS_STATUS_MARITAL,
+      formSections.RELATIONSHIPS_STATUS_COHABITANTS,
+      formSections.RELATIONSHIPS_PEOPLE,
+      formSections.RELATIONSHIPS_RELATIVES,
+      formSections.RELATIONSHIPS_REVIEW,
+    ]
+  }
+
   /*
-  sections.RELATIONSHIPS_INTRO,
-  sections.RELATIONSHIPS_STATUS,
-  sections.RELATIONSHIPS_STATUS_MARITAL,
-  sections.RELATIONSHIPS_STATUS_COHABITANTS,
-  sections.RELATIONSHIPS_PEOPLE,
-  sections.RELATIONSHIPS_RELATIVES,
-  sections.RELATIONSHIPS_REVIEW,
+
 
   sections.CITIZENSHIP_INTRO,
   sections.CITIZENSHIP_STATUS,

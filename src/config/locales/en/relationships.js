@@ -10,6 +10,15 @@ export const relationships = {
   review: {
     para: 'View all the sections associated with relationships at once'
   },
+  subsections: {
+    intro: 'Introduction',
+    status: 'Marital & relationship status',
+    marital: 'Marital',
+    cohabitants: 'Cohabitants',
+    people: 'People who know you well',
+    relatives: 'Relatives',
+    review: 'Review'
+  },
   destination: {
     intro: 'Relationships intro',
     review: 'Review Relationships',
