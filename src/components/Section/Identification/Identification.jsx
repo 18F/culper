@@ -23,17 +23,11 @@ import Physical from './Physical'
 import ContactInformation from './ContactInformation'
 import Review from './Review'
 
-const navigationConfig = [
-  { name: 'intro', path: '/form/identification/intro' },
-  { name: 'name', path: '/form/identification/name' },
-  { name: 'birthdate', path: '/form/identification/birthdate' },
-  { name: 'birthplace', path: '/form/identification/birthplace' },
-  { name: 'ssn', path: '/form/identification/ssn' },
-  { name: 'othernames', path: '/form/identification/othernames' },
-  { name: 'contacts', path: '/form/identification/contacts' },
-  { name: 'physical', path: '/form/identification/physical' },
-  { name: 'review', path: '/form/identification/review' }
-]
+/**
+ * TODO
+ * - not sure why top buttons only show if navButtons - maybe this check can be removed?
+ * - subsection prop is not defaulting to "intro" after login, this is prob related to keeping redux in sync with routes. Investigate & fix this.
+ */
 
 class Identification extends SectionElement {
   render() {
