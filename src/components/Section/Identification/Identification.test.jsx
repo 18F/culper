@@ -36,9 +36,11 @@ describe('The identification section', () => {
       application: applicationState
     })
     const component = mount(
-      <Provider store={store}>
-        <Identification />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <Identification />
+        </Provider>
+      </MemoryRouter>
     )
     expect(component.find('div').length).toEqual(0)
     window.token = 'fake-token'
