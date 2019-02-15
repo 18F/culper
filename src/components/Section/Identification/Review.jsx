@@ -6,7 +6,6 @@ import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
 import OtherNames from './OtherNames'
 import ContactInformation from './ContactInformation'
-
 import Physical from './Physical'
 
 class Review extends React.Component {
@@ -38,21 +37,8 @@ class Review extends React.Component {
           {...subsectionProps}
           shouldFilterEmptyItems={true}
           defaultState={false} />
-
-        {/*  
-
-        <hr className="section-divider" />
-        <Physical
-          name="physical"
-          {...this.props.Physical}
-          section="identification"
-          subsection="physical"
-          dispatch={this.props.dispatch}
-          onUpdate={this.props.onUpdate.bind(this, 'Physical')}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />*/}
+        {sectionDivider}
+        <Physical {...subsectionProps}  />  
       </div>
     )
   }

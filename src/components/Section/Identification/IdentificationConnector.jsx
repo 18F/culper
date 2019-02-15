@@ -72,6 +72,9 @@ const connectIdentificationSection = (Component, { section, subsection, store, s
       case 'Contacts':
         return { ...identification.Contacts } || {}
 
+      case 'Physical':
+        return { ...identification.Physical } || {}
+
       default:
         return {
           Identification: identification,
