@@ -10,6 +10,20 @@ export const financial = {
   review: {
     para: 'View all the sections associated with identification at once'
   },
+  section: {
+    name: 'Financial record'
+  },
+  subsection: {
+    intro: 'Introduction',
+    bankruptcy: 'Bankruptcy',
+    gambling: 'Gambling',
+    taxes: 'Taxes',
+    card: 'Employer card abuse',
+    credit: 'Credit counseling',
+    delinquent: 'Delinquent payments',
+    nonpayment: 'Non-payment consequence',
+    review: 'Review'
+  },
   destination: {
     intro: 'Financial intro',
     gambling: 'Gambling',

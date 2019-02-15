@@ -300,16 +300,23 @@ export const SF86 = [
       formSections.FOREIGN_TRAVEL,
       formSections.FOREIGN_REVIEW
     ]
+  },
+  {
+    ...formSections.FINANCIAL,
+    subsections: [
+      formSections.FINANCIAL_INTRO,
+      formSections.FINANCIAL_BANKRUPTCY,
+      formSections.FINANCIAL_GAMBLING,
+      formSections.FINANCIAL_TAXES,
+      formSections.FINANCIAL_CARD,
+      formSections.FINANCIAL_CREDIT,
+      formSections.FINANCIAL_DELINQUENT,
+      formSections.FINANCIAL_NONPAYMENT,
+      formSections.FINANCIAL_REVIEW,
+
+    ]
   }
   /*
-
-  sections.FOREIGN_INTRO,
-  sections.FOREIGN_PASSPORT,
-  sections.FOREIGN_CONTACTS,
-  sections.FOREIGN_ACTIVITIES,
-  sections.FOREIGN_BUSINESS,
-  sections.FOREIGN_TRAVEL,
-  sections.FOREIGN_REVIEW,
 
   sections.FINANCIAL_INTRO,
   sections.FINANCIAL_BANKRUPTCY,
