@@ -315,18 +315,37 @@ export const SF86 = [
       formSections.FINANCIAL_REVIEW,
 
     ]
+  },
+  {
+    ...formSections.SUBSTANCE_USE,
+    subsections: [
+      formSections.SUBSTANCE_USE_INTRO,
+      {
+        ...formSections.SUBSTANCE_USE_DRUGS,
+        subsections: [
+          formSections.SUBSTANCE_USE_DRUGS_USAGE,
+          formSections.SUBSTANCE_USE_DRUGS_PURCHASE,
+          formSections.SUBSTANCE_USE_DRUGS_CLEARANCE,
+          formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
+          formSections.SUBSTANCE_USE_DRUGS_MISUSE,
+          formSections.SUBSTANCE_USE_DRUGS_ORDERED,
+          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
+        ]
+      },
+      {
+        ...formSections.SUBSTANCE_USE_ALCOHOL,
+        subsections: [
+          formSections.SUBSTANCE_USE_ALCOHOL,
+          formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
+          formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
+          formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
+          formSections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
+        ]
+      },
+      formSections.SUBSTANCE_USE_REVIEW
+    ]
   }
   /*
-
-  sections.FINANCIAL_INTRO,
-  sections.FINANCIAL_BANKRUPTCY,
-  sections.FINANCIAL_GAMBLING,
-  sections.FINANCIAL_TAXES,
-  sections.FINANCIAL_CARD,
-  sections.FINANCIAL_CREDIT,
-  sections.FINANCIAL_DELINQUENT,
-  sections.FINANCIAL_NONPAYMENT,
-  sections.FINANCIAL_REVIEW,
 
   sections.SUBSTANCE_USE_INTRO,
   sections.SUBSTANCE_USE_DRUGS,

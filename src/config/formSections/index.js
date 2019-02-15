@@ -5,6 +5,7 @@ import citizenshipSections from './citizenship'
 import militarySections from './military'
 import foreignSections from './foreign'
 import financialSections from './financial'
+import substanceUseSections from './substanceUse'
 
 export default {
   ...identificationSections,
@@ -13,5 +14,6 @@ export default {
   ...citizenshipSections,
   ...militarySections,
   ...foreignSections,
-  ...financialSections
+  ...financialSections,
+  ...substanceUseSections
 }
