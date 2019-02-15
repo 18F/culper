@@ -6,7 +6,7 @@ const SUBSTANCE_USE = {
   name: 'substance',
   path: '/substance',
   store: 'Substance',
-  label: i18n.t('substance.section.label')
+  label: i18n.t('substance.section.name')
 }
 
 const SUBSTANCE_USE_INTRO = {

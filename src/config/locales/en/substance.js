@@ -12,7 +12,7 @@ export const substance = {
     para: 'View the full section to make sure everything looks right and make changes if needed.'
   },
   section: {
-    label: 'Substance use'
+    name: 'Substance use'
   },
   subsection: {
     intro: 'Introduction',
