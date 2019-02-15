@@ -16,12 +16,12 @@ import * as sections from '@constants/sections'
 
 import Intro from './Intro'
 import ApplicantName from './ApplicantName'
-import ApplicantSSN from './ApplicantSSN'
-import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantBirthDate from './ApplicantBirthDate'
+import ApplicantBirthPlace from './ApplicantBirthPlace'
+import ApplicantSSN from './ApplicantSSN'
 import OtherNames from './OtherNames'
-import Physical from './Physical'
 import ContactInformation from './ContactInformation'
+import Physical from './Physical'
 import Review from './Review'
 
 /**

@@ -3,8 +3,8 @@ import React from 'react'
 import ApplicantName from './ApplicantName'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
-
 import ApplicantSSN from './ApplicantSSN'
+
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
@@ -16,28 +16,21 @@ class Review extends React.Component {
       scrollIntoView: false,
     }
 
+    const sectionDivider = (
+      <hr className="section-divider" />
+    )
+
     return (
       <div>
         <ApplicantName {...subsectionProps} />
-        <hr className="section-divider" />
+        {sectionDivider}
         <ApplicantBirthDate {...subsectionProps} />
-        <hr className="section-divider" />
+        {sectionDivider}
         <ApplicantBirthPlace {...subsectionProps}  />
+        {sectionDivider}
+        <ApplicantSSN {...subsectionProps} />
 
         {/*  
-        <hr className="section-divider" />
-        <ApplicantSSN
-          name="ssn"
-          {...this.props.ApplicantSSN}
-          section="identification"
-          subsection="ssn"
-          dispatch={this.props.dispatch}
-          onUpdate={this.props.onUpdate.bind(this, 'ApplicantSSN')}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
-  
         <hr className="section-divider" />
         <OtherNames
           name="othernames"

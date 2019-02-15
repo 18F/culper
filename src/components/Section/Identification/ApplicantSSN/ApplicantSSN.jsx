@@ -1,18 +1,38 @@
 
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { validSSN } from '../../../../validators/helpers'
-import SubsectionElement from '../../SubsectionElement'
-import { Field, SSN, Show } from '../../../Form'
 
-export default class ApplicantSSN extends SubsectionElement {
+import { i18n } from '@config'
+import schema from '@schema'
+import validate from '@validators'
+import { validSSN } from '@validators/helpers'
+
+import { Field, SSN, Show } from '@components/Form'
+
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
+import { IDENTIFICATION, IDENTIFICATION_SSN } from '@config/formSections/identification'
+
+const sectionConfig = {
+  section: IDENTIFICATION.name,
+  store: IDENTIFICATION.store,
+  subsection: IDENTIFICATION_SSN.name,
+  storeKey: IDENTIFICATION_SSN.storeKey,
+}
+
+export class ApplicantSSN extends Subsection {
   constructor(props) {
     super(props)
 
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
+
     this.state = {
-      uid: `${this.props.name}-${super.guid()}`,
+      uid: `${subsection.name}-${super.guid()}`,
       verification: {},
       error: false
     }
@@ -23,7 +43,7 @@ export default class ApplicantSSN extends SubsectionElement {
   }
 
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       ssn: this.props.ssn,
       verified: this.props.verified,
       ...queue
@@ -103,7 +123,7 @@ export default class ApplicantSSN extends SubsectionElement {
       !this.props.ssn.notApplicable
 
     return (
-      <div className={klass} {...super.dataAttributes(this.props)}>
+      <div className={klass} {...super.dataAttributes()}>
       <h1 className="section-header">{i18n.t('identification.destination.ssn')}</h1>
         <Field
           title={i18n.t('identification.ssn.title')}
@@ -150,15 +170,12 @@ export default class ApplicantSSN extends SubsectionElement {
 }
 
 ApplicantSSN.defaultProps = {
-  name: 'applicant-ssn',
   ssn: {},
   verified: false,
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr
   },
-  section: 'identification',
-  subsection: 'ssn',
   dispatch: () => {},
   required: false,
   validator: data => {
@@ -182,3 +199,5 @@ ApplicantSSN.errors = [
     }
   }
 ]
+
+export default connectIdentificationSection(ApplicantSSN, sectionConfig)

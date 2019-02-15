@@ -15,8 +15,8 @@ import {
 
 const sectionConfig = {
   section: IDENTIFICATION.name,
-  subsection: IDENTIFICATION_BIRTH_DATE.name,
   store: IDENTIFICATION.store,
+  subsection: IDENTIFICATION_BIRTH_DATE.name,
   storeKey: IDENTIFICATION_BIRTH_DATE.storeKey,
 }
 
