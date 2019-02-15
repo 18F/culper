@@ -216,7 +216,7 @@ export const SF86 = [
       formSections.IDENTIFICATION_OTHER_NAMES,
       formSections.IDENTIFICATION_CONTACTS,
       formSections.IDENTIFICATION_PHYSICAL,
-      formSections.IDENTIFICATION_REVIEW,
+      formSections.IDENTIFICATION_REVIEW
     ]
   },
   {
@@ -227,7 +227,7 @@ export const SF86 = [
       formSections.HISTORY_EMPLOYMENT,
       formSections.HISTORY_EDUCATION,
       formSections.HISTORY_FEDERAL,
-      formSections.HISTORY_REVIEW,
+      formSections.HISTORY_REVIEW
     ]
   },
   {
@@ -238,7 +238,7 @@ export const SF86 = [
         ...formSections.RELATIONSHIPS_STATUS,
         subsections: [
           formSections.RELATIONSHIPS_STATUS_MARITAL,
-          formSections.RELATIONSHIPS_STATUS_COHABITANTS,
+          formSections.RELATIONSHIPS_STATUS_COHABITANTS
         ]
       },
       formSections.RELATIONSHIPS_PEOPLE,
@@ -312,8 +312,7 @@ export const SF86 = [
       formSections.FINANCIAL_CREDIT,
       formSections.FINANCIAL_DELINQUENT,
       formSections.FINANCIAL_NONPAYMENT,
-      formSections.FINANCIAL_REVIEW,
-
+      formSections.FINANCIAL_REVIEW
     ]
   },
   {
@@ -329,7 +328,7 @@ export const SF86 = [
           formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
           formSections.SUBSTANCE_USE_DRUGS_MISUSE,
           formSections.SUBSTANCE_USE_DRUGS_ORDERED,
-          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
+          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY
         ]
       },
       {
@@ -339,29 +338,57 @@ export const SF86 = [
           formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
           formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
           formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
-          formSections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
+          formSections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL
         ]
       },
       formSections.SUBSTANCE_USE_REVIEW
     ]
+  }, {
+    ...formSections.LEGAL,
+    subsections: [
+      formSections.LEGAL_INTRO,
+      {
+        ...formSections.LEGAL_POLICE,
+        subsections: [
+          formSections.LEGAL_POLICE_INTRO,
+          formSections.LEGAL_POLICE_OFFENSES,
+          formSections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
+          formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE
+        ]
+      },
+      {
+        ...formSections.LEGAL_INVESTIGATIONS,
+        subsections: [
+          formSections.LEGAL_INVESTIGATIONS_HISTORY,
+          formSections.LEGAL_INVESTIGATIONS_REVOKED,
+          formSections.LEGAL_INVESTIGATIONS_DEBARRED
+        ]
+      },
+      formSections.LEGAL_COURT,
+      {
+        ...formSections.LEGAL_TECHNOLOGY,
+        subsections: [
+          formSections.LEGAL_TECHNOLOGY_UNAUTHORIZED,
+          formSections.LEGAL_TECHNOLOGY_MANIPULATING,
+          formSections.LEGAL_TECHNOLOGY_UNLAWFUL
+        ]
+      },
+      {
+        ...formSections.LEGAL_ASSOCIATIONS,
+        subsections: [
+          formSections.LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION,
+          formSections.LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM,
+          formSections.LEGAL_ASSOCIATIONS_ADVOCATING,
+          formSections.LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW,
+          formSections.LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE,
+          formSections.LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
+          formSections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION
+        ]
+      },
+      formSections.LEGAL_REVIEW
+    ]
   }
   /*
-
-  sections.SUBSTANCE_USE_INTRO,
-  sections.SUBSTANCE_USE_DRUGS,
-  sections.SUBSTANCE_USE_DRUGS_USAGE,
-  sections.SUBSTANCE_USE_DRUGS_PURCHASE,
-  sections.SUBSTANCE_USE_DRUGS_CLEARANCE,
-  sections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
-  sections.SUBSTANCE_USE_DRUGS_MISUSE,
-  sections.SUBSTANCE_USE_DRUGS_ORDERED,
-  sections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
-  sections.SUBSTANCE_USE_ALCOHOL,
-  sections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
-  sections.SUBSTANCE_USE_ALCOHOL_ORDERED,
-  sections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
-  sections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
-  sections.SUBSTANCE_USE_REVIEW,
 
   sections.LEGAL_INTRO,
   sections.LEGAL_POLICE,

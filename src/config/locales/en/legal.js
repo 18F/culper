@@ -11,6 +11,43 @@ export const legal = {
     para:
       'View all the sections associated with investigative & criminal history at once'
   },
+  section: {
+    name: 'Investigative and criminal history'
+  },
+  subsection: {
+    intro: 'Introduction',
+    police: {
+      label: 'Police record',
+      intro: 'Introduction',
+      offenses: 'Offenses',
+      additionalOffenses: 'Additional offenses',
+      domesticViolence: 'Domestic violence'
+    },
+    investigations: {
+      label: 'Investigations and clearance record',
+      history: 'Ever been investigated',
+      revoked: 'Denied',
+      debarred: 'Debarment'
+    },
+    court: 'Involvement in non-criminal court actions',
+    technology: {
+      label: 'Use of information technology systems',
+      unauthorized: 'Unauthorized access',
+      manipulating: 'Manipulating access',
+      unlawful: 'Unlawful use'
+    },
+    associations: {
+      label: 'Association record',
+      terroristOrganization: 'Terrorist organization',
+      engagedTerrorism: 'Engaged in terrorism',
+      advocating: 'Advocating',
+      overthrow: 'Membership - overthrow',
+      violence: 'Membership - violence or force',
+      activitiesOverthrow: 'Activities to overthrow',
+      terrorismAssociation: 'Terrorism association'
+    },
+    review: 'Review'
+  },
   destination: {
     intro: 'Investigative and criminal history intro',
     police: 'Police record',
