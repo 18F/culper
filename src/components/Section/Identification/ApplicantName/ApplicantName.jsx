@@ -1,9 +1,9 @@
 import React from 'react'
 import { i18n } from '@config'
 
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Name, Field } from '../../../Form'
+import schema from '@schema'
+import validate from '@validators'
+import { Name, Field } from '@components/Form'
 
 import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'

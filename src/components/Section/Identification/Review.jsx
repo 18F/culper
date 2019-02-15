@@ -2,43 +2,29 @@ import React from 'react'
 
 import ApplicantName from './ApplicantName'
 import ApplicantBirthDate from './ApplicantBirthDate'
+import ApplicantBirthPlace from './ApplicantBirthPlace'
 
 import ApplicantSSN from './ApplicantSSN'
-import ApplicantBirthPlace from './ApplicantBirthPlace'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
 
 class Review extends React.Component {
   render () {
+    const subsectionProps = {
+      required: true,
+      scrollIntoView: false,
+    }
+
     return (
       <div>
-        <ApplicantName
-          required={true}
-          scrollIntoView={false}
-        />
-
+        <ApplicantName {...subsectionProps} />
         <hr className="section-divider" />
-
-        <ApplicantBirthDate
-          required={true}
-          scrollIntoView={false} />
-          
+        <ApplicantBirthDate {...subsectionProps} />
+        <hr className="section-divider" />
+        <ApplicantBirthPlace {...subsectionProps}  />
 
         {/*  
-        <hr className="section-divider" />
-        <ApplicantBirthPlace
-          name="birthplace"
-          {...this.props.ApplicantBirthPlace}
-          section="identification"
-          subsection="birthplace"
-          dispatch={this.props.dispatch}
-          onUpdate={this.props.onUpdate.bind(this, 'ApplicantBirthPlace')}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
-  
         <hr className="section-divider" />
         <ApplicantSSN
           name="ssn"

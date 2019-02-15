@@ -1,19 +1,42 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Location, Field } from '../../../Form'
 
-export default class ApplicantBirthPlace extends SubsectionElement {
+import { i18n } from '@config'
+import schema from '@schema'
+import validate from '@validators'
+import { Location, Field } from '@components/Form'
+
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
+import {
+  IDENTIFICATION,
+  IDENTIFICATION_BIRTH_PLACE,
+} from '@config/formSections/identification'
+
+const sectionConfig = {
+  section: IDENTIFICATION.name,
+  subsection: IDENTIFICATION_BIRTH_PLACE.name,
+  store: IDENTIFICATION.store,
+  storeKey: IDENTIFICATION_BIRTH_PLACE.storeKey,
+}
+
+export class ApplicantBirthPlace extends Subsection {
   constructor(props) {
     super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
+
     this.update = this.update.bind(this)
     this.updateLocation = this.updateLocation.bind(this)
   }
 
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       Location: this.props.Location,
       ...queue
     })
@@ -26,11 +49,10 @@ export default class ApplicantBirthPlace extends SubsectionElement {
   }
 
   render() {
-    const klass = `section-content applicant-birthplace ${this.props
-      .className || ''}`.trim()
+    const klass = `section-content applicant-birthplace ${this.props.className || ''}`.trim()
 
     return (
-      <div className={klass} {...super.dataAttributes(this.props)}>
+      <div className={klass} {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('identification.destination.birthplace')}</h1>
         <Field
           title={i18n.t('identification.birthplace.title')}
@@ -56,13 +78,11 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 }
 
 ApplicantBirthPlace.defaultProps = {
-  location: {},
+  Location: {},
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr
   },
-  section: 'identification',
-  subsection: 'birthplace',
   dispatch: () => {},
   validator: data => {
     return validate(schema('identification.birthplace', data))
@@ -70,3 +90,5 @@ ApplicantBirthPlace.defaultProps = {
 }
 
 ApplicantBirthPlace.errors = []
+
+export default connectIdentificationSection(ApplicantBirthPlace, sectionConfig)
