@@ -16,29 +16,32 @@ const SectionNavigation = ({ section, subsection, formType }) => {
 
   let back
   let next
+  let backLabel
+  let nextLabel
 
   if (subsectionIndex > 0) {
     back = sectionConfig.subsections[subsectionIndex - 1]
+    backLabel = i18n.t(`${sectionConfig.name}.destination.${back.name}`)
   } else if (sectionIndex > 0) {
     // Go to the last subsection of the previous section
     const previousSection = formSections[sectionIndex - 1]
     back = previousSection.subsections[previousSection.subsections.length - 1]
+    backLabel = i18n.t(`${previousSection.name}.destination.${back.name}`)
   }
 
   if (subsectionIndex < sectionConfig.subsections.length - 1) {
     next = sectionConfig.subsections[subsectionIndex + 1]
+    nextLabel = i18n.t(`${sectionConfig.name}.destination.${next.name}`)
   } else if (sectionIndex < formSections.length - 1) {
     // Go to the first subsection of the next section
     const nextSection = formSections[sectionIndex + 1]
     next = nextSection.subsections[0]
+    nextLabel = i18n.t(`${nextSection.name}.destination.${next.name}`)
   }
 
   if (!back && !next) {
     return null
   }
-
-  const backLabel = back && i18n.t(`${sectionConfig.name}.destination.${back.name}`)
-  const nextLabel = next && i18n.t(`${sectionConfig.name}.destination.${next.name}`)
 
   const backButton = back ? (
     <SectionNavButton
