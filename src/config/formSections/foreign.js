@@ -35,6 +35,7 @@ const FOREIGN_CONTACTS = {
 const FOREIGN_ACTIVITIES = {
   key: sections.FOREIGN_ACTIVITIES,
   name: 'activities',
+  path: `${FOREIGN.path}/activities`,
   label: i18n.t('foreign.subsection.activities.label')
 }
 
@@ -81,6 +82,7 @@ const FOREIGN_ACTIVITIES_SUPPORT = {
 const FOREIGN_BUSINESS = {
   key: sections.FOREIGN_BUSINESS,
   name: 'business',
+  path: `${FOREIGN.path}/business`,
   label: i18n.t('foreign.subsection.business.label')
 }
 
