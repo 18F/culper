@@ -396,6 +396,39 @@ describe('citizenship component validation', function() {
         data: {
           CitizenshipStatus: { value: 'Derived' },
           AlienRegistrationNumber: {
+            value: ''
+          },
+          PermanentResidentCardNumber: {
+            value: ''
+          },
+          CertificateNumber: {
+            value: ''
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr'
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016'
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation'
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
             value: 'number'
           },
           PermanentResidentCardNumber: {
@@ -403,6 +436,105 @@ describe('citizenship component validation', function() {
           },
           CertificateNumber: {
             value: 'certificate number'
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr'
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016'
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation'
+          }
+        },
+        expected: true
+      },
+      {
+        data: {
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
+            value: 'number'
+          },
+          PermanentResidentCardNumber: {
+            value: ''
+          },
+          CertificateNumber: {
+            value: ''
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr'
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016'
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation'
+          }
+        },
+        expected: true
+      },
+      {
+        data: {
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
+            value: ''
+          },
+          PermanentResidentCardNumber: {
+            value: 'number'
+          },
+          CertificateNumber: {
+            value: ''
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr'
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016'
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation'
+          }
+        },
+        expected: true
+      },
+      {
+        data: {
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
+            value: 'number'
+          },
+          PermanentResidentCardNumber: {
+            value: ''
+          },
+          CertificateNumber: {
+            value: ''
           },
           CertificateName: {
             first: 'Foo',
