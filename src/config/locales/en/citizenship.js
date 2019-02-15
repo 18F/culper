@@ -10,6 +10,9 @@ export const citizenship = {
   review: {
     para: 'View all the sections associated with citizenship at once'
   },
+  section: {
+    name: 'Citizenship'
+  },
   subsection: {
     intro: 'Introduction',
     status: 'Citizenship status',

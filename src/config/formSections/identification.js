@@ -6,6 +6,7 @@ const IDENTIFICATION = {
   name: 'identification',
   path: '/identification',
   store: 'Identification',
+  label: i18n.t('identification.section.name')
 }
 
 const IDENTIFICATION_INTRO = {

@@ -10,6 +10,9 @@ export const identification = {
   review: {
     para: 'View all the sections associated with identification at once'
   },
+  section: {
+    name: 'Information about you'
+  },
   subsection: {
     intro: 'Introduction',
     name: 'Full name',

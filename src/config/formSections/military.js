@@ -5,7 +5,8 @@ const MILITARY = {
   key: sections.MILITARY,
   name: 'military',
   path: '/military',
-  store: 'Military'
+  store: 'Military',
+  label: i18n.t('military.section.name')
 }
 
 const MILITARY_INTRO = {

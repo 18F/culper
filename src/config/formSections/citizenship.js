@@ -5,7 +5,8 @@ const CITIZENSHIP = {
   key: sections.CITIZENSHIP,
   name: 'citizenship',
   path: '/citizenship',
-  store: 'Citizenship'
+  store: 'Citizenship',
+  label: i18n.t('citizenship.section.name')
 }
 
 const CITIZENSHIP_INTRO = {

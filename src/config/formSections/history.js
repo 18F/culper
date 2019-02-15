@@ -6,6 +6,7 @@ const HISTORY = {
   name: 'history',
   path: '/history',
   store: 'History',
+  label: i18n.t('history.section.name')
 }
 
 const HISTORY_INTRO = {
