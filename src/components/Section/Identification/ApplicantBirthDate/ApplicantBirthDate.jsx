@@ -32,7 +32,7 @@ export class ApplicantBirthDate extends Subsection {
     this.storeKey = storeKey
 
     this.state = {
-      uid: `${this.props.name}-${super.guid()}`,
+      uid: `${subsection}-${super.guid()}`,
       errors: [],
       needsConfirmation: false
     }
@@ -125,7 +125,7 @@ export class ApplicantBirthDate extends Subsection {
           help="identification.birthdate.help"
           scrollIntoView={this.props.scrollIntoView}>
           <DateControl
-            name={this.props.name}
+            name="birthdate"
             {...this.props.Date}
             relationship="Self"
             overrideError={(this.props.Confirmed || {}).checked}

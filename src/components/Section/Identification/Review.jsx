@@ -1,9 +1,10 @@
 import React from 'react'
 
-import ApplicantName from './ApplicantName/ApplicantName'
+import ApplicantName from './ApplicantName'
+import ApplicantBirthDate from './ApplicantBirthDate'
+
 import ApplicantSSN from './ApplicantSSN'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
-import ApplicantBirthDate from './ApplicantBirthDate'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
@@ -16,22 +17,15 @@ class Review extends React.Component {
           required={true}
           scrollIntoView={false}
         />
-  
+
         <hr className="section-divider" />
-  
-        {/*
+
         <ApplicantBirthDate
-          name="birthdate"
-          {...this.props.ApplicantBirthDate}
-          section="identification"
-          subsection="birthdate"
-          dispatch={this.props.dispatch}
-          onUpdate={this.props.onUpdate.bind(this, 'ApplicantBirthDate')}
-          onError={this.props.onError}
           required={true}
-          scrollIntoView={false}
-        />
-  
+          scrollIntoView={false} />
+          
+
+        {/*  
         <hr className="section-divider" />
         <ApplicantBirthPlace
           name="birthplace"
