@@ -1,22 +1,44 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+
+import { i18n } from '@config'
+
 import {
   IdentificationContactInformationValidator,
   ContactPhoneNumberValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
+} from '@validators'
+
 import {
   Field,
   Email,
   Accordion,
   AccordionItem,
   Telephone
-} from '../../../Form'
-import { Summary, TelephoneSummary } from '../../../Summary'
+} from '@components/Form'
+import { Summary, TelephoneSummary } from '@components/Summary'
 
-export default class ContactInformation extends SubsectionElement {
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
+import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from '@config/formSections/identification'
+
+const sectionConfig = {
+  section: IDENTIFICATION.name,
+  store: IDENTIFICATION.store,
+  subsection: IDENTIFICATION_CONTACTS.name,
+  storeKey: IDENTIFICATION_CONTACTS.storeKey,
+}
+
+export class ContactInformation extends Subsection {
   constructor(props) {
     super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
+
     this.update = this.update.bind(this)
     this.updateHomeEmail = this.updateHomeEmail.bind(this)
     this.updateWorkEmail = this.updateWorkEmail.bind(this)
@@ -24,7 +46,7 @@ export default class ContactInformation extends SubsectionElement {
   }
 
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       HomeEmail: this.props.HomeEmail,
       WorkEmail: this.props.WorkEmail,
       PhoneNumbers: this.props.PhoneNumbers,
@@ -107,7 +129,7 @@ export default class ContactInformation extends SubsectionElement {
     return (
       <div
         className="section-content contact"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('identification.destination.contacts')}</h1>
 
         <Field
@@ -211,11 +233,11 @@ ContactInformation.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  section: 'identification',
-  subsection: 'contacts',
   dispatch: () => {},
   validator: data => {
     return new IdentificationContactInformationValidator(data).isValid()
   },
   defaultState: true
 }
+
+export default connectIdentificationSection(ContactInformation, sectionConfig)
