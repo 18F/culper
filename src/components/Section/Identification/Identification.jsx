@@ -37,11 +37,14 @@ class Identification extends React.Component {
     const para = subsection === 'review' && i18n.m('review.para')
     const showTop = subsection === 'review'
 
+    /** TODO - this should come from Redux store */
+    const formType = 'SF86'
+
     const navButtons = (
       <SectionNavigation
         section={sections.IDENTIFICATION}
         subsection={subsection}
-        formType={'SF85'} />
+        formType={formType} />
     )
 
     return (
