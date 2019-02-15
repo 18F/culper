@@ -28,29 +28,17 @@ export class Physical extends Subsection {
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
-
-    this.state = {
-      Height: props.Height,
-      Weight: props.Weight,
-      HairColor: props.HairColor,
-      EyeColor: props.EyeColor,
-      Sex: props.Sex,
-      Comments: props.Comments
-    }
   }
 
   handleUpdate(field, values) {
-    this.setState({ [field]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate(this.storeKey, {
-          Height: this.state.Height,
-          Weight: this.state.Weight,
-          HairColor: this.state.HairColor,
-          EyeColor: this.state.EyeColor,
-          Sex: this.state.Sex,
-          Comments: this.state.Comments
-        })
-      }
+    this.props.onUpdate(this.storeKey, {
+      Height: this.props.Height,
+      Weight: this.props.Weight,
+      HairColor: this.props.HairColor,
+      EyeColor: this.props.EyeColor,
+      Sex: this.props.Sex,
+      Comments: this.props.Comments,
+      [field]: values,
     })
   }
 
@@ -134,7 +122,7 @@ export class Physical extends Subsection {
           adjustFor="big-buttons"
           shrink={true}
           onUpdate={this.handleUpdate.bind(this, 'Comments')}
-          commentsValue={this.state.Comments}
+          commentsValue={this.props.Comments}
           scrollIntoView={this.props.scrollIntoView}
           comments={true}>
           <Sex
