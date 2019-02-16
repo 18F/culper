@@ -7,6 +7,7 @@ import foreignSections from './foreign'
 import financialSections from './financial'
 import substanceUseSections from './substanceUse'
 import legalSections from './legal'
+import psychologicalSections from './psychological'
 
 export default {
   ...identificationSections,
@@ -17,5 +18,6 @@ export default {
   ...foreignSections,
   ...financialSections,
   ...substanceUseSections,
-  ...legalSections
+  ...legalSections,
+  ...psychologicalSections
 }
