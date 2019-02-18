@@ -23,7 +23,7 @@ describe('Root Reducer', function() {
     },
     authentication: {
       authenticated: false,
-      formType: '86',
+      formType: 'SF86',
       token: null
     },
     section: {

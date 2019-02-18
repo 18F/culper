@@ -5,7 +5,7 @@ describe('Authentication Reducer', function() {
   const defaultState = {
     authenticated: false,
     token: null,
-    formType: '86'
+    formType: 'SF86'
   }
 
   it('should return the initial state', function() {
@@ -17,7 +17,7 @@ describe('Authentication Reducer', function() {
       authenticated: true,
       token: 'faketoken',
       error: '',
-      formType: '86'
+      formType: 'SF86'
     }
 
     const action = handleLoginSuccess('faketoken')
@@ -29,20 +29,20 @@ describe('Authentication Reducer', function() {
       authenticated: false,
       token: null,
       error: undefined,
-      formType: '86'
+      formType: 'SF86'
     }
 
     const action = handleLoginError()
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 
-  it('should return SF-86 as default form type', () => {
-    const action = handleLoginSuccess('success', '86')
+  it('should return SF86 as default form type', () => {
+    const action = handleLoginSuccess('success', 'SF86')
     expect(authentication(defaultState, action).formType).toEqual(defaultState.formType)
   })
 
   it('should set the formType', () => {
-    const fixture = '85'
+    const fixture = 'SF85'
     const action = handleLoginSuccess('faketoken', fixture)
     expect(authentication(defaultState, action).formType).toEqual(fixture)
   })

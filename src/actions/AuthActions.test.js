@@ -23,7 +23,7 @@ describe('Auth actions', function() {
       {
         type: AuthConstants.LOGIN_SUCCESS,
         token: 'faketoken',
-        formType: '86'
+        formType: 'SF86'
       }
     ]
 
@@ -36,7 +36,7 @@ describe('Auth actions', function() {
 
   it('should create an action to handle a successful login', function() {
     const token = 'faketoken'
-    const formType = '86'
+    const formType = 'SF86'
     const expectedAction = {
       type: AuthConstants.LOGIN_SUCCESS,
       token,
