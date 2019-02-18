@@ -43,31 +43,28 @@ const SectionNavigation = ({ section, subsection, formType }) => {
     return null
   }
 
-  const backButton = back ? (
-    <SectionNavButton
-      direction="back"
-      label={backLabel}
-      onClick={() => { goToSection(`/form${back.path}`)}} />
-  ) : <SectionNavButton direction="back" isEmpty={true} />
-
-  const nextButton = next ? (
-    <SectionNavButton
-      direction="next"
-      label={nextLabel}
-      onClick={() => { goToSection(`/form${next.path}`)}} />
-  ) : <SectionNavButton direction="next" isEmpty={true} />
-
   const goToSection = (path) => {
     env.History().push(path)
   }
+
+  const backOnClick = back && (() => { goToSection(`/form${back.path}`) })
+  const nextOnClick = next && (() => { goToSection(`/form${next.path}`) })
 
   return (
     <div className="bottom-btns">
       <div className="btn-wrap">
         <div className="btn-container">
-          {backButton}
+          <SectionNavButton
+            direction="back"
+            label={backLabel}
+            onClick={backOnClick}
+            isEmpty={!back} />
           <div className="btn-spacer" />
-          {nextButton}
+          <SectionNavButton
+            direction="next"
+            label={nextLabel}
+            onClick={nextOnClick}
+            isEmpty={!next} />
         </div>
       </div>
     </div>
