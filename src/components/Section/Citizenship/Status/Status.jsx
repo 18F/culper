@@ -1,9 +1,9 @@
 import React from 'react'
-import { i18n } from 'config'
-import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
-import schema from 'schema'
-import validate from 'validators'
-import SubsectionElement from 'components/Section/SubsectionElement'
+import { i18n } from '@config'
+import { alphaNumericRegEx, validGenericTextfield } from '@validators/helpers'
+import schema from '@schema'
+import validate from '@validators'
+import SubsectionElement from '@components/Section/SubsectionElement'
 import {
   Branch,
   Show,
@@ -16,13 +16,9 @@ import {
   DateControl,
   Country,
   Location
-} from 'components/Form'
+} from '@components/Form'
 
 export default class Status extends SubsectionElement {
-  constructor(props) {
-    super(props)
-  }
-
   update = (queue) => {
     this.props.onUpdate({
       CitizenshipStatus: this.props.CitizenshipStatus,
@@ -54,153 +50,9 @@ export default class Status extends SubsectionElement {
     })
   }
 
-  updateCitizenshipStatus = (values) => {
+  updateField = (field, values) =>  {
     this.update({
-      CitizenshipStatus: values
-    })
-  }
-
-  updateAbroadDocumentation = (values) => {
-    this.update({
-      AbroadDocumentation: values
-    })
-  }
-
-  updateExplanation = (values) => {
-    this.update({
-      Explanation: values
-    })
-  }
-
-  updateDocumentNumber = (values) => {
-    this.update({
-      DocumentNumber: values
-    })
-  }
-
-  updateDocumentIssued = (values) => {
-    this.update({
-      DocumentIssued: values
-    })
-  }
-
-  updatePlaceIssued = (values) => {
-    this.update({
-      PlaceIssued: values
-    })
-  }
-
-  updateDocumentName = (values) => {
-    this.update({
-      DocumentName: values
-    })
-  }
-
-  updateCertificateNumber = (values) => {
-    this.update({
-      CertificateNumber: values
-    })
-  }
-
-  updateCertificateIssued = (values) => {
-    this.update({
-      CertificateIssued: values
-    })
-  }
-
-  updateCertificateName = (values) => {
-    this.update({
-      CertificateName: values
-    })
-  }
-
-  updateBornOnMilitaryInstallation = (values) => {
-    this.update({
-      BornOnMilitaryInstallation: values
-    })
-  }
-
-  updateMilitaryBase = (values) => {
-    this.update({
-      MilitaryBase: values
-    })
-  }
-
-  updateEntryDate = (values) => {
-    this.update({
-      EntryDate: values
-    })
-  }
-
-  updateEntryLocation = (values) => {
-    this.update({
-      EntryLocation: values
-    })
-  }
-
-  updatePriorCitizenship = (values) => {
-    this.update({
-      PriorCitizenship: values
-    })
-  }
-
-  updateHasAlienRegistration = (values) => {
-    this.update({
-      HasAlienRegistration: values
-    })
-  }
-
-  updateAlienRegistrationNumber = (values) => {
-    this.update({
-      AlienRegistrationNumber: values
-    })
-  }
-
-  updateAlienRegistrationExpiration = (values) => {
-    this.update({
-      AlienRegistrationExpiration: values
-    })
-  }
-
-  updateCertificateCourtName = (values) => {
-    this.update({
-      CertificateCourtName: values
-    })
-  }
-
-  updateCertificateCourtAddress = (values) => {
-    this.update({
-      CertificateCourtAddress: values
-    })
-  }
-
-  updateBasis = (values) => {
-    this.update({
-      Basis: values
-    })
-  }
-
-  updatePermanentResidentCardNumber = (values) => {
-    this.update({
-      PermanentResidentCardNumber: values
-    })
-  }
-
-  updateResidenceStatus = (values) => {
-    this.update({
-      ResidenceStatus: values
-    })
-  }
-
-  updateDocumentType = (values) => {
-    this.update({
-      DocumentType: values
-    })
-  }
-
-  updateDocumentExpiration = (values) => {
-    this.update({
-      DocumentExpiration: values
+      [field]: values
     })
   }
 
@@ -244,7 +96,7 @@ export default class Status extends SubsectionElement {
               )}
               value="Citizen"
               className="citizenship-status-citizen"
-              onUpdate={this.updateCitizenshipStatus}
+              onUpdate={value => { this.updateField('CitizenshipStatus', value) }}
               onError={this.handleError}
             />
             <Radio
@@ -254,7 +106,7 @@ export default class Status extends SubsectionElement {
               )}
               value="ForeignBorn"
               className="citizenship-status-foreignborn"
-              onUpdate={this.updateCitizenshipStatus}
+              onUpdate={value => { this.updateField('CitizenshipStatus', value) }}
               onError={this.handleError}
             />
             <Radio
@@ -264,7 +116,7 @@ export default class Status extends SubsectionElement {
               )}
               value="Naturalized"
               className="citizenship-status-naturalized"
-              onUpdate={this.updateCitizenshipStatus}
+              onUpdate={value => { this.updateField('CitizenshipStatus', value) }}
               onError={this.handleError}
             />
             <Radio
@@ -274,7 +126,7 @@ export default class Status extends SubsectionElement {
               )}
               value="Derived"
               className="citizenship-status-derived"
-              onUpdate={this.updateCitizenshipStatus}
+              onUpdate={value => { this.updateField('CitizenshipStatus', value) }}
               onError={this.handleError}
             />
             <Radio
@@ -284,7 +136,7 @@ export default class Status extends SubsectionElement {
               )}
               value="NotCitizen"
               className="citizenship-status-notcitizen"
-              onUpdate={this.updateCitizenshipStatus}
+              onUpdate={value => { this.updateField('CitizenshipStatus', value) }}
               onError={this.handleError}
             />
           </RadioGroup>
@@ -307,7 +159,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.abroad.fs240')}
                   value="FS-240"
                   className="citizenship-abroad-fs240"
-                  onUpdate={this.updateAbroadDocumentation}
+                  onUpdate={value => { this.updateField('AbroadDocumentation', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -315,7 +167,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.abroad.ds1350')}
                   value="DS-1350"
                   className="citizenship-abroad-ds1350"
-                  onUpdate={this.updateAbroadDocumentation}
+                  onUpdate={value => { this.updateField('AbroadDocumentation', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -323,7 +175,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.abroad.fs545')}
                   value="FS-545"
                   className="citizenship-abroad-fs545"
-                  onUpdate={this.updateAbroadDocumentation}
+                  onUpdate={value => { this.updateField('AbroadDocumentation', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -331,7 +183,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.abroad.other')}
                   value="Other"
                   className="citizenship-abroad-other"
-                  onUpdate={this.updateAbroadDocumentation}
+                  onUpdate={value => { this.updateField('AbroadDocumentation', value) }}
                   onError={this.handleError}
                 />
               </RadioGroup>
@@ -346,7 +198,7 @@ export default class Status extends SubsectionElement {
                     name="Explanation"
                     className="citizenship-abroad-explanation"
                     {...this.props.Explanation}
-                    onUpdate={this.updateExplanation}
+                    onUpdate={value => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
                     required={this.props.required}
                   />
@@ -366,7 +218,7 @@ export default class Status extends SubsectionElement {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.DocumentNumber}
-                onUpdate={this.updateDocumentNumber}
+                onUpdate={value => { this.updateField('DocumentNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -381,7 +233,7 @@ export default class Status extends SubsectionElement {
                 className="document-issued"
                 minDateEqualTo={true}
                 {...this.props.DocumentIssued}
-                onUpdate={this.updateDocumentIssued}
+                onUpdate={value => { this.updateField('DocumentIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -397,7 +249,7 @@ export default class Status extends SubsectionElement {
                 {...this.props.PlaceIssued}
                 layout={Location.CITY_STATE_COUNTRY}
                 className="place-issued"
-                onUpdate={this.updatePlaceIssued}
+                onUpdate={value => { this.updateField('PlaceIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -412,7 +264,7 @@ export default class Status extends SubsectionElement {
                 name="DocumentName"
                 className="document-name"
                 {...this.props.DocumentName}
-                onUpdate={this.updateDocumentName}
+                onUpdate={value => { this.updateField('DocumentName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
@@ -431,7 +283,7 @@ export default class Status extends SubsectionElement {
                 maxlength="30"
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
-                onUpdate={this.updateCertificateNumber}
+                onUpdate={value => { this.updateField('CertificateNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -448,7 +300,7 @@ export default class Status extends SubsectionElement {
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
                 minDateEqualTo={true}
-                onUpdate={this.updateCertificateIssued}
+                onUpdate={value => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -465,7 +317,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateName"
                 className="certificate-name"
                 {...this.props.CertificateName}
-                onUpdate={this.updateCertificateName}
+                onUpdate={value => { this.updateField('CertificateName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -478,7 +330,7 @@ export default class Status extends SubsectionElement {
               labelSize="h4"
               className="born-on-military-installation"
               {...this.props.BornOnMilitaryInstallation}
-              onUpdate={this.updateBornOnMilitaryInstallation}
+              onUpdate={value => { this.updateField('BornOnMilitaryInstallation', value) }}
               onError={this.handleError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
@@ -495,7 +347,7 @@ export default class Status extends SubsectionElement {
                   name="MilitaryBase"
                   className="military-base"
                   {...this.props.MilitaryBase}
-                  onUpdate={this.updateMilitaryBase}
+                  onUpdate={value => { this.updateField('MilitaryBase', value) }}
                   onError={this.handleError}
                   required={this.props.required}
                 />
@@ -517,7 +369,7 @@ export default class Status extends SubsectionElement {
                 className="entry-date"
                 {...this.props.EntryDate}
                 minDateEqualTo={true}
-                onUpdate={this.updateEntryDate}
+                onUpdate={value => { this.updateField('EntryDate', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -532,7 +384,7 @@ export default class Status extends SubsectionElement {
                 {...this.props.EntryLocation}
                 layout={Location.CITY_STATE}
                 className="entry-location"
-                onUpdate={this.updateEntryLocation}
+                onUpdate={value => { this.updateField('EntryLocation', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -549,7 +401,7 @@ export default class Status extends SubsectionElement {
                 className="prior-citizenship"
                 {...this.props.PriorCitizenship}
                 multiple={true}
-                onUpdate={this.updatePriorCitizenship}
+                onUpdate={value => { this.updateField('PriorCitizenship', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -561,7 +413,7 @@ export default class Status extends SubsectionElement {
               labelSize="h4"
               className="has-alien-registration"
               {...this.props.HasAlienRegistration}
-              onUpdate={this.updateHasAlienRegistration}
+              onUpdate={value => { this.updateField('HasAlienRegistration', value) }}
               onError={this.handleError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
@@ -581,7 +433,7 @@ export default class Status extends SubsectionElement {
                   pattern={alphaNumericRegEx}
                   prefix="alphanumeric"
                   {...this.props.AlienRegistrationNumber}
-                  onUpdate={this.updateAlienRegistrationNumber}
+                  onUpdate={value => { this.updateField('AlienRegistrationNumber', value) }}
                   onError={this.handleError}
                   required={this.props.required}
                 />
@@ -600,7 +452,7 @@ export default class Status extends SubsectionElement {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.CertificateNumber}
-                onUpdate={this.updateCertificateNumber}
+                onUpdate={value => { this.updateField('CertificateNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -613,7 +465,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateCourtName"
                 className="certificate-court-name"
                 {...this.props.CertificateCourtName}
-                onUpdate={this.updateCertificateCourtName}
+                onUpdate={value => { this.updateField('CertificateCourtName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -633,7 +485,7 @@ export default class Status extends SubsectionElement {
                 layout={Location.US_ADDRESS}
                 geocode={true}
                 className="certificate-court-address"
-                onUpdate={this.updateCertificateCourtAddress}
+                onUpdate={value => { this.updateField('CertificateCourtAddress', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -651,7 +503,7 @@ export default class Status extends SubsectionElement {
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
                 minDateEqualTo={true}
-                onUpdate={this.updateCertificateIssued}
+                onUpdate={value => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -668,7 +520,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateName"
                 className="certificate-name"
                 {...this.props.CertificateName}
-                onUpdate={this.updateCertificateName}
+                onUpdate={value => { this.updateField('CertificateName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
@@ -689,7 +541,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.m('citizenship.status.label.basis.naturalized')}
                   value="Individual"
                   className="citizenship-basis-individual"
-                  onUpdate={this.updateBasis}
+                  onUpdate={value => { this.updateField('Basis', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -697,7 +549,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.m('citizenship.status.label.basis.other')}
                   value="Other"
                   className="citizenship-basis-other"
-                  onUpdate={this.updateBasis}
+                  onUpdate={value => { this.updateField('Basis', value) }}
                   onError={this.handleError}
                 />
               </RadioGroup>
@@ -712,7 +564,7 @@ export default class Status extends SubsectionElement {
                     name="Explanation"
                     className="citizenship-basis-explanation"
                     {...this.props.Explanation}
-                    onUpdate={this.updateExplanation}
+                    onUpdate={value => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
                     required={this.props.required}
                   />
@@ -736,7 +588,7 @@ export default class Status extends SubsectionElement {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
-                onUpdate={this.updateAlienRegistrationNumber}
+                onUpdate={value => { this.updateField('AlienRegistrationNumber', value) }}
                 onError={this.handleError}
                 required={this.derivedAlienRegistrationNumberRequired()}
               />
@@ -754,7 +606,7 @@ export default class Status extends SubsectionElement {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.PermanentResidentCardNumber}
-                onUpdate={this.updatePermanentResidentCardNumber}
+                onUpdate={value => { this.updateField('PermanentResidentCardNumber', value) }}
                 onError={this.handleError}
                 required={this.derivedPermanentResidentCardNumberRequired()}
               />
@@ -772,7 +624,7 @@ export default class Status extends SubsectionElement {
                 maxlength="30"
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
-                onUpdate={this.updateCertificateNumber}
+                onUpdate={value => { this.updateField('CertificateNumber', value) }}
                 onError={this.handleError}
                 required={this.derivedCertificateNumberRequired()}
               />
@@ -789,7 +641,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateName"
                 className="certificate-name"
                 {...this.props.CertificateName}
-                onUpdate={this.updateCertificateName}
+                onUpdate={value => { this.updateField('CertificateName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -807,7 +659,7 @@ export default class Status extends SubsectionElement {
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
                 minDateEqualTo={true}
-                onUpdate={this.updateCertificateIssued}
+                onUpdate={value => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -827,7 +679,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.m('citizenship.status.label.basis.derived')}
                   value="Individual"
                   className="citizenship-basis-individual"
-                  onUpdate={this.updateBasis}
+                  onUpdate={value => { this.updateField('Basis', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -835,7 +687,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.m('citizenship.status.label.basis.other')}
                   value="Other"
                   className="citizenship-basis-other"
-                  onUpdate={this.updateBasis}
+                  onUpdate={value => { this.updateField('Basis', value) }}
                   onError={this.handleError}
                 />
               </RadioGroup>
@@ -850,7 +702,7 @@ export default class Status extends SubsectionElement {
                     name="Explanation"
                     className="citizenship-basis-explanation"
                     {...this.props.Explanation}
-                    onUpdate={this.updateExplanation}
+                    onUpdate={value => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
                     required={this.props.required}
                   />
@@ -870,7 +722,7 @@ export default class Status extends SubsectionElement {
                 name="ResidenceStatus"
                 className="residence-status"
                 {...this.props.ResidenceStatus}
-                onUpdate={this.updateResidenceStatus}
+                onUpdate={value => { this.updateField('ResidenceStatus', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -886,7 +738,7 @@ export default class Status extends SubsectionElement {
                 className="entry-date"
                 {...this.props.EntryDate}
                 minDateEqualTo={true}
-                onUpdate={this.updateEntryDate}
+                onUpdate={value => { this.updateField('EntryDate', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -903,7 +755,7 @@ export default class Status extends SubsectionElement {
                 className="prior-citizenship"
                 {...this.props.PriorCitizenship}
                 multiple={true}
-                onUpdate={this.updatePriorCitizenship}
+                onUpdate={value => { this.updateField('PriorCitizenship', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -918,7 +770,7 @@ export default class Status extends SubsectionElement {
                 className="entry-location"
                 {...this.props.EntryLocation}
                 layout={Location.CITY_STATE}
-                onUpdate={this.updateEntryLocation}
+                onUpdate={value => { this.updateField('EntryLocation', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -936,7 +788,7 @@ export default class Status extends SubsectionElement {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
-                onUpdate={this.updateAlienRegistrationNumber}
+                onUpdate={value => { this.updateField('AlienRegistrationNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -953,7 +805,7 @@ export default class Status extends SubsectionElement {
                 className="alien-registration-expiration"
                 {...this.props.AlienRegistrationExpiration}
                 noMaxDate={true}
-                onUpdate={this.updateAlienRegistrationExpiration}
+                onUpdate={value => { this.updateField('AlienRegistrationExpiration', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -973,7 +825,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.documenttype.i94')}
                   value="I-94"
                   className="document-type-i94"
-                  onUpdate={this.updateDocumentType}
+                  onUpdate={value => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -981,7 +833,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.documenttype.visa')}
                   value="U.S. Visa"
                   className="document-type-visa"
-                  onUpdate={this.updateDocumentType}
+                  onUpdate={value => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -989,7 +841,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.documenttype.i20')}
                   value="I-20"
                   className="document-type-i20"
-                  onUpdate={this.updateDocumentType}
+                  onUpdate={value => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -997,7 +849,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.documenttype.ds2019')}
                   value="DS-2019"
                   className="document-type-ds2019"
-                  onUpdate={this.updateDocumentType}
+                  onUpdate={value => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -1005,7 +857,7 @@ export default class Status extends SubsectionElement {
                   label={i18n.t('citizenship.status.label.documenttype.other')}
                   value="Other"
                   className="document-type-other"
-                  onUpdate={this.updateDocumentType}
+                  onUpdate={value => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
               </RadioGroup>
@@ -1020,7 +872,7 @@ export default class Status extends SubsectionElement {
                     name="Explanation"
                     className="citizenship-document-type-explanation"
                     {...this.props.Explanation}
-                    onUpdate={this.updateExplanation}
+                    onUpdate={value => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
                     required={this.props.required}
                   />
@@ -1040,7 +892,7 @@ export default class Status extends SubsectionElement {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.DocumentNumber}
-                onUpdate={this.updateDocumentNumber}
+                onUpdate={value => { this.updateField('DocumentNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -1054,7 +906,7 @@ export default class Status extends SubsectionElement {
                 name="DocumentName"
                 className="document-name"
                 {...this.props.DocumentName}
-                onUpdate={this.updateDocumentName}
+                onUpdate={value => { this.updateField('DocumentName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
@@ -1070,7 +922,7 @@ export default class Status extends SubsectionElement {
                 className="document-issued"
                 {...this.props.DocumentIssued}
                 minDateEqualTo={true}
-                onUpdate={this.updateDocumentIssued}
+                onUpdate={value => { this.updateField('DocumentIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -1086,7 +938,7 @@ export default class Status extends SubsectionElement {
                 {...this.props.DocumentExpiration}
                 noMaxDate={true}
                 minDateEqualTo={true}
-                onUpdate={this.updateDocumentExpiration}
+                onUpdate={value => { this.updateField('DocumentExpiration', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
