@@ -257,13 +257,13 @@ export default class ForeignNational extends ValidationElement {
           optional={true}
           filterErrors={Name.requiredErrorsOnly}
           className={
-            this.props.NameNotApplicable.applicable ? '' : 'no-margin-bottom'
+            this.props.NameNotApplicable.applicable ? 'foreign-national-name' : 'foreign-national-name no-margin-bottom'
           }
           scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable
             name="NameNotApplicable"
             className="na-name"
-            label={i18n.t('foreign.contacts.label.idk')}
+            label={i18n.t('foreign.contacts.label.idkname')}
             or={i18n.m('foreign.contacts.para.or')}
             {...this.props.NameNotApplicable}
             onUpdate={this.updateNameNotApplicable}

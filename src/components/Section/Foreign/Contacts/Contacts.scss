@@ -1,1 +1,13 @@
+.foreign-national-name {
+	position: relative;
+}
 
+.na-name.button {
+	position: absolute;
+	right: 0;
+	bottom: -40px;
+
+	@media all and (max-width: 980px) {
+		position: relative;
+	}
+}
