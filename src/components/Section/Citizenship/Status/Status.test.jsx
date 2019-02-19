@@ -66,8 +66,8 @@ describe('The status component', () => {
       .find('.document-issued .day input')
       .simulate('change', { target: { name: 'day', value: '1' } })
     component
-      .find('.place-issued .city input')
-      .simulate('change', { target: { name: 'city', value: 'City name' } })
+      .find('.place-issued .no input')
+      .simulate('change')
     component
       .find('.document-name .first input')
       .simulate('change', { target: { name: 'first', value: 'The name' } })
