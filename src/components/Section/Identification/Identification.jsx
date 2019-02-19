@@ -2,8 +2,6 @@ import React from 'react'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 
-import AuthenticatedView from '../../../views/AuthenticatedView'
-
 import { i18n } from '@config'
 
 import { ErrorList } from '@components/ErrorList'
@@ -80,6 +78,6 @@ Identification.defaultProps = {
   subsection: 'intro',
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Identification))
+export default connect(mapStateToProps)(Identification)
 
 export const IdentificationSections = () => <Review />

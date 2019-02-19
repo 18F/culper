@@ -1,7 +1,5 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import { api } from '../../../services'
@@ -21,10 +19,7 @@ jest.mock('../../Form/ValidationElement/helpers', () =>
 )
 
 describe('The print section', () => {
-  // Setup
-  window.token = 'fake-token'
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
+  const mockStore = configureMockStore()
 
   beforeEach(() => {
     const mock = new MockAdapter(api.proxy)
@@ -33,7 +28,6 @@ describe('The print section', () => {
 
   it('visible when authenticated', () => {
     const store = mockStore({
-      authentication: { authenticated: true },
       application: applicationState
     })
     const component = mount(
@@ -50,7 +44,6 @@ describe('The print section', () => {
       printed = true
     }
     const store = mockStore({
-      authentication: { authenticated: true },
       application: applicationState
     })
     const component = mount(
@@ -64,7 +57,6 @@ describe('The print section', () => {
 
   it('renders properly', () => {
     const store = mockStore({
-      authentication: { authenticated: true },
       application: applicationState
     })
     testSnapshot(

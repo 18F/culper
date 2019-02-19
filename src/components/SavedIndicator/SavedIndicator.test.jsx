@@ -13,18 +13,6 @@ describe('The saved indicator component', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
-  it('hidden when not authenticated', () => {
-    window.token = ''
-    const store = mockStore({ authentication: [] })
-    const component = mount(
-      <Provider store={store}>
-        <SavedIndicator />
-      </Provider>
-    )
-    expect(component.find('button').length).toEqual(0)
-    window.token = 'fake-token'
-  })
-
   it('catches failed save', () => {
     const store = mockStore({
       authentication: {

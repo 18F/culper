@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../config'
-import AuthenticatedView from '../../views/AuthenticatedView'
 import { Show } from '../Form'
 import { saveSection } from './persistence-helpers'
 import { formIsLocked } from '../../validators'
@@ -208,4 +207,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(SavedIndicator))
+export default connect(mapStateToProps)(SavedIndicator)

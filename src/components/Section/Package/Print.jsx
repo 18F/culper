@@ -15,7 +15,6 @@ import { ForeignSections } from '../Foreign'
 import { SubstanceUseSections } from '../SubstanceUse'
 import { LegalSections } from '../Legal'
 import { PsychologicalSections } from '../Psychological'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 
 class Print extends React.Component {
   constructor(props) {
@@ -333,4 +332,4 @@ const blobFromBase64 = (base64, contentType = '', size = 512) => {
   return new window.Blob(buffer, { type: contentType })
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Print))
+export default connect(mapStateToProps)(Print)

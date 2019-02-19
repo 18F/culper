@@ -6,7 +6,6 @@ import {
   clearErrors,
   updateApplication
 } from '../../actions/ApplicationActions'
-import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator, TimeoutWarning } from '../../components'
 import { env } from '../../config'
 import {
@@ -153,4 +152,4 @@ class Form extends React.Component {
   }
 }
 
-export default withRouter(AuthenticatedView(Form))
+export default withRouter(Form)

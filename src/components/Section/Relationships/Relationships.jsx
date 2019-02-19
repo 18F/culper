@@ -4,7 +4,6 @@ import { updateApplication } from '../../../actions/ApplicationActions'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Relatives from './Relatives'
 import Marital from './RelationshipStatus/Marital'
@@ -320,4 +319,4 @@ export class RelationshipSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Relationships))
+export default connect(mapStateToProps)(Relationships)

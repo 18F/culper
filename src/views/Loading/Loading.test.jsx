@@ -9,7 +9,6 @@ import { api } from '../../services'
 import Loading from './Loading'
 
 describe('The data loading view', () => {
-  // Setup
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 

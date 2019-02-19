@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n, env } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Show, Field } from '../../Form'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
@@ -325,4 +324,4 @@ export class PsychologicalSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Psychological))
+export default connect(mapStateToProps)(Psychological)

@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthenticatedView from '../AuthenticatedView'
+import AuthenticatedView from '@views/AuthenticatedView'
 import { Link } from 'react-router-dom'
 
 class Help extends React.Component {

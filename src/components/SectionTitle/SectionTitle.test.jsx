@@ -1,15 +1,12 @@
 import React from 'react'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import SectionTitle from './SectionTitle'
 import { mount } from 'enzyme'
 
 describe('The title section', () => {
-  // Setup
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
+  const mockStore = configureMockStore()
 
   it('can handle no title', () => {
     const store = mockStore({ section: { section: '' } })

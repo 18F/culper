@@ -1,7 +1,6 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { MemoryRouter } from 'react-router'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import Foreign from './Foreign'
 import Passport from './Passport'
@@ -12,44 +11,10 @@ const applicationState = {
 }
 
 describe('The foreign section', () => {
-  // Setup
-  window.token = 'fake-token'
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
-
-  it('hidden when not authenticated', () => {
-    window.token = ''
-    const store = mockStore({
-      authentication: [],
-      application: applicationState
-    })
-    const component = mount(
-      <Provider store={store}>
-        <MemoryRouter>
-          <Foreign />
-        </MemoryRouter>
-      </Provider>
-    )
-    expect(component.find('div').length).toEqual(0)
-    window.token = 'fake-token'
-  })
-
-  it('visible when authenticated', () => {
-    const store = mockStore({
-      authentication: { authenticated: true, application: applicationState }
-    })
-    const component = mount(
-      <Provider store={store}>
-        <MemoryRouter>
-          <Foreign />
-        </MemoryRouter>
-      </Provider>
-    )
-    expect(component.find('div').length).toBeGreaterThan(0)
-  })
+  const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <MemoryRouter>
@@ -62,7 +27,6 @@ describe('The foreign section', () => {
 
   it('can go to each subsection', () => {
     const store = mockStore({
-      authentication: { authenticated: true },
       application: applicationState
     })
 
@@ -221,7 +185,6 @@ describe('The foreign section', () => {
 
   it('can parse previous names', () => {
     const store = mockStore({
-      authentication: { authenticated: true },
       application: {
         Identification: {
           ApplicantName: {

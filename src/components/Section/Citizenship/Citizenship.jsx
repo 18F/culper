@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import SectionElement from '../SectionElement'
 import { SectionViews, SectionView } from '../SectionView'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Status from './Status'
 import Multiple from './Multiple'
@@ -196,4 +195,4 @@ export class CitizenshipSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Citizenship))
+export default connect(mapStateToProps)(Citizenship)

@@ -10,7 +10,6 @@ import {
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field, Svg, Show, Branch } from '../../Form'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
@@ -798,4 +797,4 @@ export class HistorySections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(History))
+export default connect(mapStateToProps)(History)

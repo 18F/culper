@@ -1,6 +1,5 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
@@ -8,9 +7,7 @@ import TimeoutWarning, { roundUp, minutes, seconds } from './TimeoutWarning'
 import { testSnapshot } from '../../test-helpers'
 
 describe('The timeout warning component', () => {
-  // Setup
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
+  const mockStore = configureMockStore()
 
   it('not displayed if outside threshold', () => {
     const store = mockStore({

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
@@ -997,4 +996,4 @@ export class LegalSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Legal))
+export default connect(mapStateToProps)(Legal)

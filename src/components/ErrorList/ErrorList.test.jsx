@@ -1,15 +1,12 @@
 import React from 'react'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import ErrorList, { groupBy, inAccordion } from './ErrorList'
 
 describe('The error list component', () => {
-  // Setup
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
+  const mockStore = configureMockStore()
 
   it('renders nothing if no errors are present', () => {
     const store = mockStore({})

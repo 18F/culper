@@ -195,9 +195,9 @@ class App extends React.Component {
                           className="instructions mobile-hidden">
                           {i18n.t('app.instructions')}
                         </button>
-                        <Show when={this.props.authenticated}>
+                        <span>
                           <Logout />
-                        </Show>
+                        </span>
                       </div>
                       <SectionTitle hidden={mobileNavigation} />
                     </div>
@@ -239,21 +239,12 @@ class App extends React.Component {
   }
 }
 
-/**
- * Maps the relevant subtree state from the applications state tree.
- * In this case, we pull the authentication sub-state. This is mapped
- * to the authentication reducer. When actions are dispatched, this
- * method is executed which causes a re-render.
- *
- */
 function mapStateToProps(state) {
-  const auth = state.authentication
   const app = state.application || {}
   const settings = app.Settings || { mobileNavigation: false, modalOpen: false }
 
   return {
-    settings: settings,
-    authenticated: auth.authenticated
+    settings: settings
   }
 }
 

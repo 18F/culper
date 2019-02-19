@@ -4,7 +4,6 @@ import { withRouter } from 'react-router'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
@@ -916,4 +915,4 @@ export class ForeignSections extends React.Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(AuthenticatedView(Foreign)))
+export default withRouter(connect(mapStateToProps)(Foreign))
