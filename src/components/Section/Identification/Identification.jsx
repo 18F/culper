@@ -23,7 +23,6 @@ import Review from './Review'
 
 /**
  * TODO
- * - not sure why top buttons only show if navButtons - maybe this check can be removed?
  * - subsection prop is not defaulting to "intro" after login, this is prob related to keeping redux in sync with routes. Investigate & fix this.
  */
 
@@ -33,19 +32,12 @@ class Identification extends React.Component {
 
     const subsectionClasses = `view view-${subsection || 'unknown'}`
 
-    const title = subsection === 'review' && i18n.t('review.title')
-    const para = subsection === 'review' && i18n.m('review.para')
-    const showTop = subsection === 'review'
+    const isReview = subsection === 'review'
+    const title = isReview && i18n.t('review.title')
+    const para = isReview && i18n.m('review.para')
 
     /** TODO - this should come from Redux store */
     const formType = 'SF86'
-
-    const navButtons = (
-      <SectionNavigation
-        section={sections.IDENTIFICATION}
-        subsection={subsection}
-        formType={formType} />
-    )
 
     return (
       <div className="section-view">
@@ -53,7 +45,7 @@ class Identification extends React.Component {
         {para}
 
         <div className={subsectionClasses}>
-          {showTop && navButtons && (
+          {isReview && (
             <div className="top-btns"><ErrorList /></div>
           )}
 
@@ -67,7 +59,10 @@ class Identification extends React.Component {
           <Route path="/form/identification/physical" component={Physical} />
           <Route path="/form/identification/review" component={Review} />
 
-          {navButtons}
+          <SectionNavigation
+            section={sections.IDENTIFICATION}
+            subsection={subsection}
+            formType={formType} />
         </div>
       </div>
     )
