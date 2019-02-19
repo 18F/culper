@@ -76,7 +76,7 @@ Some e-QIP terminology knowledge is useful when interacting with the e-QIP web s
 
 ### `submit` tool
 
-To submit SF-86 XML to the e-QIP test service, use the `api/bin/submit` tool. It takes a specified JSON test scenario, generates the corresponding SF-86 XML, and makes the e-QIP SOAP call. It is built through the top-level `make build-cmd`.
+To submit SF-86 XML to the e-QIP test service, use the `api/bin/submit` tool from an approved network. It takes a specified JSON test scenario, generates the corresponding SF-86 XML, and makes the e-QIP SOAP call. It is built through the top-level `make build-cmd`.
 
 `submit` requires that the following environment variables be set in its execution environment:
 
@@ -88,7 +88,7 @@ To submit SF-86 XML to the e-QIP test service, use the `api/bin/submit` tool. It
 * [WS_AGENCY_ID](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_agency_id)
 * [WS_AGENCY_GROUP_ID](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_agency_group_id)
 
-For our purposes, `WS_CALLERINFO_AGENCY_USER_PSEUDOSSN` must always be set to `0`. For appropriate values for the other configuration settings plus network requirements, see:
+For our purposes, `WS_CALLERINFO_AGENCY_USER_PSEUDOSSN` must always be set to `0`. For appropriate values for the other configuration settings, plus network requirements for access, see:
 https://docs.google.com/document/d/1q8uvcc4S9gql4cr8LEJt5wy36Db75e37qzpzJYyGi-w
 
 A configuration file similar to one below can be useful and be read into the shell environment via `source`:
