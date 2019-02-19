@@ -1,6 +1,8 @@
 import React from 'react'
+import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router'
 import { mount } from 'enzyme'
 import { api } from '@services'
 import Print from '@components/Section/Package/Print'
@@ -31,9 +33,11 @@ describe('The print section', () => {
       application: applicationState
     })
     const component = mount(
-      <Provider store={store}>
-        <Print subsection="intro" />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <Print subsection="intro" />
+        </Provider>
+      </MemoryRouter>
     )
     expect(component.find('.section-print-container').length).toBe(10)
   })
@@ -47,9 +51,11 @@ describe('The print section', () => {
       application: applicationState
     })
     const component = mount(
-      <Provider store={store}>
-        <Print subsection="intro" />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <Print subsection="intro" />
+        </Provider>
+      </MemoryRouter>
     )
     component.find('.print-btn').simulate('click')
     expect(printed).toBe(true)
@@ -60,9 +66,11 @@ describe('The print section', () => {
       application: applicationState
     })
     testSnapshot(
-      <Provider store={store}>
-        <Print subsection="intro" />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <Print subsection="intro" />
+        </Provider>
+      </MemoryRouter>
     )
   })
 })
