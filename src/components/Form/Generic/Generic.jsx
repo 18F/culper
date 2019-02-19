@@ -1,5 +1,8 @@
 import React from 'react'
-import ValidationElement from '../ValidationElement'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+
+import { newGuid } from '../ValidationElement/helpers'
 
 export const autotab = (event, maxlength, back, next) => {
   const input = event.target
@@ -116,52 +119,51 @@ export const ariaLabel = el => {
   return null
 }
 
-export default class Generic extends ValidationElement {
+export default class Generic extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      uid: `${this.props.name}-${super.guid()}`,
-      value: props.value,
-      focus: props.focus,
-      error: props.error,
-      valid: props.valid
-    }
+    this.uid = `${this.props.name}-${newGuid()}`
 
-    this.handleKeyDown = this.handleKeyDown.bind(this)
-    this.errors = this.errors.bind(this)
+    this.state = {
+      focus: false,
+      error: false,
+      valid: false,
+    }
+  }
+
+  componentDidMount () {
+    this.handleValidation(this.props.value)
   }
 
   componentWillReceiveProps(nextProps) {
-    let updates = {}
-
-    if (nextProps.value !== this.state.value) {
-      updates = { ...updates, value: nextProps.value }
+    if (!this.props.disabled && nextProps.disabled) {
+      // If disabled, clear state
+      this.setState({
+        focus: false,
+        valid: false,
+        error: false,
+      })
+    } else if (!this.state.focus && nextProps.value !== this.props.value) {
+      // Value has changed externally, re-run validation
+      const errors = this.errors(nextProps.value, nextProps)
+      this.setState({
+        error: errors.some(x => x.valid === false),
+        valid: errors.every(x => x.valid === true),
+      })
     }
-
-    // If disabled, we clear the value and clear state
-    if (nextProps.disabled) {
-      updates = { value: '', valid: null, error: null }
-    }
-
-    if (updates.value !== undefined && updates.value !== this.state.value) {
-      const errors = this.errors(updates.value, nextProps)
-      updates.error = errors.some(x => x.valid === false)
-      updates.valid = errors.every(x => x.valid === true)
-    }
-
-    this.setState(updates)
   }
 
-  errors(value, props = this.props) {
+  // Validate value against potential errors
+  errors = (value, props = this.props) => {
     return (
-      this.props.onError(
+      props.onError(
         value,
         this.constructor.errors.map(err => {
           return {
             code: err.code,
             valid: err.func(value, props),
-            uid: this.state.uid
+            uid: this.uid
           }
         })
       ) || []
@@ -171,39 +173,53 @@ export default class Generic extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange(event) {
+  handleChange = (event) => {
     event.persist()
-    this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-    })
+
+    if (this.props.onChange) {
+      this.props.onChange(event)
+    }
   }
 
   /**
    * Handle the focus event.
    */
-  handleFocus(event) {
+  handleFocus = (event) => {
     event.persist()
     this.setState({ focus: true }, () => {
-      super.handleFocus(event)
+      if (this.props.onFocus) {
+        this.props.onFocus(event)
+      }
     })
   }
 
   /**
    * Handle the blur event.
    */
-  handleBlur(event) {
+  handleBlur = (event) => {
     event.persist()
-    this.setState({ focus: false, value: `${this.state.value}`.trim() }, () => {
-      super.handleChange(event)
-      super.handleBlur(event)
+    this.setState({ focus: false }, () => {
+      const trimmedValue = this.props.value.trim()
+      event.target.value = trimmedValue
+
+      if (this.props.onChange) {
+        this.props.onChange(event)
+      }
+
+      this.handleValidation(trimmedValue)
+
+      if (this.props.onBlur) {
+        this.props.onBlur(event)
+      }
     })
   }
 
   /**
    * Execute validation checks on the value.
    */
-  handleValidation(event) {
-    const errors = this.errors(`${this.state.value}`.trim())
+  handleValidation = (value) => {
+    const errors = this.errors(value)
+
     this.setState({
       error: errors.some(x => x.valid === false),
       valid: errors.every(x => x.valid === true)
@@ -213,7 +229,7 @@ export default class Generic extends ValidationElement {
   /**
    * Handle the key down event.
    */
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
     autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
   }
 
@@ -235,54 +251,59 @@ export default class Generic extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass() {
-    return `${this.props.className || ''} ${
-      !this.props.disabled && this.state.error ? 'usa-input-error' : ''
-    }`.trim()
+    return classnames(
+      'hide-for-print',
+      this.props.className,
+      {
+        'usa-input-error': !this.props.disabled && this.state.error,
+      }
+    )
   }
 
   /**
    * Style classes applied to the label element.
    */
   labelClass() {
-    if (this.props.disabled) {
-      return 'disabled'
-    }
-
-    return `${this.state.error ? 'usa-input-error-label' : ''}`.trim()
+    return classnames({
+      disabled: this.props.disabled,
+      'usa-input-error-label': !this.props.disabled && this.state.error,
+    })
   }
 
   /**
    * Style classes applied to the input element.
    */
   inputClass() {
-    if (this.props.disabled) {
-      return null
-    }
-
-    return `${this.state.focus ? 'usa-input-focus' : ''} ${
-      this.state.valid ? 'usa-input-success' : ''
-    }`.trim()
-  }
+    return classnames({
+      'usa-input-focus': !this.props.disabled && this.state.focus,
+      'usa-input-success': !this.props.disabled && this.state.valid,
+    })
+ }
 
   render() {
+    const { disabled, value } = this.props
+
     const labelText = this.props.label
     let label
     if (labelText) {
       label = (
         <label
           className={this.labelClass()}
-          htmlFor={this.state.uid}
+          htmlFor={this.uid}
           ref="label">
           {this.props.label}
         </label>
       )
     }
+
+    const displayValue = disabled ? '' : value
+
     return (
-      <div className={`hide-for-print ${this.divClass()}`}>
+      <div className={this.divClass()}>
         {label}
         <input
           className={this.inputClass()}
-          id={this.state.uid}
+          id={this.uid}
           name={this.props.name}
           type={this.props.type}
           placeholder={this.props.placeholder}
@@ -300,7 +321,7 @@ export default class Generic extends ValidationElement {
           autoCorrect={this.props.autocorrect}
           autoComplete={this.props.autocomplete}
           spellCheck={this.props.spellcheck}
-          value={this.state.value}
+          value={displayValue}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
@@ -317,11 +338,42 @@ export default class Generic extends ValidationElement {
           ref="input"
         />
         <div className="text-print print-only">
-          {this.state.value}
+          {displayValue}
         </div>
       </div>
     )
   }
+}
+
+Generic.propTypes = {
+  value: PropTypes.string,
+  name: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  ariaLabel: PropTypes.string,
+  className: PropTypes.string,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  readonly: PropTypes.bool,
+  autocapitalize: PropTypes.bool,
+  autocorrect: PropTypes.bool,
+  autocomplete: PropTypes.bool,
+  spellcheck: PropTypes.bool,
+  clipboard: PropTypes.bool,
+  minlength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  maxlength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  pattern: PropTypes.any,
+  status: PropTypes.bool,
+  onError: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  tabNext: PropTypes.func,
+  tabBack: PropTypes.func,
+  onCopy: PropTypes.func,
+  onCut: PropTypes.func,
+  onPaste: PropTypes.func,
 }
 
 Generic.defaultProps = {
