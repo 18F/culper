@@ -1,6 +1,7 @@
 import React from 'react'
-import App from './App'
-import { Form } from '../../views'
+import App from '@components/Main/App'
+import AuthenticatedView from '@views/AuthenticatedView'
+import { Form } from '@views'
 
 class AppWithForm extends React.Component {
   render() {
@@ -12,4 +13,4 @@ class AppWithForm extends React.Component {
   }
 }
 
-export default AppWithForm
+export default AuthenticatedView(AppWithForm)
