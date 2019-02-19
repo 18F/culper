@@ -1,11 +1,10 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import TokenRefresh from './TokenRefresh'
-import { i18n } from '../../config'
+import TokenRefresh from '@views/TokenRefresh/TokenRefresh'
+import { i18n } from '@config'
 
 describe('The token refresh error view', () => {
   // Setup

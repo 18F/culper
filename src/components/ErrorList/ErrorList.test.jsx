@@ -1,9 +1,8 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import ErrorList, { groupBy, inAccordion } from './ErrorList'
+import ErrorList, { groupBy, inAccordion } from '@components/ErrorList/ErrorList'
 
 describe('The error list component', () => {
   const mockStore = configureMockStore()

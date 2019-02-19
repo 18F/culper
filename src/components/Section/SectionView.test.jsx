@@ -1,7 +1,7 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import { SectionViews, SectionView } from './SectionView'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
 import { mount } from 'enzyme'
 
 describe('The SectionView component', () => {

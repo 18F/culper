@@ -1,8 +1,7 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import SectionTitle from './SectionTitle'
+import SectionTitle from '@components/SectionTitle/SectionTitle'
 import { mount } from 'enzyme'
 
 describe('The title section', () => {

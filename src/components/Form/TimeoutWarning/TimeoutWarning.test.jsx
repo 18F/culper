@@ -3,8 +3,8 @@ import configureMockStore from 'redux-mock-store'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import TimeoutWarning, { roundUp, minutes, seconds } from './TimeoutWarning'
-import { testSnapshot } from '../../test-helpers'
+import TimeoutWarning, { roundUp, minutes, seconds } from '@components/Form/TimeoutWarning/TimeoutWarning'
+import { testSnapshot } from '@components/test-helpers'
 
 describe('The timeout warning component', () => {
   const mockStore = configureMockStore()

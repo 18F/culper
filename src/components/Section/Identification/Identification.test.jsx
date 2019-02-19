@@ -2,9 +2,9 @@ import React from 'react'
 import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Identification, { IdentificationSections } from './Identification'
+import Identification, { IdentificationSections } from '@components/Section/Identification/Identification'
 import { mount } from 'enzyme'
-import { testSnapshot } from '../../test-helpers'
+import { testSnapshot } from '@components/test-helpers'
 
 const applicationState = {
   Identification: {

@@ -2,9 +2,9 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { api } from '../../../services'
-import Print from './Print'
-import { testSnapshot } from '../../test-helpers'
+import { api } from '@services'
+import Print from '@components/Section/Package/Print'
+import { testSnapshot } from '@components/test-helpers'
 
 const applicationState = {
   Application: {}

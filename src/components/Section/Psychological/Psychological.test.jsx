@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Psychological from './Psychological'
+import Psychological from '@components/Section/Psychological/Psychological'
 
 const applicationState = {
   Psychological: {}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Physical } from './Physical'
+import { Physical } from '@components/Section/Identification/Physical/Physical'
 import { mount } from 'enzyme'
 
 describe('The physical attributes section', () => {

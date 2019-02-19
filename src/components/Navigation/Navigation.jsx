@@ -1,6 +1,6 @@
 import React from 'react'
-import { navigation } from '../../config'
-import SectionList from './SectionList'
+import { navigation } from '@config'
+import SectionList from '@components/Navigation/SectionList'
 
 class Navigation extends React.Component {
   render() {

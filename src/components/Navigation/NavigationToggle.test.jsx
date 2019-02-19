@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import AuthenticatedNavigationToggle, {
   NavigationToggle
-} from './NavigationToggle'
+} from '@components/Navigation/NavigationToggle'
 
 describe('The navigation toggle component', () => {
   it('can toggle', () => {

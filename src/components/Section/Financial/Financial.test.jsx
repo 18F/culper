@@ -1,9 +1,9 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Financial, { FinancialSections } from './Financial'
+import Financial, { FinancialSections } from '@components/Section/Financial'
 import { mount } from 'enzyme'
-import { testSnapshot } from '../../test-helpers'
+import { testSnapshot } from '@components/test-helpers'
 
 const applicationState = {
   Financial: {}

@@ -1,20 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { i18n } from '../../../config'
-import { SectionViews, SectionView } from '../SectionView'
-import SectionElement from '../SectionElement'
-import { Field } from '../../Form'
-import Passport from './Passport'
-import Contacts from './Contacts'
-import Travel from './Travel'
+import { i18n } from '@config'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
+import SectionElement from '@components/Section/SectionElement'
+import { Field } from '@components/Form'
+import Passport from '@components/Section/Foreign/Passport'
+import Contacts from '@components/Section/Foreign/Contacts'
+import Travel from '@components/Section/Foreign/Travel'
 import {
   DirectActivity,
   IndirectActivity,
   RealEstateActivity,
   BenefitActivity,
   Support
-} from './Activities'
+} from '@components/Section/Foreign/Activities'
 import {
   Advice,
   Family,
@@ -25,8 +25,8 @@ import {
   Sponsorship,
   Political,
   Voting
-} from './Business'
-import { extractOtherNames } from '../extractors'
+} from '@components/Section/Foreign/Business'
+import { extractOtherNames } from '@components/Section/extractors'
 
 class Foreign extends SectionElement {
   constructor(props) {

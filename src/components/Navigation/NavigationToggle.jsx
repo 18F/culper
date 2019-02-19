@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateApplication } from '../../actions/ApplicationActions'
+import { updateApplication } from '@actions/ApplicationActions'
 
 export class NavigationToggle extends React.Component {
   constructor(props) {

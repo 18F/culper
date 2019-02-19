@@ -2,7 +2,6 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { shallow, mount } from 'enzyme'
 import thunk from 'redux-thunk'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import AuthenticatedView from '@views/AuthenticatedView'
 
