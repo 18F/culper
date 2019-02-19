@@ -15,6 +15,7 @@ export default class SubsectionElement extends React.Component {
       ...this.props,
       ...this.state
     }
+
     this.props.dispatch(
       reportCompletion(
         this.props.section,
@@ -34,6 +35,7 @@ export default class SubsectionElement extends React.Component {
         subsection: this.props.subsection
       }
     })
+
     return this.props.onError(value, arr)
   }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import ApplicantSSN from './ApplicantSSN'
+import { ApplicantSSN } from './ApplicantSSN'
 
 describe('The applicant SSN component', () => {
   it('asks for one SSN initially', () => {

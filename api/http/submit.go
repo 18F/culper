@@ -4,11 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
-	"github.com/18F/e-QIP-prototype/api/eqip"
 	"github.com/18F/e-QIP-prototype/api/pdf"
 )
 
@@ -105,16 +103,6 @@ func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, ac
 		service.Log.Info("Skipping webservice call", nil)
 		return nil
 	}
-	url := service.Env.String(api.WsURL)
-	if url == "" {
-		service.Log.Warn(api.WebserviceMissingURL, api.LogFields{})
-		return errors.New(api.WebserviceMissingURL)
-	}
-	key := service.Env.String(api.WsKey)
-	if key == "" {
-		service.Log.Warn(api.WebserviceMissingKey, api.LogFields{})
-		return errors.New(api.WebserviceMissingKey)
-	}
 
 	// Generate an XML package and send to the external webservice.
 	service.Log.Info(api.GeneratingPackage, api.LogFields{})
@@ -131,9 +119,13 @@ func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, ac
 	}
 
 	service.Log.Info(api.TransmissionStarted, api.LogFields{})
-	client := eqip.NewClient(url, key)
+	client, err := api.EqipClient(service.Env)
+	if err != nil {
+		service.Log.WarnError(api.WebserviceErrorCreatingImportRequest, err, api.LogFields{})
+		return err
+	}
 
-	ir, err := service.newImportRequest(data, string(xml))
+	ir, err := api.EqipRequest(service.Env, data, string(xml))
 	if err != nil {
 		service.Log.WarnError(api.WebserviceErrorCreatingImportRequest, err, api.LogFields{})
 		return err
@@ -179,52 +171,4 @@ func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, ac
 		return errors.New(api.TransmissionError)
 	}
 	return nil
-}
-
-func (service SubmitHandler) newImportRequest(application map[string]interface{}, xmlContent string) (*eqip.ImportRequest, error) {
-	var ciAgencyUserPseudoSSN bool
-	var agencyID int
-	var agencyGroupID int
-
-	ciAgencyIDEnv := service.Env.String(api.WsCallerinfoAgencyID)
-	if ciAgencyIDEnv == "" {
-		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyID)
-	}
-	ciAgencyUserSSNEnv := service.Env.String(api.WsCallerinfoAgencyUserSSN)
-	if ciAgencyUserSSNEnv == "" {
-		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencySSN)
-	}
-	// Parse agency id
-	agencyIDEnv := service.Env.String(api.WsAgencyID)
-	if agencyIDEnv == "" {
-		return nil, fmt.Errorf(api.WebserviceMissingAgencyID)
-	}
-	i, err := strconv.Atoi(agencyIDEnv)
-	if err != nil {
-		return nil, err
-	}
-	agencyID = i
-
-	// Parse agency group id if necessary
-	agencyGroupIDEnv := service.Env.String(api.WsAgencyGroupID)
-	if agencyGroupIDEnv != "" {
-		i, err := strconv.Atoi(agencyGroupIDEnv)
-		if err != nil {
-			return nil, err
-		}
-		agencyGroupID = i
-	}
-
-	ciAgencyUserPseudoSSNEnv := service.Env.String(api.WsCallerinfoAgencyUserPseudossn)
-	if ciAgencyUserPseudoSSNEnv == "" {
-		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyPseudoSSN)
-	}
-	b, err := strconv.ParseBool(ciAgencyUserPseudoSSNEnv)
-	if err != nil {
-		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyPseudoSSN)
-	}
-	ciAgencyUserPseudoSSN = b
-
-	ci := eqip.NewCallerInfo(ciAgencyIDEnv, ciAgencyUserPseudoSSN, ciAgencyUserSSNEnv)
-	return eqip.NewImportRequest(ci, agencyID, agencyGroupID, application, xmlContent)
 }

@@ -12,6 +12,18 @@ export const psychological = {
     diagnoses:
       'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
   },
+  section: {
+    name: 'Psychological and emotional health'
+  },
+  subsection: {
+    intro: 'Introduction',
+    competence: 'Competence',
+    consultations: 'Consultations',
+    hospitalizations: 'Hospitalizations',
+    diagnoses: 'Diagnoses',
+    conditions: 'Existing conditions',
+    review: 'Review'
+  },
   destination: {
     intro: 'Psychological and emotional health intro',
     psychological: 'Psychological and emotional health',

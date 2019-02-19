@@ -1,19 +1,42 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Name, Field } from '../../../Form'
+import { i18n } from '@config'
 
-export default class ApplicantName extends SubsectionElement {
+import schema from '@schema'
+import validate from '@validators'
+import { Name, Field } from '@components/Form'
+
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
+import {
+  IDENTIFICATION,
+  IDENTIFICATION_NAME,
+} from '@config/formSections/identification'
+
+const sectionConfig = {
+  section: IDENTIFICATION.name,
+  store: IDENTIFICATION.store,
+  subsection: IDENTIFICATION_NAME.name,
+  storeKey: IDENTIFICATION_NAME.storeKey,
+}
+
+export class ApplicantName extends Subsection {
   constructor(props) {
     super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
+
     this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
   }
 
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       Name: this.props.Name,
       ...queue
     })
@@ -30,7 +53,7 @@ export default class ApplicantName extends SubsectionElement {
       ''}`.trim()
 
     return (
-      <div className={klass} {...super.dataAttributes(this.props)}>
+      <div className={klass} {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('identification.destination.name')}</h1>
         <Field
           title={i18n.t('identification.name.title')}
@@ -41,7 +64,6 @@ export default class ApplicantName extends SubsectionElement {
           <Name
             name="name"
             {...this.props.Name}
-            dispatch={this.props.dispatch}
             onUpdate={this.updateName}
             onError={this.handleError}
             required={this.props.required}
@@ -59,8 +81,6 @@ ApplicantName.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  section: 'identification',
-  subsection: 'name',
   dispatch: () => {},
   required: false,
   validator: data => {
@@ -69,3 +89,5 @@ ApplicantName.defaultProps = {
 }
 
 ApplicantName.errors = []
+
+export default connectIdentificationSection(ApplicantName, sectionConfig)

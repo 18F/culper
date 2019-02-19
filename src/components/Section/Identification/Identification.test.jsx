@@ -1,4 +1,5 @@
 import React from 'react'
+import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
@@ -35,9 +36,11 @@ describe('The identification section', () => {
       application: applicationState
     })
     const component = mount(
-      <Provider store={store}>
-        <Identification />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <Identification />
+        </Provider>
+      </MemoryRouter>
     )
     expect(component.find('div').length).toEqual(0)
     window.token = 'fake-token'
@@ -49,9 +52,11 @@ describe('The identification section', () => {
       application: applicationState
     })
     const component = mount(
-      <Provider store={store}>
-        <Identification />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <Identification />
+        </Provider>
+      </MemoryRouter>
     )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
@@ -62,9 +67,11 @@ describe('The identification section', () => {
       application: applicationState
     })
     const component = mount(
-      <Provider store={store}>
-        <Identification subsection="review" />
-      </Provider>
+      <MemoryRouter initialEntries={['/form/identification/review']}>
+        <Provider store={store}>
+          <Identification subsection="review" />
+        </Provider>
+      </MemoryRouter>
     )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
@@ -75,9 +82,11 @@ describe('The identification section', () => {
 
     sections.forEach(section => {
       const component = mount(
-        <Provider store={store}>
-          <Identification subsection={section} />
-        </Provider>
+        <MemoryRouter initialEntries={[`/form/identification/${section}`]} >
+          <Provider store={store}>
+            <Identification subsection={section} />
+          </Provider>
+        </MemoryRouter>
       )
       expect(component.find('div').length).toBeGreaterThan(0)
     })
