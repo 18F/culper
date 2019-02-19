@@ -1,6 +1,7 @@
 import queryString from 'query-string'
 import { env } from '@config'
 import { api } from '@services/api'
+import { SF86 } from '@constants/formTypes'
 import AuthConstants from './AuthConstants'
 
 /**
@@ -15,7 +16,7 @@ export function login(username, password) {
   if (env.IsDevelopment() || env.IsStaging()) {
     const params = location.search
     const query = queryString.parse(params)
-    formType = query.formType ? query.formType : 'SF86'
+    formType = query.formType ? query.formType : SF86
   }
 
   return function(dispatch, getState) {
@@ -66,7 +67,7 @@ export function tokenError() {
   }
 }
 
-export function handleLoginSuccess(token, formType = 'SF86') {
+export function handleLoginSuccess(token, formType = SF86) {
   return {
     type: AuthConstants.LOGIN_SUCCESS,
     token,

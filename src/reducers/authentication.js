@@ -1,9 +1,10 @@
+import { SF86 } from '@constants/formTypes'
 import AuthConstants from '../actions/AuthConstants'
 
 const defaultState = {
   authenticated: false,
   token: null,
-  formType: 'SF86'
+  formType: SF86
 }
 
 // Defines the authentication sub-state for the application.
@@ -15,7 +16,7 @@ const authentication = function(state = defaultState, action) {
         ...state,
         authenticated: true,
         token: action.token,
-        formType: action.formType || 'SF86',
+        formType: action.formType || SF86,
         error: ''
       }
 
