@@ -11,6 +11,30 @@ export const substance = {
     title: "Review your answers",
     para: 'View the full section to make sure everything looks right and make changes if needed.'
   },
+  section: {
+    name: 'Substance use'
+  },
+  subsection: {
+    intro: 'Introduction',
+    drugs: {
+      label: 'Illegal use of drugs and drug activity',
+      usage: 'Usage',
+      purchase: 'Purchase',
+      clearance: 'Security clearance position',
+      publicsafety: 'Public safety position',
+      misuse: 'Prescription drug misuse',
+      ordered: 'Mandatory counseling or treatment',
+      voluntary: 'Voluntary counseling or treatment'
+    },
+    alcohol: {
+      label: 'Use of alcohol',
+      negative: 'Negative impact',
+      ordered: 'Mandatory counseling or treatment',
+      voluntary: 'Voluntary counseling or treatment',
+      additional: 'Additional instances'
+    },
+    review: 'Review'
+  },
   destination: {
     intro: 'Substance use intro',
     police: {

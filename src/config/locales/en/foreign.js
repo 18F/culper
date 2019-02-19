@@ -10,6 +10,36 @@ export const foreign = {
   review: {
     para: 'View all the sections associated with foreign associations at once'
   },
+  section: {
+    name: 'Foreign associations'
+  },
+  subsection: {
+    intro: 'Introduction',
+    passport: 'U.S. passport information',
+    contacts: 'Foreign contacts',
+    activities: {
+      label: 'Foreign activities',
+      direct: 'Direct control',
+      indirect: 'Indirect control',
+      realestate: 'Real estate purchase',
+      benefits: 'Foreign benefits',
+      support: 'Foreign national support'
+    },
+    business: {
+      label: 'Foreign business, professional activities, and government contacts',
+      advice: 'Support provided',
+      family: 'Immediate family foreign support',
+      employment: 'Employment',
+      ventures: 'Other business ventures',
+      conferences: 'Event participation',
+      contact: 'Immediate family contact',
+      sponsorship: 'Foreign national sponsorship',
+      political: 'Held political office',
+      voting: 'Voting'
+    },
+    travel: 'Foreign countries you have visited',
+    review: 'Review'
+  },
   destination: {
     intro: 'Foreign intro',
     review: 'Review Foreign Associations',
