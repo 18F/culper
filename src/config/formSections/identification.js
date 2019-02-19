@@ -1,7 +1,7 @@
 import * as sections from '@constants/sections'
 import { i18n } from '@config'
 
-const IDENTIFICATION = {
+export const IDENTIFICATION = {
   key: sections.IDENTIFICATION,
   name: 'identification',
   path: '/identification',
@@ -9,14 +9,14 @@ const IDENTIFICATION = {
   label: i18n.t('identification.section.name')
 }
 
-const IDENTIFICATION_INTRO = {
+export const IDENTIFICATION_INTRO = {
   key: sections.IDENTIFICATION_INTRO,
   name: 'intro',
   path: `${IDENTIFICATION.path}/intro`,
   label: i18n.t('identification.subsection.intro')
 }
 
-const IDENTIFICATION_NAME = {
+export const IDENTIFICATION_NAME = {
   key: sections.IDENTIFICATION_NAME,
   name: 'name',
   path: `${IDENTIFICATION.path}/name`,
@@ -24,7 +24,7 @@ const IDENTIFICATION_NAME = {
   label: i18n.t('identification.subsection.name')
 }
 
-const IDENTIFICATION_BIRTH_DATE = {
+export const IDENTIFICATION_BIRTH_DATE = {
   key: sections.IDENTIFICATION_BIRTH_DATE,
   name: 'birthdate',
   path: `${IDENTIFICATION.path}/birthdate`,
@@ -32,7 +32,7 @@ const IDENTIFICATION_BIRTH_DATE = {
   label: i18n.t('identification.subsection.birthdate')
 }
 
-const IDENTIFICATION_BIRTH_PLACE = {
+export const IDENTIFICATION_BIRTH_PLACE = {
   key: sections.IDENTIFICATION_BIRTH_PLACE,
   name: 'birthplace',
   path: `${IDENTIFICATION.path}/birthplace`,
@@ -40,7 +40,7 @@ const IDENTIFICATION_BIRTH_PLACE = {
   label: i18n.t('identification.subsection.birthplace')
 }
 
-const IDENTIFICATION_SSN = {
+export const IDENTIFICATION_SSN = {
   key: sections.IDENTIFICATION_SSN,
   name: 'ssn',
   path: `${IDENTIFICATION.path}/ssn`,
@@ -48,7 +48,7 @@ const IDENTIFICATION_SSN = {
   label: i18n.t('identification.subsection.ssn')
 }
 
-const IDENTIFICATION_OTHER_NAMES = {
+export const IDENTIFICATION_OTHER_NAMES = {
   key: sections.IDENTIFICATION_OTHER_NAMES,
   name: 'othernames',
   path: `${IDENTIFICATION.path}/othernames`,
@@ -56,7 +56,7 @@ const IDENTIFICATION_OTHER_NAMES = {
   label: i18n.t('identification.subsection.othernames')
 }
 
-const IDENTIFICATION_CONTACTS = {
+export const IDENTIFICATION_CONTACTS = {
   key: sections.IDENTIFICATION_CONTACTS,
   name: 'contacts',
   path: `${IDENTIFICATION.path}/contacts`,
@@ -64,7 +64,7 @@ const IDENTIFICATION_CONTACTS = {
   label: i18n.t('identification.subsection.contacts')
 }
 
-const IDENTIFICATION_PHYSICAL = {
+export const IDENTIFICATION_PHYSICAL = {
   key: sections.IDENTIFICATION_PHYSICAL,
   name: 'physical',
   path: `${IDENTIFICATION.path}/physical`,
@@ -72,7 +72,7 @@ const IDENTIFICATION_PHYSICAL = {
   label: i18n.t('identification.destination.physical')
 }
 
-const IDENTIFICATION_REVIEW = {
+export const IDENTIFICATION_REVIEW = {
   key: sections.IDENTIFICATION_REVIEW,
   name: 'review',
   path: `${IDENTIFICATION.path}/review`,

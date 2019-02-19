@@ -19,6 +19,9 @@ plugins:
 rules:
   # the following rules are disabled for legacy reasons, and most should be removed over time
   import/no-duplicates: 'off'
+  import/namespace:
+    - error
+    - allowComputed: true
   no-console: 'off'
   no-unused-vars: 'off'
   react/no-deprecated: 'off'

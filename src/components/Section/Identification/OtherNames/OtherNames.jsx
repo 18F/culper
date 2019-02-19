@@ -1,10 +1,10 @@
 
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import validate, { OtherNameValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
+
+import { i18n } from '@config'
+import schema from '@schema'
+import validate, { OtherNameValidator } from '@validators'
+
 import {
   Field,
   Accordion,
@@ -12,12 +12,33 @@ import {
   DateRange,
   Branch,
   Show
-} from '../../../Form'
+} from '@components/Form'
+import { Summary, NameSummary, DateSummary } from '@components/Summary'
+
 import OtherNameItem from './OtherNameItem'
 
-export default class OtherNames extends SubsectionElement {
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
+import { IDENTIFICATION, IDENTIFICATION_OTHER_NAMES } from '@config/formSections/identification'
+
+const sectionConfig = {
+  section: IDENTIFICATION.name,
+  store: IDENTIFICATION.store,
+  subsection: IDENTIFICATION_OTHER_NAMES.name,
+  storeKey: IDENTIFICATION_OTHER_NAMES.storeKey,
+}
+
+export class OtherNames extends Subsection {
   constructor(props) {
     super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
 
     this.update = this.update.bind(this)
     this.updateBranch = this.updateBranch.bind(this)
@@ -25,7 +46,7 @@ export default class OtherNames extends SubsectionElement {
   }
 
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasOtherNames: this.props.HasOtherNames,
       ...queue
@@ -68,7 +89,7 @@ export default class OtherNames extends SubsectionElement {
     return (
       <div
         className="section-content other-names"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('identification.destination.othernames')}</h1>
         <Field
           title={i18n.t('identification.othernames.title')}
@@ -122,14 +143,12 @@ export default class OtherNames extends SubsectionElement {
 }
 
 OtherNames.defaultProps = {
-  List: Accordion.defaulList,
+  List: Accordion.defaultList,
   HasOtherNames: {},
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr
   },
-  section: 'identification',
-  subsection: 'othernames',
   dispatch: () => {},
   validator: data => {
     return validate(schema('identification.othernames', data))
@@ -137,3 +156,5 @@ OtherNames.defaultProps = {
   defaultState: true,
   required: false
 }
+
+export default connectIdentificationSection(OtherNames, sectionConfig)

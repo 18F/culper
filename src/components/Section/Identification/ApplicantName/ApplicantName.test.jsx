@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import ApplicantName from './ApplicantName'
+import { ApplicantName } from './ApplicantName'
 
 describe('The ApplicantName component', () => {
   it('no error on empty', () => {
