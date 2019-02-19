@@ -269,7 +269,7 @@ exports[`The attachments component renders properly 1`] = `
               />
             </form>
             <div
-              className="hide-for-print "
+              className="hide-for-print"
             >
               <label
                 className=""

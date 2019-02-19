@@ -11761,7 +11761,7 @@ exports[`The section component renders identification.birthdate 1`] = `
                                 className="usa-form-group month"
                               >
                                 <div
-                                  className="hide-for-print "
+                                  className="hide-for-print"
                                 >
                                   <label
                                     className=""
@@ -11800,7 +11800,7 @@ exports[`The section component renders identification.birthdate 1`] = `
                                 className="usa-form-group day "
                               >
                                 <div
-                                  className="hide-for-print "
+                                  className="hide-for-print"
                                 >
                                   <label
                                     className=""
@@ -11839,7 +11839,7 @@ exports[`The section component renders identification.birthdate 1`] = `
                                 className="usa-form-group year"
                               >
                                 <div
-                                  className="hide-for-print "
+                                  className="hide-for-print"
                                 >
                                   <label
                                     className=""
@@ -14036,7 +14036,7 @@ exports[`The section component renders identification.physical 1`] = `
                               className="feet"
                             >
                               <div
-                                className="hide-for-print "
+                                className="hide-for-print"
                               >
                                 <label
                                   className=""
@@ -14075,7 +14075,7 @@ exports[`The section component renders identification.physical 1`] = `
                               className="inches"
                             >
                               <div
-                                className="hide-for-print "
+                                className="hide-for-print"
                               >
                                 <label
                                   className=""
@@ -14191,7 +14191,7 @@ exports[`The section component renders identification.physical 1`] = `
                               className="pounds"
                             >
                               <div
-                                className="hide-for-print "
+                                className="hide-for-print"
                               >
                                 <label
                                   className=""
