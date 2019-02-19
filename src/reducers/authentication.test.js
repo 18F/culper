@@ -1,10 +1,12 @@
+import { SF86 } from '@constants/formTypes'
 import authentication from './authentication'
 import { handleLoginError, handleLoginSuccess } from '../actions/AuthActions'
 
 describe('Authentication Reducer', function() {
   const defaultState = {
     authenticated: false,
-    token: null
+    token: null,
+    formType: SF86
   }
 
   it('should return the initial state', function() {
@@ -15,7 +17,8 @@ describe('Authentication Reducer', function() {
     const expectedState = {
       authenticated: true,
       token: 'faketoken',
-      error: ''
+      error: '',
+      formType: SF86
     }
 
     const action = handleLoginSuccess('faketoken')
@@ -26,10 +29,22 @@ describe('Authentication Reducer', function() {
     const expectedState = {
       authenticated: false,
       token: null,
-      error: undefined
+      error: undefined,
+      formType: SF86
     }
 
     const action = handleLoginError()
     expect(authentication(defaultState, action)).toEqual(expectedState)
+  })
+
+  it('should return SF86 as default form type', () => {
+    const action = handleLoginSuccess('success', SF86)
+    expect(authentication(defaultState, action).formType).toEqual(defaultState.formType)
+  })
+
+  it('should set the formType', () => {
+    const fixture = SF86
+    const action = handleLoginSuccess('faketoken', fixture)
+    expect(authentication(defaultState, action).formType).toEqual(fixture)
   })
 })

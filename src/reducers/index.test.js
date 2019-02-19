@@ -1,3 +1,4 @@
+import { SF86 } from '@constants/formTypes'
 import rootReducer from './index'
 import AuthConstants from '../actions/AuthConstants'
 
@@ -23,6 +24,7 @@ describe('Root Reducer', function() {
     },
     authentication: {
       authenticated: false,
+      formType: SF86,
       token: null
     },
     section: {

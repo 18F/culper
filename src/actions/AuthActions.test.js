@@ -2,6 +2,7 @@ import { api } from '@services/api'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
+import { SF86 } from '@constants/formTypes'
 import {
   login,
   logout,
@@ -22,7 +23,8 @@ describe('Auth actions', function() {
     const expectedActions = [
       {
         type: AuthConstants.LOGIN_SUCCESS,
-        token: 'faketoken'
+        token: 'faketoken',
+        formType: SF86
       }
     ]
 
@@ -35,7 +37,12 @@ describe('Auth actions', function() {
 
   it('should create an action to handle a successful login', function() {
     const token = 'faketoken'
-    const expectedAction = { type: AuthConstants.LOGIN_SUCCESS, token: token }
+    const formType = SF86
+    const expectedAction = {
+      type: AuthConstants.LOGIN_SUCCESS,
+      token,
+      formType
+    }
     expect(handleLoginSuccess(token)).toEqual(expectedAction)
   })
 
