@@ -813,15 +813,13 @@ exports[`Renders homepage 1`] = `
                   >
                     Instructions
                   </button>
-                  <span>
-                    <a
-                      className="logout"
-                      href="#"
-                      onClick={[Function]}
-                    >
-                      Logout
-                    </a>
-                  </span>
+                  <a
+                    className="logout"
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    Logout
+                  </a>
                 </div>
                 <h1
                   className="title"

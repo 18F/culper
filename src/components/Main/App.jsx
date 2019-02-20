@@ -195,9 +195,7 @@ class App extends React.Component {
                           className="instructions mobile-hidden">
                           {i18n.t('app.instructions')}
                         </button>
-                        <span>
-                          <Logout />
-                        </span>
+                        <Logout />
                       </div>
                       <SectionTitle hidden={mobileNavigation} />
                     </div>
