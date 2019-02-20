@@ -97,13 +97,14 @@ describe('The date component', () => {
       day: '12',
       year: ''
     }
+
     const component = mount(<DateControl {...expected} />)
     component.find('.year input').simulate('change', { target: { value: '1'}})
+    component.setState({ year: '1' }) // Need to call this to simulate the value change
     component.find('.year input').simulate('blur')
     expect(component.find('.year input').length).toEqual(1)
     expect(component.find('.usa-input-error').length).toBe(1)
   })
-
 
   it('can override overall error', () => {
     const expected = {

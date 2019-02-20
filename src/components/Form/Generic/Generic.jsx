@@ -126,8 +126,8 @@ export default class Generic extends React.Component {
     this.uid = `${this.props.name}-${newGuid()}`
 
     this.state = {
-      focus: props.focus,
-      error: props.error,
+      focus: props.focus, // Used by <Text>
+      error: props.error, // Used by <DateControl>
       valid: false,
     }
   }
