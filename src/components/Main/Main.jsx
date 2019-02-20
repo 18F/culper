@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Router, Switch, Route } from 'react-router'
-import AppWithForm from './AppWithForm'
+import AppWithForm from '@components/Main/AppWithForm'
 import {
   Login,
   Loading,
@@ -10,10 +10,10 @@ import {
   Error,
   TokenRefresh,
   Help
-} from '../../views'
-import { env } from '../../config'
-import { api } from '../../services/api'
-import { handleLoginSuccess } from '../../actions/AuthActions'
+} from '@views'
+import { env } from '@config'
+import { api } from '@services/api'
+import { handleLoginSuccess } from '@actions/AuthActions'
 
 class Main extends React.Component {
   constructor(props) {

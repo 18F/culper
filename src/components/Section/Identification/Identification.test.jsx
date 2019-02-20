@@ -1,11 +1,10 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import Identification, { IdentificationSections } from './Identification'
+import Identification, { IdentificationSections } from '@components/Section/Identification/Identification'
 import { mount } from 'enzyme'
-import { testSnapshot } from '../../test-helpers'
+import { testSnapshot } from '@components/test-helpers'
 
 const applicationState = {
   Identification: {
@@ -24,46 +23,10 @@ jest.mock('../../Form/ValidationElement/helpers', () =>
 )
 
 describe('The identification section', () => {
-  // Setup
-  window.token = 'fake-token'
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
-
-  it('hidden when not authenticated', () => {
-    window.token = ''
-    const store = mockStore({
-      authentication: [],
-      application: applicationState
-    })
-    const component = mount(
-      <MemoryRouter>
-        <Provider store={store}>
-          <Identification />
-        </Provider>
-      </MemoryRouter>
-    )
-    expect(component.find('div').length).toEqual(0)
-    window.token = 'fake-token'
-  })
-
-  it('visible when authenticated', () => {
-    const store = mockStore({
-      authentication: { authenticated: true },
-      application: applicationState
-    })
-    const component = mount(
-      <MemoryRouter>
-        <Provider store={store}>
-          <Identification />
-        </Provider>
-      </MemoryRouter>
-    )
-    expect(component.find('div').length).toBeGreaterThan(0)
-  })
+  const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
     const store = mockStore({
-      authentication: { authenticated: true },
       application: applicationState
     })
     const component = mount(
@@ -78,7 +41,7 @@ describe('The identification section', () => {
 
   it('can go to each subsection', () => {
     const sections = ['name', 'birthdate', 'birthplace', 'ssn']
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
 
     sections.forEach(section => {
       const component = mount(

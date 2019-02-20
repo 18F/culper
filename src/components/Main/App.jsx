@@ -1,16 +1,16 @@
 import React from 'react'
 import { withRouter } from 'react-router'
-import { i18n } from '../../config'
+import { i18n } from '@config'
 import {
   SectionTitle,
   ProgressBar,
   ScoreCard,
   Navigation,
   NavigationToggle
-} from '..'
-import { Introduction, Show } from '../Form'
-import Logout from '../Navigation/Logout'
-import StickyHeader from '../Sticky/StickyHeader'
+} from '@components'
+import { Introduction, Show } from '@components/Form'
+import Logout from '@components/Navigation/Logout'
+import StickyHeader from '@components/Sticky/StickyHeader'
 import { connect } from 'react-redux'
 
 /*
@@ -195,9 +195,7 @@ class App extends React.Component {
                           className="instructions mobile-hidden">
                           {i18n.t('app.instructions')}
                         </button>
-                        <Show when={this.props.authenticated}>
-                          <Logout />
-                        </Show>
+                        <Logout />
                       </div>
                       <SectionTitle hidden={mobileNavigation} />
                     </div>
@@ -239,21 +237,12 @@ class App extends React.Component {
   }
 }
 
-/**
- * Maps the relevant subtree state from the applications state tree.
- * In this case, we pull the authentication sub-state. This is mapped
- * to the authentication reducer. When actions are dispatched, this
- * method is executed which causes a re-render.
- *
- */
 function mapStateToProps(state) {
-  const auth = state.authentication
   const app = state.application || {}
   const settings = app.Settings || { mobileNavigation: false, modalOpen: false }
 
   return {
-    settings: settings,
-    authenticated: auth.authenticated
+    settings: settings
   }
 }
 

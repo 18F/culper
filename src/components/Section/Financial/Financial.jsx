@@ -1,17 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
-import { SectionViews, SectionView } from '../SectionView'
-import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Field } from '../../Form'
-import Gambling from './Gambling'
-import Bankruptcies from './Bankruptcy'
-import Taxes from './Taxes'
-import Card from './Card'
-import Credit from './Credit'
-import Delinquent from './Delinquent'
-import Nonpayment from './Nonpayment'
+import { i18n } from '@config'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
+import SectionElement from '@components/Section/SectionElement'
+import { Field } from '@components/Form'
+import Gambling from '@components/Section/Financial/Gambling'
+import Bankruptcies from '@components/Section/Financial/Bankruptcy'
+import Taxes from '@components/Section/Financial/Taxes'
+import Card from '@components/Section/Financial/Card'
+import Credit from '@components/Section/Financial/Credit'
+import Delinquent from '@components/Section/Financial/Delinquent'
+import Nonpayment from '@components/Section/Financial/Nonpayment'
 
 class Financial extends SectionElement {
   render() {
@@ -369,4 +368,4 @@ export class FinancialSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Financial))
+export default connect(mapStateToProps)(Financial)

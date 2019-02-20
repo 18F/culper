@@ -1,21 +1,20 @@
 import React from 'react'
 import FileSaver from 'file-saver'
 import { connect } from 'react-redux'
-import { i18n, navigation } from '../../../config'
-import { api } from '../../../services'
-import { RadioGroup, Radio, Show, Svg } from '../../Form'
+import { i18n, navigation } from '@config'
+import { api } from '@services'
+import { RadioGroup, Radio, Show, Svg } from '@components/Form'
 
-import { IdentificationSections } from '../Identification'
-import { RelationshipSections } from '../Relationships'
-import { HistorySections } from '../History'
-import { FinancialSections } from '../Financial'
-import { CitizenshipSections } from '../Citizenship'
-import { MilitarySections } from '../Military'
-import { ForeignSections } from '../Foreign'
-import { SubstanceUseSections } from '../SubstanceUse'
-import { LegalSections } from '../Legal'
-import { PsychologicalSections } from '../Psychological'
-import AuthenticatedView from '../../../views/AuthenticatedView'
+import { IdentificationSections } from '@components/Section/Identification'
+import { RelationshipSections } from '@components/Section/Relationships'
+import { HistorySections } from '@components/Section/History'
+import { FinancialSections } from '@components/Section/Financial'
+import { CitizenshipSections } from '@components/Section/Citizenship'
+import { MilitarySections } from '@components/Section/Military'
+import { ForeignSections } from '@components/Section/Foreign'
+import { SubstanceUseSections } from '@components/Section/SubstanceUse'
+import { LegalSections } from '@components/Section/Legal'
+import { PsychologicalSections } from '@components/Section/Psychological'
 
 class Print extends React.Component {
   constructor(props) {
@@ -333,4 +332,4 @@ const blobFromBase64 = (base64, contentType = '', size = 512) => {
   return new window.Blob(buffer, { type: contentType })
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Print))
+export default connect(mapStateToProps)(Print)

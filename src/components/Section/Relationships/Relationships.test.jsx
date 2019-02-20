@@ -4,47 +4,17 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Relationships from './Relationships'
+import Relationships from '@components/Section/Relationships/Relationships'
 
 const applicationState = {
   Relationships: {}
 }
 
 describe('The family and friends section', () => {
-  // Setup
-  window.token = 'fake-token'
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
-
-  it('hidden when not authenticated', () => {
-    window.token = ''
-    const store = mockStore({
-      authentication: [],
-      application: applicationState
-    })
-    const component = mount(
-      <Provider store={store}>
-        <Relationships />
-      </Provider>
-    )
-    expect(component.find('div').length).toEqual(0)
-    window.token = 'fake-token'
-  })
-
-  it('visible when authenticated', () => {
-    const store = mockStore({
-      authentication: { authenticated: true, application: applicationState }
-    })
-    const component = mount(
-      <Provider store={store}>
-        <Relationships />
-      </Provider>
-    )
-    expect(component.find('div').length).toBeGreaterThan(0)
-  })
+  const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <Relationships subsection="review" />
@@ -55,7 +25,7 @@ describe('The family and friends section', () => {
 
   it('can go to each subsection', () => {
     const sections = ['marital', 'friends', 'relatives', 'review']
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
 
     sections.forEach(section => {
       const component = mount(

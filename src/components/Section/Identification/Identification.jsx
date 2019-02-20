@@ -2,24 +2,22 @@ import React from 'react'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 
-import AuthenticatedView from '../../../views/AuthenticatedView'
-
 import { i18n } from '@config'
 
 import { ErrorList } from '@components/ErrorList'
-import SectionNavigation from '../shared/SectionNavigation'
+import SectionNavigation from '@components/Section/shared/SectionNavigation'
 
 import * as sections from '@constants/sections'
 
-import Intro from './Intro'
-import ApplicantName from './ApplicantName'
-import ApplicantBirthDate from './ApplicantBirthDate'
-import ApplicantBirthPlace from './ApplicantBirthPlace'
-import ApplicantSSN from './ApplicantSSN'
-import OtherNames from './OtherNames'
-import ContactInformation from './ContactInformation'
-import Physical from './Physical'
-import Review from './Review'
+import Intro from '@components/Section/Identification/Intro'
+import ApplicantName from '@components/Section/Identification/ApplicantName'
+import ApplicantBirthDate from '@components/Section/Identification/ApplicantBirthDate'
+import ApplicantBirthPlace from '@components/Section/Identification/ApplicantBirthPlace'
+import ApplicantSSN from '@components/Section/Identification/ApplicantSSN'
+import OtherNames from '@components/Section/Identification/OtherNames'
+import ContactInformation from '@components/Section/Identification/ContactInformation'
+import Physical from '@components/Section/Identification/Physical'
+import Review from '@components/Section/Identification/Review'
 
 /**
  * TODO
@@ -80,6 +78,6 @@ Identification.defaultProps = {
   subsection: 'intro',
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Identification))
+export default connect(mapStateToProps)(Identification)
 
 export const IdentificationSections = () => <Review />

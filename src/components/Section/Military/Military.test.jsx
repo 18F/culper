@@ -1,9 +1,7 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import Military from './Military'
+import Military from '@components/Section/Military/Military'
 import { mount } from 'enzyme'
 
 const applicationState = {
@@ -11,41 +9,10 @@ const applicationState = {
 }
 
 describe('The military section', () => {
-  // Setup
-  window.token = 'fake-token'
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
-
-  it('hidden when not authenticated', () => {
-    window.token = ''
-    const store = mockStore({
-      authentication: [],
-      application: applicationState
-    })
-    const component = mount(
-      <Provider store={store}>
-        <Military />
-      </Provider>
-    )
-    expect(component.find('div').length).toEqual(0)
-    window.token = 'fake-token'
-  })
-
-  it('visible when authenticated', () => {
-    const store = mockStore({
-      authentication: { authenticated: true },
-      application: applicationState
-    })
-    const component = mount(
-      <Provider store={store}>
-        <Military />
-      </Provider>
-    )
-    expect(component.find('div').length).toBeGreaterThan(0)
-  })
+  const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <Military subsection="review" />
@@ -63,7 +30,6 @@ describe('The military section', () => {
       'review'
     ]
     const store = mockStore({
-      authentication: { authenticated: true },
       application: { Military: {} }
     })
 
@@ -115,7 +81,6 @@ describe('The military section', () => {
       Military: {}
     }
     const store = mockStore({
-      authentication: { authenticated: true },
       application: modifiedState
     })
     const component = mount(
@@ -136,7 +101,6 @@ describe('The military section', () => {
       Military: {}
     }
     const store = mockStore({
-      authentication: { authenticated: true },
       application: modifiedState
     })
     const component = mount(
@@ -154,7 +118,6 @@ describe('The military section', () => {
       Military: { History: { HasServed: { value: 'No' } } }
     }
     const store = mockStore({
-      authentication: { authenticated: true },
       application: modifiedState
     })
     const component = mount(
@@ -172,7 +135,6 @@ describe('The military section', () => {
       Military: { History: { HasServed: { value: 'Yes' } } }
     }
     const store = mockStore({
-      authentication: { authenticated: true },
       application: modifiedState
     })
     const component = mount(

@@ -1,20 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { reportCompletion } from '../../../actions/ApplicationActions'
+import { reportCompletion } from '@actions/ApplicationActions'
 import {
   ResidenceValidator,
   EmploymentValidator,
   HistoryEducationValidator,
   EducationItemValidator
-} from '../../../validators'
-import { i18n } from '../../../config'
-import { SectionViews, SectionView } from '../SectionView'
-import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Field, Svg, Show, Branch } from '../../Form'
-import SummaryProgress from './SummaryProgress'
-import SummaryCounter from './SummaryCounter'
-import Federal from './Federal'
+} from '@validators'
+import { i18n } from '@config'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
+import SectionElement from '@components/Section/SectionElement'
+import { Field, Svg, Show, Branch } from '@components/Form'
+import SummaryProgress from '@components/Section/History/SummaryProgress'
+import SummaryCounter from '@components/Section/History/SummaryCounter'
+import Federal from '@components/Section/History/Federal'
 import {
   utc,
   today,
@@ -22,11 +21,11 @@ import {
   daysBetween,
   gaps,
   extractDate
-} from './dateranges'
-import { InjectGaps } from './summaries'
-import Residence from './Residence'
-import Employment from './Employment'
-import Education from './Education'
+} from '@components/Section/History/dateranges'
+import { InjectGaps } from '@components/Section/History/summaries'
+import Residence from '@components/Section/History/Residence'
+import Employment from '@components/Section/History/Employment'
+import Education from '@components/Section/History/Education'
 
 /**
  * Default sorting of history objects. This assumes that all objects contain a `Dates` property
@@ -798,4 +797,4 @@ export class HistorySections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(History))
+export default connect(mapStateToProps)(History)

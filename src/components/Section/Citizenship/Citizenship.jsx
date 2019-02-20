@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
-import SectionElement from '../SectionElement'
-import { SectionViews, SectionView } from '../SectionView'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Field } from '../../Form'
-import Status from './Status'
-import Multiple from './Multiple'
-import Passports from './Multiple/Passports'
+import { i18n } from '@config'
+import SectionElement from '@components/Section/SectionElement'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
+import { Field } from '@components/Form'
+import Status from '@components/Section/Citizenship/Status'
+import Multiple from '@components/Section/Citizenship/Multiple'
+import Passports from '@components/Section/Citizenship/Multiple/Passports'
 
 class Citizenship extends SectionElement {
   render() {
@@ -196,4 +195,4 @@ export class CitizenshipSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Citizenship))
+export default connect(mapStateToProps)(Citizenship)

@@ -1,29 +1,16 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import SavedIndicator from './SavedIndicator'
-import { i18n } from '../../config'
+import SavedIndicator from '@components/SavedIndicator/SavedIndicator'
+import { i18n } from '@config'
 
 describe('The saved indicator component', () => {
   // Setup
   window.token = 'fake-token'
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
-
-  it('hidden when not authenticated', () => {
-    window.token = ''
-    const store = mockStore({ authentication: [] })
-    const component = mount(
-      <Provider store={store}>
-        <SavedIndicator />
-      </Provider>
-    )
-    expect(component.find('button').length).toEqual(0)
-    window.token = 'fake-token'
-  })
 
   it('catches failed save', () => {
     const store = mockStore({

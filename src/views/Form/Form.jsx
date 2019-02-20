@@ -1,21 +1,20 @@
 import React from 'react'
 import { withRouter } from 'react-router'
-import { api } from '../../services'
-import { saveSection } from '../../components/SavedIndicator/persistence-helpers'
+import { api } from '@services'
+import { saveSection } from '@components/SavedIndicator/persistence-helpers'
 import {
   clearErrors,
   updateApplication
-} from '../../actions/ApplicationActions'
-import AuthenticatedView from '../AuthenticatedView'
-import { Section, SavedIndicator, TimeoutWarning } from '../../components'
-import { env } from '../../config'
+} from '@actions/ApplicationActions'
+import { Section, SavedIndicator, TimeoutWarning } from 'components'
+import { env } from '@config'
 import {
   didRouteChange,
   findPosition,
   parseFormUrl
-} from '../../components/Navigation/navigation-helpers'
-import { tokenError } from '../../actions/AuthActions'
-import { updateSection } from '../../actions/SectionActions'
+} from '@components/Navigation/navigation-helpers'
+import { tokenError } from '@actions/AuthActions'
+import { updateSection } from '@actions/SectionActions'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.
@@ -153,4 +152,4 @@ class Form extends React.Component {
   }
 }
 
-export default withRouter(AuthenticatedView(Form))
+export default withRouter(Form)

@@ -1,17 +1,14 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { SectionViews, SectionView } from './SectionView'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
 import { mount } from 'enzyme'
 
-describe('The  SectionView component', () => {
-  // Setup
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
+describe('The SectionView component', () => {
+  const mockStore = configureMockStore()
 
   it('renders contents based on current param', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <SectionViews current="foo">
@@ -28,7 +25,7 @@ describe('The  SectionView component', () => {
   })
 
   it('handles when current param does not match', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <SectionViews current="doesNotExist">
@@ -49,7 +46,7 @@ describe('The  SectionView component', () => {
     const update = p => {
       props = p
     }
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <SectionViews current="foo" dispatch={store.dispatch} update={update}>
@@ -69,7 +66,7 @@ describe('The  SectionView component', () => {
     const update = p => {
       props = p
     }
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <SectionViews current="foo" dispatch={store.dispatch} update={update}>
@@ -89,7 +86,7 @@ describe('The  SectionView component', () => {
     const update = p => {
       props = p
     }
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <SectionViews current="foo" dispatch={store.dispatch} update={update}>
