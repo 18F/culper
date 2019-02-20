@@ -245,9 +245,8 @@ export default class Status extends SubsectionElement {
               scrollIntoView={this.props.scrollIntoView}>
               <Location
                 name="PlaceIssued"
-                label={'Was this issued in the United States?'}
                 {...this.props.PlaceIssued}
-                layout={Location.CITY_STATE_COUNTRY}
+                layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
                 className="place-issued"
                 onUpdate={value => { this.updateField('PlaceIssued', value) }}
                 onError={this.handleError}
