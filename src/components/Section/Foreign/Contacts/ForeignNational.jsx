@@ -1,6 +1,7 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { pickDate } from '../../../../validators/helpers'
+import classNames from 'classnames'
+import { i18n } from '@config'
+import { pickDate } from '@validators/helpers'
 import {
   ValidationElement,
   Field,
@@ -18,8 +19,8 @@ import {
   BranchCollection,
   Location,
   AccordionItem
-} from '../../../Form'
-import AlternateAddress from '../../../Form/Location/AlternateAddress'
+} from '@components/Form'
+import AlternateAddress from '@components/Form/Location/AlternateAddress'
 
 export default class ForeignNational extends ValidationElement {
   constructor(props) {
@@ -256,9 +257,10 @@ export default class ForeignNational extends ValidationElement {
           title={i18n.t('foreign.contacts.heading.name')}
           optional={true}
           filterErrors={Name.requiredErrorsOnly}
-          className={
-            this.props.NameNotApplicable.applicable ? 'foreign-national-name' : 'foreign-national-name no-margin-bottom'
-          }
+          className={classNames(
+            'foreign-national-name',
+            { 'no-margin-bottom': !this.props.NameNotApplicable.applicable }
+          )}
           scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable
             name="NameNotApplicable"
