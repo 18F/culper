@@ -3,38 +3,25 @@ import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 
 export default class Text extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      value: props.prefilter(props.value)
-    }
-
-    this.handleError = this.handleError.bind(this)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.value === nextProps.value) {
-      return
-    }
-    this.setState({ value: this.props.prefilter(nextProps.value) })
-  }
 
   /**
    * Handle the change event.
    */
   handleChange(event) {
     event.persist()
-    this.setState({ value: this.props.prefilter(event.target.value) }, () => {
-      super.handleChange(event)
-      this.props.onUpdate({
-        value: this.state.value,
-        name: this.props.name
-      })
+
+    if (this.props.prefilter) {
+      event.target.value === this.props.prefilter(event.target.value)
+    }
+
+    super.handleChange(event)
+    this.props.onUpdate({
+      value: event.target.value,
+      name: this.props.name,
     })
   }
 
-  handleError(value, arr) {
+  handleError = (value, arr) => {
     if (this.props.prefix) {
       arr = arr.map(err => {
         return {
@@ -65,7 +52,7 @@ export default class Text extends ValidationElement {
           pattern={this.props.pattern}
           readonly={this.props.readonly}
           required={this.props.required}
-          value={this.state.value}
+          value={this.props.value}
           focus={this.props.focus}
           onChange={this.handleChange}
           onFocus={this.props.onFocus}

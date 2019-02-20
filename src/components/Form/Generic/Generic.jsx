@@ -355,6 +355,8 @@ Generic.propTypes = {
   className: PropTypes.string,
   required: PropTypes.bool,
   disabled: PropTypes.bool,
+  focus: PropTypes.bool,
+  error: PropTypes.bool,
   readonly: PropTypes.bool,
   autocapitalize: PropTypes.bool,
   autocorrect: PropTypes.bool,
