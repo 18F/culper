@@ -886,6 +886,7 @@ export const foreign = {
     },
     label: {
       idk: "I don't know",
+      idkname: "I don't know their name",
       yes: 'Yes',
       no: 'No',
       inperson: 'In person',
