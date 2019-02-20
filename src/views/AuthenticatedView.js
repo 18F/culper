@@ -13,10 +13,6 @@ import { api } from '@services/api'
 const AuthenticatedView = WrappedComponent => {
   return connect(mapStateToProps)(
     class RequiresAuth extends React.Component {
-      componentWillReceiveProps(nextProps) {
-        this.checkAuthentication()
-      }
-
       componentWillMount() {
         this.checkAuthentication()
       }
