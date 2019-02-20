@@ -246,7 +246,7 @@ export default class Status extends SubsectionElement {
               <Location
                 name="PlaceIssued"
                 {...this.props.PlaceIssued}
-                layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
+                layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
                 className="place-issued"
                 onUpdate={value => { this.updateField('PlaceIssued', value) }}
                 onError={this.handleError}
