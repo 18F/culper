@@ -1,28 +1,43 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { CitizenshipPassportsValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Field, BranchCollection } from '../../../Form'
+import { i18n } from '@config'
+import schema from '@schema'
+import validate from '@validators'
+import Subsection from '@components/section/shared/Subsection'
+import { Field, BranchCollection } from '@components/Form'
 import PassportItem from './PassportItem'
+import {
+  CITIZENSHIP,
+  CITIZENSHIP_PASSPORTS
+} from '@config/formSections/citizenship'
+import connectCitizenshipSection from '../CitizenshipConnector';
 
-export default class Passports extends SubsectionElement {
+const sectionConfig = {
+  section: CITIZENSHIP.name,
+  store: CITIZENSHIP.store,
+  subsection: CITIZENSHIP_PASSPORTS.name,
+  storeKey: CITIZENSHIP_PASSPORTS.storeKey
+}
+
+class Passports extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updatePassports = this.updatePassports.bind(this)
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
+  update = queue => {
     this.props.onUpdate({
       Passports: this.props.Passports,
       ...queue
     })
   }
 
-  updatePassports(values) {
+  updatePassports = values => {
     this.update({
       Passports: values
     })
@@ -32,7 +47,7 @@ export default class Passports extends SubsectionElement {
     return (
       <div
         className="section-content passports"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
         <BranchCollection
           label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
@@ -73,3 +88,5 @@ Passports.defaultProps = {
   },
   defaultState: true
 }
+
+export default connectCitizenshipSection(Passports, sectionConfig)

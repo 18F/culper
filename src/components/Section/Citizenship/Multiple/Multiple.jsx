@@ -1,26 +1,41 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
+import { i18n } from '@config'
+import schema from '@schema'
 import validate, {
   CitizenshipMultipleValidator,
   CitizenshipItemValidator
-} from '../../../../validators'
-import { countryString } from '../../../../validators/location'
-import SubsectionElement from '../../SubsectionElement'
-import { Field, Branch, Show, Accordion } from '../../../Form'
-import { Summary, DateSummary } from '../../../Summary'
+} from '@validators'
+import { countryString } from '@validators/location'
+import { Field, Branch, Show, Accordion } from '@components/Form'
+import { Summary, DateSummary } from '@components/Summary'
+import Subsection from '@components/section/shared/Subsection'
 import CitizenshipItem from './CitizenshipItem'
+import {
+  CITIZENSHIP,
+  CITIZENSHIP_MULTIPLE
+} from '@config/formSections/citizenship'
+import connectCitizenshipSection from '../CitizenshipConnector';
 
-export default class Multiple extends SubsectionElement {
+const sectionConfig = {
+  section: CITIZENSHIP.name,
+  store: CITIZENSHIP.store,
+  subsection: CITIZENSHIP_MULTIPLE.name,
+  storeKey: CITIZENSHIP_MULTIPLE.storeKey
+}
+
+class Multiple extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHasMultiple = this.updateHasMultiple.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
+  update = queue => {
     this.props.onUpdate({
       List: this.props.List,
       HasMultiple: this.props.HasMultiple,
@@ -28,20 +43,20 @@ export default class Multiple extends SubsectionElement {
     })
   }
 
-  updateHasMultiple(values) {
+  updateHasMultiple = values => {
     this.update({
       HasMultiple: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  updateList(values) {
+  updateList = values => {
     this.update({
       List: values
     })
   }
 
-  summaryList(item, index) {
+  summaryList = (item, index) => {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Dates)
     const country = countryString(itemProperties.Country) || ''
@@ -56,7 +71,7 @@ export default class Multiple extends SubsectionElement {
     })
   }
 
-  validMinimumCitizenships() {
+  validMinimumCitizenships = () => {
     return new CitizenshipMultipleValidator(
       this.props
     ).validMinimumCitizenships()
@@ -66,7 +81,7 @@ export default class Multiple extends SubsectionElement {
     return (
       <div
         className="section-content multiple"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
         <Branch
           name="has_multiple"
@@ -139,3 +154,5 @@ Multiple.defaultProps = {
   },
   defaultState: true
 }
+
+export default connectCitizenshipSection(Multiple, sectionConfig)

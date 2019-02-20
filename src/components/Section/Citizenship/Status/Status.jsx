@@ -3,7 +3,7 @@ import { i18n } from '@config'
 import { alphaNumericRegEx, validGenericTextfield } from '@validators/helpers'
 import schema from '@schema'
 import validate from '@validators'
-import SubsectionElement from '@components/Section/SubsectionElement'
+import Subsection from '@components/section/shared/Subsection'
 import {
   Branch,
   Show,
@@ -18,7 +18,32 @@ import {
   Location
 } from '@components/Form'
 
-export default class Status extends SubsectionElement {
+import {
+  CITIZENSHIP,
+  CITIZENSHIP_STATUS
+} from '@config/formSections/citizenship'
+import connectCitizenshipSection from '../CitizenshipConnector';
+
+const sectionConfig = {
+  section: CITIZENSHIP.name,
+  store: CITIZENSHIP.store,
+  subsection: CITIZENSHIP_STATUS.name,
+  storeKey: CITIZENSHIP_STATUS.storeKey
+}
+
+class Status extends Subsection {
+  constructor(props) {
+    super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
+
+  }
+
   update = (queue) => {
     this.props.onUpdate({
       CitizenshipStatus: this.props.CitizenshipStatus,
@@ -78,7 +103,7 @@ export default class Status extends SubsectionElement {
     return (
       <div
         className="section-content status"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
         <Field
           title={i18n.t('citizenship.status.heading.citizenshipstatus')}
@@ -986,3 +1011,5 @@ Status.defaultProps = {
     return validate(schema('citizenship.status', data))
   }
 }
+
+export default connectCitizenshipSection(Status, sectionConfig)
