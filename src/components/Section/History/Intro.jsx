@@ -5,11 +5,11 @@ import { Field } from '@components/Form'
 const Intro = () => {
   return (
     <div>
-      <h1 className="section-header">{i18n.t('identification.intro.title')}</h1>
+      <h1 className="section-header">{i18n.t('history.intro.title')}</h1>
       <Field
         optional={true}
         className="no-margin-bottom">
-        {i18n.m('identification.intro.body')}
+        {i18n.m('history.intro.body')}
       </Field>
     </div>
   )

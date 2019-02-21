@@ -1,10 +1,14 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+import { i18n } from '@config'
+
 import {
   HistoryResidenceValidator,
   ResidenceValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
+} from '@validators'
+
+import Subsection from '@components/Section/shared/Subsection'
+import connectHistorySection from '../HistoryConnector'
+
 import { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import { openState } from '../../../Form/Accordion/Accordion'
@@ -12,6 +16,15 @@ import { today, daysAgo } from '../dateranges'
 import { InjectGaps, ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
+
+import { HISTORY, HISTORY_RESIDENCE } from '@config/formSections/history'
+
+const sectionConfig = {
+  section: HISTORY.name,
+  store: HISTORY.store,
+  subsection: HISTORY_RESIDENCE.name,
+  storeKey: HISTORY_RESIDENCE.storeKey,
+}
 
 const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
@@ -30,14 +43,25 @@ const byline = (item, index, initial, translation, required, validator) => {
   }
 }
 
-export default class Residence extends SubsectionElement {
+export class Residence extends Subsection {
   constructor(props) {
     super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
 
     this.customResidenceByline = this.customResidenceByline.bind(this)
     this.customResidenceDetails = this.customResidenceDetails.bind(this)
     this.fillGap = this.fillGap.bind(this)
     this.inject = this.inject.bind(this)
+  }
+
+  handleUpdate = (values) => {
+    this.props.onUpdate('Residence', { List: values })
   }
 
   customResidenceByline(item, index, initial) {
@@ -86,7 +110,7 @@ export default class Residence extends SubsectionElement {
       }
     })
 
-    this.props.onUpdate({
+    this.handleUpdate({
       items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(
         this.sort
       ).filter(item => !item.type || (item.type && item.type !== 'Gap')),
@@ -102,7 +126,7 @@ export default class Residence extends SubsectionElement {
     return (
       <div
         className="section-content residence"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}>
         <Accordion
           scrollToTop={this.props.scrollToTop}
           defaultState={this.props.defaultState}
@@ -110,7 +134,7 @@ export default class Residence extends SubsectionElement {
           sort={this.props.sort}
           inject={this.inject}
           realtime={this.props.realtime}
-          onUpdate={this.props.onUpdate}
+          onUpdate={this.handleUpdate}
           onError={this.handleError}
           caption={this.props.caption}
           byline={this.customResidenceByline}
@@ -137,9 +161,11 @@ export default class Residence extends SubsectionElement {
 
 Residence.defaultProps = {
   List: Accordion.defaultList,
+  scrollIntoView: false,
   scrollToTop: '',
   defaultState: true,
-  realtime: false,
+  realtime: true,
+  required: false,
   sort: null,
   totalYears: 10,
   overrideInitial: initial => {
@@ -150,11 +176,11 @@ Residence.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  section: 'history',
-  subsection: 'residence',
   addressBooks: {},
   dispatch: () => {},
   validator: data => {
     return new HistoryResidenceValidator(data).isValid()
   }
 }
+
+export default connectHistorySection(Residence, sectionConfig)

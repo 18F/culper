@@ -1,5 +1,8 @@
 import React from 'react'
+import { Route } from 'react-router'
 import { connect } from 'react-redux'
+import classnames from 'classnames'
+
 import { reportCompletion } from 'actions/ApplicationActions'
 import {
   ResidenceValidator,
@@ -8,6 +11,16 @@ import {
   EducationItemValidator
 } from 'validators'
 import { i18n } from 'config'
+
+import { ErrorList } from 'components/ErrorList'
+import SectionNavigation from 'components/Section/shared/SectionNavigation'
+
+import * as sections from 'constants/sections'
+
+import Intro from 'components/Section/History/Intro'
+import ResidenceWrapper from 'components/Section/History/Residence/ResidenceWrapper'
+import Review from 'components/Section/History/Review'
+
 import { SectionViews, SectionView } from 'components/Section/SectionView'
 import SectionElement from 'components/Section/SectionElement'
 import { Field, Svg, Show, Branch } from 'components/Form'
@@ -351,26 +364,47 @@ class History extends SectionElement {
   }
 
   render() {
+    const subsection = this.props.subsection || 'intro'
+
+    const subsectionClasses = classnames(
+      'view',
+      `view-${subsection}`
+    )
+
+    const isReview = subsection === 'review'
+    const title = isReview && i18n.t('review.title')
+    const para = isReview && i18n.m('review.para')
+
+    /** TODO - this should come from Redux store */
+    const formType = 'SF86'
+    
     return (
       <div className="history">
+        <div className="section-view">
+          {title && <h1 className="title">{title}</h1>}
+          {para}
+
+          <div className={subsectionClasses}>
+            {isReview && (
+              <div className="top-btns"><ErrorList /></div>
+            )}
+
+            <Route path="/form/history/intro" component={Intro} />
+            <Route path="/form/history/residence" component={ResidenceWrapper} />
+            <Route path="/form/history/review" component={Review} />
+
+            <SectionNavigation
+              section={sections.HISTORY}
+              subsection={subsection}
+              formType={formType} />
+          </div>
+        </div>
+
+        {/*
         <SectionViews
           current={this.props.subsection}
           dispatch={this.props.dispatch}
           update={this.props.update}>
-          <SectionView
-            name="intro"
-            back="identification/review"
-            backLabel={i18n.t('identification.destination.review')}
-            next="history/residence"
-            nextLabel={i18n.t('history.destination.residence')}>
-            <h1 className="section-header">{i18n.t('history.intro.title')}</h1>
-            <Field
-              optional={true}
-              className="no-margin-bottom">
-              {i18n.m('history.intro.body')}
-            </Field>
-          </SectionView>
-
           <SectionView
             name="review"
             title={i18n.t('review.title')}
@@ -663,7 +697,7 @@ class History extends SectionElement {
               onError={this.handleError}
             />
           </SectionView>
-        </SectionViews>
+            </SectionViews>*/}
       </div>
     )
   }
@@ -683,6 +717,7 @@ const processDate = date => {
 }
 
 function mapStateToProps(state) {
+  const { section } = state
   const app = state.application || {}
   const identification = app.Identification || {}
   const history = app.History || {}
@@ -691,6 +726,7 @@ function mapStateToProps(state) {
   const addressBooks = app.AddressBooks || {}
 
   return {
+    ...section,
     History: history,
     Residence: history.Residence || { List: { items: [] } },
     Employment: history.Employment || { items: [] },
@@ -708,6 +744,7 @@ function mapStateToProps(state) {
 }
 
 History.defaultProps = {
+  subsection: 'intro',
   section: 'history',
   store: 'History'
 }
@@ -720,18 +757,10 @@ export class HistorySections extends React.Component {
     return (
       <div className="history">
         <Residence
-          {...this.props.Residence}
           defaultState={false}
-          realtime={true}
-          sort={sort}
-          totalYears={totalYears(this.props.Birthdate)}
           overrideInitial={noOverride}
           onError={this.props.onError}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          scrollIntoView={false}
-          required={true}
-        />
+          required={true} />
 
         <Employment
           {...this.props.Employment}

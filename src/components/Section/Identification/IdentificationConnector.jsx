@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {
   updateApplication,
   reportErrors,
-} from '../../../actions/ApplicationActions'
+} from '@actions/ApplicationActions'
 
 const connectIdentificationSection = (Component, { section, subsection, store, storeKey }) => {
   class ConnectedIdentificationSection extends React.Component {
