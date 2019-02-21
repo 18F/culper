@@ -235,7 +235,7 @@ export const EmploymentCustomSummary = (
 ) => {
   return CustomSummary(
     x => {
-      return new EmploymentValidator(x, null).isValid()
+      return new EmploymentValidator(x).isValid()
     },
     (x, e) => {
       return EmploymentSummary(x, index, e, item.open)

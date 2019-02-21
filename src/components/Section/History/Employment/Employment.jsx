@@ -52,7 +52,7 @@ export default class Employment extends SubsectionElement {
       'history.employment.default.collection.summary.incomplete',
       this.props.required,
       item => {
-        return new EmploymentValidator(item, null).isValid()
+        return new EmploymentValidator(item).isValid()
       }
     )
   }
