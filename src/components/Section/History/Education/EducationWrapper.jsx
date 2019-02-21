@@ -7,9 +7,6 @@ import { Field, Show, Branch } from '@components/Form'
 import Education from './Education'
 import EducationSummaryProgress from './EducationSummaryProgress'
 
-import { today, daysAgo, gaps } from '@components/Section/History/dateranges'
-import { totalYears } from '@components/Section/History/History'
-
 import connectHistorySection from '../HistoryConnector'
 import { HISTORY, HISTORY_EDUCATION } from '@config/formSections/history'
 
@@ -20,8 +17,6 @@ const sectionConfig = {
   section: HISTORY.name,
   subsection: HISTORY_EDUCATION.name,
 }
-
-// TODO totalYears has to change based on formType
 
 class EducationWrapper extends React.Component {
   updateBranchAttendance = (values) => {
