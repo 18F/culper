@@ -3,7 +3,7 @@ import { i18n } from '@config'
 import { alphaNumericRegEx, validGenericTextfield } from '@validators/helpers'
 import schema from '@schema'
 import validate from '@validators'
-import Subsection from '@components/section/shared/Subsection'
+import Subsection from '@components/Section/shared/Subsection'
 import {
   Branch,
   Show,

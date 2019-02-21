@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '@config'
-import { Field } from '@components/form'
+import { Field } from '@components/Form'
 
 const Intro = () => (
   <div>

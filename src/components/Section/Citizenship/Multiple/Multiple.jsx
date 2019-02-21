@@ -8,7 +8,7 @@ import validate, {
 import { countryString } from '@validators/location'
 import { Field, Branch, Show, Accordion } from '@components/Form'
 import { Summary, DateSummary } from '@components/Summary'
-import Subsection from '@components/section/shared/Subsection'
+import Subsection from '@components/Section/shared/Subsection'
 import CitizenshipItem from './CitizenshipItem'
 import {
   CITIZENSHIP,

@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '@config'
 import schema from '@schema'
 import validate from '@validators'
-import Subsection from '@components/section/shared/Subsection'
+import Subsection from '@components/Section/shared/Subsection'
 import { Field, BranchCollection } from '@components/Form'
 import PassportItem from './PassportItem'
 import {
