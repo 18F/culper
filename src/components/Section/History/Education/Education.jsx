@@ -1,12 +1,26 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, { EducationItemValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion } from '../../../Form'
-import { openState } from '../../../Form/Accordion/Accordion'
+import { i18n } from '@config'
+
+import schema from '@schema'
+import validate, { EducationItemValidator } from '@validators'
+
+import Subsection from '@components/Section/shared/Subsection'
+import connectHistorySection from '../HistoryConnector'
+
+import { Accordion } from '@components/Form'
+import { openState } from '@components/Form/Accordion/Accordion'
+
 import { EducationCustomSummary } from '../summaries'
 import EducationItem from './EducationItem'
+
+import { HISTORY, HISTORY_EDUCATION } from '@config/formSections/history'
+
+const sectionConfig = {
+  section: HISTORY.name,
+  store: HISTORY.store,
+  subsection: HISTORY_EDUCATION.name,
+  storeKey: HISTORY_EDUCATION.storeKey,
+}
 
 const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
@@ -26,18 +40,27 @@ const byline = (item, index, initial, translation, required, validator) => {
   }
 }
 
-export default class Education extends SubsectionElement {
+export class Education extends Subsection {
   constructor(props) {
     super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
 
     this.customEducationByline = this.customEducationByline.bind(this)
   }
 
   customEducationByline(item, index, initial) {
+    const overrideInitial = this.props.overrideInitial ? false : initial
+
     return byline(
       item,
       index,
-      this.props.overrideInitial(initial),
+      overrideInitial,
       'history.education.collection.school.summary.incomplete',
       this.props.required,
       item => {
@@ -50,7 +73,7 @@ export default class Education extends SubsectionElement {
     return (
       <div
         className="section-content education"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}>
         <Accordion
           scrollToTop={this.props.scrollToTop}
           defaultState={this.props.defaultState}
@@ -87,6 +110,7 @@ export default class Education extends SubsectionElement {
 
 Education.defaultProps = {
   List: Accordion.defaultList,
+  scrollIntoView: false,
   scrollToTop: '',
   defaultState: true,
   realtime: false,
@@ -107,3 +131,5 @@ Education.defaultProps = {
     return validate(schema('history.education', data))
   }
 }
+
+export default connectHistorySection(Education, sectionConfig)

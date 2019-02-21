@@ -48,7 +48,6 @@ const connectHistorySection = (Component, { section, subsection, store, storeKey
 
   ConnectedHistorySection.propTypes = {
     Birthdate: PropTypes.any,
-    inReview: PropTypes.bool,
     update: PropTypes.func,
     validator: PropTypes.func,
     dispatch: PropTypes.func, // Passed in via connect (below)
@@ -89,6 +88,17 @@ const connectHistorySection = (Component, { section, subsection, store, storeKey
       case 'Employment':
         return {
           ...history.Employment || emptyItems,
+          Birthdate: processDate(identification.ApplicantBirthDate),
+          addressBooks,
+        }
+
+      case 'Education':
+        return {
+          ...history.Education || {
+            HasAttended: '',
+            HasDegree10: '',
+            ...emptyList,
+          },
           Birthdate: processDate(identification.ApplicantBirthDate),
           addressBooks,
         }

@@ -3,11 +3,6 @@ import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 
-import { reportCompletion } from 'actions/ApplicationActions'
-import {
-  HistoryEducationValidator,
-  EducationItemValidator
-} from 'validators'
 import { i18n } from 'config'
 
 import { ErrorList } from 'components/ErrorList'
@@ -20,15 +15,17 @@ import ResidenceWrapper from 'components/Section/History/Residence/ResidenceWrap
 import Residence from 'components/Section/History/Residence'
 import EmploymentWrapper from 'components/Section/History/Employment/EmploymentWrapper'
 import Employment from 'components/Section/History/Employment'
+import EducationWrapper from 'components/Section/History/Education/EducationWrapper'
+import Education from 'components/Section/History/Education'
 
 import Review from 'components/Section/History/Review'
 
 import { SectionViews, SectionView } from 'components/Section/SectionView'
 import SectionElement from 'components/Section/SectionElement'
 import { Field, Svg, Show, Branch } from 'components/Form'
-import SummaryProgress from 'components/Section/History/SummaryProgress'
-import SummaryCounter from 'components/Section/History/SummaryCounter'
+
 import Federal from 'components/Section/History/Federal'
+
 import {
   utc,
   today,
@@ -38,7 +35,6 @@ import {
   extractDate
 } from 'components/Section/History/dateranges'
 import { InjectGaps } from 'components/Section/History/summaries'
-import Education from 'components/Section/History/Education'
 
 /**
  * Default sorting of history objects. This assumes that all objects contain a `Dates` property
@@ -92,175 +88,6 @@ export const totalYears = birthdate => {
 }
 
 class History extends SectionElement {
-  constructor(props) {
-    super(props)
-
-    this.schoolRangesList = this.schoolRangesList.bind(this)
-    this.diplomaRangesList = this.diplomaRangesList.bind(this)
-    this.updateEducation = this.updateEducation.bind(this)
-    this.updateBranchAttendance = this.updateBranchAttendance.bind(this)
-    this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
-    this.overrideInitial = this.overrideInitial.bind(this)
-  }
-
-  excludeGaps(items) {
-    return items.filter(
-      item => !item.type || (item.type && item.type !== 'Gap')
-    )
-  }
-
-  updateEducation(values) {
-    let education = this.props.Education || {}
-    education.List = values
-    this.handleUpdate('Education', education)
-  }
-
-  updateBranchAttendance(values) {
-    let education = this.props.Education || {}
-    education.HasAttended = values
-    education.HasDegree10 = values.value === 'No' ? education.HasDegree10 : {}
-    education.List =
-      values.value === 'Yes' ? education.List : { items: [], branch: {} }
-    this.handleUpdate('Education', education)
-    this.props.dispatch(
-      reportCompletion(
-        'history',
-        'education',
-        new HistoryEducationValidator(education, education).isValid()
-      )
-    )
-  }
-
-  updateBranchDegree10(values) {
-    let education = this.props.Education || {}
-    education.HasDegree10 = values
-    education.List =
-      values.value === 'Yes' ? education.List : { items: [], branch: {} }
-    this.handleUpdate('Education', education)
-    this.props.dispatch(
-      reportCompletion(
-        'history',
-        'education',
-        new HistoryEducationValidator(education, education).isValid()
-      )
-    )
-  }
-
-  schoolRangesList() {
-    let dates = []
-    if (!this.props.Education || !this.props.Education.List) {
-      return dates
-    }
-
-    for (const i of this.props.Education.List.items) {
-      if (!i.Item || !i.Item.Dates || !i.Item.Dates.to || !i.Item.Dates.from) {
-        continue
-      }
-
-      if (new EducationItemValidator(i.Item).isValid()) {
-        dates.push(i.Item.Dates)
-      }
-    }
-
-    return dates
-  }
-
-  diplomaRangesList() {
-    let dates = []
-    if (!this.props.Education || !this.props.Education.List) {
-      return dates
-    }
-
-    for (const i of this.props.Education.List.items) {
-      if (!i.Item) {
-        continue
-      }
-
-      if (!new EducationItemValidator(i.Item).isValid()) {
-        continue
-      }
-
-      if (i.Item.Diplomas.items) {
-        for (const d of i.Item.Diplomas.items) {
-          if (!d.Item || !d.Item.Date) {
-            continue
-          }
-
-          dates.push(d.Item.Date)
-        }
-      }
-    }
-
-    return dates
-  }
-
-  educationSummaryProgress() {
-    return (
-      <SummaryCounter
-        className="education"
-        title={i18n.t('history.education.summary.title')}
-        schools={this.schoolRangesList}
-        diplomas={this.diplomaRangesList}
-        schoolsLabel={i18n.t('history.education.summary.schools')}
-        diplomasLabel={i18n.t('history.education.summary.diplomas')}
-        total={totalYears(this.props.Birthdate)}>
-        <div className="summary-icon">
-          <Svg
-            src="/img/school-cap.svg"
-            alt={i18n.t('history.education.summary.svgAlt')}
-          />
-        </div>
-      </SummaryCounter>
-    )
-  }
-
-  hasGaps(types) {
-    let holes = 0
-
-    if (this.props.History) {
-      const start = daysAgo(today, 365 * totalYears())
-
-      for (const t of types) {
-        let items = []
-        if (t === 'Employment') {
-          items = ((this.props.History[t] && this.props.History[t].List) || {})
-            .items
-        } else {
-          // Move?
-          items = ((this.props.History[t] && this.props.History[t].List) || {})
-            .items
-        }
-
-        // If there is no history it should still display the exiting message
-        if (!items) {
-          holes += 1
-          continue
-        }
-
-        const list = items.filter(item => {
-          return item.Item && item.Item.Dates
-        })
-
-        // If there is no history it should still display the exiting message
-        if (list.length === 0) {
-          holes += 1
-          continue
-        }
-
-        const ranges = list.map(item => {
-          return item.Item.Dates
-        })
-        holes += gaps(ranges, start).length
-      }
-    }
-
-    return holes > 0
-  }
-
-  overrideInitial(initial) {
-    return this.props.subsection === 'review' ? false : initial
-  }
-
   render() {
     const subsection = this.props.subsection || 'intro'
 
@@ -290,6 +117,7 @@ class History extends SectionElement {
             <Route path="/form/history/intro" component={Intro} />
             <Route path="/form/history/residence" component={ResidenceWrapper} />
             <Route path="/form/history/employment" component={EmploymentWrapper} />
+            <Route path="/form/history/education" component={EducationWrapper} />
             <Route path="/form/history/review" component={Review} />
 
             <SectionNavigation
@@ -431,64 +259,6 @@ class History extends SectionElement {
           </SectionView>
 
           <SectionView
-            name="education"
-            back="history/employment"
-            backLabel={i18n.t('history.destination.employment')}
-            next="history/federal"
-            nextLabel={i18n.t('history.destination.federal')}>
-            <h1 className="section-header">{i18n.t('history.education.summary.title')}</h1>
-            <Field
-              title={i18n.t('history.education.title')}
-              titleSize="h3"
-              optional={true}
-              className="no-margin-bottom">
-              {i18n.m('history.education.info')}
-            </Field>
-
-            <Branch
-              name="branch_school"
-              {...this.props.Education.HasAttended}
-              help="history.education.help.attendance"
-              label={i18n.t('history.education.label.attendance')}
-              labelSize="h4"
-              warning={true}
-              onUpdate={this.updateBranchAttendance}
-            />
-            <Show when={this.props.Education.HasAttended.value === 'No'}>
-              <Branch
-                name="branch_degree10"
-                {...this.props.Education.HasDegree10}
-                help="history.education.help.degree10"
-                label={i18n.t('history.education.label.degree10')}
-                labelSize="h4"
-                warning={true}
-                onUpdate={this.updateBranchDegree10}
-              />
-            </Show>
-            <Show
-              when={
-                this.props.Education.HasAttended.value === 'Yes' ||
-                this.props.Education.HasDegree10.value === 'Yes'
-              }>
-              <div>
-                <span id="scrollToHistory" />
-                {this.educationSummaryProgress()}
-                <Education
-                  {...this.props.Education}
-                  scrollToTop="scrollToHistory"
-                  sort={sort}
-                  totalYears={totalYears(this.props.Birthdate)}
-                  overrideInitial={this.overrideInitial}
-                  onUpdate={this.updateEducation}
-                  onError={this.handleError}
-                  dispatch={this.props.dispatch}
-                  addressBooks={this.props.AddressBooks}
-                />
-              </div>
-            </Show>
-          </SectionView>
-
-          <SectionView
             name="federal"
             back="history/education"
             backLabel={i18n.t('history.destination.education')}
@@ -573,6 +343,7 @@ export class HistorySections extends React.Component {
           defaultState={false}
           realtime={true}
           overrideInitial={true}
+          onError={this.props.onError}
           required={true}
         />
 
@@ -596,16 +367,10 @@ export class HistorySections extends React.Component {
             this.props.Education.HasDegree10.value === 'Yes'
           }>
           <Education
-            {...this.props.Education}
             defaultState={false}
             realtime={true}
-            sort={sort}
-            totalYears={totalYears(this.props.Birthdate)}
-            overrideInitial={noOverride}
+            overrideInitial={true}
             onError={this.props.onError}
-            dispatch={this.props.dispatch}
-            addressBooks={this.props.AddressBooks}
-            scrollIntoView={false}
             required={true}
           />
         </Show>
