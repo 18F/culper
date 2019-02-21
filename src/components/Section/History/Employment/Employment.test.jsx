@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow, mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Employment from './Employment'
+import { Employment } from './Employment'
 
 describe('The employment section', () => {
   const mockStore = configureMockStore()
@@ -128,6 +128,7 @@ describe('The employment section', () => {
         <Employment {...props} />
       </Provider>
     )
+  
     const sortedEmploymentItems = component
       .dive()
       .instance()

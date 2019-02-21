@@ -7,7 +7,7 @@ import {
   reportErrors,
 } from '@actions/ApplicationActions'
 
-import { totalYears, sort } from '@components/Section/History/History'
+import { totalYears, sort } from '@components/Section/History/helpers'
 import { utc } from '@components/Section/History/dateranges'
 
 const connectHistorySection = (Component, { section, subsection, store, storeKey }) => {
@@ -100,6 +100,12 @@ const connectHistorySection = (Component, { section, subsection, store, storeKey
             ...emptyList,
           },
           Birthdate: processDate(identification.ApplicantBirthDate),
+          addressBooks,
+        }
+
+      case 'Federal':
+        return {
+          ...history.Federal || {},
           addressBooks,
         }
 

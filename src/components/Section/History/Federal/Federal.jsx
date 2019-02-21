@@ -1,18 +1,40 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
+import { i18n } from '@config'
+
+import schema from '@schema'
+
 import validate, {
   FederalServiceValidator,
   FederalServiceItemValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
-import { Summary, DateSummary } from '../../../Summary'
+} from '@validators'
+
+import Subsection from '@components/Section/shared/Subsection'
+import connectHistorySection from '../HistoryConnector'
+
+import { Branch, Show, Accordion } from '@components/Form'
+import { Summary, DateSummary } from '@components/Summary'
+
 import FederalItem from './FederalItem'
 
-export default class Federal extends SubsectionElement {
+import { HISTORY, HISTORY_FEDERAL } from '@config/formSections/history'
+
+const sectionConfig = {
+  section: HISTORY.name,
+  store: HISTORY.store,
+  subsection: HISTORY_FEDERAL.name,
+  storeKey: HISTORY_FEDERAL.storeKey,
+}
+
+export class Federal extends Subsection {
   constructor(props) {
     super(props)
+
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
 
     this.update = this.update.bind(this)
     this.updateBranch = this.updateBranch.bind(this)
@@ -20,7 +42,7 @@ export default class Federal extends SubsectionElement {
   }
 
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate('Federal', {
       HasFederalService: this.props.HasFederalService,
       List: this.props.List,
       ...queue
@@ -61,7 +83,7 @@ export default class Federal extends SubsectionElement {
     return (
       <div
         className="section-content federal"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}>
         <Branch
           name="has_federalservice"
           label={i18n.t('history.federal.heading.branch')}
@@ -117,3 +139,5 @@ Federal.defaultProps = {
   },
   defaultState: true
 }
+
+export default connectHistorySection(Federal, sectionConfig)

@@ -13,6 +13,7 @@ import EducationSummaryProgress from './Education/EducationSummaryProgress'
 import Residence from './Residence'
 import Employment from './Employment'
 import EducationWrapper from './Education/EducationWrapper'
+import FederalWrapper from './Federal/FederalWrapper'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -69,6 +70,9 @@ const Review = (props) => {
         {i18n.t('history.education.collection.caption')}
       </h1>
       <EducationWrapper inReview={true} />
+
+      <hr className="section-divider" />
+      <FederalWrapper inReview={true} />
     </div>
   )
 }

@@ -54,8 +54,10 @@ describe('The section component', () => {
             authenticated: true,
             token: 'fake-token',
             formType: 'SF86'
-          }
+          },
+          section: { section: section.url, subsection: subsection.url },
         })
+
         testSnapshot(
           <Provider store={store}>
             <MemoryRouter>

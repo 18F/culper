@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Education from './Education'
+import { Education } from './Education'
 
 describe('The Education component', () => {
   const mockStore = configureMockStore()
