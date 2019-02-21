@@ -758,7 +758,7 @@ export class HistorySections extends React.Component {
       <div className="history">
         <Residence
           defaultState={false}
-          overrideInitial={noOverride}
+          overrideInitial={true}
           onError={this.props.onError}
           required={true} />
 

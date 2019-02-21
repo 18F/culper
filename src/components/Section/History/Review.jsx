@@ -21,7 +21,7 @@ const Review = (props) => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
-    inReview: true,
+    overrideInitial: true,
   }
 
   const sectionDivider = (

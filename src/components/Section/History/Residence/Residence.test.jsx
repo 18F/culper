@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Residence from './Residence'
+import { Residence } from './Residence'
 
 describe('The residence section', () => {
   it('can trigger updates', () => {

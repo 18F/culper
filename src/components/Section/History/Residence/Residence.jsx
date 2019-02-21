@@ -65,10 +65,12 @@ export class Residence extends Subsection {
   }
 
   customResidenceByline(item, index, initial) {
+    const overrideInitial = this.props.overrideInitial ? false : initial
+
     return byline(
       item,
       index,
-      this.props.overrideInitial(initial),
+      overrideInitial,
       'history.residence.collection.summary.incomplete',
       this.props.required,
       item => {
@@ -168,9 +170,7 @@ Residence.defaultProps = {
   required: false,
   sort: null,
   totalYears: 10,
-  overrideInitial: initial => {
-    return initial
-  },
+  overrideInitial: false,
   caption: null,
   onUpdate: () => {},
   onError: (value, arr) => {
