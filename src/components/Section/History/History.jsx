@@ -5,8 +5,6 @@ import classnames from 'classnames'
 
 import { reportCompletion } from 'actions/ApplicationActions'
 import {
-  ResidenceValidator,
-  EmploymentValidator,
   HistoryEducationValidator,
   EducationItemValidator
 } from 'validators'
@@ -19,6 +17,10 @@ import * as sections from 'constants/sections'
 
 import Intro from 'components/Section/History/Intro'
 import ResidenceWrapper from 'components/Section/History/Residence/ResidenceWrapper'
+import Residence from 'components/Section/History/Residence'
+import EmploymentWrapper from 'components/Section/History/Employment/EmploymentWrapper'
+import Employment from 'components/Section/History/Employment'
+
 import Review from 'components/Section/History/Review'
 
 import { SectionViews, SectionView } from 'components/Section/SectionView'
@@ -36,8 +38,6 @@ import {
   extractDate
 } from 'components/Section/History/dateranges'
 import { InjectGaps } from 'components/Section/History/summaries'
-import Residence from 'components/Section/History/Residence'
-import Employment from 'components/Section/History/Employment'
 import Education from 'components/Section/History/Education'
 
 /**
@@ -95,12 +95,8 @@ class History extends SectionElement {
   constructor(props) {
     super(props)
 
-    this.residenceRangeList = this.residenceRangeList.bind(this)
-    this.employmentRangesList = this.employmentRangesList.bind(this)
     this.schoolRangesList = this.schoolRangesList.bind(this)
     this.diplomaRangesList = this.diplomaRangesList.bind(this)
-    this.updateResidence = this.updateResidence.bind(this)
-    this.updateEmployment = this.updateEmployment.bind(this)
     this.updateEducation = this.updateEducation.bind(this)
     this.updateBranchAttendance = this.updateBranchAttendance.bind(this)
     this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
@@ -111,16 +107,6 @@ class History extends SectionElement {
     return items.filter(
       item => !item.type || (item.type && item.type !== 'Gap')
     )
-  }
-
-  updateResidence(values) {
-    this.handleUpdate('Residence', {
-      List: values
-    })
-  }
-
-  updateEmployment(employment) {
-    this.handleUpdate('Employment', employment)
   }
 
   updateEducation(values) {
@@ -158,58 +144,6 @@ class History extends SectionElement {
         new HistoryEducationValidator(education, education).isValid()
       )
     )
-  }
-
-  /**
-   * Extracts dates used for summary progress and gap analysis for residence
-   */
-  residenceRangeList() {
-    let dates = []
-    if (
-      !this.props.Residence ||
-      !this.props.Residence.List ||
-      !this.props.Residence.List.items
-    ) {
-      return dates
-    }
-
-    for (const i of this.excludeGaps(this.props.Residence.List.items)) {
-      if (!i.Item) {
-        continue
-      }
-
-      if (new ResidenceValidator(i.Item).isValid()) {
-        dates.push(i.Item.Dates)
-      }
-    }
-
-    return dates
-  }
-
-  /**
-   * Extracts dates used for summary progress and gap analysis for employment
-   */
-  employmentRangesList() {
-    let dates = []
-    if (
-      !this.props.Employment ||
-      !this.props.Employment.List ||
-      !this.props.Employment.List.items
-    ) {
-      return dates
-    }
-
-    for (const i of this.excludeGaps(this.props.Employment.List.items)) {
-      if (!i.Item) {
-        continue
-      }
-
-      if (new EmploymentValidator(i.Item).isValid()) {
-        dates.push(i.Item.Dates)
-      }
-    }
-
-    return dates
   }
 
   schoolRangesList() {
@@ -258,42 +192,6 @@ class History extends SectionElement {
     }
 
     return dates
-  }
-
-  residenceSummaryProgress() {
-    return (
-      <SummaryProgress
-        className="residence"
-        List={this.residenceRangeList}
-        title={i18n.t('history.residence.summary.title')}
-        unit={i18n.t('history.residence.summary.unit')}
-        total={totalYears(this.props.Birthdate)}>
-        <div className="summary-icon">
-          <Svg
-            src="/img/residence-house.svg"
-            alt={i18n.t('history.residence.summary.svgAlt')}
-          />
-        </div>
-      </SummaryProgress>
-    )
-  }
-
-  employmentSummaryProgress() {
-    return (
-      <SummaryProgress
-        className="residence"
-        List={this.employmentRangesList}
-        title={i18n.t('history.employment.summary.title')}
-        unit={i18n.t('history.employment.summary.unit')}
-        total={totalYears(this.props.Birthdate)}>
-        <div className="summary-icon">
-          <Svg
-            src="/img/employer-briefcase.svg"
-            alt={i18n.t('history.employment.summary.svgAlt')}
-          />
-        </div>
-      </SummaryProgress>
-    )
   }
 
   educationSummaryProgress() {
@@ -391,6 +289,7 @@ class History extends SectionElement {
 
             <Route path="/form/history/intro" component={Intro} />
             <Route path="/form/history/residence" component={ResidenceWrapper} />
+            <Route path="/form/history/employment" component={EmploymentWrapper} />
             <Route path="/form/history/review" component={Review} />
 
             <SectionNavigation
@@ -529,98 +428,6 @@ class History extends SectionElement {
               scrollIntoView={false}
               required={true}
             />
-          </SectionView>
-
-          <SectionView
-            name="residence"
-            back="history/intro"
-            backLabel={i18n.t('history.destination.intro')}
-            next="history/employment"
-            nextLabel={i18n.t('history.destination.employment')}>
-            <h1 className="section-header">{i18n.t('history.residence.title')}</h1>
-            <Field
-              title={i18n.t('history.residence.info')}
-              titleSize="h3"
-              optional={true}
-              className="no-margin-bottom">
-              {i18n.m('history.residence.info2')}
-              {i18n.m('history.residence.info3a')}
-              {i18n.m('history.residence.info3b')}
-              {i18n.m('history.residence.info3c')}
-              {i18n.m('history.residence.info3d')}
-            </Field>
-
-            <span id="scrollToHistory" />
-            {this.residenceSummaryProgress()}
-            <Residence
-              {...this.props.Residence}
-              scrollToTop="scrollToHistory"
-              realtime={true}
-              sort={sort}
-              totalYears={totalYears(this.props.Birthdate)}
-              overrideInitial={this.overrideInitial}
-              onUpdate={this.updateResidence}
-              onError={this.handleError}
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-            />
-
-            <Show when={this.hasGaps(['Residence'])}>
-              <div className="not-complete">
-                <hr className="section-divider" />
-                <Field
-                  title={i18n.t('history.residence.heading.exiting')}
-                  titleSize="h4"
-                  optional={true}
-                  className="no-margin-bottom">
-                  {i18n.m('history.residence.para.exiting')}
-                </Field>
-              </div>
-            </Show>
-          </SectionView>
-
-          <SectionView
-            name="employment"
-            back="history/residence"
-            backLabel={i18n.t('history.destination.residence')}
-            next="history/education"
-            nextLabel={i18n.t('history.destination.education')}>
-            <h1 className="section-header">{i18n.t('history.employment.summary.title')}</h1>
-            <Field
-              title={i18n.t('history.employment.heading.employment')}
-              titleSize="h3"
-              optional={true}
-              className="no-margin-bottom">
-              {i18n.m('history.employment.para.employment')}
-              {i18n.m('history.employment.para.employment2')}
-            </Field>
-
-            <span id="scrollToHistory" />
-            {this.employmentSummaryProgress()}
-            <Employment
-              {...this.props.Employment}
-              scrollToTop="scrollToHistory"
-              sort={sort}
-              totalYears={totalYears(this.props.Birthdate)}
-              overrideInitial={this.overrideInitial}
-              onUpdate={this.updateEmployment}
-              onError={this.handleError}
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-            />
-
-            <Show when={this.hasGaps(['Employment'])}>
-              <div className="not-complete">
-                <hr className="section-divider" />
-                <Field
-                  title={i18n.t('history.employment.heading.exiting')}
-                  titleSize="h4"
-                  optional={true}
-                  className="no-margin-bottom">
-                  {i18n.m('history.employment.para.exiting')}
-                </Field>
-              </div>
-            </Show>
           </SectionView>
 
           <SectionView
@@ -763,16 +570,9 @@ export class HistorySections extends React.Component {
           required={true} />
 
         <Employment
-          {...this.props.Employment}
           defaultState={false}
           realtime={true}
-          sort={sort}
-          totalYears={totalYears(this.props.Birthdate)}
-          overrideInitial={noOverride}
-          onError={this.props.onError}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          scrollIntoView={false}
+          overrideInitial={true}
           required={true}
         />
 

@@ -6,8 +6,9 @@ import connectHistorySection from './HistoryConnector'
 import { HISTORY, HISTORY_REVIEW } from '@config/formSections/history'
 
 import ResidenceSummaryProgress from './Residence/ResidenceSummaryProgress'
-
+import EmploymentSummaryProgress from './Employment/EmploymentSummaryProgress'
 import Residence from './Residence'
+import Employment from './Employment'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -33,16 +34,24 @@ const Review = (props) => {
       <ResidenceSummaryProgress
         Residence={props.Residence}
         Birthdate={Birthdate} />
-      {/* TODO employment summary progress */}
+
+      <EmploymentSummaryProgress
+        Employment={props.Employment}
+        Birthdate={Birthdate} />
+
       {/* TODO education summary progress */}
 
-      <hr className="section-divider" />
-      
+      <hr className="section-divider" />      
       <h1 className="section-header">
         {i18n.t('history.residence.collection.caption')}
       </h1>
-
       <Residence {...subsectionProps} />
+
+      <hr className="section-divider" />      
+      <h1 className="section-header">
+        {i18n.t('history.employment.default.collection.caption')}
+      </h1>
+      <Employment {...subsectionProps} realtime={true} />
     </div>
   )
 }

@@ -30,10 +30,6 @@ const connectHistorySection = (Component, { section, subsection, store, storeKey
       this.props.dispatch(updateApplication(this.store, field, values))
     }
 
-    overrideInitial = (initial) => {
-      return this.props.inReview ? false : initial
-    }
-
     render () {
       const { Birthdate } = this.props
 
@@ -43,7 +39,6 @@ const connectHistorySection = (Component, { section, subsection, store, storeKey
         <Component
           onUpdate={this.handleUpdate}
           onError={this.handleError}
-          overrideInitial={this.overrideInitial}
           totalYears={totalYearsProp}
           sort={sort}
           {...this.props} />
@@ -87,6 +82,13 @@ const connectHistorySection = (Component, { section, subsection, store, storeKey
       case 'Residence':
         return {
           ...history.Residence || emptyList,
+          Birthdate: processDate(identification.ApplicantBirthDate),
+          addressBooks,
+        }
+
+      case 'Employment':
+        return {
+          ...history.Employment || emptyItems,
           Birthdate: processDate(identification.ApplicantBirthDate),
           addressBooks,
         }

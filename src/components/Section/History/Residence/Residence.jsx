@@ -9,10 +9,11 @@ import {
 import Subsection from '@components/Section/shared/Subsection'
 import connectHistorySection from '../HistoryConnector'
 
-import { Accordion } from '../../../Form'
-import { newGuid } from '../../../Form/ValidationElement'
-import { openState } from '../../../Form/Accordion/Accordion'
-import { today, daysAgo } from '../dateranges'
+import { Accordion } from '@components/Form'
+import { newGuid } from '@components/Form/ValidationElement'
+import { openState } from '@components/Form/Accordion/Accordion'
+import { today, daysAgo } from '@components/Section/History/dateranges'
+
 import { InjectGaps, ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
