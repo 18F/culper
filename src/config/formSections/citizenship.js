@@ -13,7 +13,7 @@ export const CITIZENSHIP_INTRO = {
   key: sections.CITIZENSHIP_INTRO,
   name: 'intro',
   path: `${CITIZENSHIP.path}/intro`,
-  label: i18n.t('citizenship.subsection.intro')
+  label: i18n.t('citizenship.subsection.intro'),
 }
 
 export const CITIZENSHIP_STATUS = {
@@ -21,7 +21,7 @@ export const CITIZENSHIP_STATUS = {
   name: 'status',
   path: `${CITIZENSHIP.path}/status`,
   storeKey: 'Status',
-  label: i18n.t('citizenship.subsection.status')
+  label: i18n.t('citizenship.subsection.status'),
 }
 
 export const CITIZENSHIP_MULTIPLE = {
@@ -29,7 +29,7 @@ export const CITIZENSHIP_MULTIPLE = {
   name: 'multiple',
   path: `${CITIZENSHIP.path}/multiple`,
   storeKey: 'Multiple',
-  label: i18n.t('citizenship.subsection.multiple')
+  label: i18n.t('citizenship.subsection.multiple'),
 }
 
 export const CITIZENSHIP_PASSPORTS = {
@@ -37,14 +37,14 @@ export const CITIZENSHIP_PASSPORTS = {
   name: 'passports',
   path: `${CITIZENSHIP.path}/passports`,
   storeKey: 'Passports',
-  label: i18n.t('citizenship.subsection.passports')
+  label: i18n.t('citizenship.subsection.passports'),
 }
 
 export const CITIZENSHIP_REVIEW = {
   key: sections.CITIZENSHIP_REVIEW,
   name: 'review',
   path: `${CITIZENSHIP.path}/review`,
-  label: i18n.t('citizenship.subsection.review')
+  label: i18n.t('citizenship.subsection.review'),
 }
 
 export default {

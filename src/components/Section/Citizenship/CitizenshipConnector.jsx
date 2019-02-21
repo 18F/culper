@@ -16,17 +16,15 @@ const connectCitizenshipSection = (Component, { section, subsection, store, stor
       this.subsection = subsection
       this.store = store
 
-      this.handleError = this.handleError.bind(this)
-      this.handleUpdate = this.handleUpdate.bind(this)
     }
 
-    handleError(value, arr) {
+    handleError = (value, arr) => {
       const action = reportErrors(this.section, this.subsection, arr)
       this.props.dispatch(action)
       return arr
     }
 
-    handleUpdate(field, values) {
+    handleUpdate = (field, values) => {
       this.props.dispatch(updateApplication(this.store, field, values))
     }
 
@@ -35,7 +33,8 @@ const connectCitizenshipSection = (Component, { section, subsection, store, stor
         <Component
           onUpdate={this.handleUpdate}
           onError={this.handleError}
-          {...this.props} />
+          {...this.props}
+        />
       )
     }
   }
@@ -49,7 +48,7 @@ const connectCitizenshipSection = (Component, { section, subsection, store, stor
 
   const mapStateToProps = (state) => {
     const app = state.application || {}
-    const citizenship = app.citizenship || {}
+    const citizenship = app.Citizenship || {}
     const errors = app.Errors || {}
     const completed = app.Completed || {}
 

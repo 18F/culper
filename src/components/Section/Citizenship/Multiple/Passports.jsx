@@ -31,7 +31,7 @@ class Passports extends Subsection {
   }
 
   update = queue => {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       Passports: this.props.Passports,
       ...queue
     })

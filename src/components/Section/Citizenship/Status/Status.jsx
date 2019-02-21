@@ -45,7 +45,7 @@ class Status extends Subsection {
   }
 
   update = (queue) => {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       CitizenshipStatus: this.props.CitizenshipStatus,
       AbroadDocumentation: this.props.AbroadDocumentation,
       Explanation: this.props.Explanation,
@@ -110,6 +110,7 @@ class Status extends Subsection {
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
+            name="citizenship-status"
             className="citizenship-status option-list option-list-vertical"
             required={this.props.required}
             onError={this.handleError}
