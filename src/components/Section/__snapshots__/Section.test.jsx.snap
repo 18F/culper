@@ -10484,6 +10484,163 @@ exports[`The section component renders history.review 1`] = `
         className="top-btns"
       />
       <div>
+        <h1
+          className="section-header"
+        >
+          Where you have lived
+        </h1>
+        <div
+          aria-label="List the places where you have lived beginning with your present residence and working back 10 years."
+          className="field   no-margin-bottom"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h3
+            className="title h3"
+          >
+            List the places where you have lived beginning with your present residence and working back 10 years.
+          </h3>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            />
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component"
+              >
+                <div>
+                  <p>
+                    Residences for the entire period must be accounted for without breaks.
+                  </p>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      <strong>
+                        Indicate the actual physical location of your residence
+                      </strong>
+                      , not a Post Office box or a permanent residence when you were not physically located there.
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      <strong>
+                        If you split your time between one or more residences during a time period
+                      </strong>
+                      , you must list all residences.
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      <strong>
+                        Do not list residences before your 18th birthday
+                      </strong>
+                       unless to provide a minimum of 2 years residence history.
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      <strong>
+                        You are not required to list temporary locations of less than 90 days
+                      </strong>
+                       that did not serve as your permanent or mailing address.
+                    </li>
+                  </ul>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+        <span
+          id="scrollToHistory"
+        />
+        <div
+          className="summary-progress residence"
+        >
+          <div
+            className="content"
+          >
+            <div>
+              <div
+                className="summary-icon"
+              >
+                <img
+                  alt="Years covered for locations you have lived"
+                  className="svg"
+                  src="/img/residence-house.svg"
+                />
+              </div>
+              <span
+                className="title"
+              >
+                Where you have lived
+              </span>
+            </div>
+            <div
+              className="progress"
+            />
+          </div>
+          <div
+            className="stats"
+          >
+            <div
+              className="fraction"
+            >
+              <span
+                className="completed"
+              >
+                0
+              </span>
+              <span
+                className="slash"
+              >
+                /
+              </span>
+              <span
+                className="total"
+              >
+                10
+              </span>
+            </div>
+            <span
+              className="unit"
+            >
+              Years covered
+            </span>
+          </div>
+        </div>
         <div
           className="summary-progress residence"
         >
