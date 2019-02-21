@@ -96,8 +96,10 @@ export class HistorySections extends React.Component {
       <div className="history">
         <Residence
           defaultState={false}
+          realtime={true}
           overrideInitial={true}
           onError={this.props.onError}
+          scrollIntoView={false}
           required={true} />
 
         <Employment
@@ -105,8 +107,8 @@ export class HistorySections extends React.Component {
           realtime={true}
           overrideInitial={true}
           onError={this.props.onError}
-          required={true}
-        />
+          scrollIntoView={false}
+          required={true} />
 
         <Branch
           name="branch_school"
@@ -132,6 +134,7 @@ export class HistorySections extends React.Component {
             realtime={true}
             overrideInitial={true}
             onError={this.props.onError}
+            scrollIntoView={false}
             required={true}
           />
         </Show>

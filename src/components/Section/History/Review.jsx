@@ -57,7 +57,7 @@ const Review = (props) => {
       <h1 className="section-header">
         {i18n.t('history.residence.collection.caption')}
       </h1>
-      <Residence {...subsectionProps} />
+      <Residence {...subsectionProps} realtime={true} />
 
       <hr className="section-divider" />
       <h1 className="section-header">

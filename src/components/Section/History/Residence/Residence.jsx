@@ -164,10 +164,9 @@ export class Residence extends Subsection {
 
 Residence.defaultProps = {
   List: Accordion.defaultList,
-  scrollIntoView: false,
   scrollToTop: '',
   defaultState: true,
-  realtime: true,
+  realtime: false,
   required: false,
   sort: null,
   totalYears: 10,

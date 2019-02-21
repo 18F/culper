@@ -53,6 +53,7 @@ class ResidenceWrapper extends React.Component {
           Birthdate={Birthdate} />
 
         <Residence
+          realtime={true}
           scrollToTop="scrollToHistory" />
 
         <Show when={residenceHasGaps}>
