@@ -586,8 +586,6 @@ describe('Employment component validation', function() {
           ReferenceName: {
             first: 'Foo',
             firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
             suffix: 'Jr'
@@ -669,8 +667,6 @@ describe('Employment component validation', function() {
           ReferenceName: {
             first: 'Foo',
             firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
             suffix: 'Jr'

@@ -44,7 +44,7 @@ export class EmploymentValidator {
     this.reasonLeft = data.ReasonLeft || {}
     this.reprimand = data.Reprimand || {}
     this.supervisor = data.Supervisor || {}
-    this.referenceName = data.ReferenceName || {}
+    this.referenceName = {hideMiddleName: true, ...data.ReferenceName} || {}
     this.referencePhone = data.ReferencePhone || {}
     this.referenceAddress = data.ReferenceAddress || {}
   }
