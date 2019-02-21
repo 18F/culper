@@ -27,7 +27,11 @@ const shouldSkip = (section, subsection) => {
 }
 
 describe('The section component', () => {
-  const mockStore = configureMockStore()
+  const mockStore = configureMockStore({
+    authentication: {
+      formType: 'SF86'
+    }
+  })
 
   it('is visible', () => {
     const component = mount(
@@ -46,7 +50,11 @@ describe('The section component', () => {
       window.token = 'fake-token'
       it(`renders ${section.url}.${subsection.url}`, () => {
         const store = mockStore({
-          authentication: { authenticated: true, token: 'fake-token' }
+          authentication: {
+            authenticated: true,
+            token: 'fake-token',
+            formType: 'SF86'
+          }
         })
         testSnapshot(
           <Provider store={store}>

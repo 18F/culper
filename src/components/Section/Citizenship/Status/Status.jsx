@@ -31,7 +31,7 @@ const sectionConfig = {
   storeKey: CITIZENSHIP_STATUS.storeKey
 }
 
-class Status extends Subsection {
+export class Status extends Subsection {
   constructor(props) {
     super(props)
 
@@ -110,7 +110,6 @@ class Status extends Subsection {
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            name="citizenship-status"
             className="citizenship-status option-list option-list-vertical"
             required={this.props.required}
             onError={this.handleError}

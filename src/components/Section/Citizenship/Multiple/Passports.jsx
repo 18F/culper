@@ -18,7 +18,7 @@ const sectionConfig = {
   storeKey: CITIZENSHIP_PASSPORTS.storeKey
 }
 
-class Passports extends Subsection {
+export class Passports extends Subsection {
   constructor(props) {
     super(props)
 

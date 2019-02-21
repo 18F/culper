@@ -23,7 +23,7 @@ const sectionConfig = {
   storeKey: CITIZENSHIP_MULTIPLE.storeKey
 }
 
-class Multiple extends Subsection {
+export class Multiple extends Subsection {
   constructor(props) {
     super(props)
 

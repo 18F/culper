@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Multiple from './Multiple'
+import { Multiple } from './Multiple'
 
 describe('The multiple component', () => {
   const mockStore = configureMockStore()
