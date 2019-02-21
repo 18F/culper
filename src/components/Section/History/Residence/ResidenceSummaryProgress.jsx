@@ -3,16 +3,10 @@ import React from 'react'
 import { i18n } from '@config'
 
 import SummaryProgress from '@components/Section/History/SummaryProgress'
-import { totalYears } from '@components/Section/History/History'
+import { totalYears, excludeGaps } from '@components/Section/History/helpers'
 
 import { Svg } from '@components/Form'
 import { ResidenceValidator } from '@validators'
-
-const excludeGaps = (items) => {
-  return items.filter(
-    item => !item.type || (item.type && item.type !== 'Gap')
-  )
-}
 
 const dateRangeList = (items) => {
   const dates = []

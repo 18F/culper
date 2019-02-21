@@ -4,16 +4,11 @@ import { i18n } from '@config'
 
 import SummaryCounter from '@components/Section/History/SummaryCounter'
 import SummaryProgress from '@components/Section/History/SummaryProgress'
-import { totalYears } from '@components/Section/History/History'
+
+import { totalYears } from '@components/Section/History/helpers'
 
 import { Svg } from '@components/Form'
 import { EducationItemValidator } from '@validators'
-
-const excludeGaps = (items) => {
-  return items.filter(
-    item => !item.type || (item.type && item.type !== 'Gap')
-  )
-}
 
 const schoolRangesList = (items) => {
   const dates = []

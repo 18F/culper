@@ -3,8 +3,30 @@ import {
   today,
   daysAgo,
   daysBetween,
-  extractDate
+  extractDate,
+  gaps,
 } from '@components/Section/History/dateranges'
+
+export const excludeGaps = (items) => {
+  return items.filter(
+    item => !item.type || (item.type && item.type !== 'Gap')
+  )
+}
+
+export const sectionHasGaps = (items = []) => {
+  if (!items || !items.length) return true
+
+  const ranges = items
+    .filter(i => i.Item && i.Item.Dates)
+    .map(i => i.Item.Dates)
+
+  if (!ranges.length) return true
+
+  const start = daysAgo(today, 365 * totalYears())
+  const holes = gaps(ranges, start).length
+
+  return holes > 0
+}
 
 /**
  * Default sorting of history objects. This assumes that all objects contain a `Dates` property

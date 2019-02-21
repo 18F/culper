@@ -7,8 +7,7 @@ import { Field, Show } from '@components/Form'
 import Residence from './Residence'
 import ResidenceSummaryProgress from './ResidenceSummaryProgress'
 
-import { today, daysAgo, gaps } from '@components/Section/History/dateranges'
-import { totalYears } from '@components/Section/History/History'
+import { sectionHasGaps } from '@components/Section/History/helpers'
 
 import connectHistorySection from '../HistoryConnector'
 import { HISTORY, HISTORY_RESIDENCE } from '@config/formSections/history'
@@ -16,24 +15,6 @@ import { HISTORY, HISTORY_RESIDENCE } from '@config/formSections/history'
 const sectionConfig = {
   section: HISTORY.name,
   subsection: HISTORY_RESIDENCE.name,
-}
-
-// TODO totalYears has to change based on formType
-
-// TODO - move this to a helper file
-const sectionHasGaps = (items = []) => {
-  if (!items || !items.length) return true
-
-  const ranges = items
-    .filter(i => i.Item && i.Item.Dates)
-    .map(i => i.Item.Dates)
-
-  if (!ranges.length) return true
-
-  const start = daysAgo(today, 365 * totalYears())
-  const holes = gaps(ranges, start).length
-
-  return holes > 0
 }
 
 class ResidenceWrapper extends React.Component {
