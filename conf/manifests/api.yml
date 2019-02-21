@@ -5,7 +5,7 @@ applications:
   instances: 2
   domain: fr.cloud.gov
   host: eqip-prototype-api
-  buildpack: https://github.com/cloudfoundry/go-buildpack
+  buildpack: https://github.com/cloudfoundry/binary-buildpack
   path: ../../api
   command: ./api
   services:
