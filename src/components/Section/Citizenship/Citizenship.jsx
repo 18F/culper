@@ -17,8 +17,9 @@ class Citizenship extends React.Component {
     super(props)
 
     this.form = formTypes[props.formType]
+    this.section = this.form.find(section => (section.key === CITIZENSHIP))
 
-    // Each key in subsectionLibrary correspondes to the subsection
+    // Each key in subsectionLibrary corresponds to the subsection
     // name in the config file.
     this.subsectionLibrary = {
       intro: Intro,
@@ -29,9 +30,8 @@ class Citizenship extends React.Component {
     }
   }
   getCitizenshipSubsections = () => {
-    const section = this.form.find(section => (section.key === CITIZENSHIP))
 
-    return section.subsections.map(subsection => (
+    return this.section.subsections.map(subsection => (
       <Route
         key={subsection.key}
         path={`/form${subsection.path}`}
