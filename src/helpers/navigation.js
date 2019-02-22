@@ -1,17 +1,14 @@
 import store from '@services/store'
 
 import { i18n } from '@config'
-import { formTypeSelector } from '@selectors/formType'
-import * as formTypeConfig from '@config/formTypes'
-import * as sections from '@constants/sections'
+import { formSectionsSelector } from '@selectors/navigation'
 
 export const getBackAndNext = ({ section, subsection }) => {
   let back
   let next
 
   const state = store.getState()
-  const formType = formTypeSelector(state)
-  const formSections = formTypeConfig[formType]
+  const formSections = formSectionsSelector(state)
 
   const sectionConfig = formSections.find(s => s.key === section)
   const sectionIndex = formSections.findIndex(s => s.key === section)
@@ -31,6 +28,7 @@ export const getBackAndNext = ({ section, subsection }) => {
     next = sectionConfig.subsections[subsectionIndex + 1]
     next.navLabel = i18n.t(`${sectionConfig.name}.destination.${next.name}`)
   } else if (sectionIndex < formSections.length - 1) {
+    // Go to the first subsection of the next section
     const nextSection = formSections[sectionIndex + 1]
     next = nextSection.subsections[0]
     next.navLabel = i18n.t(`${nextSection.name}.destination.${next.name}`)
