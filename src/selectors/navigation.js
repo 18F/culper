@@ -4,37 +4,51 @@ import { formTypeSelector } from '@selectors/formType'
 import * as formTypeConfig from '@config/formTypes'
 import * as sections from '@constants/sections'
 
-// TODO - DO NOT MERGE THIS, IT'S AN EXAMPLE AND NOT AN ACTUAL REQUIREMENT OF THE FORM //
-const birthPlaceCountrySelector = state => {
-  const { application } = state
-  const { Identification } = application
-  const { ApplicantBirthPlace } = Identification
+import { hideSelectiveService } from '@validators/selectiveservice'
+import { hideDisciplinaryProcedures } from '@validators/militarydisciplinary'
 
-  return ApplicantBirthPlace
-    && ApplicantBirthPlace.Location
-    && ApplicantBirthPlace.Location.country
-    && (ApplicantBirthPlace.Location.country.value || ApplicantBirthPlace.Location.country)
+const hideSelectiveServiceSelector = state => {
+  const { application } = state
+
+  return hideSelectiveService(application)
+}
+
+const hideDisciplinaryProceduresSelector = state => {
+  const { application } = state
+
+  return hideDisciplinaryProcedures(application)
 }
 
 export const formSectionsSelector = createSelector(
   formTypeSelector,
-  birthPlaceCountrySelector,
-  (formType, birthPlaceCountry) => {
+  hideDisciplinaryProceduresSelector,
+  hideSelectiveServiceSelector,
+  (formType, hideDisciplinaryProcedures, hideSelectiveService) => {
     // Make a copy b/c we are going to mutate this
     // Might want to add & use update here to make this easier
     const formTypeSections = [ ...formTypeConfig[formType] ]
 
-    // Example: Filter out SSN if birthPlaceCountry is not USA
-    if (birthPlaceCountry && birthPlaceCountry !== 'United States') {
-      const identificationSection = formTypeSections
-        .find(s => s.key === sections.IDENTIFICATION)
+    if (hideDisciplinaryProcedures) {
+      const militarySection = formTypeSections
+        .find(s => s.key === sections.MILITARY)
 
-      const newIdentificationSection = {
-        ...identificationSection,
-        subsections: identificationSection.subsections.filter(s => s.key !== sections.IDENTIFICATION_SSN)
+      const newMilitarySection = {
+        ...militarySection,
+        subsections: militarySection.subsections.filter(s => s.key !== sections.MILITARY_DISCIPLINARY)
       }
 
-      formTypeSections[0] = newIdentificationSection
+      formTypeSections[3] = newMilitarySection
+    }
+    if (hideSelectiveService) {
+      const militarySection = formTypeSections
+        .find(s => s.key === sections.MILITARY)
+
+      const newMilitarySection = {
+        ...militarySection,
+        subsections: militarySection.subsections.filter(s => s.key !== sections.MILITARY_SELECTIVE)
+      }
+
+      formTypeSections[3] = newMilitarySection
     }
 
     return formTypeSections
