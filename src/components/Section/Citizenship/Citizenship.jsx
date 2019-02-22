@@ -41,7 +41,7 @@ class Citizenship extends React.Component {
   }
 
   render() {
-    const { subsection = 'intro', formType } = this.props
+    const { subsection, formType } = this.props
     const subsectionClasses = `view view-${subsection || 'unknown'}`
     const isReview = subsection === 'review'
     const title = isReview && i18n.t('review.title')
