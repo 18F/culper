@@ -1,6 +1,10 @@
 import React from 'react'
+import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { i18n } from '@config'
+import * as sections from '@constants/sections'
+import { ErrorList } from '@components/ErrorList'
+import SectionNavigation from '@components/Section/shared/SectionNavigation'
 import { SectionViews, SectionView } from '@components/Section/SectionView'
 import SectionElement from '@components/Section/SectionElement'
 import { hideDisciplinaryProcedures } from '@validators/militarydisciplinary'
@@ -10,223 +14,51 @@ import Selective from '@components/Section/Military/Selective'
 import History from '@components/Section/Military/History'
 import Disciplinary from '@components/Section/Military/Disciplinary'
 import Foreign from '@components/Section/Military/Foreign'
+import Intro from '@components/Section/Military/Intro'
+import Review from '@components/Section/Military/Review'
 
-class Military extends SectionElement {
-  constructor(props) {
-    super(props)
-
-    this.updateSelective = this.updateSelective.bind(this)
-    this.updateHistory = this.updateHistory.bind(this)
-    this.updateDisciplinary = this.updateDisciplinary.bind(this)
-    this.updateForeign = this.updateForeign.bind(this)
-  }
-
-  updateSelective(values) {
-    this.handleUpdate('Selective', values)
-  }
-
-  updateHistory(values) {
-    this.handleUpdate('History', values)
-  }
-
-  updateDisciplinary(values) {
-    this.handleUpdate('Disciplinary', values)
-  }
-
-  updateForeign(values) {
-    this.handleUpdate('Foreign', values)
-  }
-
+class Military extends React.Component {
   render() {
-    const showDisciplinary = !hideDisciplinaryProcedures(this.props.Application)
-    const showSelectiveService = !hideSelectiveService(this.props.Application)
-    return (
-      <div>
-        <SectionViews
-          current={this.props.subsection}
-          dispatch={this.props.dispatch}
-          update={this.props.update}>
-          <SectionView
-            name="intro"
-            back="citizenship/review"
-            backLabel={i18n.t('citizenship.destination.review')}
-            next={
-              showSelectiveService ? 'military/selective' : 'military/history'
-            }
-            nextLabel={
-              showSelectiveService
-                ? i18n.t('military.destination.selective')
-                : i18n.t('military.destination.history')
-            }>
-            <h1 className="section-header">{i18n.t('military.intro.title')}</h1>
-            <Field
-              optional={true}
-              className="no-margin-bottom">
-              {i18n.m('military.intro.body')}
-            </Field>
-          </SectionView>
+    const subsection = this.props.subsection || 'intro'
 
-          <SectionView
-            name="review"
-            title={i18n.t('review.title')}
-            para={i18n.m('review.para')}
-            showTop={true}
-            back="military/foreign"
-            backLabel={i18n.t('military.destination.foreign')}
-            next="foreign/intro"
-            nextLabel={i18n.t('foreign.destination.intro')}>
-            <h1 className="section-header">{i18n.t('military.destination.selective')}</h1>
-            <Show when={showSelectiveService}>
-              <Selective
-                name="selective"
-                {...this.props.Selective}
-                section="military"
-                subsection="selective"
-                dispatch={this.props.dispatch}
-                onUpdate={this.updateSelective}
-                onError={this.handleError}
-                required={true}
-                scrollIntoView={false}
-              />
-              <hr className="section-divider" />
-            </Show>
-            <h1 className="section-header">{i18n.t('military.destination.history')}</h1>
-            <History
-              name="history"
-              {...this.props.History}
-              section="military"
-              subsection="history"
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateHistory}
-              onError={this.handleError}
-              required={true}
-              scrollIntoView={false}
-            />
+    const subsectionClasses = `view view-${subsection || 'unknown'}`
 
-            <Show when={showDisciplinary}>
-              <hr className="section-divider" />
-              <h1 className="section-header">{i18n.t('military.destination.disciplinary')}</h1>
-              <Disciplinary
-                name="disciplinary"
-                {...this.props.Disciplinary}
-                section="military"
-                subsection="disciplinary"
-                dispatch={this.props.dispatch}
-                onUpdate={this.updateDisciplinary}
-                onError={this.handleError}
-                required={true}
-                scrollIntoView={false}
-              />
-            </Show>
+    const isReview = subsection === 'review'
+    const title = isReview && i18n.t('review.title')
+    const para = isReview && i18n.m('review.para')
 
-            <hr className="section-divider" />
-            <h1 className="section-header">{i18n.t('military.destination.foreign')}</h1>
-            <Foreign
-              name="foreign"
-              {...this.props.Foreign}
-              section="military"
-              subsection="foreign"
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateForeign}
-              onError={this.handleError}
-              required={true}
-              scrollIntoView={false}
-            />
-          </SectionView>
+    /** TODO - this should come from Redux store */
+    const formType = 'SF86'
 
-          <SectionView
-            name="selective"
-            back="military/intro"
-            backLabel={i18n.t('military.destination.intro')}
-            next="military/history"
-            nextLabel={i18n.t('military.destination.history')}>
-            <h1 className="section-header">{i18n.t('military.destination.selective')}</h1>
-            <Selective
-              name="selective"
-              {...this.props.Selective}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateSelective}
-              onError={this.handleError}
-            />
-          </SectionView>
+    return(
+      <div className="section-view">
+        {title && <h1 className="title">{title}</h1>}
+        {para}
 
-          <SectionView
-            name="history"
-            back={
-              showSelectiveService ? 'military/selective' : 'military/intro'
-            }
-            backLabel={
-              showSelectiveService
-                ? i18n.t('military.destination.selective')
-                : i18n.t('military.destination.intro')
-            }
-            next={
-              showDisciplinary ? 'military/disciplinary' : 'military/foreign'
-            }
-            nextLabel={
-              showDisciplinary
-                ? i18n.t('military.destination.disciplinary')
-                : i18n.t('military.destination.foreign')
-            }>
-            <h1 className="section-header">{i18n.t('military.destination.history')}</h1>
-            <History
-              name="history"
-              {...this.props.History}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateHistory}
-              onError={this.handleError}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+        <div className={subsectionClasses}>
+          {isReview && (
+            <div className="top-btns"><ErrorList /></div>
+          )}
 
-          <SectionView
-            name="disciplinary"
-            back="military/history"
-            backLabel={i18n.t('military.destination.history')}
-            next="military/foreign"
-            nextLabel={i18n.t('military.destination.foreign')}>
-            <h1 className="section-header">{i18n.t('military.destination.disciplinary')}</h1>
-            <Disciplinary
-              name="disciplinary"
-              {...this.props.Disciplinary}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateDisciplinary}
-              onError={this.handleError}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+          <Route path="/form/military/intro" component={Intro} />
+          <Route path="/form/military/selective" component={Selective} />
+          <Route path="/form/military/history" component={History} />
+          <Route path="/form/military/disciplinary" component={Disciplinary} />
+          <Route path="/form/military/foreign" component={Foreign} />
+          <Route path="/form/military/review" component={Review} />
 
-          <SectionView
-            name="foreign"
-            back={
-              showDisciplinary ? 'military/disciplinary' : 'military/history'
-            }
-            backLabel={
-              showDisciplinary
-                ? i18n.t('military.destination.disciplinary')
-                : i18n.t('military.destination.history')
-            }
-            next="military/review"
-            nextLabel={i18n.t('military.destination.review')}>
-            <h1 className="section-header">{i18n.t('military.destination.foreign')}</h1>
-            <Foreign
-              name="foreign"
-              {...this.props.Foreign}
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateForeign}
-              onError={this.handleError}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
-        </SectionViews>
+          <SectionNavigation
+            section={sections.MILITARY}
+            subsection={subsection}
+            formType={formType} />
+        </div>
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
+  const { section } = state
   const app = state.application || {}
   const military = app.Military || {}
   const errors = app.Errors || {}
@@ -234,12 +66,9 @@ function mapStateToProps(state) {
   const addressBooks = app.AddressBooks || {}
 
   return {
+    ...section,
     Application: app || {},
     Military: military,
-    Selective: military.Selective || {},
-    History: military.History || {},
-    Disciplinary: military.Disciplinary || {},
-    Foreign: military.Foreign || {},
     Errors: errors.military || [],
     Completed: completed.military || [],
     AddressBooks: addressBooks
@@ -248,6 +77,7 @@ function mapStateToProps(state) {
 
 Military.defaultProps = {
   section: 'military',
+  subsection: 'intro',
   store: 'Military',
   scrollToBottom: SectionView.BottomButtonsSelector
 }
