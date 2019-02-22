@@ -2,6 +2,5 @@
 
 git diff --cached --name-only --diff-filter=d | \
   grep -E '\.jsx?$' | \
-  xargs yarn run eslint --ext .js,.jsx -c .eslintrc.dev.yml
-
-yarn run lint-css
+  xargs yarn run eslint --ext .js,.jsx -c .eslintrc.dev.yml && \
+  yarn run lint-css
