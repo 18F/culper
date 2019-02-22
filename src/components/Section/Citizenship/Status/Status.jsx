@@ -1004,12 +1004,11 @@ Status.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  section: 'citizenship',
-  subsection: 'status',
   dispatch: () => {},
   validator: data => {
     return validate(schema('citizenship.status', data))
-  }
+  },
+  scrollIntoView: false
 }
 
 export default connectCitizenshipSection(Status, sectionConfig)

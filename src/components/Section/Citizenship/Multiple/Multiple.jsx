@@ -144,13 +144,13 @@ Multiple.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  section: 'citizenship',
-  subsection: 'multiple',
   dispatch: () => {},
   validator: data => {
     return validate(schema('citizenship.multiple', data))
   },
-  defaultState: true
+  defaultState: true,
+  required: true,
+  scrollIntoView: false
 }
 
 export default connectCitizenshipSection(Multiple, sectionConfig)

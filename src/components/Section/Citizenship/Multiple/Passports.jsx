@@ -80,13 +80,14 @@ Passports.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  section: 'citizenship',
-  subsection: 'passports',
   dispatch: () => {},
   validator: data => {
     return validate(schema('citizenship.passports', data))
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: '.bottom-btns',
+  required: true,
+  scrollIntoView: false
 }
 
 export default connectCitizenshipSection(Passports, sectionConfig)
