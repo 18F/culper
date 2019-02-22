@@ -1,5 +1,5 @@
-import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
-import Location from '../components/Form/Location'
+import HistoryEmploymentValidator, { EmploymentValidator } from '@validators/employment'
+import Location from '@components/Form/Location'
 
 describe('Employment component validation', function() {
   it('should validate active military, national guard and USPHS', function() {
@@ -586,8 +586,6 @@ describe('Employment component validation', function() {
           ReferenceName: {
             first: 'Foo',
             firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
             suffix: 'Jr'
@@ -669,8 +667,6 @@ describe('Employment component validation', function() {
           ReferenceName: {
             first: 'Foo',
             firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
             suffix: 'Jr'
