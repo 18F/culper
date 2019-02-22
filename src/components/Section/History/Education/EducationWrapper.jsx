@@ -15,6 +15,7 @@ import { HistoryEducationValidator } from '@validators'
 
 const sectionConfig = {
   section: HISTORY.name,
+  store: HISTORY.store,
   subsection: HISTORY_EDUCATION.name,
 }
 
