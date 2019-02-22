@@ -1,7 +1,7 @@
 import * as sections from '@constants/sections'
 import { i18n } from '@config'
 
-const MILITARY = {
+export const MILITARY = {
   key: sections.MILITARY,
   name: 'military',
   path: '/military',
@@ -16,7 +16,7 @@ const MILITARY_INTRO = {
   label: i18n.t('military.subsection.intro')
 }
 
-const MILITARY_SELECTIVE = {
+export const MILITARY_SELECTIVE = {
   key: sections.MILITARY_SELECTIVE,
   name: 'selective',
   path: `${MILITARY.path}/selective`,
@@ -24,7 +24,7 @@ const MILITARY_SELECTIVE = {
   label: i18n.t('military.subsection.selective')
 }
 
-const MILITARY_HISTORY = {
+export const MILITARY_HISTORY = {
   key: sections.MILITARY_HISTORY,
   name: 'history',
   path: `${MILITARY.path}/history`,
@@ -32,7 +32,7 @@ const MILITARY_HISTORY = {
   label: i18n.t('military.subsection.history')
 }
 
-const MILITARY_DISCIPLINARY = {
+export const MILITARY_DISCIPLINARY = {
   key: sections.MILITARY_DISCIPLINARY,
   name: 'disciplinary',
   path: `${MILITARY.path}/disciplinary`,
@@ -40,7 +40,7 @@ const MILITARY_DISCIPLINARY = {
   label: i18n.t('military.subsection.disciplinary')
 }
 
-const MILITARY_FOREIGN = {
+export const MILITARY_FOREIGN = {
   key: sections.MILITARY_FOREIGN,
   name: 'foreign',
   path: `${MILITARY.path}/foreign`,
