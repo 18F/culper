@@ -16,8 +16,8 @@ import (
 //
 // See api/testdata/complete-scenarios/*.json for examples.
 func main() {
-	if len(os.Args) != 2 {
-		log.Fatalf("usage: load-scenario test-case.json")
+	if len(os.Args) != 5 {
+		log.Fatalf("usage: load-scenario test-case.json username api-endpoint token")
 	}
 
 	form, err := cmd.ReadSectionData(os.Args[1])
@@ -29,6 +29,9 @@ func main() {
 	webclient := &cmd.WebClient{
 		Client: &http.Client{},
 	}
+	webclient.Username = os.Args[2]
+	webclient.Address = os.Args[3]
+	webclient.Token = os.Args[4]
 
 	for _, v := range api.Catalogue() {
 		// If the source data represents a scenario that has been submitted

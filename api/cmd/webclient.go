@@ -21,7 +21,7 @@ type WebClient struct {
 	Address  string
 	Username string
 	Password string
-	token    string
+	Token    string
 }
 
 // GetInformation will ask for more information if not already known.
@@ -46,7 +46,7 @@ func (wc *WebClient) GetInformation() {
 
 func (wc *WebClient) preflight() {
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-	if wc.token == "" {
+	if wc.Token == "" {
 		wc.GetInformation()
 		wc.Authenticate()
 	}
@@ -75,7 +75,7 @@ func (wc *WebClient) Authenticate() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	wc.token = strings.Trim(strings.TrimSpace(string(body)), "\"")
+	wc.Token = strings.Trim(strings.TrimSpace(string(body)), "\"")
 }
 
 // Save a JSON structure to the RESTful service.
@@ -85,7 +85,7 @@ func (wc *WebClient) Save(payload json.RawMessage) {
 	if err != nil {
 		log.Fatalln("Error creating request for saving payload.", err)
 	}
-	req.Header.Add("Authorization", "Bearer "+wc.token)
+	req.Header.Add("Authorization", "Bearer "+wc.Token)
 	req.Header.Add("Content-Type", "application/json")
 
 	resp, err := wc.Client.Do(req)
@@ -102,7 +102,7 @@ func (wc *WebClient) Form() json.RawMessage {
 	if err != nil {
 		log.Fatalln("Error creating request for submitting application.", err)
 	}
-	req.Header.Add("Authorization", "Bearer "+wc.token)
+	req.Header.Add("Authorization", "Bearer "+wc.Token)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
@@ -124,7 +124,7 @@ func (wc *WebClient) Submit() {
 	if err != nil {
 		log.Fatalln("Error creating request for submitting application.", err)
 	}
-	req.Header.Add("Authorization", "Bearer "+wc.token)
+	req.Header.Add("Authorization", "Bearer "+wc.Token)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
@@ -140,7 +140,7 @@ func (wc *WebClient) Logout() {
 	if err != nil {
 		log.Fatalln("Error creating request for logging out.", err)
 	}
-	req.Header.Add("Authorization", "Bearer "+wc.token)
+	req.Header.Add("Authorization", "Bearer "+wc.Token)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
