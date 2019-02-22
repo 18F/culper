@@ -1,19 +1,38 @@
 import React from 'react'
+import { MILITARY, MILITARY_DISCIPLINARY } from '@config/formSections/military'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import {
   MilitaryDisciplinaryValidator,
-  ProcedureValidator
+  ProcedureValidator,
 } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
+import Subsection from '../../shared/Subsection'
 import { Branch, Show, Accordion } from '../../../Form'
 import Procedure from './Procedure'
 
-export default class Disciplinary extends SubsectionElement {
+import connectMilitarySection from '../MilitaryConnector'
+
+const sectionConfig = {
+  section: MILITARY.name,
+  store: MILITARY.store,
+  subsection: MILITARY_DISCIPLINARY.name,
+  storeKey: MILITARY_DISCIPLINARY.storeKey,
+}
+
+class Disciplinary extends Subsection {
   constructor(props) {
     super(props)
+
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
 
     this.update = this.update.bind(this)
     this.updateDisciplinary = this.updateDisciplinary.bind(this)
@@ -21,10 +40,10 @@ export default class Disciplinary extends SubsectionElement {
   }
 
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       HasDisciplinary: this.props.HasDisciplinary,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
@@ -32,13 +51,13 @@ export default class Disciplinary extends SubsectionElement {
     // If there is no history clear out any previously entered data
     this.update({
       HasDisciplinary: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} },
     })
   }
 
   updateList(values) {
     this.update({
-      List: values
+      List: values,
     })
   }
 
@@ -48,17 +67,16 @@ export default class Disciplinary extends SubsectionElement {
   summary(item, index) {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Date)
-    const service =
-      itemProperties.Name && itemProperties.Name.value
-        ? itemProperties.Name.value
-        : ''
+    const service = itemProperties.Name && itemProperties.Name.value
+      ? itemProperties.Name.value
+      : ''
 
     return Summary({
       type: i18n.t('military.disciplinary.collection.summary.item'),
-      index: index,
+      index,
       left: service,
       right: dates,
-      placeholder: i18n.t('military.disciplinary.collection.summary.unknown')
+      placeholder: i18n.t('military.disciplinary.collection.summary.unknown'),
     })
   }
 
@@ -66,13 +84,15 @@ export default class Disciplinary extends SubsectionElement {
     return (
       <div
         className="section-content disciplinary"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes(this.props)}
+      >
+        <h1 className="section-header">{i18n.t('military.destination.disciplinary')}</h1>
         <Branch
           name="has_disciplinary"
           label={i18n.t('military.disciplinary.para.info')}
           labelSize="h4"
           {...this.props.HasDisciplinary}
-          weight={true}
+          weight
           onUpdate={this.updateDisciplinary}
           required={this.props.required}
           onError={this.handleError}
@@ -89,15 +109,16 @@ export default class Disciplinary extends SubsectionElement {
             validator={ProcedureValidator}
             summary={this.summary}
             description={i18n.t(
-              'military.disciplinary.collection.summary.title'
+              'military.disciplinary.collection.summary.title',
             )}
             appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
             appendLabel={i18n.t('military.disciplinary.collection.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Procedure
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -111,15 +132,13 @@ export default class Disciplinary extends SubsectionElement {
 Disciplinary.defaultProps = {
   HasDisciplinary: {},
   List: { items: [] },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: (queue) => {},
+  onError: (value, arr) => arr,
   section: 'military',
   subsection: 'disciplinary',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('military.disciplinary', data))
-  },
-  defaultState: true
+  validator: data => validate(schema('military.disciplinary', data)),
+  defaultState: true,
 }
+
+export default connectMilitarySection(Disciplinary, sectionConfig)

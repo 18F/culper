@@ -1,44 +1,65 @@
 import React from 'react'
+import { MILITARY, MILITARY_FOREIGN } from '@config/formSections/military'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
+import Subsection from '../../shared/Subsection'
 import { BranchCollection } from '../../../Form'
 import ForeignService from './ForeignService'
+import connectMilitarySection from '../MilitaryConnector'
 
-export default class Foreign extends SubsectionElement {
+const sectionConfig = {
+  section: MILITARY.name,
+  store: MILITARY.store,
+  subsection: MILITARY_FOREIGN.name,
+  storeKey: MILITARY_FOREIGN.storeKey,
+}
+
+class Foreign extends Subsection {
   constructor(props) {
     super(props)
+
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
 
     this.updateList = this.updateList.bind(this)
   }
 
   updateList(collection) {
-    this.props.onUpdate({ List: collection })
+    this.props.onUpdate(this.storeKey, { List: collection })
   }
 
   render() {
     return (
       <div
         className="section-content foreign"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes(this.props)}
+      >
+        <h1 className="section-header">{i18n.t('military.destination.foreign')}</h1>
         <BranchCollection
           {...this.props.List}
           branchName="has_foreign"
           label={i18n.t('military.foreign.para.served')}
           labelSize="h4"
           appendLabel={i18n.t(
-            'military.foreign.collection.foreign.appendTitle'
+            'military.foreign.collection.foreign.appendTitle',
           )}
           appendSize="h4"
           onUpdate={this.updateList}
           scrollToBottom={this.props.scrollToBottom}
           required={this.props.required}
           onError={this.handleError}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <ForeignService
             name="Item"
-            bind={true}
+            bind
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             defaultState={this.props.defaultState}
@@ -53,16 +74,14 @@ export default class Foreign extends SubsectionElement {
 }
 
 Foreign.defaultProps = {
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: (queue) => {},
+  onError: (value, arr) => arr,
   section: 'military',
   subsection: 'foreign',
   addressBooks: {},
-  dispatch: action => {},
-  validator: data => {
-    return validate(schema('military.foreign', data))
-  },
-  defaultState: true
+  dispatch: (action) => {},
+  validator: data => validate(schema('military.foreign', data)),
+  defaultState: true,
 }
+
+export default connectMilitarySection(Foreign, sectionConfig)
