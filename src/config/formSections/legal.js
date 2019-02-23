@@ -4,194 +4,269 @@ import { i18n } from '@config'
 const LEGAL = {
   key: sections.LEGAL,
   name: 'legal',
-  path: '/legal',
+  path: {
+    section: 'legal',
+  },
   store: 'Legal',
-  label: i18n.t('legal.section.name')
+  label: i18n.t('legal.section.name'),
 }
 
 const LEGAL_INTRO = {
   key: sections.LEGAL_INTRO,
   name: 'intro',
-  path: `${LEGAL.path}/intro`,
-  label: i18n.t('legal.subsection.intro')
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'intro',
+  },
+  label: i18n.t('legal.subsection.intro'),
 }
 
 const LEGAL_POLICE = {
   key: sections.LEGAL_POLICE,
   name: 'police',
-  path: `${LEGAL.path}/police`,
-  label: i18n.t('legal.subsection.police.label')
+  label: i18n.t('legal.subsection.police.label'),
 }
 
 const LEGAL_POLICE_INTRO = {
   key: sections.LEGAL_POLICE_INTRO,
   name: 'intro',
-  path: `${LEGAL_POLICE.path}/intro`,
-  label: i18n.t('legal.subsection.police.intro')
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'police/intro',
+  },
+  label: i18n.t('legal.subsection.police.intro'),
+  parentKey: LEGAL_POLICE.key,
 }
 
 const LEGAL_POLICE_OFFENSES = {
   key: sections.LEGAL_POLICE_OFFENSES,
   name: 'offenses',
-  path: `${LEGAL_POLICE.path}/offenses`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'police/offenses',
+  },
   storeKey: 'PoliceOffenses',
-  label: i18n.t('legal.subsection.police.offenses')
+  label: i18n.t('legal.subsection.police.offenses'),
+  parentKey: LEGAL_POLICE.key,
 }
 
 const LEGAL_POLICE_ADDITIONAL_OFFENSES = {
   key: sections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
   name: 'additionaloffenses',
-  path: `${LEGAL_POLICE.path}/additionaloffenses`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'police/additionaloffenses',
+  },
   storeKey: 'PoliceOtherOffenses',
-  label: i18n.t('legal.subsection.police.additionalOffenses')
+  label: i18n.t('legal.subsection.police.additionalOffenses'),
+  parentKey: LEGAL_POLICE.key,
 }
 
 const LEGAL_POLICE_DOMESTIC_VIOLENCE = {
   key: sections.LEGAL_POLICE_DOMESTIC_VIOLENCE,
   name: 'domesticviolence',
-  path: `${LEGAL_POLICE.path}/domesticviolence`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'police/domesticviolence',
+  },
   storeKey: 'PoliceDomesticViolence',
-  label: i18n.t('legal.subsection.police.domesticViolence')
+  label: i18n.t('legal.subsection.police.domesticViolence'),
+  parentKey: LEGAL_POLICE.key,
 }
 
 const LEGAL_INVESTIGATIONS = {
   key: sections.LEGAL_INVESTIGATIONS,
   name: 'investigations',
-  path: `${LEGAL.path}/investigations`,
-  label: i18n.t('legal.subsection.investigations.label')
+  label: i18n.t('legal.subsection.investigations.label'),
 }
 
 const LEGAL_INVESTIGATIONS_HISTORY = {
   key: sections.LEGAL_INVESTIGATIONS_HISTORY,
   name: 'history',
-  path: `${LEGAL_INVESTIGATIONS.path}/history`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'investigations/history',
+  },
   storeKey: 'History',
-  label: i18n.t('legal.subsection.investigations.history')
+  label: i18n.t('legal.subsection.investigations.history'),
+  parentKey: LEGAL_INVESTIGATIONS.key,
 }
 
 const LEGAL_INVESTIGATIONS_REVOKED = {
   key: sections.LEGAL_INVESTIGATIONS_REVOKED,
   name: 'revoked',
-  path: `${LEGAL_INVESTIGATIONS.path}/revoked`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'investigations/revoked',
+  },
   storeKey: 'Revoked',
-  label: i18n.t('legal.subsection.investigations.revoked')
+  label: i18n.t('legal.subsection.investigations.revoked'),
+  parentKey: LEGAL_INVESTIGATIONS.key,
 }
 
 const LEGAL_INVESTIGATIONS_DEBARRED = {
   key: sections.LEGAL_INVESTIGATIONS_DEBARRED,
   name: 'debarred',
-  path: `${LEGAL_INVESTIGATIONS.path}/debarred`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'investigations/debarred',
+  },
   storeKey: 'Debarred',
-  label: i18n.t('legal.subsection.investigations.debarred')
+  label: i18n.t('legal.subsection.investigations.debarred'),
+  parentKey: LEGAL_INVESTIGATIONS.key,
 }
 
 const LEGAL_COURT = {
   key: sections.LEGAL_COURT,
   name: 'court',
-  path: `${LEGAL.path}/court`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'court',
+  },
   storeKey: 'NonCrimincalCourtActions',
-  label: i18n.t('legal.subsection.court')
+  label: i18n.t('legal.subsection.court'),
 }
 
 const LEGAL_TECHNOLOGY = {
   key: sections.LEGAL_TECHNOLOGY,
   name: 'technology',
-  path: `${LEGAL.path}/technology`,
-  label: i18n.t('legal.subsection.technology.label')
+  label: i18n.t('legal.subsection.technology.label'),
 }
 
 const LEGAL_TECHNOLOGY_UNAUTHORIZED = {
   key: sections.LEGAL_TECHNOLOGY_UNAUTHORIZED,
   name: 'unauthorized',
-  path: `${LEGAL_TECHNOLOGY.path}/unauthorized`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'technology/unauthorized',
+  },
   storeKey: 'Unauthorized',
-  label: i18n.t('legal.subsection.technology.unauthorized')
+  label: i18n.t('legal.subsection.technology.unauthorized'),
+  parentKey: LEGAL_TECHNOLOGY.key,
 }
 
 const LEGAL_TECHNOLOGY_MANIPULATING = {
   key: sections.LEGAL_TECHNOLOGY_MANIPULATING,
   name: 'manipulating',
-  path: `${LEGAL_TECHNOLOGY.path}/manipulating`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'technology/manipulating',
+  },
   storeKey: 'Manipulating',
-  label: i18n.t('legal.subsection.technology.manipulating')
+  label: i18n.t('legal.subsection.technology.manipulating'),
+  parentKey: LEGAL_TECHNOLOGY.key,
 }
 
 const LEGAL_TECHNOLOGY_UNLAWFUL = {
   key: sections.LEGAL_TECHNOLOGY_UNLAWFUL,
   name: 'unlawful',
-  path: `${LEGAL_TECHNOLOGY.path}/unlawful`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'technology/unlawful',
+  },
   storeKey: 'Unlawful',
-  label: i18n.t('legal.subsection.technology.unlawful')
+  label: i18n.t('legal.subsection.technology.unlawful'),
+  parentKey: LEGAL_TECHNOLOGY.key,
 }
 
 const LEGAL_ASSOCIATIONS = {
   key: sections.LEGAL_ASSOCIATIONS,
   name: 'associations',
-  path: `${LEGAL.path}/associations`,
-  label: i18n.t('legal.subsection.associations.label')
+  label: i18n.t('legal.subsection.associations.label'),
 }
 
 const LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION = {
   key: sections.LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION,
   name: 'terrorist-organization',
-  path: `${LEGAL_ASSOCIATIONS.path}/terrorist-organization`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'associations/terrorist-organization',
+  },
   storeKey: 'TerroristOrganization',
-  label: i18n.t('legal.subsection.associations.terroristOrganization')
+  label: i18n.t('legal.subsection.associations.terroristOrganization'),
+  parentKey: LEGAL_ASSOCIATIONS.key,
 }
 
 const LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM = {
   key: sections.LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM,
   name: 'engaged-in-terrorism',
-  path: `${LEGAL_ASSOCIATIONS.path}/engaged-in-terrorism`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'associations/engaged-in-terrorism',
+  },
   storeKey: 'EngagedInTerrorism',
-  label: i18n.t('legal.subsection.associations.engagedTerrorism')
+  label: i18n.t('legal.subsection.associations.engagedTerrorism'),
+  parentKey: LEGAL_ASSOCIATIONS.key,
 }
 
 const LEGAL_ASSOCIATIONS_ADVOCATING = {
   key: sections.LEGAL_ASSOCIATIONS_ADVOCATING,
   name: 'advocating',
-  path: `${LEGAL_ASSOCIATIONS.path}/advocating`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'associations/advocating',
+  },
   storeKey: 'Advocating',
-  label: i18n.t('legal.subsection.associations.advocating')
+  label: i18n.t('legal.subsection.associations.advocating'),
+  parentKey: LEGAL_ASSOCIATIONS.key,
 }
 
 const LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW = {
   key: sections.LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW,
   name: 'membership-overthrow',
-  path: `${LEGAL_ASSOCIATIONS.path}/membership-overthrow`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'associations/membership-overthrow',
+  },
   storeKey: 'MembershipOverthrow',
-  label: i18n.t('legal.subsection.associations.overthrow')
+  label: i18n.t('legal.subsection.associations.overthrow'),
+  parentKey: LEGAL_ASSOCIATIONS.key,
 }
 
 const LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE = {
   key: sections.LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE,
   name: 'membership-violence-or-force',
-  path: `${LEGAL_ASSOCIATIONS.path}/membership-violence-or-force`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'associations/membership-violence-or-force',
+  },
   storeKey: 'MembershipViolence',
-  label: i18n.t('legal.subsection.associations.violence')
+  label: i18n.t('legal.subsection.associations.violence'),
+  parentKey: LEGAL_ASSOCIATIONS.key,
 }
 
 const LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW = {
   key: sections.LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
   name: 'activities-to-overthrow',
-  path: `${LEGAL_ASSOCIATIONS.path}/activities-to-overthrow`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'associations/activities-to-overthrow',
+  },
   storeKey: 'ActivitiesToOverthrow',
-  label: i18n.t('legal.subsection.associations.activitiesOverthrow')
+  label: i18n.t('legal.subsection.associations.activitiesOverthrow'),
+  parentKey: LEGAL_ASSOCIATIONS.key,
 }
 
 const LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION = {
   key: sections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
   name: 'terrorism-association',
-  path: `${LEGAL_ASSOCIATIONS.path}/terrorism-association`,
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'associations/terrorism-association',
+  },
   storeKey: 'TerrorismAssociation',
-  label: i18n.t('legal.subsection.associations.terrorismAssociation')
+  label: i18n.t('legal.subsection.associations.terrorismAssociation'),
+  parentKey: LEGAL_ASSOCIATIONS.key,
 }
 
 const LEGAL_REVIEW = {
   key: sections.LEGAL_REVIEW,
   name: 'review',
-  path: `${LEGAL.path}/review`,
-  label: i18n.t('legal.subsection.review')
+  path: {
+    section: LEGAL.path.section,
+    subsection: 'review',
+  },
+  label: i18n.t('legal.subsection.review'),
 }
 
 export default {
@@ -219,5 +294,5 @@ export default {
   LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE,
   LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
   LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
-  LEGAL_REVIEW
+  LEGAL_REVIEW,
 }
