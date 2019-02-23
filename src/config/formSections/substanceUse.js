@@ -104,7 +104,7 @@ const SUBSTANCE_USE_DRUGS_VOLUNTARY = {
   name: 'voluntary',
   path: {
     section: SUBSTANCE_USE.path.section,
-    subsection: 'drugs/volutary',
+    subsection: 'drugs/voluntary',
   },
   storeKey: 'VoluntaryTreatments',
   label: i18n.t('substance.subsection.drugs.voluntary'),
