@@ -16,7 +16,7 @@ const CITIZENSHIP_INTRO = {
   name: 'intro',
   path: {
     section: CITIZENSHIP.path.section,
-    subsection: '',
+    subsection: 'intro',
   },
   label: i18n.t('citizenship.subsection.intro'),
 }
