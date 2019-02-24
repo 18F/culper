@@ -11910,18 +11910,24 @@ exports[`The section component renders identification.birthdate 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -11949,7 +11955,7 @@ exports[`The section component renders identification.birthdate 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -12163,18 +12169,24 @@ exports[`The section component renders identification.birthplace 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -12202,7 +12214,7 @@ exports[`The section component renders identification.birthplace 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -12625,18 +12637,24 @@ exports[`The section component renders identification.contacts 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -12664,7 +12682,7 @@ exports[`The section component renders identification.contacts 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -12744,18 +12762,24 @@ exports[`The section component renders identification.intro 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -12783,7 +12807,7 @@ exports[`The section component renders identification.intro 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -13386,18 +13410,24 @@ exports[`The section component renders identification.name 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -13425,7 +13455,7 @@ exports[`The section component renders identification.name 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -13648,18 +13678,24 @@ exports[`The section component renders identification.othernames 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -13687,7 +13723,7 @@ exports[`The section component renders identification.othernames 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -15341,18 +15377,24 @@ exports[`The section component renders identification.physical 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -15380,7 +15422,7 @@ exports[`The section component renders identification.physical 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -19129,18 +19171,24 @@ exports[`The section component renders identification.review 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -19168,7 +19216,7 @@ exports[`The section component renders identification.review 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -19405,18 +19453,24 @@ exports[`The section component renders identification.ssn 1`] = `
         <div
           className="btn-container"
         >
-          <div
+          <a
+            aria-label="Go to previous section "
             className="btn-cell"
-          />
+            href="/"
+            onClick={[Function]}
+            title="Go to previous section "
+          >
+            
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
-            type="button"
           >
             <div
               className="actions next"
@@ -19444,7 +19498,7 @@ exports[`The section component renders identification.ssn 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
