@@ -9,7 +9,11 @@ const SectionNavigation = ({ section, subsection, formType }) => {
   const formSections = formTypeConfig[formType]
   const sectionConfig = formSections.find(s => s.key === section)
   const sectionIndex = formSections.findIndex(s => s.key === section)
-  const subsectionIndex = sectionConfig.subsections.findIndex((s) => {
+
+  // Removes all subsections that don't have a path to navigate to.
+  // These are generally the parents that have nested subsections.
+  const subsections = sectionConfig.subsections.filter(s => s.path)
+  const subsectionIndex = subsections.findIndex((s) => {
     if (s.path) {
       return s.path.subsection === subsection
     }
@@ -22,11 +26,7 @@ const SectionNavigation = ({ section, subsection, formType }) => {
   let nextLabel
 
   if (subsectionIndex > 0) {
-    if (sectionConfig.subsections[subsectionIndex - 1].path) {
-      back = sectionConfig.subsections[subsectionIndex - 1]
-    } else {
-      back = sectionConfig.subsections[subsectionIndex - 2]
-    }
+    back = subsections[subsectionIndex - 1]
     backLabel = i18n.t(`${sectionConfig.name}.destination.${back.name}`)
   } else if (sectionIndex > 0) {
     // Go to the last subsection of the previous section
@@ -35,12 +35,8 @@ const SectionNavigation = ({ section, subsection, formType }) => {
     backLabel = i18n.t(`${previousSection.name}.destination.${back.name}`)
   }
 
-  if (subsectionIndex < sectionConfig.subsections.length - 1) {
-    if (sectionConfig.subsections[subsectionIndex + 1].path) {
-      next = sectionConfig.subsections[subsectionIndex + 1]
-    } else {
-      next = sectionConfig.subsections[subsectionIndex + 2]
-    }
+  if (subsectionIndex < subsections.length - 1) {
+    next = subsections[subsectionIndex + 1]
     nextLabel = i18n.t(`${sectionConfig.name}.destination.${next.name}`)
   } else if (sectionIndex < formSections.length - 1) {
     // Go to the first subsection of the next section
