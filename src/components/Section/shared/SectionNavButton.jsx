@@ -1,39 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import classnames from 'classnames'
 
-const SectionNavButton = (props) => {
-  const {
-    isEmpty,
-    direction,
-    label,
-    onClick,
-  } = props
-
-  if (isEmpty) {
-    return <div className="btn-cell" />
-  }
-
+const SectionNavButton = ({ link, direction, label }) => {
   let directionText
   let ariaDirectionText
   let directionClass
   let iconClass
 
-  switch (direction) {
-    case 'next':
-      directionText = 'Next'
-      ariaDirectionText = 'next'
-      directionClass = 'next'
-      iconClass = 'fa-arrow-circle-right'
-      break
-
-    case 'back':
-      directionText = 'Back'
-      ariaDirectionText = 'previous'
-      directionClass = 'back'
-      iconClass = 'fa-arrow-circle-left'
-      break
-    default:
-      break
+  if (direction === 'next') {
+    directionText = 'Next'
+    ariaDirectionText = 'next'
+    directionClass = 'next'
+    iconClass = 'fa-arrow-circle-right'
+  }
+  if (direction === 'back') {
+    directionText = 'Back'
+    ariaDirectionText = 'previous'
+    directionClass = 'back'
+    iconClass = 'fa-arrow-circle-left'
   }
 
   const ariaLabel = `Go to ${ariaDirectionText} section ${label}`
@@ -44,43 +30,44 @@ const SectionNavButton = (props) => {
     </div>
   )
 
-  const text = (
-    <div className="text">
-      <div className="direction">{directionText}</div>
-      <div className="label">{label}</div>
-    </div>
-  )
-
   return (
-    // TODO: Use Link
-    // https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md
-    <button
-      className={`btn-cell ${directionClass}`}
+    <Link
+      className={classnames(
+        'btn-cell',
+        { [directionClass]: directionClass && link },
+      )}
       title={ariaLabel}
       aria-label={ariaLabel}
-      onClick={onClick}
-      type="button"
+      to={link}
     >
-      <div className={`actions ${directionClass}`}>
-        {direction === 'back' && icon}
-        {text}
-        {direction === 'next' && icon}
-      </div>
-    </button>
+      {link && (
+        <div
+          className={classnames(
+            'actions',
+            { [directionClass]: directionClass && link },
+          )}
+        >
+          {direction === 'back' && icon}
+          <div className="text">
+            <div className="direction">{directionText}</div>
+            <div className="label">{label}</div>
+          </div>
+          {direction === 'next' && icon}
+        </div>
+      )}
+    </Link>
   )
 }
 
 SectionNavButton.propTypes = {
   direction: PropTypes.oneOf(['back', 'next']).isRequired,
   label: PropTypes.string,
-  onClick: PropTypes.func,
-  isEmpty: PropTypes.bool,
+  link: PropTypes.string,
 }
 
 SectionNavButton.defaultProps = {
   label: '',
-  onClick: () => {},
-  isEmpty: false,
+  link: '',
 }
 
 export default SectionNavButton

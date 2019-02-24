@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { i18n, env } from '@config'
+import { i18n } from '@config'
 import * as formTypeConfig from '@config/formTypes'
 
 import SectionNavButton from './SectionNavButton'
@@ -53,13 +53,12 @@ const SectionNavigation = ({ section, subsection, formType }) => {
     return null
   }
 
-  const goToSection = (subsectionConfig) => {
-    const path = `/form/${subsectionConfig.path.section}/${subsectionConfig.path.subsection || ''}`
-    env.History().push(path)
+  const getLink = (subsectionConfig) => {
+    if (subsectionConfig) {
+      return `/form/${subsectionConfig.path.section}/${subsectionConfig.path.subsection || ''}`
+    }
+    return ''
   }
-
-  const backOnClick = back && (() => { goToSection(back) })
-  const nextOnClick = next && (() => { goToSection(next) })
 
   return (
     <div className="bottom-btns">
@@ -68,15 +67,13 @@ const SectionNavigation = ({ section, subsection, formType }) => {
           <SectionNavButton
             direction="back"
             label={backLabel}
-            onClick={backOnClick}
-            isEmpty={!back}
+            link={getLink(back)}
           />
           <div className="btn-spacer" />
           <SectionNavButton
             direction="next"
             label={nextLabel}
-            onClick={nextOnClick}
-            isEmpty={!next}
+            link={getLink(next)}
           />
         </div>
       </div>
