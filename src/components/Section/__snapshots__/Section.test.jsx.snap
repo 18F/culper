@@ -11921,6 +11921,7 @@ exports[`The section component renders identification.birthdate 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
@@ -12173,6 +12174,7 @@ exports[`The section component renders identification.birthplace 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
@@ -12634,6 +12636,7 @@ exports[`The section component renders identification.contacts 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
@@ -12752,6 +12755,7 @@ exports[`The section component renders identification.intro 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
@@ -13393,6 +13397,7 @@ exports[`The section component renders identification.name 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
@@ -13654,6 +13659,7 @@ exports[`The section component renders identification.othernames 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
@@ -15346,6 +15352,7 @@ exports[`The section component renders identification.physical 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
@@ -19133,6 +19140,7 @@ exports[`The section component renders identification.review 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
@@ -19408,6 +19416,7 @@ exports[`The section component renders identification.ssn 1`] = `
             className="btn-cell next"
             onClick={[Function]}
             title="Go to next section Full name"
+            type="button"
           >
             <div
               className="actions next"
