@@ -1,15 +1,15 @@
 import React from 'react'
 
-import { i18n } from '@config'
-import schema from '@schema'
-import validate from '@validators'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate from 'validators'
 
-import { Field, Height, Weight, HairColor, EyeColor, Sex } from '@components/Form'
+import { Field, Height, Weight, HairColor, EyeColor, Sex } from 'components/Form'
 
 import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
 
-import { IDENTIFICATION, IDENTIFICATION_PHYSICAL } from '@config/formSections/identification'
+import { IDENTIFICATION, IDENTIFICATION_PHYSICAL } from 'config/formSections/identification'
 
 const sectionConfig = {
   section: IDENTIFICATION.name,

@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '@config'
-import { Show } from '@components/Form'
-import { saveSection } from '@components/SavedIndicator/persistence-helpers'
-import { formIsLocked } from '@validators'
+import { i18n } from 'config'
+import { Show } from 'components/Form'
+import { saveSection } from 'components/SavedIndicator/persistence-helpers'
+import { formIsLocked } from 'validators'
 
 class SavedIndicator extends React.Component {
   constructor(props) {

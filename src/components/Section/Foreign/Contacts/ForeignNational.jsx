@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import { i18n } from '@config'
-import { pickDate } from '@validators/helpers'
+import { i18n } from 'config'
+import { pickDate } from 'validators/helpers'
 import {
   ValidationElement,
   Field,
@@ -19,8 +19,8 @@ import {
   BranchCollection,
   Location,
   AccordionItem
-} from '@components/Form'
-import AlternateAddress from '@components/Form/Location/AlternateAddress'
+} from 'components/Form'
+import AlternateAddress from 'components/Form/Location/AlternateAddress'
 
 export default class ForeignNational extends ValidationElement {
   constructor(props) {

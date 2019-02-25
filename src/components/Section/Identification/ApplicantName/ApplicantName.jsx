@@ -1,9 +1,9 @@
 import React from 'react'
-import { i18n } from '@config'
+import { i18n } from 'config'
 
-import schema from '@schema'
-import validate from '@validators'
-import { Name, Field } from '@components/Form'
+import schema from 'schema'
+import validate from 'validators'
+import { Name, Field } from 'components/Form'
 
 import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
@@ -11,7 +11,7 @@ import Subsection from '../../shared/Subsection'
 import {
   IDENTIFICATION,
   IDENTIFICATION_NAME,
-} from '@config/formSections/identification'
+} from 'config/formSections/identification'
 
 const sectionConfig = {
   section: IDENTIFICATION.name,

@@ -1,6 +1,6 @@
-import DateRangeValidator from '@validators/daterange'
-import LocationValidator from '@validators/location'
-import NameValidator from '@validators/name'
+import DateRangeValidator from 'validators/daterange'
+import LocationValidator from 'validators/location'
+import NameValidator from 'validators/name'
 import {
   validNotApplicable,
   validGenericTextfield,
@@ -10,7 +10,7 @@ import {
   withinSevenYears,
   BranchCollection,
   validAccordion
-} from '@validators/helpers'
+} from 'validators/helpers'
 
 export default class HistoryEmploymentValidator {
   constructor(data = {}) {
