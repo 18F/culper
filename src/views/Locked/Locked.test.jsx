@@ -3,8 +3,8 @@ import configureMockStore from 'redux-mock-store'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Locked from '@views/Locked/Locked'
-import { i18n } from '@config'
+import Locked from 'views/Locked/Locked'
+import { i18n } from 'config'
 
 describe('The locked view', () => {
   const mockStore = configureMockStore()

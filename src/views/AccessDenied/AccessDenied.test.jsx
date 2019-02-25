@@ -3,8 +3,8 @@ import configureMockStore from 'redux-mock-store'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import AccessDenied from '@views/AccessDenied/AccessDenied'
-import { i18n } from '@config'
+import AccessDenied from 'views/AccessDenied/AccessDenied'
+import { i18n } from 'config'
 
 describe('The access denied view', () => {
   const mockStore = configureMockStore()

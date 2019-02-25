@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Relationships from '@components/Section/Relationships/Relationships'
+import Relationships from 'components/Section/Relationships/Relationships'
 
 const applicationState = {
   Relationships: {}
