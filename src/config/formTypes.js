@@ -353,7 +353,6 @@ export const SF86 = [
       formSections.SUBSTANCE_USE_DRUGS_ORDERED,
       formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
       formSections.SUBSTANCE_USE_ALCOHOL,
-      formSections.SUBSTANCE_USE_ALCOHOL,
       formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
       formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
       formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
