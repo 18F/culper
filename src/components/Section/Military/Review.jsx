@@ -5,7 +5,7 @@ import History from '@components/Section/Military/History'
 import Disciplinary from '@components/Section/Military/Disciplinary'
 import Foreign from '@components/Section/Military/Foreign'
 
-const Review = () => {
+const Review = ({AddressBooks}) => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
@@ -46,9 +46,15 @@ const Review = () => {
       {sectionDivider}
       <Disciplinary {...subsectionProps} />
       {sectionDivider}
-      <Foreign {...subsectionProps} />
+      <Foreign
+        {...subsectionProps}
+        addressBooks={AddressBooks} />
     </div>
   )
+}
+
+Review.defaultProps = {
+  AddressBooks: {},
 }
 
 export default Review

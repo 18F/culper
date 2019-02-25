@@ -71,7 +71,7 @@ function mapStateToProps(state) {
     Military: military,
     Errors: errors.military || [],
     Completed: completed.military || [],
-    AddressBooks: addressBooks
+    addressBooks: addressBooks
   }
 }
 

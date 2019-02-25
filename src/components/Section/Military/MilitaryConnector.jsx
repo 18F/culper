@@ -69,7 +69,7 @@ const connectMilitarySection = (Component, {
         return { ...military.Disciplinary } || {}
 
       case 'Foreign':
-        return { ...military.Foreign } || {}
+        return { ...military.Foreign, addressBooks: addressBooks } || {}
 
       default:
         return {
