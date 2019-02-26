@@ -71,21 +71,12 @@ class Citizenship extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const app = state.application || {}
+  const { section } = state
   const auth = state.authentication || {}
-  const citizenship = app.Citizenship || {}
-  const errors = app.Errors || {}
-  const completed = app.Completed || {}
 
   return {
-    Application: app,
-    Citizenship: citizenship,
-    Status: citizenship.Status || {},
-    Multiple: citizenship.Multiple || {},
-    Passports: citizenship.Passports || {},
-    Errors: errors.citizenship || [],
-    Completed: completed.citizenship || [],
-    formType: auth.formType
+    formType: auth.formType,
+    ...section,
   }
 }
 
