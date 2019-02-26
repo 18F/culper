@@ -49,7 +49,7 @@ const FOREIGN_ACTIVITIES_DIRECT = {
 const FOREIGN_ACTIVITIES_INDIRECT = {
   key: sections.FOREIGN_ACTIVITIES_INDIRECT,
   name: 'indirect',
-  path: 'activities//indirect',
+  path: 'activities/indirect',
   storeKey: 'IndirectActivity',
   label: i18n.t('foreign.subsection.activities.indirect'),
 }
