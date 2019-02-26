@@ -991,6 +991,7 @@ func agencyType(v string) string {
 
 func clearanceType(v string) string {
 	basis := map[string]string{
+		"None":                                "None",
 		"Confidential":                        "Confidential",
 		"Secret":                              "Secret",
 		"Top Secret":                          "TopSecret",
