@@ -2579,8 +2579,8 @@
               <Contacts>
                 <Contact ID="1">
                   <Address DoNotKnow="True">
-                    <Street> </Street>
-                  </Address>
+  
+</Address>
                   <Birth>
                     <Date DoNotKnow="True">
           

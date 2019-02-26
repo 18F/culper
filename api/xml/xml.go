@@ -34,6 +34,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
 	fmap := template.FuncMap{
+		"address":                address,
 		"addressIn":              addressIn,
 		"agencyType":             agencyType,
 		"apoFpo":                 apoFpo,
@@ -203,6 +204,19 @@ func selectBenefit(freqType string, benefitItem map[string]interface{}) (map[str
 		}
 	}
 	return nil, errors.New(selector + " not found in benefit item")
+}
+
+func address(loc map[string]interface{}, dnk map[string]interface{}) (template.HTML, error) {
+	view := make(map[string]interface{})
+	view["Location"] = loc
+	view["DoNotKnow"] = dnk
+
+	fmap := template.FuncMap{
+		"notApplicable": notApplicable,
+		"location":      location,
+	}
+
+	return xmlTemplateWithFuncs("address.xml", view, fmap)
 }
 
 // Put simple structures here where they only output a string
