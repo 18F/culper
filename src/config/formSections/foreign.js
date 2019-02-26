@@ -195,6 +195,3 @@ export default {
   FOREIGN_TRAVEL,
   FOREIGN_REVIEW,
 }
-
-
-
