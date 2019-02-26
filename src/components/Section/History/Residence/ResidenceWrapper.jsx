@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { i18n } from 'config'
-import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
+import i18n from 'util/i18n'
 
 import { Field, Show } from 'components/Form'
 import { sectionHasGaps } from 'components/Section/History/helpers'
 
+import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
+
 import ConnectedResidence from './Residence'
 import ResidenceSummaryProgress from './ResidenceSummaryProgress'
-
 import connectHistorySection from '../HistoryConnector'
 
 const sectionConfig = {
@@ -27,6 +27,8 @@ const ResidenceWrapper = (props) => {
 
   const residenceHasGaps = sectionHasGaps(residenceItems)
 
+  const years = 10
+
   return (
     <div>
       <h1 className="section-header">
@@ -34,7 +36,7 @@ const ResidenceWrapper = (props) => {
       </h1>
 
       <Field
-        title={i18n.t('history.residence.info')}
+        title={i18n.t('history.residence.info', { years })}
         titleSize="h3"
         optional
         className="no-margin-bottom"
