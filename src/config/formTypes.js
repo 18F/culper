@@ -497,3 +497,7 @@ export const reduceSubsections = sections => (
     return accumulator
   }, [])
 )
+
+export const FLAT_SF85 = reduceSubsections(SF85)
+export const FLAT_SF85P = reduceSubsections(SF85P)
+export const FLAT_SF86 = reduceSubsections(SF86)
