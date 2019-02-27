@@ -1,7 +1,8 @@
-import store from '@services/store'
+/* eslint import/prefer-default-export: 0 */
+import store from 'services/store'
 
-import { i18n } from '@config'
-import { formSectionsSelector } from '@selectors/navigation'
+import { i18n } from 'config'
+import { formSectionsSelector } from 'selectors/navigation'
 
 export const getBackAndNext = ({ section, subsection }) => {
   let back
@@ -30,7 +31,7 @@ export const getBackAndNext = ({ section, subsection }) => {
   } else if (sectionIndex < formSections.length - 1) {
     // Go to the first subsection of the next section
     const nextSection = formSections[sectionIndex + 1]
-    next = nextSection.subsections[0]
+    next = nextSection.subsections[0] /* eslint prefer-destructuring: 0 */
     next.navLabel = i18n.t(`${nextSection.name}.destination.${next.name}`)
   }
 

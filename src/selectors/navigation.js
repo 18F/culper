@@ -1,19 +1,19 @@
+import update from 'immutability-helper'
 import { createSelector } from 'reselect'
 
-import { formTypeSelector } from '@selectors/formType'
-import * as formTypeConfig from '@config/formTypes'
-import * as sections from '@constants/sections'
+import { formTypeSelector } from 'selectors/formType'
+import * as formTypeConfig from 'config/formTypes'
+import * as sections from 'constants/sections'
 
-import { hideSelectiveService } from '@validators/selectiveservice'
-import { hideDisciplinaryProcedures } from '@validators/militarydisciplinary'
+import { hideSelectiveService } from 'validators/selectiveservice'
+import { hideDisciplinaryProcedures } from 'validators/militarydisciplinary'
 
-export const hideSelectiveServiceSelector = state => {
+export const hideSelectiveServiceSelector = (state) => {
   const { application } = state
-
   return hideSelectiveService(application)
 }
 
-export const hideDisciplinaryProceduresSelector = state => {
+export const hideDisciplinaryProceduresSelector = (state) => {
   const { application } = state
 
   return hideDisciplinaryProcedures(application)
@@ -23,34 +23,35 @@ export const formSectionsSelector = createSelector(
   formTypeSelector,
   hideDisciplinaryProceduresSelector,
   hideSelectiveServiceSelector,
-  (formType, hideDisciplinaryProcedures, hideSelectiveService) => {
+  (formType, disciplinaryProceduresHidden, selectiveServiceHidden) => {
     // Make a copy b/c we are going to mutate this
     // Might want to add & use update here to make this easier
-    const formTypeSections = [ ...formTypeConfig[formType] ]
+    let formTypeSections = formTypeConfig[formType]
 
-    if (hideDisciplinaryProcedures) {
-      const militarySection = formTypeSections
-        .find(s => s.key === sections.MILITARY)
+    if (disciplinaryProceduresHidden || selectiveServiceHidden) {
+      const militarySection = formTypeSections.find(s => s.key === sections.MILITARY)
+      const militarySectionIndex = formTypeSections.findIndex(s => s.key === sections.MILITARY)
+      let militarySubsections = [...militarySection.subsections]
 
-      const newMilitarySection = {
-        ...militarySection,
-        subsections: militarySection.subsections.filter(s => s.key !== sections.MILITARY_DISCIPLINARY)
+      if (disciplinaryProceduresHidden) {
+        militarySubsections = militarySubsections
+          .filter(s => s.key !== sections.MILITARY_DISCIPLINARY)
       }
 
-      formTypeSections[3] = newMilitarySection
-    }
-    if (hideSelectiveService) {
-      const militarySection = formTypeSections
-        .find(s => s.key === sections.MILITARY)
-
-      const newMilitarySection = {
-        ...militarySection,
-        subsections: militarySection.subsections.filter(s => s.key !== sections.MILITARY_SELECTIVE)
+      if (selectiveServiceHidden) {
+        militarySubsections = militarySubsections
+          .filter(s => s.key !== sections.MILITARY_SELECTIVE)
       }
 
-      formTypeSections[3] = newMilitarySection
+      const newMilitarySection = update(militarySection, {
+        subsections: { $set: militarySubsections },
+      })
+
+      formTypeSections = update(formTypeSections, {
+        $splice: [[militarySectionIndex, 1, newMilitarySection]],
+      })
     }
 
     return formTypeSections
-  }
+  },
 )
