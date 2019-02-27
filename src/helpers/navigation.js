@@ -1,14 +1,11 @@
 /* eslint import/prefer-default-export: 0 */
-import store from 'services/store'
-
 import { i18n } from 'config'
 import { formSectionsSelector } from 'selectors/navigation'
 
-export const getBackAndNext = ({ section, subsection }) => {
+export const getBackAndNext = (state, { section, subsection }) => {
   let back
   let next
 
-  const state = store.getState()
   const formSections = formSectionsSelector(state)
 
   const sectionConfig = formSections.find(s => s.key === section)
