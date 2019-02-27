@@ -7,6 +7,7 @@ import { Field, Show } from 'components/Form'
 import { sectionHasGaps } from 'components/Section/History/helpers'
 
 import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
+import * as formConfig from 'config/forms'
 
 import ConnectedResidence from './Residence'
 import ResidenceSummaryProgress from './ResidenceSummaryProgress'
@@ -18,16 +19,20 @@ const sectionConfig = {
 }
 
 const ResidenceWrapper = (props) => {
-  const { Residence, Birthdate } = props
+  const { Residence, Birthdate, formType } = props
+
+  const years = formType
+    && formConfig[formType]
+    && formConfig[formType].HISTORY_RESIDENCE_YEARS
+
+  const formName = formType
 
   let residenceItems = []
   if (Residence && Residence.List && Residence.List.items) {
     residenceItems = Residence.List.items
   }
 
-  const residenceHasGaps = sectionHasGaps(residenceItems)
-
-  const years = 10
+  const residenceHasGaps = sectionHasGaps(residenceItems, years)
 
   return (
     <div>
@@ -53,11 +58,13 @@ const ResidenceWrapper = (props) => {
       <ResidenceSummaryProgress
         Residence={Residence}
         Birthdate={Birthdate}
+        years={years}
       />
 
       <ConnectedResidence
         realtime
         scrollToTop="scrollToHistory"
+        totalYears={years}
       />
 
       <Show when={residenceHasGaps}>
@@ -70,7 +77,7 @@ const ResidenceWrapper = (props) => {
             optional
             className="no-margin-bottom"
           >
-            {i18n.m('history.residence.para.exiting')}
+            {i18n.m('history.residence.para.exiting', { years, formName })}
           </Field>
         </div>
       </Show>
@@ -82,6 +89,7 @@ const ResidenceWrapper = (props) => {
 ResidenceWrapper.propTypes = {
   Residence: PropTypes.object,
   Birthdate: PropTypes.any,
+  formType: PropTypes.string.isRequired,
 }
 
 ResidenceWrapper.defaultProps = {

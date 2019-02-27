@@ -92,7 +92,7 @@ export const history = {
     gap: {
       title: 'Residence gap',
       para:
-        'There is a gap in your residence history. The entire 10 year period must be covered with no gaps',
+        'There is a gap in your residence history. The entire {{years}} year period must be covered with no gaps',
       btnText: 'Add an address',
     },
     heading: {
@@ -110,7 +110,7 @@ export const history = {
       done:
         'Use the button below to save your history entry and start another.',
       exiting:
-        '**The full 10 year period of residence history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
+        '**The full {{years}} year period of residence history is not covered.** Your {{formName}} cannot be submitted until all {{years}} years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
       details:
         'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
       reference:

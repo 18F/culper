@@ -24,7 +24,7 @@ const dateRangeList = (items) => {
 }
 
 const ResidenceSummaryProgress = (props) => {
-  const { Residence, Birthdate } = props
+  const { Residence, Birthdate, years } = props
 
   let residenceDates = []
   if (Residence && Residence.List && Residence.List.items) {
@@ -39,7 +39,7 @@ const ResidenceSummaryProgress = (props) => {
       List={getResidenceDates}
       title={i18n.t('history.residence.summary.title')}
       unit={i18n.t('history.residence.summary.unit')}
-      total={totalYears(Birthdate)}
+      total={totalYears(Birthdate, years)}
     >
       <div className="summary-icon">
         <Svg
@@ -55,11 +55,13 @@ const ResidenceSummaryProgress = (props) => {
 ResidenceSummaryProgress.propTypes = {
   Residence: PropTypes.object,
   Birthdate: PropTypes.any,
+  years: PropTypes.number,
 }
 
 ResidenceSummaryProgress.defaultProps = {
   Residence: undefined,
   Birthdate: undefined,
+  years: 10,
 }
 
 export default ResidenceSummaryProgress
