@@ -1661,8 +1661,8 @@ export const history = {
         'For schools you attended in the last 3 years, list a person who knew you at the school (instructor, student, etc.). Do not list people for education periods completed more than 3 years ago. For correspondence/distance/extension/online schools, list someone who knew you while you received this education.',
     },
     label: {
-      attendance: 'Have you attended any schools in the last 10 years?',
-      degree10: 'Have you received a degree or diploma more than 10 years ago?',
+      attendance: 'Have you attended any schools in the last {{years}} years?',
+      degree10: 'Have you received a degree or diploma more than {{years}} years ago?',
       dates:
         'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       name: 'School name',

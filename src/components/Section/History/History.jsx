@@ -4,35 +4,31 @@ import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
+
+import * as formConfig from 'config/forms'
 
 import { ErrorList } from 'components/ErrorList'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
-
 import Intro from 'components/Section/History/Intro'
 import ResidenceWrapper from 'components/Section/History/Residence/ResidenceWrapper'
-import Residence from 'components/Section/History/Residence'
+import ConnectedResidence from 'components/Section/History/Residence'
 import EmploymentWrapper from 'components/Section/History/Employment/EmploymentWrapper'
-import Employment from 'components/Section/History/Employment'
+import ConnectedEmployment from 'components/Section/History/Employment'
 import EducationWrapper from 'components/Section/History/Education/EducationWrapper'
 import ConnectedEducation from 'components/Section/History/Education'
 import FederalWrapper from 'components/Section/History/Federal/FederalWrapper'
-import Federal from 'components/Section/History/Federal'
+import ConnectedFederal from 'components/Section/History/Federal'
 import Review from 'components/Section/History/Review'
 
 import { Show, Branch } from 'components/Form'
-
-/**
- * TODO
- * - totalYears needs to change based on form type
- */
 
 const History = (props) => {
   const { subsection, location } = props
 
   const subsectionClasses = classnames(
     'view',
-    `view-${subsection}`
+    `view-${subsection}`,
   )
 
   const isReview = subsection === 'review'
@@ -67,7 +63,7 @@ const History = (props) => {
 }
 
 function mapStateToProps(state) {
-  const { authentication, section } = state
+  const { section, authentication } = state
   const { formType } = authentication
 
   return {
@@ -90,11 +86,15 @@ History.defaultProps = {
 export default connect(mapStateToProps)(History)
 
 export const HistorySections = (props) => {
-  const { onError, Education } = props
+  const { formType, onError, Education } = props
+
+  const years = formType
+    && formConfig[formType]
+    && formConfig[formType].HISTORY_EDUCATION_YEARS
 
   return (
     <div className="history">
-      <Residence
+      <ConnectedResidence
         defaultState={false}
         realtime
         overrideInitial
@@ -103,7 +103,7 @@ export const HistorySections = (props) => {
         required
       />
 
-      <Employment
+      <ConnectedEmployment
         defaultState={false}
         realtime
         overrideInitial
@@ -115,14 +115,14 @@ export const HistorySections = (props) => {
       <Branch
         name="branch_school"
         {...Education.HasAttended}
-        label={i18n.t('history.education.label.attendance')}
+        label={i18n.t('history.education.label.attendance', { years })}
         labelSize="h3"
       />
       <Show when={Education.HasAttended.value === 'No'}>
         <Branch
           name="branch_degree10"
           {...Education.HasDegree10}
-          label={i18n.t('history.education.label.degree10')}
+          label={i18n.t('history.education.label.degree10', { years })}
           labelSize="h3"
         />
       </Show>
@@ -143,11 +143,10 @@ export const HistorySections = (props) => {
       </Show>
 
       <hr className="section-divider" />
-      <Federal
+      <ConnectedFederal
         defaultState={false}
         onError={onError}
         scrollIntoView={false}
-        required
       />
     </div>
   )
