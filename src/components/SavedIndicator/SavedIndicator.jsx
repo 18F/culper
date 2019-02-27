@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../config'
-import AuthenticatedView from '../../views/AuthenticatedView'
-import { Show } from '../Form'
-import { saveSection } from './persistence-helpers'
-import { formIsLocked } from '../../validators'
+import { i18n } from '@config'
+import { Show } from '@components/Form'
+import { saveSection } from '@components/SavedIndicator/persistence-helpers'
+import { formIsLocked } from '@validators'
 
 class SavedIndicator extends React.Component {
   constructor(props) {
@@ -208,4 +207,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(SavedIndicator))
+export default connect(mapStateToProps)(SavedIndicator)

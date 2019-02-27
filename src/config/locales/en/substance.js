@@ -8,8 +8,32 @@ export const substance = {
     para: 'Take a guided tour through the section'
   },
   review: {
-    title: "Let's make sure everything looks right",
-    para: 'View all the sections associated with substance abuse'
+    title: "Review your answers",
+    para: 'View the full section to make sure everything looks right and make changes if needed.'
+  },
+  section: {
+    name: 'Substance use'
+  },
+  subsection: {
+    intro: 'Introduction',
+    drugs: {
+      label: 'Illegal use of drugs and drug activity',
+      usage: 'Usage',
+      purchase: 'Purchase',
+      clearance: 'Security clearance position',
+      publicsafety: 'Public safety position',
+      misuse: 'Prescription drug misuse',
+      ordered: 'Mandatory counseling or treatment',
+      voluntary: 'Voluntary counseling or treatment'
+    },
+    alcohol: {
+      label: 'Use of alcohol',
+      negative: 'Negative impact',
+      ordered: 'Mandatory counseling or treatment',
+      voluntary: 'Voluntary counseling or treatment',
+      additional: 'Additional instances'
+    },
+    review: 'Review'
   },
   destination: {
     intro: 'Substance use intro',
@@ -24,7 +48,7 @@ export const substance = {
       purchase: 'Purchase',
       clearance: 'Security clearance position',
       publicsafety: 'Public safety position',
-      misuse: 'Misuse',
+      misuse: 'Prescription drug misuse',
       ordered: 'Mandatory counseling or treatment',
       voluntary: 'Voluntary counseling or treatment'
     },
@@ -330,7 +354,7 @@ export const substance = {
     },
     para: {
       drugUses:
-        'We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding. As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions pertain to the illegal use of drugs or controlled substances or drug or controlled substance activity in accordance with Federal laws, even though permissible under state laws.'
+        'We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding. This particular section applies whether or not you are currently employed by the Federal government. The following questions pertain to the illegal use of drugs or controlled substances or drug or controlled substance activity not in accordance with Federal laws, even though permissible under state laws.'
     },
     use: {
       heading: {

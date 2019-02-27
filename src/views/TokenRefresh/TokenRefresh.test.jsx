@@ -1,23 +1,19 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import TokenRefresh from './TokenRefresh'
-import { i18n } from '../../config'
+import TokenRefresh from '@views/TokenRefresh/TokenRefresh'
+import { i18n } from '@config'
 
 describe('The token refresh error view', () => {
   // Setup
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
+  const mockStore = configureMockStore()
 
   it('is visible with context', () => {
     const lastSaved = new Date(2000, 1, 2, 16, 9, 10, 0)
     const store = mockStore({
       application: { Settings: { saved: lastSaved } },
-      authentication: {}
     })
     const component = mount(
       <Provider store={store}>

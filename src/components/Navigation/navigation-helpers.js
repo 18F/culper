@@ -47,7 +47,7 @@ const errorMatches = (err, routeParts) => {
     // either we're not within a subsection...
     (!routeParts.subsectionRaw ||
       // ...or the subsection matches
-      err.subsection.toLowerCase().startsWith(routeParts.subsectionRaw))
+      (err.subsection && err.subsection.toLowerCase().startsWith(routeParts.subsectionRaw)))
   )
 }
 

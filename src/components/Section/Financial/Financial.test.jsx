@@ -1,10 +1,9 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import Financial, { FinancialSections } from './Financial'
+import Financial, { FinancialSections } from '@components/Section/Financial'
 import { mount } from 'enzyme'
-import { testSnapshot } from '../../test-helpers'
+import { testSnapshot } from '@components/test-helpers'
 
 const applicationState = {
   Financial: {}
@@ -19,40 +18,11 @@ jest.mock('../../Form/ValidationElement/helpers', () =>
 )
 
 describe('The financial section', () => {
-  // Setup
-  window.token = 'fake-token'
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
+  const mockStore = configureMockStore()
 
-  it('hidden when not authenticated', () => {
-    window.token = ''
-    const store = mockStore({
-      authentication: [],
-      application: applicationState
-    })
-    const component = mount(
-      <Provider store={store}>
-        <Financial />
-      </Provider>
-    )
-    expect(component.find('div').length).toEqual(0)
-    window.token = 'fake-token'
-  })
-
-  it('visible when authenticated', () => {
-    const store = mockStore({
-      authentication: { authenticated: true, application: applicationState }
-    })
-    const component = mount(
-      <Provider store={store}>
-        <Financial />
-      </Provider>
-    )
-    expect(component.find('div').length).toBeGreaterThan(0)
-  })
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <Financial subsection="review" />
@@ -71,7 +41,7 @@ describe('The financial section', () => {
       'delinquent',
       'nonpayment'
     ]
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
 
     sections.forEach(section => {
       const component = mount(

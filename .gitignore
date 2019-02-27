@@ -64,6 +64,7 @@ package-lock.json
 /api/bin/fuzzer
 /api/bin/load
 /api/bin/load-scenario
+/api/bin/submit
 /api/bin/transmit
 /api/bin/unlock
 /build/

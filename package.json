@@ -19,7 +19,9 @@
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.15.0",
     "cache-loader": "^1.2.2",
+    "classnames": "^2.2.6",
     "dotenv": "^4.0.0",
+    "eslint-config-airbnb": "^17.1.0",
     "file-saver": "^1.3.8",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
@@ -42,6 +44,11 @@
     "remove-markdown": "^0.3.0",
     "smoothscroll-polyfill": "^0.3.6",
     "uswds": "^1.6.9"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "./bin/pre-commit"
+    }
   },
   "jest": {
     "coverageDirectory": "./coverage/",
@@ -69,7 +76,10 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.4",
+    "babel-plugin-module-resolver": "^3.1.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.24.1",
@@ -77,13 +87,16 @@
     "codecov": "^3.0.4",
     "css-loader": "^2.1.0",
     "enzyme": "^2.9.1",
-    "eslint": "^5.0.1",
+    "eslint": "5.3.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
     "eslint-import-resolver-webpack": "^0.10.1",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.1",
+    "eslint-plugin-react": "7.11.0",
     "git-revision-webpack-plugin": "^3.0.3",
     "gulp": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.3.1",
     "i18n-extract": "^0.6.3",
     "jest": "^23.1.0",
     "mini-css-extract-plugin": "^0.5.0",

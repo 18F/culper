@@ -1,22 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../config'
-import AuthenticatedView from '../../views/AuthenticatedView'
+import classnames from 'classnames'
+
+import { i18n } from '@config'
 import {
   sectionsTotal,
   sectionsCompleted
-} from '../Navigation/navigation-helpers'
+} from '@components/Navigation/navigation-helpers'
 
 class ScoreCard extends React.Component {
   render() {
     const completed = sectionsCompleted(this.props.completed, this.props)
     const total = sectionsTotal()
 
+    const scoreCardClasses = classnames(
+      'score-card',
+      { completed: completed >= total }
+    )
+
     return (
       <div
-        className={`score-card ${
-          completed >= total ? 'completed' : ''
-        }`.trim()}>
+        className={scoreCardClasses}>
         <span className="score-card-done">{completed}</span>/
         <span className="score-card-total">{total}</span>
         <span className="score-card-text">{i18n.t('scorecard.complete')}</span>
@@ -36,4 +40,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(ScoreCard))
+export default connect(mapStateToProps)(ScoreCard)

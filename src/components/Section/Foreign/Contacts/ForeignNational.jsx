@@ -1,6 +1,7 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { pickDate } from '../../../../validators/helpers'
+import classNames from 'classnames'
+import { i18n } from '@config'
+import { pickDate } from '@validators/helpers'
 import {
   ValidationElement,
   Field,
@@ -18,49 +19,17 @@ import {
   BranchCollection,
   Location,
   AccordionItem
-} from '../../../Form'
-import AlternateAddress from '../../../Form/Location/AlternateAddress'
+} from '@components/Form'
+import AlternateAddress from '@components/Form/Location/AlternateAddress'
 
 export default class ForeignNational extends ValidationElement {
   constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
-    this.updateName = this.updateName.bind(this)
     this.updateNameNotApplicable = this.updateNameNotApplicable.bind(this)
-    this.updateNameExplanation = this.updateNameExplanation.bind(this)
-    this.updateFirstContact = this.updateFirstContact.bind(this)
-    this.updateLastContact = this.updateLastContact.bind(this)
     this.updateMethods = this.updateMethods.bind(this)
-    this.updateMethodsExplanation = this.updateMethodsExplanation.bind(this)
-    this.updateFrequency = this.updateFrequency.bind(this)
-    this.updateFrequencyExplanation = this.updateFrequencyExplanation.bind(this)
     this.updateRelationship = this.updateRelationship.bind(this)
-    this.updateRelationshipExplanation = this.updateRelationshipExplanation.bind(
-      this
-    )
-    this.updateAliases = this.updateAliases.bind(this)
-    this.updateCitizenship = this.updateCitizenship.bind(this)
-    this.updateBirthdate = this.updateBirthdate.bind(this)
-    this.updateBirthdateNotApplicable = this.updateBirthdateNotApplicable.bind(
-      this
-    )
-    this.updateBirthplace = this.updateBirthplace.bind(this)
-    this.updateBirthplaceNotApplicable = this.updateBirthplaceNotApplicable.bind(
-      this
-    )
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateAddressNotApplicable = this.updateAddressNotApplicable.bind(this)
-    this.updateEmployer = this.updateEmployer.bind(this)
-    this.updateEmployerNotApplicable = this.updateEmployerNotApplicable.bind(
-      this
-    )
-    this.updateEmployerAddress = this.updateEmployerAddress.bind(this)
-    this.updateEmployerAddressNotApplicable = this.updateEmployerAddressNotApplicable.bind(
-      this
-    )
-    this.updateHasAffiliations = this.updateHasAffiliations.bind(this)
-    this.updateAffiliations = this.updateAffiliations.bind(this)
   }
 
   update(queue) {
@@ -94,9 +63,9 @@ export default class ForeignNational extends ValidationElement {
     })
   }
 
-  updateName(value) {
+  updateField = (field, values) =>  {
     this.update({
-      Name: value
+      [field]: values
     })
   }
 
@@ -104,24 +73,6 @@ export default class ForeignNational extends ValidationElement {
     this.update({
       Name: null,
       NameNotApplicable: value
-    })
-  }
-
-  updateNameExplanation(value) {
-    this.update({
-      NameExplanation: value
-    })
-  }
-
-  updateFirstContact(value) {
-    this.update({
-      FirstContact: value
-    })
-  }
-
-  updateLastContact(value) {
-    this.update({
-      LastContact: value
     })
   }
 
@@ -133,118 +84,10 @@ export default class ForeignNational extends ValidationElement {
     })
   }
 
-  updateMethodsExplanation(value) {
-    this.update({
-      MethodsExplanation: value
-    })
-  }
-
-  updateFrequency(values) {
-    this.update({
-      Frequency: values
-    })
-  }
-
-  updateFrequencyExplanation(value) {
-    this.update({
-      FrequencyExplanation: value
-    })
-  }
-
   updateRelationship(values) {
     const list = Checkbox.select(values, this.props.Relationship)
     this.update({
       Relationship: { values: list }
-    })
-  }
-
-  updateRelationshipExplanation(value) {
-    this.update({
-      RelationshipExplanation: value
-    })
-  }
-
-  updateAliases(value) {
-    this.update({
-      Aliases: value
-    })
-  }
-
-  updateCitizenship(value) {
-    this.update({
-      Citizenship: value
-    })
-  }
-
-  updateBirthdate(value) {
-    this.update({
-      Birthdate: value
-    })
-  }
-
-  updateBirthdateNotApplicable(value) {
-    this.update({
-      BirthdateNotApplicable: value
-    })
-  }
-
-  updateBirthplace(value) {
-    this.update({
-      Birthplace: value
-    })
-  }
-
-  updateBirthplaceNotApplicable(value) {
-    this.update({
-      BirthplaceNotApplicable: value
-    })
-  }
-
-  updateAddress(value) {
-    this.update({
-      Address: value
-    })
-  }
-
-  updateAddressNotApplicable(value) {
-    this.update({
-      AddressNotApplicable: value
-    })
-  }
-
-  updateEmployer(value) {
-    this.update({
-      Employer: value
-    })
-  }
-
-  updateEmployerNotApplicable(value) {
-    this.update({
-      EmployerNotApplicable: value
-    })
-  }
-
-  updateEmployerAddress(value) {
-    this.update({
-      EmployerAddress: value
-    })
-  }
-
-  updateEmployerAddressNotApplicable(value) {
-    this.update({
-      EmployerAddressNotApplicable: value
-    })
-  }
-
-  updateHasAffiliations(response) {
-    this.update({
-      HasAffiliations: response
-    })
-  }
-
-  updateAffiliations(value) {
-    this.update({
-      Affiliations: value
     })
   }
 
@@ -256,14 +99,15 @@ export default class ForeignNational extends ValidationElement {
           title={i18n.t('foreign.contacts.heading.name')}
           optional={true}
           filterErrors={Name.requiredErrorsOnly}
-          className={
-            this.props.NameNotApplicable.applicable ? '' : 'no-margin-bottom'
-          }
+          className={classNames(
+            'foreign-national-name',
+            { 'no-margin-bottom': !this.props.NameNotApplicable.applicable }
+          )}
           scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable
             name="NameNotApplicable"
             className="na-name"
-            label={i18n.t('foreign.contacts.label.idk')}
+            label={i18n.t('foreign.contacts.label.idkname')}
             or={i18n.m('foreign.contacts.para.or')}
             {...this.props.NameNotApplicable}
             onUpdate={this.updateNameNotApplicable}
@@ -271,7 +115,7 @@ export default class ForeignNational extends ValidationElement {
             <Name
               name="Name"
               {...this.props.Name}
-              onUpdate={this.updateName}
+              onUpdate={value => { this.updateField('Name', value) }}
               onError={this.props.onError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
@@ -288,7 +132,7 @@ export default class ForeignNational extends ValidationElement {
               name="NameExplanation"
               className="name-explanation"
               {...this.props.NameExplanation}
-              onUpdate={this.updateNameExplanation}
+              onUpdate={value => { this.updateField('NameExplanation', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -305,14 +149,14 @@ export default class ForeignNational extends ValidationElement {
             label={i18n.t('foreign.contacts.label.idk')}
             or={i18n.m('foreign.contacts.para.or')}
             {...this.props.BirthdateNotApplicable}
-            onUpdate={this.updateBirthdateNotApplicable}
+            onUpdate={value => { this.updateField('BirthdateNotApplicable', value) }}
             required={this.props.required}
             onError={this.props.onError}>
             <DateControl
               name="Birthdate"
               {...this.props.Birthdate}
               relationship="Other"
-              onUpdate={this.updateBirthdate}
+              onUpdate={value => { this.updateField('Birthdate', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -331,7 +175,7 @@ export default class ForeignNational extends ValidationElement {
             prefix="foreignContact"
             minDate={foreignContactMinDate}
             {...this.props.FirstContact}
-            onUpdate={this.updateFirstContact}
+            onUpdate={value => { this.updateField('FirstContact', value) }}
             onError={this.props.onError}
             required={this.props.required}
           />
@@ -349,7 +193,7 @@ export default class ForeignNational extends ValidationElement {
             prefix="contact.last"
             minDate={this.props.FirstContact}
             minDateEqualTo={true}
-            onUpdate={this.updateLastContact}
+            onUpdate={value => { this.updateField('LastContact', value) }}
             onError={this.props.onError}
             required={this.props.required}
           />
@@ -426,7 +270,7 @@ export default class ForeignNational extends ValidationElement {
               name="MethodsExplanation"
               className="methods-explanation"
               {...this.props.MethodsExplanation}
-              onUpdate={this.updateMethodsExplanation}
+              onUpdate={value => { this.updateField('MethodsExplanation', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -452,7 +296,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.m('foreign.contacts.label.daily')}
               value="Daily"
               className="frequency-daily"
-              onUpdate={this.updateFrequency}
+              onUpdate={value => { this.updateField('Frequency', value) }}
               onError={this.props.onError}
             />
             <Radio
@@ -460,7 +304,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.m('foreign.contacts.label.weekly')}
               value="Weekly"
               className="frequency-weekly"
-              onUpdate={this.updateFrequency}
+              onUpdate={value => { this.updateField('Frequency', value) }}
               onError={this.props.onError}
             />
             <Radio
@@ -468,7 +312,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.m('foreign.contacts.label.monthly')}
               value="Monthly"
               className="frequency-monthly"
-              onUpdate={this.updateFrequency}
+              onUpdate={value => { this.updateField('Frequency', value) }}
               onError={this.props.onError}
             />
             <Radio
@@ -476,7 +320,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.m('foreign.contacts.label.quarterly')}
               value="Quarterly"
               className="frequency-quarterly"
-              onUpdate={this.updateFrequency}
+              onUpdate={value => { this.updateField('Frequency', value) }}
               onError={this.props.onError}
             />
             <Radio
@@ -484,7 +328,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.m('foreign.contacts.label.annually')}
               value="Annually"
               className="frequency-annually"
-              onUpdate={this.updateFrequency}
+              onUpdate={value => { this.updateField('Frequency', value) }}
               onError={this.props.onError}
             />
             <Radio
@@ -492,7 +336,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.m('foreign.contacts.label.other')}
               value="Other"
               className="frequency-other"
-              onUpdate={this.updateFrequency}
+              onUpdate={value => { this.updateField('Frequency', value) }}
               onError={this.props.onError}
             />
           </RadioGroup>
@@ -508,7 +352,7 @@ export default class ForeignNational extends ValidationElement {
               name="FrequencyExplanation"
               className="frequency-explanation"
               {...this.props.FrequencyExplanation}
-              onUpdate={this.updateFrequencyExplanation}
+              onUpdate={value => { this.updateField('FrequencyExplanation', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -580,7 +424,7 @@ export default class ForeignNational extends ValidationElement {
               name="RelationshipExplanation"
               className="relationship-explanation"
               {...this.props.RelationshipExplanation}
-              onUpdate={this.updateRelationshipExplanation}
+              onUpdate={value => { this.updateField('RelationshipExplanation', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -593,7 +437,7 @@ export default class ForeignNational extends ValidationElement {
           help="foreign.contacts.help.aliases"
           className="aliases"
           {...this.props.Aliases}
-          onUpdate={this.updateAliases}
+          onUpdate={value => { this.updateField('Aliases', value) }}
           required={this.props.required}
           onError={this.props.onError}
           scrollIntoView={this.props.scrollIntoView}>
@@ -622,7 +466,7 @@ export default class ForeignNational extends ValidationElement {
             multiple={true}
             className="citizenship"
             {...this.props.Citizenship}
-            onUpdate={this.updateCitizenship}
+            onUpdate={value => { this.updateField('Citizenship', value) }}
             onError={this.props.onError}
             required={this.props.required}
           />
@@ -638,7 +482,7 @@ export default class ForeignNational extends ValidationElement {
             label={i18n.t('foreign.contacts.label.idk')}
             or={i18n.m('foreign.contacts.para.or')}
             {...this.props.BirthplaceNotApplicable}
-            onUpdate={this.updateBirthplaceNotApplicable}
+            onUpdate={value => { this.updateField('BirthplaceNotApplicable', value) }}
             required={this.props.required}
             onError={this.props.onError}>
             <Location
@@ -649,7 +493,7 @@ export default class ForeignNational extends ValidationElement {
               addressBooks={this.props.addressBooks}
               addressBook="ForeignNational"
               dispatch={this.props.dispatch}
-              onUpdate={this.updateBirthplace}
+              onUpdate={value => { this.updateField('Birthplace', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -667,7 +511,7 @@ export default class ForeignNational extends ValidationElement {
             label={i18n.t('foreign.contacts.label.idk')}
             or={i18n.m('foreign.contacts.para.or')}
             {...this.props.AddressNotApplicable}
-            onUpdate={this.updateAddressNotApplicable}
+            onUpdate={value => { this.updateField('AddressNotApplicable', value) }}
             required={this.props.required}
             onError={this.props.onError}>
             <Location
@@ -679,7 +523,7 @@ export default class ForeignNational extends ValidationElement {
               addressBooks={this.props.addressBooks}
               addressBook="ForeignNational"
               dispatch={this.props.dispatch}
-              onUpdate={this.updateAddress}
+              onUpdate={value => { this.updateField('Address', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -705,14 +549,14 @@ export default class ForeignNational extends ValidationElement {
             label={i18n.t('foreign.contacts.label.idk')}
             or={i18n.m('foreign.contacts.para.or')}
             {...this.props.EmployerNotApplicable}
-            onUpdate={this.updateEmployerNotApplicable}
+            onUpdate={value => { this.updateField('EmployerNotApplicable', value) }}
             required={this.props.required}
             onError={this.props.onError}>
             <Text
               name="Employer"
               className="employer"
               {...this.props.Employer}
-              onUpdate={this.updateEmployer}
+              onUpdate={value => { this.updateField('Employer', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -730,7 +574,7 @@ export default class ForeignNational extends ValidationElement {
             label={i18n.t('foreign.contacts.label.idk')}
             or={i18n.m('foreign.contacts.para.or')}
             {...this.props.EmployerAddressNotApplicable}
-            onUpdate={this.updateEmployerAddressNotApplicable}
+            onUpdate={value => { this.updateField('EmployerAddressNotApplicable', value) }}
             required={this.props.required}
             onError={this.props.onError}>
             <Location
@@ -743,7 +587,7 @@ export default class ForeignNational extends ValidationElement {
               addressBook="Company"
               showPostOffice={true}
               dispatch={this.props.dispatch}
-              onUpdate={this.updateEmployerAddress}
+              onUpdate={value => { this.updateField('EmployerAddress', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -764,7 +608,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.t('foreign.contacts.label.yes')}
               value="Yes"
               className="yes"
-              onUpdate={this.updateHasAffiliations}
+              onUpdate={value => { this.updateField('HasAffiliations', value) }}
               onError={this.props.onError}
             />
             <Radio
@@ -772,7 +616,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.t('foreign.contacts.label.no')}
               value="No"
               className="no"
-              onUpdate={this.updateHasAffiliations}
+              onUpdate={value => { this.updateField('HasAffiliations', value) }}
               onError={this.props.onError}
             />
             <Radio
@@ -780,7 +624,7 @@ export default class ForeignNational extends ValidationElement {
               label={i18n.t('foreign.contacts.label.idk')}
               value="I don't know"
               className="idk"
-              onUpdate={this.updateHasAffiliations}
+              onUpdate={value => { this.updateField('HasAffiliations', value) }}
               onError={this.props.onError}
             />
           </RadioGroup>
@@ -794,7 +638,7 @@ export default class ForeignNational extends ValidationElement {
               name="Affiliations"
               className="affiliations"
               {...this.props.Affiliations}
-              onUpdate={this.updateAffiliations}
+              onUpdate={value => { this.updateField('Affiliations', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />

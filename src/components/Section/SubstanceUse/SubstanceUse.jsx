@@ -1,22 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { i18n } from '../../../config'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { SectionViews, SectionView } from '../SectionView'
-import SectionElement from '../SectionElement'
-import { Field } from '../../Form'
-import NegativeImpacts from './Alcohol/NegativeImpacts'
-import OrderedCounselings from './Alcohol/OrderedCounselings'
-import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
-import ReceivedCounselings from './Alcohol/ReceivedCounselings'
-import DrugUses from './Drugs/DrugUses'
-import DrugInvolvements from './Drugs/DrugInvolvements'
-import DrugClearanceUses from './Drugs/DrugClearanceUses'
-import DrugPublicSafetyUses from './Drugs/DrugPublicSafetyUses'
-import PrescriptionUses from './Drugs/PrescriptionUses'
-import OrderedTreatments from './Drugs/OrderedTreatments'
-import VoluntaryTreatments from './Drugs/VoluntaryTreatments'
+import { i18n } from '@config'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
+import SectionElement from '@components/Section/SectionElement'
+import { Field } from '@components/Form'
+import NegativeImpacts from '@components/Section/SubstanceUse/Alcohol/NegativeImpacts'
+import OrderedCounselings from '@components/Section/SubstanceUse/Alcohol/OrderedCounselings'
+import VoluntaryCounselings from '@components/Section/SubstanceUse/Alcohol/VoluntaryCounselings'
+import ReceivedCounselings from '@components/Section/SubstanceUse/Alcohol/ReceivedCounselings'
+import DrugUses from '@components/Section/SubstanceUse/Drugs/DrugUses'
+import DrugInvolvements from '@components/Section/SubstanceUse/Drugs/DrugInvolvements'
+import DrugClearanceUses from '@components/Section/SubstanceUse/Drugs/DrugClearanceUses'
+import DrugPublicSafetyUses from '@components/Section/SubstanceUse/Drugs/DrugPublicSafetyUses'
+import PrescriptionUses from '@components/Section/SubstanceUse/Drugs/PrescriptionUses'
+import OrderedTreatments from '@components/Section/SubstanceUse/Drugs/OrderedTreatments'
+import VoluntaryTreatments from '@components/Section/SubstanceUse/Drugs/VoluntaryTreatments'
 
 class SubstanceUse extends SectionElement {
   constructor(props) {
@@ -295,6 +294,7 @@ class SubstanceUse extends SectionElement {
           <SectionView
             name="review"
             title={i18n.t('substance.review.title')}
+            para={i18n.m('substance.review.para')}
             back="substance/alcohol/additional"
             backLabel={i18n.t('substance.destination.police.additional')}
             showTop={true}
@@ -610,5 +610,5 @@ export class SubstanceUseSections extends React.Component {
 }
 
 export default withRouter(
-  connect(mapStateToProps)(AuthenticatedView(SubstanceUse))
+  connect(mapStateToProps)(SubstanceUse)
 )

@@ -8,9 +8,7 @@
     {{with $Item := $item.Item}}
     <Contact ID="{{inc $index}}">
       {{ $doNotKnowAddr := notApplicable $Item.AddressNotApplicable }}
-      <Address DoNotKnow="{{$doNotKnowAddr}}">
-        {{location $Item.Address}}
-      </Address>
+      {{address $Item.Address $Item.AddressNotApplicable}}
       <!-- These conditionals are not consistent with SF-86 form or validation matrix, but are consistent with e-QIP -->
       {{if and (isInternational $Item.Address) ($doNotKnowAddr | eq "False")}}
       {{apoFpo $Item.Address $Item.AlternateAddress}}
@@ -81,9 +79,7 @@
         </To>
       </DateRange>
       <Employer>
-        <Address DoNotKnow="{{notApplicable $Item.EmployerAddressNotApplicable}}">
-          {{location $Item.EmployerAddress}}
-        </Address>
+        {{address $Item.EmployerAddress $Item.EmployerAddressNotApplicable}}
         <Comment></Comment>
         <Name DoNotKnow="{{notApplicable $Item.EmployerNotApplicable}}">{{text $Item.Employer}}</Name>
       </Employer>

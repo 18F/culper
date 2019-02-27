@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { navigationWalker } from '../../config'
-import { closest } from '../Form/Generic'
+import { navigationWalker } from '@config'
+import { closest } from '@components/Form/Generic'
 
 /**
  * The error list component.

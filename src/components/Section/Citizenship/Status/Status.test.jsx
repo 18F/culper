@@ -1,7 +1,7 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import Status from './Status'
 
 describe('The status component', () => {
@@ -66,8 +66,8 @@ describe('The status component', () => {
       .find('.document-issued .day input')
       .simulate('change', { target: { name: 'day', value: '1' } })
     component
-      .find('.place-issued .city input')
-      .simulate('change', { target: { name: 'city', value: 'City name' } })
+      .find('.place-issued .no input')
+      .simulate('change')
     component
       .find('.document-name .first input')
       .simulate('change', { target: { name: 'first', value: 'The name' } })
@@ -222,5 +222,140 @@ describe('The status component', () => {
       .find('.document-issued .day input')
       .simulate('change', { target: { name: 'day', value: '1' } })
     expect(updates).toBe(12)
+  })
+
+  describe('derivedAlienRegistrationNumberRequired', () => {
+    it('returns false when not required', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        required: false
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedAlienRegistrationNumberRequired()).toBe(false)
+    })
+    it('returns true when required and other fields not filled', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedAlienRegistrationNumberRequired()).toBe(true)
+    })
+    it('returns false when required and PermanentResidentCardNumber filled in', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        PermanentResidentCardNumber: { value: '1234' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedAlienRegistrationNumberRequired()).toBe(false)
+    })
+    it('returns false when required and CertificateNumber filled in', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        CertificateNumber: { value: '1234' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedAlienRegistrationNumberRequired()).toBe(false)
+    })
+  })
+
+  describe('derivedPermanentResidentCardNumberRequired', () => {
+    it('returns false when not required', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        required: false
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedPermanentResidentCardNumberRequired()).toBe(false)
+    })
+    it('returns true when required and other fields not filled', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedPermanentResidentCardNumberRequired()).toBe(true)
+    })
+    it('returns false when required and PermanentResidentCardNumber filled in', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        AlienRegistrationNumber: { value: '1234' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedPermanentResidentCardNumberRequired()).toBe(false)
+    })
+    it('returns false when required and CertificateNumber filled in', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        CertificateNumber: { value: '1234' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedPermanentResidentCardNumberRequired()).toBe(false)
+    })
+  })
+
+  describe('derivedCertificateNumberRequired', () => {
+    it('returns false when not required', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        required: false
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedCertificateNumberRequired()).toBe(false)
+    })
+    it('returns true when required and other fields not filled', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedCertificateNumberRequired()).toBe(true)
+    })
+    it('returns false when required and PermanentResidentCardNumber filled in', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        AlienRegistrationNumber: { value: '1234' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedCertificateNumberRequired()).toBe(false)
+    })
+    it('returns false when required and CertificateNumber filled in', () => {
+      const expected = {
+        name: 'status',
+        CitizenshipStatus: { value: 'Derived' },
+        PermanentResidentCardNumber: { value: '1234' },
+        required: true
+      }
+      const component = shallow(<Status {...expected} />)
+      const instance = component.instance()
+      expect(instance.derivedCertificateNumberRequired()).toBe(false)
+    })
   })
 })

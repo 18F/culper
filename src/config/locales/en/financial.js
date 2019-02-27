@@ -10,6 +10,20 @@ export const financial = {
   review: {
     para: 'View all the sections associated with identification at once'
   },
+  section: {
+    name: 'Financial record'
+  },
+  subsection: {
+    intro: 'Introduction',
+    bankruptcy: 'Bankruptcy',
+    gambling: 'Gambling',
+    taxes: 'Taxes',
+    card: 'Employer card abuse',
+    credit: 'Credit counseling',
+    delinquent: 'Delinquent payments',
+    nonpayment: 'Non-payment consequence',
+    review: 'Review'
+  },
   destination: {
     intro: 'Financial intro',
     gambling: 'Gambling',
@@ -447,7 +461,7 @@ export const financial = {
   },
   delinquent: {
     title:
-      'Other than previously listed, have any of the following happened to you?',
+      'Other than previously listed, has the following happened to you?',
     para: {
       details:
         'You will be asked to provide details about each financial obligation that pertains to the items identified below.',

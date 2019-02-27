@@ -67,7 +67,7 @@ export default class Multiple extends SubsectionElement {
       <div
         className="section-content multiple"
         {...super.dataAttributes(this.props)}>
-
+        <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
         <Branch
           name="has_multiple"
           label={i18n.t('citizenship.multiple.heading.hasmultiple')}

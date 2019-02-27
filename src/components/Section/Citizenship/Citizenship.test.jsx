@@ -1,59 +1,18 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
-import Citizenship, { CitizenshipSections } from './Citizenship'
-import { testSnapshot } from '../../test-helpers'
+import Citizenship from '@components/Section/Citizenship'
 
 const applicationState = {
   Citizenship: {}
 }
 
-// give a fake GUID so the field IDs don't differ between snapshots
-// https://github.com/facebook/jest/issues/936#issuecomment-404246102
-jest.mock('../../Form/ValidationElement/helpers', () =>
-  Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
-    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
-  })
-)
-
 describe('The citizenship section', () => {
-  // Setup
-  window.token = 'fake-token'
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
-
-  it('hidden when not authenticated', () => {
-    window.token = ''
-    const store = mockStore({
-      authentication: [],
-      application: applicationState
-    })
-    const component = mount(
-      <Provider store={store}>
-        <Citizenship />
-      </Provider>
-    )
-    expect(component.find('div').length).toEqual(0)
-    window.token = 'fake-token'
-  })
-
-  it('visible when authenticated', () => {
-    const store = mockStore({
-      authentication: { authenticated: true, application: applicationState }
-    })
-    const component = mount(
-      <Provider store={store}>
-        <Citizenship />
-      </Provider>
-    )
-    expect(component.find('div').length).toBeGreaterThan(0)
-  })
+  const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
     const component = mount(
       <Provider store={store}>
         <Citizenship subsection="review" />
@@ -64,7 +23,7 @@ describe('The citizenship section', () => {
 
   it('can go to each subsection', () => {
     const sections = ['status', 'multiple']
-    const store = mockStore({ authentication: { authenticated: true } })
+    const store = mockStore({})
 
     sections.forEach(section => {
       const component = mount(
@@ -74,9 +33,5 @@ describe('The citizenship section', () => {
       )
       expect(component.find('div').length).toBeGreaterThan(0)
     })
-  })
-
-  it('renders the CitizenshipSections component', () => {
-    testSnapshot(<CitizenshipSections />)
   })
 })

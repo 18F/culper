@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import ContactInformation from './ContactInformation'
+import { ContactInformation } from './ContactInformation'
 
 describe('The ContactInformation component', () => {
   it('no error on empty', () => {

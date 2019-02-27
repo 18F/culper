@@ -89,9 +89,9 @@ export default class CitizenshipValidator {
     }
 
     return (
-      validGenericTextfield(this.alienRegistrationNumber) &&
-      validGenericTextfield(this.permanentResidentCardNumber) &&
-      validGenericTextfield(this.certificateNumber) &&
+      (validGenericTextfield(this.alienRegistrationNumber) ||
+      validGenericTextfield(this.permanentResidentCardNumber) ||
+      validGenericTextfield(this.certificateNumber)) &&
       new NameValidator(this.certificateName).isValid() &&
       validDateField(this.certificateIssued) &&
       this.validBasis()

@@ -1,5 +1,7 @@
-import { env } from '../config'
-import { api } from '../services/api'
+import queryString from 'query-string'
+import { env } from '@config'
+import { api } from '@services/api'
+import { SF86 } from '@constants/formTypes'
 import AuthConstants from './AuthConstants'
 
 /**
@@ -8,12 +10,21 @@ import AuthConstants from './AuthConstants'
  * home page.
  */
 export function login(username, password) {
+  // TEMP SOUTION FOR DEVELOPMENT
+  // URL param is only available on development and staging
+  let formType
+  if (env.IsDevelopment() || env.IsStaging()) {
+    const params = location.search
+    const query = queryString.parse(params)
+    formType = query.formType ? query.formType : SF86
+  }
+
   return function(dispatch, getState) {
     return api
       .login(username, password)
       .then(response => {
         api.setToken(response.data)
-        dispatch(handleLoginSuccess(response.data))
+        dispatch(handleLoginSuccess(response.data, formType))
         env.History().push('/loading')
       })
       .catch(error => {
@@ -56,16 +67,17 @@ export function tokenError() {
   }
 }
 
-export function handleLoginSuccess(token) {
+export function handleLoginSuccess(token, formType = SF86) {
   return {
     type: AuthConstants.LOGIN_SUCCESS,
-    token: token
+    token,
+    formType
   }
 }
 
 export function handleLoginError(error) {
   return {
     type: AuthConstants.LOGIN_ERROR,
-    error: error
+    error
   }
 }

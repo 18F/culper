@@ -1,21 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { i18n, env, navigationWalker } from '../../../config'
-import { hideHippa } from '../../../validators/releases'
-import { SectionViews, SectionView } from '../SectionView'
-import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import ValidForm from './ValidForm'
-import InvalidForm from './InvalidForm'
-import SubmissionStatus from './SubmissionStatus'
-import Print from './Print'
-import Attachments from './Attachments'
-import { updateApplication } from '../../../actions/ApplicationActions'
+import { i18n, env, navigationWalker } from '@config'
+import { hideHippa } from '@validators/releases'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
+import SectionElement from '@components/Section/SectionElement'
+import ValidForm from '@components/Section/Package/ValidForm'
+import InvalidForm from '@components/Section/Package/InvalidForm'
+import SubmissionStatus from '@components/Section/Package/SubmissionStatus'
+import Print from '@components/Section/Package/Print'
+import Attachments from '@components/Section/Package/Attachments'
+import { updateApplication } from '@actions/ApplicationActions'
 import axios from 'axios'
-import { api } from '../../../services'
-import schema from '../../../schema'
-import { Show } from '../../Form'
+import { api } from '@services'
+import schema from '@schema'
+import { Show } from '@components/Form'
 import queryString from 'query-string'
 
 class Package extends SectionElement {
@@ -321,4 +320,4 @@ Package.defaultProps = {
   store: 'Submission'
 }
 
-export default withRouter(connect(mapStateToProps)(AuthenticatedView(Package)))
+export default withRouter(connect(mapStateToProps)(Package))

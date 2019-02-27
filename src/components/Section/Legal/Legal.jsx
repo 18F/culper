@@ -1,16 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
-import { SectionViews, SectionView } from '../SectionView'
-import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Field } from '../../Form'
-import Offenses from './Police/Offenses'
-import OtherOffenses from './Police/OtherOffenses'
-import DomesticViolenceList from './Police/DomesticViolenceList'
-import { History, Revoked, Debarred } from './Investigations'
-import { Unauthorized, Manipulating, Unlawful } from './Technology'
-import NonCriminalCourtActions from './NonCriminalCourtActions'
+import { i18n } from '@config'
+import { SectionViews, SectionView } from '@components/Section/SectionView'
+import SectionElement from '@components/Section/SectionElement'
+import { Field } from '@components/Form'
+import Offenses from '@components/Section/Legal/Police/Offenses'
+import OtherOffenses from '@components/Section/Legal/Police/OtherOffenses'
+import DomesticViolenceList from '@components/Section/Legal/Police/DomesticViolenceList'
+import { History, Revoked, Debarred } from '@components/Section/Legal/Investigations'
+import { Unauthorized, Manipulating, Unlawful } from '@components/Section/Legal/Technology'
+import NonCriminalCourtActions from '@components/Section/Legal/NonCriminalCourtActions'
 import {
   TerroristOrganization,
   MembershipOverthrow,
@@ -19,7 +18,7 @@ import {
   Advocating,
   ActivitiesToOverthrow,
   TerrorismAssociation
-} from './Associations'
+} from '@components/Section/Legal/Associations'
 
 class Legal extends SectionElement {
   constructor(props) {
@@ -156,9 +155,8 @@ class Legal extends SectionElement {
             backLabel={i18n.t('legal.destination.intro')}
             next="legal/police/offenses"
             nextLabel={i18n.t('legal.destination.offenses')}>
+            <h1 className="section-header">{i18n.t('legal.police.heading.title')}</h1>
             <Field
-              title={i18n.t('legal.police.heading.title')}
-              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('legal.police.para.intro1')}
@@ -998,4 +996,4 @@ export class LegalSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Legal))
+export default connect(mapStateToProps)(Legal)

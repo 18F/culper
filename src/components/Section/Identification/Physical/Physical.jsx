@@ -1,36 +1,44 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Field, Height, Weight, HairColor, EyeColor, Sex } from '../../../Form'
 
-export default class Physical extends SubsectionElement {
+import { i18n } from '@config'
+import schema from '@schema'
+import validate from '@validators'
+
+import { Field, Height, Weight, HairColor, EyeColor, Sex } from '@components/Form'
+
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
+import { IDENTIFICATION, IDENTIFICATION_PHYSICAL } from '@config/formSections/identification'
+
+const sectionConfig = {
+  section: IDENTIFICATION.name,
+  store: IDENTIFICATION.store,
+  subsection: IDENTIFICATION_PHYSICAL.name,
+  storeKey: IDENTIFICATION_PHYSICAL.storeKey,
+}
+
+export class Physical extends Subsection {
   constructor(props) {
     super(props)
 
-    this.state = {
-      Height: props.Height,
-      Weight: props.Weight,
-      HairColor: props.HairColor,
-      EyeColor: props.EyeColor,
-      Sex: props.Sex,
-      Comments: props.Comments
-    }
+    const { section, subsection, store, storeKey } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
   handleUpdate(field, values) {
-    this.setState({ [field]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Height: this.state.Height,
-          Weight: this.state.Weight,
-          HairColor: this.state.HairColor,
-          EyeColor: this.state.EyeColor,
-          Sex: this.state.Sex,
-          Comments: this.state.Comments
-        })
-      }
+    this.props.onUpdate(this.storeKey, {
+      Height: this.props.Height,
+      Weight: this.props.Weight,
+      HairColor: this.props.HairColor,
+      EyeColor: this.props.EyeColor,
+      Sex: this.props.Sex,
+      Comments: this.props.Comments,
+      [field]: values,
     })
   }
 
@@ -39,7 +47,7 @@ export default class Physical extends SubsectionElement {
       ''}`.trim()
 
     return (
-      <div className={klass} {...super.dataAttributes(this.props)}>
+      <div className={klass} {...super.dataAttributes()}>
         <h1 className="section-header">{i18n.t('identification.destination.physical')}</h1>
 
         <Field
@@ -114,7 +122,7 @@ export default class Physical extends SubsectionElement {
           adjustFor="big-buttons"
           shrink={true}
           onUpdate={this.handleUpdate.bind(this, 'Comments')}
-          commentsValue={this.state.Comments}
+          commentsValue={this.props.Comments}
           scrollIntoView={this.props.scrollIntoView}
           comments={true}>
           <Sex
@@ -140,11 +148,11 @@ Physical.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  section: 'identification',
-  subsection: 'physical',
   dispatch: () => {},
   validator: data => {
     return validate(schema('identification.physical', data))
   },
   required: false
 }
+
+export default connectIdentificationSection(Physical, sectionConfig)

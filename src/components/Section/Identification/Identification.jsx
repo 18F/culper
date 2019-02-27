@@ -1,80 +1,83 @@
 import React from 'react'
+import { Route } from 'react-router'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
-import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { addDividers, createPrintSubsectionViews } from '../generators'
-import navigation from './navigation'
 
-class Identification extends SectionElement {
-  getSubsectionProps(subsection) {
-    const props = super.getSubsectionProps(subsection)
-    if (subsection.url === 'contacts') {
-      props.shouldFilterEmptyItems = true
-    }
-    return props
-  }
+import { i18n } from '@config'
 
+import { ErrorList } from '@components/ErrorList'
+import SectionNavigation from '@components/Section/shared/SectionNavigation'
+
+import * as sections from '@constants/sections'
+
+import Intro from '@components/Section/Identification/Intro'
+import ApplicantName from '@components/Section/Identification/ApplicantName'
+import ApplicantBirthDate from '@components/Section/Identification/ApplicantBirthDate'
+import ApplicantBirthPlace from '@components/Section/Identification/ApplicantBirthPlace'
+import ApplicantSSN from '@components/Section/Identification/ApplicantSSN'
+import OtherNames from '@components/Section/Identification/OtherNames'
+import ContactInformation from '@components/Section/Identification/ContactInformation'
+import Physical from '@components/Section/Identification/Physical'
+import Review from '@components/Section/Identification/Review'
+
+/**
+ * TODO
+ * - subsection prop is not defaulting to "intro" after login, this is prob related to keeping redux in sync with routes. Investigate & fix this.
+ */
+
+class Identification extends React.Component {
   render() {
-    return this.createSection(navigation, 'history')
+    const subsection = this.props.subsection || 'intro'
+
+    const subsectionClasses = `view view-${subsection || 'unknown'}`
+
+    const isReview = subsection === 'review'
+    const title = isReview && i18n.t('review.title')
+    const para = isReview && i18n.m('review.para')
+
+    /** TODO - this should come from Redux store */
+    const formType = 'SF86'
+
+    return (
+      <div className="section-view">
+        {title && <h1 className="title">{title}</h1>}
+        {para}
+
+        <div className={subsectionClasses}>
+          {isReview && (
+            <div className="top-btns"><ErrorList /></div>
+          )}
+
+          <Route path="/form/identification/intro" component={Intro} />
+          <Route path="/form/identification/name" component={ApplicantName} />
+          <Route path="/form/identification/birthdate" component={ApplicantBirthDate} />
+          <Route path="/form/identification/birthplace" component={ApplicantBirthPlace} />
+          <Route path="/form/identification/ssn" component={ApplicantSSN} />
+          <Route path="/form/identification/othernames" component={OtherNames} />
+          <Route path="/form/identification/contacts" component={ContactInformation} />
+          <Route path="/form/identification/physical" component={Physical} />
+          <Route path="/form/identification/review" component={Review} />
+
+          <SectionNavigation
+            section={sections.IDENTIFICATION}
+            subsection={subsection}
+            formType={formType} />
+        </div>
+      </div>
+    )
   }
 }
 
 function mapStateToProps(state) {
-  const app = state.application || {}
-  const identification = app.Identification || {}
-  const errors = app.Errors || {}
-  const completed = app.Completed || {}
+  const { section } = state
   return {
-    Identification: identification,
-    ApplicantName: identification.ApplicantName || {},
-    ApplicantBirthDate: identification.ApplicantBirthDate || {},
-    ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
-    ApplicantSSN: identification.ApplicantSSN || {},
-    OtherNames: identification.OtherNames || {},
-    Contacts: identification.Contacts || {},
-    Physical: identification.Physical || {},
-    Errors: errors.identification || [],
-    Completed: completed.identification || []
+    ...section,
   }
 }
 
 Identification.defaultProps = {
-  section: 'identification',
-  store: 'Identification'
+  subsection: 'intro',
 }
 
-export class IdentificationSections extends React.Component {
-  getSubsectionProps(subsection) {
-    const extraProps = {
-      ...this.props[subsection.store],
-      dispatch: this.props.dispatch,
-      onError: this.props.onError
-    }
+export default connect(mapStateToProps)(Identification)
 
-    switch (subsection.url) {
-      case 'contacts':
-        extraProps.defaultState = false
-        extraProps.shouldFilterEmptyItems = true
-        break
-      case 'othernames':
-        extraProps.defaultState = false
-    }
-
-    return extraProps
-  }
-
-  createSubsections() {
-    return createPrintSubsectionViews(navigation, subsection => {
-      return this.getSubsectionProps(subsection)
-    })
-  }
-
-  render() {
-    const components = addDividers(this.createSubsections())
-
-    return <div>{components}</div>
-  }
-}
-
-export default connect(mapStateToProps)(AuthenticatedView(Identification))
+export const IdentificationSections = () => <Review />
