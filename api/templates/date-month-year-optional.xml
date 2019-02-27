@@ -1,0 +1,6 @@
+{{$dnk := notApplicable .DoNotKnow}}
+<Date Type="{{dateEstimated .Date}}" DoNotKnow="{{$dnk}}">
+  {{if $dnk | ne "True"}}
+    <Month>{{padDigits .Date.props.month}}</Month><Year>{{.Date.props.year}}</Year>
+  {{end}}
+</Date>
