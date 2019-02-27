@@ -1,5 +1,5 @@
-import HistoryEmploymentValidator, { EmploymentValidator } from '@validators/employment'
-import Location from '@components/Form/Location'
+import HistoryEmploymentValidator, { EmploymentValidator } from 'validators/employment'
+import Location from 'components/Form/Location'
 
 describe('Employment component validation', function() {
   it('should validate active military, national guard and USPHS', function() {

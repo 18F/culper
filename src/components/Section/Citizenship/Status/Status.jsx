@@ -1,9 +1,9 @@
 import React from 'react'
-import { i18n } from '@config'
-import { alphaNumericRegEx, validGenericTextfield } from '@validators/helpers'
-import schema from '@schema'
-import validate from '@validators'
-import SubsectionElement from '@components/Section/SubsectionElement'
+import { i18n } from 'config'
+import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
+import schema from 'schema'
+import validate from 'validators'
+import SubsectionElement from 'components/Section/SubsectionElement'
 import {
   Branch,
   Show,
@@ -16,7 +16,7 @@ import {
   DateControl,
   Country,
   Location
-} from '@components/Form'
+} from 'components/Form'
 
 export default class Status extends SubsectionElement {
   update = (queue) => {

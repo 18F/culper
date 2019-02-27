@@ -2,8 +2,8 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
-import Foreign from '@components/Section/Foreign/Foreign'
-import Passport from '@components/Section/Foreign/Passport'
+import Foreign from 'components/Section/Foreign/Foreign'
+import Passport from 'components/Section/Foreign/Passport'
 import { mount } from 'enzyme'
 
 const applicationState = {

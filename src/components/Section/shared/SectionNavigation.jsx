@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { i18n, env } from '@config'
-import * as formTypeConfig from '@config/formTypes'
+import { i18n, env } from 'config'
+import * as formTypeConfig from 'config/formTypes'
 
-import * as sections from '@constants/sections'
+import * as sections from 'constants/sections'
 
 import SectionNavButton from './SectionNavButton'
 

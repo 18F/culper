@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 
-import { i18n } from '@config'
+import { i18n } from 'config'
 import {
   sectionsTotal,
   sectionsCompleted
-} from '@components/Navigation/navigation-helpers'
+} from 'components/Navigation/navigation-helpers'
 
 class ScoreCard extends React.Component {
   render() {

@@ -3,19 +3,6 @@
     "plugins": [
         ["module-resolver", {
             "root": "./src",
-            "alias": {
-                "@actions": "./src/actions",
-                "@components": "./src/components",
-                "@config": "./src/config",
-                "@constants": "./src/constants",
-                "@img": "./src/img",
-                "@plugins": "./src/plugins",
-                "@reducers": "./src/reducers",
-                "@schema": "./src/schema",
-                "@services": "./src/services",
-                "@validators": "./src/validators",
-                "@views": "./src/views"
-            }
         }],
 	"transform-class-properties"
     ]

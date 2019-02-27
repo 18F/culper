@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { i18n } from '@config'
+import { i18n } from 'config'
 
 import {
   IdentificationContactInformationValidator,
   ContactPhoneNumberValidator
-} from '@validators'
+} from 'validators'
 
 import {
   Field,
@@ -13,13 +13,13 @@ import {
   Accordion,
   AccordionItem,
   Telephone
-} from '@components/Form'
-import { Summary, TelephoneSummary } from '@components/Summary'
+} from 'components/Form'
+import { Summary, TelephoneSummary } from 'components/Summary'
 
 import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
 
-import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from '@config/formSections/identification'
+import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from 'config/formSections/identification'
 
 const sectionConfig = {
   section: IDENTIFICATION.name,

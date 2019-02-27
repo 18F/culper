@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Legal from '@components/Section/Legal/Legal'
+import Legal from 'components/Section/Legal/Legal'
 
 const applicationState = {
   Legal: {}
