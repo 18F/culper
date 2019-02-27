@@ -11662,7 +11662,7 @@ exports[`The section component renders identification.birthdate 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-birthdate"
   >
     <div
       className="section-content birthdate"
@@ -11910,17 +11910,47 @@ exports[`The section component renders identification.birthdate 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <button
+            aria-label="Go to previous section Full name"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Full name"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Full name
+                </div>
+              </div>
+            </div>
+          </button>
           <div
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Full name"
+            aria-label="Go to next section Place of birth"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Full name"
+            title="Go to next section Place of birth"
           >
             <div
               className="actions next"
@@ -11936,7 +11966,7 @@ exports[`The section component renders identification.birthdate 1`] = `
                 <div
                   className="label"
                 >
-                  Full name
+                  Place of birth
                 </div>
               </div>
               <div
@@ -11961,7 +11991,7 @@ exports[`The section component renders identification.birthplace 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-birthplace"
   >
     <div
       className="section-content applicant-birthplace"
@@ -12162,17 +12192,47 @@ exports[`The section component renders identification.birthplace 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <button
+            aria-label="Go to previous section Date of birth"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Date of birth"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Date of birth
+                </div>
+              </div>
+            </div>
+          </button>
           <div
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Full name"
+            aria-label="Go to next section Social security number"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Full name"
+            title="Go to next section Social security number"
           >
             <div
               className="actions next"
@@ -12188,7 +12248,7 @@ exports[`The section component renders identification.birthplace 1`] = `
                 <div
                   className="label"
                 >
-                  Full name
+                  Social security number
                 </div>
               </div>
               <div
@@ -12213,7 +12273,7 @@ exports[`The section component renders identification.contacts 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-contacts"
   >
     <div
       className="section-content contact"
@@ -12623,17 +12683,47 @@ exports[`The section component renders identification.contacts 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <button
+            aria-label="Go to previous section Other names used"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Other names used"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Other names used
+                </div>
+              </div>
+            </div>
+          </button>
           <div
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Full name"
+            aria-label="Go to next section Your identifying information"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Full name"
+            title="Go to next section Your identifying information"
           >
             <div
               className="actions next"
@@ -12649,7 +12739,7 @@ exports[`The section component renders identification.contacts 1`] = `
                 <div
                   className="label"
                 >
-                  Full name
+                  Your identifying information
                 </div>
               </div>
               <div
@@ -12792,7 +12882,7 @@ exports[`The section component renders identification.name 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-name"
   >
     <div
       className="section-content applicant-name"
@@ -13382,17 +13472,47 @@ exports[`The section component renders identification.name 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <button
+            aria-label="Go to previous section Identification intro"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Identification intro"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Identification intro
+                </div>
+              </div>
+            </div>
+          </button>
           <div
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Full name"
+            aria-label="Go to next section Date of birth"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Full name"
+            title="Go to next section Date of birth"
           >
             <div
               className="actions next"
@@ -13408,7 +13528,7 @@ exports[`The section component renders identification.name 1`] = `
                 <div
                   className="label"
                 >
-                  Full name
+                  Date of birth
                 </div>
               </div>
               <div
@@ -13433,7 +13553,7 @@ exports[`The section component renders identification.othernames 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-othernames"
   >
     <div
       className="section-content other-names"
@@ -13643,17 +13763,47 @@ exports[`The section component renders identification.othernames 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <button
+            aria-label="Go to previous section Social security number"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Social security number"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Social security number
+                </div>
+              </div>
+            </div>
+          </button>
           <div
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Full name"
+            aria-label="Go to next section Your contact information"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Full name"
+            title="Go to next section Your contact information"
           >
             <div
               className="actions next"
@@ -13669,7 +13819,7 @@ exports[`The section component renders identification.othernames 1`] = `
                 <div
                   className="label"
                 >
-                  Full name
+                  Your contact information
                 </div>
               </div>
               <div
@@ -13694,7 +13844,7 @@ exports[`The section component renders identification.physical 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-physical"
   >
     <div
       className="section-content physical"
@@ -15335,17 +15485,47 @@ exports[`The section component renders identification.physical 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <button
+            aria-label="Go to previous section Your contact information"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Your contact information"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Your contact information
+                </div>
+              </div>
+            </div>
+          </button>
           <div
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Full name"
+            aria-label="Go to next section Review Identification"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Full name"
+            title="Go to next section Review Identification"
           >
             <div
               className="actions next"
@@ -15361,7 +15541,7 @@ exports[`The section component renders identification.physical 1`] = `
                 <div
                   className="label"
                 >
-                  Full name
+                  Review Identification
                 </div>
               </div>
               <div
@@ -15385,9 +15565,22 @@ exports[`The section component renders identification.review 1`] = `
 <div
   className="section-view"
 >
-  <div
-    className="view view-intro"
+  <h1
+    className="title"
   >
+    Review your answers
+  </h1>
+  <div>
+    <p>
+      View the full section to make sure everything looks right and make changes if needed.
+    </p>
+  </div>
+  <div
+    className="view view-review"
+  >
+    <div
+      className="top-btns"
+    />
     <div>
       <div
         className="section-content applicant-name"
@@ -19122,17 +19315,47 @@ exports[`The section component renders identification.review 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <button
+            aria-label="Go to previous section Your identifying information"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Your identifying information"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Your identifying information
+                </div>
+              </div>
+            </div>
+          </button>
           <div
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Full name"
+            aria-label="Go to next section History intro"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Full name"
+            title="Go to next section History intro"
           >
             <div
               className="actions next"
@@ -19148,7 +19371,7 @@ exports[`The section component renders identification.review 1`] = `
                 <div
                   className="label"
                 >
-                  Full name
+                  History intro
                 </div>
               </div>
               <div
@@ -19173,7 +19396,7 @@ exports[`The section component renders identification.ssn 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-ssn"
   >
     <div
       className="section-content applicant-ssn"
@@ -19397,17 +19620,47 @@ exports[`The section component renders identification.ssn 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <button
+            aria-label="Go to previous section Place of birth"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Place of birth"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Place of birth
+                </div>
+              </div>
+            </div>
+          </button>
           <div
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Full name"
+            aria-label="Go to next section Other names used"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Full name"
+            title="Go to next section Other names used"
           >
             <div
               className="actions next"
@@ -19423,7 +19676,7 @@ exports[`The section component renders identification.ssn 1`] = `
                 <div
                   className="label"
                 >
-                  Full name
+                  Other names used
                 </div>
               </div>
               <div
@@ -23371,7 +23624,7 @@ exports[`The section component renders military.disciplinary 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-disciplinary"
   >
     <div
       className="section-content disciplinary"
@@ -23504,10 +23757,10 @@ exports[`The section component renders military.disciplinary 1`] = `
           className="btn-container"
         >
           <button
-            aria-label="Go to previous section Review Relationships"
+            aria-label="Go to previous section Review citizenship"
             className="btn-cell back"
             onClick={[Function]}
-            title="Go to previous section Review Relationships"
+            title="Go to previous section Review citizenship"
           >
             <div
               className="actions back"
@@ -23531,7 +23784,7 @@ exports[`The section component renders military.disciplinary 1`] = `
                 <div
                   className="label"
                 >
-                  Review Relationships
+                  Review citizenship
                 </div>
               </div>
             </div>
@@ -23540,10 +23793,10 @@ exports[`The section component renders military.disciplinary 1`] = `
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Selective service record"
+            aria-label="Go to next section Military intro"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Selective service record"
+            title="Go to next section Military intro"
           >
             <div
               className="actions next"
@@ -23559,7 +23812,7 @@ exports[`The section component renders military.disciplinary 1`] = `
                 <div
                   className="label"
                 >
-                  Selective service record
+                  Military intro
                 </div>
               </div>
               <div
@@ -23584,7 +23837,7 @@ exports[`The section component renders military.foreign 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-foreign"
   >
     <div
       className="section-content foreign"
@@ -23721,10 +23974,10 @@ exports[`The section component renders military.foreign 1`] = `
           className="btn-container"
         >
           <button
-            aria-label="Go to previous section Review Relationships"
+            aria-label="Go to previous section U.S. military"
             className="btn-cell back"
             onClick={[Function]}
-            title="Go to previous section Review Relationships"
+            title="Go to previous section U.S. military"
           >
             <div
               className="actions back"
@@ -23748,7 +24001,7 @@ exports[`The section component renders military.foreign 1`] = `
                 <div
                   className="label"
                 >
-                  Review Relationships
+                  U.S. military
                 </div>
               </div>
             </div>
@@ -23757,10 +24010,10 @@ exports[`The section component renders military.foreign 1`] = `
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Selective service record"
+            aria-label="Go to next section Review military history"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Selective service record"
+            title="Go to next section Review military history"
           >
             <div
               className="actions next"
@@ -23776,7 +24029,7 @@ exports[`The section component renders military.foreign 1`] = `
                 <div
                   className="label"
                 >
-                  Selective service record
+                  Review military history
                 </div>
               </div>
               <div
@@ -23801,7 +24054,7 @@ exports[`The section component renders military.history 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-history"
   >
     <div
       className="section-content military-history"
@@ -23958,10 +24211,10 @@ exports[`The section component renders military.history 1`] = `
           className="btn-container"
         >
           <button
-            aria-label="Go to previous section Review Relationships"
+            aria-label="Go to previous section Selective service record"
             className="btn-cell back"
             onClick={[Function]}
-            title="Go to previous section Review Relationships"
+            title="Go to previous section Selective service record"
           >
             <div
               className="actions back"
@@ -23985,7 +24238,7 @@ exports[`The section component renders military.history 1`] = `
                 <div
                   className="label"
                 >
-                  Review Relationships
+                  Selective service record
                 </div>
               </div>
             </div>
@@ -23994,10 +24247,10 @@ exports[`The section component renders military.history 1`] = `
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Selective service record"
+            aria-label="Go to next section Foreign military"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Selective service record"
+            title="Go to next section Foreign military"
           >
             <div
               className="actions next"
@@ -24013,7 +24266,7 @@ exports[`The section component renders military.history 1`] = `
                 <div
                   className="label"
                 >
-                  Selective service record
+                  Foreign military
                 </div>
               </div>
               <div
@@ -24106,10 +24359,10 @@ exports[`The section component renders military.intro 1`] = `
           className="btn-container"
         >
           <button
-            aria-label="Go to previous section Review Relationships"
+            aria-label="Go to previous section Review citizenship"
             className="btn-cell back"
             onClick={[Function]}
-            title="Go to previous section Review Relationships"
+            title="Go to previous section Review citizenship"
           >
             <div
               className="actions back"
@@ -24133,7 +24386,7 @@ exports[`The section component renders military.intro 1`] = `
                 <div
                   className="label"
                 >
-                  Review Relationships
+                  Review citizenship
                 </div>
               </div>
             </div>
@@ -24185,9 +24438,22 @@ exports[`The section component renders military.review 1`] = `
 <div
   className="section-view"
 >
-  <div
-    className="view view-intro"
+  <h1
+    className="title"
   >
+    Review your answers
+  </h1>
+  <div>
+    <p>
+      View the full section to make sure everything looks right and make changes if needed.
+    </p>
+  </div>
+  <div
+    className="view view-review"
+  >
+    <div
+      className="top-btns"
+    />
     <div>
       <div
         className="section-content military-history"
@@ -24514,10 +24780,10 @@ exports[`The section component renders military.review 1`] = `
           className="btn-container"
         >
           <button
-            aria-label="Go to previous section Review Relationships"
+            aria-label="Go to previous section Foreign military"
             className="btn-cell back"
             onClick={[Function]}
-            title="Go to previous section Review Relationships"
+            title="Go to previous section Foreign military"
           >
             <div
               className="actions back"
@@ -24541,7 +24807,7 @@ exports[`The section component renders military.review 1`] = `
                 <div
                   className="label"
                 >
-                  Review Relationships
+                  Foreign military
                 </div>
               </div>
             </div>
@@ -24550,10 +24816,10 @@ exports[`The section component renders military.review 1`] = `
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Selective service record"
+            aria-label="Go to next section Foreign intro"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Selective service record"
+            title="Go to next section Foreign intro"
           >
             <div
               className="actions next"
@@ -24569,7 +24835,7 @@ exports[`The section component renders military.review 1`] = `
                 <div
                   className="label"
                 >
-                  Selective service record
+                  Foreign intro
                 </div>
               </div>
               <div
@@ -24594,7 +24860,7 @@ exports[`The section component renders military.selective 1`] = `
   className="section-view"
 >
   <div
-    className="view view-intro"
+    className="view view-selective"
   >
     <div
       className="section-content selective"
@@ -24751,10 +25017,10 @@ exports[`The section component renders military.selective 1`] = `
           className="btn-container"
         >
           <button
-            aria-label="Go to previous section Review Relationships"
+            aria-label="Go to previous section Military intro"
             className="btn-cell back"
             onClick={[Function]}
-            title="Go to previous section Review Relationships"
+            title="Go to previous section Military intro"
           >
             <div
               className="actions back"
@@ -24778,7 +25044,7 @@ exports[`The section component renders military.selective 1`] = `
                 <div
                   className="label"
                 >
-                  Review Relationships
+                  Military intro
                 </div>
               </div>
             </div>
@@ -24787,10 +25053,10 @@ exports[`The section component renders military.selective 1`] = `
             className="btn-spacer"
           />
           <button
-            aria-label="Go to next section Selective service record"
+            aria-label="Go to next section U.S. military"
             className="btn-cell next"
             onClick={[Function]}
-            title="Go to next section Selective service record"
+            title="Go to next section U.S. military"
           >
             <div
               className="actions next"
@@ -24806,7 +25072,7 @@ exports[`The section component renders military.selective 1`] = `
                 <div
                   className="label"
                 >
-                  Selective service record
+                  U.S. military
                 </div>
               </div>
               <div
