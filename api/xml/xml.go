@@ -67,7 +67,6 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"foreignDocType":         foreignDocType,
 		"foreignAffiliation":     foreignAffiliation,
 		"frequencyType":          frequencyType,
-		"monthYearDaterange":     monthYearDaterange,
 		"email":                  email,
 		"employmentType":         employmentType,
 		"hairType":               hairType,
@@ -81,6 +80,8 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"militaryAddress":        militaryAddress,
 		"militaryStatus":         militaryStatus,
 		"monthYear":              monthYear,
+		"monthYearOptional":      monthYearOptional,
+		"monthYearDaterange":     monthYearDaterange,
 		"name":                   name,
 		"nameLastFirst":          nameLastFirst,
 		"notApplicable":          notApplicable,
@@ -782,6 +783,19 @@ func date(data map[string]interface{}) (template.HTML, error) {
 		"padDigits": padDigits,
 	}
 	return xmlTemplateWithFuncs("date-month-day-year.xml", data, fmap)
+}
+
+func monthYearOptional(d, dnk map[string]interface{}) (template.HTML, error) {
+	view := make(map[string]interface{})
+	view["Date"] = d
+	view["DoNotKnow"] = dnk
+
+	fmap := template.FuncMap{
+		"dateEstimated": dateEstimated,
+		"notApplicable": notApplicable,
+		"padDigits":     padDigits,
+	}
+	return xmlTemplateWithFuncs("date-month-year-optional.xml", view, fmap)
 }
 
 func monthYear(data map[string]interface{}) (template.HTML, error) {

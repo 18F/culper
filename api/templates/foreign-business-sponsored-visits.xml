@@ -11,13 +11,7 @@
       </Address>
     </AddressWhileInUS>
     <Birth>
-      {{if notApplicable $Item.BirthdateNotApplicable | eq "True"}}
-      <Date DoNotKnow="True" />
-      {{else}}
-      <Date Type="{{dateEstimated $Item.Birthdate}}">
-        {{monthYear $Item.Birthdate}}
-      </Date>
-      {{end}}
+      {{monthYearOptional $Item.Birthdate $Item.BirthdateNotApplicable}}
       <Place>
         {{location $Item.Birthplace}}
         {{if $Item.Birthplace.props.country | eq "United States"}}
