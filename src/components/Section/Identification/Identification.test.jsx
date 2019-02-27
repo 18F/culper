@@ -2,55 +2,63 @@ import React from 'react'
 import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Identification, { IdentificationSections } from '@components/Section/Identification/Identification'
 import { mount } from 'enzyme'
-import { testSnapshot } from '@components/test-helpers'
+
+import { testSnapshot } from 'components/test-helpers'
+import Identification, { IdentificationSections } from 'components/Section/Identification/Identification'
 
 const applicationState = {
   Identification: {
     Contacts: {
-      PhoneNumbers: { items: [] }
-    }
-  }
+      PhoneNumbers: { items: [] },
+    },
+  },
 }
 
 // give a fake GUID so the field IDs don't differ between snapshots
 // https://github.com/facebook/jest/issues/936#issuecomment-404246102
-jest.mock('../../Form/ValidationElement/helpers', () =>
+jest.mock('../../Form/ValidationElement/helpers', () => (
   Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
-    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
+    newGuid: jest.fn().mockReturnValue('MOCK-GUID'),
   })
-)
+))
 
 describe('The identification section', () => {
   const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
     const store = mockStore({
-      application: applicationState
+      application: applicationState,
+      authentication: { formType: 'SF86' },
     })
+
     const component = mount(
       <MemoryRouter initialEntries={['/form/identification/review']}>
         <Provider store={store}>
           <Identification subsection="review" />
         </Provider>
-      </MemoryRouter>
+      </MemoryRouter>,
     )
+
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can go to each subsection', () => {
     const sections = ['name', 'birthdate', 'birthplace', 'ssn']
-    const store = mockStore({})
+    const store = mockStore({
+      application: applicationState,
+      authentication: { formType: 'SF86' },
+    })
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       const component = mount(
-        <MemoryRouter initialEntries={[`/form/identification/${section}`]} >
+        <MemoryRouter initialEntries={[`/form/identification/${section}`]}>
           <Provider store={store}>
             <Identification subsection={section} />
           </Provider>
-        </MemoryRouter>
+        </MemoryRouter>,
       )
+
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })
