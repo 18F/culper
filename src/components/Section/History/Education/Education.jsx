@@ -1,19 +1,18 @@
 import React from 'react'
-import { i18n } from '@config'
+import { i18n } from 'config'
+import { HISTORY, HISTORY_EDUCATION } from 'config/formSections/history'
 
-import schema from '@schema'
-import validate, { EducationItemValidator } from '@validators'
+import schema from 'schema'
+import validate, { EducationItemValidator } from 'validators'
 
-import Subsection from '@components/Section/shared/Subsection'
+import Subsection from 'components/Section/shared/Subsection'
+import { Accordion } from 'components/Form'
+import { openState } from 'components/Form/Accordion/Accordion'
+
 import connectHistorySection from '../HistoryConnector'
-
-import { Accordion } from '@components/Form'
-import { openState } from '@components/Form/Accordion/Accordion'
 
 import { EducationCustomSummary } from '../summaries'
 import EducationItem from './EducationItem'
-
-import { HISTORY, HISTORY_EDUCATION } from '@config/formSections/history'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -25,18 +24,20 @@ const sectionConfig = {
 const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
     // If item is required and not currently opened and is not valid, show message
-  case required && !item.open && !validator(item.Item):
-  case !item.open && !initial && item.Item && !validator(item.Item):
-    return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
-            <div className="usa-alert usa-alert-error" role="alert">
-              <div className="usa-alert-body">
-                <h5 className="usa-alert-heading">{i18n.m(translation)}</h5>
-              </div>
+    case required && !item.open && !validator(item.Item):
+    case !item.open && !initial && item.Item && !validator(item.Item):
+      return (
+        <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+          <div className="usa-alert usa-alert-error" role="alert">
+            <div className="usa-alert-body">
+              <h5 className="usa-alert-heading">{i18n.m(translation)}</h5>
             </div>
-            </div>
-           )
-  default:
-    return null
+          </div>
+        </div>
+      )
+
+    default:
+      return null
   }
 }
 
@@ -44,17 +45,17 @@ export class Education extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
-
-    this.customEducationByline = this.customEducationByline.bind(this)
   }
 
-  customEducationByline(item, index, initial) {
+  customEducationByline = (item, index, initial) => {
     const overrideInitial = this.props.overrideInitial ? false : initial
 
     return byline(
@@ -63,9 +64,7 @@ export class Education extends Subsection {
       overrideInitial,
       'history.education.collection.school.summary.incomplete',
       this.props.required,
-      item => {
-        return new EducationItemValidator(item).isValid()
-      }
+      i => new EducationItemValidator(i).isValid(),
     )
   }
 
@@ -73,7 +72,8 @@ export class Education extends Subsection {
     return (
       <div
         className="section-content education"
-        {...super.dataAttributes()}>
+        {...super.dataAttributes()}
+      >
         <Accordion
           scrollToTop={this.props.scrollToTop}
           defaultState={this.props.defaultState}
@@ -86,14 +86,15 @@ export class Education extends Subsection {
           byline={this.customEducationByline}
           customSummary={EducationCustomSummary}
           description={i18n.t(
-            'history.education.collection.school.summary.title'
+            'history.education.collection.school.summary.title',
           )}
           appendTitle={i18n.t(
-            'history.education.collection.school.appendTitle'
+            'history.education.collection.school.appendTitle',
           )}
           appendLabel={i18n.t('history.education.collection.school.append')}
           required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <EducationItem
             bind
             name="Item"
@@ -116,20 +117,14 @@ Education.defaultProps = {
   realtime: false,
   sort: null,
   totalYears: 10,
-  overrideInitial: initial => {
-    return initial
-  },
+  overrideInitial: initial => initial,
   caption: null,
   onUpdate: () => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   section: 'history',
   subsection: 'education',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('history.education', data))
-  }
+  validator: data => validate(schema('history.education', data)),
 }
 
 export default connectHistorySection(Education, sectionConfig)

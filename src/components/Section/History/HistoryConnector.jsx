@@ -5,32 +5,36 @@ import { connect } from 'react-redux'
 import {
   updateApplication,
   reportErrors,
-} from '@actions/ApplicationActions'
+} from 'actions/ApplicationActions'
 
-import { totalYears, sort } from '@components/Section/History/helpers'
-import { utc } from '@components/Section/History/dateranges'
+import { totalYears, sort } from 'components/Section/History/helpers'
+import { utc } from 'components/Section/History/dateranges'
 
-const connectHistorySection = (Component, { section, subsection, store, storeKey }) => {
+const connectHistorySection = (Component, {
+  section, subsection, store, storeKey,
+}) => {
   class ConnectedHistorySection extends React.Component {
     constructor(props) {
       super(props)
-  
+
       this.section = section
       this.subsection = subsection
       this.store = store
     }
 
     handleError = (value, arr) => {
+      const { dispatch } = this.props
       const action = reportErrors(this.section, this.subsection, arr)
-      this.props.dispatch(action)
+      dispatch(action)
       return arr
     }
-  
+
     handleUpdate = (field, values) => {
-      this.props.dispatch(updateApplication(this.store, field, values))
+      const { dispatch } = this.props
+      dispatch(updateApplication(this.store, field, values))
     }
 
-    render () {
+    render() {
       const { Birthdate } = this.props
 
       const totalYearsProp = totalYears(Birthdate)
@@ -41,23 +45,28 @@ const connectHistorySection = (Component, { section, subsection, store, storeKey
           onError={this.handleError}
           totalYears={totalYearsProp}
           sort={sort}
-          {...this.props} />
+          {...this.props}
+        />
       )
     }
   }
 
+  /* eslint react/forbid-prop-types: 0 */
   ConnectedHistorySection.propTypes = {
     Birthdate: PropTypes.any,
-    update: PropTypes.func,
-    validator: PropTypes.func,
     dispatch: PropTypes.func, // Passed in via connect (below)
   }
 
-  const processDate = date => {
+  ConnectedHistorySection.defaultProps = {
+    Birthdate: null,
+    dispatch: () => {},
+  }
+
+  const processDate = (date) => {
     if (!date) {
       return null
     }
-  
+
     let d = null
     const { month, day, year } = date.Date
     if (month && day && year) {

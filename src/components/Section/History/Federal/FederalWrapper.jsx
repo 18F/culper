@@ -1,21 +1,17 @@
 import React from 'react'
 
-import { i18n } from '@config'
+import { i18n } from 'config'
 
-import Federal from './Federal'
+import ConnectedFederal from './Federal'
 
-class FederalWrapper extends React.Component {
-  render () {
-    return (
-      <div>
-        <h1 className="section-header">
-          {i18n.t('history.destination.federal')}
-        </h1>
+const FederalWrapper = () => (
+  <div>
+    <h1 className="section-header">
+      {i18n.t('history.destination.federal')}
+    </h1>
 
-        <Federal />
-      </div>
-    )
-  }
-}
+    <ConnectedFederal />
+  </div>
+)
 
 export default FederalWrapper

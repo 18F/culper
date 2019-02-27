@@ -5,46 +5,49 @@ import { connect } from 'react-redux'
 import {
   updateApplication,
   reportErrors,
-} from '@actions/ApplicationActions'
+} from 'actions/ApplicationActions'
 
-const connectIdentificationSection = (Component, { section, subsection, store, storeKey }) => {
+const connectIdentificationSection = (Component, {
+  section, subsection, store, storeKey,
+}) => {
   class ConnectedIdentificationSection extends React.Component {
     constructor(props) {
       super(props)
-  
+
       this.section = section
       this.subsection = subsection
       this.store = store
-
-      this.handleError = this.handleError.bind(this)
-      this.handleUpdate = this.handleUpdate.bind(this)
     }
 
-    handleError(value, arr) {
+    handleError = (value, arr) => {
+      const { dispatch } = this.props
       const action = reportErrors(this.section, this.subsection, arr)
-      this.props.dispatch(action)
+      dispatch(action)
       return arr
     }
-  
-    handleUpdate(field, values) {
-      this.props.dispatch(updateApplication(this.store, field, values))
+
+    handleUpdate = (field, values) => {
+      const { dispatch } = this.props
+      dispatch(updateApplication(this.store, field, values))
     }
 
-    render () {
+    render() {
       return (
         <Component
           onUpdate={this.handleUpdate}
           onError={this.handleError}
-          {...this.props} />
+          {...this.props}
+        />
       )
     }
   }
 
   ConnectedIdentificationSection.propTypes = {
-    Comments: PropTypes.object,
-    update: PropTypes.func,
-    validator: PropTypes.func,
     dispatch: PropTypes.func, // Passed in via connect (below)
+  }
+
+  ConnectedIdentificationSection.defaultProps = {
+    dispatch: () => {},
   }
 
   const mapStateToProps = (state) => {
@@ -86,7 +89,7 @@ const connectIdentificationSection = (Component, { section, subsection, store, s
           Contacts: identification.Contacts || {},
           Physical: identification.Physical || {},
           Errors: errors.identification || [],
-          Completed: completed.identification || []
+          Completed: completed.identification || [],
         }
     }
   }

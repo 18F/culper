@@ -1,27 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import { i18n } from '@config'
+import { i18n } from 'config'
 
-import SummaryCounter from '@components/Section/History/SummaryCounter'
-import SummaryProgress from '@components/Section/History/SummaryProgress'
+import SummaryCounter from 'components/Section/History/SummaryCounter'
+import { totalYears } from 'components/Section/History/helpers'
+import { Svg } from 'components/Form'
 
-import { totalYears } from '@components/Section/History/helpers'
-
-import { Svg } from '@components/Form'
-import { EducationItemValidator } from '@validators'
+import { EducationItemValidator } from 'validators'
 
 const schoolRangesList = (items) => {
   const dates = []
 
-  for (const i of items) {
+  items.forEach((i) => {
     if (!i.Item || !i.Item.Dates || !i.Item.Dates.to || !i.Item.Dates.from) {
-      continue
+      return
     }
 
     if (new EducationItemValidator(i.Item).isValid()) {
       dates.push(i.Item.Dates)
     }
-  }
+  })
 
   return dates
 }
@@ -29,23 +28,21 @@ const schoolRangesList = (items) => {
 const diplomasRangesList = (items) => {
   const dates = []
 
-  for (const i of items) {
-    if (!i.Item) { continue }
+  items.forEach((i) => {
+    if (!i.Item) { return }
 
     if (!new EducationItemValidator(i.Item).isValid()) {
-      continue
+      return
     }
 
     if (i.Item.Diplomas.items) {
-      for (const d of i.Item.Diplomas.items) {
-        if (!d.Item || !d.Item.Date) {
-          continue
-        }
+      i.Item.Diplomas.items.forEach((d) => {
+        if (!d.Item || !d.Item.Date) { return }
 
         dates.push(d.Item.Date)
-      }
+      })
     }
-  }
+  })
 
   return dates
 }
@@ -58,22 +55,38 @@ const EducationSummaryProgress = (props) => {
     schoolDates = Education.List.items
   }
 
+  const getSchoolDates = () => schoolRangesList(schoolDates)
+  const getDiplomaDates = () => diplomasRangesList(schoolDates)
+
   return (
     <SummaryCounter
       className="education"
       title={i18n.t('history.education.summary.title')}
-      schools={schoolRangesList.bind(this, schoolDates)}
-      diplomas={diplomasRangesList.bind(this, schoolDates)}
+      schools={getSchoolDates}
+      diplomas={getDiplomaDates}
       schoolsLabel={i18n.t('history.education.summary.schools')}
       diplomasLabel={i18n.t('history.education.summary.diplomas')}
-      total={totalYears(Birthdate)}>
-        <div className="summary-icon">
-          <Svg
-            src="/img/school-cap.svg"
-            alt={i18n.t('history.education.summary.svgAlt')} />
-        </div>
-      </SummaryCounter>
+      total={totalYears(Birthdate)}
+    >
+      <div className="summary-icon">
+        <Svg
+          src="/img/school-cap.svg"
+          alt={i18n.t('history.education.summary.svgAlt')}
+        />
+      </div>
+    </SummaryCounter>
   )
+}
+
+/* eslint react/forbid-prop-types: 0 */
+EducationSummaryProgress.propTypes = {
+  Education: PropTypes.object,
+  Birthdate: PropTypes.any,
+}
+
+EducationSummaryProgress.defaultProps = {
+  Education: null,
+  Birthdate: null,
 }
 
 export default EducationSummaryProgress
