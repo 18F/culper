@@ -33,7 +33,7 @@ export const SF85 = [
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_PASSPORTS,
       formSections.CITIZENSHIP_REVIEW,
-    ]
+    ],
   },
   {
     ...formSections.MILITARY,
@@ -42,16 +42,16 @@ export const SF85 = [
       formSections.MILITARY_SELECTIVE,
       formSections.MILITARY_HISTORY,
       formSections.MILITARY_FOREIGN,
-      formSections.MILITARY_REVIEW
-    ]
+      formSections.MILITARY_REVIEW,
+    ],
   },
   {
     ...formSections.FOREIGN,
     subsections: [
       formSections.FOREIGN_INTRO,
       formSections.FOREIGN_PASSPORT,
-      formSections.FOREIGN_REVIEW
-    ]
+      formSections.FOREIGN_REVIEW,
+    ],
   },
   {
     ...formSections.FOREIGN,
@@ -64,8 +64,8 @@ export const SF85 = [
       formSections.FINANCIAL_CREDIT,
       formSections.FINANCIAL_DELINQUENT,
       formSections.FINANCIAL_NONPAYMENT,
-      formSections.FINANCIAL_REVIEW
-    ]
+      formSections.FINANCIAL_REVIEW,
+    ],
   },
   {
     ...formSections.SUBSTANCE_USE,
@@ -80,11 +80,11 @@ export const SF85 = [
           formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
           formSections.SUBSTANCE_USE_DRUGS_MISUSE,
           formSections.SUBSTANCE_USE_DRUGS_ORDERED,
-          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY
-        ]
+          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
+        ],
       },
       formSections.SUBSTANCE_USE_REVIEW,
-    ]
+    ],
   },
   {
     ...formSections.LEGAL,
@@ -96,16 +96,16 @@ export const SF85 = [
           formSections.LEGAL_POLICE_INTRO,
           formSections.LEGAL_POLICE_OFFENSES,
           formSections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
-          formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE
-        ]
+          formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE,
+        ],
       },
       {
         ...formSections.LEGAL_INVESTIGATIONS,
         subsections: [
           formSections.LEGAL_INVESTIGATIONS_HISTORY,
           formSections.LEGAL_INVESTIGATIONS_REVOKED,
-          formSections.LEGAL_INVESTIGATIONS_DEBARRED
-        ]
+          formSections.LEGAL_INVESTIGATIONS_DEBARRED,
+        ],
       },
       {
         ...formSections.LEGAL_ASSOCIATIONS,
@@ -116,13 +116,13 @@ export const SF85 = [
           formSections.LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW,
           formSections.LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE,
           formSections.LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
-          formSections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION
-        ]
+          formSections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
+        ],
       },
-      formSections.LEGAL_REVIEW
+      formSections.LEGAL_REVIEW,
 
-    ]
-  }
+    ],
+  },
 ]
 
 export const SF85P = [
@@ -160,13 +160,13 @@ export const SF85P = [
         ...formSections.RELATIONSHIPS_STATUS,
         subsections: [
           formSections.RELATIONSHIPS_STATUS_MARITAL,
-          formSections.RELATIONSHIPS_STATUS_COHABITANTS
-        ]
+          formSections.RELATIONSHIPS_STATUS_COHABITANTS,
+        ],
       },
       formSections.RELATIONSHIPS_PEOPLE,
       formSections.RELATIONSHIPS_RELATIVES,
-      formSections.RELATIONSHIPS_REVIEW
-    ]
+      formSections.RELATIONSHIPS_REVIEW,
+    ],
   },
   {
     ...formSections.CITIZENSHIP,
@@ -175,8 +175,8 @@ export const SF85P = [
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_PASSPORTS,
-      formSections.CITIZENSHIP_REVIEW
-    ]
+      formSections.CITIZENSHIP_REVIEW,
+    ],
   },
   {
     ...formSections.MILITARY,
@@ -185,8 +185,8 @@ export const SF85P = [
       formSections.MILITARY_SELECTIVE,
       formSections.MILITARY_HISTORY,
       formSections.MILITARY_FOREIGN,
-      formSections.MILITARY_REVIEW
-    ]
+      formSections.MILITARY_REVIEW,
+    ],
   },
   {
     ...formSections.FOREIGN,
@@ -194,8 +194,8 @@ export const SF85P = [
       formSections.FOREIGN_INTRO,
       formSections.FOREIGN_PASSPORT,
       formSections.FOREIGN_TRAVEL,
-      formSections.FOREIGN_REVIEW
-    ]
+      formSections.FOREIGN_REVIEW,
+    ],
   },
   {
     ...formSections.FINANCIAL,
@@ -208,8 +208,8 @@ export const SF85P = [
       formSections.FINANCIAL_CREDIT,
       formSections.FINANCIAL_DELINQUENT,
       formSections.FINANCIAL_NONPAYMENT,
-      formSections.FINANCIAL_REVIEW
-    ]
+      formSections.FINANCIAL_REVIEW,
+    ],
   },
   {
     ...formSections.SUBSTANCE_USE,
@@ -224,8 +224,8 @@ export const SF85P = [
           formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
           formSections.SUBSTANCE_USE_DRUGS_MISUSE,
           formSections.SUBSTANCE_USE_DRUGS_ORDERED,
-          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY
-        ]
+          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
+        ],
       },
       {
         ...formSections.SUBSTANCE_USE_ALCOHOL,
@@ -234,11 +234,11 @@ export const SF85P = [
           formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
           formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
           formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
-          formSections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL
-        ]
+          formSections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
+        ],
       },
-      formSections.SUBSTANCE_USE_REVIEW
-    ]
+      formSections.SUBSTANCE_USE_REVIEW,
+    ],
   },
   {
     ...formSections.LEGAL,
@@ -250,16 +250,16 @@ export const SF85P = [
           formSections.LEGAL_POLICE_INTRO,
           formSections.LEGAL_POLICE_OFFENSES,
           formSections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
-          formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE
-        ]
+          formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE,
+        ],
       },
       {
         ...formSections.LEGAL_INVESTIGATIONS,
         subsections: [
           formSections.LEGAL_INVESTIGATIONS_HISTORY,
           formSections.LEGAL_INVESTIGATIONS_REVOKED,
-          formSections.LEGAL_INVESTIGATIONS_DEBARRED
-        ]
+          formSections.LEGAL_INVESTIGATIONS_DEBARRED,
+        ],
       },
       formSections.LEGAL_COURT,
       {
@@ -267,8 +267,8 @@ export const SF85P = [
         subsections: [
           formSections.LEGAL_TECHNOLOGY_UNAUTHORIZED,
           formSections.LEGAL_TECHNOLOGY_MANIPULATING,
-          formSections.LEGAL_TECHNOLOGY_UNLAWFUL
-        ]
+          formSections.LEGAL_TECHNOLOGY_UNLAWFUL,
+        ],
       },
       {
         ...formSections.LEGAL_ASSOCIATIONS,
@@ -279,12 +279,12 @@ export const SF85P = [
           formSections.LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW,
           formSections.LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE,
           formSections.LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
-          formSections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION
-        ]
+          formSections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
+        ],
       },
-      formSections.LEGAL_REVIEW
-    ]
-  }
+      formSections.LEGAL_REVIEW,
+    ],
+  },
 ]
 
 export const SF86 = [
@@ -299,8 +299,8 @@ export const SF86 = [
       formSections.IDENTIFICATION_OTHER_NAMES,
       formSections.IDENTIFICATION_CONTACTS,
       formSections.IDENTIFICATION_PHYSICAL,
-      formSections.IDENTIFICATION_REVIEW
-    ]
+      formSections.IDENTIFICATION_REVIEW,
+    ],
   },
   {
     ...formSections.HISTORY,
@@ -310,8 +310,8 @@ export const SF86 = [
       formSections.HISTORY_EMPLOYMENT,
       formSections.HISTORY_EDUCATION,
       formSections.HISTORY_FEDERAL,
-      formSections.HISTORY_REVIEW
-    ]
+      formSections.HISTORY_REVIEW,
+    ],
   },
   {
     ...formSections.RELATIONSHIPS,
@@ -321,13 +321,13 @@ export const SF86 = [
         ...formSections.RELATIONSHIPS_STATUS,
         subsections: [
           formSections.RELATIONSHIPS_STATUS_MARITAL,
-          formSections.RELATIONSHIPS_STATUS_COHABITANTS
-        ]
+          formSections.RELATIONSHIPS_STATUS_COHABITANTS,
+        ],
       },
       formSections.RELATIONSHIPS_PEOPLE,
       formSections.RELATIONSHIPS_RELATIVES,
-      formSections.RELATIONSHIPS_REVIEW
-    ]
+      formSections.RELATIONSHIPS_REVIEW,
+    ],
   },
   {
     ...formSections.CITIZENSHIP,
@@ -336,8 +336,8 @@ export const SF86 = [
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_PASSPORTS,
-      formSections.CITIZENSHIP_REVIEW
-    ]
+      formSections.CITIZENSHIP_REVIEW,
+    ],
   },
   {
     ...formSections.MILITARY,
@@ -347,8 +347,8 @@ export const SF86 = [
       formSections.MILITARY_HISTORY,
       formSections.MILITARY_DISCIPLINARY,
       formSections.MILITARY_FOREIGN,
-      formSections.MILITARY_REVIEW
-    ]
+      formSections.MILITARY_REVIEW,
+    ],
   },
   {
     ...formSections.FOREIGN,
@@ -363,8 +363,8 @@ export const SF86 = [
           formSections.FOREIGN_ACTIVITIES_INDIRECT,
           formSections.FOREIGN_ACTIVITIES_REAL_ESTATE,
           formSections.FOREIGN_ACTIVITIES_BENEFITS,
-          formSections.FOREIGN_ACTIVITIES_SUPPORT
-        ]
+          formSections.FOREIGN_ACTIVITIES_SUPPORT,
+        ],
       },
       {
         ...formSections.FOREIGN_BUSINESS,
@@ -377,12 +377,12 @@ export const SF86 = [
           formSections.FOREIGN_BUSINESS_CONTACT,
           formSections.FOREIGN_BUSINESS_SPONSORSHIP,
           formSections.FOREIGN_BUSINESS_POLITICAL,
-          formSections.FOREIGN_BUSINESS_VOTING
-        ]
+          formSections.FOREIGN_BUSINESS_VOTING,
+        ],
       },
       formSections.FOREIGN_TRAVEL,
-      formSections.FOREIGN_REVIEW
-    ]
+      formSections.FOREIGN_REVIEW,
+    ],
   },
   {
     ...formSections.FINANCIAL,
@@ -395,8 +395,8 @@ export const SF86 = [
       formSections.FINANCIAL_CREDIT,
       formSections.FINANCIAL_DELINQUENT,
       formSections.FINANCIAL_NONPAYMENT,
-      formSections.FINANCIAL_REVIEW
-    ]
+      formSections.FINANCIAL_REVIEW,
+    ],
   },
   {
     ...formSections.SUBSTANCE_USE,
@@ -411,8 +411,8 @@ export const SF86 = [
           formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
           formSections.SUBSTANCE_USE_DRUGS_MISUSE,
           formSections.SUBSTANCE_USE_DRUGS_ORDERED,
-          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY
-        ]
+          formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
+        ],
       },
       {
         ...formSections.SUBSTANCE_USE_ALCOHOL,
@@ -421,11 +421,11 @@ export const SF86 = [
           formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
           formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
           formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
-          formSections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL
-        ]
+          formSections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
+        ],
       },
-      formSections.SUBSTANCE_USE_REVIEW
-    ]
+      formSections.SUBSTANCE_USE_REVIEW,
+    ],
   },
   {
     ...formSections.LEGAL,
@@ -437,16 +437,16 @@ export const SF86 = [
           formSections.LEGAL_POLICE_INTRO,
           formSections.LEGAL_POLICE_OFFENSES,
           formSections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
-          formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE
-        ]
+          formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE,
+        ],
       },
       {
         ...formSections.LEGAL_INVESTIGATIONS,
         subsections: [
           formSections.LEGAL_INVESTIGATIONS_HISTORY,
           formSections.LEGAL_INVESTIGATIONS_REVOKED,
-          formSections.LEGAL_INVESTIGATIONS_DEBARRED
-        ]
+          formSections.LEGAL_INVESTIGATIONS_DEBARRED,
+        ],
       },
       formSections.LEGAL_COURT,
       {
@@ -454,8 +454,8 @@ export const SF86 = [
         subsections: [
           formSections.LEGAL_TECHNOLOGY_UNAUTHORIZED,
           formSections.LEGAL_TECHNOLOGY_MANIPULATING,
-          formSections.LEGAL_TECHNOLOGY_UNLAWFUL
-        ]
+          formSections.LEGAL_TECHNOLOGY_UNLAWFUL,
+        ],
       },
       {
         ...formSections.LEGAL_ASSOCIATIONS,
@@ -466,11 +466,11 @@ export const SF86 = [
           formSections.LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW,
           formSections.LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE,
           formSections.LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
-          formSections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION
-        ]
+          formSections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
+        ],
       },
-      formSections.LEGAL_REVIEW
-    ]
+      formSections.LEGAL_REVIEW,
+    ],
   },
   {
     ...formSections.PSYCHOLOGICAL,
@@ -481,7 +481,23 @@ export const SF86 = [
       formSections.PSYCHOLOGICAL_HOSPITALIZATIONS,
       formSections.PSYCHOLOGICAL_DIAGNOSES,
       formSections.PSYCHOLOGICAL_CONDITIONS,
-      formSections.PSYCHOLOGICAL_REVIEW
-    ]
-  }
+      formSections.PSYCHOLOGICAL_REVIEW,
+    ],
+  },
 ]
+
+export const reduceSubsections = sections => (
+  sections.reduce((accumulator, section) => {
+    if (section.subsections && section.subsections.length) {
+      accumulator = accumulator.concat(reduceSubsections(section.subsections))
+    } else {
+      accumulator.push(section)
+    }
+
+    return accumulator
+  }, [])
+)
+
+export const FLAT_SF85 = reduceSubsections(SF85)
+export const FLAT_SF85P = reduceSubsections(SF85P)
+export const FLAT_SF86 = reduceSubsections(SF86)
