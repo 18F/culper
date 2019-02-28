@@ -453,12 +453,6 @@ export const history = {
         additionalActivity: 'Additional periods of activity with this employer',
       },
       para: {
-        done:
-          'Use the button below to save your history entry and start another.',
-        exiting:
-          '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
-        employment:
-          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
         additionalActivity:
           'Provide additional periods of activity if you worked for this employer on more than one occasion at the same physical location (for example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time you would enter information concerning the most recent period of employment above, and provide dates, position titles, and supervisors for the two previous periods of employment as entries below).',
       },
@@ -1661,7 +1655,7 @@ export const history = {
       attendance: {
         title: 'Including all schools you attended',
         message:
-          'If within the last 10 years you have attended a high school, college, vocational, or correspondence course answer "Yes".',
+          'If within the last {{years}} years you have attended a high school, college, vocational, or correspondence course answer "Yes".',
         note: '',
       },
       degree10: {
@@ -1726,7 +1720,7 @@ export const history = {
     },
     help: {
       branch: {
-        title: 'List all federal service even if older than 10 years',
+        title: 'List all federal service even if older than {{years}} years',
         message: 'Inclue all former federal service at any point in your life.',
         note: '',
       },

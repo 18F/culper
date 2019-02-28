@@ -105,6 +105,7 @@ class EducationWrapper extends React.Component {
           name="branch_school"
           {...Education.HasAttended}
           help="history.education.help.attendance"
+          helpMessage={i18n.m('history.education.help.attendance.message', { years })}
           label={i18n.t('history.education.label.attendance', { years })}
           labelSize={inReview ? 'h3' : 'h4'}
           warning
