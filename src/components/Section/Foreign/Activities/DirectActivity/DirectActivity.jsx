@@ -1,66 +1,75 @@
 import React from 'react'
-import { i18n } from '../../../../../config'
-import schema from '../../../../../schema'
-import validate from '../../../../../validators'
-import { Summary } from '../../../../Summary'
-import { Accordion, Branch, Show } from '../../../../Form'
-import {
-  ForeignDirectActivityValidator,
-  ForeignDirectInterestValidator
-} from '../../../../../validators'
-import SubsectionElement from '../../../SubsectionElement'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { ForeignDirectInterestValidator } from 'validators'
+import { Summary } from 'components/Summary'
+import { Accordion, Branch, Show } from 'components/Form'
+import { FOREIGN, FOREIGN_ACTIVITIES_DIRECT } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../../ForeignConnector'
 import DirectInterest from './DirectInterest'
 
-export default class DirectActivity extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_ACTIVITIES_DIRECT.name,
+  storeKey: FOREIGN_ACTIVITIES_DIRECT.storeKey,
+}
+export class DirectActivity extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHasInterests = this.updateHasInterests.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasInterests: this.props.HasInterests,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  updateHasInterests(values) {
+  updateHasInterests = (values) => {
     this.update({
       HasInterests: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const who = ((o.InterestTypes || {}).values || []).join(', ')
     const interestType = (o.InterestType || {}).value
       ? o.InterestType.value
       : ''
-    const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
+    const cost = (o.Cost || {}).value ? `$${o.Cost.value}` : ''
     const summary = [who, interestType].reduce((prev, next) => {
       if (prev && next) {
-        return prev + ' - ' + next
+        return `${prev} - ${next}`
       }
       return prev
     })
 
     return Summary({
       type: i18n.t('foreign.activities.direct.collection.itemType'),
-      index: index,
+      index,
       left: summary,
       right: cost,
-      placeholder: i18n.t('foreign.activities.direct.collection.summary')
+      placeholder: i18n.t('foreign.activities.direct.collection.summary'),
     })
   }
 
@@ -68,19 +77,21 @@ export default class DirectActivity extends SubsectionElement {
     return (
       <div
         className="section-content direct"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Direct control</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('foreign.subsection.activities.direct')}</h1>
         <Branch
           name="has_interests"
           label={i18n.t('foreign.activities.direct.heading.title')}
           labelSize="h4"
           {...this.props.HasInterests}
           help="foreign.activities.direct.help.directControl"
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasInterests}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
 
@@ -93,22 +104,17 @@ export default class DirectActivity extends SubsectionElement {
             onUpdate={this.updateList}
             onError={this.handleError}
             validator={ForeignDirectInterestValidator}
-            description={i18n.t(
-              'foreign.activities.direct.collection.description'
-            )}
-            appendTitle={i18n.t(
-              'foreign.activities.direct.collection.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'foreign.activities.direct.collection.appendLabel'
-            )}
+            description={i18n.t('foreign.activities.direct.collection.description')}
+            appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
+            appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <DirectInterest
               name="Item"
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -124,15 +130,13 @@ DirectActivity.defaultProps = {
   HasInterests: {},
   List: {},
   defaultState: true,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'activities/direct',
   addressBooks: {},
-  dispatch: action => {},
-  validator: data => {
-    return validate(schema('foreign.activities.direct', data))
-  }
+  dispatch: () => {},
+  validator: data => validate(schema('foreign.activities.direct', data)),
 }
+
+export default connectForeignSection(DirectActivity, sectionConfig)

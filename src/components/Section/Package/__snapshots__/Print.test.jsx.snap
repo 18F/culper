@@ -6847,7 +6847,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content direct"
           data-section="foreign"
-          data-subsection="activities/direct"
+          data-subsection="direct"
         >
           <h1
             className="section-header"
