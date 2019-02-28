@@ -7490,7 +7490,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content foreign-activities-support"
           data-section="foreign"
-          data-subsection="activities/support"
+          data-subsection="support"
         >
           <h1
             className="section-header"
