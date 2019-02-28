@@ -30,6 +30,7 @@ rules:
   react/prop-types:
     - error
     - skipUndeclared: true
+  comma-dangle: ['error', { functions: 'never' }]
 settings:
   import/resolver:
     babel-module:

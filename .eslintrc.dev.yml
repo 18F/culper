@@ -23,6 +23,9 @@ rules:
   no-unused-vars: ['error', {
     argsIgnorePattern: '^_'
   }]
+  comma-dangle: ['error', {
+    functions: 'never'
+  }]
 settings:
   import/resolver:
     babel-module:
