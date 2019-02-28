@@ -88,9 +88,11 @@ export default connect(mapStateToProps)(History)
 export const HistorySections = (props) => {
   const { formType, onError, Education } = props
 
-  const years = formType
-    && formConfig[formType]
-    && formConfig[formType].HISTORY_EDUCATION_YEARS
+  const formTypeConfig = formType && formConfig[formType]
+  const residenceYears = formTypeConfig && formTypeConfig.HISTORY_RESIDENCE_YEARS
+  const employmentYears = formTypeConfig && formTypeConfig.HISTORY_EMPLOYMENT_YEARS
+  const employmentRecordYears = formTypeConfig && formTypeConfig.HISTORY_EMPLOYMENT_RECORD_YEARS
+  const educationYears = formTypeConfig && formTypeConfig.HISTORY_EDUCATION_YEARS
 
   return (
     <div className="history">
@@ -101,6 +103,7 @@ export const HistorySections = (props) => {
         onError={onError}
         scrollIntoView={false}
         required
+        totalYears={residenceYears}
       />
 
       <ConnectedEmployment
@@ -110,19 +113,21 @@ export const HistorySections = (props) => {
         onError={onError}
         scrollIntoView={false}
         required
+        totalYears={employmentYears}
+        recordYears={employmentRecordYears}
       />
 
       <Branch
         name="branch_school"
         {...Education.HasAttended}
-        label={i18n.t('history.education.label.attendance', { years })}
+        label={i18n.t('history.education.label.attendance', { educationYears })}
         labelSize="h3"
       />
       <Show when={Education.HasAttended.value === 'No'}>
         <Branch
           name="branch_degree10"
           {...Education.HasDegree10}
-          label={i18n.t('history.education.label.degree10', { years })}
+          label={i18n.t('history.education.label.degree10', { educationYears })}
           labelSize="h3"
         />
       </Show>
@@ -139,6 +144,7 @@ export const HistorySections = (props) => {
           onError={onError}
           scrollIntoView={false}
           required
+          totalYears={educationYears}
         />
       </Show>
 
