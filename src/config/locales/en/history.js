@@ -1627,7 +1627,7 @@ export const history = {
         },
         append: 'Add another school',
         appendTitle:
-          'Do you have additional education (include education within the last 10 years, as well as degrees or diplomas more than 10 years ago)?',
+          'Do you have additional education (include education within the last {{years}} years, as well as degrees or diplomas more than {{years}} years ago)?',
       },
       diploma: {
         summary: {
