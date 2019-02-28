@@ -7796,7 +7796,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content foreign-business-family"
           data-section="foreign"
-          data-subsection="business/family"
+          data-subsection="family"
         >
           <h1
             className="section-header"
@@ -7957,7 +7957,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content foreign-business-employment"
           data-section="foreign"
-          data-subsection="business/employment"
+          data-subsection="employment"
         >
           <h1
             className="section-header"
@@ -8103,7 +8103,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content foreign-business-ventures"
           data-section="foreign"
-          data-subsection="business/ventures"
+          data-subsection="ventues"
         >
           <h1
             className="section-header"

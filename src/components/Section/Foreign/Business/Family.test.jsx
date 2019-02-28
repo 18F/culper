@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Family from './Family'
+import { Family } from './Family'
 
 describe('The foreign business family component', () => {
   const mockStore = configureMockStore()
@@ -21,7 +21,7 @@ describe('The foreign business family component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-family',
-      HasForeignFamily: { value: 'No' }
+      HasForeignFamily: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -30,7 +30,7 @@ describe('The foreign business family component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-family',
-      HasForeignFamily: { value: 'Yes' }
+      HasForeignFamily: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -44,7 +44,7 @@ describe('The foreign business family component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = createComponent(expected)
     component
@@ -65,8 +65,8 @@ describe('The foreign business family component', () => {
       HasForeignFamily: { value: 'Yes' },
       List: { items: [{}] },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)

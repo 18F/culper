@@ -1,59 +1,68 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, DateSummary, NameSummary } from '../../../Summary'
-import {
-  ForeignBusinessEmploymentValidator,
-  ForeignBusinessEmploymentItemValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { ForeignBusinessEmploymentItemValidator } from 'validators'
+import { Summary, DateSummary, NameSummary } from 'components/Summary'
+import { Branch, Show, Accordion } from 'components/Form'
+import { FOREIGN, FOREIGN_BUSINESS_EMPLOYMENT } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../ForeignConnector'
 import JobOffer from './JobOffer'
 
-export default class Employment extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_BUSINESS_EMPLOYMENT.name,
+  storeKey: FOREIGN_BUSINESS_EMPLOYMENT.storeKey,
+}
+export class Employment extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHasForeignEmployment = this.updateHasForeignEmployment.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasForeignEmployment: this.props.HasForeignEmployment,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasForeignEmployment(values) {
+  updateHasForeignEmployment = (values) => {
     this.update({
       HasForeignEmployment: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
+      List: values.value === 'Yes'
+        ? this.props.List
+        : { items: [], branch: {} },
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const date = DateSummary(o.Dates)
     const name = NameSummary(o.Name)
 
     return Summary({
       type: i18n.t('foreign.business.employment.collection.summary.item'),
-      index: index,
+      index,
       left: name,
       right: date,
-      placeholder: i18n.t(
-        'foreign.business.employment.collection.summary.unknown'
-      )
+      placeholder: i18n.t('foreign.business.employment.collection.summary.unknown'),
     })
   }
 
@@ -61,14 +70,15 @@ export default class Employment extends SubsectionElement {
     return (
       <div
         className="section-content foreign-business-employment"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('foreign.destination.business.employment')}</h1>
         <Branch
           name="has_foreign_employment"
           label={i18n.t('foreign.business.employment.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignEmployment}
-          warning={true}
+          warning
           onUpdate={this.updateHasForeignEmployment}
           onError={this.handleError}
           required={this.props.required}
@@ -84,20 +94,15 @@ export default class Employment extends SubsectionElement {
             validator={ForeignBusinessEmploymentItemValidator}
             onError={this.handleError}
             summary={this.summary}
-            description={i18n.t(
-              'foreign.business.employment.collection.summary.title'
-            )}
-            appendTitle={i18n.t(
-              'foreign.business.employment.collection.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'foreign.business.employment.collection.append'
-            )}
+            description={i18n.t('foreign.business.employment.collection.summary.title')}
+            appendTitle={i18n.t('foreign.business.employment.collection.appendTitle')}
+            appendLabel={i18n.t('foreign.business.employment.collection.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <JobOffer
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -112,16 +117,14 @@ Employment.defaultProps = {
   name: 'Employment',
   HasForeignEmployment: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'business/employment',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('foreign.business.employment', data))
-  },
+  validator: data => validate(schema('foreign.business.employment', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(Employment, sectionConfig)
