@@ -7198,7 +7198,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content realestate"
           data-section="foreign"
-          data-subsection="activities/realestate"
+          data-subsection="realestate"
         >
           <h1
             className="section-header"
