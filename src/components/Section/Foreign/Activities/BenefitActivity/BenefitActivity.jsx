@@ -1,44 +1,56 @@
 import React from 'react'
-import { i18n } from '../../../../../config'
-import schema from '../../../../../schema'
-import validate from '../../../../../validators'
-import { Summary, DateSummary } from '../../../../Summary'
-import { Accordion, Branch, Show } from '../../../../Form'
-import { ForeignBenefitValidator } from '../../../../../validators'
-import SubsectionElement from '../../../SubsectionElement'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { ForeignBenefitValidator } from 'validators'
+import { Summary, DateSummary } from 'components/Summary'
+import { Accordion, Branch, Show } from 'components/Form'
+import { FOREIGN, FOREIGN_ACTIVITIES_BENEFITS } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../../ForeignConnector'
 import Benefit from './Benefit'
 
-export default class BenefitActivity extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_ACTIVITIES_BENEFITS.name,
+  storeKey: FOREIGN_ACTIVITIES_BENEFITS.storeKey,
+}
+export class BenefitActivity extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHasBenefits = this.updateHasBenefits.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasBenefits: this.props.HasBenefits,
-      ...queue
+      ...queue,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  updateHasBenefits(values) {
+  updateHasBenefits = (values) => {
     this.update({
       HasBenefits: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const benefit = {}
     const who = ((o.InterestTypes || {}).values || []).join(', ')
@@ -60,21 +72,24 @@ export default class BenefitActivity extends SubsectionElement {
         benefit.Country = (b.Country || {}).value
         benefit.Date = DateSummary(b.Began)
         break
+      default:
+        console.warn(' There is no such benefit type')
+        break
     }
 
     const summary = [who, benefit.Country].reduce((prev, next) => {
       if (prev && next) {
-        return prev + ' - ' + next
+        return `${prev} - ${next}`
       }
       return prev
     })
 
     return Summary({
       type: i18n.t('foreign.activities.benefit.collection.itemType'),
-      index: index,
+      index,
       left: summary,
       right: benefit.Date,
-      placeholder: i18n.t('foreign.activities.benefit.collection.summary')
+      placeholder: i18n.t('foreign.activities.benefit.collection.summary'),
     })
   }
 
@@ -82,7 +97,8 @@ export default class BenefitActivity extends SubsectionElement {
     return (
       <div
         className="section-content benefit-activity"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('foreign.destination.activities.benefits')}</h1>
         <Branch
           name="has_benefit"
@@ -90,7 +106,7 @@ export default class BenefitActivity extends SubsectionElement {
           label={i18n.t('foreign.activities.benefit.heading.title')}
           labelSize="h4"
           {...this.props.HasBenefits}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasBenefits}
@@ -106,20 +122,15 @@ export default class BenefitActivity extends SubsectionElement {
             onUpdate={this.updateList}
             onError={this.handleError}
             validator={ForeignBenefitValidator}
-            description={i18n.t(
-              'foreign.activities.benefit.collection.description'
-            )}
-            appendTitle={i18n.t(
-              'foreign.activities.benefit.collection.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'foreign.activities.benefit.collection.appendLabel'
-            )}
+            description={i18n.t('foreign.activities.benefit.collection.description')}
+            appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
+            appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Benefit
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -135,15 +146,13 @@ BenefitActivity.defaultProps = {
   HasBenefits: {},
   List: {},
   defaultState: true,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'activities/benefits',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('foreign.activities.benefits', data))
-  },
-  scrollToBottom: ''
+  validator: data => validate(schema('foreign.activities.benefits', data)),
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(BenefitActivity, sectionConfig)
