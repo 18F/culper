@@ -1,46 +1,59 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, DateSummary } from '../../../Summary'
-import {
-  ForeignBusinessPoliticalValidator,
-  PoliticalValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { PoliticalValidator } from 'validators'
+import { Summary, DateSummary } from 'components/Summary'
+import { Branch, Show, Accordion } from 'components/Form'
+import { FOREIGN, FOREIGN_BUSINESS_POLITICAL } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../ForeignConnector'
 import PoliticalItem from './PoliticalItem'
 
-export default class Political extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_BUSINESS_POLITICAL.name,
+  storeKey: FOREIGN_BUSINESS_POLITICAL.storeKey,
+}
+
+export class Political extends Subsection {
   constructor(props) {
     super(props)
 
-    this.updateHasForeignPolitical = this.updateHasForeignPolitical.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasForeignPolitical: this.props.HasForeignPolitical,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasForeignPolitical(values) {
+  updateHasForeignPolitical = (values) => {
     this.update({
       HasForeignPolitical: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
+      List: values.value === 'Yes'
+        ? this.props.List
+        : { items: [], branch: {} },
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const obj = (item && item.Item) || {}
     const dates = DateSummary(obj.Dates)
     const pos = (obj.Position || {}).value || ''
@@ -49,12 +62,10 @@ export default class Political extends SubsectionElement {
 
     return Summary({
       type: i18n.t('foreign.business.political.collection.summary.item'),
-      index: index,
+      index,
       left: text,
       right: dates,
-      placeholder: i18n.t(
-        'foreign.business.political.collection.summary.unknown'
-      )
+      placeholder: i18n.t('foreign.business.political.collection.summary.unknown'),
     })
   }
 
@@ -62,14 +73,15 @@ export default class Political extends SubsectionElement {
     return (
       <div
         className="section-content foreign-business-political"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('foreign.destination.business.political')}</h1>
         <Branch
           name="has_foreign_political"
           label={i18n.t('foreign.business.political.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignPolitical}
-          warning={true}
+          warning
           onUpdate={this.updateHasForeignPolitical}
           required={this.props.required}
           onError={this.handleError}
@@ -85,18 +97,15 @@ export default class Political extends SubsectionElement {
             onError={this.handleError}
             validator={PoliticalValidator}
             summary={this.summary}
-            description={i18n.t(
-              'foreign.business.political.collection.summary.title'
-            )}
-            appendTitle={i18n.t(
-              'foreign.business.political.collection.appendTitle'
-            )}
+            description={i18n.t('foreign.business.political.collection.summary.title')}
+            appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
             appendLabel={i18n.t('foreign.business.political.collection.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <PoliticalItem
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -111,16 +120,14 @@ Political.defaultProps = {
   name: 'Political',
   HasForeignPolitical: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'business/political',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('foreign.business.political', data))
-  },
+  validator: data => validate(schema('foreign.business.political', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(Political, sectionConfig)

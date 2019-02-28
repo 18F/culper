@@ -1,63 +1,73 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, { TravelValidator } from '../../../../validators'
-import { Summary, DateSummary } from '../../../Summary'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { TravelValidator } from 'validators'
+import { Summary, DateSummary } from 'components/Summary'
+import { Branch, Show, Accordion } from 'components/Form'
+import { FOREIGN, FOREIGN_TRAVEL } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../ForeignConnector'
 import TravelQuestions from './TravelQuestions'
 
-export default class Travel extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_TRAVEL.name,
+  storeKey: FOREIGN_TRAVEL.storeKey,
+}
+
+export class Travel extends Subsection {
   constructor(props) {
     super(props)
 
-    this.updateHasForeignTravelOutside = this.updateHasForeignTravelOutside.bind(
-      this
-    )
-    this.updateHasForeignTravelOfficial = this.updateHasForeignTravelOfficial.bind(
-      this
-    )
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasForeignTravelOutside: this.props.HasForeignTravelOutside,
       HasForeignTravelOfficial: this.props.HasForeignTravelOfficial,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasForeignTravelOutside(values) {
+  updateHasForeignTravelOutside = (values) => {
     this.update({
-      HasForeignTravelOutside: values
+      HasForeignTravelOutside: values,
     })
   }
 
-  updateHasForeignTravelOfficial(values) {
+  updateHasForeignTravelOfficial = (values) => {
     this.update({
-      HasForeignTravelOfficial: values
+      HasForeignTravelOfficial: values,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const obj = (item || {}).Item || {}
     const date = DateSummary(obj.Dates)
     const country = (obj.Country || {}).value || ''
 
     return Summary({
       type: i18n.t('foreign.travel.collection.summary.item'),
-      index: index,
+      index,
       left: country,
       right: date,
-      placeholder: i18n.t('foreign.travel.collection.summary.unknown')
+      placeholder: i18n.t('foreign.travel.collection.summary.unknown'),
     })
   }
 
@@ -65,7 +75,8 @@ export default class Travel extends SubsectionElement {
     return (
       <div
         className="section-content foreign-travel"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('foreign.destination.travel')}</h1>
         <Branch
           label={i18n.t('foreign.travel.heading.outside')}
@@ -73,7 +84,7 @@ export default class Travel extends SubsectionElement {
           name="has_foreign_travel_outside"
           className="foreign-travel-outside"
           {...this.props.HasForeignTravelOutside}
-          warning={true}
+          warning
           onUpdate={this.updateHasForeignTravelOutside}
           required={this.props.required}
           onError={this.handleError}
@@ -91,16 +102,18 @@ export default class Travel extends SubsectionElement {
             onUpdate={this.updateHasForeignTravelOfficial}
             required={this.props.required}
             onError={this.handleError}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             {i18n.m('foreign.travel.para.personal')}
           </Branch>
         </Show>
 
         <Show
           when={
-            (this.props.HasForeignTravelOutside || {}).value === 'Yes' &&
-            (this.props.HasForeignTravelOfficial || {}).value === 'No'
-          }>
+            (this.props.HasForeignTravelOutside || {}).value === 'Yes'
+            && (this.props.HasForeignTravelOfficial || {}).value === 'No'
+          }
+        >
           <Accordion
             {...this.props.List}
             defaultState={this.props.defaultState}
@@ -113,10 +126,11 @@ export default class Travel extends SubsectionElement {
             appendTitle={i18n.t('foreign.travel.collection.appendTitle')}
             appendLabel={i18n.t('foreign.travel.collection.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <TravelQuestions
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -132,16 +146,14 @@ Travel.defaultProps = {
   HasForeignTravelOutside: {},
   HasForeignTravelOfficial: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'travel',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('foreign.travel', data))
-  },
+  validator: data => validate(schema('foreign.travel', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(Travel, sectionConfig)

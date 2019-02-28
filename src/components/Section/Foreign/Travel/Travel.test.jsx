@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Travel from './Travel'
+import { Travel } from './Travel'
 
 describe('The foreign travel component', () => {
   const mockStore = configureMockStore()
@@ -21,7 +21,7 @@ describe('The foreign travel component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-travel',
-      HasForeignTravelOutside: { value: 'No' }
+      HasForeignTravelOutside: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -31,7 +31,7 @@ describe('The foreign travel component', () => {
     const expected = {
       name: 'foreign-travel',
       HasForeignTravelOutside: { value: 'Yes' },
-      HasForeignTravelOfficial: { value: 'No' }
+      HasForeignTravelOfficial: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -45,7 +45,7 @@ describe('The foreign travel component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = createComponent(expected)
     component
@@ -87,14 +87,14 @@ describe('The foreign travel component', () => {
               Sensitive: { value: 'Yes' },
               SensitiveExplanation: {},
               Threatened: { value: 'Yes' },
-              ThreatenedExplanation: {}
-            }
-          }
-        ]
+              ThreatenedExplanation: {},
+            },
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -147,14 +147,14 @@ describe('The foreign travel component', () => {
           {
             Item: {
               Dates: {},
-              Days: { values: ['1-5'] }
-            }
-          }
-        ]
+              Days: { values: ['1-5'] },
+            },
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
