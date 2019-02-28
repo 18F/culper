@@ -59,9 +59,10 @@ export class Federal extends Subsection {
   /**
    * Assists in rendering the summary section.
    */
-  summary = (item = {}, index) => {
-    const agency = item && item.Name && item.Name.value ? item.Name.value : ''
-    const dates = DateSummary(item.Dates)
+  summary = (item, index) => {
+    const summaryItem = (item && item.Item) || {}
+    const agency = summaryItem && summaryItem.Name && summaryItem.Name.value ? summaryItem.Name.value : ''
+    const dates = DateSummary(summaryItem.Dates)
 
     return Summary({
       type: i18n.t('history.federal.collection.summary.item'),
