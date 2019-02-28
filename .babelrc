@@ -3,21 +3,6 @@
     "plugins": [
         ["module-resolver", {
             "root": "./src",
-            "alias": {
-                "@actions": "./src/actions",
-                "@components": "./src/components",
-                "@config": "./src/config",
-                "@constants": "./src/constants",
-                "@helpers": "./src/helpers",
-                "@img": "./src/img",
-                "@plugins": "./src/plugins",
-                "@reducers": "./src/reducers",
-                "@schema": "./src/schema",
-                "@selectors": "./src/selectors",
-                "@services": "./src/services",
-                "@validators": "./src/validators",
-                "@views": "./src/views"
-            }
         }],
 	"transform-class-properties"
     ]

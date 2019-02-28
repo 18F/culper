@@ -3,9 +3,7 @@
   {{with $Item := $item.Item}}
   <FormerSpouse ID="{{inc $index}}">
     {{if branch $Item.Deceased | eq "No" }}
-    <Address DoNotKnow="{{notApplicable $Item.DeceasedAddressNotApplicable}}">
-      {{location $Item.DeceasedAddress}}
-    </Address>
+    {{address $Item.DeceasedAddress $Item.DeceasedAddressNotApplicable}}
     {{end}}
     <Birth>
       <Date Type="{{dateEstimated $Item.Birthdate}}">

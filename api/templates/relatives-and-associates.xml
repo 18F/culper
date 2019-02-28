@@ -123,9 +123,7 @@
         </AffiliatedWithForeignGovernment>
         <Comment></Comment>
         <Employer>
-          <Address DoNotKnow="{{notApplicable $Item.EmployerAddressNotApplicable}}">
-            {{location $Item.EmployerAddress}}
-          </Address>
+          {{address $Item.EmployerAddress $Item.EmployerAddressNotApplicable}}
           <Comment></Comment>
           <Name DoNotKnow="{{notApplicable $Item.EmployerNotApplicable}}">
             {{text $Item.Employer}}

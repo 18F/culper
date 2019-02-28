@@ -1,18 +1,18 @@
 import React from 'react'
-import { MILITARY, MILITARY_DISCIPLINARY } from '@config/formSections/military'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, DateSummary } from '../../../Summary'
+import { MILITARY, MILITARY_DISCIPLINARY } from 'config/formSections/military'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate from 'validators'
+import { Summary, DateSummary } from 'components/Summary'
 import {
   MilitaryDisciplinaryValidator,
   ProcedureValidator,
-} from '../../../../validators'
-import Subsection from '../../shared/Subsection'
-import { Branch, Show, Accordion } from '../../../Form'
-import Procedure from './Procedure'
+} from 'validators'
+import Subsection from 'components/Section/shared/Subsection'
+import { Branch, Show, Accordion } from 'components/Form'
+import Procedure from 'components/Section/Military/Disciplinary/Procedure'
 
-import connectMilitarySection from '../MilitaryConnector'
+import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
   section: MILITARY.name,

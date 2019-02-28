@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
-import History, { serviceNameDisplay } from '@components/Section/Military/History/History'
+import History, { serviceNameDisplay } from 'components/Section/Military/History/History'
 
 describe('The military history component', () => {
   const mockStore = configureMockStore()

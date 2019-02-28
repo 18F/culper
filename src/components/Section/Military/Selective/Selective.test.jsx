@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
-import Selective from '@components/Section/Military/Selective/Selective'
+import Selective from 'components/Section/Military/Selective/Selective'
 
 describe('The selective service component', () => {
   const mockStore = configureMockStore()

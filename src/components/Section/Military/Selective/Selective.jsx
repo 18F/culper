@@ -1,10 +1,10 @@
 import React from 'react'
-import { MILITARY, MILITARY_SELECTIVE } from '@config/formSections/military'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { SelectiveServiceValidator } from '../../../../validators'
-import Subsection from '../../shared/Subsection'
+import { MILITARY, MILITARY_SELECTIVE } from 'config/formSections/military'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate from 'validators'
+import { SelectiveServiceValidator } from 'validators'
+import Subsection from 'components/Section/shared/Subsection'
 import {
   Branch,
   Show,
@@ -12,9 +12,9 @@ import {
   Textarea,
   Field,
   NotApplicable,
-} from '../../../Form'
+} from 'components/Form'
 
-import connectMilitarySection from '../MilitaryConnector'
+import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
   section: MILITARY.name,

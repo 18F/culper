@@ -1,20 +1,20 @@
 import React from 'react'
-import { i18n } from '@config'
-import { gaps, extractDate } from '@components/Section/History/dateranges'
-import { Svg } from '@components/Form'
-import { newGuid } from '@components/Form/ValidationElement'
+import { i18n } from 'config'
+import { gaps, extractDate } from 'components/Section/History/dateranges'
+import { Svg } from 'components/Form'
+import { newGuid } from 'components/Form/ValidationElement'
 import {
   Summary,
   AddressSummary,
   DateSummary,
   NameSummary
-} from '@components/Summary'
+} from 'components/Summary'
 import {
   ResidenceValidator,
   EmploymentValidator,
   EducationItemValidator
-} from '@validators'
-import { openState, chevron } from '@components/Form/Accordion/Accordion'
+} from 'validators'
+import { openState, chevron } from 'components/Form/Accordion/Accordion'
 
 export const CustomSummary = (
   validation,

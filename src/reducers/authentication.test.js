@@ -1,4 +1,4 @@
-import { SF86 } from '@constants/formTypes'
+import { SF86 } from 'constants/formTypes'
 import authentication from './authentication'
 import { handleLoginError, handleLoginSuccess } from '../actions/AuthActions'
 

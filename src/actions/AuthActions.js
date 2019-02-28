@@ -1,7 +1,7 @@
 import queryString from 'query-string'
-import { env } from '@config'
-import { api } from '@services/api'
-import { SF86 } from '@constants/formTypes'
+import { env } from 'config'
+import { api } from 'services/api'
+import { SF86 } from 'constants/formTypes'
 import AuthConstants from './AuthConstants'
 
 /**

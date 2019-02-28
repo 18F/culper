@@ -1,16 +1,16 @@
 import React from 'react'
 import { withRouter } from 'react-router'
-import { i18n } from '@config'
+import { i18n } from 'config'
 import {
   SectionTitle,
   ProgressBar,
   ScoreCard,
   Navigation,
   NavigationToggle
-} from '@components'
-import { Introduction, Show } from '@components/Form'
-import Logout from '@components/Navigation/Logout'
-import StickyHeader from '@components/Sticky/StickyHeader'
+} from 'components'
+import { Introduction, Show } from 'components/Form'
+import Logout from 'components/Navigation/Logout'
+import StickyHeader from 'components/Sticky/StickyHeader'
 import { connect } from 'react-redux'
 
 /*

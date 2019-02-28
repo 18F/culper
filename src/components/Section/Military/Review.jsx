@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Selective from '@components/Section/Military/Selective'
-import History from '@components/Section/Military/History'
-import Disciplinary from '@components/Section/Military/Disciplinary'
-import Foreign from '@components/Section/Military/Foreign'
+import Selective from 'components/Section/Military/Selective'
+import History from 'components/Section/Military/History'
+import Disciplinary from 'components/Section/Military/Disciplinary'
+import Foreign from 'components/Section/Military/Foreign'
 
 const Review = ({AddressBooks, showSelectiveService, showDisciplinaryProcedures}) => {
   const subsectionProps = {

@@ -6,7 +6,10 @@ import {
   updateApplication,
   reportErrors,
 } from '../../../actions/ApplicationActions'
-import { hideSelectiveServiceSelector, hideDisciplinaryProceduresSelector } from '@selectors/navigation'
+import {
+  hideSelectiveServiceSelector,
+  hideDisciplinaryProceduresSelector,
+} from 'selectors/navigation'
 
 const connectMilitarySection = (Component, {
   section, subsection, store, storeKey,

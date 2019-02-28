@@ -1,12 +1,12 @@
 import React from 'react'
-import { MILITARY, MILITARY_FOREIGN } from '@config/formSections/military'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import Subsection from '../../shared/Subsection'
-import { BranchCollection } from '../../../Form'
-import ForeignService from './ForeignService'
-import connectMilitarySection from '../MilitaryConnector'
+import { MILITARY, MILITARY_FOREIGN } from 'config/formSections/military'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate from 'validators'
+import Subsection from 'components/Section/shared/Subsection'
+import { BranchCollection } from 'components/Form'
+import ForeignService from 'components/Section/Military/Foreign/ForeignService'
+import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
   section: MILITARY.name,

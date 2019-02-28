@@ -1,9 +1,9 @@
 
 import React from 'react'
 
-import { i18n } from '@config'
-import schema from '@schema'
-import validate, { OtherNameValidator } from '@validators'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { OtherNameValidator } from 'validators'
 
 import {
   Field,
@@ -12,15 +12,15 @@ import {
   DateRange,
   Branch,
   Show
-} from '@components/Form'
-import { Summary, NameSummary, DateSummary } from '@components/Summary'
+} from 'components/Form'
+import { Summary, NameSummary, DateSummary } from 'components/Summary'
 
 import OtherNameItem from './OtherNameItem'
 
 import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
 
-import { IDENTIFICATION, IDENTIFICATION_OTHER_NAMES } from '@config/formSections/identification'
+import { IDENTIFICATION, IDENTIFICATION_OTHER_NAMES } from 'config/formSections/identification'
 
 const sectionConfig = {
   section: IDENTIFICATION.name,

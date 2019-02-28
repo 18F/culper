@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import ProgressBar from '@components/ProgressBar/ProgressBar'
+import ProgressBar from 'components/ProgressBar/ProgressBar'
 
 describe('The progress bar component', () => {
   const mockStore = configureMockStore()

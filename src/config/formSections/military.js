@@ -1,5 +1,5 @@
-import * as sections from '@constants/sections'
-import { i18n } from '@config'
+import * as sections from 'constants/sections'
+import { i18n } from 'config'
 
 export const MILITARY = {
   key: sections.MILITARY,

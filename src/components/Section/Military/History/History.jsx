@@ -1,16 +1,16 @@
 import React from 'react'
-import { MILITARY, MILITARY_HISTORY } from '@config/formSections/military'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
+import { MILITARY, MILITARY_HISTORY } from 'config/formSections/military'
+import { i18n } from 'config'
+import schema from 'schema'
 import validate, {
   MilitaryHistoryValidator,
   MilitaryServiceValidator,
-} from '../../../../validators'
-import Subsection from '../../shared/Subsection'
-import { Branch, Show, Accordion } from '../../../Form'
-import { Summary, DateSummary } from '../../../Summary'
-import MilitaryService from './MilitaryService'
-import connectMilitarySection from '../MilitaryConnector'
+} from 'validators'
+import Subsection from 'components/Section/shared/Subsection'
+import { Branch, Show, Accordion } from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
+import MilitaryService from 'components/Section/Military/History/MilitaryService'
+import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
   section: MILITARY.name,
