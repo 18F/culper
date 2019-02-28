@@ -6,8 +6,10 @@ import {
 } from './helpers'
 
 export const hideDisciplinaryProcedures = (store = {}) => {
-  const history = (store.Military || {}).History
-  return !new MilitaryHistoryValidator(history, null).hasHistory()
+  return !(store.Military
+    && store.Military.History
+    && store.Military.History.HasServed
+    && store.Military.History.HasServed.value === 'Yes')
 }
 
 export default class MilitaryDisciplinaryValidator {

@@ -82,61 +82,6 @@ Military.defaultProps = {
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
-export class MilitarySections extends React.Component {
-  render() {
-    const showDisciplinary = !hideDisciplinaryProcedures(this.props.Application)
-    const showSelectiveService = !hideSelectiveService(this.props.Application)
-    return (
-      <div>
-        <Show when={showSelectiveService}>
-          <Selective
-            name="selective"
-            {...this.props.Selective}
-            dispatch={this.props.dispatch}
-            onError={this.props.onError}
-            required={true}
-            scrollIntoView={false}
-          />
-          <hr className="section-divider" />
-        </Show>
-
-        <History
-          name="history"
-          {...this.props.History}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
-
-        <Show when={showDisciplinary}>
-          <hr className="section-divider" />
-          <Disciplinary
-            name="disciplinary"
-            {...this.props.Disciplinary}
-            defaultState={false}
-            dispatch={this.props.dispatch}
-            onError={this.props.onError}
-            required={true}
-            scrollIntoView={false}
-          />
-        </Show>
-
-        <hr className="section-divider" />
-        <Foreign
-          name="foreign"
-          {...this.props.Foreign}
-          addressBooks={this.props.AddressBooks}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
-      </div>
-    )
-  }
-}
+export const MilitarySections = () => <Review />
 
 export default connect(mapStateToProps)(Military)

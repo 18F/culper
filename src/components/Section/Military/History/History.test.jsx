@@ -1,13 +1,28 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import History, { serviceNameDisplay } from './History'
+import configureMockStore from 'redux-mock-store'
+import History, { serviceNameDisplay } from '@components/Section/Military/History/History'
 
 describe('The military history component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <History {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'military-history'
     }
-    const component = mount(<History {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.served').length).toEqual(1)
     expect(component.find('.accordion').length).toEqual(0)
   })
@@ -17,7 +32,7 @@ describe('The military history component', () => {
       name: 'military-history',
       HasServed: { value: 'No' }
     }
-    const component = mount(<History {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.served').length).toEqual(1)
     expect(component.find('.accordion').length).toEqual(0)
   })
@@ -27,7 +42,7 @@ describe('The military history component', () => {
       name: 'military-history',
       HasServed: { value: 'Yes' }
     }
-    const component = mount(<History {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.served').length).toEqual(1)
     expect(component.find('.accordion').length).toEqual(1)
   })

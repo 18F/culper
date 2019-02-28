@@ -7,13 +7,13 @@ import * as sections from '@constants/sections'
 import { hideSelectiveService } from '@validators/selectiveservice'
 import { hideDisciplinaryProcedures } from '@validators/militarydisciplinary'
 
-const hideSelectiveServiceSelector = state => {
+export const hideSelectiveServiceSelector = state => {
   const { application } = state
 
   return hideSelectiveService(application)
 }
 
-const hideDisciplinaryProceduresSelector = state => {
+export const hideDisciplinaryProceduresSelector = state => {
   const { application } = state
 
   return hideDisciplinaryProcedures(application)

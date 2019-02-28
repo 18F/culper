@@ -5,47 +5,24 @@ import History from '@components/Section/Military/History'
 import Disciplinary from '@components/Section/Military/Disciplinary'
 import Foreign from '@components/Section/Military/Foreign'
 
-const Review = ({AddressBooks}) => {
+const Review = ({AddressBooks, showSelectiveService, showDisciplinaryProcedures}) => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
   }
 
-  const sectionDivider = (
+  const sectionDivider = (show = true) => (
     <hr className="section-divider" />
   )
 
-      //<h1 className="section-header">{i18n.t('military.destination.selective')}</h1>
-            //<Show when={showSelectiveService}>
-              //<Selective
-            //<History
-
-            //<Show when={showDisciplinary}>
-              //<hr className="section-divider" />
-              //<h1 className="section-header">{i18n.t('military.destination.disciplinary')}</h1>
-              //<Disciplinary
-            //</Show>
-
-            //<Foreign
-              //name="foreign"
-              //{...this.props.Foreign}
-              //section="military"
-              //subsection="foreign"
-              //addressBooks={this.props.AddressBooks}
-              //dispatch={this.props.dispatch}
-              //onUpdate={this.updateForeign}
-              //onError={this.handleError}
-              //required={true}
-              //scrollIntoView={false}
-            ///>
   return (
     <div>
-      <Selective {...subsectionProps} />
-      {sectionDivider}
+      {showSelectiveService && <Selective {...subsectionProps} />}
+      {showSelectiveService && sectionDivider}
       <History {...subsectionProps} />
       {sectionDivider}
-      <Disciplinary {...subsectionProps} />
-      {sectionDivider}
+      {showDisciplinaryProcedures && <Disciplinary {...subsectionProps} />}
+      {showDisciplinaryProcedures && sectionDivider}
       <Foreign
         {...subsectionProps}
         addressBooks={AddressBooks} />
@@ -55,6 +32,8 @@ const Review = ({AddressBooks}) => {
 
 Review.defaultProps = {
   AddressBooks: {},
+  showSelectiveService: false,
+  showDisciplinaryProcedures: false,
 }
 
 export default Review

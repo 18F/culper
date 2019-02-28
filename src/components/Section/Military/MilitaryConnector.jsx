@@ -6,6 +6,7 @@ import {
   updateApplication,
   reportErrors,
 } from '../../../actions/ApplicationActions'
+import { hideSelectiveServiceSelector, hideDisciplinaryProceduresSelector } from '@selectors/navigation'
 
 const connectMilitarySection = (Component, {
   section, subsection, store, storeKey,
@@ -82,6 +83,8 @@ const connectMilitarySection = (Component, {
           Errors: errors.military || [],
           Completed: completed.military || [],
           AddressBooks: addressBooks,
+          showSelectiveService: !hideSelectiveServiceSelector(state),
+          showDisciplinaryProcedures: !hideDisciplinaryProceduresSelector(state)
         }
     }
   }
