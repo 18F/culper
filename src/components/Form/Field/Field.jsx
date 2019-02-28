@@ -74,9 +74,8 @@ export default class Field extends ValidationElement {
    */
   toggleHelp() {
     const { helpActive } = this.state
-    const newHelpActive = !helpActive
 
-    this.setState({ helpActive: newHelpActive }, () => {
+    this.setState({ helpActive: !helpActive }, () => {
       this.scrollIntoView(this.helpMessageRef)
     })
   }
@@ -239,7 +238,7 @@ export default class Field extends ValidationElement {
     if (this.visibleComments()) {
       return (
         <a
-          href="javascript:;;;"
+          href="javascript:;;"
           onClick={this.toggleComments}
           className="comments-button remove"
         >
@@ -251,7 +250,7 @@ export default class Field extends ValidationElement {
 
     return (
       <a
-        href="javascript:;;;"
+        href="javascript:;;"
         onClick={this.toggleComments}
         className="comments-button add"
       >
@@ -308,7 +307,7 @@ export default class Field extends ValidationElement {
 
     return (
       <a
-        href="javascript:;;;"
+        href="javascript:;"
         title={titleString}
         aria-label={titleString}
         className={iconClasses}
@@ -329,7 +328,7 @@ export default class Field extends ValidationElement {
         <div className="usa-alert usa-alert-info" role="alert">
           <div className="usa-alert-body">
             {renderMessage(this.props.help, this.props.helpMessage, this.props.helpTitle)}
-            <a href="javascript:;;;" className="close" onClick={this.toggleHelp} title={i18n.t('help.close')}>
+            <a href="javascript:;;" className="close" onClick={this.toggleHelp} title={i18n.t('help.close')}>
               {i18n.t('help.close')}
             </a>
           </div>

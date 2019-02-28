@@ -548,7 +548,7 @@ exports[`Renders homepage 1`] = `
             </div>
             <div
               aria-label="Persons completing this form should begin after carefully reading the preceding instructions"
-              className="field   branch introduction-acceptance no-margin-bottom"
+              className="field branch introduction-acceptance no-margin-bottom"
               data-uuid="field-MOCK-GUID"
             >
               <a

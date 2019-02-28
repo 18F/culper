@@ -10,6 +10,7 @@ import {
   BranchCollection,
 } from 'components/Form'
 
+import { getYearsString } from '../helpers'
 import { today, daysAgo, extractDate } from '../dateranges'
 import ReasonOptions from './ReasonOptions'
 
@@ -69,20 +70,9 @@ export default class ReasonLeft extends ValidationElement {
     )
   }
 
-  getYearsString = (years) => {
-    switch (years) {
-      case 5:
-        return 'five'
-      case 7:
-        return 'seven'
-      default:
-        return ''
-    }
-  }
-
   render() {
     const { recordYears } = this.props
-    const recordYearsString = this.getYearsString(recordYears)
+    const recordYearsString = getYearsString(recordYears)
 
     return (
       <div className="reason-leaving">

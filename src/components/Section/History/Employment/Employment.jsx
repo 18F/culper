@@ -15,6 +15,8 @@ import { InjectGaps, EmploymentCustomSummary } from 'components/Section/History/
 import EmploymentItem from 'components/Section/History/Employment/EmploymentItem'
 import { Gap } from 'components/Section/History/Gap'
 
+import { getYearsString } from 'components/Section/History/helpers'
+
 import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
 
 import connectHistorySection from '../HistoryConnector'
@@ -161,16 +163,7 @@ export class Employment extends Subsection {
 
   render() {
     const { recordYears } = this.props
-    let recordYearsString = ''
-    switch (recordYears) {
-      case 5:
-        recordYearsString = 'five'
-        break
-      case 7:
-        recordYearsString = 'seven'
-        break
-      default:
-    }
+    const recordYearsString = getYearsString(recordYears)
 
     return (
       <div

@@ -90,7 +90,7 @@ exports[`The identification section renders the IdentificationSections component
             >
               <div
                 aria-label="First name"
-                className="field required  usa-form-control"
+                className="field required usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -109,7 +109,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <a
                     aria-label="Show help for First name"
-                    className="toggle label  adjust-for-labels"
+                    className="toggle label adjust-for-labels"
                     href="javascript:;"
                     onClick={[Function]}
                     title="Show help for First name"
@@ -220,7 +220,7 @@ exports[`The identification section renders the IdentificationSections component
               </div>
               <div
                 aria-label="Middle name"
-                className="field required  usa-form-control"
+                className="field required usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -239,7 +239,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <a
                     aria-label="Show help for Middle name"
-                    className="toggle label  adjust-for-labels"
+                    className="toggle label adjust-for-labels"
                     href="javascript:;"
                     onClick={[Function]}
                     title="Show help for Middle name"
@@ -375,7 +375,7 @@ exports[`The identification section renders the IdentificationSections component
               </div>
               <div
                 aria-label="Last name"
-                className="field required  usa-form-control"
+                className="field required usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -459,7 +459,7 @@ exports[`The identification section renders the IdentificationSections component
               />
               <div
                 aria-label="Suffix"
-                className="field   usa-form-control"
+                className="field usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -972,7 +972,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <div
                     aria-label="Were you born in the United States?"
-                    className="field required  branch"
+                    className="field required branch"
                     data-uuid="field-MOCK-GUID"
                   >
                     <a
@@ -1371,7 +1371,7 @@ exports[`The identification section renders the IdentificationSections component
     </h1>
     <div
       aria-label="Provide your other names used and the period of time you used them"
-      className="field   no-margin-bottom"
+      className="field no-margin-bottom"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1449,7 +1449,7 @@ exports[`The identification section renders the IdentificationSections component
     </div>
     <div
       aria-label="Have you used any other names?"
-      className="field required  branch"
+      className="field required branch"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1595,7 +1595,7 @@ exports[`The identification section renders the IdentificationSections component
     </h1>
     <div
       aria-label="Your email addresses"
-      className="field   no-margin-bottom"
+      className="field no-margin-bottom"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1827,7 +1827,7 @@ exports[`The identification section renders the IdentificationSections component
     </div>
     <div
       aria-label="Your phone numbers"
-      className="field   no-margin-bottom"
+      className="field no-margin-bottom"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1909,7 +1909,7 @@ exports[`The identification section renders the IdentificationSections component
     </div>
     <div
       aria-label=""
-      className="field required  hidden"
+      className="field required hidden"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -2016,7 +2016,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Height"
-          className="toggle h4  adjust-for-labels"
+          className="toggle h4 adjust-for-labels"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Height"
@@ -2193,7 +2193,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Weight"
-          className="toggle h4  adjust-for-labels"
+          className="toggle h4 adjust-for-labels"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Weight"
@@ -2331,7 +2331,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Hair color"
-          className="toggle h4  adjust-for-big-buttons"
+          className="toggle h4 adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Hair color"
@@ -3030,7 +3030,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Eye color"
-          className="toggle h4  adjust-for-big-buttons"
+          className="toggle h4 adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Eye color"
@@ -3547,7 +3547,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Select your sex"
-          className="toggle h4  adjust-for-big-buttons"
+          className="toggle h4 adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Select your sex"

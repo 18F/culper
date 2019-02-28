@@ -26,7 +26,7 @@ exports[`The attachments component renders properly 1`] = `
       <a
         aria-label="Show help for Specify your attachment method"
         className="toggle h4"
-        href="javascript:;;;"
+        href="javascript:;"
         onClick={[Function]}
         title="Show help for Specify your attachment method"
       >

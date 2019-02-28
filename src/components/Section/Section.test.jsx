@@ -4,9 +4,10 @@ import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router'
 import { mount } from 'enzyme'
 
+import navigation from 'config/navigation'
+
 import Section from './Section'
 import { testSnapshot } from '../test-helpers'
-import navigation from '../../config/navigation'
 
 // give a fake GUID so the field IDs don't differ between snapshots
 // https://github.com/facebook/jest/issues/936#issuecomment-404246102

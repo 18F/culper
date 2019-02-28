@@ -5,18 +5,9 @@ import i18n from 'util/i18n'
 import { ValidationElement, BranchCollection } from 'components/Form'
 import ReprimandItem from './ReprimandItem'
 
-export default class Reprimand extends ValidationElement {
-  getYearsString = (years) => {
-    switch (years) {
-      case 5:
-        return 'five'
-      case 7:
-        return 'seven'
-      default:
-        return ''
-    }
-  }
+import { getYearsString } from '../helpers'
 
+export default class Reprimand extends ValidationElement {
   updateReasons = (values) => {
     this.props.onUpdate({
       ...values,
@@ -25,7 +16,7 @@ export default class Reprimand extends ValidationElement {
 
   render() {
     const { recordYears } = this.props
-    const recordYearsString = this.getYearsString(recordYears)
+    const recordYearsString = getYearsString(recordYears)
 
     return (
       <BranchCollection
