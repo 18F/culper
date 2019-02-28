@@ -2,6 +2,7 @@ import React from 'react'
 
 import { i18n } from 'config'
 import { HISTORY, HISTORY_REVIEW } from 'config/formSections/history'
+import * as formConfig from 'config/forms'
 
 import { Show } from 'components/Form'
 
@@ -23,8 +24,14 @@ const sectionConfig = {
 
 const Review = (props) => {
   const {
-    Birthdate, Education, Residence, Employment,
+    Birthdate, Education, Residence, Employment, formType,
   } = props
+
+  const formTypeConfig = formType && formConfig[formType]
+  const residenceYears = formTypeConfig && formTypeConfig.HISTORY_RESIDENCE_YEARS
+  const employmentYears = formTypeConfig && formTypeConfig.HISTORY_EMPLOYMENT_YEARS
+  const employmentRecordYears = formTypeConfig && formTypeConfig.HISTORY_EMPLOYMENT_RECORD_YEARS
+  const educationYears = formTypeConfig && formTypeConfig.HISTORY_EDUCATION_YEARS
 
   const subsectionProps = {
     required: true,
@@ -40,17 +47,20 @@ const Review = (props) => {
       <ResidenceSummaryProgress
         Residence={Residence}
         Birthdate={Birthdate}
+        years={residenceYears}
       />
 
       <EmploymentSummaryProgress
         Employment={Employment}
         Birthdate={Birthdate}
+        years={employmentYears}
       />
 
       <Show when={hasAttendedSchool || hasDegree}>
         <EducationSummaryProgress
           Education={Education}
           Birthdate={Birthdate}
+          years={educationYears}
         />
       </Show>
 
@@ -58,13 +68,18 @@ const Review = (props) => {
       <h1 className="section-header">
         {i18n.t('history.residence.collection.caption')}
       </h1>
-      <ConnectedResidence {...subsectionProps} realtime />
+      <ConnectedResidence {...subsectionProps} totalYears={residenceYears} realtime />
 
       <hr className="section-divider" />
       <h1 className="section-header">
         {i18n.t('history.employment.default.collection.caption')}
       </h1>
-      <ConnectedEmployment {...subsectionProps} realtime />
+      <ConnectedEmployment
+        {...subsectionProps}
+        totalYears={employmentYears}
+        recordYears={employmentRecordYears}
+        realtime
+      />
 
       <hr className="section-divider" />
       <h1 className="section-header">
