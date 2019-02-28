@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
+
 import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
+import * as formConfig from 'config/forms'
 
 import { Field, Show } from 'components/Form'
 import { sectionHasGaps } from 'components/Section/History/helpers'
@@ -18,7 +20,13 @@ const sectionConfig = {
 }
 
 const EmploymentWrapper = (props) => {
-  const { Employment, Birthdate } = props
+  const { Employment, Birthdate, formType } = props
+
+  const years = formType
+    && formConfig[formType]
+    && formConfig[formType].HISTORY_EMPLOYMENT_YEARS
+
+  const formName = formType
 
   let employmentItems = []
   if (Employment && Employment.List && Employment.List.items) {
@@ -39,7 +47,7 @@ const EmploymentWrapper = (props) => {
         optional
         className="no-margin-bottom"
       >
-        {i18n.m('history.employment.para.employment')}
+        {i18n.m('history.employment.para.employment', { years })}
         {i18n.m('history.employment.para.employment2')}
       </Field>
 
@@ -48,10 +56,12 @@ const EmploymentWrapper = (props) => {
       <EmploymentSummaryProgress
         Employment={Employment}
         Birthdate={Birthdate}
+        years={years}
       />
 
       <ConnectedEmployment
         scrollToTop="scrollToHistory"
+        totalYears={years}
       />
 
       <Show when={employmentHasGaps}>
@@ -64,7 +74,7 @@ const EmploymentWrapper = (props) => {
             optional
             className="no-margin-bottom"
           >
-            {i18n.m('history.employment.para.exiting')}
+            {i18n.m('history.employment.para.exiting', { years, formName })}
           </Field>
         </div>
       </Show>
@@ -76,6 +86,7 @@ const EmploymentWrapper = (props) => {
 EmploymentWrapper.propTypes = {
   Employment: PropTypes.object,
   Birthdate: PropTypes.any,
+  formType: PropTypes.string.isRequired,
 }
 
 EmploymentWrapper.defaultProps = {

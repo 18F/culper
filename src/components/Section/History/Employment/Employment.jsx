@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 import schema from 'schema'
 import validate, { EmploymentValidator } from 'validators'
@@ -138,12 +138,14 @@ export class Employment extends Subsection {
   }
 
   customEmploymentDetails = (item, index, initial, callback) => {
+    const { totalYears } = this.props
+
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
       return (
         <Gap
           title={i18n.t('history.employment.gap.title')}
-          para={i18n.t('history.employment.gap.para')}
+          para={i18n.t('history.employment.gap.para', { years: totalYears })}
           btnText={i18n.t('history.employment.gap.btnText')}
           first={index === 0}
           dates={dates}
@@ -158,6 +160,18 @@ export class Employment extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
+    const { totalYears } = this.props
+    let totalYearsString = ''
+    switch (totalYears) {
+      case 5:
+        totalYearsString = 'five'
+        break
+      case 7:
+        totalYearsString = 'seven'
+        break
+      default:
+    }
+
     return (
       <div
         className="section-content employment"
@@ -201,7 +215,7 @@ export class Employment extends Subsection {
         </Accordion>
         <hr className="section-divider" />
         <Branch
-          label={i18n.t('history.employment.default.employmentRecord.title')}
+          label={i18n.t('history.employment.default.employmentRecord.title', { years: totalYears, yearsString: totalYearsString })}
           className="employment-record"
           labelSize="h4"
           {...this.props.EmploymentRecord}

@@ -164,7 +164,7 @@ export const history = {
     gap: {
       title: 'Employment gap',
       para:
-        'There is a gap in your employment. The entire 10 year period must be covered with no gaps',
+        'There is a gap in your employment. The entire {{years}} year period must be covered with no gaps',
       btnText: 'Add an employer',
     },
     heading: {
@@ -173,9 +173,9 @@ export const history = {
     },
     para: {
       exiting:
-        '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
+        '**The full {{years}} year period of employment history is not covered.** Your {{formName}} cannot be submitted until all {{years}} years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
       employment:
-        'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\n Provide separate entries for employment activities with the same employer but having different physical addresses.',
+        'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back {{years}} years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\n Provide separate entries for employment activities with the same employer but having different physical addresses.',
 
       employment2:
         'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
@@ -198,7 +198,7 @@ export const history = {
       },
       employmentRecord: {
         title:
-          'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
+          'Have any of the following happened to you in the last {{yearsString}} ({{years}}) years at employment activities that you have not previously listed?',
         list: [
           '- Fired from a job?',
           '- Quit a job after being told you would be fired?',
