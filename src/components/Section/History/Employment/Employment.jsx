@@ -160,14 +160,14 @@ export class Employment extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
-    const { totalYears } = this.props
-    let totalYearsString = ''
-    switch (totalYears) {
+    const { recordYears } = this.props
+    let recordYearsString = ''
+    switch (recordYears) {
       case 5:
-        totalYearsString = 'five'
+        recordYearsString = 'five'
         break
       case 7:
-        totalYearsString = 'seven'
+        recordYearsString = 'seven'
         break
       default:
     }
@@ -211,11 +211,12 @@ export class Employment extends Subsection {
             dispatch={this.props.dispatch}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
+            recordYears={recordYears}
           />
         </Accordion>
         <hr className="section-divider" />
         <Branch
-          label={i18n.t('history.employment.default.employmentRecord.title', { years: totalYears, yearsString: totalYearsString })}
+          label={i18n.t('history.employment.default.employmentRecord.title', { years: recordYears, yearsString: recordYearsString })}
           className="employment-record"
           labelSize="h4"
           {...this.props.EmploymentRecord}
@@ -250,6 +251,7 @@ Employment.defaultProps = {
   realtime: false,
   sort: null,
   totalYears: 10,
+  recordYears: 7,
   overrideInitial: false,
   caption: null,
   onUpdate: () => {},

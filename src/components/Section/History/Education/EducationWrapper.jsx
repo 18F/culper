@@ -70,7 +70,7 @@ class EducationWrapper extends React.Component {
 
     const years = formType
       && formConfig[formType]
-      && formConfig[formType].HISTORY_EMPLOYMENT_YEARS
+      && formConfig[formType].HISTORY_EDUCATION_YEARS
 
     const hasAttendedSchool = Education.HasAttended.value === 'Yes'
     const hasDegree = Education.HasDegree10.value === 'Yes'

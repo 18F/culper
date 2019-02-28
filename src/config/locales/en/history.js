@@ -14,30 +14,6 @@ export const history = {
     para: 'View all the sections associated with your history at once',
     button: 'Show me the full section',
   },
-  timeline: {
-    title: "Let's cover your last 10 years",
-    para1:
-      'List the places where you have lived and worked beginning with your present residence or employer and working back 10 years. **Residences and employers for the entire period must be accounted for without breaks.**',
-    para2:
-      'You will also list any school attended in the last 10 years and all diplomas & degrees earned at any point in your life.',
-    start: {
-      residence: {
-        title: 'Start with your present residence',
-        button: 'Add residence',
-      },
-      employment: {
-        title: 'Start with your present employer',
-        button: 'Add employer',
-      },
-    },
-    heading: {
-      exiting: 'Before you leave this section',
-    },
-    para: {
-      exiting:
-        '**The full 10 year period of residence and employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
-    },
-  },
   section: {
     name: 'Your history',
   },
@@ -176,7 +152,6 @@ export const history = {
         '**The full {{years}} year period of employment history is not covered.** Your {{formName}} cannot be submitted until all {{years}} years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
       employment:
         'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back {{years}} years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\n Provide separate entries for employment activities with the same employer but having different physical addresses.',
-
       employment2:
         'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
     },
@@ -243,17 +218,12 @@ export const history = {
         title: 'Reason for leaving employment',
         message: 'Explain why you left your last employment',
       },
-      reasonOptions: {
-        title: 'Reason for leaving employment',
-        message:
-          'For this employment have any of the following happened to you in the last seven (7) years?',
-      },
       left: {
         title: 'Provide the reason for leaving the employment activity',
         branch:
-          'For this employment have any of the following happened to you in the last seven (7) years?',
+          'For this employment have any of the following happened to you in the last {{yearsString}} ({{years}}) years?',
         append:
-          'In the last seven (7) years do you have another reason for leaving to report for this employment?',
+          'In the last {{yearsString}} ({{years}}) years do you have another reason for leaving to report for this employment?',
         list: [
           '- Fired',
           '- Quit after being told you would be fired',
@@ -287,7 +257,7 @@ export const history = {
       },
       reprimand: {
         label:
-          'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+          'For this employment, in the last {{yearsString}} ({{years}}) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
         append:
           'Do you have another instance of discipline or a warning to provide?',
         description: {

@@ -22,9 +22,10 @@ const sectionConfig = {
 const EmploymentWrapper = (props) => {
   const { Employment, Birthdate, formType } = props
 
-  const years = formType
-    && formConfig[formType]
-    && formConfig[formType].HISTORY_EMPLOYMENT_YEARS
+  const formTypeConfig = formType && formConfig[formType]
+
+  const years = formTypeConfig && formTypeConfig.HISTORY_EMPLOYMENT_YEARS
+  const recordYears = formTypeConfig && formTypeConfig.HISTORY_EMPLOYMENT_RECORD_YEARS
 
   const formName = formType
 
@@ -62,6 +63,7 @@ const EmploymentWrapper = (props) => {
       <ConnectedEmployment
         scrollToTop="scrollToHistory"
         totalYears={years}
+        recordYears={recordYears}
       />
 
       <Show when={employmentHasGaps}>
