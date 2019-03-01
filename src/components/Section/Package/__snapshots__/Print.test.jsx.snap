@@ -6199,8 +6199,6 @@ exports[`The print section renders properly 1`] = `
       <div>
         <div
           className="section-content military-history"
-          data-section="military"
-          data-subsection="history"
         >
           <h1
             className="section-header"

@@ -5,13 +5,13 @@ import History from 'components/Section/Military/History'
 import Disciplinary from 'components/Section/Military/Disciplinary'
 import Foreign from 'components/Section/Military/Foreign'
 
-const Review = ({AddressBooks, showSelectiveService, showDisciplinaryProcedures}) => {
+const Review = ({ AddressBooks, showSelectiveService, showDisciplinaryProcedures }) => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
   }
 
-  const sectionDivider = (show = true) => (
+  const sectionDivider = () => (
     <hr className="section-divider" />
   )
 
@@ -25,7 +25,8 @@ const Review = ({AddressBooks, showSelectiveService, showDisciplinaryProcedures}
       {showDisciplinaryProcedures && sectionDivider}
       <Foreign
         {...subsectionProps}
-        addressBooks={AddressBooks} />
+        addressBooks={AddressBooks}
+      />
     </div>
   )
 }

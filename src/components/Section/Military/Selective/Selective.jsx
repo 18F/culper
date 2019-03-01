@@ -3,7 +3,6 @@ import { MILITARY, MILITARY_SELECTIVE } from 'config/formSections/military'
 import { i18n } from 'config'
 import schema from 'schema'
 import validate from 'validators'
-import { SelectiveServiceValidator } from 'validators'
 import Subsection from 'components/Section/shared/Subsection'
 import {
   Branch,
@@ -230,7 +229,7 @@ Selective.defaultProps = {
   WasBornAfter: {},
   HasRegistered: { value: '' },
   HasRegisteredNotApplicable: { applicable: true },
-  onUpdate: (queue) => {},
+  onUpdate: () => {},
   onError: (value, arr) => arr,
   section: 'military',
   subsection: 'selective',

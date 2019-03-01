@@ -74,12 +74,12 @@ class Foreign extends Subsection {
 }
 
 Foreign.defaultProps = {
-  onUpdate: (queue) => {},
+  onUpdate: () => {},
   onError: (value, arr) => arr,
   section: 'military',
   subsection: 'foreign',
   addressBooks: {},
-  dispatch: (action) => {},
+  dispatch: () => {},
   validator: data => validate(schema('military.foreign', data)),
   defaultState: true,
 }

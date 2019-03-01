@@ -6,14 +6,14 @@ export const MILITARY = {
   name: 'military',
   path: '/military',
   store: 'Military',
-  label: i18n.t('military.section.name')
+  label: i18n.t('military.section.name'),
 }
 
 const MILITARY_INTRO = {
   key: sections.MILITARY_INTRO,
   name: 'intro',
   path: `${MILITARY.path}/intro`,
-  label: i18n.t('military.subsection.intro')
+  label: i18n.t('military.subsection.intro'),
 }
 
 export const MILITARY_SELECTIVE = {
@@ -21,7 +21,7 @@ export const MILITARY_SELECTIVE = {
   name: 'selective',
   path: `${MILITARY.path}/selective`,
   storeKey: 'Selective',
-  label: i18n.t('military.subsection.selective')
+  label: i18n.t('military.subsection.selective'),
 }
 
 export const MILITARY_HISTORY = {
@@ -29,7 +29,7 @@ export const MILITARY_HISTORY = {
   name: 'history',
   path: `${MILITARY.path}/history`,
   storeKey: 'History',
-  label: i18n.t('military.subsection.history')
+  label: i18n.t('military.subsection.history'),
 }
 
 export const MILITARY_DISCIPLINARY = {
@@ -37,7 +37,7 @@ export const MILITARY_DISCIPLINARY = {
   name: 'disciplinary',
   path: `${MILITARY.path}/disciplinary`,
   storeKey: 'Disciplinary',
-  label: i18n.t('military.subsection.disciplinary')
+  label: i18n.t('military.subsection.disciplinary'),
 }
 
 export const MILITARY_FOREIGN = {
@@ -45,14 +45,14 @@ export const MILITARY_FOREIGN = {
   name: 'foreign',
   path: `${MILITARY.path}/foreign`,
   storeKey: 'Foreign',
-  label: i18n.t('military.subsection.foreign')
+  label: i18n.t('military.subsection.foreign'),
 }
 
 const MILITARY_REVIEW = {
   key: sections.MILITARY_REVIEW,
   name: 'review',
   path: `${MILITARY.path}/review`,
-  label: i18n.t('military.subsection.review')
+  label: i18n.t('military.subsection.review'),
 }
 
 export default {
@@ -62,5 +62,5 @@ export default {
   MILITARY_HISTORY,
   MILITARY_DISCIPLINARY,
   MILITARY_FOREIGN,
-  MILITARY_REVIEW
+  MILITARY_REVIEW,
 }

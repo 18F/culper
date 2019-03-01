@@ -10,16 +10,15 @@ describe('The selective service component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <Selective {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <Selective {...expected} />
+      </Provider>,
+    )
   })
   it('no error on empty', () => {
     const expected = {
-      name: 'selective'
+      name: 'selective',
     }
     const component = createComponent(expected)
     expect(component.find('input[type="radio"]').length).toEqual(2)
@@ -29,7 +28,7 @@ describe('The selective service component', () => {
   it('selects no on born after and nothing more', () => {
     const expected = {
       name: 'selective',
-      WasBornAfter: { value: 'No' }
+      WasBornAfter: { value: 'No' },
     }
     const component = createComponent(expected)
     component.find('.born .no input').simulate('change')
@@ -39,7 +38,7 @@ describe('The selective service component', () => {
   it('selects yes on born after and asks if registered', () => {
     const expected = {
       name: 'selective',
-      WasBornAfter: { value: 'Yes' }
+      WasBornAfter: { value: 'Yes' },
     }
     const component = createComponent(expected)
     component.find('.born .yes input').simulate('change')
@@ -50,7 +49,7 @@ describe('The selective service component', () => {
     const expected = {
       name: 'selective',
       WasBornAfter: { value: 'Yes' },
-      HasRegistered: { value: 'No' }
+      HasRegistered: { value: 'No' },
     }
     const component = createComponent(expected)
     component.find('.born .yes input').simulate('change')
@@ -64,7 +63,7 @@ describe('The selective service component', () => {
     const expected = {
       name: 'selective',
       WasBornAfter: { value: 'Yes' },
-      HasRegisteredNotApplicable: { applicable: false }
+      HasRegisteredNotApplicable: { applicable: false },
     }
     const component = createComponent(expected)
     component.find('.born .yes input').simulate('change')
@@ -78,7 +77,7 @@ describe('The selective service component', () => {
     const expected = {
       name: 'selective',
       WasBornAfter: { value: 'Yes' },
-      HasRegistered: { value: 'Yes' }
+      HasRegistered: { value: 'Yes' },
     }
     const component = createComponent(expected)
     component.find('.born .yes input').simulate('change')

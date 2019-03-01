@@ -2,10 +2,7 @@ import React from 'react'
 import { MILITARY, MILITARY_HISTORY } from 'config/formSections/military'
 import { i18n } from 'config'
 import schema from 'schema'
-import validate, {
-  MilitaryHistoryValidator,
-  MilitaryServiceValidator,
-} from 'validators'
+import validate, { MilitaryServiceValidator } from 'validators'
 import Subsection from 'components/Section/shared/Subsection'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
@@ -38,6 +35,8 @@ export const serviceNameDisplay = (service) => {
     case 'MarineCorps':
       display = 'Marine Corps'
       break
+    default:
+      display = 'Unknown'
   }
 
   return display
@@ -47,22 +46,12 @@ class History extends Subsection {
   constructor(props) {
     super(props)
 
-    const {
-      section, subsection, store, storeKey,
-    } = sectionConfig
+    const { storeKey } = sectionConfig
 
-    this.section = section
-    this.subsection = subsection
-    this.store = store
     this.storeKey = storeKey
-
-    this.update = this.update.bind(this)
-    this.updateServed = this.updateServed.bind(this)
-    this.updateList = this.updateList.bind(this)
-    this.summary = this.summary.bind(this)
   }
 
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate(this.storeKey, {
       HasServed: this.props.HasServed,
       List: this.props.List,
@@ -70,14 +59,14 @@ class History extends Subsection {
     })
   }
 
-  updateServed(values) {
+  updateServed = (values) => {
     // If there is no history clear out any previously entered data
     this.update({
       HasServed: values,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
       List: values,
     })
@@ -86,7 +75,7 @@ class History extends Subsection {
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  static summary = (item, index) => {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Dates)
     const service = serviceNameDisplay(o.Service)
@@ -152,7 +141,7 @@ class History extends Subsection {
 History.defaultProps = {
   List: { items: [] },
   HasServed: {},
-  onUpdate: (queue) => {},
+  onUpdate: () => {},
   onError: (value, arr) => arr,
   section: 'military',
   subsection: 'history',

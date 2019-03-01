@@ -2,12 +2,8 @@ import React from 'react'
 import { MILITARY, MILITARY_DISCIPLINARY } from 'config/formSections/military'
 import { i18n } from 'config'
 import schema from 'schema'
-import validate from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
-import {
-  MilitaryDisciplinaryValidator,
-  ProcedureValidator,
-} from 'validators'
+import validate, { ProcedureValidator } from 'validators'
 import Subsection from 'components/Section/shared/Subsection'
 import { Branch, Show, Accordion } from 'components/Form'
 import Procedure from 'components/Section/Military/Disciplinary/Procedure'
@@ -64,7 +60,7 @@ class Disciplinary extends Subsection {
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  static summary(item, index) {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Date)
     const service = itemProperties.Name && itemProperties.Name.value
@@ -132,7 +128,7 @@ class Disciplinary extends Subsection {
 Disciplinary.defaultProps = {
   HasDisciplinary: {},
   List: { items: [] },
-  onUpdate: (queue) => {},
+  onUpdate: () => {},
   onError: (value, arr) => arr,
   section: 'military',
   subsection: 'disciplinary',

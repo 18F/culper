@@ -1,41 +1,13 @@
-import MilitaryHistoryValidator from './militaryhistory'
 import {
   validAccordion,
   validGenericTextfield,
-  validDateField
+  validDateField,
 } from './helpers'
 
-export const hideDisciplinaryProcedures = (store = {}) => {
-  return !(store.Military
+export const hideDisciplinaryProcedures = (store = {}) => !(store.Military
     && store.Military.History
     && store.Military.History.HasServed
     && store.Military.History.HasServed.value === 'Yes')
-}
-
-export default class MilitaryDisciplinaryValidator {
-  constructor(data = {}) {
-    this.hasDisciplinary = (data.HasDisciplinary || {}).value
-    this.list = data.List || {}
-  }
-
-  validDisciplinary() {
-    return this.hasDisciplinary === 'Yes' || this.hasDisciplinary === 'No'
-  }
-
-  validItems() {
-    if (this.validDisciplinary() && this.hasDisciplinary === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ProcedureValidator(item).isValid()
-    })
-  }
-
-  isValid() {
-    return this.validDisciplinary() && this.validItems()
-  }
-}
 
 export class ProcedureValidator {
   constructor(data = {}) {
@@ -68,11 +40,34 @@ export class ProcedureValidator {
 
   isValid() {
     return (
-      this.validDate() &&
-      this.validOffenses() &&
-      this.validName() &&
-      this.validCourt() &&
-      this.validOutcome()
+      this.validDate()
+      && this.validOffenses()
+      && this.validName()
+      && this.validCourt()
+      && this.validOutcome()
     )
+  }
+}
+
+export default class MilitaryDisciplinaryValidator {
+  constructor(data = {}) {
+    this.hasDisciplinary = (data.HasDisciplinary || {}).value
+    this.list = data.List || {}
+  }
+
+  validDisciplinary() {
+    return this.hasDisciplinary === 'Yes' || this.hasDisciplinary === 'No'
+  }
+
+  validItems() {
+    if (this.validDisciplinary() && this.hasDisciplinary === 'No') {
+      return true
+    }
+
+    return validAccordion(this.list, item => new ProcedureValidator(item).isValid())
+  }
+
+  isValid() {
+    return this.validDisciplinary() && this.validItems()
   }
 }

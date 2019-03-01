@@ -2,15 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { i18n, env } from 'config'
+import { env } from 'config'
 import { getBackAndNext } from 'helpers/navigation'
-
-import * as formTypeConfig from 'config/formTypes'
-import * as sections from 'constants/sections'
 
 import SectionNavButton from './SectionNavButton'
 
-export const SectionNavigation = ({ back, next }) => {
+const SectionNavigation = ({ back, next }) => {
   if (!back && !next) {
     return null
   }

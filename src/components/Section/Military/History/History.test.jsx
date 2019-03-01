@@ -10,17 +10,16 @@ describe('The military history component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <History {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <History {...expected} />
+      </Provider>,
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'military-history'
+      name: 'military-history',
     }
     const component = createComponent(expected)
     expect(component.find('.served').length).toEqual(1)
@@ -30,7 +29,7 @@ describe('The military history component', () => {
   it('selecting no to military service does nothing', () => {
     const expected = {
       name: 'military-history',
-      HasServed: { value: 'No' }
+      HasServed: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.served').length).toEqual(1)
@@ -40,7 +39,7 @@ describe('The military history component', () => {
   it('selecting yes to military service displays the form', () => {
     const expected = {
       name: 'military-history',
-      HasServed: { value: 'Yes' }
+      HasServed: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.served').length).toEqual(1)
@@ -52,18 +51,18 @@ describe('The military history component', () => {
       { service: { value: 'AirForce' }, expected: 'Air Force' },
       {
         service: { value: 'AirNationalGuard' },
-        expected: 'Air National Guard'
+        expected: 'Air National Guard',
       },
       {
         service: { value: 'ArmyNationalGuard' },
-        expected: 'Army National Guard'
+        expected: 'Army National Guard',
       },
       { service: { value: 'CoastGuard' }, expected: 'Coast Guard' },
       { service: { value: 'MarineCorps' }, expected: 'Marine Corps' },
-      { service: { value: 'Unknown' }, expected: 'Unknown' }
+      { service: { value: 'Unknown' }, expected: 'Unknown' },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(serviceNameDisplay(test.service)).toBe(test.expected)
     })
   })
