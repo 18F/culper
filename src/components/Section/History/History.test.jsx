@@ -4,12 +4,13 @@ import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import History from 'components/Section/History/History'
 import { mount } from 'enzyme'
+import { SF86 } from 'constants/formTypes'
 
 describe('The History section', () => {
   const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({})
+    const store = mockStore({ authentication: { formType: SF86 } })
     const component = mount(
       <MemoryRouter initialEntries={['/form/history/review']}>
         <Provider store={store}>
@@ -29,7 +30,7 @@ describe('The History section', () => {
       'education',
       'federal',
     ]
-    const store = mockStore({})
+    const store = mockStore({ authentication: { formType: SF86 }})
 
     sections.forEach((section) => {
       const component = mount(

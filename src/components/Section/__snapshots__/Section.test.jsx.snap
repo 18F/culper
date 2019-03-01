@@ -23534,229 +23534,211 @@ exports[`The section component renders legal.technology 1`] = `
 `;
 
 exports[`The section component renders military.disciplinary 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-disciplinary"
   >
     <div
-      className="view view-military"
+      className="section-content disciplinary"
+      data-section="military"
+      data-subsection="disciplinary"
     >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+      <h1
+        className="section-header"
+      >
+        Disciplinary procedures
+      </h1>
+      <div
+        aria-label="In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain's mast, Article 135 Court of Inquiry, etc?"
+        className="field required  branch"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain's mast, Article 135 Court of Inquiry, etc?
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
             >
               <div
-                className="view view-disciplinary"
+                className="content"
+              />
+              <div
+                className="blocks option-list branch"
               >
-                <div>
-                  <h1
-                    className="section-header"
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_disciplinary-MOCK-GUID"
+                    name="has_disciplinary-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="has_disciplinary-MOCK-GUID"
                   >
-                    Disciplinary procedures
-                  </h1>
-                  <div
-                    className="section-content disciplinary"
-                    data-section="military"
-                    data-subsection="disciplinary"
-                  >
-                    <div
-                      aria-label="In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain's mast, Article 135 Court of Inquiry, etc?"
-                      className="field required  branch"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain's mast, Article 135 Court of Inquiry, etc?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_disciplinary-MOCK-GUID"
-                                  name="has_disciplinary-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_disciplinary-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_disciplinary-MOCK-GUID"
-                                  name="has_disciplinary-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_disciplinary-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="no block"
                 >
-                  <div
-                    className="btn-wrap"
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_disciplinary-MOCK-GUID"
+                    name="has_disciplinary-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className=""
+                    htmlFor="has_disciplinary-MOCK-GUID"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section U.S. military"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section U.S. military"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              U.S. military
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Foreign military"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Foreign military"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Foreign military
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <button
+            aria-label="Go to previous section Review citizenship"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Review citizenship"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Review citizenship
                 </div>
               </div>
             </div>
-          </div>
+          </button>
+          <div
+            className="btn-spacer"
+          />
+          <button
+            aria-label="Go to next section Military intro"
+            className="btn-cell next"
+            onClick={[Function]}
+            title="Go to next section Military intro"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Military intro
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -23765,233 +23747,215 @@ exports[`The section component renders military.disciplinary 1`] = `
 `;
 
 exports[`The section component renders military.foreign 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-foreign"
   >
     <div
-      className="view view-military"
+      className="section-content foreign"
+      data-section="military"
+      data-subsection="foreign"
     >
+      <h1
+        className="section-header"
+      >
+        Foreign military
+      </h1>
       <div>
         <div>
-          <div>
-            <div
-              className="section-view"
+          <div
+            aria-label="Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?"
+            className="field required  branch"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <h4
+              className="title h4"
             >
-              <div
-                className="view view-foreign"
+              Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?
+            </h4>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
               >
-                <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Foreign military
-                  </h1>
-                  <div
-                    className="section-content foreign"
-                    data-section="military"
-                    data-subsection="foreign"
-                  >
-                    <div>
-                      <div>
-                        <div
-                          aria-label="Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?"
-                          className="field required  branch"
-                          data-uuid="field-MOCK-GUID"
-                        >
-                          <a
-                            aria-hidden="true"
-                            className="anchor"
-                            id="field-MOCK-GUID"
-                            name="field-MOCK-GUID"
-                          />
-                          <h4
-                            className="title h4"
-                          >
-                            Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?
-                          </h4>
-                          <span
-                            className="icon"
-                          />
-                          <div
-                            className="table expand"
-                          >
-                            <span
-                              aria-live="polite"
-                              className="messages help-messages"
-                            />
-                          </div>
-                          <div
-                            className="table expand"
-                          >
-                            <span
-                              aria-live="polite"
-                              className="messages error-messages"
-                              role="alert"
-                            />
-                          </div>
-                          <div
-                            className="table"
-                          >
-                            <span
-                              className="content"
-                            >
-                              <span
-                                className="component shrink"
-                              >
-                                <div
-                                  className="content"
-                                />
-                                <div
-                                  className="blocks option-list branch"
-                                >
-                                  <div
-                                    className="yes block"
-                                  >
-                                    <input
-                                      aria-label="Yes for null"
-                                      checked={false}
-                                      className="usa-input-success"
-                                      disabled={false}
-                                      id="has_foreign-MOCK-GUID"
-                                      name="has_foreign-MOCK-GUID"
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onKeyDown={[Function]}
-                                      type="radio"
-                                      value="Yes"
-                                    />
-                                    <label
-                                      className=""
-                                      htmlFor="has_foreign-MOCK-GUID"
-                                    >
-                                      <span>
-                                        Yes
-                                      </span>
-                                    </label>
-                                  </div>
-                                  <div
-                                    className="no block"
-                                  >
-                                    <input
-                                      aria-label="No for null"
-                                      checked={false}
-                                      className="usa-input-success"
-                                      disabled={false}
-                                      id="has_foreign-MOCK-GUID"
-                                      name="has_foreign-MOCK-GUID"
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onKeyDown={[Function]}
-                                      type="radio"
-                                      value="No"
-                                    />
-                                    <label
-                                      className=""
-                                      htmlFor="has_foreign-MOCK-GUID"
-                                    >
-                                      <span>
-                                        No
-                                      </span>
-                                    </label>
-                                  </div>
-                                </div>
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
+                <span
+                  className="component shrink"
                 >
                   <div
-                    className="btn-wrap"
+                    className="content"
+                  />
+                  <div
+                    className="blocks option-list branch"
                   >
                     <div
-                      className="btn-container"
+                      className="yes block"
                     >
-                      <button
-                        aria-label="Go to previous section U.S. military"
-                        className="btn-cell back"
+                      <input
+                        aria-label="Yes for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="has_foreign-MOCK-GUID"
+                        name="has_foreign-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
                         onClick={[Function]}
-                        title="Go to previous section U.S. military"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              U.S. military
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Yes"
                       />
-                      <button
-                        aria-label="Go to next section Review military history"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Review military history"
+                      <label
+                        className=""
+                        htmlFor="has_foreign-MOCK-GUID"
                       >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review military history
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
+                        <span>
+                          Yes
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="no block"
+                    >
+                      <input
+                        aria-label="No for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="has_foreign-MOCK-GUID"
+                        name="has_foreign-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="No"
+                      />
+                      <label
+                        className=""
+                        htmlFor="has_foreign-MOCK-GUID"
+                      >
+                        <span>
+                          No
+                        </span>
+                      </label>
                     </div>
                   </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <button
+            aria-label="Go to previous section U.S. military"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section U.S. military"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  U.S. military
                 </div>
               </div>
             </div>
-          </div>
+          </button>
+          <div
+            className="btn-spacer"
+          />
+          <button
+            aria-label="Go to next section Review military history"
+            className="btn-cell next"
+            onClick={[Function]}
+            title="Go to next section Review military history"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Review military history
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -24000,253 +23964,233 @@ exports[`The section component renders military.foreign 1`] = `
 `;
 
 exports[`The section component renders military.history 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-history"
   >
     <div
-      className="view view-military"
+      className="section-content military-history"
     >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+      <h1
+        className="section-header"
+      >
+        U.S. military
+      </h1>
+      <div
+        aria-label="Have you ever served in the U.S. Military?"
+        className="field required  branch served"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Have you ever served in the U.S. Military?
+        </h4>
+        <span
+          className="icon"
+        >
+          <a
+            aria-label="Show help for Have you ever served in the U.S. Military?"
+            className="toggle h4  adjust-for-buttons"
+            href="javascript:;"
+            onClick={[Function]}
+            title="Show help for Have you ever served in the U.S. Military?"
+          >
+            <svg
+              alt="Scalable vector graphic"
+              focusable="false"
+              height="14.57px"
+              tabIndex="-1"
+              viewBox="0 0 14.57 14.57"
+              width="14.57px"
+            >
+              <g>
+                <path
+                  className="eapp-help-icon"
+                  d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                />
+              </g>
+            </svg>
+          </a>
+        </span>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
             >
               <div
-                className="view view-history"
+                className="content"
+              />
+              <div
+                className="blocks option-list branch"
               >
-                <div>
-                  <h1
-                    className="section-header"
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_served-MOCK-GUID"
+                    name="has_served-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="has_served-MOCK-GUID"
                   >
-                    U.S. military
-                  </h1>
-                  <div
-                    className="section-content military-history"
-                    data-section="military"
-                    data-subsection="history"
-                  >
-                    <div
-                      aria-label="Have you ever served in the U.S. Military?"
-                      className="field required  branch served"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you ever served in the U.S. Military?
-                      </h4>
-                      <span
-                        className="icon"
-                      >
-                        <a
-                          aria-label="Show help for Have you ever served in the U.S. Military?"
-                          className="toggle h4  adjust-for-buttons"
-                          href="javascript:;"
-                          onClick={[Function]}
-                          title="Show help for Have you ever served in the U.S. Military?"
-                        >
-                          <svg
-                            alt="Scalable vector graphic"
-                            focusable="false"
-                            height="14.57px"
-                            tabIndex="-1"
-                            viewBox="0 0 14.57 14.57"
-                            width="14.57px"
-                          >
-                            <g>
-                              <path
-                                className="eapp-help-icon"
-                                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-                              />
-                            </g>
-                          </svg>
-                        </a>
-                      </span>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_served-MOCK-GUID"
-                                  name="has_served-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_served-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_served-MOCK-GUID"
-                                  name="has_served-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_served-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="no block"
                 >
-                  <div
-                    className="btn-wrap"
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_served-MOCK-GUID"
+                    name="has_served-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className=""
+                    htmlFor="has_served-MOCK-GUID"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Selective service record"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Selective service record"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Selective service record
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Foreign military"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Foreign military"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Foreign military
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <button
+            aria-label="Go to previous section Selective service record"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Selective service record"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Selective service record
                 </div>
               </div>
             </div>
-          </div>
+          </button>
+          <div
+            className="btn-spacer"
+          />
+          <button
+            aria-label="Go to next section Foreign military"
+            className="btn-cell next"
+            onClick={[Function]}
+            title="Go to next section Foreign military"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Foreign military
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -24255,162 +24199,146 @@ exports[`The section component renders military.history 1`] = `
 `;
 
 exports[`The section component renders military.intro 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-intro"
   >
+    <div>
+      <h1
+        className="section-header"
+      >
+        Section 5: Military history
+      </h1>
+      <div
+        aria-label=""
+        className="field   no-margin-bottom"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component"
+            >
+              <div>
+                <p>
+                  You will be asked questions about your military history and be asked to provide details if necessary.
+                </p>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
     <div
-      className="view view-military"
+      className="bottom-btns"
     >
-      <div>
-        <div>
-          <div>
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <button
+            aria-label="Go to previous section Review citizenship"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Review citizenship"
+          >
             <div
-              className="section-view"
+              className="actions back"
             >
               <div
-                className="view view-intro"
+                className="icon"
               >
-                <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Section 5: Military history
-                  </h1>
-                  <div
-                    aria-label=""
-                    className="field   no-margin-bottom"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div>
-                            <p>
-                              You will be asked questions about your military history and be asked to provide details if necessary.
-                            </p>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="label"
                 >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Review citizenship"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Review citizenship"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review citizenship
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Selective service record"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Selective service record"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Selective service record
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                  Review citizenship
                 </div>
               </div>
             </div>
-          </div>
+          </button>
+          <div
+            className="btn-spacer"
+          />
+          <button
+            aria-label="Go to next section Selective service record"
+            className="btn-cell next"
+            onClick={[Function]}
+            title="Go to next section Selective service record"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Selective service record
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -24419,610 +24347,417 @@ exports[`The section component renders military.intro 1`] = `
 `;
 
 exports[`The section component renders military.review 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <h1
+    className="title"
+  >
+    Review your answers
+  </h1>
+  <div>
+    <p>
+      View the full section to make sure everything looks right and make changes if needed.
+    </p>
+  </div>
   <div
-    className="section-view"
+    className="view view-review"
   >
     <div
-      className="view view-military"
-    >
-      <div>
+      className="top-btns"
+    />
+    <div>
+      <div
+        className="section-content military-history"
+      >
+        <h1
+          className="section-header"
+        >
+          U.S. military
+        </h1>
+        <div
+          aria-label="Have you ever served in the U.S. Military?"
+          className="field required  branch served"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you ever served in the U.S. Military?
+          </h4>
+          <span
+            className="icon"
+          >
+            <a
+              aria-label="Show help for Have you ever served in the U.S. Military?"
+              className="toggle h4  adjust-for-buttons"
+              href="javascript:;"
+              onClick={[Function]}
+              title="Show help for Have you ever served in the U.S. Military?"
+            >
+              <svg
+                alt="Scalable vector graphic"
+                focusable="false"
+                height="14.57px"
+                tabIndex="-1"
+                viewBox="0 0 14.57 14.57"
+                width="14.57px"
+              >
+                <g>
+                  <path
+                    className="eapp-help-icon"
+                    d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                  />
+                </g>
+              </svg>
+            </a>
+          </span>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_served-MOCK-GUID"
+                      name="has_served-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_served-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_served-MOCK-GUID"
+                      name="has_served-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_served-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="section-content foreign"
+        data-section="military"
+        data-subsection="foreign"
+      >
+        <h1
+          className="section-header"
+        >
+          Foreign military
+        </h1>
         <div>
           <div>
             <div
-              className="section-view"
+              aria-label="Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?"
+              className="field required  branch"
+              data-uuid="field-MOCK-GUID"
             >
-              <h1
-                className="title"
+              <a
+                aria-hidden="true"
+                className="anchor"
+                id="field-MOCK-GUID"
+                name="field-MOCK-GUID"
+              />
+              <h4
+                className="title h4"
               >
-                Review your answers
-              </h1>
-              <div>
-                <p>
-                  View the full section to make sure everything looks right and make changes if needed.
-                </p>
+                Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?
+              </h4>
+              <span
+                className="icon"
+              />
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages help-messages"
+                />
               </div>
               <div
-                className="view view-review"
+                className="table expand"
               >
-                <div
-                  className="top-btns"
-                />
-                <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Selective service record
-                  </h1>
-                  <span>
-                    <div
-                      className="section-content selective"
-                      data-section="military"
-                      data-subsection="selective"
-                    >
-                      <div
-                        aria-label="Were you born a male after December 31, 1959?"
-                        className="field required  branch born"
-                        data-uuid="field-MOCK-GUID"
-                      >
-                        <a
-                          aria-hidden="true"
-                          className="anchor"
-                          id="field-MOCK-GUID"
-                          name="field-MOCK-GUID"
-                        />
-                        <h4
-                          className="title h4"
-                        >
-                          Were you born a male after December 31, 1959?
-                        </h4>
-                        <span
-                          className="icon"
-                        >
-                          <a
-                            aria-label="Show help for Were you born a male after December 31, 1959?"
-                            className="toggle h4  adjust-for-buttons"
-                            href="javascript:;"
-                            onClick={[Function]}
-                            title="Show help for Were you born a male after December 31, 1959?"
-                          >
-                            <svg
-                              alt="Scalable vector graphic"
-                              focusable="false"
-                              height="14.57px"
-                              tabIndex="-1"
-                              viewBox="0 0 14.57 14.57"
-                              width="14.57px"
-                            >
-                              <g>
-                                <path
-                                  className="eapp-help-icon"
-                                  d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-                                />
-                              </g>
-                            </svg>
-                          </a>
-                        </span>
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages help-messages"
-                          />
-                        </div>
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          >
-                            <div
-                              aria-live="polite"
-                              className="message error usa-alert usa-alert-error"
-                              role="alert"
-                            >
-                              <div
-                                className="usa-alert-body"
-                              >
-                                <div
-                                  data-i18n="error.required"
-                                >
-                                  <h5
-                                    className="usa-alert-heading"
-                                  >
-                                    Your response is required
-                                  </h5>
-                                  
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </span>
-                        </div>
-                        <div
-                          className="table"
-                        >
-                          <span
-                            className="content"
-                          >
-                            <span
-                              className="component shrink"
-                            >
-                              <div
-                                className="content"
-                              />
-                              <div
-                                className="blocks option-list branch usa-input-error"
-                              >
-                                <div
-                                  className="yes block"
-                                >
-                                  <input
-                                    aria-label="Yes for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="was_bornafter-MOCK-GUID"
-                                    name="was_bornafter-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="Yes"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="was_bornafter-MOCK-GUID"
-                                  >
-                                    <span>
-                                      Yes
-                                    </span>
-                                  </label>
-                                </div>
-                                <div
-                                  className="no block"
-                                >
-                                  <input
-                                    aria-label="No for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="was_bornafter-MOCK-GUID"
-                                    name="was_bornafter-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="No"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="was_bornafter-MOCK-GUID"
-                                  >
-                                    <span>
-                                      No
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <hr
-                      className="section-divider"
-                    />
-                  </span>
-                  <h1
-                    className="section-header"
-                  >
-                    U.S. military
-                  </h1>
-                  <div
-                    className="section-content military-history"
-                    data-section="military"
-                    data-subsection="history"
-                  >
-                    <div
-                      aria-label="Have you ever served in the U.S. Military?"
-                      className="field required  branch served"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you ever served in the U.S. Military?
-                      </h4>
-                      <span
-                        className="icon"
-                      >
-                        <a
-                          aria-label="Show help for Have you ever served in the U.S. Military?"
-                          className="toggle h4  adjust-for-buttons"
-                          href="javascript:;"
-                          onClick={[Function]}
-                          title="Show help for Have you ever served in the U.S. Military?"
-                        >
-                          <svg
-                            alt="Scalable vector graphic"
-                            focusable="false"
-                            height="14.57px"
-                            tabIndex="-1"
-                            viewBox="0 0 14.57 14.57"
-                            width="14.57px"
-                          >
-                            <g>
-                              <path
-                                className="eapp-help-icon"
-                                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-                              />
-                            </g>
-                          </svg>
-                        </a>
-                      </span>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_served-MOCK-GUID"
-                                  name="has_served-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_served-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_served-MOCK-GUID"
-                                  name="has_served-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_served-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <h1
-                    className="section-header"
-                  >
-                    Foreign military
-                  </h1>
-                  <div
-                    className="section-content foreign"
-                    data-section="military"
-                    data-subsection="foreign"
-                  >
-                    <div>
-                      <div>
-                        <div
-                          aria-label="Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?"
-                          className="field required  branch"
-                          data-uuid="field-MOCK-GUID"
-                        >
-                          <a
-                            aria-hidden="true"
-                            className="anchor"
-                            id="field-MOCK-GUID"
-                            name="field-MOCK-GUID"
-                          />
-                          <h4
-                            className="title h4"
-                          >
-                            Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?
-                          </h4>
-                          <span
-                            className="icon"
-                          />
-                          <div
-                            className="table expand"
-                          >
-                            <span
-                              aria-live="polite"
-                              className="messages help-messages"
-                            />
-                          </div>
-                          <div
-                            className="table expand"
-                          >
-                            <span
-                              aria-live="polite"
-                              className="messages error-messages"
-                              role="alert"
-                            >
-                              <div
-                                aria-live="polite"
-                                className="message error usa-alert usa-alert-error"
-                                role="alert"
-                              >
-                                <div
-                                  className="usa-alert-body"
-                                >
-                                  <div
-                                    data-i18n="error.required"
-                                  >
-                                    <h5
-                                      className="usa-alert-heading"
-                                    >
-                                      Your response is required
-                                    </h5>
-                                    
-                                    
-                                  </div>
-                                </div>
-                              </div>
-                            </span>
-                          </div>
-                          <div
-                            className="table"
-                          >
-                            <span
-                              className="content"
-                            >
-                              <span
-                                className="component shrink"
-                              >
-                                <div
-                                  className="content"
-                                />
-                                <div
-                                  className="blocks option-list branch usa-input-error"
-                                >
-                                  <div
-                                    className="yes block"
-                                  >
-                                    <input
-                                      aria-label="Yes for null"
-                                      checked={false}
-                                      className="usa-input-success"
-                                      disabled={false}
-                                      id="has_foreign-MOCK-GUID"
-                                      name="has_foreign-MOCK-GUID"
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onKeyDown={[Function]}
-                                      type="radio"
-                                      value="Yes"
-                                    />
-                                    <label
-                                      className=""
-                                      htmlFor="has_foreign-MOCK-GUID"
-                                    >
-                                      <span>
-                                        Yes
-                                      </span>
-                                    </label>
-                                  </div>
-                                  <div
-                                    className="no block"
-                                  >
-                                    <input
-                                      aria-label="No for null"
-                                      checked={false}
-                                      className="usa-input-success"
-                                      disabled={false}
-                                      id="has_foreign-MOCK-GUID"
-                                      name="has_foreign-MOCK-GUID"
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onKeyDown={[Function]}
-                                      type="radio"
-                                      value="No"
-                                    />
-                                    <label
-                                      className=""
-                                      htmlFor="has_foreign-MOCK-GUID"
-                                    >
-                                      <span>
-                                        No
-                                      </span>
-                                    </label>
-                                  </div>
-                                </div>
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
+                <span
+                  aria-live="polite"
+                  className="messages error-messages"
+                  role="alert"
                 >
                   <div
-                    className="btn-wrap"
+                    aria-live="polite"
+                    className="message error usa-alert usa-alert-error"
+                    role="alert"
                   >
                     <div
-                      className="btn-container"
+                      className="usa-alert-body"
                     >
-                      <button
-                        aria-label="Go to previous section Foreign military"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Foreign military"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Foreign military
-                            </div>
-                          </div>
-                        </div>
-                      </button>
                       <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Foreign intro"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Foreign intro"
+                        data-i18n="error.required"
                       >
-                        <div
-                          className="actions next"
+                        <h5
+                          className="usa-alert-heading"
                         >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Foreign intro
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
+                          Your response is required
+                        </h5>
+                        
+                        
+                      </div>
                     </div>
                   </div>
-                </div>
+                </span>
+              </div>
+              <div
+                className="table"
+              >
+                <span
+                  className="content"
+                >
+                  <span
+                    className="component shrink"
+                  >
+                    <div
+                      className="content"
+                    />
+                    <div
+                      className="blocks option-list branch usa-input-error"
+                    >
+                      <div
+                        className="yes block"
+                      >
+                        <input
+                          aria-label="Yes for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="has_foreign-MOCK-GUID"
+                          name="has_foreign-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="Yes"
+                        />
+                        <label
+                          className=""
+                          htmlFor="has_foreign-MOCK-GUID"
+                        >
+                          <span>
+                            Yes
+                          </span>
+                        </label>
+                      </div>
+                      <div
+                        className="no block"
+                      >
+                        <input
+                          aria-label="No for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="has_foreign-MOCK-GUID"
+                          name="has_foreign-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="No"
+                        />
+                        <label
+                          className=""
+                          htmlFor="has_foreign-MOCK-GUID"
+                        >
+                          <span>
+                            No
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </span>
+                </span>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <button
+            aria-label="Go to previous section Foreign military"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Foreign military"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Foreign military
+                </div>
+              </div>
+            </div>
+          </button>
+          <div
+            className="btn-spacer"
+          />
+          <button
+            aria-label="Go to next section Foreign intro"
+            className="btn-cell next"
+            onClick={[Function]}
+            title="Go to next section Foreign intro"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Foreign intro
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -25031,253 +24766,235 @@ exports[`The section component renders military.review 1`] = `
 `;
 
 exports[`The section component renders military.selective 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-selective"
   >
     <div
-      className="view view-military"
+      className="section-content selective"
+      data-section="military"
+      data-subsection="selective"
     >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+      <h1
+        className="section-header"
+      >
+        Selective service record
+      </h1>
+      <div
+        aria-label="Were you born a male after December 31, 1959?"
+        className="field required  branch born"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Were you born a male after December 31, 1959?
+        </h4>
+        <span
+          className="icon"
+        >
+          <a
+            aria-label="Show help for Were you born a male after December 31, 1959?"
+            className="toggle h4  adjust-for-buttons"
+            href="javascript:;"
+            onClick={[Function]}
+            title="Show help for Were you born a male after December 31, 1959?"
+          >
+            <svg
+              alt="Scalable vector graphic"
+              focusable="false"
+              height="14.57px"
+              tabIndex="-1"
+              viewBox="0 0 14.57 14.57"
+              width="14.57px"
+            >
+              <g>
+                <path
+                  className="eapp-help-icon"
+                  d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                />
+              </g>
+            </svg>
+          </a>
+        </span>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
             >
               <div
-                className="view view-selective"
+                className="content"
+              />
+              <div
+                className="blocks option-list branch"
               >
-                <div>
-                  <h1
-                    className="section-header"
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="was_bornafter-MOCK-GUID"
+                    name="was_bornafter-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="was_bornafter-MOCK-GUID"
                   >
-                    Selective service record
-                  </h1>
-                  <div
-                    className="section-content selective"
-                    data-section="military"
-                    data-subsection="selective"
-                  >
-                    <div
-                      aria-label="Were you born a male after December 31, 1959?"
-                      className="field required  branch born"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Were you born a male after December 31, 1959?
-                      </h4>
-                      <span
-                        className="icon"
-                      >
-                        <a
-                          aria-label="Show help for Were you born a male after December 31, 1959?"
-                          className="toggle h4  adjust-for-buttons"
-                          href="javascript:;"
-                          onClick={[Function]}
-                          title="Show help for Were you born a male after December 31, 1959?"
-                        >
-                          <svg
-                            alt="Scalable vector graphic"
-                            focusable="false"
-                            height="14.57px"
-                            tabIndex="-1"
-                            viewBox="0 0 14.57 14.57"
-                            width="14.57px"
-                          >
-                            <g>
-                              <path
-                                className="eapp-help-icon"
-                                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-                              />
-                            </g>
-                          </svg>
-                        </a>
-                      </span>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="was_bornafter-MOCK-GUID"
-                                  name="was_bornafter-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="was_bornafter-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="was_bornafter-MOCK-GUID"
-                                  name="was_bornafter-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="was_bornafter-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="no block"
                 >
-                  <div
-                    className="btn-wrap"
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="was_bornafter-MOCK-GUID"
+                    name="was_bornafter-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className=""
+                    htmlFor="was_bornafter-MOCK-GUID"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Military intro"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Military intro"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Military intro
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section U.S. military"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section U.S. military"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              U.S. military
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <button
+            aria-label="Go to previous section Military intro"
+            className="btn-cell back"
+            onClick={[Function]}
+            title="Go to previous section Military intro"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Military intro
                 </div>
               </div>
             </div>
-          </div>
+          </button>
+          <div
+            className="btn-spacer"
+          />
+          <button
+            aria-label="Go to next section U.S. military"
+            className="btn-cell next"
+            onClick={[Function]}
+            title="Go to next section U.S. military"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  U.S. military
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>

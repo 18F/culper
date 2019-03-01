@@ -17,9 +17,8 @@ jest.mock('../Form/ValidationElement/helpers', () => (
 ))
 
 const shouldSkip = (section, subsection) => (
-  // these need special handling, which we will come back to
   section.exclude
-    || (section.url === 'foreign' && subsection.url === 'activities')
+    || (section.url === 'foreign' && subsection.url === 'activities') // these need special handling, which we will come back to
     || (section.url === 'substance' && subsection.url === 'drugs')
     || (section.url === 'substance' && subsection.url === 'alcohol')
     || (section.url === 'psychological' && subsection.url === 'review')
@@ -36,7 +35,7 @@ describe('The section component', () => {
     const component = mount(
       <MemoryRouter>
         <Section />
-      </MemoryRouter>
+      </MemoryRouter>,
     )
     expect(component.find('div').length > 0).toBe(true)
   })
@@ -46,7 +45,9 @@ describe('The section component', () => {
       if (shouldSkip(section, subsection)) {
         return
       }
+
       window.token = 'fake-token'
+
       it(`renders ${section.url}.${subsection.url}`, () => {
         const store = mockStore({
           authentication: {
@@ -62,7 +63,7 @@ describe('The section component', () => {
             <MemoryRouter>
               <Section section={section.url} subsection={subsection.url} />
             </MemoryRouter>
-          </Provider>
+          </Provider>,
         )
       })
     })
