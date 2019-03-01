@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {
   updateApplication,
   reportErrors,
-} from '../../../actions/ApplicationActions'
+} from 'actions/ApplicationActions'
 import {
   hideSelectiveServiceSelector,
   hideDisciplinaryProceduresSelector,
@@ -50,8 +50,6 @@ const connectMilitarySection = (Component, {
   }
 
   ConnectedMilitarySection.propTypes = {
-    update: PropTypes.func.isRequired,
-    validator: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired, // Passed in via connect (below)
   }
 
@@ -73,7 +71,7 @@ const connectMilitarySection = (Component, {
         return { ...military.Disciplinary } || {}
 
       case 'Foreign':
-        return { ...military.Foreign, addressBooks: addressBooks } || {}
+        return { ...military.Foreign, addressBooks } || {}
 
       default:
         return {
@@ -87,7 +85,7 @@ const connectMilitarySection = (Component, {
           Completed: completed.military || [],
           AddressBooks: addressBooks,
           showSelectiveService: !hideSelectiveServiceSelector(state),
-          showDisciplinaryProcedures: !hideDisciplinaryProceduresSelector(state)
+          showDisciplinaryProcedures: !hideDisciplinaryProceduresSelector(state),
         }
     }
   }
