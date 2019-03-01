@@ -1,15 +1,30 @@
 import React from 'react'
 import { i18n } from 'config'
+
 import schema from 'schema'
 import validate, { EmploymentValidator } from 'validators'
-import SubsectionElement from 'components/Section/SubsectionElement'
+
+import Subsection from 'components/Section/shared/Subsection'
 import { Accordion, Branch } from 'components/Form'
 import { openState } from 'components/Form/Accordion/Accordion'
 import { newGuid } from 'components/Form/ValidationElement'
-import { today, daysAgo, extractDate, validDate } from 'components/Section/History/dateranges'
+import {
+  today, daysAgo, extractDate, validDate,
+} from 'components/Section/History/dateranges'
 import { InjectGaps, EmploymentCustomSummary } from 'components/Section/History/summaries'
 import EmploymentItem from 'components/Section/History/Employment/EmploymentItem'
 import { Gap } from 'components/Section/History/Gap'
+
+import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
+
+import connectHistorySection from '../HistoryConnector'
+
+const sectionConfig = {
+  section: HISTORY.name,
+  store: HISTORY.store,
+  subsection: HISTORY_EMPLOYMENT.name,
+  storeKey: HISTORY_EMPLOYMENT.storeKey,
+}
 
 const byline = (item, index, initial, translation, required, validator) => {
   // If item is required and not currently opened and is not valid, show message
@@ -30,29 +45,43 @@ const byline = (item, index, initial, translation, required, validator) => {
   }
 }
 
-export default class Employment extends SubsectionElement {
+export class Employment extends Subsection {
+  constructor(props) {
+    super(props)
+
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
+
+    this.employment = null
+  }
+
   customEmploymentByline = (item, index, initial) => {
+    const overrideInitial = this.props.overrideInitial ? false : initial
+
     return byline(
       item,
       index,
-      this.props.overrideInitial(initial),
+      overrideInitial,
       'history.employment.default.collection.summary.incomplete',
       this.props.required,
-      item => {
-        return new EmploymentValidator(item).isValid()
-      }
+      i => new EmploymentValidator(i).isValid(),
     )
   }
 
-  sortEmploymentItems = (employmentItems) => {
-    return employmentItems.sort((a, b) => {
-      if (a.type === 'Gap') {
-        return 1
-      } else if (b.type === 'Gap') {
-        return -1
-      } else if (
-        a.Item && a.Item.Dates && validDate(a.Item.Dates.to) &&
-        b.Item && b.Item.Dates && validDate(b.Item.Dates.to)
+  sortEmploymentItems = employmentItems => (
+    employmentItems.sort((a, b) => {
+      if (a.type === 'Gap') { return 1 }
+      if (b.type === 'Gap') { return -1 }
+
+      if (
+        a.Item && a.Item.Dates && validDate(a.Item.Dates.to)
+        && b.Item && b.Item.Dates && validDate(b.Item.Dates.to)
       ) {
         const aDateObj = a.Item.Dates.to
         const bDateObj = b.Item.Dates.to
@@ -61,29 +90,30 @@ export default class Employment extends SubsectionElement {
 
         return bDate.getTime() - aDate.getTime()
       }
+
       return 0
     })
-  }
+  )
 
   update = (queue) => {
     const updatedValues = {
       List: this.props.List,
       EmploymentRecord: this.props.EmploymentRecord,
-      ...queue
+      ...queue,
     }
 
     if (queue.List) {
       updatedValues.List = {
         ...queue.List,
-        items: this.sortEmploymentItems(queue.List.items)
+        items: this.sortEmploymentItems(queue.List.items),
       }
     }
 
-    this.props.onUpdate(updatedValues)
+    this.props.onUpdate('Employment', updatedValues)
   }
 
-  fillGap = (dates) => {
-    let items = [...this.props.List.items]
+  fillGap = () => {
+    const items = [...this.props.List.items]
     items.push({
       uuid: newGuid(),
       open: true,
@@ -92,18 +122,18 @@ export default class Employment extends SubsectionElement {
         Dates: {
           name: 'Dates',
           receiveProps: true,
-          present: false
-        }
-      }
+          present: false,
+        },
+      },
     })
 
     this.update({
       List: {
-        items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(
-          this.sort
-        ).filter(item => !item.type || (item.type && item.type !== 'Gap')),
-        branch: {}
-      }
+        items: InjectGaps(items, daysAgo(365 * this.props.totalYears))
+          .sort(this.sort)
+          .filter(item => !item.type || (item.type && item.type !== 'Gap')),
+        branch: {},
+      },
     })
   }
 
@@ -117,7 +147,7 @@ export default class Employment extends SubsectionElement {
           btnText={i18n.t('history.employment.gap.btnText')}
           first={index === 0}
           dates={dates}
-          onClick={this.fillGap.bind(this, dates)}
+          onClick={() => { this.fillGap(dates) }}
         />
       )
     }
@@ -125,20 +155,19 @@ export default class Employment extends SubsectionElement {
     return callback()
   }
 
-  inject = (items) => {
-    return InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
-  }
+  inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
     return (
       <div
         className="section-content employment"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <Accordion
           scrollToTop={this.props.scrollToTop}
           defaultState={this.props.defaultState}
           {...this.props.List}
-          ref="employment"
+          ref={(el) => { this.employment = el }}
           sort={this.props.sort}
           inject={this.inject}
           realtime={this.props.realtime}
@@ -151,15 +180,16 @@ export default class Employment extends SubsectionElement {
           customSummary={EmploymentCustomSummary}
           customDetails={this.customEmploymentDetails}
           description={i18n.t(
-            'history.employment.default.collection.summary.title'
+            'history.employment.default.collection.summary.title',
           )}
           appendTitle={i18n.t(
-            'history.employment.default.collection.appendTitle'
+            'history.employment.default.collection.appendTitle',
           )}
           appendLabel={i18n.t('history.employment.default.collection.append')}
           appendClass="no-margin-bottom"
           required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <EmploymentItem
             bind
             name="Item"
@@ -177,17 +207,18 @@ export default class Employment extends SubsectionElement {
           {...this.props.EmploymentRecord}
           onUpdate={(values) => {
             if (values.value === 'Yes') {
-              this.refs.employment.add()
+              this.employment.add()
               return
             }
 
             this.update({
-              EmploymentRecord: values
+              EmploymentRecord: values,
             })
           }}
           onError={this.handleError}
           required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('history.employment.default.employmentRecord.list')}
           {i18n.m('history.employment.default.employmentRecord.para')}
         </Branch>
@@ -199,24 +230,21 @@ export default class Employment extends SubsectionElement {
 Employment.defaultProps = {
   List: Accordion.defaultList,
   EmploymentRecord: {},
+  scrollIntoView: false,
   scrollToTop: '',
   defaultState: true,
   realtime: false,
   sort: null,
   totalYears: 10,
-  overrideInitial: initial => {
-    return initial
-  },
+  overrideInitial: false,
   caption: null,
   onUpdate: () => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   section: 'history',
   subsection: 'employment',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('history.employment', data))
-  }
+  validator: data => validate(schema('history.employment', data)),
 }
+
+export default connectHistorySection(Employment, sectionConfig)
