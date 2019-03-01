@@ -117,7 +117,7 @@ Education.defaultProps = {
   realtime: false,
   sort: null,
   totalYears: 10,
-  overrideInitial: initial => initial,
+  overrideInitial: false,
   caption: null,
   onUpdate: () => {},
   onError: (value, arr) => arr,
