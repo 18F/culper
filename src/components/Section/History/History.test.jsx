@@ -5,10 +5,6 @@ import { Provider } from 'react-redux'
 import History from 'components/Section/History/History'
 import { mount } from 'enzyme'
 
-const applicationState = {
-  History: {}
-}
-
 describe('The History section', () => {
   const mockStore = configureMockStore()
 
@@ -31,11 +27,11 @@ describe('The History section', () => {
       'residence',
       'employment',
       'education',
-      'federal'
+      'federal',
     ]
     const store = mockStore({})
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       const component = mount(
         <MemoryRouter initialEntries={[`/form/history/${section}`]}>
           <Provider store={store}>

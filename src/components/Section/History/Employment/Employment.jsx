@@ -239,9 +239,7 @@ Employment.defaultProps = {
   overrideInitial: false,
   caption: null,
   onUpdate: () => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   section: 'history',
   subsection: 'employment',
   addressBooks: {},

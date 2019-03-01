@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
@@ -16,7 +17,7 @@ import Residence from 'components/Section/History/Residence'
 import EmploymentWrapper from 'components/Section/History/Employment/EmploymentWrapper'
 import Employment from 'components/Section/History/Employment'
 import EducationWrapper from 'components/Section/History/Education/EducationWrapper'
-import Education from 'components/Section/History/Education'
+import ConnectedEducation from 'components/Section/History/Education'
 import FederalWrapper from 'components/Section/History/Federal/FederalWrapper'
 import Federal from 'components/Section/History/Federal'
 import Review from 'components/Section/History/Review'
@@ -28,49 +29,48 @@ import { Show, Branch } from 'components/Form'
  * - totalYears needs to change based on form type
  */
 
-class History extends React.Component {
-  render() {
-    const subsection = this.props.subsection || 'intro'
+const History = (props) => {
+  const { subsection } = props
 
-    const subsectionClasses = classnames(
-      'view',
-      `view-${subsection}`
-    )
+  const subsectionClasses = classnames(
+    'view',
+    `view-${subsection}`
+  )
 
-    const isReview = subsection === 'review'
-    const title = isReview && i18n.t('review.title')
-    const para = isReview && i18n.m('review.para')
+  const isReview = subsection === 'review'
+  const title = isReview && i18n.t('review.title')
+  const para = isReview && i18n.m('review.para')
 
-    /** TODO - this should come from Redux store */
-    const formType = 'SF86'
-    
-    return (
-      <div className="history">
-        <div className="section-view">
-          {title && <h1 className="title">{title}</h1>}
-          {para}
+  /** TODO - this should come from Redux store */
+  const formType = 'SF86'
 
-          <div className={subsectionClasses}>
-            {isReview && (
-              <div className="top-btns"><ErrorList /></div>
-            )}
+  return (
+    <div className="history">
+      <div className="section-view">
+        {title && <h1 className="title">{title}</h1>}
+        {para}
 
-            <Route path="/form/history/intro" component={Intro} />
-            <Route path="/form/history/residence" component={ResidenceWrapper} />
-            <Route path="/form/history/employment" component={EmploymentWrapper} />
-            <Route path="/form/history/education" component={EducationWrapper} />
-            <Route path="/form/history/federal" component={FederalWrapper} />
-            <Route path="/form/history/review" component={Review} />
+        <div className={subsectionClasses}>
+          {isReview && (
+            <div className="top-btns"><ErrorList /></div>
+          )}
 
-            <SectionNavigation
-              section={sections.HISTORY}
-              subsection={subsection}
-              formType={formType} />
-          </div>
+          <Route path="/form/history/intro" component={Intro} />
+          <Route path="/form/history/residence" component={ResidenceWrapper} />
+          <Route path="/form/history/employment" component={EmploymentWrapper} />
+          <Route path="/form/history/education" component={EducationWrapper} />
+          <Route path="/form/history/federal" component={FederalWrapper} />
+          <Route path="/form/history/review" component={Review} />
+
+          <SectionNavigation
+            section={sections.HISTORY}
+            subsection={subsection}
+            formType={formType}
+          />
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 function mapStateToProps(state) {
@@ -81,72 +81,76 @@ function mapStateToProps(state) {
   }
 }
 
+History.propTypes = {
+  subsection: PropTypes.string,
+}
+
 History.defaultProps = {
   subsection: 'intro',
 }
 
 export default connect(mapStateToProps)(History)
 
-export class HistorySections extends React.Component {
-  render() {
-    const noOverride = () => {
-      return false
-    }
-    return (
-      <div className="history">
-        <Residence
-          defaultState={false}
-          realtime={true}
-          overrideInitial={true}
-          onError={this.props.onError}
-          scrollIntoView={false}
-          required={true} />
+export const HistorySections = (props) => {
+  const { onError, Education } = props
 
-        <Employment
-          defaultState={false}
-          realtime={true}
-          overrideInitial={true}
-          onError={this.props.onError}
-          scrollIntoView={false}
-          required={true} />
+  return (
+    <div className="history">
+      <Residence
+        defaultState={false}
+        realtime
+        overrideInitial
+        onError={onError}
+        scrollIntoView={false}
+        required
+      />
 
+      <Employment
+        defaultState={false}
+        realtime
+        overrideInitial
+        onError={onError}
+        scrollIntoView={false}
+        required
+      />
+
+      <Branch
+        name="branch_school"
+        {...Education.HasAttended}
+        label={i18n.t('history.education.label.attendance')}
+        labelSize="h3"
+      />
+      <Show when={Education.HasAttended.value === 'No'}>
         <Branch
-          name="branch_school"
-          {...this.props.Education.HasAttended}
-          label={i18n.t('history.education.label.attendance')}
+          name="branch_degree10"
+          {...Education.HasDegree10}
+          label={i18n.t('history.education.label.degree10')}
           labelSize="h3"
         />
-        <Show when={this.props.Education.HasAttended.value === 'No'}>
-          <Branch
-            name="branch_degree10"
-            {...this.props.Education.HasDegree10}
-            label={i18n.t('history.education.label.degree10')}
-            labelSize="h3"
-          />
-        </Show>
-        <Show
-          when={
-            this.props.Education.HasAttended.value === 'Yes' ||
-            this.props.Education.HasDegree10.value === 'Yes'
-          }>
-          <Education
-            defaultState={false}
-            realtime={true}
-            overrideInitial={true}
-            onError={this.props.onError}
-            scrollIntoView={false}
-            required={true}
-          />
-        </Show>
-
-        <hr className="section-divider" />
-        <Federal
+      </Show>
+      <Show
+        when={
+          Education.HasAttended.value === 'Yes'
+          || Education.HasDegree10.value === 'Yes'
+        }
+      >
+        <ConnectedEducation
           defaultState={false}
-          onError={this.props.onError}
+          realtime
+          overrideInitial
+          onError={onError}
           scrollIntoView={false}
-          required={true}
+          required
         />
-      </div>
-    )
-  }
+      </Show>
+
+      <hr className="section-divider" />
+      <Federal
+        defaultState={false}
+        onError={onError}
+        scrollIntoView={false}
+        required
+      />
+    </div>
+  )
 }

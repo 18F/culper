@@ -10,18 +10,20 @@ describe('The Education component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Education {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'education'
+      name: 'education',
     }
+
     const component = createComponent(expected)
     expect(component.find('.education').length).toEqual(1)
   })
@@ -32,10 +34,10 @@ describe('The Education component', () => {
       List: {
         items: [
           {
-            Item: {}
-          }
-        ]
-      }
+            Item: {},
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.education').length).toEqual(2)

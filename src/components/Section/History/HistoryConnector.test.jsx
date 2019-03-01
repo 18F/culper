@@ -35,7 +35,7 @@ describe('The HistoryConnector HOC', () => {
       expect(component.exists()).toBe(true)
       expect(component.find(TestComponent).length).toEqual(1)
     })
-  
+
     it('passes an onUpdate handler to the wrapped component', () => {
       expect(component.find(TestComponent).prop('onUpdate')).toBeTruthy()
     })
@@ -62,11 +62,11 @@ describe('The HistoryConnector HOC', () => {
               month: `${new Date().getMonth() + 1}`,
               day: `${new Date().getDate()}`,
               year: `${new Date().getFullYear() - 18}`,
-              estimated: false
-            }
-          }
-        }
-      }
+              estimated: false,
+            },
+          },
+        },
+      },
     })
 
     const component = mount(
@@ -89,11 +89,11 @@ describe('The HistoryConnector HOC', () => {
               month: `${new Date().getMonth() + 1}`,
               day: `${new Date().getDate()}`,
               year: `${new Date().getFullYear() - 30}`,
-              estimated: false
-            }
-          }
-        }
-      }
+              estimated: false,
+            },
+          },
+        },
+      },
     })
 
     const component = mount(

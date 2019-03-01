@@ -15,19 +15,19 @@ describe('The residence section', () => {
                 from: {
                   day: '1',
                   month: '1',
-                  year: '2014'
+                  year: '2014',
                 },
                 to: {
                   day: '1',
                   month: '1',
-                  year: '2018'
-                }
-              }
-            }
-          }
-        ]
+                  year: '2018',
+                },
+              },
+            },
+          },
+        ],
       },
-      onUpdate
+      onUpdate,
     }
     const component = shallow(<Residence {...expected} />)
     expect(component).toBeDefined()
