@@ -1,9 +1,19 @@
 import React from 'react'
+import { Route } from 'react-router'
 import { connect } from 'react-redux'
+
 import { i18n } from 'config'
+
+import { ErrorList } from 'components/ErrorList'
+import SectionNavigation from 'components/Section/shared/SectionNavigation'
+
+import { FINANCIAL } from 'constants/sections'
+
 import { SectionViews, SectionView } from 'components/Section/SectionView'
 import SectionElement from 'components/Section/SectionElement'
 import { Field } from 'components/Form'
+
+import Intro from 'components/Section/Financial/Intro'
 import Gambling from 'components/Section/Financial/Gambling'
 import Bankruptcies from 'components/Section/Financial/Bankruptcy'
 import Taxes from 'components/Section/Financial/Taxes'
@@ -14,6 +24,38 @@ import Nonpayment from 'components/Section/Financial/Nonpayment'
 
 class Financial extends SectionElement {
   render() {
+    const subsection = this.props.subsection || 'intro'
+
+    const subsectionClasses = `view view-${subsection || 'unknown'}`
+
+    const isReview = subsection === 'review'
+    const title = isReview && i18n.t('review.title')
+    const para = isReview && i18n.m('review.para')
+
+    /** TODO - this should come from Redux store */
+    const formType = 'SF86'
+
+    return (
+      <div className="section-view">
+        {title && <h1 className="title">{title}</h1>}
+        {para}
+
+        <div className={subsectionClasses}>
+          {isReview && (
+            <div className="top-btns"><ErrorList /></div>
+          )}
+
+          <Route path="/form/financial/intro" component={Intro} />
+
+          <SectionNavigation
+            section={FINANCIAL}
+            subsection={subsection}
+            formType={formType}
+          />
+        </div>
+      </div>
+    )
+
     return (
       <div>
         <SectionViews
