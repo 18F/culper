@@ -1,15 +1,15 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, { EmploymentValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch } from '../../../Form'
-import { openState } from '../../../Form/Accordion/Accordion'
-import { newGuid } from '../../../Form/ValidationElement'
-import { today, daysAgo, extractDate, validDate } from '../dateranges'
-import { InjectGaps, EmploymentCustomSummary } from '../summaries'
-import EmploymentItem from './EmploymentItem'
-import { Gap } from '../Gap'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { EmploymentValidator } from 'validators'
+import SubsectionElement from 'components/Section/SubsectionElement'
+import { Accordion, Branch } from 'components/Form'
+import { openState } from 'components/Form/Accordion/Accordion'
+import { newGuid } from 'components/Form/ValidationElement'
+import { today, daysAgo, extractDate, validDate } from 'components/Section/History/dateranges'
+import { InjectGaps, EmploymentCustomSummary } from 'components/Section/History/summaries'
+import EmploymentItem from 'components/Section/History/Employment/EmploymentItem'
+import { Gap } from 'components/Section/History/Gap'
 
 const byline = (item, index, initial, translation, required, validator) => {
   // If item is required and not currently opened and is not valid, show message
@@ -31,20 +31,7 @@ const byline = (item, index, initial, translation, required, validator) => {
 }
 
 export default class Employment extends SubsectionElement {
-  constructor(props) {
-    super(props)
-
-    this.customEmploymentByline = this.customEmploymentByline.bind(this)
-    this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
-    this.fillGap = this.fillGap.bind(this)
-    this.inject = this.inject.bind(this)
-    this.update = this.update.bind(this)
-    this.updateList = this.updateList.bind(this)
-    this.updateEmploymentRecord = this.updateEmploymentRecord.bind(this)
-    this.sortEmploymentItems = this.sortEmploymentItems.bind(this)
-  }
-
-  customEmploymentByline(item, index, initial) {
+  customEmploymentByline = (item, index, initial) => {
     return byline(
       item,
       index,
@@ -52,12 +39,12 @@ export default class Employment extends SubsectionElement {
       'history.employment.default.collection.summary.incomplete',
       this.props.required,
       item => {
-        return new EmploymentValidator(item, null).isValid()
+        return new EmploymentValidator(item).isValid()
       }
     )
   }
 
-  sortEmploymentItems(employmentItems) {
+  sortEmploymentItems = (employmentItems) => {
     return employmentItems.sort((a, b) => {
       if (a.type === 'Gap') {
         return 1
@@ -78,7 +65,7 @@ export default class Employment extends SubsectionElement {
     })
   }
 
-  update(queue) {
+  update = (queue) => {
     const updatedValues = {
       List: this.props.List,
       EmploymentRecord: this.props.EmploymentRecord,
@@ -95,24 +82,7 @@ export default class Employment extends SubsectionElement {
     this.props.onUpdate(updatedValues)
   }
 
-  updateList(values) {
-    this.update({
-      List: values
-    })
-  }
-
-  updateEmploymentRecord(values) {
-    if (values.value === 'Yes') {
-      this.refs.employment.add()
-      return
-    }
-
-    this.update({
-      EmploymentRecord: values
-    })
-  }
-
-  fillGap(dates) {
+  fillGap = (dates) => {
     let items = [...this.props.List.items]
     items.push({
       uuid: newGuid(),
@@ -137,7 +107,7 @@ export default class Employment extends SubsectionElement {
     })
   }
 
-  customEmploymentDetails(item, index, initial, callback) {
+  customEmploymentDetails = (item, index, initial, callback) => {
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
       return (
@@ -155,7 +125,7 @@ export default class Employment extends SubsectionElement {
     return callback()
   }
 
-  inject(items) {
+  inject = (items) => {
     return InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
   }
 
@@ -172,7 +142,9 @@ export default class Employment extends SubsectionElement {
           sort={this.props.sort}
           inject={this.inject}
           realtime={this.props.realtime}
-          onUpdate={this.updateList}
+          onUpdate={(values) => {
+            this.update({ List: values })
+          }}
           onError={this.handleError}
           caption={this.props.caption}
           byline={this.customEmploymentByline}
@@ -203,7 +175,16 @@ export default class Employment extends SubsectionElement {
           className="employment-record"
           labelSize="h4"
           {...this.props.EmploymentRecord}
-          onUpdate={this.updateEmploymentRecord}
+          onUpdate={(values) => {
+            if (values.value === 'Yes') {
+              this.refs.employment.add()
+              return
+            }
+
+            this.update({
+              EmploymentRecord: values
+            })
+          }}
           onError={this.handleError}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>

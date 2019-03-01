@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   sectionsTotal,
   sectionsCompleted
-} from '@components/Navigation/navigation-helpers'
+} from 'components/Navigation/navigation-helpers'
 
 class ProgressBar extends React.Component {
   render() {

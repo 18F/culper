@@ -4,7 +4,7 @@ import { shallow,mount } from 'enzyme'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import configureMockStore from 'redux-mock-store'
-import AppWithForm from '@components/Main/AppWithForm'
+import AppWithForm from 'components/Main/AppWithForm'
 
 describe('AppWithForm', () => {
   const middlewares = [thunk]

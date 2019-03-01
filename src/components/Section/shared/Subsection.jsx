@@ -1,5 +1,5 @@
 import React from 'react'
-import { reportCompletion } from '@actions/ApplicationActions'
+import { reportCompletion } from 'actions/ApplicationActions'
 import { newGuid } from '../../Form/ValidationElement'
 
 export default class SubsectionElement extends React.Component {

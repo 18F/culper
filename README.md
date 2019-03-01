@@ -58,6 +58,14 @@ To do the initial setup and ensure that all tests pass locally:
 make
 ```
 
+#### Pre-Commit Hooks
+
+There are some pre commit hooks added using [husky](https://github.com/typicode/husky) to run them. The pre-commit hooks are designed to run outside of docker for speed so you will need to have run `yarn install` outside the containers if you have not done so.
+
+The hooks should automatically be applied once `yarn install` is complete, and will run the eslint and css lint rules on files changed that are staged for commit. Developers should apply lint fixes; however, specifiying `--no-verify` as an argument to `git commit` to bypass this check for temporary wip commits.
+
+The eslint rules for the pre-commit hook will be using a stricter standard than the CI build to allow us to improve the code as we modify files while avoiding having to fix all the errors that would be generated if the rules were applied to the whole project immediately. Eventually we will want to apply the stricter rules to the CI build as well.
+
 #### Feature Tests
 
 Setup steps:

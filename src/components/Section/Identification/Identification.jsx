@@ -2,22 +2,22 @@ import React from 'react'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 
-import { i18n } from '@config'
+import { i18n } from 'config'
 
-import { ErrorList } from '@components/ErrorList'
-import SectionNavigation from '@components/Section/shared/SectionNavigation'
+import { ErrorList } from 'components/ErrorList'
+import SectionNavigation from 'components/Section/shared/SectionNavigation'
 
-import * as sections from '@constants/sections'
+import * as sections from 'constants/sections'
 
-import Intro from '@components/Section/Identification/Intro'
-import ApplicantName from '@components/Section/Identification/ApplicantName'
-import ApplicantBirthDate from '@components/Section/Identification/ApplicantBirthDate'
-import ApplicantBirthPlace from '@components/Section/Identification/ApplicantBirthPlace'
-import ApplicantSSN from '@components/Section/Identification/ApplicantSSN'
-import OtherNames from '@components/Section/Identification/OtherNames'
-import ContactInformation from '@components/Section/Identification/ContactInformation'
-import Physical from '@components/Section/Identification/Physical'
-import Review from '@components/Section/Identification/Review'
+import Intro from 'components/Section/Identification/Intro'
+import ApplicantName from 'components/Section/Identification/ApplicantName'
+import ApplicantBirthDate from 'components/Section/Identification/ApplicantBirthDate'
+import ApplicantBirthPlace from 'components/Section/Identification/ApplicantBirthPlace'
+import ApplicantSSN from 'components/Section/Identification/ApplicantSSN'
+import OtherNames from 'components/Section/Identification/OtherNames'
+import ContactInformation from 'components/Section/Identification/ContactInformation'
+import Physical from 'components/Section/Identification/Physical'
+import Review from 'components/Section/Identification/Review'
 
 /**
  * TODO

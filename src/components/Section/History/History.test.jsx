@@ -1,8 +1,8 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import History, { totalYears } from '@components/Section/History/History'
-import Employment from '@components/Section/History/Employment'
+import History, { totalYears } from 'components/Section/History/History'
+import Employment from 'components/Section/History/Employment'
 import { mount } from 'enzyme'
 
 const applicationState = {

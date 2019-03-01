@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
-import { i18n } from '@config'
-import { ErrorList } from '@components/ErrorList'
-import SectionNavigation from '@components/Section/shared/SectionNavigation'
-import { CITIZENSHIP } from '@constants/sections'
-import * as formTypes from '@config/formTypes'
+import { i18n } from 'config'
+import { ErrorList } from 'components/ErrorList'
+import SectionNavigation from 'components/Section/shared/SectionNavigation'
+import { CITIZENSHIP } from 'constants/sections'
+import * as formTypes from 'config/formTypes'
 import Intro from './Intro'
 import Status from './Status'
 import Multiple from './Multiple'
@@ -26,19 +27,19 @@ class Citizenship extends React.Component {
       status: Status,
       multiple: Multiple,
       passports: Passports,
-      review: Review
+      review: Review,
     }
   }
-  getCitizenshipSubsections = () => {
 
-    return this.section.subsections.map(subsection => (
+  getCitizenshipSubsections = () => (
+    this.section.subsections.map(subsection => (
       <Route
         key={subsection.key}
         path={`/form${subsection.path}`}
         component={this.subsectionLibrary[subsection.name]}
       />
     ))
-  }
+  )
 
   render() {
     const { subsection, formType } = this.props
@@ -80,8 +81,13 @@ function mapStateToProps(state) {
   }
 }
 
+Citizenship.propTypes = {
+  subsection: PropTypes.string,
+  formType: PropTypes.string.isRequired,
+}
+
 Citizenship.defaultProps = {
-  subsection: 'intro'
+  subsection: 'intro',
 }
 
 export const CitizenshipSections = () => <Review />

@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateApplication } from '@actions/ApplicationActions'
-import { i18n } from '@config'
-import { SectionViews, SectionView } from '@components/Section/SectionView'
-import SectionElement from '@components/Section/SectionElement'
-import { Field } from '@components/Form'
-import Relatives from '@components/Section/Relationships/Relatives'
-import Marital from '@components/Section/Relationships/RelationshipStatus/Marital'
-import Cohabitants from '@components/Section/Relationships/RelationshipStatus/Cohabitants'
-import People from '@components/Section/Relationships/People'
+import { updateApplication } from 'actions/ApplicationActions'
+import { i18n } from 'config'
+import { SectionViews, SectionView } from 'components/Section/SectionView'
+import SectionElement from 'components/Section/SectionElement'
+import { Field } from 'components/Form'
+import Relatives from 'components/Section/Relationships/Relatives'
+import Marital from 'components/Section/Relationships/RelationshipStatus/Marital'
+import Cohabitants from 'components/Section/Relationships/RelationshipStatus/Cohabitants'
+import People from 'components/Section/Relationships/People'
 
 class Relationships extends SectionElement {
   constructor(props) {

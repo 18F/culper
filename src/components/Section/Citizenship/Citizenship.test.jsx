@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
-import Citizenship from '@components/Section/Citizenship'
+import Citizenship from 'components/Section/Citizenship'
 
 const applicationState = {
   Citizenship: {}

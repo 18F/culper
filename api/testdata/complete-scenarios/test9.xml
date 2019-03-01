@@ -1017,8 +1017,8 @@
                   </DateRange>
                   <Employer>
                     <Address DoNotKnow="True">
-                      <Street> </Street>
-                    </Address>
+  
+</Address>
                     <Name DoNotKnow="True"/>
                   </Employer>
                   <ForeignAffiliation>

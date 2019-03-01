@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import SubstanceUse from '@components/Section/SubstanceUse'
+import SubstanceUse from 'components/Section/SubstanceUse'
 
 const applicationState = {
   SubstanceUse: {}

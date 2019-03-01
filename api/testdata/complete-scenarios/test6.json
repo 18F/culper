@@ -2595,16 +2595,101 @@
         "HasHistory": {
           "type": "branch",
           "props": {
-            "value": "No"
+            "value": "Yes"
           }
         },
         "List": {
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
             },
-            "items": []
+            "items": [
+              {
+                "Item": {
+                  "Agency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "AgencyExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "AgencyNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "ClearanceLevel": {
+                    "type": "clearancelevel",
+                    "props": {
+                      "Level": {
+                        "type": "radio",
+                        "props": {
+                          "value": "None"
+                        }
+                      },
+                      "Explanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      }
+                    }
+                  },
+                  "ClearanceLevelNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Completed": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "CompletedNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Granted": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "GrantedNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Issued": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       }
