@@ -1,33 +1,40 @@
 import React from 'react'
-import { i18n } from '@config'
-import schema from '@schema'
+import { i18n } from 'config'
+import schema from 'schema'
 import validate, {
   CitizenshipMultipleValidator,
-  CitizenshipItemValidator
-} from '@validators'
-import { countryString } from '@validators/location'
-import { Field, Branch, Show, Accordion } from '@components/Form'
-import { Summary, DateSummary } from '@components/Summary'
-import Subsection from '@components/Section/shared/Subsection'
-import CitizenshipItem from './CitizenshipItem'
+  CitizenshipItemValidator,
+} from 'validators'
+import { countryString } from 'validators/location'
+import {
+  Field,
+  Branch,
+  Show,
+  Accordion,
+} from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
+import Subsection from 'components/Section/shared/Subsection'
 import {
   CITIZENSHIP,
-  CITIZENSHIP_MULTIPLE
-} from '@config/formSections/citizenship'
-import connectCitizenshipSection from '../CitizenshipConnector';
+  CITIZENSHIP_MULTIPLE,
+} from 'config/formSections/citizenship'
+import CitizenshipItem from './CitizenshipItem'
+import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
   section: CITIZENSHIP.name,
   store: CITIZENSHIP.store,
   subsection: CITIZENSHIP_MULTIPLE.name,
-  storeKey: CITIZENSHIP_MULTIPLE.storeKey
+  storeKey: CITIZENSHIP_MULTIPLE.storeKey,
 }
 
 export class Multiple extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
@@ -35,24 +42,24 @@ export class Multiple extends Subsection {
     this.storeKey = storeKey
   }
 
-  update = queue => {
+  update = (queue) => {
     this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasMultiple: this.props.HasMultiple,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasMultiple = values => {
+  updateHasMultiple = (values) => {
     this.update({
       HasMultiple: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  updateList = values => {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
@@ -62,12 +69,10 @@ export class Multiple extends Subsection {
     const country = countryString(itemProperties.Country) || ''
     return Summary({
       type: i18n.t('citizenship.multiple.collection.citizenship.summary.item'),
-      index: index,
+      index,
       left: country,
       right: dates,
-      placeholder: i18n.t(
-        'citizenship.multiple.collection.citizenship.summary.unknown'
-      )
+      placeholder: i18n.t('citizenship.multiple.collection.citizenship.summary.unknown'),
     })
   }
 
@@ -79,7 +84,8 @@ export class Multiple extends Subsection {
     return (
       <div
         className="section-content multiple"
-        {...super.dataAttributes()}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
         <Branch
           name="has_multiple"
@@ -87,7 +93,7 @@ export class Multiple extends Subsection {
           labelSize="h4"
           className="has-multiple"
           {...this.props.HasMultiple}
-          warning={true}
+          warning
           onUpdate={this.updateHasMultiple}
           onError={this.handleError}
           required={this.props.required}
@@ -99,8 +105,8 @@ export class Multiple extends Subsection {
             errors={[
               {
                 code: 'validMinimumCitizenships',
-                valid: this.validMinimumCitizenships()
-              }
+                valid: this.validMinimumCitizenships(),
+              },
             ]}
             className={this.validMinimumCitizenships() && 'hidden'}
           />
@@ -113,20 +119,15 @@ export class Multiple extends Subsection {
             onError={this.handleError}
             validator={CitizenshipItemValidator}
             summary={this.summaryList}
-            description={i18n.t(
-              'citizenship.multiple.collection.citizenship.summary.title'
-            )}
-            appendTitle={i18n.t(
-              'citizenship.multiple.collection.citizenship.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'citizenship.multiple.collection.citizenship.append'
-            )}
+            description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
+            appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
+            appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <CitizenshipItem
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -140,17 +141,13 @@ export class Multiple extends Subsection {
 Multiple.defaultProps = {
   HasMultiple: {},
   List: { items: [], branch: {} },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('citizenship.multiple', data))
-  },
+  validator: data => validate(schema('citizenship.multiple', data)),
   defaultState: true,
   required: true,
-  scrollIntoView: false
+  scrollIntoView: false,
 }
 
 export default connectCitizenshipSection(Multiple, sectionConfig)

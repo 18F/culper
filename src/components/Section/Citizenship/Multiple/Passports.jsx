@@ -1,28 +1,30 @@
 import React from 'react'
-import { i18n } from '@config'
-import schema from '@schema'
-import validate from '@validators'
-import Subsection from '@components/Section/shared/Subsection'
-import { Field, BranchCollection } from '@components/Form'
-import PassportItem from './PassportItem'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate from 'validators'
+import Subsection from 'components/Section/shared/Subsection'
+import { BranchCollection } from 'components/Form'
 import {
   CITIZENSHIP,
-  CITIZENSHIP_PASSPORTS
-} from '@config/formSections/citizenship'
-import connectCitizenshipSection from '../CitizenshipConnector';
+  CITIZENSHIP_PASSPORTS,
+} from 'config/formSections/citizenship'
+import PassportItem from './PassportItem'
+import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
   section: CITIZENSHIP.name,
   store: CITIZENSHIP.store,
   subsection: CITIZENSHIP_PASSPORTS.name,
-  storeKey: CITIZENSHIP_PASSPORTS.storeKey
+  storeKey: CITIZENSHIP_PASSPORTS.storeKey,
 }
 
 export class Passports extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
@@ -30,16 +32,16 @@ export class Passports extends Subsection {
     this.storeKey = storeKey
   }
 
-  update = queue => {
+  update = (queue) => {
     this.props.onUpdate(this.storeKey, {
       Passports: this.props.Passports,
-      ...queue
+      ...queue,
     })
   }
 
-  updatePassports = values => {
+  updatePassports = (values) => {
     this.update({
-      Passports: values
+      Passports: values,
     })
   }
 
@@ -47,23 +49,23 @@ export class Passports extends Subsection {
     return (
       <div
         className="section-content passports"
-        {...super.dataAttributes()}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
         <BranchCollection
           label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
-          appendLabel={i18n.t(
-            'citizenship.multiple.collection.passport.appendTitle'
-          )}
+          appendLabel={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
           className="has-foreignpassport"
           {...this.props.Passports}
           scrollToBottom={this.props.scrollToBottom}
           onUpdate={this.updatePassports}
           scrollIntoView={this.props.scrollIntoView}
           required={this.props.required}
-          onError={this.handleError}>
+          onError={this.handleError}
+        >
           <PassportItem
             name="Item"
-            bind={true}
+            bind
             defaultState={this.props.defaultState}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
@@ -76,18 +78,14 @@ export class Passports extends Subsection {
 
 Passports.defaultProps = {
   Passports: { items: [] },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('citizenship.passports', data))
-  },
+  validator: data => validate(schema('citizenship.passports', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
   required: true,
-  scrollIntoView: false
+  scrollIntoView: false,
 }
 
 export default connectCitizenshipSection(Passports, sectionConfig)
