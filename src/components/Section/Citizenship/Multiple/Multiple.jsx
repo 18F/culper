@@ -76,9 +76,9 @@ export class Multiple extends Subsection {
     })
   }
 
-  validMinimumCitizenships = () => {
-    return new CitizenshipMultipleValidator(this.props).validMinimumCitizenships()
-  }
+  validMinimumCitizenships = () => (
+    new CitizenshipMultipleValidator(this.props).validMinimumCitizenships()
+  )
 
   render() {
     return (

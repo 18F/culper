@@ -17,7 +17,6 @@ const connectCitizenshipSection = (Component, {
       this.section = section
       this.subsection = subsection
       this.store = store
-
     }
 
     handleError = (value, arr) => {
