@@ -23,6 +23,13 @@ rules:
   no-unused-vars: ['error', {
     argsIgnorePattern: '^_'
   }]
+  comma-dangle: [2, {
+    arrays: 'always-multiline',
+    objects: 'always-multiline',
+    imports: 'always-multiline',
+    exports: 'always-multiline',
+    functions: 'ignore'
+  }]
 settings:
   import/resolver:
     babel-module:
