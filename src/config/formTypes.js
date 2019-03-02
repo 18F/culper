@@ -368,7 +368,7 @@ export const SF86 = [
       },
       {
         ...formSections.FOREIGN_BUSINESS,
-        susections: [
+        subsections: [
           formSections.FOREIGN_BUSINESS_ADVICE,
           formSections.FOREIGN_BUSINESS_FAMILY,
           formSections.FOREIGN_BUSINESS_EMPLOYMENT,
@@ -486,14 +486,19 @@ export const SF86 = [
   },
 ]
 
-export const reduceSubsections = sections => (
+export const reduceSubsections = (sections, parentPath) => (
   sections.reduce((accumulator, section) => {
     if (section.subsections && section.subsections.length) {
-      accumulator = accumulator.concat(reduceSubsections(section.subsections))
+      const builtPath = parentPath
+        ? `${parentPath}/${section.path}`
+        : section.path
+      accumulator = accumulator.concat(reduceSubsections(section.subsections, builtPath))
     } else {
-      accumulator.push(section)
+      accumulator.push({
+        ...section,
+        fullPath: `/form/${parentPath}/${section.path}`,
+      })
     }
-
     return accumulator
   }, [])
 )

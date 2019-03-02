@@ -35,13 +35,14 @@ const FOREIGN_CONTACTS = {
 const FOREIGN_ACTIVITIES = {
   key: sections.FOREIGN_ACTIVITIES,
   name: 'activities',
+  path: 'activities',
   label: i18n.t('foreign.subsection.activities.label'),
 }
 
 const FOREIGN_ACTIVITIES_DIRECT = {
   key: sections.FOREIGN_ACTIVITIES_DIRECT,
   name: 'direct',
-  path: 'activities/direct',
+  path: 'direct',
   storeKey: 'DirectActivity',
   label: i18n.t('foreign.subsection.activities.direct'),
 }
@@ -49,7 +50,7 @@ const FOREIGN_ACTIVITIES_DIRECT = {
 const FOREIGN_ACTIVITIES_INDIRECT = {
   key: sections.FOREIGN_ACTIVITIES_INDIRECT,
   name: 'indirect',
-  path: 'activities/indirect',
+  path: 'indirect',
   storeKey: 'IndirectActivity',
   label: i18n.t('foreign.subsection.activities.indirect'),
 }
@@ -57,7 +58,7 @@ const FOREIGN_ACTIVITIES_INDIRECT = {
 const FOREIGN_ACTIVITIES_REAL_ESTATE = {
   key: sections.FOREIGN_ACTIVITIES_REAL_ESTATE,
   name: 'realestate',
-  path: 'activities/realestate',
+  path: 'realestate',
   storeKey: 'RealEstateActivity',
   label: i18n.t('foreign.subsection.activities.realestate'),
 }
@@ -65,7 +66,7 @@ const FOREIGN_ACTIVITIES_REAL_ESTATE = {
 const FOREIGN_ACTIVITIES_BENEFITS = {
   key: sections.FOREIGN_ACTIVITIES_BENEFITS,
   name: 'benefits',
-  path: 'activities/benefits',
+  path: 'benefits',
   storeKey: 'BenefitActivity',
   label: i18n.t('foreign.subsection.activities.benefits'),
 }
@@ -73,7 +74,7 @@ const FOREIGN_ACTIVITIES_BENEFITS = {
 const FOREIGN_ACTIVITIES_SUPPORT = {
   key: sections.FOREIGN_ACTIVITIES_SUPPORT,
   name: 'support',
-  path: 'activities/support',
+  path: 'support',
   storeKey: 'Support',
   label: i18n.t('foreign.subsection.activities.support'),
 }
@@ -81,13 +82,14 @@ const FOREIGN_ACTIVITIES_SUPPORT = {
 const FOREIGN_BUSINESS = {
   key: sections.FOREIGN_BUSINESS,
   name: 'business',
+  path: 'business',
   label: i18n.t('foreign.subsection.business.label'),
 }
 
 const FOREIGN_BUSINESS_ADVICE = {
   key: sections.FOREIGN_BUSINESS_ADVICE,
   name: 'advice',
-  path: 'business/advice',
+  path: 'advice',
   storeKey: 'Advice',
   label: i18n.t('foreign.subsection.business.advice'),
 }
@@ -95,7 +97,7 @@ const FOREIGN_BUSINESS_ADVICE = {
 const FOREIGN_BUSINESS_FAMILY = {
   key: sections.FOREIGN_BUSINESS_FAMILY,
   name: 'family',
-  path: 'business/family',
+  path: 'family',
   storeKey: 'Family',
   label: i18n.t('foreign.subsection.business.family'),
 }
@@ -103,7 +105,7 @@ const FOREIGN_BUSINESS_FAMILY = {
 const FOREIGN_BUSINESS_EMPLOYMENT = {
   key: sections.FOREIGN_BUSINESS_EMPLOYMENT,
   name: 'employment',
-  path: 'business/employment',
+  path: 'employment',
   storeKey: 'Employment',
   label: i18n.t('foreign.subsection.business.employment'),
 }
@@ -111,7 +113,7 @@ const FOREIGN_BUSINESS_EMPLOYMENT = {
 const FOREIGN_BUSINESS_VENTURES = {
   key: sections.FOREIGN_BUSINESS_VENTURES,
   name: 'ventues',
-  path: 'business/ventures',
+  path: 'ventures',
   storeKey: 'Ventures',
   label: i18n.t('foreign.subsection.business.ventures'),
 }
@@ -119,7 +121,7 @@ const FOREIGN_BUSINESS_VENTURES = {
 const FOREIGN_BUSINESS_CONFERENCES = {
   key: sections.FOREIGN_BUSINESS_CONFERENCES,
   name: 'conferences',
-  path: 'business/conferences',
+  path: 'conferences',
   storeKey: 'Conferences',
   label: i18n.t('foreign.subsection.business.conferences'),
 }
@@ -127,7 +129,7 @@ const FOREIGN_BUSINESS_CONFERENCES = {
 const FOREIGN_BUSINESS_CONTACT = {
   key: sections.FOREIGN_BUSINESS_CONTACT,
   name: 'contact',
-  path: 'business/contact',
+  path: 'contact',
   storeKey: 'Contact',
   label: i18n.t('foreign.subsection.business.contact'),
 }
@@ -135,7 +137,7 @@ const FOREIGN_BUSINESS_CONTACT = {
 const FOREIGN_BUSINESS_SPONSORSHIP = {
   key: sections.FOREIGN_BUSINESS_SPONSORSHIP,
   name: 'sponsorship',
-  path: 'business/sponsorship',
+  path: 'sponsorship',
   storeKey: 'Sponsorship',
   label: i18n.t('foreign.subsection.business.sponsorship'),
 }
@@ -143,7 +145,7 @@ const FOREIGN_BUSINESS_SPONSORSHIP = {
 const FOREIGN_BUSINESS_POLITICAL = {
   key: sections.FOREIGN_BUSINESS_POLITICAL,
   name: 'political',
-  path: 'business/political',
+  path: 'political',
   storeKey: 'Political',
   label: i18n.t('foreign.subsection.business.political'),
 }
@@ -151,7 +153,7 @@ const FOREIGN_BUSINESS_POLITICAL = {
 const FOREIGN_BUSINESS_VOTING = {
   key: sections.FOREIGN_BUSINESS_VOTING,
   name: 'voting',
-  path: 'business/voting',
+  path: 'voting',
   storeKey: 'Voting',
   label: i18n.t('foreign.subsection.business.voting'),
 }
