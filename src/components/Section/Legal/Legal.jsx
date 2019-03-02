@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '@config'
-import { SectionViews, SectionView } from '@components/Section/SectionView'
-import SectionElement from '@components/Section/SectionElement'
-import { Field } from '@components/Form'
-import Offenses from '@components/Section/Legal/Police/Offenses'
-import OtherOffenses from '@components/Section/Legal/Police/OtherOffenses'
-import DomesticViolenceList from '@components/Section/Legal/Police/DomesticViolenceList'
-import { History, Revoked, Debarred } from '@components/Section/Legal/Investigations'
-import { Unauthorized, Manipulating, Unlawful } from '@components/Section/Legal/Technology'
-import NonCriminalCourtActions from '@components/Section/Legal/NonCriminalCourtActions'
+import { i18n } from 'config'
+import { SectionViews, SectionView } from 'components/Section/SectionView'
+import SectionElement from 'components/Section/SectionElement'
+import { Field } from 'components/Form'
+import Offenses from 'components/Section/Legal/Police/Offenses'
+import OtherOffenses from 'components/Section/Legal/Police/OtherOffenses'
+import DomesticViolenceList from 'components/Section/Legal/Police/DomesticViolenceList'
+import { History, Revoked, Debarred } from 'components/Section/Legal/Investigations'
+import { Unauthorized, Manipulating, Unlawful } from 'components/Section/Legal/Technology'
+import NonCriminalCourtActions from 'components/Section/Legal/NonCriminalCourtActions'
 import {
   TerroristOrganization,
   MembershipOverthrow,
@@ -18,7 +18,7 @@ import {
   Advocating,
   ActivitiesToOverthrow,
   TerrorismAssociation
-} from '@components/Section/Legal/Associations'
+} from 'components/Section/Legal/Associations'
 
 class Legal extends SectionElement {
   constructor(props) {

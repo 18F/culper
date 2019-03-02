@@ -4,9 +4,9 @@ import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router'
 import { mount } from 'enzyme'
-import { api } from '@services'
-import Print from '@components/Section/Package/Print'
-import { testSnapshot } from '@components/test-helpers'
+import { api } from 'services'
+import Print from 'components/Section/Package/Print'
+import { testSnapshot } from 'components/test-helpers'
 
 const applicationState = {
   Application: {}

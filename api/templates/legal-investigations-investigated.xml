@@ -13,17 +13,14 @@
     <OtherAgency>{{text $Item.AgencyExplanation}}</OtherAgency>
     {{end}}
     {{end}}
+    <!-- XXX https://github.com/18F/e-QIP-prototype/issues/1489 -->
     <ClearanceLevel>{{radio $Item.ClearanceLevel.props.Level | clearanceType}}</ClearanceLevel>
     <EntryComment></EntryComment>
     <GrantedDate>
-      <Date Type="{{dateEstimated $Item.Granted}}" DoNotKnow="{{notApplicable $Item.GrantedNotApplicable}}">
-        {{monthYear $Item.Granted}}
-      </Date>
+      {{monthYearOptional $Item.Granted $Item.GrantedNotApplicable}}
     </GrantedDate>
     <InvestigationDate>
-      <Date Type="{{dateEstimated $Item.Completed}}" DoNotKnow="{{notApplicable $Item.CompletedNotApplicable}}">
-        {{monthYear $Item.Completed}}
-      </Date>
+      {{monthYearOptional $Item.Completed $Item.CompletedNotApplicable}}
     </InvestigationDate>
     <IssuingAgency>
       <Name>{{text $Item.Issued}}</Name>

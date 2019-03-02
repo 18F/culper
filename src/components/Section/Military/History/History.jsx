@@ -1,16 +1,22 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, {
-  MilitaryHistoryValidator,
-  MilitaryServiceValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
-import { Summary, DateSummary } from '../../../Summary'
-import MilitaryService from './MilitaryService'
+import { MILITARY, MILITARY_HISTORY } from 'config/formSections/military'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { MilitaryServiceValidator } from 'validators'
+import Subsection from 'components/Section/shared/Subsection'
+import { Branch, Show, Accordion } from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
+import MilitaryService from 'components/Section/Military/History/MilitaryService'
+import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
-export const serviceNameDisplay = service => {
+const sectionConfig = {
+  section: MILITARY.name,
+  store: MILITARY.store,
+  subsection: MILITARY_HISTORY.name,
+  storeKey: MILITARY_HISTORY.storeKey,
+}
+
+export const serviceNameDisplay = (service) => {
   let display = (service || {}).value
 
   switch (display) {
@@ -29,56 +35,57 @@ export const serviceNameDisplay = service => {
     case 'MarineCorps':
       display = 'Marine Corps'
       break
+    default:
+      display = 'Unknown'
   }
 
   return display
 }
 
-export default class History extends SubsectionElement {
+class History extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateServed = this.updateServed.bind(this)
-    this.updateList = this.updateList.bind(this)
-    this.summary = this.summary.bind(this)
+    const { storeKey } = sectionConfig
+
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasServed: this.props.HasServed,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
-  updateServed(values) {
+  updateServed = (values) => {
     // If there is no history clear out any previously entered data
     this.update({
-      HasServed: values
+      HasServed: values,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  static summary = (item, index) => {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Dates)
     const service = serviceNameDisplay(o.Service)
 
     return Summary({
       type: i18n.t('military.history.collection.summary.item'),
-      index: index,
+      index,
       left: service,
       right: dates,
-      placeholder: i18n.t('military.history.collection.summary.unknown')
+      placeholder: i18n.t('military.history.collection.summary.unknown'),
     })
   }
 
@@ -86,7 +93,9 @@ export default class History extends SubsectionElement {
     return (
       <div
         className="section-content military-history"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes(this.props)}
+      >
+        <h1 className="section-header">{i18n.t('military.destination.history')}</h1>
         <Branch
           name="has_served"
           label={i18n.t('military.history.heading.served')}
@@ -94,7 +103,7 @@ export default class History extends SubsectionElement {
           className="served"
           {...this.props.HasServed}
           help="military.history.help.served"
-          warning={true}
+          warning
           onUpdate={this.updateServed}
           required={this.props.required}
           onError={this.handleError}
@@ -114,10 +123,11 @@ export default class History extends SubsectionElement {
             appendLabel={i18n.t('military.history.collection.append')}
             validator={MilitaryServiceValidator}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <MilitaryService
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -131,17 +141,15 @@ export default class History extends SubsectionElement {
 History.defaultProps = {
   List: { items: [] },
   HasServed: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'military',
   subsection: 'history',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('military.history', data))
-  },
+  validator: data => validate(schema('military.history', data)),
   defaultState: true,
-  required: false
+  required: false,
 }
+
+export default connectMilitarySection(History, sectionConfig)

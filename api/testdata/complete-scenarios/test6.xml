@@ -951,8 +951,28 @@
               <GovernmentDebarment>
                 <Answer>No</Answer>
               </GovernmentDebarment>
+              <Investigations>
+                <Investigation ID="1">
+                  <Agency>Unknown</Agency>
+                  <ClearanceLevel>None</ClearanceLevel>
+                  <GrantedDate>
+                    <Date DoNotKnow="True">
+  
+</Date>
+                  </GrantedDate>
+                  <InvestigationDate>
+                    <Date DoNotKnow="True">
+  
+</Date>
+                  </InvestigationDate>
+                  <IssuingAgency>
+      
+    </IssuingAgency>
+                </Investigation>
+              </Investigations>
               <PriorInvestigation>
-                <Answer>No</Answer>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </PriorInvestigation>
             </InvestigationRecord>
             <MedicalRecord2 Version="1" Type="Pooled">

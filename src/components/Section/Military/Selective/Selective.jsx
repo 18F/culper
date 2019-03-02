@@ -1,40 +1,58 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { SelectiveServiceValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
+import { MILITARY, MILITARY_SELECTIVE } from 'config/formSections/military'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate from 'validators'
+import Subsection from 'components/Section/shared/Subsection'
 import {
   Branch,
   Show,
   Text,
   Textarea,
   Field,
-  NotApplicable
-} from '../../../Form'
+  NotApplicable,
+} from 'components/Form'
 
-export default class Selective extends SubsectionElement {
+import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
+
+const sectionConfig = {
+  section: MILITARY.name,
+  store: MILITARY.store,
+  subsection: MILITARY_SELECTIVE.name,
+  storeKey: MILITARY_SELECTIVE.storeKey,
+}
+
+class Selective extends Subsection {
   constructor(props) {
     super(props)
+
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
 
     this.update = this.update.bind(this)
     this.updateBornAfter = this.updateBornAfter.bind(this)
     this.updateRegistered = this.updateRegistered.bind(this)
     this.updateRegisteredNotApplicable = this.updateRegisteredNotApplicable.bind(
-      this
+      this,
     )
     this.updateRegistrationNumber = this.updateRegistrationNumber.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
   update(queue) {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       WasBornAfter: this.props.WasBornAfter,
       HasRegistered: this.props.HasRegistered,
       HasRegisteredNotApplicable: this.props.HasRegisteredNotApplicable,
       RegistrationNumber: this.props.RegistrationNumber,
       Explanation: this.props.Explanation,
-      ...queue
+      ...queue,
     })
   }
 
@@ -47,7 +65,7 @@ export default class Selective extends SubsectionElement {
         values.value === 'Yes' ? this.props.HasRegistered : emptyValue,
       RegistrationNumber:
         values.value === 'Yes' ? this.props.RegistrationNumber : emptyValue,
-      Explanation: values.value === 'Yes' ? this.props.Explanation : emptyValue
+      Explanation: values.value === 'Yes' ? this.props.Explanation : emptyValue,
     })
   }
 
@@ -58,7 +76,7 @@ export default class Selective extends SubsectionElement {
       HasRegistered: values,
       RegistrationNumber:
         values.value === 'Yes' ? this.props.RegistrationNumber : emptyValue,
-      Explanation: values.value === 'Yes' ? emptyValue : this.props.Explanation
+      Explanation: values.value === 'Yes' ? emptyValue : this.props.Explanation,
     })
   }
 
@@ -69,19 +87,19 @@ export default class Selective extends SubsectionElement {
       HasRegistered: emptyValue,
       HasRegisteredNotApplicable: values,
       RegistrationNumber: emptyValue,
-      Explanation: values.applicable ? emptyValue : this.props.Explanation
+      Explanation: values.applicable ? emptyValue : this.props.Explanation,
     })
   }
 
   updateRegistrationNumber(value) {
     this.update({
-      RegistrationNumber: value
+      RegistrationNumber: value,
     })
   }
 
   updateExplanation(value) {
     this.update({
-      Explanation: value
+      Explanation: value,
     })
   }
 
@@ -89,7 +107,9 @@ export default class Selective extends SubsectionElement {
     return (
       <div
         className="section-content selective"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes(this.props)}
+      >
+        <h1 className="section-header">{i18n.t('military.destination.selective')}</h1>
         <Branch
           name="was_bornafter"
           label={i18n.t('military.selective.heading.born')}
@@ -97,7 +117,7 @@ export default class Selective extends SubsectionElement {
           className="born"
           {...this.props.WasBornAfter}
           help="military.selective.help.born"
-          warning={true}
+          warning
           onUpdate={this.updateBornAfter}
           required={this.props.required}
           onError={this.handleError}
@@ -112,14 +132,15 @@ export default class Selective extends SubsectionElement {
               label={i18n.t('military.selective.label.idk')}
               or={i18n.m('military.selective.para.or')}
               onError={this.props.onError}
-              onUpdate={this.updateRegisteredNotApplicable}>
+              onUpdate={this.updateRegisteredNotApplicable}
+            >
               <Branch
                 name="has_registered"
                 className="registered"
                 label={i18n.t('military.selective.heading.registered')}
                 labelSize="h4"
                 {...this.props.HasRegistered}
-                warning={true}
+                warning
                 onUpdate={this.updateRegistered}
                 required={this.props.required}
                 onError={this.handleError}
@@ -133,7 +154,8 @@ export default class Selective extends SubsectionElement {
                   title={i18n.t('military.selective.heading.number')}
                   className="no-margin-bottom"
                   adjustFor="labels"
-                  scrollIntoView={this.props.scrollIntoView}>
+                  scrollIntoView={this.props.scrollIntoView}
+                >
                   <Text
                     name="RegistrationNumber"
                     className="registration-number"
@@ -160,7 +182,8 @@ export default class Selective extends SubsectionElement {
                             <a
                               href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form"
                               target="_blank"
-                              rel="noopener noreferrer">
+                              rel="noopener noreferrer"
+                            >
                               www.sss.gov
                             </a>
                           </p>
@@ -174,15 +197,17 @@ export default class Selective extends SubsectionElement {
 
             <Show
               when={
-                this.props.HasRegistered.value === 'No' ||
-                !(this.props.HasRegisteredNotApplicable || {}).applicable
-              }>
+                this.props.HasRegistered.value === 'No'
+                || !(this.props.HasRegisteredNotApplicable || {}).applicable
+              }
+            >
               <Field
                 title={i18n.t('military.selective.label.explanation')}
                 titleSize="h4"
                 help="military.selective.help.explanation"
                 adjustFor="textarea"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Textarea
                   name="Explanation"
                   className="explanation"
@@ -204,14 +229,12 @@ Selective.defaultProps = {
   WasBornAfter: {},
   HasRegistered: { value: '' },
   HasRegisteredNotApplicable: { applicable: true },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'military',
   subsection: 'selective',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('military.selective', data))
-  }
+  validator: data => validate(schema('military.selective', data)),
 }
+
+export default connectMilitarySection(Selective, sectionConfig)

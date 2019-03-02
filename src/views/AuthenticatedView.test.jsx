@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { shallow, mount } from 'enzyme'
 import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
-import AuthenticatedView from '@views/AuthenticatedView'
+import AuthenticatedView from 'views/AuthenticatedView'
 
 describe('AuthenticatedView', () => {
   it('hidden when not authenticated', () => {

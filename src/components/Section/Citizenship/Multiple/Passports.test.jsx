@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Passports from './Passports'
+import { Passports } from './Passports'
 
 describe('The multiple component', () => {
   it('no error on empty', () => {

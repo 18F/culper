@@ -23,19 +23,14 @@ rules:
   no-unused-vars: ['error', {
     argsIgnorePattern: '^_'
   }]
+  comma-dangle: [2, {
+    arrays: 'always-multiline',
+    objects: 'always-multiline',
+    imports: 'always-multiline',
+    exports: 'always-multiline',
+    functions: 'ignore'
+  }]
 settings:
   import/resolver:
     babel-module:
       root: ['./src']
-      alias:
-        '@actions': './src/actions'
-        '@components': './src/components'
-        '@config': './src/config'
-        '@constants': './src/constants'
-        '@img': './src/img'
-        '@plugins': './src/plugins'
-        '@reducers': './src/reducers'
-        '@schema': './src/schema'
-        '@services': './src/services'
-        '@validators': './src/validators'
-        '@views': './src/views'
