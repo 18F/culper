@@ -1,11 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Route } from 'react-router'
 import { i18n } from 'config'
 import { SectionView } from 'components/Section/SectionView'
 import { ErrorList } from 'components/ErrorList'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
-import SectionElement from 'components/Section/SectionElement'
 import Passport from 'components/Section/Foreign/Passport'
 import Contacts from 'components/Section/Foreign/Contacts'
 import Travel from 'components/Section/Foreign/Travel'
@@ -27,14 +27,26 @@ import {
   Political,
   Voting,
 } from 'components/Section/Foreign/Business'
-import { FOREIGN } from 'config/formSections/foreign'
+import { FOREIGN } from 'constants/sections'
 import Review from './Review'
 import Intro from './Intro'
 
-class Foreign extends SectionElement {
+class Foreign extends React.Component {
+
+  // TODO: Need to confirm data structure for config files before implementing
+  getForeignSubsections = () => (
+    this.section.subsections.map(subsection => (
+      <Route
+        key={subsection.key}
+        path={`/form${subsection.path}`}
+        component={this.subsectionLibrary[subsection.name]}
+      />
+    ))
+  )
+
   render() {
-    const { formType } = this.props
-    const subsection = this.props.subsection || 'intro'
+    // console.log('this.props', this.props)
+    const { section, subsection, formType } = this.props
     const subsectionClasses = `view view-${subsection || 'unknown'}`
     const isReview = subsection === 'review'
     const title = isReview && i18n.t('review.title')
@@ -69,7 +81,7 @@ class Foreign extends SectionElement {
           <Route path="/form/foreign/review" component={Review} />
 
           <SectionNavigation
-            section={FOREIGN.name}
+            section={FOREIGN}
             subsection={subsection}
             formType={formType}
           />
@@ -88,8 +100,16 @@ function mapStateToProps(state) {
   }
 }
 
+Foreign.propTypes = {
+  section: PropTypes.string,
+  subsection: PropTypes.string,
+  formType: PropTypes.string,
+}
+
 Foreign.defaultProps = {
+  section: 'foreign',
   subsection: 'intro',
+  formType: 'SF86',
   store: 'Foreign',
   scrollToBottom: SectionView.BottomButtonsSelector,
 }
