@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 
@@ -7,7 +8,8 @@ import { i18n } from 'config'
 import { ErrorList } from 'components/ErrorList'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
 
-import * as sections from 'constants/sections'
+import { IDENTIFICATION } from 'constants/sections'
+import * as formTypes from 'config/formTypes'
 
 import Intro from 'components/Section/Identification/Intro'
 import ApplicantName from 'components/Section/Identification/ApplicantName'
@@ -21,21 +23,50 @@ import Review from 'components/Section/Identification/Review'
 
 /**
  * TODO
- * - subsection prop is not defaulting to "intro" after login, this is prob related to keeping redux in sync with routes. Investigate & fix this.
+ * - subsection prop is not defaulting to "intro" after login.
+ * this is prob related to keeping redux in sync with routes. Investigate & fix this.
  */
 
 class Identification extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.form = formTypes[props.formType]
+    this.section = this.form.find(section => (section.key === IDENTIFICATION))
+
+    // Each key in subsectionLibrary corresponds to the subsection
+    // name in the config file.
+    this.subsectionLibrary = {
+      intro: Intro,
+      name: ApplicantName,
+      birthdate: ApplicantBirthDate,
+      birthplace: ApplicantBirthPlace,
+      ssn: ApplicantSSN,
+      othernames: OtherNames,
+      contacts: ContactInformation,
+      physical: Physical,
+      review: Review,
+    }
+  }
+
+  getIdentificationSubsections = () => (
+    this.section.subsections.map(subsection => (
+      <Route
+        key={subsection.key}
+        path={`/form/${this.section.path}/${subsection.path}`}
+        component={this.subsectionLibrary[subsection.name]}
+      />
+    ))
+  )
+
   render() {
-    const subsection = this.props.subsection || 'intro'
+    const { subsection, location, formType } = this.props
 
     const subsectionClasses = `view view-${subsection || 'unknown'}`
 
     const isReview = subsection === 'review'
     const title = isReview && i18n.t('review.title')
     const para = isReview && i18n.m('review.para')
-
-    /** TODO - this should come from Redux store */
-    const formType = 'SF86'
 
     return (
       <div className="section-view">
@@ -47,19 +78,12 @@ class Identification extends React.Component {
             <div className="top-btns"><ErrorList /></div>
           )}
 
-          <Route path="/form/identification/intro" component={Intro} />
-          <Route path="/form/identification/name" component={ApplicantName} />
-          <Route path="/form/identification/birthdate" component={ApplicantBirthDate} />
-          <Route path="/form/identification/birthplace" component={ApplicantBirthPlace} />
-          <Route path="/form/identification/ssn" component={ApplicantSSN} />
-          <Route path="/form/identification/othernames" component={OtherNames} />
-          <Route path="/form/identification/contacts" component={ContactInformation} />
-          <Route path="/form/identification/physical" component={Physical} />
-          <Route path="/form/identification/review" component={Review} />
+          {this.getIdentificationSubsections()}
 
           <SectionNavigation
-            currentPath={this.props.location.pathname}
-            formType={formType} />
+            currentPath={location.pathname}
+            formType={formType}
+          />
         </div>
       </div>
     )
@@ -68,9 +92,17 @@ class Identification extends React.Component {
 
 function mapStateToProps(state) {
   const { section } = state
+  const auth = state.authentication || {}
   return {
+    formType: auth.formType,
     ...section,
   }
+}
+
+Identification.propTypes = {
+  subsection: PropTypes.string,
+  location: PropTypes.object,
+  formType: PropTypes.string.isRequired,
 }
 
 Identification.defaultProps = {
