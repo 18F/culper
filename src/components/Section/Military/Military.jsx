@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route } from 'react-router'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { i18n } from 'config'
 import { MILITARY } from 'constants/sections'

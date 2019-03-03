@@ -1,10 +1,10 @@
 import React from 'react'
-import { MemoryRouter } from 'react-router'
+import { MemoryRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 
-import Military from 'components/Section/Military/Military'
+import Section from 'components/Section'
 
 describe('The military section', () => {
   const mockStore = configureMockStore()
@@ -12,19 +12,23 @@ describe('The military section', () => {
   const emptyStore = mockStore({ application: { Military: {} }, authentication: { formType: 'SF86' } })
 
   const createComponent = (
-    expected = {},
+    expected = { section: 'military', subsection: 'intro' },
     store = emptyStore,
     initialRoutes,
   ) => mount(
     <MemoryRouter initialEntries={initialRoutes}>
       <Provider store={store}>
-        <Military {...expected} />
+        <Section section={expected.section} subsection={expected.subsection} />
       </Provider>
     </MemoryRouter>,
   )
 
   it('can review all subsections', () => {
-    const component = createComponent({ subsection: 'review' }, emptyStore, ['/form/military/review'])
+    const component = createComponent(
+      { section: 'military', subsection: 'review' },
+      emptyStore,
+      ['/form/military/review']
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -81,7 +85,11 @@ describe('The military section', () => {
       authentication: { formType: 'SF86' },
     })
 
-    const component = createComponent({ subsection: 'intro' }, modifiedStore, ['/form/military/intro'])
+    const component = createComponent(
+      { section: 'military', subsection: 'intro' },
+      modifiedStore,
+      ['/form/military/intro']
+    )
 
     expect(component.find('.actions.next .text .label').text()).not.toBe(
       'Selective service record',
@@ -99,7 +107,11 @@ describe('The military section', () => {
       authentication: { formType: 'SF86' },
     })
 
-    const component = createComponent({ subsection: 'intro' }, modifiedStore, ['/form/military/intro'])
+    const component = createComponent(
+      { section: 'military', subsection: 'intro' },
+      modifiedStore,
+      ['/form/military/intro']
+    )
 
     expect(component.find('.actions.next .text .label').text()).toBe(
       'Selective service record',
@@ -114,7 +126,11 @@ describe('The military section', () => {
       authentication: { formType: 'SF86' },
     })
 
-    const component = createComponent({ subsection: 'history' }, modifiedStore, ['/form/military/history'])
+    const component = createComponent(
+      { section: 'military', subsection: 'history' },
+      modifiedStore,
+      ['/form/military/history']
+    )
 
     expect(component.find('.actions.next .text .label').text()).not.toBe(
       'Disciplinary procedures',
@@ -129,7 +145,11 @@ describe('The military section', () => {
       authentication: { formType: 'SF86' },
     })
 
-    const component = createComponent({ subsection: 'history' }, modifiedStore, ['/form/military/history'])
+    const component = createComponent(
+      { section: 'military', subsection: 'history' },
+      modifiedStore,
+      ['/form/military/history']
+    )
 
     expect(component.find('.actions.next .text .label').text()).toBe(
       'Disciplinary procedures',
