@@ -16,9 +16,8 @@ const SectionNavigation = ({ back, next }) => {
     env.History().push(path)
   }
 
-  const backOnClick = back && (() => { goToSection(`/form${back.path}`) })
-  const nextOnClick = next && (() => { goToSection(`/form${next.path}`) })
-
+  const backOnClick = back && (() => { goToSection(back.fullPath) })
+  const nextOnClick = next && (() => { goToSection(next.fullPath) })
   return (
     <div className="bottom-btns">
       <div className="btn-wrap">
@@ -54,8 +53,8 @@ SectionNavigation.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { section, subsection } = ownProps
-  return getBackAndNext(state, { section, subsection })
+  const { currentPath } = ownProps
+  return getBackAndNext(state, { currentPath })
 }
 
 export default connect(mapStateToProps)(SectionNavigation)
