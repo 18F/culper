@@ -35,14 +35,14 @@ class Citizenship extends React.Component {
     this.section.subsections.map(subsection => (
       <Route
         key={subsection.key}
-        path={`/form${subsection.path}`}
+        path={`/form/${this.section.path}/${subsection.path}`}
         component={this.subsectionLibrary[subsection.name]}
       />
     ))
   )
 
   render() {
-    const { subsection, formType } = this.props
+    const { subsection, location, formType } = this.props
     const subsectionClasses = `view view-${subsection || 'unknown'}`
     const isReview = subsection === 'review'
     const title = isReview && i18n.t('review.title')
@@ -61,6 +61,7 @@ class Citizenship extends React.Component {
           {this.getCitizenshipSubsections()}
 
           <SectionNavigation
+            currentPath={location.pathname}
             section={CITIZENSHIP}
             subsection={subsection}
             formType={formType}
@@ -83,11 +84,13 @@ function mapStateToProps(state) {
 
 Citizenship.propTypes = {
   subsection: PropTypes.string,
+  location: PropTypes.object,
   formType: PropTypes.string.isRequired,
 }
 
 Citizenship.defaultProps = {
   subsection: 'intro',
+  location: {},
 }
 
 export const CitizenshipSections = () => <Review />
