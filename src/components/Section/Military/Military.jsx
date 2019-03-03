@@ -89,7 +89,7 @@ function mapStateToProps(state) {
     Errors: errors.military || [],
     Completed: completed.military || [],
     addressBooks,
-    auth: auth.formType,
+    formType: auth.formType,
   }
 }
 
