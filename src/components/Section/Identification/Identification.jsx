@@ -58,8 +58,7 @@ class Identification extends React.Component {
           <Route path="/form/identification/review" component={Review} />
 
           <SectionNavigation
-            section={sections.IDENTIFICATION}
-            subsection={subsection}
+            currentPath={this.props.location.pathname}
             formType={formType} />
         </div>
       </div>
