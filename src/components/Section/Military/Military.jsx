@@ -13,7 +13,7 @@ import Foreign from 'components/Section/Military/Foreign'
 import Intro from 'components/Section/Military/Intro'
 import Review from 'components/Section/Military/Review'
 
-const Military = ({ subsection }) => {
+const Military = ({ subsection, location }) => {
   const subsectionClasses = `view view-${subsection || 'unknown'}`
 
   const isReview = subsection === 'review'
@@ -41,6 +41,7 @@ const Military = ({ subsection }) => {
         <Route path="/form/military/review" component={Review} />
 
         <SectionNavigation
+          currentPath={location.pathname}
           section={sections.MILITARY}
           subsection={subsection}
           formType={formType}
@@ -70,10 +71,12 @@ function mapStateToProps(state) {
 
 Military.defaultProps = {
   subsection: 'intro',
+  location: {},
 }
 
 Military.propTypes = {
   subsection: PropTypes.string,
+  location: PropTypes.object,
 }
 
 export const MilitarySections = () => <Review />
