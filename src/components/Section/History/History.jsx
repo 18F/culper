@@ -9,8 +9,6 @@ import { i18n } from 'config'
 import { ErrorList } from 'components/ErrorList'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
 
-import * as sections from 'constants/sections'
-
 import Intro from 'components/Section/History/Intro'
 import ResidenceWrapper from 'components/Section/History/Residence/ResidenceWrapper'
 import Residence from 'components/Section/History/Residence'
@@ -30,7 +28,7 @@ import { Show, Branch } from 'components/Form'
  */
 
 const History = (props) => {
-  const { subsection } = props
+  const { subsection, location } = props
 
   const subsectionClasses = classnames(
     'view',
@@ -40,9 +38,6 @@ const History = (props) => {
   const isReview = subsection === 'review'
   const title = isReview && i18n.t('review.title')
   const para = isReview && i18n.m('review.para')
-
-  /** TODO - this should come from Redux store */
-  const formType = 'SF86'
 
   return (
     <div className="history">
@@ -63,9 +58,7 @@ const History = (props) => {
           <Route path="/form/history/review" component={Review} />
 
           <SectionNavigation
-            section={sections.HISTORY}
-            subsection={subsection}
-            formType={formType}
+            currentPath={location.pathname}
           />
         </div>
       </div>
@@ -74,19 +67,24 @@ const History = (props) => {
 }
 
 function mapStateToProps(state) {
-  const { section } = state
+  const { authentication, section } = state
+  const { formType } = authentication
 
   return {
     ...section,
+    formType,
   }
 }
 
+/* eslint react/forbid-prop-types: 0 */
 History.propTypes = {
   subsection: PropTypes.string,
+  location: PropTypes.object,
 }
 
 History.defaultProps = {
   subsection: 'intro',
+  location: {},
 }
 
 export default connect(mapStateToProps)(History)
