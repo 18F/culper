@@ -85,7 +85,7 @@ History.defaultProps = {
 
 export default connect(mapStateToProps)(History)
 
-export const HistorySections = (props) => {
+export const HistorySections = connect(mapStateToProps)((props) => {
   const { formType, onError, Education } = props
 
   const formTypeConfig = formType && formConfig[formType]
@@ -120,14 +120,14 @@ export const HistorySections = (props) => {
       <Branch
         name="branch_school"
         {...Education.HasAttended}
-        label={i18n.t('history.education.label.attendance', { educationYears })}
+        label={i18n.t('history.education.label.attendance', { years: educationYears })}
         labelSize="h3"
       />
       <Show when={Education.HasAttended.value === 'No'}>
         <Branch
           name="branch_degree10"
           {...Education.HasDegree10}
-          label={i18n.t('history.education.label.degree10', { educationYears })}
+          label={i18n.t('history.education.label.degree10', { years: educationYears })}
           labelSize="h3"
         />
       </Show>
@@ -156,4 +156,4 @@ export const HistorySections = (props) => {
       />
     </div>
   )
-}
+})
