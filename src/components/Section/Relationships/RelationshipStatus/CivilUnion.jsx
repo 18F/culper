@@ -26,43 +26,16 @@ import AlternateAddress from 'components/Form/Location/AlternateAddress'
 import { countryString } from 'validators/location'
 
 class CivilUnion extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateName = this.updateName.bind(this)
-    this.updateBirthdate = this.updateBirthdate.bind(this)
-    this.updateBirthPlace = this.updateBirthPlace.bind(this)
-    this.updateForeignBornDocument = this.updateForeignBornDocument.bind(this)
-    this.updateSSN = this.updateSSN.bind(this)
-    this.updateOtherNames = this.updateOtherNames.bind(this)
-    this.updateCitizenship = this.updateCitizenship.bind(this)
-    this.updateEnteredCivilUnion = this.updateEnteredCivilUnion.bind(this)
-    this.updateLocation = this.updateLocation.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateTelephone = this.updateTelephone.bind(this)
-    this.updateEmail = this.updateEmail.bind(this)
-    this.updateSeparated = this.updateSeparated.bind(this)
-    this.updateDateSeparated = this.updateDateSeparated.bind(this)
-    this.updateAddressSeparated = this.updateAddressSeparated.bind(this)
-    this.updateAddressSeparatedNotApplicable = this.updateAddressSeparatedNotApplicable.bind(
-      this
-    )
-    this.updateDivorced = this.updateDivorced.bind(this)
-    this.updateEmailNotApplicable = this.updateEmailNotApplicable.bind(this)
-    this.updateUseCurrentAddress = this.updateUseCurrentAddress.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       ...this.props,
-      ...queue
+      ...queue,
     })
   }
 
-  updateName(values) {
+  updateName = (values) => {
     this.update({
-      Name: values
+      Name: values,
     })
 
     if (this.props.onSpouseUpdate) {
@@ -70,116 +43,12 @@ class CivilUnion extends ValidationElement {
     }
   }
 
-  updateBirthdate(values) {
-    this.update({
-      Birthdate: values
-    })
-  }
-
-  updateBirthPlace(values) {
-    this.update({
-      BirthPlace: values
-    })
-  }
-
-  updateForeignBornDocument(values) {
-    this.update({
-      ForeignBornDocument: values
-    })
-  }
-
-  updateSSN(values) {
-    this.update({
-      SSN: values
-    })
-  }
-
-  updateOtherNames(values) {
-    this.update({
-      OtherNames: values
-    })
-  }
-
-  updateCitizenship(values) {
-    this.update({
-      Citizenship: values
-    })
-  }
-
-  updateEnteredCivilUnion(values) {
-    this.update({
-      EnteredCivilUnion: values
-    })
-  }
-
-  updateAddress(values) {
-    this.update({
-      Address: values
-    })
-  }
-
-  updateLocation(values) {
-    this.update({
-      Location: values
-    })
-  }
-
-  updateTelephone(values) {
-    this.update({
-      Telephone: values
-    })
-  }
-
-  updateEmail(values) {
-    this.update({
-      Email: values
-    })
-  }
-
-  updateEmailNotApplicable(values) {
-    this.update({
-      Email: {},
-      EmailNotApplicable: values
-    })
-  }
-
-
-  updateSeparated(values) {
-    this.update({
-      Separated: values
-    })
-  }
-
-  updateDateSeparated(values) {
-    this.update({
-      DateSeparated: values
-    })
-  }
-
-  updateAddressSeparated(values) {
-    this.update({
-      AddressSeparated: values
-    })
-  }
-
-  updateAddressSeparatedNotApplicable(values) {
-    this.update({
-      AddressSeparatedNotApplicable: values
-    })
-  }
-
-  updateDivorced(values) {
-    this.update({
-      Divorced: values
-    })
-  }
-
-  updateUseCurrentAddress(values) {
+  updateUseCurrentAddress = (values) => {
     const nextValues = { ...values, applicable: !values.applicable }
 
     this.update({
       UseCurrentAddress: nextValues,
-      Address: !values.applicable ? { ...this.props.currentAddress } : {}
+      Address: !values.applicable ? { ...this.props.currentAddress } : {},
     })
   }
 
@@ -253,7 +122,9 @@ class CivilUnion extends ValidationElement {
               className="birthdate"
               {...this.props.Birthdate}
               relationship="Other"
-              onUpdate={this.updateBirthdate}
+              onUpdate={values => this.update({
+                Birthdate: values,
+              })}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -268,7 +139,9 @@ class CivilUnion extends ValidationElement {
               layout={Location.BIRTHPLACE}
               className="birthplace"
               label={i18n.t('relationships.civilUnion.label.birthplace')}
-              onUpdate={this.updateBirthPlace}
+              onUpdate={values => this.update({
+                BirthPlace: values,
+              })}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -278,7 +151,9 @@ class CivilUnion extends ValidationElement {
             <ForeignBornDocuments
               name="foreignBornDocument"
               {...this.props.ForeignBornDocument}
-              onUpdate={this.updateForeignBornDocument}
+              onUpdate={values => this.update({
+                ForeignBornDocument: values,
+              })}
               onError={this.props.onError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
@@ -292,7 +167,9 @@ class CivilUnion extends ValidationElement {
             <SSN
               name="ssn"
               {...this.props.SSN}
-              onUpdate={this.updateSSN}
+              onUpdate={values => this.update({
+                SSN: values,
+              })}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -306,7 +183,9 @@ class CivilUnion extends ValidationElement {
             )}
             {...this.props.OtherNames}
             onError={this.props.onError}
-            onUpdate={this.updateOtherNames}
+            onUpdate={values => this.update({
+              OtherNames: values,
+            })}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}>
             <AccordionItem
@@ -376,7 +255,9 @@ class CivilUnion extends ValidationElement {
               {...this.props.Citizenship}
               className="relationships-civilUnion-citizenship"
               multiple
-              onUpdate={this.updateCitizenship}
+              onUpdate={values => this.update({
+                Citizenship: values,
+              })}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -393,7 +274,9 @@ class CivilUnion extends ValidationElement {
               prefix="civilUnion"
               minDate={enteredCivilUnionMinDate}
               {...this.props.EnteredCivilUnion}
-              onUpdate={this.updateEnteredCivilUnion}
+              onUpdate={values => this.update({
+                EnteredCivilUnion: values,
+              })}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -408,7 +291,9 @@ class CivilUnion extends ValidationElement {
               {...this.props.Location}
               layout={Location.BIRTHPLACE}
               label={i18n.t('relationships.civilUnion.label.location')}
-              onUpdate={this.updateLocation}
+              onUpdate={values => this.update({
+                Location: values,
+              })}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -441,7 +326,9 @@ class CivilUnion extends ValidationElement {
                 addressBook="Relative"
                 showPostOffice
                 dispatch={this.props.dispatch}
-                onUpdate={this.updateAddress}
+                onUpdate={values => this.update({
+                  Address: values,
+                })}
                 onError={this.props.onError}
                 required={this.props.required}
               />
@@ -466,7 +353,9 @@ class CivilUnion extends ValidationElement {
             <Telephone
               name="Telephone"
               {...this.props.Telephone}
-              onUpdate={this.updateTelephone}
+              onUpdate={values => this.update({
+                Telephone: values,
+              })}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -484,11 +373,17 @@ class CivilUnion extends ValidationElement {
               )}
               or={i18n.m('relationships.people.person.label.or')}
               onError={this.props.onError}
-              onUpdate={this.updateEmailNotApplicable}>
+              onUpdate={values => this.update({
+                Email: {},
+                EmailNotApplicable: values,
+              })}
+            >
               <Email
                 name="Email"
                 {...this.props.Email}
-                onUpdate={this.updateEmail}
+                onUpdate={values => this.update({
+                  Email: values,
+                })}
                 onError={this.props.onError}
                 required={
                   (this.props.EmailNotApplicable || {}).applicable &&
@@ -504,7 +399,9 @@ class CivilUnion extends ValidationElement {
             label={i18n.t('relationships.civilUnion.heading.separated')}
             labelSize="h4"
             {...this.props.Separated}
-            onUpdate={this.updateSeparated}
+            onUpdate={values => this.update({
+              Separated: values,
+            })}
             minDate={this.props.EnteredCivilUnion}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
@@ -524,7 +421,9 @@ class CivilUnion extends ValidationElement {
                   minDate={this.props.EnteredCivilUnion}
                   minDateEqualTo={true}
                   {...this.props.DateSeparated}
-                  onUpdate={this.updateDateSeparated}
+                  onUpdate={values => this.update({
+                    DateSeparated: values,
+                  })}
                   onError={this.props.onError}
                   required={this.props.required}
                 />
@@ -541,7 +440,9 @@ class CivilUnion extends ValidationElement {
                   {...this.props.AddressSeparatedNotApplicable}
                   label={i18n.t('relationships.civilUnion.notApplicable.label')}
                   or={i18n.m('relationships.civilUnion.notApplicable.or')}
-                  onUpdate={this.updateAddressSeparatedNotApplicable}
+                  onUpdate={values => this.update({
+                    AddressSeparatedNotApplicable: values,
+                  })}
                   onError={this.props.onError}>
                   <Location
                     name="addressSeparated"
@@ -551,7 +452,9 @@ class CivilUnion extends ValidationElement {
                     )}
                     layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                     showPostOffice
-                    onUpdate={this.updateAddressSeparated}
+                    onUpdate={values => this.update({
+                      AddressSeparated: values,
+                    })}
                     onError={this.props.onError}
                     required={this.props.required}
                   />
@@ -566,7 +469,9 @@ class CivilUnion extends ValidationElement {
             labelSize="h4"
             className="divorced"
             {...this.props.Divorced}
-            onUpdate={this.updateDivorced}
+            onUpdate={values => this.update({
+              Divorced: values,
+            })}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
             onError={this.props.onError}
