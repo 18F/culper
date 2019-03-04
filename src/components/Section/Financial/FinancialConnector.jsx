@@ -54,6 +54,45 @@ const connectFinancialSection = (Component, {
     const addressBooks = app.AddressBooks || {}
 
     switch (storeKey) {
+      case 'Bankruptcy':
+        return {
+          ...financial.Bankruptcy,
+          addressBooks,
+        }
+
+      case 'Gambling':
+        return {
+          ...financial.Gambling,
+        }
+
+      case 'Taxes':
+        return {
+          ...financial.Taxes,
+        }
+
+      case 'Card':
+        return {
+          ...financial.Card,
+          addressBooks,
+        }
+
+      case 'Credit':
+        return {
+          ...financial.Credit,
+          addressBooks,
+        }
+
+      case 'Delinquent':
+        return {
+          ...financial.Delinquent,
+          addressBooks,
+        }
+
+      case 'Nonpayment':
+        return {
+          ...financial.Nonpayment,
+        }
+
       default:
         return {
           Financial: financial,

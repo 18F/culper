@@ -1,36 +1,54 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary } from '../../../Summary'
-import { CreditValidator, CreditItemValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { CreditItemValidator } from 'validators'
+
+import { Branch, Show, Accordion } from 'components/Form'
+import { Summary } from 'components/Summary'
+import Subsection from 'components/Section/shared/Subsection'
+
+import { FINANCIAL, FINANCIAL_CREDIT } from 'config/formSections/financial'
+import connectFinancialSection from '../FinancialConnector'
+
 import CreditItem from './CreditItem'
 
-export default class Credit extends SubsectionElement {
+const sectionConfig = {
+  section: FINANCIAL.name,
+  store: FINANCIAL.store,
+  subsection: FINANCIAL_CREDIT.name,
+  storeKey: FINANCIAL_CREDIT.storeKey,
+}
+
+export class Credit extends Subsection {
   constructor(props) {
     super(props)
-    this.updateBranch = this.updateBranch.bind(this)
-    this.updateList = this.updateList.bind(this)
-    this.summary = this.summary.bind(this)
+
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasCreditCounseling: this.props.HasCreditCounseling,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch(values) {
+  updateBranch = (values) => {
     this.update({
       HasCreditCounseling: values,
-      List: values.value === 'Yes' ? this.props.List : {}
+      List: values.value === 'Yes' ? this.props.List : {},
     })
   }
 
@@ -38,25 +56,25 @@ export default class Credit extends SubsectionElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  summary = (item, index) => {
     const obj = item.Item || {}
     const name = (obj.Name || {}).value || ''
 
     return Summary({
       type: i18n.t('financial.credit.collection.summary.item'),
-      index: index,
+      index,
       left: name,
       right: null,
-      placeholder: i18n.t('financial.credit.collection.summary.unknown')
+      placeholder: i18n.t('financial.credit.collection.summary.unknown'),
     })
   }
 
@@ -64,7 +82,8 @@ export default class Credit extends SubsectionElement {
     return (
       <div
         className="section-content credit-counseling"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('financial.destination.credit')}</h1>
         <Branch
           name="has_credit"
@@ -72,7 +91,7 @@ export default class Credit extends SubsectionElement {
           labelSize="h4"
           className="credit-branch"
           {...this.props.HasCreditCounseling}
-          warning={true}
+          warning
           onUpdate={this.updateBranch}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -91,10 +110,11 @@ export default class Credit extends SubsectionElement {
             scrollIntoView={this.props.scrollIntoView}
             validator={CreditItemValidator}
             appendTitle={i18n.t('financial.credit.collection.appendTitle')}
-            appendLabel={i18n.t('financial.credit.collection.append')}>
+            appendLabel={i18n.t('financial.credit.collection.append')}
+          >
             <CreditItem
               name="Item"
-              bind={true}
+              bind
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}
@@ -111,15 +131,12 @@ Credit.defaultProps = {
   HasCreditCounseling: {},
   List: {},
   addressBooks: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'financial',
-  subsection: 'credit',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('financial.credit', data))
-  },
-  defaultState: true
+  validator: data => validate(schema('financial.credit', data)),
+  defaultState: true,
+  scrollToBottom: '.bottom-btns',
 }
+
+export default connectFinancialSection(Credit, sectionConfig)

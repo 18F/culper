@@ -1,40 +1,54 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, DateSummary } from '../../../Summary'
-import {
-  DelinquentValidator,
-  DelinquentItemValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { DelinquentItemValidator } from 'validators'
+
+import { Branch, Show, Accordion } from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
+import Subsection from 'components/Section/shared/Subsection'
+
+import { FINANCIAL, FINANCIAL_DELINQUENT } from 'config/formSections/financial'
+import connectFinancialSection from '../FinancialConnector'
+
 import DelinquentItem from './DelinquentItem'
 
-export default class Delinquent extends SubsectionElement {
+const sectionConfig = {
+  section: FINANCIAL.name,
+  store: FINANCIAL.store,
+  subsection: FINANCIAL_DELINQUENT.name,
+  storeKey: FINANCIAL_DELINQUENT.storeKey,
+}
+
+export class Delinquent extends Subsection {
   constructor(props) {
     super(props)
 
-    this.updateBranch = this.updateBranch.bind(this)
-    this.updateList = this.updateList.bind(this)
-    this.summary = this.summary.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasDelinquent: this.props.HasDelinquent,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch(values) {
+  updateBranch = (values) => {
     this.update({
       HasDelinquent: values,
-      List: values.value === 'Yes' ? this.props.List : {}
+      List: values.value === 'Yes' ? this.props.List : {},
     })
   }
 
@@ -42,50 +56,49 @@ export default class Delinquent extends SubsectionElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  summary = (item, index) => {
     const obj = item.Item || {}
     const date = obj.Date || {}
-    const from = DateSummary({ date: date })
+    const from = DateSummary({ date })
     const name = (obj.Name || {}).value || ''
     const amount = (obj.Amount || {}).value || ''
-    const text = `${name}${amount ? ', $' + amount : ''}`.trim()
+    const text = `${name}${amount ? `, $${amount}` : ''}`.trim()
 
     return Summary({
       type: i18n.t('financial.delinquent.collection.summary.item'),
-      index: index,
+      index,
       left: text,
       right: from,
-      placeholder: i18n.t('financial.delinquent.collection.summary.unknown')
+      placeholder: i18n.t('financial.delinquent.collection.summary.unknown'),
     })
   }
 
-  message() {
-    return (
-      <div>
-        <ul>
-          <li>{i18n.m('financial.delinquent.para.alimony')}</li>
-          <li>{i18n.m('financial.delinquent.para.judgement')}</li>
-          <li>{i18n.m('financial.delinquent.para.lien')}</li>
-          <li>{i18n.m('financial.delinquent.para.federal')}</li>
-        </ul>
-      </div>
-    )
-  }
+  message = () => (
+    <div>
+      <ul>
+        <li>{i18n.m('financial.delinquent.para.alimony')}</li>
+        <li>{i18n.m('financial.delinquent.para.judgement')}</li>
+        <li>{i18n.m('financial.delinquent.para.lien')}</li>
+        <li>{i18n.m('financial.delinquent.para.federal')}</li>
+      </ul>
+    </div>
+  )
 
   render() {
     return (
       <div
         className="section-content delinquent"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes(this.props)}
+      >
         <h1 className="section-header">{i18n.t('financial.destination.delinquent')}</h1>
         <Branch
           name="has_delinquent"
@@ -93,11 +106,12 @@ export default class Delinquent extends SubsectionElement {
           labelSize="h4"
           className="delinquent-branch eapp-field-wrap"
           {...this.props.HasDelinquent}
-          warning={true}
+          warning
           onUpdate={this.updateBranch}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
-          onError={this.handleError}>
+          onError={this.handleError}
+        >
           {i18n.m('financial.delinquent.para.details')}
           <ul>
             <li>{i18n.m('financial.delinquent.para.alimony')}</li>
@@ -122,10 +136,11 @@ export default class Delinquent extends SubsectionElement {
             validator={DelinquentItemValidator}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
-            appendLabel={i18n.t('financial.delinquent.collection.append')}>
+            appendLabel={i18n.t('financial.delinquent.collection.append')}
+          >
             <DelinquentItem
               name="Item"
-              bind={true}
+              bind
               dispatch={this.props.dispatch}
               addressBooks={this.props.addressBooks}
               required={this.props.required}
@@ -141,15 +156,12 @@ export default class Delinquent extends SubsectionElement {
 Delinquent.defaultProps = {
   HasDelinquent: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'financial',
-  subsection: 'delinquent',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('financial.delinquent', data))
-  },
-  defaultState: true
+  validator: data => validate(schema('financial.delinquent', data)),
+  defaultState: true,
+  scrollToBottom: '.bottom-btns',
 }
+
+export default connectFinancialSection(Delinquent, sectionConfig)
