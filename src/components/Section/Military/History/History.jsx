@@ -46,8 +46,13 @@ class History extends Subsection {
   constructor(props) {
     super(props)
 
-    const { storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
+    this.section = section
+    this.subsection = subsection
+    this.store = store
     this.storeKey = storeKey
   }
 
