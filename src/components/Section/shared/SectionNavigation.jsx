@@ -42,7 +42,6 @@ const SectionNavigation = ({ back, next }) => {
   )
 }
 
-/* eslint react/forbid-prop-types: 0 */
 SectionNavigation.propTypes = {
   back: PropTypes.object,
   next: PropTypes.object,
