@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import CivilUnion from './CivilUnion'
@@ -18,7 +18,7 @@ const mountComponent = (Component, props = {}) => {
 describe('<CivilUnion />', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'cohabitant'
+      name: 'cohabitant',
     }
 
     const component = mountComponent(CivilUnion, expected)
@@ -35,8 +35,8 @@ describe('<CivilUnion />', () => {
       AddressSeparated: { country: { value: 'United States' } },
       ForeignBornDocument: { DocumentType: { value: 'Other' } },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
 
     const component = mountComponent(CivilUnion, expected)
@@ -79,15 +79,14 @@ describe('<CivilUnion />', () => {
   })
 
   it('renders current address', () => {
-    let updates = 0
     const expected = {
       name: 'cohabitant',
       currentAddress: {
         address: '123 Some Rd',
         city: 'Arlington',
         state: 'VA',
-        country: 'United States'
-      }
+        country: 'United States',
+      },
     }
 
     const component = mountComponent(CivilUnion, expected)
@@ -105,7 +104,7 @@ describe('<CivilUnion />', () => {
 
     it('does not ask for foreign-born documentation in default state', () => {
       const emptyExpected = {
-        BirthPlace: {}
+        BirthPlace: {},
       }
 
       component = mountComponent(CivilUnion, emptyExpected)
@@ -117,10 +116,10 @@ describe('<CivilUnion />', () => {
 
     it('does not ask for foreign born documentation if from the United States', () => {
       const usExpected = {
-        BirthPlace: { country: 'United States' }
+        BirthPlace: { country: 'United States' },
       }
       const altUSExpected = {
-        BirthPlace: { country: { value: 'United States' } }
+        BirthPlace: { country: { value: 'United States' } },
       }
 
       component = mountComponent(CivilUnion, usExpected)
@@ -132,7 +131,7 @@ describe('<CivilUnion />', () => {
 
     it('asks for foreign born documentation if not from the United States', () => {
       const objectExpected = {
-        BirthPlace: { country: { value: ['Canada'] } }
+        BirthPlace: { country: { value: ['Canada'] } },
       }
 
       component = mountComponent(CivilUnion, objectExpected)
@@ -144,7 +143,7 @@ describe('<CivilUnion />', () => {
     it('does not show the location form', () => {
       const props = {
         name: 'civilUnion',
-        UseCurrentAddress: { applicable: false }
+        UseCurrentAddress: { applicable: false },
       }
       let component = mountComponent(CivilUnion, props)
       let locations = component.find('NotApplicable').find('Location')
@@ -153,7 +152,7 @@ describe('<CivilUnion />', () => {
 
       component = mountComponent(CivilUnion, {
         name: 'civilUnion',
-        UseCurrentAddress: { applicable: true }
+        UseCurrentAddress: { applicable: true },
       })
 
       locations = component.find('NotApplicable').find('Location')
@@ -163,7 +162,7 @@ describe('<CivilUnion />', () => {
     it('does not show the alternate address form', () => {
       const props = {
         name: 'civilUnion',
-        UseCurrentAddress: { applicable: true }
+        UseCurrentAddress: { applicable: true },
       }
       const component = mountComponent(CivilUnion, props)
 

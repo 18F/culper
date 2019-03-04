@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
 import { pickDate } from 'validators/helpers'
-import { connect } from 'react-redux'
 import {
   Branch,
   Field,
@@ -16,13 +15,12 @@ import {
   SSN,
   MaidenName,
   DateRange,
-  Checkbox,
   Country,
   Location,
   BranchCollection,
   AccordionItem,
 } from 'components/Form'
-import AlternateAddress from 'components/Form/Location/AlternateAddress'
+import ConnectedAlternateAddress from 'components/Form/Location/AlternateAddress'
 import { countryString } from 'validators/location'
 
 class CivilUnion extends ValidationElement {
@@ -85,11 +83,10 @@ class CivilUnion extends ValidationElement {
      */
 
     const { country } = this.props.BirthPlace
-    const showForeignBornDocumentation =
-      country && countryString(country) !== 'United States'
+    const showForeignBornDocumentation = country && countryString(country) !== 'United States'
     const enteredCivilUnionMinDate = pickDate([
       this.props.applicantBirthdate,
-      this.props.Birthdate
+      this.props.Birthdate,
     ])
     return (
       <div className="civil-union">
@@ -100,7 +97,8 @@ class CivilUnion extends ValidationElement {
             title={i18n.t('relationships.civilUnion.heading.name')}
             optional
             filterErrors={Name.requiredErrorsOnly}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Name
               name="Name"
               className="civil"
@@ -116,7 +114,8 @@ class CivilUnion extends ValidationElement {
             help="relationships.civilUnion.help.birthdate"
             title={i18n.t('relationships.civilUnion.heading.birthdate')}
             scrollIntoView={this.props.scrollIntoView}
-            adjustFor="datecontrol">
+            adjustFor="datecontrol"
+          >
             <DateControl
               name="birthdate"
               className="birthdate"
@@ -132,7 +131,8 @@ class CivilUnion extends ValidationElement {
 
           <Field
             title={i18n.t('relationships.civilUnion.heading.birthplace')}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Location
               name="birthplace"
               {...this.props.BirthPlace}
@@ -163,7 +163,8 @@ class CivilUnion extends ValidationElement {
           <Field
             title={i18n.t('relationships.civilUnion.heading.ssn')}
             help="identification.ssn.help"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <SSN
               name="ssn"
               {...this.props.SSN}
@@ -187,17 +188,20 @@ class CivilUnion extends ValidationElement {
               OtherNames: values,
             })}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <AccordionItem
               scrollIntoView={this.props.scrollIntoView}
-              required={this.props.required}>
+              required={this.props.required}
+            >
               <Field
                 title={i18n.t(
                   'relationships.civilUnion.othernames.heading.name'
                 )}
                 optional
                 filterErrors={Name.requiredErrorsOnly}
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Name
                   name="Name"
                   bind
@@ -214,7 +218,8 @@ class CivilUnion extends ValidationElement {
                 help="alias.maiden.help"
                 adjustFor="buttons"
                 shrink
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <MaidenName
                   name="MaidenName"
                   bind
@@ -230,7 +235,8 @@ class CivilUnion extends ValidationElement {
                 )}
                 adjustFor="daterange"
                 shrink
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <DateRange
                   name="DatesUsed"
                   bind
@@ -249,7 +255,8 @@ class CivilUnion extends ValidationElement {
             title={i18n.t('relationships.civilUnion.heading.citizenship')}
             help="relationships.civilUnion.help.citizenship"
             scrollIntoView={this.props.scrollIntoView}
-            adjustFor="country">
+            adjustFor="country"
+          >
             <Country
               name="Citizenship"
               {...this.props.Citizenship}
@@ -266,11 +273,12 @@ class CivilUnion extends ValidationElement {
           <Field
             title={i18n.t('relationships.civilUnion.heading.enteredCivilUnion')}
             scrollIntoView={this.props.scrollIntoView}
-            adjustFor="datecontrol">
+            adjustFor="datecontrol"
+          >
             <DateControl
               name="enteredCivilUnion"
               className="entered"
-              minDateEqualTo={true}
+              minDateEqualTo
               prefix="civilUnion"
               minDate={enteredCivilUnionMinDate}
               {...this.props.EnteredCivilUnion}
@@ -284,7 +292,8 @@ class CivilUnion extends ValidationElement {
 
           <Field
             title={i18n.t('relationships.civilUnion.heading.location')}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Location
               name="Location"
               className="civilunion-location"
@@ -308,7 +317,8 @@ class CivilUnion extends ValidationElement {
             optional
             help="relationships.civilUnion.help.address"
             scrollIntoView={this.props.scrollIntoView}
-            adjustFor="address">
+            adjustFor="address"
+          >
             <NotApplicable
               name="UseCurrentAddress"
               applicable={!this.props.UseCurrentAddress.applicable}
@@ -316,7 +326,8 @@ class CivilUnion extends ValidationElement {
               label={i18n.t('relationships.civilUnion.useCurrentAddress.label')}
               or={i18n.m('relationships.civilUnion.useCurrentAddress.or')}
               onUpdate={this.updateUseCurrentAddress}
-              onError={this.props.onError}>
+              onError={this.props.onError}
+            >
               <Location
                 name="Address"
                 {...this.props.Address}
@@ -334,7 +345,7 @@ class CivilUnion extends ValidationElement {
               />
             </NotApplicable>
             <Show when={!this.props.UseCurrentAddress.applicable}>
-              <AlternateAddress
+              <ConnectedAlternateAddress
                 address={this.props.AlternateAddress}
                 addressBook="Relative"
                 belongingTo="AlternateAddress"
@@ -349,7 +360,8 @@ class CivilUnion extends ValidationElement {
             title={i18n.t('relationships.civilUnion.heading.telephone')}
             className="override-required"
             scrollIntoView={this.props.scrollIntoView}
-            adjustFor="telephone">
+            adjustFor="telephone"
+          >
             <Telephone
               name="Telephone"
               {...this.props.Telephone}
@@ -363,7 +375,8 @@ class CivilUnion extends ValidationElement {
 
           <Field
             title={i18n.t('relationships.civilUnion.heading.email')}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <NotApplicable
               name="EmailNotApplicable"
               className="email-notapplicable"
@@ -386,8 +399,8 @@ class CivilUnion extends ValidationElement {
                 })}
                 onError={this.props.onError}
                 required={
-                  (this.props.EmailNotApplicable || {}).applicable &&
-                  this.props.required
+                  (this.props.EmailNotApplicable || {}).applicable
+                  && this.props.required
                 }
               />
             </NotApplicable>
@@ -414,12 +427,13 @@ class CivilUnion extends ValidationElement {
                 title={i18n.t('relationships.civilUnion.heading.dateSeparated')}
                 help="relationships.civilUnion.help.dateSeparated"
                 scrollIntoView={this.props.scrollIntoView}
-                adjustFor="datecontrol">
+                adjustFor="datecontrol"
+              >
                 <DateControl
                   name="DateSeparated"
                   className="dateseparated"
                   minDate={this.props.EnteredCivilUnion}
-                  minDateEqualTo={true}
+                  minDateEqualTo
                   {...this.props.DateSeparated}
                   onUpdate={values => this.update({
                     DateSeparated: values,
@@ -434,7 +448,8 @@ class CivilUnion extends ValidationElement {
                   'relationships.civilUnion.heading.addressSeparated'
                 )}
                 className="address-separated"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <NotApplicable
                   name="AddressSeparatedNotApplicable"
                   {...this.props.AddressSeparatedNotApplicable}
@@ -443,7 +458,8 @@ class CivilUnion extends ValidationElement {
                   onUpdate={values => this.update({
                     AddressSeparatedNotApplicable: values,
                   })}
-                  onError={this.props.onError}>
+                  onError={this.props.onError}
+                >
                   <Location
                     name="addressSeparated"
                     {...this.props.AddressSeparated}
@@ -500,17 +516,15 @@ CivilUnion.defaultProps = {
   DateSeparated: {},
   AddressSeparated: {},
   AddressSeparatedNotApplicable: {
-    applicable: true
+    applicable: true,
   },
   Divorced: {},
   UseCurrentAddress: {},
   addressBooks: {},
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  defaultState: true
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  defaultState: true,
 }
 
 export default CivilUnion
