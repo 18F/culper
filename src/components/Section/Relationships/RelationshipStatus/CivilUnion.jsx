@@ -49,6 +49,7 @@ class CivilUnion extends ValidationElement {
       this
     )
     this.updateDivorced = this.updateDivorced.bind(this)
+    this.updateEmailNotApplicable = this.updateEmailNotApplicable.bind(this)
     this.updateUseCurrentAddress = this.updateUseCurrentAddress.bind(this)
   }
 
@@ -134,6 +135,14 @@ class CivilUnion extends ValidationElement {
       Email: values
     })
   }
+
+  updateEmailNotApplicable(values) {
+    this.update({
+      Email: {},
+      EmailNotApplicable: values
+    })
+  }
+
 
   updateSeparated(values) {
     this.update({
@@ -466,13 +475,27 @@ class CivilUnion extends ValidationElement {
           <Field
             title={i18n.t('relationships.civilUnion.heading.email')}
             scrollIntoView={this.props.scrollIntoView}>
-            <Email
-              name="Email"
-              {...this.props.Email}
-              onUpdate={this.updateEmail}
+            <NotApplicable
+              name="EmailNotApplicable"
+              className="email-notapplicable"
+              {...this.props.EmailNotApplicable}
+              label={i18n.t(
+                'relationships.people.person.label.idk'
+              )}
+              or={i18n.m('relationships.people.person.label.or')}
               onError={this.props.onError}
-              required={this.props.required}
-            />
+              onUpdate={this.updateEmailNotApplicable}>
+              <Email
+                name="Email"
+                {...this.props.Email}
+                onUpdate={this.updateEmail}
+                onError={this.props.onError}
+                required={
+                  (this.props.EmailNotApplicable || {}).applicable &&
+                  this.props.required
+                }
+              />
+            </NotApplicable>
           </Field>
 
           <Branch
@@ -567,6 +590,7 @@ CivilUnion.defaultProps = {
   Location: {},
   Telephone: {},
   Email: {},
+  EmailNotApplicable: { applicable: true },
   Separated: {},
   DateSeparated: {},
   AddressSeparated: {},

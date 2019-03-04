@@ -25,7 +25,7 @@ describe('<CivilUnion />', () => {
     expect(component.find('.civil-union').length).toEqual(1)
   })
 
-  xit('updates values', () => {
+  it('updates values', () => {
     let updates = 0
     const expected = {
       name: 'cohabitant',
@@ -64,7 +64,8 @@ describe('<CivilUnion />', () => {
       .simulate('change', { target: { value: '12' } })
     component.find('.civilunion-location .yes input').simulate('change')
     component.find('.address .mailing input').simulate('change')
-    component.find('.email input').simulate('change')
+    component.find('.email input[name="Email"]').simulate('change')
+    component.find('.email-notapplicable .button input').simulate('change')
     component.find('.separated .yes input').simulate('change')
     component.find('.divorced .yes input').simulate('change')
     component
@@ -74,7 +75,7 @@ describe('<CivilUnion />', () => {
     component
       .find('.address-separated input[name="AddressSeparatedNotApplicable"]')
       .simulate('change')
-    expect(updates).toBe(19)
+    expect(updates).toBe(20)
   })
 
   it('renders current address', () => {
