@@ -128,6 +128,7 @@ export class Multiple extends Subsection {
             <CitizenshipItem
               name="Item"
               bind
+              requireMultipleCitizenshipRenounced={this.props.requireMultipleCitizenshipRenounced}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -148,6 +149,7 @@ Multiple.defaultProps = {
   defaultState: true,
   required: true,
   scrollIntoView: false,
+  requireMultipleCitizenshipRenounced: true,
 }
 
 export default connectCitizenshipSection(Multiple, sectionConfig)
