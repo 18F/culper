@@ -23972,6 +23972,8 @@ exports[`The section component renders military.history 1`] = `
   >
     <div
       className="section-content military-history"
+      data-section="military"
+      data-subsection="history"
     >
       <h1
         className="section-header"
@@ -24369,6 +24371,8 @@ exports[`The section component renders military.review 1`] = `
     <div>
       <div
         className="section-content military-history"
+        data-section="military"
+        data-subsection="history"
       >
         <h1
           className="section-header"
