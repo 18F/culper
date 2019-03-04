@@ -1,17 +1,22 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
-import { i18n } from 'config'
+import { connect } from 'react-redux'
+import classnames from 'classnames'
+
+import i18n from 'util/i18n'
+import * as formTypes from 'constants/formTypes'
+
 import {
   SectionTitle,
   ProgressBar,
   ScoreCard,
   Navigation,
-  NavigationToggle
+  NavigationToggle,
 } from 'components'
-import { Introduction, Show } from 'components/Form'
+import { Introduction } from 'components/Form'
 import Logout from 'components/Navigation/Logout'
 import StickyHeader from 'components/Sticky/StickyHeader'
-import { connect } from 'react-redux'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish
@@ -41,7 +46,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      instructions: false
+      instructions: false,
     }
     this.showInstructions = this.showInstructions.bind(this)
     this.dismissInstructions = this.dismissInstructions.bind(this)
@@ -49,19 +54,22 @@ class App extends React.Component {
     // workaround for not having React.createRef(), introduced in React 16.3
     // https://reactjs.org/docs/refs-and-the-dom.html#dont-overuse-refs
     this.sectionFocusEl = null
-    this.setSectionFocusEl = el => {
+    this.setSectionFocusEl = (el) => {
       this.sectionFocusEl = el
     }
   }
 
   componentDidUpdate(prevProps) {
-    // for keyboard navigation accessbility, focus on the main content area after a new section is navigated to
-    if (this.props.location.pathname !== prevProps.location.pathname) {
+    const { location } = this.props
+    /**
+     * for keyboard navigation accessbility, focus on the main content area after a new section is
+     * navigated to */
+    if (location.pathname !== prevProps.location.pathname) {
       this.sectionFocusEl.focus()
     }
   }
 
-  showInstructions(event) {
+  showInstructions() {
     this.setState({ instructions: true })
   }
 
@@ -70,19 +78,20 @@ class App extends React.Component {
   }
 
   designClass() {
-    if (
-      this.props.location &&
-      this.props.location.query &&
-      this.props.location.query.design
+    const { location } = this.props
+
+    if (location
+      && location.query
+      && location.query.design
     ) {
       return 'design'
     }
 
     if (
-      window &&
-      window.location &&
-      window.location.search &&
-      window.location.search.indexOf('design') !== -1
+      window
+      && window.location
+      && window.location.search
+      && window.location.search.indexOf('design') !== -1
     ) {
       return 'design'
     }
@@ -91,32 +100,64 @@ class App extends React.Component {
   }
 
   render() {
-    const klassApp = `${this.designClass()} ${
-      this.props.settings.modalOpen ? 'modal-open' : ''
-    }`.trim()
-    const mobileNavigation = this.props.settings.mobileNavigation || false
-    const klassTitle = 'eapp-structure-right eapp-title'
-    const klassHeading = `eapp-structure-wrap eapp-header ${
-      mobileNavigation ? 'mobile-navigation' : ''
-    }`.trim()
-    const klassMain = `eapp-structure-wrap eapp-main ${
-      mobileNavigation ? 'mobile-navigation' : ''
-    }`.trim()
-    const klassNavigation = `eapp-structure-left eapp-navigation ${
-      mobileNavigation
-        ? 'mobile-visible tablet-visible desktop-visible'
-        : 'mobile-hidden'
-    }`
-    const klassCore = `eapp-structure-right eapp-core ${
-      mobileNavigation ? 'mobile-hidden' : 'visible'
-    }`
+    const {
+      formType, settings, dispatch, children,
+    } = this.props
+    const { instructions } = this.state
+
+    const formName = formTypes[formType]
+
+    const appClasses = classnames(
+      this.designClass(),
+      { 'modal-open': settings.modalOpen }
+    )
+
+    const mobileNavigation = settings.mobileNavigation || false
+
+    const titleClasses = classnames('eapp-structure-right', 'eapp-title')
+
+    const headingClasses = classnames(
+      'eapp-structure-wrap',
+      'eapp-header',
+      { 'mobile-navigation': mobileNavigation }
+    )
+
+    const mainClasses = classnames(
+      'eapp-structure-wrap',
+      'eapp-main',
+      { 'mobile-navigation': mobileNavigation }
+    )
+
+    const navigationClasses = classnames(
+      'eapp-structure-left',
+      'eapp-navigation',
+      {
+        'mobile-visible': mobileNavigation,
+        'tablet-visible': mobileNavigation,
+        'desktop-visible': mobileNavigation,
+        'mobile-hidden': !mobileNavigation,
+      }
+    )
+
+    const coreClasses = classnames(
+      'eapp-structure-right',
+      'eapp-core',
+      {
+        'mobile-hidden': mobileNavigation,
+        visible: !mobileNavigation,
+      }
+    )
+
+    /* eslint jsx-a11y/anchor-has-content: 0 */
+    /* eslint jsx-a11y/anchor-is-valid: 0 */
+    /* eslint no-script-url: 0 */
 
     return (
-      <div className={klassApp}>
+      <div className={appClasses}>
         <Introduction
-          forceOpen={this.state.instructions}
+          forceOpen={instructions}
           onDismiss={this.dismissInstructions}
-          dispatch={this.props.dispatch}
+          dispatch={dispatch}
         />
         <div id="scrollTo" />
         <a className="usa-skipnav" href="#main-content">
@@ -136,9 +177,11 @@ class App extends React.Component {
                         />
                         <p>{i18n.t('app.banner.title')}</p>
                         <button
+                          type="button"
                           className="usa-accordion-button usa-banner-button"
                           aria-expanded="false"
-                          aria-controls="gov-banner">
+                          aria-controls="gov-banner"
+                        >
                           <span className="usa-banner-button-text">
                             {i18n.t('app.banner.button')}
                           </span>
@@ -147,7 +190,8 @@ class App extends React.Component {
                     </div>
                     <div
                       className="usa-banner-content usa-grid usa-accordion-content"
-                      id="gov-banner">
+                      id="gov-banner"
+                    >
                       <div className="usa-banner-guidance-gov usa-width-one-half">
                         <img
                           className="usa-banner-icon usa-media_block-img"
@@ -175,7 +219,7 @@ class App extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className={klassHeading}>
+                <div className={headingClasses}>
                   <div className="eapp-structure-row">
                     <div className="eapp-structure-left eapp-logo" id="logo">
                       <NavigationToggle />
@@ -185,14 +229,16 @@ class App extends React.Component {
                           src="/img/nbis-seal-small.png"
                           alt="National Background Investigation Services"
                         />
-                        <span className="eapp-logo-text">SF86</span>
+                        <span className="eapp-logo-text">{formName}</span>
                       </div>
                     </div>
-                    <div className={klassTitle}>
+                    <div className={titleClasses}>
                       <div className="eapp-logout">
                         <button
+                          type="button"
                           onClick={this.showInstructions}
-                          className="instructions mobile-hidden">
+                          className="instructions mobile-hidden"
+                        >
                           {i18n.t('app.instructions')}
                         </button>
                         <Logout />
@@ -208,14 +254,16 @@ class App extends React.Component {
             </div>
           </div>
         </StickyHeader>
-        <main className={klassMain}>
+        <main className={mainClasses}>
           <div className="eapp-structure-row">
-            <div className={klassNavigation}>
+            <div className={navigationClasses}>
               <ScoreCard />
               <Navigation />
               <button
+                type="button"
                 onClick={this.showInstructions}
-                className="instructions mobile-visible">
+                className="instructions mobile-visible"
+              >
                 <span>{i18n.t('app.instructions')}</span>
               </button>
               &nbsp;
@@ -226,8 +274,8 @@ class App extends React.Component {
               title="Main content. Please press TAB to go to the next question"
               ref={this.setSectionFocusEl}
             />
-            <div id="main-content" className={klassCore}>
-              {this.props.children}
+            <div id="main-content" className={coreClasses}>
+              {children}
               &nbsp;
             </div>
           </div>
@@ -237,12 +285,24 @@ class App extends React.Component {
   }
 }
 
+/* eslint react/forbid-prop-types: 0 */
+App.propTypes = {
+  location: PropTypes.object.isRequired,
+  formType: PropTypes.string.isRequired,
+  settings: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
 function mapStateToProps(state) {
-  const app = state.application || {}
-  const settings = app.Settings || { mobileNavigation: false, modalOpen: false }
+  const { authentication, application } = state
+  const { formType } = authentication
+  const settings = application.Settings
+    || { mobileNavigation: false, modalOpen: false }
 
   return {
-    settings: settings
+    settings,
+    formType,
   }
 }
 
