@@ -1,32 +1,33 @@
 import React from 'react'
+import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import Financial, { FinancialSections } from 'components/Section/Financial'
 import { mount } from 'enzyme'
 import { testSnapshot } from 'components/test-helpers'
-
-const applicationState = {
-  Financial: {}
-}
+import { SF86 } from 'constants/formTypes'
 
 // give a fake GUID so the field IDs don't differ between snapshots
 // https://github.com/facebook/jest/issues/936#issuecomment-404246102
-jest.mock('../../Form/ValidationElement/helpers', () =>
+jest.mock('../../Form/ValidationElement/helpers', () => (
   Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
-    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
+    newGuid: jest.fn().mockReturnValue('MOCK-GUID'),
   })
-)
+))
 
 describe('The financial section', () => {
   const mockStore = configureMockStore()
 
 
   it('can review all subsections', () => {
-    const store = mockStore({})
+    const store = mockStore({ authentication: { formType: SF86 } })
+
     const component = mount(
-      <Provider store={store}>
-        <Financial subsection="review" />
-      </Provider>
+      <MemoryRouter initialEntries={['/form/financial/review']}>
+        <Provider store={store}>
+          <Financial subsection="review" />
+        </Provider>
+      </MemoryRouter>
     )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
@@ -39,15 +40,18 @@ describe('The financial section', () => {
       'card',
       'credit',
       'delinquent',
-      'nonpayment'
+      'nonpayment',
     ]
-    const store = mockStore({})
 
-    sections.forEach(section => {
+    const store = mockStore({ authentication: { formType: SF86 } })
+
+    sections.forEach((section) => {
       const component = mount(
-        <Provider store={store}>
-          <Financial subsection={section} />
-        </Provider>
+        <MemoryRouter initialEntries={[`/form/financial/${section}`]}>
+          <Provider store={store}>
+            <Financial subsection={section} />
+          </Provider>
+        </MemoryRouter>
       )
       expect(component.find('div').length).toBeGreaterThan(0)
     })
