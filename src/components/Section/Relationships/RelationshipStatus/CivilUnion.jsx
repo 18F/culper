@@ -1,6 +1,6 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { pickDate } from '../../../../validators/helpers'
+import { i18n } from 'config'
+import { pickDate } from 'validators/helpers'
 import { connect } from 'react-redux'
 import {
   Branch,
@@ -20,10 +20,10 @@ import {
   Country,
   Location,
   BranchCollection,
-  AccordionItem
-} from '../../../Form'
-import AlternateAddress from '../../../Form/Location/AlternateAddress'
-import { countryString } from '../../../../validators/location'
+  AccordionItem,
+} from 'components/Form'
+import AlternateAddress from 'components/Form/Location/AlternateAddress'
+import { countryString } from 'validators/location'
 
 class CivilUnion extends ValidationElement {
   constructor(props) {
