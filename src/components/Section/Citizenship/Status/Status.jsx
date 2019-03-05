@@ -855,7 +855,7 @@ export class Status extends Subsection {
                 <Radio
                   name="document-type-visa"
                   label={i18n.t('citizenship.status.label.documenttype.visa')}
-                  value="U.S. Visa (red foil number)"
+                  value="U.S. Visa"
                   className="document-type-visa"
                   onUpdate={value => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
