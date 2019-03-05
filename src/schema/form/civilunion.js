@@ -27,6 +27,7 @@ export const civilunion = (data = {}) => {
     DateSeparated: datecontrol(data.DateSeparated),
     Divorced: branch(data.Divorced),
     Email: email(data.Email),
+    EmailNotApplicable: notapplicable(data.EmailNotApplicable),
     EnteredCivilUnion: datecontrol(data.EnteredCivilUnion),
     ForeignBornDocument: foreignborndocument(data.ForeignBornDocument),
     Location: location(data.Location),

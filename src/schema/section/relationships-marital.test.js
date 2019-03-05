@@ -23,6 +23,7 @@ describe('Schema for financial taxes', () => {
         DateSeparated: {},
         Divorced: {},
         Email: {},
+        EmailNotApplicable: {},
         EnteredCivilUnion: {},
         ForeignBornDocument: {
           DocumentType: {},

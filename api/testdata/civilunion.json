@@ -240,6 +240,12 @@
         "value": "test@abc.com"
       }
     },
+    "EmailNotApplicable": {
+      "type": "notapplicable",
+      "props": {
+        "applicable": true
+      }
+    },
     "Separated": {
       "type": "branch",
       "props": {
