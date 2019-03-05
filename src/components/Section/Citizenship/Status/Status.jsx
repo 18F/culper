@@ -840,7 +840,7 @@ export class Status extends Subsection {
               adjustFor="buttons"
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
-                className="citizenship-document-type"
+                className="citizenship-document-type option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.handleError}
                 selectedValue={(this.props.DocumentType || {}).value}>
