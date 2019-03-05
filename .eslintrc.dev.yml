@@ -32,9 +32,7 @@ rules:
   }]
   react/forbid-prop-types: ['error', {
     forbid: ['any']
-  }
-
-  ]
+  }]
 settings:
   import/resolver:
     babel-module:
