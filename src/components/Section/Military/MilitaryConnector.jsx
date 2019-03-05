@@ -54,6 +54,9 @@ const connectMilitarySection = (Component, {
   }
 
   const mapStateToProps = (state) => {
+    const { authentication } = state
+    const { formType } = authentication
+
     const app = state.application || {}
     const military = app.Military || {}
     const errors = app.Errors || {}
@@ -68,10 +71,17 @@ const connectMilitarySection = (Component, {
         return { ...military.History } || {}
 
       case 'Disciplinary':
-        return { ...military.Disciplinary } || {}
+        return {
+          ...military.Disciplinary,
+          formType,
+        }
 
       case 'Foreign':
-        return { ...military.Foreign, addressBooks } || {}
+        return {
+          ...military.Foreign,
+          addressBooks,
+          formType,
+        }
 
       default:
         return {
@@ -86,6 +96,7 @@ const connectMilitarySection = (Component, {
           AddressBooks: addressBooks,
           showSelectiveService: !hideSelectiveServiceSelector(state),
           showDisciplinaryProcedures: !hideDisciplinaryProceduresSelector(state),
+          formType,
         }
     }
   }
