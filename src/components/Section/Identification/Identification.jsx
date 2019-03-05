@@ -27,67 +27,51 @@ import Review from 'components/Section/Identification/Review'
  * this is prob related to keeping redux in sync with routes. Investigate & fix this.
  */
 
-class Identification extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.form = formTypes[props.formType]
-    this.section = this.form.find(section => (section.key === IDENTIFICATION))
-
-    // Each key in subsectionLibrary corresponds to the subsection
-    // name in the config file.
-    this.subsectionLibrary = {
-      intro: Intro,
-      name: ApplicantName,
-      birthdate: ApplicantBirthDate,
-      birthplace: ApplicantBirthPlace,
-      ssn: ApplicantSSN,
-      othernames: OtherNames,
-      contacts: ContactInformation,
-      physical: Physical,
-      review: Review,
-    }
+const Identification = ({ subsection, location, formType }) => {
+  const subsectionLibrary = {
+    intro: Intro,
+    name: ApplicantName,
+    birthdate: ApplicantBirthDate,
+    birthplace: ApplicantBirthPlace,
+    ssn: ApplicantSSN,
+    othernames: OtherNames,
+    contacts: ContactInformation,
+    physical: Physical,
+    review: Review,
   }
 
-  getIdentificationSubsections = () => (
-    this.section.subsections.map(subsection => (
-      <Route
-        key={subsection.key}
-        path={`/form/${this.section.path}/${subsection.path}`}
-        component={this.subsectionLibrary[subsection.name]}
-      />
-    ))
-  )
+  const form = formTypes[formType]
+  const section = form.find(s => (s.key === IDENTIFICATION))
+  const subsectionClasses = `view view-${subsection || 'unknown'}`
+  const isReview = subsection === 'review'
+  const title = isReview && i18n.t('review.title')
+  const para = isReview && i18n.m('review.para')
 
-  render() {
-    const { subsection, location, formType } = this.props
+  return (
+    <div className="section-view">
+      {title && <h1 className="title">{title}</h1>}
+      {para}
 
-    const subsectionClasses = `view view-${subsection || 'unknown'}`
+      <div className={subsectionClasses}>
+        {isReview && (
+          <div className="top-btns"><ErrorList /></div>
+        )}
 
-    const isReview = subsection === 'review'
-    const title = isReview && i18n.t('review.title')
-    const para = isReview && i18n.m('review.para')
-
-    return (
-      <div className="section-view">
-        {title && <h1 className="title">{title}</h1>}
-        {para}
-
-        <div className={subsectionClasses}>
-          {isReview && (
-            <div className="top-btns"><ErrorList /></div>
-          )}
-
-          {this.getIdentificationSubsections()}
-
-          <SectionNavigation
-            currentPath={location.pathname}
-            formType={formType}
+        {section.subsections.map(sub => (
+          <Route
+            key={sub.key}
+            path={`/form/${section.path}/${sub.path}`}
+            component={subsectionLibrary[sub.name]}
           />
-        </div>
+        ))}
+
+        <SectionNavigation
+          currentPath={location.pathname}
+          formType={formType}
+        />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 function mapStateToProps(state) {
@@ -107,6 +91,7 @@ Identification.propTypes = {
 
 Identification.defaultProps = {
   subsection: 'intro',
+  location: {},
 }
 
 export default connect(mapStateToProps)(Identification)
