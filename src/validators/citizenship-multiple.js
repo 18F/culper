@@ -1,3 +1,8 @@
+import store from 'services/store'
+
+import * as formTypes from 'constants/formTypes'
+import { requireMultipleCitizenshipRenounced } from 'helpers/branches'
+
 import DateRangeValidator from './daterange'
 import { validAccordion, validGenericTextfield } from './helpers'
 
@@ -41,7 +46,7 @@ const validateMinimumCitizenships = (citizenships) => {
 }
 
 /** Object Validators (as functions) */
-export const validateCitizenshipItem = (data = {}) => {
+export const validateCitizenshipItem = (data = {}, formType = formTypes.SF86) => {
   const country = data.Country
   const dates = data.Dates
   const how = data.How
@@ -56,7 +61,10 @@ export const validateCitizenshipItem = (data = {}) => {
 
   if (!isUnitedStates(country)) {
     const validHow = validateHow(how)
-    const validRenounced = validateRenounced(renounced, renouncedExplanation)
+
+    const validRenounced = requireMultipleCitizenshipRenounced(formType)
+      ? validateRenounced(renounced, renouncedExplanation)
+      : true
 
     return validCountry && validDates && validCurrent && validHow && validRenounced
   }
@@ -64,11 +72,11 @@ export const validateCitizenshipItem = (data = {}) => {
   return validCountry && validDates && validCurrent
 }
 
-const validateCitizenships = citizenships => (
-  validAccordion(citizenships, i => validateCitizenshipItem(i))
+const validateCitizenships = (citizenships, formType) => (
+  validAccordion(citizenships, i => validateCitizenshipItem(i, formType))
 )
 
-export const validateCitizenshipMultiple = (data = {}) => {
+export const validateCitizenshipMultiple = (data = {}, formType = formTypes.SF86) => {
   const hasMultiple = (data.HasMultiple || {}).value
   const citizenships = data.List || {}
 
@@ -76,7 +84,7 @@ export const validateCitizenshipMultiple = (data = {}) => {
 
   if (hasMultiple === 'Yes') {
     const validMinimumCitizenships = validateMinimumCitizenships(citizenships)
-    const validCitizenships = validateCitizenships(citizenships)
+    const validCitizenships = validateCitizenships(citizenships, formType)
 
     return validHasMultiple && validMinimumCitizenships && validCitizenships
   }
@@ -87,7 +95,13 @@ export const validateCitizenshipMultiple = (data = {}) => {
 /** Object Validators (as classes) - legacy */
 export default class CitizenshipMultipleValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { authentication } = state
+    const { formType } = authentication
+
     this.data = data
+    this.formType = formType
+
     this.hasMultiple = (data.HasMultiple || {}).value
     this.list = data.List || {}
   }
@@ -109,17 +123,23 @@ export default class CitizenshipMultipleValidator {
       return true
     }
 
-    return validateCitizenships(this.list)
+    return validateCitizenships(this.list, this.formType)
   }
 
   isValid() {
-    return validateCitizenshipMultiple(this.data)
+    return validateCitizenshipMultiple(this.data, this.formType)
   }
 }
 
 export class CitizenshipItemValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { authentication } = state
+    const { formType } = authentication
+
     this.data = data
+    this.formType = formType
+
     this.country = data.Country
     this.dates = data.Dates
     this.how = data.How
@@ -162,6 +182,6 @@ export class CitizenshipItemValidator {
   }
 
   isValid() {
-    return validateCitizenshipItem(this.data)
+    return validateCitizenshipItem(this.data, this.formType)
   }
 }
