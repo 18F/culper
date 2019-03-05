@@ -30,6 +30,9 @@ rules:
     exports: 'always-multiline',
     functions: 'ignore'
   }]
+  react/forbid-prop-types: ['error', {
+    forbid: ['any']
+  }]
 settings:
   import/resolver:
     babel-module:
