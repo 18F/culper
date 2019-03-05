@@ -24,7 +24,7 @@ const sectionConfig = {
 
 const Review = (props) => {
   const {
-    Birthdate, Education, Residence, Employment, formType,
+    Birthdate, Education, Residence, Employment, formType, requireHistoryFederalSection,
   } = props
 
   const formTypeConfig = formType && formConfig[formType]
@@ -87,8 +87,8 @@ const Review = (props) => {
       </h1>
       <EducationWrapper inReview />
 
-      <hr className="section-divider" />
-      <FederalWrapper inReview />
+      {requireHistoryFederalSection && <hr className="section-divider" />}
+      {requireHistoryFederalSection && <FederalWrapper inReview />}
     </div>
   )
 }
