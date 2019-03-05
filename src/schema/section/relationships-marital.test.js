@@ -1,6 +1,6 @@
 import { unschema } from '../schema'
 import { relationshipsMarital } from './relationships-marital'
-import alternateAddress from '../form/alternateaddress';
+import alternateAddress from '../form/alternateaddress'
 
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
@@ -8,15 +8,15 @@ describe('Schema for financial taxes', () => {
       Status: {},
       CivilUnion: {
         Address: {
-          country: null
+          country: null,
         },
         AlternateAddress: alternateAddress(),
         AddressSeparated: {
-          country: null
+          country: null,
         },
         AddressSeparatedNotApplicable: {},
         BirthPlace: {
-          country: null
+          country: null,
         },
         Birthdate: {},
         Citizenship: {},
@@ -30,10 +30,10 @@ describe('Schema for financial taxes', () => {
           OtherExplanation: {},
           DocumentNumber: {},
           DocumentExpiration: {},
-          DocumentExpirationNotApplicable: {}
+          DocumentExpirationNotApplicable: {},
         },
         Location: {
-          country: null
+          country: null,
         },
         Name: {},
         OtherNames: {
@@ -47,16 +47,16 @@ describe('Schema for financial taxes', () => {
                 DatesUsed: {
                   from: {},
                   to: {},
-                  present: null
-                }
-              }
-            }
-          ]
+                  present: null,
+                },
+              },
+            },
+          ],
         },
         SSN: {},
         Separated: {},
         Telephone: {},
-        UseCurrentAddress: {}
+        UseCurrentAddress: {},
       },
       DivorcedList: {
         branch: { value: 'No' },
@@ -66,28 +66,28 @@ describe('Schema for financial taxes', () => {
               Name: {},
               Birthdate: {},
               BirthPlace: {
-                country: null
+                country: null,
               },
               Citizenship: {},
               Telephone: {},
               Recognized: {},
               Address: {
-                country: null
+                country: null,
               },
               DateDivorced: {},
               DivorceLocation: {
-                country: null
+                country: null,
               },
               Status: {},
               Deceased: {},
               DeceasedAddress: {
-                country: null
+                country: null,
               },
-              DeceasedAddressNotApplicable: {}
-            }
-          }
-        ]
-      }
+              DeceasedAddressNotApplicable: {},
+            },
+          },
+        ],
+      },
     }
 
     expect(unschema(relationshipsMarital(data))).toEqual(data)
