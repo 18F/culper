@@ -6,152 +6,16 @@
         "HasMultiple": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": "No"
           }
         },
         "List": {
           "type": "collection",
           "props": {
             "branch": {
-              "type": "branch",
-              "props": {
-                "value": "No"
-              }
+              "type": ""
             },
-            "items": [
-              {
-                "Item": {
-                  "Country": {
-                    "type": "country",
-                    "props": {
-                      "value": [
-                        "Canada"
-                      ]
-                    }
-                  },
-                  "Current": {
-                    "type": "branch",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "CurrentExplanation": {
-                    "type": "textarea",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "Dates": {
-                    "type": "daterange",
-                    "props": {
-                      "from": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "11",
-                          "day": "12",
-                          "year": "2010",
-                          "estimated": false
-                        }
-                      },
-                      "to": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "9",
-                          "day": "19",
-                          "year": "2018",
-                          "estimated": false
-                        }
-                      },
-                      "present": true
-                    }
-                  },
-                  "How": {
-                    "type": "textarea",
-                    "props": {
-                      "value": "By donation"
-                    }
-                  },
-                  "Renounced": {
-                    "type": "branch",
-                    "props": {
-                      "value": "No"
-                    }
-                  },
-                  "RenouncedExplanation": {
-                    "type": "textarea",
-                    "props": {
-                      "value": "Prefer to keep it"
-                    }
-                  }
-                }
-              },
-              {
-                "Item": {
-                  "Country": {
-                    "type": "country",
-                    "props": {
-                      "value": [
-                        "United States"
-                      ]
-                    }
-                  },
-                  "Current": {
-                    "type": "branch",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "CurrentExplanation": {
-                    "type": "textarea",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "Dates": {
-                    "type": "daterange",
-                    "props": {
-                      "from": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "10",
-                          "day": "30",
-                          "year": "1983",
-                          "estimated": true
-                        }
-                      },
-                      "to": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "9",
-                          "day": "19",
-                          "year": "2018",
-                          "estimated": false
-                        }
-                      },
-                      "present": true
-                    }
-                  },
-                  "How": {
-                    "type": "textarea",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "Renounced": {
-                    "type": "branch",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "RenouncedExplanation": {
-                    "type": "textarea",
-                    "props": {
-                      "value": ""
-                    }
-                  }
-                }
-              }
-            ]
+            "items": []
           }
         }
       }
@@ -252,8 +116,7 @@
         "CitizenshipStatus": {
           "type": "radio",
           "props": {
-            "value": "Citizen",
-            "checked": true
+            "value": "Citizen"
           }
         },
         "AbroadDocumentation": {
@@ -472,7 +335,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -492,7 +358,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -512,7 +381,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -532,7 +404,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -552,7 +427,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -572,7 +450,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -610,396 +491,16 @@
         "HasBenefits": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": "No"
           }
         },
         "List": {
           "type": "collection",
           "props": {
             "branch": {
-              "type": "branch",
-              "props": {
-                "value": "No"
-              }
+              "type": ""
             },
-            "items": [
-              {
-                "Item": {
-                  "BenefitFrequency": {
-                    "type": "radio",
-                    "props": {
-                      "value": "Other"
-                    }
-                  },
-                  "BenefitType": {
-                    "type": "radio",
-                    "props": {
-                      "value": "Other"
-                    }
-                  },
-                  "ContinuingBenefit": {
-                    "type": "benefit",
-                    "props": {
-                      "Began": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "End": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "Frequency": {
-                        "type": "radio",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "OtherFrequency": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "OtherFrequencyTypeExplanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Received": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "Country": {
-                        "type": "country",
-                        "props": {
-                          "value": null
-                        }
-                      },
-                      "Value": {
-                        "type": "number",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "ValueEstimated": {
-                        "type": "checkbox",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Reason": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Obligated": {
-                        "type": "branch",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "ObligatedExplanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      }
-                    }
-                  },
-                  "FutureBenefit": {
-                    "type": "benefit",
-                    "props": {
-                      "Began": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "End": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "Frequency": {
-                        "type": "radio",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "OtherFrequency": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "OtherFrequencyTypeExplanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Received": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "Country": {
-                        "type": "country",
-                        "props": {
-                          "value": null
-                        }
-                      },
-                      "Value": {
-                        "type": "number",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "ValueEstimated": {
-                        "type": "checkbox",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Reason": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Obligated": {
-                        "type": "branch",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "ObligatedExplanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      }
-                    }
-                  },
-                  "InterestTypes": {
-                    "type": "checkboxgroup",
-                    "props": {
-                      "values": [
-                        "Yourself"
-                      ]
-                    }
-                  },
-                  "OneTimeBenefit": {
-                    "type": "benefit",
-                    "props": {
-                      "Began": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "End": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "Frequency": {
-                        "type": "radio",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "OtherFrequency": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "OtherFrequencyTypeExplanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Received": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "Country": {
-                        "type": "country",
-                        "props": {
-                          "value": null
-                        }
-                      },
-                      "Value": {
-                        "type": "number",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "ValueEstimated": {
-                        "type": "checkbox",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Reason": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Obligated": {
-                        "type": "branch",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "ObligatedExplanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      }
-                    }
-                  },
-                  "OtherBenefit": {
-                    "type": "benefit",
-                    "props": {
-                      "Began": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "01",
-                          "day": "02",
-                          "year": "2016",
-                          "estimated": false
-                        }
-                      },
-                      "End": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "02",
-                          "day": "03",
-                          "year": "2050",
-                          "estimated": false
-                        }
-                      },
-                      "Frequency": {
-                        "type": "radio",
-                        "props": {
-                          "value": "Other"
-                        }
-                      },
-                      "OtherFrequency": {
-                        "type": "textarea",
-                        "props": {
-                          "value": "Frequency that this benefit is received, other, provide explanation"
-                        }
-                      },
-                      "OtherFrequencyTypeExplanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": "Frequency of benefit, other, provide explanation"
-                        }
-                      },
-                      "Received": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "",
-                          "day": "",
-                          "year": "",
-                          "estimated": false
-                        }
-                      },
-                      "Country": {
-                        "type": "country",
-                        "props": {
-                          "value": [
-                            "Canada"
-                          ]
-                        }
-                      },
-                      "Value": {
-                        "type": "number",
-                        "props": {
-                          "value": "90210"
-                        }
-                      },
-                      "ValueEstimated": {
-                        "type": "checkbox",
-                        "props": {
-                          "value": ""
-                        }
-                      },
-                      "Reason": {
-                        "type": "textarea",
-                        "props": {
-                          "value": "Reason the benefit will be received"
-                        }
-                      },
-                      "Obligated": {
-                        "type": "branch",
-                        "props": {
-                          "value": "Yes"
-                        }
-                      },
-                      "ObligatedExplanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": "As a result, I am obligated to this foreign country explanation"
-                        }
-                      }
-                    }
-                  },
-                  "OtherBenefitType": {
-                    "type": "textarea",
-                    "props": {
-                      "value": "Other such benefit, explanation"
-                    }
-                  }
-                }
-              }
-            ]
+            "items": []
           }
         }
       }
@@ -1388,7 +889,7 @@
         "HasDegree10": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": "No"
           }
         },
         "List": {
@@ -1397,373 +898,10 @@
             "branch": {
               "type": "branch",
               "props": {
-                "value": "No"
+                "value": ""
               }
             },
-            "items": [
-              {
-                "Item": {
-                  "Address": {
-                    "type": "location",
-                    "props": {
-                      "layout": "Address",
-                      "street": "318 Washington Ave",
-                      "city": "Wheeling",
-                      "state": "WV",
-                      "zipcode": "26003",
-                      "country": "United States",
-                      "validated": true
-                    }
-                  },
-                  "Comments": {
-                    "type": "textarea",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "Dates": {
-                    "type": "daterange",
-                    "props": {
-                      "from": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "08",
-                          "day": "23",
-                          "year": "2002",
-                          "estimated": false
-                        }
-                      },
-                      "to": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "05",
-                          "day": "31",
-                          "year": "2006",
-                          "estimated": false
-                        }
-                      },
-                      "present": false
-                    }
-                  },
-                  "Diplomas": {
-                    "type": "collection",
-                    "props": {
-                      "branch": {
-                        "type": ""
-                      },
-                      "items": [
-                        {
-                          "Item": {
-                            "Date": {
-                              "type": "datecontrol",
-                              "props": {
-                                "month": "05",
-                                "day": "1",
-                                "year": "2006",
-                                "estimated": false
-                              }
-                            },
-                            "Diploma": {
-                              "type": "radio",
-                              "props": {
-                                "value": "Bachelor",
-                                "checked": true
-                              }
-                            },
-                            "DiplomaOther": {
-                              "type": "text",
-                              "props": {
-                                "value": ""
-                              }
-                            },
-                            "Has": {
-                              "type": "branch",
-                              "props": {
-                                "value": "Yes"
-                              }
-                            }
-                          }
-                        },
-                        {
-                          "Item": {
-                            "Date": {
-                              "type": "datecontrol",
-                              "props": {
-                                "month": "",
-                                "day": "",
-                                "year": "",
-                                "estimated": false
-                              }
-                            },
-                            "Diploma": {
-                              "type": "radio",
-                              "props": {
-                                "value": ""
-                              }
-                            },
-                            "DiplomaOther": {
-                              "type": "text",
-                              "props": {
-                                "value": ""
-                              }
-                            },
-                            "Has": {
-                              "type": "branch",
-                              "props": {
-                                "value": "No"
-                              }
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  "Name": {
-                    "type": "text",
-                    "props": {
-                      "value": "Wheeling College"
-                    }
-                  },
-                  "ReferenceAddress": {
-                    "type": "location",
-                    "props": {
-                      "layout": "",
-                      "country": ""
-                    }
-                  },
-                  "ReferenceEmail": {
-                    "type": "email",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "ReferenceEmailNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "ReferenceName": {
-                    "type": "name",
-                    "props": {
-                      "first": "",
-                      "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": false,
-                      "last": "",
-                      "suffix": "",
-                      "suffixOther": ""
-                    }
-                  },
-                  "ReferenceNameNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "ReferencePhone": {
-                    "type": "telephone",
-                    "props": {
-                      "timeOfDay": "",
-                      "type": "",
-                      "numberType": "",
-                      "number": "",
-                      "extension": "",
-                      "noNumber": false
-                    }
-                  },
-                  "Type": {
-                    "type": "radio",
-                    "props": {
-                      "value": "College",
-                      "checked": true
-                    }
-                  }
-                }
-              },
-              {
-                "Item": {
-                  "Address": {
-                    "type": "location",
-                    "props": {
-                      "layout": "Address",
-                      "street": "319 Washington Ave",
-                      "city": "Wheeling",
-                      "state": "WV",
-                      "zipcode": "26003",
-                      "country": "United States",
-                      "validated": true
-                    }
-                  },
-                  "Comments": {
-                    "type": "textarea",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "Dates": {
-                    "type": "daterange",
-                    "props": {
-                      "from": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "08",
-                          "day": "22",
-                          "year": "1998",
-                          "estimated": false
-                        }
-                      },
-                      "to": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "05",
-                          "day": "30",
-                          "year": "2002",
-                          "estimated": false
-                        }
-                      },
-                      "present": false
-                    }
-                  },
-                  "Diplomas": {
-                    "type": "collection",
-                    "props": {
-                      "branch": {
-                        "type": ""
-                      },
-                      "items": [
-                        {
-                          "Item": {
-                            "Date": {
-                              "type": "datecontrol",
-                              "props": {
-                                "month": "05",
-                                "day": "1",
-                                "year": "2002",
-                                "estimated": false
-                              }
-                            },
-                            "Diploma": {
-                              "type": "radio",
-                              "props": {
-                                "value": "High School Diploma",
-                                "checked": true
-                              }
-                            },
-                            "DiplomaOther": {
-                              "type": "text",
-                              "props": {
-                                "value": ""
-                              }
-                            },
-                            "Has": {
-                              "type": "branch",
-                              "props": {
-                                "value": "Yes"
-                              }
-                            }
-                          }
-                        },
-                        {
-                          "Item": {
-                            "Date": {
-                              "type": "datecontrol",
-                              "props": {
-                                "month": "",
-                                "day": "",
-                                "year": "",
-                                "estimated": false
-                              }
-                            },
-                            "Diploma": {
-                              "type": "radio",
-                              "props": {
-                                "value": ""
-                              }
-                            },
-                            "DiplomaOther": {
-                              "type": "text",
-                              "props": {
-                                "value": ""
-                              }
-                            },
-                            "Has": {
-                              "type": "branch",
-                              "props": {
-                                "value": "No"
-                              }
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  "Name": {
-                    "type": "text",
-                    "props": {
-                      "value": "Wheeling Central Catholic"
-                    }
-                  },
-                  "ReferenceAddress": {
-                    "type": "location",
-                    "props": {
-                      "layout": "",
-                      "country": ""
-                    }
-                  },
-                  "ReferenceEmail": {
-                    "type": "email",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "ReferenceEmailNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "ReferenceName": {
-                    "type": "name",
-                    "props": {
-                      "first": "",
-                      "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": false,
-                      "last": "",
-                      "suffix": "",
-                      "suffixOther": ""
-                    }
-                  },
-                  "ReferenceNameNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "ReferencePhone": {
-                    "type": "telephone",
-                    "props": {
-                      "timeOfDay": "",
-                      "type": "",
-                      "numberType": "",
-                      "number": "",
-                      "extension": "",
-                      "noNumber": false
-                    }
-                  },
-                  "Type": {
-                    "type": "radio",
-                    "props": {
-                      "value": "High School",
-                      "checked": true
-                    }
-                  }
-                }
-              }
-            ]
+            "items": []
           }
         }
       }
@@ -1843,12 +981,11 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
-                      "street": "345 NATIONAL RD",
-                      "city": "WHEELING",
-                      "state": "WV",
-                      "zipcode": "26003",
-                      "country": "United States",
-                      "validated": true
+                      "street": "331 Canyon Del Rey Ave.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States"
                     }
                   },
                   "Dates": {
@@ -1857,9 +994,9 @@
                       "from": {
                         "type": "datecontrol",
                         "props": {
-                          "month": "06",
-                          "day": "12",
-                          "year": "2006",
+                          "month": "01",
+                          "day": "01",
+                          "year": "2000",
                           "estimated": false
                         }
                       },
@@ -1867,7 +1004,7 @@
                         "type": "datecontrol",
                         "props": {
                           "month": "8",
-                          "day": "24",
+                          "day": "20",
                           "year": "2018",
                           "estimated": false
                         }
@@ -1884,13 +1021,13 @@
                   "Employment": {
                     "type": "text",
                     "props": {
-                      "value": "FBI"
+                      "value": "Safeway"
                     }
                   },
                   "EmploymentActivity": {
                     "type": "employmentactivity",
                     "props": {
-                      "value": "OtherFederal"
+                      "value": "NonGovernment"
                     }
                   },
                   "PhysicalAddress": {
@@ -2058,19 +1195,19 @@
                       "SupervisorName": {
                         "type": "text",
                         "props": {
-                          "value": "Gail Shannon"
+                          "value": "Chong Doorer"
                         }
                       },
                       "Title": {
                         "type": "text",
                         "props": {
-                          "value": "Lead Analyst"
+                          "value": "Head Cashier"
                         }
                       },
                       "Email": {
                         "type": "email",
                         "props": {
-                          "value": "gail.shannon@testemail.gov"
+                          "value": "chong@example.com"
                         }
                       },
                       "EmailNotApplicable": {
@@ -2083,21 +1220,21 @@
                         "type": "location",
                         "props": {
                           "layout": "Address",
-                          "street": "345 NATIONAL RD",
-                          "city": "WHEELING",
-                          "state": "WV",
-                          "zipcode": "26003",
+                          "street": "331 Canyon Del Rey Ave.",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
                           "country": "United States"
                         }
                       },
                       "Telephone": {
                         "type": "telephone",
                         "props": {
-                          "timeOfDay": "Both",
+                          "timeOfDay": "Day",
                           "type": "Domestic",
                           "numberType": "",
-                          "number": "3163170345",
-                          "extension": "067",
+                          "number": "8314441432",
+                          "extension": "",
                           "noNumber": false
                         }
                       }
@@ -2106,10 +1243,10 @@
                   "Telephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "Both",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "3163170345",
+                      "number": "8313432311",
                       "extension": "",
                       "noNumber": false
                     }
@@ -2117,7 +1254,7 @@
                   "Title": {
                     "type": "text",
                     "props": {
-                      "value": "Analyst"
+                      "value": "Cashier"
                     }
                   }
                 }
@@ -2146,7 +1283,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -2172,12 +1312,11 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
-                      "street": "316 Washington Ave",
-                      "city": "Wheeling",
-                      "state": "WV",
-                      "zipcode": "26003",
-                      "country": "United States",
-                      "validated": true
+                      "street": "418 English Ave.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States"
                     }
                   },
                   "Comments": {
@@ -2192,9 +1331,9 @@
                       "from": {
                         "type": "datecontrol",
                         "props": {
-                          "month": "12",
-                          "day": "13",
-                          "year": "1990",
+                          "month": "01",
+                          "day": "01",
+                          "year": "2007",
                           "estimated": false
                         }
                       },
@@ -2202,7 +1341,7 @@
                         "type": "datecontrol",
                         "props": {
                           "month": "8",
-                          "day": "24",
+                          "day": "20",
                           "year": "2018",
                           "estimated": false
                         }
@@ -2214,18 +1353,17 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
-                      "street": "317 WASHINGTON AVE",
-                      "city": "WHEELING",
-                      "state": "WV",
-                      "zipcode": "26003",
-                      "country": "United States",
-                      "validated": true
+                      "street": "416 English Ave.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States"
                     }
                   },
                   "ReferenceEmail": {
                     "type": "email",
                     "props": {
-                      "value": "ashley.Emily@testemail.com"
+                      "value": "tom@example.com"
                     }
                   },
                   "ReferenceEmailNotApplicable": {
@@ -2246,12 +1384,12 @@
                   "ReferenceName": {
                     "type": "name",
                     "props": {
-                      "first": "Ashley",
+                      "first": "Tom",
                       "firstInitialOnly": false,
                       "middle": "",
                       "middleInitialOnly": false,
                       "noMiddleName": true,
-                      "last": "Emily",
+                      "last": "Cruz",
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -2259,10 +1397,10 @@
                   "ReferencePhoneDay": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "Both",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "7245555551",
+                      "number": "8311239382",
                       "extension": "",
                       "noNumber": false
                     }
@@ -2270,10 +1408,10 @@
                   "ReferencePhoneEvening": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "Both",
+                      "timeOfDay": "Night",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "7245555551",
+                      "number": "8311239381",
                       "extension": "",
                       "noNumber": false
                     }
@@ -2284,7 +1422,7 @@
                       "timeOfDay": "Both",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "7245555551",
+                      "number": "8311231223",
                       "extension": "",
                       "noNumber": false
                     }
@@ -2293,8 +1431,7 @@
                     "type": "checkboxgroup",
                     "props": {
                       "values": [
-                        "Neighbor",
-                        "Friend"
+                        "Neighbor"
                       ]
                     }
                   },
@@ -2338,9 +1475,9 @@
         "Date": {
           "type": "datecontrol",
           "props": {
-            "month": "10",
-            "day": "29",
-            "year": "1983",
+            "month": "6",
+            "day": "01",
+            "year": "1970",
             "estimated": false
           }
         },
@@ -2359,9 +1496,9 @@
           "type": "location",
           "props": {
             "layout": "Birthplace",
-            "city": "Pittsburgh",
-            "state": "PA",
-            "county": "Alleghany",
+            "city": "Santa Barbara",
+            "state": "CA",
+            "county": "93101",
             "country": "United States"
           }
         }
@@ -2373,12 +1510,12 @@
         "Name": {
           "type": "name",
           "props": {
-            "first": "Ian",
+            "first": "Heinrich",
             "firstInitialOnly": false,
-            "middle": "",
+            "middle": "Ernest",
             "middleInitialOnly": false,
-            "noMiddleName": true,
-            "last": "Chris",
+            "noMiddleName": false,
+            "last": "Jensen",
             "suffix": "",
             "suffixOther": ""
           }
@@ -2391,9 +1528,9 @@
         "ssn": {
           "type": "ssn",
           "props": {
-            "first": "288",
-            "middle": "77",
-            "last": "0930",
+            "first": "424",
+            "middle": "93",
+            "last": "9103",
             "notApplicable": false
           }
         },
@@ -2406,7 +1543,7 @@
         "HomeEmail": {
           "type": "email",
           "props": {
-            "value": "ian.chris@testmail.com"
+            "value": "henry@example.com"
           }
         },
         "WorkEmail": {
@@ -2430,7 +1567,22 @@
                       "timeOfDay": "Both",
                       "type": "Domestic",
                       "numberType": "Cell",
-                      "number": "7248978772",
+                      "number": "8316561234",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Day",
+                      "type": "Domestic",
+                      "numberType": "Work",
+                      "number": "8316563242",
                       "extension": "",
                       "noNumber": false
                     }
@@ -2477,7 +1629,7 @@
         "EyeColor": {
           "type": "text",
           "props": {
-            "value": "Blue"
+            "value": "Brown"
           }
         },
         "HairColor": {
@@ -2489,8 +1641,8 @@
         "Height": {
           "type": "height",
           "props": {
-            "feet": 6,
-            "inches": 6
+            "feet": 5,
+            "inches": 9
           }
         },
         "Sex": {
@@ -2502,7 +1654,7 @@
         "Weight": {
           "type": "number",
           "props": {
-            "value": "245"
+            "value": "190"
           }
         }
       }
@@ -2595,101 +1747,16 @@
         "HasHistory": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": "No"
           }
         },
         "List": {
           "type": "collection",
           "props": {
             "branch": {
-              "type": "branch",
-              "props": {
-                "value": "No"
-              }
+              "type": ""
             },
-            "items": [
-              {
-                "Item": {
-                  "Agency": {
-                    "type": "radio",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "AgencyExplanation": {
-                    "type": "textarea",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "AgencyNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "ClearanceLevel": {
-                    "type": "clearancelevel",
-                    "props": {
-                      "Level": {
-                        "type": "radio",
-                        "props": {
-                          "value": "None"
-                        }
-                      },
-                      "Explanation": {
-                        "type": "textarea",
-                        "props": {
-                          "value": ""
-                        }
-                      }
-                    }
-                  },
-                  "ClearanceLevelNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": true
-                    }
-                  },
-                  "Completed": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "",
-                      "day": "",
-                      "year": "",
-                      "estimated": false
-                    }
-                  },
-                  "CompletedNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "Granted": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "",
-                      "day": "",
-                      "year": "",
-                      "estimated": false
-                    }
-                  },
-                  "GrantedNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "Issued": {
-                    "type": "text",
-                    "props": {
-                      "value": ""
-                    }
-                  }
-                }
-              }
-            ]
+            "items": []
           }
         }
       }
@@ -3088,19 +2155,19 @@
         "WasBornAfter": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": "No"
           }
         },
         "HasRegistered": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": ""
           }
         },
         "RegistrationNumber": {
           "type": "text",
           "props": {
-            "value": "1234567"
+            "value": ""
           }
         },
         "Explanation": {
@@ -3298,7 +2365,7 @@
         "Status": {
           "type": "radio",
           "props": {
-            "value": "Divorced"
+            "value": "Married"
           }
         },
         "CivilUnion": {
@@ -3307,8 +2374,12 @@
             "Address": {
               "type": "location",
               "props": {
-                "layout": "",
-                "country": ""
+                "layout": "Address",
+                "street": "418 English Ave.",
+                "city": "Monterey",
+                "state": "CA",
+                "zipcode": "93940",
+                "country": "United States"
               }
             },
             "AddressSeparated": {
@@ -3321,7 +2392,7 @@
             "AddressSeparatedNotApplicable": {
               "type": "notapplicable",
               "props": {
-                "applicable": false
+                "applicable": true
               }
             },
             "AlternateAddress": {
@@ -3356,23 +2427,28 @@
             "BirthPlace": {
               "type": "location",
               "props": {
-                "layout": "",
-                "country": ""
+                "layout": "Birthplace",
+                "city": "Richmond",
+                "state": "CA",
+                "county": "94803",
+                "country": "United States"
               }
             },
             "Birthdate": {
               "type": "datecontrol",
               "props": {
-                "month": "",
-                "day": "",
-                "year": "",
+                "month": "12",
+                "day": "23",
+                "year": "1993",
                 "estimated": false
               }
             },
             "Citizenship": {
               "type": "country",
               "props": {
-                "value": null
+                "value": [
+                  "United States"
+                ]
               }
             },
             "DateSeparated": {
@@ -3387,7 +2463,7 @@
             "Divorced": {
               "type": "branch",
               "props": {
-                "value": ""
+                "value": "No"
               }
             },
             "Email": {
@@ -3399,15 +2475,15 @@
             "EmailNotApplicable": {
               "type": "notapplicable",
               "props": {
-                "applicable": true
+                "applicable": false
               }
             },
             "EnteredCivilUnion": {
               "type": "datecontrol",
               "props": {
-                "month": "",
-                "day": "",
-                "year": "",
+                "month": "09",
+                "day": "22",
+                "year": "2010",
                 "estimated": false
               }
             },
@@ -3452,19 +2528,22 @@
             "Location": {
               "type": "location",
               "props": {
-                "layout": "",
-                "country": ""
+                "layout": "Birthplace",
+                "city": "Beverly Hills",
+                "state": "CA",
+                "county": "90210",
+                "country": "United States"
               }
             },
             "Name": {
               "type": "name",
               "props": {
-                "first": "",
+                "first": "Zenon",
                 "firstInitialOnly": false,
-                "middle": "",
+                "middle": "Casey",
                 "middleInitialOnly": false,
                 "noMiddleName": false,
-                "last": "",
+                "last": "Hughes",
                 "suffix": "",
                 "suffixOther": ""
               }
@@ -3475,31 +2554,85 @@
                 "branch": {
                   "type": ""
                 },
-                "items": []
+                "items": [
+                  {
+                    "Item": {
+                      "DatesUsed": {
+                        "type": "daterange",
+                        "props": {
+                          "from": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "to": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "present": false
+                        }
+                      },
+                      "Has": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "MaidenName": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Name": {
+                        "type": "name",
+                        "props": {
+                          "first": "",
+                          "firstInitialOnly": false,
+                          "middle": "",
+                          "middleInitialOnly": false,
+                          "noMiddleName": false,
+                          "last": "",
+                          "suffix": "",
+                          "suffixOther": ""
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             },
             "SSN": {
               "type": "ssn",
               "props": {
-                "first": "",
-                "middle": "",
-                "last": "",
+                "first": "111",
+                "middle": "15",
+                "last": "5432",
                 "notApplicable": false
               }
             },
             "Separated": {
               "type": "branch",
               "props": {
-                "value": ""
+                "value": "No"
               }
             },
             "Telephone": {
               "type": "telephone",
               "props": {
                 "timeOfDay": "",
-                "type": "",
+                "type": "Domestic",
                 "numberType": "",
-                "number": "",
+                "number": "2135554321",
                 "extension": "",
                 "noNumber": false
               }
@@ -3507,7 +2640,7 @@
             "UseCurrentAddress": {
               "type": "notapplicable",
               "props": {
-                "applicable": false
+                "applicable": true
               }
             }
           }
@@ -3518,127 +2651,10 @@
             "branch": {
               "type": "branch",
               "props": {
-                "value": "No"
+                "value": ""
               }
             },
-            "items": [
-              {
-                "Item": {
-                  "Address": {
-                    "type": "location",
-                    "props": {
-                      "layout": "Birthplace without County",
-                      "city": "Las Vegas",
-                      "state": "NV",
-                      "country": "United States"
-                    }
-                  },
-                  "BirthPlace": {
-                    "type": "location",
-                    "props": {
-                      "layout": "Birthplace without County",
-                      "city": "Salem",
-                      "state": "CA",
-                      "country": "United States"
-                    }
-                  },
-                  "Birthdate": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "11",
-                      "day": "07",
-                      "year": "1985",
-                      "estimated": false
-                    }
-                  },
-                  "Citizenship": {
-                    "type": "country",
-                    "props": {
-                      "value": [
-                        "United States"
-                      ]
-                    }
-                  },
-                  "DateDivorced": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "02",
-                      "day": "13",
-                      "year": "2004",
-                      "estimated": false
-                    }
-                  },
-                  "Deceased": {
-                    "type": "radio",
-                    "props": {
-                      "value": "DK"
-                    }
-                  },
-                  "DeceasedAddress": {
-                    "type": "location",
-                    "props": {
-                      "layout": "",
-                      "country": ""
-                    }
-                  },
-                  "DeceasedAddressNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "DivorceLocation": {
-                    "type": "location",
-                    "props": {
-                      "layout": "US City, State, Zipcode International city",
-                      "city": "Las Vegas",
-                      "state": "NV",
-                      "zipcode": "88901",
-                      "country": "United States"
-                    }
-                  },
-                  "Name": {
-                    "type": "name",
-                    "props": {
-                      "first": "Joanne",
-                      "firstInitialOnly": false,
-                      "middle": "Mary",
-                      "middleInitialOnly": false,
-                      "noMiddleName": false,
-                      "last": "Roderick",
-                      "suffix": "",
-                      "suffixOther": ""
-                    }
-                  },
-                  "Recognized": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "01",
-                      "day": "22",
-                      "year": "2003",
-                      "estimated": false
-                    }
-                  },
-                  "Status": {
-                    "type": "radio",
-                    "props": {
-                      "value": "Divorced"
-                    }
-                  },
-                  "Telephone": {
-                    "type": "telephone",
-                    "props": {
-                      "timeOfDay": "",
-                      "type": "Domestic",
-                      "numberType": "",
-                      "number": "",
-                      "extension": "",
-                      "noNumber": true
-                    }
-                  }
-                }
-              }
-            ]
+            "items": []
           }
         }
       }
@@ -3662,125 +2678,10 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
-                      "street": "320 Washington Ave",
-                      "city": "Wheeling",
-                      "state": "WV",
-                      "zipcode": "26003",
-                      "country": "United States",
-                      "validated": true
-                    }
-                  },
-                  "Dates": {
-                    "type": "daterange",
-                    "props": {
-                      "from": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "08",
-                          "day": "01",
-                          "year": "2002",
-                          "estimated": true
-                        }
-                      },
-                      "to": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "8",
-                          "day": "24",
-                          "year": "2018",
-                          "estimated": false
-                        }
-                      },
-                      "present": true
-                    }
-                  },
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "elyse.miller@testemail.com"
-                    }
-                  },
-                  "EmailNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": true
-                    }
-                  },
-                  "MobileTelephone": {
-                    "type": "telephone",
-                    "props": {
-                      "timeOfDay": "Both",
-                      "type": "Domestic",
-                      "numberType": "",
-                      "number": "7245555553",
-                      "extension": "",
-                      "noNumber": false
-                    }
-                  },
-                  "Name": {
-                    "type": "name",
-                    "props": {
-                      "first": "Elyse",
-                      "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": true,
-                      "last": "Miller",
-                      "suffix": "",
-                      "suffixOther": ""
-                    }
-                  },
-                  "OtherTelephone": {
-                    "type": "telephone",
-                    "props": {
-                      "timeOfDay": "",
-                      "type": "Domestic",
-                      "numberType": "",
-                      "number": "",
-                      "extension": "",
-                      "noNumber": true
-                    }
-                  },
-                  "Rank": {
-                    "type": "text",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "RankNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": false
-                    }
-                  },
-                  "Relationship": {
-                    "type": "checkboxgroup",
-                    "props": {
-                      "values": [
-                        "Neighbor",
-                        "Friend",
-                        "Schoolmate"
-                      ]
-                    }
-                  },
-                  "RelationshipOther": {
-                    "type": "text",
-                    "props": {
-                      "value": ""
-                    }
-                  }
-                }
-              },
-              {
-                "Item": {
-                  "Address": {
-                    "type": "location",
-                    "props": {
-                      "layout": "Address",
-                      "street": "317 WASHINGTON AVE",
-                      "city": "WHEELING",
-                      "state": "WV",
-                      "zipcode": "26003",
+                      "street": "119 Center St",
+                      "city": "Galesburg",
+                      "state": "KS",
+                      "zipcode": "66740",
                       "country": "United States"
                     }
                   },
@@ -3790,18 +2691,18 @@
                       "from": {
                         "type": "datecontrol",
                         "props": {
-                          "month": "02",
-                          "day": "04",
-                          "year": "1990",
-                          "estimated": true
+                          "month": "2",
+                          "day": "2",
+                          "year": "2010",
+                          "estimated": false
                         }
                       },
                       "to": {
                         "type": "datecontrol",
                         "props": {
-                          "month": "8",
-                          "day": "24",
-                          "year": "2018",
+                          "month": "3",
+                          "day": "6",
+                          "year": "2019",
                           "estimated": false
                         }
                       },
@@ -3811,35 +2712,35 @@
                   "Email": {
                     "type": "email",
                     "props": {
-                      "value": "Mm@testemail.com"
+                      "value": ""
                     }
                   },
                   "EmailNotApplicable": {
                     "type": "notapplicable",
                     "props": {
-                      "applicable": true
+                      "applicable": false
                     }
                   },
                   "MobileTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "Both",
+                      "timeOfDay": "",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "7245555554",
-                      "extension": "",
+                      "number": "1115556633",
+                      "extension": "4",
                       "noNumber": false
                     }
                   },
                   "Name": {
                     "type": "name",
                     "props": {
-                      "first": "Melissa",
+                      "first": "Henry",
                       "firstInitialOnly": false,
-                      "middle": "",
+                      "middle": "Jones",
                       "middleInitialOnly": false,
-                      "noMiddleName": true,
-                      "last": "Miller",
+                      "noMiddleName": false,
+                      "last": "Junior",
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3871,8 +2772,7 @@
                     "type": "checkboxgroup",
                     "props": {
                       "values": [
-                        "Neighbor",
-                        "Friend"
+                        "WorkAssociate"
                       ]
                     }
                   },
@@ -3890,12 +2790,11 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
-                      "street": "320 Washington Ave",
-                      "city": "Wheeling",
-                      "state": "WV",
-                      "zipcode": "26003",
-                      "country": "United States",
-                      "validated": true
+                      "street": "119 Center St",
+                      "city": "Galesburg",
+                      "state": "KS",
+                      "zipcode": "66740",
+                      "country": "United States"
                     }
                   },
                   "Dates": {
@@ -3904,18 +2803,18 @@
                       "from": {
                         "type": "datecontrol",
                         "props": {
-                          "month": "04",
-                          "day": "01",
-                          "year": "2015",
-                          "estimated": true
+                          "month": "05",
+                          "day": "2",
+                          "year": "2016",
+                          "estimated": false
                         }
                       },
                       "to": {
                         "type": "datecontrol",
                         "props": {
-                          "month": "8",
-                          "day": "24",
-                          "year": "2018",
+                          "month": "3",
+                          "day": "6",
+                          "year": "2019",
                           "estimated": false
                         }
                       },
@@ -3937,10 +2836,10 @@
                   "MobileTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "Both",
+                      "timeOfDay": "",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "7245555555",
+                      "number": "1115556789",
                       "extension": "",
                       "noNumber": false
                     }
@@ -3948,13 +2847,13 @@
                   "Name": {
                     "type": "name",
                     "props": {
-                      "first": "Dave",
+                      "first": "Wally",
                       "firstInitialOnly": false,
-                      "middle": "",
+                      "middle": "Wallice",
                       "middleInitialOnly": false,
-                      "noMiddleName": true,
-                      "last": "Camera",
-                      "suffix": "Jr",
+                      "noMiddleName": false,
+                      "last": "Williamson",
+                      "suffix": "",
                       "suffixOther": ""
                     }
                   },
@@ -3985,7 +2884,119 @@
                     "type": "checkboxgroup",
                     "props": {
                       "values": [
-                        "Friend"
+                        "WorkAssociate"
+                      ]
+                    }
+                  },
+                  "RelationshipOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "119 Center St",
+                      "city": "Galesburg",
+                      "state": "KS",
+                      "zipcode": "66740",
+                      "country": "United States"
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "3",
+                          "day": "3",
+                          "year": "2003",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "3",
+                          "day": "3",
+                          "year": "2013",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "Email": {
+                    "type": "email",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "MobileTelephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "4325551234",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Theodora",
+                      "firstInitialOnly": false,
+                      "middle": "Teresa",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "Thromson",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherTelephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": true
+                    }
+                  },
+                  "Rank": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "RankNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Relationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Neighbor"
                       ]
                     }
                   },
@@ -4125,9 +3136,9 @@
                   "Birthdate": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "09",
-                      "day": "30",
-                      "year": "1950",
+                      "month": "2",
+                      "day": "2",
+                      "year": "1942",
                       "estimated": false
                     }
                   },
@@ -4135,8 +3146,8 @@
                     "type": "location",
                     "props": {
                       "layout": "Birthplace without County",
-                      "city": "Pittsburgh",
-                      "state": "PA",
+                      "city": "San Francisco",
+                      "state": "CA",
                       "country": "United States"
                     }
                   },
@@ -4276,12 +3287,12 @@
                   "MaidenName": {
                     "type": "name",
                     "props": {
-                      "first": "Ann Marie",
+                      "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
                       "middleInitialOnly": false,
-                      "noMiddleName": true,
-                      "last": "Booth",
+                      "noMiddleName": false,
+                      "last": "",
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -4289,7 +3300,7 @@
                   "MaidenSameAsListed": {
                     "type": "branch",
                     "props": {
-                      "value": "No"
+                      "value": "Yes"
                     }
                   },
                   "Methods": {
@@ -4307,12 +3318,12 @@
                   "Name": {
                     "type": "name",
                     "props": {
-                      "first": "Ann Marie",
+                      "first": "Momma",
                       "firstInitialOnly": false,
-                      "middle": "",
+                      "middle": "Bio",
                       "middleInitialOnly": false,
-                      "noMiddleName": true,
-                      "last": "Chris",
+                      "noMiddleName": false,
+                      "last": "Sample",
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -4326,8 +3337,7 @@
                   "Relation": {
                     "type": "radio",
                     "props": {
-                      "value": "Mother",
-                      "checked": true
+                      "value": "Mother"
                     }
                   },
                   "ResidenceDocumentNumber": {
@@ -4448,9 +3458,9 @@
                   "Birthdate": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "04",
-                      "day": "05",
-                      "year": "1957",
+                      "month": "1",
+                      "day": "1",
+                      "year": "1934",
                       "estimated": false
                     }
                   },
@@ -4458,8 +3468,8 @@
                     "type": "location",
                     "props": {
                       "layout": "Birthplace without County",
-                      "city": "Pittsburgh",
-                      "state": "PA",
+                      "city": "San Francisco",
+                      "state": "CA",
                       "country": "United States"
                     }
                   },
@@ -4630,12 +3640,12 @@
                   "Name": {
                     "type": "name",
                     "props": {
-                      "first": "Ed",
+                      "first": "Pappa",
                       "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": true,
-                      "last": "Chris",
+                      "middle": "B",
+                      "middleInitialOnly": true,
+                      "noMiddleName": false,
+                      "last": "Sample",
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -4649,8 +3659,531 @@
                   "Relation": {
                     "type": "radio",
                     "props": {
-                      "value": "Father",
-                      "checked": true
+                      "value": "Father"
+                    }
+                  },
+                  "ResidenceDocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "1",
+                      "day": "2",
+                      "year": "2010",
+                      "estimated": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "San Francisco",
+                      "state": "CA",
+                      "country": "United States"
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "CitizenshipDocumentation": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Document": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerRelationship": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerRelationshipNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Expiration": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliation": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "IsDeceased": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "MaidenName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "MaidenSameAsListed": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "MethodsComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Father",
+                      "firstInitialOnly": false,
+                      "middle": "InLaw",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "Surface",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Relation": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Father-in-law"
+                    }
+                  },
+                  "ResidenceDocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "2",
+                      "day": "2",
+                      "year": "1943",
+                      "estimated": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "San Francisco",
+                      "state": "CA",
+                      "country": "United States"
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "CitizenshipDocumentation": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Document": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerRelationship": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerRelationshipNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Expiration": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliation": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "IsDeceased": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "MaidenName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "MaidenSameAsListed": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "MethodsComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Mother",
+                      "firstInitialOnly": false,
+                      "middle": "I",
+                      "middleInitialOnly": true,
+                      "noMiddleName": false,
+                      "last": "Surface",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Relation": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Mother-in-law"
                     }
                   },
                   "ResidenceDocumentNumber": {
