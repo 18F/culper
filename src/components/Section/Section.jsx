@@ -75,6 +75,7 @@ class Section extends React.Component {
         {/* REFACTORED - These sections are rendered via <Route>s */}
         <Route path="/form/identification" component={Identification} />
         <Route path="/form/history" component={History} />
+        <Route path="/form/citizenship" component={Citizenship} />
         <Route path="/form/military" component={Military} />
 
         {/* TBD */}

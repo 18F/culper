@@ -52,6 +52,6 @@ export const formSectionsSelector = createSelector(
       })
     }
 
-    return formTypeSections
+    return formTypeConfig.reduceSubsections(formTypeSections)
   },
 )

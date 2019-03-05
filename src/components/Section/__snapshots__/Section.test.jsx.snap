@@ -1,158 +1,148 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The section component renders citizenship.intro 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-intro"
   >
-    <div
-      className="view view-citizenship"
-    >
-      <div>
+    <div>
+      <h1
+        className="section-header"
+      >
+        Section 4: Citizenship
+      </h1>
+      <div
+        aria-label=""
+        className="field   no-margin-bottom"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <span
+          className="icon"
+        />
         <div
-          className="section-view"
+          className="table expand"
         >
-          <div
-            className="view view-intro"
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
           >
-            <div>
-              <h1
-                className="section-header"
-              >
-                Section 4: Citizenship
-              </h1>
-              <div
-                aria-label=""
-                className="field   no-margin-bottom"
-                data-uuid="field-MOCK-GUID"
-              >
-                <a
-                  aria-hidden="true"
-                  className="anchor"
-                  id="field-MOCK-GUID"
-                  name="field-MOCK-GUID"
-                />
-                <span
-                  className="icon"
-                />
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages help-messages"
-                  />
-                </div>
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages error-messages"
-                    role="alert"
-                  />
-                </div>
-                <div
-                  className="table"
-                >
-                  <span
-                    className="content"
-                  >
-                    <span
-                      className="component"
-                    >
-                      <div>
-                        <p>
-                          You will be asked questions about your citizenship status and history and be asked to provide details if necessary.
-                        </p>
-                      </div>
-                    </span>
-                  </span>
-                </div>
+            <span
+              className="component"
+            >
+              <div>
+                <p>
+                  You will be asked questions about your citizenship status and history and be asked to provide details if necessary.
+                </p>
               </div>
-            </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Review Relationships"
+            className="btn-cell back"
+            href="/form/relationships/review"
+            onClick={[Function]}
+            title="Go to previous section Review Relationships"
+          >
             <div
-              className="bottom-btns"
+              className="actions back"
             >
               <div
-                className="btn-wrap"
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
               >
                 <div
-                  className="btn-container"
+                  className="direction"
                 >
-                  <button
-                    aria-label="Go to previous section Review Relationships"
-                    className="btn-cell back"
-                    onClick={[Function]}
-                    title="Go to previous section Review Relationships"
-                  >
-                    <div
-                      className="actions back"
-                    >
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-left"
-                        />
-                      </div>
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Back
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Review Relationships
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                  <div
-                    className="btn-spacer"
-                  />
-                  <button
-                    aria-label="Go to next section Citizenship status"
-                    className="btn-cell next"
-                    onClick={[Function]}
-                    title="Go to next section Citizenship status"
-                  >
-                    <div
-                      className="actions next"
-                    >
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Next
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Citizenship status
-                        </div>
-                      </div>
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-right"
-                        />
-                      </div>
-                    </div>
-                  </button>
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Review Relationships
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Citizenship status"
+            className="btn-cell next"
+            href="/form/citizenship/status"
+            onClick={[Function]}
+            title="Go to next section Citizenship status"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Citizenship status
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -161,245 +151,235 @@ exports[`The section component renders citizenship.intro 1`] = `
 `;
 
 exports[`The section component renders citizenship.multiple 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-multiple"
   >
     <div
-      className="view view-citizenship"
+      className="section-content multiple"
+      data-section="citizenship"
+      data-subsection="multiple"
     >
-      <div>
-        <div
-          className="section-view"
+      <h1
+        className="section-header"
+      >
+        Dual/multiple citizenship
+      </h1>
+      <div
+        aria-label="Do you now or have you EVER held dual/multiple citizenships?"
+        className="field required  branch has-multiple"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
         >
-          <div
-            className="view view-multiple"
+          Do you now or have you EVER held dual/multiple citizenships?
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
           >
             <div
-              className="section-content multiple"
-              data-section="citizenship"
-              data-subsection="multiple"
+              aria-live="polite"
+              className="message error usa-alert usa-alert-error"
+              role="alert"
             >
-              <h1
-                className="section-header"
-              >
-                Dual/multiple citizenship
-              </h1>
               <div
-                aria-label="Do you now or have you EVER held dual/multiple citizenships?"
-                className="field required  branch has-multiple"
-                data-uuid="field-MOCK-GUID"
+                className="usa-alert-body"
               >
-                <a
-                  aria-hidden="true"
-                  className="anchor"
-                  id="field-MOCK-GUID"
-                  name="field-MOCK-GUID"
-                />
-                <h4
-                  className="title h4"
-                >
-                  Do you now or have you EVER held dual/multiple citizenships?
-                </h4>
-                <span
-                  className="icon"
-                />
                 <div
-                  className="table expand"
+                  data-i18n="error.required"
                 >
-                  <span
-                    aria-live="polite"
-                    className="messages help-messages"
+                  <h5
+                    className="usa-alert-heading"
+                  >
+                    Your response is required
+                  </h5>
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </span>
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
+            >
+              <div
+                className="content"
+              />
+              <div
+                className="blocks option-list branch usa-input-error"
+              >
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_multiple-MOCK-GUID"
+                    name="has_multiple-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
                   />
-                </div>
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages error-messages"
-                    role="alert"
+                  <label
+                    className=""
+                    htmlFor="has_multiple-MOCK-GUID"
                   >
-                    <div
-                      aria-live="polite"
-                      className="message error usa-alert usa-alert-error"
-                      role="alert"
-                    >
-                      <div
-                        className="usa-alert-body"
-                      >
-                        <div
-                          data-i18n="error.required"
-                        >
-                          <h5
-                            className="usa-alert-heading"
-                          >
-                            Your response is required
-                          </h5>
-                          
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </span>
-                </div>
-                <div
-                  className="table"
-                >
-                  <span
-                    className="content"
-                  >
-                    <span
-                      className="component shrink"
-                    >
-                      <div
-                        className="content"
-                      />
-                      <div
-                        className="blocks option-list branch usa-input-error"
-                      >
-                        <div
-                          className="yes block"
-                        >
-                          <input
-                            aria-label="Yes for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="has_multiple-MOCK-GUID"
-                            name="has_multiple-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="Yes"
-                          />
-                          <label
-                            className=""
-                            htmlFor="has_multiple-MOCK-GUID"
-                          >
-                            <span>
-                              Yes
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="no block"
-                        >
-                          <input
-                            aria-label="No for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="has_multiple-MOCK-GUID"
-                            name="has_multiple-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="No"
-                          />
-                          <label
-                            className=""
-                            htmlFor="has_multiple-MOCK-GUID"
-                          >
-                            <span>
-                              No
-                            </span>
-                          </label>
-                        </div>
-                      </div>
+                    <span>
+                      Yes
                     </span>
-                  </span>
+                  </label>
+                </div>
+                <div
+                  className="no block"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_multiple-MOCK-GUID"
+                    name="has_multiple-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className=""
+                    htmlFor="has_multiple-MOCK-GUID"
+                  >
+                    <span>
+                      No
+                    </span>
+                  </label>
                 </div>
               </div>
-            </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Citizenship status"
+            className="btn-cell back"
+            href="/form/citizenship/status"
+            onClick={[Function]}
+            title="Go to previous section Citizenship status"
+          >
             <div
-              className="bottom-btns"
+              className="actions back"
             >
               <div
-                className="btn-wrap"
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
               >
                 <div
-                  className="btn-container"
+                  className="direction"
                 >
-                  <button
-                    aria-label="Go to previous section Citizenship status"
-                    className="btn-cell back"
-                    onClick={[Function]}
-                    title="Go to previous section Citizenship status"
-                  >
-                    <div
-                      className="actions back"
-                    >
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-left"
-                        />
-                      </div>
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Back
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Citizenship status
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                  <div
-                    className="btn-spacer"
-                  />
-                  <button
-                    aria-label="Go to next section Foreign passports"
-                    className="btn-cell next"
-                    onClick={[Function]}
-                    title="Go to next section Foreign passports"
-                  >
-                    <div
-                      className="actions next"
-                    >
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Next
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Foreign passports
-                        </div>
-                      </div>
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-right"
-                        />
-                      </div>
-                    </div>
-                  </button>
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Citizenship status
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Foreign passports"
+            className="btn-cell next"
+            href="/form/citizenship/passports"
+            onClick={[Function]}
+            title="Go to next section Foreign passports"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Foreign passports
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -408,251 +388,241 @@ exports[`The section component renders citizenship.multiple 1`] = `
 `;
 
 exports[`The section component renders citizenship.passports 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-passports"
   >
     <div
-      className="view view-citizenship"
+      className="section-content passports"
+      data-section="citizenship"
+      data-subsection="passports"
     >
-      <div>
-        <div
-          className="section-view"
-        >
+      <h1
+        className="section-header"
+      >
+        Foreign passports
+      </h1>
+      <div
+        className="has-foreignpassport"
+      >
+        <div>
           <div
-            className="view view-passports"
+            aria-label="Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?"
+            className="field required  branch"
+            data-uuid="field-MOCK-GUID"
           >
-            <div
-              className="section-content passports"
-              data-section="citizenship"
-              data-subsection="passports"
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <h4
+              className="title h4"
             >
-              <h1
-                className="section-header"
+              Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?
+            </h4>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
               >
-                Foreign passports
-              </h1>
-              <div
-                className="has-foreignpassport"
-              >
-                <div>
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
                   <div
-                    aria-label="Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?"
-                    className="field required  branch"
-                    data-uuid="field-MOCK-GUID"
+                    className="usa-alert-body"
                   >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?
-                    </h4>
-                    <span
-                      className="icon"
-                    />
                     <div
-                      className="table expand"
+                      data-i18n="error.required"
                     >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
+                      <h5
+                        className="usa-alert-heading"
                       >
-                        <div
-                          aria-live="polite"
-                          className="message error usa-alert usa-alert-error"
-                          role="alert"
-                        >
-                          <div
-                            className="usa-alert-body"
-                          >
-                            <div
-                              data-i18n="error.required"
-                            >
-                              <h5
-                                className="usa-alert-heading"
-                              >
-                                Your response is required
-                              </h5>
-                              
-                              
-                            </div>
-                          </div>
-                        </div>
-                      </span>
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component shrink"
-                        >
-                          <div
-                            className="content"
-                          />
-                          <div
-                            className="blocks option-list branch usa-input-error"
-                          >
-                            <div
-                              className="yes block"
-                            >
-                              <input
-                                aria-label="Yes for null"
-                                checked={false}
-                                className="usa-input-success"
-                                disabled={false}
-                                id="branchcollection-MOCK-GUID"
-                                name="branchcollection-MOCK-GUID"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onClick={[Function]}
-                                onFocus={[Function]}
-                                onKeyDown={[Function]}
-                                type="radio"
-                                value="Yes"
-                              />
-                              <label
-                                className=""
-                                htmlFor="branchcollection-MOCK-GUID"
-                              >
-                                <span>
-                                  Yes
-                                </span>
-                              </label>
-                            </div>
-                            <div
-                              className="no block"
-                            >
-                              <input
-                                aria-label="No for null"
-                                checked={false}
-                                className="usa-input-success"
-                                disabled={false}
-                                id="branchcollection-MOCK-GUID"
-                                name="branchcollection-MOCK-GUID"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onClick={[Function]}
-                                onFocus={[Function]}
-                                onKeyDown={[Function]}
-                                type="radio"
-                                value="No"
-                              />
-                              <label
-                                className=""
-                                htmlFor="branchcollection-MOCK-GUID"
-                              >
-                                <span>
-                                  No
-                                </span>
-                              </label>
-                            </div>
-                          </div>
-                        </span>
-                      </span>
+                        Your response is required
+                      </h5>
+                      
+                      
                     </div>
                   </div>
                 </div>
-              </div>
+              </span>
             </div>
             <div
-              className="bottom-btns"
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component shrink"
+                >
+                  <div
+                    className="content"
+                  />
+                  <div
+                    className="blocks option-list branch usa-input-error"
+                  >
+                    <div
+                      className="yes block"
+                    >
+                      <input
+                        aria-label="Yes for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="branchcollection-MOCK-GUID"
+                        name="branchcollection-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Yes"
+                      />
+                      <label
+                        className=""
+                        htmlFor="branchcollection-MOCK-GUID"
+                      >
+                        <span>
+                          Yes
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="no block"
+                    >
+                      <input
+                        aria-label="No for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="branchcollection-MOCK-GUID"
+                        name="branchcollection-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="No"
+                      />
+                      <label
+                        className=""
+                        htmlFor="branchcollection-MOCK-GUID"
+                      >
+                        <span>
+                          No
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Dual/multiple citizenship"
+            className="btn-cell back"
+            href="/form/citizenship/multiple"
+            onClick={[Function]}
+            title="Go to previous section Dual/multiple citizenship"
+          >
+            <div
+              className="actions back"
             >
               <div
-                className="btn-wrap"
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
               >
                 <div
-                  className="btn-container"
+                  className="direction"
                 >
-                  <button
-                    aria-label="Go to previous section Dual/multiple citizenship"
-                    className="btn-cell back"
-                    onClick={[Function]}
-                    title="Go to previous section Dual/multiple citizenship"
-                  >
-                    <div
-                      className="actions back"
-                    >
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-left"
-                        />
-                      </div>
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Back
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Dual/multiple citizenship
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                  <div
-                    className="btn-spacer"
-                  />
-                  <button
-                    aria-label="Go to next section Review citizenship"
-                    className="btn-cell next"
-                    onClick={[Function]}
-                    title="Go to next section Review citizenship"
-                  >
-                    <div
-                      className="actions next"
-                    >
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Next
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Review citizenship
-                        </div>
-                      </div>
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-right"
-                        />
-                      </div>
-                    </div>
-                  </button>
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Dual/multiple citizenship
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Review citizenship"
+            className="btn-cell next"
+            href="/form/citizenship/review"
+            onClick={[Function]}
+            title="Go to next section Review citizenship"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Review citizenship
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -661,656 +631,646 @@ exports[`The section component renders citizenship.passports 1`] = `
 `;
 
 exports[`The section component renders citizenship.review 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <h1
+    className="title"
+  >
+    Review your answers
+  </h1>
+  <div>
+    <p>
+      View the full section to make sure everything looks right and make changes if needed.
+    </p>
+  </div>
   <div
-    className="section-view"
+    className="view view-review"
   >
     <div
-      className="view view-citizenship"
-    >
-      <div>
-        <div
-          className="section-view"
+      className="top-btns"
+    />
+    <div>
+      <div
+        className="section-content status"
+        data-section="citizenship"
+        data-subsection="status"
+      >
+        <h1
+          className="section-header"
         >
-          <h1
-            className="title"
+          Citizenship status
+        </h1>
+        <div
+          aria-label="Provide your current citizenship status"
+          className="field required"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
           >
-            Review your answers
-          </h1>
-          <div>
-            <p>
-              View the full section to make sure everything looks right and make changes if needed.
-            </p>
+            Provide your current citizenship status
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
           </div>
           <div
-            className="view view-review"
+            className="table expand"
           >
-            <div
-              className="top-btns"
-            />
-            <div>
-              <div
-                className="section-content status"
-                data-section="citizenship"
-                data-subsection="status"
-              >
-                <h1
-                  className="section-header"
-                >
-                  Citizenship status
-                </h1>
-                <div
-                  aria-label="Provide your current citizenship status"
-                  className="field required"
-                  data-uuid="field-MOCK-GUID"
-                >
-                  <a
-                    aria-hidden="true"
-                    className="anchor"
-                    id="field-MOCK-GUID"
-                    name="field-MOCK-GUID"
-                  />
-                  <h4
-                    className="title h4"
-                  >
-                    Provide your current citizenship status
-                  </h4>
-                  <span
-                    className="icon"
-                  />
-                  <div
-                    className="table expand"
-                  >
-                    <span
-                      aria-live="polite"
-                      className="messages help-messages"
-                    />
-                  </div>
-                  <div
-                    className="table expand"
-                  >
-                    <span
-                      aria-live="polite"
-                      className="messages error-messages"
-                      role="alert"
-                    >
-                      <div
-                        aria-live="polite"
-                        className="message error usa-alert usa-alert-error"
-                        role="alert"
-                      >
-                        <div
-                          className="usa-alert-body"
-                        >
-                          <div
-                            data-i18n="error.required"
-                          >
-                            <h5
-                              className="usa-alert-heading"
-                            >
-                              Your response is required
-                            </h5>
-                            
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </span>
-                  </div>
-                  <div
-                    className="table"
-                  >
-                    <span
-                      className="content"
-                    >
-                      <span
-                        className="component"
-                      >
-                        <div
-                          className="blocks citizenship-status option-list option-list-vertical usa-input-error"
-                        >
-                          <div
-                            className="citizenship-status-citizen block"
-                          >
-                            <input
-                              aria-label="[object Object] for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="citizenship-status-citizen-MOCK-GUID"
-                              name="citizenship-status-citizen-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="Citizen"
-                            />
-                            <label
-                              className=""
-                              htmlFor="citizenship-status-citizen-MOCK-GUID"
-                            >
-                              <span>
-                                <div>
-                                  <p>
-                                    I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth
-                                  </p>
-                                </div>
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            className="citizenship-status-foreignborn block"
-                          >
-                            <input
-                              aria-label="[object Object] for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="citizenship-status-foreignborn-MOCK-GUID"
-                              name="citizenship-status-foreignborn-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="ForeignBorn"
-                            />
-                            <label
-                              className=""
-                              htmlFor="citizenship-status-foreignborn-MOCK-GUID"
-                            >
-                              <span>
-                                <div>
-                                  <p>
-                                    I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country
-                                  </p>
-                                </div>
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            className="citizenship-status-naturalized block"
-                          >
-                            <input
-                              aria-label="[object Object] for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="citizenship-status-naturalized-MOCK-GUID"
-                              name="citizenship-status-naturalized-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="Naturalized"
-                            />
-                            <label
-                              className=""
-                              htmlFor="citizenship-status-naturalized-MOCK-GUID"
-                            >
-                              <span>
-                                <div>
-                                  <p>
-                                    I am a naturalized U.S. citizen
-                                  </p>
-                                </div>
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            className="citizenship-status-derived block"
-                          >
-                            <input
-                              aria-label="[object Object] for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="citizenship-status-derived-MOCK-GUID"
-                              name="citizenship-status-derived-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="Derived"
-                            />
-                            <label
-                              className=""
-                              htmlFor="citizenship-status-derived-MOCK-GUID"
-                            >
-                              <span>
-                                <div>
-                                  <p>
-                                    I am a derived U.S. citizen
-                                  </p>
-                                </div>
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            className="citizenship-status-notcitizen block"
-                          >
-                            <input
-                              aria-label="[object Object] for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="citizenship-status-notcitizen-MOCK-GUID"
-                              name="citizenship-status-notcitizen-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="NotCitizen"
-                            />
-                            <label
-                              className=""
-                              htmlFor="citizenship-status-notcitizen-MOCK-GUID"
-                            >
-                              <span>
-                                <div>
-                                  <p>
-                                    I am not a U.S. citizen
-                                  </p>
-                                </div>
-                              </span>
-                            </label>
-                          </div>
-                        </div>
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <hr
-                className="section-divider"
-              />
-              <div
-                className="section-content multiple"
-                data-section="citizenship"
-                data-subsection="multiple"
-              >
-                <h1
-                  className="section-header"
-                >
-                  Dual/multiple citizenship
-                </h1>
-                <div
-                  aria-label="Do you now or have you EVER held dual/multiple citizenships?"
-                  className="field required  branch has-multiple"
-                  data-uuid="field-MOCK-GUID"
-                >
-                  <a
-                    aria-hidden="true"
-                    className="anchor"
-                    id="field-MOCK-GUID"
-                    name="field-MOCK-GUID"
-                  />
-                  <h4
-                    className="title h4"
-                  >
-                    Do you now or have you EVER held dual/multiple citizenships?
-                  </h4>
-                  <span
-                    className="icon"
-                  />
-                  <div
-                    className="table expand"
-                  >
-                    <span
-                      aria-live="polite"
-                      className="messages help-messages"
-                    />
-                  </div>
-                  <div
-                    className="table expand"
-                  >
-                    <span
-                      aria-live="polite"
-                      className="messages error-messages"
-                      role="alert"
-                    >
-                      <div
-                        aria-live="polite"
-                        className="message error usa-alert usa-alert-error"
-                        role="alert"
-                      >
-                        <div
-                          className="usa-alert-body"
-                        >
-                          <div
-                            data-i18n="error.required"
-                          >
-                            <h5
-                              className="usa-alert-heading"
-                            >
-                              Your response is required
-                            </h5>
-                            
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </span>
-                  </div>
-                  <div
-                    className="table"
-                  >
-                    <span
-                      className="content"
-                    >
-                      <span
-                        className="component shrink"
-                      >
-                        <div
-                          className="content"
-                        />
-                        <div
-                          className="blocks option-list branch usa-input-error"
-                        >
-                          <div
-                            className="yes block"
-                          >
-                            <input
-                              aria-label="Yes for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="has_multiple-MOCK-GUID"
-                              name="has_multiple-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="Yes"
-                            />
-                            <label
-                              className=""
-                              htmlFor="has_multiple-MOCK-GUID"
-                            >
-                              <span>
-                                Yes
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            className="no block"
-                          >
-                            <input
-                              aria-label="No for null"
-                              checked={false}
-                              className="usa-input-success"
-                              disabled={false}
-                              id="has_multiple-MOCK-GUID"
-                              name="has_multiple-MOCK-GUID"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              type="radio"
-                              value="No"
-                            />
-                            <label
-                              className=""
-                              htmlFor="has_multiple-MOCK-GUID"
-                            >
-                              <span>
-                                No
-                              </span>
-                            </label>
-                          </div>
-                        </div>
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <hr
-                className="section-divider"
-              />
-              <div
-                className="section-content passports"
-                data-section="citizenship"
-                data-subsection="passports"
-              >
-                <h1
-                  className="section-header"
-                >
-                  Foreign passports
-                </h1>
-                <div
-                  className="has-foreignpassport"
-                >
-                  <div>
-                    <div
-                      aria-label="Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?"
-                      className="field required  branch"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="branchcollection-MOCK-GUID"
-                                  name="branchcollection-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="branchcollection-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="branchcollection-MOCK-GUID"
-                                  name="branchcollection-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="branchcollection-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="bottom-btns"
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
             >
               <div
-                className="btn-wrap"
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
               >
                 <div
-                  className="btn-container"
+                  className="usa-alert-body"
                 >
-                  <button
-                    aria-label="Go to previous section Foreign passports"
-                    className="btn-cell back"
-                    onClick={[Function]}
-                    title="Go to previous section Foreign passports"
-                  >
-                    <div
-                      className="actions back"
-                    >
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-left"
-                        />
-                      </div>
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Back
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Foreign passports
-                        </div>
-                      </div>
-                    </div>
-                  </button>
                   <div
-                    className="btn-spacer"
-                  />
-                  <button
-                    aria-label="Go to next section Military intro"
-                    className="btn-cell next"
-                    onClick={[Function]}
-                    title="Go to next section Military intro"
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component"
+              >
+                <div
+                  className="blocks citizenship-status option-list option-list-vertical usa-input-error"
+                >
+                  <div
+                    className="citizenship-status-citizen block"
+                  >
+                    <input
+                      aria-label="[object Object] for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="citizenship-status-citizen-MOCK-GUID"
+                      name="citizenship-status-citizen-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Citizen"
+                    />
+                    <label
+                      className=""
+                      htmlFor="citizenship-status-citizen-MOCK-GUID"
+                    >
+                      <span>
+                        <div>
+                          <p>
+                            I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth
+                          </p>
+                        </div>
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="citizenship-status-foreignborn block"
+                  >
+                    <input
+                      aria-label="[object Object] for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="citizenship-status-foreignborn-MOCK-GUID"
+                      name="citizenship-status-foreignborn-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="ForeignBorn"
+                    />
+                    <label
+                      className=""
+                      htmlFor="citizenship-status-foreignborn-MOCK-GUID"
+                    >
+                      <span>
+                        <div>
+                          <p>
+                            I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country
+                          </p>
+                        </div>
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="citizenship-status-naturalized block"
+                  >
+                    <input
+                      aria-label="[object Object] for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="citizenship-status-naturalized-MOCK-GUID"
+                      name="citizenship-status-naturalized-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Naturalized"
+                    />
+                    <label
+                      className=""
+                      htmlFor="citizenship-status-naturalized-MOCK-GUID"
+                    >
+                      <span>
+                        <div>
+                          <p>
+                            I am a naturalized U.S. citizen
+                          </p>
+                        </div>
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="citizenship-status-derived block"
+                  >
+                    <input
+                      aria-label="[object Object] for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="citizenship-status-derived-MOCK-GUID"
+                      name="citizenship-status-derived-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Derived"
+                    />
+                    <label
+                      className=""
+                      htmlFor="citizenship-status-derived-MOCK-GUID"
+                    >
+                      <span>
+                        <div>
+                          <p>
+                            I am a derived U.S. citizen
+                          </p>
+                        </div>
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="citizenship-status-notcitizen block"
+                  >
+                    <input
+                      aria-label="[object Object] for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="citizenship-status-notcitizen-MOCK-GUID"
+                      name="citizenship-status-notcitizen-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="NotCitizen"
+                    />
+                    <label
+                      className=""
+                      htmlFor="citizenship-status-notcitizen-MOCK-GUID"
+                    >
+                      <span>
+                        <div>
+                          <p>
+                            I am not a U.S. citizen
+                          </p>
+                        </div>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content multiple"
+        data-section="citizenship"
+        data-subsection="multiple"
+      >
+        <h1
+          className="section-header"
+        >
+          Dual/multiple citizenship
+        </h1>
+        <div
+          aria-label="Do you now or have you EVER held dual/multiple citizenships?"
+          className="field required  branch has-multiple"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Do you now or have you EVER held dual/multiple citizenships?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_multiple-MOCK-GUID"
+                      name="has_multiple-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_multiple-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_multiple-MOCK-GUID"
+                      name="has_multiple-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_multiple-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content passports"
+        data-section="citizenship"
+        data-subsection="passports"
+      >
+        <h1
+          className="section-header"
+        >
+          Foreign passports
+        </h1>
+        <div
+          className="has-foreignpassport"
+        >
+          <div>
+            <div
+              aria-label="Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?"
+              className="field required  branch"
+              data-uuid="field-MOCK-GUID"
+            >
+              <a
+                aria-hidden="true"
+                className="anchor"
+                id="field-MOCK-GUID"
+                name="field-MOCK-GUID"
+              />
+              <h4
+                className="title h4"
+              >
+                Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?
+              </h4>
+              <span
+                className="icon"
+              />
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages help-messages"
+                />
+              </div>
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages error-messages"
+                  role="alert"
+                >
+                  <div
+                    aria-live="polite"
+                    className="message error usa-alert usa-alert-error"
+                    role="alert"
                   >
                     <div
-                      className="actions next"
+                      className="usa-alert-body"
                     >
                       <div
-                        className="text"
+                        data-i18n="error.required"
                       >
-                        <div
-                          className="direction"
+                        <h5
+                          className="usa-alert-heading"
                         >
-                          Next
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Military intro
-                        </div>
-                      </div>
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-right"
-                        />
+                          Your response is required
+                        </h5>
+                        
+                        
                       </div>
                     </div>
-                  </button>
-                </div>
+                  </div>
+                </span>
+              </div>
+              <div
+                className="table"
+              >
+                <span
+                  className="content"
+                >
+                  <span
+                    className="component shrink"
+                  >
+                    <div
+                      className="content"
+                    />
+                    <div
+                      className="blocks option-list branch usa-input-error"
+                    >
+                      <div
+                        className="yes block"
+                      >
+                        <input
+                          aria-label="Yes for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="branchcollection-MOCK-GUID"
+                          name="branchcollection-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="Yes"
+                        />
+                        <label
+                          className=""
+                          htmlFor="branchcollection-MOCK-GUID"
+                        >
+                          <span>
+                            Yes
+                          </span>
+                        </label>
+                      </div>
+                      <div
+                        className="no block"
+                      >
+                        <input
+                          aria-label="No for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="branchcollection-MOCK-GUID"
+                          name="branchcollection-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="No"
+                        />
+                        <label
+                          className=""
+                          htmlFor="branchcollection-MOCK-GUID"
+                        >
+                          <span>
+                            No
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </span>
+                </span>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Foreign passports"
+            className="btn-cell back"
+            href="/form/citizenship/passports"
+            onClick={[Function]}
+            title="Go to previous section Foreign passports"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Foreign passports
+                </div>
+              </div>
+            </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Military intro"
+            className="btn-cell next"
+            href="/form/military/intro"
+            onClick={[Function]}
+            title="Go to next section Military intro"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Military intro
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -1319,321 +1279,311 @@ exports[`The section component renders citizenship.review 1`] = `
 `;
 
 exports[`The section component renders citizenship.status 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-status"
   >
     <div
-      className="view view-citizenship"
+      className="section-content status"
+      data-section="citizenship"
+      data-subsection="status"
     >
-      <div>
-        <div
-          className="section-view"
+      <h1
+        className="section-header"
+      >
+        Citizenship status
+      </h1>
+      <div
+        aria-label="Provide your current citizenship status"
+        className="field required"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
         >
-          <div
-            className="view view-status"
+          Provide your current citizenship status
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
           >
-            <div
-              className="section-content status"
-              data-section="citizenship"
-              data-subsection="status"
+            <span
+              className="component"
             >
-              <h1
-                className="section-header"
-              >
-                Citizenship status
-              </h1>
               <div
-                aria-label="Provide your current citizenship status"
-                className="field required"
-                data-uuid="field-MOCK-GUID"
+                className="blocks citizenship-status option-list option-list-vertical"
               >
-                <a
-                  aria-hidden="true"
-                  className="anchor"
-                  id="field-MOCK-GUID"
-                  name="field-MOCK-GUID"
-                />
-                <h4
-                  className="title h4"
-                >
-                  Provide your current citizenship status
-                </h4>
-                <span
-                  className="icon"
-                />
                 <div
-                  className="table expand"
+                  className="citizenship-status-citizen block"
                 >
-                  <span
-                    aria-live="polite"
-                    className="messages help-messages"
+                  <input
+                    aria-label="[object Object] for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="citizenship-status-citizen-MOCK-GUID"
+                    name="citizenship-status-citizen-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Citizen"
                   />
-                </div>
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages error-messages"
-                    role="alert"
-                  />
-                </div>
-                <div
-                  className="table"
-                >
-                  <span
-                    className="content"
+                  <label
+                    className=""
+                    htmlFor="citizenship-status-citizen-MOCK-GUID"
                   >
-                    <span
-                      className="component"
-                    >
-                      <div
-                        className="blocks citizenship-status option-list option-list-vertical"
-                      >
-                        <div
-                          className="citizenship-status-citizen block"
-                        >
-                          <input
-                            aria-label="[object Object] for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="citizenship-status-citizen-MOCK-GUID"
-                            name="citizenship-status-citizen-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="Citizen"
-                          />
-                          <label
-                            className=""
-                            htmlFor="citizenship-status-citizen-MOCK-GUID"
-                          >
-                            <span>
-                              <div>
-                                <p>
-                                  I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth
-                                </p>
-                              </div>
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="citizenship-status-foreignborn block"
-                        >
-                          <input
-                            aria-label="[object Object] for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="citizenship-status-foreignborn-MOCK-GUID"
-                            name="citizenship-status-foreignborn-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="ForeignBorn"
-                          />
-                          <label
-                            className=""
-                            htmlFor="citizenship-status-foreignborn-MOCK-GUID"
-                          >
-                            <span>
-                              <div>
-                                <p>
-                                  I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country
-                                </p>
-                              </div>
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="citizenship-status-naturalized block"
-                        >
-                          <input
-                            aria-label="[object Object] for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="citizenship-status-naturalized-MOCK-GUID"
-                            name="citizenship-status-naturalized-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="Naturalized"
-                          />
-                          <label
-                            className=""
-                            htmlFor="citizenship-status-naturalized-MOCK-GUID"
-                          >
-                            <span>
-                              <div>
-                                <p>
-                                  I am a naturalized U.S. citizen
-                                </p>
-                              </div>
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="citizenship-status-derived block"
-                        >
-                          <input
-                            aria-label="[object Object] for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="citizenship-status-derived-MOCK-GUID"
-                            name="citizenship-status-derived-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="Derived"
-                          />
-                          <label
-                            className=""
-                            htmlFor="citizenship-status-derived-MOCK-GUID"
-                          >
-                            <span>
-                              <div>
-                                <p>
-                                  I am a derived U.S. citizen
-                                </p>
-                              </div>
-                            </span>
-                          </label>
-                        </div>
-                        <div
-                          className="citizenship-status-notcitizen block"
-                        >
-                          <input
-                            aria-label="[object Object] for null"
-                            checked={false}
-                            className="usa-input-success"
-                            disabled={false}
-                            id="citizenship-status-notcitizen-MOCK-GUID"
-                            name="citizenship-status-notcitizen-MOCK-GUID"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            type="radio"
-                            value="NotCitizen"
-                          />
-                          <label
-                            className=""
-                            htmlFor="citizenship-status-notcitizen-MOCK-GUID"
-                          >
-                            <span>
-                              <div>
-                                <p>
-                                  I am not a U.S. citizen
-                                </p>
-                              </div>
-                            </span>
-                          </label>
-                        </div>
+                    <span>
+                      <div>
+                        <p>
+                          I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth
+                        </p>
                       </div>
                     </span>
-                  </span>
+                  </label>
+                </div>
+                <div
+                  className="citizenship-status-foreignborn block"
+                >
+                  <input
+                    aria-label="[object Object] for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="citizenship-status-foreignborn-MOCK-GUID"
+                    name="citizenship-status-foreignborn-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="ForeignBorn"
+                  />
+                  <label
+                    className=""
+                    htmlFor="citizenship-status-foreignborn-MOCK-GUID"
+                  >
+                    <span>
+                      <div>
+                        <p>
+                          I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country
+                        </p>
+                      </div>
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="citizenship-status-naturalized block"
+                >
+                  <input
+                    aria-label="[object Object] for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="citizenship-status-naturalized-MOCK-GUID"
+                    name="citizenship-status-naturalized-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Naturalized"
+                  />
+                  <label
+                    className=""
+                    htmlFor="citizenship-status-naturalized-MOCK-GUID"
+                  >
+                    <span>
+                      <div>
+                        <p>
+                          I am a naturalized U.S. citizen
+                        </p>
+                      </div>
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="citizenship-status-derived block"
+                >
+                  <input
+                    aria-label="[object Object] for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="citizenship-status-derived-MOCK-GUID"
+                    name="citizenship-status-derived-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Derived"
+                  />
+                  <label
+                    className=""
+                    htmlFor="citizenship-status-derived-MOCK-GUID"
+                  >
+                    <span>
+                      <div>
+                        <p>
+                          I am a derived U.S. citizen
+                        </p>
+                      </div>
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="citizenship-status-notcitizen block"
+                >
+                  <input
+                    aria-label="[object Object] for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="citizenship-status-notcitizen-MOCK-GUID"
+                    name="citizenship-status-notcitizen-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="NotCitizen"
+                  />
+                  <label
+                    className=""
+                    htmlFor="citizenship-status-notcitizen-MOCK-GUID"
+                  >
+                    <span>
+                      <div>
+                        <p>
+                          I am not a U.S. citizen
+                        </p>
+                      </div>
+                    </span>
+                  </label>
                 </div>
               </div>
-            </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Citizenship intro"
+            className="btn-cell back"
+            href="/form/citizenship/intro"
+            onClick={[Function]}
+            title="Go to previous section Citizenship intro"
+          >
             <div
-              className="bottom-btns"
+              className="actions back"
             >
               <div
-                className="btn-wrap"
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
               >
                 <div
-                  className="btn-container"
+                  className="direction"
                 >
-                  <button
-                    aria-label="Go to previous section Citizenship intro"
-                    className="btn-cell back"
-                    onClick={[Function]}
-                    title="Go to previous section Citizenship intro"
-                  >
-                    <div
-                      className="actions back"
-                    >
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-left"
-                        />
-                      </div>
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Back
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Citizenship intro
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                  <div
-                    className="btn-spacer"
-                  />
-                  <button
-                    aria-label="Go to next section Dual/multiple citizenship"
-                    className="btn-cell next"
-                    onClick={[Function]}
-                    title="Go to next section Dual/multiple citizenship"
-                  >
-                    <div
-                      className="actions next"
-                    >
-                      <div
-                        className="text"
-                      >
-                        <div
-                          className="direction"
-                        >
-                          Next
-                        </div>
-                        <div
-                          className="label"
-                        >
-                          Dual/multiple citizenship
-                        </div>
-                      </div>
-                      <div
-                        className="icon"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="fa fa-arrow-circle-right"
-                        />
-                      </div>
-                    </div>
-                  </button>
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Citizenship intro
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Dual/multiple citizenship"
+            className="btn-cell next"
+            href="/form/citizenship/multiple"
+            onClick={[Function]}
+            title="Go to next section Dual/multiple citizenship"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Dual/multiple citizenship
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -8972,9 +8922,10 @@ exports[`The section component renders history.education 1`] = `
           <div
             className="btn-container"
           >
-            <button
+            <a
               aria-label="Go to previous section Employment history"
               className="btn-cell back"
+              href="/form/history/employment"
               onClick={[Function]}
               title="Go to previous section Employment history"
             >
@@ -9004,13 +8955,14 @@ exports[`The section component renders history.education 1`] = `
                   </div>
                 </div>
               </div>
-            </button>
+            </a>
             <div
               className="btn-spacer"
             />
-            <button
+            <a
               aria-label="Go to next section Former federal service"
               className="btn-cell next"
+              href="/form/history/federal"
               onClick={[Function]}
               title="Go to next section Former federal service"
             >
@@ -9040,7 +8992,7 @@ exports[`The section component renders history.education 1`] = `
                   />
                 </div>
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -9561,9 +9513,10 @@ exports[`The section component renders history.employment 1`] = `
           <div
             className="btn-container"
           >
-            <button
+            <a
               aria-label="Go to previous section Places you lived"
               className="btn-cell back"
+              href="/form/history/residence"
               onClick={[Function]}
               title="Go to previous section Places you lived"
             >
@@ -9593,13 +9546,14 @@ exports[`The section component renders history.employment 1`] = `
                   </div>
                 </div>
               </div>
-            </button>
+            </a>
             <div
               className="btn-spacer"
             />
-            <button
+            <a
               aria-label="Go to next section Schools & diplomas"
               className="btn-cell next"
+              href="/form/history/education"
               onClick={[Function]}
               title="Go to next section Schools & diplomas"
             >
@@ -9629,7 +9583,7 @@ exports[`The section component renders history.employment 1`] = `
                   />
                 </div>
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -9804,9 +9758,10 @@ exports[`The section component renders history.federal 1`] = `
           <div
             className="btn-container"
           >
-            <button
+            <a
               aria-label="Go to previous section Schools & diplomas"
               className="btn-cell back"
+              href="/form/history/education"
               onClick={[Function]}
               title="Go to previous section Schools & diplomas"
             >
@@ -9836,13 +9791,14 @@ exports[`The section component renders history.federal 1`] = `
                   </div>
                 </div>
               </div>
-            </button>
+            </a>
             <div
               className="btn-spacer"
             />
-            <button
+            <a
               aria-label="Go to next section Review your history"
               className="btn-cell next"
+              href="/form/history/review"
               onClick={[Function]}
               title="Go to next section Review your history"
             >
@@ -9872,7 +9828,7 @@ exports[`The section component renders history.federal 1`] = `
                   />
                 </div>
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -9956,9 +9912,10 @@ exports[`The section component renders history.intro 1`] = `
           <div
             className="btn-container"
           >
-            <button
+            <a
               aria-label="Go to previous section Review Identification"
               className="btn-cell back"
+              href="/form/identification/review"
               onClick={[Function]}
               title="Go to previous section Review Identification"
             >
@@ -9988,13 +9945,14 @@ exports[`The section component renders history.intro 1`] = `
                   </div>
                 </div>
               </div>
-            </button>
+            </a>
             <div
               className="btn-spacer"
             />
-            <button
+            <a
               aria-label="Go to next section Places you lived"
               className="btn-cell next"
+              href="/form/history/residence"
               onClick={[Function]}
               title="Go to next section Places you lived"
             >
@@ -10024,7 +9982,7 @@ exports[`The section component renders history.intro 1`] = `
                   />
                 </div>
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -10423,9 +10381,10 @@ exports[`The section component renders history.residence 1`] = `
           <div
             className="btn-container"
           >
-            <button
+            <a
               aria-label="Go to previous section History intro"
               className="btn-cell back"
+              href="/form/history/intro"
               onClick={[Function]}
               title="Go to previous section History intro"
             >
@@ -10455,13 +10414,14 @@ exports[`The section component renders history.residence 1`] = `
                   </div>
                 </div>
               </div>
-            </button>
+            </a>
             <div
               className="btn-spacer"
             />
-            <button
+            <a
               aria-label="Go to next section Employment history"
               className="btn-cell next"
+              href="/form/history/employment"
               onClick={[Function]}
               title="Go to next section Employment history"
             >
@@ -10491,7 +10451,7 @@ exports[`The section component renders history.residence 1`] = `
                   />
                 </div>
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -11494,9 +11454,10 @@ exports[`The section component renders history.review 1`] = `
           <div
             className="btn-container"
           >
-            <button
+            <a
               aria-label="Go to previous section Former federal service"
               className="btn-cell back"
+              href="/form/history/federal"
               onClick={[Function]}
               title="Go to previous section Former federal service"
             >
@@ -11526,13 +11487,14 @@ exports[`The section component renders history.review 1`] = `
                   </div>
                 </div>
               </div>
-            </button>
+            </a>
             <div
               className="btn-spacer"
             />
-            <button
+            <a
               aria-label="Go to next section Relationships intro"
               className="btn-cell next"
+              href="/form/relationships/intro"
               onClick={[Function]}
               title="Go to next section Relationships intro"
             >
@@ -11562,7 +11524,7 @@ exports[`The section component renders history.review 1`] = `
                   />
                 </div>
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -11824,9 +11786,10 @@ exports[`The section component renders identification.birthdate 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Full name"
             className="btn-cell back"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to previous section Full name"
           >
@@ -11856,13 +11819,14 @@ exports[`The section component renders identification.birthdate 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Place of birth"
             className="btn-cell next"
+            href="/form/identification/birthplace"
             onClick={[Function]}
             title="Go to next section Place of birth"
           >
@@ -11892,7 +11856,7 @@ exports[`The section component renders identification.birthdate 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -12106,9 +12070,10 @@ exports[`The section component renders identification.birthplace 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Date of birth"
             className="btn-cell back"
+            href="/form/identification/birthdate"
             onClick={[Function]}
             title="Go to previous section Date of birth"
           >
@@ -12138,13 +12103,14 @@ exports[`The section component renders identification.birthplace 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Social security number"
             className="btn-cell next"
+            href="/form/identification/ssn"
             onClick={[Function]}
             title="Go to next section Social security number"
           >
@@ -12174,7 +12140,7 @@ exports[`The section component renders identification.birthplace 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -12597,9 +12563,10 @@ exports[`The section component renders identification.contacts 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Other names used"
             className="btn-cell back"
+            href="/form/identification/othernames"
             onClick={[Function]}
             title="Go to previous section Other names used"
           >
@@ -12629,13 +12596,14 @@ exports[`The section component renders identification.contacts 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Your identifying information"
             className="btn-cell next"
+            href="/form/identification/physical"
             onClick={[Function]}
             title="Go to next section Your identifying information"
           >
@@ -12665,7 +12633,7 @@ exports[`The section component renders identification.contacts 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -12751,9 +12719,10 @@ exports[`The section component renders identification.intro 1`] = `
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Full name"
             className="btn-cell next"
+            href="/form/identification/name"
             onClick={[Function]}
             title="Go to next section Full name"
           >
@@ -12783,7 +12752,7 @@ exports[`The section component renders identification.intro 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -13386,9 +13355,10 @@ exports[`The section component renders identification.name 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Identification intro"
             className="btn-cell back"
+            href="/form/identification/intro"
             onClick={[Function]}
             title="Go to previous section Identification intro"
           >
@@ -13418,13 +13388,14 @@ exports[`The section component renders identification.name 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Date of birth"
             className="btn-cell next"
+            href="/form/identification/birthdate"
             onClick={[Function]}
             title="Go to next section Date of birth"
           >
@@ -13454,7 +13425,7 @@ exports[`The section component renders identification.name 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -13677,9 +13648,10 @@ exports[`The section component renders identification.othernames 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Social security number"
             className="btn-cell back"
+            href="/form/identification/ssn"
             onClick={[Function]}
             title="Go to previous section Social security number"
           >
@@ -13709,13 +13681,14 @@ exports[`The section component renders identification.othernames 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Your contact information"
             className="btn-cell next"
+            href="/form/identification/contacts"
             onClick={[Function]}
             title="Go to next section Your contact information"
           >
@@ -13745,7 +13718,7 @@ exports[`The section component renders identification.othernames 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -15399,9 +15372,10 @@ exports[`The section component renders identification.physical 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Your contact information"
             className="btn-cell back"
+            href="/form/identification/contacts"
             onClick={[Function]}
             title="Go to previous section Your contact information"
           >
@@ -15431,13 +15405,14 @@ exports[`The section component renders identification.physical 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Review Identification"
             className="btn-cell next"
+            href="/form/identification/review"
             onClick={[Function]}
             title="Go to next section Review Identification"
           >
@@ -15467,7 +15442,7 @@ exports[`The section component renders identification.physical 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -19229,9 +19204,10 @@ exports[`The section component renders identification.review 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Your identifying information"
             className="btn-cell back"
+            href="/form/identification/physical"
             onClick={[Function]}
             title="Go to previous section Your identifying information"
           >
@@ -19261,13 +19237,14 @@ exports[`The section component renders identification.review 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section History intro"
             className="btn-cell next"
+            href="/form/history/intro"
             onClick={[Function]}
             title="Go to next section History intro"
           >
@@ -19297,7 +19274,7 @@ exports[`The section component renders identification.review 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -19534,9 +19511,10 @@ exports[`The section component renders identification.ssn 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Place of birth"
             className="btn-cell back"
+            href="/form/identification/birthplace"
             onClick={[Function]}
             title="Go to previous section Place of birth"
           >
@@ -19566,13 +19544,14 @@ exports[`The section component renders identification.ssn 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Other names used"
             className="btn-cell next"
+            href="/form/identification/othernames"
             onClick={[Function]}
             title="Go to next section Other names used"
           >
@@ -19602,7 +19581,7 @@ exports[`The section component renders identification.ssn 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -23670,11 +23649,12 @@ exports[`The section component renders military.disciplinary 1`] = `
         <div
           className="btn-container"
         >
-          <button
-            aria-label="Go to previous section Review citizenship"
+          <a
+            aria-label="Go to previous section U.S. military"
             className="btn-cell back"
+            href="/form/military/history"
             onClick={[Function]}
-            title="Go to previous section Review citizenship"
+            title="Go to previous section U.S. military"
           >
             <div
               className="actions back"
@@ -23698,19 +23678,20 @@ exports[`The section component renders military.disciplinary 1`] = `
                 <div
                   className="label"
                 >
-                  Review citizenship
+                  U.S. military
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
-            aria-label="Go to next section Military intro"
+          <a
+            aria-label="Go to next section Foreign military"
             className="btn-cell next"
+            href="/form/military/foreign"
             onClick={[Function]}
-            title="Go to next section Military intro"
+            title="Go to next section Foreign military"
           >
             <div
               className="actions next"
@@ -23726,7 +23707,7 @@ exports[`The section component renders military.disciplinary 1`] = `
                 <div
                   className="label"
                 >
-                  Military intro
+                  Foreign military
                 </div>
               </div>
               <div
@@ -23738,7 +23719,7 @@ exports[`The section component renders military.disciplinary 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -23887,11 +23868,12 @@ exports[`The section component renders military.foreign 1`] = `
         <div
           className="btn-container"
         >
-          <button
-            aria-label="Go to previous section U.S. military"
+          <a
+            aria-label="Go to previous section Disciplinary procedures"
             className="btn-cell back"
+            href="/form/military/disciplinary"
             onClick={[Function]}
-            title="Go to previous section U.S. military"
+            title="Go to previous section Disciplinary procedures"
           >
             <div
               className="actions back"
@@ -23915,17 +23897,18 @@ exports[`The section component renders military.foreign 1`] = `
                 <div
                   className="label"
                 >
-                  U.S. military
+                  Disciplinary procedures
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Review military history"
             className="btn-cell next"
+            href="/form/military/review"
             onClick={[Function]}
             title="Go to next section Review military history"
           >
@@ -23955,7 +23938,7 @@ exports[`The section component renders military.foreign 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -24060,8 +24043,8 @@ exports[`The section component renders military.history 1`] = `
                 >
                   <input
                     aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
+                    checked={true}
+                    className="usa-input-success selected"
                     disabled={false}
                     id="has_served-MOCK-GUID"
                     name="has_served-MOCK-GUID"
@@ -24074,7 +24057,7 @@ exports[`The section component renders military.history 1`] = `
                     value="Yes"
                   />
                   <label
-                    className=""
+                    className="checked"
                     htmlFor="has_served-MOCK-GUID"
                   >
                     <span>
@@ -24114,6 +24097,133 @@ exports[`The section component renders military.history 1`] = `
           </span>
         </div>
       </div>
+      <div>
+        <div
+          className="accordion"
+        >
+          <strong
+            className="aria-description"
+          >
+            Summary of military history
+          </strong>
+          <div
+            className="items"
+          />
+          <div
+            className="append-button"
+          />
+        </div>
+        <div
+          aria-label="Do you have additional military service to report?"
+          className="field required  branch addendum"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Do you have additional military service to report?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            />
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="radio_input-MOCK-GUID"
+                      name="radio_input-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="radio_input-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="radio_input-MOCK-GUID"
+                      name="radio_input-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="radio_input-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       className="bottom-btns"
@@ -24124,9 +24234,10 @@ exports[`The section component renders military.history 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Selective service record"
             className="btn-cell back"
+            href="/form/military/selective"
             onClick={[Function]}
             title="Go to previous section Selective service record"
           >
@@ -24156,15 +24267,16 @@ exports[`The section component renders military.history 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
-            aria-label="Go to next section Foreign military"
+          <a
+            aria-label="Go to next section Disciplinary procedures"
             className="btn-cell next"
+            href="/form/military/disciplinary"
             onClick={[Function]}
-            title="Go to next section Foreign military"
+            title="Go to next section Disciplinary procedures"
           >
             <div
               className="actions next"
@@ -24180,7 +24292,7 @@ exports[`The section component renders military.history 1`] = `
                 <div
                   className="label"
                 >
-                  Foreign military
+                  Disciplinary procedures
                 </div>
               </div>
               <div
@@ -24192,7 +24304,7 @@ exports[`The section component renders military.history 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -24272,9 +24384,10 @@ exports[`The section component renders military.intro 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Review citizenship"
             className="btn-cell back"
+            href="/form/citizenship/review"
             onClick={[Function]}
             title="Go to previous section Review citizenship"
           >
@@ -24304,13 +24417,14 @@ exports[`The section component renders military.intro 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Selective service record"
             className="btn-cell next"
+            href="/form/military/selective"
             onClick={[Function]}
             title="Go to next section Selective service record"
           >
@@ -24340,7 +24454,7 @@ exports[`The section component renders military.intro 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -24437,29 +24551,7 @@ exports[`The section component renders military.review 1`] = `
               aria-live="polite"
               className="messages error-messages"
               role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
+            />
           </div>
           <div
             className="table"
@@ -24474,15 +24566,15 @@ exports[`The section component renders military.review 1`] = `
                   className="content"
                 />
                 <div
-                  className="blocks option-list branch usa-input-error"
+                  className="blocks option-list branch"
                 >
                   <div
                     className="yes block"
                   >
                     <input
                       aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
+                      checked={true}
+                      className="usa-input-success selected"
                       disabled={false}
                       id="has_served-MOCK-GUID"
                       name="has_served-MOCK-GUID"
@@ -24495,7 +24587,7 @@ exports[`The section component renders military.review 1`] = `
                       value="Yes"
                     />
                     <label
-                      className=""
+                      className="checked"
                       htmlFor="has_served-MOCK-GUID"
                     >
                       <span>
@@ -24533,6 +24625,155 @@ exports[`The section component renders military.review 1`] = `
                 </div>
               </span>
             </span>
+          </div>
+        </div>
+        <div>
+          <div
+            className="accordion"
+          >
+            <strong
+              className="aria-description"
+            >
+              Summary of military history
+            </strong>
+            <div
+              className="items"
+            />
+            <div
+              className="append-button"
+            />
+          </div>
+          <div
+            aria-label="Do you have additional military service to report?"
+            className="field required  branch addendum"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <h4
+              className="title h4"
+            >
+              Do you have additional military service to report?
+            </h4>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.required"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Your response is required
+                      </h5>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component shrink"
+                >
+                  <div
+                    className="content"
+                  />
+                  <div
+                    className="blocks option-list branch usa-input-error"
+                  >
+                    <div
+                      className="yes block"
+                    >
+                      <input
+                        aria-label="Yes for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="radio_input-MOCK-GUID"
+                        name="radio_input-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Yes"
+                      />
+                      <label
+                        className=""
+                        htmlFor="radio_input-MOCK-GUID"
+                      >
+                        <span>
+                          Yes
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="no block"
+                    >
+                      <input
+                        aria-label="No for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="radio_input-MOCK-GUID"
+                        name="radio_input-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="No"
+                      />
+                      <label
+                        className=""
+                        htmlFor="radio_input-MOCK-GUID"
+                      >
+                        <span>
+                          No
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -24693,9 +24934,10 @@ exports[`The section component renders military.review 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Foreign military"
             className="btn-cell back"
+            href="/form/military/foreign"
             onClick={[Function]}
             title="Go to previous section Foreign military"
           >
@@ -24725,13 +24967,14 @@ exports[`The section component renders military.review 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section Foreign intro"
             className="btn-cell next"
+            href="/form/foreign/intro"
             onClick={[Function]}
             title="Go to next section Foreign intro"
           >
@@ -24761,7 +25004,7 @@ exports[`The section component renders military.review 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -24930,9 +25173,10 @@ exports[`The section component renders military.selective 1`] = `
         <div
           className="btn-container"
         >
-          <button
+          <a
             aria-label="Go to previous section Military intro"
             className="btn-cell back"
+            href="/form/military/intro"
             onClick={[Function]}
             title="Go to previous section Military intro"
           >
@@ -24962,13 +25206,14 @@ exports[`The section component renders military.selective 1`] = `
                 </div>
               </div>
             </div>
-          </button>
+          </a>
           <div
             className="btn-spacer"
           />
-          <button
+          <a
             aria-label="Go to next section U.S. military"
             className="btn-cell next"
+            href="/form/military/history"
             onClick={[Function]}
             title="Go to next section U.S. military"
           >
@@ -24998,7 +25243,7 @@ exports[`The section component renders military.selective 1`] = `
                 />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>

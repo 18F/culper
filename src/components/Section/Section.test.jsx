@@ -56,11 +56,20 @@ describe('The section component', () => {
             formType: 'SF86',
           },
           section: { section: section.url, subsection: subsection.url },
+          application: {
+            Military: {
+              History: {
+                HasServed: {
+                  value: 'Yes',
+                },
+              },
+            },
+          },
         })
 
         testSnapshot(
           <Provider store={store}>
-            <MemoryRouter>
+            <MemoryRouter initialEntries={[`/form/${section.url}/${subsection.url}`]}>
               <Section section={section.url} subsection={subsection.url} />
             </MemoryRouter>
           </Provider>,

@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { env } from 'config'
 import { getBackAndNext } from 'helpers/navigation'
 
 import SectionNavButton from './SectionNavButton'
@@ -12,13 +11,6 @@ const SectionNavigation = ({ back, next }) => {
     return null
   }
 
-  const goToSection = (path) => {
-    env.History().push(path)
-  }
-
-  const backOnClick = back && (() => { goToSection(`/form${back.path}`) })
-  const nextOnClick = next && (() => { goToSection(`/form${next.path}`) })
-
   return (
     <div className="bottom-btns">
       <div className="btn-wrap">
@@ -26,15 +18,13 @@ const SectionNavigation = ({ back, next }) => {
           <SectionNavButton
             direction="back"
             label={back && back.navLabel}
-            onClick={backOnClick}
-            isEmpty={!back}
+            link={back && back.fullPath}
           />
           <div className="btn-spacer" />
           <SectionNavButton
             direction="next"
             label={next && next.navLabel}
-            onClick={nextOnClick}
-            isEmpty={!next}
+            link={next && next.fullPath}
           />
         </div>
       </div>
@@ -53,8 +43,8 @@ SectionNavigation.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { section, subsection } = ownProps
-  return getBackAndNext(state, { section, subsection })
+  const { currentPath } = ownProps
+  return getBackAndNext(state, { currentPath })
 }
 
 export default connect(mapStateToProps)(SectionNavigation)

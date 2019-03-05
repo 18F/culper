@@ -3,9 +3,9 @@ import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-
 import { testSnapshot } from 'components/test-helpers'
-import Identification, { IdentificationSections } from 'components/Section/Identification/Identification'
+import { IdentificationSections } from 'components/Section/Identification/Identification'
+import Section from 'components/Section'
 
 const applicationState = {
   Identification: {
@@ -35,7 +35,7 @@ describe('The identification section', () => {
     const component = mount(
       <MemoryRouter initialEntries={['/form/identification/review']}>
         <Provider store={store}>
-          <Identification subsection="review" />
+          <Section section="identification" subsection="review" />
         </Provider>
       </MemoryRouter>,
     )
@@ -54,7 +54,7 @@ describe('The identification section', () => {
       const component = mount(
         <MemoryRouter initialEntries={[`/form/identification/${section}`]}>
           <Provider store={store}>
-            <Identification subsection={section} />
+            <Section section="identification" subsection={section} />
           </Provider>
         </MemoryRouter>,
       )

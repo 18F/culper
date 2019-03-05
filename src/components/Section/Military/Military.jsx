@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route } from 'react-router'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { i18n } from 'config'
-import * as sections from 'constants/sections'
+import { MILITARY } from 'constants/sections'
+import * as formTypes from 'config/formTypes'
 import { ErrorList } from 'components/ErrorList'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
 import Selective from 'components/Section/Military/Selective'
@@ -13,15 +14,22 @@ import Foreign from 'components/Section/Military/Foreign'
 import Intro from 'components/Section/Military/Intro'
 import Review from 'components/Section/Military/Review'
 
-const Military = ({ subsection }) => {
-  const subsectionClasses = `view view-${subsection || 'unknown'}`
+const Military = ({ subsection, location, formType }) => {
+  const subsectionLibrary = {
+    intro: Intro,
+    selective: Selective,
+    history: History,
+    disciplinary: Disciplinary,
+    foreign: Foreign,
+    review: Review,
+  }
 
+  const form = formTypes[formType]
+  const section = form.find(s => (s.key === MILITARY))
+  const subsectionClasses = `view view-${subsection || 'unknown'}`
   const isReview = subsection === 'review'
   const title = isReview && i18n.t('review.title')
   const para = isReview && i18n.m('review.para')
-
-  /** TODO - this should come from Redux store */
-  const formType = 'SF86'
 
   return (
     <div className="section-view">
@@ -33,18 +41,15 @@ const Military = ({ subsection }) => {
           <div className="top-btns"><ErrorList /></div>
         )}
 
-        <Route path="/form/military/intro" component={Intro} />
-        <Route path="/form/military/selective" component={Selective} />
-        <Route path="/form/military/history" component={History} />
-        <Route path="/form/military/disciplinary" component={Disciplinary} />
-        <Route path="/form/military/foreign" component={Foreign} />
-        <Route path="/form/military/review" component={Review} />
+        {section.subsections.map(sub => (
+          <Route
+            key={sub.key}
+            path={`/form/${section.path}/${sub.path}`}
+            component={subsectionLibrary[sub.name]}
+          />
+        ))}
 
-        <SectionNavigation
-          section={sections.MILITARY}
-          subsection={subsection}
-          formType={formType}
-        />
+        <SectionNavigation currentPath={location.pathname} />
       </div>
     </div>
   )
@@ -57,6 +62,7 @@ function mapStateToProps(state) {
   const errors = app.Errors || {}
   const completed = app.Completed || {}
   const addressBooks = app.AddressBooks || {}
+  const auth = state.authentication || {}
 
   return {
     ...section,
@@ -65,15 +71,19 @@ function mapStateToProps(state) {
     Errors: errors.military || [],
     Completed: completed.military || [],
     addressBooks,
+    formType: auth.formType,
   }
 }
 
 Military.defaultProps = {
   subsection: 'intro',
+  location: {},
 }
 
 Military.propTypes = {
   subsection: PropTypes.string,
+  location: PropTypes.object,
+  formType: PropTypes.string.isRequired,
 }
 
 export const MilitarySections = () => <Review />
