@@ -65,10 +65,7 @@ const Identification = ({ subsection, location, formType }) => {
           />
         ))}
 
-        <SectionNavigation
-          currentPath={location.pathname}
-          formType={formType}
-        />
+        <SectionNavigation currentPath={location.pathname} />
       </div>
     </div>
   )
