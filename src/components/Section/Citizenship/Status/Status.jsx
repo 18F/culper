@@ -840,7 +840,7 @@ export class Status extends Subsection {
               adjustFor="buttons"
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
-                className="citizenship-document-type"
+                className="citizenship-document-type option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.handleError}
                 selectedValue={(this.props.DocumentType || {}).value}>
@@ -855,7 +855,7 @@ export class Status extends Subsection {
                 <Radio
                   name="document-type-visa"
                   label={i18n.t('citizenship.status.label.documenttype.visa')}
-                  value="U.S. Visa"
+                  value="U.S. Visa (red foil number)"
                   className="document-type-visa"
                   onUpdate={value => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
