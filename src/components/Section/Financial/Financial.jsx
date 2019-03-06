@@ -9,8 +9,6 @@ import { i18n } from 'config'
 import { ErrorList } from 'components/ErrorList'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
 
-import { FINANCIAL } from 'constants/sections'
-
 import Intro from 'components/Section/Financial/Intro'
 import Bankruptcies from 'components/Section/Financial/Bankruptcy'
 import Gambling from 'components/Section/Financial/Gambling'
@@ -22,7 +20,7 @@ import Nonpayment from 'components/Section/Financial/Nonpayment'
 import Review from 'components/Section/Financial/Review'
 
 const Financial = (props) => {
-  const { subsection } = props
+  const { subsection, location } = props
 
   const subsectionClasses = classnames(
     'view',
@@ -32,9 +30,6 @@ const Financial = (props) => {
   const isReview = subsection === 'review'
   const title = isReview && i18n.t('review.title')
   const para = isReview && i18n.m('review.para')
-
-  /** TODO - this should come from Redux store */
-  const formType = 'SF86'
 
   return (
     <div className="section-view">
@@ -56,11 +51,7 @@ const Financial = (props) => {
         <Route path="/form/financial/nonpayment" component={Nonpayment} />
         <Route path="/form/financial/review" component={Review} />
 
-        <SectionNavigation
-          section={FINANCIAL}
-          subsection={subsection}
-          formType={formType}
-        />
+        <SectionNavigation currentPath={location.pathname} />
       </div>
     </div>
   )
@@ -68,18 +59,22 @@ const Financial = (props) => {
 
 function mapStateToProps(state) {
   const { section } = state
+  const auth = state.authentication || {}
 
   return {
+    formType: auth.formType,
     ...section,
   }
 }
 
 Financial.propTypes = {
   subsection: PropTypes.string,
+  location: PropTypes.object,
 }
 
 Financial.defaultProps = {
   subsection: 'intro',
+  location: {},
 }
 
 export default connect(mapStateToProps)(Financial)
