@@ -20,7 +20,7 @@ export const FINANCIAL_BANKRUPTCY = {
   key: sections.FINANCIAL_BANKRUPTCY,
   name: 'bankruptcy',
   path: 'bankruptcy',
-  storeKey: 'Baankruptcy',
+  storeKey: 'Bankruptcy',
   label: i18n.t('financial.subsection.bankruptcy'),
 }
 
