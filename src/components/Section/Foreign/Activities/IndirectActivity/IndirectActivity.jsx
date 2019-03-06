@@ -82,7 +82,7 @@ export class IndirectActivity extends Subsection {
         className="section-content indirect"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.activities.indirect')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.activities.indirect')}</h1>
         <Branch
           name="has_interests"
           label={i18n.t('foreign.activities.indirect.heading.title')}

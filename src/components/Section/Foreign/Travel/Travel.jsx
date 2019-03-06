@@ -77,7 +77,7 @@ export class Travel extends Subsection {
         className="section-content foreign-travel"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.travel')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.travel')}</h1>
         <Branch
           label={i18n.t('foreign.travel.heading.outside')}
           labelSize="h4"

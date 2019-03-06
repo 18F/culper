@@ -73,7 +73,7 @@ export class Ventures extends Subsection {
         className="section-content foreign-business-ventures"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.business.ventures')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.ventures')}</h1>
         <Branch
           name="has_foreign_ventures"
           label={i18n.t('foreign.business.ventures.heading.title')}

@@ -31,7 +31,7 @@ export class RealEstateActivity extends Subsection {
   }
 
   update = (queue) => {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasInterests: this.props.HasInterests,
       ...queue,
@@ -82,7 +82,7 @@ export class RealEstateActivity extends Subsection {
         className="section-content realestate"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.activities.realestate')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.activities.realestate')}</h1>
         <Branch
           name="has_interests"
           label={i18n.t('foreign.activities.realestate.heading.title')}

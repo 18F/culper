@@ -70,7 +70,7 @@ export class Advice extends Subsection {
         className="section-content foreign-business-advice"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.business.advice')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.advice')}</h1>
         <Branch
           name="has_foreign_advice"
           label={i18n.t('foreign.business.advice.heading.title')}

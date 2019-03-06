@@ -72,7 +72,7 @@ export class Family extends Subsection {
         className="section-content foreign-business-family"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.business.family')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.family')}</h1>
         <Branch
           name="has_foreign_family"
           label={i18n.t('foreign.business.family.heading.title')}

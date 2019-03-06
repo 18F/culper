@@ -112,7 +112,7 @@ export const FOREIGN_BUSINESS_EMPLOYMENT = {
 
 export const FOREIGN_BUSINESS_VENTURES = {
   key: sections.FOREIGN_BUSINESS_VENTURES,
-  name: 'ventues',
+  name: 'ventures',
   path: 'ventures',
   storeKey: 'Ventures',
   label: i18n.t('foreign.subsection.business.ventures'),

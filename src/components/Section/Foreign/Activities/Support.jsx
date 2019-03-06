@@ -67,7 +67,7 @@ export class Support extends Subsection {
         className="section-content foreign-activities-support"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.activities.support')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.activities.support')}</h1>
         <Branch
           name="has_foreign_support"
           label={i18n.t('foreign.activities.support.heading.title')}

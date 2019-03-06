@@ -87,7 +87,7 @@ export class Contact extends Subsection {
         className="section-content foreign-business-contact"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.business.contact')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.contact')}</h1>
         {i18n.m('foreign.business.contact.para.intro')}
         <Branch
           name="has_foreign_contact"

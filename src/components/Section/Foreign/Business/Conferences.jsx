@@ -73,7 +73,7 @@ export class Conferences extends Subsection {
         className="section-content foreign-business-conferences"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.business.events')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.conferences')}</h1>
         <Branch
           name="has_foreign_conferences"
           label={i18n.t('foreign.business.conferences.heading.title')}

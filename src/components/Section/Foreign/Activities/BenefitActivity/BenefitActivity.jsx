@@ -99,7 +99,7 @@ export class BenefitActivity extends Subsection {
         className="section-content benefit-activity"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.activities.benefits')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.activities.benefits')}</h1>
         <Branch
           name="has_benefit"
           className="has-benefits"

@@ -75,7 +75,7 @@ export class Political extends Subsection {
         className="section-content foreign-business-political"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.destination.business.political')}</h1>
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.political')}</h1>
         <Branch
           name="has_foreign_political"
           label={i18n.t('foreign.business.political.heading.title')}
