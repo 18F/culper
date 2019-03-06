@@ -219,27 +219,35 @@ describe('The Name component', () => {
     component.find('.middle-none input').simulate('change')
     component.find('.last input').simulate('change')
     component.find('.suffix-other input').simulate('change')
-    expect(updates).toBe(7)
+    component.find('select[name="suffix"]').simulate('change')
+    expect(updates).toBe(8)
   })
 
-  it*'updates suffix dropdown', () => {
-    let updates = 0
+  it('updates suffix dropdown', () => {
+    let result = 'X'
     const expected = {
       name: 'name',
       suffix: 'X',
-      onUpdate: () => {
-        updates++
+      onUpdate: (values) => {
+        result = values
       }
     }
 
     const component = mount(<Name {...expected} />)
-    component.find('select.suffix').simulate('change', {
+    component.find('select[name="suffix"]').simulate('change', {
       target: {
         value : 'Other'
       }
     })
-    expect(component.find('select.suffix').props().value).toBe('Other')
-  }
+    expect(result.suffix).toBe('Other')
+  })
+
+  it('shows label in suffix', () => {
+    const component = mount(<Name name="name" />)
+    component.find('select[name="suffix"] option').forEach((option) => {
+      expect(option.props().label).toBe(option.text())
+    })
+  })
 
   it('error if single letter without initial only', () => {
     const tests = [

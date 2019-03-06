@@ -346,7 +346,7 @@ export default class Name extends ValidationElement {
                 key={`name-${option.label}`}
                 label={option.label}
                 value={option.value}
-              />
+              >{option.label}</option>
             ))}
           </SelectDropdown>
           <Show when={this.props.suffix === 'Other'}>
