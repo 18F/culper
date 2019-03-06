@@ -1,6 +1,5 @@
 import React from 'react'
-import { i18n } from '../../../config'
-import { NameValidator } from '../../../validators'
+import { i18n } from 'config'
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
 import Show from '../Show'
@@ -13,7 +12,7 @@ export default class Name extends ValidationElement {
     super(props)
 
     this.state = {
-      uid: `${this.props.name}-${super.guid()}`
+      uid: `${this.props.name}-${super.guid()}`,
     }
 
     this.update = this.update.bind(this)
@@ -45,7 +44,7 @@ export default class Name extends ValidationElement {
       noMiddleName: this.props.noMiddleName,
       suffix: this.props.suffix,
       suffixOther: this.props.suffixOther,
-      ...queue
+      ...queue,
     })
 
     if (callback) {
@@ -55,14 +54,14 @@ export default class Name extends ValidationElement {
 
   updateFirst(values) {
     this.update({
-      first: values.value
+      first: values.value,
     })
   }
 
   updateFirstInitial(values) {
     this.update(
       {
-        firstInitialOnly: values.checked
+        firstInitialOnly: values.checked,
       },
       () => {
         this.refs.first.refs.text.refs.input.focus()
@@ -75,7 +74,7 @@ export default class Name extends ValidationElement {
 
   updateMiddle(values) {
     this.update({
-      middle: values.value
+      middle: values.value,
     })
   }
 
@@ -83,7 +82,7 @@ export default class Name extends ValidationElement {
     this.update(
       {
         noMiddleName: false,
-        middleInitialOnly: values.checked
+        middleInitialOnly: values.checked,
       },
       () => {
         this.refs.middle.refs.text.refs.input.focus()
@@ -98,7 +97,7 @@ export default class Name extends ValidationElement {
       {
         middleInitialOnly: false,
         middle: '',
-        noMiddleName: values.checked
+        noMiddleName: values.checked,
       },
       () => {
         this.refs.middle.refs.text.refs.input.focus()
@@ -110,19 +109,19 @@ export default class Name extends ValidationElement {
 
   updateLast(values) {
     this.update({
-      last: values.value
+      last: values.value,
     })
   }
 
   updateSuffix(e) {
     this.update({
-      suffix: e.target.value
+      suffix: e.target.value,
     })
   }
 
   updateSuffixOther(values) {
     this.update({
-      suffixOther: values.value
+      suffixOther: values.value,
     })
   }
 
@@ -165,27 +164,25 @@ export default class Name extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
-  filterErrors(errors) {
-    return errors.filter(err => err.code.indexOf('required') === -1)
-  }
+  filterErrors = errors => errors.filter(err => err.code.indexOf('required') === -1)
 
   getSuffixOptions() {
     const { prefix } = this.props
     return [
-      {label: "", value: ""},
-      {label: i18n.t(`${prefix}.label.jr`), value: 'Jr'},
-      {label: i18n.t(`${prefix}.label.sr`), value: 'Sr'},
-      {label: i18n.t(`${prefix}.label.i`), value: 'I'},
-      {label: i18n.t(`${prefix}.label.ii`), value: 'II'},
-      {label: i18n.t(`${prefix}.label.iii`), value: 'III'},
-      {label: i18n.t(`${prefix}.label.iv`), value: 'IV'},
-      {label: i18n.t(`${prefix}.label.v`), value: 'V'},
-      {label: i18n.t(`${prefix}.label.vi`), value: 'VI'},
-      {label: i18n.t(`${prefix}.label.vii`), value: 'VII'},
-      {label: i18n.t(`${prefix}.label.viii`), value: 'VIII'},
-      {label: i18n.t(`${prefix}.label.ix`), value: 'IX'},
-      {label: i18n.t(`${prefix}.label.x`), value: 'X'},
-      {label: i18n.t(`${prefix}.label.other`), value: 'Other'},
+      { label: '', value: '' },
+      { label: i18n.t(`${prefix}.label.jr`), value: 'Jr' },
+      { label: i18n.t(`${prefix}.label.sr`), value: 'Sr' },
+      { label: i18n.t(`${prefix}.label.i`), value: 'I' },
+      { label: i18n.t(`${prefix}.label.ii`), value: 'II' },
+      { label: i18n.t(`${prefix}.label.iii`), value: 'III' },
+      { label: i18n.t(`${prefix}.label.iv`), value: 'IV' },
+      { label: i18n.t(`${prefix}.label.v`), value: 'V' },
+      { label: i18n.t(`${prefix}.label.vi`), value: 'VI' },
+      { label: i18n.t(`${prefix}.label.vii`), value: 'VII' },
+      { label: i18n.t(`${prefix}.label.viii`), value: 'VIII' },
+      { label: i18n.t(`${prefix}.label.ix`), value: 'IX' },
+      { label: i18n.t(`${prefix}.label.x`), value: 'X' },
+      { label: i18n.t(`${prefix}.label.other`), value: 'Other' },
     ]
   }
 
@@ -193,7 +190,7 @@ export default class Name extends ValidationElement {
     const { prefix } = this.props
     const klass = [
       `name ${this.props.className || ''}`.trim(),
-      this.props.disabled ? 'disabled' : ''
+      this.props.disabled ? 'disabled' : '',
     ]
     const maxFirst = this.props.firstInitialOnly ? '1' : '100'
     const maxMiddle = this.props.middleInitialOnly ? '1' : '100'
@@ -208,9 +205,10 @@ export default class Name extends ValidationElement {
           help="identification.name.first.help"
           errorPrefix="name"
           className="usa-form-control"
-          filterErrors={this.filterErrors.bind(this)}
+          filterErrors={this.filterErrors}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
+          adjustFor="labels"
+        >
           <Text
             name="first"
             ref="first"
@@ -248,9 +246,10 @@ export default class Name extends ValidationElement {
             help="identification.name.middle.help"
             errorPrefix="name"
             className="usa-form-control"
-            filterErrors={this.filterErrors.bind(this)}
+            filterErrors={this.filterErrors}
             scrollIntoView={this.props.scrollIntoView}
-            adjustFor="labels">
+            adjustFor="labels"
+          >
             <Text
               name="middle"
               ref="middle"
@@ -299,9 +298,10 @@ export default class Name extends ValidationElement {
           titleSize="label"
           errorPrefix="name"
           className="usa-form-control"
-          filterErrors={this.filterErrors.bind(this)}
+          filterErrors={this.filterErrors}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
+          adjustFor="labels"
+        >
           <Text
             name="last"
             ref="last"
@@ -323,7 +323,7 @@ export default class Name extends ValidationElement {
           * This avoids having to alter the <Field /> and regressing every usage.
           * Permanent fix should be done in <Field /> and remove this hack.
         */}
-        <div style={{height: '50px'}} />
+        <div style={{ height: '50px' }} />
         <Field
           title={i18n.t(`${prefix}.label.suffix`)}
           titleSize="label"
@@ -331,22 +331,25 @@ export default class Name extends ValidationElement {
           errorPrefix="name"
           className="usa-form-control"
           scrollIntoView={this.props.scrollIntoView}
-          optional={true}
-          optionalText={i18n.t(`${prefix}.label.optional`)}>
+          optional
+          optionalText={i18n.t(`${prefix}.label.optional`)}
+        >
           <SelectDropdown
             className="option-list suffix usa-small-input"
             isDisabled={this.props.disabled}
             name="suffix"
             onChange={this.updateSuffix}
             onError={this.handleErrorSuffix}
-            value={this.props.suffix || ""}
-            >
+            value={this.props.suffix || ''}
+          >
             {this.getSuffixOptions().map(option => (
               <option
                 key={`name-${option.label}`}
                 label={option.label}
                 value={option.value}
-              >{option.label}</option>
+              >
+                {option.label}
+              </option>
             ))}
           </SelectDropdown>
           <Show when={this.props.suffix === 'Other'}>
@@ -386,15 +389,11 @@ Name.defaultProps = {
   valid: false,
   required: false,
   errorCodes: [],
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }
 
-Name.requiredErrorsOnly = errors => {
-  return errors.filter(err => err.code.indexOf('required') !== -1)
-}
+Name.requiredErrorsOnly = errors => errors.filter(err => err.code.indexOf('required') !== -1)
 
 Name.errors = [
   {
@@ -404,6 +403,6 @@ Name.errors = [
         return !!props.first && !!props.last
       }
       return true
-    }
-  }
+    },
+  },
 ]
