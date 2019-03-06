@@ -9,7 +9,11 @@ describe('The foreign section', () => {
   const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({})
+    const store = mockStore({
+      authentication: {
+        formType: 'SF86',
+      },
+    })
     mount(
       <Provider store={store}>
         <MemoryRouter>
