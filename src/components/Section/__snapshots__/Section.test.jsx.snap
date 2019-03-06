@@ -1752,18 +1752,49 @@ exports[`The section component renders financial.bankruptcy 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Financial intro"
+            className="btn-cell back"
+            href="/form/financial/intro"
+            onClick={[Function]}
+            title="Go to previous section Financial intro"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Financial intro
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Gambling"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/financial/gambling"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Gambling"
           >
             <div
               className="actions next"
@@ -1779,7 +1810,7 @@ exports[`The section component renders financial.bankruptcy 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Gambling
                 </div>
               </div>
               <div
@@ -1936,18 +1967,49 @@ exports[`The section component renders financial.card 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Taxes"
+            className="btn-cell back"
+            href="/form/financial/taxes"
+            onClick={[Function]}
+            title="Go to previous section Taxes"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Taxes
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Credit counseling"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/financial/credit"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Credit counseling"
           >
             <div
               className="actions next"
@@ -1963,7 +2025,7 @@ exports[`The section component renders financial.card 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Credit counseling
                 </div>
               </div>
               <div
@@ -2120,18 +2182,49 @@ exports[`The section component renders financial.credit 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Employer card abuse"
+            className="btn-cell back"
+            href="/form/financial/card"
+            onClick={[Function]}
+            title="Go to previous section Employer card abuse"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Employer card abuse
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Delinquent payments"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/financial/delinquent"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Delinquent payments"
           >
             <div
               className="actions next"
@@ -2147,7 +2240,7 @@ exports[`The section component renders financial.credit 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Delinquent payments
                 </div>
               </div>
               <div
@@ -2349,18 +2442,49 @@ exports[`The section component renders financial.delinquent 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Credit counseling"
+            className="btn-cell back"
+            href="/form/financial/credit"
+            onClick={[Function]}
+            title="Go to previous section Credit counseling"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Credit counseling
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Non-payment consequence"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/financial/nonpayment"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Non-payment consequence"
           >
             <div
               className="actions next"
@@ -2376,7 +2500,7 @@ exports[`The section component renders financial.delinquent 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Non-payment consequence
                 </div>
               </div>
               <div
@@ -2533,18 +2657,49 @@ exports[`The section component renders financial.gambling 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Bankruptcy"
+            className="btn-cell back"
+            href="/form/financial/bankruptcy"
+            onClick={[Function]}
+            title="Go to previous section Bankruptcy"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Bankruptcy
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Taxes"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/financial/taxes"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Taxes"
           >
             <div
               className="actions next"
@@ -2560,7 +2715,7 @@ exports[`The section component renders financial.gambling 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Taxes
                 </div>
               </div>
               <div
@@ -2652,18 +2807,49 @@ exports[`The section component renders financial.intro 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Review Foreign Associations"
+            className="btn-cell back"
+            href="/form/foreign/review"
+            onClick={[Function]}
+            title="Go to previous section Review Foreign Associations"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Review Foreign Associations
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Bankruptcy"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/financial/bankruptcy"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Bankruptcy"
           >
             <div
               className="actions next"
@@ -2679,7 +2865,7 @@ exports[`The section component renders financial.intro 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Bankruptcy
                 </div>
               </div>
               <div
@@ -2916,18 +3102,49 @@ exports[`The section component renders financial.nonpayment 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Delinquent payments"
+            className="btn-cell back"
+            href="/form/financial/delinquent"
+            onClick={[Function]}
+            title="Go to previous section Delinquent payments"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Delinquent payments
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Review Financial record"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/financial/review"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Review Financial record"
           >
             <div
               className="actions next"
@@ -2943,7 +3160,7 @@ exports[`The section component renders financial.nonpayment 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Review Financial record
                 </div>
               </div>
               <div
@@ -4162,18 +4379,49 @@ exports[`The section component renders financial.review 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Non-payment consequence"
+            className="btn-cell back"
+            href="/form/financial/nonpayment"
+            onClick={[Function]}
+            title="Go to previous section Non-payment consequence"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Non-payment consequence
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Substance use intro"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/substance/intro"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Substance use intro"
           >
             <div
               className="actions next"
@@ -4189,7 +4437,7 @@ exports[`The section component renders financial.review 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Substance use intro
                 </div>
               </div>
               <div
@@ -4346,18 +4594,49 @@ exports[`The section component renders financial.taxes 1`] = `
         <div
           className="btn-container"
         >
-          <div
-            className="btn-cell"
-          />
+          <a
+            aria-label="Go to previous section Gambling"
+            className="btn-cell back"
+            href="/form/financial/gambling"
+            onClick={[Function]}
+            title="Go to previous section Gambling"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Gambling
+                </div>
+              </div>
+            </div>
+          </a>
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Identification intro"
+            aria-label="Go to next section Employer card abuse"
             className="btn-cell next"
-            href="/form/identification/intro"
+            href="/form/financial/card"
             onClick={[Function]}
-            title="Go to next section Identification intro"
+            title="Go to next section Employer card abuse"
           >
             <div
               className="actions next"
@@ -4373,7 +4652,7 @@ exports[`The section component renders financial.taxes 1`] = `
                 <div
                   className="label"
                 >
-                  Identification intro
+                  Employer card abuse
                 </div>
               </div>
               <div
