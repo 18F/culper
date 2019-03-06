@@ -142,26 +142,22 @@ export default class Name extends ValidationElement {
   }
 
   handleError(code, value, arr) {
-    arr = arr.map(err => {
-      return {
-        code: `name.${code}.${err.code}`,
-        valid: err.valid,
-        uid: err.uid
-      }
-    })
+    let errors = arr.map(err => ({
+      code: `name.${code}.${err.code}`,
+      valid: err.valid,
+      uid: err.uid,
+    }))
 
-    const requiredErr = arr.concat(
-      this.constructor.errors.map(err => {
-        return {
-          code: `name.${err.code}`,
-          valid: err.func(value, { ...this.props, ...this.state }),
-          uid: this.state.uid
-        }
-      })
+    errors = errors.concat(
+      this.constructor.errors.map(err => ({
+        code: `name.${err.code}`,
+        valid: err.func(value, { ...this.props, ...this.state }),
+        uid: this.state.uid,
+      }))
     )
 
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    return this.props.onError(value, errors)
   }
 
   filterErrors = errors => errors.filter(err => err.code.indexOf('required') === -1)
