@@ -1,98 +1,93 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
+
+import {
+  sectionHasErrorsSelector,
+  sectionIsValidSelector,
+} from 'selectors/navigation'
+
 import SectionList from './SectionList'
-import { hasErrors, isActive, isValid } from '../Navigation/navigation-helpers'
+import { isActive } from './navigation-helpers'
 
-class ToggleItem extends React.Component {
-  url() {
-    return `${this.props.baseUrl}/${this.props.section.url}`
-  }
+const ToggleItem = ({
+  section, basePath, sectionCode, topSection, location, errors, completed,
+}) => {
+  const url = `${basePath}/${section.path}`
+  const active = isActive(url, location.pathname)
 
-  isActive() {
-    return isActive(this.url(), this.props.location.pathname)
-  }
+  const newTopSection = topSection || section.name
 
-  hasErrors() {
-    return hasErrors(this.url(), this.props.errors)
-  }
+  const newSectionCode = sectionCode
+    ? `${sectionCode}/${section.name}`
+    : section.name
 
-  isValid() {
-    return isValid(this.url(), this.props)
-  }
-
-  getClassName() {
-    let className = 'section-link usa-accordion-button'
-
-    if (this.isActive()) {
-      className += ' usa-current'
+  const classes = classnames(
+    'section-link',
+    'usa-accordion-button',
+    {
+      'usa-current': active,
+      'has-errors': errors,
+      'is-valid': completed,
     }
+  )
 
-    if (this.hasErrors()) {
-      className += ' has-errors'
-    } else if (this.isValid()) {
-      className += ' is-valid'
-    }
-    return className
-  }
-
-  render() {
-    const url = this.url()
-    const active = this.isActive()
-
-    return (
-      <li className="toggle-item">
-        <a
-          className={this.getClassName()}
-          aria-controls={url}
-          aria-expanded={active}
-          role="button">
-          <span className="section-name">{this.props.section.name}</span>
-          <span className="eapp-status-icon" />
-        </a>
-        <div id={url} className="usa-accordion-content" aria-hidden={!active}>
-          <SectionList
-            className="usa-sidenav-sub_list"
-            baseUrl={url}
-            sections={this.props.section.subsections}
-          />
-        </div>
-      </li>
-    )
-  }
+  return (
+    <li className="toggle-item">
+      <button
+        type="button"
+        className={classes}
+        aria-controls={url}
+        aria-expanded={active}
+      >
+        <span className="section-name">{section.label}</span>
+        <span className="eapp-status-icon" />
+      </button>
+      <div id={url} className="usa-accordion-content" aria-hidden={!active}>
+        <SectionList
+          className="usa-sidenav-sub_list"
+          basePath={url}
+          sectionCode={newSectionCode}
+          topSection={newTopSection}
+          sections={section.subsections}
+        />
+      </div>
+    </li>
+  )
 }
 
 ToggleItem.propTypes = {
-  // from withRouter()
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
+  basePath: PropTypes.string,
+  sectionCode: PropTypes.string,
+  topSection: PropTypes.string,
+  errors: PropTypes.bool,
+  completed: PropTypes.bool,
 
-  baseUrl: PropTypes.string,
-  completed: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  // from withRouter()
+  location: PropTypes.object,
+
   section: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    subsections: PropTypes.array.isRequired
-  }).isRequired
+    path: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    subsections: PropTypes.array.isRequired,
+  }).isRequired,
 }
 
 ToggleItem.defaultProps = {
-  baseUrl: '/form',
-  completed: {},
-  errors: {}
+  basePath: '',
+  sectionCode: undefined,
+  topSection: undefined,
+  completed: false,
+  errors: false,
+  location: {},
 }
 
-function mapStateToProps(state) {
-  const app = state.application || {}
-  const completed = app.Completed || {}
-  const errors = app.Errors || {}
-  return {
-    completed,
-    errors
-  }
-}
+const mapStateToProps = (state, ownProps) => ({
+  ...sectionHasErrorsSelector(state, ownProps),
+  ...sectionIsValidSelector(state, ownProps),
+})
 
 export default withRouter(connect(mapStateToProps)(ToggleItem))

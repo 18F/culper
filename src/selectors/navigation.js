@@ -9,6 +9,73 @@ import { hideSelectiveService } from 'validators/selectiveservice'
 import { hideDisciplinaryProcedures } from 'validators/militarydisciplinary'
 import { hideExistingConditions } from 'validators/psychological'
 
+const getSectionErrors = (state, props) => {
+  const { application } = state
+  const { Errors } = application
+  const { topSection, section, sectionCode } = props
+
+  if (topSection) {
+    const sectionErrors = Errors[topSection] || []
+
+    if (section.name === 'Review') return sectionErrors
+
+    if (!section.subsections) {
+      return sectionErrors.filter(
+        e => `${e.section}/${e.subsection}` === `${sectionCode}/${section.name}`
+      )
+    }
+
+    return sectionErrors.filter(e => e.subsection.includes(section.name))
+  }
+
+  return Errors[section.name] || []
+}
+
+const getSectionCompleted = (state, props) => {
+  const { application } = state
+  const { Completed } = application
+
+  const { topSection, section, sectionCode } = props
+
+  if (topSection) {
+    const sectionCompleted = Completed[topSection] || []
+
+    if (section.name === 'Review') return sectionCompleted
+
+    if (!section.subsections) {
+      return sectionCompleted.filter(s => s.code === `${sectionCode}/${section.name}`)
+    }
+
+    return sectionCompleted.filter(s => s.code.includes(`${sectionCode}/${section.name}`))
+  }
+
+  return Completed[section.name] || []
+}
+
+const getFormLocked = (state) => {
+  const { Settings } = state
+  return Settings && Settings.locked
+}
+
+export const sectionHasErrorsSelector = createSelector(
+  getSectionErrors,
+  (errors = []) => ({
+    errors: errors.some(e => e.valid === false),
+  })
+)
+
+export const sectionIsValidSelector = createSelector(
+  getSectionCompleted,
+  (completed = []) => ({
+    completed: completed.length > 0 && completed.every(c => c.valid),
+  })
+)
+
+export const formIsLockedSelector = createSelector(
+  getFormLocked,
+  locked => ({ locked })
+)
+
 export const hideSelectiveServiceSelector = (state) => {
   const { application } = state
   return hideSelectiveService(application)
