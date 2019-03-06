@@ -1,6 +1,6 @@
 import React from 'react'
-import { i18n } from '../../../config'
 import { shallow, mount } from 'enzyme'
+import { i18n } from 'config'
 import Name from './Name'
 
 describe('The Name component', () => {
@@ -8,7 +8,7 @@ describe('The Name component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      value: ''
+      value: '',
     }
     const component = mount(<Name {...expected} />)
     component.find('.last input').simulate('change')
@@ -20,7 +20,7 @@ describe('The Name component', () => {
       const params = {
         name: 'applicant-name',
         first: "X- Mc. O'Leary",
-        valid: true
+        valid: true,
       }
 
       const component = mount(<Name {...params} />)
@@ -31,7 +31,7 @@ describe('The Name component', () => {
       const params = {
         name: 'applicant-numbers',
         first: 'abc 123',
-        valid: false
+        valid: false,
       }
 
       const component = mount(<Name {...params} />)
@@ -48,7 +48,7 @@ describe('The Name component', () => {
         name: 'applicant-name',
         noMiddleName: false,
         middle: "X- Mc. O'Leary",
-        valid: true
+        valid: true,
       }
 
       const component = mount(<Name {...params} />)
@@ -60,7 +60,7 @@ describe('The Name component', () => {
         name: 'applicant-numbers',
         noMiddleName: false,
         middle: 'abc 123',
-        valid: false
+        valid: false,
       }
 
       const component = mount(<Name {...params} />)
@@ -76,7 +76,7 @@ describe('The Name component', () => {
       const params = {
         name: 'applicant-name',
         last: "X- Mc. O'Leary",
-        valid: true
+        valid: true,
       }
 
       const component = mount(<Name {...params} />)
@@ -87,7 +87,7 @@ describe('The Name component', () => {
       const params = {
         name: 'applicant-numbers',
         last: 'abc 123',
-        valid: false
+        valid: false,
       }
 
       const component = mount(<Name {...params} />)
@@ -105,37 +105,37 @@ describe('The Name component', () => {
         first:
           'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
         part: 'first',
-        valid: false
+        valid: false,
       },
       {
         name: 'applicant-long-last',
         last:
           'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
         part: 'last',
-        valid: false
+        valid: false,
       },
       {
         name: 'applicant-long-middle',
         middle:
           'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
         part: 'middle',
-        valid: false
+        valid: false,
       },
       {
         name: 'applicant-firstInitialOnly',
         first: 'Doe',
         firstInitialOnly: true,
         part: 'firstInitialOnly',
-        valid: false
-      }
+        valid: false,
+      },
     ]
 
-    expected.forEach(ex => {
+    expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
       component.find({ name: ex.part }).simulate('change')
       expect(
-        component.find('.usa-input-error-label').length ===
-          component.find('span').length
+        component.find('.usa-input-error-label').length
+          === component.find('span').length
       ).toEqual(ex.valid)
     })
   })
@@ -149,9 +149,9 @@ describe('The Name component', () => {
       focus: false,
       valid: false,
       onError: (value, arr) => {
-        validations++
+        validations += 1
         return arr
-      }
+      },
     }
     const component = mount(<Name {...expected} />)
     component
@@ -169,9 +169,9 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      onFocus: function(event) {
-        foci++
-      }
+      onFocus: () => {
+        foci += 1
+      },
     }
     const component = mount(<Name {...expected} />)
     component
@@ -189,9 +189,9 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      onBlur: function(event) {
-        blurs++
-      }
+      onBlur: () => {
+        blurs += 1
+      },
     }
     const component = mount(<Name {...expected} />)
     component
@@ -207,8 +207,8 @@ describe('The Name component', () => {
       name: 'name',
       suffix: 'Other',
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
 
     const component = mount(<Name {...expected} />)
@@ -219,27 +219,35 @@ describe('The Name component', () => {
     component.find('.middle-none input').simulate('change')
     component.find('.last input').simulate('change')
     component.find('.suffix-other input').simulate('change')
-    expect(updates).toBe(7)
+    component.find('select[name="suffix"]').simulate('change')
+    expect(updates).toBe(8)
   })
 
-  it*'updates suffix dropdown', () => {
-    let updates = 0
+  it('updates suffix dropdown', () => {
+    let result = 'X'
     const expected = {
       name: 'name',
       suffix: 'X',
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate: (values) => {
+        result = values
+      },
     }
 
     const component = mount(<Name {...expected} />)
-    component.find('select.suffix').simulate('change', {
+    component.find('select[name="suffix"]').simulate('change', {
       target: {
-        value : 'Other'
-      }
+        value: 'Other',
+      },
     })
-    expect(component.find('select.suffix').props().value).toBe('Other')
-  }
+    expect(result.suffix).toBe('Other')
+  })
+
+  it('shows label in suffix', () => {
+    const component = mount(<Name name="name" />)
+    component.find('select[name="suffix"] option').forEach((option) => {
+      expect(option.props().label).toBe(option.text())
+    })
+  })
 
   it('error if single letter without initial only', () => {
     const tests = [
@@ -251,7 +259,7 @@ describe('The Name component', () => {
           middleInitialOnly: false,
           last: 'abc',
         },
-        expected: 1
+        expected: 1,
       },
       {
         props: {
@@ -261,7 +269,7 @@ describe('The Name component', () => {
           middleInitialOnly: false,
           last: 'abc',
         },
-        expected: 1
+        expected: 1,
       },
       {
         props: {
@@ -271,7 +279,7 @@ describe('The Name component', () => {
           middleInitialOnly: false,
           last: 'abc',
         },
-        expected: 0
+        expected: 0,
       },
       {
         props: {
@@ -281,11 +289,11 @@ describe('The Name component', () => {
           middleInitialOnly: true,
           last: 'abc',
         },
-        expected: 0
-      }
+        expected: 0,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const component = mount(<Name {...test.props} />)
       expect(component.find('.usa-input-error').length).toEqual(test.expected)
     })
@@ -300,7 +308,7 @@ describe('The Name component', () => {
         noMiddleName: false,
         last: 'Doe',
         required: true,
-        errors: 1
+        errors: 1,
       },
       {
         name: 'applicant-middle',
@@ -309,7 +317,7 @@ describe('The Name component', () => {
         noMiddleName: true,
         last: 'Doe',
         required: true,
-        errors: 0
+        errors: 0,
       },
       {
         name: 'applicant-middle',
@@ -317,11 +325,11 @@ describe('The Name component', () => {
         middle: 'Smith',
         last: 'Doe',
         required: true,
-        errors: 0
-      }
+        errors: 0,
+      },
     ]
 
-    expected.forEach(ex => {
+    expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
       component.find({ name: 'middle' }).simulate('change')
       expect(component.find('.usa-input-error').length).toEqual(ex.errors)
