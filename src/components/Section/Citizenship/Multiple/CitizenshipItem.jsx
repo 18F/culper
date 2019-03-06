@@ -1,5 +1,7 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+
+import { i18n } from 'config'
+
 import {
   ValidationElement,
   Field,
@@ -7,25 +9,13 @@ import {
   Show,
   Country,
   DateRange,
-  Textarea
-} from '../../../Form'
-import { extractDate } from '../../History/dateranges'
+  Textarea,
+} from 'components/Form'
+
+import { extractDate } from 'components/Section/History/dateranges'
 
 export default class CitizenshipItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateCountry = this.updateCountry.bind(this)
-    this.updateDates = this.updateDates.bind(this)
-    this.updateHow = this.updateHow.bind(this)
-    this.updateRenounced = this.updateRenounced.bind(this)
-    this.updateRenouncedExplanation = this.updateRenouncedExplanation.bind(this)
-    this.updateCurrent = this.updateCurrent.bind(this)
-    this.updateCurrentExplanation = this.updateCurrentExplanation.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Country: this.props.Country,
       Dates: this.props.Dates,
@@ -34,49 +24,49 @@ export default class CitizenshipItem extends ValidationElement {
       RenouncedExplanation: this.props.RenouncedExplanation,
       Current: this.props.Current,
       CurrentExplanation: this.props.CurrentExplanation,
-      ...queue
+      ...queue,
     })
   }
 
-  updateCountry(values) {
+  updateCountry = (values) => {
     this.update({
-      Country: values
+      Country: values,
     })
   }
 
-  updateDates(values) {
+  updateDates = (values) => {
     this.update({
-      Dates: values
+      Dates: values,
     })
   }
 
-  updateHow(values) {
+  updateHow = (values) => {
     this.update({
-      How: values
+      How: values,
     })
   }
 
-  updateRenounced(values) {
+  updateRenounced = (values) => {
     this.update({
-      Renounced: values
+      Renounced: values,
     })
   }
 
-  updateRenouncedExplanation(values) {
+  updateRenouncedExplanation = (values) => {
     this.update({
-      RenouncedExplanation: values
+      RenouncedExplanation: values,
     })
   }
 
-  updateCurrent(values) {
+  updateCurrent = (values) => {
     this.update({
-      Current: values
+      Current: values,
     })
   }
 
-  updateCurrentExplanation(values) {
+  updateCurrentExplanation = (values) => {
     this.update({
-      CurrentExplanation: values
+      CurrentExplanation: values,
     })
   }
 
@@ -95,7 +85,8 @@ export default class CitizenshipItem extends ValidationElement {
       <div className="citizenship-item">
         <Field
           title={i18n.t('citizenship.multiple.heading.citizenship.country')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Country
             name="Country"
             {...this.props.Country}
@@ -110,7 +101,7 @@ export default class CitizenshipItem extends ValidationElement {
           title={i18n.t('citizenship.multiple.heading.citizenship.period')}
           help="citizenship.multiple.help.citizenship.dates"
           titleSize="h4"
-          optional={true}
+          optional
           className="period no-margin-bottom"
         />
 
@@ -118,12 +109,13 @@ export default class CitizenshipItem extends ValidationElement {
           title={i18n.t('citizenship.multiple.heading.citizenship.dates')}
           titleSize="label"
           adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="Dates"
             {...this.props.Dates}
             className="citizenship-dates"
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -133,7 +125,8 @@ export default class CitizenshipItem extends ValidationElement {
         <Show when={showNonUSQuestions}>
           <Field
             title={i18n.t('citizenship.multiple.heading.citizenship.how')}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="How"
               {...this.props.How}
@@ -162,7 +155,8 @@ export default class CitizenshipItem extends ValidationElement {
                 'citizenship.multiple.heading.citizenship.renouncedexplanation'
               )}
               titleSize="label"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Textarea
                 name="RenouncedExplanation"
                 {...this.props.RenouncedExplanation}
@@ -194,7 +188,8 @@ export default class CitizenshipItem extends ValidationElement {
                 'citizenship.multiple.heading.citizenship.currentexplanation'
               )}
               titleSize="label"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Textarea
                 name="CurrentExplanation"
                 {...this.props.CurrentExplanation}
@@ -212,6 +207,7 @@ export default class CitizenshipItem extends ValidationElement {
 }
 
 CitizenshipItem.defaultProps = {
+  requireMultipleCitizenshipRenounced: true,
   Country: {},
   Dates: {},
   How: {},
@@ -219,8 +215,6 @@ CitizenshipItem.defaultProps = {
   RenouncedExplanation: {},
   Current: {},
   CurrentExplanation: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }
