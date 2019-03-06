@@ -41,10 +41,10 @@ export default class Name extends ValidationElement {
         firstInitialOnly: values.checked,
       },
       () => {
-        this.refs.first.refs.text.refs.input.focus()
-        this.refs.first.refs.text.refs.input.blur()
-        this.refs.first.refs.text.refs.input.focus()
-        this.refs.firstInitialOnly.refs.checkbox.focus()
+        this.first.refs.text.refs.input.focus()
+        this.first.refs.text.refs.input.blur()
+        this.first.refs.text.refs.input.focus()
+        this.firstInitialOnly.refs.checkbox.focus()
       }
     )
   }
@@ -56,9 +56,9 @@ export default class Name extends ValidationElement {
         middleInitialOnly: values.checked,
       },
       () => {
-        this.refs.middle.refs.text.refs.input.focus()
-        this.refs.middle.refs.text.refs.input.blur()
-        this.refs.middleInitialOnly.refs.checkbox.focus()
+        this.middle.refs.text.refs.input.focus()
+        this.middle.refs.text.refs.input.blur()
+        this.middleInitialOnly.refs.checkbox.focus()
       }
     )
   }
@@ -71,9 +71,9 @@ export default class Name extends ValidationElement {
         noMiddleName: values.checked,
       },
       () => {
-        this.refs.middle.refs.text.refs.input.focus()
-        this.refs.middle.refs.text.refs.input.blur()
-        this.refs.noMiddleName.refs.checkbox.focus()
+        this.middle.refs.text.refs.input.focus()
+        this.middle.refs.text.refs.input.blur()
+        this.noMiddleName.refs.checkbox.focus()
       }
     )
   }
@@ -152,7 +152,7 @@ export default class Name extends ValidationElement {
         >
           <Text
             name="first"
-            ref="first"
+            ref={(ref) => { this.first = ref }}
             pattern="^[a-zA-Z\-\.' ]*$"
             minlength={this.props.firstInitialOnly ? 1 : 2}
             maxlength={maxFirst}
@@ -172,7 +172,7 @@ export default class Name extends ValidationElement {
           <div className="flags">
             <Checkbox
               name="firstInitialOnly"
-              ref="firstInitialOnly"
+              ref={(ref) => { this.firstInitialOnly = ref }}
               label={i18n.t(`${prefix}.label.initialOnly`)}
               className="first-initial-only"
               toggle="false"
@@ -197,7 +197,7 @@ export default class Name extends ValidationElement {
           >
             <Text
               name="middle"
-              ref="middle"
+              ref={(ref) => { this.middle = ref }}
               pattern="^[a-zA-Z\-\.' ]*$"
               minlength={this.props.middleInitialOnly ? 1 : 2}
               maxlength={maxMiddle}
@@ -217,7 +217,7 @@ export default class Name extends ValidationElement {
             <div className="middle-options flags">
               <Checkbox
                 name="noMiddleName"
-                ref="noMiddleName"
+                ref={(ref) => { this.noMiddleName = ref }}
                 label={i18n.t(`${prefix}.label.noMiddle`)}
                 className="middle-none"
                 toggle="false"
@@ -229,7 +229,7 @@ export default class Name extends ValidationElement {
               />
               <Checkbox
                 name="middleInitialOnly"
-                ref="middleInitialOnly"
+                ref={(ref) => { this.middleInitialOnly = ref }}
                 label={i18n.t(`${prefix}.label.initialOnly`)}
                 className="middle-initial-only"
                 toggle="false"
@@ -253,7 +253,6 @@ export default class Name extends ValidationElement {
         >
           <Text
             name="last"
-            ref="last"
             minlength={1}
             maxlength={maxLast}
             className="last"
