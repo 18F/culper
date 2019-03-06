@@ -1,7 +1,7 @@
 import * as sections from 'constants/sections'
 import { i18n } from 'config'
 
-const FINANCIAL = {
+export const FINANCIAL = {
   key: sections.FINANCIAL,
   name: 'financial',
   path: 'financial',
@@ -9,22 +9,22 @@ const FINANCIAL = {
   label: i18n.t('financial.section.name'),
 }
 
-const FINANCIAL_INTRO = {
+export const FINANCIAL_INTRO = {
   key: sections.FINANCIAL_INTRO,
   name: 'intro',
   path: 'intro',
   label: i18n.t('financial.subsection.intro'),
 }
 
-const FINANCIAL_BANKRUPTCY = {
+export const FINANCIAL_BANKRUPTCY = {
   key: sections.FINANCIAL_BANKRUPTCY,
   name: 'bankruptcy',
   path: 'bankruptcy',
-  storeKey: 'Baankruptcy',
+  storeKey: 'Bankruptcy',
   label: i18n.t('financial.subsection.bankruptcy'),
 }
 
-const FINANCIAL_GAMBLING = {
+export const FINANCIAL_GAMBLING = {
   key: sections.FINANCIAL_GAMBLING,
   name: 'gambling',
   path: 'gambling',
@@ -32,7 +32,7 @@ const FINANCIAL_GAMBLING = {
   label: i18n.t('financial.subsection.gambling'),
 }
 
-const FINANCIAL_TAXES = {
+export const FINANCIAL_TAXES = {
   key: sections.FINANCIAL_TAXES,
   name: 'taxes',
   path: 'taxes',
@@ -40,7 +40,7 @@ const FINANCIAL_TAXES = {
   label: i18n.t('financial.subsection.taxes'),
 }
 
-const FINANCIAL_CARD = {
+export const FINANCIAL_CARD = {
   key: sections.FINANCIAL_CARD,
   name: 'card',
   path: 'card',
@@ -48,7 +48,7 @@ const FINANCIAL_CARD = {
   label: i18n.t('financial.subsection.card'),
 }
 
-const FINANCIAL_CREDIT = {
+export const FINANCIAL_CREDIT = {
   key: sections.FINANCIAL_CREDIT,
   name: 'credit',
   path: 'credit',
@@ -56,7 +56,7 @@ const FINANCIAL_CREDIT = {
   label: i18n.t('financial.subsection.credit'),
 }
 
-const FINANCIAL_DELINQUENT = {
+export const FINANCIAL_DELINQUENT = {
   key: sections.FINANCIAL_DELINQUENT,
   name: 'delinquent',
   path: 'delinquent',
@@ -64,7 +64,7 @@ const FINANCIAL_DELINQUENT = {
   label: i18n.t('financial.subsection.delinquent'),
 }
 
-const FINANCIAL_NONPAYMENT = {
+export const FINANCIAL_NONPAYMENT = {
   key: sections.FINANCIAL_NONPAYMENT,
   name: 'nonpayment',
   path: 'nonpayment',
@@ -72,7 +72,7 @@ const FINANCIAL_NONPAYMENT = {
   label: i18n.t('financial.subsection.nonpayment'),
 }
 
-const FINANCIAL_REVIEW = {
+export const FINANCIAL_REVIEW = {
   key: sections.FINANCIAL_REVIEW,
   name: 'review',
   path: 'review',
