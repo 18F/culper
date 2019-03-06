@@ -14,26 +14,9 @@ export default class Name extends ValidationElement {
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
     }
-
-    this.update = this.update.bind(this)
-    this.updateFirst = this.updateFirst.bind(this)
-    this.updateFirstInitial = this.updateFirstInitial.bind(this)
-    this.updateMiddle = this.updateMiddle.bind(this)
-    this.updateMiddleInitial = this.updateMiddleInitial.bind(this)
-    this.updateMiddleNone = this.updateMiddleNone.bind(this)
-    this.updateLast = this.updateLast.bind(this)
-    this.updateSuffix = this.updateSuffix.bind(this)
-    this.updateSuffixOther = this.updateSuffixOther.bind(this)
-
-    this.handleError = this.handleError.bind(this)
-    this.handleErrorFirst = this.handleErrorFirst.bind(this)
-    this.handleErrorMiddle = this.handleErrorMiddle.bind(this)
-    this.handleErrorLast = this.handleErrorLast.bind(this)
-    this.handleErrorSuffix = this.handleErrorSuffix.bind(this)
-    this.getSuffixOptions = this.getSuffixOptions.bind(this)
   }
 
-  update(queue, callback) {
+  update = (queue, callback) => {
     this.props.onUpdate({
       first: this.props.first,
       firstInitialOnly: this.props.firstInitialOnly,
@@ -52,13 +35,7 @@ export default class Name extends ValidationElement {
     }
   }
 
-  updateFirst(values) {
-    this.update({
-      first: values.value,
-    })
-  }
-
-  updateFirstInitial(values) {
+  updateFirstInitial = (values) => {
     this.update(
       {
         firstInitialOnly: values.checked,
@@ -72,13 +49,7 @@ export default class Name extends ValidationElement {
     )
   }
 
-  updateMiddle(values) {
-    this.update({
-      middle: values.value,
-    })
-  }
-
-  updateMiddleInitial(values) {
+  updateMiddleInitial = (values) => {
     this.update(
       {
         noMiddleName: false,
@@ -92,7 +63,7 @@ export default class Name extends ValidationElement {
     )
   }
 
-  updateMiddleNone(values) {
+  updateMiddleNone = (values) => {
     this.update(
       {
         middleInitialOnly: false,
@@ -107,41 +78,15 @@ export default class Name extends ValidationElement {
     )
   }
 
-  updateLast(values) {
-    this.update({
-      last: values.value,
-    })
-  }
+  handleErrorFirst = (value, arr) => this.handleError('first', value, arr)
 
-  updateSuffix(e) {
-    this.update({
-      suffix: e.target.value,
-    })
-  }
+  handleErrorMiddle = (value, arr) => this.handleError('middle', value, arr)
 
-  updateSuffixOther(values) {
-    this.update({
-      suffixOther: values.value,
-    })
-  }
+  handleErrorLast = (value, arr) => this.handleError('last', value, arr)
 
-  handleErrorFirst(value, arr) {
-    return this.handleError('first', value, arr)
-  }
+  handleErrorSuffix = (value, arr) => this.handleError('suffix', value, arr)
 
-  handleErrorMiddle(value, arr) {
-    return this.handleError('middle', value, arr)
-  }
-
-  handleErrorLast(value, arr) {
-    return this.handleError('last', value, arr)
-  }
-
-  handleErrorSuffix(value, arr) {
-    return this.handleError('suffix', value, arr)
-  }
-
-  handleError(code, value, arr) {
+  handleError = (code, value, arr) => {
     let errors = arr.map(err => ({
       code: `name.${code}.${err.code}`,
       valid: err.valid,
@@ -162,7 +107,7 @@ export default class Name extends ValidationElement {
 
   filterErrors = errors => errors.filter(err => err.code.indexOf('required') === -1)
 
-  getSuffixOptions() {
+  getSuffixOptions = () => {
     const { prefix } = this.props
     return [
       { label: '', value: '' },
@@ -213,7 +158,11 @@ export default class Name extends ValidationElement {
             maxlength={maxFirst}
             className="first"
             value={this.props.first}
-            onUpdate={this.updateFirst}
+            onUpdate={(values) => {
+              this.update({
+                first: values.value,
+              })
+            }}
             onError={this.handleErrorFirst}
             onFocus={this.props.onFocus}
             onBlur={this.props.onBlur}
@@ -255,7 +204,11 @@ export default class Name extends ValidationElement {
               className="middle"
               value={this.props.middle}
               disabled={this.props.noMiddleName || this.props.disabled}
-              onUpdate={this.updateMiddle}
+              onUpdate={(values) => {
+                this.update({
+                  middle: values.value,
+                })
+              }}
               onError={this.handleErrorMiddle}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
@@ -306,7 +259,11 @@ export default class Name extends ValidationElement {
             className="last"
             pattern="^[a-zA-Z\-\.' ]*$"
             value={this.props.last}
-            onUpdate={this.updateLast}
+            onUpdate={(values) => {
+              this.update({
+                last: values.value,
+              })
+            }}
             onError={this.handleErrorLast}
             onFocus={this.props.onFocus}
             onBlur={this.props.onBlur}
@@ -334,7 +291,11 @@ export default class Name extends ValidationElement {
             className="option-list suffix usa-small-input"
             isDisabled={this.props.disabled}
             name="suffix"
-            onChange={this.updateSuffix}
+            onChange={(e) => {
+              this.update({
+                suffix: e.target.value,
+              })
+            }}
             onError={this.handleErrorSuffix}
             value={this.props.suffix || ''}
           >
@@ -355,7 +316,11 @@ export default class Name extends ValidationElement {
               maxlength="100"
               className="suffix-other"
               value={this.props.suffixOther}
-              onUpdate={this.updateSuffixOther}
+              onUpdate={(values) => {
+                this.update({
+                  suffixOther: values.value,
+                })
+              }}
               onError={this.handleErrorSuffix}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
