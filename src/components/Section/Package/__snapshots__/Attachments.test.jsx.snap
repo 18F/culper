@@ -6,7 +6,7 @@ exports[`The attachments component renders properly 1`] = `
 >
   <div
     aria-label="Specify your attachment method"
-    className="field   attachment-type"
+    className="field attachment-type"
     data-uuid="field-MOCK-GUID"
   >
     <a
@@ -209,7 +209,7 @@ exports[`The attachments component renders properly 1`] = `
   <span>
     <div
       aria-label="Upload file to e-QIP directly"
-      className="field   upload-area"
+      className="field upload-area"
       data-uuid="field-MOCK-GUID"
     >
       <a

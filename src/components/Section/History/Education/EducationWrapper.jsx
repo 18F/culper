@@ -1,7 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
+
 import { HISTORY, HISTORY_EDUCATION } from 'config/formSections/history'
+import * as formConfig from 'config/forms'
 
 import { Field, Show, Branch } from 'components/Form'
 
@@ -61,7 +64,13 @@ class EducationWrapper extends React.Component {
   }
 
   render() {
-    const { Education, Birthdate, inReview } = this.props
+    const {
+      Education, Birthdate, formType, inReview,
+    } = this.props
+
+    const years = formType
+      && formConfig[formType]
+      && formConfig[formType].HISTORY_EDUCATION_YEARS
 
     const hasAttendedSchool = Education.HasAttended.value === 'Yes'
     const hasDegree = Education.HasDegree10.value === 'Yes'
@@ -96,7 +105,8 @@ class EducationWrapper extends React.Component {
           name="branch_school"
           {...Education.HasAttended}
           help="history.education.help.attendance"
-          label={i18n.t('history.education.label.attendance')}
+          helpMessage={i18n.m('history.education.help.attendance.message', { years })}
+          label={i18n.t('history.education.label.attendance', { years })}
           labelSize={inReview ? 'h3' : 'h4'}
           warning
           onUpdate={this.updateBranchAttendance}
@@ -107,7 +117,7 @@ class EducationWrapper extends React.Component {
             name="branch_degree10"
             {...Education.HasDegree10}
             help="history.education.help.degree10"
-            label={i18n.t('history.education.label.degree10')}
+            label={i18n.t('history.education.label.degree10', { years })}
             labelSize={inReview ? 'h3' : 'h4'}
             warning
             onUpdate={this.updateBranchDegree10}
@@ -122,11 +132,13 @@ class EducationWrapper extends React.Component {
               <EducationSummaryProgress
                 Education={Education}
                 Birthdate={Birthdate}
+                years={years}
               />
             )}
 
             <ConnectedEducation
               onUpdate={this.handleUpdate}
+              totalYears={years}
               {...reviewProps}
             />
           </div>
@@ -134,6 +146,14 @@ class EducationWrapper extends React.Component {
       </div>
     )
   }
+}
+
+/* eslint react/forbid-prop-types: 0 */
+EducationWrapper.propTypes = {
+  Education: PropTypes.object,
+  Birthdate: PropTypes.any,
+  formType: PropTypes.string.isRequired,
+  inReview: PropTypes.bool,
 }
 
 EducationWrapper.defaultProps = {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 import schema from 'schema'
 import validate, { EmploymentValidator } from 'validators'
@@ -14,6 +14,8 @@ import {
 import { InjectGaps, EmploymentCustomSummary } from 'components/Section/History/summaries'
 import EmploymentItem from 'components/Section/History/Employment/EmploymentItem'
 import { Gap } from 'components/Section/History/Gap'
+
+import { getYearsString } from 'components/Section/History/helpers'
 
 import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
 
@@ -138,12 +140,14 @@ export class Employment extends Subsection {
   }
 
   customEmploymentDetails = (item, index, initial, callback) => {
+    const { totalYears } = this.props
+
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
       return (
         <Gap
           title={i18n.t('history.employment.gap.title')}
-          para={i18n.t('history.employment.gap.para')}
+          para={i18n.t('history.employment.gap.para', { years: totalYears })}
           btnText={i18n.t('history.employment.gap.btnText')}
           first={index === 0}
           dates={dates}
@@ -158,6 +162,9 @@ export class Employment extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
+    const { recordYears } = this.props
+    const recordYearsString = getYearsString(recordYears)
+
     return (
       <div
         className="section-content employment"
@@ -197,11 +204,12 @@ export class Employment extends Subsection {
             dispatch={this.props.dispatch}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
+            recordYears={recordYears}
           />
         </Accordion>
         <hr className="section-divider" />
         <Branch
-          label={i18n.t('history.employment.default.employmentRecord.title')}
+          label={i18n.t('history.employment.default.employmentRecord.title', { years: recordYears, yearsString: recordYearsString })}
           className="employment-record"
           labelSize="h4"
           {...this.props.EmploymentRecord}
@@ -236,6 +244,7 @@ Employment.defaultProps = {
   realtime: false,
   sort: null,
   totalYears: 10,
+  recordYears: 7,
   overrideInitial: false,
   caption: null,
   onUpdate: () => {},

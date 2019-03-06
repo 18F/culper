@@ -9,8 +9,8 @@ import {
 /**
  * Figure the total amount of years to collect for the timeline
  */
-export const totalYears = (birthdate) => {
-  let total = 10
+export const totalYears = (birthdate, years = 10) => {
+  let total = years
   if (!birthdate) {
     return total
   }
@@ -18,9 +18,9 @@ export const totalYears = (birthdate) => {
   const eighteen = daysAgo(birthdate, 365 * -18)
   total = Math.ceil(daysBetween(eighteen, today) / 365)
 
-  // A maximum of 10 years is required
-  if (total > 10) {
-    total = 10
+  // Maximum years required
+  if (total > years) {
+    total = years
   }
 
   // A minimum of two years is required
@@ -35,7 +35,7 @@ export const excludeGaps = items => items.filter(
   item => !item.type || (item.type && item.type !== 'Gap'),
 )
 
-export const sectionHasGaps = (items = []) => {
+export const sectionHasGaps = (items = [], years = 10) => {
   if (!items || !items.length) return true
 
   const ranges = items
@@ -44,7 +44,7 @@ export const sectionHasGaps = (items = []) => {
 
   if (!ranges.length) return true
 
-  const start = daysAgo(today, 365 * totalYears())
+  const start = daysAgo(today, 365 * totalYears(null, years))
   const holes = gaps(ranges, start).length
 
   return holes > 0
@@ -78,4 +78,17 @@ export const sort = (a, b) => {
   }
 
   return 0
+}
+
+export const getYearsString = (years) => {
+  switch (years) {
+    case 5:
+      return 'five'
+    case 7:
+      return 'seven'
+    case 10:
+      return 'ten'
+    default:
+      return ''
+  }
 }

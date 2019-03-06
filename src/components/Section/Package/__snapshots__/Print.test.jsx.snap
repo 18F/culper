@@ -229,7 +229,7 @@ exports[`The print section renders properly 1`] = `
                   >
                     <div
                       aria-label="First name"
-                      className="field required  usa-form-control"
+                      className="field required usa-form-control"
                       data-uuid="field-MOCK-GUID"
                     >
                       <a
@@ -248,7 +248,7 @@ exports[`The print section renders properly 1`] = `
                       >
                         <a
                           aria-label="Show help for First name"
-                          className="toggle label  adjust-for-labels"
+                          className="toggle label adjust-for-labels"
                           href="javascript:;"
                           onClick={[Function]}
                           title="Show help for First name"
@@ -359,7 +359,7 @@ exports[`The print section renders properly 1`] = `
                     </div>
                     <div
                       aria-label="Middle name"
-                      className="field required  usa-form-control"
+                      className="field required usa-form-control"
                       data-uuid="field-MOCK-GUID"
                     >
                       <a
@@ -378,7 +378,7 @@ exports[`The print section renders properly 1`] = `
                       >
                         <a
                           aria-label="Show help for Middle name"
-                          className="toggle label  adjust-for-labels"
+                          className="toggle label adjust-for-labels"
                           href="javascript:;"
                           onClick={[Function]}
                           title="Show help for Middle name"
@@ -514,7 +514,7 @@ exports[`The print section renders properly 1`] = `
                     </div>
                     <div
                       aria-label="Last name"
-                      className="field required  usa-form-control"
+                      className="field required usa-form-control"
                       data-uuid="field-MOCK-GUID"
                     >
                       <a
@@ -598,7 +598,7 @@ exports[`The print section renders properly 1`] = `
                     />
                     <div
                       aria-label="Suffix"
-                      className="field   usa-form-control"
+                      className="field usa-form-control"
                       data-uuid="field-MOCK-GUID"
                     >
                       <a
@@ -1111,7 +1111,7 @@ exports[`The print section renders properly 1`] = `
                       >
                         <div
                           aria-label="Were you born in the United States?"
-                          className="field required  branch"
+                          className="field required branch"
                           data-uuid="field-MOCK-GUID"
                         >
                           <a
@@ -1510,7 +1510,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Provide your other names used and the period of time you used them"
-            className="field   no-margin-bottom"
+            className="field no-margin-bottom"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -1588,7 +1588,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="Have you used any other names?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -1734,7 +1734,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Your email addresses"
-            className="field   no-margin-bottom"
+            className="field no-margin-bottom"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -1966,7 +1966,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="Your phone numbers"
-            className="field   no-margin-bottom"
+            className="field no-margin-bottom"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -2048,7 +2048,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label=""
-            className="field required  hidden"
+            className="field required hidden"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -2155,7 +2155,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Height"
-                className="toggle h4  adjust-for-labels"
+                className="toggle h4 adjust-for-labels"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Height"
@@ -2332,7 +2332,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Weight"
-                className="toggle h4  adjust-for-labels"
+                className="toggle h4 adjust-for-labels"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Weight"
@@ -2470,7 +2470,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Hair color"
-                className="toggle h4  adjust-for-big-buttons"
+                className="toggle h4 adjust-for-big-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Hair color"
@@ -3169,7 +3169,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Eye color"
-                className="toggle h4  adjust-for-big-buttons"
+                className="toggle h4 adjust-for-big-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Eye color"
@@ -3686,7 +3686,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Select your sex"
-                className="toggle h4  adjust-for-big-buttons"
+                className="toggle h4 adjust-for-big-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Select your sex"
@@ -3900,7 +3900,7 @@ exports[`The print section renders properly 1`] = `
             </div>
             <div
               aria-label="Do you have an additional residence to report?"
-              className="field required  branch addendum"
+              className="field required branch addendum"
               data-uuid="field-MOCK-GUID"
             >
               <a
@@ -4055,7 +4055,7 @@ exports[`The print section renders properly 1`] = `
             </div>
             <div
               aria-label="Do you have an additional employment activity to enter?"
-              className="field required  branch addendum no-margin-bottom"
+              className="field required branch addendum no-margin-bottom"
               data-uuid="field-MOCK-GUID"
             >
               <a
@@ -4191,7 +4191,7 @@ exports[`The print section renders properly 1`] = `
           />
           <div
             aria-label="Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?"
-            className="field required  branch employment-record"
+            className="field required branch employment-record"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -4264,31 +4264,15 @@ exports[`The print section renders properly 1`] = `
                         <li>
                           Fired from a job?
                         </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <ul>
                         <li>
                           Quit a job after being told you would be fired?
                         </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <ul>
                         <li>
                           Have you left a job by mutual agreement following charges or allegations of misconduct?
                         </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <ul>
                         <li>
                           Left a job by mutual agreement following notice of unsatisfactory performance?
                         </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <ul>
                         <li>
                           Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?
                         </li>
@@ -4365,7 +4349,7 @@ exports[`The print section renders properly 1`] = `
         </div>
         <div
           aria-label="Have you attended any schools in the last 10 years?"
-          className="field required  branch"
+          className="field required branch"
           data-uuid="field-MOCK-GUID"
         >
           <a
@@ -4483,7 +4467,7 @@ exports[`The print section renders properly 1`] = `
         >
           <div
             aria-label="Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -4502,7 +4486,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?"
-                className="toggle h4  adjust-for-buttons"
+                className="toggle h4 adjust-for-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?"
@@ -4539,29 +4523,7 @@ exports[`The print section renders properly 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              >
-                <div
-                  aria-live="polite"
-                  className="message error usa-alert usa-alert-error"
-                  role="alert"
-                >
-                  <div
-                    className="usa-alert-body"
-                  >
-                    <div
-                      data-i18n="error.required"
-                    >
-                      <h5
-                        className="usa-alert-heading"
-                      >
-                        Your response is required
-                      </h5>
-                      
-                      
-                    </div>
-                  </div>
-                </div>
-              </span>
+              />
             </div>
             <div
               className="table"
@@ -4576,7 +4538,7 @@ exports[`The print section renders properly 1`] = `
                     className="content"
                   />
                   <div
-                    className="blocks option-list branch usa-input-error"
+                    className="blocks option-list branch"
                   >
                     <div
                       className="yes block"
@@ -4926,7 +4888,7 @@ exports[`The print section renders properly 1`] = `
         >
           <div
             aria-label="Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
-            className="field required  branch has-cohabitant"
+            className="field required branch has-cohabitant"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -4945,7 +4907,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
-                className="toggle h4  adjust-for-buttons"
+                className="toggle h4 adjust-for-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
@@ -5206,7 +5168,7 @@ exports[`The print section renders properly 1`] = `
             </div>
             <div
               aria-label="Do you have an additional person who knows you well to list?"
-              className="field required  branch addendum"
+              className="field required branch addendum"
               data-uuid="field-MOCK-GUID"
             >
               <a
@@ -5348,7 +5310,7 @@ exports[`The print section renders properly 1`] = `
         >
           <div
             aria-label="Add each relative applicable to you, regardless if they are living or deceased."
-            className="field   no-margin-bottom"
+            className="field no-margin-bottom"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -5402,7 +5364,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label=""
-            className="field required  hidden"
+            className="field required hidden"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -5445,7 +5407,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label=""
-            className="field required  hidden"
+            className="field required hidden"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -5504,7 +5466,7 @@ exports[`The print section renders properly 1`] = `
             </div>
             <div
               aria-label="Do you have an additional relative to enter?"
-              className="field required  branch addendum"
+              className="field required branch addendum"
               data-uuid="field-MOCK-GUID"
             >
               <a
@@ -5903,7 +5865,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Do you now or have you EVER held dual/multiple citizenships?"
-            className="field required  branch has-multiple"
+            className="field required branch has-multiple"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -6053,7 +6015,7 @@ exports[`The print section renders properly 1`] = `
             <div>
               <div
                 aria-label="Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?"
-                className="field required  branch"
+                className="field required branch"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -6209,7 +6171,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you ever served in the U.S. Military?"
-            className="field required  branch served"
+            className="field required branch served"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -6228,7 +6190,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Have you ever served in the U.S. Military?"
-                className="toggle h4  adjust-for-buttons"
+                className="toggle h4 adjust-for-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Have you ever served in the U.S. Military?"
@@ -6378,7 +6340,7 @@ exports[`The print section renders properly 1`] = `
             <div>
               <div
                 aria-label="Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?"
-                className="field required  branch"
+                className="field required branch"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -6547,7 +6509,7 @@ exports[`The print section renders properly 1`] = `
           </p>
           <div
             aria-label="Do you possess a U.S. passport (current or expired)?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -6693,7 +6655,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Do you have, or have you had, close and/or continuing contact with a foreign national within the last seven (7) years with whom you, or your spouse, or legally recognized civil union/domestic partner, or cohabitant are bound by affection, influence, common interests, and/or obligation?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -6850,7 +6812,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -6869,7 +6831,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?"
-                className="toggle h4  adjust-for-buttons"
+                className="toggle h4 adjust-for-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?"
@@ -7031,7 +6993,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -7050,7 +7012,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?"
-                className="toggle h4  adjust-for-buttons"
+                className="toggle h4 adjust-for-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?"
@@ -7201,7 +7163,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -7347,7 +7309,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?"
-            className="field required  branch has-benefits"
+            className="field required branch has-benefits"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -7493,7 +7455,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER provided financial support for any foreign national?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -7639,7 +7601,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -7799,7 +7761,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any foreign government official or agency?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -7960,7 +7922,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -8106,7 +8068,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you in the last seven (7) years been involved in any other type of business venture with a foreign national not described above?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -8258,7 +8220,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -8415,7 +8377,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="Have you or any member of your immediate family in the last seven (7) years had any contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -8576,7 +8538,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -8595,7 +8557,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?"
-                className="toggle h4  adjust-for-buttons"
+                className="toggle h4 adjust-for-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?"
@@ -8746,7 +8708,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER held political office in a foreign country?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -8892,7 +8854,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER voted in the election of a foreign country?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -9038,7 +9000,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you traveled outside the U.S. in the last past seven (7) years?"
-            className="field required  branch foreign-travel-outside"
+            className="field required branch foreign-travel-outside"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -9192,7 +9154,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
-            className="field required  branch bankruptcy-branch"
+            className="field required branch bankruptcy-branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -9211,7 +9173,7 @@ exports[`The print section renders properly 1`] = `
             >
               <a
                 aria-label="Show help for In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
-                className="toggle h4  adjust-for-buttons"
+                className="toggle h4 adjust-for-buttons"
                 href="javascript:;"
                 onClick={[Function]}
                 title="Show help for In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
@@ -9362,7 +9324,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you ever experienced financial problems due to gambling?"
-            className="field required  branch has-gambling-debt"
+            className="field required branch has-gambling-debt"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -9508,7 +9470,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?"
-            className="field required  branch taxes-branch"
+            className="field required branch taxes-branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -9654,7 +9616,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?"
-            className="field required  branch card-branch"
+            className="field required branch card-branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -9800,7 +9762,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?"
-            className="field required  branch credit-branch"
+            className="field required branch credit-branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -9946,7 +9908,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Other than previously listed, has the following happened to you?"
-            className="field required  branch delinquent-branch eapp-field-wrap"
+            className="field required branch delinquent-branch eapp-field-wrap"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -10137,7 +10099,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Other than previously listed, have any of the following happened?"
-            className="field required  branch nonpayment-branch"
+            className="field required branch nonpayment-branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -10376,7 +10338,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="In the last seven (7) years, have you illegally used any drugs or controlled substances?"
-            className="field required  branch used-drugs"
+            className="field required branch used-drugs"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -10528,7 +10490,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?"
-            className="field required  branch involved"
+            className="field required branch involved"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -10674,7 +10636,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?"
-            className="field required  branch used-drugs"
+            className="field required branch used-drugs"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -10820,7 +10782,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?"
-            className="field required  branch used-drugs"
+            className="field required branch used-drugs"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -10966,7 +10928,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?"
-            className="field required  branch misused"
+            className="field required branch misused"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -11112,7 +11074,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?"
-            className="field required  branch treatment-ordered"
+            className="field required branch treatment-ordered"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -11258,7 +11220,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?"
-            className="field required  branch treatment-voluntary"
+            className="field required branch treatment-voluntary"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -11404,7 +11366,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?"
-            className="field required  branch has-impacts"
+            className="field required branch has-impacts"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -11550,7 +11512,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?"
-            className="field required  branch has-been-ordered"
+            className="field required branch has-been-ordered"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -11696,7 +11658,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?"
-            className="field required  branch sought-treatment"
+            className="field required branch sought-treatment"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -11842,7 +11804,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER received counseling or treatment as a result of your use of alcohol in addition to what you have already listed on this form?"
-            className="field required  branch received-treatment"
+            className="field required branch received-treatment"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -11986,7 +11948,7 @@ exports[`The print section renders properly 1`] = `
       <div>
         <div
           aria-label="Police record"
-          className="field   no-margin-bottom"
+          className="field no-margin-bottom"
           data-uuid="field-MOCK-GUID"
         >
           <a
@@ -12062,7 +12024,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have any of the following happened?"
-            className="field required  branch has-offenses"
+            className="field required branch has-offenses"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -12258,7 +12220,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Other than those offenses already listed, have you EVER had the following happen to you?"
-            className="field required  branch has-otheroffenses"
+            className="field required branch has-otheroffenses"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -12457,7 +12419,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Is there currently a domestic violence protective order or restraining order issued against you?"
-            className="field required  branch has-domestic-violence"
+            className="field required branch has-domestic-violence"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -12603,7 +12565,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?"
-            className="field required  branch legal-investigations-history-has-history"
+            className="field required branch legal-investigations-history-has-history"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -12749,7 +12711,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?"
-            className="field required  branch legal-investigations-revoked-has-revocations"
+            className="field required branch legal-investigations-revoked-has-revocations"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -12901,7 +12863,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER been debarred from government employment?"
-            className="field required  branch legal-investigations-debarred-has-debarment"
+            className="field required branch legal-investigations-debarred-has-debarment"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -13047,7 +13009,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?"
-            className="field required  branch has-court-actions"
+            className="field required branch has-court-actions"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -13203,7 +13165,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?"
-            className="field required  branch legal-technology-unauthorized-has-unauthorized"
+            className="field required branch legal-technology-unauthorized-has-unauthorized"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -13349,7 +13311,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last seven (7) years have you illegally or without authorization, modified, destroyed, manipulated, or denied others access to information residing on an information technology system or attempted any of the above?"
-            className="field required  branch legal-technology-manipulating-has-manipulating"
+            className="field required branch legal-technology-manipulating-has-manipulating"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -13495,7 +13457,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="In the last seven (7) years have you introduced, removed, or used hardware, software, or media in connection with any information technology system without authorization, when specifically prohibited by rules, procedures, guidelines, or regulations or attempted any of the above?"
-            className="field required  branch legal-technology-unlawful-has-unlawful"
+            className="field required branch legal-technology-unlawful-has-unlawful"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -13651,7 +13613,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization's dedication to that end, or with the specific intent to further such activities?"
-            className="field required  branch legal-associations-terrorist-has-terrorist"
+            className="field required branch legal-associations-terrorist-has-terrorist"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -13797,7 +13759,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER knowingly engaged in any acts of terrorism?"
-            className="field required  branch legal-associations-engaged-has-engaged"
+            className="field required branch legal-associations-engaged-has-engaged"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -13943,7 +13905,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?"
-            className="field required  branch legal-associations-advocating-has-advocated"
+            className="field required branch legal-associations-advocating-has-advocated"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -14089,7 +14051,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization's dedication to that end or with the specific intent to further such activities?"
-            className="field required  branch legal-associations-overthrow-has-overthrow"
+            className="field required branch legal-associations-overthrow-has-overthrow"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -14235,7 +14197,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER been a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action?"
-            className="field required  branch legal-associations-violence-has-violence"
+            className="field required branch legal-associations-violence-has-violence"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -14381,7 +14343,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?"
-            className="field required  branch legal-associations-activities-has-activities"
+            className="field required branch legal-associations-activities-has-activities"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -14527,7 +14489,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER associated with anyone involved in activities to further terrorism?"
-            className="field required  branch legal-associations-terrorism-has-terrorism"
+            className="field required branch legal-associations-terrorism-has-terrorism"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -14681,7 +14643,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Has a court or administrative agency ever issued an order declaring you mentally incompetent?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -14827,7 +14789,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Has a court or administrative agency EVER ordered you to consult with a mental health professional?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -14982,7 +14944,7 @@ exports[`The print section renders properly 1`] = `
           </h1>
           <div
             aria-label="Have you EVER been hospitalized for a mental health condition?"
-            className="field required  branch"
+            className="field required branch"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -15140,7 +15102,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="Have you EVER been diagnosed by a physician or other health professional with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?"
-            className="field required  branch diagnosed"
+            className="field required branch diagnosed"
             data-uuid="field-MOCK-GUID"
           >
             <a

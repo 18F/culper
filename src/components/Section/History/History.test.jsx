@@ -16,8 +16,9 @@ describe('The History section', () => {
         <Provider store={store}>
           <History subsection="review" />
         </Provider>
-      </MemoryRouter>
+      </MemoryRouter>,
     )
+
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -30,7 +31,7 @@ describe('The History section', () => {
       'education',
       'federal',
     ]
-    const store = mockStore({ authentication: { formType: SF86 }})
+    const store = mockStore({ authentication: { formType: SF86 } })
 
     sections.forEach((section) => {
       const component = mount(
@@ -38,8 +39,9 @@ describe('The History section', () => {
           <Provider store={store}>
             <History subsection={section} />
           </Provider>
-        </MemoryRouter>
+        </MemoryRouter>,
       )
+
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })

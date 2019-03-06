@@ -76,6 +76,9 @@ const connectHistorySection = (Component, {
   }
 
   const mapStateToProps = (state) => {
+    const { authentication } = state
+    const { formType } = authentication
+
     const app = state.application || {}
     const identification = app.Identification || {}
     const history = app.History || {}
@@ -92,6 +95,7 @@ const connectHistorySection = (Component, {
           ...history.Residence || emptyList,
           Birthdate: processDate(identification.ApplicantBirthDate),
           addressBooks,
+          formType,
         }
 
       case 'Employment':
@@ -99,6 +103,7 @@ const connectHistorySection = (Component, {
           ...history.Employment || emptyItems,
           Birthdate: processDate(identification.ApplicantBirthDate),
           addressBooks,
+          formType,
         }
 
       case 'Education':
@@ -110,12 +115,14 @@ const connectHistorySection = (Component, {
           },
           Birthdate: processDate(identification.ApplicantBirthDate),
           addressBooks,
+          formType,
         }
 
       case 'Federal':
         return {
           ...history.Federal || {},
           addressBooks,
+          formType,
         }
 
       default:
@@ -134,6 +141,7 @@ const connectHistorySection = (Component, {
           Completed: completed.history || [],
           Birthdate: processDate(identification.ApplicantBirthDate),
           AddressBooks: addressBooks,
+          formType,
         }
     }
   }

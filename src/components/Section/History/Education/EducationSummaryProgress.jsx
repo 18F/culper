@@ -48,7 +48,7 @@ const diplomasRangesList = (items) => {
 }
 
 const EducationSummaryProgress = (props) => {
-  const { Education, Birthdate } = props
+  const { Education, Birthdate, years } = props
 
   let schoolDates = []
   if (Education && Education.List && Education.List.items) {
@@ -66,7 +66,7 @@ const EducationSummaryProgress = (props) => {
       diplomas={getDiplomaDates}
       schoolsLabel={i18n.t('history.education.summary.schools')}
       diplomasLabel={i18n.t('history.education.summary.diplomas')}
-      total={totalYears(Birthdate)}
+      total={totalYears(Birthdate, years)}
     >
       <div className="summary-icon">
         <Svg
@@ -82,11 +82,13 @@ const EducationSummaryProgress = (props) => {
 EducationSummaryProgress.propTypes = {
   Education: PropTypes.object,
   Birthdate: PropTypes.any,
+  years: PropTypes.number,
 }
 
 EducationSummaryProgress.defaultProps = {
   Education: null,
   Birthdate: null,
+  years: 10,
 }
 
 export default EducationSummaryProgress

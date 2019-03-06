@@ -1,6 +1,9 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import i18n from 'util/i18n'
+
 import { HISTORY, HISTORY_FEDERAL } from 'config/formSections/history'
+import * as formConfig from 'config/forms'
 
 import schema from 'schema'
 
@@ -74,6 +77,12 @@ export class Federal extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+
+    const years = formType
+      && formConfig[formType]
+      && formConfig[formType].HISTORY_FEDERAL_YEARS
+
     return (
       <div
         className="section-content federal"
@@ -84,6 +93,7 @@ export class Federal extends Subsection {
           label={i18n.t('history.federal.heading.branch')}
           labelSize="h4"
           help="history.federal.help.branch"
+          helpTitle={i18n.t('history.federal.help.branch.title', { years })}
           {...this.props.HasFederalService}
           warning
           onUpdate={this.updateBranch}

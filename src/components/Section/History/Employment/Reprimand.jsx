@@ -1,24 +1,26 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { ValidationElement, BranchCollection } from '../../../Form'
+
+import i18n from 'util/i18n'
+
+import { ValidationElement, BranchCollection } from 'components/Form'
 import ReprimandItem from './ReprimandItem'
 
-export default class Reprimand extends ValidationElement {
-  constructor(props) {
-    super(props)
-    this.updateReasons = this.updateReasons.bind(this)
-  }
+import { getYearsString } from '../helpers'
 
-  updateReasons(values) {
+export default class Reprimand extends ValidationElement {
+  updateReasons = (values) => {
     this.props.onUpdate({
-      ...values
+      ...values,
     })
   }
 
   render() {
+    const { recordYears } = this.props
+    const recordYearsString = getYearsString(recordYears)
+
     return (
       <BranchCollection
-        label={i18n.t('history.employment.default.reprimand.label')}
+        label={i18n.t('history.employment.default.reprimand.label', { years: recordYears, yearsString: recordYearsString })}
         appendLabel={i18n.t('history.employment.default.reprimand.append')}
         help="history.employment.default.reprimand.help"
         {...this.props}
@@ -26,10 +28,11 @@ export default class Reprimand extends ValidationElement {
         onUpdate={this.updateReasons}
         onError={this.props.onError}
         required={this.props.required}
-        scrollIntoView={this.props.scrollIntoView}>
+        scrollIntoView={this.props.scrollIntoView}
+      >
         <ReprimandItem
           name="Item"
-          bind={true}
+          bind
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
         />
@@ -40,8 +43,6 @@ export default class Reprimand extends ValidationElement {
 
 Reprimand.defaultProps = {
   Reasons: { items: [] },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

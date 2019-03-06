@@ -24,7 +24,7 @@ const dateRangeList = (items) => {
 }
 
 const EmploymentSummaryProgress = (props) => {
-  const { Employment, Birthdate } = props
+  const { Employment, Birthdate, years } = props
 
   let employmentDates = []
   if (Employment && Employment.List && Employment.List.items) {
@@ -39,7 +39,7 @@ const EmploymentSummaryProgress = (props) => {
       List={getEmploymentDates}
       title={i18n.t('history.employment.summary.title')}
       unit={i18n.t('history.employment.summary.unit')}
-      total={totalYears(Birthdate)}
+      total={totalYears(Birthdate, years)}
     >
       <div className="summary-icon">
         <Svg
@@ -55,11 +55,13 @@ const EmploymentSummaryProgress = (props) => {
 EmploymentSummaryProgress.propTypes = {
   Employment: PropTypes.object,
   Birthdate: PropTypes.any,
+  years: PropTypes.number,
 }
 
 EmploymentSummaryProgress.defaultProps = {
   Employment: undefined,
   Birthdate: undefined,
+  years: 10,
 }
 
 export default EmploymentSummaryProgress

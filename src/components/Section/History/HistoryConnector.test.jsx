@@ -24,11 +24,14 @@ describe('The HistoryConnector HOC', () => {
   const Wrapper = connectHistorySection(TestComponent, testConfig)
 
   describe('default behavior', () => {
-    const store = mockStore({})
+    const store = mockStore({
+      authentication: { formType: 'SF86' },
+    })
+
     const component = mount(
       <Provider store={store}>
         <Wrapper />
-      </Provider>
+      </Provider>,
     )
 
     it('wraps and renders a given component', () => {
@@ -55,6 +58,7 @@ describe('The HistoryConnector HOC', () => {
 
   describe('if an applicant has less than 10 years of history', () => {
     const store = mockStore({
+      authentication: { formType: 'SF86' },
       application: {
         Identification: {
           ApplicantBirthDate: {
@@ -72,7 +76,7 @@ describe('The HistoryConnector HOC', () => {
     const component = mount(
       <Provider store={store}>
         <Wrapper />
-      </Provider>
+      </Provider>,
     )
 
     it('sets totalYears to be the proper value', () => {
@@ -82,6 +86,7 @@ describe('The HistoryConnector HOC', () => {
 
   describe('if an applicant has more than 10 years of history', () => {
     const store = mockStore({
+      authentication: { formType: 'SF86' },
       application: {
         Identification: {
           ApplicantBirthDate: {
@@ -99,7 +104,7 @@ describe('The HistoryConnector HOC', () => {
     const component = mount(
       <Provider store={store}>
         <Wrapper />
-      </Provider>
+      </Provider>,
     )
 
     it('sets totalYears to be the proper value', () => {

@@ -1,5 +1,6 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
+
 import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
 
 import {
@@ -79,12 +80,14 @@ export class Residence extends Subsection {
   }
 
   customResidenceDetails = (item, index, initial, callback) => {
+    const { totalYears } = this.props
+
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
       return (
         <Gap
           title={i18n.t('history.residence.gap.title')}
-          para={i18n.t('history.residence.gap.para')}
+          para={i18n.t('history.residence.gap.para', { years: totalYears })}
           btnText={i18n.t('history.residence.gap.btnText')}
           first={index === 0}
           dates={dates}
