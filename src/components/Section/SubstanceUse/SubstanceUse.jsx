@@ -84,6 +84,8 @@ class SubstanceUse extends React.Component {
       <div>
         <Route path="/form/substance/intro" component={Intro} />
         <Route path="/form/substance/drugs/usage" component={DrugUses} />
+        <Route path="/form/substance/drugs/purchase" component={DrugInvolvements} />
+
         <SectionViews
           current={this.props.subsection}
           dispatch={this.props.dispatch}

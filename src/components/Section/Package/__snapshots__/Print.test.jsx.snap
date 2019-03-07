@@ -10368,7 +10368,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content drug-uses"
           data-section="substance"
-          data-subsection="drugs/usage"
+          data-subsection="usage"
         >
           <h1
             className="section-header"
@@ -10525,7 +10525,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content drug-involvements"
           data-section="substance"
-          data-subsection="drugs/purchase"
+          data-subsection="purchase"
         >
           <h1
             className="section-header"

@@ -10,13 +10,13 @@ describe('The DrugUses component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) => {
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <DrugUses {...expected} />
         </Provider>
       )
-    }
+    )
   })
 
   it('Renders without errors', () => {

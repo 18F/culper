@@ -1,45 +1,61 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, { DrugInvolvementValidator } from '../../../../validators'
-import { Summary } from '../../../Summary'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { DrugInvolvementValidator } from 'validators'
+import { Summary } from 'components/Summary'
+import { Accordion, Branch, Show } from 'components/Form'
+import {
+  SUBSTANCE_USE,
+  SUBSTANCE_USE_DRUGS_PURCHASE,
+} from 'config/formSections/substanceUse'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubstanceUseSection from '../SubstanceUseConnector'
 import DrugInvolvement from './DrugInvolvement'
 
-export default class DrugInvolvements extends SubsectionElement {
+const sectionConfig = {
+  section: SUBSTANCE_USE.name,
+  store: SUBSTANCE_USE.store,
+  subsection: SUBSTANCE_USE_DRUGS_PURCHASE.name,
+  storeKey: SUBSTANCE_USE_DRUGS_PURCHASE.storeKey,
+}
+
+
+export class DrugInvolvements extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateInvolved = this.updateInvolved.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Involved: this.props.Involved,
-        List: this.props.List,
-        ...updateValues
-      })
-    }
-  }
-
-  updateList(values) {
-    this.update({
-      List: values
+  update = (updateValues) => {
+    this.props.onUpdate(this.storeKey, {
+      Involved: this.props.Involved,
+      List: this.props.List,
+      ...updateValues,
     })
   }
 
-  updateInvolved(values) {
+  updateList = (values) => {
+    this.update({
+      List: values,
+    })
+  }
+
+  updateInvolved = (values) => {
     this.update({
       Involved: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     let drug = (o.DrugType || {}).DrugType
     if (drug === 'Other') {
@@ -48,10 +64,10 @@ export default class DrugInvolvements extends SubsectionElement {
 
     return Summary({
       type: i18n.t('substance.drugs.involvement.collection.itemType'),
-      index: index,
+      index,
       left: drug,
       right: null,
-      placeholder: i18n.t('substance.drugs.involvement.collection.summary')
+      placeholder: i18n.t('substance.drugs.involvement.collection.summary'),
     })
   }
 
@@ -59,15 +75,16 @@ export default class DrugInvolvements extends SubsectionElement {
     return (
       <div
         className="section-content drug-involvements"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('substance.destination.drugs.purchase')}</h1>
+        {...super.dataAttributes(this.props)}
+      >
+        <h1 className="section-header">{i18n.t('substance.subsection.drugs.purchase')}</h1>
         <Branch
           name="Involved"
           label={i18n.t('substance.drugs.heading.drugInvolvement')}
           labelSize="h4"
           className="involved"
           {...this.props.Involved}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateInvolved}
@@ -83,20 +100,15 @@ export default class DrugInvolvements extends SubsectionElement {
             onUpdate={this.updateList}
             onError={this.handleError}
             validator={DrugInvolvementValidator}
-            description={i18n.t(
-              'substance.drugs.involvement.collection.description'
-            )}
-            appendTitle={i18n.t(
-              'substance.drugs.involvement.collection.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'substance.drugs.involvement.collection.appendLabel'
-            )}
+            description={i18n.t('substance.drugs.involvement.collection.description')}
+            appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
+            appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <DrugInvolvement
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -110,14 +122,12 @@ export default class DrugInvolvements extends SubsectionElement {
 DrugInvolvements.defaultProps = {
   Involved: {},
   List: { items: [], branch: {} },
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   section: 'substance',
   subsection: 'drugs/purchase',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('substance.drugs.purchase', data))
-  },
-  scrollToBottom: ''
+  validator: data => validate(schema('substance.drugs.purchase', data)),
+  scrollToBottom: '',
 }
+
+export default connectSubstanceUseSection(DrugInvolvements, sectionConfig)

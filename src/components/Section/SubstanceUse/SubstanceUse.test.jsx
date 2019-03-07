@@ -4,50 +4,50 @@ import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import SubstanceUse from 'components/Section/SubstanceUse'
-
-const applicationState = {
-  SubstanceUse: {}
-}
+import { SUBSTANCE_USE } from 'constants/sections'
+import { SF86, reduceSubsections } from 'config/formTypes'
 
 describe('The substance use section', () => {
   const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({})
+    const store = mockStore({
+      authentication: {
+        formType: 'SF86',
+      },
+    })
     const component = mount(
-      <Provider store={store}>
-        <MemoryRouter>
+      <MemoryRouter>
+        <Provider store={store}>
           <SubstanceUse subsection="review" />
-        </MemoryRouter>
-      </Provider>
+        </Provider>
+      </MemoryRouter>
     )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can go to each subsection', () => {
     window.token = 'fake-token'
-    const sections = [
-      'drugs/usage',
-      'drugs/purchase',
-      'drugs/clearance',
-      'drugs/misuse',
-      'drugs/ordered',
-      'drugs/voluntary',
-      'alcohol/negative',
-      'alcohol/voluntary',
-      'alcohol/ordered'
-    ]
-    const store = mockStore({})
 
-    sections.forEach(section => {
+    const currentSection = SF86.find(s => (s.key === SUBSTANCE_USE))
+    const subsections = reduceSubsections([currentSection])
+
+    const store = mockStore({
+      authentication: {
+        formType: 'SF86',
+      },
+    })
+
+
+    subsections.forEach((section) => {
       const component = mount(
-        <Provider store={store}>
-          <MemoryRouter>
-            <SubstanceUse subsection={section} />
-          </MemoryRouter>
-        </Provider>
+        <MemoryRouter initialEntries={[section.fullPath]}>
+          <Provider store={store}>
+            <SubstanceUse subsection={section.path} />
+          </Provider>
+        </MemoryRouter>
       )
-      component.find('.no input').simulate('change')
+
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })
