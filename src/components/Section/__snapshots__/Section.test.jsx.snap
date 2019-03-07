@@ -5523,7 +5523,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content direct"
         data-section="foreign"
-        data-subsection="direct"
+        data-subsection="activities/direct"
       >
         <h1
           className="section-header"
@@ -5704,7 +5704,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content indirect"
         data-section="foreign"
-        data-subsection="indirect"
+        data-subsection="activities/indirect"
       >
         <h1
           className="section-header"
@@ -5874,7 +5874,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content realestate"
         data-section="foreign"
-        data-subsection="realestate"
+        data-subsection="activities/realestate"
       >
         <h1
           className="section-header"
@@ -6020,7 +6020,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content benefit-activity"
         data-section="foreign"
-        data-subsection="benefits"
+        data-subsection="activities/benefits"
       >
         <h1
           className="section-header"
@@ -6166,7 +6166,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-activities-support"
         data-section="foreign"
-        data-subsection="support"
+        data-subsection="activities/support"
       >
         <h1
           className="section-header"
@@ -6312,7 +6312,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-advice"
         data-section="foreign"
-        data-subsection="advice"
+        data-subsection="business/advice"
       >
         <h1
           className="section-header"
@@ -6472,7 +6472,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-family"
         data-section="foreign"
-        data-subsection="family"
+        data-subsection="business/family"
       >
         <h1
           className="section-header"
@@ -6611,7 +6611,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-employment"
         data-section="foreign"
-        data-subsection="employment"
+        data-subsection="business/employment"
       >
         <h1
           className="section-header"
@@ -6757,7 +6757,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-ventures"
         data-section="foreign"
-        data-subsection="ventures"
+        data-subsection="business/ventures"
       >
         <h1
           className="section-header"
@@ -6909,7 +6909,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-conferences"
         data-section="foreign"
-        data-subsection="conferences"
+        data-subsection="business/conferences"
       >
         <h1
           className="section-header"
@@ -7061,7 +7061,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-contact"
         data-section="foreign"
-        data-subsection="contact"
+        data-subsection="business/contact"
       >
         <h1
           className="section-header"
@@ -7227,7 +7227,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-sponsorship"
         data-section="foreign"
-        data-subsection="sponsorship"
+        data-subsection="business/sponsorship"
       >
         <h1
           className="section-header"
@@ -7397,7 +7397,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-political"
         data-section="foreign"
-        data-subsection="political"
+        data-subsection="business/political"
       >
         <h1
           className="section-header"
@@ -7543,7 +7543,7 @@ exports[`The section component renders foreign.review 1`] = `
       <div
         className="section-content foreign-business-voting"
         data-section="foreign"
-        data-subsection="voting"
+        data-subsection="business/voting"
       >
         <h1
           className="section-header"
