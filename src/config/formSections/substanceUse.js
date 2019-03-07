@@ -25,7 +25,7 @@ export const SUBSTANCE_USE_DRUGS = {
 
 export const SUBSTANCE_USE_DRUGS_USAGE = {
   key: sections.SUBSTANCE_USE_DRUGS_USAGE,
-  name: 'usage',
+  name: 'drugs/usage',
   path: 'usage',
   storeKey: 'DrugUses',
   label: i18n.t('substance.subsection.drugs.usage'),
@@ -33,7 +33,7 @@ export const SUBSTANCE_USE_DRUGS_USAGE = {
 
 export const SUBSTANCE_USE_DRUGS_PURCHASE = {
   key: sections.SUBSTANCE_USE_DRUGS_PURCHASE,
-  name: 'purchase',
+  name: 'drugs/purchase',
   path: 'purchase',
   storeKey: 'DrugInvolvements',
   label: i18n.t('substance.subsection.drugs.purchase'),
@@ -41,7 +41,7 @@ export const SUBSTANCE_USE_DRUGS_PURCHASE = {
 
 export const SUBSTANCE_USE_DRUGS_CLEARANCE = {
   key: sections.SUBSTANCE_USE_DRUGS_CLEARANCE,
-  name: 'clearance',
+  name: 'drugs/clearance',
   path: 'clearance',
   storeKey: 'DrugClearanceUses',
   label: i18n.t('substance.subsection.drugs.clearance'),
@@ -49,7 +49,7 @@ export const SUBSTANCE_USE_DRUGS_CLEARANCE = {
 
 export const SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY = {
   key: sections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
-  name: 'publicsafety',
+  name: 'drugs/publicsafety',
   path: 'publicsafety',
   storeKey: 'DrugPublicSafetyUses',
   label: i18n.t('substance.subsection.drugs.publicsafety'),
@@ -57,7 +57,7 @@ export const SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY = {
 
 export const SUBSTANCE_USE_DRUGS_MISUSE = {
   key: sections.SUBSTANCE_USE_DRUGS_MISUSE,
-  name: 'misuse',
+  name: 'drugs/misuse',
   path: 'misuse',
   storeKey: 'PrescriptionUses',
   label: i18n.t('substance.subsection.drugs.misuse'),
@@ -65,7 +65,7 @@ export const SUBSTANCE_USE_DRUGS_MISUSE = {
 
 export const SUBSTANCE_USE_DRUGS_ORDERED = {
   key: sections.SUBSTANCE_USE_DRUGS_ORDERED,
-  name: 'ordered',
+  name: 'drugs/ordered',
   path: 'ordered',
   storeKey: 'OrderedTreatments',
   label: i18n.t('substance.subsection.drugs.ordered'),
@@ -73,7 +73,7 @@ export const SUBSTANCE_USE_DRUGS_ORDERED = {
 
 export const SUBSTANCE_USE_DRUGS_VOLUNTARY = {
   key: sections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
-  name: 'voluntary',
+  name: 'drugs/voluntary',
   path: 'voluntary',
   storeKey: 'VoluntaryTreatments',
   label: i18n.t('substance.subsection.drugs.voluntary'),
@@ -88,7 +88,7 @@ export const SUBSTANCE_USE_ALCOHOL = {
 
 export const SUBSTANCE_USE_ALCOHOL_NEGATIVE = {
   key: sections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
-  name: 'negative',
+  name: 'alcohol/negative',
   path: 'negative',
   storeKey: 'NegativeImpact',
   label: i18n.t('substance.subsection.alcohol.negative'),
@@ -96,7 +96,7 @@ export const SUBSTANCE_USE_ALCOHOL_NEGATIVE = {
 
 export const SUBSTANCE_USE_ALCOHOL_ORDERED = {
   key: sections.SUBSTANCE_USE_ALCOHOL_ORDERED,
-  name: 'ordered',
+  name: 'alcohol/ordered',
   path: 'ordered',
   storeKey: 'OrderedCounselings',
   label: i18n.t('substance.subsection.alcohol.ordered'),
@@ -104,7 +104,7 @@ export const SUBSTANCE_USE_ALCOHOL_ORDERED = {
 
 export const SUBSTANCE_USE_ALCOHOL_VOLUNTARY = {
   key: sections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
-  name: 'voluntary',
+  name: 'alcohol/voluntary',
   path: 'voluntary',
   storeKey: 'VoluntaryCounselings',
   label: i18n.t('substance.subsection.alcohol.voluntary'),
@@ -112,7 +112,7 @@ export const SUBSTANCE_USE_ALCOHOL_VOLUNTARY = {
 
 export const SUBSTANCE_USE_ALCOHOL_ADDITIONAL = {
   key: sections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
-  name: 'additional',
+  name: 'alcohol/additional',
   path: 'additional',
   storeKey: 'ReceivedCounselings',
   label: i18n.t('substance.subsection.alcohol.additional'),
