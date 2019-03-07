@@ -1,54 +1,71 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, { DrugUseValidator } from '../../../../validators'
-import { Summary } from '../../../Summary'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { DrugUseValidator } from 'validators'
+import { Summary } from 'components/Summary'
+import { Accordion, Branch, Show } from 'components/Form'
+
+import {
+  SUBSTANCE_USE,
+  SUBSTANCE_USE_DRUGS_USAGE,
+} from 'config/formSections/substanceUse'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubstanceUseSection from '../SubstanceUseConnector'
+
 import DrugUse from './DrugUse'
 
-export default class DrugUses extends SubsectionElement {
+const sectionConfig = {
+  section: SUBSTANCE_USE.name,
+  store: SUBSTANCE_USE.store,
+  subsection: SUBSTANCE_USE_DRUGS_USAGE.name,
+  storeKey: SUBSTANCE_USE_DRUGS_USAGE.storeKey,
+}
+
+export class DrugUses extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateUsedDrugs = this.updateUsedDrugs.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        UsedDrugs: this.props.UsedDrugs,
-        List: this.props.List,
-        ...updateValues
-      })
-    }
-  }
-
-  updateList(values) {
-    this.update({
-      List: values
+  update = (updateValues) => {
+    this.props.onUpdate(this.storeKey, {
+      UsedDrugs: this.props.UsedDrugs,
+      List: this.props.List,
+      ...updateValues,
     })
   }
 
-  updateUsedDrugs(values) {
+  updateList = (values) => {
+    this.update({
+      List: values,
+    })
+  }
+
+  updateUsedDrugs = (values) => {
     this.update({
       UsedDrugs: values,
-      List: values.value === 'Yes' ? this.props.List : {}
+      List: values.value === 'Yes' ? this.props.List : {},
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const drug = (o.DrugType || {}).value
 
     return Summary({
       type: i18n.t('substance.drugs.use.collection.itemType'),
-      index: index,
+      index,
       left: drug,
       right: null,
-      placeholder: i18n.t('substance.drugs.use.collection.summary')
+      placeholder: i18n.t('substance.drugs.use.collection.summary'),
     })
   }
 
@@ -56,8 +73,9 @@ export default class DrugUses extends SubsectionElement {
     return (
       <div
         className="section-content drug-uses"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('substance.destination.drugs.usage')}</h1>
+        {...super.dataAttributes(this.props)}
+      >
+        <h1 className="section-header">{i18n.t('substance.subsection.drugs.usage')}</h1>
         {i18n.m('substance.drugs.para.drugUses')}
         <Branch
           name="UsedDrugs"
@@ -65,11 +83,12 @@ export default class DrugUses extends SubsectionElement {
           labelSize="h4"
           className="used-drugs"
           {...this.props.UsedDrugs}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateUsedDrugs}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('substance.drugs.use.para.drugUses')}
         </Branch>
 
@@ -86,10 +105,11 @@ export default class DrugUses extends SubsectionElement {
             appendTitle={i18n.t('substance.drugs.use.collection.appendTitle')}
             appendLabel={i18n.t('substance.drugs.use.collection.appendLabel')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <DrugUse
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -103,14 +123,12 @@ export default class DrugUses extends SubsectionElement {
 DrugUses.defaultProps = {
   UsedDrugs: {},
   List: {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   section: 'substance',
   subsection: 'drugs/usage',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('substance.drugs.usage', data))
-  },
-  scrollToBottom: ''
+  validator: data => validate(schema('substance.drugs.usage', data)),
+  scrollToBottom: '',
 }
+
+export default connectSubstanceUseSection(DrugUses, sectionConfig)

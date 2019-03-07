@@ -1,23 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
+import { withRouter, Route } from 'react-router-dom'
 import { i18n } from 'config'
 import { SectionViews, SectionView } from 'components/Section/SectionView'
-import SectionElement from 'components/Section/SectionElement'
-import { Field } from 'components/Form'
-import NegativeImpacts from 'components/Section/SubstanceUse/Alcohol/NegativeImpacts'
-import OrderedCounselings from 'components/Section/SubstanceUse/Alcohol/OrderedCounselings'
-import VoluntaryCounselings from 'components/Section/SubstanceUse/Alcohol/VoluntaryCounselings'
-import ReceivedCounselings from 'components/Section/SubstanceUse/Alcohol/ReceivedCounselings'
-import DrugUses from 'components/Section/SubstanceUse/Drugs/DrugUses'
-import DrugInvolvements from 'components/Section/SubstanceUse/Drugs/DrugInvolvements'
-import DrugClearanceUses from 'components/Section/SubstanceUse/Drugs/DrugClearanceUses'
-import DrugPublicSafetyUses from 'components/Section/SubstanceUse/Drugs/DrugPublicSafetyUses'
-import PrescriptionUses from 'components/Section/SubstanceUse/Drugs/PrescriptionUses'
-import OrderedTreatments from 'components/Section/SubstanceUse/Drugs/OrderedTreatments'
-import VoluntaryTreatments from 'components/Section/SubstanceUse/Drugs/VoluntaryTreatments'
+import SectionNavigation from 'components/Section/shared/SectionNavigation'
+import Intro from './Intro'
+import NegativeImpacts from './Alcohol/NegativeImpacts'
+import OrderedCounselings from './Alcohol/OrderedCounselings'
+import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
+import ReceivedCounselings from './Alcohol/ReceivedCounselings'
+import DrugUses from './Drugs/DrugUses'
+import DrugInvolvements from './Drugs/DrugInvolvements'
+import DrugClearanceUses from './Drugs/DrugClearanceUses'
+import DrugPublicSafetyUses from './Drugs/DrugPublicSafetyUses'
+import PrescriptionUses from './Drugs/PrescriptionUses'
+import OrderedTreatments from './Drugs/OrderedTreatments'
+import VoluntaryTreatments from './Drugs/VoluntaryTreatments'
 
-class SubstanceUse extends SectionElement {
+class SubstanceUse extends React.Component {
   constructor(props) {
     super(props)
 
@@ -32,18 +32,6 @@ class SubstanceUse extends SectionElement {
     this.updatePrescriptionUses = this.updatePrescriptionUses.bind(this)
     this.updateOrderedTreatments = this.updateOrderedTreatments.bind(this)
     this.updateVoluntaryTreatments = this.updateVoluntaryTreatments.bind(this)
-  }
-
-  componentWillReceiveProps(next) {
-    // Redirect to first alcohol subsection if root subsection is accessed
-    switch (next.subsection) {
-      case 'alcohol':
-        this.props.history.push('/form/substance/alcohol/negative')
-        break
-      case 'drugs':
-        this.props.history.push('/form/substance/drugs/usage')
-        break
-    }
   }
 
   updateNegativeImpacts(values) {
@@ -91,13 +79,16 @@ class SubstanceUse extends SectionElement {
   }
 
   render() {
+    const { location } = this.props
     return (
       <div>
+        <Route path="/form/substance/intro" component={Intro} />
+        <Route path="/form/substance/drugs/usage" component={DrugUses} />
         <SectionViews
           current={this.props.subsection}
           dispatch={this.props.dispatch}
           update={this.props.update}>
-          <SectionView
+          {/* <SectionView
             name="intro"
             back="financial/review"
             backLabel={i18n.t('financial.destination.review')}
@@ -109,9 +100,9 @@ class SubstanceUse extends SectionElement {
               className="no-margin-bottom">
               {i18n.m('substance.intro.body')}
             </Field>
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="drugs/usage"
             back="substance/intro"
             backLabel={i18n.t('substance.destination.intro')}
@@ -125,7 +116,7 @@ class SubstanceUse extends SectionElement {
               onUpdate={this.updateDrugUses}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
           <SectionView
             name="drugs/purchase"
@@ -443,6 +434,8 @@ class SubstanceUse extends SectionElement {
             />
           </SectionView>
         </SectionViews>
+
+        <SectionNavigation currentPath={location.pathname} />
       </div>
     )
   }

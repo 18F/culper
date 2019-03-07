@@ -57,8 +57,8 @@ const connectSubstanceUseSection = (Component, {
     const completed = app.Completed || {}
 
     switch (storeKey) {
-      case 'DrugUse':
-        return { ...substance.DrugUse } || {}
+      case 'DrugUses':
+        return { ...substance.DrugUses } || {}
       case 'DrugInvolvements':
         return { ...substance.DrugInvolvements } || {}
       case 'DrugClearanceUses':

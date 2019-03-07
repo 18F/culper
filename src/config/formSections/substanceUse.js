@@ -1,7 +1,7 @@
 import * as sections from 'constants/sections'
 import { i18n } from 'config'
 
-const SUBSTANCE_USE = {
+export const SUBSTANCE_USE = {
   key: sections.SUBSTANCE_USE,
   name: 'substance',
   path: 'substance',
@@ -9,21 +9,21 @@ const SUBSTANCE_USE = {
   label: i18n.t('substance.section.name'),
 }
 
-const SUBSTANCE_USE_INTRO = {
+export const SUBSTANCE_USE_INTRO = {
   key: sections.SUBSTANCE_USE_INTRO,
   name: 'intro',
   path: 'intro',
   label: i18n.t('substance.subsection.intro'),
 }
 
-const SUBSTANCE_USE_DRUGS = {
+export const SUBSTANCE_USE_DRUGS = {
   key: sections.SUBSTANCE_USE_DRUGS,
   name: 'drugs',
   path: 'drugs',
   label: i18n.t('substance.subsection.drugs.label'),
 }
 
-const SUBSTANCE_USE_DRUGS_USAGE = {
+export const SUBSTANCE_USE_DRUGS_USAGE = {
   key: sections.SUBSTANCE_USE_DRUGS_USAGE,
   name: 'usage',
   path: 'usage',
@@ -31,7 +31,7 @@ const SUBSTANCE_USE_DRUGS_USAGE = {
   label: i18n.t('substance.subsection.drugs.usage'),
 }
 
-const SUBSTANCE_USE_DRUGS_PURCHASE = {
+export const SUBSTANCE_USE_DRUGS_PURCHASE = {
   key: sections.SUBSTANCE_USE_DRUGS_PURCHASE,
   name: 'purchase',
   path: 'purchase',
@@ -39,7 +39,7 @@ const SUBSTANCE_USE_DRUGS_PURCHASE = {
   label: i18n.t('substance.subsection.drugs.purchase'),
 }
 
-const SUBSTANCE_USE_DRUGS_CLEARANCE = {
+export const SUBSTANCE_USE_DRUGS_CLEARANCE = {
   key: sections.SUBSTANCE_USE_DRUGS_CLEARANCE,
   name: 'clearance',
   path: 'clearance',
@@ -47,7 +47,7 @@ const SUBSTANCE_USE_DRUGS_CLEARANCE = {
   label: i18n.t('substance.subsection.drugs.clearance'),
 }
 
-const SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY = {
+export const SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY = {
   key: sections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
   name: 'publicsafety',
   path: 'publicsafety',
@@ -55,7 +55,7 @@ const SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY = {
   label: i18n.t('substance.subsection.drugs.publicsafety'),
 }
 
-const SUBSTANCE_USE_DRUGS_MISUSE = {
+export const SUBSTANCE_USE_DRUGS_MISUSE = {
   key: sections.SUBSTANCE_USE_DRUGS_MISUSE,
   name: 'misuse',
   path: 'misuse',
@@ -63,7 +63,7 @@ const SUBSTANCE_USE_DRUGS_MISUSE = {
   label: i18n.t('substance.subsection.drugs.misuse'),
 }
 
-const SUBSTANCE_USE_DRUGS_ORDERED = {
+export const SUBSTANCE_USE_DRUGS_ORDERED = {
   key: sections.SUBSTANCE_USE_DRUGS_ORDERED,
   name: 'ordered',
   path: 'ordered',
@@ -71,7 +71,7 @@ const SUBSTANCE_USE_DRUGS_ORDERED = {
   label: i18n.t('substance.subsection.drugs.ordered'),
 }
 
-const SUBSTANCE_USE_DRUGS_VOLUNTARY = {
+export const SUBSTANCE_USE_DRUGS_VOLUNTARY = {
   key: sections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
   name: 'voluntary',
   path: 'voluntary',
@@ -79,14 +79,14 @@ const SUBSTANCE_USE_DRUGS_VOLUNTARY = {
   label: i18n.t('substance.subsection.drugs.voluntary'),
 }
 
-const SUBSTANCE_USE_ALCOHOL = {
+export const SUBSTANCE_USE_ALCOHOL = {
   key: sections.SUBSTANCE_USE_ALCOHOL,
   name: 'alcohol',
   path: 'alcohol',
   label: i18n.t('substance.subsection.alcohol.label'),
 }
 
-const SUBSTANCE_USE_ALCOHOL_NEGATIVE = {
+export const SUBSTANCE_USE_ALCOHOL_NEGATIVE = {
   key: sections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
   name: 'negative',
   path: 'negative',
@@ -94,7 +94,7 @@ const SUBSTANCE_USE_ALCOHOL_NEGATIVE = {
   label: i18n.t('substance.subsection.alcohol.negative'),
 }
 
-const SUBSTANCE_USE_ALCOHOL_ORDERED = {
+export const SUBSTANCE_USE_ALCOHOL_ORDERED = {
   key: sections.SUBSTANCE_USE_ALCOHOL_ORDERED,
   name: 'ordered',
   path: 'ordered',
@@ -102,7 +102,7 @@ const SUBSTANCE_USE_ALCOHOL_ORDERED = {
   label: i18n.t('substance.subsection.alcohol.ordered'),
 }
 
-const SUBSTANCE_USE_ALCOHOL_VOLUNTARY = {
+export const SUBSTANCE_USE_ALCOHOL_VOLUNTARY = {
   key: sections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
   name: 'voluntary',
   path: 'voluntary',
@@ -110,7 +110,7 @@ const SUBSTANCE_USE_ALCOHOL_VOLUNTARY = {
   label: i18n.t('substance.subsection.alcohol.voluntary'),
 }
 
-const SUBSTANCE_USE_ALCOHOL_ADDITIONAL = {
+export const SUBSTANCE_USE_ALCOHOL_ADDITIONAL = {
   key: sections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
   name: 'additional',
   path: 'additional',
@@ -118,7 +118,7 @@ const SUBSTANCE_USE_ALCOHOL_ADDITIONAL = {
   label: i18n.t('substance.subsection.alcohol.additional'),
 }
 
-const SUBSTANCE_USE_REVIEW = {
+export const SUBSTANCE_USE_REVIEW = {
   key: sections.SUBSTANCE_USE_REVIEW,
   name: 'review',
   path: 'review',

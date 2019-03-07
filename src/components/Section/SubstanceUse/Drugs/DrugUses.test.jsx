@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import DrugUses from './DrugUses'
+import { DrugUses } from './DrugUses'
 
 describe('The DrugUses component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The DrugUses component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => {
       mount(
         <Provider store={store}>
           <DrugUses {...expected} />
         </Provider>
       )
+    }
   })
 
   it('Renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The DrugUses component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-uses').length).toBe(1)
@@ -45,55 +46,55 @@ describe('The DrugUses component', () => {
             DrugUse: {
               DrugType: {
                 DrugType: 'Cocaine',
-                DrugTypeOther: null
+                DrugTypeOther: null,
               },
               FirstUse: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               RecentUse: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               NatureOfUse: {
-                value: 'Some use'
+                value: 'Some use',
               },
               UseWhileEmployed: 'Yes',
               UseWithClearance: 'Yes',
               UseInFuture: 'No',
               Explanation: {
-                value: 'Foo'
-              }
-            }
+                value: 'Foo',
+              },
+            },
           },
           {
             DrugUse: {
               DrugType: {
                 DrugType: 'Other',
-                DrugTypeOther: 'Zombie'
+                DrugTypeOther: 'Zombie',
               },
               NatureOfUse: {
-                value: 'Some use'
+                value: 'Some use',
               },
               UseWhileEmployed: 'Yes',
               UseWithClearance: 'Yes',
               UseInFuture: 'No',
               Explanation: {
-                value: 'Foo'
-              }
-            }
+                value: 'Foo',
+              },
+            },
           },
           {
-            DrugUse: {}
-          }
-        ]
+            DrugUse: {},
+          },
+        ],
       },
       UsedDrugs: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-uses').length).toBe(1)
