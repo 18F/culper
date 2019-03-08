@@ -30107,7 +30107,7 @@ exports[`The section component renders substance.review 1`] = `
                   <div
                     className="section-content voluntary-counselings"
                     data-section="substance"
-                    data-subsection="substance/alcohol/voluntary"
+                    data-subsection="alcohol/voluntary"
                   >
                     <h1
                       className="section-header"
