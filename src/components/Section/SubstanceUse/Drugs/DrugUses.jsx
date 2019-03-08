@@ -73,7 +73,7 @@ export class DrugUses extends Subsection {
     return (
       <div
         className="section-content drug-uses"
-        {...super.dataAttributes(this.props)}
+        {...super.dataAttributes()}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.usage')}</h1>
         {i18n.m('substance.drugs.para.drugUses')}

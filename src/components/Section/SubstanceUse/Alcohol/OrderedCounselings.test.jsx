@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import OrderedCounselings from './OrderedCounselings'
+import { OrderedCounselings } from './OrderedCounselings'
 import { Location } from '../../../Form'
 
 describe('The OrderedCounselings component', () => {
@@ -11,12 +11,13 @@ describe('The OrderedCounselings component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <OrderedCounselings {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -28,8 +29,8 @@ describe('The OrderedCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.ordered-counselings').length).toBe(1)
@@ -41,12 +42,12 @@ describe('The OrderedCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       HasBeenOrdered: { value: 'Yes' },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
         items: [
           {
@@ -56,17 +57,17 @@ describe('The OrderedCounselings component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2012'
+                  year: '2012',
                 },
-                present: false
+                present: false,
               },
               TreatmentProviderName: {
-                value: 'The name'
+                value: 'The name',
               },
               TreatmentProviderAddress: {
                 country: 'United States',
@@ -74,20 +75,20 @@ describe('The OrderedCounselings component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
               TreatmentProviderTelephone: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
                 timeOfDay: 'Both',
-                extension: ''
+                extension: '',
               },
-              CompletedTreatment: { value: 'Yes' }
-            }
-          }
-        ]
-      }
+              CompletedTreatment: { value: 'Yes' },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     component.find('.seekers .seekers-employer input').simulate('change')
@@ -95,11 +96,16 @@ describe('The OrderedCounselings component', () => {
   })
 
   it('Summary accordion text for seeker options', () => {
+    // eslint-disable-next-line no-unused-vars
+    let updates = 0
     const expected = {
+      onUpdate: () => {
+        updates += 1
+      },
       HasBeenOrdered: { value: 'Yes' },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
         items: [
           {
@@ -111,25 +117,25 @@ describe('The OrderedCounselings component', () => {
                   'MentalHealthProfessional',
                   'CourtOfficial',
                   'NotOrdered',
-                  'Other'
-                ]
-              }
-            }
-          }
-        ]
-      }
+                  'Other',
+                ],
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
-    const text = component.find('.item').text()
-    let options = [
+    const text = component.find('.context').text().split(', ')
+    const options = [
       'Employer',
       'Medical professional',
       'Court official',
       'Not ordered',
-      'Other'
+      'Other',
     ]
-    options.forEach(o => {
-      expect(text.indexOf(o)).toBeGreaterThan(-1)
+    options.forEach((option) => {
+      expect(text.indexOf(option)).toBeGreaterThan(-1)
     })
   })
 })

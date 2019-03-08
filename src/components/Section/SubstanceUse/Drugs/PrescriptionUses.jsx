@@ -72,7 +72,7 @@ export class PrescriptionUses extends Subsection {
     return (
       <div
         className="section-content prescription-uses"
-        {...super.dataAttributes(this.props)}
+        {...super.dataAttributes()}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.misuse')}</h1>
         <Branch

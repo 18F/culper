@@ -72,7 +72,7 @@ export class OrderedTreatments extends Subsection {
     return (
       <div
         className="section-content ordered-treatments"
-        {...super.dataAttributes(this.props)}
+        {...super.dataAttributes()}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.ordered')}</h1>
         <Branch
