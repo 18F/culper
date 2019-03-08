@@ -86,6 +86,8 @@ class SubstanceUse extends React.Component {
         <Route path="/form/substance/drugs/usage" component={DrugUses} />
         <Route path="/form/substance/drugs/purchase" component={DrugInvolvements} />
         <Route path="/form/substance/drugs/clearance" component={DrugClearanceUses} />
+        <Route path="/form/substance/drugs/publicsafety" component={DrugPublicSafetyUses} />
+
 
 
         <SectionViews
@@ -154,7 +156,7 @@ class SubstanceUse extends React.Component {
             />
           </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="drugs/publicsafety"
             back="substance/drugs/clearance"
             backLabel={i18n.t('substance.destination.drugs.clearance')}
@@ -168,7 +170,7 @@ class SubstanceUse extends React.Component {
               onUpdate={this.updateDrugPublicSafetyUses}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
           <SectionView
             name="drugs/misuse"
