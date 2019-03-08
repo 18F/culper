@@ -29085,7 +29085,7 @@ exports[`The section component renders substance.review 1`] = `
                   <div
                     className="section-content drug-clearance-uses"
                     data-section="substance"
-                    data-subsection="substance/drugs/clearance"
+                    data-subsection="drugs/clearance"
                   >
                     <h1
                       className="section-header"

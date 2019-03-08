@@ -19,7 +19,6 @@ const sectionConfig = {
   storeKey: SUBSTANCE_USE_DRUGS_PURCHASE.storeKey,
 }
 
-
 export class DrugInvolvements extends Subsection {
   constructor(props) {
     super(props)
