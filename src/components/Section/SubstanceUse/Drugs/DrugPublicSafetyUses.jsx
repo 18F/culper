@@ -34,7 +34,7 @@ export class DrugPublicSafetyUses extends Subsection {
   }
 
   update = (updateValues) => {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       UsedDrugs: this.props.UsedDrugs,
       List: this.props.List,
       ...updateValues,
