@@ -29523,7 +29523,7 @@ exports[`The section component renders substance.review 1`] = `
                   <div
                     className="section-content ordered-treatments"
                     data-section="substance"
-                    data-subsection="substance/drugs/ordered"
+                    data-subsection="drugs/ordered"
                   >
                     <h1
                       className="section-header"
@@ -29669,7 +29669,7 @@ exports[`The section component renders substance.review 1`] = `
                   <div
                     className="section-content voluntary-treatments"
                     data-section="substance"
-                    data-subsection="substance/drugs/voluntary"
+                    data-subsection="drugs/voluntary"
                   >
                     <h1
                       className="section-header"
