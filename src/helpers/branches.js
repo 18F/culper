@@ -11,3 +11,7 @@ export const requireMultipleCitizenshipRenounced = formType => (
 export const requireCitizenshipForeignPassportsSection = formType => (
   formType !== formTypes.SF85
 )
+
+export const requireForeignMilitaryMaintainsContact = formType => (
+  formType !== formTypes.SF85
+)

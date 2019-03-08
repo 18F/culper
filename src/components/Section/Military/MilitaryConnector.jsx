@@ -6,10 +6,13 @@ import {
   updateApplication,
   reportErrors,
 } from 'actions/ApplicationActions'
+
 import {
   hideSelectiveServiceSelector,
   hideDisciplinaryProceduresSelector,
 } from 'selectors/navigation'
+
+import { selectForeignMilitaryMaintainsContact } from 'selectors/branches'
 
 const connectMilitarySection = (Component, {
   section, subsection, store, storeKey,
@@ -79,6 +82,7 @@ const connectMilitarySection = (Component, {
       case 'Foreign':
         return {
           ...military.Foreign,
+          ...selectForeignMilitaryMaintainsContact(state),
           addressBooks,
           formType,
         }
