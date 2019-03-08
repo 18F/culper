@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { CITIZENSHIP, CITIZENSHIP_REVIEW } from 'config/formSections/citizenship'
 
@@ -14,7 +15,7 @@ const sectionConfig = {
   subsection: CITIZENSHIP_REVIEW.name,
 }
 
-const Review = ({ requireCitizenshipForeignPassportsSection }) => {
+export const Review = ({ requireCitizenshipForeignPassportsSection }) => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
@@ -33,6 +34,14 @@ const Review = ({ requireCitizenshipForeignPassportsSection }) => {
       {requireCitizenshipForeignPassportsSection && <ConnectedPassports {...subsectionProps} />}
     </div>
   )
+}
+
+Review.propTypes = {
+  requireCitizenshipForeignPassportsSection: PropTypes.bool,
+}
+
+Review.defaultProps = {
+  requireCitizenshipForeignPassportsSection: true,
 }
 
 export default connectCitizenshipSection(Review, sectionConfig)
