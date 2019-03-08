@@ -147,7 +147,7 @@ Multiple.defaultProps = {
   dispatch: () => {},
   validator: data => validate(schema('citizenship.multiple', data)),
   defaultState: true,
-  required: true,
+  required: false,
   scrollIntoView: false,
   requireMultipleCitizenshipRenounced: true,
 }
