@@ -3,6 +3,7 @@ import { createSelector } from 'reselect'
 import {
   requireHistoryFederalSection,
   requireMultipleCitizenshipRenounced,
+  requireCitizenshipForeignPassportsSection,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -21,6 +22,16 @@ export const selectMultipleCitizenshipRenounced = createSelector(
   formType => (
     {
       requireMultipleCitizenshipRenounced: requireMultipleCitizenshipRenounced(formType),
+    }
+  )
+)
+
+export const selectCitizenshipForeignPassportsSection = createSelector(
+  formTypeSelector,
+  formType => (
+    {
+      requireCitizenshipForeignPassportsSection:
+        requireCitizenshipForeignPassportsSection(formType),
     }
   )
 )

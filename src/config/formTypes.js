@@ -31,7 +31,6 @@ export const SF85 = [
       formSections.CITIZENSHIP_INTRO,
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
-      formSections.CITIZENSHIP_PASSPORTS,
       formSections.CITIZENSHIP_REVIEW,
     ],
   },

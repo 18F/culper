@@ -7,3 +7,7 @@ export const requireHistoryFederalSection = formType => (
 export const requireMultipleCitizenshipRenounced = formType => (
   formType === formTypes.SF86
 )
+
+export const requireCitizenshipForeignPassportsSection = formType => (
+  formType !== formTypes.SF85
+)

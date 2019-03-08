@@ -9,6 +9,7 @@ import {
 
 import {
   selectMultipleCitizenshipRenounced,
+  selectCitizenshipForeignPassportsSection,
 } from 'selectors/branches'
 
 const connectCitizenshipSection = (Component, {
@@ -83,6 +84,7 @@ const connectCitizenshipSection = (Component, {
           Passports: citizenship.Passports || {},
           Errors: errors.citizenship || [],
           Completed: completed.citizenship || [],
+          ...selectCitizenshipForeignPassportsSection(state),
         }
     }
   }
