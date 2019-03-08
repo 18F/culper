@@ -2,7 +2,7 @@
 
 export const military = {
   intro: {
-    title: 'Section 5: Military history',
+    title: 'Military history',
     body:
       'You will be asked questions about your military history and be asked to provide details if necessary.',
   },
