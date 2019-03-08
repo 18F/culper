@@ -10,12 +10,14 @@ describe('The SectionLink component', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
-  const mountSection = (section, initialPath = '/', state = {}) => {
+  const defaultState = { application: { Errors: {}, Completed: {} } }
+
+  const mountSection = (props = {}, initialPath = '/', state = defaultState) => {
     const store = mockStore(state)
     return mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={[initialPath]}>
-          <SectionLink section={section} />
+          <SectionLink {...props} />
         </MemoryRouter>
       </Provider>
     )
@@ -23,36 +25,37 @@ describe('The SectionLink component', () => {
 
   it('renders a basic SectionLink', () => {
     const section = {
-      name: 'Foo',
-      url: 'foo'
+      label: 'Foo',
+      path: 'foo',
     }
-    const component = mountSection(section)
+    const component = mountSection({ section })
     expect(component.find('a').length).toBe(1)
     expect(component.find('.fa-angle-down').length).toBe(0)
   })
 
   it("shows the section as 'active' when at the path", () => {
     const section = {
-      name: 'Foo',
-      url: 'foo'
+      label: 'Foo',
+      path: 'form/foo',
     }
-    const component = mountSection(section, '/form/foo')
+    const component = mountSection({ section }, '/form/foo')
     expect(component.find('a.usa-current').length).toBe(1)
   })
 
   it("doesn't show the section as 'active' when not at the path", () => {
     const section = {
-      name: 'Foo',
-      url: 'foo'
+      label: 'Foo',
+      path: 'foo',
     }
-    const component = mountSection(section, '/form/bar')
+    const component = mountSection({ section }, '/form/bar')
     expect(component.find('a.usa-current').length).toBe(0)
   })
 
   it('shows errors', () => {
     const section = {
-      name: 'Foreign activity',
-      url: 'foreign'
+      label: 'Foreign activity',
+      path: 'foreign',
+      name: 'direct',
     }
     const state = {
       application: {
@@ -62,14 +65,21 @@ describe('The SectionLink component', () => {
               section: 'foreign',
               subsection: 'activities/direct',
               valid: false,
-              code: 'date.month.notfound'
-            }
-          ]
-        }
-      }
+              code: 'date.month.notfound',
+            },
+          ],
+        },
+        Completed: {},
+      },
     }
 
-    const component = mountSection(section, '/form/foreign', state)
+    const props = {
+      section,
+      topSection: 'foreign',
+      sectionCode: 'foreign/activities',
+    }
+
+    const component = mountSection(props, '/form/foreign', state)
     expect(component.find('.has-errors').length).toBe(1)
   })
 })
