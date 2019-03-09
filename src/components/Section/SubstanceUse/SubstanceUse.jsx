@@ -93,7 +93,7 @@ class SubstanceUse extends React.Component {
         <Route path="/form/substance/alcohol/negative" component={NegativeImpacts} />
         <Route path="/form/substance/alcohol/ordered" component={OrderedCounselings} />
         <Route path="/form/substance/alcohol/voluntary" component={VoluntaryCounselings} />
-
+        <Route path="/form/substance/alcohol/additional" component={ReceivedCounselings} />
 
         <SectionViews
           current={this.props.subsection}
@@ -277,7 +277,7 @@ class SubstanceUse extends React.Component {
             />
           </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="alcohol/additional"
             back="substance/alcohol/voluntary"
             backLabel={i18n.t('substance.destination.police.voluntary')}
@@ -291,7 +291,7 @@ class SubstanceUse extends React.Component {
               onUpdate={this.updateReceivedCounselings}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
           <SectionView
             name="review"
