@@ -6,6 +6,7 @@ import classnames from 'classnames'
 
 import i18n from 'util/i18n'
 import * as formTypes from 'constants/formTypes'
+import { reviewSections } from 'config/formTypes'
 
 import { nestedFormSectionsSelector } from 'selectors/navigation'
 
@@ -308,10 +309,12 @@ function mapStateToProps(state) {
   const settings = application.Settings
     || { mobileNavigation: false, modalOpen: false }
 
+  const formSections = nestedFormSectionsSelector(state).concat(reviewSections)
+
   return {
     settings,
     formType,
-    formSections: nestedFormSectionsSelector(state),
+    formSections,
   }
 }
 

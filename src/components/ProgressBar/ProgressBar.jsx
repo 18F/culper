@@ -1,42 +1,38 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {
-  sectionsTotal,
-  sectionsCompleted
-} from 'components/Navigation/navigation-helpers'
 
-class ProgressBar extends React.Component {
-  render() {
-    const styles = {
-      width:
-        '' +
-        (sectionsCompleted(this.props.completed, this.props) /
-          sectionsTotal()) *
-          100 +
-        '%'
-    }
+import { totalSections, completedSections } from 'helpers/navigation'
 
-    return (
-      <div className="eapp-progress">
-        <div
-          id="progress-bar"
-          className="eapp-progress-current"
-          style={styles}
-        />
-      </div>
-    )
+const ProgressBar = ({ total, completed }) => {
+  const styles = {
+    width: `${completed / total * 100}%`,
   }
+
+  return (
+    <div className="eapp-progress">
+      <div
+        id="progress-bar"
+        className="eapp-progress-current"
+        style={styles}
+      />
+    </div>
+  )
 }
 
-function mapStateToProps(state) {
-  let section = state.section || {}
-  let app = state.application || {}
-  let completed = app.Completed || {}
-  return {
-    application: app,
-    section: section,
-    completed: completed
-  }
+ProgressBar.propTypes = {
+  total: PropTypes.number,
+  completed: PropTypes.number,
 }
+
+ProgressBar.defaultProps = {
+  total: 10,
+  completed: 0,
+}
+
+const mapStateToProps = state => ({
+  total: totalSections(state),
+  completed: completedSections(state),
+})
 
 export default connect(mapStateToProps)(ProgressBar)

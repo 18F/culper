@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import {
-  formIsLockedSelector,
+  sectionIsLockedSelector,
   sectionHasErrorsSelector,
   sectionIsValidSelector,
 } from 'selectors/navigation'
@@ -66,7 +66,7 @@ SectionLink.defaultProps = {
 const mapStateToProps = (state, ownProps) => ({
   ...sectionHasErrorsSelector(state, ownProps),
   ...sectionIsValidSelector(state, ownProps),
-  ...formIsLockedSelector(state),
+  ...sectionIsLockedSelector(state, ownProps),
 })
 
 export default connect(mapStateToProps)(SectionLink)

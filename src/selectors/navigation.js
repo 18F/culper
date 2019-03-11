@@ -9,6 +9,9 @@ import { hideSelectiveService } from 'validators/selectiveservice'
 import { hideDisciplinaryProcedures } from 'validators/militarydisciplinary'
 import { hideExistingConditions } from 'validators/psychological'
 
+// TODO - migrate/deprecate this after form validation logic is cleaned up
+import { formHasErrors } from 'helpers/navigation'
+
 const getSectionErrors = (state, props) => {
   const { application } = state
   const { Errors } = application
@@ -57,6 +60,24 @@ const getFormLocked = (state) => {
   return Settings && Settings.locked
 }
 
+const getSectionLocked = (state, props) => {
+  const { section } = props
+  const formIsLocked = getFormLocked(state)
+
+  // Special cases
+  switch (section.key) {
+    case sections.REVIEW_AND_SUBMIT_SUBMIT: {
+      return formIsLocked || formHasErrors(state)
+    }
+
+    case sections.REVIEW_AND_SUBMIT_PRINT:
+      return !formIsLocked
+
+    default:
+      return formIsLocked
+  }
+}
+
 export const sectionHasErrorsSelector = createSelector(
   getSectionErrors,
   (errors = []) => ({
@@ -71,8 +92,8 @@ export const sectionIsValidSelector = createSelector(
   })
 )
 
-export const formIsLockedSelector = createSelector(
-  getFormLocked,
+export const sectionIsLockedSelector = createSelector(
+  getSectionLocked,
   locked => ({ locked })
 )
 
