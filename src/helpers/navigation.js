@@ -41,3 +41,29 @@ export const getSectionNumber = (state, { sectionKey }) => {
 
   return sectionIndex + 1
 }
+
+export const totalSections = (state) => {
+  const formSections = nestedFormSectionsSelector(state)
+  return formSections.length
+}
+
+export const completedSections = (state) => {
+  const { application } = state
+  const { Completed } = application
+
+  const formSections = nestedFormSectionsSelector(state)
+
+  let completedCount = 0
+
+  console.log('form sections', formSections)
+
+  formSections.forEach((s) => {
+    const completedSection = Completed[s.name]
+
+    if (completedSection && completedSection.every(i => i.valid)) {
+      completedCount += 1
+    }
+  })
+
+  return completedCount
+}
