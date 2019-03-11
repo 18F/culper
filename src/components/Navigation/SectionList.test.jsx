@@ -29,7 +29,9 @@ describe('The SectionList component', () => {
     const sections = [
       {
         name: 'blah',
-        url: 'blah',
+        path: 'blah',
+        key: 'blah',
+        label: 'Blah',
       },
     ]
 

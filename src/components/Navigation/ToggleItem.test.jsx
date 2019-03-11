@@ -29,18 +29,26 @@ describe('The ToggleItem component', () => {
     const section = {
       label: 'Foo',
       path: 'foo',
+      name: 'foo',
+      key: 'foo',
       subsections: [
         {
           label: 'Bar',
           path: 'bar',
+          name: 'bar',
+          key: 'bar',
         },
         {
           label: 'Baz',
           path: 'baz',
+          name: 'baz',
+          key: 'baz',
           subsections: [
             {
               label: 'Blip',
               path: 'blip',
+              name: 'blip',
+              key: 'blip',
             },
           ],
         },
@@ -56,6 +64,7 @@ describe('The ToggleItem component', () => {
     expect(component.find('a[href="/foo/bar"]').length).toBe(1)
     expect(component.find('a[href="/foo/baz"]').length).toBe(0)
     expect(component.find('a[href="/foo/baz/blip"]').length).toBe(1)
-    expect(component.find('a[href="/foo/baz/blip"].usa-current').length).toBe(1)
+
+    expect(component.find('.usa-current').length).toBe(3)
   })
 })
