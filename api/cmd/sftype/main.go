@@ -49,11 +49,11 @@ func main() {
 	}
 
 	if len(os.Args) == 4 {
-		sf_type := os.Args[2]
-		sf_version := os.Args[3]
+		sfType := os.Args[2]
+		sfVersion := os.Args[3]
 
-		account.SFType = sf_type
-		account.SFVersion = sf_version
+		account.SFType = sfType
+		account.SFVersion = sfVersion
 		_, err = account.Save(db, account.ID)
 		if err != nil {
 			fmt.Println("Error: ", err)
