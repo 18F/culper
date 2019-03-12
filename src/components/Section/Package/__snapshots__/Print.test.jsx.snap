@@ -12255,7 +12255,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content police-other-offenses"
           data-section="legal"
-          data-subsection="police/additionaloffenses"
+          data-subsection="police/additionalOffenses"
         >
           <h1
             className="section-header"
@@ -12454,7 +12454,7 @@ exports[`The print section renders properly 1`] = `
         <div
           className="section-content domestic-violence-list"
           data-section="legal"
-          data-subsection="police/domesticviolence"
+          data-subsection="police/domesticViolence"
         >
           <h1
             className="section-header"

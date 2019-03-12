@@ -138,7 +138,8 @@ class Legal extends SectionElement {
         <Route path="/form/legal/intro" component={Intro} />
         <Route path="/form/legal/police/intro" component={PoliceIntro} />
         <Route path="/form/legal/police/offenses" component={Offenses} />
-
+        <Route path="/form/legal/police/additionaloffenses" component={OtherOffenses} />
+        <Route path="/form/legal/police/domesticviolence" component={DomesticViolenceList} />
 
         <SectionViews
           current={this.props.subsection}
@@ -192,7 +193,7 @@ class Legal extends SectionElement {
             />
           </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="police/additionaloffenses"
             back="legal/police/offenses"
             backLabel={i18n.t('legal.destination.offenses')}
@@ -207,9 +208,9 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="police/domesticviolence"
             back="legal/police/additionaloffenses"
             backLabel={i18n.t('legal.destination.additionalOffenses')}
@@ -224,7 +225,7 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
           <SectionView
             name="investigations"
