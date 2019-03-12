@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
 import { i18n } from 'config'
 import { SectionViews, SectionView } from 'components/Section/SectionView'
 import SectionElement from 'components/Section/SectionElement'
@@ -19,6 +20,9 @@ import {
   ActivitiesToOverthrow,
   TerrorismAssociation
 } from 'components/Section/Legal/Associations'
+import Intro from './Intro'
+import PoliceIntro from './Police/Intro'
+import Review from './Review'
 
 class Legal extends SectionElement {
   constructor(props) {
@@ -131,11 +135,17 @@ class Legal extends SectionElement {
   render() {
     return (
       <div>
+        <Route path="/form/legal/intro" component={Intro} />
+        <Route path="/form/legal/police/intro" component={PoliceIntro} />
+        <Route path="/form/legal/police/offenses" component={Offenses} />
+
+
         <SectionViews
           current={this.props.subsection}
           dispatch={this.props.dispatch}
-          update={this.props.update}>
-          <SectionView
+          update={this.props.update}
+        >
+          {/* <SectionView
             name="intro"
             back="substance/review"
             backLabel={i18n.t('substance.destination.review')}
@@ -147,9 +157,9 @@ class Legal extends SectionElement {
               className="no-margin-bottom">
               {i18n.m('legal.intro.body')}
             </Field>
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="police/intro"
             back="legal/intro"
             backLabel={i18n.t('legal.destination.intro')}
@@ -163,9 +173,9 @@ class Legal extends SectionElement {
               {i18n.m('legal.police.para.intro2')}
               {i18n.m('legal.police.para.intro3')}
             </Field>
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="police/offenses"
             back="legal/police/intro"
             backLabel={i18n.t('legal.destination.police')}
@@ -180,7 +190,7 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
           <SectionView
             name="police/additionaloffenses"

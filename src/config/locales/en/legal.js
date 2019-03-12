@@ -50,6 +50,26 @@ export const legal = {
   },
   destination: {
     intro: 'Investigative and criminal history intro',
+    'police/intro': 'Police record',
+    'police/offenses': 'Offenses',
+    'police/additionaloffenses': 'Additional offenses',
+    'police/domesticViolence': 'Domestic violence',
+    court: 'Non-criminal court actions',
+    'investigations/history': 'Ever been investigated',
+    'investigations/revoked': 'Denied',
+    'investigations/debarred': 'Debarment',
+    'technology/unauthorized': 'Unauthorized access',
+    'technology/manipulating': 'Manipulating access',
+    'technology/unlawful': 'Unlawful use',
+    'associations/terrorist': 'Terrorist organization',
+    'associations/engaged': 'Engaged in terrorism',
+    'associations/advocating': 'Advocating',
+    'associations/overthrow': 'Membership - overthrow',
+    'associations/violence': 'Membership - violence or force',
+    'associations/activities': 'Activities to overthrow',
+    'associations/terrorism': 'Terrorism association',
+
+    // DO NOT MERGE UNTIL THIS IS DELETED
     police: 'Police record',
     offenses: 'Offenses',
     additionalOffenses: 'Additional offenses',
@@ -76,6 +96,7 @@ export const legal = {
     },
     review: 'Review investigative & criminal history'
   },
+
   police: {
     heading: {
       title: 'Police record',
