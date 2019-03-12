@@ -55,6 +55,7 @@ const connectSubstanceUseSection = (Component, {
     const substance = app.Substance || {}
     const errors = app.Errors || {}
     const completed = app.Completed || {}
+    const addressBooks = app.AddressBooks || {}
 
     switch (storeKey) {
       case 'DrugUses':
@@ -68,15 +69,15 @@ const connectSubstanceUseSection = (Component, {
       case 'PrescriptionUses':
         return { ...substance.PrescriptionUses } || {}
       case 'OrderedTreatments':
-        return { ...substance.OrderedTreatments } || {}
+        return { ...substance.OrderedTreatments, addressBooks } || {}
       case 'VoluntaryTreatments':
-        return { ...substance.VoluntaryTreatments } || {}
+        return { ...substance.VoluntaryTreatments, addressBooks } || {}
       case 'NegativeImpact':
         return { ...substance.NegativeImpact } || {}
       case 'OrderedCounselings':
-        return { ...substance.OrderedCounselings } || {}
+        return { ...substance.OrderedCounselings, addressBooks } || {}
       case 'VoluntaryCounselings':
-        return { ...substance.VoluntaryCounselings } || {}
+        return { ...substance.VoluntaryCounselings, addressBooks } || {}
       case 'ReceivedCounselings':
         return { ...substance.ReceivedCounselings } || {}
       default:
@@ -95,6 +96,7 @@ const connectSubstanceUseSection = (Component, {
           VoluntaryTreatments: substance.VoluntaryTreatments || {},
           Errors: errors.identification || [],
           Completed: completed.identification || [],
+          AddressBooks: addressBooks,
         }
     }
   }
