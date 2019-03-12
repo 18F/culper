@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Debarred from './Debarred'
+import { Debarred } from './Debarred'
 
 describe('The legal investigations debarred component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The legal investigations debarred component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Debarred {...expected} />
         </Provider>
       )
+    )
   })
 
   it('renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The legal investigations debarred component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -39,7 +40,7 @@ describe('The legal investigations debarred component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasDebarment: { value: 'Yes' }
+      HasDebarment: { value: 'Yes' },
     }
     const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
@@ -53,17 +54,17 @@ describe('The legal investigations debarred component', () => {
           {
             Item: {
               Agency: {
-                value: 'U.S. Department of Defense'
+                value: 'U.S. Department of Defense',
               },
               Date: {
                 month: '1',
                 day: '1',
-                year: '2010'
-              }
-            }
-          }
-        ]
-      }
+                year: '2010',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()

@@ -140,6 +140,9 @@ class Legal extends SectionElement {
         <Route path="/form/legal/police/offenses" component={Offenses} />
         <Route path="/form/legal/police/additionaloffenses" component={OtherOffenses} />
         <Route path="/form/legal/police/domesticviolence" component={DomesticViolenceList} />
+        <Route path="/form/legal/investigations/history" component={History} />
+        <Route path="/form/legal/investigations/revoked" component={Revoked} />
+        <Route path="/form/legal/investigations/debarred" component={Debarred} />
 
         <SectionViews
           current={this.props.subsection}
@@ -227,7 +230,7 @@ class Legal extends SectionElement {
             />
           </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="investigations"
             back="legal/police/domesticviolence"
             backLabel={i18n.t('legal.destination.domesticViolence')}
@@ -241,9 +244,9 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="investigations/history"
             back="legal/police/domesticviolence"
             backLabel={i18n.t('legal.destination.domesticViolence')}
@@ -257,9 +260,9 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="investigations/revoked"
             back="legal/investigations/history"
             backLabel={i18n.t('legal.destination.investigations.history')}
@@ -273,9 +276,9 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="investigations/debarred"
             back="legal/investigations/revoked"
             backLabel={i18n.t('legal.destination.investigations.revoked')}
@@ -289,7 +292,7 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
           <SectionView
             name="court"
