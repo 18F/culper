@@ -2810,7 +2810,7 @@ exports[`The section component renders financial.intro 1`] = `
           <a
             aria-label="Go to previous section Review Foreign Associations"
             className="btn-cell back"
-            href="/form/foreign/review"
+            href="/form/foreign/foreign/review"
             onClick={[Function]}
             title="Go to previous section Review Foreign Associations"
           >
@@ -3293,6 +3293,1163 @@ exports[`The section component renders financial.review 1`] = `
               </div>
             </span>
           </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_bankruptcydebt-MOCK-GUID"
+                      name="has_bankruptcydebt-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_bankruptcydebt-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_bankruptcydebt-MOCK-GUID"
+                      name="has_bankruptcydebt-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_bankruptcydebt-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content gambling"
+        data-section="financial"
+        data-subsection="gambling"
+      >
+        <h1
+          className="section-header"
+        >
+          Gambling
+        </h1>
+        <div
+          aria-label="Have you ever experienced financial problems due to gambling?"
+          className="field required branch has-gambling-debt"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you ever experienced financial problems due to gambling?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_gamblingdebt-MOCK-GUID"
+                      name="has_gamblingdebt-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_gamblingdebt-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_gamblingdebt-MOCK-GUID"
+                      name="has_gamblingdebt-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_gamblingdebt-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content taxes"
+        data-section="financial"
+        data-subsection="taxes"
+      >
+        <h1
+          className="section-header"
+        >
+          Taxes
+        </h1>
+        <div
+          aria-label="In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?"
+          className="field required branch taxes-branch"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_taxes-MOCK-GUID"
+                      name="has_taxes-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_taxes-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_taxes-MOCK-GUID"
+                      name="has_taxes-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_taxes-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content card-abuse"
+        data-section="financial"
+        data-subsection="card"
+      >
+        <h1
+          className="section-header"
+        >
+          Employer card abuse
+        </h1>
+        <div
+          aria-label="In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?"
+          className="field required branch card-branch"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_cardabuse-MOCK-GUID"
+                      name="has_cardabuse-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_cardabuse-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_cardabuse-MOCK-GUID"
+                      name="has_cardabuse-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_cardabuse-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content credit-counseling"
+        data-section="financial"
+        data-subsection="credit"
+      >
+        <h1
+          className="section-header"
+        >
+          Credit counseling
+        </h1>
+        <div
+          aria-label="Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?"
+          className="field required branch credit-branch"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_credit-MOCK-GUID"
+                      name="has_credit-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_credit-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_credit-MOCK-GUID"
+                      name="has_credit-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_credit-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content delinquent"
+        data-section="financial"
+        data-subsection="delinquent"
+      >
+        <h1
+          className="section-header"
+        >
+          Delinquent payments
+        </h1>
+        <div
+          aria-label="Other than previously listed, has the following happened to you?"
+          className="field required branch delinquent-branch eapp-field-wrap"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Other than previously listed, has the following happened to you?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                >
+                  <div>
+                    <p>
+                      You will be asked to provide details about each financial obligation that pertains to the items identified below.
+                    </p>
+                  </div>
+                  <ul>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you have been delinquent on alimony or child support payments.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_delinquent-MOCK-GUID"
+                      name="has_delinquent-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_delinquent-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_delinquent-MOCK-GUID"
+                      name="has_delinquent-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_delinquent-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content nonpayment"
+        data-section="financial"
+        data-subsection="nonpayment"
+      >
+        <h1
+          className="section-header"
+        >
+          Non-payment consequence
+        </h1>
+        <div
+          aria-label="Other than previously listed, have any of the following happened?"
+          className="field required branch nonpayment-branch"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Other than previously listed, have any of the following happened?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                >
+                  <ul>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you had any possessions or property voluntarily or involuntarily repossessed or foreclosed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you defaulted on any type of loan? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you had bills or debts turned over to a collection agency? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you had any account or credit card suspended, charged off, or cancelled for failing to pay as agreed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you were evicted for non-payment?
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you had your wages, benefits, or assets garnished or attached for any reason?
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          <strong>
+                            In the last seven (7) years,
+                          </strong>
+                           you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <p>
+                          You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_nonpayment-MOCK-GUID"
+                      name="has_nonpayment-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_nonpayment-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_nonpayment-MOCK-GUID"
+                      name="has_nonpayment-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_nonpayment-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Non-payment consequence"
+            className="btn-cell back"
+            href="/form/financial/nonpayment"
+            onClick={[Function]}
+            title="Go to previous section Non-payment consequence"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Non-payment consequence
+                </div>
+              </div>
+            </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Substance use intro"
+            className="btn-cell next"
+            href="/form/substance/intro"
+            onClick={[Function]}
+            title="Go to next section Substance use intro"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Substance use intro
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -3766,7 +4923,7 @@ exports[`The section component renders foreign.contacts 1`] = `
           <a
             aria-label="Go to next section Direct control"
             className="btn-cell next"
-            href="/form/foreign/activities/direct"
+            href="/form/foreign/foreign/activities/direct"
             onClick={[Function]}
             title="Go to next section Direct control"
           >
@@ -3811,62 +4968,6 @@ exports[`The section component renders foreign.intro 1`] = `
   <div
     className="view view-intro"
   >
-    <div>
-      <h1
-        className="section-header"
-      >
-        Section 6: Foreign associations
-      </h1>
-      <div
-        aria-label=""
-        className="field no-margin-bottom"
-        data-uuid="field-MOCK-GUID"
-      >
-        <a
-          aria-hidden="true"
-          className="anchor"
-          id="field-MOCK-GUID"
-          name="field-MOCK-GUID"
-        />
-        <span
-          className="icon"
-        />
-        <div
-          className="table expand"
-        >
-          <span
-            aria-live="polite"
-            className="messages help-messages"
-          />
-        </div>
-        <div
-          className="table expand"
-        >
-          <span
-            aria-live="polite"
-            className="messages error-messages"
-            role="alert"
-          />
-        </div>
-        <div
-          className="table"
-        >
-          <span
-            className="content"
-          >
-            <span
-              className="component"
-            >
-              <div>
-                <p>
-                  You will be asked questions about your current and previous foreign associations and be asked to provide details if necessary.
-                </p>
-              </div>
-            </span>
-          </span>
-        </div>
-      </div>
-    </div>
     <div
       className="bottom-btns"
     >
@@ -3876,49 +4977,18 @@ exports[`The section component renders foreign.intro 1`] = `
         <div
           className="btn-container"
         >
-          <a
-            aria-label="Go to previous section Review military history"
-            className="btn-cell back"
-            href="/form/military/review"
-            onClick={[Function]}
-            title="Go to previous section Review military history"
-          >
-            <div
-              className="actions back"
-            >
-              <div
-                className="icon"
-              >
-                <i
-                  aria-hidden="true"
-                  className="fa fa-arrow-circle-left"
-                />
-              </div>
-              <div
-                className="text"
-              >
-                <div
-                  className="direction"
-                >
-                  Back
-                </div>
-                <div
-                  className="label"
-                >
-                  Review military history
-                </div>
-              </div>
-            </div>
-          </a>
+          <div
+            className="btn-cell"
+          />
           <div
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section U.S. passport information"
+            aria-label="Go to next section Identification intro"
             className="btn-cell next"
-            href="/form/foreign/passport"
+            href="/form/identification/intro"
             onClick={[Function]}
-            title="Go to next section U.S. passport information"
+            title="Go to next section Identification intro"
           >
             <div
               className="actions next"
@@ -3934,7 +5004,7 @@ exports[`The section component renders foreign.intro 1`] = `
                 <div
                   className="label"
                 >
-                  U.S. passport information
+                  Identification intro
                 </div>
               </div>
               <div
@@ -4107,7 +5177,7 @@ exports[`The section component renders foreign.passport 1`] = `
           <a
             aria-label="Go to previous section Foreign intro"
             className="btn-cell back"
-            href="/form/foreign/intro"
+            href="/form/foreign/foreign/intro"
             onClick={[Function]}
             title="Go to previous section Foreign intro"
           >
@@ -4202,2586 +5272,187 @@ exports[`The section component renders foreign.review 1`] = `
     <div
       className="top-btns"
     />
-    <div>
+    <div
+      className="bottom-btns"
+    >
       <div
-        className="section-content passport"
-        data-section="foreign"
-        data-subsection="passport"
+        className="btn-wrap"
       >
-        <h1
-          className="section-header"
+        <div
+          className="btn-container"
         >
-          U.S. passport information
-        </h1>
-        <h3>
-          Provide the following information for the most recent U.S. passport you currently possess.
-        </h3>
-        <p>
+          <div
+            className="btn-cell"
+          />
+          <div
+            className="btn-spacer"
+          />
           <a
-            href="https://travel.state.gov/content/travel/en.html"
-            rel="noopener noreferrer"
-            target="_blank"
-            title="U.S. State Department Help"
+            aria-label="Go to next section Identification intro"
+            className="btn-cell next"
+            href="/form/identification/intro"
+            onClick={[Function]}
+            title="Go to next section Identification intro"
           >
-            U.S. State Department passport help
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Identification intro
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
           </a>
-        </p>
-        <div
-          aria-label="Do you possess a U.S. passport (current or expired)?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Do you possess a U.S. passport (current or expired)?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_passport-MOCK-GUID"
-                      name="has_passport-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_passport-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_passport-MOCK-GUID"
-                      name="has_passport-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_passport-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
         </div>
       </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-contacts"
-        data-section="foreign"
-        data-subsection="contacts"
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The section component renders foreign.travel 1`] = `
+<div
+  className="section-view"
+>
+  <div
+    className="view view-travel"
+  >
+    <div
+      className="section-content foreign-travel"
+      data-section="foreign"
+      data-subsection="travel"
+    >
+      <h1
+        className="section-header"
       >
-        <h1
-          className="section-header"
+        Foreign countries you have visited
+      </h1>
+      <div
+        aria-label="Have you traveled outside the U.S. in the last past seven (7) years?"
+        className="field required branch foreign-travel-outside"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
         >
-          Foreign contacts
-        </h1>
+          Have you traveled outside the U.S. in the last past seven (7) years?
+        </h4>
+        <span
+          className="icon"
+        />
         <div
-          aria-label="Do you have, or have you had, close and/or continuing contact with a foreign national within the last seven (7) years with whom you, or your spouse, or legally recognized civil union/domestic partner, or cohabitant are bound by affection, influence, common interests, and/or obligation?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
+          className="table expand"
         >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Do you have, or have you had, close and/or continuing contact with a foreign national within the last seven (7) years with whom you, or your spouse, or legally recognized civil union/domestic partner, or cohabitant are bound by affection, influence, common interests, and/or obligation?
-          </h4>
           <span
-            className="icon"
+            aria-live="polite"
+            className="messages help-messages"
           />
-          <div
-            className="table expand"
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
           >
             <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
+              className="component shrink"
             >
               <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
+                className="content"
+              />
+              <div
+                className="blocks option-list branch"
               >
                 <div
-                  className="usa-alert-body"
+                  className="yes block"
                 >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                >
-                  <div>
-                    <p>
-                      A foreign national is defined as any person who is not a citizen or national of the U.S.
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      Include associates as well as relatives, not previously listed in the relatives section.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_contacts-MOCK-GUID"
-                      name="has_foreign_contacts-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_contacts-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_contacts-MOCK-GUID"
-                      name="has_foreign_contacts-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_contacts-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content direct"
-        data-section="foreign"
-        data-subsection="activities/direct"
-      >
-        <h1
-          className="section-header"
-        >
-          Direct control
-        </h1>
-        <div
-          aria-label="Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?
-          </h4>
-          <span
-            className="icon"
-          >
-            <a
-              aria-label="Show help for Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?"
-              className="toggle h4 adjust-for-buttons"
-              href="javascript:;"
-              onClick={[Function]}
-              title="Show help for Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?"
-            >
-              <svg
-                alt="Scalable vector graphic"
-                focusable="false"
-                height="14.57px"
-                tabIndex="-1"
-                viewBox="0 0 14.57 14.57"
-                width="14.57px"
-              >
-                <g>
-                  <path
-                    className="eapp-help-icon"
-                    d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_foreign_travel_outside-MOCK-GUID"
+                    name="has_foreign_travel_outside-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
                   />
-                </g>
-              </svg>
-            </a>
-          </span>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
+                  <label
+                    className=""
+                    htmlFor="has_foreign_travel_outside-MOCK-GUID"
                   >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                >
-                  <div>
-                    <p>
-                      Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.
-                    </p>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="blocks option-list branch usa-input-error"
+                  className="no block"
                 >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_interests-MOCK-GUID"
-                      name="has_interests-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_interests-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_interests-MOCK-GUID"
-                      name="has_interests-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_interests-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content indirect"
-        data-section="foreign"
-        data-subsection="activities/indirect"
-      >
-        <h1
-          className="section-header"
-        >
-          Indirect control
-        </h1>
-        <div
-          aria-label="Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?
-          </h4>
-          <span
-            className="icon"
-          >
-            <a
-              aria-label="Show help for Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?"
-              className="toggle h4 adjust-for-buttons"
-              href="javascript:;"
-              onClick={[Function]}
-              title="Show help for Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?"
-            >
-              <svg
-                alt="Scalable vector graphic"
-                focusable="false"
-                height="14.57px"
-                tabIndex="-1"
-                viewBox="0 0 14.57 14.57"
-                width="14.57px"
-              >
-                <g>
-                  <path
-                    className="eapp-help-icon"
-                    d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_foreign_travel_outside-MOCK-GUID"
+                    name="has_foreign_travel_outside-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
                   />
-                </g>
-              </svg>
-            </a>
+                  <label
+                    className=""
+                    htmlFor="has_foreign_travel_outside-MOCK-GUID"
+                  >
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
           </span>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_interests-MOCK-GUID"
-                      name="has_interests-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_interests-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_interests-MOCK-GUID"
-                      name="has_interests-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_interests-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content realestate"
-        data-section="foreign"
-        data-subsection="activities/realestate"
-      >
-        <h1
-          className="section-header"
-        >
-          Real estate purchase
-        </h1>
-        <div
-          aria-label="Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_interests-MOCK-GUID"
-                      name="has_interests-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_interests-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_interests-MOCK-GUID"
-                      name="has_interests-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_interests-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content benefit-activity"
-        data-section="foreign"
-        data-subsection="activities/benefits"
-      >
-        <h1
-          className="section-header"
-        >
-          Foreign benefits
-        </h1>
-        <div
-          aria-label="As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?"
-          className="field required branch has-benefits"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_benefit-MOCK-GUID"
-                      name="has_benefit-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_benefit-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_benefit-MOCK-GUID"
-                      name="has_benefit-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_benefit-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-activities-support"
-        data-section="foreign"
-        data-subsection="activities/support"
-      >
-        <h1
-          className="section-header"
-        >
-          Foreign national support
-        </h1>
-        <div
-          aria-label="Have you EVER provided financial support for any foreign national?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you EVER provided financial support for any foreign national?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_support-MOCK-GUID"
-                      name="has_foreign_support-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_support-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_support-MOCK-GUID"
-                      name="has_foreign_support-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_support-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-advice"
-        data-section="foreign"
-        data-subsection="business/advice"
-      >
-        <h1
-          className="section-header"
-        >
-          Support provided
-        </h1>
-        <div
-          aria-label="Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                >
-                  <div>
-                    <p>
-                      Answer 
-                      <strong>
-                        "No"
-                      </strong>
-                       if 
-                      <strong>
-                        all
-                      </strong>
-                       your advice or support was authorized pursuant to official U.S. Government business.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_advice-MOCK-GUID"
-                      name="has_foreign_advice-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_advice-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_advice-MOCK-GUID"
-                      name="has_foreign_advice-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_advice-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-family"
-        data-section="foreign"
-        data-subsection="business/family"
-      >
-        <h1
-          className="section-header"
-        >
-          Immediate family foreign support
-        </h1>
-        <div
-          aria-label="Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any foreign government official or agency?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any foreign government official or agency?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                >
-                  <div>
-                    <p>
-                      For this question, "Immediate Family" means your spouse or legally recognized civil union/domestic partner, parents, step-parents, siblings, half and step-siblings, children, step-children, and cohabitant.
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      Answer 
-                      <strong>
-                        "No"
-                      </strong>
-                       if all the advice or support was authorized pursuant to official U.S. Government business.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_family-MOCK-GUID"
-                      name="has_foreign_family-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_family-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_family-MOCK-GUID"
-                      name="has_foreign_family-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_family-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-employment"
-        data-section="foreign"
-        data-subsection="business/employment"
-      >
-        <h1
-          className="section-header"
-        >
-          Employment
-        </h1>
-        <div
-          aria-label="Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_employment-MOCK-GUID"
-                      name="has_foreign_employment-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_employment-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_employment-MOCK-GUID"
-                      name="has_foreign_employment-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_employment-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-ventures"
-        data-section="foreign"
-        data-subsection="business/ventures"
-      >
-        <h1
-          className="section-header"
-        >
-          Other business ventures
-        </h1>
-        <div
-          aria-label="Have you in the last seven (7) years been involved in any other type of business venture with a foreign national not described above?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you in the last seven (7) years been involved in any other type of business venture with a foreign national not described above?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                >
-                  <div>
-                    <p>
-                      Own, co-own, serve as a business consultant, provide financial support, etc.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_ventures-MOCK-GUID"
-                      name="has_foreign_ventures-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_ventures-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_ventures-MOCK-GUID"
-                      name="has_foreign_ventures-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_ventures-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-conferences"
-        data-section="foreign"
-        data-subsection="business/conferences"
-      >
-        <h1
-          className="section-header"
-        >
-          Event participation
-        </h1>
-        <div
-          aria-label="Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                >
-                  <div>
-                    <p>
-                      Do not include those you attended or participated in on official business for the U.S. government.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_conferences-MOCK-GUID"
-                      name="has_foreign_conferences-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_conferences-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_conferences-MOCK-GUID"
-                      name="has_foreign_conferences-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_conferences-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-contact"
-        data-section="foreign"
-        data-subsection="business/contact"
-      >
-        <h1
-          className="section-header"
-        >
-          Immediate family contact
-        </h1>
-        <div>
-          <p>
-            For this question, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.
-          </p>
-        </div>
-        <div
-          aria-label="Have you or any member of your immediate family in the last seven (7) years had any contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you or any member of your immediate family in the last seven (7) years had any contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                >
-                  <div>
-                    <p>
-                      Such as  embassy, consulate, agency, military service, intelligence or security service, etc.
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      Answer 
-                      <strong>
-                        "No"
-                      </strong>
-                       if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_contact-MOCK-GUID"
-                      name="has_foreign_contact-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_contact-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_contact-MOCK-GUID"
-                      name="has_foreign_contact-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_contact-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-sponsorship"
-        data-section="foreign"
-        data-subsection="business/sponsorship"
-      >
-        <h1
-          className="section-header"
-        >
-          Foreign national sponsorship
-        </h1>
-        <div
-          aria-label="Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?
-          </h4>
-          <span
-            className="icon"
-          >
-            <a
-              aria-label="Show help for Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?"
-              className="toggle h4 adjust-for-buttons"
-              href="javascript:;"
-              onClick={[Function]}
-              title="Show help for Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?"
-            >
-              <svg
-                alt="Scalable vector graphic"
-                focusable="false"
-                height="14.57px"
-                tabIndex="-1"
-                viewBox="0 0 14.57 14.57"
-                width="14.57px"
-              >
-                <g>
-                  <path
-                    className="eapp-help-icon"
-                    d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-                  />
-                </g>
-              </svg>
-            </a>
-          </span>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_sponsorship-MOCK-GUID"
-                      name="has_foreign_sponsorship-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_sponsorship-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_sponsorship-MOCK-GUID"
-                      name="has_foreign_sponsorship-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_sponsorship-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-political"
-        data-section="foreign"
-        data-subsection="business/political"
-      >
-        <h1
-          className="section-header"
-        >
-          Held political office
-        </h1>
-        <div
-          aria-label="Have you EVER held political office in a foreign country?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you EVER held political office in a foreign country?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_political-MOCK-GUID"
-                      name="has_foreign_political-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_political-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_political-MOCK-GUID"
-                      name="has_foreign_political-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_political-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-business-voting"
-        data-section="foreign"
-        data-subsection="business/voting"
-      >
-        <h1
-          className="section-header"
-        >
-          Voting
-        </h1>
-        <div
-          aria-label="Have you EVER voted in the election of a foreign country?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you EVER voted in the election of a foreign country?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_voting-MOCK-GUID"
-                      name="has_foreign_voting-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_voting-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_voting-MOCK-GUID"
-                      name="has_foreign_voting-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_voting-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
-      <div
-        className="section-content foreign-travel"
-        data-section="foreign"
-        data-subsection="travel"
-      >
-        <h1
-          className="section-header"
-        >
-          Foreign countries you have visited
-        </h1>
-        <div
-          aria-label="Have you traveled outside the U.S. in the last past seven (7) years?"
-          className="field required branch foreign-travel-outside"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you traveled outside the U.S. in the last past seven (7) years?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_travel_outside-MOCK-GUID"
-                      name="has_foreign_travel_outside-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_travel_outside-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_foreign_travel_outside-MOCK-GUID"
-                      name="has_foreign_travel_outside-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_foreign_travel_outside-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
         </div>
       </div>
     </div>
@@ -6795,11 +5466,11 @@ exports[`The section component renders foreign.review 1`] = `
           className="btn-container"
         >
           <a
-            aria-label="Go to previous section Foreign countries you have visited"
+            aria-label="Go to previous section Voting"
             className="btn-cell back"
-            href="/form/foreign/travel"
+            href="/form/foreign/foreign/business/voting"
             onClick={[Function]}
-            title="Go to previous section Foreign countries you have visited"
+            title="Go to previous section Voting"
           >
             <div
               className="actions back"
@@ -6823,7 +5494,7 @@ exports[`The section component renders foreign.review 1`] = `
                 <div
                   className="label"
                 >
-                  Foreign countries you have visited
+                  Voting
                 </div>
               </div>
             </div>
@@ -6832,11 +5503,11 @@ exports[`The section component renders foreign.review 1`] = `
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Financial intro"
+            aria-label="Go to next section Review Foreign Associations"
             className="btn-cell next"
-            href="/form/financial/intro"
+            href="/form/foreign/foreign/review"
             onClick={[Function]}
-            title="Go to next section Financial intro"
+            title="Go to next section Review Foreign Associations"
           >
             <div
               className="actions next"
@@ -6852,7 +5523,7 @@ exports[`The section component renders foreign.review 1`] = `
                 <div
                   className="label"
                 >
-                  Financial intro
+                  Review Foreign Associations
                 </div>
               </div>
               <div
@@ -6865,237 +5536,6 @@ exports[`The section component renders foreign.review 1`] = `
               </div>
             </div>
           </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`The section component renders foreign.travel 1`] = `
-<div>
-  <div
-    className="section-view"
-  >
-    <div
-      className="view view-foreign"
-    >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
-            >
-              <div
-                className="view view-travel"
-              >
-                <div>
-                  <div
-                    className="section-content foreign-travel"
-                    data-section="foreign"
-                    data-subsection="travel"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Foreign countries you have visited
-                    </h1>
-                    <div
-                      aria-label="Have you traveled outside the U.S. in the last past seven (7) years?"
-                      className="field required branch foreign-travel-outside"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you traveled outside the U.S. in the last past seven (7) years?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_foreign_travel_outside-MOCK-GUID"
-                                  name="has_foreign_travel_outside-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_foreign_travel_outside-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_foreign_travel_outside-MOCK-GUID"
-                                  name="has_foreign_travel_outside-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_foreign_travel_outside-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
-                >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Voting"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Voting"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Voting
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Review Foreign Associations"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Review Foreign Associations"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review Foreign Associations
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -23409,7 +21849,7 @@ exports[`The section component renders military.review 1`] = `
           <a
             aria-label="Go to next section Foreign intro"
             className="btn-cell next"
-            href="/form/foreign/intro"
+            href="/form/foreign/foreign/intro"
             onClick={[Function]}
             title="Go to next section Foreign intro"
           >
