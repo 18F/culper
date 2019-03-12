@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import { extractOtherNames } from 'components/Section/extractors'
+
 import {
   updateApplication,
   reportErrors,
@@ -48,15 +50,27 @@ const connectForeignSection = (Component, {
 
   const mapStateToProps = (state) => {
     const app = state.application || {}
+    const identification = app.Identification || {}
     const foreign = app.Foreign || {}
     const errors = app.Errors || {}
     const completed = app.Completed || {}
 
+    const names = extractOtherNames(app)
+    const applicantBirthdate = (identification.ApplicantBirthDate || {}).Date
+
     switch (storeKey) {
       case 'Passport':
-        return { ...foreign.Passport } || {}
+        return {
+          ...foreign.Passport,
+          suggestedNames: names,
+        }
+
       case 'Contacts':
-        return { ...foreign.Contacts } || {}
+        return {
+          ...foreign.Contacts,
+          applicantBirthdate,
+        }
+
       case 'DirectActivity':
         return { ...foreign.DirectActivity } || {}
       case 'IndirectActivity':
@@ -80,7 +94,11 @@ const connectForeignSection = (Component, {
       case 'Contact':
         return { ...foreign.Contact } || {}
       case 'Sponsorship':
-        return { ...foreign.Sponsorship } || {}
+        return {
+          ...foreign.Sponsorship,
+          applicantBirthdate,
+        }
+
       case 'Political':
         return { ...foreign.Political } || {}
       case 'Voting':
