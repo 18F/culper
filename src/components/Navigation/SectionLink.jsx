@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import {
@@ -69,4 +69,4 @@ const mapStateToProps = (state, ownProps) => ({
   ...sectionIsLockedSelector(state, ownProps),
 })
 
-export default connect(mapStateToProps)(SectionLink)
+export default withRouter(connect(mapStateToProps)(SectionLink))
