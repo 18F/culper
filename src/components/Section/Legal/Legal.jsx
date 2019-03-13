@@ -6,6 +6,8 @@ import classnames from 'classnames'
 
 import { i18n } from 'config'
 import { ErrorList } from 'components/ErrorList'
+import * as formTypes from 'config/formTypes'
+import { LEGAL } from 'constants/sections'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
 import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
@@ -26,7 +28,33 @@ import Intro from './Intro'
 import PoliceIntro from './Police/Intro'
 import Review from './Review'
 
-const Legal = ({ subsection, location }) => {
+const Legal = ({ subsection, location, formType }) => {
+  const subsectionLibrary = {
+    intro: Intro,
+    'police/intro': PoliceIntro,
+    'police/offenses': Offenses,
+    'police/additionaloffenses': OtherOffenses,
+    'police/domesticviolence': DomesticViolenceList,
+    'investigations/history': History,
+    'investigations/revoked': Revoked,
+    'investigations/debarred': Debarred,
+    court: NonCriminalCourtActions,
+    'technology/unauthorized': Unauthorized,
+    'technology/manipulating': Manipulating,
+    'technology/unlawful': Unlawful,
+    'associations/terrorist-organization': TerroristOrganization,
+    'associations/engaged-in-terrorism': EngagedInTerrorism,
+    'associations/advocating': Advocating,
+    'associations/membership-overthrow': MembershipOverthrow,
+    'associations/membership-violence-or-force': MembershipViolence,
+    'associations/activities-to-overthrow': ActivitiesToOverthrow,
+    'associations/terrorism-association': TerrorismAssociation,
+    review: Review,
+  }
+
+  const form = formTypes[formType]
+  const section = form.find(s => (s.key === LEGAL))
+  const flattenedSections = formTypes.reduceSubsections([section])
   const subsectionClasses = classnames(
     'view',
     `view-${subsection}`,
@@ -46,26 +74,14 @@ const Legal = ({ subsection, location }) => {
           {isReview && (
             <div className="top-btns"><ErrorList /></div>
           )}
-          <Route path="/form/legal/intro" component={Intro} />
-          <Route path="/form/legal/police/intro" component={PoliceIntro} />
-          <Route path="/form/legal/police/offenses" component={Offenses} />
-          <Route path="/form/legal/police/additionaloffenses" component={OtherOffenses} />
-          <Route path="/form/legal/police/domesticviolence" component={DomesticViolenceList} />
-          <Route path="/form/legal/investigations/history" component={History} />
-          <Route path="/form/legal/investigations/revoked" component={Revoked} />
-          <Route path="/form/legal/investigations/debarred" component={Debarred} />
-          <Route path="/form/legal/court" component={NonCriminalCourtActions} />
-          <Route path="/form/legal/technology/unauthorized" component={Unauthorized} />
-          <Route path="/form/legal/technology/manipulating" component={Manipulating} />
-          <Route path="/form/legal/technology/unlawful" component={Unlawful} />
-          <Route path="/form/legal/associations/terrorist-organization" component={TerroristOrganization} />
-          <Route path="/form/legal/associations/engaged-in-terrorism" component={EngagedInTerrorism} />
-          <Route path="/form/legal/associations/advocating" component={Advocating} />
-          <Route path="/form/legal/associations/membership-overthrow" component={MembershipOverthrow} />
-          <Route path="/form/legal/associations/membership-violence-or-force" component={MembershipViolence} />
-          <Route path="/form/legal/associations/activities-to-overthrow" component={ActivitiesToOverthrow} />
-          <Route path="/form/legal/associations/terrorism-association" component={TerrorismAssociation} />
-          <Route path="/form/legal/review" component={Review} />
+
+          {flattenedSections.map(sub => (
+            <Route
+              key={sub.key}
+              path={sub.fullPath}
+              component={subsectionLibrary[sub.name]}
+            />
+          ))}
 
           <SectionNavigation currentPath={location.pathname} />
         </div>
@@ -75,7 +91,7 @@ const Legal = ({ subsection, location }) => {
 }
 
 function mapStateToProps(state) {
-  const { section, application = {} } = state
+  const { section, application = {}, authentication = {} } = state
 
   const legal = application.Legal || {}
   const errors = application.Errors || {}
@@ -105,6 +121,7 @@ function mapStateToProps(state) {
     Errors: errors.legal || [],
     Completed: completed.legal || [],
     AddressBooks: addressBooks,
+    formType: authentication.formType,
     ...section,
   }
 }
