@@ -19126,7 +19126,7 @@ exports[`The section component renders legal.associations 1`] = `
   className="legal"
 >
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
       className="view view-associations"
@@ -19181,7 +19181,7 @@ exports[`The section component renders legal.associations 1`] = `
               </div>
             </a>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -19193,8 +19193,15 @@ exports[`The section component renders legal.court 1`] = `
   className="legal"
 >
   <div
-    className="section-view"
+    className="section-content non-criminal-court-actions"
+    data-section="legal"
+    data-subsection="court"
   >
+    <h1
+      className="section-header"
+    >
+      Involvement in non-criminal court actions
+    </h1>
     <div
       className="view view-court"
     >
@@ -19400,7 +19407,44 @@ exports[`The section component renders legal.court 1`] = `
               </div>
             </a>
           </div>
-        </div>
+        </a>
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Unauthorized access"
+          className="btn-cell next"
+          href="/form/legal/technology/unauthorized"
+          onClick={[Function]}
+          title="Go to next section Unauthorized access"
+        >
+          <div
+            className="actions next"
+          >
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Unauthorized access
+              </div>
+            </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -19412,7 +19456,7 @@ exports[`The section component renders legal.intro 1`] = `
   className="legal"
 >
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
       className="view view-intro"
@@ -19554,7 +19598,44 @@ exports[`The section component renders legal.intro 1`] = `
               </div>
             </a>
           </div>
-        </div>
+        </a>
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Police record"
+          className="btn-cell next"
+          href="/form/legal/police/intro"
+          onClick={[Function]}
+          title="Go to next section Police record"
+        >
+          <div
+            className="actions next"
+          >
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Police record
+              </div>
+            </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -19566,7 +19647,7 @@ exports[`The section component renders legal.investigations 1`] = `
   className="legal"
 >
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
       className="view view-investigations"
@@ -19621,7 +19702,7 @@ exports[`The section component renders legal.investigations 1`] = `
               </div>
             </a>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -19700,7 +19781,7 @@ exports[`The section component renders legal.review 1`] = `
   className="legal"
 >
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <h1
       className="title"
@@ -22409,7 +22490,98 @@ exports[`The section component renders legal.review 1`] = `
               </div>
             </a>
           </div>
-        </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The section component renders legal.review 1`] = `
+<div
+  className="section-view"
+>
+  <div />
+  <div
+    className="bottom-btns"
+  >
+    <div
+      className="btn-wrap"
+    >
+      <div
+        className="btn-container"
+      >
+        <a
+          aria-label="Go to previous section Terrorism association"
+          className="btn-cell back"
+          href="/form/legal/associations/terrorism-association"
+          onClick={[Function]}
+          title="Go to previous section Terrorism association"
+        >
+          <div
+            className="actions back"
+          >
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-left"
+              />
+            </div>
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Back
+              </div>
+              <div
+                className="label"
+              >
+                Terrorism association
+              </div>
+            </div>
+          </div>
+        </a>
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Psychological and emotional health intro"
+          className="btn-cell next"
+          href="/form/psychological/intro"
+          onClick={[Function]}
+          title="Go to next section Psychological and emotional health intro"
+        >
+          <div
+            className="actions next"
+          >
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Psychological and emotional health intro
+              </div>
+            </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -22421,7 +22593,7 @@ exports[`The section component renders legal.technology 1`] = `
   className="legal"
 >
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
       className="view view-technology"
@@ -22476,7 +22648,7 @@ exports[`The section component renders legal.technology 1`] = `
               </div>
             </a>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
