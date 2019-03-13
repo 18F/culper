@@ -65,6 +65,12 @@ describe('The section component', () => {
                 },
               },
             },
+            Psychological: {
+              Competence: { IsIncompetent: { value: 'No' } },
+              Consultations: { Consulted: { value: 'No' } },
+              Diagnoses: { Diagnosed: { value: 'No' } },
+              Hospitalizations: { Hospitalized: { value: 'No' } },
+            },
           },
         })
 

@@ -26,14 +26,14 @@ export const PSYCHOLOGICAL_COMPETENCE = {
 
 export const PSYCHOLOGICAL_CONSULTATIONS = {
   key: sections.PSYCHOLOGICAL_CONSULTATIONS,
-  name: 'consultation',
+  name: 'consultations',
   path: 'consultations',
   storeKey: 'Consultations',
   label: i18n.t('psychological.subsection.consultations'),
 }
 export const PSYCHOLOGICAL_HOSPITALIZATIONS = {
   key: sections.PSYCHOLOGICAL_HOSPITALIZATIONS,
-  name: 'hospitalization',
+  name: 'hospitalizations',
   path: 'hospitalizations',
   storeKey: 'Hospitalizations',
   label: i18n.t('psychological.subsection.hospitalizations'),
@@ -49,7 +49,7 @@ export const PSYCHOLOGICAL_DIAGNOSES = {
 
 export const PSYCHOLOGICAL_CONDITIONS = {
   key: sections.PSYCHOLOGICAL_CONDITIONS,
-  name: 'existingConditions',
+  name: 'conditions',
   path: 'conditions',
   storeKey: 'Conditions',
   label: i18n.t('psychological.subsection.conditions'),
