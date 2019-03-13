@@ -68,32 +68,6 @@ export const legal = {
     'associations/membership-violence-or-force': 'Membership - violence or force',
     'associations/activities-to-overthrow': 'Activities to overthrow',
     'associations/terrorism-association': 'Terrorism association',
-
-    // DO NOT MERGE UNTIL THIS IS DELETED
-    police: 'Police record',
-    offenses: 'Offenses',
-    additionalOffenses: 'Additional offenses',
-    domesticViolence: 'Domestic violence',
-    court: 'Non-criminal court actions',
-    investigations: {
-      history: 'Ever been investigated',
-      revoked: 'Denied',
-      debarred: 'Debarment'
-    },
-    technology: {
-      unauthorized: 'Unauthorized access',
-      manipulating: 'Manipulating access',
-      unlawful: 'Unlawful use'
-    },
-    associations: {
-      terrorist: 'Terrorist organization',
-      engaged: 'Engaged in terrorism',
-      advocating: 'Advocating',
-      overthrow: 'Membership - overthrow',
-      violence: 'Membership - violence or force',
-      activities: 'Activities to overthrow',
-      terrorism: 'Terrorism association'
-    },
     review: 'Review investigative & criminal history'
   },
 

@@ -1,6 +1,4 @@
 import React from 'react'
-import { i18n } from 'config'
-import { Field } from 'components/Form'
 import Offenses from '../Police/Offenses'
 import OtherOffenses from '../Police/OtherOffenses'
 import DomesticViolenceList from '../Police/DomesticViolenceList'
@@ -29,16 +27,6 @@ const Review = () => {
 
   return (
     <div>
-      <Field
-        title={i18n.t('legal.police.heading.title')}
-        titleSize="h4"
-        optional
-        className="no-margin-bottom"
-      >
-        {i18n.m('legal.police.para.intro1')}
-        {i18n.m('legal.police.para.intro2')}
-        {i18n.m('legal.police.para.intro3')}
-      </Field>
       <Offenses {...props} />
       {sectionDivider}
       <OtherOffenses {...props} />
