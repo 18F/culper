@@ -27335,7 +27335,7 @@ exports[`The section component renders relationships.review 1`] = `
         <div
           className="section-content cohabitants"
           data-section="relationships"
-          data-subsection="cohabitant"
+          data-subsection="status/cohabitant"
         >
           <h1
             className="section-header"
