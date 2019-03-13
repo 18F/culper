@@ -5,8 +5,8 @@ import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { api } from '@services'
-import Loading from '@views/Loading/Loading'
+import { api } from 'services'
+import Loading from 'views/Loading/Loading'
 
 describe('The data loading view', () => {
   const middlewares = [thunk]

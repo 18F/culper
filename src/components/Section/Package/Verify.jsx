@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { i18n } from '../../../config'
 import { SSN } from './helpers'
 import { Field } from '../../Form'
-import { sort } from '../History/History'
+import { sort } from '../History/helpers'
 import {
   NameSummary,
   DateSummary,

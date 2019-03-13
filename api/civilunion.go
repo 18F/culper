@@ -14,6 +14,7 @@ type CivilUnion struct {
 	PayloadDateSeparated                 Payload `json:"DateSeparated" sql:"-"`
 	PayloadDivorced                      Payload `json:"Divorced" sql:"-"`
 	PayloadEmail                         Payload `json:"Email" sql:"-"`
+	PayloadEmailNotApplicable            Payload `json:"EmailNotApplicable" sql:"-"`
 	PayloadEnteredCivilUnion             Payload `json:"EnteredCivilUnion" sql:"-"`
 	PayloadForeignBornDocument           Payload `json:"ForeignBornDocument" sql:"-"`
 	PayloadLocation                      Payload `json:"Location" sql:"-"`
@@ -35,6 +36,7 @@ type CivilUnion struct {
 	DateSeparated                 *DateControl         `json:"-"`
 	Divorced                      *Branch              `json:"-"`
 	Email                         *Email               `json:"-"`
+	EmailNotApplicable            *NotApplicable       `json:"-"`
 	EnteredCivilUnion             *DateControl         `json:"-"`
 	ForeignBornDocument           *ForeignBornDocument `json:"-"`
 	Location                      *Location            `json:"-"`
@@ -58,6 +60,7 @@ type CivilUnion struct {
 	DateSeparatedID                 int `json:"-"`
 	DivorcedID                      int `json:"-"`
 	EmailID                         int `json:"-"`
+	EmailNotApplicableID            int `json:"-"`
 	EnteredCivilUnionID             int `json:"-"`
 	ForeignBornDocumentID           int `json:"-"`
 	LocationID                      int `json:"-"`
@@ -135,6 +138,12 @@ func (entity *CivilUnion) Unmarshal(raw []byte) error {
 		return err
 	}
 	entity.Email = email.(*Email)
+
+	emailNotApplicable, err := entity.PayloadEmailNotApplicable.Entity()
+	if err != nil {
+		return err
+	}
+	entity.EmailNotApplicable = emailNotApplicable.(*NotApplicable)
 
 	enteredCivilUnion, err := entity.PayloadEnteredCivilUnion.Entity()
 	if err != nil {
@@ -225,6 +234,9 @@ func (entity *CivilUnion) Marshal() Payload {
 	if entity.Email != nil {
 		entity.PayloadEmail = entity.Email.Marshal()
 	}
+	if entity.EmailNotApplicable != nil {
+		entity.PayloadEmailNotApplicable = entity.EmailNotApplicable.Marshal()
+	}
 	if entity.EnteredCivilUnion != nil {
 		entity.PayloadEnteredCivilUnion = entity.EnteredCivilUnion.Marshal()
 	}
@@ -299,6 +311,11 @@ func (entity *CivilUnion) Valid() (bool, error) {
 	}
 	if entity.Email != nil {
 		if ok, err := entity.Email.Valid(); !ok {
+			return false, err
+		}
+	}
+	if entity.EmailNotApplicable != nil {
+		if ok, err := entity.EmailNotApplicable.Valid(); !ok {
 			return false, err
 		}
 	}
@@ -422,6 +439,12 @@ func (entity *CivilUnion) Save(context DatabaseService, account int) (int, error
 	}
 	entity.EmailID = emailID
 
+	emailNotApplicableID, err := entity.EmailNotApplicable.Save(context, account)
+	if err != nil {
+		return emailNotApplicableID, err
+	}
+	entity.EmailNotApplicableID = emailNotApplicableID
+
 	enteredCivilUnionID, err := entity.EnteredCivilUnion.Save(context, account)
 	if err != nil {
 		return enteredCivilUnionID, err
@@ -531,6 +554,9 @@ func (entity *CivilUnion) Delete(context DatabaseService, account int) (int, err
 	if _, err := entity.Email.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
+	if _, err := entity.EmailNotApplicable.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
 	if _, err := entity.EnteredCivilUnion.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -627,6 +653,11 @@ func (entity *CivilUnion) Get(context DatabaseService, account int) (int, error)
 	}
 	if entity.EmailID != 0 {
 		if _, err := entity.Email.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+	if entity.EmailNotApplicableID != 0 {
+		if _, err := entity.EmailNotApplicable.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
@@ -752,6 +783,11 @@ func (entity *CivilUnion) Find(context DatabaseService) error {
 		}
 		entity.EnteredCivilUnion.ID = previous.EnteredCivilUnionID
 		entity.EnteredCivilUnionID = previous.EnteredCivilUnionID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
 		if entity.ForeignBornDocument == nil {
 			entity.ForeignBornDocument = &ForeignBornDocument{}
 		}

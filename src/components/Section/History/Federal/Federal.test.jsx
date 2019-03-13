@@ -2,30 +2,32 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Federal from './Federal'
+
+import ConnectedFederal from './Federal'
 
 describe('The federal component', () => {
   const mockStore = configureMockStore()
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <Federal {...expected} />
-        </Provider>
-      )
+    const store = mockStore({
+      authentication: { formType: 'SF86' },
+    })
+
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <ConnectedFederal {...expected} />
+      </Provider>,
+    )
   })
 
   it('selects yes and loads form', () => {
     const expected = {
       name: 'federal_service',
       HasFederalService: { value: 'Yes' },
-      List: {
-        items: [{}]
-      }
+      List: { items: [{}] },
     }
+
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBeGreaterThan(0)
     expect(component.find('.accordion .daterange').length).toBeGreaterThan(0)
@@ -36,7 +38,7 @@ describe('The federal component', () => {
   it('selects no', () => {
     const expected = {
       name: 'federal_service',
-      HasFederalService: { value: 'No' }
+      HasFederalService: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -47,13 +49,10 @@ describe('The federal component', () => {
     const expected = {
       name: 'federal_service',
       HasFederalService: { value: 'Yes' },
-      List: {
-        items: [{}]
-      },
-      onUpdate: () => {
-        updates++
-      }
+      List: { items: [{}] },
+      onUpdate: () => { updates += 1 },
     }
+
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     component.find({ type: 'text', name: 'Position' }).simulate('change')
@@ -75,50 +74,51 @@ describe('The federal component', () => {
           {
             Item: {
               Name: {
-                value: 'Acme'
+                value: 'Acme',
               },
               Position: {
-                value: ' Chief Anvil Engineer'
+                value: ' Chief Anvil Engineer',
               },
               Dates: {
                 from: {
                   year: '2017',
                   month: '1',
-                  day: '1'
+                  day: '1',
                 },
                 to: {
                   year: '2017',
                   month: '2',
-                  day: '1'
-                }
-              }
-            }
+                  day: '1',
+                },
+              },
+            },
           },
           {
             Item: {
               Name: {
-                value: 'Quills R Us'
+                value: 'Quills R Us',
               },
               Position: {
-                value: 'I wrote stuff'
+                value: 'I wrote stuff',
               },
               Dates: {
                 from: {
                   year: '2017',
                   month: '2',
-                  day: '1'
+                  day: '1',
                 },
                 to: {
                   year: '2017',
                   month: '3',
-                  day: '1'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  day: '1',
+                },
+              },
+            },
+          },
+        ],
+      },
     }
+
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     expect(component.find('.accordion .item').length).toBe(2)

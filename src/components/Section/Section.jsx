@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router'
 import Identification from './Identification'
 import Financial from './Financial'
@@ -25,27 +26,19 @@ const storeToComponentMap = {
   Legal,
   Psychological,
   Substance,
-  Package
+  Package,
 }
 
 class Section extends React.Component {
-  constructor(props) {
-    super(props)
-    this.update = this.update.bind(this)
-  }
-
-  // TODO: See if this is necessary. Removing this makes the first section not expand in navigation ATM.
+  /**
+   * TODO: See if this is necessary. Removing this makes the first section not
+   * expand in  navigation ATM.
+   */
   componentDidMount() {
     this.update(this.props)
   }
 
-  update(props) {
-    const subsection = props.subsection || 'intro'
-    const path = `/form/${props.section}/${subsection}`
-    this.props.history.push(path)
-  }
-
-  getComponent(section) {
+  getComponent = (section) => {
     // workaround for the fact that the Package section doesn't have an associated store
     const name = section.url === 'package' ? 'Package' : section.store
     if (storeToComponentMap[name]) {
@@ -53,15 +46,26 @@ class Section extends React.Component {
     }
 
     console.log(`${name} component not found`)
+    return null
   }
 
-  createSections() {
-    return navigation.map(section => {
+  update = (props) => {
+    const { history } = this.props
+
+    const subsection = props.subsection || 'intro'
+    const path = `/form/${props.section}/${subsection}`
+    history.push(path)
+  }
+
+  createSections = () => {
+    const { subsection } = this.props
+
+    return navigation.map((section) => {
       const SectionComponent = this.getComponent(section)
       return (
         <SectionView key={section.url} name={section.url}>
           <SectionComponent
-            subsection={this.props.subsection}
+            subsection={subsection}
             update={this.update}
           />
         </SectionView>
@@ -70,24 +74,29 @@ class Section extends React.Component {
   }
 
   render() {
+    const { section } = this.props
+
     return (
       <Switch>
         {/* REFACTORED - These sections are rendered via <Route>s */}
         <Route path="/form/identification" component={Identification} />
+        <Route path="/form/history" component={History} />
+        <Route path="/form/citizenship" component={Citizenship} />
+        <Route path="/form/military" component={Military} />
+        <Route path="/form/financial" component={Financial} />
 
         {/* TBD */}
-        <Route path="/form/:section/:subsection" render={() => (
-          <SectionViews current={this.props.section}>{this.createSections()}</SectionViews>
-        )} />
+        <Route
+          path="/form/:section/:subsection"
+          render={() => (
+            <SectionViews current={section}>{this.createSections()}</SectionViews>
+          )}
+        />
 
         {/* Sections to refactor */}
         {/*
-          <Route path="/form/history" component={History} />
           <Route path="/form/relationships" component={Relationships} />
-          <Route path="/form/citizenship" component={Citizenship} />
-          <Route path="/form/military" component={Military} />
           <Route path="/form/foreign" component={Foreign} />
-          <Route path="/form/financial" component={Financial} />
           <Route path="/form/substance" component={Substance} />
           <Route path="/form/legal" component={Legal} />
           <Route path="/form/psychological" component={Psychological} />
@@ -96,6 +105,13 @@ class Section extends React.Component {
       </Switch>
     )
   }
+}
+
+/* eslint react/forbid-prop-types: 0 */
+Section.propTypes = {
+  section: PropTypes.string.isRequired,
+  subsection: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 export default withRouter(Section)

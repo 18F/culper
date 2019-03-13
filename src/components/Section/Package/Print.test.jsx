@@ -4,21 +4,22 @@ import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router'
 import { mount } from 'enzyme'
-import { api } from '@services'
-import Print from '@components/Section/Package/Print'
-import { testSnapshot } from '@components/test-helpers'
+import { api } from 'services'
+import Print from 'components/Section/Package/Print'
+import { testSnapshot } from 'components/test-helpers'
 
-const applicationState = {
-  Application: {}
+const mockState = {
+  authentication: { formType: 'SF86' },
+  application: { Application: {} },
 }
 
 // give a fake GUID so the field IDs don't differ between snapshots
 // https://github.com/facebook/jest/issues/936#issuecomment-404246102
-jest.mock('../../Form/ValidationElement/helpers', () =>
+jest.mock('../../Form/ValidationElement/helpers', () => (
   Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
-    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
+    newGuid: jest.fn().mockReturnValue('MOCK-GUID'),
   })
-)
+))
 
 describe('The print section', () => {
   const mockStore = configureMockStore()
@@ -29,48 +30,43 @@ describe('The print section', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({
-      application: applicationState
-    })
+    const store = mockStore(mockState)
     const component = mount(
       <MemoryRouter>
         <Provider store={store}>
           <Print subsection="intro" />
         </Provider>
-      </MemoryRouter>
+      </MemoryRouter>,
     )
     expect(component.find('.section-print-container').length).toBe(10)
   })
 
   it('launches print dialog', () => {
     let printed = false
-    window.print = function() {
+    window.print = () => {
       printed = true
     }
-    const store = mockStore({
-      application: applicationState
-    })
+
+    const store = mockStore(mockState)
     const component = mount(
       <MemoryRouter>
         <Provider store={store}>
           <Print subsection="intro" />
         </Provider>
-      </MemoryRouter>
+      </MemoryRouter>,
     )
     component.find('.print-btn').simulate('click')
     expect(printed).toBe(true)
   })
 
   it('renders properly', () => {
-    const store = mockStore({
-      application: applicationState
-    })
+    const store = mockStore(mockState)
     testSnapshot(
       <MemoryRouter>
         <Provider store={store}>
           <Print subsection="intro" />
         </Provider>
-      </MemoryRouter>
+      </MemoryRouter>,
     )
   })
 })

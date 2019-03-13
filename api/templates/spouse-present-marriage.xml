@@ -39,7 +39,9 @@
       </Citizenship>
       {{end}}
     </CountriesOfCitizenship>
+    {{- if notApplicable $Item.EmailNotApplicable | ne "True"}}
     <Email>{{text $Item.Email}}</Email>
+    {{end}}
     <EntryComment></EntryComment>
     <LegalName>
       {{name $Item.Name}}

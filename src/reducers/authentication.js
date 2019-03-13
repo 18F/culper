@@ -1,4 +1,4 @@
-import { SF86 } from '@constants/formTypes'
+import { SF86 } from 'constants/formTypes'
 import AuthConstants from '../actions/AuthConstants'
 
 const defaultState = {

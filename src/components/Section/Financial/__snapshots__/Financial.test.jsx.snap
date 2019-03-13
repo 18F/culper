@@ -14,7 +14,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     </h1>
     <div
       aria-label="In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
-      className="field required  branch bankruptcy-branch"
+      className="field required branch bankruptcy-branch"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -33,7 +33,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
       >
         <a
           aria-label="Show help for In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
-          className="toggle h4  adjust-for-buttons"
+          className="toggle h4 adjust-for-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
@@ -184,7 +184,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     </h1>
     <div
       aria-label="Have you ever experienced financial problems due to gambling?"
-      className="field required  branch has-gambling-debt"
+      className="field required branch has-gambling-debt"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -330,7 +330,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     </h1>
     <div
       aria-label="In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?"
-      className="field required  branch taxes-branch"
+      className="field required branch taxes-branch"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -476,7 +476,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     </h1>
     <div
       aria-label="In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?"
-      className="field required  branch card-branch"
+      className="field required branch card-branch"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -622,7 +622,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     </h1>
     <div
       aria-label="Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?"
-      className="field required  branch credit-branch"
+      className="field required branch credit-branch"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -768,7 +768,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     </h1>
     <div
       aria-label="Other than previously listed, has the following happened to you?"
-      className="field required  branch delinquent-branch eapp-field-wrap"
+      className="field required branch delinquent-branch eapp-field-wrap"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -959,7 +959,7 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     </h1>
     <div
       aria-label="Other than previously listed, have any of the following happened?"
-      className="field required  branch nonpayment-branch"
+      className="field required branch nonpayment-branch"
       data-uuid="field-MOCK-GUID"
     >
       <a

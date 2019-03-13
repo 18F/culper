@@ -1,39 +1,54 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, DateSummary } from '../../../Summary'
-import {
-  GamblingValidator,
-  GamblingItemValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { GamblingItemValidator } from 'validators'
+
+import { Branch, Show, Accordion } from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
+import Subsection from 'components/Section/shared/Subsection'
+
+import { FINANCIAL, FINANCIAL_GAMBLING } from 'config/formSections/financial'
+import connectFinancialSection from '../FinancialConnector'
+
 import GamblingItem from './GamblingItem'
 
-export default class Gambling extends SubsectionElement {
+const sectionConfig = {
+  section: FINANCIAL.name,
+  store: FINANCIAL.store,
+  subsection: FINANCIAL_GAMBLING.name,
+  storeKey: FINANCIAL_GAMBLING.storeKey,
+}
+
+export class Gambling extends Subsection {
   constructor(props) {
     super(props)
 
-    this.myDispatch = this.myDispatch.bind(this)
-    this.summary = this.summary.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasGamblingDebt: this.props.HasGamblingDebt,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
   /**
    * Updates triggered by the branching component.
    */
-  onUpdate(values) {
+  onUpdate = (values) => {
     this.update({
       HasGamblingDebt: values,
-      List: values.value === 'Yes' ? this.props.List : {}
+      List: values.value === 'Yes' ? this.props.List : {},
     })
   }
 
@@ -41,16 +56,16 @@ export default class Gambling extends SubsectionElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  myDispatch(values) {
+  myDispatch = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
   /**
    * Takes a value such as "1000" and converts it to "1,000".
    */
-  fancyNumber(value) {
+  fancyNumber = (value) => {
     const n = new window.Number(value)
     return n.toLocaleString()
   }
@@ -58,20 +73,19 @@ export default class Gambling extends SubsectionElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary(row, index) {
+  summary = (row, index) => {
     const item = row.Item || {}
     const dates = DateSummary(item.Dates)
-    const losses =
-      item.Losses && item.Losses.value
-        ? `$${this.fancyNumber(item.Losses.value)}`
-        : ''
+    const losses = item.Losses && item.Losses.value
+      ? `$${this.fancyNumber(item.Losses.value)}`
+      : ''
 
     return Summary({
       type: i18n.t('financial.gambling.collection.summary.debt'),
-      index: index,
+      index,
       left: losses,
       right: dates,
-      placeholder: i18n.t('financial.gambling.collection.summary.unknownlosses')
+      placeholder: i18n.t('financial.gambling.collection.summary.unknownlosses'),
     })
   }
 
@@ -79,7 +93,8 @@ export default class Gambling extends SubsectionElement {
     return (
       <div
         className="section-content gambling"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('financial.destination.gambling')}</h1>
         <Branch
           name="has_gamblingdebt"
@@ -87,8 +102,8 @@ export default class Gambling extends SubsectionElement {
           labelSize="h4"
           className="has-gambling-debt"
           {...this.props.HasGamblingDebt}
-          warning={true}
-          onUpdate={this.onUpdate.bind(this)}
+          warning
+          onUpdate={this.onUpdate}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
           onError={this.handleError}
@@ -106,12 +121,13 @@ export default class Gambling extends SubsectionElement {
             validator={GamblingItemValidator}
             scrollIntoView={this.props.scrollIntoView}
             appendLabel={i18n.t('financial.gambling.collection.append')}
-            appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
+            appendTitle={i18n.t('financial.gambling.collection.appendTitle')}
+          >
             <GamblingItem
               name="Item"
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              bind={true}
+              bind
             />
           </Accordion>
         </Show>
@@ -123,15 +139,12 @@ export default class Gambling extends SubsectionElement {
 Gambling.defaultProps = {
   List: {},
   HasGamblingDebt: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'financial',
-  subsection: 'gambling',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('financial.gambling', data))
-  },
-  defaultState: true
+  validator: data => validate(schema('financial.gambling', data)),
+  defaultState: true,
+  scrollToBottom: '.bottom-btns',
 }
+
+export default connectFinancialSection(Gambling, sectionConfig)

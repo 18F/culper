@@ -1,56 +1,77 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, { BankruptcyItemValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
-import Bankruptcy from './Bankruptcy'
-import { Summary, AddressSummary, DateSummary } from '../../../Summary'
 
-export default class Bankruptcies extends SubsectionElement {
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { BankruptcyItemValidator } from 'validators'
+
+import { Branch, Show, Accordion } from 'components/Form'
+import { Summary, AddressSummary, DateSummary } from 'components/Summary'
+import Subsection from 'components/Section/shared/Subsection'
+
+import {
+  FINANCIAL,
+  FINANCIAL_BANKRUPTCY,
+} from 'config/formSections/financial'
+
+import connectFinancialSection from '../FinancialConnector'
+import Bankruptcy from './Bankruptcy'
+
+const sectionConfig = {
+  section: FINANCIAL.name,
+  store: FINANCIAL.store,
+  subsection: FINANCIAL_BANKRUPTCY.name,
+  storeKey: FINANCIAL_BANKRUPTCY.storeKey,
+}
+
+export class Bankruptcies extends Subsection {
   constructor(props) {
     super(props)
 
-    this.updateList = this.updateList.bind(this)
-    this.updateHasBankruptcy = this.updateHasBankruptcy.bind(this)
-    this.summary = this.summary.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasBankruptcy: this.props.HasBankruptcy,
-      ...queue
+      ...queue,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  updateHasBankruptcy(values) {
+  updateHasBankruptcy = (values) => {
     this.update({
       HasBankruptcy: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} },
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  summary = (item, index) => {
     const b = item.Item || {}
     const from = DateSummary(b.DateFiled)
     const address = AddressSummary(b.CourtAddress)
 
     return Summary({
       type: i18n.t('financial.bankruptcy.collection.summary.item'),
-      index: index,
+      index,
       left: address,
       right: from,
-      placeholder: i18n.t('financial.bankruptcy.collection.summary.unknown')
+      placeholder: i18n.t('financial.bankruptcy.collection.summary.unknown'),
     })
   }
 
@@ -58,7 +79,8 @@ export default class Bankruptcies extends SubsectionElement {
     return (
       <div
         className="section-content bankruptcies"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('financial.destination.bankruptcy')}</h1>
         <Branch
           name="has_bankruptcydebt"
@@ -67,7 +89,7 @@ export default class Bankruptcies extends SubsectionElement {
           className="bankruptcy-branch"
           {...this.props.HasBankruptcy}
           help="financial.bankruptcy.help"
-          warning={true}
+          warning
           onUpdate={this.updateHasBankruptcy}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -90,14 +112,15 @@ export default class Bankruptcies extends SubsectionElement {
             appendTitle={i18n.t(
               'financial.bankruptcy.collection.summary.appendTitle'
             )}
-            appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
+            appendLabel={i18n.t('financial.bankruptcy.collection.append')}
+          >
             <Bankruptcy
               name="Item"
               dispatch={this.props.dispatch}
               addressBooks={this.props.addressBooks}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              bind={true}
+              bind
             />
           </Accordion>
         </Show>
@@ -110,15 +133,12 @@ Bankruptcies.defaultProps = {
   List: Accordion.defaultList,
   HasBankruptcy: {},
   addressBooks: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'financial',
-  subsection: 'bankruptcy',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('financial.bankruptcy', data))
-  },
-  defaultState: true
+  validator: data => validate(schema('financial.bankruptcy', data)),
+  defaultState: true,
+  scrollToBottom: '.bottom-btns',
 }
+
+export default connectFinancialSection(Bankruptcies, sectionConfig)

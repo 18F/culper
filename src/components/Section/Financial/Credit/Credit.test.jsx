@@ -1,11 +1,11 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Credit from './Credit'
+import { Credit } from './Credit'
 
 describe('The credit component', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'card-abuse'
+      name: 'card-abuse',
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.branch').length).toBeGreaterThan(0)
@@ -15,7 +15,7 @@ describe('The credit component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'credit-counseling',
-      HasCreditCounseling: { value: 'Yes' }
+      HasCreditCounseling: { value: 'Yes' },
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +24,7 @@ describe('The credit component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'credit-counseling',
-      HasCreditCounseling: { value: 'No' }
+      HasCreditCounseling: { value: 'No' },
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -36,9 +36,9 @@ describe('The credit component', () => {
       name: 'credit-counseling',
       HasCreditCounseling: { value: 'Yes' },
       List: { branch: { value: 'No' }, items: [{}] },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
     }
     const component = mount(<Credit {...expected} />)
     component

@@ -1,79 +1,88 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { i18n } from '../../../config'
-import { Field, Radio, RadioGroup } from '../../Form'
+import classnames from 'classnames'
+
+import { i18n } from 'config'
+import { Field, Radio, RadioGroup } from 'components/Form'
 
 /**
  * Branch is a component that stores whether Yes/No options were selected. It contains a callback
  * function that can be used to be upated when a button is clicked. The button labels and values are
- * configurable by passing in the appropriate property which are defined in the Branch.defaultProps object.
+ * configurable by passing in the appropriate property which are defined in the Branch.defaultProps
+ * object.
  */
 export default class Branch extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleUpdate = this.handleUpdate.bind(this)
-  }
+  handleUpdate = (values) => {
+    const {
+      value, noValue, yesValue, warning, confirmation, onUpdate, name,
+    } = this.props
 
-  handleUpdate(values) {
     // If they answered "No" (or deselects "Yes" entirely) we need to
     // check if a confirmation is required.
-    if (
-      (values.value === this.props.noValue || values.value === '') &&
-      this.props.value === this.props.yesValue
+    if ((values.value === noValue || values.value === '')
+      && value === yesValue
     ) {
       // When a `warning` should be displayed AND they do no approve the change then
       // set the old value back to "Yes".
-      if (
-        this.props.warning &&
-        window.confirm(this.props.confirmation) === false
-      ) {
+      if (warning && window.confirm(confirmation) === false) {
         return
       }
     }
 
-    this.props.onUpdate({
-      name: this.props.name,
-      value: values.value
+    onUpdate({
+      name,
+      value: values.value,
     })
   }
 
   render() {
-    const klass = `branch ${this.props.className || ''}`.trim()
+    const {
+      className, label, labelSize, optional, disabled, required,
+      help, helpTitle, helpMessage,
+      adjustFor, scrollIntoView, children, onError,
+      value, name, yesLabel, yesValue, yesAriaLabel, noLabel, noValue, noAriaLabel,
+    } = this.props
+
+    const classes = classnames('branch', className)
 
     return (
       <Field
-        title={this.props.label}
-        titleSize={this.props.labelSize}
-        optional={this.props.optional}
-        className={klass}
-        help={this.props.help}
-        adjustFor={this.props.adjustFor}
-        scrollIntoView={this.props.scrollIntoView}
-        shrink={true}>
-        <div className="content">{this.props.children}</div>
+        title={label}
+        titleSize={labelSize}
+        optional={optional}
+        className={classes}
+        help={help}
+        helpTitle={helpTitle}
+        helpMessage={helpMessage}
+        adjustFor={adjustFor}
+        scrollIntoView={scrollIntoView}
+        shrink
+      >
+        <div className="content">{children}</div>
         <RadioGroup
           className="option-list branch"
-          disabled={this.props.disabled}
-          required={this.props.required}
-          onError={this.props.onError}
-          selectedValue={this.props.value}>
+          disabled={disabled}
+          required={required}
+          onError={onError}
+          selectedValue={value}
+        >
           <Radio
-            name={this.props.name}
-            label={this.props.yesLabel}
-            value={this.props.yesValue}
-            ariaLabel={this.props.yesAriaLabel}
+            name={name}
+            label={yesLabel}
+            value={yesValue}
+            ariaLabel={yesAriaLabel}
             className="yes"
             onUpdate={this.handleUpdate}
-            onError={this.props.onError}
+            onError={onError}
           />
           <Radio
-            name={this.props.name}
-            label={this.props.noLabel}
-            value={this.props.noValue}
-            ariaLabel={this.props.noAriaLabel}
+            name={name}
+            label={noLabel}
+            value={noValue}
+            ariaLabel={noAriaLabel}
             className="no"
             onUpdate={this.handleUpdate}
-            onError={this.props.onError}
+            onError={onError}
           />
         </RadioGroup>
       </Field>
@@ -81,8 +90,38 @@ export default class Branch extends React.Component {
   }
 }
 
+/* eslint react/forbid-prop-types: 0 */
+Branch.propTypes = {
+  name: PropTypes.string,
+  label: PropTypes.string,
+  labelSize: PropTypes.string,
+  className: PropTypes.string,
+  optional: PropTypes.bool,
+  help: PropTypes.string,
+  helpTitle: PropTypes.node,
+  helpMessage: PropTypes.node,
+  adjustFor: PropTypes.string,
+  scrollIntoView: PropTypes.bool,
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
+  onError: PropTypes.func,
+  warning: PropTypes.bool,
+  confirmation: PropTypes.string,
+  onUpdate: PropTypes.func,
+  yesLabel: PropTypes.any,
+  yesValue: PropTypes.any,
+  yesAriaLabel: PropTypes.any,
+  noLabel: PropTypes.any,
+  noValue: PropTypes.any,
+  noAriaLabel: PropTypes.any,
+  value: PropTypes.any,
+}
+
 // Default values for properties that are not specified
 Branch.defaultProps = {
+  name: undefined,
+  label: undefined,
   adjustFor: 'buttons',
   className: '',
   confirmation: i18n.t('branch.confirmation'),
@@ -95,9 +134,14 @@ Branch.defaultProps = {
   labelSize: 'label',
   warning: false,
   value: '',
-  onUpdate: queue => {},
   optional: false,
-  onError: (value, arr) => {
-    return arr
-  }
+  help: undefined,
+  helpTitle: undefined,
+  helpMessage: undefined,
+  scrollIntoView: false,
+  children: undefined,
+  disabled: false,
+  required: false,
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

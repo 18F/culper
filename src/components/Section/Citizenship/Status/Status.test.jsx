@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { shallow, mount } from 'enzyme'
-import Status from './Status'
+import { Status } from './Status'
 
 describe('The status component', () => {
   const mockStore = configureMockStore()

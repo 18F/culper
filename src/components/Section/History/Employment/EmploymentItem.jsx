@@ -1,5 +1,7 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
+
 import {
   ValidationElement,
   DateRange,
@@ -8,9 +10,10 @@ import {
   Field,
   Telephone,
   Show,
-  Name
-} from '../../../Form'
-import AlternateAddress from '../../../Form/Location/AlternateAddress'
+  Name,
+} from 'components/Form'
+import ConnectedAlternateAddress from 'components/Form/Location/AlternateAddress'
+
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -18,137 +21,115 @@ import AdditionalActivity from './AdditionalActivity'
 import Supervisor from './Supervisor'
 import ReasonLeft from './ReasonLeft'
 import Reprimand from './Reprimand'
+
 import { today, daysAgo, extractDate } from '../dateranges'
 
 export default class EmploymentItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateEmploymentActivity = this.updateEmploymentActivity.bind(this)
-    this.updateEmployment = this.updateEmployment.bind(this)
-    this.updateDates = this.updateDates.bind(this)
-    this.updateTitle = this.updateTitle.bind(this)
-    this.updateDutyStation = this.updateDutyStation.bind(this)
-    this.updateStatus = this.updateStatus.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateTelephone = this.updateTelephone.bind(this)
-    this.updateSupervisor = this.updateSupervisor.bind(this)
-    this.updateReferenceName = this.updateReferenceName.bind(this)
-    this.updateReferencePhone = this.updateReferencePhone.bind(this)
-    this.updateReferenceAddress = this.updateReferenceAddress.bind(this)
-    this.updatePhysicalAddress = this.updatePhysicalAddress.bind(this)
-    this.updateAdditional = this.updateAdditional.bind(this)
-    this.updateReasonLeft = this.updateReasonLeft.bind(this)
-    this.updateReprimand = this.updateReprimand.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       ...this.props,
-      ...queue
+      ...queue,
     })
   }
 
-  updateEmploymentActivity(values) {
+  updateEmploymentActivity = (values) => {
     const activity = (this.props.EmploymentActivity || {}).value
-    const zeroReference =
-      activity && !['SelfEmployment', 'Unemployment'].includes(activity)
+    const zeroReference = activity && !['SelfEmployment', 'Unemployment'].includes(activity)
     this.update({
       EmploymentActivity: values,
       ReferenceName: zeroReference ? {} : this.props.ReferenceName,
       ReferencePhone: zeroReference ? {} : this.props.ReferencePhone,
-      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress,
     })
   }
 
-  updateEmployment(values) {
+  updateEmployment = (values) => {
     this.update({
-      Employment: values
+      Employment: values,
     })
   }
 
-  updateDates(values) {
+  updateDates = (values) => {
     this.update({
-      Dates: values
+      Dates: values,
     })
   }
 
-  updateTitle(values) {
+  updateTitle = (values) => {
     this.update({
-      Title: values
+      Title: values,
     })
   }
 
-  updateDutyStation(values) {
+  updateDutyStation = (values) => {
     this.update({
-      DutyStation: values
+      DutyStation: values,
     })
   }
 
-  updateStatus(values) {
+  updateStatus = (values) => {
     this.update({
-      Status: values
+      Status: values,
     })
   }
 
-  updateAddress(values) {
+  updateAddress = (values) => {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
-  updateTelephone(values) {
+  updateTelephone = (values) => {
     this.update({
-      Telephone: values
+      Telephone: values,
     })
   }
 
-  updateSupervisor(values) {
+  updateSupervisor = (values) => {
     this.update({
-      Supervisor: values
+      Supervisor: values,
     })
   }
 
-  updateReferenceName(values) {
+  updateReferenceName = (values) => {
     this.update({
-      ReferenceName: values
+      ReferenceName: values,
     })
   }
 
-  updateReferencePhone(values) {
+  updateReferencePhone = (values) => {
     this.update({
-      ReferencePhone: values
+      ReferencePhone: values,
     })
   }
 
-  updateReferenceAddress(values) {
+  updateReferenceAddress = (values) => {
     this.update({
-      ReferenceAddress: values
+      ReferenceAddress: values,
     })
   }
 
-  updatePhysicalAddress(values) {
+  updatePhysicalAddress = (values) => {
     this.update({
-      PhysicalAddress: values
+      PhysicalAddress: values,
     })
   }
 
-  updateAdditional(values) {
+  updateAdditional = (values) => {
     this.update({
-      Additional: values
+      Additional: values,
     })
   }
 
-  updateReasonLeft(values) {
+  updateReasonLeft = (values) => {
     this.update({
-      ReasonLeft: values
+      ReasonLeft: values,
     })
   }
 
-  updateReprimand(values) {
+  updateReprimand = (values) => {
     this.update({
-      Reprimand: values
+      Reprimand: values,
     })
   }
 
@@ -160,13 +141,12 @@ export default class EmploymentItem extends ValidationElement {
   showAdditionalActivity() {
     const activity = (this.props.EmploymentActivity || {}).value
     return (
-      activity &&
-      [
+      activity && [
         'OtherFederal',
         'StateGovernment',
         'FederalContractor',
         'Other',
-        'NonGovernment'
+        'NonGovernment',
       ].includes(activity)
     )
   }
@@ -179,32 +159,27 @@ export default class EmploymentItem extends ValidationElement {
   showAssignedDuty() {
     const activity = (this.props.EmploymentActivity || {}).value
     return (
-      activity &&
-      ['ActiveMilitary', 'NationalGuard', 'USPHS'].includes(activity)
+      activity && ['ActiveMilitary', 'NationalGuard', 'USPHS'].includes(activity)
     )
   }
 
   showEmployer() {
     const activity = (this.props.EmploymentActivity || {}).value
     return (
-      activity &&
-      !['Unemployment', 'ActiveMilitary', 'NationalGuard', 'USPHS'].includes(
-        activity
-      )
+      activity && !['Unemployment', 'ActiveMilitary', 'NationalGuard', 'USPHS'].includes(activity)
     )
   }
 
   showPhysicalAddress() {
     const activity = (this.props.EmploymentActivity || {}).value
     return (
-      activity &&
-      [
+      activity && [
         'SelfEmployment',
         'OtherFederal',
         'StateGovernment',
         'FederalContractor',
         'NonGovernment',
-        'Other'
+        'Other',
       ].includes(activity)
     )
   }
@@ -212,8 +187,7 @@ export default class EmploymentItem extends ValidationElement {
   showSupervisor() {
     const activity = (this.props.EmploymentActivity || {}).value
     return (
-      activity &&
-      [
+      activity && [
         'ActiveMilitary',
         'NationalGuard',
         'USPHS',
@@ -221,7 +195,7 @@ export default class EmploymentItem extends ValidationElement {
         'StateGovernment',
         'FederalContractor',
         'NonGovernment',
-        'Other'
+        'Other',
       ].includes(activity)
     )
   }
@@ -234,7 +208,7 @@ export default class EmploymentItem extends ValidationElement {
   /**
    * Only show the reasons for leaving if
    *
-   *  - employed there within the last 7 years
+   *  - employed there within the last # years
    *  - employed by:
    *    - Active Military
    *    - National Guard
@@ -246,9 +220,9 @@ export default class EmploymentItem extends ValidationElement {
    *    - Self Employment
    *    - Other
    */
-  showLeaving() {
+  showLeaving(years = 7) {
     const activity = (this.props.EmploymentActivity || {}).value
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    const recordYearsAgo = daysAgo(today, 365 * years)
     const now = new Date()
     const dates = this.props.Dates || {}
     const from = extractDate(dates.from)
@@ -256,20 +230,18 @@ export default class EmploymentItem extends ValidationElement {
 
     // Check user is within seven years and part of approved employers.
     return (
-      (from && from >= sevenYearsAgo) ||
-      (to &&
-        to >= sevenYearsAgo &&
-        [
-          'ActiveMilitary',
-          'NationalGuard',
-          'USPHS',
-          'OtherFederal',
-          'StateGovernment',
-          'FederalContractor',
-          'NonGovernment',
-          'SelfEmployment',
-          'Other'
-        ].includes(activity))
+      (from && from >= recordYearsAgo)
+      || (to && to >= recordYearsAgo && [
+        'ActiveMilitary',
+        'NationalGuard',
+        'USPHS',
+        'OtherFederal',
+        'StateGovernment',
+        'FederalContractor',
+        'NonGovernment',
+        'SelfEmployment',
+        'Other',
+      ].includes(activity))
     )
   }
 
@@ -279,6 +251,7 @@ export default class EmploymentItem extends ValidationElement {
   }
 
   render() {
+    const { recordYears } = this.props
     const prefix = `history.employment.${this.localizeByActivity()}`.trim()
     return (
       <div>
@@ -296,7 +269,8 @@ export default class EmploymentItem extends ValidationElement {
             title={i18n.t(`${prefix}.heading.employer`)}
             titleSize="h4"
             adjustFor="labels"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Text
               name="Employment"
               {...this.props.Employment}
@@ -313,7 +287,8 @@ export default class EmploymentItem extends ValidationElement {
             title={i18n.t(`${prefix}.heading.title`)}
             titleSize="h4"
             adjustFor="labels"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Text
               name="Title"
               {...this.props.Title}
@@ -330,7 +305,8 @@ export default class EmploymentItem extends ValidationElement {
             title={i18n.t(`${prefix}.heading.dutyStation`)}
             titleSize="h4"
             adjustFor="labels"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Text
               name="DutyStation"
               {...this.props.DutyStation}
@@ -346,8 +322,9 @@ export default class EmploymentItem extends ValidationElement {
           <Field
             title={i18n.t(`${prefix}.heading.status`)}
             titleSize="h4"
-            shrink={true}
-            scrollIntoView={this.props.scrollIntoView}>
+            shrink
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <EmploymentStatus
               name="Status"
               {...this.props.Status}
@@ -360,17 +337,18 @@ export default class EmploymentItem extends ValidationElement {
         </Show>
 
         <Field
-          title={i18n.t(`history.employment.default.heading.datesEmployed`)}
+          title={i18n.t('history.employment.default.heading.datesEmployed')}
           titleSize="h4"
-          help={`history.employment.default.datesEmployed.help`}
+          help="history.employment.default.datesEmployed.help"
           adjustFor="daterange"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="Dates"
             {...this.props.Dates}
             receiveProps={this.props.receiveProps}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -381,19 +359,20 @@ export default class EmploymentItem extends ValidationElement {
           <Field
             title={i18n.t(`${prefix}.heading.address`)}
             titleSize="h4"
-            optional={true}
+            optional
             help={`${prefix}.address.help`}
             adjustFor="address"
-            shrink={true}
-            scrollIntoView={this.props.scrollIntoView}>
+            shrink
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Location
               name="Address"
               {...this.props.Address}
               layout={Location.ADDRESS}
-              geocode={true}
+              geocode
               addressBooks={this.props.addressBooks}
               addressBook="Employment"
-              showPostOffice={true}
+              showPostOffice
               dispatch={this.props.dispatch}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
@@ -409,7 +388,8 @@ export default class EmploymentItem extends ValidationElement {
             titleSize="h4"
             className="override-required"
             adjustFor="telephone"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Telephone
               name="Telephone"
               {...this.props.Telephone}
@@ -445,7 +425,7 @@ export default class EmploymentItem extends ValidationElement {
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           />
-          <AlternateAddress
+          <ConnectedAlternateAddress
             address={this.props.SupervisorAlternateAddress}
             belongingTo="SupervisorAlternateAddress"
             country={this.props.Supervisor.Address.country}
@@ -459,12 +439,13 @@ export default class EmploymentItem extends ValidationElement {
             <Field
               title={i18n.t(`${prefix}.heading.reference`)}
               titleSize="h4"
-              optional={true}
+              optional
               filterErrors={Name.requiredErrorsOnly}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Name
                 name="ReferenceName"
-                prefix={'name'}
+                prefix="name"
                 className="reference-name"
                 {...this.props.ReferenceName}
                 scrollIntoView={this.props.scrollIntoView}
@@ -479,9 +460,10 @@ export default class EmploymentItem extends ValidationElement {
               title={i18n.t('reference.heading.phone.default')}
               titleSize="h4"
               className="override-required"
-              help={'reference.help.phone'}
+              help="reference.help.phone"
               adjustFor="telephone"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Telephone
                 name="ReferencePhone"
                 className="reference-phone"
@@ -496,10 +478,11 @@ export default class EmploymentItem extends ValidationElement {
             <Field
               title={i18n.t('reference.heading.employment.address')}
               titleSize="h4"
-              optional={true}
-              help={'reference.help.address'}
+              optional
+              help="reference.help.address"
               adjustFor="address"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <p>{i18n.t('reference.para.address')}</p>
               <Location
                 name="ReferenceAddress"
@@ -507,16 +490,16 @@ export default class EmploymentItem extends ValidationElement {
                 {...this.props.ReferenceAddress}
                 label={i18n.t('reference.label.employment.address')}
                 layout={Location.ADDRESS}
-                geocode={true}
+                geocode
                 addressBooks={this.props.addressBooks}
                 addressBook="Reference"
-                showPostOffice={true}
+                showPostOffice
                 dispatch={this.props.dispatch}
                 onUpdate={this.updateReferenceAddress}
                 onError={this.props.onError}
               />
             </Field>
-            <AlternateAddress
+            <ConnectedAlternateAddress
               address={this.props.ReferenceAlternateAddress}
               addressBook="Reference"
               belongingTo="ReferenceAlternateAddress"
@@ -531,9 +514,10 @@ export default class EmploymentItem extends ValidationElement {
           <Field
             title={i18n.t(`${prefix}.heading.additionalActivity`)}
             titleSize="h3"
-            optional={true}
+            optional
             className="no-margin-bottom"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             {i18n.m(`${prefix}.para.additionalActivity`)}
           </Field>
 
@@ -551,6 +535,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showEmployed()}>
           <ReasonLeft
             name="ReasonLeft"
+            recordYears={recordYears}
             {...this.props.ReasonLeft}
             Dates={this.props.Dates}
             onUpdate={this.updateReasonLeft}
@@ -560,9 +545,10 @@ export default class EmploymentItem extends ValidationElement {
           />
         </Show>
 
-        <Show when={this.showEmployed() && this.showLeaving()}>
+        <Show when={this.showEmployed() && this.showLeaving(recordYears)}>
           <Reprimand
             name="Reprimand"
+            recordYears={recordYears}
             {...this.props.Reprimand}
             onUpdate={this.updateReprimand}
             onError={this.props.onError}
@@ -593,9 +579,8 @@ EmploymentItem.defaultProps = {
   ReasonLeft: {},
   Reprimand: {},
   addressBooks: {},
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  recordYears: 7,
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

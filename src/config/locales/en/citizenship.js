@@ -114,7 +114,7 @@ export const citizenship = {
       },
       documenttype: {
         i94: 'I-94',
-        visa: 'U.S. Visa',
+        visa: 'U.S. Visa (red foil number)',
         i20: 'I-20',
         ds2019: 'DS-2019',
         other: 'Other'

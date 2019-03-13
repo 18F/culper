@@ -56,20 +56,14 @@ exports[`The identification section renders the IdentificationSections component
               className="usa-alert-body"
             >
               <div
-                data-i18n="error.name.first.required"
+                data-i18n="error.name.required"
               >
                 <h5
                   className="usa-alert-heading"
                 >
-                  Oops, there’s a problem.
+                  Your response is required
                 </h5>
-                <span>
-                  <div>
-                    <p>
-                      If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.
-                    </p>
-                  </div>
-                </span>
+                
                 
               </div>
             </div>
@@ -90,7 +84,7 @@ exports[`The identification section renders the IdentificationSections component
             >
               <div
                 aria-label="First name"
-                className="field required  usa-form-control"
+                className="field required usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -109,7 +103,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <a
                     aria-label="Show help for First name"
-                    className="toggle label  adjust-for-labels"
+                    className="toggle label adjust-for-labels"
                     href="javascript:;"
                     onClick={[Function]}
                     title="Show help for First name"
@@ -189,12 +183,12 @@ exports[`The identification section renders the IdentificationSections component
                         className="flags"
                       >
                         <div
-                          className="first-initial-only block"
+                          className="first-initial-only block usa-input-error"
                         >
                           <input
                             aria-label="Initial only for null"
                             checked={false}
-                            className="usa-input-success"
+                            className=""
                             id="firstInitialOnly-MOCK-GUID"
                             name="firstInitialOnly"
                             onBlur={[Function]}
@@ -205,7 +199,7 @@ exports[`The identification section renders the IdentificationSections component
                             value={false}
                           />
                           <label
-                            className="checkbox no-toggle"
+                            className="checkbox usa-input-error-label no-toggle"
                             htmlFor="firstInitialOnly-MOCK-GUID"
                           >
                             <span>
@@ -220,7 +214,7 @@ exports[`The identification section renders the IdentificationSections component
               </div>
               <div
                 aria-label="Middle name"
-                className="field required  usa-form-control"
+                className="field required usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -239,7 +233,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <a
                     aria-label="Show help for Middle name"
-                    className="toggle label  adjust-for-labels"
+                    className="toggle label adjust-for-labels"
                     href="javascript:;"
                     onClick={[Function]}
                     title="Show help for Middle name"
@@ -319,12 +313,12 @@ exports[`The identification section renders the IdentificationSections component
                         className="middle-options flags"
                       >
                         <div
-                          className="middle-none block"
+                          className="middle-none block usa-input-error"
                         >
                           <input
                             aria-label="No middle name for null"
                             checked={false}
-                            className="usa-input-success"
+                            className=""
                             id="noMiddleName-MOCK-GUID"
                             name="noMiddleName"
                             onBlur={[Function]}
@@ -335,7 +329,7 @@ exports[`The identification section renders the IdentificationSections component
                             value={false}
                           />
                           <label
-                            className="checkbox no-toggle"
+                            className="checkbox usa-input-error-label no-toggle"
                             htmlFor="noMiddleName-MOCK-GUID"
                           >
                             <span>
@@ -344,12 +338,12 @@ exports[`The identification section renders the IdentificationSections component
                           </label>
                         </div>
                         <div
-                          className="middle-initial-only block"
+                          className="middle-initial-only block usa-input-error"
                         >
                           <input
                             aria-label="Initial only for null"
                             checked={false}
-                            className="usa-input-success"
+                            className=""
                             id="middleInitialOnly-MOCK-GUID"
                             name="middleInitialOnly"
                             onBlur={[Function]}
@@ -360,7 +354,7 @@ exports[`The identification section renders the IdentificationSections component
                             value={false}
                           />
                           <label
-                            className="checkbox no-toggle"
+                            className="checkbox usa-input-error-label no-toggle"
                             htmlFor="middleInitialOnly-MOCK-GUID"
                           >
                             <span>
@@ -375,7 +369,7 @@ exports[`The identification section renders the IdentificationSections component
               </div>
               <div
                 aria-label="Last name"
-                className="field required  usa-form-control"
+                className="field required usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -459,7 +453,7 @@ exports[`The identification section renders the IdentificationSections component
               />
               <div
                 aria-label="Suffix"
-                className="field   usa-form-control"
+                className="field usa-form-control"
                 data-uuid="field-MOCK-GUID"
               >
                 <a
@@ -520,7 +514,29 @@ exports[`The identification section renders the IdentificationSections component
                     aria-live="polite"
                     className="messages error-messages"
                     role="alert"
-                  />
+                  >
+                    <div
+                      aria-live="polite"
+                      className="message error usa-alert usa-alert-error"
+                      role="alert"
+                    >
+                      <div
+                        className="usa-alert-body"
+                      >
+                        <div
+                          data-i18n="error.name.required"
+                        >
+                          <h5
+                            className="usa-alert-heading"
+                          >
+                            Your response is required
+                          </h5>
+                          
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </span>
                 </div>
                 <div
                   className="table"
@@ -532,7 +548,7 @@ exports[`The identification section renders the IdentificationSections component
                       className="component"
                     >
                       <div
-                        className="option-list suffix usa-small-input"
+                        className="option-list suffix usa-small-input usa-input-error"
                       >
                         <select
                           className=""
@@ -544,59 +560,87 @@ exports[`The identification section renders the IdentificationSections component
                           <option
                             label=""
                             value=""
-                          />
+                          >
+                            
+                          </option>
                           <option
                             label="Jr"
                             value="Jr"
-                          />
+                          >
+                            Jr
+                          </option>
                           <option
                             label="Sr"
                             value="Sr"
-                          />
+                          >
+                            Sr
+                          </option>
                           <option
                             label="I"
                             value="I"
-                          />
+                          >
+                            I
+                          </option>
                           <option
                             label="II"
                             value="II"
-                          />
+                          >
+                            II
+                          </option>
                           <option
                             label="III"
                             value="III"
-                          />
+                          >
+                            III
+                          </option>
                           <option
                             label="IV"
                             value="IV"
-                          />
+                          >
+                            IV
+                          </option>
                           <option
                             label="V"
                             value="V"
-                          />
+                          >
+                            V
+                          </option>
                           <option
                             label="VI"
                             value="VI"
-                          />
+                          >
+                            VI
+                          </option>
                           <option
                             label="VII"
                             value="VII"
-                          />
+                          >
+                            VII
+                          </option>
                           <option
                             label="VIII"
                             value="VIII"
-                          />
+                          >
+                            VIII
+                          </option>
                           <option
                             label="IX"
                             value="IX"
-                          />
+                          >
+                            IX
+                          </option>
                           <option
                             label="X"
                             value="X"
-                          />
+                          >
+                            X
+                          </option>
                           <option
                             label="Other"
                             value="Other"
-                          />
+                          >
+                            Other
+                          </option>
                         </select>
                       </div>
                     </span>
@@ -972,7 +1016,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <div
                     aria-label="Were you born in the United States?"
-                    className="field required  branch"
+                    className="field required branch"
                     data-uuid="field-MOCK-GUID"
                   >
                     <a
@@ -1371,7 +1415,7 @@ exports[`The identification section renders the IdentificationSections component
     </h1>
     <div
       aria-label="Provide your other names used and the period of time you used them"
-      className="field   no-margin-bottom"
+      className="field no-margin-bottom"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1449,7 +1493,7 @@ exports[`The identification section renders the IdentificationSections component
     </div>
     <div
       aria-label="Have you used any other names?"
-      className="field required  branch"
+      className="field required branch"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1595,7 +1639,7 @@ exports[`The identification section renders the IdentificationSections component
     </h1>
     <div
       aria-label="Your email addresses"
-      className="field   no-margin-bottom"
+      className="field no-margin-bottom"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1827,7 +1871,7 @@ exports[`The identification section renders the IdentificationSections component
     </div>
     <div
       aria-label="Your phone numbers"
-      className="field   no-margin-bottom"
+      className="field no-margin-bottom"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1909,7 +1953,7 @@ exports[`The identification section renders the IdentificationSections component
     </div>
     <div
       aria-label=""
-      className="field required  hidden"
+      className="field required hidden"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -2016,7 +2060,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Height"
-          className="toggle h4  adjust-for-labels"
+          className="toggle h4 adjust-for-labels"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Height"
@@ -2193,7 +2237,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Weight"
-          className="toggle h4  adjust-for-labels"
+          className="toggle h4 adjust-for-labels"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Weight"
@@ -2331,7 +2375,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Hair color"
-          className="toggle h4  adjust-for-big-buttons"
+          className="toggle h4 adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Hair color"
@@ -3030,7 +3074,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Eye color"
-          className="toggle h4  adjust-for-big-buttons"
+          className="toggle h4 adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Eye color"
@@ -3547,7 +3591,7 @@ exports[`The identification section renders the IdentificationSections component
       >
         <a
           aria-label="Show help for Select your sex"
-          className="toggle h4  adjust-for-big-buttons"
+          className="toggle h4 adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for Select your sex"

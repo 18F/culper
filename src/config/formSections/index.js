@@ -19,5 +19,5 @@ export default {
   ...financialSections,
   ...substanceUseSections,
   ...legalSections,
-  ...psychologicalSections
+  ...psychologicalSections,
 }

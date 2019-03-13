@@ -1,4 +1,4 @@
-import { SF86 } from '@constants/formTypes'
+import { SF86 } from 'constants/formTypes'
 import rootReducer from './index'
 import AuthConstants from '../actions/AuthConstants'
 

@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import ErrorList, { groupBy, inAccordion } from '@components/ErrorList/ErrorList'
+import ErrorList, { groupBy, inAccordion } from 'components/ErrorList/ErrorList'
 
 describe('The error list component', () => {
   const mockStore = configureMockStore()

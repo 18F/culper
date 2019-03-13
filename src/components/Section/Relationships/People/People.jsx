@@ -14,7 +14,7 @@ import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import { extractDate, today, daysAgo } from '../../History/dateranges'
 import { InjectGaps } from '../../History/summaries'
 import { Gap } from '../../History/Gap'
-import { sort } from '../../History/History'
+import { sort } from '../../History/helpers'
 
 export default class People extends SubsectionElement {
   constructor(props) {
