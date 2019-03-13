@@ -1,55 +1,75 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import { Summary, DateSummary } from '../../../Summary'
-import validate, { ConsultationOrderValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show } from '../../../Form'
+
+import i18n from 'util/i18n'
+
+import schema from 'schema'
+
+import validate, { ConsultationOrderValidator } from 'validators'
+
+import { Summary, DateSummary } from 'components/Summary'
+import { Accordion, Branch, Show } from 'components/Form'
+import Subsection from 'components/Section/shared/Subsection'
+
+import { PSYCHOLOGICAL, PSYCHOLOGICAL_CONSULTATIONS } from 'config/formSections/psychological'
+import connectPsychologicalSection from '../PsychologicalConnector'
+
 import Order from '../Order'
 
-export default class Consultation extends SubsectionElement {
+const sectionConfig = {
+  section: PSYCHOLOGICAL.name,
+  store: PSYCHOLOGICAL.store,
+  subsection: PSYCHOLOGICAL_CONSULTATIONS.name,
+  storeKey: PSYCHOLOGICAL_CONSULTATIONS.storeKey,
+}
+
+export class Consultation extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateConsulted = this.updateConsulted.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       Consulted: this.props.Consulted,
-      ...queue
+      ...queue,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  updateConsulted(values) {
+  updateConsulted = (values) => {
     this.update({
       Consulted: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const occurred = DateSummary(o.Occurred || {})
     const courtName = (o.CourtName || {}).value || ''
 
     return Summary({
       type: i18n.t('psychological.consultation.collection.itemType'),
-      index: index,
+      index,
       left: courtName,
       right: occurred,
       placeholder: i18n.t(
         'psychological.consultation.collection.summaryCourtName'
-      )
+      ),
     })
   }
 
@@ -57,18 +77,20 @@ export default class Consultation extends SubsectionElement {
     return (
       <div
         className="section-content consultation"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('psychological.destination.consultation')}</h1>
         <Branch
           name="is_incompetent"
           label={i18n.t('psychological.heading.consultation')}
           labelSize="h4"
           {...this.props.Consulted}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateConsulted}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('psychological.heading.consultation2')}
         </Branch>
 
@@ -91,7 +113,8 @@ export default class Consultation extends SubsectionElement {
               'psychological.consultation.collection.appendLabel'
             )}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Order
               name="Item"
               prefix="consultation"
@@ -99,7 +122,7 @@ export default class Consultation extends SubsectionElement {
               dispatch={this.props.dispatch}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              bind={true}
+              bind
             />
           </Accordion>
         </Show>
@@ -112,16 +135,12 @@ Consultation.defaultProps = {
   Consulted: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'psychological',
-  subsection: 'consultations',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('psychological.consultations', data))
-  },
-  scrollToBottom: ''
+  validator: data => validate(schema('psychological.consultations', data)),
+  scrollToBottom: '.bottom-btns',
 }
+
+export default connectPsychologicalSection(Consultation, sectionConfig)

@@ -1,7 +1,7 @@
 import * as sections from 'constants/sections'
 import { i18n } from 'config'
 
-const PSYCHOLOGICAL = {
+export const PSYCHOLOGICAL = {
   key: sections.PSYCHOLOGICAL,
   name: 'psychological',
   path: 'psychological',
@@ -9,14 +9,14 @@ const PSYCHOLOGICAL = {
   label: i18n.t('psychological.section.name'),
 }
 
-const PSYCHOLOGICAL_INTRO = {
+export const PSYCHOLOGICAL_INTRO = {
   key: sections.PSYCHOLOGICAL_INTRO,
   name: 'intro',
   path: 'intro',
   label: i18n.t('psychological.subsection.intro'),
 }
 
-const PSYCHOLOGICAL_COMPETENCE = {
+export const PSYCHOLOGICAL_COMPETENCE = {
   key: sections.PSYCHOLOGICAL_COMPETENCE,
   name: 'competence',
   path: 'competence',
@@ -24,22 +24,22 @@ const PSYCHOLOGICAL_COMPETENCE = {
   label: i18n.t('psychological.subsection.competence'),
 }
 
-const PSYCHOLOGICAL_CONSULTATIONS = {
+export const PSYCHOLOGICAL_CONSULTATIONS = {
   key: sections.PSYCHOLOGICAL_CONSULTATIONS,
-  name: 'consultations',
+  name: 'consultation',
   path: 'consultations',
   storeKey: 'Consultations',
   label: i18n.t('psychological.subsection.consultations'),
 }
-const PSYCHOLOGICAL_HOSPITALIZATIONS = {
+export const PSYCHOLOGICAL_HOSPITALIZATIONS = {
   key: sections.PSYCHOLOGICAL_HOSPITALIZATIONS,
-  name: 'hospitalizations',
+  name: 'hospitalization',
   path: 'hospitalizations',
   storeKey: 'Hospitalizations',
   label: i18n.t('psychological.subsection.hospitalizations'),
 }
 
-const PSYCHOLOGICAL_DIAGNOSES = {
+export const PSYCHOLOGICAL_DIAGNOSES = {
   key: sections.PSYCHOLOGICAL_DIAGNOSES,
   name: 'diagnoses',
   path: 'diagnoses',
@@ -47,15 +47,15 @@ const PSYCHOLOGICAL_DIAGNOSES = {
   label: i18n.t('psychological.subsection.diagnoses'),
 }
 
-const PSYCHOLOGICAL_CONDITIONS = {
+export const PSYCHOLOGICAL_CONDITIONS = {
   key: sections.PSYCHOLOGICAL_CONDITIONS,
-  name: 'conditions',
+  name: 'existingConditions',
   path: 'conditions',
   storeKey: 'Conditions',
   label: i18n.t('psychological.subsection.conditions'),
 }
 
-const PSYCHOLOGICAL_REVIEW = {
+export const PSYCHOLOGICAL_REVIEW = {
   key: sections.PSYCHOLOGICAL_REVIEW,
   name: 'review',
   path: 'review',
