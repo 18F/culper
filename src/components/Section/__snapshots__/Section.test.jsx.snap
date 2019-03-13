@@ -23745,7 +23745,44 @@ exports[`The section component renders military.review 1`] = `
                 </span>
               </span>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Consultations"
+            className="btn-cell next"
+            href="/form/psychological/consultations"
+            onClick={[Function]}
+            title="Go to next section Consultations"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Consultations
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
       <hr
@@ -23895,7 +23932,44 @@ exports[`The section component renders military.review 1`] = `
                 </span>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Review"
+            className="btn-cell next"
+            href="/form/psychological/review"
+            onClick={[Function]}
+            title="Go to next section Review"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Review
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
