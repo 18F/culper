@@ -2,8 +2,10 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Marital from './Marital'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
+
+import { Marital } from './Marital'
 
 describe('The relationship status component', () => {
   const mockStore = configureMockStore()
@@ -11,17 +13,18 @@ describe('The relationship status component', () => {
 
   beforeEach(() => {
     const store = mockStore({ application: { addressBooks: {} } })
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Marital {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'relatives'
+      name: 'relatives',
     }
 
     const component = createComponent(expected)
@@ -34,8 +37,8 @@ describe('The relationship status component', () => {
       name: 'relatives',
       Status: { value: 'Married' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
 
     const component = createComponent(expected)
@@ -45,7 +48,7 @@ describe('The relationship status component', () => {
     component
       .find('.status-options input[value="NeverMarried"]')
       .simulate('change')
-    expect(updates).toBe(3)
+    expect(updates).toBe(4)
   })
 
   it('shows divorce stuff', () => {
@@ -55,21 +58,21 @@ describe('The relationship status component', () => {
       Status: { value: 'Divorced' },
       DivorcedList: {
         branch: {
-          value: 'Yes'
+          value: 'Yes',
         },
         items: [
           {
             Divorce: {
               Status: { value: 'Divorced' },
               BirthPlace: { country: 'United States' },
-              Deceased: { value: 'Yes' }
-            }
-          }
-        ]
+              Deceased: { value: 'Yes' },
+            },
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
 
     const component = createComponent(expected)
@@ -83,14 +86,14 @@ describe('The relationship status component', () => {
     name: 'marital',
     Status: {
       checked: true,
-      value: 'Married'
+      value: 'Married',
     },
     applicantBirthdate: {
       estimated: false,
       day: '1',
       month: '1',
       name: 'birthdate',
-      year: '1970'
+      year: '1970',
     },
     CivilUnion: {
       Birthdate: {
@@ -98,30 +101,30 @@ describe('The relationship status component', () => {
         day: '1',
         month: '1',
         name: 'birthdate',
-        year: '1980'
+        year: '1980',
       },
       EnteredCivilUnion: {
         estimated: false,
         day: '1',
         month: '1',
         name: 'enteredCivilUnion',
-        year: '1990'
-      }
-    }
+        year: '1990',
+      },
+    },
   }
 
   const divorcedDatesSetup = {
     name: 'marital',
     Status: {
       checked: true,
-      value: 'Divorced'
+      value: 'Divorced',
     },
     applicantBirthdate: {
       estimated: false,
       day: '1',
       month: '1',
       name: 'birthdate',
-      year: '1970'
+      year: '1970',
     },
     DivorcedList: {
       items: [
@@ -132,33 +135,33 @@ describe('The relationship status component', () => {
               day: '1',
               month: '1',
               name: 'birthdate',
-              year: '1980'
+              year: '1980',
             },
             Recognized: {
               estimated: false,
               day: '1',
               month: '1',
               name: 'Recognized',
-              year: '1990'
+              year: '1990',
             },
             DateDivorced: {
               estimated: false,
               day: '1',
               month: '1',
               name: 'DateDivorced',
-              year: '2000'
-            }
+              year: '2000',
+            },
           },
-          open: true
-        }
-      ]
-    }
+          open: true,
+        },
+      ],
+    },
   }
 
   describe('handles civil union dates', () => {
     it('with good data - where the date entered into civil union is after applicant and partner DOB', () => {
       const props = {
-        valid: true
+        valid: true,
       }
 
       const component = createComponent(props)
@@ -178,10 +181,10 @@ describe('The relationship status component', () => {
             day: '1',
             month: '1',
             name: 'enteredCivilUnion',
-            year: '1960'
-          }
+            year: '1960',
+          },
         },
-        valid: false
+        valid: false,
       }
       const component = createComponent(props)
       expect(
@@ -199,7 +202,7 @@ describe('The relationship status component', () => {
   describe('handles divorce dates', () => {
     it('with good data - where the date divorced is after applicant and partner DOB as well as date entered into civil union', () => {
       const props = {
-        valid: true
+        valid: true,
       }
 
       const component = createComponent(props)
@@ -222,13 +225,13 @@ describe('The relationship status component', () => {
                   day: '1',
                   month: '1',
                   name: 'DateDivorced',
-                  year: '1950'
-                }
-              }
-            }
-          ]
+                  year: '1950',
+                },
+              },
+            },
+          ],
         },
-        valid: false
+        valid: false,
       }
 
       const component = createComponent(props)

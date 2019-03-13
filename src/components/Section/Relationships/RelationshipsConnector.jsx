@@ -55,13 +55,13 @@ const connectRelationshipsSection = (Component, {
       Identification, History, Relationships, Errors, Completed, AddressBooks,
     } = application
 
-    const applicantBirthdate = (Identification.ApplicantBirthDate || {}).Date
-    const spouse = extractSpouse(Relationships.Marital)
+    const applicantBirthdate = ((Identification && Identification.ApplicantBirthDate) || {}).Date
+    const spouse = Relationships && extractSpouse(Relationships.Marital)
 
     switch (storeKey) {
       case 'Marital':
         return {
-          ...Relationships.Marital,
+          ...Relationships && Relationships.Marital,
           addressBooks: AddressBooks,
           applicantBirthdate,
           currentAddress: History.CurrentAddress,
@@ -69,20 +69,20 @@ const connectRelationshipsSection = (Component, {
 
       case 'Cohabitants':
         return {
-          ...Relationships.Cohabitants,
+          ...Relationships && Relationships.Cohabitants,
           spouse,
           applicantBirthdate,
         }
 
       case 'People':
         return {
-          ...Relationships.People,
+          ...Relationships && Relationships.People,
           addressBooks: AddressBooks,
         }
 
       case 'Relatives':
         return {
-          ...Relationships.Relatives,
+          ...Relationships && Relationships.Relatives,
           applicantBirthdate,
           addressBooks: AddressBooks,
         }

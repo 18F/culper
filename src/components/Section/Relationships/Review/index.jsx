@@ -14,7 +14,7 @@ const Review = ({ forPrint = false }) => {
     forPrint,
   }
 
-  const sectionDivider = () => (
+  const sectionDivider = (
     <hr className="section-divider" />
   )
 

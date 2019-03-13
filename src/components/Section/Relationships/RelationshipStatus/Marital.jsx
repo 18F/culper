@@ -71,7 +71,7 @@ export class Marital extends Subsection {
    * other parts of the app that this information has changed
    */
   updateSpouse = () => {
-    this.props.update('ClearSameSpouseConfirmed', true)
+    this.props.onUpdate('ClearSameSpouseConfirmed', true)
   }
 
   divorceSummary = (item, index) => {
