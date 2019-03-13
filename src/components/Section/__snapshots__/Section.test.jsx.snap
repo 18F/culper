@@ -19490,240 +19490,59 @@ exports[`The section component renders identification.ssn 1`] = `
 `;
 
 exports[`The section component renders legal.associations 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <div />
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
-      className="view view-legal"
+      className="btn-wrap"
     >
-      <div>
-        <div>
-          <div>
+      <div
+        className="btn-container"
+      >
+        <div
+          className="btn-cell"
+        />
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Identification intro"
+          className="btn-cell next"
+          href="/form/identification/intro"
+          onClick={[Function]}
+          title="Go to next section Identification intro"
+        >
+          <div
+            className="actions next"
+          >
             <div
-              className="section-view"
+              className="text"
             >
               <div
-                className="view view-associations"
+                className="direction"
               >
-                <div>
-                  <div
-                    className="section-content legal-associations-terrorist"
-                    data-section="legal"
-                    data-subsection="associations/terrorist-organization"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Terrorist organization
-                    </h1>
-                    <div>
-                      <p>
-                        The following pertain to your associations. You are required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        For the purpose of this question, terrorism is defined as any criminal acts that involve violence or are dangerous to human life and appear to be intended to intimidate or coerce a civilian population to influence the policy of a government by intimidation or coercion or to affect the conduct of a government by mass destruction, assassination or kidnapping.
-                      </p>
-                    </div>
-                    <div
-                      aria-label="Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization's dedication to that end, or with the specific intent to further such activities?"
-                      className="field required branch legal-associations-terrorist-has-terrorist"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization's dedication to that end, or with the specific intent to further such activities?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_terrorist-MOCK-GUID"
-                                  name="has_terrorist-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_terrorist-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_terrorist-MOCK-GUID"
-                                  name="has_terrorist-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_terrorist-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
-                >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Unlawful use"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Unlawful use"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Unlawful use
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Engaged in terrorism"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Engaged in terrorism"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Engaged in terrorism
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Identification intro
               </div>
             </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -19731,230 +19550,211 @@ exports[`The section component renders legal.associations 1`] = `
 `;
 
 exports[`The section component renders legal.court 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="section-content non-criminal-court-actions"
+    data-section="legal"
+    data-subsection="court"
   >
-    <div
-      className="view view-legal"
+    <h1
+      className="section-header"
     >
-      <div>
-        <div>
-          <div>
+      Involvement in non-criminal court actions
+    </h1>
+    <div
+      aria-label="In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?"
+      className="field required branch has-court-actions"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h4
+        className="title h4"
+      >
+        In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?
+      </h4>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
             <div
-              className="section-view"
+              className="content"
+            />
+            <div
+              className="blocks option-list branch"
             >
               <div
-                className="view view-court"
+                className="yes block"
               >
-                <div>
-                  <div
-                    className="section-content non-criminal-court-actions"
-                    data-section="legal"
-                    data-subsection="court"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Involvement in non-criminal court actions
-                    </h1>
-                    <div
-                      aria-label="In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?"
-                      className="field required branch has-court-actions"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="HasCourtActions-MOCK-GUID"
-                                  name="HasCourtActions-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="HasCourtActions-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="HasCourtActions-MOCK-GUID"
-                                  name="HasCourtActions-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="HasCourtActions-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="HasCourtActions-MOCK-GUID"
+                  name="HasCourtActions-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
+                <label
+                  className=""
+                  htmlFor="HasCourtActions-MOCK-GUID"
                 >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Debarment"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Debarment"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Debarment
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Unauthorized access"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Unauthorized access"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Unauthorized access
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="HasCourtActions-MOCK-GUID"
+                  name="HasCourtActions-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
+                <label
+                  className=""
+                  htmlFor="HasCourtActions-MOCK-GUID"
+                >
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div />
+  <div
+    className="bottom-btns"
+  >
+    <div
+      className="btn-wrap"
+    >
+      <div
+        className="btn-container"
+      >
+        <a
+          aria-label="Go to previous section Debarment"
+          className="btn-cell back"
+          href="/form/legal/investigations/debarred"
+          onClick={[Function]}
+          title="Go to previous section Debarment"
+        >
+          <div
+            className="actions back"
+          >
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-left"
+              />
+            </div>
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Back
+              </div>
+              <div
+                className="label"
+              >
+                Debarment
               </div>
             </div>
           </div>
-        </div>
+        </a>
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Unauthorized access"
+          className="btn-cell next"
+          href="/form/legal/technology/unauthorized"
+          onClick={[Function]}
+          title="Go to next section Unauthorized access"
+        >
+          <div
+            className="actions next"
+          >
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Unauthorized access
+              </div>
+            </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -19962,163 +19762,146 @@ exports[`The section component renders legal.court 1`] = `
 `;
 
 exports[`The section component renders legal.intro 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <div>
+    <h1
+      className="section-header"
+    >
+      Section 9: Investigative and criminal history
+    </h1>
+    <div
+      aria-label=""
+      className="field no-margin-bottom"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div>
+              <p>
+                You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.
+              </p>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div />
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
-      className="view view-legal"
+      className="btn-wrap"
     >
-      <div>
-        <div>
-          <div>
+      <div
+        className="btn-container"
+      >
+        <a
+          aria-label="Go to previous section Review substance use"
+          className="btn-cell back"
+          href="/form/substance/review"
+          onClick={[Function]}
+          title="Go to previous section Review substance use"
+        >
+          <div
+            className="actions back"
+          >
             <div
-              className="section-view"
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-left"
+              />
+            </div>
+            <div
+              className="text"
             >
               <div
-                className="view view-intro"
+                className="direction"
               >
-                <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Section 9: Investigative and criminal history
-                  </h1>
-                  <div
-                    aria-label=""
-                    className="field no-margin-bottom"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div>
-                            <p>
-                              You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.
-                            </p>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
-                >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Review substance use"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Review substance use"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review substance use
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Police record"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Police record"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Police record
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                Back
+              </div>
+              <div
+                className="label"
+              >
+                Review substance use
               </div>
             </div>
           </div>
-        </div>
+        </a>
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Police record"
+          className="btn-cell next"
+          href="/form/legal/police/intro"
+          onClick={[Function]}
+          title="Go to next section Police record"
+        >
+          <div
+            className="actions next"
+          >
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Police record
+              </div>
+            </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -20126,230 +19909,59 @@ exports[`The section component renders legal.intro 1`] = `
 `;
 
 exports[`The section component renders legal.investigations 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <div />
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
-      className="view view-legal"
+      className="btn-wrap"
     >
-      <div>
-        <div>
-          <div>
+      <div
+        className="btn-container"
+      >
+        <div
+          className="btn-cell"
+        />
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Identification intro"
+          className="btn-cell next"
+          href="/form/identification/intro"
+          onClick={[Function]}
+          title="Go to next section Identification intro"
+        >
+          <div
+            className="actions next"
+          >
             <div
-              className="section-view"
+              className="text"
             >
               <div
-                className="view view-investigations"
+                className="direction"
               >
-                <div>
-                  <div
-                    className="section-content investigations-history"
-                    data-section="legal"
-                    data-subsection="investigations/history"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Ever been investigated
-                    </h1>
-                    <div
-                      aria-label="Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?"
-                      className="field required branch legal-investigations-history-has-history"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_history-MOCK-GUID"
-                                  name="has_history-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_history-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_history-MOCK-GUID"
-                                  name="has_history-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_history-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
-                >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Domestic violence"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Domestic violence"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Domestic violence
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Denied"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Denied"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Denied
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Identification intro
               </div>
             </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -20357,17 +19969,59 @@ exports[`The section component renders legal.investigations 1`] = `
 `;
 
 exports[`The section component renders legal.police 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <div />
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
-      className="view view-legal"
+      className="btn-wrap"
     >
-      <div>
-        <div>
-          <div />
-        </div>
+      <div
+        className="btn-container"
+      >
+        <div
+          className="btn-cell"
+        />
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Identification intro"
+          className="btn-cell next"
+          href="/form/identification/intro"
+          onClick={[Function]}
+          title="Go to next section Identification intro"
+        >
+          <div
+            className="actions next"
+          >
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Identification intro
+              </div>
+            </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -20375,2796 +20029,90 @@ exports[`The section component renders legal.police 1`] = `
 `;
 
 exports[`The section component renders legal.review 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <div />
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
-      className="view view-legal"
+      className="btn-wrap"
     >
-      <div>
-        <div>
-          <div>
+      <div
+        className="btn-container"
+      >
+        <a
+          aria-label="Go to previous section Terrorism association"
+          className="btn-cell back"
+          href="/form/legal/associations/terrorism-association"
+          onClick={[Function]}
+          title="Go to previous section Terrorism association"
+        >
+          <div
+            className="actions back"
+          >
             <div
-              className="section-view"
+              className="icon"
             >
-              <h1
-                className="title"
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-left"
+              />
+            </div>
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
               >
-                Review your answers
-              </h1>
-              <div>
-                <p>
-                  View the full section to make sure everything looks right and make changes if needed.
-                </p>
+                Back
               </div>
               <div
-                className="view view-review"
+                className="label"
               >
-                <div
-                  className="top-btns"
-                />
-                <div>
-                  <div
-                    aria-label="Police record"
-                    className="field no-margin-bottom"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Police record
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div>
-                            <p>
-                              For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.
-                            </p>
-                          </div>
-                          <div>
-                            <p>
-                              You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.
-                            </p>
-                          </div>
-                          <div>
-                            <p>
-                              <strong>
-                                Be sure to include all incidents whether occurring in the U.S. or abroad.
-                              </strong>
-                            </p>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="section-content police-offenses"
-                    data-section="legal"
-                    data-subsection="police/offenses"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Offenses
-                    </h1>
-                    <div
-                      aria-label="Have any of the following happened?"
-                      className="field required branch has-offenses"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have any of the following happened?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            >
-                              <ul>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        In the last seven (7) years
-                                      </strong>
-                                       have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.
-                                    </p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        In the last seven (7) years
-                                      </strong>
-                                       have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?
-                                    </p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        In the last seven (7) years
-                                      </strong>
-                                       have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.
-                                    </p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        In the last seven (7) years
-                                      </strong>
-                                       have you been or are you currently on probation or parole?
-                                    </p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div>
-                                    <p>
-                                      Are you currently on trial or awaiting a trial on criminal charges?
-                                    </p>
-                                  </div>
-                                </li>
-                              </ul>
-                            </div>
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_offenses-MOCK-GUID"
-                                  name="has_offenses-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_offenses-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_offenses-MOCK-GUID"
-                                  name="has_offenses-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_offenses-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content police-other-offenses"
-                    data-section="legal"
-                    data-subsection="police/additionaloffenses"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Additional offenses
-                    </h1>
-                    <div
-                      aria-label="Other than those offenses already listed, have you EVER had the following happen to you?"
-                      className="field required branch has-otheroffenses"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Other than those offenses already listed, have you EVER had the following happen to you?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            >
-                              <ul>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        Have you EVER been convicted
-                                      </strong>
-                                       in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form
-                                    </p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        Have you EVER been charged
-                                      </strong>
-                                       with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses
-                                    </p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        Have you EVER been convicted
-                                      </strong>
-                                       of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?
-                                    </p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        Have you EVER been charged
-                                      </strong>
-                                       with an offense involving firearms or explosives?
-                                    </p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div>
-                                    <p>
-                                      <strong>
-                                        Have you EVER been charged
-                                      </strong>
-                                       with an offense involving alcohol or drugs?
-                                    </p>
-                                  </div>
-                                </li>
-                              </ul>
-                            </div>
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_otheroffenses-MOCK-GUID"
-                                  name="has_otheroffenses-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_otheroffenses-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_otheroffenses-MOCK-GUID"
-                                  name="has_otheroffenses-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_otheroffenses-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content domestic-violence-list"
-                    data-section="legal"
-                    data-subsection="police/domesticviolence"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Domestic violence
-                    </h1>
-                    <div
-                      aria-label="Is there currently a domestic violence protective order or restraining order issued against you?"
-                      className="field required branch has-domestic-violence"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Is there currently a domestic violence protective order or restraining order issued against you?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_domestic_violence-MOCK-GUID"
-                                  name="has_domestic_violence-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_domestic_violence-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_domestic_violence-MOCK-GUID"
-                                  name="has_domestic_violence-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_domestic_violence-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content investigations-history"
-                    data-section="legal"
-                    data-subsection="investigations/history"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Ever been investigated
-                    </h1>
-                    <div
-                      aria-label="Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?"
-                      className="field required branch legal-investigations-history-has-history"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_history-MOCK-GUID"
-                                  name="has_history-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_history-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_history-MOCK-GUID"
-                                  name="has_history-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_history-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content investigations-revoked"
-                    data-section="legal"
-                    data-subsection="investigations/revoked"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Denied
-                    </h1>
-                    <div
-                      aria-label="Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?"
-                      className="field required branch legal-investigations-revoked-has-revocations"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            >
-                              <div>
-                                <p>
-                                  Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.
-                                </p>
-                              </div>
-                            </div>
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_revoked-MOCK-GUID"
-                                  name="has_revoked-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_revoked-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_revoked-MOCK-GUID"
-                                  name="has_revoked-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_revoked-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content investigations-debarred"
-                    data-section="legal"
-                    data-subsection="investigations/debarred"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Debarment
-                    </h1>
-                    <div
-                      aria-label="Have you EVER been debarred from government employment?"
-                      className="field required branch legal-investigations-debarred-has-debarment"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER been debarred from government employment?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_debarred-MOCK-GUID"
-                                  name="has_debarred-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_debarred-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_debarred-MOCK-GUID"
-                                  name="has_debarred-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_debarred-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content non-criminal-court-actions"
-                    data-section="legal"
-                    data-subsection="court"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Involvement in non-criminal court actions
-                    </h1>
-                    <div
-                      aria-label="In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?"
-                      className="field required branch has-court-actions"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="HasCourtActions-MOCK-GUID"
-                                  name="HasCourtActions-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="HasCourtActions-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="HasCourtActions-MOCK-GUID"
-                                  name="HasCourtActions-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="HasCourtActions-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-technology-unauthorized"
-                    data-section="legal"
-                    data-subsection="technology/unauthorized"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Unauthorized access
-                    </h1>
-                    <div>
-                      <p>
-                        We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding.
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions ask about your use of information technology systems. Information technology systems include all related computer hardware, software, firmware, and data used for the communication, transmission, processing, manipulation, storage or protection of information.
-                      </p>
-                    </div>
-                    <div
-                      aria-label="In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?"
-                      className="field required branch legal-technology-unauthorized-has-unauthorized"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_unauthorized-MOCK-GUID"
-                                  name="has_unauthorized-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_unauthorized-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_unauthorized-MOCK-GUID"
-                                  name="has_unauthorized-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_unauthorized-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-technology-manipulating"
-                    data-section="legal"
-                    data-subsection="technology/manipulating"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Manipulating access
-                    </h1>
-                    <div
-                      aria-label="In the last seven (7) years have you illegally or without authorization, modified, destroyed, manipulated, or denied others access to information residing on an information technology system or attempted any of the above?"
-                      className="field required branch legal-technology-manipulating-has-manipulating"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last seven (7) years have you illegally or without authorization, modified, destroyed, manipulated, or denied others access to information residing on an information technology system or attempted any of the above?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_manipulating-MOCK-GUID"
-                                  name="has_manipulating-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_manipulating-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_manipulating-MOCK-GUID"
-                                  name="has_manipulating-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_manipulating-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-technology-unlawful"
-                    data-section="legal"
-                    data-subsection="technology/unlawful"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Unlawful use
-                    </h1>
-                    <div
-                      aria-label="In the last seven (7) years have you introduced, removed, or used hardware, software, or media in connection with any information technology system without authorization, when specifically prohibited by rules, procedures, guidelines, or regulations or attempted any of the above?"
-                      className="field required branch legal-technology-unlawful-has-unlawful"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last seven (7) years have you introduced, removed, or used hardware, software, or media in connection with any information technology system without authorization, when specifically prohibited by rules, procedures, guidelines, or regulations or attempted any of the above?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_unlawful-MOCK-GUID"
-                                  name="has_unlawful-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_unlawful-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_unlawful-MOCK-GUID"
-                                  name="has_unlawful-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_unlawful-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-associations-terrorist"
-                    data-section="legal"
-                    data-subsection="associations/terrorist-organization"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Terrorist organization
-                    </h1>
-                    <div>
-                      <p>
-                        The following pertain to your associations. You are required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        For the purpose of this question, terrorism is defined as any criminal acts that involve violence or are dangerous to human life and appear to be intended to intimidate or coerce a civilian population to influence the policy of a government by intimidation or coercion or to affect the conduct of a government by mass destruction, assassination or kidnapping.
-                      </p>
-                    </div>
-                    <div
-                      aria-label="Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization's dedication to that end, or with the specific intent to further such activities?"
-                      className="field required branch legal-associations-terrorist-has-terrorist"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization's dedication to that end, or with the specific intent to further such activities?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_terrorist-MOCK-GUID"
-                                  name="has_terrorist-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_terrorist-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_terrorist-MOCK-GUID"
-                                  name="has_terrorist-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_terrorist-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-associations-engaged"
-                    data-section="legal"
-                    data-subsection="associations/engaged-in-terrorism"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Engaged in terrorism
-                    </h1>
-                    <div
-                      aria-label="Have you EVER knowingly engaged in any acts of terrorism?"
-                      className="field required branch legal-associations-engaged-has-engaged"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER knowingly engaged in any acts of terrorism?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_engaged-MOCK-GUID"
-                                  name="has_engaged-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_engaged-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_engaged-MOCK-GUID"
-                                  name="has_engaged-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_engaged-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-associations-advocating"
-                    data-section="legal"
-                    data-subsection="associations/advocating"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Advocating
-                    </h1>
-                    <div
-                      aria-label="Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?"
-                      className="field required branch legal-associations-advocating-has-advocated"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_advocated-MOCK-GUID"
-                                  name="has_advocated-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_advocated-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_advocated-MOCK-GUID"
-                                  name="has_advocated-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_advocated-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-associations-overthrow"
-                    data-section="legal"
-                    data-subsection="associations/membership-overthrow"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Membership - overthrow
-                    </h1>
-                    <div
-                      aria-label="Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization's dedication to that end or with the specific intent to further such activities?"
-                      className="field required branch legal-associations-overthrow-has-overthrow"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization's dedication to that end or with the specific intent to further such activities?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_overthrow-MOCK-GUID"
-                                  name="has_overthrow-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_overthrow-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_overthrow-MOCK-GUID"
-                                  name="has_overthrow-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_overthrow-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-associations-violence"
-                    data-section="legal"
-                    data-subsection="associations/membership-violence-or-force"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Membership - violence or force
-                    </h1>
-                    <div
-                      aria-label="Have you EVER been a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action?"
-                      className="field required branch legal-associations-violence-has-violence"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER been a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_violence-MOCK-GUID"
-                                  name="has_violence-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_violence-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_violence-MOCK-GUID"
-                                  name="has_violence-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_violence-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-associations-activities"
-                    data-section="legal"
-                    data-subsection="associations/activities-to-overthrow"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Activities to overthrow
-                    </h1>
-                    <div
-                      aria-label="Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?"
-                      className="field required branch legal-associations-activities-has-activities"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_activities-MOCK-GUID"
-                                  name="has_activities-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_activities-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_activities-MOCK-GUID"
-                                  name="has_activities-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_activities-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content legal-associations-terrorism"
-                    data-section="legal"
-                    data-subsection="associations/terrorism-association"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Terrorism association
-                    </h1>
-                    <div
-                      aria-label="Have you EVER associated with anyone involved in activities to further terrorism?"
-                      className="field required branch legal-associations-terrorism-has-terrorism"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER associated with anyone involved in activities to further terrorism?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_terrorsim-MOCK-GUID"
-                                  name="has_terrorsim-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_terrorsim-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_terrorsim-MOCK-GUID"
-                                  name="has_terrorsim-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_terrorsim-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
-                >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Activities to overthrow"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Activities to overthrow"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Activities to overthrow
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Psychological and emotional health intro"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Psychological and emotional health intro"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Psychological and emotional health intro
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                Terrorism association
               </div>
             </div>
           </div>
-        </div>
+        </a>
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Psychological and emotional health intro"
+          className="btn-cell next"
+          href="/form/psychological/intro"
+          onClick={[Function]}
+          title="Go to next section Psychological and emotional health intro"
+        >
+          <div
+            className="actions next"
+          >
+            <div
+              className="text"
+            >
+              <div
+                className="direction"
+              >
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Psychological and emotional health intro
+              </div>
+            </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -23172,240 +20120,59 @@ exports[`The section component renders legal.review 1`] = `
 `;
 
 exports[`The section component renders legal.technology 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <div />
   <div
-    className="section-view"
+    className="bottom-btns"
   >
     <div
-      className="view view-legal"
+      className="btn-wrap"
     >
-      <div>
-        <div>
-          <div>
+      <div
+        className="btn-container"
+      >
+        <div
+          className="btn-cell"
+        />
+        <div
+          className="btn-spacer"
+        />
+        <a
+          aria-label="Go to next section Identification intro"
+          className="btn-cell next"
+          href="/form/identification/intro"
+          onClick={[Function]}
+          title="Go to next section Identification intro"
+        >
+          <div
+            className="actions next"
+          >
             <div
-              className="section-view"
+              className="text"
             >
               <div
-                className="view view-technology"
+                className="direction"
               >
-                <div>
-                  <div
-                    className="section-content legal-technology-unauthorized"
-                    data-section="legal"
-                    data-subsection="technology/unauthorized"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Unauthorized access
-                    </h1>
-                    <div>
-                      <p>
-                        We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding.
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions ask about your use of information technology systems. Information technology systems include all related computer hardware, software, firmware, and data used for the communication, transmission, processing, manipulation, storage or protection of information.
-                      </p>
-                    </div>
-                    <div
-                      aria-label="In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?"
-                      className="field required branch legal-technology-unauthorized-has-unauthorized"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_unauthorized-MOCK-GUID"
-                                  name="has_unauthorized-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_unauthorized-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_unauthorized-MOCK-GUID"
-                                  name="has_unauthorized-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_unauthorized-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bottom-btns"
-                >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Non-criminal court actions"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Non-criminal court actions"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Non-criminal court actions
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Manipulating access"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Manipulating access"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Manipulating access
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                Next
+              </div>
+              <div
+                className="label"
+              >
+                Identification intro
               </div>
             </div>
+            <div
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-arrow-circle-right"
+              />
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

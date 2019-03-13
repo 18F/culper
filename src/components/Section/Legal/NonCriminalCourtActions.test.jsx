@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import NonCriminalCourtActions from './NonCriminalCourtActions'
+import { NonCriminalCourtActions } from './NonCriminalCourtActions'
 import { Location } from '../../Form'
 
 describe('The NonCriminalCourtActions component', () => {
@@ -11,12 +11,13 @@ describe('The NonCriminalCourtActions component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <NonCriminalCourtActions {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -28,8 +29,8 @@ describe('The NonCriminalCourtActions component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.non-criminal-court-actions').length).toBe(1)
@@ -41,12 +42,12 @@ describe('The NonCriminalCourtActions component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       HasCourtActions: { value: 'Yes' },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
         items: [
           {
@@ -54,10 +55,10 @@ describe('The NonCriminalCourtActions component', () => {
               CivilActionDate: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               CourtName: {
-                value: 'The name'
+                value: 'The name',
               },
               CourtAddress: {
                 country: 'United States',
@@ -65,21 +66,21 @@ describe('The NonCriminalCourtActions component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
               NatureOfAction: {
-                value: 'Nature of action'
+                value: 'Nature of action',
               },
               ResultsOfAction: {
-                value: 'Results of action'
+                value: 'Results of action',
               },
               PrincipalPartyNames: {
-                value: 'John Doe'
-              }
-            }
-          }
-        ]
-      }
+                value: 'John Doe',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     component.find('.court-name input').simulate('change')

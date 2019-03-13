@@ -9,7 +9,11 @@ describe('The legal section', () => {
   const mockStore = configureMockStore()
 
   it('renders without crashing', () => {
-    const store = mockStore({})
+    const store = mockStore({
+      authentication: {
+        formType: 'SF86',
+      },
+    })
     mount(
       <MemoryRouter>
         <Provider store={store}>

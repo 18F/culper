@@ -89,7 +89,7 @@ export const LEGAL_COURT = {
   key: sections.LEGAL_COURT,
   name: 'court',
   path: 'court',
-  storeKey: 'NonCrimincalCourtActions',
+  storeKey: 'NonCriminalCourtActions',
   label: i18n.t('legal.subsection.court'),
 }
 

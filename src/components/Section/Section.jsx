@@ -84,6 +84,7 @@ class Section extends React.Component {
         <Route path="/form/citizenship" component={Citizenship} />
         <Route path="/form/military" component={Military} />
         <Route path="/form/financial" component={Financial} />
+        <Route path="/form/legal" component={Legal} />
 
         {/* TBD */}
         <Route

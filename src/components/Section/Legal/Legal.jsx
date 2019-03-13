@@ -5,6 +5,7 @@ import { i18n } from 'config'
 import { SectionViews, SectionView } from 'components/Section/SectionView'
 import SectionElement from 'components/Section/SectionElement'
 import { Field } from 'components/Form'
+import SectionNavigation from 'components/Section/shared/SectionNavigation'
 import Offenses from 'components/Section/Legal/Police/Offenses'
 import OtherOffenses from 'components/Section/Legal/Police/OtherOffenses'
 import DomesticViolenceList from 'components/Section/Legal/Police/DomesticViolenceList'
@@ -24,13 +25,9 @@ import Intro from './Intro'
 import PoliceIntro from './Police/Intro'
 import Review from './Review'
 
-class Legal extends SectionElement {
+class Legal extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      subsection: props.subsection
-    }
 
     this.updatePolice = this.updatePolice.bind(this)
     this.updatePoliceOffenses = this.updatePoliceOffenses.bind(this)
@@ -133,8 +130,9 @@ class Legal extends SectionElement {
   }
 
   render() {
+    const { location } = this.props
     return (
-      <div>
+      <div className="section-view">
         <Route path="/form/legal/intro" component={Intro} />
         <Route path="/form/legal/police/intro" component={PoliceIntro} />
         <Route path="/form/legal/police/offenses" component={Offenses} />
@@ -143,6 +141,11 @@ class Legal extends SectionElement {
         <Route path="/form/legal/investigations/history" component={History} />
         <Route path="/form/legal/investigations/revoked" component={Revoked} />
         <Route path="/form/legal/investigations/debarred" component={Debarred} />
+        <Route path="/form/legal/court" component={NonCriminalCourtActions} />
+        <Route path="/form/legal/technology/unauthorized" component={Unauthorized} />
+        <Route path="/form/legal/technology/manipulating" component={Manipulating} />
+        <Route path="/form/legal/technology/unlawful" component={Unlawful} />
+
 
         <SectionViews
           current={this.props.subsection}
@@ -294,7 +297,7 @@ class Legal extends SectionElement {
             />
           </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="court"
             back="legal/investigations/debarred"
             backLabel={i18n.t('legal.destination.investigations.debarred')}
@@ -309,9 +312,9 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="technology"
             back="legal/court"
             backLabel={i18n.t('legal.destination.court')}
@@ -326,9 +329,9 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="technology/unauthorized"
             back="legal/court"
             backLabel={i18n.t('legal.destination.court')}
@@ -343,9 +346,9 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="technology/manipulating"
             back="legal/technology/unauthorized"
             backLabel={i18n.t('legal.destination.technology.unauthorized')}
@@ -360,9 +363,9 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
-          <SectionView
+          {/* <SectionView
             name="technology/unlawful"
             back="legal/technology/manipulating"
             backLabel={i18n.t('legal.destination.technology.manipulating')}
@@ -377,7 +380,7 @@ class Legal extends SectionElement {
               onError={this.handleError}
               scrollToBottom={this.props.scrollToBottom}
             />
-          </SectionView>
+          </SectionView> */}
 
           <SectionView
             name="associations"
@@ -761,6 +764,8 @@ class Legal extends SectionElement {
             />
           </SectionView>
         </SectionViews>
+
+        <SectionNavigation currentPath={location.pathname} />
       </div>
     )
   }
@@ -802,6 +807,7 @@ function mapStateToProps(state) {
 Legal.defaultProps = {
   section: 'legal',
   store: 'Legal',
+  location: {},
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
