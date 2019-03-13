@@ -128,6 +128,7 @@ export class Multiple extends Subsection {
             <CitizenshipItem
               name="Item"
               bind
+              requireMultipleCitizenshipRenounced={this.props.requireMultipleCitizenshipRenounced}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -146,8 +147,9 @@ Multiple.defaultProps = {
   dispatch: () => {},
   validator: data => validate(schema('citizenship.multiple', data)),
   defaultState: true,
-  required: true,
+  required: false,
   scrollIntoView: false,
+  requireMultipleCitizenshipRenounced: true,
 }
 
 export default connectCitizenshipSection(Multiple, sectionConfig)

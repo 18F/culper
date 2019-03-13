@@ -201,29 +201,7 @@ exports[`The section component renders citizenship.multiple 1`] = `
             aria-live="polite"
             className="messages error-messages"
             role="alert"
-          >
-            <div
-              aria-live="polite"
-              className="message error usa-alert usa-alert-error"
-              role="alert"
-            >
-              <div
-                className="usa-alert-body"
-              >
-                <div
-                  data-i18n="error.required"
-                >
-                  <h5
-                    className="usa-alert-heading"
-                  >
-                    Your response is required
-                  </h5>
-                  
-                  
-                </div>
-              </div>
-            </div>
-          </span>
+          />
         </div>
         <div
           className="table"
@@ -238,7 +216,7 @@ exports[`The section component renders citizenship.multiple 1`] = `
                 className="content"
               />
               <div
-                className="blocks option-list branch usa-input-error"
+                className="blocks option-list branch"
               >
                 <div
                   className="yes block"
@@ -442,29 +420,7 @@ exports[`The section component renders citizenship.passports 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              >
-                <div
-                  aria-live="polite"
-                  className="message error usa-alert usa-alert-error"
-                  role="alert"
-                >
-                  <div
-                    className="usa-alert-body"
-                  >
-                    <div
-                      data-i18n="error.required"
-                    >
-                      <h5
-                        className="usa-alert-heading"
-                      >
-                        Your response is required
-                      </h5>
-                      
-                      
-                    </div>
-                  </div>
-                </div>
-              </span>
+              />
             </div>
             <div
               className="table"
@@ -479,7 +435,7 @@ exports[`The section component renders citizenship.passports 1`] = `
                     className="content"
                   />
                   <div
-                    className="blocks option-list branch usa-input-error"
+                    className="blocks option-list branch"
                   >
                     <div
                       className="yes block"

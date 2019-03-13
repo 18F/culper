@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
+
 import Foreign from './Foreign'
 
 describe('The military foreign component', () => {
@@ -9,18 +10,22 @@ describe('The military foreign component', () => {
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) =>
+    const store = mockStore({
+      authentication: { formType: 'SF86' },
+    })
+
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Foreign {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'military-foreign'
+      name: 'military-foreign',
     }
     const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(1)
@@ -34,11 +39,11 @@ describe('The military foreign component', () => {
         items: [
           {
             Item: {
-              Has: { value: 'No' }
-            }
-          }
-        ]
-      }
+              Has: { value: 'No' },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.foreign-service').length).toEqual(0)
@@ -51,11 +56,11 @@ describe('The military foreign component', () => {
         items: [
           {
             Item: {
-              Has: { value: 'Yes' }
-            }
-          }
-        ]
-      }
+              Has: { value: 'Yes' },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.foreign-service').length).toEqual(1)

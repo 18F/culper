@@ -19,7 +19,7 @@ export const hideDisciplinaryProceduresSelector = (state) => {
   return hideDisciplinaryProcedures(application)
 }
 
-export const formSectionsSelector = createSelector(
+const getFormSections = createSelector(
   formTypeSelector,
   hideDisciplinaryProceduresSelector,
   hideSelectiveServiceSelector,
@@ -52,6 +52,15 @@ export const formSectionsSelector = createSelector(
       })
     }
 
-    return formTypeConfig.reduceSubsections(formTypeSections)
+    return formTypeSections
   },
 )
+
+// Returns form sections in the nested structure
+export const nestedFormSectionsSelector = state => getFormSections(state)
+
+// Returns flat list of form sections
+export const formSectionsSelector = (state) => {
+  const formSections = getFormSections(state)
+  return formTypeConfig.reduceSubsections(formSections)
+}

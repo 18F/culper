@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
+
 import CitizenshipItem from './CitizenshipItem'
 
 describe('The citizenship item component', () => {
@@ -9,13 +10,17 @@ describe('The citizenship item component', () => {
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) =>
+    const store = mockStore({
+      authentication: { formType: 'SF86' },
+    })
+
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <CitizenshipItem {...expected} />
         </Provider>
       )
+    )
   })
 
   it('display display question for current citizenship if NOT present', () => {
@@ -23,8 +28,8 @@ describe('The citizenship item component', () => {
       Dates: {
         from: {},
         to: {},
-        present: true
-      }
+        present: true,
+      },
     }
     const component = createComponent(props)
     expect(component.find('.citizenship-current').length).toBe(0)
@@ -36,15 +41,15 @@ describe('The citizenship item component', () => {
         from: {
           month: '1',
           day: '1',
-          year: '2009'
+          year: '2009',
         },
         to: {
           month: '1',
           day: '1',
-          year: '2010'
+          year: '2010',
         },
-        present: false
-      }
+        present: false,
+      },
     }
     const component = createComponent(props)
     expect(component.find('.citizenship-current').length).toBe(1)
@@ -59,23 +64,23 @@ describe('The citizenship item component', () => {
         from: {
           month: '1',
           day: '1',
-          year: '2010'
+          year: '2010',
         },
         to: {
           month: '1',
           day: '1',
-          year: '2012'
+          year: '2012',
         },
-        present: false
+        present: false,
       },
       Current: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component.find('.citizenship-country .country input').simulate('change', {
-      target: { name: 'Country', value: 'United States' }
+      target: { name: 'Country', value: 'United States' },
     })
     component.find('.citizenship-dates .to .year input').simulate('change')
     component.find('.citizenship-how textarea').simulate('change')

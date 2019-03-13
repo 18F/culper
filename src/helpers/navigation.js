@@ -1,6 +1,8 @@
-/* eslint import/prefer-default-export: 0 */
 import { i18n } from 'config'
-import { formSectionsSelector } from 'selectors/navigation'
+import {
+  nestedFormSectionsSelector,
+  formSectionsSelector,
+} from 'selectors/navigation'
 
 export const getBackAndNext = (state, { currentPath }) => {
   const formSections = formSectionsSelector(state)
@@ -25,4 +27,15 @@ export const getBackAndNext = (state, { currentPath }) => {
   }
 
   return { back, next }
+}
+
+/**
+ * Top-level sections only
+ */
+export const getSectionNumber = (state, { sectionKey }) => {
+  const formSections = nestedFormSectionsSelector(state)
+
+  const sectionIndex = formSections.findIndex(s => s.key === sectionKey)
+
+  return sectionIndex + 1
 }
