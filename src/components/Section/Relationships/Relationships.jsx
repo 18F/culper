@@ -68,6 +68,6 @@ Relationships.defaultProps = {
   location: {},
 }
 
-export const RelationshipsSections = () => <Review forPrint />
+export const RelationshipSections = () => <Review forPrint />
 
 export default connect(mapStateToProps)(Relationships)

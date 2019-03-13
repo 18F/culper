@@ -33,7 +33,7 @@ export const RELATIONSHIPS_STATUS_MARITAL = {
 
 export const RELATIONSHIPS_STATUS_COHABITANTS = {
   key: sections.RELATIONSHIPS_STATUS_COHABITANTS,
-  name: 'cohabitant',
+  name: 'status/cohabitant',
   path: 'cohabitant',
   storeKey: 'Cohabitants',
   label: i18n.t('relationships.subsection.cohabitants'),
