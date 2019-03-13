@@ -129,11 +129,13 @@ function mapStateToProps(state) {
 Legal.propTypes = {
   subsection: PropTypes.string,
   location: PropTypes.object,
+  formType: PropTypes.string,
 }
 
 Legal.defaultProps = {
   subsection: 'intro',
   location: {},
+  formType: 'SF86',
 }
 
 export const LegalSections = () => <Review />
