@@ -25523,162 +25523,148 @@ exports[`The section component renders relationships.status 1`] = `
 `;
 
 exports[`The section component renders substance.intro 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-intro"
   >
+    <div>
+      <h1
+        className="section-header"
+      >
+        Section 8: Substance use
+      </h1>
+      <div
+        aria-label=""
+        className="field no-margin-bottom"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component"
+            >
+              <div>
+                <p>
+                  You will be asked questions about your substance use and be asked to provide details if necessary.
+                </p>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
     <div
-      className="view view-substance"
+      className="bottom-btns"
     >
-      <div>
-        <div>
-          <div>
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Review Financial record"
+            className="btn-cell back"
+            href="/form/financial/review"
+            onClick={[Function]}
+            title="Go to previous section Review Financial record"
+          >
             <div
-              className="section-view"
+              className="actions back"
             >
               <div
-                className="view view-intro"
+                className="icon"
               >
-                <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Section 8: Substance use
-                  </h1>
-                  <div
-                    aria-label=""
-                    className="field no-margin-bottom"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div>
-                            <p>
-                              You will be asked questions about your substance use and be asked to provide details if necessary.
-                            </p>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="label"
                 >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Review Financial record"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Review Financial record"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review Financial record
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Usage"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Usage"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Usage
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                  Review Financial record
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Usage"
+            className="btn-cell next"
+            href="/form/substance/drugs/usage"
+            onClick={[Function]}
+            title="Go to next section Usage"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Usage
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -25687,1735 +25673,1721 @@ exports[`The section component renders substance.intro 1`] = `
 `;
 
 exports[`The section component renders substance.review 1`] = `
-<div>
+<div
+  className="section-view"
+>
+  <h1
+    className="title"
+  >
+    Review your answers
+  </h1>
+  <div>
+    <p>
+      View the full section to make sure everything looks right and make changes if needed.
+    </p>
+  </div>
   <div
-    className="section-view"
+    className="view view-review"
   >
     <div
-      className="view view-substance"
-    >
-      <div>
+      className="top-btns"
+    />
+    <div>
+      <div
+        className="section-content drug-uses"
+        data-section="substance"
+        data-subsection="drugs/usage"
+      >
+        <h1
+          className="section-header"
+        >
+          Usage
+        </h1>
         <div>
-          <div>
-            <div
-              className="section-view"
+          <p>
+            We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding. This particular section applies whether or not you are currently employed by the Federal government. The following questions pertain to the illegal use of drugs or controlled substances or drug or controlled substance activity not in accordance with Federal laws, even though permissible under state laws.
+          </p>
+        </div>
+        <div
+          aria-label="In the last seven (7) years, have you illegally used any drugs or controlled substances?"
+          className="field required branch used-drugs"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            In the last seven (7) years, have you illegally used any drugs or controlled substances?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
             >
-              <h1
-                className="title"
-              >
-                Review your answers
-              </h1>
-              <div>
-                <p>
-                  View the full section to make sure everything looks right and make changes if needed.
-                </p>
-              </div>
               <div
-                className="view view-review"
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
               >
                 <div
-                  className="top-btns"
-                />
-                <div>
+                  className="usa-alert-body"
+                >
                   <div
-                    className="section-content drug-uses"
-                    data-section="substance"
-                    data-subsection="substance/drugs/usage"
+                    data-i18n="error.required"
                   >
-                    <h1
-                      className="section-header"
+                    <h5
+                      className="usa-alert-heading"
                     >
-                      Usage
-                    </h1>
-                    <div>
-                      <p>
-                        We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding. This particular section applies whether or not you are currently employed by the Federal government. The following questions pertain to the illegal use of drugs or controlled substances or drug or controlled substance activity not in accordance with Federal laws, even though permissible under state laws.
-                      </p>
-                    </div>
-                    <div
-                      aria-label="In the last seven (7) years, have you illegally used any drugs or controlled substances?"
-                      className="field required branch used-drugs"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last seven (7) years, have you illegally used any drugs or controlled substances?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            >
-                              <div>
-                                <p>
-                                  Use of a drug or controlled substance includes injecting, snorting, inhaling, swallowing, experimenting with or otherwise consuming any drug or controlled substance.
-                                </p>
-                              </div>
-                            </div>
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="UsedDrugs-MOCK-GUID"
-                                  name="UsedDrugs-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="UsedDrugs-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="UsedDrugs-MOCK-GUID"
-                                  name="UsedDrugs-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="UsedDrugs-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
+                      Your response is required
+                    </h5>
+                    
+                    
                   </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content drug-involvements"
-                    data-section="substance"
-                    data-subsection="substance/drugs/purchase"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Purchase
-                    </h1>
-                    <div
-                      aria-label="In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?"
-                      className="field required branch involved"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="Involved-MOCK-GUID"
-                                  name="Involved-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="Involved-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="Involved-MOCK-GUID"
-                                  name="Involved-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="Involved-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content drug-clearance-uses"
-                    data-section="substance"
-                    data-subsection="substance/drugs/clearance"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Security clearance position
-                    </h1>
-                    <div
-                      aria-label="Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?"
-                      className="field required branch used-drugs"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="UsedDrugs-MOCK-GUID"
-                                  name="UsedDrugs-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="UsedDrugs-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="UsedDrugs-MOCK-GUID"
-                                  name="UsedDrugs-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="UsedDrugs-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content drug-public-safety-uses"
-                    data-section="substance"
-                    data-subsection="substance/drugs/publicsafety"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Public safety position
-                    </h1>
-                    <div
-                      aria-label="Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?"
-                      className="field required branch used-drugs"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="UsedDrugs-MOCK-GUID"
-                                  name="UsedDrugs-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="UsedDrugs-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="UsedDrugs-MOCK-GUID"
-                                  name="UsedDrugs-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="UsedDrugs-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content prescription-uses"
-                    data-section="substance"
-                    data-subsection="substance/drugs/misuse"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Prescription drug misuse
-                    </h1>
-                    <div
-                      aria-label="In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?"
-                      className="field required branch misused"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="Misused-MOCK-GUID"
-                                  name="Misused-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="Misused-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="Misused-MOCK-GUID"
-                                  name="Misused-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="Misused-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content ordered-treatments"
-                    data-section="substance"
-                    data-subsection="substance/drugs/ordered"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Mandatory counseling or treatment
-                    </h1>
-                    <div
-                      aria-label="Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?"
-                      className="field required branch treatment-ordered"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="TreatmentOrdered-MOCK-GUID"
-                                  name="TreatmentOrdered-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="TreatmentOrdered-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="TreatmentOrdered-MOCK-GUID"
-                                  name="TreatmentOrdered-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="TreatmentOrdered-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content voluntary-treatments"
-                    data-section="substance"
-                    data-subsection="substance/drugs/voluntary"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Voluntary counseling or treatment
-                    </h1>
-                    <div
-                      aria-label="Have you EVER voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?"
-                      className="field required branch treatment-voluntary"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="TreatmentVoluntary-MOCK-GUID"
-                                  name="TreatmentVoluntary-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="TreatmentVoluntary-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="TreatmentVoluntary-MOCK-GUID"
-                                  name="TreatmentVoluntary-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="TreatmentVoluntary-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content negative-impacts"
-                    data-section="substance"
-                    data-subsection="substance/alcohol/negative"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Negative impact
-                    </h1>
-                    <div
-                      aria-label="In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?"
-                      className="field required branch has-impacts"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_impacts-MOCK-GUID"
-                                  name="has_impacts-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_impacts-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="has_impacts-MOCK-GUID"
-                                  name="has_impacts-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="has_impacts-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content ordered-counselings"
-                    data-section="substance"
-                    data-subsection="substance/alcohol/ordered"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Mandatory counseling or treatment
-                    </h1>
-                    <div
-                      aria-label="Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?"
-                      className="field required branch has-been-ordered"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="HasBeenOrdered-MOCK-GUID"
-                                  name="HasBeenOrdered-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="HasBeenOrdered-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="HasBeenOrdered-MOCK-GUID"
-                                  name="HasBeenOrdered-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="HasBeenOrdered-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content voluntary-counselings"
-                    data-section="substance"
-                    data-subsection="substance/alcohol/voluntary"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Voluntary counseling or treatment
-                    </h1>
-                    <div
-                      aria-label="Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?"
-                      className="field required branch sought-treatment"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="SoughtTreatment-MOCK-GUID"
-                                  name="SoughtTreatment-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="SoughtTreatment-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="SoughtTreatment-MOCK-GUID"
-                                  name="SoughtTreatment-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="SoughtTreatment-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    className="section-content received-counselings"
-                    data-section="substance"
-                    data-subsection="substance/alcohol/additional"
-                  >
-                    <h1
-                      className="section-header"
-                    >
-                      Additional instances
-                    </h1>
-                    <div
-                      aria-label="Have you EVER received counseling or treatment as a result of your use of alcohol in addition to what you have already listed on this form?"
-                      className="field required branch received-treatment"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER received counseling or treatment as a result of your use of alcohol in addition to what you have already listed on this form?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="ReceivedTreatment-MOCK-GUID"
-                                  name="ReceivedTreatment-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="ReceivedTreatment-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="ReceivedTreatment-MOCK-GUID"
-                                  name="ReceivedTreatment-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="ReceivedTreatment-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                >
+                  <div>
+                    <p>
+                      Use of a drug or controlled substance includes injecting, snorting, inhaling, swallowing, experimenting with or otherwise consuming any drug or controlled substance.
+                    </p>
                   </div>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="blocks option-list branch usa-input-error"
                 >
                   <div
-                    className="btn-wrap"
+                    className="yes block"
                   >
-                    <div
-                      className="btn-container"
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="UsedDrugs-MOCK-GUID"
+                      name="UsedDrugs-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="UsedDrugs-MOCK-GUID"
                     >
-                      <button
-                        aria-label="Go to previous section Additional instances"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Additional instances"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Additional instances
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Investigative and criminal history intro"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Investigative and criminal history intro"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Investigative and criminal history intro
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
+                      <span>
+                        Yes
+                      </span>
+                    </label>
                   </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="UsedDrugs-MOCK-GUID"
+                      name="UsedDrugs-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="UsedDrugs-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content drug-involvements"
+        data-section="substance"
+        data-subsection="drugs/purchase"
+      >
+        <h1
+          className="section-header"
+        >
+          Purchase
+        </h1>
+        <div
+          aria-label="In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?"
+          className="field required branch involved"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="Involved-MOCK-GUID"
+                      name="Involved-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="Involved-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="Involved-MOCK-GUID"
+                      name="Involved-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="Involved-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content drug-clearance-uses"
+        data-section="substance"
+        data-subsection="drugs/clearance"
+      >
+        <h1
+          className="section-header"
+        >
+          Security clearance position
+        </h1>
+        <div
+          aria-label="Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?"
+          className="field required branch used-drugs"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="UsedDrugs-MOCK-GUID"
+                      name="UsedDrugs-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="UsedDrugs-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="UsedDrugs-MOCK-GUID"
+                      name="UsedDrugs-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="UsedDrugs-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content drug-public-safety-uses"
+        data-section="substance"
+        data-subsection="drugs/publicsafety"
+      >
+        <h1
+          className="section-header"
+        >
+          Public safety position
+        </h1>
+        <div
+          aria-label="Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?"
+          className="field required branch used-drugs"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="UsedDrugs-MOCK-GUID"
+                      name="UsedDrugs-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="UsedDrugs-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="UsedDrugs-MOCK-GUID"
+                      name="UsedDrugs-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="UsedDrugs-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content prescription-uses"
+        data-section="substance"
+        data-subsection="drugs/misuse"
+      >
+        <h1
+          className="section-header"
+        >
+          Prescription drug misuse
+        </h1>
+        <div
+          aria-label="In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?"
+          className="field required branch misused"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="Misused-MOCK-GUID"
+                      name="Misused-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="Misused-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="Misused-MOCK-GUID"
+                      name="Misused-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="Misused-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content ordered-treatments"
+        data-section="substance"
+        data-subsection="drugs/ordered"
+      >
+        <h1
+          className="section-header"
+        >
+          Mandatory counseling or treatment
+        </h1>
+        <div
+          aria-label="Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?"
+          className="field required branch treatment-ordered"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="TreatmentOrdered-MOCK-GUID"
+                      name="TreatmentOrdered-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="TreatmentOrdered-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="TreatmentOrdered-MOCK-GUID"
+                      name="TreatmentOrdered-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="TreatmentOrdered-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content voluntary-treatments"
+        data-section="substance"
+        data-subsection="drugs/voluntary"
+      >
+        <h1
+          className="section-header"
+        >
+          Voluntary counseling or treatment
+        </h1>
+        <div
+          aria-label="Have you EVER voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?"
+          className="field required branch treatment-voluntary"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you EVER voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="TreatmentVoluntary-MOCK-GUID"
+                      name="TreatmentVoluntary-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="TreatmentVoluntary-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="TreatmentVoluntary-MOCK-GUID"
+                      name="TreatmentVoluntary-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="TreatmentVoluntary-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content negative-impacts"
+        data-section="substance"
+        data-subsection="alcohol/negative"
+      >
+        <h1
+          className="section-header"
+        >
+          Negative impact
+        </h1>
+        <div
+          aria-label="In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?"
+          className="field required branch has-impacts"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_impacts-MOCK-GUID"
+                      name="has_impacts-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_impacts-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_impacts-MOCK-GUID"
+                      name="has_impacts-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_impacts-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content ordered-counselings"
+        data-section="substance"
+        data-subsection="alcohol/ordered"
+      >
+        <h1
+          className="section-header"
+        >
+          Mandatory counseling or treatment
+        </h1>
+        <div
+          aria-label="Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?"
+          className="field required branch has-been-ordered"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="HasBeenOrdered-MOCK-GUID"
+                      name="HasBeenOrdered-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="HasBeenOrdered-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="HasBeenOrdered-MOCK-GUID"
+                      name="HasBeenOrdered-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="HasBeenOrdered-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content voluntary-counselings"
+        data-section="substance"
+        data-subsection="alcohol/voluntary"
+      >
+        <h1
+          className="section-header"
+        >
+          Voluntary counseling or treatment
+        </h1>
+        <div
+          aria-label="Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?"
+          className="field required branch sought-treatment"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="SoughtTreatment-MOCK-GUID"
+                      name="SoughtTreatment-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="SoughtTreatment-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="SoughtTreatment-MOCK-GUID"
+                      name="SoughtTreatment-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="SoughtTreatment-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
+      <div
+        className="section-content received-counselings"
+        data-section="substance"
+        data-subsection="alcohol/additional"
+      >
+        <h1
+          className="section-header"
+        >
+          Additional instances
+        </h1>
+        <div
+          aria-label="Have you EVER received counseling or treatment as a result of your use of alcohol in addition to what you have already listed on this form?"
+          className="field required branch received-treatment"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Have you EVER received counseling or treatment as a result of your use of alcohol in addition to what you have already listed on this form?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="ReceivedTreatment-MOCK-GUID"
+                      name="ReceivedTreatment-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="ReceivedTreatment-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="ReceivedTreatment-MOCK-GUID"
+                      name="ReceivedTreatment-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="ReceivedTreatment-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Additional instances"
+            className="btn-cell back"
+            href="/form/substance/alcohol/additional"
+            onClick={[Function]}
+            title="Go to previous section Additional instances"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Additional instances
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Investigative and criminal history intro"
+            className="btn-cell next"
+            href="/form/legal/intro"
+            onClick={[Function]}
+            title="Go to next section Investigative and criminal history intro"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Investigative and criminal history intro
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>

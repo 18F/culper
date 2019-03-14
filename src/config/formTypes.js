@@ -229,7 +229,6 @@ export const SF85P = [
       {
         ...formSections.SUBSTANCE_USE_ALCOHOL,
         subsections: [
-          formSections.SUBSTANCE_USE_ALCOHOL,
           formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
           formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
           formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
@@ -416,7 +415,6 @@ export const SF86 = [
       {
         ...formSections.SUBSTANCE_USE_ALCOHOL,
         subsections: [
-          formSections.SUBSTANCE_USE_ALCOHOL,
           formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
           formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
           formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,

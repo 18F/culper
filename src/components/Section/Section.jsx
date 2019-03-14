@@ -10,7 +10,7 @@ import Military from './Military'
 import History from './History'
 import Legal from './Legal'
 import Psychological from './Psychological'
-import Substance from './SubstanceUse'
+import SubstanceUse from './SubstanceUse'
 import Package from './Package'
 import { SectionViews, SectionView } from './SectionView'
 import navigation from '../../config/navigation'
@@ -25,7 +25,7 @@ const storeToComponentMap = {
   History,
   Legal,
   Psychological,
-  Substance,
+  SubstanceUse,
   Package,
 }
 
@@ -85,6 +85,7 @@ class Section extends React.Component {
         <Route path="/form/military" component={Military} />
         <Route path="/form/foreign" component={Foreign} />
         <Route path="/form/financial" component={Financial} />
+        <Route path="/form/substance" component={SubstanceUse} />
 
         {/* TBD */}
         <Route

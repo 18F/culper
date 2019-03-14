@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import DrugPublicSafetyUses from './DrugPublicSafetyUses'
+import { DrugPublicSafetyUses } from './DrugPublicSafetyUses'
 
 describe('The DrugPublicSafetyUses component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The DrugPublicSafetyUses component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <DrugPublicSafetyUses {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The DrugPublicSafetyUses component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-public-safety-uses').length).toBe(1)
@@ -47,28 +48,28 @@ describe('The DrugPublicSafetyUses component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2012'
-                }
+                  year: '2012',
+                },
               },
               Description: {
-                value: 'Foo'
+                value: 'Foo',
               },
               EstimatedUse: {
-                value: 'Foo'
-              }
-            }
-          }
-        ]
+                value: 'Foo',
+              },
+            },
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
+        updates += 1
       },
-      UsedDrugs: { value: 'Yes' }
+      UsedDrugs: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-public-safety-uses').length).toBe(1)

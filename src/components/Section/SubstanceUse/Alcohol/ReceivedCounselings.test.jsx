@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import ReceivedCounselings from './ReceivedCounselings'
+import { ReceivedCounselings } from './ReceivedCounselings'
 import { Location } from '../../../Form'
 
 describe('The ReceivedCounselings component', () => {
@@ -11,12 +11,13 @@ describe('The ReceivedCounselings component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <ReceivedCounselings {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -28,8 +29,8 @@ describe('The ReceivedCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.received-counselings').length).toBe(1)
@@ -41,19 +42,19 @@ describe('The ReceivedCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       ReceivedTreatment: { value: 'Yes' },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
         items: [
           {
             Item: {
               UseSameAddress: 'Yes',
               TreatmentProviderName: {
-                value: 'The name'
+                value: 'The name',
               },
               TreatmentProviderAddress: {
                 country: 'United States',
@@ -61,29 +62,29 @@ describe('The ReceivedCounselings component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
               TreatmentBeganDate: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               AgencyName: {
-                value: 'The agency name'
+                value: 'The agency name',
               },
               TreatmentEndDate: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               CompletedTreatment: 'Yes',
               NoCompletedTreatmentExplanation: {
-                value: 'Foo'
-              }
-            }
-          }
-        ]
-      }
+                value: 'Foo',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     component.find('input[name="TreatmentProviderName"]').simulate('change')
