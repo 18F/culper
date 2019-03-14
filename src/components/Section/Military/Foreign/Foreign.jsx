@@ -1,8 +1,11 @@
 import React from 'react'
+
 import { MILITARY, MILITARY_FOREIGN } from 'config/formSections/military'
 import { i18n } from 'config'
+
 import schema from 'schema'
 import validate from 'validators'
+
 import Subsection from 'components/Section/shared/Subsection'
 import { BranchCollection } from 'components/Form'
 import ForeignService from 'components/Section/Military/Foreign/ForeignService'
@@ -27,19 +30,19 @@ class Foreign extends Subsection {
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
-
-    this.updateList = this.updateList.bind(this)
   }
 
-  updateList(collection) {
+  updateList = (collection) => {
     this.props.onUpdate(this.storeKey, { List: collection })
   }
 
   render() {
+    const { requireForeignMilitaryMaintainsContact } = this.props
+
     return (
       <div
         className="section-content foreign"
-        {...super.dataAttributes(this.props)}
+        {...super.dataAttributes()}
       >
         <h1 className="section-header">{i18n.t('military.destination.foreign')}</h1>
         <BranchCollection
@@ -66,6 +69,7 @@ class Foreign extends Subsection {
             onError={this.handleError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
+            requireMaintainsContact={requireForeignMilitaryMaintainsContact}
           />
         </BranchCollection>
       </div>
@@ -82,6 +86,7 @@ Foreign.defaultProps = {
   dispatch: () => {},
   validator: data => validate(schema('military.foreign', data)),
   defaultState: true,
+  requireForeignMilitaryMaintainsContact: true,
 }
 
 export default connectMilitarySection(Foreign, sectionConfig)

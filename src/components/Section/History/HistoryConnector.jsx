@@ -7,6 +7,8 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
+import { selectHistoryFederalSection } from 'selectors/branches'
+
 import { totalYears, sort } from 'components/Section/History/helpers'
 import { utc } from 'components/Section/History/dateranges'
 
@@ -141,6 +143,7 @@ const connectHistorySection = (Component, {
           Completed: completed.history || [],
           Birthdate: processDate(identification.ApplicantBirthDate),
           AddressBooks: addressBooks,
+          ...selectHistoryFederalSection(state),
           formType,
         }
     }

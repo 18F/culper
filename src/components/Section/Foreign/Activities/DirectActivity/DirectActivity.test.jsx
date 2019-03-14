@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import DirectActivity from './DirectActivity'
+import { DirectActivity } from './DirectActivity'
 
 describe('The DirectActivity component', () => {
   const mockStore = configureMockStore()
@@ -27,8 +27,8 @@ describe('The DirectActivity component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.direct').length).toBe(1)
@@ -44,16 +44,16 @@ describe('The DirectActivity component', () => {
           {
             Item: {
               InterestType: {
-                value: 'Foo'
+                value: 'Foo',
               },
               InterestTypes: {
-                values: ['Yourself']
-              }
+                values: ['Yourself'],
+              },
             },
-            open: true
-          }
-        ]
-      }
+            open: true,
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -68,13 +68,13 @@ describe('The DirectActivity component', () => {
           {
             Item: {
               InterestTypes: {
-                values: ['Yourself']
-              }
+                values: ['Yourself'],
+              },
             },
-            open: true
-          }
-        ]
-      }
+            open: true,
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -83,7 +83,7 @@ describe('The DirectActivity component', () => {
 
   it('Renders with no', () => {
     const expected = {
-      HasInterests: { value: 'No' }
+      HasInterests: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -99,51 +99,51 @@ describe('The DirectActivity component', () => {
       HasInterests: { value: 'Yes' },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
         items: [
           {
             Item: {
               InterestTypes: {
-                values: ['Yourself']
+                values: ['Yourself'],
               },
               InterestType: {
-                value: 'Some type'
+                value: 'Some type',
               },
               Acquired: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               HowAcquired: {
-                value: 'foo'
+                value: 'foo',
               },
               Cost: {
-                value: '100'
+                value: '100',
               },
               Value: {
-                value: '100'
+                value: '100',
               },
               Relinquished: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               ReqlinquishedNotApplicable: {
-                applicable: true
+                applicable: true,
               },
               Explanation: {
-                value: 'Bar'
+                value: 'Bar',
               },
               CoOwners: {
                 List: {
-                  items: [{ Item: { Has: { value: 'No' } } }]
-                }
-              }
-            }
-          }
-        ]
-      }
+                  items: [{ Item: { Has: { value: 'No' } } }],
+                },
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)

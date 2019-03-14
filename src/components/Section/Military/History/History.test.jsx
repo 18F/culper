@@ -9,7 +9,10 @@ describe('The military history component', () => {
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
+    const store = mockStore({
+      authentication: { formType: 'SF86' },
+    })
+
     createComponent = (expected = {}) => mount(
       <Provider store={store}>
         <History {...expected} />

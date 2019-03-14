@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Contact from './Contact'
+import { Contact } from './Contact'
 
 describe('The foreign business contact component', () => {
   const mockStore = configureMockStore()
@@ -21,7 +21,7 @@ describe('The foreign business contact component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-contact',
-      HasForeignContact: { value: 'No' }
+      HasForeignContact: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -30,7 +30,7 @@ describe('The foreign business contact component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-contact',
-      HasForeignContact: { value: 'Yes' }
+      HasForeignContact: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -44,7 +44,7 @@ describe('The foreign business contact component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = createComponent(expected)
     component
@@ -73,13 +73,13 @@ describe('The foreign business contact component', () => {
             Establishment: {},
             Representatives: {},
             Purpose: {},
-            SubsequentContacts: {}
-          }
-        ]
+            SubsequentContacts: {},
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)

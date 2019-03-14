@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import NegativeImpacts from './NegativeImpacts'
+import { NegativeImpacts } from './NegativeImpacts'
 
 describe('The NegativeImpacts component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The NegativeImpacts component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <NegativeImpacts {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The NegativeImpacts component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.negative-impacts').length).toBe(1)
@@ -40,43 +41,43 @@ describe('The NegativeImpacts component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       HasImpacts: { value: 'Yes' },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
         items: [
           {
             Item: {
               Occurred: {
                 month: '1',
-                year: '2010'
+                year: '2010',
               },
               Circumstances: {
-                value: 'Foo'
+                value: 'Foo',
               },
               NegativeImpact: {
-                value: 'Bar'
+                value: 'Bar',
               },
               Used: {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2012'
+                  year: '2012',
                 },
-                present: false
-              }
-            }
-          }
-        ]
-      }
+                present: false,
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     component.find('textarea[name="Circumstances"]').simulate('change')

@@ -1,57 +1,69 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, {
-  AlcoholNegativeImpactsValidator,
-  NegativeImpactValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { NegativeImpactValidator } from 'validators'
+import { Accordion, Branch, Show } from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
+import {
+  SUBSTANCE_USE,
+  SUBSTANCE_USE_ALCOHOL_NEGATIVE,
+} from 'config/formSections/substanceUse'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubstanceUseSection from '../SubstanceUseConnector'
 import NegativeImpact from './NegativeImpact'
-import { Summary, DateSummary } from '../../../Summary'
 
-export default class NegativeImpacts extends SubsectionElement {
+const sectionConfig = {
+  section: SUBSTANCE_USE.name,
+  store: SUBSTANCE_USE.store,
+  subsection: SUBSTANCE_USE_ALCOHOL_NEGATIVE.name,
+  storeKey: SUBSTANCE_USE_ALCOHOL_NEGATIVE.storeKey,
+}
+
+export class NegativeImpacts extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHasImpacts = this.updateHasImpacts.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasImpacts: this.props.HasImpacts,
-        List: this.props.List,
-        ...updateValues
-      })
-    }
-  }
-
-  updateList(values) {
-    this.update({
-      List: values
+  update = (updateValues) => {
+    this.props.onUpdate(this.storeKey, {
+      HasImpacts: this.props.HasImpacts,
+      List: this.props.List,
+      ...updateValues,
     })
   }
 
-  updateHasImpacts(values) {
+  updateList = (values) => {
+    this.update({
+      List: values,
+    })
+  }
+
+  updateHasImpacts = (values) => {
     this.update({
       HasImpacts: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const occurred = DateSummary(o.Occurred)
 
     return Summary({
       type: i18n.t('substance.alcohol.negativeImpact.collection.itemType'),
-      index: index,
+      index,
       left: occurred,
       right: null,
-      placeholder: i18n.t('substance.alcohol.negativeImpact.collection.summary')
+      placeholder: i18n.t('substance.alcohol.negativeImpact.collection.summary'),
     })
   }
 
@@ -59,15 +71,16 @@ export default class NegativeImpacts extends SubsectionElement {
     return (
       <div
         className="section-content negative-impacts"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('substance.destination.police.negative')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('substance.subsection.alcohol.negative')}</h1>
         <Branch
           name="has_impacts"
           label={i18n.t('substance.alcohol.heading.negativeImpact')}
           labelSize="h4"
           className="has-impacts"
           {...this.props.HasImpacts}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasImpacts}
@@ -83,20 +96,15 @@ export default class NegativeImpacts extends SubsectionElement {
             onUpdate={this.updateList}
             onError={this.handleError}
             validator={NegativeImpactValidator}
-            description={i18n.t(
-              'substance.alcohol.negativeImpact.collection.description'
-            )}
-            appendTitle={i18n.t(
-              'substance.alcohol.negativeImpact.collection.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'substance.alcohol.negativeImpact.collection.appendLabel'
-            )}
+            description={i18n.t('substance.alcohol.negativeImpact.collection.description')}
+            appendTitle={i18n.t('substance.alcohol.negativeImpact.collection.appendTitle')}
+            appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <NegativeImpact
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -110,14 +118,12 @@ export default class NegativeImpacts extends SubsectionElement {
 NegativeImpacts.defaultProps = {
   HasImpacts: {},
   List: Accordion.defaultList,
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   section: 'substance',
   subsection: 'alcohol/negative',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('substance.alcohol.negative', data))
-  },
-  scrollToBottom: ''
+  validator: data => validate(schema('substance.alcohol.negative', data)),
+  scrollToBottom: '',
 }
+
+export default connectSubstanceUseSection(NegativeImpacts, sectionConfig)

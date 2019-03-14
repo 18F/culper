@@ -323,6 +323,11 @@ func TestScenario9(t *testing.T) {
 	executeScenario(t, "test9")
 }
 
+// `test10` is a copy of test1 to allow testing married data without affecting OPM approved tests
+func TestScenario10(t *testing.T) {
+	executeScenario(t, "test10")
+}
+
 // executeScenario generates XML from JSON test fixtures for a complete
 // applicant scenario and compares the result with XML reference files.
 // It is a coarse and unforgiving test; anything less than an exact match,

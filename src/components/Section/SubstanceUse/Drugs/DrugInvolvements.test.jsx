@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import DrugInvolvements from './DrugInvolvements'
+import { DrugInvolvements } from './DrugInvolvements'
 
 describe('The DrugInvolvements component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The DrugInvolvements component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <DrugInvolvements {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The DrugInvolvements component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-involvements').length).toBe(1)
@@ -40,7 +41,7 @@ describe('The DrugInvolvements component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       Involved: { value: 'Yes' },
       List: {
@@ -49,53 +50,53 @@ describe('The DrugInvolvements component', () => {
             DrugInvolvement: {
               DrugType: {
                 DrugType: 'Cocaine',
-                DrugTypeOther: null
+                DrugTypeOther: null,
               },
               FirstInvolvement: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               RecentInvolvement: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               NatureOfInvolvement: {
-                value: 'Some involvement'
+                value: 'Some involvement',
               },
               Reasons: {
-                value: 'Some reason'
+                value: 'Some reason',
               },
               InvolvementWhileEmployed: { value: 'Yes' },
               InvolvementWithClearance: { value: 'Yes' },
-              InvolvementInFuture: { value: 'No' }
-            }
+              InvolvementInFuture: { value: 'No' },
+            },
           },
           {
             DrugInvolvement: {
               DrugType: {
                 DrugType: 'Cocaine',
-                DrugTypeOther: null
+                DrugTypeOther: null,
               },
               FirstInvolvement: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               NatureOfInvolvement: {
-                value: 'Some involvement'
+                value: 'Some involvement',
               },
               Reasons: {
-                value: 'Some reason'
+                value: 'Some reason',
               },
               InvolvementWhileEmployed: { value: 'Yes' },
               InvolvementWithClearance: { value: 'Yes' },
-              InvolvementInFuture: { value: 'No' }
-            }
-          }
-        ]
-      }
+              InvolvementInFuture: { value: 'No' },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-involvements').length).toBe(1)

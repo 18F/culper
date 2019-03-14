@@ -84,7 +84,7 @@ Passports.defaultProps = {
   validator: data => validate(schema('citizenship.passports', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
-  required: true,
+  required: false,
   scrollIntoView: false,
 }
 

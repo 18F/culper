@@ -1,43 +1,64 @@
+import store from 'services/store'
+
+import { requireForeignMilitaryMaintainsContact } from 'helpers/branches'
+
 import LocationValidator from './location'
 import DateRangeValidator from './daterange'
 import NameValidator from './name'
 import {
   validAccordion,
   BranchCollection,
-  validGenericTextfield
+  validGenericTextfield,
 } from './helpers'
 
-export default class MilitaryForeignValidator {
-  constructor(data = {}) {
-    this.list = data.List || {}
+export class ForeignContactValidator {
+  constructor(data) {
+    this.name = data.Name
+    this.address = data.Address
+    this.title = data.Title
+    this.dates = data.Dates
+    this.frequency = data.Frequency
   }
 
-  validItems() {
-    if ((this.list.items || []).length === 0) {
-      return false
-    }
+  validName() {
+    return new NameValidator(this.name).isValid()
+  }
 
-    const branchValidator = new BranchCollection(this.list)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
+  validAddress() {
+    return new LocationValidator(this.address).isValid()
+  }
 
-    if (branchValidator.hasNo()) {
-      return true
-    }
+  validTitle() {
+    return validGenericTextfield(this.title)
+  }
 
-    return branchValidator.each(item => {
-      return new ForeignServiceValidator(item.Item).isValid()
-    })
+  validDates() {
+    return new DateRangeValidator(this.dates).isValid()
+  }
+
+  validFrequency() {
+    return validGenericTextfield(this.frequency)
   }
 
   isValid() {
-    return this.validItems()
+    return (
+      this.validName()
+        && this.validAddress()
+        && this.validTitle()
+        && this.validDates()
+        && this.validFrequency()
+    )
   }
 }
 
 export class ForeignServiceValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { authentication } = state
+    const { formType } = authentication
+
+    this.formType = formType
+
     this.organization = data.Organization
     this.name = data.Name
     this.dates = data.Dates
@@ -83,8 +104,10 @@ export class ForeignServiceValidator {
   }
 
   validMaintainsContact() {
-    const hasValue =
-      this.maintainsContact === 'Yes' || this.maintainsContact === 'No'
+    if (!requireForeignMilitaryMaintainsContact(this.formType)) return true
+
+    const hasValue = this.maintainsContact === 'Yes' || this.maintainsContact === 'No'
+
     if (!hasValue) {
       return false
     }
@@ -93,62 +116,47 @@ export class ForeignServiceValidator {
       return true
     }
 
-    return validAccordion(this.list, item => {
-      return new ForeignContactValidator(item).isValid()
-    })
+    return validAccordion(this.list, item => new ForeignContactValidator(item).isValid())
   }
 
   isValid() {
     return (
-      this.validOrganization() &&
-      this.validName() &&
-      this.validDates() &&
-      this.validCountry() &&
-      this.validRank() &&
-      this.validDivision() &&
-      this.validCircumstances() &&
-      this.validReasonLeft() &&
-      this.validMaintainsContact()
+      this.validOrganization()
+        && this.validName()
+        && this.validDates()
+        && this.validCountry()
+        && this.validRank()
+        && this.validDivision()
+        && this.validCircumstances()
+        && this.validReasonLeft()
+        && this.validMaintainsContact()
     )
   }
 }
 
-export class ForeignContactValidator {
-  constructor(data) {
-    this.name = data.Name
-    this.address = data.Address
-    this.title = data.Title
-    this.dates = data.Dates
-    this.frequency = data.Frequency
+export default class MilitaryForeignValidator {
+  constructor(data = {}) {
+    this.list = data.List || {}
   }
 
-  validName() {
-    return new NameValidator(this.name).isValid()
-  }
+  validItems() {
+    if ((this.list.items || []).length === 0) {
+      return false
+    }
 
-  validAddress() {
-    return new LocationValidator(this.address).isValid()
-  }
+    const branchValidator = new BranchCollection(this.list)
+    if (!branchValidator.validKeyValues()) {
+      return false
+    }
 
-  validTitle() {
-    return validGenericTextfield(this.title)
-  }
+    if (branchValidator.hasNo()) {
+      return true
+    }
 
-  validDates() {
-    return new DateRangeValidator(this.dates).isValid()
-  }
-
-  validFrequency() {
-    return validGenericTextfield(this.frequency)
+    return branchValidator.each(item => new ForeignServiceValidator(item.Item).isValid())
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validAddress() &&
-      this.validTitle() &&
-      this.validDates() &&
-      this.validFrequency()
-    )
+    return this.validItems()
   }
 }

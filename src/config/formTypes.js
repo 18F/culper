@@ -31,7 +31,6 @@ export const SF85 = [
       formSections.CITIZENSHIP_INTRO,
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
-      formSections.CITIZENSHIP_PASSPORTS,
       formSections.CITIZENSHIP_REVIEW,
     ],
   },
@@ -41,6 +40,7 @@ export const SF85 = [
       formSections.MILITARY_INTRO,
       formSections.MILITARY_SELECTIVE,
       formSections.MILITARY_HISTORY,
+      formSections.MILITARY_DISCIPLINARY,
       formSections.MILITARY_FOREIGN,
       formSections.MILITARY_REVIEW,
     ],
@@ -54,7 +54,7 @@ export const SF85 = [
     ],
   },
   {
-    ...formSections.FOREIGN,
+    ...formSections.FINANCIAL,
     subsections: [
       formSections.FINANCIAL_INTRO,
       formSections.FINANCIAL_BANKRUPTCY,
@@ -120,7 +120,6 @@ export const SF85 = [
         ],
       },
       formSections.LEGAL_REVIEW,
-
     ],
   },
 ]
@@ -230,7 +229,6 @@ export const SF85P = [
       {
         ...formSections.SUBSTANCE_USE_ALCOHOL,
         subsections: [
-          formSections.SUBSTANCE_USE_ALCOHOL,
           formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
           formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
           formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
@@ -417,7 +415,6 @@ export const SF86 = [
       {
         ...formSections.SUBSTANCE_USE_ALCOHOL,
         subsections: [
-          formSections.SUBSTANCE_USE_ALCOHOL,
           formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
           formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
           formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
@@ -492,6 +489,8 @@ export const reduceSubsections = (sections, parentPath) => (
       const builtPath = parentPath
         ? `${parentPath}/${section.path}`
         : section.path
+
+      /* eslint no-param-reassign: 0 */
       accumulator = accumulator.concat(reduceSubsections(section.subsections, builtPath))
     } else {
       accumulator.push({
