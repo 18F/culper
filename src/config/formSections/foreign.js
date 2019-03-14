@@ -15,7 +15,7 @@ export const FOREIGN = {
 export const FOREIGN_INTRO = {
   key: sections.FOREIGN_INTRO,
   name: 'intro',
-  path: `${FOREIGN.path}/intro`,
+  path: 'intro',
   label: i18n.t('foreign.subsection.intro'),
 }
 
@@ -38,7 +38,7 @@ export const FOREIGN_CONTACTS = {
 export const FOREIGN_ACTIVITIES = {
   key: sections.FOREIGN_ACTIVITIES,
   name: 'activities',
-  path: `${FOREIGN.path}/activities`,
+  path: 'activities',
   label: i18n.t('foreign.subsection.activities.label'),
 }
 
@@ -85,7 +85,7 @@ export const FOREIGN_ACTIVITIES_SUPPORT = {
 export const FOREIGN_BUSINESS = {
   key: sections.FOREIGN_BUSINESS,
   name: 'business',
-  path: `${FOREIGN.path}/business`,
+  path: 'business',
   label: i18n.t('foreign.subsection.business.label'),
 }
 
@@ -172,7 +172,7 @@ export const FOREIGN_TRAVEL = {
 export const FOREIGN_REVIEW = {
   key: sections.FOREIGN_REVIEW,
   name: 'review',
-  path: `${FOREIGN.path}/review`,
+  path: 'review',
   label: i18n.t('foreign.subsection.review'),
 }
 
