@@ -1,8 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
+import { withRouter, Route } from 'react-router'
+import axios from 'axios'
+import queryString from 'query-string'
+
 import { i18n, env, navigationWalker } from 'config'
+
+import { api } from 'services'
+import schema from 'schema'
 import { hideHippa } from 'validators/releases'
+
+import { Show } from 'components/Form'
 import { SectionViews, SectionView } from 'components/Section/SectionView'
 import SectionElement from 'components/Section/SectionElement'
 import ValidForm from 'components/Section/Package/ValidForm'
@@ -10,12 +18,12 @@ import InvalidForm from 'components/Section/Package/InvalidForm'
 import SubmissionStatus from 'components/Section/Package/SubmissionStatus'
 import Print from 'components/Section/Package/Print'
 import Attachments from 'components/Section/Package/Attachments'
+
 import { updateApplication } from 'actions/ApplicationActions'
-import axios from 'axios'
-import { api } from 'services'
-import schema from 'schema'
-import { Show } from 'components/Form'
-import queryString from 'query-string'
+
+import Review from './Review'
+import Errors from './Errors'
+import Submit from './Submit'
 
 class Package extends SectionElement {
   constructor(props) {
@@ -171,6 +179,16 @@ class Package extends SectionElement {
     const tally = this.errorCheck()
     const releases = (this.props.Submission || {}).Releases || {}
     const params = this.props.location.search
+
+    return (
+      <div className="section-view">
+        <Route path="/form/package/review" component={Review} />
+        <Route path="/form/package/errors" component={Errors} />
+        <Route path="/form/package/submit" component={Submit} />
+      </div>
+    )
+
+    /*
     return (
       <SectionViews
         current={this.props.subsection}
@@ -236,6 +254,7 @@ class Package extends SectionElement {
         </SectionView>
       </SectionViews>
     )
+    */
   }
 }
 

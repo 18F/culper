@@ -91,6 +91,8 @@ class Section extends React.Component {
         <Route path="/form/legal" component={Legal} />
         <Route path="/form/psychological" component={Psychological} />
 
+        <Route path="/form/package" component={Package} />
+
         {/* TBD */}
         <Route
           path="/form/:section/:subsection"
@@ -98,11 +100,6 @@ class Section extends React.Component {
             <SectionViews current={section}>{this.createSections()}</SectionViews>
           )}
         />
-
-        {/* Sections to refactor */}
-        {/*
-          <Route path="/form/package" component={Package} />
-        */}
       </Switch>
     )
   }
