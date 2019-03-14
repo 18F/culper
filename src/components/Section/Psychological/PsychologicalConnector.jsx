@@ -78,7 +78,7 @@ const connectPsychologicalSection = (Component, {
           addressBooks: AddressBooks,
         }
 
-      case 'Conditions':
+      case 'ExistingConditions':
         return {
           ...Psychological && Psychological.ExistingConditions,
         }

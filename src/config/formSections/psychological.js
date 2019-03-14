@@ -51,7 +51,7 @@ export const PSYCHOLOGICAL_CONDITIONS = {
   key: sections.PSYCHOLOGICAL_CONDITIONS,
   name: 'conditions',
   path: 'conditions',
-  storeKey: 'Conditions',
+  storeKey: 'ExistingConditions',
   label: i18n.t('psychological.subsection.conditions'),
 }
 
