@@ -165,16 +165,6 @@ export class Passport extends Subsection {
         <h1 className="section-header">{i18n.t('foreign.passport.title')}</h1>
 
         <h3>{i18n.t('foreign.passport.info.text')}</h3>
-        <p>
-          <a
-            href="https://travel.state.gov/content/travel/en.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="U.S. State Department Help"
-          >
-            {i18n.t('foreign.passport.info.link')}
-          </a>
-        </p>
         <Branch
           name="has_passport"
           label={i18n.t('foreign.passport.question.title')}
