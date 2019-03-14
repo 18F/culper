@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import BenefitActivity from './BenefitActivity'
+import { BenefitActivity } from './BenefitActivity'
 
 describe('The BenefitActivity component', () => {
   it('Renders without errors', () => {
@@ -11,7 +11,7 @@ describe('The BenefitActivity component', () => {
   it('Selects if has benefit', () => {
     let updates = 0
     const onUpdate = () => {
-      updates++
+      updates += 1
     }
     const component = mount(<BenefitActivity onUpdate={onUpdate} />)
     component.find('.has-benefits .yes input').simulate('change')
@@ -22,7 +22,7 @@ describe('The BenefitActivity component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       HasBenefits: { value: 'Yes' },
       List: {
@@ -30,7 +30,7 @@ describe('The BenefitActivity component', () => {
           {
             Item: {
               InterestTypes: {
-                values: ['Yourself']
+                values: ['Yourself'],
               },
               BenefitType: 'Educational',
               BenefitFrequency: 'OneTime',
@@ -38,26 +38,26 @@ describe('The BenefitActivity component', () => {
                 Received: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 Country: {
-                  value: 'Germany'
+                  value: 'Germany',
                 },
                 Value: {
-                  value: '2000'
+                  value: '2000',
                 },
                 Reason: {
-                  value: 'Foo'
+                  value: 'Foo',
                 },
                 Obligated: { value: 'Yes' },
                 ObligatedExplanation: {
-                  value: 'Because'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  value: 'Because',
+                },
+              },
+            },
+          },
+        ],
+      },
     }
 
     const component = mount(<BenefitActivity {...expected} />)
@@ -79,23 +79,23 @@ describe('The BenefitActivity component', () => {
             {
               Item: {
                 InterestTypes: {
-                  values: ['Yourself']
+                  values: ['Yourself'],
                 },
                 BenefitFrequency: 'OneTime',
                 OneTimeBenefit: {
                   Received: {
                     month: '1',
                     day: '1',
-                    year: '2010'
+                    year: '2010',
                   },
                   Country: {
-                    value: 'Germany'
-                  }
-                }
-              }
-            }
-          ]
-        }
+                    value: 'Germany',
+                  },
+                },
+              },
+            },
+          ],
+        },
       },
       {
         expected: 'Yourself - Germany',
@@ -105,23 +105,23 @@ describe('The BenefitActivity component', () => {
             {
               Item: {
                 InterestTypes: {
-                  values: ['Yourself']
+                  values: ['Yourself'],
                 },
                 BenefitFrequency: 'Future',
                 FutureBenefit: {
                   Received: {
                     month: '1',
                     day: '1',
-                    year: '2010'
+                    year: '2010',
                   },
                   Country: {
-                    value: 'Germany'
-                  }
-                }
-              }
-            }
-          ]
-        }
+                    value: 'Germany',
+                  },
+                },
+              },
+            },
+          ],
+        },
       },
       {
         expected: 'Yourself',
@@ -131,24 +131,24 @@ describe('The BenefitActivity component', () => {
             {
               Item: {
                 InterestTypes: {
-                  values: ['Yourself']
+                  values: ['Yourself'],
                 },
                 BenefitFrequency: 'Continuing',
                 ContinuingBenefit: {
                   Received: {
                     month: '1',
                     day: '1',
-                    year: '2010'
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
+                    year: '2010',
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const component = mount(<BenefitActivity {...test} />)
       expect(component.find('.context').text()).toContain(test.expected)
     })

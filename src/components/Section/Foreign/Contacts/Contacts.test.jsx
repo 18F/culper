@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Contacts from './Contacts'
+import { Contacts } from './Contacts'
 import { i18n } from '../../../../config'
 
 describe('The contacts component', () => {
@@ -27,7 +27,7 @@ describe('The contacts component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-contacts',
-      HasForeignContacts: { value: 'No' }
+      HasForeignContacts: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -37,7 +37,7 @@ describe('The contacts component', () => {
     const expected = {
       name: 'foreign-contacts',
       HasForeignContacts: { value: 'Yes' },
-      List: { branch: {}, items: [{ Item: { Name: {} } }] }
+      List: { branch: {}, items: [{ Item: { Name: {} } }] },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -46,14 +46,14 @@ describe('The contacts component', () => {
   const contactDatesSetup = {
     name: 'contacts',
     HasForeignContacts: {
-      value: 'Yes'
+      value: 'Yes',
     },
     applicantBirthdate: {
       estimated: false,
       day: '1',
       month: '1',
       name: 'birthdate',
-      year: '1970'
+      year: '1970',
     },
     List: {
       items: [
@@ -64,33 +64,33 @@ describe('The contacts component', () => {
               day: '1',
               month: '1',
               name: 'Birthdate',
-              year: '1980'
+              year: '1980',
             },
             FirstContact: {
               estimated: false,
               day: '1',
               month: '1',
               name: 'FirstContact',
-              year: '1990'
+              year: '1990',
             },
             LastContact: {
               estimated: false,
               day: '1',
               month: '1',
               name: 'LastContact',
-              year: '2000'
-            }
+              year: '2000',
+            },
           },
-          open: true
-        }
-      ]
-    }
+          open: true,
+        },
+      ],
+    },
   }
 
   describe('handles dates', () => {
     it('with good data - the date of first contact is after the applicant and contact DOB', () => {
       const props = {
-        valid: true
+        valid: true,
       }
 
       const component = createComponent(props)
@@ -113,13 +113,13 @@ describe('The contacts component', () => {
                   day: '1',
                   month: '1',
                   name: 'FirstContact',
-                  year: '1950'
-                }
-              }
-            }
-          ]
+                  year: '1950',
+                },
+              },
+            },
+          ],
         },
-        valid: false
+        valid: false,
       }
 
       const component = createComponent(props)
@@ -127,10 +127,7 @@ describe('The contacts component', () => {
         component
           .find('.error-messages [data-i18n="error.foreignContact.min"]')
           .text()
-      ).toEqual(
-        `${i18n.t('error.foreignContact.min.title')}${i18n.t(
-          'error.foreignContact.min.message'
-        )}`
+      ).toEqual(`${i18n.t('error.foreignContact.min.title')}${i18n.t('error.foreignContact.min.message')}`
       )
     })
   })

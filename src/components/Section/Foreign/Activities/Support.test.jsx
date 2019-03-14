@@ -1,12 +1,12 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Support from './Support'
+import { Support } from './Support'
 
 describe('The foreign activities support component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-activities-support',
-      HasForeignSupport: { value: 'No' }
+      HasForeignSupport: { value: 'No' },
     }
     const component = mount(<Support {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign activities support component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-activities-support',
-      HasForeignSupport: { value: 'Yes' }
+      HasForeignSupport: { value: 'Yes' },
     }
     const component = mount(<Support {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -29,7 +29,7 @@ describe('The foreign activities support component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = mount(<Support {...expected} />)
     component
@@ -49,11 +49,11 @@ describe('The foreign activities support component', () => {
       name: 'foreign-activities-support',
       HasForeignSupport: { value: 'Yes' },
       List: {
-        items: [{}]
+        items: [{}],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = mount(<Support {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

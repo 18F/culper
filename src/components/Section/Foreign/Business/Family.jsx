@@ -1,55 +1,68 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, NameSummary } from '../../../Summary'
-import {
-  ForeignBusinessFamilyValidator,
-  FamilyValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { FamilyValidator } from 'validators'
+import { Summary, NameSummary } from 'components/Summary'
+import { Branch, Show, Accordion } from 'components/Form'
+import { FOREIGN, FOREIGN_BUSINESS_FAMILY } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../ForeignConnector'
 import FamilyItem from './FamilyItem'
 
-export default class Family extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_BUSINESS_FAMILY.name,
+  storeKey: FOREIGN_BUSINESS_FAMILY.storeKey,
+}
+
+export class Family extends Subsection {
   constructor(props) {
     super(props)
 
-    this.updateHasForeignFamily = this.updateHasForeignFamily.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasForeignFamily: this.props.HasForeignFamily,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasForeignFamily(values) {
+  updateHasForeignFamily = (values) => {
     this.update({
       HasForeignFamily: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
+      List: values.value === 'Yes'
+        ? this.props.List
+        : { items: [], branch: {} },
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const obj = (item && item.Item) || {}
     const name = NameSummary(obj.Name)
 
     return Summary({
       type: i18n.t('foreign.business.family.collection.summary.item'),
-      index: index,
+      index,
       left: name,
       right: null,
-      placeholder: i18n.t('foreign.business.family.collection.summary.unknown')
+      placeholder: i18n.t('foreign.business.family.collection.summary.unknown'),
     })
   }
 
@@ -57,19 +70,21 @@ export default class Family extends SubsectionElement {
     return (
       <div
         className="section-content foreign-business-family"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('foreign.destination.business.family')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.family')}</h1>
         <Branch
           name="has_foreign_family"
           label={i18n.t('foreign.business.family.heading.title')}
           labelSize="h4"
           adjustFor="p"
           {...this.props.HasForeignFamily}
-          warning={true}
+          warning
           onUpdate={this.updateHasForeignFamily}
           required={this.props.required}
           onError={this.handleError}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('foreign.business.family.para.branch')}
         </Branch>
 
@@ -82,21 +97,16 @@ export default class Family extends SubsectionElement {
             onError={this.handleError}
             validator={FamilyValidator}
             summary={this.summary}
-            description={i18n.t(
-              'foreign.business.family.collection.summary.title'
-            )}
-            appendTitle={i18n.t(
-              'foreign.business.family.collection.appendTitle'
-            )}
-            appendMessage={i18n.m(
-              'foreign.business.family.collection.appendMessage'
-            )}
+            description={i18n.t('foreign.business.family.collection.summary.title')}
+            appendTitle={i18n.t('foreign.business.family.collection.appendTitle')}
+            appendMessage={i18n.m('foreign.business.family.collection.appendMessage')}
             appendLabel={i18n.t('foreign.business.family.collection.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <FamilyItem
               name="Item"
-              bind={true}
+              bind
               onError={this.props.onError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
@@ -112,16 +122,14 @@ Family.defaultProps = {
   name: 'Family',
   HasForeignFamily: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'business/family',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('foreign.business.family', data))
-  },
+  validator: data => validate(schema('foreign.business.family', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(Family, sectionConfig)
