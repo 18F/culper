@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import ExistingConditions from './ExistingConditions'
+import { ExistingConditions } from './ExistingConditions'
 
 describe('The ExistingConditions component', () => {
   it('Renders without errors', () => {
@@ -15,8 +15,8 @@ describe('The ExistingConditions component', () => {
       ReceivedTreatment: { value: 'No' },
       DidNotFollow: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = mount(<ExistingConditions {...props} />)
     component.find('.hascondition .yes input').simulate('change')
@@ -40,8 +40,8 @@ describe('The ExistingConditions component', () => {
       TreatmentList: [{}],
       DidNotFollow: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = mount(<ExistingConditions {...props} />)
     component.find('.hascondition .yes input').simulate('change')
@@ -58,7 +58,7 @@ describe('The ExistingConditions component', () => {
     const props = {
       HasCondition: { value: 'No' },
       ReceivedTreatment: { value: 'No' },
-      DidNotFollow: { value: 'No' }
+      DidNotFollow: { value: 'No' },
     }
     const component = mount(<ExistingConditions {...props} />)
     expect(
@@ -76,7 +76,7 @@ describe('The ExistingConditions component', () => {
       HasCondition: { value: 'Yes' },
       ReceivedTreatment: { value: 'Yes' },
       DidNotFollow: { value: 'No' },
-      prefix: { value: 'existingConditions.diagnosis' }
+      prefix: { value: 'existingConditions.diagnosis' },
     }
     const component = mount(<ExistingConditions {...props} />)
     expect(component.find('.diagnosis-condition').length).toBe(0)
