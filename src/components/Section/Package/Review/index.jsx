@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 
 import i18n from 'util/i18n'
 
-import { Svg } from 'components/Form'
-
+import FormStatus from '../FormStatus'
 import connectPackageSection from '../PackageConnector'
 
 class PackageReview extends React.Component {
@@ -37,32 +36,14 @@ class PackageReview extends React.Component {
   render() {
     const { width } = this.state
 
-    const style = {
-      width: `${width}%`,
-    }
-
     return (
       <div className="submission-status">
         {i18n.m('application.submissionStatus.validating')}
-        <div className="progress-container">
-          <div className="review-icon">
-            <img src="/img/review-checking.svg" alt="" />
-          </div>
-          <div className="progress-outline">
-            <div className="progress-default">
-              <div
-                className="progress transition"
-                style={style}
-                onTransitionEnd={this.onTransitionEnd}
-              />
-            </div>
-          </div>
-          <div className="icon-container">
-            <span className="icon">
-              <Svg src="/img/checkmark.svg" />
-            </span>
-          </div>
-        </div>
+        <FormStatus
+          isTransitioning
+          progressWidth={width}
+          onTransitionEnd={this.onTransitionEnd}
+        />
       </div>
     )
   }
