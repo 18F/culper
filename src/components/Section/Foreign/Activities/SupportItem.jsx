@@ -65,7 +65,7 @@ export default class SupportItem extends ValidationElement {
 
   updateAmountEstimated(values) {
     this.update({
-      AmountEstimated: values.checked
+      AmountEstimated: values
     })
   }
 
