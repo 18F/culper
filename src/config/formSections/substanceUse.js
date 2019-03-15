@@ -90,7 +90,7 @@ export const SUBSTANCE_USE_ALCOHOL_NEGATIVE = {
   key: sections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
   name: 'alcohol/negative',
   path: 'negative',
-  storeKey: 'NegativeImpact',
+  storeKey: 'NegativeImpacts',
   label: i18n.t('substance.subsection.alcohol.negative'),
 }
 
