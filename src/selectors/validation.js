@@ -30,12 +30,13 @@ const getFormErrors = (state) => {
   const { application } = state
   const formSections = nestedFormSectionsSelector(state)
   const sectionStoreKeys = reduceFormSectionStores(formSections)
+    .filter(s => s.store && s.storeKey)
 
   const formErrors = sectionStoreKeys.map((s) => {
-    const { key, store, storeKey } = s
+    const { store, storeKey } = s
     const storeData = application[store][storeKey] || {}
 
-    const isValid = validateSection(key, storeData)
+    const isValid = validateSection({ ...s, data: storeData })
 
     return {
       ...s,
