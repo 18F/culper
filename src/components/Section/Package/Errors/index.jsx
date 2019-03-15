@@ -7,6 +7,8 @@ import i18n from 'util/i18n'
 import AnimateReviewIcon from '../AnimateReviewIcon'
 import AnimateCheckmarkIcon from '../AnimateCheckmarkIcon'
 
+import connectPackageSection from '../PackageConnector'
+
 const PackageErrors = () => {
   const classes = classnames(
     'submission-status',
@@ -34,8 +36,11 @@ const PackageErrors = () => {
           </span>
         </div>
       </div>
-      {/* TODO */}
-      {/* <InvalidForm tally={tally} dispatch={this.props.dispatch} /> */}
+
+      <div className="invalid-form">
+        {i18n.m('application.invalidForm')}
+        {/* TODO: ERRORS InvalidSection */}
+      </div>
     </div>
   )
 }
@@ -43,4 +48,4 @@ const PackageErrors = () => {
 PackageErrors.propTypes = {
 }
 
-export default PackageErrors
+export default connectPackageSection(PackageErrors)

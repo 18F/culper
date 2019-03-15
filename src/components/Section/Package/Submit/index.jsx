@@ -7,6 +7,8 @@ import i18n from 'util/i18n'
 import AnimateReviewIcon from '../AnimateReviewIcon'
 import AnimateCheckmarkIcon from '../AnimateCheckmarkIcon'
 
+import connectPackageSection from '../PackageConnector'
+
 const PackageSubmit = () => {
   const classes = classnames(
     'submission-status',
@@ -55,4 +57,4 @@ const PackageSubmit = () => {
 PackageSubmit.propTypes = {
 }
 
-export default PackageSubmit
+export default connectPackageSection(PackageSubmit)

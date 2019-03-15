@@ -5,6 +5,8 @@ import i18n from 'util/i18n'
 
 import { Svg } from 'components/Form'
 
+import connectPackageSection from '../PackageConnector'
+
 class PackageReview extends React.Component {
   constructor(props) {
     super(props)
@@ -21,8 +23,9 @@ class PackageReview extends React.Component {
   }
 
   onTransitionEnd = () => {
-    const { history } = this.props
-    const formIsValid = true // false // TODO - validate form
+    const { history, formIsValid } = this.props
+
+    console.log('validate form', formIsValid)
 
     if (formIsValid) {
       history.push('/form/package/submit')
@@ -67,6 +70,11 @@ class PackageReview extends React.Component {
 
 PackageReview.propTypes = {
   history: PropTypes.object.isRequired,
+  formIsValid: PropTypes.bool,
 }
 
-export default PackageReview
+PackageReview.defaultProps = {
+  formIsValid: false,
+}
+
+export default connectPackageSection(PackageReview)
