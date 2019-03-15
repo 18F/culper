@@ -1,15 +1,10 @@
 import { connect } from 'react-redux'
 
-import {
-  nestedFormSectionsSelector,
-} from 'selectors/navigation'
-
-import { formErrorsSelector } from 'selectors/validation'
+import { formStatusSelector } from 'selectors/validation'
 
 const connectPackageSection = (Component) => {
   const mapStateToProps = state => ({
-    formSections: nestedFormSectionsSelector(state),
-    ...formErrorsSelector(state),
+    ...formStatusSelector(state),
   })
 
   return connect(mapStateToProps)(Component)

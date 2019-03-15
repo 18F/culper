@@ -256,3 +256,10 @@ export const validateSection = ({ key, data }) => {
 
   return false
 }
+
+export const sectionIsInvalid = (formSections = []) => (
+  formSections.some((s) => {
+    if (s.subsections) return sectionIsInvalid(s.subsections)
+    return s.isValid === false
+  })
+)

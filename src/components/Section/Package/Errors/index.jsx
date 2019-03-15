@@ -1,19 +1,24 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import i18n from 'util/i18n'
 
+import { sectionIsInvalid } from 'helpers/validation'
+
 import AnimateReviewIcon from '../AnimateReviewIcon'
 import AnimateCheckmarkIcon from '../AnimateCheckmarkIcon'
+import InvalidSection from '../InvalidSection'
 
 import connectPackageSection from '../PackageConnector'
 
-const PackageErrors = () => {
+const PackageErrors = ({ formSections }) => {
   const classes = classnames(
     'submission-status',
     'invalid'
   )
+
+  const invalidSections = formSections.filter(s => sectionIsInvalid(s.subsections))
 
   return (
     <div className={classes}>
@@ -39,13 +44,20 @@ const PackageErrors = () => {
 
       <div className="invalid-form">
         {i18n.m('application.invalidForm')}
-        {/* TODO: ERRORS InvalidSection */}
+        {invalidSections.map(s => (
+          <InvalidSection key={`package-review-errors-${s.key}`} />
+        ))}
       </div>
     </div>
   )
 }
 
 PackageErrors.propTypes = {
+  formSections: PropTypes.array,
+}
+
+PackageErrors.defaultProps = {
+  formSections: [],
 }
 
 export default connectPackageSection(PackageErrors)

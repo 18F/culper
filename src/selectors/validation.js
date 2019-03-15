@@ -26,32 +26,41 @@ export const reduceFormSectionStores = (sections = [], store = '') => (
   }, [])
 )
 
-const getFormErrors = (state) => {
+const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
   const { application } = state
-  const formSections = nestedFormSectionsSelector(state)
-  const sectionStoreKeys = reduceFormSectionStores(formSections)
-    .filter(s => s.store && s.storeKey)
+  const newSections = sections
+    .filter(s => s.subsections || s.storeKey)
+    .map((s) => {
+      if (s.subsections) {
+        const parentStore = store || s.store
+        return {
+          ...s,
+          subsections: getFormSectionStatuses(s.subsections, parentStore, state),
+        }
+      }
 
-  const formErrors = sectionStoreKeys.map((s) => {
-    const { store, storeKey } = s
-    const storeData = application[store][storeKey] || {}
+      const sectionData = application[store][s.storeKey] || {}
+      const isValid = validateSection({ ...s, data: sectionData })
 
-    const isValid = validateSection({ ...s, data: storeData })
+      return {
+        ...s,
+        isValid,
+      }
+    })
 
-    return {
-      ...s,
-      storeData,
-      isValid,
-    }
-  })
-
-  return formErrors
+  return newSections
 }
 
-export const formErrorsSelector = createSelector(
-  getFormErrors,
-  formErrors => ({
-    formErrors,
-    formIsValid: formErrors.every(s => s.isValid),
+const getFormStatus = (state) => {
+  const formSections = nestedFormSectionsSelector(state)
+  const formSectionStatuses = getFormSectionStatuses(formSections, '', state)
+  return formSectionStatuses
+}
+
+export const formStatusSelector = createSelector(
+  getFormStatus,
+  formSections => ({
+    formSections,
+    formIsValid: formSections.every(s => s.isValid),
   })
 )
