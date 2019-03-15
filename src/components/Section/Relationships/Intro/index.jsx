@@ -1,17 +1,17 @@
 import React from 'react'
+
 import i18n from 'util/i18n'
-import { Field } from 'components/Form'
+
+import { RELATIONSHIPS } from 'config/formSections/relationships'
+
+import SectionIntro from 'components/Section/shared/SectionIntro'
 
 const Intro = () => (
-  <div>
-    <h1 className="section-header">{i18n.t('relationships.intro.title')}</h1>
-    <Field
-      optional
-      className="no-margin-bottom"
-    >
-      {i18n.m('relationships.intro.body')}
-    </Field>
-  </div>
+  <SectionIntro
+    title={i18n.t('relationships.intro.title')}
+    body={i18n.m('relationships.intro.body')}
+    sectionKey={RELATIONSHIPS.key}
+  />
 )
 
 export default Intro

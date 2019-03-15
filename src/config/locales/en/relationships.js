@@ -2,7 +2,7 @@
 
 export const relationships = {
   intro: {
-    title: 'Section 3: Relationships',
+    title: 'Relationships',
     body:
       'You will be asked questions about your personal relationships and be asked to provide details if necessary.',
   },

@@ -34,10 +34,6 @@ export class Cohabitants extends Subsection {
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
-
-    this.update = this.update.bind(this)
-    this.updateHasCohabitant = this.updateHasCohabitant.bind(this)
-    this.updateCohabitantList = this.updateCohabitantList.bind(this)
   }
 
   update = (queue) => {
