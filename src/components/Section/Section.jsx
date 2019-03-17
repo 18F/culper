@@ -25,7 +25,8 @@ const storeToComponentMap = {
   History,
   Legal,
   Psychological,
-  SubstanceUse,
+  // TODO: Redux, backend, XML, etc. all has Substance named as such instead of SubstanceUse
+  Substance: SubstanceUse,
   Package,
 }
 
