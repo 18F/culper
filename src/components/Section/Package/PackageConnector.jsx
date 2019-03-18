@@ -6,7 +6,9 @@ import { updateApplication } from 'actions/ApplicationActions'
 const connectPackageSection = (Component) => {
   const mapStateToProps = (state) => {
     const { application } = state
-    const { Identification, History, Submission } = application
+    const {
+      Settings, Identification, History, Submission,
+    } = application
 
     return {
       ...formStatusSelector(state),
@@ -14,6 +16,7 @@ const connectPackageSection = (Component) => {
       Identification,
       History,
       Submission,
+      Settings,
     }
   }
 

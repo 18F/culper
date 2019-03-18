@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import queryString from 'query-string'
 
 import i18n from 'util/i18n'
+import { env } from 'config'
 
 import FormStatus from '../FormStatus'
 import connectPackageSection from '../PackageConnector'
@@ -22,11 +24,20 @@ class PackageReview extends React.Component {
   }
 
   onTransitionEnd = () => {
-    const { history, formIsValid } = this.props
+    const { history, location, formIsValid } = this.props
 
-    console.log('validate form', formIsValid)
+    let forceValid = false
+    const { search } = location
+    if (search) {
+      const params = queryString.parse(search)
+      if (params.force === 'true' && env.isDevelopment()) {
+        forceValid = true
+      }
+    }
 
-    if (formIsValid) {
+    console.log('validate form', formIsValid, forceValid)
+
+    if (formIsValid || forceValid) {
       history.push('/form/package/submit')
     } else {
       history.push('/form/package/errors')
@@ -51,6 +62,7 @@ class PackageReview extends React.Component {
 
 PackageReview.propTypes = {
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
   formIsValid: PropTypes.bool,
 }
 

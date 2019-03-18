@@ -86,7 +86,7 @@ History.defaultProps = {
 export default connect(mapStateToProps)(History)
 
 export const HistorySections = connect(mapStateToProps)((props) => {
-  const { formType, onError, Education } = props
+  const { formType, onError, Education = { HasAttended: {}, HasDegree10: {} } } = props
 
   const formTypeConfig = formType && formConfig[formType]
   const residenceYears = formTypeConfig && formTypeConfig.HISTORY_RESIDENCE_YEARS
