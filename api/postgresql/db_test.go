@@ -420,8 +420,8 @@ func TestApplication(t *testing.T) {
 	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
 	service.Configure()
 
-	js := api.Application(service, account, false)
-	if len(js) == 0 {
+	_, err := api.Application(service, account, false)
+	if err != nil {
 		t.Fatal("Failed to get application state")
 	}
 }

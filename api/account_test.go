@@ -34,7 +34,6 @@ func TestBasicAuthentication(t *testing.T) {
 }
 
 func TestValidFormType(t *testing.T) {
-	fmt.Println("Let's Test")
 
 	account := &Account{
 		Username:  "glarbal@example.com",

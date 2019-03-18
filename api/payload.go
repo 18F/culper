@@ -2,7 +2,7 @@ package api
 
 import (
 	"encoding/json"
-	"errors"
+	"github.com/pkg/errors"
 )
 
 // Payload is a basic structure to encapsulate a generic structure.
@@ -32,7 +32,16 @@ func (payload Payload) Entity() (Entity, error) {
 		return nil, errors.New("Empty payload")
 	}
 
-	entity, _ := transform[payload.Type]()
+	entityfunc, ok := transform[payload.Type]
+	if !ok {
+		if payload.Type == "metadata" {
+			return nil, errors.New("Cannot create entity from metadata section")
+		} else {
+			return nil, errors.New("Could not determine a suitable type")
+		}
+	}
+
+	entity, _ := entityfunc()
 	if entity == nil {
 		return nil, errors.New("Could not determine a suitable type")
 	}

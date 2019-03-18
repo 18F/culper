@@ -35,6 +35,7 @@ const (
 	CookieDomainNotSet                         = "Cookie Domain is not set"
 	EntityError                                = "Error getting entity data"
 	EntitySaveError                            = "Error getting entity data"
+	FormDecodingError                          = "Error serializing form"
 	InvalidJWT                                 = "Invalid JSON web token"
 	JWTError                                   = "Failed to generate JSON web token"
 	JWTSecretNotSet                            = "JSON web token secret is not set"

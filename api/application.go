@@ -522,7 +522,7 @@ func FormStatus(context DatabaseService, account int, locked bool) []byte {
 }
 
 // Application returns the application state in JSON format.
-func Application(context DatabaseService, account int, hashable bool) []byte {
+func Application(context DatabaseService, account int, hashable bool) ([]byte, error) {
 	application := make(map[string]map[string]Payload)
 
 	for _, section := range catalogue {
@@ -552,13 +552,35 @@ func Application(context DatabaseService, account int, hashable bool) []byte {
 		application[section.Name][section.Subsection] = entity.Marshal()
 	}
 
-	js, _ := json.Marshal(application)
-	return js
+	// set the metadata for the form
+	metadata, err := GetFormMetadata(context, account)
+	if err != nil {
+		fmt.Println("Wow this is an error we are just ignoooring. ")
+		return []byte{}, err
+	}
+
+	// Since `application` is typed to have a Payload as the map value and we
+	// want to have a simpler metatadata section, we have to copy to a less-typed
+	// map and then add the metadata.
+	unsafe_application := make(map[string]interface{})
+	for k := range application {
+		unsafe_application[k] = application[k]
+	}
+	unsafe_application["Metadata"] = metadata
+
+	js, err := json.Marshal(unsafe_application)
+	if err != nil {
+		return []byte{}, err
+	}
+	return js, nil
 }
 
 // Package an application for transmitting to cold storage
 func Package(context DatabaseService, xml XMLService, account int, hashable bool) (template.HTML, error) {
-	jsonBytes := Application(context, account, hashable)
+	jsonBytes, err := Application(context, account, hashable)
+	if err != nil {
+		return template.HTML(""), err
+	}
 	var js map[string]interface{}
 	if err := json.Unmarshal(jsonBytes, &js); err != nil {
 		return template.HTML(""), err
@@ -568,7 +590,10 @@ func Package(context DatabaseService, xml XMLService, account int, hashable bool
 
 // ApplicationData returns the entire application in a JSON structure.
 func ApplicationData(context DatabaseService, account int, hashable bool) (map[string]interface{}, error) {
-	jsonBytes := Application(context, account, hashable)
+	jsonBytes, err := Application(context, account, hashable)
+	if err != nil {
+		return nil, err
+	}
 	var js map[string]interface{}
 	if err := json.Unmarshal(jsonBytes, &js); err != nil {
 		return nil, err
@@ -596,7 +621,11 @@ func PurgeAccountStorage(context DatabaseService, account int) {
 
 // Hash returns the SHA256 hash of the application state in hexadecimal
 func Hash(context DatabaseService, account int) string {
-	hash := sha256.Sum256(Application(context, account, true))
+	jsonBytes, err := Application(context, account, true)
+	if err != nil {
+		return ""
+	}
+	hash := sha256.Sum256(jsonBytes)
 	return hex.EncodeToString(hash[:])
 }
 
