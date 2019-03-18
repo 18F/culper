@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import axios from 'axios'
 
 import i18n from 'util/i18n'
 
+import { api } from 'services'
+
+import schema from 'schema'
 import { SignatureValidator } from 'validators'
 import { formIsSigned, hideHippa } from 'validators/releases'
 
@@ -36,8 +40,42 @@ class PackageSubmit extends React.Component {
 
   handleSubmit = () => {
     if (window.confirm('Are you sure you want to submit this application?')) {
-      console.log('SUBMIT APPLICATION')
-      // TODO this.props.onSubmit()
+      const { Submission = {}, updateApplication, history } = this.props
+      const data = { ...Submission.Releases }
+      const payload = schema('package.submit', data, false)
+
+      this.setState({
+        isSubmitting: true,
+      })
+
+      // Make API call
+      axios
+        .all([api.save(payload)])
+        .then(() => api.submit())
+        .then(() => api.status())
+        .then((response = {}) => {
+          const statusData = (response).data || {
+            Locked: false,
+            Hash: false,
+          }
+
+          updateApplication('Settings', 'locked', statusData.Locked)
+          updateApplication('Settings', 'hash', statusData.Hash)
+
+          history.push('/form/package/print')
+
+          updateApplication('Submission', 'Releases', Submission.Releases)
+        })
+        .catch(() => {
+          console.warn('Failed to form package')
+
+          this.setState({
+            isSubmitting: false,
+            submissionError: true,
+          })
+
+          updateApplication('Submission', 'Releases', data)
+        })
     }
   }
 
