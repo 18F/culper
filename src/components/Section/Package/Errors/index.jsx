@@ -30,7 +30,7 @@ const PackageErrors = ({ formSections }) => {
       <div className="invalid-form">
         {i18n.m('application.invalidForm')}
         {invalidSections.map(s => (
-          <InvalidSection key={`package-review-errors-${s.key}`} />
+          <InvalidSection key={`package-review-errors-${s.key}`} section={s} />
         ))}
       </div>
     </div>
