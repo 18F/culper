@@ -1356,5 +1356,15 @@ export const error = {
       title: 'There is a problem with your entry',
       message: 'The date relinquished is before the date acquired.'
     }
+  },
+  indirectControl: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date sold, lost or otherwise disposed of is before the date acquired.'
+    }
   }
 }
