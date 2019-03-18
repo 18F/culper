@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+import { i18n } from 'config'
 import {
   ValidationElement,
   Branch,
@@ -14,7 +14,7 @@ import {
   NotApplicable,
   RadioGroup,
   Radio,
-  Location
+  Location,
 } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
@@ -24,17 +24,13 @@ export default class Bankruptcy extends ValidationElement {
     this.updateCourtNumber = this.updateCourtNumber.bind(this)
     this.updateDateFiled = this.updateDateFiled.bind(this)
     this.updateDateDischarged = this.updateDateDischarged.bind(this)
-    this.updateDischargeDateNotApplicable = this.updateDischargeDateNotApplicable.bind(
-      this
-    )
+    this.updateDischargeDateNotApplicable = this.updateDischargeDateNotApplicable.bind(this)
     this.updateTotalAmount = this.updateTotalAmount.bind(this)
     this.updateTotalAmountEstimated = this.updateTotalAmountEstimated.bind(this)
     this.updateNameDebt = this.updateNameDebt.bind(this)
     this.updateCourtInvolved = this.updateCourtInvolved.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
-    this.updateHasDischargeExplanation = this.updateHasDischargeExplanation.bind(
-      this
-    )
+    this.updateHasDischargeExplanation = this.updateHasDischargeExplanation.bind(this)
     this.updateDischargeExplanation = this.updateDischargeExplanation.bind(this)
     this.updateTrustee = this.updateTrustee.bind(this)
     this.updateTrusteeAddress = this.updateTrusteeAddress.bind(this)
@@ -56,92 +52,91 @@ export default class Bankruptcy extends ValidationElement {
       TrusteeAddress: this.props.TrusteeAddress,
       HasDischargeExplanation: this.props.HasDischargeExplanation,
       DischargeExplanation: this.props.DischargeExplanation,
-      ...queue
+      ...queue,
     })
   }
 
   updatePetitionType(values) {
     this.update({
-      PetitionType: values
+      PetitionType: values,
     })
   }
 
   updateCourtNumber(values) {
     this.update({
-      CourtNumber: values
+      CourtNumber: values,
     })
   }
 
   updateDateFiled(values) {
     this.update({
-      DateFiled: values
+      DateFiled: values,
     })
   }
 
   updateDateDischarged(values) {
     this.update({
-      DateDischarged: values
+      DateDischarged: values,
     })
   }
 
   updateDischargeDateNotApplicable(values) {
-    console.log(values)
     this.update({
-      DateDischargedNotApplicable: values
+      DateDischargedNotApplicable: values,
     })
   }
 
   updateTotalAmount(values) {
     this.update({
-      TotalAmount: values
+      TotalAmount: values,
     })
   }
 
   updateTotalAmountEstimated(values) {
     this.update({
-      TotalAmountEstimated: values
+      TotalAmountEstimated: values,
     })
   }
 
   updateNameDebt(values) {
     this.update({
-      NameDebt: values
+      NameDebt: values,
     })
   }
 
   updateCourtInvolved(values) {
     this.update({
-      CourtInvolved: values
+      CourtInvolved: values,
     })
   }
 
   updateCourtAddress(values) {
     this.update({
-      CourtAddress: values
+      CourtAddress: values,
     })
   }
 
   updateHasDischargeExplanation(values) {
     this.update({
-      HasDischargeExplanation: values
+      HasDischargeExplanation: values,
     })
   }
 
   updateDischargeExplanation(values) {
     this.update({
-      DischargeExplanation: values
+      DischargeExplanation: values,
     })
   }
 
   updateTrustee(values) {
     this.update({
-      Trustee: values
+      Trustee: values,
     })
   }
 
   updateTrusteeAddress(values) {
     this.update({
-      TrusteeAddress: values
+      TrusteeAddress: values,
     })
   }
 
@@ -153,12 +148,14 @@ export default class Bankruptcy extends ValidationElement {
           titleSize="h4"
           help="financial.bankruptcy.petitionType.help"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="buttons">
+          adjustFor="buttons"
+        >
           <RadioGroup
             className="petition-chapters option-list option-list-vertical"
             selectedValue={(this.props.PetitionType || {}).value}
             required={this.props.required}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <Radio
               name="petition_type"
               label={i18n.t('financial.bankruptcy.petitionType.label.chapter7')}
@@ -169,9 +166,7 @@ export default class Bankruptcy extends ValidationElement {
             />
             <Radio
               name="petition_type"
-              label={i18n.t(
-                'financial.bankruptcy.petitionType.label.chapter11'
-              )}
+              label={i18n.t('financial.bankruptcy.petitionType.label.chapter11')}
               value="Chapter11"
               disabled={this.props.disabled}
               onUpdate={this.updatePetitionType}
@@ -179,9 +174,7 @@ export default class Bankruptcy extends ValidationElement {
             />
             <Radio
               name="petition_type"
-              label={i18n.t(
-                'financial.bankruptcy.petitionType.label.chapter12'
-              )}
+              label={i18n.t('financial.bankruptcy.petitionType.label.chapter12')}
               value="Chapter12"
               disabled={this.props.disabled}
               onUpdate={this.updatePetitionType}
@@ -189,9 +182,7 @@ export default class Bankruptcy extends ValidationElement {
             />
             <Radio
               name="petition_type"
-              label={i18n.t(
-                'financial.bankruptcy.petitionType.label.chapter13'
-              )}
+              label={i18n.t('financial.bankruptcy.petitionType.label.chapter13')}
               value="Chapter13"
               disabled={this.props.disabled}
               onUpdate={this.updatePetitionType}
@@ -202,7 +193,8 @@ export default class Bankruptcy extends ValidationElement {
 
         <Field
           title={i18n.t('financial.bankruptcy.heading.courtNumber')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="CourtNumber"
             onUpdate={this.updateCourtNumber}
@@ -217,45 +209,49 @@ export default class Bankruptcy extends ValidationElement {
         <Field
           title={i18n.t('financial.bankruptcy.heading.dateFiled')}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
+          adjustFor="labels"
+        >
           <DateControl
             name="DateFiled"
             onUpdate={this.updateDateFiled}
-            minDateEqualTo={true}
+            minDateEqualTo
             onError={this.props.onError}
             {...this.props.DateFiled}
             className="datefiled"
             required={this.props.required}
-            hideDay={true}
+            hideDay
           />
         </Field>
 
         <Field
           title={i18n.t('financial.bankruptcy.heading.dateDischarged')}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="label">
+          adjustFor="label"
+        >
           <NotApplicable
             name="DateDischargedNotApplicable"
             {...this.props.DateDischargedNotApplicable}
             onError={this.props.onError}
-            onUpdate={this.updateDischargeDateNotApplicable}>
+            onUpdate={this.updateDischargeDateNotApplicable}
+          >
             <DateControl
               name="DateDischarged"
               className="datedischarged"
               onUpdate={this.updateDateDischarged}
               onError={this.props.onError}
               minDate={this.props.DateFiled}
-              minDateEqualTo={true}
+              minDateEqualTo
               {...this.props.DateDischarged}
               required={this.props.required}
-              hideDay={true}
+              hideDay
             />
           </NotApplicable>
         </Field>
 
         <Field
           title={i18n.t('financial.bankruptcy.heading.totalAmount')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Currency
             name="TotalAmount"
             onUpdate={this.updateTotalAmount}
@@ -283,7 +279,8 @@ export default class Bankruptcy extends ValidationElement {
           title={i18n.t('financial.bankruptcy.heading.nameDebt')}
           filterErrors={Name.requiredErrorsOnly}
           scrollIntoView={this.props.scrollIntoView}
-          optional={true}>
+          optional
+        >
           <Name
             name="NameDebt"
             className="namedebt"
@@ -297,7 +294,8 @@ export default class Bankruptcy extends ValidationElement {
 
         <Field
           title={i18n.t('financial.bankruptcy.heading.courtInvolved')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="CourtInvolved"
             {...this.props.CourtInvolved}
@@ -310,16 +308,17 @@ export default class Bankruptcy extends ValidationElement {
 
         <Field
           title={i18n.t('financial.bankruptcy.heading.courtAddress')}
-          optional={true}
+          optional
           help="financial.bankruptcy.courtAddress.help"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="address">
+          adjustFor="address"
+        >
           <Location
             name="CourtAddress"
             label={i18n.t('financial.bankruptcy.courtAddress.label')}
             {...this.props.CourtAddress}
             layout={Location.ADDRESS}
-            geocode={true}
+            geocode
             dispatch={this.props.dispatch}
             addressBooks={this.props.addressBooks}
             addressBook="Court"
@@ -333,7 +332,8 @@ export default class Bankruptcy extends ValidationElement {
           <div className="chapter13">
             <Field
               title={i18n.t('financial.bankruptcy.trustee.title')}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="chapter13Trustee"
                 className="trustee"
@@ -346,17 +346,18 @@ export default class Bankruptcy extends ValidationElement {
 
             <Field
               title={i18n.t('financial.bankruptcy.trustee.address.title')}
-              optional={true}
+              optional
               help="financial.bankruptcy.trustee.address.help"
               scrollIntoView={this.props.scrollIntoView}
-              adjustFor="address">
+              adjustFor="address"
+            >
               <Location
                 name="trusteeAddress"
                 className="trustee-address"
                 {...this.props.TrusteeAddress}
                 label={i18n.t('financial.bankruptcy.trustee.address.label')}
                 layout={Location.ADDRESS}
-                geocode={true}
+                geocode
                 dispatch={this.props.dispatch}
                 addressBooks={this.props.addressBooks}
                 addressBook="Court"
@@ -385,7 +386,8 @@ export default class Bankruptcy extends ValidationElement {
             title={i18n.t('financial.bankruptcy.label.dischargeExplanation')}
             titleSize="label"
             adjustFor="textarea"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="DischargeExplanation"
               {...this.props.DischargeExplanation}
@@ -404,9 +406,7 @@ export default class Bankruptcy extends ValidationElement {
 Bankruptcy.defaultProps = {
   DischargeDateNotApplicable: { applicable: true },
   addressBooks: {},
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }
