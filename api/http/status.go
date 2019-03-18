@@ -30,5 +30,5 @@ func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, string(api.Metadata(service.Database, account.ID, account.Locked)))
+	fmt.Fprint(w, string(api.FormStatus(service.Database, account.ID, account.Locked)))
 }

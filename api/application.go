@@ -504,16 +504,16 @@ var (
 	}
 )
 
-// FormMetadata represents extra information associated with the application
+// FormStatusInfo represents extra information associated with the application
 // regarding its current state.
-type FormMetadata struct {
+type FormStatusInfo struct {
 	Locked bool
 	Hash   string
 }
 
 // Metadata returns the application metadata.
-func Metadata(context DatabaseService, account int, locked bool) []byte {
-	meta := &FormMetadata{
+func FormStatus(context DatabaseService, account int, locked bool) []byte {
+	meta := &FormStatusInfo{
 		Locked: locked,
 		Hash:   Hash(context, account),
 	}
