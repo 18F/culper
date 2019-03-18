@@ -85,8 +85,9 @@ export default class Bankruptcy extends ValidationElement {
   }
 
   updateDischargeDateNotApplicable(values) {
+    console.log(values)
     this.update({
-      DischargeDateNotApplicable: values
+      DateDischargedNotApplicable: values
     })
   }
 
@@ -234,8 +235,8 @@ export default class Bankruptcy extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}
           adjustFor="label">
           <NotApplicable
-            name="DischargeDateNotApplicable"
-            {...this.props.DischargeDateNotApplicable}
+            name="DateDischargedNotApplicable"
+            {...this.props.DateDischargedNotApplicable}
             onError={this.props.onError}
             onUpdate={this.updateDischargeDateNotApplicable}>
             <DateControl
