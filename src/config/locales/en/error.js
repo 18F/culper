@@ -1386,5 +1386,15 @@ export const error = {
       title: 'There is a problem with your entry',
       message: 'The date the issue was resolved is before the date the issue began.'
     }
+  },
+  drugPurchase: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date of most involvement is before the date of first involvement.'
+    }
   }
 }
