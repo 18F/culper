@@ -1376,5 +1376,15 @@ export const error = {
       title: 'There is a problem with your entry',
       message: 'The date of discharge of is before the date filed.'
     }
+  },
+  delinquent: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date the issue was resolved is before the date the issue began.'
+    }
   }
 }

@@ -281,6 +281,7 @@ export default class DelinquentItem extends ValidationElement {
             <DateControl
               name="Resolved"
               {...this.props.Resolved}
+              prefix="delinquent"
               onUpdate={this.updateResolved}
               onError={this.props.onError}
               minDate={this.props.Date}
