@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Marital } from '../RelationshipStatus/Marital'
-import { Cohabitants } from '../RelationshipStatus/Cohabitants'
+import ConnectedMarital from '../RelationshipStatus/Marital'
+import ConnectedCohabitants from '../RelationshipStatus/Cohabitants'
 import People from '../People'
 import Relatives from '../Relatives'
 
@@ -20,9 +20,9 @@ const Review = ({ forPrint = false }) => {
 
   return (
     <div>
-      <Marital {...subsectionProps} />
+      <ConnectedMarital {...subsectionProps} />
       {sectionDivider}
-      <Cohabitants {...subsectionProps} />
+      <ConnectedCohabitants {...subsectionProps} />
       {sectionDivider}
       <People {...subsectionProps} />
       {sectionDivider}
