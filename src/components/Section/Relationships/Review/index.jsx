@@ -10,7 +10,6 @@ const Review = ({ forPrint = false }) => {
     required: true,
     scrollIntoView: false,
     scrollToBottom: '',
-    defaultState: !forPrint,
     forPrint,
   }
 

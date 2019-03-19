@@ -97,7 +97,6 @@ export const HistorySections = connect(mapStateToProps)((props) => {
   return (
     <div className="history">
       <ConnectedResidence
-        defaultState={false}
         realtime
         overrideInitial
         onError={onError}
@@ -107,7 +106,6 @@ export const HistorySections = connect(mapStateToProps)((props) => {
       />
 
       <ConnectedEmployment
-        defaultState={false}
         realtime
         overrideInitial
         onError={onError}
@@ -138,7 +136,6 @@ export const HistorySections = connect(mapStateToProps)((props) => {
         }
       >
         <ConnectedEducation
-          defaultState={false}
           realtime
           overrideInitial
           onError={onError}
@@ -150,7 +147,6 @@ export const HistorySections = connect(mapStateToProps)((props) => {
 
       <hr className="section-divider" />
       <ConnectedFederal
-        defaultState={false}
         onError={onError}
         scrollIntoView={false}
       />
