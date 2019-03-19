@@ -1,7 +1,6 @@
 package api
 
-// GetFormMetadata returns the metadata
-
+// GetFormMetadata returns the metadata for the form
 func GetFormMetadata(context DatabaseService, accountID int) (map[string]string, error) {
 	account := Account{
 		ID: accountID,

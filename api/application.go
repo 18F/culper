@@ -511,7 +511,7 @@ type FormStatusInfo struct {
 	Hash   string
 }
 
-// Metadata returns the application metadata.
+// FormStatus returns the application metadata.
 func FormStatus(context DatabaseService, account int, locked bool) []byte {
 	meta := &FormStatusInfo{
 		Locked: locked,
@@ -562,13 +562,13 @@ func Application(context DatabaseService, account int, hashable bool) ([]byte, e
 	// Since `application` is typed to have a Payload as the map value and we
 	// want to have a simpler metatadata section, we have to copy to a less-typed
 	// map and then add the metadata.
-	unsafe_application := make(map[string]interface{})
+	unsafeApplication := make(map[string]interface{})
 	for k := range application {
-		unsafe_application[k] = application[k]
+		unsafeApplication[k] = application[k]
 	}
-	unsafe_application["Metadata"] = metadata
+	unsafeApplication["Metadata"] = metadata
 
-	js, err := json.Marshal(unsafe_application)
+	js, err := json.Marshal(unsafeApplication)
 	if err != nil {
 		return []byte{}, err
 	}

@@ -36,9 +36,8 @@ func (payload Payload) Entity() (Entity, error) {
 	if !ok {
 		if payload.Type == "metadata" {
 			return nil, errors.New("Cannot create entity from metadata section")
-		} else {
-			return nil, errors.New("Could not determine a suitable type")
 		}
+		return nil, errors.New("Could not determine a suitable type")
 	}
 
 	entity, _ := entityfunc()
