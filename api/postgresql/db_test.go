@@ -412,29 +412,3 @@ func TestPayloadPersistence(t *testing.T) {
 		}
 	}
 }
-
-func TestApplication(t *testing.T) {
-	account := 1
-	settings := mock.Native{}
-	settings.Configure()
-	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
-	service.Configure()
-
-	_, err := api.Application(service, account, false)
-	if err != nil {
-		t.Fatal("Failed to get application state", err)
-	}
-}
-
-func TestHash(t *testing.T) {
-	account := 1
-	settings := mock.Native{}
-	settings.Configure()
-	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
-	service.Configure()
-
-	sig := api.Hash(service, account)
-	if len(sig) == 0 {
-		t.Fatal("Failed to get application data hash")
-	}
-}
