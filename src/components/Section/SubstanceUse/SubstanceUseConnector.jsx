@@ -72,8 +72,8 @@ const connectSubstanceUseSection = (Component, {
         return { ...substance.OrderedTreatments, addressBooks } || {}
       case 'VoluntaryTreatments':
         return { ...substance.VoluntaryTreatments, addressBooks } || {}
-      case 'NegativeImpact':
-        return { ...substance.NegativeImpact } || {}
+      case 'NegativeImpacts':
+        return { ...substance.NegativeImpacts } || {}
       case 'OrderedCounselings':
         return { ...substance.OrderedCounselings, addressBooks } || {}
       case 'VoluntaryCounselings':
