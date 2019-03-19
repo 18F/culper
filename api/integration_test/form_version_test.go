@@ -11,6 +11,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/http"
+	"github.com/18F/e-QIP-prototype/api/log"
 	"github.com/18F/e-QIP-prototype/api/mock"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 )
@@ -27,7 +28,7 @@ func cleanTestServices() serviceSet {
 	os.Setenv(api.LogLevel, "info")
 	env.Configure()
 
-	log := &mock.LogService{}
+	log := &log.Service{Log: log.NewLogger()}
 
 	db := &postgresql.Service{
 		Log: log,
@@ -55,7 +56,7 @@ func TestFormVersionReturned(t *testing.T) {
 		SFVersion: "2016-11",
 	}
 
-	err := account.Find(services.db)
+	_, err := account.Get(services.db, -1)
 	if err != nil {
 		if err.Error() == "pg: no rows in result set" {
 			_, err := account.Save(services.db, -1)
@@ -66,8 +67,6 @@ func TestFormVersionReturned(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-
-	fmt.Println("Account ID", account.ID)
 
 	// create request/response
 	r := httptest.NewRequest("GET", "/me/form", nil)
@@ -133,7 +132,7 @@ func TestFormVersionSave(t *testing.T) {
 		SFVersion: "2016-11",
 	}
 
-	err := account.Find(services.db)
+	_, err := account.Get(services.db, -1)
 	if err != nil {
 		if err.Error() == "pg: no rows in result set" {
 			_, err := account.Save(services.db, -1)
