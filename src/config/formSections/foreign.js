@@ -19,14 +19,6 @@ export const FOREIGN_INTRO = {
   label: i18n.t('foreign.subsection.intro'),
 }
 
-export const FOREIGN_PASSPORT = {
-  key: sections.FOREIGN_PASSPORT,
-  name: 'passport',
-  path: 'passport',
-  storeKey: 'Passport',
-  label: i18n.t('foreign.subsection.passport'),
-}
-
 export const FOREIGN_CONTACTS = {
   key: sections.FOREIGN_CONTACTS,
   name: 'contacts',
@@ -179,7 +171,6 @@ export const FOREIGN_REVIEW = {
 export default {
   FOREIGN,
   FOREIGN_INTRO,
-  FOREIGN_PASSPORT,
   FOREIGN_CONTACTS,
   FOREIGN_ACTIVITIES,
   FOREIGN_ACTIVITIES_DIRECT,

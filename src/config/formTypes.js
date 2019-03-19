@@ -29,6 +29,7 @@ export const SF85 = [
     ...formSections.CITIZENSHIP,
     subsections: [
       formSections.CITIZENSHIP_INTRO,
+      formSections.CITIZENSHIP_US_PASSPORT,
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_REVIEW,
@@ -49,7 +50,6 @@ export const SF85 = [
     ...formSections.FOREIGN,
     subsections: [
       formSections.FOREIGN_INTRO,
-      formSections.FOREIGN_PASSPORT,
       formSections.FOREIGN_REVIEW,
     ],
   },
@@ -171,6 +171,7 @@ export const SF85P = [
     ...formSections.CITIZENSHIP,
     subsections: [
       formSections.CITIZENSHIP_INTRO,
+      formSections.CITIZENSHIP_US_PASSPORT,
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_PASSPORTS,
@@ -191,7 +192,6 @@ export const SF85P = [
     ...formSections.FOREIGN,
     subsections: [
       formSections.FOREIGN_INTRO,
-      formSections.FOREIGN_PASSPORT,
       formSections.FOREIGN_TRAVEL,
       formSections.FOREIGN_REVIEW,
     ],
@@ -331,6 +331,7 @@ export const SF86 = [
     ...formSections.CITIZENSHIP,
     subsections: [
       formSections.CITIZENSHIP_INTRO,
+      formSections.CITIZENSHIP_US_PASSPORT,
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_PASSPORTS,
@@ -352,7 +353,6 @@ export const SF86 = [
     ...formSections.FOREIGN,
     subsections: [
       formSections.FOREIGN_INTRO,
-      formSections.FOREIGN_PASSPORT,
       formSections.FOREIGN_CONTACTS,
       {
         ...formSections.FOREIGN_ACTIVITIES,

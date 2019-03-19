@@ -16,6 +16,14 @@ export const CITIZENSHIP_INTRO = {
   label: i18n.t('citizenship.subsection.intro'),
 }
 
+export const CITIZENSHIP_US_PASSPORT = {
+  key: sections.CITIZENSHIP_US_PASSPORT,
+  name: 'usPassport',
+  path: 'passport',
+  storeKey: 'UsPassport',
+  label: i18n.t('citizenship.subsection.usPassport'),
+}
+
 export const CITIZENSHIP_STATUS = {
   key: sections.CITIZENSHIP_STATUS,
   name: 'status',
