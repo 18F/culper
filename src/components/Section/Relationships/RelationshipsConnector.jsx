@@ -64,7 +64,7 @@ const connectRelationshipsSection = (Component, {
           ...Relationships && Relationships.Marital,
           addressBooks: AddressBooks,
           applicantBirthdate,
-          currentAddress: History.CurrentAddress,
+          currentAddress: History && History.CurrentAddress,
         }
 
       case 'Cohabitants':
