@@ -6,7 +6,6 @@ import { i18n } from 'config'
 import * as formTypes from 'config/formTypes'
 import { ErrorList } from 'components/ErrorList'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
-import Passport from 'components/Section/Foreign/Passport'
 import Contacts from 'components/Section/Foreign/Contacts'
 import Travel from 'components/Section/Foreign/Travel'
 import {
@@ -34,7 +33,6 @@ import Intro from './Intro'
 const Foreign = ({ subsection, location, formType }) => {
   const subsectionLibrary = {
     intro: Intro,
-    passport: Passport,
     contacts: Contacts,
     'activities/direct': DirectActivity,
     'activities/indirect': IndirectActivity,
