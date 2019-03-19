@@ -5087,6 +5087,9 @@ exports[`The print section renders properly 1`] = `
             </div>
           </div>
         </div>
+        <hr
+          className="section-divider"
+        />
         <div
           className="section-content people"
           data-section="relationships"
@@ -6370,6 +6373,9 @@ exports[`The print section renders properly 1`] = `
             </div>
           </div>
         </div>
+        <hr
+          className="section-divider"
+        />
         <div
           className="section-content foreign"
           data-section="military"

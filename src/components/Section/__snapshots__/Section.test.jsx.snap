@@ -24309,6 +24309,9 @@ exports[`The section component renders military.review 1`] = `
           </div>
         </div>
       </div>
+      <hr
+        className="section-divider"
+      />
       <div
         className="section-content foreign"
         data-section="military"
@@ -26176,156 +26179,144 @@ exports[`The section component renders relationships.intro 1`] = `
     className="section-view"
   >
     <div
-      className="view view-relationships"
+      className="view view-intro"
     >
       <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+        <h1
+          className="section-header"
+        >
+          Section 3: Relationships
+        </h1>
+        <div
+          aria-label=""
+          className="field no-margin-bottom"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            />
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
             >
-              <div
-                className="view view-intro"
+              <span
+                className="component"
               >
                 <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Section 3: Relationships
-                  </h1>
-                  <div
-                    aria-label=""
-                    className="field no-margin-bottom"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div>
-                            <p>
-                              You will be asked questions about your personal relationships and be asked to provide details if necessary.
-                            </p>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
+                  <p>
+                    You will be asked questions about your personal relationships and be asked to provide details if necessary.
+                  </p>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="bottom-btns"
+      >
+        <div
+          className="btn-wrap"
+        >
+          <div
+            className="btn-container"
+          >
+            <a
+              aria-label="Go to previous section Review your history"
+              className="btn-cell back"
+              href="/form/history/review"
+              onClick={[Function]}
+              title="Go to previous section Review your history"
+            >
+              <div
+                className="actions back"
+              >
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-left"
+                  />
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="text"
                 >
                   <div
-                    className="btn-wrap"
+                    className="direction"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Review your history"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Review your history"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review your history
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Marital status"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Marital status"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Marital status
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
+                    Back
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    Review your history
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
+            <div
+              className="btn-spacer"
+            />
+            <a
+              aria-label="Go to next section Marital status"
+              className="btn-cell next"
+              href="/form/relationships/status/marital"
+              onClick={[Function]}
+              title="Go to next section Marital status"
+            >
+              <div
+                className="actions next"
+              >
+                <div
+                  className="text"
+                >
+                  <div
+                    className="direction"
+                  >
+                    Next
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    Marital status
+                  </div>
+                </div>
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-right"
+                  />
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -26340,342 +26331,328 @@ exports[`The section component renders relationships.people 1`] = `
     className="section-view"
   >
     <div
-      className="view view-relationships"
+      className="view view-people"
     >
-      <div>
+      <div
+        className="section-content people"
+        data-section="relationships"
+        data-subsection="people"
+      >
+        <h1
+          className="section-header"
+        >
+          People who know you well
+        </h1>
         <div>
-          <div>
+          <h3>
+            Provide three people who know you well and who preferably live in the U.S.
+          </h3>
+          <p>
+            They should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you 
+            <strong>
+              covers at least the last seven (7) years.
+            </strong>
+          </p>
+          <p>
+            <strong>
+              Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.
+            </strong>
+          </p>
+        </div>
+        <span
+          id="scrollToPeople"
+        />
+        <div
+          className="summary-progress"
+        >
+          <div
+            className="summaryprogress progress"
+          >
             <div
-              className="section-view"
+              className="summary-progress people-summary"
             >
               <div
-                className="view view-people"
+                className="content"
               >
                 <div>
-                  <h1
-                    className="section-header"
-                  >
-                    People who know you well
-                  </h1>
                   <div
-                    className="section-content people"
-                    data-section="relationships"
-                    data-subsection="people"
+                    className="summary-icon"
                   >
-                    <div>
-                      <h3>
-                        Provide three people who know you well and who preferably live in the U.S.
-                      </h3>
-                      <p>
-                        They should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you 
-                        <strong>
-                          covers at least the last seven (7) years.
-                        </strong>
-                      </p>
-                      <p>
-                        <strong>
-                          Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.
-                        </strong>
-                      </p>
-                    </div>
-                    <span
-                      id="scrollToPeople"
+                    <img
+                      alt="People who know you well 7 year coverage"
+                      className="svg"
+                      src="/img/people-who-know-you.svg"
                     />
-                    <div
-                      className="summary-progress"
-                    >
-                      <div
-                        className="summaryprogress progress"
-                      >
-                        <div
-                          className="summary-progress people-summary"
-                        >
-                          <div
-                            className="content"
-                          >
-                            <div>
-                              <div
-                                className="summary-icon"
-                              >
-                                <img
-                                  alt="People who know you well 7 year coverage"
-                                  className="svg"
-                                  src="/img/people-who-know-you.svg"
-                                />
-                              </div>
-                              <span
-                                className="title"
-                              >
-                                People who know you well 7 year coverage
-                              </span>
-                            </div>
-                            <div
-                              className="progress"
-                            />
-                          </div>
-                          <div
-                            className="stats"
-                          >
-                            <div
-                              className="fraction"
-                            >
-                              <span
-                                className="completed"
-                              >
-                                0
-                              </span>
-                              <span
-                                className="slash"
-                              >
-                                /
-                              </span>
-                              <span
-                                className="total"
-                              >
-                                7
-                              </span>
-                            </div>
-                            <span
-                              className="unit"
-                            >
-                              Years covered
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="summaryprogress counter"
-                      >
-                        <div
-                          className="people-counter"
-                        >
-                          <div
-                            className="count"
-                          >
-                            0
-                            /
-                            3
-                          </div>
-                          <div
-                            className="unit"
-                          >
-                            People added
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        className="accordion"
-                      >
-                        <strong
-                          className="aria-description"
-                        >
-                          Summary of people who know you
-                        </strong>
-                        <div
-                          className="items"
-                        />
-                        <div
-                          className="append-button"
-                        />
-                      </div>
-                      <div
-                        aria-label="Do you have an additional person who knows you well to list?"
-                        className="field required branch addendum"
-                        data-uuid="field-MOCK-GUID"
-                      >
-                        <a
-                          aria-hidden="true"
-                          className="anchor"
-                          id="field-MOCK-GUID"
-                          name="field-MOCK-GUID"
-                        />
-                        <h4
-                          className="title h4"
-                        >
-                          Do you have an additional person who knows you well to list?
-                        </h4>
-                        <span
-                          className="icon"
-                        />
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages help-messages"
-                          />
-                        </div>
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          />
-                        </div>
-                        <div
-                          className="table"
-                        >
-                          <span
-                            className="content"
-                          >
-                            <span
-                              className="component shrink"
-                            >
-                              <div
-                                className="content"
-                              />
-                              <div
-                                className="blocks option-list branch"
-                              >
-                                <div
-                                  className="yes block"
-                                >
-                                  <input
-                                    aria-label="Yes for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="radio_input-MOCK-GUID"
-                                    name="radio_input-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="Yes"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="radio_input-MOCK-GUID"
-                                  >
-                                    <span>
-                                      Yes
-                                    </span>
-                                  </label>
-                                </div>
-                                <div
-                                  className="no block"
-                                >
-                                  <input
-                                    aria-label="No for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="radio_input-MOCK-GUID"
-                                    name="radio_input-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="No"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="radio_input-MOCK-GUID"
-                                  >
-                                    <span>
-                                      No
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
                   </div>
+                  <span
+                    className="title"
+                  >
+                    People who know you well 7 year coverage
+                  </span>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="progress"
+                />
+              </div>
+              <div
+                className="stats"
+              >
+                <div
+                  className="fraction"
+                >
+                  <span
+                    className="completed"
+                  >
+                    0
+                  </span>
+                  <span
+                    className="slash"
+                  >
+                    /
+                  </span>
+                  <span
+                    className="total"
+                  >
+                    7
+                  </span>
+                </div>
+                <span
+                  className="unit"
+                >
+                  Years covered
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="summaryprogress counter"
+          >
+            <div
+              className="people-counter"
+            >
+              <div
+                className="count"
+              >
+                0
+                /
+                3
+              </div>
+              <div
+                className="unit"
+              >
+                People added
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            className="accordion"
+          >
+            <strong
+              className="aria-description"
+            >
+              Summary of people who know you
+            </strong>
+            <div
+              className="items"
+            />
+            <div
+              className="append-button"
+            />
+          </div>
+          <div
+            aria-label="Do you have an additional person who knows you well to list?"
+            className="field required branch addendum"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <h4
+              className="title h4"
+            >
+              Do you have an additional person who knows you well to list?
+            </h4>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component shrink"
                 >
                   <div
-                    className="btn-wrap"
+                    className="content"
+                  />
+                  <div
+                    className="blocks option-list branch"
                   >
                     <div
-                      className="btn-container"
+                      className="yes block"
                     >
-                      <button
-                        aria-label="Go to previous section Cohabitant"
-                        className="btn-cell back"
+                      <input
+                        aria-label="Yes for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="radio_input-MOCK-GUID"
+                        name="radio_input-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
                         onClick={[Function]}
-                        title="Go to previous section Cohabitant"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Cohabitant
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Yes"
                       />
-                      <button
-                        aria-label="Go to next section Relatives"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Relatives"
+                      <label
+                        className=""
+                        htmlFor="radio_input-MOCK-GUID"
                       >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Relatives
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
+                        <span>
+                          Yes
+                        </span>
+                      </label>
                     </div>
+                    <div
+                      className="no block"
+                    >
+                      <input
+                        aria-label="No for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="radio_input-MOCK-GUID"
+                        name="radio_input-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="No"
+                      />
+                      <label
+                        className=""
+                        htmlFor="radio_input-MOCK-GUID"
+                      >
+                        <span>
+                          No
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="bottom-btns"
+      >
+        <div
+          className="btn-wrap"
+        >
+          <div
+            className="btn-container"
+          >
+            <a
+              aria-label="Go to previous section Cohabitant"
+              className="btn-cell back"
+              href="/form/relationships/status/cohabitant"
+              onClick={[Function]}
+              title="Go to previous section Cohabitant"
+            >
+              <div
+                className="actions back"
+              >
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-left"
+                  />
+                </div>
+                <div
+                  className="text"
+                >
+                  <div
+                    className="direction"
+                  >
+                    Back
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    Cohabitant
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
+            <div
+              className="btn-spacer"
+            />
+            <a
+              aria-label="Go to next section Relatives"
+              className="btn-cell next"
+              href="/form/relationships/relatives"
+              onClick={[Function]}
+              title="Go to next section Relatives"
+            >
+              <div
+                className="actions next"
+              >
+                <div
+                  className="text"
+                >
+                  <div
+                    className="direction"
+                  >
+                    Next
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    Relatives
+                  </div>
+                </div>
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-right"
+                  />
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -26690,380 +26667,366 @@ exports[`The section component renders relationships.relatives 1`] = `
     className="section-view"
   >
     <div
-      className="view view-relationships"
+      className="view view-relatives"
     >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+      <div
+        className="section-content relatives"
+        data-section="relationships"
+        data-subsection="relatives"
+      >
+        <h1
+          className="section-header"
+        >
+          Relatives
+        </h1>
+        <div
+          aria-label="Add each relative applicable to you, regardless if they are living or deceased."
+          className="field no-margin-bottom"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h3
+            className="title h3"
+          >
+            Add each relative applicable to you, regardless if they are living or deceased.
+          </h3>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            />
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
             >
-              <div
-                className="view view-relatives"
+              <span
+                className="component"
               >
                 <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Relatives
-                  </h1>
-                  <div
-                    className="section-content relatives"
-                    data-section="relationships"
-                    data-subsection="relatives"
-                  >
-                    <div
-                      aria-label="Add each relative applicable to you, regardless if they are living or deceased."
-                      className="field no-margin-bottom"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h3
-                        className="title h3"
-                      >
-                        Add each relative applicable to you, regardless if they are living or deceased.
-                      </h3>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component"
-                          >
-                            <div>
-                              <p>
-                                An opportunity will be provided to list multiple relatives for each type.
-                              </p>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      aria-label=""
-                      className="field required hidden"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component"
-                          />
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      aria-label=""
-                      className="field required hidden"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component"
-                          />
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        className="accordion"
-                      >
-                        <strong
-                          className="aria-description"
-                        >
-                          Summary of relatives
-                        </strong>
-                        <div
-                          className="items"
-                        />
-                        <div
-                          className="append-button"
-                        />
-                      </div>
-                      <div
-                        aria-label="Do you have an additional relative to enter?"
-                        className="field required branch addendum"
-                        data-uuid="field-MOCK-GUID"
-                      >
-                        <a
-                          aria-hidden="true"
-                          className="anchor"
-                          id="field-MOCK-GUID"
-                          name="field-MOCK-GUID"
-                        />
-                        <h4
-                          className="title h4"
-                        >
-                          Do you have an additional relative to enter?
-                        </h4>
-                        <span
-                          className="icon"
-                        />
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages help-messages"
-                          />
-                        </div>
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          />
-                        </div>
-                        <div
-                          className="table"
-                        >
-                          <span
-                            className="content"
-                          >
-                            <span
-                              className="component shrink"
-                            >
-                              <div
-                                className="content"
-                              />
-                              <div
-                                className="blocks option-list branch"
-                              >
-                                <div
-                                  className="yes block"
-                                >
-                                  <input
-                                    aria-label="Yes for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="radio_input-MOCK-GUID"
-                                    name="radio_input-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="Yes"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="radio_input-MOCK-GUID"
-                                  >
-                                    <span>
-                                      Yes
-                                    </span>
-                                  </label>
-                                </div>
-                                <div
-                                  className="no block"
-                                >
-                                  <input
-                                    aria-label="No for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="radio_input-MOCK-GUID"
-                                    name="radio_input-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="No"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="radio_input-MOCK-GUID"
-                                  >
-                                    <span>
-                                      No
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <p>
+                    An opportunity will be provided to list multiple relatives for each type.
+                  </p>
                 </div>
-                <div
-                  className="bottom-btns"
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          aria-label=""
+          className="field required hidden"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            />
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          aria-label=""
+          className="field required hidden"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            />
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component"
+              />
+            </span>
+          </div>
+        </div>
+        <div>
+          <div
+            className="accordion"
+          >
+            <strong
+              className="aria-description"
+            >
+              Summary of relatives
+            </strong>
+            <div
+              className="items"
+            />
+            <div
+              className="append-button"
+            />
+          </div>
+          <div
+            aria-label="Do you have an additional relative to enter?"
+            className="field required branch addendum"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <h4
+              className="title h4"
+            >
+              Do you have an additional relative to enter?
+            </h4>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component shrink"
                 >
                   <div
-                    className="btn-wrap"
+                    className="content"
+                  />
+                  <div
+                    className="blocks option-list branch"
                   >
                     <div
-                      className="btn-container"
+                      className="yes block"
                     >
-                      <button
-                        aria-label="Go to previous section People who know you well"
-                        className="btn-cell back"
+                      <input
+                        aria-label="Yes for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="radio_input-MOCK-GUID"
+                        name="radio_input-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
                         onClick={[Function]}
-                        title="Go to previous section People who know you well"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              People who know you well
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Yes"
                       />
-                      <button
-                        aria-label="Go to next section Review Relationships"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Review Relationships"
+                      <label
+                        className=""
+                        htmlFor="radio_input-MOCK-GUID"
                       >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review Relationships
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
+                        <span>
+                          Yes
+                        </span>
+                      </label>
                     </div>
+                    <div
+                      className="no block"
+                    >
+                      <input
+                        aria-label="No for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="radio_input-MOCK-GUID"
+                        name="radio_input-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="No"
+                      />
+                      <label
+                        className=""
+                        htmlFor="radio_input-MOCK-GUID"
+                      >
+                        <span>
+                          No
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="bottom-btns"
+      >
+        <div
+          className="btn-wrap"
+        >
+          <div
+            className="btn-container"
+          >
+            <a
+              aria-label="Go to previous section People who know you well"
+              className="btn-cell back"
+              href="/form/relationships/people"
+              onClick={[Function]}
+              title="Go to previous section People who know you well"
+            >
+              <div
+                className="actions back"
+              >
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-left"
+                  />
+                </div>
+                <div
+                  className="text"
+                >
+                  <div
+                    className="direction"
+                  >
+                    Back
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    People who know you well
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
+            <div
+              className="btn-spacer"
+            />
+            <a
+              aria-label="Go to next section Review Relationships"
+              className="btn-cell next"
+              href="/form/relationships/review"
+              onClick={[Function]}
+              title="Go to next section Review Relationships"
+            >
+              <div
+                className="actions next"
+              >
+                <div
+                  className="text"
+                >
+                  <div
+                    className="direction"
+                  >
+                    Next
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    Review Relationships
+                  </div>
+                </div>
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-right"
+                  />
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -27077,1126 +27040,1114 @@ exports[`The section component renders relationships.review 1`] = `
   <div
     className="section-view"
   >
-    <div
-      className="view view-relationships"
+    <h1
+      className="title"
     >
+      Review your answers
+    </h1>
+    <div>
+      <p>
+        View the full section to make sure everything looks right and make changes if needed.
+      </p>
+    </div>
+    <div
+      className="view view-review"
+    >
+      <div
+        className="top-btns"
+      />
       <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+        <div
+          className="section-content marital"
+          data-section="relationships"
+          data-subsection="status/marital"
+        >
+          <h1
+            className="section-header"
+          >
+            Marital
+          </h1>
+          <div
+            aria-label="Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership."
+            className="field required"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <h4
+              className="title h4"
             >
-              <h1
-                className="title"
-              >
-                Review your answers
-              </h1>
-              <div>
-                <p>
-                  View the full section to make sure everything looks right and make changes if needed.
-                </p>
-              </div>
-              <div
-                className="view view-review"
+              Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.
+            </h4>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
               >
                 <div
-                  className="top-btns"
-                />
-                <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Marital
-                  </h1>
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
                   <div
-                    className="section-content marital"
-                    data-section="relationships"
-                    data-subsection="status/marital"
+                    className="usa-alert-body"
                   >
                     <div
-                      aria-label="Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership."
-                      className="field required"
-                      data-uuid="field-MOCK-GUID"
+                      data-i18n="error.required"
                     >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
+                      <h5
+                        className="usa-alert-heading"
                       >
-                        Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component"
-                          >
-                            <div
-                              className="blocks status-options option-list option-list-vertical usa-input-error"
-                            >
-                              <div
-                                className="status-never block"
-                              >
-                                <input
-                                  aria-label="[object Object] for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="status-MOCK-GUID-status-MOCK-GUID"
-                                  name="status-MOCK-GUID-status-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="NeverMarried"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="status-MOCK-GUID-status-MOCK-GUID"
-                                >
-                                  <span>
-                                    <div>
-                                      <p>
-                                        Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership
-                                      </p>
-                                    </div>
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="status-married block"
-                              >
-                                <input
-                                  aria-label="[object Object] for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="status-MOCK-GUID-status-MOCK-GUID"
-                                  name="status-MOCK-GUID-status-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Married"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="status-MOCK-GUID-status-MOCK-GUID"
-                                >
-                                  <span>
-                                    <div>
-                                      <p>
-                                        Currently in a civil marriage, legally recognized civil union, or legally recognized domestic partnership
-                                      </p>
-                                    </div>
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="status-separated block"
-                              >
-                                <input
-                                  aria-label="[object Object] for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="status-MOCK-GUID-status-MOCK-GUID"
-                                  name="status-MOCK-GUID-status-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Separated"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="status-MOCK-GUID-status-MOCK-GUID"
-                                >
-                                  <span>
-                                    <div>
-                                      <p>
-                                        Separated
-                                      </p>
-                                    </div>
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="status-annulled block"
-                              >
-                                <input
-                                  aria-label="[object Object] for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="status-MOCK-GUID-status-MOCK-GUID"
-                                  name="status-MOCK-GUID-status-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Annulled"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="status-MOCK-GUID-status-MOCK-GUID"
-                                >
-                                  <span>
-                                    <div>
-                                      <p>
-                                        Annulled
-                                      </p>
-                                    </div>
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="status-divorced block"
-                              >
-                                <input
-                                  aria-label="[object Object] for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="status-MOCK-GUID-status-MOCK-GUID"
-                                  name="status-MOCK-GUID-status-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Divorced"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="status-MOCK-GUID-status-MOCK-GUID"
-                                >
-                                  <span>
-                                    <div>
-                                      <p>
-                                        Divorced/dissolved
-                                      </p>
-                                    </div>
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="status-widowed block"
-                              >
-                                <input
-                                  aria-label="[object Object] for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="status-MOCK-GUID-status-MOCK-GUID"
-                                  name="status-MOCK-GUID-status-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Widowed"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="status-MOCK-GUID-status-MOCK-GUID"
-                                >
-                                  <span>
-                                    <div>
-                                      <p>
-                                        Widowed
-                                      </p>
-                                    </div>
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <h1
-                    className="section-header"
-                  >
-                    Cohabitants
-                  </h1>
-                  <div
-                    className="section-content cohabitants"
-                    data-section="relationships"
-                    data-subsection="status/cohabitant"
-                  >
-                    <div
-                      aria-label="Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
-                      className="field required branch has-cohabitant"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?
-                      </h4>
-                      <span
-                        className="icon"
-                      >
-                        <a
-                          aria-label="Show help for Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
-                          className="toggle h4 adjust-for-buttons"
-                          href="javascript:;"
-                          onClick={[Function]}
-                          title="Show help for Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
-                        >
-                          <svg
-                            alt="Scalable vector graphic"
-                            focusable="false"
-                            height="14.57px"
-                            tabIndex="-1"
-                            viewBox="0 0 14.57 14.57"
-                            width="14.57px"
-                          >
-                            <g>
-                              <path
-                                className="eapp-help-icon"
-                                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-                              />
-                            </g>
-                          </svg>
-                        </a>
-                      </span>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch usa-input-error"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="hasCohabitant-MOCK-GUID"
-                                  name="hasCohabitant-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="hasCohabitant-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="hasCohabitant-MOCK-GUID"
-                                  name="hasCohabitant-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="hasCohabitant-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <h1
-                    className="section-header"
-                  >
-                    People who know you well
-                  </h1>
-                  <div
-                    className="section-content people"
-                    data-section="relationships"
-                    data-subsection="people"
-                  >
-                    <div>
-                      <h3>
-                        Provide three people who know you well and who preferably live in the U.S.
-                      </h3>
-                      <p>
-                        They should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you 
-                        <strong>
-                          covers at least the last seven (7) years.
-                        </strong>
-                      </p>
-                      <p>
-                        <strong>
-                          Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.
-                        </strong>
-                      </p>
-                    </div>
-                    <span
-                      id="scrollToPeople"
-                    />
-                    <div
-                      className="summary-progress"
-                    >
-                      <div
-                        className="summaryprogress progress"
-                      >
-                        <div
-                          className="summary-progress people-summary"
-                        >
-                          <div
-                            className="content"
-                          >
-                            <div>
-                              <div
-                                className="summary-icon"
-                              >
-                                <img
-                                  alt="People who know you well 7 year coverage"
-                                  className="svg"
-                                  src="/img/people-who-know-you.svg"
-                                />
-                              </div>
-                              <span
-                                className="title"
-                              >
-                                People who know you well 7 year coverage
-                              </span>
-                            </div>
-                            <div
-                              className="progress"
-                            />
-                          </div>
-                          <div
-                            className="stats"
-                          >
-                            <div
-                              className="fraction"
-                            >
-                              <span
-                                className="completed"
-                              >
-                                0
-                              </span>
-                              <span
-                                className="slash"
-                              >
-                                /
-                              </span>
-                              <span
-                                className="total"
-                              >
-                                7
-                              </span>
-                            </div>
-                            <span
-                              className="unit"
-                            >
-                              Years covered
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="summaryprogress counter"
-                      >
-                        <div
-                          className="people-counter"
-                        >
-                          <div
-                            className="count"
-                          >
-                            0
-                            /
-                            3
-                          </div>
-                          <div
-                            className="unit"
-                          >
-                            People added
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        className="accordion"
-                      >
-                        <strong
-                          className="aria-description"
-                        >
-                          Summary of people who know you
-                        </strong>
-                        <div
-                          className="items"
-                        />
-                        <div
-                          className="append-button"
-                        />
-                      </div>
-                      <div
-                        aria-label="Do you have an additional person who knows you well to list?"
-                        className="field required branch addendum"
-                        data-uuid="field-MOCK-GUID"
-                      >
-                        <a
-                          aria-hidden="true"
-                          className="anchor"
-                          id="field-MOCK-GUID"
-                          name="field-MOCK-GUID"
-                        />
-                        <h4
-                          className="title h4"
-                        >
-                          Do you have an additional person who knows you well to list?
-                        </h4>
-                        <span
-                          className="icon"
-                        />
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages help-messages"
-                          />
-                        </div>
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          >
-                            <div
-                              aria-live="polite"
-                              className="message error usa-alert usa-alert-error"
-                              role="alert"
-                            >
-                              <div
-                                className="usa-alert-body"
-                              >
-                                <div
-                                  data-i18n="error.required"
-                                >
-                                  <h5
-                                    className="usa-alert-heading"
-                                  >
-                                    Your response is required
-                                  </h5>
-                                  
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </span>
-                        </div>
-                        <div
-                          className="table"
-                        >
-                          <span
-                            className="content"
-                          >
-                            <span
-                              className="component shrink"
-                            >
-                              <div
-                                className="content"
-                              />
-                              <div
-                                className="blocks option-list branch usa-input-error"
-                              >
-                                <div
-                                  className="yes block"
-                                >
-                                  <input
-                                    aria-label="Yes for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="radio_input-MOCK-GUID"
-                                    name="radio_input-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="Yes"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="radio_input-MOCK-GUID"
-                                  >
-                                    <span>
-                                      Yes
-                                    </span>
-                                  </label>
-                                </div>
-                                <div
-                                  className="no block"
-                                >
-                                  <input
-                                    aria-label="No for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="radio_input-MOCK-GUID"
-                                    name="radio_input-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="No"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="radio_input-MOCK-GUID"
-                                  >
-                                    <span>
-                                      No
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <h1
-                    className="section-header"
-                  >
-                    Relatives
-                  </h1>
-                  <div
-                    className="section-content relatives"
-                    data-section="relationships"
-                    data-subsection="relatives"
-                  >
-                    <div
-                      aria-label="Add each relative applicable to you, regardless if they are living or deceased."
-                      className="field no-margin-bottom"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h3
-                        className="title h3"
-                      >
-                        Add each relative applicable to you, regardless if they are living or deceased.
-                      </h3>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component"
-                          >
-                            <div>
-                              <p>
-                                An opportunity will be provided to list multiple relatives for each type.
-                              </p>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      aria-label=""
-                      className="field required hidden"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component"
-                          />
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      aria-label=""
-                      className="field required hidden"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component"
-                          />
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        className="accordion"
-                      >
-                        <strong
-                          className="aria-description"
-                        >
-                          Summary of relatives
-                        </strong>
-                        <div
-                          className="items"
-                        />
-                        <div
-                          className="append-button"
-                        />
-                      </div>
-                      <div
-                        aria-label="Do you have an additional relative to enter?"
-                        className="field required branch addendum"
-                        data-uuid="field-MOCK-GUID"
-                      >
-                        <a
-                          aria-hidden="true"
-                          className="anchor"
-                          id="field-MOCK-GUID"
-                          name="field-MOCK-GUID"
-                        />
-                        <h4
-                          className="title h4"
-                        >
-                          Do you have an additional relative to enter?
-                        </h4>
-                        <span
-                          className="icon"
-                        />
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages help-messages"
-                          />
-                        </div>
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          >
-                            <div
-                              aria-live="polite"
-                              className="message error usa-alert usa-alert-error"
-                              role="alert"
-                            >
-                              <div
-                                className="usa-alert-body"
-                              >
-                                <div
-                                  data-i18n="error.required"
-                                >
-                                  <h5
-                                    className="usa-alert-heading"
-                                  >
-                                    Your response is required
-                                  </h5>
-                                  
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </span>
-                        </div>
-                        <div
-                          className="table"
-                        >
-                          <span
-                            className="content"
-                          >
-                            <span
-                              className="component shrink"
-                            >
-                              <div
-                                className="content"
-                              />
-                              <div
-                                className="blocks option-list branch usa-input-error"
-                              >
-                                <div
-                                  className="yes block"
-                                >
-                                  <input
-                                    aria-label="Yes for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="radio_input-MOCK-GUID"
-                                    name="radio_input-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="Yes"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="radio_input-MOCK-GUID"
-                                  >
-                                    <span>
-                                      Yes
-                                    </span>
-                                  </label>
-                                </div>
-                                <div
-                                  className="no block"
-                                >
-                                  <input
-                                    aria-label="No for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="radio_input-MOCK-GUID"
-                                    name="radio_input-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="No"
-                                  />
-                                  <label
-                                    className=""
-                                    htmlFor="radio_input-MOCK-GUID"
-                                  >
-                                    <span>
-                                      No
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                            </span>
-                          </span>
-                        </div>
-                      </div>
+                        Your response is required
+                      </h5>
+                      
+                      
                     </div>
                   </div>
                 </div>
-                <div
-                  className="bottom-btns"
+              </span>
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component"
                 >
                   <div
-                    className="btn-wrap"
+                    className="blocks status-options option-list option-list-vertical usa-input-error"
                   >
                     <div
-                      className="btn-container"
+                      className="status-never block"
                     >
-                      <button
-                        aria-label="Go to previous section Relatives"
-                        className="btn-cell back"
+                      <input
+                        aria-label="[object Object] for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="status-MOCK-GUID-status-MOCK-GUID"
+                        name="status-MOCK-GUID-status-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
                         onClick={[Function]}
-                        title="Go to previous section Relatives"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Relatives
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="NeverMarried"
                       />
-                      <button
-                        aria-label="Go to next section Citizenship intro"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Citizenship intro"
+                      <label
+                        className=""
+                        htmlFor="status-MOCK-GUID-status-MOCK-GUID"
                       >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Citizenship intro
-                            </div>
+                        <span>
+                          <div>
+                            <p>
+                              Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership
+                            </p>
                           </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="status-married block"
+                    >
+                      <input
+                        aria-label="[object Object] for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="status-MOCK-GUID-status-MOCK-GUID"
+                        name="status-MOCK-GUID-status-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Married"
+                      />
+                      <label
+                        className=""
+                        htmlFor="status-MOCK-GUID-status-MOCK-GUID"
+                      >
+                        <span>
+                          <div>
+                            <p>
+                              Currently in a civil marriage, legally recognized civil union, or legally recognized domestic partnership
+                            </p>
                           </div>
-                        </div>
-                      </button>
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="status-separated block"
+                    >
+                      <input
+                        aria-label="[object Object] for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="status-MOCK-GUID-status-MOCK-GUID"
+                        name="status-MOCK-GUID-status-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Separated"
+                      />
+                      <label
+                        className=""
+                        htmlFor="status-MOCK-GUID-status-MOCK-GUID"
+                      >
+                        <span>
+                          <div>
+                            <p>
+                              Separated
+                            </p>
+                          </div>
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="status-annulled block"
+                    >
+                      <input
+                        aria-label="[object Object] for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="status-MOCK-GUID-status-MOCK-GUID"
+                        name="status-MOCK-GUID-status-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Annulled"
+                      />
+                      <label
+                        className=""
+                        htmlFor="status-MOCK-GUID-status-MOCK-GUID"
+                      >
+                        <span>
+                          <div>
+                            <p>
+                              Annulled
+                            </p>
+                          </div>
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="status-divorced block"
+                    >
+                      <input
+                        aria-label="[object Object] for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="status-MOCK-GUID-status-MOCK-GUID"
+                        name="status-MOCK-GUID-status-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Divorced"
+                      />
+                      <label
+                        className=""
+                        htmlFor="status-MOCK-GUID-status-MOCK-GUID"
+                      >
+                        <span>
+                          <div>
+                            <p>
+                              Divorced/dissolved
+                            </p>
+                          </div>
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="status-widowed block"
+                    >
+                      <input
+                        aria-label="[object Object] for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="status-MOCK-GUID-status-MOCK-GUID"
+                        name="status-MOCK-GUID-status-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Widowed"
+                      />
+                      <label
+                        className=""
+                        htmlFor="status-MOCK-GUID-status-MOCK-GUID"
+                      >
+                        <span>
+                          <div>
+                            <p>
+                              Widowed
+                            </p>
+                          </div>
+                        </span>
+                      </label>
                     </div>
                   </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr
+          className="section-divider"
+        />
+        <div
+          className="section-content cohabitants"
+          data-section="relationships"
+          data-subsection="status/cohabitant"
+        >
+          <h1
+            className="section-header"
+          >
+            Cohabitants
+          </h1>
+          <div
+            aria-label="Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
+            className="field required branch has-cohabitant"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <h4
+              className="title h4"
+            >
+              Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?
+            </h4>
+            <span
+              className="icon"
+            >
+              <a
+                aria-label="Show help for Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
+                className="toggle h4 adjust-for-buttons"
+                href="javascript:;"
+                onClick={[Function]}
+                title="Show help for Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?"
+              >
+                <svg
+                  alt="Scalable vector graphic"
+                  focusable="false"
+                  height="14.57px"
+                  tabIndex="-1"
+                  viewBox="0 0 14.57 14.57"
+                  width="14.57px"
+                >
+                  <g>
+                    <path
+                      className="eapp-help-icon"
+                      d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </span>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.required"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Your response is required
+                      </h5>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component shrink"
+                >
+                  <div
+                    className="content"
+                  />
+                  <div
+                    className="blocks option-list branch usa-input-error"
+                  >
+                    <div
+                      className="yes block"
+                    >
+                      <input
+                        aria-label="Yes for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="hasCohabitant-MOCK-GUID"
+                        name="hasCohabitant-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="Yes"
+                      />
+                      <label
+                        className=""
+                        htmlFor="hasCohabitant-MOCK-GUID"
+                      >
+                        <span>
+                          Yes
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="no block"
+                    >
+                      <input
+                        aria-label="No for null"
+                        checked={false}
+                        className="usa-input-success"
+                        disabled={false}
+                        id="hasCohabitant-MOCK-GUID"
+                        name="hasCohabitant-MOCK-GUID"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        type="radio"
+                        value="No"
+                      />
+                      <label
+                        className=""
+                        htmlFor="hasCohabitant-MOCK-GUID"
+                      >
+                        <span>
+                          No
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr
+          className="section-divider"
+        />
+        <div
+          className="section-content people"
+          data-section="relationships"
+          data-subsection="people"
+        >
+          <h1
+            className="section-header"
+          >
+            People who know you well
+          </h1>
+          <div>
+            <h3>
+              Provide three people who know you well and who preferably live in the U.S.
+            </h3>
+            <p>
+              They should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you 
+              <strong>
+                covers at least the last seven (7) years.
+              </strong>
+            </p>
+            <p>
+              <strong>
+                Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.
+              </strong>
+            </p>
+          </div>
+          <span
+            id="scrollToPeople"
+          />
+          <div
+            className="summary-progress"
+          >
+            <div
+              className="summaryprogress progress"
+            >
+              <div
+                className="summary-progress people-summary"
+              >
+                <div
+                  className="content"
+                >
+                  <div>
+                    <div
+                      className="summary-icon"
+                    >
+                      <img
+                        alt="People who know you well 7 year coverage"
+                        className="svg"
+                        src="/img/people-who-know-you.svg"
+                      />
+                    </div>
+                    <span
+                      className="title"
+                    >
+                      People who know you well 7 year coverage
+                    </span>
+                  </div>
+                  <div
+                    className="progress"
+                  />
+                </div>
+                <div
+                  className="stats"
+                >
+                  <div
+                    className="fraction"
+                  >
+                    <span
+                      className="completed"
+                    >
+                      0
+                    </span>
+                    <span
+                      className="slash"
+                    >
+                      /
+                    </span>
+                    <span
+                      className="total"
+                    >
+                      7
+                    </span>
+                  </div>
+                  <span
+                    className="unit"
+                  >
+                    Years covered
+                  </span>
                 </div>
               </div>
             </div>
+            <div
+              className="summaryprogress counter"
+            >
+              <div
+                className="people-counter"
+              >
+                <div
+                  className="count"
+                >
+                  0
+                  /
+                  3
+                </div>
+                <div
+                  className="unit"
+                >
+                  People added
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              className="accordion"
+            >
+              <strong
+                className="aria-description"
+              >
+                Summary of people who know you
+              </strong>
+              <div
+                className="items"
+              />
+              <div
+                className="append-button"
+              />
+            </div>
+            <div
+              aria-label="Do you have an additional person who knows you well to list?"
+              className="field required branch addendum"
+              data-uuid="field-MOCK-GUID"
+            >
+              <a
+                aria-hidden="true"
+                className="anchor"
+                id="field-MOCK-GUID"
+                name="field-MOCK-GUID"
+              />
+              <h4
+                className="title h4"
+              >
+                Do you have an additional person who knows you well to list?
+              </h4>
+              <span
+                className="icon"
+              />
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages help-messages"
+                />
+              </div>
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages error-messages"
+                  role="alert"
+                >
+                  <div
+                    aria-live="polite"
+                    className="message error usa-alert usa-alert-error"
+                    role="alert"
+                  >
+                    <div
+                      className="usa-alert-body"
+                    >
+                      <div
+                        data-i18n="error.required"
+                      >
+                        <h5
+                          className="usa-alert-heading"
+                        >
+                          Your response is required
+                        </h5>
+                        
+                        
+                      </div>
+                    </div>
+                  </div>
+                </span>
+              </div>
+              <div
+                className="table"
+              >
+                <span
+                  className="content"
+                >
+                  <span
+                    className="component shrink"
+                  >
+                    <div
+                      className="content"
+                    />
+                    <div
+                      className="blocks option-list branch usa-input-error"
+                    >
+                      <div
+                        className="yes block"
+                      >
+                        <input
+                          aria-label="Yes for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="radio_input-MOCK-GUID"
+                          name="radio_input-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="Yes"
+                        />
+                        <label
+                          className=""
+                          htmlFor="radio_input-MOCK-GUID"
+                        >
+                          <span>
+                            Yes
+                          </span>
+                        </label>
+                      </div>
+                      <div
+                        className="no block"
+                      >
+                        <input
+                          aria-label="No for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="radio_input-MOCK-GUID"
+                          name="radio_input-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="No"
+                        />
+                        <label
+                          className=""
+                          htmlFor="radio_input-MOCK-GUID"
+                        >
+                          <span>
+                            No
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr
+          className="section-divider"
+        />
+        <div
+          className="section-content relatives"
+          data-section="relationships"
+          data-subsection="relatives"
+        >
+          <h1
+            className="section-header"
+          >
+            Relatives
+          </h1>
+          <div
+            aria-label="Add each relative applicable to you, regardless if they are living or deceased."
+            className="field no-margin-bottom"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <h3
+              className="title h3"
+            >
+              Add each relative applicable to you, regardless if they are living or deceased.
+            </h3>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component"
+                >
+                  <div>
+                    <p>
+                      An opportunity will be provided to list multiple relatives for each type.
+                    </p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+          <div
+            aria-label=""
+            className="field required hidden"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component"
+                />
+              </span>
+            </div>
+          </div>
+          <div
+            aria-label=""
+            className="field required hidden"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component"
+                />
+              </span>
+            </div>
+          </div>
+          <div>
+            <div
+              className="accordion"
+            >
+              <strong
+                className="aria-description"
+              >
+                Summary of relatives
+              </strong>
+              <div
+                className="items"
+              />
+              <div
+                className="append-button"
+              />
+            </div>
+            <div
+              aria-label="Do you have an additional relative to enter?"
+              className="field required branch addendum"
+              data-uuid="field-MOCK-GUID"
+            >
+              <a
+                aria-hidden="true"
+                className="anchor"
+                id="field-MOCK-GUID"
+                name="field-MOCK-GUID"
+              />
+              <h4
+                className="title h4"
+              >
+                Do you have an additional relative to enter?
+              </h4>
+              <span
+                className="icon"
+              />
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages help-messages"
+                />
+              </div>
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages error-messages"
+                  role="alert"
+                >
+                  <div
+                    aria-live="polite"
+                    className="message error usa-alert usa-alert-error"
+                    role="alert"
+                  >
+                    <div
+                      className="usa-alert-body"
+                    >
+                      <div
+                        data-i18n="error.required"
+                      >
+                        <h5
+                          className="usa-alert-heading"
+                        >
+                          Your response is required
+                        </h5>
+                        
+                        
+                      </div>
+                    </div>
+                  </div>
+                </span>
+              </div>
+              <div
+                className="table"
+              >
+                <span
+                  className="content"
+                >
+                  <span
+                    className="component shrink"
+                  >
+                    <div
+                      className="content"
+                    />
+                    <div
+                      className="blocks option-list branch usa-input-error"
+                    >
+                      <div
+                        className="yes block"
+                      >
+                        <input
+                          aria-label="Yes for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="radio_input-MOCK-GUID"
+                          name="radio_input-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="Yes"
+                        />
+                        <label
+                          className=""
+                          htmlFor="radio_input-MOCK-GUID"
+                        >
+                          <span>
+                            Yes
+                          </span>
+                        </label>
+                      </div>
+                      <div
+                        className="no block"
+                      >
+                        <input
+                          aria-label="No for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="radio_input-MOCK-GUID"
+                          name="radio_input-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="No"
+                        />
+                        <label
+                          className=""
+                          htmlFor="radio_input-MOCK-GUID"
+                        >
+                          <span>
+                            No
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="bottom-btns"
+      >
+        <div
+          className="btn-wrap"
+        >
+          <div
+            className="btn-container"
+          >
+            <a
+              aria-label="Go to previous section Relatives"
+              className="btn-cell back"
+              href="/form/relationships/relatives"
+              onClick={[Function]}
+              title="Go to previous section Relatives"
+            >
+              <div
+                className="actions back"
+              >
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-left"
+                  />
+                </div>
+                <div
+                  className="text"
+                >
+                  <div
+                    className="direction"
+                  >
+                    Back
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    Relatives
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div
+              className="btn-spacer"
+            />
+            <a
+              aria-label="Go to next section Citizenship intro"
+              className="btn-cell next"
+              href="/form/citizenship/intro"
+              onClick={[Function]}
+              title="Go to next section Citizenship intro"
+            >
+              <div
+                className="actions next"
+              >
+                <div
+                  className="text"
+                >
+                  <div
+                    className="direction"
+                  >
+                    Next
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    Citizenship intro
+                  </div>
+                </div>
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-right"
+                  />
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -28211,11 +28162,58 @@ exports[`The section component renders relationships.status 1`] = `
     className="section-view"
   >
     <div
-      className="view view-relationships"
+      className="view view-status"
     >
-      <div>
-        <div>
-          <div />
+      <div
+        className="bottom-btns"
+      >
+        <div
+          className="btn-wrap"
+        >
+          <div
+            className="btn-container"
+          >
+            <div
+              className="btn-cell"
+            />
+            <div
+              className="btn-spacer"
+            />
+            <a
+              aria-label="Go to next section Identification intro"
+              className="btn-cell next"
+              href="/form/identification/intro"
+              onClick={[Function]}
+              title="Go to next section Identification intro"
+            >
+              <div
+                className="actions next"
+              >
+                <div
+                  className="text"
+                >
+                  <div
+                    className="direction"
+                  >
+                    Next
+                  </div>
+                  <div
+                    className="label"
+                  >
+                    Identification intro
+                  </div>
+                </div>
+                <div
+                  className="icon"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-arrow-circle-right"
+                  />
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>

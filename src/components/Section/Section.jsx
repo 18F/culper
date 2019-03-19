@@ -81,6 +81,7 @@ class Section extends React.Component {
         {/* REFACTORED - These sections are rendered via <Route>s */}
         <Route path="/form/identification" component={Identification} />
         <Route path="/form/history" component={History} />
+        <Route path="/form/relationships" component={Relationships} />
         <Route path="/form/citizenship" component={Citizenship} />
         <Route path="/form/military" component={Military} />
         <Route path="/form/foreign" component={Foreign} />
@@ -97,7 +98,6 @@ class Section extends React.Component {
 
         {/* Sections to refactor */}
         {/*
-          <Route path="/form/relationships" component={Relationships} />
           <Route path="/form/substance" component={Substance} />
           <Route path="/form/legal" component={Legal} />
           <Route path="/form/psychological" component={Psychological} />
