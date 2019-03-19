@@ -422,7 +422,7 @@ func TestApplication(t *testing.T) {
 
 	_, err := api.Application(service, account, false)
 	if err != nil {
-		t.Fatal("Failed to get application state")
+		t.Fatal("Failed to get application state", err)
 	}
 }
 

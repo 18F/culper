@@ -555,7 +555,6 @@ func Application(context DatabaseService, account int, hashable bool) ([]byte, e
 	// set the metadata for the form
 	metadata, err := GetFormMetadata(context, account)
 	if err != nil {
-		fmt.Println("Wow this is an error we are just ignoooring. ")
 		return []byte{}, err
 	}
 
