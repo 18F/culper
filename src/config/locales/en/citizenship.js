@@ -29,6 +29,57 @@ export const citizenship = {
     multiple: 'Dual/multiple citizenship',
     passports: 'Foreign passports',
   },
+  usPassport: {
+    title: 'U.S. passport information',
+    info: {
+      text:
+        'Provide the following information for the most recent U.S. passport you currently possess.',
+      link: 'U.S. State Department passport help',
+    },
+    question: {
+      title: 'Do you possess a U.S. passport (current or expired)?',
+      yes: 'Yes',
+      no: 'No',
+    },
+    label: {
+      bookNumber: 'Passport number',
+      book: 'Passport',
+    },
+    name: 'Provide the name in which passport was first issued',
+    number: 'Provide your U.S. passport number',
+    issued: 'Provide the issue date of the passport',
+    expiration: 'Provide the expiration date of the passport',
+    comment: {
+      title: 'Add optional comment',
+      label:
+        'If you need to provide any additional comments about this information enter them below',
+    },
+    help: {
+      number: {
+        title: 'Passport',
+        message:
+          'U.S. Passport numbers must be nine alphanumeric characters (letters and numbers).',
+        note: '',
+      },
+      issued: {
+        title: 'Use the exact date',
+        message: 'Enter the date on your passport.',
+        note: '',
+      },
+      expiration: {
+        title: 'Use the exact date',
+        message: 'Enter the date on your passport.',
+        note: '',
+      },
+    },
+    branch: {
+      help: {
+        title: 'Need more information about the U.S. passport?',
+        message: 'Select whether you possess a U.S. passport',
+        note: '',
+      },
+    },
+  },
   status: {
     heading: {
       title: 'Citizenship status',
