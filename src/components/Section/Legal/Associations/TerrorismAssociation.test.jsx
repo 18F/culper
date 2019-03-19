@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import TerrorismAssociation from './TerrorismAssociation'
+import { TerrorismAssociation } from './TerrorismAssociation'
 
 describe('The legal associations terrorism component', () => {
   it('renders without errors', () => {
@@ -11,7 +11,7 @@ describe('The legal associations terrorism component', () => {
   it('can select "yes"', () => {
     let updates = 0
     const onUpdate = () => {
-      updates++
+      updates += 1
     }
     const component = mount(<TerrorismAssociation onUpdate={onUpdate} />)
     component
@@ -25,8 +25,8 @@ describe('The legal associations terrorism component', () => {
     const props = {
       HasTerrorism: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = mount(<TerrorismAssociation {...props} />)
     expect(

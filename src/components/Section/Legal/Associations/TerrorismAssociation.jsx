@@ -1,37 +1,59 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import SubsectionElement from '../../SubsectionElement'
-import validate from '../../../../validators'
-import { Branch, Show, Field, Textarea } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate from 'validators'
+import {
+  Branch,
+  Show,
+  Field,
+  Textarea,
+} from 'components/Form'
+import {
+  LEGAL,
+  LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
+} from 'config/formSections/legal'
+import Subsection from 'components/Section/shared/Subsection'
+import connectLegalSection from '../LegalConnector'
 
-export default class TerrorismAssociation extends SubsectionElement {
+const sectionConfig = {
+  section: LEGAL.name,
+  store: LEGAL.store,
+  subsection: LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION.name,
+  storeKey: LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION.storeKey,
+}
+
+export class TerrorismAssociation extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateBranch = this.updateBranch.bind(this)
-    this.updateExplanation = this.updateExplanation.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       Explanation: this.props.Explanation,
       HasTerrorism: this.props.HasTerrorism,
-      ...queue
+      ...queue,
     })
   }
 
-  updateExplanation(values) {
+  updateExplanation = (values) => {
     this.update({
-      Explanation: values
+      Explanation: values,
     })
   }
 
-  updateBranch(values) {
+  updateBranch = (values) => {
     this.update({
       HasTerrorism: values,
-      Explanation: values.value === 'Yes' ? this.props.Explanation : {}
+      Explanation: values.value === 'Yes' ? this.props.Explanation : {},
     })
   }
 
@@ -39,15 +61,16 @@ export default class TerrorismAssociation extends SubsectionElement {
     return (
       <div
         className="section-content legal-associations-terrorism"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('legal.destination.associations.terrorism')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('legal.subsection.associations.terrorismAssociation')}</h1>
         <Branch
           name="has_terrorsim"
           label={i18n.t('legal.associations.terrorism.heading.title')}
           labelSize="h4"
           className="legal-associations-terrorism-has-terrorism"
           {...this.props.HasTerrorism}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -58,7 +81,8 @@ export default class TerrorismAssociation extends SubsectionElement {
           <Field
             title={i18n.t('legal.associations.terrorism.heading.explanation')}
             adjustFor="textarea"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="Explanation"
               {...this.props.Explanation}
@@ -78,14 +102,12 @@ TerrorismAssociation.defaultProps = {
   name: 'terrorism',
   HasTerrorism: {},
   defaultState: true,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'legal',
   subsection: 'associations/terrorism-association',
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('legal.associations.terrorism-association', data))
-  }
+  validator: data => validate(schema('legal.associations.terrorism-association', data)),
 }
+
+export default connectLegalSection(TerrorismAssociation, sectionConfig)

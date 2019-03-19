@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import DomesticViolenceList from './DomesticViolenceList'
+import { DomesticViolenceList } from './DomesticViolenceList'
 import Location from '../../../Form/Location'
 
 describe('The DomesticViolenceList  component', () => {
@@ -11,17 +11,18 @@ describe('The DomesticViolenceList  component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <DomesticViolenceList {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'sentence'
+      name: 'sentence',
     }
     const component = createComponent(expected)
     expect(component.find('.domestic-violence-list').length).toBe(1)
@@ -34,8 +35,8 @@ describe('The DomesticViolenceList  component', () => {
     const expected = {
       name: 'sentence',
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component.find('.has-domestic-violence .yes input').simulate('change')
@@ -53,7 +54,7 @@ describe('The DomesticViolenceList  component', () => {
           {
             Item: {
               CourtName: {
-                value: '4th Circuit Court'
+                value: '4th Circuit Court',
               },
               CourtAddress: {
                 country: 'United States',
@@ -61,19 +62,19 @@ describe('The DomesticViolenceList  component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
               Explanation: {
-                value: 'Some content'
+                value: 'Some content',
               },
               Issued: {
                 month: '1',
-                year: '2009'
-              }
-            }
-          }
-        ]
-      }
+                year: '2009',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.domestic-violence').length).toBe(1)

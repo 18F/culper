@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Offenses from './Offenses'
+import { Offenses } from './Offenses'
 import Location from '../../../Form/Location'
 
 describe('The Offenses record component', () => {
@@ -11,17 +11,18 @@ describe('The Offenses record component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Offenses {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'police-record'
+      name: 'police-record',
     }
     const component = createComponent(expected)
     expect(component.find('.has-offenses').length).toEqual(1)
@@ -33,8 +34,8 @@ describe('The Offenses record component', () => {
     const expected = {
       name: 'police-record',
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.has-offenses').length).toEqual(1)
@@ -48,7 +49,7 @@ describe('The Offenses record component', () => {
       name: 'police-record',
       HasOffenses: { value: 'Yes' },
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       List: {
         items: [
@@ -57,10 +58,10 @@ describe('The Offenses record component', () => {
               Date: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               Description: {
-                value: 'Description of the offense'
+                value: 'Description of the offense',
               },
               InvolvedViolence: { value: 'No' },
               InvolvedFirearms: { value: 'No' },
@@ -71,13 +72,13 @@ describe('The Offenses record component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
-              WasCited: { value: 'No' }
-            }
-          }
-        ]
-      }
+              WasCited: { value: 'No' },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     component.find('.has-offenses .no input').simulate('change')
@@ -95,10 +96,10 @@ describe('The Offenses record component', () => {
               Date: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               Description: {
-                value: 'Description of the offense'
+                value: 'Description of the offense',
               },
               InvolvedViolence: { value: 'No' },
               InvolvedFirearms: { value: 'No' },
@@ -109,13 +110,13 @@ describe('The Offenses record component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
-              WasCited: { value: 'No' }
-            }
-          }
-        ]
-      }
+              WasCited: { value: 'No' },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(1)
@@ -124,7 +125,7 @@ describe('The Offenses record component', () => {
   it('renders with valid offense', () => {
     const expected = {
       name: 'police-record',
-      HasOffenses: { value: 'No' }
+      HasOffenses: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)

@@ -87,6 +87,7 @@ class Section extends React.Component {
         <Route path="/form/foreign" component={Foreign} />
         <Route path="/form/financial" component={Financial} />
         <Route path="/form/substance" component={SubstanceUse} />
+        <Route path="/form/legal" component={Legal} />
 
         {/* TBD */}
         <Route

@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import MembershipOverthrow from './MembershipOverthrow'
+import { MembershipOverthrow } from './MembershipOverthrow'
 
 describe('The legal associations overthrow component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The legal associations overthrow component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <MembershipOverthrow {...expected} />
         </Provider>
       )
+    )
   })
 
   it('renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The legal associations overthrow component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -39,7 +40,7 @@ describe('The legal associations overthrow component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasOverthrow: { value: 'Yes' }
+      HasOverthrow: { value: 'Yes' },
     }
     const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
@@ -56,21 +57,21 @@ describe('The legal associations overthrow component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2011'
-                }
+                  year: '2011',
+                },
               },
               Organization: {
-                value: 'Donut Brigade'
-              }
-            }
-          }
-        ]
-      }
+                value: 'Donut Brigade',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()
