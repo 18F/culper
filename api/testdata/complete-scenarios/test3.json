@@ -7221,7 +7221,7 @@
             "EmailNotApplicable": {
               "type": "notapplicable",
               "props": {
-                "applicable": false
+                "applicable": true
               }
             },
             "EnteredCivilUnion": {
