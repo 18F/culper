@@ -1394,7 +1394,7 @@ export const error = {
     },
     min: {
       title: 'There is a problem with your entry',
-      message: 'The date of most involvement is before the date of first involvement.'
+      message: 'The date of most recent involvement is before the date of first involvement.'
     }
   }
 }
