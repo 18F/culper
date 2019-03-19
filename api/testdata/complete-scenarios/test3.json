@@ -7218,6 +7218,12 @@
                 "value": "af@bj.com"
               }
             },
+            "EmailNotApplicable": {
+              "type": "notapplicable",
+              "props": {
+                "applicable": false
+              }
+            },
             "EnteredCivilUnion": {
               "type": "datecontrol",
               "props": {
