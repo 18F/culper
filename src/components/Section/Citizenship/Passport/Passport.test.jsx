@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { Passport } from './Passport'
+import { Passport } from './index'
 
 describe('The passport component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The passport component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Passport {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {

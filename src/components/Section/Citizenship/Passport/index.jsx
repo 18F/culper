@@ -11,17 +11,17 @@ import {
   DateControl,
   Branch,
 } from 'components/Form'
-import { FOREIGN, FOREIGN_PASSPORT } from 'config/formSections/foreign'
+import { CITIZENSHIP, CITIZENSHIP_US_PASSPORT } from 'config/formSections/citizenship'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectCitizenshipSection from '../CitizenshipConnector'
 import { extractDate } from '../../History/dateranges'
 
 
 const sectionConfig = {
-  section: FOREIGN.name,
-  store: FOREIGN.store,
-  subsection: FOREIGN_PASSPORT.name,
-  storeKey: FOREIGN_PASSPORT.storeKey,
+  section: CITIZENSHIP.name,
+  store: CITIZENSHIP.store,
+  subsection: CITIZENSHIP_US_PASSPORT.name,
+  storeKey: CITIZENSHIP_US_PASSPORT.storeKey,
 }
 
 export class Passport extends Subsection {
@@ -162,9 +162,9 @@ export class Passport extends Subsection {
         className="section-content passport"
         {...super.dataAttributes()}
       >
-        <h1 className="section-header">{i18n.t('foreign.passport.title')}</h1>
+        <h1 className="section-header">{i18n.t('citizenship.usPassport.title')}</h1>
 
-        <h3>{i18n.t('foreign.passport.info.text')}</h3>
+        <h3>{i18n.t('citizenship.usPassport.info.text')}</h3>
         <p>
           <a
             href="https://travel.state.gov/content/travel/en.html"
@@ -172,12 +172,12 @@ export class Passport extends Subsection {
             rel="noopener noreferrer"
             title="U.S. State Department Help"
           >
-            {i18n.t('foreign.passport.info.link')}
+            {i18n.t('citizenship.usPassport.info.link')}
           </a>
         </p>
         <Branch
           name="has_passport"
-          label={i18n.t('foreign.passport.question.title')}
+          label={i18n.t('citizenship.usPassport.question.title')}
           labelSize="h4"
           {...this.props.HasPassports}
           warning
@@ -189,7 +189,7 @@ export class Passport extends Subsection {
         <Show when={this.props.HasPassports.value === 'Yes'}>
           <div>
             <Field
-              title={i18n.t('foreign.passport.name')}
+              title={i18n.t('citizenship.usPassport.name')}
               titleSize="h4"
               optional
               className="no-margin-bottom"
@@ -223,8 +223,8 @@ export class Passport extends Subsection {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.issued')}
-              help="foreign.passport.help.issued"
+              title={i18n.t('citizenship.usPassport.issued')}
+              help="citizenship.usPassport.help.issued"
               adjustFor="labels"
               shrink
               scrollIntoView={this.props.scrollIntoView}
@@ -241,8 +241,8 @@ export class Passport extends Subsection {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.expiration')}
-              help="foreign.passport.help.expiration"
+              title={i18n.t('citizenship.usPassport.expiration')}
+              help="citizenship.usPassport.help.expiration"
               adjustFor="labels"
               shrink
               scrollIntoView={this.props.scrollIntoView}
@@ -262,8 +262,8 @@ export class Passport extends Subsection {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.label.bookNumber')}
-              help="foreign.passport.help.number"
+              title={i18n.t('citizenship.usPassport.label.bookNumber')}
+              help="citizenship.usPassport.help.number"
               errorPrefix="passport"
               adjustFor="buttons"
               shrink
@@ -307,10 +307,10 @@ Passport.defaultProps = {
   reBook: '^[a-zA-Z0-9]{9}$',
   onUpdate: () => {},
   onError: (value, arr) => arr,
-  section: 'foreign',
-  subsection: 'passport',
+  section: 'citizenship',
+  subsection: 'usPassport',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.passport', data)),
+  validator: data => validate(schema('citizenship.usPassport', data)),
 }
 
-export default connectForeignSection(Passport, sectionConfig)
+export default connectCitizenshipSection(Passport, sectionConfig)
