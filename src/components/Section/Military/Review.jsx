@@ -11,7 +11,7 @@ const Review = ({ AddressBooks, showSelectiveService, showDisciplinaryProcedures
     scrollIntoView: false,
   }
 
-  const sectionDivider = () => (
+  const sectionDivider = (
     <hr className="section-divider" />
   )
 

@@ -1,57 +1,73 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, { OffenseValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
-import { Summary, DateSummary } from '../../../Summary'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { OffenseValidator } from 'validators'
+import { Branch, Show, Accordion } from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
+import {
+  LEGAL,
+  LEGAL_POLICE_OFFENSES,
+} from 'config/formSections/legal'
+import Subsection from 'components/Section/shared/Subsection'
+import connectLegalSection from '../LegalConnector'
 import Offense from './Offense'
 
-export default class Offenses extends SubsectionElement {
+const sectionConfig = {
+  section: LEGAL.name,
+  store: LEGAL.store,
+  subsection: LEGAL_POLICE_OFFENSES.name,
+  storeKey: LEGAL_POLICE_OFFENSES.storeKey,
+}
+export class Offenses extends Subsection {
   constructor(props) {
     super(props)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
-    this.update = this.update.bind(this)
-    this.updateHasOffenses = this.updateHasOffenses.bind(this)
-    this.updateList = this.updateList.bind(this)
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasOffenses: this.props.HasOffenses,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasOffenses(values) {
+  updateHasOffenses = (values) => {
     this.update({
       HasOffenses: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Date)
-    const description =
-      o.Description && o.Description.value ? o.Description.value : ''
+    const description = o.Description && o.Description.value
+      ? o.Description.value
+      : ''
 
     return Summary({
       type: i18n.t('legal.police.collection.summary.item'),
-      index: index,
+      index,
       left: description,
       right: dates,
-      placeholder: i18n.t('legal.police.collection.summary.unknown')
+      placeholder: i18n.t('legal.police.collection.summary.unknown'),
     })
   }
 
@@ -59,19 +75,21 @@ export default class Offenses extends SubsectionElement {
     return (
       <div
         className="section-content police-offenses"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('legal.destination.offenses')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('legal.subsection.police.offenses')}</h1>
         <Branch
           name="has_offenses"
           label={i18n.t('legal.police.heading.questions')}
           labelSize="h4"
           className="has-offenses"
           {...this.props.HasOffenses}
-          warning={true}
+          warning
           onUpdate={this.updateHasOffenses}
           required={this.props.required}
           onError={this.handleError}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <ul>
             <li>{i18n.m('legal.police.label.summons')}</li>
             <li>{i18n.m('legal.police.label.arrests')}</li>
@@ -95,12 +113,13 @@ export default class Offenses extends SubsectionElement {
               appendMessage={i18n.m('legal.police.collection.appendMessage')}
               appendLabel={i18n.t('legal.police.collection.append')}
               required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Offense
                 name="Item"
                 addressBooks={this.props.addressBooks}
                 dispatch={this.props.dispatch}
-                bind={true}
+                bind
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
               />
@@ -115,17 +134,15 @@ export default class Offenses extends SubsectionElement {
 Offenses.defaultProps = {
   List: Accordion.defaultList,
   HasOffenses: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'legal',
   subsection: 'police/offenses',
   addressBooks: {},
-  dispatch: action => {},
-  validator: data => {
-    return validate(schema('legal.police.offenses', data))
-  },
+  dispatch: () => {},
+  validator: data => validate(schema('legal.police.offenses', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '',
 }
+
+export default connectLegalSection(Offenses, sectionConfig)

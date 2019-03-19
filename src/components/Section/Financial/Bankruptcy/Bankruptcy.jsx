@@ -142,6 +142,7 @@ export default class Bankruptcy extends ValidationElement {
               name="DateDischarged"
               className="datedischarged"
               onUpdate={(value) => { this.updateField('DateDischarged', value) }}
+              prefix="bankruptcy"
               onError={this.props.onError}
               minDate={this.props.DateFiled}
               minDateEqualTo

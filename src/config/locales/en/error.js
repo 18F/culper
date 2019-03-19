@@ -1336,5 +1336,65 @@ export const error = {
       title: 'There is a problem with your entry',
       message: 'The date of most recent use is before the date of first use.'
     }
+  },
+  passportInformation: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date of of expiration is before the date of issue.'
+    }
+  },
+  directControl: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date relinquished is before the date acquired.'
+    }
+  },
+  indirectControl: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date sold, lost or otherwise disposed of is before the date acquired.'
+    }
+  },
+  bankruptcy: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date of discharge of is before the date filed.'
+    }
+  },
+  delinquent: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date the issue was resolved is before the date the issue began.'
+    }
+  },
+  drugPurchase: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date of most recent involvement is before the date of first involvement.'
+    }
   }
 }

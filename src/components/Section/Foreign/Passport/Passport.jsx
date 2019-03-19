@@ -254,6 +254,7 @@ export class Passport extends Subsection {
                 minDate={this.props.Issued}
                 minDateEqualTo
                 noMaxDate
+                prefix="passportInformation"
                 onUpdate={this.updateExpiration}
                 onError={this.handleError}
                 required={this.props.required}

@@ -2,7 +2,8 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import People from './People'
+
+import { People } from './People'
 
 describe('The relative alias component', () => {
   const mockStore = configureMockStore()
@@ -10,17 +11,18 @@ describe('The relative alias component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <People {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'people'
+      name: 'people',
     }
 
     const component = createComponent(expected)
@@ -32,11 +34,11 @@ describe('The relative alias component', () => {
     const expected = {
       name: 'people',
       List: {
-        items: [{ Item: { Relationship: { values: ['Other'] } } }]
+        items: [{ Item: { Relationship: { values: ['Other'] } } }],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
 
     const component = createComponent(expected)

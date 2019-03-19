@@ -1,55 +1,68 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Field, Accordion, Svg } from '../../../Form'
-import { newGuid } from '../../../Form/ValidationElement'
-import Person from './Person'
-import PeopleValidator from '../../../../validators/people'
-import PersonValidator from '../../../../validators/person'
-import SubsectionElement from '../../SubsectionElement'
-import SummaryProgress from '../../History/SummaryProgress'
-import PeopleCounter from './PeopleCounter'
-import { Summary, DateSummary, NameSummary } from '../../../Summary'
-import { extractDate, today, daysAgo } from '../../History/dateranges'
-import { InjectGaps } from '../../History/summaries'
-import { Gap } from '../../History/Gap'
-import { sort } from '../../History/helpers'
 
-export default class People extends SubsectionElement {
+import i18n from 'util/i18n'
+
+import schema from 'schema'
+import validate, { PersonValidator } from 'validators'
+
+import { RELATIONSHIPS, RELATIONSHIPS_PEOPLE } from 'config/formSections/relationships'
+
+import Subsection from 'components/Section/shared/Subsection'
+import { Accordion, Svg } from 'components/Form'
+import { newGuid } from 'components/Form/ValidationElement'
+import { Summary, DateSummary, NameSummary } from 'components/Summary'
+import SummaryProgress from 'components/Section/History/SummaryProgress'
+import { extractDate, today, daysAgo } from 'components/Section/History/dateranges'
+import { InjectGaps } from 'components/Section/History/summaries'
+import { Gap } from 'components/Section/History/Gap'
+import { sort } from 'components/Section/History/helpers'
+
+import connectRelationshipsSection from '../RelationshipsConnector'
+
+import Person from './Person'
+
+import PeopleCounter from './PeopleCounter'
+
+const sectionConfig = {
+  section: RELATIONSHIPS.name,
+  store: RELATIONSHIPS.store,
+  subsection: RELATIONSHIPS_PEOPLE.name,
+  storeKey: RELATIONSHIPS_PEOPLE.storeKey,
+}
+
+export class People extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateList = this.updateList.bind(this)
-    this.peopleSummaryList = this.peopleSummaryList.bind(this)
-    this.fillGap = this.fillGap.bind(this)
-    this.inject = this.inject.bind(this)
-    this.summary = this.summary.bind(this)
-    this.customDetails = this.customDetails.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  excludeGaps(items) {
-    return (items || []).filter(
-      item => !item.type || (item.type && item.type !== 'Gap')
-    )
-  }
+  excludeGaps = items => (items || [])
+    .filter(item => !item.type || (item.type && item.type !== 'Gap'))
 
-  fillGap(dates) {
-    let items = [...(this.props.List || {}).items]
+  fillGap = () => {
+    const items = [...(this.props.List || {}).items]
+
     items.push({
       uuid: newGuid(),
       open: true,
@@ -58,37 +71,37 @@ export default class People extends SubsectionElement {
         Dates: {
           Name: 'Dates',
           present: false,
-          receiveProps: true
-        }
-      }
+          receiveProps: true,
+        },
+      },
     })
 
     this.update({
       List: {
         ...this.props.List,
-        items: this.excludeGaps(this.inject(items).sort(sort))
-      }
+        items: this.excludeGaps(this.inject(items).sort(sort)),
+      },
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const date = DateSummary(o.Dates)
     const name = NameSummary(o.Name)
     const type = i18n.t('relationships.people.person.collection.itemType')
 
     return Summary({
-      type: i18n.t('relationships.people.person.collection.itemType'),
-      index: index,
+      type,
+      index,
       left: name,
       right: date,
       placeholder: i18n.t(
         'relationships.people.person.collection.summary.unknown'
-      )
+      ),
     })
   }
 
-  customDetails(item, index, initial, callback) {
+  customDetails = (item, index, initial, callback) => {
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
       return (
@@ -98,7 +111,7 @@ export default class People extends SubsectionElement {
           btnText={i18n.t('relationships.people.person.gap.button')}
           first={index === 0}
           dates={dates}
-          onClick={this.fillGap.bind(this, dates)}
+          onClick={() => this.fillGap(dates)}
         />
       )
     }
@@ -106,8 +119,8 @@ export default class People extends SubsectionElement {
     return callback()
   }
 
-  peopleSummaryList() {
-    return this.excludeGaps(this.props.List.items).reduce((dates, item) => {
+  peopleSummaryList = () => (
+    this.excludeGaps(this.props.List.items).reduce((dates, item) => {
       if (!item || !new PersonValidator(item.Item).isValid()) {
         return dates
       }
@@ -121,17 +134,22 @@ export default class People extends SubsectionElement {
       }
       return dates
     }, [])
-  }
+  )
 
-  inject(items) {
-    return InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
-  }
+  inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
+    const { forPrint } = this.props
+
     return (
       <div
         className="section-content people"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
+        {!forPrint && (
+          <h1 className="section-header">{i18n.t('relationships.people.sectionTitle.title')}</h1>
+        )}
+
         {i18n.m('relationships.people.para.intro')}
 
         <span id="scrollToPeople" />
@@ -142,7 +160,8 @@ export default class People extends SubsectionElement {
               List={this.peopleSummaryList}
               title={i18n.t('relationships.people.summaryProgress.title')}
               unit={i18n.t('relationships.people.summaryProgress.unit')}
-              total={7}>
+              total={7}
+            >
               <div className="summary-icon">
                 <Svg
                   src="/img/people-who-know-you.svg"
@@ -161,7 +180,7 @@ export default class People extends SubsectionElement {
           {...this.props.List}
           defaultState={this.props.defaultState}
           scrollToBottom={this.props.scrollToBottom}
-          realtime={true}
+          realtime
           sort={sort}
           inject={this.inject}
           summary={this.summary}
@@ -171,18 +190,13 @@ export default class People extends SubsectionElement {
           onError={this.handleError}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
-          description={i18n.t(
-            'relationships.people.person.collection.description'
-          )}
-          appendTitle={i18n.t(
-            'relationships.people.person.collection.appendTitle'
-          )}
-          appendLabel={i18n.t(
-            'relationships.people.person.collection.appendLabel'
-          )}>
+          description={i18n.t('relationships.people.person.collection.description')}
+          appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
+          appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}
+        >
           <Person
             name="Item"
-            bind={true}
+            bind
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             required={this.props.required}
@@ -196,18 +210,15 @@ export default class People extends SubsectionElement {
 
 People.defaultProps = {
   List: { items: [] },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'relationships',
-  subsection: 'people',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('relationships.people', data))
-  },
+  validator: data => validate(schema('relationships.people', data)),
   defaultState: true,
   totalYears: 7,
-  scrollToBottom: ''
+  scrollToBottom: '.bottom-btns',
+  scrollIntoView: false,
 }
+
+export default connectRelationshipsSection(People, sectionConfig)
