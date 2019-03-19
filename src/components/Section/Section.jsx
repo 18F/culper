@@ -89,6 +89,7 @@ class Section extends React.Component {
         <Route path="/form/financial" component={Financial} />
         <Route path="/form/substance" component={SubstanceUse} />
         <Route path="/form/legal" component={Legal} />
+        <Route path="/form/psychological" component={Psychological} />
 
         {/* TBD */}
         <Route
@@ -100,9 +101,6 @@ class Section extends React.Component {
 
         {/* Sections to refactor */}
         {/*
-          <Route path="/form/substance" component={Substance} />
-          <Route path="/form/legal" component={Legal} />
-          <Route path="/form/psychological" component={Psychological} />
           <Route path="/form/package" component={Package} />
         */}
       </Switch>

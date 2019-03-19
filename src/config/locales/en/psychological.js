@@ -1,3 +1,5 @@
+/* eslint import/prefer-default-export: 0 */
+
 export const psychological = {
   heading: {
     intro: 'Why we are asking',
@@ -10,10 +12,10 @@ export const psychological = {
     hospitalization:
       'Have you EVER been hospitalized for a mental health condition?',
     diagnoses:
-      'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
+      'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.',
   },
   section: {
-    name: 'Psychological and emotional health'
+    name: 'Psychological and emotional health',
   },
   subsection: {
     intro: 'Introduction',
@@ -22,23 +24,26 @@ export const psychological = {
     hospitalizations: 'Hospitalizations',
     diagnoses: 'Diagnoses',
     conditions: 'Existing conditions',
-    review: 'Review'
+    review: 'Review',
   },
   destination: {
     intro: 'Psychological and emotional health intro',
     psychological: 'Psychological and emotional health',
     competence: 'Competence',
     consultation: 'Consultations',
+    consultations: 'Consultations',
     hospitalization: 'Hospitalizations',
+    hospitalizations: 'Hospitalizations',
     diagnoses: 'Diagnoses',
+    conditions: 'Existing conditions',
     existingConditions: 'Existing conditions',
-    review: 'Review'
+    review: 'Review',
   },
   default: {
     label: {
       toDate: 'N/A',
-      fromDate: 'N/A'
-    }
+      fromDate: 'N/A',
+    },
   },
   intro: {
     title: 'Section 10: Psychological and emotional health',
@@ -49,14 +54,14 @@ export const psychological = {
     para3:
       '**Mental health treatment and counseling, in and of itself, is not a reason to revoke or deny eligibility** for access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.',
     para4:
-      '**Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.**'
+      '**Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.**',
   },
   tour: {
-    para: 'Take a guided tour through the section'
+    para: 'Take a guided tour through the section',
   },
   review: {
     para:
-      'View all the sections associated with psychological and emotional health at once'
+      'View all the sections associated with psychological and emotional health at once',
   },
   competence: {
     heading: {
@@ -73,24 +78,24 @@ export const psychological = {
         'Was this matter appealed to a higher  court or administrative agency?',
       appealedAnother:
         'Do you have an additional instance where this matter was appealed to a higher court or administrative agency?',
-      needMore: 'Since you answered yes, we need more information'
+      needMore: 'Since you answered yes, we need more information',
     },
     label: {
       courtAddress: 'This address is',
-      disposition: 'Provide the final disposition'
+      disposition: 'Provide the final disposition',
     },
     help: {
       occurred: {
         title: 'Estimate the date if unsure',
         message:
           'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
-        note: ''
+        note: '',
       },
       courtName: {
         title: 'Need help with this court or agency name?',
         message:
           'Tell us the name of the court or administrative agency that issued the order.',
-        note: ''
+        note: '',
       },
       courtAddress: {
         title:
@@ -98,19 +103,19 @@ export const psychological = {
         message:
           'If you can only find a phone number try calling and asking for the address.',
         note:
-          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
       },
       incompetent: {
         title: 'Need help with this question?',
         message:
-          'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
+          'Has a court or administrative agency EVER ordered you to consult with a mental health professional?',
       },
       disposition: {
         title: "Tell us the ruling regarding the court or agency's decision",
         message:
           "If you can't remember your disposition a family member or the court/agency may be able to help you.",
-        note: ''
-      }
+        note: '',
+      },
     },
     collection: {
       summaryCourtName: 'Provide your order details below',
@@ -118,8 +123,8 @@ export const psychological = {
       appendTitle:
         'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
       appendLabel: 'Add another order',
-      itemType: 'Order'
-    }
+      itemType: 'Order',
+    },
   },
   consultation: {
     heading: {
@@ -135,24 +140,24 @@ export const psychological = {
         'Was this matter appealed to a higher  court or administrative agency?',
       appealedAnother:
         'Do you have an additional instance where this matter was appealed to a higher court or administrative agency?',
-      needMore: 'Since you answered yes, we need more information'
+      needMore: 'Since you answered yes, we need more information',
     },
     label: {
       courtAddress: 'This address is',
-      disposition: 'Provide the final disposition'
+      disposition: 'Provide the final disposition',
     },
     help: {
       occurred: {
         title: 'Estimate the date if unsure',
         message:
           'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
-        note: ''
+        note: '',
       },
       courtName: {
         title: 'Need help with this court or agency name?',
         message:
           'Tell us the name of the court or administrative agency that issued the order.',
-        note: ''
+        note: '',
       },
       courtAddress: {
         title:
@@ -160,25 +165,25 @@ export const psychological = {
         message:
           'If you can only find a phone number try calling and asking for the address.',
         note:
-          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
       },
       disposition: {
         title: "Tell us the ruling regarding the court or agency's decision",
         message:
           "If you can't remember your disposition a family member or the court/agency may be able to help you.",
-        note: ''
+        note: '',
       },
       appealed: {
         title: 'Need help with whether this matter was appealed?',
         message:
           'Was this matter appealed to a higher court or administrative agency?',
-        note: ''
+        note: '',
       },
       incompetent: {
         title: 'Need help with this question?',
         message:
-          'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
-      }
+          'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
+      },
     },
     collection: {
       summaryCourtName: 'Provide your order details below',
@@ -186,8 +191,8 @@ export const psychological = {
       appendTitle:
         'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
       appendLabel: 'Add another order',
-      itemType: 'Order'
-    }
+      itemType: 'Order',
+    },
   },
   hospitalization: {
     heading: {
@@ -196,12 +201,12 @@ export const psychological = {
       facility: 'Provide the name of the facility where treatment was provided',
       address:
         'Provide the address of the facility where treatment was provided',
-      explanation: 'Provide explanation'
+      explanation: 'Provide explanation',
     },
     label: {
       address: 'This address is',
       voluntaryAdmission: 'Voluntary',
-      involuntaryAdmission: 'Involuntary'
+      involuntaryAdmission: 'Involuntary',
     },
     collection: {
       description: 'Summary of hospitalizations',
@@ -209,26 +214,26 @@ export const psychological = {
       appendTitle:
         'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
       appendLabel: 'Add another hospitalization',
-      itemType: 'Hospitalization'
+      itemType: 'Hospitalization',
     },
     help: {
       incompetent: {
         title: 'Need help with mental health hospitalization?',
         message:
           'Have you EVER been hospitalized for a mental health condition?',
-        note: ''
+        note: '',
       },
       treatment: {
         title: 'Estimate the date if unsure',
         message:
           'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
-        note: ''
+        note: '',
       },
       facility: {
         title: 'Need help with this facility name?',
         message:
           'Tell us the name of the facility where you were hospitalized.',
-        note: ''
+        note: '',
       },
       address: {
         title:
@@ -236,9 +241,9 @@ export const psychological = {
         message:
           'If you can only find a phone number try calling and asking for the address.',
         note:
-          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
-      }
-    }
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+      },
+    },
   },
   diagnosis: {
     heading: {
@@ -248,7 +253,7 @@ export const psychological = {
       effective:
         'Was the counseling/treatment effective in managing your symptoms?',
       facility: 'Agency/organization/facility',
-      explanation: 'Provide explanation'
+      explanation: 'Provide explanation',
     },
     label: {
       psychotic: 'Psychotic disorder',
@@ -257,40 +262,40 @@ export const psychological = {
       delusional: 'Delusional disorder',
       bipolar: 'Bipolar mood disorder',
       borderline: 'Borderline personality disorder',
-      antisocial: 'Antisocial personality disorder'
+      antisocial: 'Antisocial personality disorder',
     },
     help: {
       condition: {
         title: 'Need help with health condition',
         message: 'Provide the name of the diagnosis or health condition',
-        note: ''
+        note: '',
       },
       diagnosed: {
         title: 'Estimate the date if unsure',
         message:
           'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note:
-          'Note: If this is a current diagnosis or health condition enter the start date and click the "Present" button for the "To date".'
+          'Note: If this is a current diagnosis or health condition enter the start date and click the "Present" button for the "To date".',
       },
       explanation: {
         title:
           "Tell us more about why the counseling/treatment wasn't effective?",
         message:
           "Let us know why this counseling/treatment didn't improve your symptoms.",
-        note: 'Go into as much detail as you need to full explain.'
-      }
+        note: 'Go into as much detail as you need to full explain.',
+      },
     },
     person: {
       heading: {
         name:
           'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
         address:
-          'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+          'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
       },
       label: {
         address: 'This address is',
         name: 'Name',
-        phone: 'Telephone'
+        phone: 'Telephone',
       },
       help: {
         address: {
@@ -299,27 +304,27 @@ export const psychological = {
           message:
             'If you can only find a phone number try calling and asking for the address.',
           note:
-            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         },
         name: {
           title: 'Need help the name of the healthcare professional?',
           message: 'Tell us the full name of the healthcare professional.',
           note:
-            'Note: If you can’t remember this name a family member may be able to help you.'
-        }
-      }
+            'Note: If you can’t remember this name a family member may be able to help you.',
+        },
+      },
     },
     facility: {
       heading: {
         name:
           'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
         address:
-          'Provide the address of any agency/organization/facility where counseling/treatment was provided'
+          'Provide the address of any agency/organization/facility where counseling/treatment was provided',
       },
       label: {
         name: 'Name',
         phone: 'Telephone',
-        address: 'This address is'
+        address: 'This address is',
       },
       help: {
         address: {
@@ -328,17 +333,17 @@ export const psychological = {
           message:
             'If you can only find a phone number try calling and asking for the address.',
           note:
-            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         },
         name: {
           title:
             'Need help entering name of the facility where treatment was provided?',
           message: 'Tell us the full name of the facility.',
           note:
-            'Note: If you can’t remember this facility name a family member may be able to help you.'
-        }
-      }
-    }
+            'Note: If you can’t remember this facility name a family member may be able to help you.',
+        },
+      },
+    },
   },
   diagnoses: {
     heading: {
@@ -348,7 +353,7 @@ export const psychological = {
         'Have you EVER been diagnosed by a physician or other health professional with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
       examples:
         'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.',
-      inTreatment: 'Are you currently in treatment?'
+      inTreatment: 'Are you currently in treatment?',
     },
     collection: {
       description: 'Summary of diagnoses',
@@ -358,26 +363,26 @@ export const psychological = {
       appendMessage:
         'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.',
       appendLabel: 'Add another diagnosis',
-      itemType: 'Diagnosis'
+      itemType: 'Diagnosis',
     },
     professional: {
       heading: {
         name:
           'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
         address:
-          'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+          'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
       },
       label: {
         address: 'This address is',
         name: 'Name',
-        phone: 'Telephone'
+        phone: 'Telephone',
       },
       help: {
         name: {
           title: 'Need help the name of the healthcare professional?',
           message: 'Tell us the full name of the healthcare professional.',
           note:
-            'Note: If you can’t remember this name a family member may be able to help you.'
+            'Note: If you can’t remember this name a family member may be able to help you.',
         },
         address: {
           title:
@@ -385,9 +390,9 @@ export const psychological = {
           message:
             'If you can only find a phone number try calling and asking for the address.',
           note:
-            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
-        }
-      }
+            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        },
+      },
     },
     treatment: {
       collection: {
@@ -396,38 +401,38 @@ export const psychological = {
         appendTitle:
           'Do you have an additional instance where you are currently in treatment?',
         appendLabel: 'Add another treatment',
-        itemType: 'Treatment'
-      }
+        itemType: 'Treatment',
+      },
     },
     help: {
       diagnosed: {
         title: 'Help with diagnoses',
         message:
           'Have you EVER been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
-        note: ''
+        note: '',
       },
       didNotConsult: {
         title: 'Help with occasions when not consulting',
         message:
           'In the last seven years, have there been any occasions when you did not consult with a medical professional before altering or discontinuing, or failing to start a prescribed course of treatment for any of the listed diagnoses?',
-        note: ''
+        note: '',
       },
       inTreatment: {
         title: 'Help with current treatment',
         message: 'Are you currently in treatment?',
-        note: ''
+        note: '',
       },
       condition: {
         title: 'Help with diagnosis',
         message: 'Identify the diagnosis or health condition',
-        note: ''
-      }
+        note: '',
+      },
     },
     person: {
       help: {
         name: {
           title: 'Need help the name of the healthcare professional?',
-          message: 'Tell us the full name of the healthcare professional.'
+          message: 'Tell us the full name of the healthcare professional.',
         },
         address: {
           title:
@@ -435,10 +440,10 @@ export const psychological = {
           message:
             'If you can only find a phone number try calling and asking for the address.',
           note:
-            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
-        }
-      }
-    }
+            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        },
+      },
+    },
   },
   existingConditions: {
     heading: {
@@ -449,40 +454,40 @@ export const psychological = {
       didNotFollow:
         'Have you ever chosen not to follow a prescribed course of treatment for any of these conditions?',
       explanation: 'Provide explanation',
-      didNotFollowExplanation: 'Provide explanation'
+      didNotFollowExplanation: 'Provide explanation',
     },
     para: {
       hasCondition:
         'Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer **"no"** even if you have a mental health or other condition requiring treatment.\n\nFor example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer **"no."**',
       receivedTreatment:
-        'You may choose not to answer this question. However, such consultation or treatment will not disqualify you and is considered to be a positive action.'
+        'You may choose not to answer this question. However, such consultation or treatment will not disqualify you and is considered to be a positive action.',
     },
     help: {
       receivedTreatment: {
         title: 'Help with counseling or treatment',
         message:
           'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
-        note: ''
+        note: '',
       },
       didNotFollow: {
         title: 'Help with following prescribed course of treatment',
         message:
           'Have you ever chosen not to follow a prescribed course of treatment for any of these conditions?',
-        note: ''
+        note: '',
       },
       didNotFollowExplanation: {
         title:
           'Help with not following prescribed course of action explanation',
         message: 'Provide explanation',
-        note: ''
-      }
+        note: '',
+      },
     },
     receivedTreatment: {
       label: {
         yes: 'Yes',
         no: 'No',
-        decline: 'I decline to answer'
-      }
+        decline: 'I decline to answer',
+      },
     },
     treatment: {
       collection: {
@@ -491,8 +496,8 @@ export const psychological = {
         appendTitle:
           'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
         appendLabel: 'Add another treatment',
-        itemType: 'Treatment'
-      }
+        itemType: 'Treatment',
+      },
     },
     diagnosis: {
       heading: {
@@ -501,7 +506,7 @@ export const psychological = {
         effective:
           'Was the counseling/treatment effective in managing your symptoms?',
         facility: 'Agency/organization/facility',
-        explanation: 'Provide explanation'
+        explanation: 'Provide explanation',
       },
       help: {
         diagnosed: {
@@ -509,19 +514,19 @@ export const psychological = {
             'Provide the full date range (start to finish) of your counseling or treatment',
           message:
             'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.',
-          note: ''
-        }
+          note: '',
+        },
       },
       person: {
         heading: {
           name:
             'Provide the name and telephone number of the health care professional',
-          address: 'Provide the address of the health care professional'
+          address: 'Provide the address of the health care professional',
         },
         label: {
           address: 'This address is',
           name: 'Name',
-          phone: 'Telephone'
+          phone: 'Telephone',
         },
         help: {
           address: {
@@ -529,7 +534,7 @@ export const psychological = {
             message:
               'A physical or mailing address should be associated with the name. If you can only find a phone number try calling and asking for the address.',
             note:
-              'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+              'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           },
           name: {
             title:
@@ -537,21 +542,21 @@ export const psychological = {
             message:
               'Tell us the full name of the healthcare professional and a current phone number for them.',
             note:
-              'Note: If you can’t remember these a family member may be able to help you.'
-          }
-        }
+              'Note: If you can’t remember these a family member may be able to help you.',
+          },
+        },
       },
       facility: {
         heading: {
           name:
             'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
           address:
-            'Provide the address of any agency/organization/facility where counseling/treatment was provided'
+            'Provide the address of any agency/organization/facility where counseling/treatment was provided',
         },
         label: {
           address: 'This address is',
           name: 'Name',
-          phone: 'Telephone'
+          phone: 'Telephone',
         },
         help: {
           address: {
@@ -560,17 +565,17 @@ export const psychological = {
             message:
               'If you can only find a phone number try calling and asking for the address.',
             note:
-              'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+              'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           },
           name: {
             title: 'Need help the facility where treatment was provided?',
             message:
               'Tell us the name of the facility where your treatment was.',
             note:
-              'Note: If you can’t remember this name a family member may be able to help you.'
-          }
-        }
-      }
-    }
-  }
+              'Note: If you can’t remember this name a family member may be able to help you.',
+          },
+        },
+      },
+    },
+  },
 }

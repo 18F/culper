@@ -24226,229 +24226,213 @@ exports[`The section component renders military.selective 1`] = `
 `;
 
 exports[`The section component renders psychological.competence 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-competence"
   >
     <div
-      className="view view-psychological"
+      className="section-content competence"
+      data-section="psychological"
+      data-subsection="competence"
     >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+      <h1
+        className="section-header"
+      >
+        Competence
+      </h1>
+      <div
+        aria-label="Has a court or administrative agency ever issued an order declaring you mentally incompetent?"
+        className="field required branch"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Has a court or administrative agency ever issued an order declaring you mentally incompetent?
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
             >
               <div
-                className="view view-competence"
+                className="content"
+              />
+              <div
+                className="blocks option-list branch"
               >
-                <div>
-                  <div
-                    className="section-content competence"
-                    data-section="psychological"
-                    data-subsection="competence"
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="is_incompetent-MOCK-GUID"
+                    name="is_incompetent-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="is_incompetent-MOCK-GUID"
                   >
-                    <h1
-                      className="section-header"
-                    >
-                      Competence
-                    </h1>
-                    <div
-                      aria-label="Has a court or administrative agency ever issued an order declaring you mentally incompetent?"
-                      className="field required branch"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Has a court or administrative agency ever issued an order declaring you mentally incompetent?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="is_incompetent-MOCK-GUID"
-                                  name="is_incompetent-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="is_incompetent-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="is_incompetent-MOCK-GUID"
-                                  name="is_incompetent-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="is_incompetent-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="no block"
                 >
-                  <div
-                    className="btn-wrap"
+                  <input
+                    aria-label="No for null"
+                    checked={true}
+                    className="usa-input-success selected"
+                    disabled={false}
+                    id="is_incompetent-MOCK-GUID"
+                    name="is_incompetent-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className="checked"
+                    htmlFor="is_incompetent-MOCK-GUID"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Psychological and emotional health intro"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Psychological and emotional health intro"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Psychological and emotional health intro
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Consultations"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Consultations"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Consultations
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Psychological and emotional health intro"
+            className="btn-cell back"
+            href="/form/psychological/intro"
+            onClick={[Function]}
+            title="Go to previous section Psychological and emotional health intro"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Psychological and emotional health intro
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Consultations"
+            className="btn-cell next"
+            href="/form/psychological/consultations"
+            onClick={[Function]}
+            title="Go to next section Consultations"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Consultations
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -24457,245 +24441,229 @@ exports[`The section component renders psychological.competence 1`] = `
 `;
 
 exports[`The section component renders psychological.conditions 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-conditions"
   >
     <div
-      className="view view-psychological"
+      className="section-content existingconditions"
+      data-section="psychological"
+      data-subsection="conditions"
     >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+      <h1
+        className="section-header"
+      >
+        Existing conditions
+      </h1>
+      <div
+        aria-label="Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?"
+        className="field required branch eapp-field-wrap hascondition"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
             >
               <div
-                className="view view-conditions"
+                className="content"
               >
                 <div>
-                  <div
-                    className="section-content existingconditions"
-                    data-section="psychological"
-                    data-subsection="conditions"
+                  <p>
+                    Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer 
+                    <strong>
+                      "no"
+                    </strong>
+                     even if you have a mental health or other condition requiring treatment.
+                  </p>
+                  <p>
+                    For example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer 
+                    <strong>
+                      "no."
+                    </strong>
+                  </p>
+                </div>
+              </div>
+              <div
+                className="blocks option-list branch"
+              >
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hascondition-MOCK-GUID"
+                    name="hascondition-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="hascondition-MOCK-GUID"
                   >
-                    <h1
-                      className="section-header"
-                    >
-                      Existing conditions
-                    </h1>
-                    <div
-                      aria-label="Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?"
-                      className="field required branch eapp-field-wrap hascondition"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            >
-                              <div>
-                                <p>
-                                  Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer 
-                                  <strong>
-                                    "no"
-                                  </strong>
-                                   even if you have a mental health or other condition requiring treatment.
-                                </p>
-                                <p>
-                                  For example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer 
-                                  <strong>
-                                    "no."
-                                  </strong>
-                                </p>
-                              </div>
-                            </div>
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="hascondition-MOCK-GUID"
-                                  name="hascondition-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="hascondition-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="hascondition-MOCK-GUID"
-                                  name="hascondition-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="hascondition-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="no block"
                 >
-                  <div
-                    className="btn-wrap"
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hascondition-MOCK-GUID"
+                    name="hascondition-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className=""
+                    htmlFor="hascondition-MOCK-GUID"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Diagnoses"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Diagnoses"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Diagnoses
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Review"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Review"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Diagnoses"
+            className="btn-cell back"
+            href="/form/psychological/diagnoses"
+            onClick={[Function]}
+            title="Go to previous section Diagnoses"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Diagnoses
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Review"
+            className="btn-cell next"
+            href="/form/psychological/review"
+            onClick={[Function]}
+            title="Go to next section Review"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Review
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -24704,238 +24672,222 @@ exports[`The section component renders psychological.conditions 1`] = `
 `;
 
 exports[`The section component renders psychological.consultations 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-consultations"
   >
     <div
-      className="view view-psychological"
+      className="section-content consultation"
+      data-section="psychological"
+      data-subsection="consultations"
     >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+      <h1
+        className="section-header"
+      >
+        Consultations
+      </h1>
+      <div
+        aria-label="Has a court or administrative agency EVER ordered you to consult with a mental health professional?"
+        className="field required branch"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Has a court or administrative agency EVER ordered you to consult with a mental health professional?
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
             >
               <div
-                className="view view-consultations"
+                className="content"
               >
                 <div>
-                  <div
-                    className="section-content consultation"
-                    data-section="psychological"
-                    data-subsection="consultations"
+                  <p>
+                    For example, a psychiatrist, psychologist, licensed clinical social worker, etc.
+                  </p>
+                  <p>
+                    An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response.
+                  </p>
+                </div>
+              </div>
+              <div
+                className="blocks option-list branch"
+              >
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="is_incompetent-MOCK-GUID"
+                    name="is_incompetent-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="is_incompetent-MOCK-GUID"
                   >
-                    <h1
-                      className="section-header"
-                    >
-                      Consultations
-                    </h1>
-                    <div
-                      aria-label="Has a court or administrative agency EVER ordered you to consult with a mental health professional?"
-                      className="field required branch"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Has a court or administrative agency EVER ordered you to consult with a mental health professional?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            >
-                              <div>
-                                <p>
-                                  For example, a psychiatrist, psychologist, licensed clinical social worker, etc.
-                                </p>
-                                <p>
-                                  An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response.
-                                </p>
-                              </div>
-                            </div>
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="is_incompetent-MOCK-GUID"
-                                  name="is_incompetent-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="is_incompetent-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="is_incompetent-MOCK-GUID"
-                                  name="is_incompetent-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="is_incompetent-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="no block"
                 >
-                  <div
-                    className="btn-wrap"
+                  <input
+                    aria-label="No for null"
+                    checked={true}
+                    className="usa-input-success selected"
+                    disabled={false}
+                    id="is_incompetent-MOCK-GUID"
+                    name="is_incompetent-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className="checked"
+                    htmlFor="is_incompetent-MOCK-GUID"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Competence"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Competence"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Competence
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Hospitalizations"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Hospitalizations"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Hospitalizations
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Competence"
+            className="btn-cell back"
+            href="/form/psychological/competence"
+            onClick={[Function]}
+            title="Go to previous section Competence"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Competence
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Hospitalizations"
+            className="btn-cell next"
+            href="/form/psychological/hospitalizations"
+            onClick={[Function]}
+            title="Go to next section Hospitalizations"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Hospitalizations
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -24944,247 +24896,231 @@ exports[`The section component renders psychological.consultations 1`] = `
 `;
 
 exports[`The section component renders psychological.diagnoses 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-diagnoses"
   >
     <div
-      className="view view-psychological"
+      className="section-content diagnoses"
+      data-section="psychological"
+      data-subsection="diagnoses"
     >
+      <h1
+        className="section-header"
+      >
+        Diagnoses
+      </h1>
       <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+        <p>
+          The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.
+        </p>
+        <p>
+          It is important to note that any such diagnosis, in and of itself, 
+          <strong>
+            is not a reason
+          </strong>
+           to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.
+        </p>
+      </div>
+      <div
+        aria-label="Have you EVER been diagnosed by a physician or other health professional with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?"
+        className="field required branch diagnosed"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Have you EVER been diagnosed by a physician or other health professional with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
             >
               <div
-                className="view view-diagnoses"
+                className="content"
               >
                 <div>
-                  <div
-                    className="section-content diagnoses"
-                    data-section="psychological"
-                    data-subsection="diagnoses"
+                  <p>
+                    Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.
+                  </p>
+                </div>
+              </div>
+              <div
+                className="blocks option-list branch"
+              >
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="diagnosed-MOCK-GUID"
+                    name="diagnosed-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="diagnosed-MOCK-GUID"
                   >
-                    <h1
-                      className="section-header"
-                    >
-                      Diagnoses
-                    </h1>
-                    <div>
-                      <p>
-                        The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.
-                      </p>
-                      <p>
-                        It is important to note that any such diagnosis, in and of itself, 
-                        <strong>
-                          is not a reason
-                        </strong>
-                         to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.
-                      </p>
-                    </div>
-                    <div
-                      aria-label="Have you EVER been diagnosed by a physician or other health professional with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?"
-                      className="field required branch diagnosed"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER been diagnosed by a physician or other health professional with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            >
-                              <div>
-                                <p>
-                                  Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.
-                                </p>
-                              </div>
-                            </div>
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="diagnosed-MOCK-GUID"
-                                  name="diagnosed-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="diagnosed-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="diagnosed-MOCK-GUID"
-                                  name="diagnosed-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="diagnosed-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="no block"
                 >
-                  <div
-                    className="btn-wrap"
+                  <input
+                    aria-label="No for null"
+                    checked={true}
+                    className="usa-input-success selected"
+                    disabled={false}
+                    id="diagnosed-MOCK-GUID"
+                    name="diagnosed-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className="checked"
+                    htmlFor="diagnosed-MOCK-GUID"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Hospitalizations"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Hospitalizations"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Hospitalizations
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Review"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Review"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Hospitalizations"
+            className="btn-cell back"
+            href="/form/psychological/hospitalizations"
+            onClick={[Function]}
+            title="Go to previous section Hospitalizations"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Hospitalizations
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Existing conditions"
+            className="btn-cell next"
+            href="/form/psychological/conditions"
+            onClick={[Function]}
+            title="Go to next section Existing conditions"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Existing conditions
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -25193,229 +25129,213 @@ exports[`The section component renders psychological.diagnoses 1`] = `
 `;
 
 exports[`The section component renders psychological.hospitalizations 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-hospitalizations"
   >
     <div
-      className="view view-psychological"
+      className="section-content hospitalizations"
+      data-section="psychological"
+      data-subsection="hospitalizations"
     >
-      <div>
-        <div>
-          <div>
-            <div
-              className="section-view"
+      <h1
+        className="section-header"
+      >
+        Hospitalizations
+      </h1>
+      <div
+        aria-label="Have you EVER been hospitalized for a mental health condition?"
+        className="field required branch"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Have you EVER been hospitalized for a mental health condition?
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
             >
               <div
-                className="view view-hospitalizations"
+                className="content"
+              />
+              <div
+                className="blocks option-list branch"
               >
-                <div>
-                  <div
-                    className="section-content hospitalizations"
-                    data-section="psychological"
-                    data-subsection="hospitalizations"
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="hospitalized-MOCK-GUID"
+                    name="hospitalized-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="hospitalized-MOCK-GUID"
                   >
-                    <h1
-                      className="section-header"
-                    >
-                      Hospitalizations
-                    </h1>
-                    <div
-                      aria-label="Have you EVER been hospitalized for a mental health condition?"
-                      className="field required branch"
-                      data-uuid="field-MOCK-GUID"
-                    >
-                      <a
-                        aria-hidden="true"
-                        className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
-                      />
-                      <h4
-                        className="title h4"
-                      >
-                        Have you EVER been hospitalized for a mental health condition?
-                      </h4>
-                      <span
-                        className="icon"
-                      />
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
-                        className="table"
-                      >
-                        <span
-                          className="content"
-                        >
-                          <span
-                            className="component shrink"
-                          >
-                            <div
-                              className="content"
-                            />
-                            <div
-                              className="blocks option-list branch"
-                            >
-                              <div
-                                className="yes block"
-                              >
-                                <input
-                                  aria-label="Yes for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="hospitalized-MOCK-GUID"
-                                  name="hospitalized-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="Yes"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="hospitalized-MOCK-GUID"
-                                >
-                                  <span>
-                                    Yes
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="no block"
-                              >
-                                <input
-                                  aria-label="No for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  disabled={false}
-                                  id="hospitalized-MOCK-GUID"
-                                  name="hospitalized-MOCK-GUID"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="radio"
-                                  value="No"
-                                />
-                                <label
-                                  className=""
-                                  htmlFor="hospitalized-MOCK-GUID"
-                                >
-                                  <span>
-                                    No
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>
+                      Yes
+                    </span>
+                  </label>
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="no block"
                 >
-                  <div
-                    className="btn-wrap"
+                  <input
+                    aria-label="No for null"
+                    checked={true}
+                    className="usa-input-success selected"
+                    disabled={false}
+                    id="hospitalized-MOCK-GUID"
+                    name="hospitalized-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className="checked"
+                    htmlFor="hospitalized-MOCK-GUID"
                   >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Consultations"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Consultations"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Consultations
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Diagnoses"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Diagnoses"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Diagnoses
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Consultations"
+            className="btn-cell back"
+            href="/form/psychological/consultations"
+            onClick={[Function]}
+            title="Go to previous section Consultations"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Consultations
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Diagnoses"
+            className="btn-cell next"
+            href="/form/psychological/diagnoses"
+            onClick={[Function]}
+            title="Go to next section Diagnoses"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Diagnoses
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -25424,187 +25344,173 @@ exports[`The section component renders psychological.hospitalizations 1`] = `
 `;
 
 exports[`The section component renders psychological.intro 1`] = `
-<div>
+<div
+  className="section-view"
+>
   <div
-    className="section-view"
+    className="view view-intro"
   >
+    <div>
+      <h1
+        className="section-header"
+      >
+        Section 10: Psychological and emotional health
+      </h1>
+      <div
+        aria-label="Why we are asking"
+        className="field no-margin-bottom"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Why we are asking
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component"
+            >
+              <div>
+                <p>
+                  The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.
+                </p>
+              </div>
+              <div>
+                <p>
+                  Individuals experience a range of reactions to traumatic events. For example, the death of a loved one, divorce, major injury, service in a military combat environment, sexual assault, domestic violence, or other difficult work-related, family, personal, or medical issues may lead to grief, depression, or other responses. The government recognizes that mental health counseling and treatment may provide important support for those who have experienced such events, as well as for those with other mental health conditions. Nothing in this questionnaire is intended to discourage those who might benefit from such treatment from seeking it.
+                </p>
+              </div>
+              <div>
+                <p>
+                  <strong>
+                    Mental health treatment and counseling, in and of itself, is not a reason to revoke or deny eligibility
+                  </strong>
+                   for access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.
+                </p>
+              </div>
+              <div>
+                <p>
+                  <strong>
+                    Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.
+                  </strong>
+                </p>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
     <div
-      className="view view-psychological"
+      className="bottom-btns"
     >
-      <div>
-        <div>
-          <div>
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Review investigative & criminal history"
+            className="btn-cell back"
+            href="/form/legal/review"
+            onClick={[Function]}
+            title="Go to previous section Review investigative & criminal history"
+          >
             <div
-              className="section-view"
+              className="actions back"
             >
               <div
-                className="view view-intro"
+                className="icon"
               >
-                <div>
-                  <h1
-                    className="section-header"
-                  >
-                    Section 10: Psychological and emotional health
-                  </h1>
-                  <div
-                    aria-label="Why we are asking"
-                    className="field no-margin-bottom"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Why we are asking
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div>
-                            <p>
-                              The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.
-                            </p>
-                          </div>
-                          <div>
-                            <p>
-                              Individuals experience a range of reactions to traumatic events. For example, the death of a loved one, divorce, major injury, service in a military combat environment, sexual assault, domestic violence, or other difficult work-related, family, personal, or medical issues may lead to grief, depression, or other responses. The government recognizes that mental health counseling and treatment may provide important support for those who have experienced such events, as well as for those with other mental health conditions. Nothing in this questionnaire is intended to discourage those who might benefit from such treatment from seeking it.
-                            </p>
-                          </div>
-                          <div>
-                            <p>
-                              <strong>
-                                Mental health treatment and counseling, in and of itself, is not a reason to revoke or deny eligibility
-                              </strong>
-                               for access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.
-                            </p>
-                          </div>
-                          <div>
-                            <p>
-                              <strong>
-                                Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.
-                              </strong>
-                            </p>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
                 </div>
                 <div
-                  className="bottom-btns"
+                  className="label"
                 >
-                  <div
-                    className="btn-wrap"
-                  >
-                    <div
-                      className="btn-container"
-                    >
-                      <button
-                        aria-label="Go to previous section Review investigative & criminal history"
-                        className="btn-cell back"
-                        onClick={[Function]}
-                        title="Go to previous section Review investigative & criminal history"
-                      >
-                        <div
-                          className="actions back"
-                        >
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-left"
-                            />
-                          </div>
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Back
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Review investigative & criminal history
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <div
-                        className="btn-spacer"
-                      />
-                      <button
-                        aria-label="Go to next section Competence"
-                        className="btn-cell next"
-                        onClick={[Function]}
-                        title="Go to next section Competence"
-                      >
-                        <div
-                          className="actions next"
-                        >
-                          <div
-                            className="text"
-                          >
-                            <div
-                              className="direction"
-                            >
-                              Next
-                            </div>
-                            <div
-                              className="label"
-                            >
-                              Competence
-                            </div>
-                          </div>
-                          <div
-                            className="icon"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fa fa-arrow-circle-right"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                  Review investigative & criminal history
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Competence"
+            className="btn-cell next"
+            href="/form/psychological/competence"
+            onClick={[Function]}
+            title="Go to next section Competence"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Competence
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
