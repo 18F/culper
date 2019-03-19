@@ -241,6 +241,7 @@ export default class Bankruptcy extends ValidationElement {
             <DateControl
               name="DateDischarged"
               className="datedischarged"
+              prefix="bankruptcy"
               onUpdate={this.updateDateDischarged}
               onError={this.props.onError}
               minDate={this.props.DateFiled}
