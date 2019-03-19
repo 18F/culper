@@ -49,7 +49,7 @@
                         "props": {
                           "month": "09",
                           "day": "09",
-                          "year": "1920",
+                          "year": "1980",
                           "estimated": true
                         }
                       },
@@ -115,7 +115,7 @@
                         "props": {
                           "month": "09",
                           "day": "09",
-                          "year": "1920",
+                          "year": "1980",
                           "estimated": false
                         }
                       },
@@ -181,7 +181,7 @@
                         "props": {
                           "month": "09",
                           "day": "09",
-                          "year": "1920",
+                          "year": "1980",
                           "estimated": false
                         }
                       },
@@ -259,7 +259,7 @@
                                   "props": {
                                     "month": "10",
                                     "day": "9",
-                                    "year": "1970",
+                                    "year": "2015",
                                     "estimated": false
                                   }
                                 },
@@ -268,7 +268,7 @@
                                   "props": {
                                     "month": "11",
                                     "day": "30",
-                                    "year": "1970",
+                                    "year": "2015",
                                     "estimated": false
                                   }
                                 },
@@ -295,7 +295,7 @@
                                   "props": {
                                     "month": "09",
                                     "day": "09",
-                                    "year": "1950",
+                                    "year": "2010",
                                     "estimated": false
                                   }
                                 },
@@ -304,7 +304,7 @@
                                   "props": {
                                     "month": "09",
                                     "day": "20",
-                                    "year": "1950",
+                                    "year": "2010",
                                     "estimated": true
                                   }
                                 },
@@ -329,7 +329,7 @@
                     "props": {
                       "month": "09",
                       "day": "09",
-                      "year": "1950",
+                      "year": "2010",
                       "estimated": false
                     }
                   },
@@ -344,7 +344,7 @@
                     "props": {
                       "month": "09",
                       "day": "09",
-                      "year": "1930",
+                      "year": "1990",
                       "estimated": false
                     }
                   },
@@ -407,7 +407,7 @@
                     "props": {
                       "month": "09",
                       "day": "09",
-                      "year": "1940",
+                      "year": "2000",
                       "estimated": false
                     }
                   },
@@ -422,7 +422,7 @@
                     "props": {
                       "month": "09",
                       "day": "09",
-                      "year": "1920",
+                      "year": "1980",
                       "estimated": false
                     }
                   },
@@ -505,7 +505,8 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Name": {
@@ -608,7 +609,8 @@
         "PlaceIssued": {
           "type": "location",
           "props": {
-            "layout": ""
+            "layout": "",
+            "country": ""
           }
         },
         "CertificateNumber": {
@@ -683,7 +685,8 @@
           "props": {
             "layout": "City, State",
             "city": "New York",
-            "state": "NY"
+            "state": "NY",
+            "country": ""
           }
         },
         "PriorCitizenship": {
@@ -1449,7 +1452,8 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "ReferenceEmail": {
@@ -1470,7 +1474,6 @@
                       "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
-                      "hideMiddleName": true,
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
@@ -1598,7 +1601,8 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "layout": ""
+                          "layout": "",
+                          "country": ""
                         }
                       },
                       "Telephone": {
@@ -1779,7 +1783,8 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "layout": ""
+                          "layout": "",
+                          "country": ""
                         }
                       },
                       "Telephone": {
@@ -2037,7 +2042,7 @@
           "props": {
             "month": "1",
             "day": "21",
-            "year": "1919",
+            "year": "1979",
             "estimated": false
           }
         },
@@ -2086,9 +2091,9 @@
         "ssn": {
           "type": "ssn",
           "props": {
-            "first": "124",
+            "first": "421",
             "middle": "99",
-            "last": "3910",
+            "last": "0193",
             "notApplicable": false
           }
         },
@@ -3330,6 +3335,13 @@
                       "value": "8482091"
                     }
                   },
+                  "ServiceState": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
                   "Status": {
                     "type": "radio",
                     "props": {
@@ -3417,6 +3429,13 @@
                     "type": "text",
                     "props": {
                       "value": "8098310"
+                    }
+                  },
+                  "ServiceState": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Status": {
@@ -3508,6 +3527,13 @@
                       "value": "09920323029334324235"
                     }
                   },
+                  "ServiceState": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
                   "Status": {
                     "type": "radio",
                     "props": {
@@ -3537,12 +3563,6 @@
             "value": "Yes"
           }
         },
-        "HasRegisteredNotApplicable": {
-          "type": "notapplicable",
-          "props": {
-            "applicable": true
-          }
-        },
         "RegistrationNumber": {
           "type": "text",
           "props": {
@@ -3553,6 +3573,12 @@
           "type": "textarea",
           "props": {
             "value": ""
+          }
+        },
+        "HasRegisteredNotApplicable": {
+          "type": "notapplicable",
+          "props": {
+            "applicable": true
           }
         }
       }
@@ -3745,13 +3771,15 @@
             "Address": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "AddressSeparated": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "AddressSeparatedNotApplicable": {
@@ -3792,7 +3820,8 @@
             "BirthPlace": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "Birthdate": {
@@ -3887,7 +3916,8 @@
             "Location": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "Name": {
@@ -4335,7 +4365,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Aliases": {
@@ -4441,7 +4472,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -4477,7 +4509,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -4613,7 +4646,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Aliases": {
@@ -4719,7 +4753,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -4755,7 +4790,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
