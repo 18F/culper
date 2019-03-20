@@ -7243,13 +7243,6 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
-                  <a
-                    className="logout"
-                    href="#"
-                    onClick={[Function]}
-                  >
-                    Logout
-                  </a>
                 </div>
                 <h1
                   className="title"
