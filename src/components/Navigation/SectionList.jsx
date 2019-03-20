@@ -6,7 +6,7 @@ import SectionLink from './SectionLink'
 import ToggleItem from './ToggleItem'
 
 const SectionList = ({
-  sections, className, basePath, topSection, sectionCode,
+  sections, className, basePath, topSection,
 }) => {
   const classes = classnames(
     'usa-accordion',
@@ -22,7 +22,6 @@ const SectionList = ({
               key={s.key}
               section={s}
               basePath={basePath}
-              sectionCode={sectionCode}
               topSection={topSection}
             />
           )
@@ -33,7 +32,6 @@ const SectionList = ({
             key={s.key}
             section={s}
             basePath={basePath}
-            sectionCode={sectionCode}
             topSection={topSection}
           />
         )
@@ -47,13 +45,11 @@ SectionList.propTypes = {
   sections: PropTypes.array.isRequired,
   basePath: PropTypes.string,
   topSection: PropTypes.string,
-  sectionCode: PropTypes.string,
 }
 
 SectionList.defaultProps = {
   basePath: '',
   topSection: undefined,
-  sectionCode: undefined,
   className: 'usa-sidenav-list',
 }
 

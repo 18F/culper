@@ -15,20 +15,22 @@ import { formHasErrors } from 'helpers/navigation'
 const getSectionErrors = (state, props) => {
   const { application } = state
   const { Errors } = application
-  const { topSection, section, sectionCode } = props
+  const { topSection, section } = props
 
   if (topSection) {
     const sectionErrors = Errors[topSection] || []
 
+    // Review section should show status of all its sections
     if (section.name === 'Review') return sectionErrors
 
-    if (!section.subsections) {
-      return sectionErrors.filter(
-        e => `${e.section}/${e.subsection}` === `${sectionCode}/${section.name}`
-      )
+    // Section should show status of all its subsections
+    if (section.subsections) {
+      const subsections = section.subsections.map(s => s.name)
+      return sectionErrors.filter(e => subsections.includes(e.subsection))
     }
 
-    return sectionErrors.filter(e => e.subsection.includes(section.name))
+    // Section node
+    return sectionErrors.filter(e => e.subsection === section.name)
   }
 
   return Errors[section.name] || []
@@ -38,18 +40,22 @@ const getSectionCompleted = (state, props) => {
   const { application } = state
   const { Completed } = application
 
-  const { topSection, section, sectionCode } = props
+  const { topSection, section } = props
 
   if (topSection) {
     const sectionCompleted = Completed[topSection] || []
 
+    // Review section should show status of all its sections
     if (section.name === 'Review') return sectionCompleted
 
-    if (!section.subsections) {
-      return sectionCompleted.filter(s => s.code === `${sectionCode}/${section.name}`)
+    // Section should show status of all its subsections
+    if (section.subsections) {
+      const subsections = section.subsections.map(s => s.name)
+      return sectionCompleted.filter(s => subsections.includes(s.subsection))
     }
 
-    return sectionCompleted.filter(s => s.code.includes(`${sectionCode}/${section.name}`))
+    // Section node
+    return sectionCompleted.filter(s => s.subsection === section.name)
   }
 
   return Completed[section.name] || []

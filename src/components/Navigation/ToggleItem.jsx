@@ -13,16 +13,12 @@ import SectionList from './SectionList'
 import { isActive } from './navigation-helpers'
 
 const ToggleItem = ({
-  section, basePath, sectionCode, topSection, location, errors, completed,
+  section, basePath, topSection, location, errors, completed,
 }) => {
   const url = `${basePath}/${section.path}`
   const active = isActive(url, location.pathname)
 
   const newTopSection = topSection || section.name
-
-  const newSectionCode = sectionCode
-    ? `${sectionCode}/${section.name}`
-    : section.name
 
   const classes = classnames(
     'section-link',
@@ -49,7 +45,6 @@ const ToggleItem = ({
         <SectionList
           className="usa-sidenav-sub_list"
           basePath={url}
-          sectionCode={newSectionCode}
           topSection={newTopSection}
           sections={section.subsections}
         />
@@ -60,7 +55,6 @@ const ToggleItem = ({
 
 ToggleItem.propTypes = {
   basePath: PropTypes.string,
-  sectionCode: PropTypes.string,
   topSection: PropTypes.string,
   errors: PropTypes.bool,
   completed: PropTypes.bool,
@@ -78,7 +72,6 @@ ToggleItem.propTypes = {
 
 ToggleItem.defaultProps = {
   basePath: '',
-  sectionCode: undefined,
   topSection: undefined,
   completed: false,
   errors: false,

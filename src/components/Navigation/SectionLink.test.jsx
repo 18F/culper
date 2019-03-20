@@ -76,7 +76,6 @@ describe('The SectionLink component', () => {
     const props = {
       section,
       topSection: 'foreign',
-      sectionCode: 'foreign/activities',
     }
 
     const component = mountSection(props, '/form/foreign', state)
