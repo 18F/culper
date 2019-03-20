@@ -212,6 +212,9 @@ const transform = {
   'relationships.relatives': data => {
     return section.relationshipsRelatives(data)
   },
+  'citizenship.usPassport': data => {
+    return section.citizenshipUsPassport(data)
+  },
   'citizenship.multiple': data => {
     return section.citizenshipMultiple(data)
   },
@@ -277,9 +280,6 @@ const transform = {
   },
   'foreign.contacts': data => {
     return section.foreignContacts(data)
-  },
-  'foreign.passport': data => {
-    return section.foreignPassport(data)
   },
   'foreign.travel': data => {
     return section.foreignTravel(data)

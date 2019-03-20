@@ -1,6 +1,6 @@
 import * as form from '../form'
 
-export const foreignPassport = (data = {}) => {
+export const citizenshipUsPassport = (data = {}) => {
   return {
     HasPassports: form.branch(data.HasPassports),
     Name: form.name(data.Name),
@@ -8,6 +8,8 @@ export const foreignPassport = (data = {}) => {
     Card: form.radio(data.Card),
     Issued: form.datecontrol(data.Issued),
     Expiration: form.datecontrol(data.Expiration),
-    Comments: form.textarea(data.Comments)
+    Comments: form.textarea(data.Comments),
   }
 }
+
+export default citizenshipUsPassport
