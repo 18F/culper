@@ -257,6 +257,13 @@ export const validateSection = ({ key, data }) => {
   return false
 }
 
+export const sectionIsValid = (formSections = []) => (
+  formSections.every((s) => {
+    if (s.subsections) return sectionIsValid(s.subsections)
+    return s.isValid === true
+  })
+)
+
 export const sectionIsInvalid = (formSections = []) => (
   formSections.some((s) => {
     if (s.subsections) return sectionIsInvalid(s.subsections)

@@ -1,31 +1,17 @@
+/* eslint import/prefer-default-export: 0 */
 import { createSelector } from 'reselect'
 
-import { validateSection } from 'helpers/validation'
+import { validateSection, sectionIsValid } from 'helpers/validation'
 
 import {
   nestedFormSectionsSelector,
 } from './navigation'
 
-export const reduceFormSectionStores = (sections = [], store = '') => (
-  sections.reduce((acc, section) => {
-    if (section.subsections) {
-      const parentStore = store || section.store
-
-      return acc.concat(reduceFormSectionStores(section.subsections, parentStore))
-    }
-
-    if (section.storeKey) {
-      acc.push({
-        key: section.key,
-        store,
-        storeKey: section.storeKey,
-      })
-    }
-
-    return acc
-  }, [])
-)
-
+/**
+ * Recursive function that loops through sections and their subsections, checks
+ * section validity using validateSection helper, and adds the isValid boolean
+ * to the section object.
+ */
 const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
   const { application } = state
   const newSections = sections
@@ -61,6 +47,6 @@ export const formStatusSelector = createSelector(
   getFormStatus,
   formSections => ({
     formSections,
-    formIsValid: formSections.every(s => s.isValid),
+    formIsValid: sectionIsValid(formSections),
   })
 )

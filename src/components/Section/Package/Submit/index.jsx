@@ -118,7 +118,12 @@ class PackageSubmit extends React.Component {
       showCreditItem,
     } = this.state
 
-    const newState = { ...this.state, scrollIntoView: null }
+    const newState = {
+      showAdditionalComments: false,
+      showGeneralItem: false,
+      showCreditItem: false,
+      scrollIntoView: null,
+    }
 
     switch (panel) {
       case 'additionalComments':

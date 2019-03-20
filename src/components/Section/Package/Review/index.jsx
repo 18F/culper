@@ -35,8 +35,6 @@ class PackageReview extends React.Component {
       }
     }
 
-    console.log('validate form', formIsValid, forceValid)
-
     if (formIsValid || forceValid) {
       history.push('/form/package/submit')
     } else {
