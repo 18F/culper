@@ -60,6 +60,10 @@ const connectCitizenshipSection = (Component, {
     const completed = app.Completed || {}
 
     switch (storeKey) {
+      case 'UsPassport':
+        return {
+          ...citizenship.UsPassport,
+        }
       case 'Status':
         return {
           ...citizenship.Status,
@@ -79,6 +83,7 @@ const connectCitizenshipSection = (Component, {
         return {
           Application: app,
           Citizenship: citizenship,
+          UsPassport: citizenship.UsPassport || {},
           Status: citizenship.Status || {},
           Multiple: citizenship.Multiple || {},
           Passports: citizenship.Passports || {},

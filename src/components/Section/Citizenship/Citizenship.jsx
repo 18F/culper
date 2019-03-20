@@ -8,6 +8,7 @@ import SectionNavigation from 'components/Section/shared/SectionNavigation'
 import { CITIZENSHIP } from 'constants/sections'
 import * as formTypes from 'config/formTypes'
 import Intro from './Intro'
+import UsPassport from './UsPassport'
 import Status from './Status'
 import Multiple from './Multiple'
 import Passports from './Multiple/Passports'
@@ -16,6 +17,7 @@ import Review from './Review'
 const Citizenship = ({ subsection, location, formType }) => {
   const subsectionLibrary = {
     intro: Intro,
+    usPassport: UsPassport,
     status: Status,
     multiple: Multiple,
     passports: Passports,

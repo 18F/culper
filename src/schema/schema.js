@@ -1,23 +1,136 @@
 import * as form from './form'
 import * as section from './section'
 
+const transform = {
+  benefit: data => form.benefit(data),
+  branch: data => form.branch(data),
+  checkbox: data => form.checkbox(data),
+  checkboxgroup: data => form.checkboxgroup(data),
+  clearancelevel: data => form.clearancelevel(data),
+  collection: data => form.collection(data),
+  contacts: data => form.contacts(data),
+  coowners: data => form.coowners(data),
+  country: data => form.country(data),
+  datecontrol: data => form.datecontrol(data),
+  daterange: data => form.daterange(data),
+  email: data => form.email(data),
+  employmentactivity: data => form.employmentactivity(data),
+  foreignborndocument: data => form.foreignborndocument(data),
+  height: data => form.height(data),
+  location: data => form.location(data),
+  name: data => form.name(data),
+  notapplicable: data => form.notapplicable(data),
+  number: data => form.number(data),
+  physicaladdress: data => form.physicaladdress(data),
+  radio: data => form.radio(data),
+  reasonleft: data => form.reasonleft(data),
+  sentence: data => form.sentence(data),
+  signature: data => form.signature(data),
+  ssn: data => form.ssn(data),
+  supervisor: data => form.supervisor(data),
+  telephone: data => form.telephone(data),
+  text: data => form.text(data),
+  textarea: data => form.textarea(data),
+  'identification.birthdate': data => section.identificationBirthdate(data),
+  'identification.birthplace': data => section.identificationBirthplace(data),
+  'identification.contacts': data => section.identificationContacts(data),
+  'identification.name': data => section.identificationName(data),
+  'identification.othernames': data => section.identificationOthernames(data),
+  'identification.physical': data => section.identificationPhysical(data),
+  'identification.ssn': data => section.identificationSSN(data),
+  'financial.bankruptcy': data => section.financialBankruptcy(data),
+  'financial.gambling': data => section.financialGambling(data),
+  'financial.taxes': data => section.financialTaxes(data),
+  'financial.card': data => section.financialCard(data),
+  'financial.credit': data => section.financialCredit(data),
+  'financial.delinquent': data => section.financialDelinquent(data),
+  'financial.nonpayment': data => section.financialNonpayment(data),
+  'history.education': data => section.historyEducation(data),
+  'history.employment': data => section.historyEmployment(data),
+  'history.federal': data => section.historyFederal(data),
+  'history.residence': data => section.historyResidence(data),
+  'relationships.status.cohabitant': data => section.relationshipsCohabitants(data),
+  'relationships.status.marital': data => section.relationshipsMarital(data),
+  'relationships.people': data => section.relationshipsPeople(data),
+  'relationships.relatives': data => section.relationshipsRelatives(data),
+  'citizenship.usPassport': data => section.citizenshipUsPassport(data),
+  'citizenship.multiple': data => section.citizenshipMultiple(data),
+  'citizenship.passports': data => section.citizenshipPassports(data),
+  'citizenship.status': data => section.citizenshipStatus(data),
+  'military.selective': data => section.militarySelective(data),
+  'military.history': data => section.militaryHistory(data),
+  'military.disciplinary': data => section.militaryDisciplinary(data),
+  'military.foreign': data => section.militaryForeign(data),
+  'foreign.activities.benefits': data => section.foreignActivitiesBenefits(data),
+  'foreign.activities.direct': data => section.foreignActivitiesDirect(data),
+  'foreign.activities.indirect': data => section.foreignActivitiesIndirect(data),
+  'foreign.activities.realestate': data => section.foreignActivitiesRealestate(data),
+  'foreign.activities.support': data => section.foreignActivitiesSupport(data),
+  'foreign.business.advice': data => section.foreignBusinessAdvice(data),
+  'foreign.business.conferences': data => section.foreignBusinessConferences(data),
+  'foreign.business.contact': data => section.foreignBusinessContact(data),
+  'foreign.business.employment': data => section.foreignBusinessEmployment(data),
+  'foreign.business.family': data => section.foreignBusinessFamily(data),
+  'foreign.business.political': data => section.foreignBusinessPolitical(data),
+  'foreign.business.sponsorship': data => section.foreignBusinessSponsorship(data),
+  'foreign.business.ventures': data => section.foreignBusinessVentures(data),
+  'foreign.business.voting': data => section.foreignBusinessVoting(data),
+  'foreign.contacts': data => section.foreignContacts(data),
+  'foreign.travel': data => section.foreignTravel(data),
+  'substance.alcohol.additional': data => section.substanceAlcoholAdditional(data),
+  'substance.alcohol.negative': data => section.substanceAlcoholNegative(data),
+  'substance.alcohol.ordered': data => section.substanceAlcoholOrdered(data),
+  'substance.alcohol.voluntary': data => section.substanceAlcoholVoluntary(data),
+  'substance.drugs.clearance': data => section.substanceDrugClearance(data),
+  'substance.drugs.misuse': data => section.substanceDrugMisuse(data),
+  'substance.drugs.ordered': data => section.substanceDrugOrdered(data),
+  'substance.drugs.publicsafety': data => section.substanceDrugPublicSafety(data),
+  'substance.drugs.purchase': data => section.substanceDrugPurchase(data),
+  'substance.drugs.usage': data => section.substanceDrugUsage(data),
+  'substance.drugs.voluntary': data => section.substanceDrugVoluntary(data),
+  'legal.associations.activities-to-overthrow': data => section.legalAssociationsActivitiesToOverthrow(data),
+  'legal.associations.advocating': data => section.legalAssociationsAdvocating(data),
+  'legal.associations.engaged-in-terrorism': data => section.legalAssociationsEngagedInTerrorism(data),
+  'legal.associations.membership-overthrow': data => section.legalAssociationsMembershipOverthrow(data),
+  'legal.associations.membership-violence-or-force': data => section.legalAssociationsMembershipViolenceOrForce(data),
+  'legal.associations.terrorism-association': data => section.legalAssociationsTerrorismAssociation(data),
+  'legal.associations.terrorist-organization': data => section.legalAssociationsTerroristOrganization(data),
+  'legal.court': data => section.legalCourt(data),
+  'legal.investigations.debarred': data => section.legalInvestigationsDebarred(data),
+  'legal.investigations.history': data => section.legalInvestigationsHistory(data),
+  'legal.investigations.revoked': data => section.legalInvestigationsRevoked(data),
+  'legal.police.additionaloffenses': data => section.legalPoliceAdditionalOffenses(data),
+  'legal.police.domesticviolence': data => section.legalPoliceDomesticViolence(data),
+  'legal.police.offenses': data => section.legalPoliceOffenses(data),
+  'legal.technology.manipulating': data => section.legalTechnologyManipulating(data),
+  'legal.technology.unauthorized': data => section.legalTechnologyUnauthorized(data),
+  'legal.technology.unlawful': data => section.legalTechnologyUnlawful(data),
+  'psychological.competence': data => section.psychologicalCompetence(data),
+  'psychological.conditions': data => section.psychologicalExisting(data),
+  'psychological.consultations': data => section.psychologicalConsultations(data),
+  'psychological.diagnoses': data => section.psychologicalDiagnoses(data),
+  'psychological.hospitalizations': data => section.psychologicalHospitalizations(data),
+  'psychological.treatment': data => form.treatment(data),
+  'package.submit': data => section.submission(data),
+}
+
 export const schema = (type, props, raw = true) => {
   const transformFunc = transform[type]
   return {
-    type: type,
-    props: raw ? props : transformFunc && transformFunc(props)
+    type,
+    props: raw ? props : transformFunc && transformFunc(props),
   }
 }
 
-export const unschema = data => {
+export const unschema = (data) => {
   if (data === undefined || data === null) {
     return null
   }
 
   if (data instanceof Array) {
-    let outputArr = []
+    const outputArr = []
 
-    for (let x = 0; x < data.length; x++) {
+    for (let x = 0; x < data.length; x += 1) {
       outputArr[x] = unschema(data[x])
     }
 
@@ -31,20 +144,19 @@ export const unschema = data => {
   // Check for other types of objects
   if (data instanceof Object) {
     // Payload scructure
-    if (hasProperty(data, 'type') && hasProperty(data, 'props')) {
+    if (data.type && data.props) {
       return unschema(data.props)
     }
 
-    let outputObj = {}
+    const outputObj = {}
 
     for (const property in data) {
       // When the property is not specific to this instance
       // skip it and go to the next.
-      if (!data.hasOwnProperty(property)) {
-        continue
-      }
 
-      outputObj[property] = unschema(data[property])
+      if (!data[property]) {
+        outputObj[property] = unschema(data[property])
+      }
     }
 
     return outputObj
@@ -52,341 +164,4 @@ export const unschema = data => {
 
   // If not an object nor an array work with the raw value
   return data
-}
-
-const hasProperty = (obj, propertyName) => {
-  return propertyName in obj
-}
-
-const transform = {
-  benefit: data => {
-    return form.benefit(data)
-  },
-  branch: data => {
-    return form.branch(data)
-  },
-  checkbox: data => {
-    return form.checkbox(data)
-  },
-  checkboxgroup: data => {
-    return form.checkboxgroup(data)
-  },
-  clearancelevel: data => {
-    return form.clearancelevel(data)
-  },
-  collection: data => {
-    return form.collection(data)
-  },
-  contacts: data => {
-    return form.contacts(data)
-  },
-  coowners: data => {
-    return form.coowners(data)
-  },
-  country: data => {
-    return form.country(data)
-  },
-  datecontrol: data => {
-    return form.datecontrol(data)
-  },
-  daterange: data => {
-    return form.daterange(data)
-  },
-  email: data => {
-    return form.email(data)
-  },
-  employmentactivity: data => {
-    return form.employmentactivity(data)
-  },
-  foreignborndocument: data => {
-    return form.foreignborndocument(data)
-  },
-  height: data => {
-    return form.height(data)
-  },
-  location: data => {
-    return form.location(data)
-  },
-  name: data => {
-    return form.name(data)
-  },
-  notapplicable: data => {
-    return form.notapplicable(data)
-  },
-  number: data => {
-    return form.number(data)
-  },
-  physicaladdress: data => {
-    return form.physicaladdress(data)
-  },
-  radio: data => {
-    return form.radio(data)
-  },
-  reasonleft: data => {
-    return form.reasonleft(data)
-  },
-  sentence: data => {
-    return form.sentence(data)
-  },
-  signature: data => {
-    return form.signature(data)
-  },
-  ssn: data => {
-    return form.ssn(data)
-  },
-  supervisor: data => {
-    return form.supervisor(data)
-  },
-  telephone: data => {
-    return form.telephone(data)
-  },
-  text: data => {
-    return form.text(data)
-  },
-  textarea: data => {
-    return form.textarea(data)
-  },
-  'identification.birthdate': data => {
-    return section.identificationBirthdate(data)
-  },
-  'identification.birthplace': data => {
-    return section.identificationBirthplace(data)
-  },
-  'identification.contacts': data => {
-    return section.identificationContacts(data)
-  },
-  'identification.name': data => {
-    return section.identificationName(data)
-  },
-  'identification.othernames': data => {
-    return section.identificationOthernames(data)
-  },
-  'identification.physical': data => {
-    return section.identificationPhysical(data)
-  },
-  'identification.ssn': data => {
-    return section.identificationSSN(data)
-  },
-  'financial.bankruptcy': data => {
-    return section.financialBankruptcy(data)
-  },
-  'financial.gambling': data => {
-    return section.financialGambling(data)
-  },
-  'financial.taxes': data => {
-    return section.financialTaxes(data)
-  },
-  'financial.card': data => {
-    return section.financialCard(data)
-  },
-  'financial.credit': data => {
-    return section.financialCredit(data)
-  },
-  'financial.delinquent': data => {
-    return section.financialDelinquent(data)
-  },
-  'financial.nonpayment': data => {
-    return section.financialNonpayment(data)
-  },
-  'history.education': data => {
-    return section.historyEducation(data)
-  },
-  'history.employment': data => {
-    return section.historyEmployment(data)
-  },
-  'history.federal': data => {
-    return section.historyFederal(data)
-  },
-  'history.residence': data => {
-    return section.historyResidence(data)
-  },
-  'relationships.status.cohabitant': data => {
-    return section.relationshipsCohabitants(data)
-  },
-  'relationships.status.marital': data => {
-    return section.relationshipsMarital(data)
-  },
-  'relationships.people': data => {
-    return section.relationshipsPeople(data)
-  },
-  'relationships.relatives': data => {
-    return section.relationshipsRelatives(data)
-  },
-  'citizenship.usPassport': data => {
-    return section.citizenshipUsPassport(data)
-  },
-  'citizenship.multiple': data => {
-    return section.citizenshipMultiple(data)
-  },
-  'citizenship.passports': data => {
-    return section.citizenshipPassports(data)
-  },
-  'citizenship.status': data => {
-    return section.citizenshipStatus(data)
-  },
-  'military.selective': data => {
-    return section.militarySelective(data)
-  },
-  'military.history': data => {
-    return section.militaryHistory(data)
-  },
-  'military.disciplinary': data => {
-    return section.militaryDisciplinary(data)
-  },
-  'military.foreign': data => {
-    return section.militaryForeign(data)
-  },
-  'foreign.activities.benefits': data => {
-    return section.foreignActivitiesBenefits(data)
-  },
-  'foreign.activities.direct': data => {
-    return section.foreignActivitiesDirect(data)
-  },
-  'foreign.activities.indirect': data => {
-    return section.foreignActivitiesIndirect(data)
-  },
-  'foreign.activities.realestate': data => {
-    return section.foreignActivitiesRealestate(data)
-  },
-  'foreign.activities.support': data => {
-    return section.foreignActivitiesSupport(data)
-  },
-  'foreign.business.advice': data => {
-    return section.foreignBusinessAdvice(data)
-  },
-  'foreign.business.conferences': data => {
-    return section.foreignBusinessConferences(data)
-  },
-  'foreign.business.contact': data => {
-    return section.foreignBusinessContact(data)
-  },
-  'foreign.business.employment': data => {
-    return section.foreignBusinessEmployment(data)
-  },
-  'foreign.business.family': data => {
-    return section.foreignBusinessFamily(data)
-  },
-  'foreign.business.political': data => {
-    return section.foreignBusinessPolitical(data)
-  },
-  'foreign.business.sponsorship': data => {
-    return section.foreignBusinessSponsorship(data)
-  },
-  'foreign.business.ventures': data => {
-    return section.foreignBusinessVentures(data)
-  },
-  'foreign.business.voting': data => {
-    return section.foreignBusinessVoting(data)
-  },
-  'foreign.contacts': data => {
-    return section.foreignContacts(data)
-  },
-  'foreign.travel': data => {
-    return section.foreignTravel(data)
-  },
-  'substance.alcohol.additional': data => {
-    return section.substanceAlcoholAdditional(data)
-  },
-  'substance.alcohol.negative': data => {
-    return section.substanceAlcoholNegative(data)
-  },
-  'substance.alcohol.ordered': data => {
-    return section.substanceAlcoholOrdered(data)
-  },
-  'substance.alcohol.voluntary': data => {
-    return section.substanceAlcoholVoluntary(data)
-  },
-  'substance.drugs.clearance': data => {
-    return section.substanceDrugClearance(data)
-  },
-  'substance.drugs.misuse': data => {
-    return section.substanceDrugMisuse(data)
-  },
-  'substance.drugs.ordered': data => {
-    return section.substanceDrugOrdered(data)
-  },
-  'substance.drugs.publicsafety': data => {
-    return section.substanceDrugPublicSafety(data)
-  },
-  'substance.drugs.purchase': data => {
-    return section.substanceDrugPurchase(data)
-  },
-  'substance.drugs.usage': data => {
-    return section.substanceDrugUsage(data)
-  },
-  'substance.drugs.voluntary': data => {
-    return section.substanceDrugVoluntary(data)
-  },
-  'legal.associations.activities-to-overthrow': data => {
-    return section.legalAssociationsActivitiesToOverthrow(data)
-  },
-  'legal.associations.advocating': data => {
-    return section.legalAssociationsAdvocating(data)
-  },
-  'legal.associations.engaged-in-terrorism': data => {
-    return section.legalAssociationsEngagedInTerrorism(data)
-  },
-  'legal.associations.membership-overthrow': data => {
-    return section.legalAssociationsMembershipOverthrow(data)
-  },
-  'legal.associations.membership-violence-or-force': data => {
-    return section.legalAssociationsMembershipViolenceOrForce(data)
-  },
-  'legal.associations.terrorism-association': data => {
-    return section.legalAssociationsTerrorismAssociation(data)
-  },
-  'legal.associations.terrorist-organization': data => {
-    return section.legalAssociationsTerroristOrganization(data)
-  },
-  'legal.court': data => {
-    return section.legalCourt(data)
-  },
-  'legal.investigations.debarred': data => {
-    return section.legalInvestigationsDebarred(data)
-  },
-  'legal.investigations.history': data => {
-    return section.legalInvestigationsHistory(data)
-  },
-  'legal.investigations.revoked': data => {
-    return section.legalInvestigationsRevoked(data)
-  },
-  'legal.police.additionaloffenses': data => {
-    return section.legalPoliceAdditionalOffenses(data)
-  },
-  'legal.police.domesticviolence': data => {
-    return section.legalPoliceDomesticViolence(data)
-  },
-  'legal.police.offenses': data => {
-    return section.legalPoliceOffenses(data)
-  },
-  'legal.technology.manipulating': data => {
-    return section.legalTechnologyManipulating(data)
-  },
-  'legal.technology.unauthorized': data => {
-    return section.legalTechnologyUnauthorized(data)
-  },
-  'legal.technology.unlawful': data => {
-    return section.legalTechnologyUnlawful(data)
-  },
-  'psychological.competence': data => {
-    return section.psychologicalCompetence(data)
-  },
-  'psychological.conditions': data => {
-    return section.psychologicalExisting(data)
-  },
-  'psychological.consultations': data => {
-    return section.psychologicalConsultations(data)
-  },
-  'psychological.diagnoses': data => {
-    return section.psychologicalDiagnoses(data)
-  },
-  'psychological.hospitalizations': data => {
-    return section.psychologicalHospitalizations(data)
-  },
-  'psychological.treatment': data => {
-    return form.treatment(data)
-  },
-  'package.submit': data => {
-    return section.submission(data)
-  }
 }
