@@ -55,7 +55,7 @@ describe('The SectionLink component', () => {
     const section = {
       label: 'Foreign activity',
       path: 'foreign',
-      name: 'direct',
+      name: 'activities/direct',
     }
     const state = {
       application: {
