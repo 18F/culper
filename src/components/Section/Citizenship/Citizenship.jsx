@@ -8,20 +8,20 @@ import SectionNavigation from 'components/Section/shared/SectionNavigation'
 import { CITIZENSHIP } from 'constants/sections'
 import * as formTypes from 'config/formTypes'
 import Intro from './Intro'
-import UsPassport from './UsPassport'
-import Status from './Status'
-import Multiple from './Multiple'
-import Passports from './Multiple/Passports'
-import Review from './Review'
+import ConnectedUsPassport from './UsPassport'
+import ConnectedStatus from './Status'
+import ConnectedMultiple from './Multiple'
+import ConnectedPassports from './Multiple/Passports'
+import ConnectedReview from './Review'
 
 const Citizenship = ({ subsection, location, formType }) => {
   const subsectionLibrary = {
     intro: Intro,
-    usPassport: UsPassport,
-    status: Status,
-    multiple: Multiple,
-    passports: Passports,
-    review: Review,
+    usPassport: ConnectedUsPassport,
+    status: ConnectedStatus,
+    multiple: ConnectedMultiple,
+    passports: ConnectedPassports,
+    review: ConnectedReview,
   }
 
   const form = formTypes[formType]
@@ -76,6 +76,6 @@ Citizenship.defaultProps = {
   location: {},
 }
 
-export const CitizenshipSections = () => <Review />
+export const CitizenshipSections = () => <ConnectedReview />
 
 export default connect(mapStateToProps)(Citizenship)

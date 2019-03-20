@@ -153,10 +153,11 @@ export const unschema = (data) => {
     for (const property in data) {
       // When the property is not specific to this instance
       // skip it and go to the next.
-
-      if (!data[property]) {
-        outputObj[property] = unschema(data[property])
+      if (!data.hasOwnProperty(property)) {
+        continue
       }
+
+      outputObj[property] = unschema(data[property])
     }
 
     return outputObj
