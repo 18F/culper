@@ -74,16 +74,12 @@ export class Cohabitants extends Subsection {
   }
 
   render() {
-    const { forPrint } = this.props
-
     return (
       <div
         className="section-content cohabitants"
         {...super.dataAttributes()}
       >
-        {!forPrint && (
-          <h1 className="section-header">{i18n.t('relationships.cohabitant.sectionTitle.title')}</h1>
-        )}
+        <h1 className="section-header">{i18n.t('relationships.cohabitant.sectionTitle.title')}</h1>
 
         <Branch
           name="hasCohabitant"

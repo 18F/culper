@@ -75,16 +75,12 @@ export class Relatives extends Subsection {
   validRelations = () => new RelativesValidator(this.props).validMinimumRelations()
 
   render() {
-    const { forPrint } = this.props
-
     return (
       <div
         className="section-content relatives"
         {...super.dataAttributes()}
       >
-        {!forPrint && (
-          <h1 className="section-header">{i18n.t('relationships.relatives.sectionTitle.title')}</h1>
-        )}
+        <h1 className="section-header">{i18n.t('relationships.relatives.sectionTitle.title')}</h1>
 
         <Field
           title={i18n.t('relationships.relatives.heading.title')}

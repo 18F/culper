@@ -103,16 +103,12 @@ export class Marital extends Subsection {
   }
 
   render() {
-    const { forPrint } = this.props
-
     return (
       <div
         className="section-content marital"
         {...super.dataAttributes()}
       >
-        {!forPrint && (
-          <h1 className="section-header">{i18n.t('relationships.marital.sectionTitle.title')}</h1>
-        )}
+        <h1 className="section-header">{i18n.t('relationships.marital.sectionTitle.title')}</h1>
 
         <Field
           title={i18n.t('relationships.marital.heading.title')}

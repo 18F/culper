@@ -139,16 +139,12 @@ export class People extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
-    const { forPrint } = this.props
-
     return (
       <div
         className="section-content people"
         {...super.dataAttributes()}
       >
-        {!forPrint && (
-          <h1 className="section-header">{i18n.t('relationships.people.sectionTitle.title')}</h1>
-        )}
+        <h1 className="section-header">{i18n.t('relationships.people.sectionTitle.title')}</h1>
 
         {i18n.m('relationships.people.para.intro')}
 
