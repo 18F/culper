@@ -11,16 +11,16 @@ import {
 } from 'components/Form'
 
 import * as sections from 'constants/sections'
-import { IdentificationSections } from 'components/Section/Identification'
-import { RelationshipSections } from 'components/Section/Relationships'
-import { HistorySections } from 'components/Section/History'
-import { FinancialSections } from 'components/Section/Financial'
-import { CitizenshipSections } from 'components/Section/Citizenship'
-import { MilitarySections } from 'components/Section/Military'
-import { ForeignSections } from 'components/Section/Foreign'
-import { SubstanceUseSections } from 'components/Section/SubstanceUse'
-import { LegalSections } from 'components/Section/Legal'
-import { PsychologicalSections } from 'components/Section/Psychological'
+import IdentificationReview from 'components/Section/Identification/Review'
+import HistoryReview from 'components/Section/History/Review'
+import RelationshipsReview from 'components/Section/Relationships/Review'
+import CitizenshipReview from 'components/Section/Citizenship/Review'
+import MilitaryReview from 'components/Section/Military/Review'
+import ForeignReview from 'components/Section/Foreign/Review'
+import FinancialReview from 'components/Section/Financial/Review'
+import SubstanceUseReview from 'components/Section/SubstanceUse/Review'
+import LegalReview from 'components/Section/Legal/Review'
+import PsychologicalReview from 'components/Section/Psychological/Review'
 
 import connectPackageSection from '../PackageConnector'
 
@@ -136,16 +136,16 @@ class PackagePrint extends React.Component {
     const { printed, attachments } = this.state
 
     const sectionComponents = {
-      [`${sections.IDENTIFICATION}`]: IdentificationSections,
-      [`${sections.HISTORY}`]: HistorySections,
-      [`${sections.RELATIONSHIPS}`]: RelationshipSections,
-      [`${sections.CITIZENSHIP}`]: CitizenshipSections,
-      [`${sections.MILITARY}`]: MilitarySections,
-      [`${sections.FOREIGN}`]: ForeignSections,
-      [`${sections.FINANCIAL}`]: FinancialSections,
-      [`${sections.SUBSTANCE_USE}`]: SubstanceUseSections,
-      [`${sections.LEGAL}`]: LegalSections,
-      [`${sections.PSYCHOLOGICAL}`]: PsychologicalSections,
+      [`${sections.IDENTIFICATION}`]: IdentificationReview,
+      [`${sections.HISTORY}`]: HistoryReview,
+      [`${sections.RELATIONSHIPS}`]: RelationshipsReview,
+      [`${sections.CITIZENSHIP}`]: CitizenshipReview,
+      [`${sections.MILITARY}`]: MilitaryReview,
+      [`${sections.FOREIGN}`]: ForeignReview,
+      [`${sections.FINANCIAL}`]: FinancialReview,
+      [`${sections.SUBSTANCE_USE}`]: SubstanceUseReview,
+      [`${sections.LEGAL}`]: LegalReview,
+      [`${sections.PSYCHOLOGICAL}`]: PsychologicalReview,
     }
 
     return (
@@ -233,7 +233,7 @@ class PackagePrint extends React.Component {
             return (
               <div className="section-print-container" key={`print-section-${section.key}`}>
                 <h3 className="section-print-header">{section.label}</h3>
-                <SectionComponent />
+                <SectionComponent forPrint />
               </div>
             )
           })}
