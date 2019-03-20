@@ -6,20 +6,25 @@ import InvalidSection from './InvalidSection'
 describe('The Invalid section submission component', () => {
   it('renders invalid section', () => {
     const expected = {
-      onClick: () => {},
-      mark: {
+      section: {
         section: {
-          title: 'Cool'
+          label: 'Cool',
         },
         subsections: [
           {
-            name: 'Full name',
-            url: 'name'
-          }
-        ]
-      }
+            label: 'Full name',
+            path: 'name',
+          },
+        ],
+      },
     }
-    const component = mount(<MemoryRouter><InvalidSection {...expected} /></MemoryRouter>)
+
+    const component = mount(
+      <MemoryRouter>
+        <InvalidSection {...expected} />
+      </MemoryRouter>
+    )
+
     expect(component.find('.usa-alert-error').length).toBe(1)
   })
 })
