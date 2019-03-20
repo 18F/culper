@@ -528,6 +528,23 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link"
+              href="/form/citizenship/us-passport"
+              onClick={[Function]}
+            >
+              <span
+                className="section-name"
+              >
+                U.S. passport information
+              </span>
+              <span
+                className="eapp-status-icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              aria-current={false}
+              className="section-link"
               href="/form/citizenship/status"
               onClick={[Function]}
             >
@@ -746,23 +763,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Introduction
-              </span>
-              <span
-                className="eapp-status-icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              aria-current={false}
-              className="section-link"
-              href="/form/foreign/passport"
-              onClick={[Function]}
-            >
-              <span
-                className="section-name"
-              >
-                U.S. passport information
               </span>
               <span
                 className="eapp-status-icon"

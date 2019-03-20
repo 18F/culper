@@ -97,11 +97,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  All questions on this form must be answered 
+                  All questions on this form must be answered
                   <strong>
                     completely and truthfully
                   </strong>
-                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. 
+                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below.
                   <strong>
                     If you are a current civilian employee of the federal government:
                   </strong>
@@ -538,7 +538,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Public burden reporting for this collection of information is 
+                  Public burden reporting for this collection of information is
                   <strong>
                     estimated to average 150 minutes per response
                   </strong>
@@ -1408,6 +1408,23 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
+                      href="/form/citizenship/us-passport"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        U.S. passport information
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      aria-current={false}
+                      className="section-link"
                       href="/form/citizenship/status"
                       onClick={[Function]}
                     >
@@ -1626,23 +1643,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         className="section-name"
                       >
                         Introduction
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/passport"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        U.S. passport information
                       </span>
                       <span
                         className="eapp-status-icon"
@@ -3311,11 +3311,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  All questions on this form must be answered 
+                  All questions on this form must be answered
                   <strong>
                     completely and truthfully
                   </strong>
-                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. 
+                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below.
                   <strong>
                     If you are a current civilian employee of the federal government:
                   </strong>
@@ -3752,7 +3752,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Public burden reporting for this collection of information is 
+                  Public burden reporting for this collection of information is
                   <strong>
                     estimated to average 150 minutes per response
                   </strong>
@@ -4622,6 +4622,23 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
+                      href="/form/citizenship/us-passport"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        U.S. passport information
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      aria-current={false}
+                      className="section-link"
                       href="/form/citizenship/status"
                       onClick={[Function]}
                     >
@@ -4840,23 +4857,6 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         className="section-name"
                       >
                         Introduction
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/passport"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        U.S. passport information
                       </span>
                       <span
                         className="eapp-status-icon"
@@ -6525,11 +6525,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  All questions on this form must be answered 
+                  All questions on this form must be answered
                   <strong>
                     completely and truthfully
                   </strong>
-                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. 
+                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below.
                   <strong>
                     If you are a current civilian employee of the federal government:
                   </strong>
@@ -6966,7 +6966,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Public burden reporting for this collection of information is 
+                  Public burden reporting for this collection of information is
                   <strong>
                     estimated to average 150 minutes per response
                   </strong>
@@ -7836,6 +7836,23 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
+                      href="/form/citizenship/us-passport"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        U.S. passport information
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      aria-current={false}
+                      className="section-link"
                       href="/form/citizenship/status"
                       onClick={[Function]}
                     >
@@ -8054,23 +8071,6 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         className="section-name"
                       >
                         Introduction
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/passport"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        U.S. passport information
                       </span>
                       <span
                         className="eapp-status-icon"
