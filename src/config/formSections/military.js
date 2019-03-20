@@ -9,7 +9,7 @@ export const MILITARY = {
   label: i18n.t('military.section.name'),
 }
 
-const MILITARY_INTRO = {
+export const MILITARY_INTRO = {
   key: sections.MILITARY_INTRO,
   name: 'intro',
   path: 'intro',
@@ -48,7 +48,7 @@ export const MILITARY_FOREIGN = {
   label: i18n.t('military.subsection.foreign'),
 }
 
-const MILITARY_REVIEW = {
+export const MILITARY_REVIEW = {
   key: sections.MILITARY_REVIEW,
   name: 'review',
   path: 'review',
