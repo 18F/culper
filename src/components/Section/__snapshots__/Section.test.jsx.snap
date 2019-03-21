@@ -5319,16 +5319,6 @@ exports[`The section component renders foreign.review 1`] = `
         <h3>
           Provide the following information for the most recent U.S. passport you currently possess.
         </h3>
-        <p>
-          <a
-            href="https://travel.state.gov/content/travel/en.html"
-            rel="noopener noreferrer"
-            target="_blank"
-            title="U.S. State Department Help"
-          >
-            U.S. State Department passport help
-          </a>
-        </p>
         <div
           aria-label="Do you possess a U.S. passport (current or expired)?"
           className="field required branch"
