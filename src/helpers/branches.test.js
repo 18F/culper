@@ -4,6 +4,10 @@ import {
   requireMultipleCitizenshipRenounced,
   requireCitizenshipForeignPassportsSection,
   requireForeignMilitaryMaintainsContact,
+  requireForeignContactsSection,
+  requireForeignActivitiesSection,
+  requireForeignBusinessSection,
+  requireForeignTravelSection,
 } from './branches'
 
 describe('Branches helper function', () => {
@@ -62,6 +66,50 @@ describe('Branches helper function', () => {
 
     it('is not required by the SF85', () => {
       expect(requireForeignMilitaryMaintainsContact('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignContactsSection', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignContactsSection('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 or SF85P', () => {
+      expect(requireForeignContactsSection('SF85')).toBe(false)
+      expect(requireForeignContactsSection('SF85P')).toBe(false)
+    })
+  })
+
+  describe('requireForeignActivitiesSection', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignActivitiesSection('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 or SF85P', () => {
+      expect(requireForeignActivitiesSection('SF85')).toBe(false)
+      expect(requireForeignActivitiesSection('SF85P')).toBe(false)
+    })
+  })
+
+  describe('requireForeignBusinessSection', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignBusinessSection('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 or SF85P', () => {
+      expect(requireForeignBusinessSection('SF85')).toBe(false)
+      expect(requireForeignBusinessSection('SF85P')).toBe(false)
+    })
+  })
+
+  describe('requireForeignTravelSection', () => {
+    it('is required by the SF86 and SF85P', () => {
+      expect(requireForeignTravelSection('SF86')).toBe(true)
+      expect(requireForeignTravelSection('SF85P')).toBe(true)
+    })
+
+    it('is not required by the SF85', () => {
+      expect(requireForeignTravelSection('SF85')).toBe(false)
     })
   })
 })
