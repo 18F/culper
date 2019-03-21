@@ -1,6 +1,6 @@
 import * as form from '../form'
 
-const citizenshipUsPassport = (data = {}) => ({
+const foreignPassport = (data = {}) => ({
   HasPassports: form.branch(data.HasPassports),
   Name: form.name(data.Name),
   Number: form.text(data.Number),
@@ -10,4 +10,4 @@ const citizenshipUsPassport = (data = {}) => ({
   Comments: form.textarea(data.Comments),
 })
 
-export default citizenshipUsPassport
+export default foreignPassport

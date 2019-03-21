@@ -1408,7 +1408,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/citizenship/us-passport"
+                      href="/form/citizenship/passport"
                       onClick={[Function]}
                     >
                       <span
@@ -4622,7 +4622,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/citizenship/us-passport"
+                      href="/form/citizenship/passport"
                       onClick={[Function]}
                     >
                       <span
@@ -7836,7 +7836,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/citizenship/us-passport"
+                      href="/form/citizenship/passport"
                       onClick={[Function]}
                     >
                       <span

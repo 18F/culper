@@ -56,13 +56,16 @@ const connectCitizenshipSection = (Component, {
     const { formType } = authentication
     const app = state.application || {}
     const citizenship = app.Citizenship || {}
+    const foreign = app.Foreign || {}
     const errors = app.Errors || {}
     const completed = app.Completed || {}
 
     switch (storeKey) {
-      case 'UsPassport':
+      // TODO: We are keeping U.S. passport information inside of Foreign temporary
+      // solution. Future iteration will be moving it to Citizenship on frontend, backend, XMl, etc.
+      case 'Passport':
         return {
-          ...citizenship.UsPassport,
+          ...foreign.Passport,
         }
       case 'Status':
         return {
@@ -83,7 +86,7 @@ const connectCitizenshipSection = (Component, {
         return {
           Application: app,
           Citizenship: citizenship,
-          UsPassport: citizenship.UsPassport || {},
+          Passport: foreign.Passport || {},
           Status: citizenship.Status || {},
           Multiple: citizenship.Multiple || {},
           Passports: citizenship.Passports || {},

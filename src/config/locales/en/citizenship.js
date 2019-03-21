@@ -26,7 +26,7 @@ export const citizenship = {
   destination: {
     intro: 'Citizenship intro',
     review: 'Review citizenship',
-    usPassport: 'U.S. passport information',
+    passport: 'U.S. passport information',
     status: 'Citizenship status',
     multiple: 'Dual/multiple citizenship',
     passports: 'Foreign passports',

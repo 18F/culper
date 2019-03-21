@@ -17,7 +17,7 @@ import ConnectedReview from './Review'
 const Citizenship = ({ subsection, location, formType }) => {
   const subsectionLibrary = {
     intro: Intro,
-    usPassport: ConnectedUsPassport,
+    passport: ConnectedUsPassport,
     status: ConnectedStatus,
     multiple: ConnectedMultiple,
     passports: ConnectedPassports,

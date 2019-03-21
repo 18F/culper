@@ -528,7 +528,7 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link"
-              href="/form/citizenship/us-passport"
+              href="/form/citizenship/passport"
               onClick={[Function]}
             >
               <span

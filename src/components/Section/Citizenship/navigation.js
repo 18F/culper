@@ -15,8 +15,8 @@ const navigation = {
     },
     {
       name: 'U.S. passport information',
-      url: 'us-passport',
-      store: 'UsPassport',
+      url: 'passport',
+      store: 'Passport',
       validator: validators.PassportValidator,
     },
     {

@@ -65,7 +65,7 @@ import { substanceDrugPublicSafety } from './substance-drug-publicsafety'
 import { substanceDrugPurchase } from './substance-drug-purchase'
 import { substanceDrugUsage } from './substance-drug-usage'
 import { substanceDrugVoluntary } from './substance-drug-voluntary'
-import citizenshipUsPassport from './citizenship-us-passport'
+import foreignPassport from './foreign-passport'
 import { citizenshipMultiple } from './citizenship-multiple'
 import { citizenshipPassports } from './citizenship-passports'
 import { citizenshipStatus } from './citizenship-status'
@@ -109,6 +109,7 @@ export {
   foreignBusinessVentures,
   foreignBusinessVoting,
   foreignContacts,
+  foreignPassport,
   foreignTravel,
   legalAssociationsActivitiesToOverthrow,
   legalAssociationsAdvocating,
@@ -147,7 +148,6 @@ export {
   substanceDrugPurchase,
   substanceDrugUsage,
   substanceDrugVoluntary,
-  citizenshipUsPassport,
   citizenshipMultiple,
   citizenshipPassports,
   citizenshipStatus,

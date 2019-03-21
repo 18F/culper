@@ -11,6 +11,7 @@ import {
   DateControl,
   Branch,
 } from 'components/Form'
+import { FOREIGN } from 'config/formSections/foreign'
 import { CITIZENSHIP, CITIZENSHIP_US_PASSPORT } from 'config/formSections/citizenship'
 import Subsection from 'components/Section/shared/Subsection'
 import connectCitizenshipSection from '../CitizenshipConnector'
@@ -19,7 +20,7 @@ import { extractDate } from '../../History/dateranges'
 
 const sectionConfig = {
   section: CITIZENSHIP.name,
-  store: CITIZENSHIP.store,
+  store: FOREIGN.store,
   subsection: CITIZENSHIP_US_PASSPORT.name,
   storeKey: CITIZENSHIP_US_PASSPORT.storeKey,
 }
@@ -34,6 +35,7 @@ export class UsPassport extends Subsection {
 
     this.section = section
     this.subsection = subsection
+    // TODO: Temporary solution to limit risk of changing Redux, backend, and XML changes
     this.store = store
     this.storeKey = storeKey
   }
@@ -307,10 +309,10 @@ UsPassport.defaultProps = {
   reBook: '^[a-zA-Z0-9]{9}$',
   onUpdate: () => {},
   onError: (value, arr) => arr,
-  section: 'citizenship',
-  subsection: 'usPassport',
+  section: 'foreign',
+  subsection: 'passport',
   dispatch: () => {},
-  validator: data => validate(schema('citizenship.usPassport', data)),
+  validator: data => validate(schema('foreign.passport', data)),
 }
 
 export default connectCitizenshipSection(UsPassport, sectionConfig)

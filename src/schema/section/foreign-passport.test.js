@@ -1,7 +1,7 @@
 import { unschema } from '../schema'
-import citizenshipUsPassport from './citizenship-us-passport'
+import foreignPassport from './foreign-passport'
 
-describe('Schema for citizenship us passport', () => {
+describe('Schema for united status passport', () => {
   it('can wrap in schema', () => {
     const data = {
       HasPassports: { value: 'Yes' },
@@ -13,6 +13,6 @@ describe('Schema for citizenship us passport', () => {
       Comments: {},
     }
 
-    expect(unschema(citizenshipUsPassport(data))).toEqual(data)
+    expect(unschema(foreignPassport(data))).toEqual(data)
   })
 })
