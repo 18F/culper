@@ -1,17 +1,21 @@
 import * as formTypes from 'constants/formTypes'
 
+export const requiredByForms = (formType, forms = []) => (
+  forms.includes(formType)
+)
+
 export const requireHistoryFederalSection = formType => (
-  formType !== formTypes.SF85
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
 export const requireMultipleCitizenshipRenounced = formType => (
-  formType === formTypes.SF86
+  requiredByForms(formType, [formTypes.SF86])
 )
 
 export const requireCitizenshipForeignPassportsSection = formType => (
-  formType !== formTypes.SF85
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
 export const requireForeignMilitaryMaintainsContact = formType => (
-  formType !== formTypes.SF85
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
