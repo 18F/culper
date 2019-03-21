@@ -16,12 +16,11 @@ const sectionConfig = {
   subsection: PSYCHOLOGICAL_REVIEW.name,
 }
 
-const Review = ({ forPrint = false, showExistingConditions = true }) => {
+const Review = ({ showExistingConditions = true }) => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
     scrollToBottom: undefined,
-    defaultState: !forPrint,
   }
 
   const sectionDivider = (

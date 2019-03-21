@@ -73,4 +73,4 @@ Psychological.defaultProps = {
 
 export default connect(mapStateToProps)(Psychological)
 
-export const PsychologicalSections = () => <Review forPrint />
+export const PsychologicalSections = () => <Review />
