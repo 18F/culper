@@ -8,6 +8,13 @@ import {
   requireForeignActivitiesSection,
   requireForeignBusinessSection,
   requireForeignTravelSection,
+  requireFinancialBankruptcySection,
+  requireFinancialGamblingSection,
+  requireFinancialTaxesSection,
+  requireFinancialCardSection,
+  requireFinancialCreditSection,
+  requireFinancialDelinquentSection,
+  requireFinancialNonpaymentSection,
 } from './branches'
 
 describe('Branches helper function', () => {
@@ -110,6 +117,77 @@ describe('Branches helper function', () => {
 
     it('is not required by the SF85', () => {
       expect(requireForeignTravelSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireFinancialBankruptcySection', () => {
+    it('is required by the SF86 and SF85P', () => {
+      expect(requireFinancialBankruptcySection('SF86')).toBe(true)
+      expect(requireFinancialBankruptcySection('SF85P')).toBe(true)
+    })
+
+    it('is not required by the SF85', () => {
+      expect(requireFinancialBankruptcySection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireFinancialGamblingSection', () => {
+    it('is required by the SF86 and SF85P', () => {
+      expect(requireFinancialGamblingSection('SF86')).toBe(true)
+      expect(requireFinancialGamblingSection('SF85P')).toBe(true)
+    })
+
+    it('is not required by the SF85', () => {
+      expect(requireFinancialGamblingSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireFinancialTaxesSection', () => {
+    it('is required by the SF86, SF85, and SF85P', () => {
+      expect(requireFinancialTaxesSection('SF86')).toBe(true)
+      expect(requireFinancialTaxesSection('SF85P')).toBe(true)
+      expect(requireFinancialTaxesSection('SF85')).toBe(true)
+    })
+  })
+
+  describe('requireFinancialCardSection', () => {
+    it('is required by the SF86 and SF85P', () => {
+      expect(requireFinancialCardSection('SF86')).toBe(true)
+      expect(requireFinancialCardSection('SF85P')).toBe(true)
+    })
+
+    it('is not required by the SF85', () => {
+      expect(requireFinancialCardSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireFinancialCreditSection', () => {
+    it('is required by the SF86 and SF85P', () => {
+      expect(requireFinancialCreditSection('SF86')).toBe(true)
+      expect(requireFinancialCreditSection('SF85P')).toBe(true)
+    })
+
+    it('is not required by the SF85', () => {
+      expect(requireFinancialCreditSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireFinancialDelinquentSection', () => {
+    it('is required by the SF86, SF85, and SF85P', () => {
+      expect(requireFinancialDelinquentSection('SF86')).toBe(true)
+      expect(requireFinancialDelinquentSection('SF85P')).toBe(true)
+      expect(requireFinancialDelinquentSection('SF85')).toBe(true)
+    })
+  })
+
+  describe('requireFinancialNonpaymentSection', () => {
+    it('is required by the SF86 and SF85P', () => {
+      expect(requireFinancialNonpaymentSection('SF86')).toBe(true)
+      expect(requireFinancialNonpaymentSection('SF85P')).toBe(true)
+    })
+
+    it('is not required by the SF85', () => {
+      expect(requireFinancialNonpaymentSection('SF85')).toBe(false)
     })
   })
 })

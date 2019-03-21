@@ -35,3 +35,31 @@ export const requireForeignBusinessSection = formType => (
 export const requireForeignTravelSection = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
+
+export const requireFinancialBankruptcySection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireFinancialGamblingSection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireFinancialTaxesSection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85, formTypes.SF85P])
+)
+
+export const requireFinancialCardSection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireFinancialCreditSection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireFinancialDelinquentSection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85, formTypes.SF85P])
+)
+
+export const requireFinancialNonpaymentSection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)

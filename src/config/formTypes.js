@@ -57,13 +57,8 @@ export const SF85 = [
     ...formSections.FINANCIAL,
     subsections: [
       formSections.FINANCIAL_INTRO,
-      formSections.FINANCIAL_BANKRUPTCY,
-      formSections.FINANCIAL_GAMBLING,
       formSections.FINANCIAL_TAXES,
-      formSections.FINANCIAL_CARD,
-      formSections.FINANCIAL_CREDIT,
       formSections.FINANCIAL_DELINQUENT,
-      formSections.FINANCIAL_NONPAYMENT,
       formSections.FINANCIAL_REVIEW,
     ],
   },

@@ -7,6 +7,16 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
+import {
+  selectFinancialBankruptcySection,
+  selectFinancialGamblingSection,
+  selectFinancialTaxesSection,
+  selectFinancialCardSection,
+  selectFinancialCreditSection,
+  selectFinancialDelinquentSection,
+  selectFinancialNonpaymentSection,
+} from 'selectors/branches'
+
 const connectFinancialSection = (Component, {
   section, subsection, store, storeKey,
 }) => {
@@ -106,6 +116,13 @@ const connectFinancialSection = (Component, {
           Errors: errors.financial || [],
           Completed: completed.financial || [],
           AddressBooks: addressBooks,
+          ...selectFinancialBankruptcySection(state),
+          ...selectFinancialGamblingSection(state),
+          ...selectFinancialTaxesSection(state),
+          ...selectFinancialCardSection(state),
+          ...selectFinancialCreditSection(state),
+          ...selectFinancialDelinquentSection(state),
+          ...selectFinancialNonpaymentSection(state),
         }
     }
   }

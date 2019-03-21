@@ -9,6 +9,13 @@ import {
   requireForeignActivitiesSection,
   requireForeignBusinessSection,
   requireForeignTravelSection,
+  requireFinancialBankruptcySection,
+  requireFinancialGamblingSection,
+  requireFinancialTaxesSection,
+  requireFinancialCardSection,
+  requireFinancialCreditSection,
+  requireFinancialDelinquentSection,
+  requireFinancialNonpaymentSection,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -43,3 +50,24 @@ export const selectForeignBusinessSection = createSelector(formTypeSelector,
 
 export const selectForeignTravelSection = createSelector(formTypeSelector,
   formType => ({ requireForeignTravelSection: requireForeignTravelSection(formType) }))
+
+export const selectFinancialBankruptcySection = createSelector(formTypeSelector,
+  formType => ({ requireFinancialBankruptcySection: requireFinancialBankruptcySection(formType) }))
+
+export const selectFinancialGamblingSection = createSelector(formTypeSelector,
+  formType => ({ requireFinancialGamblingSection: requireFinancialGamblingSection(formType) }))
+
+export const selectFinancialTaxesSection = createSelector(formTypeSelector,
+  formType => ({ requireFinancialTaxesSection: requireFinancialTaxesSection(formType) }))
+
+export const selectFinancialCardSection = createSelector(formTypeSelector,
+  formType => ({ requireFinancialCardSection: requireFinancialCardSection(formType) }))
+
+export const selectFinancialCreditSection = createSelector(formTypeSelector,
+  formType => ({ requireFinancialCreditSection: requireFinancialCreditSection(formType) }))
+
+export const selectFinancialDelinquentSection = createSelector(formTypeSelector,
+  formType => ({ requireFinancialDelinquentSection: requireFinancialDelinquentSection(formType) }))
+
+export const selectFinancialNonpaymentSection = createSelector(formTypeSelector,
+  formType => ({ requireFinancialNonpaymentSection: requireFinancialNonpaymentSection(formType) }))
