@@ -150,10 +150,10 @@ class PackagePrint extends React.Component {
 
     return (
       <div className="pre-print-view">
-        <div>
+        <div className="screen-only">
           {i18n.m('application.print.title')}
           <button type="button" className="print-btn" onClick={this.handlePrint}>
-            {i18n.m('application.print.button')}
+            {i18n.t('application.print.button')}
           </button>
 
           <Show when={printed}>
@@ -169,7 +169,7 @@ class PackagePrint extends React.Component {
           <p className="hash">{Settings.hash}</p>
         </div>
 
-        <div>
+        <div className="screen-only">
           <h4 className="attachments">{i18n.t('application.print.files.title')}</h4>
           <p className="attachments">{i18n.m('application.print.files.para')}</p>
           <table>
