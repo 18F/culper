@@ -17,6 +17,7 @@ export const citizenship = {
   },
   subsection: {
     intro: 'Introduction',
+    usPassport: 'U.S. passport information',
     status: 'Citizenship status',
     multiple: 'Dual/multiple citizenship',
     passports: 'Foreign passports',
