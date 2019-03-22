@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { updateApplication } from '../../actions/ApplicationActions'
-import { sectionData } from '../Section/sectionData'
+import sectionData from '../Section/sectionData'
 import schema from '../../schema'
 import { api } from '../../services'
 import { i18n } from '../../config'
