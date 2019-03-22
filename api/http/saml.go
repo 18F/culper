@@ -165,18 +165,7 @@ func (service SamlResponseHandler) serveAuthnResponse(encodedResponse string, w 
 	if _, err := account.Get(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{"username": username})
 
-		// Attempt to create a new account if one is not
-		// found in the system but is verified to have
-		// access.
-		//
-		// NOTE: This may only be a pilot circumstance. If so
-		// make sure the final release does not allow the creation
-		// of a new account and returns an error in its place.
-		if _, err := account.Save(service.Database, account.ID); err != nil {
-			service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{"username": username})
-			redirectAccessDenied(w, r)
-			return
-		}
+		redirectAccessDenied(w, r)
 	}
 
 	// Generate jwt token
