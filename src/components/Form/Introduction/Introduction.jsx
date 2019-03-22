@@ -6,6 +6,7 @@ import { logout } from '../../../actions/AuthActions'
 import Branch from '../Branch'
 import Modal from '../Modal'
 import Show from '../Show'
+import * as formTypes from 'constants/formTypes'
 
 export class Introduction extends React.Component {
   constructor(props) {
@@ -45,6 +46,21 @@ export class Introduction extends React.Component {
       this.props.forceOpen ? 'closeable' : ''
     }`.trim()
     const accepted = (this.props.settings.acceptedTerms || {}).value === 'Yes'
+  
+    let introductionContent = ''
+    switch(this.props.formType) {
+      case formTypes.SF86: {
+        introductionContent = i18n.m('introduction.contents')
+        break
+      }
+      case formTypes.SF85: {
+        introductionContent = i18n.m('introduction.contents85')
+        break
+      }
+      default: {
+        introductionContent = i18n.m('introduction.contents')
+      }
+    }
     return (
       <div className={klass}>
         <Modal
@@ -54,7 +70,7 @@ export class Introduction extends React.Component {
           onDismiss={this.props.onDismiss}>
           <div>
             <div className="introduction-legal">
-              {i18n.m('introduction.contents')}
+              {introductionContent}
             </div>
             <Show when={!this.props.forceOpen}>
               <Branch
@@ -89,7 +105,8 @@ function mapStateToProps(state) {
   const settings = app.Settings || { acceptedTerms: { value: '' } }
 
   return {
-    settings: settings
+    settings: settings,
+    formType: state.authentication.formType
   }
 }
 

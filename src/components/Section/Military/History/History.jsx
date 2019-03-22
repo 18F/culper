@@ -80,7 +80,7 @@ class History extends Subsection {
   /**
    * Assists in rendering the summary section.
    */
-  static summary = (item, index) => {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Dates)
     const service = serviceNameDisplay(o.Service)

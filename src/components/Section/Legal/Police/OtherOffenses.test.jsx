@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import OtherOffenses from './OtherOffenses'
+import { OtherOffenses } from './OtherOffenses'
 import Location from '../../../Form/Location'
 
 describe('The offense component', () => {
@@ -11,18 +11,19 @@ describe('The offense component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <OtherOffenses {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
       name: 'offense',
-      HasOtherOffenses: { value: 'No' }
+      HasOtherOffenses: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -33,8 +34,8 @@ describe('The offense component', () => {
     const expected = {
       name: 'offense',
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component.find('.has-otheroffenses .yes input').simulate('change')
@@ -45,17 +46,17 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      onUpdate: values => {
+      onUpdate: (storeKey, values) => {
         if (values.List.length === 0) {
-          updates++
+          updates += 1
         }
       },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
-        items: [{ Item: {} }]
-      }
+        items: [{ Item: {} }],
+      },
     }
     const component = createComponent(expected)
     component.find('.has-otheroffenses .no input').simulate('change')
@@ -68,7 +69,7 @@ describe('The offense component', () => {
       HasOtherOffenses: { value: 'Yes' },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
         items: [
           {
@@ -76,10 +77,10 @@ describe('The offense component', () => {
               Date: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               Description: {
-                value: 'Some description'
+                value: 'Some description',
               },
               InvolvedViolence: { value: 'No' },
               InvolvedFirearms: { value: 'Yes' },
@@ -91,21 +92,21 @@ describe('The offense component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
               CourtDate: {
                 day: '1',
                 month: '1',
-                year: '2016'
+                year: '2016',
               },
               CourtName: {
-                value: 'court name'
+                value: 'court name',
               },
               CourtCharge: {
-                value: 'Some charge'
+                value: 'Some charge',
               },
               CourtOutcome: {
-                value: 'Some outcome'
+                value: 'Some outcome',
               },
               WasSentenced: { value: 'Yes' },
               Sentence: {
@@ -117,36 +118,36 @@ describe('The offense component', () => {
                   from: {
                     month: 1,
                     day: 1,
-                    year: 2000
+                    year: 2000,
                   },
                   to: {
                     month: 1,
                     day: 1,
-                    year: 2004
+                    year: 2004,
                   },
-                  present: false
+                  present: false,
                 },
                 ProbationDates: {
                   from: {
                     month: 1,
                     day: 1,
-                    year: 2000
+                    year: 2000,
                   },
                   to: {
                     month: 1,
                     day: 1,
-                    year: 2004
+                    year: 2004,
                   },
-                  present: false
+                  present: false,
                 },
                 Description: {
-                  value: 'Foo'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  value: 'Foo',
+                },
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)

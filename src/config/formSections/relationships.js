@@ -1,7 +1,7 @@
 import * as sections from 'constants/sections'
 import { i18n } from 'config'
 
-const RELATIONSHIPS = {
+export const RELATIONSHIPS = {
   key: sections.RELATIONSHIPS,
   name: 'relationships',
   path: 'relationships',
@@ -9,37 +9,37 @@ const RELATIONSHIPS = {
   label: i18n.t('relationships.section.name'),
 }
 
-const RELATIONSHIPS_INTRO = {
+export const RELATIONSHIPS_INTRO = {
   key: sections.RELATIONSHIPS_INTRO,
   name: 'intro',
   path: 'intro',
   label: i18n.t('relationships.subsection.intro'),
 }
 
-const RELATIONSHIPS_STATUS = {
+export const RELATIONSHIPS_STATUS = {
   key: sections.RELATIONSHIPS_STATUS,
   name: 'status',
   path: 'status',
   label: i18n.t('relationships.subsection.status'),
 }
 
-const RELATIONSHIPS_STATUS_MARITAL = {
+export const RELATIONSHIPS_STATUS_MARITAL = {
   key: sections.RELATIONSHIPS_STATUS_MARITAL,
-  name: 'marital',
+  name: 'status/marital',
   path: 'marital',
   storeKey: 'Marital',
   label: i18n.t('relationships.subsection.marital'),
 }
 
-const RELATIONSHIPS_STATUS_COHABITANTS = {
+export const RELATIONSHIPS_STATUS_COHABITANTS = {
   key: sections.RELATIONSHIPS_STATUS_COHABITANTS,
-  name: 'cohabitants',
-  path: 'cohabitants',
+  name: 'status/cohabitant',
+  path: 'cohabitant',
   storeKey: 'Cohabitants',
   label: i18n.t('relationships.subsection.cohabitants'),
 }
 
-const RELATIONSHIPS_PEOPLE = {
+export const RELATIONSHIPS_PEOPLE = {
   key: sections.RELATIONSHIPS_PEOPLE,
   name: 'people',
   path: 'people',
@@ -47,7 +47,7 @@ const RELATIONSHIPS_PEOPLE = {
   label: i18n.t('relationships.subsection.people'),
 }
 
-const RELATIONSHIPS_RELATIVES = {
+export const RELATIONSHIPS_RELATIVES = {
   key: sections.RELATIONSHIPS_RELATIVES,
   name: 'relatives',
   path: 'relatives',
@@ -55,7 +55,7 @@ const RELATIONSHIPS_RELATIVES = {
   label: i18n.t('relationships.subsection.relatives'),
 }
 
-const RELATIONSHIPS_REVIEW = {
+export const RELATIONSHIPS_REVIEW = {
   key: sections.RELATIONSHIPS_REVIEW,
   name: 'review',
   path: 'review',

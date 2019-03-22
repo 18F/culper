@@ -52,8 +52,8 @@ func main() {
 		sfType := os.Args[2]
 		sfVersion := os.Args[3]
 
-		account.SFType = sfType
-		account.SFVersion = sfVersion
+		account.FormType = sfType
+		account.FormVersion = sfVersion
 		_, err = account.Save(db, account.ID)
 		if err != nil {
 			fmt.Println("Error: ", err)
@@ -61,6 +61,6 @@ func main() {
 		}
 	}
 
-	fmt.Printf("%s %s %s\n", account.Username, account.SFType, account.SFVersion)
+	fmt.Printf("%s %s %s\n", account.Username, account.FormType, account.FormVersion)
 
 }

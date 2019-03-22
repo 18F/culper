@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Political from './Political'
+import { Political } from './Political'
 
 describe('The foreign business political component', () => {
   const mockStore = configureMockStore()
@@ -21,7 +21,7 @@ describe('The foreign business political component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-political',
-      HasForeignPolitical: { value: 'No' }
+      HasForeignPolitical: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -30,7 +30,7 @@ describe('The foreign business political component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-political',
-      HasForeignPolitical: { value: 'Yes' }
+      HasForeignPolitical: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -44,7 +44,7 @@ describe('The foreign business political component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = createComponent(expected)
     component
@@ -70,13 +70,13 @@ describe('The foreign business political component', () => {
             Dates: {},
             Country: {},
             Reason: {},
-            Eligibility: {}
-          }
-        ]
+            Eligibility: {},
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)

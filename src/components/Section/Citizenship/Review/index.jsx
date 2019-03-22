@@ -1,10 +1,21 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import Status from './../Status'
-import Multiple from './../Multiple'
-import Passports from './../Multiple/Passports'
+import { CITIZENSHIP, CITIZENSHIP_REVIEW } from 'config/formSections/citizenship'
 
-const Review = () => {
+import Status from '../Status'
+import Multiple from '../Multiple'
+import ConnectedPassports from '../Multiple/Passports'
+
+import connectCitizenshipSection from '../CitizenshipConnector'
+
+const sectionConfig = {
+  section: CITIZENSHIP.name,
+  store: CITIZENSHIP.store,
+  subsection: CITIZENSHIP_REVIEW.name,
+}
+
+export const Review = ({ requireCitizenshipForeignPassportsSection }) => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
@@ -19,10 +30,18 @@ const Review = () => {
       <Status {...subsectionProps} />
       {sectionDivider}
       <Multiple {...subsectionProps} />
-      {sectionDivider}
-      <Passports {...subsectionProps} />
+      {requireCitizenshipForeignPassportsSection && sectionDivider}
+      {requireCitizenshipForeignPassportsSection && <ConnectedPassports {...subsectionProps} />}
     </div>
   )
 }
 
-export default Review
+Review.propTypes = {
+  requireCitizenshipForeignPassportsSection: PropTypes.bool,
+}
+
+Review.defaultProps = {
+  requireCitizenshipForeignPassportsSection: true,
+}
+
+export default connectCitizenshipSection(Review, sectionConfig)

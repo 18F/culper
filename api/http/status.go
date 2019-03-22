@@ -30,5 +30,12 @@ func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, string(api.FormStatus(service.Database, account.ID, account.Locked)))
+	statusBytes, err := api.FormStatus(service.Database, account.ID, account.Locked)
+	if err != nil {
+		service.Log.WarnError(api.HashingFailure, err, api.LogFields{})
+		RespondWithStructuredError(w, api.HashingFailure, http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprint(w, string(statusBytes))
 }

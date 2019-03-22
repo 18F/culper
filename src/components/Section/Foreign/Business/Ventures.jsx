@@ -1,58 +1,69 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, DateSummary, NameSummary } from '../../../Summary'
-import {
-  ForeignBusinessVenturesValidator,
-  VenturesValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { VenturesValidator } from 'validators'
+import { Summary, DateSummary, NameSummary } from 'components/Summary'
+import { Branch, Show, Accordion } from 'components/Form'
+import { FOREIGN, FOREIGN_BUSINESS_VENTURES } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../ForeignConnector'
 import VenturesItem from './VenturesItem'
 
-export default class Ventures extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_BUSINESS_VENTURES.name,
+  storeKey: FOREIGN_BUSINESS_VENTURES.storeKey,
+}
+
+export class Ventures extends Subsection {
   constructor(props) {
     super(props)
 
-    this.updateHasForeignVentures = this.updateHasForeignVentures.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasForeignVentures: this.props.HasForeignVentures,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasForeignVentures(values) {
+  updateHasForeignVentures = (values) => {
     this.update({
       HasForeignVentures: values,
-      List: values.value === 'Yes' ? this.props.List : { branch: {}, items: [] }
+      List: values.value === 'Yes'
+        ? this.props.List
+        : { branch: {}, items: [] },
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const obj = (item && item.Item) || {}
     const date = DateSummary(item.Dates)
     const name = NameSummary(obj.Name)
 
     return Summary({
       type: i18n.t('foreign.business.ventures.collection.summary.item'),
-      index: index,
+      index,
       left: name,
       right: date,
-      placeholder: i18n.t(
-        'foreign.business.ventures.collection.summary.unknown'
-      )
+      placeholder: i18n.t('foreign.business.ventures.collection.summary.unknown'),
     })
   }
 
@@ -60,19 +71,21 @@ export default class Ventures extends SubsectionElement {
     return (
       <div
         className="section-content foreign-business-ventures"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('foreign.destination.business.ventures')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.ventures')}</h1>
         <Branch
           name="has_foreign_ventures"
           label={i18n.t('foreign.business.ventures.heading.title')}
           labelSize="h4"
           adjustFor="p"
           {...this.props.HasForeignVentures}
-          warning={true}
+          warning
           onUpdate={this.updateHasForeignVentures}
           required={this.props.required}
           onError={this.handleError}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('foreign.business.ventures.para.branch')}
         </Branch>
 
@@ -85,21 +98,16 @@ export default class Ventures extends SubsectionElement {
             onError={this.handleError}
             validator={VenturesValidator}
             summary={this.summary}
-            description={i18n.t(
-              'foreign.business.ventures.collection.summary.title'
-            )}
-            appendTitle={i18n.t(
-              'foreign.business.ventures.collection.appendTitle'
-            )}
-            appendMessage={i18n.m(
-              'foreign.business.ventures.collection.appendMessage'
-            )}
+            description={i18n.t('foreign.business.ventures.collection.summary.title')}
+            appendTitle={i18n.t('foreign.business.ventures.collection.appendTitle')}
+            appendMessage={i18n.m('foreign.business.ventures.collection.appendMessage')}
             appendLabel={i18n.t('foreign.business.ventures.collection.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <VenturesItem
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -114,17 +122,15 @@ Ventures.defaultProps = {
   name: 'Ventures',
   HasForeignVentures: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'business/ventures',
   addressBooks: {},
-  dispatch: action => {},
-  validator: data => {
-    return validate(schema('foreign.business.ventures', data))
-  },
+  dispatch: () => {},
+  validator: data => validate(schema('foreign.business.ventures', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(Ventures, sectionConfig)

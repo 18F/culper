@@ -61,9 +61,9 @@ func TestFormVersionReturned(t *testing.T) {
 	}
 
 	if parsedBody.Metadata.Type != "metadata" ||
-		parsedBody.Metadata.FormType != account.SFType ||
-		parsedBody.Metadata.FormVersion != account.SFVersion {
-		t.Fatal("Expected ", "metadata", account.SFType, account.SFVersion,
+		parsedBody.Metadata.FormType != account.FormType ||
+		parsedBody.Metadata.FormVersion != account.FormVersion {
+		t.Fatal("Expected ", "metadata", account.FormType, account.FormVersion,
 			" GOT: ", parsedBody.Metadata.Type, parsedBody.Metadata.FormType, parsedBody.Metadata.FormVersion)
 	}
 
@@ -72,6 +72,7 @@ func TestFormVersionReturned(t *testing.T) {
 }
 
 func TestFormVersionSave(t *testing.T) {
+	// The client cannot set the form version via the API, this test confirms it's an error.
 
 	services := cleanTestServices()
 

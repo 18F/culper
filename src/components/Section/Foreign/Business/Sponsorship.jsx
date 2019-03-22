@@ -1,60 +1,69 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import {
-  ForeignBusinessSponsorshipValidator,
-  SponsorshipValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { SponsorshipValidator } from 'validators'
+import { Summary, NameSummary, DateSummary } from 'components/Summary'
+import { Branch, Show, Accordion } from 'components/Form'
+import { FOREIGN, FOREIGN_BUSINESS_SPONSORSHIP } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../ForeignConnector'
 import SponsorshipItem from './SponsorshipItem'
 
-export default class Sponsorship extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_BUSINESS_SPONSORSHIP.name,
+  storeKey: FOREIGN_BUSINESS_SPONSORSHIP.storeKey,
+}
+
+export class Sponsorship extends Subsection {
   constructor(props) {
     super(props)
 
-    this.updateHasForeignSponsorship = this.updateHasForeignSponsorship.bind(
-      this
-    )
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasForeignSponsorship: this.props.HasForeignSponsorship,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasForeignSponsorship(values) {
+  updateHasForeignSponsorship = (values) => {
     this.update({
       HasForeignSponsorship: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
+      List: values.value === 'Yes'
+        ? this.props.List
+        : { items: [], branch: {} },
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const obj = (item && item.Item) || {}
     const dates = DateSummary(obj.Dates)
     const name = NameSummary(obj.Name)
 
     return Summary({
       type: i18n.t('foreign.business.sponsorship.collection.summary.item'),
-      index: index,
+      index,
       left: name,
       right: dates,
-      placeholder: i18n.t(
-        'foreign.business.sponsorship.collection.summary.unknown'
-      )
+      placeholder: i18n.t('foreign.business.sponsorship.collection.summary.unknown'),
     })
   }
 
@@ -62,15 +71,16 @@ export default class Sponsorship extends SubsectionElement {
     return (
       <div
         className="section-content foreign-business-sponsorship"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('foreign.destination.business.sponsorship')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('foreign.subsection.business.sponsorship')}</h1>
         <Branch
           name="has_foreign_sponsorship"
           label={i18n.t('foreign.business.sponsorship.heading.title')}
           labelSize="h4"
           help="foreign.business.sponsorship.help.branch"
           {...this.props.HasForeignSponsorship}
-          warning={true}
+          warning
           onUpdate={this.updateHasForeignSponsorship}
           required={this.props.required}
           onError={this.handleError}
@@ -86,21 +96,16 @@ export default class Sponsorship extends SubsectionElement {
             onError={this.handleError}
             validator={SponsorshipValidator}
             summary={this.summary}
-            description={i18n.t(
-              'foreign.business.sponsorship.collection.summary.title'
-            )}
-            appendTitle={i18n.t(
-              'foreign.business.sponsorship.collection.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'foreign.business.sponsorship.collection.append'
-            )}
+            description={i18n.t('foreign.business.sponsorship.collection.summary.title')}
+            appendTitle={i18n.t('foreign.business.sponsorship.collection.appendTitle')}
+            appendLabel={i18n.t('foreign.business.sponsorship.collection.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <SponsorshipItem
               applicantBirthdate={this.props.applicantBirthdate}
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -115,17 +120,15 @@ Sponsorship.defaultProps = {
   name: 'Sponsorship',
   HasForeignSponsorship: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'business/sponsorship',
   addressBooks: {},
-  dispatch: action => {},
-  validator: data => {
-    return validate(schema('foreign.business.sponsorship', data))
-  },
+  dispatch: () => {},
+  validator: data => validate(schema('foreign.business.sponsorship', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(Sponsorship, sectionConfig)

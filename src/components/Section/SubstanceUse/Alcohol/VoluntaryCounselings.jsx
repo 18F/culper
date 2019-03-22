@@ -1,45 +1,61 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, { VoluntaryCounselingValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { VoluntaryCounselingValidator } from 'validators'
+import { Accordion, Branch, Show } from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
+import {
+  SUBSTANCE_USE,
+  SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
+} from 'config/formSections/substanceUse'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubstanceUseSection from '../SubstanceUseConnector'
 import VoluntaryCounseling from './VoluntaryCounseling'
-import { Summary, DateSummary } from '../../../Summary'
 
-export default class VoluntaryCounselings extends SubsectionElement {
+const sectionConfig = {
+  section: SUBSTANCE_USE.name,
+  store: SUBSTANCE_USE.store,
+  subsection: SUBSTANCE_USE_ALCOHOL_VOLUNTARY.name,
+  storeKey: SUBSTANCE_USE_ALCOHOL_VOLUNTARY.storeKey,
+}
+export class VoluntaryCounselings extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateSoughtTreatment = this.updateSoughtTreatment.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        SoughtTreatment: this.props.SoughtTreatment,
-        List: this.props.List,
-        ...updateValues
-      })
-    }
-  }
-
-  updateList(values) {
-    this.update({
-      List: values
+  update = (updateValues) => {
+    this.props.onUpdate(this.storeKey, {
+      SoughtTreatment: this.props.SoughtTreatment,
+      List: this.props.List,
+      ...updateValues,
     })
   }
 
-  updateSoughtTreatment(values) {
+  updateList = (values) => {
+    this.update({
+      List: values,
+    })
+  }
+
+  updateSoughtTreatment = (values) => {
     this.update({
       SoughtTreatment: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
+      List: values.value === 'Yes'
+        ? this.props.List
+        : { items: [], branch: {} },
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const counselor = o.TreatmentProviderName
       ? o.TreatmentProviderName.value
@@ -48,12 +64,10 @@ export default class VoluntaryCounselings extends SubsectionElement {
 
     return Summary({
       type: i18n.t('substance.alcohol.voluntaryCounseling.collection.itemType'),
-      index: index,
+      index,
       left: counselor,
       right: counselingDates,
-      placeholder: i18n.t(
-        'substance.alcohol.voluntaryCounseling.collection.summary'
-      )
+      placeholder: i18n.t('substance.alcohol.voluntaryCounseling.collection.summary'),
     })
   }
 
@@ -61,15 +75,16 @@ export default class VoluntaryCounselings extends SubsectionElement {
     return (
       <div
         className="section-content voluntary-counselings"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('substance.destination.police.voluntary')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('substance.subsection.alcohol.voluntary')}</h1>
         <Branch
           name="SoughtTreatment"
           label={i18n.t('substance.alcohol.heading.voluntaryCounseling')}
           labelSize="h4"
           className="sought-treatment"
           {...this.props.SoughtTreatment}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateSoughtTreatment}
@@ -85,20 +100,15 @@ export default class VoluntaryCounselings extends SubsectionElement {
             onUpdate={this.updateList}
             onError={this.handleError}
             validator={VoluntaryCounselingValidator}
-            description={i18n.t(
-              'substance.alcohol.voluntaryCounseling.collection.description'
-            )}
-            appendTitle={i18n.t(
-              'substance.alcohol.voluntaryCounseling.collection.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'substance.alcohol.voluntaryCounseling.collection.appendLabel'
-            )}
+            description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
+            appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
+            appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <VoluntaryCounseling
               name="Item"
-              bind={true}
+              bind
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}
@@ -114,15 +124,13 @@ export default class VoluntaryCounselings extends SubsectionElement {
 VoluntaryCounselings.defaultProps = {
   SoughtTreatment: {},
   List: Accordion.defaultList,
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   section: 'substance',
   subsection: 'alcohol/voluntary',
   addressBooks: {},
-  dispatch: action => {},
-  validator: data => {
-    return validate(schema('substance.alcohol.voluntary', data))
-  },
-  scrollToBottom: ''
+  dispatch: () => {},
+  validator: data => validate(schema('substance.alcohol.voluntary', data)),
+  scrollToBottom: '',
 }
+
+export default connectSubstanceUseSection(VoluntaryCounselings, sectionConfig)

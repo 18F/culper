@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Revoked from './Revoked'
+import { Revoked } from './Revoked'
 
 describe('The legal investigations revoked component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The legal investigations revoked component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Revoked {...expected} />
         </Provider>
       )
+    )
   })
 
   it('renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The legal investigations revoked component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -39,7 +40,7 @@ describe('The legal investigations revoked component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasRevocations: { value: 'Yes' }
+      HasRevocations: { value: 'Yes' },
     }
     const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
@@ -53,17 +54,17 @@ describe('The legal investigations revoked component', () => {
           {
             Item: {
               Agency: {
-                value: 'U.S. Department of Defense'
+                value: 'U.S. Department of Defense',
               },
               Date: {
                 month: '1',
                 day: '1',
-                year: '2010'
-              }
-            }
-          }
-        ]
-      }
+                year: '2010',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()

@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import PrescriptionUses from './PrescriptionUses'
+import { PrescriptionUses } from './PrescriptionUses'
 
 describe('The PrescriptionUses component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The PrescriptionUses component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <PrescriptionUses {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The PrescriptionUses component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.prescription-uses').length).toBe(1)
@@ -47,30 +48,30 @@ describe('The PrescriptionUses component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2012'
-                }
+                  year: '2012',
+                },
               },
               PrescriptionName: {
-                value: 'Foo'
+                value: 'Foo',
               },
               Reason: {
-                value: 'The reason'
+                value: 'The reason',
               },
               UseWhileEmployed: 'Yes',
-              UseWithClearance: 'Yes'
-            }
-          }
-        ]
+              UseWithClearance: 'Yes',
+            },
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
+        updates += 1
       },
-      MisusedDrugs: { value: 'Yes' }
+      MisusedDrugs: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.prescription-uses').length).toBe(1)

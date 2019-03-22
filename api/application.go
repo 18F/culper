@@ -5,9 +5,12 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/18F/e-QIP-prototype/api/eqip"
 	"html/template"
 	"strconv"
+
+	"github.com/pkg/errors"
+
+	"github.com/18F/e-QIP-prototype/api/eqip"
 )
 
 // SectionInformation represents a structure to quickly organize the different
@@ -512,13 +515,17 @@ type FormStatusInfo struct {
 }
 
 // FormStatus returns the application metadata.
-func FormStatus(context DatabaseService, account int, locked bool) []byte {
+func FormStatus(context DatabaseService, account int, locked bool) ([]byte, error) {
+	hash, err := Hash(context, account)
+	if err != nil {
+		return nil, err
+	}
 	meta := &FormStatusInfo{
 		Locked: locked,
-		Hash:   Hash(context, account),
+		Hash:   hash,
 	}
 	js, _ := json.Marshal(meta)
-	return js
+	return js, nil
 }
 
 // Application returns the application state in JSON format.
@@ -619,13 +626,13 @@ func PurgeAccountStorage(context DatabaseService, account int) {
 }
 
 // Hash returns the SHA256 hash of the application state in hexadecimal
-func Hash(context DatabaseService, account int) string {
+func Hash(context DatabaseService, account int) (string, error) {
 	jsonBytes, err := Application(context, account, true)
 	if err != nil {
-		return ""
+		return "", errors.Wrap(err, "Unable to generate hash")
 	}
 	hash := sha256.Sum256(jsonBytes)
-	return hex.EncodeToString(hash[:])
+	return hex.EncodeToString(hash[:]), nil
 }
 
 // Catalogue eturns an array of the sub-sections of the form

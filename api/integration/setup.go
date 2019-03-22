@@ -70,10 +70,10 @@ func createTestAccount(db api.DatabaseService) (api.Account, error) {
 	email := randomEmail()
 
 	account := api.Account{
-		Username:  email,
-		Email:     email,
-		SFType:    "SF86",
-		SFVersion: "2016-11",
+		Username:    email,
+		Email:       email,
+		FormType:    "SF86",
+		FormVersion: "2016-11",
 	}
 
 	_, err := account.Save(db, -1)

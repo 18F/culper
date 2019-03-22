@@ -14,8 +14,8 @@ func GetFormMetadata(context DatabaseService, accountID int) (map[string]string,
 	metadata := make(map[string]string)
 	metadata["type"] = "metadata"
 
-	metadata["form_type"] = account.SFType
-	metadata["form_version"] = account.SFVersion
+	metadata["form_type"] = account.FormType
+	metadata["form_version"] = account.FormVersion
 
 	return metadata, nil
 }

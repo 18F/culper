@@ -2,15 +2,17 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Cohabitants from './Cohabitants'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
+
+import { Cohabitants } from './Cohabitants'
 
 const alternateAddressRenderMock = jest.fn()
 const mountComponent = (mockStore, Component, props) => {
   const store = mockStore({ application: { AddressBooks: {} } })
   const finalProps = {
     render: alternateAddressRenderMock,
-    ...props
+    ...props,
   }
 
   return mount(
@@ -23,7 +25,7 @@ const mountComponent = (mockStore, Component, props) => {
 describe('The cohabitants component', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'cohabitant'
+      name: 'cohabitant',
     }
 
     const component = mount(<Cohabitants {...expected} />)
@@ -42,7 +44,7 @@ describe('The cohabitants component', () => {
             spouse: {
               first: 'Foo',
               middle: 'FB',
-              last: 'Far'
+              last: 'Far',
             },
             Name: {
               first: 'Foo',
@@ -51,15 +53,15 @@ describe('The cohabitants component', () => {
               middleInitialOnly: false,
               noMiddleName: false,
               last: 'Bar',
-              suffix: ''
+              suffix: '',
             },
-            SSN: {}
-          }
-        }
+            SSN: {},
+          },
+        },
       ],
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
 
     const component = mount(<Cohabitants {...expected} />)
@@ -72,14 +74,14 @@ describe('The cohabitants component', () => {
   const cohabitantDateSetup = {
     name: 'marital',
     HasCohabitant: {
-      value: 'Yes'
+      value: 'Yes',
     },
     applicantBirthdate: {
       estimated: false,
       day: '1',
       month: '1',
       name: 'birthdate',
-      year: '1970'
+      year: '1970',
     },
     CohabitantList: {
       items: [
@@ -90,27 +92,27 @@ describe('The cohabitants component', () => {
               day: '1',
               month: '1',
               name: 'birthdate',
-              year: '1980'
+              year: '1980',
             },
             CohabitationBegan: {
               estimated: false,
               day: '1',
               month: '1',
               name: 'cohabitationBegan',
-              year: '1990'
-            }
+              year: '1990',
+            },
           },
-          open: true
-        }
-      ]
-    }
+          open: true,
+        },
+      ],
+    },
   }
 
   describe('handles cohanbitant dates', () => {
     it('with good data - the date cohabitation began is after the applicant and cohabitant DOB', () => {
       const mockStore = configureMockStore()
       const props = {
-        valid: true
+        valid: true,
       }
       const component = mountComponent(mockStore, Cohabitants, props)
       expect(
@@ -133,13 +135,13 @@ describe('The cohabitants component', () => {
                   day: '1',
                   month: '1',
                   name: 'cohabitationBegan',
-                  year: '1960'
-                }
-              }
-            }
-          ]
+                  year: '1960',
+                },
+              },
+            },
+          ],
         },
-        valid: false
+        valid: false,
       }
 
       const component = mountComponent(mockStore, Cohabitants, props)

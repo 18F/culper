@@ -1,47 +1,57 @@
 import React from 'react'
-import { i18n } from '../../../../../config'
-import schema from '../../../../../schema'
-import validate from '../../../../../validators'
-import { Summary } from '../../../../Summary'
-import { Accordion, Branch, Show } from '../../../../Form'
-import {
-  ForeignIndirectActivityValidator,
-  ForeignIndirectInterestValidator
-} from '../../../../../validators'
-import SubsectionElement from '../../../SubsectionElement'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { ForeignIndirectInterestValidator } from 'validators'
+import { Summary } from 'components/Summary'
+import { Accordion, Branch, Show } from 'components/Form'
+import { FOREIGN, FOREIGN_ACTIVITIES_INDIRECT } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../../ForeignConnector'
 import IndirectInterest from './IndirectInterest'
 
-export default class IndirectActivity extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_ACTIVITIES_INDIRECT.name,
+  storeKey: FOREIGN_ACTIVITIES_INDIRECT.storeKey,
+}
+
+export class IndirectActivity extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHasInterests = this.updateHasInterests.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasInterests: this.props.HasInterests,
-      ...queue
+      ...queue,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  updateHasInterests(values) {
+  updateHasInterests = (values) => {
     this.update({
       HasInterests: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const firstname = (o.Firstname || {}).value ? o.Firstname.value : ''
     const lastname = (o.Lastname || {}).value ? o.Lastname.value : ''
@@ -49,20 +59,20 @@ export default class IndirectActivity extends SubsectionElement {
     const interestType = (o.InterestType || {}).value
       ? o.InterestType.value
       : ''
-    const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
+    const cost = (o.Cost || {}).value ? `$${o.Cost.value}` : ''
     const summary = [interestType, name].reduce((prev, next) => {
       if (prev && next) {
-        return prev + ' - ' + next
+        return `${prev} - ${next}`
       }
       return prev
     })
 
     return Summary({
       type: i18n.t('foreign.activities.indirect.collection.itemType'),
-      index: index,
+      index,
       left: summary,
       right: cost,
-      placeholder: i18n.t('foreign.activities.indirect.collection.summary')
+      placeholder: i18n.t('foreign.activities.indirect.collection.summary'),
     })
   }
 
@@ -70,15 +80,16 @@ export default class IndirectActivity extends SubsectionElement {
     return (
       <div
         className="section-content indirect"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('foreign.destination.activities.indirect')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('foreign.subsection.activities.indirect')}</h1>
         <Branch
           name="has_interests"
           label={i18n.t('foreign.activities.indirect.heading.title')}
           labelSize="h4"
           {...this.props.HasInterests}
           help="foreign.activities.indirect.help.indirectControl"
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasInterests}
@@ -94,22 +105,17 @@ export default class IndirectActivity extends SubsectionElement {
             onUpdate={this.updateList}
             onError={this.handleError}
             validator={ForeignIndirectInterestValidator}
-            description={i18n.t(
-              'foreign.activities.indirect.collection.description'
-            )}
-            appendTitle={i18n.t(
-              'foreign.activities.indirect.collection.appendTitle'
-            )}
-            appendLabel={i18n.t(
-              'foreign.activities.indirect.collection.appendLabel'
-            )}
+            description={i18n.t('foreign.activities.indirect.collection.description')}
+            appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
+            appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <IndirectInterest
               name="Item"
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -125,16 +131,14 @@ IndirectActivity.defaultProps = {
   HasInterests: {},
   List: {},
   defaultState: true,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'activities/indirect',
   addressBooks: {},
-  dispatch: action => {},
-  validator: data => {
-    return validate(schema('foreign.activities.indirect', data))
-  },
-  scrollToBottom: ''
+  dispatch: () => {},
+  validator: data => validate(schema('foreign.activities.indirect', data)),
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(IndirectActivity, sectionConfig)

@@ -164,6 +164,7 @@ func (service SamlResponseHandler) serveAuthnResponse(encodedResponse string, w 
 	}
 	if _, err := account.Get(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{"username": username})
+
 		redirectAccessDenied(w, r)
 	}
 

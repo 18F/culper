@@ -1,72 +1,93 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, NameSummary } from '../../../Summary'
-import { RelativesValidator, RelativeValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Field, Accordion } from '../../../Form'
+
+import i18n from 'util/i18n'
+
+import schema from 'schema'
+import validate, { RelativesValidator, RelativeValidator } from 'validators'
+
+import { RELATIONSHIPS, RELATIONSHIPS_RELATIVES } from 'config/formSections/relationships'
+
+import { Summary, NameSummary } from 'components/Summary'
+import { Field, Accordion } from 'components/Form'
+
+import Subsection from 'components/Section/shared/Subsection'
+
+import connectRelationshipsSection from '../RelationshipsConnector'
+
 import Relative from './Relative'
 
-export default class Relatives extends SubsectionElement {
+const sectionConfig = {
+  section: RELATIONSHIPS.name,
+  store: RELATIONSHIPS.store,
+  subsection: RELATIONSHIPS_RELATIVES.name,
+  storeKey: RELATIONSHIPS_RELATIVES.storeKey,
+}
+
+export class Relatives extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
-    const relation =
-      (o.Relations || []).length > 0
-        ? o.Relations[0]
-        : i18n.t('relationships.relatives.collection.summary.item')
+    const relation = (o.Relations || []).length > 0
+      ? o.Relations[0]
+      : i18n.t('relationships.relatives.collection.summary.item')
+
     const name = NameSummary(o.Name)
 
     return Summary({
       type: relation,
-      index: index,
+      index,
       left: name,
       right: null,
-      placeholder: i18n.t('relationships.relatives.collection.summary.unknown')
+      placeholder: i18n.t('relationships.relatives.collection.summary.unknown'),
     })
   }
 
-  validMaritalRelations() {
-    return new RelativesValidator(this.props).validMaritalRelations()
-  }
+  validMaritalRelations = () => new RelativesValidator(this.props).validMaritalRelations()
 
-  validRelations() {
-    return new RelativesValidator(this.props).validMinimumRelations()
-  }
+  validRelations = () => new RelativesValidator(this.props).validMinimumRelations()
 
   render() {
     return (
       <div
         className="section-content relatives"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('relationships.relatives.sectionTitle.title')}</h1>
+
         <Field
           title={i18n.t('relationships.relatives.heading.title')}
           titleSize="h3"
-          optional={true}
-          className="no-margin-bottom">
+          optional
+          className="no-margin-bottom"
+        >
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
 
@@ -79,8 +100,8 @@ export default class Relatives extends SubsectionElement {
           errors={[
             {
               code: 'validMaritalRelation',
-              valid: this.validMaritalRelations()
-            }
+              valid: this.validMaritalRelations(),
+            },
           ]}
           className={this.validMaritalRelations() && 'hidden'}
         />
@@ -99,13 +120,14 @@ export default class Relatives extends SubsectionElement {
           validator={RelativeValidator}
           scrollIntoView={this.props.scrollIntoView}
           appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
-          appendLabel={i18n.t('relationships.relatives.collection.append')}>
+          appendLabel={i18n.t('relationships.relatives.collection.append')}
+        >
           <Relative
             name="Item"
             applicantBirthdate={this.props.applicantBirthdate}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
-            bind={true}
+            bind
             scrollIntoView={this.props.scrollIntoView}
             required={this.props.required}
           />
@@ -117,17 +139,16 @@ export default class Relatives extends SubsectionElement {
 
 Relatives.defaultProps = {
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'relationships',
   subsection: 'relatives',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('relationships.relatives', data))
-  },
+  validator: data => validate(schema('relationships.relatives', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '.bottom-btns',
+  scrollIntoView: false,
 }
+
+export default connectRelationshipsSection(Relatives, sectionConfig)

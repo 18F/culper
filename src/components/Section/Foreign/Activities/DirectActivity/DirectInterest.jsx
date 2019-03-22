@@ -316,6 +316,7 @@ export default class DirectInterest extends ValidationElement {
               className="relinquished"
               {...this.props.Relinquished}
               onUpdate={this.updateRelinquished}
+              prefix="directControl"
               onError={this.props.onError}
               required={this.props.required}
             />

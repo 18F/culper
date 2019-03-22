@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import DrugClearanceUses from './DrugClearanceUses'
+import { DrugClearanceUses } from './DrugClearanceUses'
 
 describe('The DrugClearanceUses component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The DrugClearanceUses component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <DrugClearanceUses {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The DrugClearanceUses component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-clearance-uses').length).toBe(1)
@@ -47,28 +48,28 @@ describe('The DrugClearanceUses component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2012'
-                }
+                  year: '2012',
+                },
               },
               Description: {
-                value: 'Foo'
+                value: 'Foo',
               },
               EstimatedUse: {
-                value: 'Foo'
-              }
-            }
-          }
-        ]
+                value: 'Foo',
+              },
+            },
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
+        updates += 1
       },
-      UsedDrugs: { value: 'Yes' }
+      UsedDrugs: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-clearance-uses').length).toBe(1)

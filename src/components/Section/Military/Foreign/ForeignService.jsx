@@ -1,5 +1,9 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+
+import { i18n } from 'config'
+
+import { ForeignContactValidator } from 'validators'
+
 import {
   ValidationElement,
   Branch,
@@ -11,30 +15,14 @@ import {
   Text,
   Textarea,
   Field,
-  Country
-} from '../../../Form'
+  Country,
+} from 'components/Form'
+import { Summary, DateSummary, NameSummary } from 'components/Summary'
+
 import ForeignContact from './ForeignContact'
-import { Summary, DateSummary, NameSummary } from '../../../Summary'
-import { ForeignContactValidator } from '../../../../validators'
 
 export default class ForeignService extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateOrganization = this.updateOrganization.bind(this)
-    this.updateName = this.updateName.bind(this)
-    this.updateDates = this.updateDates.bind(this)
-    this.updateCountry = this.updateCountry.bind(this)
-    this.updateRank = this.updateRank.bind(this)
-    this.updateDivision = this.updateDivision.bind(this)
-    this.updateCircumstances = this.updateCircumstances.bind(this)
-    this.updateReasonLeft = this.updateReasonLeft.bind(this)
-    this.updateMaintainsContact = this.updateMaintainsContact.bind(this)
-    this.updateList = this.updateList.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Organization: this.props.Organization,
       Name: this.props.Name,
@@ -46,104 +34,108 @@ export default class ForeignService extends ValidationElement {
       ReasonLeft: this.props.ReasonLeft,
       MaintainsContact: this.props.MaintainsContact,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
-  updateOrganization(cb) {
+  updateOrganization = (value) => {
     this.update({
-      Organization: cb
+      Organization: value,
     })
   }
 
-  updateName(value) {
+  updateName = (value) => {
     this.update({
-      Name: value
+      Name: value,
     })
   }
 
-  updateDates(value) {
+  updateDates = (value) => {
     this.update({
-      Dates: value
+      Dates: value,
     })
   }
 
-  updateCountry(value) {
+  updateCountry = (value) => {
     this.update({
-      Country: value
+      Country: value,
     })
   }
 
-  updateRank(value) {
+  updateRank = (value) => {
     this.update({
-      Rank: value
+      Rank: value,
     })
   }
 
-  updateDivision(value) {
+  updateDivision = (value) => {
     this.update({
-      Division: value
+      Division: value,
     })
   }
 
-  updateCircumstances(value) {
+  updateCircumstances = (value) => {
     this.update({
-      Circumstances: value
+      Circumstances: value,
     })
   }
 
-  updateReasonLeft(value) {
+  updateReasonLeft = (value) => {
     this.update({
-      ReasonLeft: value
+      ReasonLeft: value,
     })
   }
 
-  updateMaintainsContact(values) {
+  updateMaintainsContact = (values) => {
     // If there is no history clear out any previously entered data
     this.update({
       MaintainsContact: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  summary = (item, index) => {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Dates)
     const name = NameSummary(itemProperties.Name)
 
     return Summary({
       type: i18n.t('military.foreign.collection.contacts.summary.item'),
-      index: index,
+      index,
       left: name,
       right: dates,
       placeholder: i18n.t(
         'military.foreign.collection.contacts.summary.unknown'
-      )
+      ),
     })
   }
 
   render() {
+    const { requireMaintainsContact } = this.props
+
     return (
       <div className="foreign-service">
         <Field
           title={i18n.t('military.foreign.heading.organization')}
           adjustFor="big-buttons"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <RadioGroup
             className="organization option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
-            selectedValue={(this.props.Organization || {}).value}>
+            selectedValue={(this.props.Organization || {}).value}
+          >
             <Radio
               name="organization-military"
               className="organization-military"
@@ -205,7 +197,8 @@ export default class ForeignService extends ValidationElement {
 
         <Field
           title={i18n.t('military.foreign.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Name"
             {...this.props.Name}
@@ -221,12 +214,13 @@ export default class ForeignService extends ValidationElement {
           title={i18n.t('military.foreign.heading.dates')}
           help="military.foreign.help.dates"
           adjustFor="daterange"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="Dates"
             className="foreign-service-dates"
-            minDateEqualTo={true}
+            minDateEqualTo
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}
@@ -237,7 +231,8 @@ export default class ForeignService extends ValidationElement {
         <Field
           title={i18n.t('military.foreign.heading.country')}
           adjustFor="country"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Country
             name="Country"
             {...this.props.Country}
@@ -251,7 +246,8 @@ export default class ForeignService extends ValidationElement {
 
         <Field
           title={i18n.t('military.foreign.heading.rank')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Rank"
             {...this.props.Rank}
@@ -265,7 +261,8 @@ export default class ForeignService extends ValidationElement {
 
         <Field
           title={i18n.t('military.foreign.heading.division')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Division"
             {...this.props.Division}
@@ -279,7 +276,8 @@ export default class ForeignService extends ValidationElement {
 
         <Field
           title={i18n.t('military.foreign.heading.circumstances')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="Circumstances"
             {...this.props.Circumstances}
@@ -293,7 +291,8 @@ export default class ForeignService extends ValidationElement {
 
         <Field
           title={i18n.t('military.foreign.heading.left')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="ReasonLeft"
             {...this.props.ReasonLeft}
@@ -305,58 +304,62 @@ export default class ForeignService extends ValidationElement {
           />
         </Field>
 
-        <Branch
-          name="has_maintainscontact"
-          label={i18n.t('military.foreign.heading.maintainscontact')}
-          labelSize="h4"
-          className="maintainscontact"
-          {...this.props.MaintainsContact}
-          help="military.foreign.help.maintainscontact"
-          onUpdate={this.updateMaintainsContact}
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-          onError={this.props.onError}
-        />
+        <Show when={requireMaintainsContact}>
+          <Branch
+            name="has_maintainscontact"
+            label={i18n.t('military.foreign.heading.maintainscontact')}
+            labelSize="h4"
+            className="maintainscontact"
+            {...this.props.MaintainsContact}
+            help="military.foreign.help.maintainscontact"
+            onUpdate={this.updateMaintainsContact}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+            onError={this.props.onError}
+          />
 
-        <Show when={this.props.MaintainsContact.value === 'Yes'}>
-          <div>
-            <Field
-              title={i18n.t('military.foreign.heading.contact.details')}
-              titleSize="h3"
-              optional={true}
-              className="no-margin-bottom">
-              {i18n.m('military.foreign.para.contact')}
-            </Field>
+          <Show when={this.props.MaintainsContact.value === 'Yes'}>
+            <div>
+              <Field
+                title={i18n.t('military.foreign.heading.contact.details')}
+                titleSize="h3"
+                optional
+                className="no-margin-bottom"
+              >
+                {i18n.m('military.foreign.para.contact')}
+              </Field>
 
-            <Accordion
-              className="foreign-contacts-collection"
-              {...this.props.List}
-              defaultState={this.props.defaultState}
-              onUpdate={this.updateList}
-              onError={this.props.onError}
-              validator={ForeignContactValidator}
-              summary={this.summary}
-              description={i18n.t(
-                'military.foreign.collection.contacts.summary.title'
-              )}
-              appendTitle={i18n.t(
-                'military.foreign.collection.contacts.appendTitle'
-              )}
-              appendLabel={i18n.t(
-                'military.foreign.collection.contacts.append'
-              )}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}>
-              <ForeignContact
-                name="Item"
-                bind={true}
-                addressBooks={this.props.addressBooks}
-                dispatch={this.props.dispatch}
+              <Accordion
+                className="foreign-contacts-collection"
+                {...this.props.List}
+                defaultState={this.props.defaultState}
+                onUpdate={this.updateList}
+                onError={this.props.onError}
+                validator={ForeignContactValidator}
+                summary={this.summary}
+                description={i18n.t(
+                  'military.foreign.collection.contacts.summary.title'
+                )}
+                appendTitle={i18n.t(
+                  'military.foreign.collection.contacts.appendTitle'
+                )}
+                appendLabel={i18n.t(
+                  'military.foreign.collection.contacts.append'
+                )}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
-              />
-            </Accordion>
-          </div>
+              >
+                <ForeignContact
+                  name="Item"
+                  bind
+                  addressBooks={this.props.addressBooks}
+                  dispatch={this.props.dispatch}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                />
+              </Accordion>
+            </div>
+          </Show>
         </Show>
       </div>
     )
@@ -366,10 +369,9 @@ export default class ForeignService extends ValidationElement {
 ForeignService.defaultProps = {
   MaintainsContact: {},
   addressBooks: {},
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  defaultState: true
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  defaultState: true,
+  requireMaintainsContact: true,
 }

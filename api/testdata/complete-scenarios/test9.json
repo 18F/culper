@@ -4197,6 +4197,12 @@
                 "value": "spouse@example.com"
               }
             },
+            "EmailNotApplicable": {
+              "type": "notapplicable",
+              "props": {
+                "applicable": true
+              }
+            },
             "EnteredCivilUnion": {
               "type": "datecontrol",
               "props": {
