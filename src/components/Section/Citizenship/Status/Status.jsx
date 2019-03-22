@@ -242,7 +242,8 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.documentnumber.foreignborn'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="DocumentNumber"
                 className="document-number"
@@ -259,7 +260,8 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.documentissued')}
               adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <DateControl
                 name="DocumentIssued"
                 className="document-issued"
@@ -274,7 +276,8 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.placeissued')}
               adjustFor="label"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Location
                 name="PlaceIssued"
                 {...this.props.PlaceIssued}
@@ -296,7 +299,7 @@ export class Status extends Subsection {
                 name="DocumentName"
                 className="document-name"
                 {...this.props.DocumentName}
-                onUpdate={value => { this.updateField('DocumentName', value) }}
+                onUpdate={(value) => { this.updateField('DocumentName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
@@ -307,7 +310,8 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatenumber.foreignborn'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="CertificateNumber"
                 className="certificate-number"
@@ -315,7 +319,7 @@ export class Status extends Subsection {
                 maxlength="30"
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
-                onUpdate={value => { this.updateField('CertificateNumber', value) }}
+                onUpdate={(value) => { this.updateField('CertificateNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -326,13 +330,14 @@ export class Status extends Subsection {
                 'citizenship.status.heading.certificateissued.foreignborn'
               )}
               adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <DateControl
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
-                minDateEqualTo={true}
-                onUpdate={value => { this.updateField('CertificateIssued', value) }}
+                minDateEqualTo
+                onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -342,14 +347,15 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatename.foreignborn'
               )}
-              optional={true}
+              optional
               filterErrors={Name.requiredErrorsOnly}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Name
                 name="CertificateName"
                 className="certificate-name"
                 {...this.props.CertificateName}
-                onUpdate={value => { this.updateField('CertificateName', value) }}
+                onUpdate={(value) => { this.updateField('CertificateName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -362,7 +368,7 @@ export class Status extends Subsection {
               labelSize="h4"
               className="born-on-military-installation"
               {...this.props.BornOnMilitaryInstallation}
-              onUpdate={value => { this.updateField('BornOnMilitaryInstallation', value) }}
+              onUpdate={(value) => { this.updateField('BornOnMilitaryInstallation', value) }}
               onError={this.handleError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
@@ -371,15 +377,17 @@ export class Status extends Subsection {
             <Show
               when={
                 (this.props.BornOnMilitaryInstallation || {}).value === 'Yes'
-              }>
+              }
+            >
               <Field
                 title={i18n.t('citizenship.status.heading.militarybase')}
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Text
                   name="MilitaryBase"
                   className="military-base"
                   {...this.props.MilitaryBase}
-                  onUpdate={value => { this.updateField('MilitaryBase', value) }}
+                  onUpdate={(value) => { this.updateField('MilitaryBase', value) }}
                   onError={this.handleError}
                   required={this.props.required}
                 />
@@ -389,19 +397,21 @@ export class Status extends Subsection {
         </Show>
 
         <Show
-          when={(this.props.CitizenshipStatus || {}).value === 'Naturalized'}>
+          when={(this.props.CitizenshipStatus || {}).value === 'Naturalized'}
+        >
           <div>
             <Field
               title={i18n.t('citizenship.status.heading.entrydate')}
               help="citizenship.status.help.entrydate"
               adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <DateControl
                 name="EntryDate"
                 className="entry-date"
                 {...this.props.EntryDate}
-                minDateEqualTo={true}
-                onUpdate={value => { this.updateField('EntryDate', value) }}
+                minDateEqualTo
+                onUpdate={(value) => { this.updateField('EntryDate', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -410,13 +420,14 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.entrylocation')}
               adjustFor="label"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Location
                 name="EntryLocation"
                 {...this.props.EntryLocation}
                 layout={Location.CITY_STATE}
                 className="entry-location"
-                onUpdate={value => { this.updateField('EntryLocation', value) }}
+                onUpdate={(value) => { this.updateField('EntryLocation', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -427,13 +438,14 @@ export class Status extends Subsection {
                 'citizenship.status.heading.priorcitizenship.naturalized'
               )}
               help="citizenship.status.help.priorcitizenship"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Country
                 name="PriorCitizenship"
                 className="prior-citizenship"
                 {...this.props.PriorCitizenship}
-                multiple={true}
-                onUpdate={value => { this.updateField('PriorCitizenship', value) }}
+                multiple
+                onUpdate={(value) => { this.updateField('PriorCitizenship', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -445,19 +457,21 @@ export class Status extends Subsection {
               labelSize="h4"
               className="has-alien-registration"
               {...this.props.HasAlienRegistration}
-              onUpdate={value => { this.updateField('HasAlienRegistration', value) }}
+              onUpdate={(value) => { this.updateField('HasAlienRegistration', value) }}
               onError={this.handleError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
 
             <Show
-              when={(this.props.HasAlienRegistration || {}).value === 'Yes'}>
+              when={(this.props.HasAlienRegistration || {}).value === 'Yes'}
+            >
               <Field
                 title={i18n.t(
                   'citizenship.status.heading.alienregistrationnumber.naturalized'
                 )}
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Text
                   name="AlienRegistrationNumber"
                   className="alien-registration-number"
@@ -465,7 +479,7 @@ export class Status extends Subsection {
                   pattern={alphaNumericRegEx}
                   prefix="alphanumeric"
                   {...this.props.AlienRegistrationNumber}
-                  onUpdate={value => { this.updateField('AlienRegistrationNumber', value) }}
+                  onUpdate={(value) => { this.updateField('AlienRegistrationNumber', value) }}
                   onError={this.handleError}
                   required={this.props.required}
                 />
@@ -476,7 +490,8 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatenumber.naturalized'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="CertificateNumber"
                 className="certificate-number"
@@ -484,7 +499,7 @@ export class Status extends Subsection {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.CertificateNumber}
-                onUpdate={value => { this.updateField('CertificateNumber', value) }}
+                onUpdate={(value) => { this.updateField('CertificateNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -492,12 +507,13 @@ export class Status extends Subsection {
 
             <Field
               title={i18n.t('citizenship.status.heading.certificatecourtname')}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="CertificateCourtName"
                 className="certificate-court-name"
                 {...this.props.CertificateCourtName}
-                onUpdate={value => { this.updateField('CertificateCourtName', value) }}
+                onUpdate={(value) => { this.updateField('CertificateCourtName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -507,17 +523,18 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatecourtaddress'
               )}
-              optional={true}
+              optional
               help="citizenship.status.help.certificatecourtaddress"
               scrollIntoView={this.props.scrollIntoView}
-              adjustFor="label">
+              adjustFor="label"
+            >
               <Location
                 name="CertificateCourtAddress"
                 {...this.props.CertificateCourtAddress}
                 layout={Location.US_ADDRESS}
-                geocode={true}
+                geocode
                 className="certificate-court-address"
-                onUpdate={value => { this.updateField('CertificateCourtAddress', value) }}
+                onUpdate={(value) => { this.updateField('CertificateCourtAddress', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -529,13 +546,14 @@ export class Status extends Subsection {
               )}
               help="citizenship.status.help.certificateissued"
               scrollIntoView={this.props.scrollIntoView}
-              adjustFor="datecontrol">
+              adjustFor="datecontrol"
+            >
               <DateControl
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
-                minDateEqualTo={true}
-                onUpdate={value => { this.updateField('CertificateIssued', value) }}
+                minDateEqualTo
+                onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -545,14 +563,15 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatename.naturalized'
               )}
-              optional={true}
+              optional
               filterErrors={Name.requiredErrorsOnly}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Name
                 name="CertificateName"
                 className="certificate-name"
                 {...this.props.CertificateName}
-                onUpdate={value => { this.updateField('CertificateName', value) }}
+                onUpdate={(value) => { this.updateField('CertificateName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
@@ -562,18 +581,20 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.basis.naturalized')}
               adjustFor="big-buttons"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <RadioGroup
                 className="citizenship-basis option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.handleError}
-                selectedValue={(this.props.Basis || {}).value}>
+                selectedValue={(this.props.Basis || {}).value}
+              >
                 <Radio
                   name="citizenship-basis-individual"
                   label={i18n.m('citizenship.status.label.basis.naturalized')}
                   value="Individual"
                   className="citizenship-basis-individual"
-                  onUpdate={value => { this.updateField('Basis', value) }}
+                  onUpdate={(value) => { this.updateField('Basis', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -581,7 +602,7 @@ export class Status extends Subsection {
                   label={i18n.m('citizenship.status.label.basis.other')}
                   value="Other"
                   className="citizenship-basis-other"
-                  onUpdate={value => { this.updateField('Basis', value) }}
+                  onUpdate={(value) => { this.updateField('Basis', value) }}
                   onError={this.handleError}
                 />
               </RadioGroup>
@@ -591,12 +612,13 @@ export class Status extends Subsection {
                   title={i18n.t('citizenship.status.label.explanation')}
                   titleSize="label"
                   adjustFor="textarea"
-                  scrollIntoView={this.props.scrollIntoView}>
+                  scrollIntoView={this.props.scrollIntoView}
+                >
                   <Textarea
                     name="Explanation"
                     className="citizenship-basis-explanation"
                     {...this.props.Explanation}
-                    onUpdate={value => { this.updateField('Explanation', value) }}
+                    onUpdate={(value) => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
                     required={this.props.required}
                   />
@@ -612,7 +634,8 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.alienregistrationnumber.derived'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="AlienRegistrationNumber"
                 className="alien-registration-number"
@@ -620,7 +643,7 @@ export class Status extends Subsection {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
-                onUpdate={value => { this.updateField('AlienRegistrationNumber', value) }}
+                onUpdate={(value) => { this.updateField('AlienRegistrationNumber', value) }}
                 onError={this.handleError}
                 required={this.derivedAlienRegistrationNumberRequired()}
               />
@@ -630,7 +653,8 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.permanentresidentcardnumber'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="PermanentResidentCardNumber"
                 className="permanent-resident-card-number"
@@ -638,7 +662,7 @@ export class Status extends Subsection {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.PermanentResidentCardNumber}
-                onUpdate={value => { this.updateField('PermanentResidentCardNumber', value) }}
+                onUpdate={(value) => { this.updateField('PermanentResidentCardNumber', value) }}
                 onError={this.handleError}
                 required={this.derivedPermanentResidentCardNumberRequired()}
               />
@@ -648,7 +672,8 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatenumber.derived'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="CertificateNumber"
                 className="certificate-number"
@@ -656,7 +681,7 @@ export class Status extends Subsection {
                 maxlength="30"
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
-                onUpdate={value => { this.updateField('CertificateNumber', value) }}
+                onUpdate={(value) => { this.updateField('CertificateNumber', value) }}
                 onError={this.handleError}
                 required={this.derivedCertificateNumberRequired()}
               />
@@ -666,14 +691,15 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatename.derived'
               )}
-              optional={true}
+              optional
               filterErrors={Name.requiredErrorsOnly}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Name
                 name="CertificateName"
                 className="certificate-name"
                 {...this.props.CertificateName}
-                onUpdate={value => { this.updateField('CertificateName', value) }}
+                onUpdate={(value) => { this.updateField('CertificateName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -685,13 +711,14 @@ export class Status extends Subsection {
               )}
               help="citizenship.status.help.certificateissued"
               scrollIntoView={this.props.scrollIntoView}
-              adjustFor="datecontrol">
+              adjustFor="datecontrol"
+            >
               <DateControl
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
-                minDateEqualTo={true}
-                onUpdate={value => { this.updateField('CertificateIssued', value) }}
+                minDateEqualTo
+                onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -700,18 +727,20 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.basis.derived')}
               scrollIntoView={this.props.scrollIntoView}
-              adjustFor="big-buttons">
+              adjustFor="big-buttons"
+            >
               <RadioGroup
                 className="citizenship-basis option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.props.onError}
-                selectedValue={(this.props.Basis || {}).value}>
+                selectedValue={(this.props.Basis || {}).value}
+              >
                 <Radio
                   name="citizenship-basis-individual"
                   label={i18n.m('citizenship.status.label.basis.derived')}
                   value="Individual"
                   className="citizenship-basis-individual"
-                  onUpdate={value => { this.updateField('Basis', value) }}
+                  onUpdate={(value) => { this.updateField('Basis', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -719,7 +748,7 @@ export class Status extends Subsection {
                   label={i18n.m('citizenship.status.label.basis.other')}
                   value="Other"
                   className="citizenship-basis-other"
-                  onUpdate={value => { this.updateField('Basis', value) }}
+                  onUpdate={(value) => { this.updateField('Basis', value) }}
                   onError={this.handleError}
                 />
               </RadioGroup>
@@ -729,12 +758,13 @@ export class Status extends Subsection {
                   title={i18n.t('citizenship.status.label.explanation')}
                   titleSize="label"
                   adjustFor="textarea"
-                  scrollIntoView={this.props.scrollIntoView}>
+                  scrollIntoView={this.props.scrollIntoView}
+                >
                   <Textarea
                     name="Explanation"
                     className="citizenship-basis-explanation"
                     {...this.props.Explanation}
-                    onUpdate={value => { this.updateField('Explanation', value) }}
+                    onUpdate={(value) => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
                     required={this.props.required}
                   />
@@ -745,16 +775,18 @@ export class Status extends Subsection {
         </Show>
 
         <Show
-          when={(this.props.CitizenshipStatus || {}).value === 'NotCitizen'}>
+          when={(this.props.CitizenshipStatus || {}).value === 'NotCitizen'}
+        >
           <div>
             <Field
               title={i18n.t('citizenship.status.heading.residencestatus')}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="ResidenceStatus"
                 className="residence-status"
                 {...this.props.ResidenceStatus}
-                onUpdate={value => { this.updateField('ResidenceStatus', value) }}
+                onUpdate={(value) => { this.updateField('ResidenceStatus', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -764,13 +796,14 @@ export class Status extends Subsection {
               title={i18n.t('citizenship.status.heading.entrydate')}
               help="citizenship.status.help.entrydate"
               scrollIntoView={this.props.scrollIntoView}
-              adjustFor="datecontrol">
+              adjustFor="datecontrol"
+            >
               <DateControl
                 name="EntryDate"
                 className="entry-date"
                 {...this.props.EntryDate}
-                minDateEqualTo={true}
-                onUpdate={value => { this.updateField('EntryDate', value) }}
+                minDateEqualTo
+                onUpdate={(value) => { this.updateField('EntryDate', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -781,13 +814,14 @@ export class Status extends Subsection {
                 'citizenship.status.heading.priorcitizenship.notcitizen'
               )}
               help="citizenship.status.help.priorcitizenship"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Country
                 name="PriorCitizenship"
                 className="prior-citizenship"
                 {...this.props.PriorCitizenship}
-                multiple={true}
-                onUpdate={value => { this.updateField('PriorCitizenship', value) }}
+                multiple
+                onUpdate={(value) => { this.updateField('PriorCitizenship', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -796,13 +830,14 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.entrylocation')}
               adjustFor="address"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Location
                 name="EntryLocation"
                 className="entry-location"
                 {...this.props.EntryLocation}
                 layout={Location.CITY_STATE}
-                onUpdate={value => { this.updateField('EntryLocation', value) }}
+                onUpdate={(value) => { this.updateField('EntryLocation', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -812,7 +847,8 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.alienregistrationnumber.notcitizen'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="AlienRegistrationNumber"
                 className="alien-registration-number"
@@ -820,7 +856,7 @@ export class Status extends Subsection {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
-                onUpdate={value => { this.updateField('AlienRegistrationNumber', value) }}
+                onUpdate={(value) => { this.updateField('AlienRegistrationNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -831,13 +867,14 @@ export class Status extends Subsection {
                 'citizenship.status.heading.alienregistrationexpiration'
               )}
               adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <DateControl
                 name="AlienRegistrationExpiration"
                 className="alien-registration-expiration"
                 {...this.props.AlienRegistrationExpiration}
-                noMaxDate={true}
-                onUpdate={value => { this.updateField('AlienRegistrationExpiration', value) }}
+                noMaxDate
+                onUpdate={(value) => { this.updateField('AlienRegistrationExpiration', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -846,18 +883,20 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.documenttype')}
               adjustFor="buttons"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <RadioGroup
                 className="citizenship-document-type option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.handleError}
-                selectedValue={(this.props.DocumentType || {}).value}>
+                selectedValue={(this.props.DocumentType || {}).value}
+              >
                 <Radio
                   name="document-type-i94"
                   label={i18n.t('citizenship.status.label.documenttype.i94')}
                   value="I-94"
                   className="document-type-i94"
-                  onUpdate={value => { this.updateField('DocumentType', value) }}
+                  onUpdate={(value) => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -865,7 +904,7 @@ export class Status extends Subsection {
                   label={i18n.t('citizenship.status.label.documenttype.visa')}
                   value="U.S. Visa"
                   className="document-type-visa"
-                  onUpdate={value => { this.updateField('DocumentType', value) }}
+                  onUpdate={(value) => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -873,7 +912,7 @@ export class Status extends Subsection {
                   label={i18n.t('citizenship.status.label.documenttype.i20')}
                   value="I-20"
                   className="document-type-i20"
-                  onUpdate={value => { this.updateField('DocumentType', value) }}
+                  onUpdate={(value) => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -881,7 +920,7 @@ export class Status extends Subsection {
                   label={i18n.t('citizenship.status.label.documenttype.ds2019')}
                   value="DS-2019"
                   className="document-type-ds2019"
-                  onUpdate={value => { this.updateField('DocumentType', value) }}
+                  onUpdate={(value) => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
                 <Radio
@@ -889,7 +928,7 @@ export class Status extends Subsection {
                   label={i18n.t('citizenship.status.label.documenttype.other')}
                   value="Other"
                   className="document-type-other"
-                  onUpdate={value => { this.updateField('DocumentType', value) }}
+                  onUpdate={(value) => { this.updateField('DocumentType', value) }}
                   onError={this.handleError}
                 />
               </RadioGroup>
@@ -899,12 +938,13 @@ export class Status extends Subsection {
                   title={i18n.t('citizenship.status.label.explanation')}
                   titleSize="label"
                   adjustFor="textarea"
-                  scrollIntoView={this.props.scrollIntoView}>
+                  scrollIntoView={this.props.scrollIntoView}
+                >
                   <Textarea
                     name="Explanation"
                     className="citizenship-document-type-explanation"
                     {...this.props.Explanation}
-                    onUpdate={value => { this.updateField('Explanation', value) }}
+                    onUpdate={(value) => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
                     required={this.props.required}
                   />
@@ -916,7 +956,8 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.documentnumber.notcitizen'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="DocumentNumber"
                 className="document-number"
@@ -924,7 +965,7 @@ export class Status extends Subsection {
                 pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.DocumentNumber}
-                onUpdate={value => { this.updateField('DocumentNumber', value) }}
+                onUpdate={(value) => { this.updateField('DocumentNumber', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -933,12 +974,13 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.documentname')}
               filterErrors={Name.requiredErrorsOnly}
-              optional={true}>
+              optional
+            >
               <Name
                 name="DocumentName"
                 className="document-name"
                 {...this.props.DocumentName}
-                onUpdate={value => { this.updateField('DocumentName', value) }}
+                onUpdate={(value) => { this.updateField('DocumentName', value) }}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
@@ -948,13 +990,14 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.documentissued')}
               adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <DateControl
                 name="DocumentIssued"
                 className="document-issued"
                 {...this.props.DocumentIssued}
-                minDateEqualTo={true}
-                onUpdate={value => { this.updateField('DocumentIssued', value) }}
+                minDateEqualTo
+                onUpdate={(value) => { this.updateField('DocumentIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -963,14 +1006,15 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.documentexpiration')}
               adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <DateControl
                 name="DocumentExpiration"
                 className="document-expiration"
                 {...this.props.DocumentExpiration}
-                noMaxDate={true}
-                minDateEqualTo={true}
-                onUpdate={value => { this.updateField('DocumentExpiration', value) }}
+                noMaxDate
+                minDateEqualTo
+                onUpdate={(value) => { this.updateField('DocumentExpiration', value) }}
                 onError={this.handleError}
                 required={this.props.required}
               />
@@ -1008,15 +1052,11 @@ Status.defaultProps = {
   ResidenceStatus: {},
   DocumentType: {},
   DocumentExpiration: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('citizenship.status', data))
-  },
-  scrollIntoView: false
+  validator: data => validate(schema('citizenship.status', data)),
+  scrollIntoView: false,
 }
 
 export default connectCitizenshipSection(Status, sectionConfig)
