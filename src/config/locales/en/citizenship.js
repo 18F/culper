@@ -107,6 +107,7 @@ export const citizenship = {
         fs240: 'FS-240',
         ds1350: 'DS-1350',
         fs545: 'FS-545',
+        certificateOfCitizenship: 'Certificate of Citizenship',
         other: 'Other',
       },
       basis: {
