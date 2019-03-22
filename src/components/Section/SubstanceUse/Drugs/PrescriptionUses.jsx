@@ -1,13 +1,18 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DrugPrescriptionUseValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+
 import {
   SUBSTANCE_USE,
   SUBSTANCE_USE_DRUGS_MISUSE,
 } from 'config/formSections/substanceUse'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
+
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubstanceUseSection from '../SubstanceUseConnector'
 import PrescriptionUse from './PrescriptionUse'
@@ -69,6 +74,11 @@ export class PrescriptionUses extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_USE_YEARS
+    const numberOfYearsString = getNumberOfYearsString(years)
+
     return (
       <div
         className="section-content prescription-uses"
@@ -77,7 +87,7 @@ export class PrescriptionUses extends Subsection {
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.misuse')}</h1>
         <Branch
           name="Misused"
-          label={i18n.t('substance.drugs.heading.prescriptionUses')}
+          label={i18n.t('substance.drugs.heading.prescriptionUses', { numberOfYearsString })}
           labelSize="h4"
           className="misused"
           {...this.props.MisusedDrugs}
@@ -98,7 +108,7 @@ export class PrescriptionUses extends Subsection {
             onError={this.handleError}
             validator={DrugPrescriptionUseValidator}
             description={i18n.t('substance.drugs.prescription.collection.description')}
-            appendTitle={i18n.t('substance.drugs.prescription.collection.appendTitle')}
+            appendTitle={i18n.t('substance.drugs.prescription.collection.appendTitle', { numberOfYearsString })}
             appendLabel={i18n.t('substance.drugs.prescription.collection.appendLabel')}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}

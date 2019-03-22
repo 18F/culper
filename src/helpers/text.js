@@ -12,3 +12,15 @@ export const getYearsString = (years) => {
       return ''
   }
 }
+
+export const getNumberOfYearsString = (years, includeNumericString = true) => {
+  if (years === 1) {
+    return 'year'
+  }
+
+  if (includeNumericString) {
+    return `${getYearsString(years)} (${years}) years`
+  }
+
+  return `${years} years`
+}

@@ -69,7 +69,7 @@ const validateHasDelinquent = (hasDelinquent) => {
   return true
 }
 
-/** Object Validaotrs (as functions) */
+/** Object Validators (as functions) */
 export const validateDelinquentItem = (data = {}, formType = formTypes.SF86) => {
   const name = data.Name
   // const infractions = data.Infractions || []
@@ -139,7 +139,7 @@ export default class DelinquentValidator {
       return true
     }
 
-    return validateDelinquentItems(this.list)
+    return validateDelinquentItems(this.list, this.formType)
   }
 
   isValid() {

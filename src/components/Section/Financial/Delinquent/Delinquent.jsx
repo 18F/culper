@@ -75,7 +75,7 @@ export class Delinquent extends Subsection {
     const from = DateSummary({ date })
     const name = (obj.Name || {}).value || ''
     const amount = (obj.Amount || {}).value || ''
-    const text = `${name}${amount ? `, $${amount}` : ''}`.trim()
+    const text = `${name ? `${name}` : ''}${(amount && name) ? ', ' : ''}${amount ? `$${amount}` : ''}`.trim()
 
     return Summary({
       type: i18n.t('financial.delinquent.collection.summary.item'),

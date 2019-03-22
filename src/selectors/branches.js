@@ -18,6 +18,9 @@ import {
   requireFinancialDelinquentName,
   allowFinancialDelinquentNonFederal,
   requireFinancialNonpaymentSection,
+  requireDrugWhileSafety,
+  requireDrugWithClearance,
+  requireDrugInFuture,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -81,3 +84,12 @@ export const selectFinancialDelinquentNonFederal = createSelector(formTypeSelect
 
 export const selectFinancialNonpaymentSection = createSelector(formTypeSelector,
   formType => ({ requireFinancialNonpaymentSection: requireFinancialNonpaymentSection(formType) }))
+
+export const selectDrugWhileSafety = createSelector(formTypeSelector,
+  formType => ({ requireDrugWhileSafety: requireDrugWhileSafety(formType) }))
+
+export const selectDrugWithClearance = createSelector(formTypeSelector,
+  formType => ({ requireDrugWithClearance: requireDrugWithClearance(formType) }))
+
+export const selectDrugInFuture = createSelector(formTypeSelector,
+  formType => ({ requireDrugInFuture: requireDrugInFuture(formType) }))

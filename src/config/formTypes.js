@@ -71,8 +71,6 @@ export const SF85 = [
         subsections: [
           formSections.SUBSTANCE_USE_DRUGS_USAGE,
           formSections.SUBSTANCE_USE_DRUGS_PURCHASE,
-          formSections.SUBSTANCE_USE_DRUGS_CLEARANCE,
-          formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
           formSections.SUBSTANCE_USE_DRUGS_MISUSE,
           formSections.SUBSTANCE_USE_DRUGS_ORDERED,
           formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,

@@ -71,3 +71,15 @@ export const allowFinancialDelinquentNonFederal = formType => (
 export const requireFinancialNonpaymentSection = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
+
+export const requireDrugWhileSafety = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireDrugWithClearance = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireDrugInFuture = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)

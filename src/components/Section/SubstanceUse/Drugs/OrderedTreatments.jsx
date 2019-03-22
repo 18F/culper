@@ -1,13 +1,18 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DrugOrderedTreatmentValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+
 import {
   SUBSTANCE_USE,
   SUBSTANCE_USE_DRUGS_ORDERED,
 } from 'config/formSections/substanceUse'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
+
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubstanceUseSection from '../SubstanceUseConnector'
 import OrderedTreatment from './OrderedTreatment'
@@ -69,6 +74,13 @@ export class OrderedTreatments extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_USE_YEARS
+    const numberOfYearsString = getNumberOfYearsString(years)
+
+    // TODO - # of years vs "ever"
+
     return (
       <div
         className="section-content ordered-treatments"
@@ -77,7 +89,7 @@ export class OrderedTreatments extends Subsection {
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.ordered')}</h1>
         <Branch
           name="TreatmentOrdered"
-          label={i18n.t('substance.drugs.heading.orderedTreatments')}
+          label={i18n.t('substance.drugs.heading.orderedTreatments', { numberOfYearsString })}
           labelSize="h4"
           className="treatment-ordered"
           {...this.props.TreatmentOrdered}

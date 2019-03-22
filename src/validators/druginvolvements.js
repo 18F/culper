@@ -1,35 +1,28 @@
+/*
+import store from 'services/store'
+
+import * as formTypes from 'constants/formTypes'
+import {
+  requireDrugWhileSafety,
+  requireDrugWithClearance,
+  requireDrugInFuture,
+} from 'helpers/branches'
+*/
+
 import {
   validAccordion,
   validBranch,
   validGenericTextfield,
-  validGenericMonthYear
+  validGenericMonthYear,
 } from './helpers'
 
-export default class DrugInvolvementsValidator {
-  constructor(data = {}) {
-    this.involved = (data.Involved || {}).value
-    this.list = data.List
-  }
+// TODO
 
-  validInvolved() {
-    return validBranch(this.involved)
-  }
+/** Attribute Validators */
 
-  validDrugInvolvements() {
-    if (this.validInvolved() && this.involved === 'No') {
-      return true
-    }
+/** Object Validators (as functions) */
 
-    return validAccordion(this.list, item => {
-      return new DrugInvolvementValidator(item).isValid()
-    })
-  }
-
-  isValid() {
-    return this.validInvolved() && this.validDrugInvolvements()
-  }
-}
-
+/** Object Validators (as classes) - legacy */
 export class DrugInvolvementValidator {
   constructor(data = {}) {
     this.drugType = data.DrugType
@@ -56,13 +49,36 @@ export class DrugInvolvementValidator {
 
   isValid() {
     return (
-      validGenericMonthYear(this.firstInvolvement) &&
-      validGenericMonthYear(this.recentInvolvement) &&
-      validGenericTextfield(this.natureOfInvolvement) &&
-      validGenericTextfield(this.reasons) &&
-      validBranch(this.involvementWhileEmployed) &&
-      validBranch(this.involvementWithClearance) &&
-      this.validFuture()
+      validGenericMonthYear(this.firstInvolvement)
+      && validGenericMonthYear(this.recentInvolvement)
+      && validGenericTextfield(this.natureOfInvolvement)
+      && validGenericTextfield(this.reasons)
+      && validBranch(this.involvementWhileEmployed)
+      && validBranch(this.involvementWithClearance)
+      && this.validFuture()
     )
+  }
+}
+
+export default class DrugInvolvementsValidator {
+  constructor(data = {}) {
+    this.involved = (data.Involved || {}).value
+    this.list = data.List
+  }
+
+  validInvolved() {
+    return validBranch(this.involved)
+  }
+
+  validDrugInvolvements() {
+    if (this.validInvolved() && this.involved === 'No') {
+      return true
+    }
+
+    return validAccordion(this.list, item => new DrugInvolvementValidator(item).isValid())
+  }
+
+  isValid() {
+    return this.validInvolved() && this.validDrugInvolvements()
   }
 }
