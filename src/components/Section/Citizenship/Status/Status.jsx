@@ -3,9 +3,7 @@ import { i18n } from 'config'
 import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
 import schema from 'schema'
 import validate from 'validators'
-import {
-  isDocumentationPartial, isCertificatePartial, validateDocumentation, validateCertificate,
-} from 'validators/citizenship'
+import { isDocumentRequired, isCertificateRequired } from 'validators/citizenship'
 import {
   Branch,
   Show,
@@ -46,6 +44,35 @@ export class Status extends Subsection {
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
+
+    const {
+      required,
+      CitizenshipStatus,
+      AbroadDocumentation,
+      Explanation,
+      DocumentNumber,
+      DocumentIssued,
+      PlaceIssued,
+      DocumentName,
+      CertificateNumber,
+      CertificateIssued,
+      CertificateName,
+    } = this.props
+
+    const data = {
+      citizenshipstatus: (CitizenshipStatus || {}).value,
+      abroadDocumentation: (AbroadDocumentation || {}).value,
+      explanation: (Explanation || {}),
+      documentNumber: DocumentNumber,
+      documentIssued: DocumentIssued,
+      placeIssued: PlaceIssued,
+      documentName: DocumentName,
+      certificateNumber: CertificateNumber,
+      certificateIssued: CertificateIssued,
+      certificateName: CertificateName,
+    }
+    this.isCertificateRequired = isCertificateRequired(data)
+    this.isDocumentRequired = isDocumentRequired(data)
   }
 
   update = (queue) => {
@@ -83,41 +110,6 @@ export class Status extends Subsection {
     this.update({
       [field]: values,
     })
-  }
-
-  isRequired = () => {
-    const {
-      required,
-      CitizenshipStatus,
-      AbroadDocumentation,
-      Explanation,
-      DocumentNumber,
-      DocumentIssued,
-      PlaceIssued,
-      DocumentName,
-      CertificateNumber,
-      CertificateIssued,
-      CertificateName,
-    } = this.props
-    if (CitizenshipStatus && CitizenshipStatus.value !== 'ForeignBorn') {
-      return required
-    }
-    const docData = {
-      abroadDocumentation: AbroadDocumentation.value,
-      explanation: Explanation.value,
-      documentNumber: DocumentNumber,
-      documentIssued: DocumentIssued,
-      placeIssued: PlaceIssued,
-      documentName: DocumentName,
-    }
-    const certData = {
-      certificateNumber: CertificateNumber,
-      certificateIssued: CertificateIssued,
-      certificateName: CertificateName,
-    }
-
-    return !(!isCertificatePartial(certData) && validateDocumentation(docData))
-      && !(!isDocumentationPartial(docData) && validateCertificate(certData))
   }
 
   derivedAlienRegistrationNumberRequired = () => (
@@ -210,7 +202,7 @@ export class Status extends Subsection {
             >
               <RadioGroup
                 className="citizenship-abroad"
-                required={this.isRequired()}
+                required={this.isDocumentRequired && this.props.required}
                 onError={this.handleError}
                 selectedValue={(this.props.AbroadDocumentation || {}).value}
               >
@@ -262,7 +254,7 @@ export class Status extends Subsection {
                     {...this.props.Explanation}
                     onUpdate={(value) => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
-                    required={this.isRequired()}
+                    required={this.isDocumentRequired && this.props.required}
                   />
                 </Field>
               </Show>
@@ -283,7 +275,7 @@ export class Status extends Subsection {
                 {...this.props.DocumentNumber}
                 onUpdate={(value) => { this.updateField('DocumentNumber', value) }}
                 onError={this.handleError}
-                required={this.isRequired()}
+                required={this.isDocumentRequired && this.props.required}
               />
             </Field>
 
@@ -299,7 +291,7 @@ export class Status extends Subsection {
                 {...this.props.DocumentIssued}
                 onUpdate={(value) => { this.updateField('DocumentIssued', value) }}
                 onError={this.handleError}
-                required={this.isRequired()}
+                required={this.isDocumentRequired && this.props.required}
               />
             </Field>
 
@@ -315,7 +307,7 @@ export class Status extends Subsection {
                 className="place-issued"
                 onUpdate={(value) => { this.updateField('PlaceIssued', value) }}
                 onError={this.handleError}
-                required={this.isRequired()}
+                required={this.isDocumentRequired && this.props.required}
               />
             </Field>
 
@@ -331,7 +323,7 @@ export class Status extends Subsection {
                 {...this.props.DocumentName}
                 onUpdate={(value) => { this.updateField('DocumentName', value) }}
                 onError={this.handleError}
-                required={this.isRequired()}
+                required={this.isDocumentRequired && this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
               />
             </Field>
@@ -351,7 +343,7 @@ export class Status extends Subsection {
                 prefix="alphanumeric"
                 onUpdate={(value) => { this.updateField('CertificateNumber', value) }}
                 onError={this.handleError}
-                required={this.isRequired()}
+                required={this.isCertificateRequired && this.props.required}
               />
             </Field>
 
@@ -369,7 +361,7 @@ export class Status extends Subsection {
                 minDateEqualTo
                 onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
-                required={this.isRequired()}
+                required={this.isCertificateRequired && this.props.required}
               />
             </Field>
 
@@ -387,7 +379,7 @@ export class Status extends Subsection {
                 {...this.props.CertificateName}
                 onUpdate={(value) => { this.updateField('CertificateName', value) }}
                 onError={this.handleError}
-                required={this.isRequired()}
+                required={this.isCertificateRequired && this.props.required}
               />
             </Field>
             <Branch
