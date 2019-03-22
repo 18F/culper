@@ -1,4 +1,4 @@
-package integration_test
+package integration
 
 import (
 	"encoding/json"
@@ -50,10 +50,10 @@ func TestFormVersionReturned(t *testing.T) {
 
 	// create/find test account (wow this should be in its own db)
 	account := api.Account{
-		Username:  "buzz1@example.com",
-		Email:     "buzz1@example.com",
-		SFType:    "SF86",
-		SFVersion: "2016-11",
+		Username:    "buzz1@example.com",
+		Email:       "buzz1@example.com",
+		FormType:    "SF86",
+		FormVersion: "2016-11",
 	}
 
 	_, err := account.Get(services.db, -1)
@@ -110,9 +110,9 @@ func TestFormVersionReturned(t *testing.T) {
 	}
 
 	if parsedBody.Metadata.Type != "metadata" ||
-		parsedBody.Metadata.FormType != account.SFType ||
-		parsedBody.Metadata.FormVersion != account.SFVersion {
-		t.Fatal("Expected ", "metadata", account.SFType, account.SFVersion,
+		parsedBody.Metadata.FormType != account.FormType ||
+		parsedBody.Metadata.FormVersion != account.FormVersion {
+		t.Fatal("Expected ", "metadata", account.FormType, account.FormVersion,
 			" GOT: ", parsedBody.Metadata.Type, parsedBody.Metadata.FormType, parsedBody.Metadata.FormVersion)
 	}
 
@@ -126,10 +126,10 @@ func TestFormVersionSave(t *testing.T) {
 
 	// create/find test account (wow this should be in its own db)
 	account := api.Account{
-		Username:  "buzz1@example.com",
-		Email:     "buzz1@example.com",
-		SFType:    "SF86",
-		SFVersion: "2016-11",
+		Username:    "buzz1@example.com",
+		Email:       "buzz1@example.com",
+		FormType:    "SF86",
+		FormVersion: "2016-11",
 	}
 
 	_, err := account.Get(services.db, -1)
