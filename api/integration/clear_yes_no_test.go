@@ -202,7 +202,6 @@ func TestClearHistoryEmployment(t *testing.T) {
 	}
 
 	// check the record doublecheck is no longer set
-
 	if employment.EmploymentRecord.Value != "" {
 		t.Log("employment record was not reset")
 		t.Fail()
@@ -210,13 +209,13 @@ func TestClearHistoryEmployment(t *testing.T) {
 
 	// check that the reprimand is not set in the one entry
 	safeway := employment.List.Items[0]
-	reprimandEnt, repErr := safeway.GetItem("Reprimand")
+	reprimandEnt, repErr := safeway.GetItemValue("Reprimand")
 	if repErr != nil {
 		t.Fatal("couldn't get the reprimand", repErr)
 	}
 
 	reprimands := reprimandEnt.(*api.Collection)
-	hasReprimandEnt, hasRepErr := reprimands.Items[0].GetItem("Has")
+	hasReprimandEnt, hasRepErr := reprimands.Items[0].GetItemValue("Has")
 	if hasRepErr != nil {
 		t.Fatal("couldn't get has rep", hasRepErr)
 	}

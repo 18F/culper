@@ -391,7 +391,7 @@ func (ci CollectionItem) Each(action func(string, string, Entity, error) error) 
 	return err
 }
 
-func (ci CollectionItem) GetItem(key string) (Entity, error) {
+func (ci CollectionItem) GetItemValue(key string) (Entity, error) {
 
 	item, ok := ci.Item[key]
 	if !ok {
@@ -404,6 +404,20 @@ func (ci CollectionItem) GetItem(key string) (Entity, error) {
 	}
 
 	return entity, nil
+}
+
+func (ci *CollectionItem) SetItemValue(key string, value Entity) error {
+
+	payload := value.Marshal()
+
+	js, jsErr := json.Marshal(payload)
+	if jsErr != nil {
+		return errors.Wrap(jsErr, "failed to marhsal item value")
+	}
+
+	ci.Item[key] = js
+
+	return nil
 
 }
 

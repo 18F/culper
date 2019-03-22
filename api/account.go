@@ -194,14 +194,16 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 func (entity *Account) ClearNoBranches(context DatabaseService) error {
 
 	// Identification.OtherNames
-	err := ClearIdentificationOtherNamesNos(context, entity.ID)
-	if err != nil {
+	if err := ClearIdentificationOtherNamesNos(context, entity.ID); err != nil {
 		return err
 	}
 
 	// Your History
-	err = ClearHistoryResidenceNos(context, entity.ID)
-	if err != nil {
+	if err := ClearHistoryResidenceNos(context, entity.ID); err != nil {
+		return err
+	}
+
+	if err := ClearHistoryEmploymentNos(context, entity.ID); err != nil {
 		return err
 	}
 

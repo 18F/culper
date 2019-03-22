@@ -345,6 +345,76 @@ func (entity *HistoryEmployment) Find(context DatabaseService) error {
 	return nil
 }
 
+func ClearHistoryEmploymentNos(context DatabaseService, accountID int) error {
+	employment := HistoryEmployment{}
+	_, err := employment.Get(context, accountID)
+	if err != nil {
+		if IsDatabaseErrorNotFound(err) {
+			return nil
+		}
+		return errors.Wrap(err, "Failed to clear nos: unable to load residence")
+	}
+
+	employmentUpdated := false
+
+	if employment.List != nil && employment.List.Branch != nil {
+		if employment.List.Branch.Value == "No" {
+			employment.List.Branch.Value = ""
+			employmentUpdated = true
+		}
+	}
+
+	if employment.EmploymentRecord != nil {
+		if employment.EmploymentRecord.Value == "No" {
+			employment.EmploymentRecord.Value = ""
+			employmentUpdated = true
+		}
+	}
+
+	// loop through all the records of employment.
+	if employment.List != nil {
+		for _, employmentInstance := range employment.List.Items {
+			reprimandsEntity, repErr := employmentInstance.GetItemValue("Reprimand")
+			if repErr != nil {
+				return errors.Wrap(err, "Failed to pull a reprimand from an employment instance")
+			}
+
+			reprimands := reprimandsEntity.(*Collection)
+			for _, reprimand := range reprimands.Items {
+				HasAdditionalEntity, hasAddErr := reprimand.GetItemValue("Has")
+				if hasAddErr != nil {
+					return errors.Wrap(err, "Failed to pull Has from a reprimand")
+				}
+
+				hasAdditional := HasAdditionalEntity.(*Branch)
+				if hasAdditional.Value == "No" {
+					hasAdditional.Value = ""
+					setErr := reprimand.SetItemValue("Has", hasAdditional)
+					if setErr != nil {
+						return setErr
+					}
+					employmentUpdated = true
+				}
+			}
+
+			if employmentUpdated {
+				setErr := employmentInstance.SetItemValue("Reprimand", reprimands)
+				if setErr != nil {
+					return setErr
+				}
+			}
+		}
+	}
+
+	if employmentUpdated {
+		if _, err := employment.Save(context, accountID); err != nil {
+			return errors.Wrap(err, "Unable to save Employment")
+		}
+	}
+
+	return nil
+}
+
 // HistoryEducation represents the payload for the history education section.
 type HistoryEducation struct {
 	PayloadHasAttended Payload `json:"HasAttended" sql:"-"`
