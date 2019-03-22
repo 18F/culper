@@ -1,56 +1,63 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, DateSummary, NameSummary } from '../../../Summary'
-import {
-  ForeignActivitiesSupportValidator,
-  SupportValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { SupportValidator } from 'validators'
+import { Summary, NameSummary } from 'components/Summary'
+import { Branch, Show, Accordion } from 'components/Form'
+import { FOREIGN, FOREIGN_ACTIVITIES_SUPPORT } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../ForeignConnector'
 import SupportItem from './SupportItem'
 
-export default class Support extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_ACTIVITIES_SUPPORT.name,
+  storeKey: FOREIGN_ACTIVITIES_SUPPORT.storeKey,
+}
+export class Support extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHasForeignSupport = this.updateHasForeignSupport.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasForeignSupport: this.props.HasForeignSupport,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasForeignSupport(values) {
+  updateHasForeignSupport = (values) => {
     this.update({
       HasForeignSupport: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const name = NameSummary(o.Name)
     return Summary({
       type: i18n.t('foreign.activities.support.collection.summary.item'),
-      index: index,
+      index,
       left: name,
-      placeholder: i18n.t(
-        'foreign.activities.support.collection.summary.unknown'
-      )
+      placeholder: i18n.t('foreign.activities.support.collection.summary.unknown'),
     })
   }
 
@@ -58,14 +65,15 @@ export default class Support extends SubsectionElement {
     return (
       <div
         className="section-content foreign-activities-support"
-        {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">{i18n.t('foreign.destination.activities.support')}</h1>
+        {...super.dataAttributes()}
+      >
+        <h1 className="section-header">{i18n.t('foreign.subsection.activities.support')}</h1>
         <Branch
           name="has_foreign_support"
           label={i18n.t('foreign.activities.support.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignSupport}
-          warning={true}
+          warning
           onUpdate={this.updateHasForeignSupport}
           onError={this.handleError}
           required={this.props.required}
@@ -80,19 +88,16 @@ export default class Support extends SubsectionElement {
             onError={this.handleError}
             validator={SupportValidator}
             summary={this.summary}
-            description={i18n.t(
-              'foreign.activities.support.collection.summary.title'
-            )}
-            appendTitle={i18n.t(
-              'foreign.activities.support.collection.appendTitle'
-            )}
+            description={i18n.t('foreign.activities.support.collection.summary.title')}
+            appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
             appendLabel={i18n.t('foreign.activities.support.collection.append')}
             required={this.props.required}
             scrollToBottom={this.props.scrollToBottom}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <SupportItem
               name="Item"
-              bind={true}
+              bind
               dispatch={this.props.dispatch}
               addressBooks={this.props.addressBooks}
               required={this.props.required}
@@ -109,16 +114,14 @@ Support.defaultProps = {
   name: 'Support',
   HasForeignSupport: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'activities/support',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('foreign.activities.support', data))
-  },
-  defaultState: true
+  validator: data => validate(schema('foreign.activities.support', data)),
+  defaultState: true,
 }
+
+export default connectForeignSection(Support, sectionConfig)

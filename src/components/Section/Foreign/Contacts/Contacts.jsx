@@ -1,53 +1,65 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, NameSummary } from '../../../Summary'
-import {
-  ForeignNationalValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { i18n } from 'config'
+import schema from 'schema'
+import validate, { ForeignNationalValidator } from 'validators'
+import { Summary, NameSummary } from 'components/Summary'
+import { Branch, Show, Accordion } from 'components/Form'
+import { FOREIGN, FOREIGN_CONTACTS } from 'config/formSections/foreign'
+import Subsection from 'components/Section/shared/Subsection'
+import connectForeignSection from '../ForeignConnector'
 import ForeignNational from './ForeignNational'
 
-export default class Contacts extends SubsectionElement {
+const sectionConfig = {
+  section: FOREIGN.name,
+  store: FOREIGN.store,
+  subsection: FOREIGN_CONTACTS.name,
+  storeKey: FOREIGN_CONTACTS.storeKey,
+}
+
+export class Contacts extends Subsection {
   constructor(props) {
     super(props)
 
-    this.updateHasForeignContacts = this.updateHasForeignContacts.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasForeignContacts: this.props.HasForeignContacts,
       List: this.props.List,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasForeignContacts(values) {
+  updateHasForeignContacts = (values) => {
     this.update({
       HasForeignContacts: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const obj = (item || {}).Item || {}
     const name = NameSummary(obj.Name)
 
     return Summary({
       type: i18n.t('foreign.contacts.collection.summary.item'),
-      index: index,
+      index,
       left: name,
-      placeholder: i18n.t('foreign.contacts.collection.summary.unknown')
+      placeholder: i18n.t('foreign.contacts.collection.summary.unknown'),
     })
   }
 
@@ -55,18 +67,20 @@ export default class Contacts extends SubsectionElement {
     return (
       <div
         className="section-content foreign-contacts"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('foreign.destination.contacts')}</h1>
         <Branch
           name="has_foreign_contacts"
           label={i18n.t('foreign.contacts.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignContacts}
-          warning={true}
+          warning
           onUpdate={this.updateHasForeignContacts}
           onError={this.handleError}
           required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('foreign.contacts.para.definition')}
           {i18n.m('foreign.contacts.para.includes')}
         </Branch>
@@ -84,11 +98,12 @@ export default class Contacts extends SubsectionElement {
             appendMessage={i18n.m('foreign.contacts.collection.appendMessage')}
             appendLabel={i18n.t('foreign.contacts.collection.append')}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <ForeignNational
               name="Item"
               applicantBirthdate={this.props.applicantBirthdate}
-              bind={true}
+              bind
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}
@@ -104,17 +119,15 @@ export default class Contacts extends SubsectionElement {
 Contacts.defaultProps = {
   HasForeignContacts: {},
   List: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   section: 'foreign',
   subsection: 'contacts',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('foreign.contacts', data))
-  },
+  validator: data => validate(schema('foreign.contacts', data)),
   defaultState: true,
-  scrollToBottom: ''
+  scrollToBottom: '',
 }
+
+export default connectForeignSection(Contacts, sectionConfig)

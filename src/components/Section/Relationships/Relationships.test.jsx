@@ -1,38 +1,41 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
+import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Relationships from 'components/Section/Relationships/Relationships'
+import { SF86 } from 'constants/formTypes'
 
-const applicationState = {
-  Relationships: {}
-}
+import Relationships from 'components/Section/Relationships/Relationships'
 
 describe('The family and friends section', () => {
   const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({})
+    const store = mockStore({ authentication: { formType: SF86 }, application: {} })
     const component = mount(
-      <Provider store={store}>
-        <Relationships subsection="review" />
-      </Provider>
+      <MemoryRouter initialEntries={['/form/relationships/review']}>
+        <Provider store={store}>
+          <Relationships subsection="review" />
+        </Provider>
+      </MemoryRouter>
     )
+
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can go to each subsection', () => {
     const sections = ['marital', 'friends', 'relatives', 'review']
-    const store = mockStore({})
+    const store = mockStore({ authentication: { formType: SF86 }, application: {} })
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       const component = mount(
-        <Provider store={store}>
-          <Relationships subsection={section} />
-        </Provider>
+        <MemoryRouter initialEntries={[`/form/relationships/${section}`]}>
+          <Provider store={store}>
+            <Relationships subsection={section} />
+          </Provider>
+        </MemoryRouter>
       )
+
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })

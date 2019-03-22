@@ -1,77 +1,75 @@
 import React from 'react'
-import { Show } from '../../Form'
+import PropTypes from 'prop-types'
 
-export default class BasicAccordion extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      items: [...this.props.items]
-    }
-  }
+import { Show } from 'components/Form'
 
-  toggle(item, index) {
-    const items = [...this.state.items]
-    item.open = !item.open
-    items[index] = item
-    this.setState({
-      items: items
-    })
-  }
+const BasicAccordion = ({ items }) => (
+  <div className="basic-accordion">
+    <ul className="usa-accordion-bordered">
+      {items.map((i) => {
+        const validIcon = i.valid() ? <span className="valid-icon" /> : null
 
-  render() {
-    const items = this.state.items.map((item, index) => {
-      const toggle = this.toggle.bind(this, item, index)
-      const validIcon = item.valid() ? <span className="valid-icon" /> : null
-      return (
-        <BasicAccordionItem
-          key={item.title}
-          onClick={toggle}
-          component={item.component()}
-          title={item.title}
-          validIcon={validIcon}
-          open={item.open}
-          scrollIntoView={item.scrollIntoView}
-          aria-expanded={item.open}
-        />
-      )
-    })
+        return (
+          <BasicAccordionItem
+            key={i.title}
+            component={i.component()}
+            onClick={i.onClick}
+            title={i.title}
+            validIcon={validIcon}
+            open={i.open}
+            scrollIntoView={i.scrollIntoView}
+            aria-expanded={i.open}
+          />
+        )
+      })}
+    </ul>
+  </div>
+)
 
-    return (
-      <div className="basic-accordion">
-        <ul className="usa-accordion-bordered">{items}</ul>
-      </div>
-    )
-  }
+BasicAccordion.propTypes = {
+  items: PropTypes.array,
 }
+
+BasicAccordion.defaultProps = {
+  items: [],
+}
+
+export default BasicAccordion
 
 class BasicAccordionItem extends React.Component {
   componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.scrollIntoView !== this.props.scrollIntoView &&
-      nextProps.scrollIntoView === true
-    ) {
+    const { scrollIntoView } = this.props
+
+    if (nextProps.scrollIntoView !== scrollIntoView
+      && nextProps.scrollIntoView === true) {
       const timeout = 350
       const offset = 100
       window.setTimeout(() => {
-        const t = this.refs.item.getBoundingClientRect().top
+        const t = this.item.getBoundingClientRect().top
         window.scrollBy({ top: t - offset, left: 0, behavior: 'smooth' })
       }, timeout)
     }
   }
 
   render() {
+    const {
+      onClick, open, title, validIcon, component,
+    } = this.props
+
     return (
-      <li ref="item">
+      <li ref={(el) => { this.item = el }}>
         <button
+          type="button"
           className="usa-accordion-button"
-          onClick={this.props.onClick}
-          aria-expanded={this.props.open}>
-          {this.props.title}
-          {this.props.validIcon}
+          onClick={onClick}
+          aria-expanded={open}
+        >
+          {title}
+          {validIcon}
         </button>
-        <Show when={this.props.open}>
+        <Show when={open}>
           <div aria-hidden="false" className="usa-accordion-content">
-            {this.props.component}
+            {component}
           </div>
         </Show>
       </li>
@@ -79,6 +77,18 @@ class BasicAccordionItem extends React.Component {
   }
 }
 
-BasicAccordion.defaultProps = {
-  items: []
+BasicAccordionItem.propTypes = {
+  onClick: PropTypes.func,
+  open: PropTypes.bool,
+  title: PropTypes.node.isRequired,
+  validIcon: PropTypes.node,
+  component: PropTypes.node.isRequired,
+  scrollIntoView: PropTypes.bool,
+}
+
+BasicAccordionItem.defaultProps = {
+  onClick: () => {},
+  open: false,
+  validIcon: null,
+  scrollIntoView: false,
 }

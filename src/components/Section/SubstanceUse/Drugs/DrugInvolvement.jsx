@@ -129,6 +129,7 @@ export default class DrugInvolvement extends ValidationElement {
             className="recent-involvement"
             {...this.props.RecentInvolvement}
             hideDay={true}
+            prefix="drugPurchase"
             minDate={this.props.FirstInvolvement}
             minDateEqualTo={true}
             showEstimated={false}

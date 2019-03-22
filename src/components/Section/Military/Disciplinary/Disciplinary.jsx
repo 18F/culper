@@ -1,11 +1,16 @@
 import React from 'react'
+
+import i18n from 'util/i18n'
+
 import { MILITARY, MILITARY_DISCIPLINARY } from 'config/formSections/military'
-import { i18n } from 'config'
+import * as formConfig from 'config/forms'
+
 import schema from 'schema'
-import { Summary, DateSummary } from 'components/Summary'
 import validate, { ProcedureValidator } from 'validators'
-import Subsection from 'components/Section/shared/Subsection'
+
+import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
+import Subsection from 'components/Section/shared/Subsection'
 import Procedure from 'components/Section/Military/Disciplinary/Procedure'
 
 import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
@@ -60,7 +65,7 @@ class Disciplinary extends Subsection {
   /**
    * Assists in rendering the summary section.
    */
-  static summary(item, index) {
+  summary = (item, index) => {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Date)
     const service = itemProperties.Name && itemProperties.Name.value
@@ -77,6 +82,10 @@ class Disciplinary extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.MILITARY_DISCIPLINARY_RECORD_YEARS
+
     return (
       <div
         className="section-content disciplinary"
@@ -85,7 +94,7 @@ class Disciplinary extends Subsection {
         <h1 className="section-header">{i18n.t('military.destination.disciplinary')}</h1>
         <Branch
           name="has_disciplinary"
-          label={i18n.t('military.disciplinary.para.info')}
+          label={i18n.t('military.disciplinary.para.info', { years })}
           labelSize="h4"
           {...this.props.HasDisciplinary}
           weight
@@ -107,8 +116,8 @@ class Disciplinary extends Subsection {
             description={i18n.t(
               'military.disciplinary.collection.summary.title',
             )}
-            appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
-            appendLabel={i18n.t('military.disciplinary.collection.append')}
+            appendTitle={i18n.t('military.disciplinary.collection.appendTitle', { years })}
+            appendLabel={i18n.t('military.disciplinary.collection.append', { years })}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           >

@@ -9,18 +9,22 @@ describe('The military disciplinary component', () => {
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) =>
+    const store = mockStore({
+      authentication: { formType: 'SF86' },
+    })
+
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Disciplinary {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'military-disciplinary'
+      name: 'military-disciplinary',
     }
     const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(1)
@@ -30,7 +34,7 @@ describe('The military disciplinary component', () => {
   it('selecting no to military disciplinary does nothing', () => {
     const expected = {
       name: 'military-disciplinary',
-      HasDisciplinary: { value: 'No' }
+      HasDisciplinary: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(0)
@@ -40,7 +44,7 @@ describe('The military disciplinary component', () => {
     const expected = {
       name: 'military-disciplinary',
       HasDisciplinary: { value: 'Yes' },
-      List: { branch: {}, items: [{ Item: { Date: {} } }] }
+      List: { branch: {}, items: [{ Item: { Date: {} } }] },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(1)

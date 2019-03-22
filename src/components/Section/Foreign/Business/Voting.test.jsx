@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Voting from './Voting'
+import { Voting } from './Voting'
 
 describe('The foreign business voting component', () => {
   const mockStore = configureMockStore()
@@ -21,7 +21,7 @@ describe('The foreign business voting component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-voting',
-      HasForeignVoting: { value: 'No' }
+      HasForeignVoting: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -30,7 +30,7 @@ describe('The foreign business voting component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-voting',
-      HasForeignVoting: { value: 'Yes' }
+      HasForeignVoting: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -44,7 +44,7 @@ describe('The foreign business voting component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = createComponent(expected)
     component
@@ -70,13 +70,13 @@ describe('The foreign business voting component', () => {
             Date: {},
             Country: {},
             Reason: {},
-            Eligibility: {}
-          }
-        ]
+            Eligibility: {},
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)

@@ -10,12 +10,13 @@ describe('The Bankruptcy component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Bankruptcy {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The Bankruptcy component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.bankruptcy').length).toBe(1)
@@ -44,7 +45,7 @@ describe('The Bankruptcy component', () => {
       .find('.datedischarged input[name="month"]')
       .simulate('change', { target: { value: '1' } })
     component
-      .find('input[name="DischargeDateNotApplicable"]')
+      .find('input[name="DateDischargedNotApplicable"]')
       .simulate('change')
     component.find('.amount input[name="TotalAmount"]').simulate('change')
     component.find('.namedebt input[name="first"]').simulate('change')
@@ -61,9 +62,9 @@ describe('The Bankruptcy component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
-      HasDischargeExplanation: { value: 'Yes' }
+      HasDischargeExplanation: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.bankruptcy').length).toBe(1)
@@ -75,9 +76,9 @@ describe('The Bankruptcy component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
-      PetitionType: { value: 'Chapter13' }
+      PetitionType: { value: 'Chapter13' },
     }
     const component = createComponent(expected)
     component.find('input[name="chapter13Trustee"]').simulate('change')

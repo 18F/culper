@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import VoluntaryCounselings from './VoluntaryCounselings'
+import { VoluntaryCounselings } from './VoluntaryCounselings'
 import { Location } from '../../../Form'
 
 describe('The VoluntaryCounselings component', () => {
@@ -11,12 +11,13 @@ describe('The VoluntaryCounselings component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <VoluntaryCounselings {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -28,8 +29,8 @@ describe('The VoluntaryCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.voluntary-counselings').length).toBe(1)
@@ -41,12 +42,12 @@ describe('The VoluntaryCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       SoughtTreatment: { value: 'Yes' },
       List: {
         branch: {
-          value: 'No'
+          value: 'No',
         },
         items: [
           {
@@ -55,17 +56,17 @@ describe('The VoluntaryCounselings component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2012'
+                  year: '2012',
                 },
-                present: false
+                present: false,
               },
               TreatmentProviderName: {
-                value: 'The name'
+                value: 'The name',
               },
               TreatmentProviderAddress: {
                 country: 'United States',
@@ -73,20 +74,20 @@ describe('The VoluntaryCounselings component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
               TreatmentProviderTelephone: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
                 timeOfDay: 'Both',
-                extension: ''
+                extension: '',
               },
-              CompletedTreatment: { value: 'Yes' }
-            }
-          }
-        ]
-      }
+              CompletedTreatment: { value: 'Yes' },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     component.find('input[name="TreatmentProviderName"]').simulate('change')

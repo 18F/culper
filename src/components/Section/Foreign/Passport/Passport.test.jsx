@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Passport from './Passport'
+import { Passport } from './Passport'
 
 describe('The passport component', () => {
   const mockStore = configureMockStore()
@@ -20,7 +20,7 @@ describe('The passport component', () => {
 
   it('no error on empty', () => {
     const expected = {
-      name: 'passport'
+      name: 'passport',
     }
     const component = createComponent(expected)
     expect(component.find('.first input').length).toEqual(0)
@@ -32,7 +32,7 @@ describe('The passport component', () => {
   it('display passport field if "Yes" is selected', () => {
     const expected = {
       name: 'passport',
-      HasPassports: { value: 'Yes' }
+      HasPassports: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.number input').length).toEqual(1)
@@ -43,7 +43,7 @@ describe('The passport component', () => {
   it('display no passport information if "No" is selected', () => {
     const expected = {
       name: 'passport',
-      HasPassports: { value: 'No' }
+      HasPassports: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.first input').length).toEqual(0)
@@ -57,19 +57,19 @@ describe('The passport component', () => {
     const expected = {
       name: 'passport',
       HasPassports: { value: 'Yes' },
-      onUpdate: values => {
+      onUpdate: (storyKey, values) => {
         first = values.Name.first
       },
       suggestedNames: [
         {
           first: 'john',
-          last: 'smith'
+          last: 'smith',
         },
         {
           first: 'jonathan',
-          last: 'smith'
-        }
-      ]
+          last: 'smith',
+        },
+      ],
     }
     const component = createComponent(expected)
     expect(component.find('.modal').length).toEqual(1)
@@ -89,14 +89,14 @@ describe('The passport component', () => {
         estimated: false,
         month: '1',
         name: 'issued',
-        year: '2003'
+        year: '2003',
       },
       Expiration: {
         day: '1',
         estimated: false,
         month: '1',
         name: 'expiration',
-        year: '2004'
+        year: '2004',
       },
       HasPassports: { value: 'Yes' },
       Name: {
@@ -105,13 +105,13 @@ describe('The passport component', () => {
         middle: 'S',
         middleInitialOnly: true,
         name: 'name',
-        suffix: 'Jr'
+        suffix: 'Jr',
       },
       Number: {
         name: 'number',
-        value: '123456789'
+        value: '123456789',
       },
-      name: 'passport'
+      name: 'passport',
     }
     const component = createComponent(data)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -130,10 +130,10 @@ describe('The passport component', () => {
         estimated: false,
         month: '1',
         name: 'issued',
-        year: '2003'
+        year: '2003',
       },
       Card: { value: 'Book' },
-      reBook: 'test'
+      reBook: 'test',
     }
     const component = createComponent(props)
     expect(component.find('.number').length).toBe(1)

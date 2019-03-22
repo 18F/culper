@@ -1,7 +1,10 @@
 import * as sections from 'constants/sections'
 import { i18n } from 'config'
 
-const FOREIGN = {
+// TODO: The `name` includes the nested subsection.
+// We need to come up with a more permanent solution or confirm this config.
+
+export const FOREIGN = {
   key: sections.FOREIGN,
   name: 'foreign',
   path: 'foreign',
@@ -9,14 +12,14 @@ const FOREIGN = {
   label: i18n.t('foreign.section.name'),
 }
 
-const FOREIGN_INTRO = {
+export const FOREIGN_INTRO = {
   key: sections.FOREIGN_INTRO,
   name: 'intro',
   path: 'intro',
   label: i18n.t('foreign.subsection.intro'),
 }
 
-const FOREIGN_PASSPORT = {
+export const FOREIGN_PASSPORT = {
   key: sections.FOREIGN_PASSPORT,
   name: 'passport',
   path: 'passport',
@@ -24,7 +27,7 @@ const FOREIGN_PASSPORT = {
   label: i18n.t('foreign.subsection.passport'),
 }
 
-const FOREIGN_CONTACTS = {
+export const FOREIGN_CONTACTS = {
   key: sections.FOREIGN_CONTACTS,
   name: 'contacts',
   path: 'contacts',
@@ -32,133 +35,133 @@ const FOREIGN_CONTACTS = {
   label: i18n.t('foreign.subsection.contacts'),
 }
 
-const FOREIGN_ACTIVITIES = {
+export const FOREIGN_ACTIVITIES = {
   key: sections.FOREIGN_ACTIVITIES,
   name: 'activities',
   path: 'activities',
   label: i18n.t('foreign.subsection.activities.label'),
 }
 
-const FOREIGN_ACTIVITIES_DIRECT = {
+export const FOREIGN_ACTIVITIES_DIRECT = {
   key: sections.FOREIGN_ACTIVITIES_DIRECT,
-  name: 'direct',
+  name: 'activities/direct',
   path: 'direct',
   storeKey: 'DirectActivity',
   label: i18n.t('foreign.subsection.activities.direct'),
 }
 
-const FOREIGN_ACTIVITIES_INDIRECT = {
+export const FOREIGN_ACTIVITIES_INDIRECT = {
   key: sections.FOREIGN_ACTIVITIES_INDIRECT,
-  name: 'indirect',
+  name: 'activities/indirect',
   path: 'indirect',
   storeKey: 'IndirectActivity',
   label: i18n.t('foreign.subsection.activities.indirect'),
 }
 
-const FOREIGN_ACTIVITIES_REAL_ESTATE = {
+export const FOREIGN_ACTIVITIES_REAL_ESTATE = {
   key: sections.FOREIGN_ACTIVITIES_REAL_ESTATE,
-  name: 'realestate',
+  name: 'activities/realestate',
   path: 'realestate',
   storeKey: 'RealEstateActivity',
   label: i18n.t('foreign.subsection.activities.realestate'),
 }
 
-const FOREIGN_ACTIVITIES_BENEFITS = {
+export const FOREIGN_ACTIVITIES_BENEFITS = {
   key: sections.FOREIGN_ACTIVITIES_BENEFITS,
-  name: 'benefits',
+  name: 'activities/benefits',
   path: 'benefits',
   storeKey: 'BenefitActivity',
   label: i18n.t('foreign.subsection.activities.benefits'),
 }
 
-const FOREIGN_ACTIVITIES_SUPPORT = {
+export const FOREIGN_ACTIVITIES_SUPPORT = {
   key: sections.FOREIGN_ACTIVITIES_SUPPORT,
-  name: 'support',
+  name: 'activities/support',
   path: 'support',
   storeKey: 'Support',
   label: i18n.t('foreign.subsection.activities.support'),
 }
 
-const FOREIGN_BUSINESS = {
+export const FOREIGN_BUSINESS = {
   key: sections.FOREIGN_BUSINESS,
   name: 'business',
   path: 'business',
   label: i18n.t('foreign.subsection.business.label'),
 }
 
-const FOREIGN_BUSINESS_ADVICE = {
+export const FOREIGN_BUSINESS_ADVICE = {
   key: sections.FOREIGN_BUSINESS_ADVICE,
-  name: 'advice',
+  name: 'business/advice',
   path: 'advice',
   storeKey: 'Advice',
   label: i18n.t('foreign.subsection.business.advice'),
 }
 
-const FOREIGN_BUSINESS_FAMILY = {
+export const FOREIGN_BUSINESS_FAMILY = {
   key: sections.FOREIGN_BUSINESS_FAMILY,
-  name: 'family',
+  name: 'business/family',
   path: 'family',
   storeKey: 'Family',
   label: i18n.t('foreign.subsection.business.family'),
 }
 
-const FOREIGN_BUSINESS_EMPLOYMENT = {
+export const FOREIGN_BUSINESS_EMPLOYMENT = {
   key: sections.FOREIGN_BUSINESS_EMPLOYMENT,
-  name: 'employment',
+  name: 'business/employment',
   path: 'employment',
   storeKey: 'Employment',
   label: i18n.t('foreign.subsection.business.employment'),
 }
 
-const FOREIGN_BUSINESS_VENTURES = {
+export const FOREIGN_BUSINESS_VENTURES = {
   key: sections.FOREIGN_BUSINESS_VENTURES,
-  name: 'ventues',
+  name: 'business/ventures',
   path: 'ventures',
   storeKey: 'Ventures',
   label: i18n.t('foreign.subsection.business.ventures'),
 }
 
-const FOREIGN_BUSINESS_CONFERENCES = {
+export const FOREIGN_BUSINESS_CONFERENCES = {
   key: sections.FOREIGN_BUSINESS_CONFERENCES,
-  name: 'conferences',
+  name: 'business/conferences',
   path: 'conferences',
   storeKey: 'Conferences',
   label: i18n.t('foreign.subsection.business.conferences'),
 }
 
-const FOREIGN_BUSINESS_CONTACT = {
+export const FOREIGN_BUSINESS_CONTACT = {
   key: sections.FOREIGN_BUSINESS_CONTACT,
-  name: 'contact',
+  name: 'business/contact',
   path: 'contact',
   storeKey: 'Contact',
   label: i18n.t('foreign.subsection.business.contact'),
 }
 
-const FOREIGN_BUSINESS_SPONSORSHIP = {
+export const FOREIGN_BUSINESS_SPONSORSHIP = {
   key: sections.FOREIGN_BUSINESS_SPONSORSHIP,
-  name: 'sponsorship',
+  name: 'business/sponsorship',
   path: 'sponsorship',
   storeKey: 'Sponsorship',
   label: i18n.t('foreign.subsection.business.sponsorship'),
 }
 
-const FOREIGN_BUSINESS_POLITICAL = {
+export const FOREIGN_BUSINESS_POLITICAL = {
   key: sections.FOREIGN_BUSINESS_POLITICAL,
-  name: 'political',
+  name: 'business/political',
   path: 'political',
   storeKey: 'Political',
   label: i18n.t('foreign.subsection.business.political'),
 }
 
-const FOREIGN_BUSINESS_VOTING = {
+export const FOREIGN_BUSINESS_VOTING = {
   key: sections.FOREIGN_BUSINESS_VOTING,
-  name: 'voting',
+  name: 'business/voting',
   path: 'voting',
   storeKey: 'Voting',
   label: i18n.t('foreign.subsection.business.voting'),
 }
 
-const FOREIGN_TRAVEL = {
+export const FOREIGN_TRAVEL = {
   key: sections.FOREIGN_TRAVEL,
   name: 'travel',
   path: 'travel',
@@ -166,7 +169,7 @@ const FOREIGN_TRAVEL = {
   label: i18n.t('foreign.subsection.travel'),
 }
 
-const FOREIGN_REVIEW = {
+export const FOREIGN_REVIEW = {
   key: sections.FOREIGN_REVIEW,
   name: 'review',
   path: 'review',

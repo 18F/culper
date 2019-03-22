@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import VoluntaryTreatments from './VoluntaryTreatments'
+import { VoluntaryTreatments } from './VoluntaryTreatments'
 
 describe('The VoluntaryTreatments component', () => {
   const mockStore = configureMockStore()
@@ -10,12 +10,13 @@ describe('The VoluntaryTreatments component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <VoluntaryTreatments {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The VoluntaryTreatments component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.voluntary-treatments').length).toBe(1)
@@ -38,16 +39,14 @@ describe('The VoluntaryTreatments component', () => {
 
   it('Performs updates to accordion', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
-    }
+
     const expected = {
       List: {
         items: [
           {
             VoluntaryTreatment: {
               TreatmentProvider: {
-                value: 'Provider'
+                value: 'Provider',
               },
               TreatmentProviderAddress: {
                 country: 'United States',
@@ -55,36 +54,36 @@ describe('The VoluntaryTreatments component', () => {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
               TreatmentProviderTelephone: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
                 timeOfDay: 'Both',
-                extension: ''
+                extension: '',
               },
               TreatmentDates: {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2012'
-                }
+                  year: '2012',
+                },
               },
-              TreatmentCompleted: 'Yes'
-            }
-          }
-        ]
+              TreatmentCompleted: 'Yes',
+            },
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
+        updates += 1
       },
-      TreatmentVoluntary: { value: 'Yes' }
+      TreatmentVoluntary: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.voluntary-treatments').length).toBe(1)

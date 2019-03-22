@@ -50,32 +50,27 @@ export const legal = {
   },
   destination: {
     intro: 'Investigative and criminal history intro',
-    police: 'Police record',
-    offenses: 'Offenses',
-    additionalOffenses: 'Additional offenses',
-    domesticViolence: 'Domestic violence',
+    'police/intro': 'Police record',
+    'police/offenses': 'Offenses',
+    'police/additionalOffenses': 'Additional offenses',
+    'police/domesticViolence': 'Domestic violence',
     court: 'Non-criminal court actions',
-    investigations: {
-      history: 'Ever been investigated',
-      revoked: 'Denied',
-      debarred: 'Debarment'
-    },
-    technology: {
-      unauthorized: 'Unauthorized access',
-      manipulating: 'Manipulating access',
-      unlawful: 'Unlawful use'
-    },
-    associations: {
-      terrorist: 'Terrorist organization',
-      engaged: 'Engaged in terrorism',
-      advocating: 'Advocating',
-      overthrow: 'Membership - overthrow',
-      violence: 'Membership - violence or force',
-      activities: 'Activities to overthrow',
-      terrorism: 'Terrorism association'
-    },
+    'investigations/history': 'Ever been investigated',
+    'investigations/revoked': 'Denied',
+    'investigations/debarred': 'Debarment',
+    'technology/unauthorized': 'Unauthorized access',
+    'technology/manipulating': 'Manipulating access',
+    'technology/unlawful': 'Unlawful use',
+    'associations/terrorist-organization': 'Terrorist organization',
+    'associations/engaged-in-terrorism': 'Engaged in terrorism',
+    'associations/advocating': 'Advocating',
+    'associations/membership-overthrow': 'Membership - overthrow',
+    'associations/membership-violence-or-force': 'Membership - violence or force',
+    'associations/activities-to-overthrow': 'Activities to overthrow',
+    'associations/terrorism-association': 'Terrorism association',
     review: 'Review investigative & criminal history'
   },
+
   police: {
     heading: {
       title: 'Police record',

@@ -154,7 +154,7 @@ const employmentTitle = (activity, item, unk) => {
     case 'ActiveMilitary':
     case 'NationalGuard':
     case 'USPHS':
-      return item.Title && item.Title.value ? item.Title.value : unk
+      return item.DutyStation && item.DutyStation.value ? item.DutyStation.value : unk
     case 'OtherFederal':
     case 'StateGovernment':
     case 'FederalContractor':
