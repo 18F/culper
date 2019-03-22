@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DelinquentItemValidator } from 'validators'
 
@@ -9,6 +9,10 @@ import { Summary, DateSummary } from 'components/Summary'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_DELINQUENT } from 'config/formSections/financial'
+import * as formConfig from 'config/forms'
+
+import { getYearsString } from 'helpers/text'
+
 import connectFinancialSection from '../FinancialConnector'
 
 import DelinquentItem from './DelinquentItem'
@@ -82,22 +86,34 @@ export class Delinquent extends Subsection {
     })
   }
 
-  message = () => (
-    <div>
-      <ul>
-        <li>{i18n.m('financial.delinquent.para.alimony')}</li>
-        <li>{i18n.m('financial.delinquent.para.judgement')}</li>
-        <li>{i18n.m('financial.delinquent.para.lien')}</li>
-        <li>{i18n.m('financial.delinquent.para.federal')}</li>
-      </ul>
-    </div>
-  )
-
   render() {
+    const {
+      formType, allowFinancialDelinquentNonFederal, requireFinancialDelinquentName,
+    } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.FINANCIAL_RECORD_DELINQUENT_YEARS
+    const yearsString = getYearsString(years)
+
+    const descriptionMessage = allowFinancialDelinquentNonFederal
+      ? (
+        <div>
+          <ul>
+            <li>{i18n.m('financial.delinquent.para.alimony', { years, yearsString })}</li>
+            <li>{i18n.m('financial.delinquent.para.judgement', { years, yearsString })}</li>
+            <li>{i18n.m('financial.delinquent.para.lien', { years, yearsString })}</li>
+            <li>{i18n.m('financial.delinquent.para.federal')}</li>
+          </ul>
+        </div>
+      ) : (
+        <div>
+          {i18n.m('financial.delinquent.para.federal')}
+        </div>
+      )
+
     return (
       <div
         className="section-content delinquent"
-        {...super.dataAttributes(this.props)}
+        {...super.dataAttributes()}
       >
         <h1 className="section-header">{i18n.t('financial.destination.delinquent')}</h1>
         <Branch
@@ -113,12 +129,7 @@ export class Delinquent extends Subsection {
           onError={this.handleError}
         >
           {i18n.m('financial.delinquent.para.details')}
-          <ul>
-            <li>{i18n.m('financial.delinquent.para.alimony')}</li>
-            <li>{i18n.m('financial.delinquent.para.judgement')}</li>
-            <li>{i18n.m('financial.delinquent.para.lien')}</li>
-            <li>{i18n.m('financial.delinquent.para.federal')}</li>
-          </ul>
+          {descriptionMessage}
         </Branch>
         <Show when={(this.props.HasDelinquent || {}).value === 'Yes'}>
           <Accordion
@@ -132,7 +143,7 @@ export class Delinquent extends Subsection {
               'financial.delinquent.collection.summary.title'
             )}
             appendTitle={i18n.t('financial.delinquent.collection.appendTitle')}
-            appendMessage={this.message()}
+            appendMessage={descriptionMessage}
             validator={DelinquentItemValidator}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
@@ -145,6 +156,10 @@ export class Delinquent extends Subsection {
               addressBooks={this.props.addressBooks}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              allowFinancialDelinquentNonFederal={allowFinancialDelinquentNonFederal}
+              requireFinancialDelinquentName={requireFinancialDelinquentName}
+              years={years}
+              yearsString={yearsString}
             />
           </Accordion>
         </Show>

@@ -60,6 +60,14 @@ export const requireFinancialDelinquentSection = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85, formTypes.SF85P])
 )
 
+export const requireFinancialDelinquentName = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const allowFinancialDelinquentNonFederal = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
 export const requireFinancialNonpaymentSection = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )

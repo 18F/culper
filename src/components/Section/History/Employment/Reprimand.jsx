@@ -2,10 +2,10 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
+import { getYearsString } from 'helpers/text'
+
 import { ValidationElement, BranchCollection } from 'components/Form'
 import ReprimandItem from './ReprimandItem'
-
-import { getYearsString } from '../helpers'
 
 export default class Reprimand extends ValidationElement {
   updateReasons = (values) => {

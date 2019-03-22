@@ -14,6 +14,8 @@ import {
   selectFinancialCardSection,
   selectFinancialCreditSection,
   selectFinancialDelinquentSection,
+  selectFinancialDelinquentName,
+  selectFinancialDelinquentNonFederal,
   selectFinancialNonpaymentSection,
 } from 'selectors/branches'
 
@@ -62,6 +64,7 @@ const connectFinancialSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
+    const { authentication } = state
 
     switch (storeKey) {
       case 'Bankruptcy':
@@ -78,6 +81,7 @@ const connectFinancialSection = (Component, {
       case 'Taxes':
         return {
           ...financial.Taxes,
+          formType: authentication.formType,
         }
 
       case 'Card':
@@ -96,6 +100,9 @@ const connectFinancialSection = (Component, {
         return {
           ...financial.Delinquent,
           addressBooks,
+          formType: authentication.formType,
+          ...selectFinancialDelinquentName(state),
+          ...selectFinancialDelinquentNonFederal(state),
         }
 
       case 'Nonpayment':

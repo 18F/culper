@@ -15,6 +15,8 @@ import {
   requireFinancialCardSection,
   requireFinancialCreditSection,
   requireFinancialDelinquentSection,
+  requireFinancialDelinquentName,
+  allowFinancialDelinquentNonFederal,
   requireFinancialNonpaymentSection,
 } from 'helpers/branches'
 
@@ -68,6 +70,14 @@ export const selectFinancialCreditSection = createSelector(formTypeSelector,
 
 export const selectFinancialDelinquentSection = createSelector(formTypeSelector,
   formType => ({ requireFinancialDelinquentSection: requireFinancialDelinquentSection(formType) }))
+
+export const selectFinancialDelinquentName = createSelector(formTypeSelector,
+  formType => ({ requireFinancialDelinquentName: requireFinancialDelinquentName(formType) }))
+
+export const selectFinancialDelinquentNonFederal = createSelector(formTypeSelector,
+  formType => ({
+    allowFinancialDelinquentNonFederal: allowFinancialDelinquentNonFederal(formType),
+  }))
 
 export const selectFinancialNonpaymentSection = createSelector(formTypeSelector,
   formType => ({ requireFinancialNonpaymentSection: requireFinancialNonpaymentSection(formType) }))
