@@ -1,5 +1,25 @@
 package api
 
+import (
+	"github.com/pkg/errors"
+)
+
+type DatabaseErrorNotFound string
+
+func (d DatabaseErrorNotFound) Error() string {
+	return string(d)
+}
+
+func IsDatabaseErrorNotFound(err error) bool {
+	_, valueOk := errors.Cause(err).(DatabaseErrorNotFound)
+	_, pointerOk := errors.Cause(err).(*DatabaseErrorNotFound)
+
+	if valueOk || pointerOk {
+		return true
+	}
+	return false
+}
+
 // DatabaseService represents a persisted data storage.
 type DatabaseService interface {
 	Configure()

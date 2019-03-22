@@ -146,5 +146,13 @@ func (service *Service) Delete(query interface{}) error {
 
 // Select returns the model from the data store
 func (service *Service) Select(query interface{}) error {
-	return service.database.Select(query)
+	err := service.database.Select(query)
+	if err != nil {
+		if err.Error() == "pg: no rows in result set" {
+			return api.DatabaseErrorNotFound("Not found in database")
+		} else {
+			return err
+		}
+	}
+	return nil
 }

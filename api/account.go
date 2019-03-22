@@ -1,8 +1,9 @@
 package api
 
 import (
-	"errors"
 	"fmt"
+
+	"github.com/pkg/errors"
 )
 
 var (
@@ -185,5 +186,24 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 		entity.SFType = basicMembership.Account.SFType
 		entity.SFVersion = basicMembership.Account.SFVersion
 	}
+	return nil
+}
+
+// ClearNoBranches clears all the branches answered "No" that must be
+// re answered after rejection
+func (entity *Account) ClearNoBranches(context DatabaseService) error {
+
+	// Identification.OtherNames
+	err := ClearIdentificationOtherNamesNos(context, entity.ID)
+	if err != nil {
+		return err
+	}
+
+	// Your History
+	err = ClearHistoryResidenceNos(context, entity.ID)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

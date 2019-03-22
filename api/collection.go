@@ -2,6 +2,9 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
+
+	"github.com/pkg/errors"
 )
 
 // Collection represents a structure composed of zero or more items.
@@ -91,8 +94,8 @@ func (entity *Collection) Save(context DatabaseService, account int) (int, error
 		return entity.ID, err
 	}
 
-	// Custom errors
-	if entity.PayloadBranch.Type != "" {
+	// Only save the branch if it exists.
+	if entity.PayloadBranch.Type != "" || entity.Branch != nil {
 		branchID, err := entity.Branch.Save(context, account)
 		if err != nil {
 			return 0, err
@@ -386,6 +389,22 @@ func (ci CollectionItem) Each(action func(string, string, Entity, error) error) 
 	}
 
 	return err
+}
+
+func (ci CollectionItem) GetItem(key string) (Entity, error) {
+
+	item, ok := ci.Item[key]
+	if !ok {
+		return nil, errors.New(fmt.Sprintf("Key %s does not exist in collection item %s", key, ci.Name))
+	}
+
+	_, entity, err := getItemEntity(item)
+	if err != nil {
+		return nil, err
+	}
+
+	return entity, nil
+
 }
 
 // getItemEntity marshals a raw JSON format to a entity

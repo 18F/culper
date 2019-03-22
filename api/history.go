@@ -1,6 +1,10 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/pkg/errors"
+)
 
 // HistoryResidence represents the payload for the history residence section.
 type HistoryResidence struct {
@@ -137,6 +141,29 @@ func (entity *HistoryResidence) Find(context DatabaseService) error {
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
+	return nil
+}
+
+func ClearHistoryResidenceNos(context DatabaseService, accountID int) error {
+	residence := HistoryResidence{}
+	_, err := residence.Get(context, accountID)
+	if err != nil {
+		if IsDatabaseErrorNotFound(err) {
+			return nil
+		}
+		return errors.Wrap(err, "Failed to clear nos: unable to load residence")
+	}
+
+	if residence.List != nil && residence.List.Branch != nil {
+		if residence.List.Branch.Value == "No" {
+			residence.List.Branch.Value = ""
+			_, err = residence.Save(context, accountID)
+			if err != nil {
+				return errors.Wrap(err, "Failed to clear nos: unable to save residence")
+			}
+		}
+	}
+
 	return nil
 }
 
