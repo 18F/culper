@@ -16,8 +16,8 @@ var (
 	ErrDatastoreConnection = errors.New("Unable to connect to datastore")
 )
 
-// knownSFVersions is a map of SFType -> slice of known versions sorted with most recent first.
-var knownSFVersions = map[string][]string{
+// knownFormVersions is a map of FormType -> slice of known versions sorted with most recent first.
+var knownFormVersions = map[string][]string{
 
 	"SF86": []string{
 		"2016-11",
@@ -30,23 +30,23 @@ var knownSFVersions = map[string][]string{
 
 // Account represents a user account
 type Account struct {
-	ID        int
-	Username  string
-	Firstname string
-	Lastname  string
-	Token     string
-	TokenUsed bool
-	Email     string
-	Locked    bool
-	SFType    string `db:"sf_type"`
-	SFVersion string `db:"sf_version"`
+	ID          int
+	Username    string
+	Firstname   string
+	Lastname    string
+	Token       string
+	TokenUsed   bool
+	Email       string
+	Locked      bool
+	FormType    string `db:"form_type"`
+	FormVersion string `db:"form_version"`
 }
 
 // validate returns nil if the account is valid or an error describing what's wrong otherwise.
 // This is intended to ensure data integrity by not saving invalid data to the database
 func (entity Account) validate() error {
 
-	// the required fields are Username, SFType, and SFVersion
+	// the required fields are Username, FormType, and FormVersion
 	errorString := "Account is invalid. "
 	isValid := true
 
@@ -56,7 +56,7 @@ func (entity Account) validate() error {
 	}
 
 	if !entity.FormTypeIsKnown() {
-		errorString += fmt.Sprintf("%s + %s is not a known form version", entity.SFType, entity.SFVersion)
+		errorString += fmt.Sprintf("%s + %s is not a known form version", entity.FormType, entity.FormVersion)
 		isValid = false
 	}
 
@@ -148,9 +148,9 @@ func (entity *Account) Unlock(context DatabaseService) error {
 
 // FormTypeIsKnown returns wether the form type and version are known to eApp
 func (entity *Account) FormTypeIsKnown() bool {
-	versions := knownSFVersions[entity.SFType]
+	versions := knownFormVersions[entity.FormType]
 	for _, version := range versions {
-		if entity.SFVersion == version {
+		if entity.FormVersion == version {
 			return true
 		}
 	}
@@ -182,8 +182,8 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 		entity.TokenUsed = basicMembership.Account.TokenUsed
 		entity.Email = basicMembership.Account.Email
 		entity.Locked = basicMembership.Account.Locked
-		entity.SFType = basicMembership.Account.SFType
-		entity.SFVersion = basicMembership.Account.SFVersion
+		entity.FormType = basicMembership.Account.FormType
+		entity.FormVersion = basicMembership.Account.FormVersion
 	}
 	return nil
 }

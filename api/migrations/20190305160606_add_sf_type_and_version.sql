@@ -2,10 +2,10 @@
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
 -- +goose StatementBegin
-ALTER TABLE accounts ADD COLUMN sf_type VARCHAR(25) NOT NULL DEFAULT 'SF86';
-ALTER TABLE accounts ALTER COLUMN sf_type DROP DEFAULT;
-ALTER TABLE accounts ADD COLUMN sf_version VARCHAR(25) NOT NULL DEFAULT '2016-11';
-ALTER TABLE accounts ALTER COLUMN sf_version DROP DEFAULT;
+ALTER TABLE accounts ADD COLUMN form_type TEXT NOT NULL DEFAULT 'SF86';
+ALTER TABLE accounts ALTER COLUMN form_type DROP DEFAULT;
+ALTER TABLE accounts ADD COLUMN form_version TEXT NOT NULL DEFAULT '2016-11';
+ALTER TABLE accounts ALTER COLUMN form_version DROP DEFAULT;
 -- +goose StatementEnd
 
 -- +goose Down

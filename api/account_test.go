@@ -11,11 +11,11 @@ func TestBasicAuthentication(t *testing.T) {
 	password := "admin"
 
 	account := &Account{
-		Username:  username,
-		Firstname: "Admin",
-		Lastname:  "Last",
-		SFType:    "SF86",
-		SFVersion: "2016-11",
+		Username:    username,
+		Firstname:   "Admin",
+		Lastname:    "Last",
+		FormType:    "SF86",
+		FormVersion: "2016-11",
 	}
 
 	membership := &BasicAuthMembership{
@@ -36,10 +36,10 @@ func TestBasicAuthentication(t *testing.T) {
 func TestValidFormType(t *testing.T) {
 
 	account := &Account{
-		Username:  "glarbal@example.com",
-		Email:     "glarbal@example.com",
-		SFType:    "SF86",
-		SFVersion: "2016-11",
+		Username:    "glarbal@example.com",
+		Email:       "glarbal@example.com",
+		FormType:    "SF86",
+		FormVersion: "2016-11",
 	}
 
 	type testCase struct {
@@ -58,8 +58,8 @@ func TestValidFormType(t *testing.T) {
 	}
 
 	for _, tCase := range testCases {
-		account.SFType = tCase.sftype
-		account.SFVersion = tCase.sfversion
+		account.FormType = tCase.sftype
+		account.FormVersion = tCase.sfversion
 
 		if tCase.valid != account.FormTypeIsKnown() {
 			helperWord := "should"
