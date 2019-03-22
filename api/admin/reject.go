@@ -1,8 +1,6 @@
 package admin
 
 import (
-	"fmt"
-
 	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
