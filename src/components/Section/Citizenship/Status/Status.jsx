@@ -260,6 +260,9 @@ export class Status extends Subsection {
               </Show>
             </Field>
 
+            <Show
+              when={(this.props.AbroadDocumentation || {}).value !== 'Other'}
+            >
             <Field
               title={i18n.t(
                 'citizenship.status.heading.documentnumber.foreignborn'
@@ -327,6 +330,7 @@ export class Status extends Subsection {
                 scrollIntoView={this.props.scrollIntoView}
               />
             </Field>
+            </Show>
 
             <Field
               title={i18n.t(
