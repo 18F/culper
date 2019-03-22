@@ -46,7 +46,6 @@ export class Status extends Subsection {
     this.storeKey = storeKey
 
     const {
-      required,
       CitizenshipStatus,
       AbroadDocumentation,
       Explanation,
@@ -263,73 +262,73 @@ export class Status extends Subsection {
             <Show
               when={(this.props.AbroadDocumentation || {}).value !== 'Other'}
             >
-            <Field
-              title={i18n.t(
-                'citizenship.status.heading.documentnumber.foreignborn'
-              )}
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Text
-                name="DocumentNumber"
-                className="document-number"
-                maxlength="30"
-                pattern={alphaNumericRegEx}
-                prefix="alphanumeric"
-                {...this.props.DocumentNumber}
-                onUpdate={(value) => { this.updateField('DocumentNumber', value) }}
-                onError={this.handleError}
-                required={this.isDocumentRequired && this.props.required}
-              />
-            </Field>
-
-            <Field
-              title={i18n.t('citizenship.status.heading.documentissued')}
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <DateControl
-                name="DocumentIssued"
-                className="document-issued"
-                minDateEqualTo
-                {...this.props.DocumentIssued}
-                onUpdate={(value) => { this.updateField('DocumentIssued', value) }}
-                onError={this.handleError}
-                required={this.isDocumentRequired && this.props.required}
-              />
-            </Field>
-
-            <Field
-              title={i18n.t('citizenship.status.heading.placeissued')}
-              adjustFor="label"
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Location
-                name="PlaceIssued"
-                {...this.props.PlaceIssued}
-                layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
-                className="place-issued"
-                onUpdate={(value) => { this.updateField('PlaceIssued', value) }}
-                onError={this.handleError}
-                required={this.isDocumentRequired && this.props.required}
-              />
-            </Field>
-
-            <Field
-              title={i18n.t('citizenship.status.heading.documentname')}
-              optional
-              filterErrors={Name.requiredErrorsOnly}
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Name
-                name="DocumentName"
-                className="document-name"
-                {...this.props.DocumentName}
-                onUpdate={(value) => { this.updateField('DocumentName', value) }}
-                onError={this.handleError}
-                required={this.isDocumentRequired && this.props.required}
+              <Field
+                title={i18n.t(
+                  'citizenship.status.heading.documentnumber.foreignborn'
+                )}
                 scrollIntoView={this.props.scrollIntoView}
-              />
-            </Field>
+              >
+                <Text
+                  name="DocumentNumber"
+                  className="document-number"
+                  maxlength="30"
+                  pattern={alphaNumericRegEx}
+                  prefix="alphanumeric"
+                  {...this.props.DocumentNumber}
+                  onUpdate={(value) => { this.updateField('DocumentNumber', value) }}
+                  onError={this.handleError}
+                  required={this.isDocumentRequired && this.props.required}
+                />
+              </Field>
+
+              <Field
+                title={i18n.t('citizenship.status.heading.documentissued')}
+                adjustFor="datecontrol"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <DateControl
+                  name="DocumentIssued"
+                  className="document-issued"
+                  minDateEqualTo
+                  {...this.props.DocumentIssued}
+                  onUpdate={(value) => { this.updateField('DocumentIssued', value) }}
+                  onError={this.handleError}
+                  required={this.isDocumentRequired && this.props.required}
+                />
+              </Field>
+
+              <Field
+                title={i18n.t('citizenship.status.heading.placeissued')}
+                adjustFor="label"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Location
+                  name="PlaceIssued"
+                  {...this.props.PlaceIssued}
+                  layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
+                  className="place-issued"
+                  onUpdate={(value) => { this.updateField('PlaceIssued', value) }}
+                  onError={this.handleError}
+                  required={this.isDocumentRequired && this.props.required}
+                />
+              </Field>
+
+              <Field
+                title={i18n.t('citizenship.status.heading.documentname')}
+                optional
+                filterErrors={Name.requiredErrorsOnly}
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Name
+                  name="DocumentName"
+                  className="document-name"
+                  {...this.props.DocumentName}
+                  onUpdate={(value) => { this.updateField('DocumentName', value) }}
+                  onError={this.handleError}
+                  required={this.isDocumentRequired && this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                />
+              </Field>
             </Show>
 
             <Field

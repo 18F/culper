@@ -70,7 +70,7 @@ describe('citizenship component validation', () => {
       const expected = {
         citizenshipStatus: 'ForeignBorn',
         abroadDocumentation: 'FS-545',
-        explanation: { value: ''},
+        explanation: { value: '' },
         documentNumber: { value: '12345abc' },
         documentIssued: {
           month: '1', day: '1', year: '1998', estimated: false,
@@ -106,7 +106,7 @@ describe('citizenship component validation', () => {
       const expected = {
         citizenshipStatus: 'ForeignBorn',
         abroadDocumentation: 'FS-545',
-        explanation: { value: ''},
+        explanation: { value: '' },
         documentNumber: { value: '' },
         documentIssued: {
           month: '', day: '', year: '', estimated: false,
@@ -198,7 +198,7 @@ describe('citizenship component validation', () => {
       const expected = {
         citizenshipStatus: 'ForeignBorn',
         abroadDocumentation: 'Other',
-        explanation: { value: 'I have another document'},
+        explanation: { value: 'I have another document' },
         certificateNumber: { value: '' },
         certificateIssued: {
           month: '', day: '', year: '', estimated: false,
@@ -220,7 +220,7 @@ describe('citizenship component validation', () => {
       const expected = {
         citizenshipStatus: 'ForeignBorn',
         abroadDocumentation: 'Other',
-        explanation: { value: 'I have a different document'},
+        explanation: { value: 'I have a different document' },
       }
       expect(isCertificateRequired(expected)).toBe(false)
     })

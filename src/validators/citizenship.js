@@ -33,23 +33,21 @@ export const validateDocumentation = ({
 }) => {
   if (abroadDocumentation === 'Other' && validateAbroadDocumentation({ abroadDocumentation, explanation })) {
     return validateAbroadDocumentation({ abroadDocumentation, explanation })
-  } else {
-    return validateAbroadDocumentation({ abroadDocumentation, explanation })
+  }
+  return validateAbroadDocumentation({ abroadDocumentation, explanation })
       && validGenericTextfield(documentNumber)
       && validDateField(documentIssued)
       && new LocationValidator(placeIssued).isValid()
       && new NameValidator(documentName).isValid()
-  }
 }
 
 export const validateCertificate = ({
   certificateNumber,
   certificateIssued,
   certificateName,
-}) => {
-  return validGenericTextfield(certificateNumber)
+}) => validGenericTextfield(certificateNumber)
     && validDateField(certificateIssued)
-    && new NameValidator(certificateName).isValid() }
+    && new NameValidator(certificateName).isValid()
 
 export const isCertificatePartial = ({ certificateNumber, certificateIssued, certificateName }) => {
   if (certificateNumber && !_.isEmpty(certificateNumber.value)) {
@@ -137,13 +135,11 @@ export const validateForeignBorn = (data) => {
   )
 }
 
-export const isCertificateRequired = (data) => {
-  return !(!isCertificatePartial(data) && validateDocumentation(data))
-}
+export const isCertificateRequired = data => (
+  isCertificatePartial(data) || !validateDocumentation(data)
+)
 
-export const isDocumentRequired = (data) => {
-  return !(!isDocumentationPartial(data) && validateCertificate(data))
-}
+export const isDocumentRequired = data => isDocumentationPartial(data) || !validateCertificate(data)
 
 export default class CitizenshipValidator {
   constructor(data = {}) {
