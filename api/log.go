@@ -36,6 +36,7 @@ const (
 	EntityError                                = "Error getting entity data"
 	EntitySaveError                            = "Error getting entity data"
 	FormDecodingError                          = "Error serializing form"
+	HashingFailure                             = "Error calculating hash"
 	InvalidJWT                                 = "Invalid JSON web token"
 	JWTError                                   = "Failed to generate JSON web token"
 	JWTSecretNotSet                            = "JSON web token secret is not set"

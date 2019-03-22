@@ -10,9 +10,9 @@ import (
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/log"
-	"github.com/18F/e-QIP-prototype/api/mock"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 )
 
@@ -24,7 +24,7 @@ type serviceSet struct {
 }
 
 func cleanTestServices() serviceSet {
-	env := &mock.Native{}
+	env := &env.Native{}
 	os.Setenv(api.LogLevel, "info")
 	env.Configure()
 
@@ -58,7 +58,7 @@ func TestFormVersionReturned(t *testing.T) {
 
 	_, err := account.Get(services.db, -1)
 	if err != nil {
-		if err.Error() == "pg: no rows in result set" {
+		if api.IsDatabaseErrorNotFound(err) {
 			_, err := account.Save(services.db, -1)
 			if err != nil {
 				t.Fatal(err)
@@ -121,6 +121,7 @@ func TestFormVersionReturned(t *testing.T) {
 }
 
 func TestFormVersionSave(t *testing.T) {
+	// The client cannot set the form version via the API, this test confirms it's an error.
 
 	services := cleanTestServices()
 
@@ -134,7 +135,7 @@ func TestFormVersionSave(t *testing.T) {
 
 	_, err := account.Get(services.db, -1)
 	if err != nil {
-		if err.Error() == "pg: no rows in result set" {
+		if api.IsDatabaseErrorNotFound(err) {
 			_, err := account.Save(services.db, -1)
 			if err != nil {
 				t.Fatal(err)
