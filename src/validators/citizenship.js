@@ -30,30 +30,37 @@ export const validateDocumentation = ({
   documentIssued,
   placeIssued,
   documentName,
-}) => validateAbroadDocumentation({ abroadDocumentation, explanation })
-    && validGenericTextfield(documentNumber)
-    && validDateField(documentIssued)
-    && new LocationValidator(placeIssued).isValid()
-    && new NameValidator(documentName).isValid()
+}) => {
+  if (abroadDocumentation === 'Other' && validateAbroadDocumentation({ abroadDocumentation, explanation })) {
+    return validateAbroadDocumentation({ abroadDocumentation, explanation })
+  } else {
+    return validateAbroadDocumentation({ abroadDocumentation, explanation })
+      && validGenericTextfield(documentNumber)
+      && validDateField(documentIssued)
+      && new LocationValidator(placeIssued).isValid()
+      && new NameValidator(documentName).isValid()
+  }
+}
 
 export const validateCertificate = ({
   certificateNumber,
   certificateIssued,
   certificateName,
-}) => validGenericTextfield(certificateNumber)
+}) => {
+  return validGenericTextfield(certificateNumber)
     && validDateField(certificateIssued)
-    && new NameValidator(certificateName).isValid()
+    && new NameValidator(certificateName).isValid() }
 
 export const isCertificatePartial = ({ certificateNumber, certificateIssued, certificateName }) => {
-  if (!_.isEmpty(certificateNumber) && !_.isEmpty(certificateNumber.value)) {
+  if (certificateNumber && !_.isEmpty(certificateNumber.value)) {
     return !validateCertificate({ certificateNumber, certificateIssued, certificateName })
-  } if (!_.isEmpty(certificateIssued) && (
+  } if (certificateIssued && (
     !_.isEmpty(certificateIssued.day)
     || !_.isEmpty(certificateIssued.month)
     || !_.isEmpty(certificateIssued.year))
   ) {
     return !validateCertificate({ certificateNumber, certificateIssued, certificateName })
-  } if (!_.isEmpty(certificateName) && (
+  } if (certificateName && (
     !_.isEmpty(certificateName.first)
     || certificateName.firstInitialOnly
     || !_.isEmpty(certificateName.middle)
@@ -74,15 +81,15 @@ export const isDocumentationPartial = ({
     return !validateDocumentation({
       abroadDocumentation, explanation, documentNumber, documentIssued, placeIssued, documentName,
     })
-  } if (!_.isEmpty(explanation) && !_.isEmpty(explanation.value)) {
+  } if (explanation && !_.isEmpty(explanation.value)) {
     return !validateDocumentation({
       abroadDocumentation, explanation, documentNumber, documentIssued, placeIssued, documentName,
     })
-  } if (!_.isEmpty(documentNumber) && !_.isEmpty(documentNumber.value)) {
+  } if (documentNumber && !_.isEmpty(documentNumber.value)) {
     return !validateDocumentation({
       abroadDocumentation, explanation, documentNumber, documentIssued, placeIssued, documentName,
     })
-  } if (!_.isEmpty(documentIssued) && (
+  } if (documentIssued && (
     !_.isEmpty(documentIssued.day)
     || !_.isEmpty(documentIssued.month)
     || !_.isEmpty(documentIssued.year))
@@ -90,7 +97,7 @@ export const isDocumentationPartial = ({
     return !validateDocumentation({
       abroadDocumentation, explanation, documentNumber, documentIssued, placeIssued, documentName,
     })
-  } if (!_.isEmpty(documentName) && (
+  } if (documentName && (
     !_.isEmpty(documentName.first)
     || documentName.firstInitialOnly
     || !_.isEmpty(documentName.middle)
@@ -128,6 +135,14 @@ export const validateForeignBorn = (data) => {
     )
     && validateBornOnMilitaryInstallation(data)
   )
+}
+
+export const isCertificateRequired = (data) => {
+  return !(!isCertificatePartial(data) && validateDocumentation(data))
+}
+
+export const isDocumentRequired = (data) => {
+  return !(!isDocumentationPartial(data) && validateCertificate(data))
 }
 
 export default class CitizenshipValidator {

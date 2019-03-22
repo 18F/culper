@@ -1,6 +1,8 @@
 import CitizenshipValidator, {
+  isCertificateRequired,
   isCertificatePartial,
   isDocumentationPartial,
+  isDocumentRequired,
   validateAbroadDocumentation,
   validateBornOnMilitaryInstallation,
   validateForeignBorn,
@@ -60,6 +62,167 @@ describe('citizenship component validation', () => {
       expect(new CitizenshipValidator(test.data).validCitizenshipStatus()).toBe(
         test.expected
       )
+    })
+  })
+
+  describe('isDocumentRequired', () => {
+    it('returns true if document is provided', () => {
+      const expected = {
+        citizenshipStatus: 'ForeignBorn',
+        abroadDocumentation: 'FS-545',
+        explanation: { value: ''},
+        documentNumber: { value: '12345abc' },
+        documentIssued: {
+          month: '1', day: '1', year: '1998', estimated: false,
+        },
+        documentName: {
+          first: 'Henry',
+          firstInitialOnly: false,
+          middle: 'J',
+          middleInitialOnly: true,
+          noMiddleName: false,
+          last: 'Simpleton',
+          suffix: '',
+          suffixOther: '',
+        },
+        documentExpiration: {
+          month: '1', day: '1', year: '2018', estimated: false,
+        },
+        placeIssued: {
+          layout: 'Birthplace without County',
+          city: 'Venice',
+          country: 'Italy',
+        },
+      }
+      expect(isDocumentRequired(expected)).toBe(true)
+    })
+    it('returns true if document not provided', () => {
+      const expected = {
+        citizenshipStatus: 'ForeignBorn',
+      }
+      expect(isDocumentRequired(expected)).toBe(true)
+    })
+    it('returns true if document is partial and certificate provided', () => {
+      const expected = {
+        citizenshipStatus: 'ForeignBorn',
+        abroadDocumentation: 'FS-545',
+        explanation: { value: ''},
+        documentNumber: { value: '' },
+        documentIssued: {
+          month: '', day: '', year: '', estimated: false,
+        },
+        documentName: {
+          first: 'Henry',
+          firstInitialOnly: false,
+          middle: 'J',
+          middleInitialOnly: true,
+          noMiddleName: false,
+          last: 'Simpleton',
+          suffix: '',
+          suffixOther: '',
+        },
+        documentExpiration: {
+          month: '1', day: '1', year: '2018', estimated: false,
+        },
+        placeIssued: {
+          layout: 'Birthplace without County',
+          city: 'Venice',
+          country: 'Italy',
+        },
+        certificateNumber: { value: '12345abc' },
+        certificateIssued: {
+          month: '1', day: '1', year: '1998', estimated: false,
+        },
+        certificateName: {
+          first: 'Henry',
+          firstInitialOnly: false,
+          middle: 'J',
+          middleInitialOnly: true,
+          noMiddleName: false,
+          last: 'Simpleton',
+          suffix: '',
+          suffixOther: '',
+        },
+      }
+      expect(isDocumentRequired(expected)).toBe(true)
+    })
+    it('returns false if certificate is provided', () => {
+      const expected = {
+        citizenshipStatus: 'ForeignBorn',
+        certificateNumber: { value: '12345abc' },
+        certificateIssued: {
+          month: '1', day: '1', year: '1998', estimated: false,
+        },
+        certificateName: {
+          first: 'Henry',
+          firstInitialOnly: false,
+          middle: 'J',
+          middleInitialOnly: true,
+          noMiddleName: false,
+          last: 'Simpleton',
+          suffix: '',
+          suffixOther: '',
+        },
+      }
+      expect(isDocumentRequired(expected)).toBe(false)
+    })
+  })
+  describe('isCertificateRequired', () => {
+    it('returns true if certificate is provided', () => {
+      const expected = {
+        citizenshipStatus: 'ForeignBorn',
+        certificateNumber: { value: '12345abc' },
+        certificateIssued: {
+          month: '1', day: '1', year: '1998', estimated: false,
+        },
+        certificateName: {
+          first: 'Henry',
+          firstInitialOnly: false,
+          middle: 'J',
+          middleInitialOnly: true,
+          noMiddleName: false,
+          last: 'Simpleton',
+          suffix: '',
+          suffixOther: '',
+        },
+      }
+      expect(isCertificateRequired(expected)).toBe(true)
+    })
+    it('returns true if certificate not provided', () => {
+      const expected = {
+        citizenshipStatus: 'ForeignBorn',
+      }
+      expect(isCertificateRequired(expected)).toBe(true)
+    })
+    it('returns true if certificate is partial and document provided', () => {
+      const expected = {
+        citizenshipStatus: 'ForeignBorn',
+        abroadDocumentation: 'Other',
+        explanation: { value: 'I have another document'},
+        certificateNumber: { value: '' },
+        certificateIssued: {
+          month: '', day: '', year: '', estimated: false,
+        },
+        certificateName: {
+          first: 'Henry',
+          firstInitialOnly: false,
+          middle: 'J',
+          middleInitialOnly: true,
+          noMiddleName: false,
+          last: 'Simpleton',
+          suffix: '',
+          suffixOther: '',
+        },
+      }
+      expect(isCertificateRequired(expected)).toBe(true)
+    })
+    it('returns false if document is provided', () => {
+      const expected = {
+        citizenshipStatus: 'ForeignBorn',
+        abroadDocumentation: 'Other',
+        explanation: { value: 'I have a different document'},
+      }
+      expect(isCertificateRequired(expected)).toBe(false)
     })
   })
 
@@ -129,6 +292,38 @@ describe('citizenship component validation', () => {
       }
 
       expect(validateDocumentation(data)).toBe(false)
+    })
+    it('returns true if abroadDocumentation is other with explanation', () => {
+      const data = {
+        abroadDocumentation: 'Other',
+        explanation: {
+          value: 'I have proof of citizenship but not one of these forms',
+        },
+        documentNumber: {
+          value: '',
+        },
+        documentIssued: {
+          day: '',
+          month: '',
+          year: '',
+          estimated: false,
+        },
+        placeIssued: {
+          layout: '',
+          country: '',
+        },
+        documentName: {
+          first: '',
+          firstInitialOnly: false,
+          middle: '',
+          middleInitialOnly: false,
+          noMiddleName: false,
+          last: '',
+          suffix: '',
+        },
+      }
+
+      expect(validateDocumentation(data)).toBe(true)
     })
     it('returns false if documentNumber is missing', () => {
       const data = {
@@ -273,6 +468,23 @@ describe('citizenship component validation', () => {
           noMiddleName: false,
           last: 'Bar',
           suffix: 'Jr',
+        },
+        certificateNumber: {
+          value: '',
+        },
+        certificateIssued: {
+          day: '',
+          month: '',
+          year: '',
+        },
+        certificateName: {
+          first: '',
+          firstInitialOnly: false,
+          middle: '',
+          middleInitialOnly: false,
+          noMiddleName: false,
+          last: '',
+          suffix: '',
         },
       }
 
