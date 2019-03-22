@@ -38,7 +38,7 @@ export class Relatives extends Subsection {
   }
 
   update = (queue) => {
-    this.props.onUpdate({
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       ...queue,
     })
