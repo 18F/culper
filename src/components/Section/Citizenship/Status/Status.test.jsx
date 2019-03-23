@@ -10,17 +10,18 @@ describe('The status component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Status {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'status'
+      name: 'status',
     }
     const component = createComponent(expected)
     expect(component.find('.citizenship-status').length).toBe(1)
@@ -34,9 +35,9 @@ describe('The status component', () => {
       CitizenshipStatus: { value: 'Citizen' },
       AbroadDocumentation: { value: 'Other' },
       BornOnMilitaryInstallation: { value: 'Yes' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component.find('.citizenship-status-citizen input').simulate('change')
@@ -50,12 +51,14 @@ describe('The status component', () => {
       CitizenshipStatus: { value: 'ForeignBorn' },
       AbroadDocumentation: { value: 'Other' },
       BornOnMilitaryInstallation: { value: 'Yes' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
     }
     const component = createComponent(expected)
-    component.find('.citizenship-abroad-other input').simulate('change')
+    component
+      .find('.citizenship-abroad-other input')
+      .simulate('change')
     component
       .find({ name: 'Explanation' })
       .simulate('change', { target: { value: 'explanation' } })
@@ -72,21 +75,12 @@ describe('The status component', () => {
       .find('.document-name .first input')
       .simulate('change', { target: { name: 'first', value: 'The name' } })
     component
-      .find({ name: 'CertificateNumber' })
-      .simulate('change', { target: { value: 'number' } })
-    component
-      .find('.certificate-issued .day input')
-      .simulate('change', { target: { name: 'day', value: '1' } })
-    component
-      .find('.certificate-name .first input')
-      .simulate('change', { target: { name: 'first', value: 'The name' } })
-    component
       .find('.born-on-military-installation .yes input')
       .simulate('change')
     component
       .find({ name: 'MilitaryBase' })
       .simulate('change', { target: { value: 'base' } })
-    expect(updates).toBe(11)
+    expect(updates).toBe(8)
   })
 
   it('triggers updates for naturalized when changing values', () => {
@@ -96,9 +90,9 @@ describe('The status component', () => {
       CitizenshipStatus: { value: 'Naturalized' },
       HasAlienRegistration: { value: 'Yes' },
       Basis: { value: 'Other' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     updates = 0
@@ -146,9 +140,9 @@ describe('The status component', () => {
       name: 'status',
       CitizenshipStatus: { value: 'Derived' },
       Basis: { value: 'Other' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -179,9 +173,9 @@ describe('The status component', () => {
       name: 'status',
       CitizenshipStatus: { value: 'NotCitizen' },
       DocumentType: { value: 'Other' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -229,7 +223,7 @@ describe('The status component', () => {
       const expected = {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
-        required: false
+        required: false,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -239,7 +233,7 @@ describe('The status component', () => {
       const expected = {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -250,7 +244,7 @@ describe('The status component', () => {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
         PermanentResidentCardNumber: { value: '1234' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -261,7 +255,7 @@ describe('The status component', () => {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
         CertificateNumber: { value: '1234' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -274,7 +268,7 @@ describe('The status component', () => {
       const expected = {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
-        required: false
+        required: false,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -284,7 +278,7 @@ describe('The status component', () => {
       const expected = {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -295,7 +289,7 @@ describe('The status component', () => {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
         AlienRegistrationNumber: { value: '1234' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -306,7 +300,7 @@ describe('The status component', () => {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
         CertificateNumber: { value: '1234' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -319,7 +313,7 @@ describe('The status component', () => {
       const expected = {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
-        required: false
+        required: false,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -329,7 +323,7 @@ describe('The status component', () => {
       const expected = {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -340,7 +334,7 @@ describe('The status component', () => {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
         AlienRegistrationNumber: { value: '1234' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()
@@ -351,7 +345,7 @@ describe('The status component', () => {
         name: 'status',
         CitizenshipStatus: { value: 'Derived' },
         PermanentResidentCardNumber: { value: '1234' },
-        required: true
+        required: true,
       }
       const component = shallow(<Status {...expected} />)
       const instance = component.instance()

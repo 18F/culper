@@ -238,128 +238,127 @@ export class Status extends Subsection {
               </Show>
             </Field>
 
-            <Field
-              title={i18n.t(
-                'citizenship.status.heading.documentnumber.foreignborn'
-              )}
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Text
-                name="DocumentNumber"
-                className="document-number"
-                maxlength="30"
-                pattern={alphaNumericRegEx}
-                prefix="alphanumeric"
-                {...this.props.DocumentNumber}
-                onUpdate={(value) => { this.updateField('DocumentNumber', value) }}
-                onError={this.handleError}
-                required={this.props.required}
-              />
-            </Field>
+            <Show when={['FS-240', 'DS-1350', 'FS-545', 'Other'].indexOf(this.props.AbroadDocumentation.value) > -1}>
 
-            <Field
-              title={i18n.t('citizenship.status.heading.documentissued')}
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <DateControl
-                name="DocumentIssued"
-                className="document-issued"
-                minDateEqualTo
-                {...this.props.DocumentIssued}
-                onUpdate={(value) => { this.updateField('DocumentIssued', value) }}
-                onError={this.handleError}
-                required={this.props.required}
-              />
-            </Field>
-
-            <Field
-              title={i18n.t('citizenship.status.heading.placeissued')}
-              adjustFor="label"
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Location
-                name="PlaceIssued"
-                {...this.props.PlaceIssued}
-                layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
-                className="place-issued"
-                onUpdate={(value) => { this.updateField('PlaceIssued', value) }}
-                onError={this.handleError}
-                required={this.props.required}
-              />
-            </Field>
-
-            <Field
-              title={i18n.t('citizenship.status.heading.documentname')}
-              optional
-              filterErrors={Name.requiredErrorsOnly}
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Name
-                name="DocumentName"
-                className="document-name"
-                {...this.props.DocumentName}
-                onUpdate={(value) => { this.updateField('DocumentName', value) }}
-                onError={this.handleError}
-                required={this.props.required}
+              <Field
+                title={i18n.t(
+                  'citizenship.status.heading.documentnumber.foreignborn'
+                )}
                 scrollIntoView={this.props.scrollIntoView}
-              />
-            </Field>
+              >
+                <Text
+                  name="DocumentNumber"
+                  className="document-number"
+                  maxlength="30"
+                  pattern={alphaNumericRegEx}
+                  prefix="alphanumeric"
+                  {...this.props.DocumentNumber}
+                  onUpdate={(value) => { this.updateField('DocumentNumber', value) }}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
+              </Field>
 
-            <Field
-              title={i18n.t(
-                'citizenship.status.heading.certificatenumber.foreignborn'
-              )}
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Text
-                name="CertificateNumber"
-                className="certificate-number"
-                {...this.props.CertificateNumber}
-                maxlength="30"
-                pattern={alphaNumericRegEx}
-                prefix="alphanumeric"
-                onUpdate={(value) => { this.updateField('CertificateNumber', value) }}
-                onError={this.handleError}
-                required={this.props.required}
-              />
-            </Field>
+              <Field
+                title={i18n.t('citizenship.status.heading.documentissued')}
+                adjustFor="datecontrol"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <DateControl
+                  name="DocumentIssued"
+                  className="document-issued"
+                  minDateEqualTo
+                  {...this.props.DocumentIssued}
+                  onUpdate={(value) => { this.updateField('DocumentIssued', value) }}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
+              </Field>
 
-            <Field
-              title={i18n.t(
-                'citizenship.status.heading.certificateissued.foreignborn'
-              )}
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <DateControl
-                name="CertificateIssued"
-                className="certificate-issued"
-                {...this.props.CertificateIssued}
-                minDateEqualTo
-                onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
-                onError={this.handleError}
-                required={this.props.required}
-              />
-            </Field>
+              <Field
+                title={i18n.t('citizenship.status.heading.placeissued')}
+                adjustFor="label"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Location
+                  name="PlaceIssued"
+                  {...this.props.PlaceIssued}
+                  layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
+                  className="place-issued"
+                  onUpdate={(value) => { this.updateField('PlaceIssued', value) }}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
+              </Field>
 
-            <Field
-              title={i18n.t(
-                'citizenship.status.heading.certificatename.foreignborn'
-              )}
-              optional
-              filterErrors={Name.requiredErrorsOnly}
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Name
-                name="CertificateName"
-                className="certificate-name"
-                {...this.props.CertificateName}
-                onUpdate={(value) => { this.updateField('CertificateName', value) }}
-                onError={this.handleError}
-                required={this.props.required}
-              />
-            </Field>
+              <Field
+                title={i18n.t('citizenship.status.heading.documentname')}
+                optional
+                filterErrors={Name.requiredErrorsOnly}
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Name
+                  name="DocumentName"
+                  className="document-name"
+                  {...this.props.DocumentName}
+                  onUpdate={(value) => { this.updateField('DocumentName', value) }}
+                  onError={this.handleError}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                />
+              </Field>
+            </Show>
+
+            <Show when={(this.props.AbroadDocumentation || {}).value === 'CertificateOfCitizenship'}>
+              <Field
+                title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Text
+                  name="CertificateNumber"
+                  className="certificate-number"
+                  {...this.props.CertificateNumber}
+                  maxlength="30"
+                  pattern={alphaNumericRegEx}
+                  prefix="alphanumeric"
+                  onUpdate={(value) => { this.updateField('CertificateNumber', value) }}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
+              </Field>
+
+              <Field
+                title={i18n.t('citizenship.status.heading.certificateissued.foreignborn')}
+                adjustFor="datecontrol"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <DateControl
+                  name="CertificateIssued"
+                  className="certificate-issued"
+                  {...this.props.CertificateIssued}
+                  minDateEqualTo
+                  onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
+              </Field>
+
+              <Field
+                title={i18n.t('citizenship.status.heading.certificatename.foreignborn')}
+                optional
+                filterErrors={Name.requiredErrorsOnly}
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Name
+                  name="CertificateName"
+                  className="certificate-name"
+                  {...this.props.CertificateName}
+                  onUpdate={(value) => { this.updateField('CertificateName', value) }}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
+              </Field>
+            </Show>
             <Branch
               name="born_on_military_installation"
               label={i18n.t(
