@@ -79,4 +79,4 @@ Financial.defaultProps = {
 
 export default connect(mapStateToProps)(Financial)
 
-export const FinancialSections = () => <Review forPrint />
+export const FinancialSections = () => <Review />

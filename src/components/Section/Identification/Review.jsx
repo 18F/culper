@@ -24,20 +24,18 @@ const Review = () => {
       {sectionDivider}
       <ApplicantBirthDate {...subsectionProps} />
       {sectionDivider}
-      <ApplicantBirthPlace {...subsectionProps}  />
+      <ApplicantBirthPlace {...subsectionProps} />
       {sectionDivider}
       <ApplicantSSN {...subsectionProps} />
       {sectionDivider}
-      <OtherNames
-        {...subsectionProps}
-        defaultState={false} />
+      <OtherNames {...subsectionProps} />
       {sectionDivider}
       <ContactInformation
         {...subsectionProps}
-        shouldFilterEmptyItems={true}
-        defaultState={false} />
+        shouldFilterEmptyItems
+      />
       {sectionDivider}
-      <Physical {...subsectionProps}  />  
+      <Physical {...subsectionProps} />
     </div>
   )
 }

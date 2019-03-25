@@ -24,7 +24,7 @@ const sectionConfig = {
 
 const Review = (props) => {
   const {
-    Birthdate, Education, Residence, Employment, formType, requireHistoryFederalSection,
+    Birthdate, Education, Residence, Employment, formType, requireHistoryFederalSection, forPrint,
   } = props
 
   const formTypeConfig = formType && formConfig[formType]
@@ -44,31 +44,40 @@ const Review = (props) => {
 
   return (
     <div>
-      <ResidenceSummaryProgress
-        Residence={Residence}
-        Birthdate={Birthdate}
-        years={residenceYears}
-      />
+      {!forPrint && (
+        <span>
+          <ResidenceSummaryProgress
+            Residence={Residence}
+            Birthdate={Birthdate}
+            years={residenceYears}
+          />
 
-      <EmploymentSummaryProgress
-        Employment={Employment}
-        Birthdate={Birthdate}
-        years={employmentYears}
-      />
+          <EmploymentSummaryProgress
+            Employment={Employment}
+            Birthdate={Birthdate}
+            years={employmentYears}
+          />
 
-      <Show when={hasAttendedSchool || hasDegree}>
-        <EducationSummaryProgress
-          Education={Education}
-          Birthdate={Birthdate}
-          years={educationYears}
-        />
-      </Show>
+          <Show when={hasAttendedSchool || hasDegree}>
+            <EducationSummaryProgress
+              Education={Education}
+              Birthdate={Birthdate}
+              years={educationYears}
+            />
+          </Show>
+        </span>
+      )}
 
-      <hr className="section-divider" />
+      {!forPrint && <hr className="section-divider" />}
+
       <h1 className="section-header">
         {i18n.t('history.residence.collection.caption')}
       </h1>
-      <ConnectedResidence {...subsectionProps} totalYears={residenceYears} realtime />
+      <ConnectedResidence
+        {...subsectionProps}
+        totalYears={residenceYears}
+        realtime
+      />
 
       <hr className="section-divider" />
       <h1 className="section-header">

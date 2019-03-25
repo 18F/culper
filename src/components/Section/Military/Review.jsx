@@ -1,9 +1,19 @@
 import React from 'react'
 
+import { MILITARY, MILITARY_REVIEW } from 'config/formSections/military'
+
 import Selective from 'components/Section/Military/Selective'
 import History from 'components/Section/Military/History'
 import Disciplinary from 'components/Section/Military/Disciplinary'
 import Foreign from 'components/Section/Military/Foreign'
+
+import connectMilitarySection from './MilitaryConnector'
+
+const sectionConfig = {
+  section: MILITARY.name,
+  store: MILITARY.store,
+  subsection: MILITARY_REVIEW.name,
+}
 
 const Review = ({ AddressBooks, showSelectiveService, showDisciplinaryProcedures }) => {
   const subsectionProps = {
@@ -37,4 +47,4 @@ Review.defaultProps = {
   showDisciplinaryProcedures: false,
 }
 
-export default Review
+export default connectMilitarySection(Review, sectionConfig)

@@ -483,6 +483,16 @@ export const SF86 = [
   },
 ]
 
+// Export this separately so it's not included when looping through actual form sections
+export const reviewSections = {
+  ...formSections.REVIEW_AND_SUBMIT,
+  subsections: [
+    formSections.REVIEW_AND_SUBMIT_REVIEW,
+    formSections.REVIEW_AND_SUBMIT_SUBMIT,
+    formSections.REVIEW_AND_SUBMIT_PRINT,
+  ],
+}
+
 export const reduceSubsections = (sections, parentPath) => (
   sections.reduce((accumulator, section) => {
     if (section.subsections && section.subsections.length) {

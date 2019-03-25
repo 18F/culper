@@ -1,75 +1,95 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import { Summary, NameSummary, DateSummary } from '../../../Summary'
+
+import i18n from 'util/i18n'
+
+import schema from 'schema'
+
 import validate, {
   DiagnosisValidator,
-  TreatmentValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show, Field } from '../../../Form'
+  TreatmentValidator,
+} from 'validators'
+
+import { Summary, DateSummary } from 'components/Summary'
+import {
+  Accordion, Branch, Show, Field,
+} from 'components/Form'
+
+import Subsection from 'components/Section/shared/Subsection'
+
+import { PSYCHOLOGICAL, PSYCHOLOGICAL_DIAGNOSES } from 'config/formSections/psychological'
+import connectPsychologicalSection from '../PsychologicalConnector'
+
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
 
-export default class Diagnoses extends SubsectionElement {
+const sectionConfig = {
+  section: PSYCHOLOGICAL.name,
+  store: PSYCHOLOGICAL.store,
+  subsection: PSYCHOLOGICAL_DIAGNOSES.name,
+  storeKey: PSYCHOLOGICAL_DIAGNOSES.storeKey,
+}
+
+export class Diagnoses extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateDiagnosed = this.updateDiagnosed.bind(this)
-    this.updateDidNotConsult = this.updateDidNotConsult.bind(this)
-    this.updateInTreatment = this.updateInTreatment.bind(this)
-    this.updateDiagnosisList = this.updateDiagnosisList.bind(this)
-    this.updateTreatmentList = this.updateTreatmentList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       Diagnosed: this.props.Diagnosed,
       DidNotConsult: this.props.DidNotConsult,
       InTreatment: this.props.InTreatment,
       DiagnosisList: this.props.DiagnosisList,
       TreatmentList: this.props.TreatmentList,
-      ...queue
+      ...queue,
     })
   }
 
-  updateDiagnosisList(values) {
+  updateDiagnosisList = (values) => {
     this.update({
-      DiagnosisList: values
+      DiagnosisList: values,
     })
   }
 
-  updateTreatmentList(values) {
+  updateTreatmentList = (values) => {
     this.update({
-      TreatmentList: values
+      TreatmentList: values,
     })
   }
 
-  updateDiagnosed(values) {
+  updateDiagnosed = (values) => {
     this.update({
       Diagnosed: values,
       DiagnosisList: values.value === 'Yes' ? this.props.DiagnosisList : [],
       DidNotConsult: values.value === 'Yes' ? this.props.DidNotConsult : '',
       InTreatment: values.value === 'Yes' ? this.props.InTreatment : '',
-      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : []
+      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
     })
   }
 
-  updateDidNotConsult(values) {
+  updateDidNotConsult = (values) => {
     this.update({
-      DidNotConsult: values
+      DidNotConsult: values,
     })
   }
 
-  updateInTreatment(values) {
+  updateInTreatment = (values) => {
     this.update({
       InTreatment: values,
-      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : []
+      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Diagnosis || {}
     const date = o.Diagnosed || {}
     // const diagnosisDate = dateRangeFormat(date)
@@ -78,24 +98,24 @@ export default class Diagnoses extends SubsectionElement {
 
     return Summary({
       type: i18n.t('psychological.diagnoses.collection.itemType'),
-      index: index,
+      index,
       left: facility,
       right: diagnosisDate,
-      placeholder: i18n.t('psychological.diagnoses.collection.summary')
+      placeholder: i18n.t('psychological.diagnoses.collection.summary'),
     })
   }
 
-  treatmentSummary(item, index) {
+  treatmentSummary = (item, index) => {
     const o = (item || {}).Treatment || {}
     const name = (o.Name || {}).value || ''
 
     return Summary({
       type: i18n.t('psychological.diagnoses.treatment.collection.itemType'),
-      index: index,
+      index,
       left: name,
       placeholder: i18n.t(
         'psychological.diagnoses.treatment.collection.summary'
-      )
+      ),
     })
   }
 
@@ -103,7 +123,8 @@ export default class Diagnoses extends SubsectionElement {
     return (
       <div
         className="section-content diagnoses"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('psychological.destination.diagnoses')}</h1>
         {i18n.m('psychological.heading.diagnoses')}
         <Branch
@@ -112,11 +133,12 @@ export default class Diagnoses extends SubsectionElement {
           labelSize="h4"
           className="diagnosed"
           {...this.props.Diagnosed}
-          warning={true}
+          warning
           onError={this.handleError}
           onUpdate={this.updateDiagnosed}
           required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('psychological.diagnoses.heading.examples')}
         </Branch>
         <Show when={this.props.Diagnosed.value === 'Yes'}>
@@ -142,14 +164,15 @@ export default class Diagnoses extends SubsectionElement {
                 'psychological.diagnoses.collection.appendLabel'
               )}
               required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Diagnosis
                 name="Item"
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 addressBooks={this.props.addressBooks}
                 dispatch={this.props.dispatch}
-                bind={true}
+                bind
               />
             </Accordion>
 
@@ -171,7 +194,7 @@ export default class Diagnoses extends SubsectionElement {
               labelSize="h4"
               className="intreatment"
               {...this.props.InTreatment}
-              warning={true}
+              warning
               onError={this.handleError}
               required={this.props.required}
               onUpdate={this.updateInTreatment}
@@ -194,13 +217,14 @@ export default class Diagnoses extends SubsectionElement {
                   'psychological.diagnoses.treatment.collection.appendLabel'
                 )}
                 required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Field
                   title={i18n.t(
                     'psychological.diagnosis.heading.healthcareProfessional'
                   )}
                   titleSize="h4"
-                  optional={true}
+                  optional
                   className="no-margin-bottom"
                 />
                 <Treatment
@@ -210,7 +234,7 @@ export default class Diagnoses extends SubsectionElement {
                   dispatch={this.props.dispatch}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
-                  bind={true}
+                  bind
                 />
               </Accordion>
             </Show>
@@ -229,16 +253,12 @@ Diagnoses.defaultProps = {
   DiagnosisList: {},
   TreatmentList: {},
   defaultState: true,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'psychological',
-  subsection: 'diagnoses',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('psychological.diagnoses', data))
-  },
-  scrollToBottom: ''
+  validator: data => validate(schema('psychological.diagnoses', data)),
+  scrollToBottom: '.bottom-btns',
 }
+
+export default connectPsychologicalSection(Diagnoses, sectionConfig)

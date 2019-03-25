@@ -25,9 +25,9 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               className="introduction-legal"
             >
               <div>
-                <h2>
-                  Questionnaire for National Security Positions
-                </h2>
+                <h1>
+                  Questionnaire for Non-Sensitive Positions
+                </h1>
               </div>
               <div>
                 <p>
@@ -50,7 +50,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <ol>
                   <li>
                     <strong>
-                      Follow the instructions provided to you by the office that gave you this form
+                      Follow the instructions provided to you, by the office that gave you this form
                     </strong>
                      and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.
                   </li>
@@ -76,7 +76,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <strong>
                       Do not abbreviate the names of cities or foreign countries
                     </strong>
-                    .
+                    . Whenever you are asked to supply a country name, you may select the country name by using the country dropdown feature.
                   </li>
                 </ol>
               </div>
@@ -105,7 +105,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   <strong>
                     If you are a current civilian employee of the federal government:
                   </strong>
-                   failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.
+                   failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to Sections 18 and 21, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.
                 </p>
               </div>
               <div>
@@ -139,17 +139,17 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  This form will be used by the United States (U.S.) Government in conducting background investigations, reinvestigations, and continuous evaluations of persons under consideration for, or retention of, national security positions as defined in 5 CFR 732, and for individuals requiring eligibility for access to classified information under Executive Order 12968. This form may also be used by agencies in determining whether a subject performing work for, or on behalf of, the Government under a contract should be deemed eligible for logical or physical access when the nature of the work to be performed is sensitive and could bring about an adverse effect on the national security.
+                  This form will be used by the United States (U.S.) Government in conducting background investigations and reinvestigations of persons under consideration for, or retention of, non-sensitive positions as defined in 5 CFR 731. This form may also be used by agencies in determining whether a subject should be issued a Federal credential for access to federally controlled facilities and information systems . For applicants, this form is to be used only after a conditional offer of employment has been made, unless OPM has provided for an exception. This form is not to be used for National Security sensitive positions.
                 </p>
               </div>
               <div>
                 <p>
-                  Providing this information is voluntary. If you do not provide each item of requested information, however, we will not be able to complete your investigation, which will adversely affect your eligibility for a national security position, eligibility for access to classified information, or logical or physical access. It is imperative that the information provided be true and accurate, to the best of your knowledge. Any information that you provide is evaluated on the basis of its currency, seriousness, relevance to the position and duties, and consistency with all other information about you. Withholding, misrepresenting, or falsifying information may affect your eligibility for access to classified information, eligibility for a sensitive position, or your ability to obtain or retain Federal or contract employment. In addition, withholding, misrepresenting, or falsifying information may affect your eligibility for physical and logical access to federally controlled facilities or information systems. Withholding, misrepresenting, or falsifying information may also negatively affect your employment prospects and job status, and the potential consequences include, but are not limited to, removal, debarment from Federal service, loss of eligibility for access to classified information, or prosecution.
+                  Providing this information is voluntary. If you do not provide each item of requested information, however, we will not be able to complete your investigation, which will adversely affect your eligibility for a position or your ability to obtain or retain Federal or contract employment, or logical or physical access. It is imperative that the information provided be true and accurate, to the best of your knowledge. Any information that you provide is evaluated on the basis of its currency, seriousness, relevance to the position and duties, and consistency with all other information about you. Withholding, misrepresenting, or falsifying information may affect your eligibility for positions, physical and /or logical access required to perform duties, or your ability to obtain or retain Federal or contract employment. In addition, withholding, misrepresenting, or falsifying information may affect your eligibility for physical and logical access to federally controlled facilities or information systems. Withholding, misrepresenting, or falsifying information may also negatively affect your employment prospects and job status, and the potential consequences include, but are not limited to, removal, debarment from Federal service, or prosecution.
                 </p>
               </div>
               <div>
                 <p>
-                  This form may become a permanent document that may be used as the basis for future investigations, eligibility determinations for access to classified information, or to hold a sensitive position, suitability or fitness for Federal employment, fitness for contract employment, or eligibility for physical and logical access to federally controlled facilities or information systems. Your responses to this form may be compared with your responses to previous SF-86 questionnaires.
+                  This form may become a permanent document that may be used as the basis for future investigations, determinations of suitability or fitness for Federal employment, fitness for contract employment, or eligibility for physical and logical access to federally controlled facilities or information systems. Your responses to this form may be compared with your responses to previous questionnaires.
                 </p>
               </div>
               <div>
@@ -167,7 +167,10 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Depending upon the purpose of your investigation, the U.S. Government is authorized to ask for this information under Executive Orders 10450, 10865, 12333, and 12968; sections 3301, 3302, and 9101 of title 5, United States Code (U.S.C.); sections 2165 and 2201 of title 42, U.S.C.; chapter 23 of title 50, U.S.C.; and parts 2, 5, 731, 732, and 736 of title 5, Code of Federal Regulations (CFR).
+                  Depending upon the purpose of your investigation, the U.S. Government is authorized to ask for this information under Executive Order 
+                  <strong>
+                    13764, 13741, 10577, 13467, and 13488; sections 3301, 3302, 7301, and 9101 of title 5, United States Code (U.S.C.); parts 2, 5, 731, and 736 of title 5, Code of Federal Regulations (CFR).
+                  </strong>
                 </p>
               </div>
               <div>
@@ -185,7 +188,15 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Background investigations for national security positions are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and loyal to the U.S. The information that you provide on this form may be confirmed during the investigation. The investigation may extend beyond the time covered by this form, when necessary to resolve issues. Your current employer may be contacted as part of the investigation, although you may have previously indicated on applications or other forms that you do not want your current employer to be contacted. If you have a security freeze on your consumer or credit report file, then we may not be able to complete your investigation, which can adversely affect your eligibility for a national security position. To avoid such delays, you should request that the consumer reporting agencies lift the freeze in these instances.
+                  Background investigations for 
+                  <strong>
+                    non-sensitive positions
+                  </strong>
+                   are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and will not present an unacceptable risk,. 
+                  <strong>
+                    The information that you provide on this form and your Declaration for Federal Employment (OF 306) may be confirmed during the investigation. The investigation may extend beyond the time covered by this form, when necessary to resolve issues. Your current employer may be contacted as part of the investigation, although you may have previously indicated
+                  </strong>
+                   on applications or other forms that you do not want your current employer to be contacted. If you have a security freeze on your consumer or credit report file and a credit report is required by the agency requesting your investigation, then we may not be able to complete your investigation, which can adversely affect your eligibility for positions, physical and /or logical access required to perform duties, or your ability to obtain Federal or contract employment. To avoid such delays, you must request that the consumer reporting agencies lift the freeze in these instances.
                 </p>
               </div>
               <div>
@@ -195,7 +206,9 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  The information you provide on this form may be confirmed during the investigation, and may be used for identification purposes throughout the investigation process.
+                  <strong>
+                    The information you provide on this form may be confirmed during the investigation, and may be used for identification purposes throughout the investigation process.
+                  </strong>
                 </p>
               </div>
               <div>
@@ -208,12 +221,12 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Some investigations will include an interview with you as a routine part of the investigative process. The investigator may ask you to explain your answers to any question on this form. This provides you the opportunity to update, clarify, and explain information on your form more completely, which often assists in completing your investigation. It is imperative that the interview be conducted as soon as possible after you are contacted. Postponements will delay the processing of your investigation, and declining to be interviewed may result in your investigation being delayed or canceled.
+                  Some investigations may include an interview with you as needed as part of the investigative process. The investigator may ask you to explain your answers to any question on this form. This provides you the opportunity to update, clarify, and explain information on your form more completely, which often assists in completing your investigation. If contacted, it is imperative that the interview be conducted as soon as possible after contact is made by the investigator. Postponements will delay the processing of your investigation, and declining to be interviewed may result in your investigation being delayed or canceled.
                 </p>
               </div>
               <div>
                 <p>
-                  For the interview, you will be required to provide photo identification, such as a valid state driver's license. You may be required to provide other documents to verify your identity, as instructed by your investigator. These documents may include certification of any legal name change, Social Security card, passport, and/or your birth certificate. You may also be asked to provide documents regarding information that you provide on this form, or about other matters requiring specific attention. These matters include (a) alien registration or naturalization documentation; (b) delinquent loans or taxes, bankruptcies, judgments, liens, or other financial obligations; (c) agreements involving child custody or support, alimony, or property settlements; (d) arrests, convictions, probation, and/or parole; or (e) other matters described in court records.
+                  For the interview, you will be required to provide photo identification, such as a valid state driver's license. You may be required to provide other documents to verify your identity, as instructed by your investigator. These documents may include certification of any legal name change, Social Security card, passport, and/or your birth certificate. You may also be asked to provide documents regarding information that you provide on this form, or about other matters requiring specific attention.
                 </p>
               </div>
               <div>
@@ -226,7 +239,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Final determination on your eligibility for a national security position is the responsibility of the Federal agency that requested your investigation and the agency that conducted your investigation. You will be provided the opportunity to explain, refute, or clarify any information before a final decision is made, if an unfavorable decision is considered. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, or sexual orientation when granting access to classified information.
+                  Final determination on your eligibility for a position and/or physical or logical access to federal facilities and information is the responsibility of the Office of Personnel Management or the Federal agency that requested your investigation. You may be provided the opportunity to explain, refute, or clarify any information before a final decision is made, if an unfavorable decision is considered. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, and sexual orientation, when making determinations of eligibility for non-sensitive positions, physical and/or logical access required to perform duties.
                 </p>
               </div>
               <div>
@@ -239,7 +252,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  The U.S. Criminal Code (title 18, section 1001) provides that knowingly falsifying or concealing a material fact is a felony which may result in fines and/or up to five (5) years imprisonment. In addition, Federal agencies generally fire, do not grant a security clearance, or disqualify individuals who have materially and deliberately falsified these forms, and this remains a part of the permanent record for future placements. Your prospects of placement or security clearance are better if you answer all questions truthfully and completely. You will have adequate opportunity to explain any information you provide on this form and to make your comments part of the record.
+                  The U.S. Criminal Code (title 18, section 1001) provides that knowingly falsifying or concealing a material fact is a felony which may result in fines and/or up to five (5) years imprisonment. In addition, Federal agencies generally fire, or disqualify individuals who have materially and deliberately falsified these forms, and this remains a part of the permanent record for future placements. Your prospects of placement are better if you answer all questions truthfully and completely. You will have adequate opportunity to explain any information you provide on this form and to make your comments part of the record.
                 </p>
               </div>
               <div>
@@ -252,17 +265,21 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  The information you provide is for the purpose of investigating you for a national security position, and the information will be protected from unauthorized disclosure. The collection, maintenance, and disclosure of background investigative information are governed by the Privacy Act. The agency that requested the investigation and the agency that conducted the investigation have published notices in the Federal Register describing the systems of records in which your records will be maintained. The information you provide on this form, and information collected during an investigation, may be disclosed without your consent by an agency maintaining the information in a system of records as permitted by the Privacy Act [5 U.S.C. 552a(b)], and by routine uses, a list of which are published by the agency in the Federal Register. The office that gave you this form will provide you a copy of its routine uses.
+                  The information you provide is for the purpose of investigating you for a position, and the information will be protected from unauthorized disclosure. The collection, maintenance, and disclosure of background investigative information are governed by the Privacy Act. The agency that requested the investigation and the agency that conducted the investigation have published notices in the Federal Register describing the systems of records in which your records will be maintained. The information you provide on this form, and information collected during an investigation, may be disclosed without your consent by an agency maintaining the information in a system of records as permitted by the Privacy Act [5 U.S.C. 552a(b)], and by routine uses, a list of which are published by the agency in the Federal Register. The office that gave you this form will provide you a copy of its routine uses.
                 </p>
               </div>
               <div>
                 <p>
-                  You will not receive prior notice of such disclosures under a routine use.
+                  <strong>
+                    You will not receive prior notice of such disclosures under a routine use.
+                  </strong>
                 </p>
               </div>
               <div>
                 <p>
-                  In addition to those disclosures generally permitted under the Privacy Act, all or a portion of the records or information you provide on this form or during your investigation may be disclosed outside of OPM as a routine use as outlined below.
+                  <strong>
+                    In addition to those disclosures generally permitted under the Privacy Act, all or a portion of the records or information you provide on this form or during your investigation may be disclosed outside of OPM as a routine use as outlined below.
+                  </strong>
                 </p>
               </div>
               <div>
@@ -275,7 +292,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  OPM has published the following Privacy Act routine uses for its system of records for background investigations:
+                  The Privacy Act routine uses of agencies conducting or requesting investigations, or with authorized custody over your investigative information, commonly include some or all of the following:
                 </p>
               </div>
               <div>
@@ -420,9 +437,14 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   start="4"
                 >
                   <li>
-                    The United States, when OPM determines that litigation is likely to affect OPM or any of its components; is a party to litigation or has an interest in such litigation, and the use of such records by the Department of Justice or OPM is deemed by OPM to be relevant and necessary to the litigation, provided, however, that the disclosure is compatible with the purpose for which records were collected.
+                    The United States, when OPM determines that litigation is likely to affect OPM or any of its components;
                   </li>
                 </ol>
+              </div>
+              <div>
+                <p>
+                  is a party to litigation or has an interest in such litigation, and the use of such records by the Department of Justice or OPM is deemed by OPM to be relevant and necessary to the litigation, provided, however, that the disclosure is compatible with the purpose for which records were collected.
+                </p>
               </div>
               <div>
                 <p>
@@ -525,7 +547,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   <strong>
                     aa.
                   </strong>
-                   To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.
+                   aa. To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.
                 </p>
               </div>
               <div>
@@ -540,9 +562,9 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <p>
                   Public burden reporting for this collection of information is 
                   <strong>
-                    estimated to average 150 minutes per response
+                    estimated to average 120 minutes
                   </strong>
-                  , including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, Federal Investigative Services, Attn: OMB Number 3206-0005, 1900 E Street, N.W., Washington, DC 20415. The OMB clearance number, 3206-0005, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.
+                   per response, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, National Background Investigations Bureau, Attn: OMB Number 3206-0261 1900 E Street, NW, Washington, DC 20415. The OMB clearance number, 3206-0261, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.
                 </p>
               </div>
             </div>

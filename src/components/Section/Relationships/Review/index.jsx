@@ -5,13 +5,11 @@ import ConnectedCohabitants from '../RelationshipStatus/Cohabitants'
 import People from '../People'
 import Relatives from '../Relatives'
 
-const Review = ({ forPrint = false }) => {
+const Review = () => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
     scrollToBottom: '',
-    defaultState: !forPrint,
-    forPrint,
   }
 
   const sectionDivider = (

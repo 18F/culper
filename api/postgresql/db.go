@@ -83,17 +83,17 @@ func (service *Service) Find(query interface{}, callback func(query interface{})
 
 // FindAll instances of a type of model.
 func (service *Service) FindAll(query interface{}) error {
-	return service.database.Model(query).Select()
+	return explicitNotFoundError(service.database.Model(query).Select())
 }
 
 // Where is a conditional selection based on the model in the data store.
 func (service *Service) Where(model interface{}, condition string, params ...interface{}) error {
-	return service.database.Model(model).Where(condition, params...).Select()
+	return explicitNotFoundError(service.database.Model(model).Where(condition, params...).Select())
 }
 
 // ColumnsWhere is a conditional selection based on the model in the data store only returning specific quoted columns.
 func (service *Service) ColumnsWhere(model interface{}, columns []string, condition string, params ...interface{}) error {
-	return service.database.Model(model).Column(columns...).Where(condition, params...).Select()
+	return explicitNotFoundError(service.database.Model(model).Column(columns...).Where(condition, params...).Select())
 }
 
 // Count return the number of rows found.
@@ -146,5 +146,12 @@ func (service *Service) Delete(query interface{}) error {
 
 // Select returns the model from the data store
 func (service *Service) Select(query interface{}) error {
-	return service.database.Select(query)
+	return explicitNotFoundError(service.database.Select(query))
+}
+
+func explicitNotFoundError(err error) error {
+	if err == pg.ErrNoRows {
+		return api.DatabaseErrorNotFound("NOT_FOUND")
+	}
+	return err
 }

@@ -2,20 +2,22 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Consultation from './Consultation'
+
+import { Consultation } from './Consultation'
 
 describe('The Consultation component', () => {
   const mockStore = configureMockStore()
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) =>
+    const store = mockStore({ application: { Errors: {}, Completed: {} } })
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Consultation {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -28,11 +30,11 @@ describe('The Consultation component', () => {
     const props = {
       Consulted: { value: 'Yes' },
       List: {
-        items: [{}]
+        items: [{}],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(props)
     updates = 0

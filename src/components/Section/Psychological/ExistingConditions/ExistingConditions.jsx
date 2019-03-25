@@ -1,13 +1,12 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { Summary, DateSummary } from '../../../Summary'
-import {
-  ExistingConditionsValidator,
-  ExistingConditionsDiagnosisValidator
-} from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
+
+import i18n from 'util/i18n'
+
+import schema from 'schema'
+
+import validate, { ExistingConditionsDiagnosisValidator } from 'validators'
+
+import { Summary, DateSummary } from 'components/Summary'
 import {
   Accordion,
   Branch,
@@ -15,38 +14,50 @@ import {
   RadioGroup,
   Radio,
   Field,
-  Textarea
-} from '../../../Form'
+  Textarea,
+} from 'components/Form'
+
+import Subsection from 'components/Section/shared/Subsection'
+
+import { PSYCHOLOGICAL, PSYCHOLOGICAL_CONDITIONS } from 'config/formSections/psychological'
+import connectPsychologicalSection from '../PsychologicalConnector'
+
 import Diagnosis from '../Diagnoses/Diagnosis'
 
-export default class ExistingConditions extends SubsectionElement {
+const sectionConfig = {
+  section: PSYCHOLOGICAL.name,
+  store: PSYCHOLOGICAL.store,
+  subsection: PSYCHOLOGICAL_CONDITIONS.name,
+  storeKey: PSYCHOLOGICAL_CONDITIONS.storeKey,
+}
+
+export class ExistingConditions extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHasCondition = this.updateHasCondition.bind(this)
-    this.updateReceivedTreatment = this.updateReceivedTreatment.bind(this)
-    this.updateTreatmentList = this.updateTreatmentList.bind(this)
-    this.updateDidNotFollow = this.updateDidNotFollow.bind(this)
-    this.updateExplanation = this.updateExplanation.bind(this)
-    this.updateDidNotFollowExplanation = this.updateDidNotFollowExplanation.bind(
-      this
-    )
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       HasCondition: this.props.HasCondition,
       ReceivedTreatment: this.props.ReceivedTreatment,
       Explanation: this.props.Explanation,
       TreatmentList: this.props.TreatmentList,
       DidNotFollow: this.props.DidNotFollow,
       DidNotFollowExplanation: this.props.DidNotFollowExplanation,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHasCondition(values) {
+  updateHasCondition = (values) => {
     this.update({
       HasCondition: values,
       ReceivedTreatment:
@@ -58,44 +69,44 @@ export default class ExistingConditions extends SubsectionElement {
           : { items: [], branch: {} },
       DidNotFollow: values.value === 'Yes' ? this.props.DidNotFollow : {},
       DidNotFollowExplanation:
-        values.value === 'Yes' ? this.props.DidNotFollowExplanation : {}
+        values.value === 'Yes' ? this.props.DidNotFollowExplanation : {},
     })
   }
 
-  updateReceivedTreatment(checkbox) {
+  updateReceivedTreatment = (checkbox) => {
     this.update({
       ReceivedTreatment: checkbox,
-      Explanation: checkbox.value === 'No' ? this.props.Explanation : {}
+      Explanation: checkbox.value === 'No' ? this.props.Explanation : {},
     })
   }
 
-  updateTreatmentList(values) {
+  updateTreatmentList = (values) => {
     this.update({
-      TreatmentList: values
+      TreatmentList: values,
     })
   }
 
-  updateDidNotFollow(values) {
+  updateDidNotFollow = (values) => {
     this.update({
       DidNotFollow: values,
       DidNotFollowExplanation:
-        values.value === 'Yes' ? this.props.DidNotFollowExplanation : {}
+        values.value === 'Yes' ? this.props.DidNotFollowExplanation : {},
     })
   }
 
-  updateExplanation(values) {
+  updateExplanation = (values) => {
     this.update({
-      Explanation: values
+      Explanation: values,
     })
   }
 
-  updateDidNotFollowExplanation(values) {
+  updateDidNotFollowExplanation = (values) => {
     this.update({
-      DidNotFollowExplanation: values
+      DidNotFollowExplanation: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Diagnosis || {}
     const treatmentDate = o.Diagnosed || {}
     const date = DateSummary(treatmentDate)
@@ -105,12 +116,12 @@ export default class ExistingConditions extends SubsectionElement {
       type: i18n.t(
         'psychological.existingConditions.treatment.collection.itemType'
       ),
-      index: index,
+      index,
       left: condition,
       right: date,
       placeholder: i18n.t(
         'psychological.existingConditions.treatment.collection.summary'
-      )
+      ),
     })
   }
 
@@ -118,7 +129,8 @@ export default class ExistingConditions extends SubsectionElement {
     return (
       <div
         className="section-content existingconditions"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('psychological.destination.existingConditions')}</h1>
         <Branch
           name="hascondition"
@@ -128,11 +140,12 @@ export default class ExistingConditions extends SubsectionElement {
           labelSize="h4"
           className="eapp-field-wrap hascondition"
           {...this.props.HasCondition}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
-          onUpdate={this.updateHasCondition}>
+          onUpdate={this.updateHasCondition}
+        >
           {i18n.m('psychological.existingConditions.para.hasCondition')}
         </Branch>
 
@@ -147,7 +160,8 @@ export default class ExistingConditions extends SubsectionElement {
                 this.props.ReceivedTreatment === 'No' ? 'no-margin-bottom' : ''
               }
               adjustFor="button"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               {i18n.m(
                 'psychological.existingConditions.para.receivedTreatment'
               )}
@@ -155,7 +169,8 @@ export default class ExistingConditions extends SubsectionElement {
                 className="treatment-list option-list"
                 selectedValue={(this.props.ReceivedTreatment || {}).value}
                 onError={this.handleError}
-                required={this.props.required}>
+                required={this.props.required}
+              >
                 <Radio
                   name="treatment"
                   className="treatment yes"
@@ -191,11 +206,10 @@ export default class ExistingConditions extends SubsectionElement {
 
             <Show when={this.props.ReceivedTreatment.value === 'No'}>
               <Field
-                title={i18n.t(
-                  `psychological.existingConditions.heading.explanation`
-                )}
+                title={i18n.t('psychological.existingConditions.heading.explanation')}
                 titleSize="label"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Textarea
                   name="Explanation"
                   className="explanation existing-condition-explanation"
@@ -225,13 +239,14 @@ export default class ExistingConditions extends SubsectionElement {
                   'psychological.existingConditions.treatment.collection.appendLabel'
                 )}
                 required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Diagnosis
                   name="Item"
                   prefix="existingConditions.diagnosis"
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
-                  bind={true}
+                  bind
                 />
               </Accordion>
             </Show>
@@ -253,10 +268,11 @@ export default class ExistingConditions extends SubsectionElement {
             <Show when={this.props.DidNotFollow.value === 'Yes'}>
               <Field
                 title={i18n.t(
-                  `psychological.existingConditions.heading.didNotFollowExplanation`
+                  'psychological.existingConditions.heading.didNotFollowExplanation'
                 )}
                 titleSize="label"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Textarea
                   name="DidNotFollowExplanation"
                   className="explanation existing-condition-didnotfollow-explanation"
@@ -280,15 +296,11 @@ ExistingConditions.defaultProps = {
   ReceivedTreatment: {},
   TreatmentList: [],
   defaultState: true,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'psychological',
-  subsection: 'conditions',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('psychological.conditions', data))
-  },
-  prefix: 'existingConditions.diagnosis'
+  validator: data => validate(schema('psychological.conditions', data)),
+  scrollToBottom: '.bottom-btns',
 }
+
+export default connectPsychologicalSection(ExistingConditions, sectionConfig)

@@ -115,7 +115,11 @@ func (entity *Submission) Valid() (bool, error) {
 // Save will create or update the database.
 func (entity *Submission) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-	entity.Hash = Hash(context, account)
+	hash, err := Hash(context, account)
+	if err != nil {
+		return -1, err
+	}
+	entity.Hash = hash
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err

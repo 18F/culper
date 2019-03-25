@@ -10,7 +10,7 @@ import { testSnapshot } from 'components/test-helpers'
 
 const mockState = {
   authentication: { formType: 'SF86' },
-  application: { Application: {} },
+  application: { Application: {}, Errors: {}, Completed: {} },
 }
 
 // give a fake GUID so the field IDs don't differ between snapshots

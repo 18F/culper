@@ -68,7 +68,10 @@ func (service SubmitHandler) generatePdfs(account *api.Account) error {
 		return err
 	}
 
-	hash := api.Hash(service.Database, account.ID)
+	hash, err := api.Hash(service.Database, account.ID)
+	if err != nil {
+		return err
+	}
 
 	for _, p := range pdf.DocumentTypes {
 		signedOn, ok := service.Pdf.SignatureAvailable(application, p)
