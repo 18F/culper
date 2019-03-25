@@ -475,6 +475,8 @@ export const legal = {
     revoked: {
       heading: {
         title:
+          'In the last {{numberOfYearsString}} have you had a security clearance eligibility/access authorization denied, suspended, or revoked?',
+        titleEver:
           'Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?',
         date:
           'Provide the date security clearance eligibility/access authorization was denied, suspended or revoked',
@@ -516,7 +518,8 @@ export const legal = {
     },
     debarred: {
       heading: {
-        title: 'Have you EVER been debarred from government employment?',
+        title: 'In the last {{numberOfYearsString}} have you been debarred from government employment?',
+        titleEver: 'Have you EVER been debarred from government employment?',
         agency:
           'Provide the name of the government agency taking debarment action',
         date: 'Provide the date the debarment occurred',
