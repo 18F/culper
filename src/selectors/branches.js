@@ -30,6 +30,7 @@ import {
   requireLegalOffenseInvolvements,
   requireLegalOffenseSentenced,
   requireLegalOffenseIncarcerated,
+  requireLegalInvestigationClearanceGranted,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -131,3 +132,8 @@ export const selectLegalOffenseSentenced = createSelector(formTypeSelector,
 
 export const selectLegalOffenseIncarcerated = createSelector(formTypeSelector,
   formType => ({ requireLegalOffenseIncarcerated: requireLegalOffenseIncarcerated(formType) }))
+
+export const selectLegalInvestigationClearanceGranted = createSelector(formTypeSelector,
+  formType => ({
+    requireLegalInvestigationClearanceGranted: requireLegalInvestigationClearanceGranted(formType),
+  }))

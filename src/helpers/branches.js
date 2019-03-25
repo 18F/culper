@@ -97,25 +97,29 @@ export const requireDrugInFuture = formType => (
 )
 
 export const requireLegalOtherOffensesSection = formType => (
-  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
 export const requireLegalNonCriminalCourtSection = formType => (
-  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
 export const requireLegalTechnologySection = formType => (
-  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
 export const requireLegalOffenseInvolvements = formType => (
-  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
 export const requireLegalOffenseSentenced = formType => (
-  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
 export const requireLegalOffenseIncarcerated = formType => (
-  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireLegalInvestigationClearanceGranted = formType => (
+  requiredByForms(formType, [formTypes.SF85])
 )

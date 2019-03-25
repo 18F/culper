@@ -14,6 +14,7 @@ import {
   selectLegalOffenseInvolvements,
   selectLegalOffenseSentenced,
   selectLegalOffenseIncarcerated,
+  selectLegalInvestigationClearanceGranted,
 } from 'selectors/branches'
 
 const connectLegalSection = (Component, {
@@ -94,6 +95,7 @@ const connectLegalSection = (Component, {
         return {
           ...legal.History,
           formType: authentication.formType,
+          ...selectLegalInvestigationClearanceGranted(state),
         }
 
       case 'Revoked':
