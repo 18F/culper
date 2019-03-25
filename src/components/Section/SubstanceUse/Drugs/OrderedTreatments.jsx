@@ -76,10 +76,15 @@ export class OrderedTreatments extends Subsection {
   render() {
     const { formType } = this.props
     const formTypeConfig = formType && formConfig[formType]
-    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_USE_YEARS
-    const numberOfYearsString = getNumberOfYearsString(years)
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_TREATMENT_YEARS
 
-    // TODO - # of years vs "ever"
+    let branchLabelCopy
+    if (years === 'EVER') {
+      branchLabelCopy = i18n.t('substance.drugs.heading.orderedTreatmentsEver')
+    } else {
+      const numberOfYearsString = getNumberOfYearsString(years)
+      branchLabelCopy = i18n.t('substance.drugs.heading.orderedTreatments', { numberOfYearsString })
+    }
 
     return (
       <div
@@ -89,7 +94,7 @@ export class OrderedTreatments extends Subsection {
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.ordered')}</h1>
         <Branch
           name="TreatmentOrdered"
-          label={i18n.t('substance.drugs.heading.orderedTreatments', { numberOfYearsString })}
+          label={branchLabelCopy}
           labelSize="h4"
           className="treatment-ordered"
           {...this.props.TreatmentOrdered}

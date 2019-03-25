@@ -362,8 +362,12 @@ export const substance = {
       prescriptionUses:
         'In the last {{numberOfYearsString}} have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?',
       orderedTreatments:
+        'In the last {{numberOfYearsString}} have you been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
+      orderedTreatmentsEver:
         'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
       voluntaryTreatments:
+        'In the last {{numberOfYearsString}} have you voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?',
+      voluntaryTreatmentsEver:
         'Have you EVER voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?',
     },
     para: {
@@ -818,6 +822,8 @@ export const substance = {
         description: 'Summary of treatments',
         summary: 'Provide your treatment details below',
         appendTitle:
+          'Do you have another instance of voluntarily seeking counseling or treatment as a result of your use of a drug or controlled substance in the last {{numberOfYearsString}}?',
+        appendTitleEver:
           'Do you have another instance of EVER voluntarily seeking counseling or treatment as a result of your use of a drug or controlled substance?',
         appendLabel: 'Add another treatment',
         itemType: 'Treatment',
