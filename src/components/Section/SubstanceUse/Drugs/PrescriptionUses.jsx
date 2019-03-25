@@ -74,7 +74,7 @@ export class PrescriptionUses extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, requireDrugWhileSafety, requireDrugWithClearance } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_USE_YEARS
     const numberOfYearsString = getNumberOfYearsString(years)
@@ -118,6 +118,8 @@ export class PrescriptionUses extends Subsection {
               bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireDrugWhileSafety={requireDrugWhileSafety}
+              requireDrugWithClearance={requireDrugWithClearance}
             />
           </Accordion>
         </Show>

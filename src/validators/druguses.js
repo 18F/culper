@@ -28,9 +28,9 @@ export const validateDrugUse = (data = {}, formType = formTypes.SF86) => {
   const useInFuture = (data.UseInFuture || {}).value
   const explanation = data.Explanation
 
-  const validUseWhileEmployed = requireDrugWhileSafety(formType) && validBranch(useWhileEmployed)
-  const validUseWithClearance = requireDrugWithClearance(formType) && validBranch(useWithClearance)
-  const validUseInFuture = requireDrugInFuture(formType) && validBranch(useInFuture)
+  const validUseWhileEmployed = !requireDrugWhileSafety(formType) || validBranch(useWhileEmployed)
+  const validUseWithClearance = !requireDrugWithClearance(formType) || validBranch(useWithClearance)
+  const validUseInFuture = !requireDrugInFuture(formType) || validBranch(useInFuture)
 
   return validGenericMonthYear(firstUse)
     && validGenericMonthYear(recentUse)
@@ -50,6 +50,8 @@ export const validateDrugUses = (data = {}, formType = formTypes.SF86) => {
   const list = data.List
 
   const validUsedDrugs = validateUsedDrugs(usedDrugs)
+
+  if (!validUsedDrugs) return false
 
   if (validUsedDrugs && usedDrugs === 'No') {
     return true
