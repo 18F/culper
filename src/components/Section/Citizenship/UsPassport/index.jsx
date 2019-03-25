@@ -165,7 +165,7 @@ export class UsPassport extends Subsection {
         {...super.dataAttributes()}
       >
         <h1 className="section-header">{i18n.t('citizenship.usPassport.title')}</h1>
-        <h3>{i18n.t('foreign.passport.info.text')}</h3>
+        <h3>{i18n.t('citizenship.usPassport.info.text')}</h3>
         <Branch
           name="has_passport"
           label={i18n.t('citizenship.usPassport.question.title')}
