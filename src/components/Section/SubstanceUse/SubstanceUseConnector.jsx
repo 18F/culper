@@ -8,6 +8,9 @@ import {
 } from 'actions/ApplicationActions'
 
 import {
+  selectDrugWhileSafetySection,
+  selectDrugWithClearanceSection,
+  selectAlcoholSections,
   selectDrugWhileSafety,
   selectDrugWithClearance,
   selectDrugInFuture,
@@ -155,6 +158,9 @@ const connectSubstanceUseSection = (Component, {
           Completed: completed.identification || [],
           AddressBooks: addressBooks,
           formType: authentication.formType,
+          ...selectDrugWhileSafetySection(state),
+          ...selectDrugWithClearanceSection(state),
+          ...selectAlcoholSections(state),
         }
     }
   }

@@ -18,9 +18,15 @@ import {
   requireFinancialDelinquentName,
   allowFinancialDelinquentNonFederal,
   requireFinancialNonpaymentSection,
+  requireDrugWhileSafetySection,
+  requireDrugWithClearanceSection,
+  requireAlcoholSections,
   requireDrugWhileSafety,
   requireDrugWithClearance,
   requireDrugInFuture,
+  requireLegalOffenseInvolvements,
+  requireLegalOffenseSentenced,
+  requireLegalOffenseIncarcerated,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -85,6 +91,15 @@ export const selectFinancialDelinquentNonFederal = createSelector(formTypeSelect
 export const selectFinancialNonpaymentSection = createSelector(formTypeSelector,
   formType => ({ requireFinancialNonpaymentSection: requireFinancialNonpaymentSection(formType) }))
 
+export const selectDrugWhileSafetySection = createSelector(formTypeSelector,
+  formType => ({ requireDrugWhileSafetySection: requireDrugWhileSafetySection(formType) }))
+
+export const selectDrugWithClearanceSection = createSelector(formTypeSelector,
+  formType => ({ requireDrugWithClearanceSection: requireDrugWithClearanceSection(formType) }))
+
+export const selectAlcoholSections = createSelector(formTypeSelector,
+  formType => ({ requireAlcoholSections: requireAlcoholSections(formType) }))
+
 export const selectDrugWhileSafety = createSelector(formTypeSelector,
   formType => ({ requireDrugWhileSafety: requireDrugWhileSafety(formType) }))
 
@@ -93,3 +108,12 @@ export const selectDrugWithClearance = createSelector(formTypeSelector,
 
 export const selectDrugInFuture = createSelector(formTypeSelector,
   formType => ({ requireDrugInFuture: requireDrugInFuture(formType) }))
+
+export const selectLegalOffenseInvolvements = createSelector(formTypeSelector,
+  formType => ({ requireLegalOffenseInvolvements: requireLegalOffenseInvolvements(formType) }))
+
+export const selectLegalOffenseSentenced = createSelector(formTypeSelector,
+  formType => ({ requireLegalOffenseSentenced: requireLegalOffenseSentenced(formType) }))
+
+export const selectLegalOffenseIncarcerated = createSelector(formTypeSelector,
+  formType => ({ requireLegalOffenseIncarcerated: requireLegalOffenseIncarcerated(formType) }))

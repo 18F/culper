@@ -72,6 +72,18 @@ export const requireFinancialNonpaymentSection = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
+export const requireDrugWhileSafetySection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireDrugWithClearanceSection = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireAlcoholSections = formType => (
+  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
 export const requireDrugWhileSafety = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
@@ -82,4 +94,16 @@ export const requireDrugWithClearance = formType => (
 
 export const requireDrugInFuture = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireLegalOffenseInvolvements = formType => (
+  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+)
+
+export const requireLegalOffenseSentenced = formType => (
+  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+)
+
+export const requireLegalOffenseIncarcerated = formType => (
+  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
 )
