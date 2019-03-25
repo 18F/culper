@@ -96,6 +96,18 @@ export const requireDrugInFuture = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
 )
 
+export const requireLegalOtherOffensesSection = formType => (
+  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+)
+
+export const requireLegalNonCriminalCourtSection = formType => (
+  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+)
+
+export const requireLegalTechnologySection = formType => (
+  requiredByForms(formType, [formType.SF86, formTypes.SF85P])
+)
+
 export const requireLegalOffenseInvolvements = formType => (
   requiredByForms(formType, [formType.SF86, formTypes.SF85P])
 )

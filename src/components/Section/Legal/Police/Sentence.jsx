@@ -1,29 +1,17 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
 import {
   ValidationElement,
   Branch,
   Textarea,
   DateRange,
   Field,
-  NotApplicable
-} from '../../../Form'
+  NotApplicable,
+} from 'components/Form'
 
 export default class Sentence extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateDescription = this.updateDescription.bind(this)
-    this.updateExceedsYear = this.updateExceedsYear.bind(this)
-    this.updateIncarcerated = this.updateIncarcerated.bind(this)
-    this.updateIncarcerationDates = this.updateIncarcerationDates.bind(this)
-    this.updateProbationDates = this.updateProbationDates.bind(this)
-    this.updateIncarcerationDatesNA = this.updateIncarcerationDatesNA.bind(this)
-    this.updateProbationDatesNA = this.updateProbationDatesNA.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Description: this.props.Description,
       ExceedsYear: this.props.ExceedsYear,
@@ -32,60 +20,66 @@ export default class Sentence extends ValidationElement {
       IncarcerationDatesNA: this.props.IncarcerationDatesNA,
       ProbationDates: this.props.ProbationDates,
       ProbationDatesNA: this.props.ProbationDatesNA,
-      ...queue
+      ...queue,
     })
   }
 
-  updateDescription(values) {
+  updateDescription = (values) => {
     this.update({
-      Description: values
+      Description: values,
     })
   }
 
-  updateExceedsYear(values) {
+  updateExceedsYear = (values) => {
     this.update({
-      ExceedsYear: values
+      ExceedsYear: values,
     })
   }
 
-  updateIncarcerated(values) {
+  updateIncarcerated = (values) => {
     this.update({
-      Incarcerated: values
+      Incarcerated: values,
     })
   }
 
-  updateIncarcerationDates(values) {
+  updateIncarcerationDates = (values) => {
     this.update({
-      IncarcerationDates: values
+      IncarcerationDates: values,
     })
   }
 
-  updateProbationDates(values) {
+  updateProbationDates = (values) => {
     this.update({
-      ProbationDates: values
+      ProbationDates: values,
     })
   }
 
-  updateIncarcerationDatesNA(values) {
+  updateIncarcerationDatesNA = (values) => {
     this.update({
-      IncarcerationDatesNA: values
+      IncarcerationDatesNA: values,
     })
   }
 
-  updateProbationDatesNA(values) {
+  updateProbationDatesNA = (values) => {
     this.update({
-      ProbationDatesNA: values
+      ProbationDatesNA: values,
     })
   }
 
   render() {
+    const {
+      requireLegalOffenseSentenced,
+      requireLegalOffenseIncarcerated,
+    } = this.props
+
     return (
       <div className="sentence">
         <Field
           title={i18n.t('legal.police.heading.sentenceDescription')}
           titleSize="h4"
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             {...this.props.Description}
             className="description"
@@ -96,36 +90,41 @@ export default class Sentence extends ValidationElement {
           />
         </Field>
 
-        <Branch
-          name="exceeding_year"
-          label={i18n.t('legal.police.heading.exceedsYear')}
-          labelSize="h4"
-          className="exceeds-year"
-          {...this.props.ExceedsYear}
-          onError={this.props.onError}
-          required={this.props.required}
-          onUpdate={this.updateExceedsYear}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {requireLegalOffenseSentenced && (
+          <Branch
+            name="exceeding_year"
+            label={i18n.t('legal.police.heading.exceedsYear')}
+            labelSize="h4"
+            className="exceeds-year"
+            {...this.props.ExceedsYear}
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateExceedsYear}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
 
-        <Branch
-          name="incarcerated"
-          label={i18n.t('legal.police.heading.incarcerated')}
-          labelSize="h4"
-          className="incarcerated"
-          {...this.props.Incarcerated}
-          onError={this.props.onError}
-          required={this.props.required}
-          onUpdate={this.updateIncarcerated}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {requireLegalOffenseIncarcerated && (
+          <Branch
+            name="incarcerated"
+            label={i18n.t('legal.police.heading.incarcerated')}
+            labelSize="h4"
+            className="incarcerated"
+            {...this.props.Incarcerated}
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateIncarcerated}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
 
         <Field
           title={i18n.t('legal.police.heading.incarcerationDates')}
           titleSize="h4"
           adjustFor="daterange"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="IncarcerationDatesNA"
             {...this.props.IncarcerationDatesNA}
@@ -134,12 +133,13 @@ export default class Sentence extends ValidationElement {
             className="incarceration-dates-na"
             onError={this.props.onError}
             required={this.props.required}
-            onUpdate={this.updateIncarcerationDatesNA}>
+            onUpdate={this.updateIncarcerationDatesNA}
+          >
             <DateRange
               name="IncarcerationDates"
               className="incarceration-dates"
               {...this.props.IncarcerationDates}
-              minDateEqualTo={true}
+              minDateEqualTo
               onUpdate={this.updateIncarcerationDates}
               onError={this.props.onError}
               required={this.props.required}
@@ -151,8 +151,9 @@ export default class Sentence extends ValidationElement {
           title={i18n.t('legal.police.heading.probationDates')}
           titleSize="h4"
           adjustFor="daterange"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="ProbationDatesNA"
             {...this.props.ProbationDatesNA}
@@ -161,12 +162,13 @@ export default class Sentence extends ValidationElement {
             className="probation-dates-na"
             onError={this.props.onError}
             required={this.props.required}
-            onUpdate={this.updateProbationDatesNA}>
+            onUpdate={this.updateProbationDatesNA}
+          >
             <DateRange
               name="ProbationDates"
               className="probation-dates"
               {...this.props.ProbationDates}
-              minDateEqualTo={true}
+              minDateEqualTo
               onUpdate={this.updateProbationDates}
               onError={this.props.onError}
               required={this.props.required}
@@ -186,8 +188,6 @@ Sentence.defaultProps = {
   ProbationDates: {},
   IncarcerationDatesNA: { applicable: true },
   ProbationDatesNA: { applicable: true },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

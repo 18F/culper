@@ -88,7 +88,6 @@ export const SF85 = [
         subsections: [
           formSections.LEGAL_POLICE_INTRO,
           formSections.LEGAL_POLICE_OFFENSES,
-          formSections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
           formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE,
         ],
       },

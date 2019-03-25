@@ -24,6 +24,9 @@ import {
   requireDrugWhileSafety,
   requireDrugWithClearance,
   requireDrugInFuture,
+  requireLegalOtherOffensesSection,
+  requireLegalNonCriminalCourtSection,
+  requireLegalTechnologySection,
   requireLegalOffenseInvolvements,
   requireLegalOffenseSentenced,
   requireLegalOffenseIncarcerated,
@@ -108,6 +111,17 @@ export const selectDrugWithClearance = createSelector(formTypeSelector,
 
 export const selectDrugInFuture = createSelector(formTypeSelector,
   formType => ({ requireDrugInFuture: requireDrugInFuture(formType) }))
+
+export const selectLegalOtherOffensesSection = createSelector(formTypeSelector,
+  formType => ({ requireLegalOtherOffensesSection: requireLegalOtherOffensesSection(formType) }))
+
+export const selectLegalNonCriminalCourtSection = createSelector(formTypeSelector,
+  formType => ({
+    requireLegalNonCriminalCourtSection: requireLegalNonCriminalCourtSection(formType),
+  }))
+
+export const selectLegalTechnologySection = createSelector(formTypeSelector,
+  formType => ({ requireLegalTechnologySection: requireLegalTechnologySection(formType) }))
 
 export const selectLegalOffenseInvolvements = createSelector(formTypeSelector,
   formType => ({ requireLegalOffenseInvolvements: requireLegalOffenseInvolvements(formType) }))
