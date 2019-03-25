@@ -203,7 +203,7 @@ export class Status extends Subsection {
                 <Radio
                   name="citizenship-abroad-certificate-of-citizenship"
                   label={i18n.t('citizenship.status.label.abroad.certificateOfCitizenship')}
-                  value="CertificateOfCitizenship"
+                  value="CitizenshipCertificate"
                   className="citizenship-abroad-certificate-of-citizenship"
                   onUpdate={(value) => { this.updateField('AbroadDocumentation', value) }}
                   onError={this.handleError}
