@@ -64,7 +64,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
 		"drugType":               drugType,
-		"foreignDocType":         foreignDocType,
+		"spouseForeignDocType":   spouseForeignDocType,
 		"foreignAffiliation":     foreignAffiliation,
 		"frequencyType":          frequencyType,
 		"email":                  email,
@@ -507,8 +507,8 @@ func relativeForeignDocType(docType string) string {
 	return alias[docType]
 }
 
-// foreignDocType translates our enums to eqip specific enums
-func foreignDocType(docType string) string {
+// spouseForeignDocType translates our enums to eqip specific enums
+func spouseForeignDocType(docType string) string {
 	alias := map[string]string{
 		"FS240":                              "FS240or545",
 		"DS1350":                             "DS1350",
