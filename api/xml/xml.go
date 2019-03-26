@@ -91,6 +91,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"radio":                  radio,
 		"schoolType":             schoolType,
 		"selectBenefit":          selectBenefit,
+		"selfAbroadDocType":      selfAbroadDocType,
 		"selfForeignDocType":     selfForeignDocType,
 		"severanceType":          severanceType,
 		"suffixType":             suffixType,
@@ -537,6 +538,16 @@ func selfForeignDocType(docType string) string {
 		"I-20":      "I20",
 		"DS-2019":   "DS2019",
 		"Other":     "Other",
+	}
+	return alias[docType]
+}
+
+func selfAbroadDocType(docType string) string {
+	alias := map[string]string{
+		"FS-240":  "FS240",
+		"DS-1350": "DS1350",
+		"FS-545":  "FS545",
+		"Other":   "Other",
 	}
 	return alias[docType]
 }

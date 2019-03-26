@@ -296,6 +296,7 @@ func TestScenario5(t *testing.T) {
 // application plus:
 // * Other Foreign Benefit with Other Frequency Type and received at Other interval
 // * Divorced and not currently married
+// * Having an applicant that is a U.S. Citizen board abroad
 func TestScenario6(t *testing.T) {
 	executeScenario(t, "test6")
 }

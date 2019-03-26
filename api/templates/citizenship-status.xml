@@ -78,7 +78,7 @@
           <Date Type="{{dateEstimated $citizenship.DocumentIssued}}">{{date $citizenship.DocumentIssued}}</Date>
         </DatePrepared>
         <DocumentNumber>{{text $citizenship.DocumentNumber}}</DocumentNumber>
-        <DocumentType>{{radio $citizenship.AbroadDocumentation}}</DocumentType>
+        <DocumentType>{{radio $citizenship.AbroadDocumentation | selfAbroadDocType}}</DocumentType>
         <IssuedName>{{name $citizenship.DocumentName}}</IssuedName>
         <OtherExplanation>{{textarea $citizenship.Explanation}}</OtherExplanation>
         <Place>{{location $citizenship.PlaceIssued}}</Place>
