@@ -33,6 +33,17 @@ export const getBackAndNext = (state, { currentPath }) => {
   return { back, next }
 }
 
+export const reduceSubsections = sections => (
+  sections.reduce((acc, section) => {
+    if (section.subsections) {
+      return acc.concat(reduceSubsections(section.subsections))
+    }
+
+    acc.push(section)
+    return acc
+  }, [])
+)
+
 /**
  * Top-level sections only
  */

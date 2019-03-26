@@ -9,8 +9,8 @@ import { hideSelectiveService } from 'validators/selectiveservice'
 import { hideDisciplinaryProcedures } from 'validators/militarydisciplinary'
 import { hideExistingConditions } from 'validators/psychological'
 
-// TODO - migrate/deprecate this after form validation logic is cleaned up
-import { formHasErrors } from 'helpers/navigation'
+// TODO - migrate/deprecate formHasErrors after form validation logic is cleaned up
+import { formHasErrors, reduceSubsections } from 'helpers/navigation'
 
 const getSectionErrors = (state, props) => {
   const { application } = state
@@ -42,26 +42,20 @@ const getSectionCompleted = (state, props) => {
 
   const { topSection, section } = props
 
-  if (topSection) {
-    const sectionCompleted = Completed[topSection] || []
+  const sectionCompleted = topSection
+    ? Completed[topSection]
+    : Completed[section.name]
 
-    // Review section should show status of all its sections
-    if (section.name === 'Review') return sectionCompleted
+  if (!sectionCompleted) { return [] }
 
-    // Section should show status of all its subsections
-    if (section.subsections) {
-      const subsections = section.subsections.map(s => s.name)
-      return sectionCompleted.filter(s => subsections.includes(s.subsection))
-    }
-
-    // Section node
+  if (!section.subsections) {
     return sectionCompleted.filter(s => s.subsection === section.name)
   }
 
-  const sectionCompleted = Completed[section.name] || []
+  const flatSections = reduceSubsections(section.subsections)
 
   return sectionCompleted.filter(s => (
-    section.subsections && section.subsections.find(ss => ss.name === s.subsection)
+    flatSections.find(i => i.name === s.subsection)
   ))
 }
 
