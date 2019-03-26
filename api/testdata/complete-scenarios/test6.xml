@@ -676,8 +676,8 @@
                 <Answer>Yes</Answer>
               </RegistrationRequired>
               <Registered>
-    
-  </Registered>
+                <Answer>IDontKnow</Answer>
+              </Registered>
               <Registration>
                 <DNKExplanation>I don't know what this is?</DNKExplanation>
               </Registration>
