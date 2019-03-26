@@ -14,9 +14,7 @@
       {{apoFpo $Item.Address $Item.AlternateAddress}}
       {{end}}
       <Birth>
-        <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
-          {{date $Item.Birthdate}}
-        </Date>
+        {{dateOptional $Item.Birthdate $Item.BirthdateNotApplicable}}
         <Place DoNotKnow="{{notApplicable $Item.BirthplaceNotApplicable}}">
           {{location $Item.Birthplace}}
         </Place>
