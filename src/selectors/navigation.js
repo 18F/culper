@@ -15,25 +15,24 @@ import { formHasErrors, reduceSubsections } from 'helpers/navigation'
 const getSectionErrors = (state, props) => {
   const { application } = state
   const { Errors } = application
+
   const { topSection, section } = props
 
-  if (topSection) {
-    const sectionErrors = Errors[topSection] || []
+  const sectionErrors = topSection
+    ? Errors[topSection]
+    : Errors[section.name]
 
-    // Review section should show status of all its sections
-    if (section.name === 'Review') return sectionErrors
+  if (!sectionErrors) { return [] }
 
-    // Section should show status of all its subsections
-    if (section.subsections) {
-      const subsections = section.subsections.map(s => s.name)
-      return sectionErrors.filter(e => subsections.includes(e.subsection))
-    }
-
-    // Section node
+  if (!section.subsections) {
     return sectionErrors.filter(e => e.subsection === section.name)
   }
 
-  return Errors[section.name] || []
+  const flatSections = reduceSubsections(section.subsections)
+
+  return sectionErrors.filter(s => (
+    flatSections.find(i => i.name === s.subsection)
+  ))
 }
 
 const getSectionCompleted = (state, props) => {
