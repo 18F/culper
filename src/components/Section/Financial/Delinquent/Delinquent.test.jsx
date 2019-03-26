@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Delinquent from './Delinquent'
+import { Delinquent } from './Delinquent'
 
 describe('The delinquent component', () => {
   const mockStore = configureMockStore()
@@ -10,17 +10,16 @@ describe('The delinquent component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <Delinquent {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <Delinquent {...expected} />
+      </Provider>
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'delinquent'
+      name: 'delinquent',
     }
     const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(0)
@@ -31,7 +30,7 @@ describe('The delinquent component', () => {
     const expected = {
       name: 'delinquent',
       HasDelinquent: { value: 'Yes' },
-      List: { branch: {}, items: [] }
+      List: { branch: {}, items: [] },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -41,7 +40,7 @@ describe('The delinquent component', () => {
     const expected = {
       name: 'delinquent',
       HasDelinquent: { value: 'No' },
-      List: { branch: {}, items: [] }
+      List: { branch: {}, items: [] },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -53,9 +52,11 @@ describe('The delinquent component', () => {
       name: 'delinquent',
       HasDelinquent: { value: 'Yes' },
       List: { branch: {}, items: [{}] },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
+      allowFinancialDelinquentNonFederal: true,
+      requireFinancialDelinquentName: true,
     }
     const component = createComponent(expected)
     component

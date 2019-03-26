@@ -10,12 +10,11 @@ describe('The DrugUse component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <DrugUse {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <DrugUse {...expected} />
+      </Provider>
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +26,11 @@ describe('The DrugUse component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
+      requireDrugWhileSafety: true,
+      requireDrugWithClearance: true,
+      requireDrugInFuture: true,
     }
     const component = createComponent(expected)
     expect(component.find('.drug-use').length).toBe(1)

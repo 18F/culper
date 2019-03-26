@@ -19,7 +19,7 @@ const sectionConfig = {
   subsection: FOREIGN_REVIEW.name,
 }
 
-const Review = ({
+export const Review = ({
   requireForeignContactsSection,
   requireForeignActivitiesSection,
   requireForeignBusinessSection,

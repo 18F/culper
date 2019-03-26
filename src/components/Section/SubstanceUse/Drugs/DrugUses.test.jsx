@@ -95,6 +95,9 @@ describe('The DrugUses component', () => {
       onUpdate: () => {
         updates += 1
       },
+      requireDrugWhileSafety: true,
+      requireDrugWithClearance: true,
+      requireDrugInFuture: true,
     }
     const component = createComponent(expected)
     expect(component.find('.drug-uses').length).toBe(1)
