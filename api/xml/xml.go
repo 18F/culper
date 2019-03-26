@@ -64,7 +64,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
 		"drugType":               drugType,
-		"foreignDocType":         foreignDocType,
+		"spouseForeignDocType":   spouseForeignDocType,
 		"foreignAffiliation":     foreignAffiliation,
 		"frequencyType":          frequencyType,
 		"email":                  email,
@@ -91,6 +91,8 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"radio":                  radio,
 		"schoolType":             schoolType,
 		"selectBenefit":          selectBenefit,
+		"selfAbroadDocType":      selfAbroadDocType,
+		"selfForeignDocType":     selfForeignDocType,
 		"severanceType":          severanceType,
 		"suffixType":             suffixType,
 		"relationshipType":       relationshipType,
@@ -507,8 +509,8 @@ func relativeForeignDocType(docType string) string {
 	return alias[docType]
 }
 
-// foreignDocType translates our enums to eqip specific enums
-func foreignDocType(docType string) string {
+// spouseForeignDocType translates our enums to eqip specific enums
+func spouseForeignDocType(docType string) string {
 	alias := map[string]string{
 		"FS240":                              "FS240or545",
 		"DS1350":                             "DS1350",
@@ -525,6 +527,27 @@ func foreignDocType(docType string) string {
 		"NonImmigrantStudent": "NonCitizenI20",
 		"ExchangeVisitor":     "NonCitizenDS2019",
 		"Other":               "Other",
+	}
+	return alias[docType]
+}
+
+func selfForeignDocType(docType string) string {
+	alias := map[string]string{
+		"I-94":      "I94",
+		"U.S. Visa": "Visa",
+		"I-20":      "I20",
+		"DS-2019":   "DS2019",
+		"Other":     "Other",
+	}
+	return alias[docType]
+}
+
+func selfAbroadDocType(docType string) string {
+	alias := map[string]string{
+		"FS-240":  "FS240",
+		"DS-1350": "DS1350",
+		"FS-545":  "FS545",
+		"Other":   "Other",
 	}
 	return alias[docType]
 }
