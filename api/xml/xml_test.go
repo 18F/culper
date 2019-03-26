@@ -305,7 +305,9 @@ func TestScenario7(t *testing.T) {
 	executeScenario(t, "test7")
 }
 
-// `test8` is for 21E, explicitly answering "No" to 21A, 21B, 21C, and 21D
+// `test8` is for:
+// * 21E, explicitly answering "No" to 21A, 21B, 21C, and 21D
+// * Having an applicant that is not a U.S. Citizen
 func TestScenario8(t *testing.T) {
 	executeScenario(t, "test8")
 }

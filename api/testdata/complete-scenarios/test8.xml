@@ -415,14 +415,58 @@
   </FederalServices>
             </FormerFederalServiceActivities>
             <Citizenship Version="1" Type="Pooled">
-              <Status>USByBirth</Status>
-              <USCitizen>
-                <ProofOfUSCitizenship>
+              <Status>Alien</Status>
+              <Alien>
+                <AlienRegistration>
+                  <DateEnteredUS>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>02</Day>
+                      <Year>2017</Year>
+                    </Date>
+                  </DateEnteredUS>
+                  <Place>
+                    <City>Portland</City>
+                    <State>OR</State>
+                  </Place>
+                  <RegistrationNumber>723456</RegistrationNumber>
+                  <DocumentExpiration>
+                    <Month>01</Month>
+                    <Day>02</Day>
+                    <Year>2019</Year>
+                  </DocumentExpiration>
+                  <DocumentIssued>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>02</Day>
+                      <Year>2017</Year>
+                    </Date>
+                    <LegalName>
+                      <Last>Hamilton</Last>
+                      <First>Alexander</First>
+                      <Middle Type="NMN"/>
+                    </LegalName>
+                  </DocumentIssued>
+                  <DocumentNumber>129456</DocumentNumber>
+                  <DocumentType>Visa</DocumentType>
+                  <ResidenceStatus>Landed</ResidenceStatus>
+                  <VisaExpiration>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>02</Day>
+                      <Year>2017</Year>
+                    </Date>
+                  </VisaExpiration>
+                </AlienRegistration>
+                <Citizenships>
+                  <Citizenship ID="1">
+                    <Country>Saint Kitts and Nevis</Country>
+                  </Citizenship>
+                </Citizenships>
+                <HaveAlienRegistrationNumber>
       
-      
-      
-    </ProofOfUSCitizenship>
-              </USCitizen>
+    </HaveAlienRegistrationNumber>
+              </Alien>
             </Citizenship>
             <DualCitizenship Version="1" Type="Pooled">
               <DualCitizenships>

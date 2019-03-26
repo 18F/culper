@@ -13,7 +13,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -74,7 +77,8 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Name": {
@@ -115,8 +119,7 @@
         "CitizenshipStatus": {
           "type": "radio",
           "props": {
-            "value": "Citizen",
-            "checked": true
+            "value": "NotCitizen"
           }
         },
         "AbroadDocumentation": {
@@ -134,27 +137,27 @@
         "DocumentNumber": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "129456"
           }
         },
         "DocumentIssued": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "2017",
             "estimated": false
           }
         },
         "DocumentName": {
           "type": "name",
           "props": {
-            "first": "",
+            "first": "Alexander",
             "firstInitialOnly": false,
             "middle": "",
             "middleInitialOnly": false,
-            "noMiddleName": false,
-            "last": "",
+            "noMiddleName": true,
+            "last": "Hamilton",
             "suffix": "",
             "suffixOther": ""
           }
@@ -162,22 +165,23 @@
         "DocumentExpiration": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "2019",
             "estimated": false
           }
         },
         "DocumentType": {
           "type": "radio",
           "props": {
-            "value": ""
+            "value": "U.S. Visa"
           }
         },
         "PlaceIssued": {
           "type": "location",
           "props": {
-            "layout": ""
+            "layout": "",
+            "country": ""
           }
         },
         "CertificateNumber": {
@@ -217,7 +221,8 @@
         "CertificateCourtAddress": {
           "type": "location",
           "props": {
-            "layout": ""
+            "layout": "",
+            "country": ""
           }
         },
         "BornOnMilitaryInstallation": {
@@ -235,22 +240,27 @@
         "EntryDate": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "2017",
             "estimated": false
           }
         },
         "EntryLocation": {
           "type": "location",
           "props": {
-            "layout": ""
+            "layout": "City, State",
+            "city": "Portland",
+            "state": "OR",
+            "country": ""
           }
         },
         "PriorCitizenship": {
           "type": "country",
           "props": {
-            "value": null
+            "value": [
+              "Saint Kitts and Nevis"
+            ]
           }
         },
         "HasAlienRegistration": {
@@ -262,15 +272,15 @@
         "AlienRegistrationNumber": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "723456"
           }
         },
         "AlienRegistrationExpiration": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "2017",
             "estimated": false
           }
         },
@@ -289,7 +299,7 @@
         "ResidenceStatus": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "Landed"
           }
         }
       }
@@ -1021,7 +1031,8 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "layout": ""
+                          "layout": "",
+                          "country": ""
                         }
                       },
                       "Telephone": {
@@ -2131,12 +2142,6 @@
             "value": "Yes"
           }
         },
-        "HasRegisteredNotApplicable": {
-          "type": "notapplicable",
-          "props": {
-            "applicable": true
-          }
-        },
         "RegistrationNumber": {
           "type": "text",
           "props": {
@@ -2147,6 +2152,12 @@
           "type": "textarea",
           "props": {
             "value": ""
+          }
+        },
+        "HasRegisteredNotApplicable": {
+          "type": "notapplicable",
+          "props": {
+            "applicable": true
           }
         }
       }
@@ -2568,13 +2579,15 @@
             "Address": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "AddressSeparated": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "AddressSeparatedNotApplicable": {
@@ -2615,7 +2628,8 @@
             "BirthPlace": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "Birthdate": {
@@ -2710,7 +2724,8 @@
             "Location": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "Name": {
@@ -3153,7 +3168,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Aliases": {
@@ -3260,7 +3276,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -3296,7 +3313,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -3438,7 +3456,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Aliases": {
@@ -3545,7 +3564,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -3581,7 +3601,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
