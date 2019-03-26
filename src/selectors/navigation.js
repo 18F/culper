@@ -58,7 +58,11 @@ const getSectionCompleted = (state, props) => {
     return sectionCompleted.filter(s => s.subsection === section.name)
   }
 
-  return Completed[section.name] || []
+  const sectionCompleted = Completed[section.name] || []
+
+  return sectionCompleted.filter(s => (
+    section.subsections && section.subsections.find(ss => ss.name === s.subsection)
+  ))
 }
 
 const getFormLocked = (state) => {

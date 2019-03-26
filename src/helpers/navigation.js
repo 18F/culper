@@ -58,9 +58,12 @@ export const completedSections = (state) => {
   let completedCount = 0
 
   formSections.forEach((s) => {
+    const { subsections } = s
     const completedSection = Completed[s.name]
 
-    if (completedSection && completedSection.every(i => i.valid)) {
+    if (completedSection && completedSection.every(i => (
+      i.valid || !subsections.find(j => j.name === i.subsection)
+    ))) {
       completedCount += 1
     }
   })
