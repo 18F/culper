@@ -8,7 +8,6 @@ import {
   NotApplicable,
   DateControl,
   Text,
-  Branch,
 } from 'components/Form'
 
 import InvestigatingAgency from './InvestigatingAgency'
@@ -67,12 +66,6 @@ export default class HistoryItem extends ValidationElement {
     })
   }
 
-  updateClearanceGranted = (values) => {
-    this.update({
-      ClearanceGranted: values,
-    })
-  }
-
   updateIssued = (values) => {
     this.update({
       Issued: values,
@@ -112,10 +105,7 @@ export default class HistoryItem extends ValidationElement {
   }
 
   render() {
-    const { requireLegalInvestigationClearanceGranted, ClearanceGranted } = this.props
-
-    const requireClearanceQuestions = !requireLegalInvestigationClearanceGranted
-      || (ClearanceGranted && ClearanceGranted.value === 'Yes')
+    const requireClearanceQuestions = true
 
     return (
       <div>
@@ -182,19 +172,6 @@ export default class HistoryItem extends ValidationElement {
             />
           </NotApplicable>
         </Field>
-
-        {requireLegalInvestigationClearanceGranted && (
-          <Branch
-            name="clearance_granted"
-            label="Was a clearance eligibility/access granted?"
-            labelSize="h4"
-            {...this.props.ClearanceGranted}
-            onUpdate={this.updateClearanceGranted}
-            required={this.props.required}
-            onError={this.props.onError}
-            scrollIntoView={this.props.scrollIntoView}
-          />
-        )}
 
         {requireClearanceQuestions && (
           <span>
