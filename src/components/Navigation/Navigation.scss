@@ -73,6 +73,11 @@
     padding: 0.85rem 1rem 0.85rem $site-margins-mobile;
     line-height: 1.3;
 
+    &:hover {
+      color: $color-primary;
+      background-color: #f1f1f1;
+    }
+
     &.usa-current {
       color: $color-primary;
       font-weight: $font-bold;
