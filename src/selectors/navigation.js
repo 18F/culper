@@ -59,7 +59,8 @@ const getSectionCompleted = (state, props) => {
 }
 
 const getFormLocked = (state) => {
-  const { Settings } = state
+  const { application } = state
+  const { Settings } = application
   return Settings && Settings.locked
 }
 
