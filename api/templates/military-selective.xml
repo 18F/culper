@@ -1,26 +1,17 @@
 <SelectiveServiceRegistration Version="1" Type="Pooled">
   <Registered>
     <Answer>{{branch .props.HasRegistered}}</Answer>
-    <AnswerComment></AnswerComment>
   </Registered>
   <Registration>
-    <Number>{{text .props.RegistrationNumber}}</Number>
-    {{- if branch .props.HasRegistered | eq "No"}}
-    <LegalExemptionExplanation>{{textarea .props.Explanation}}</LegalExemptionExplanation>
-    <LegalExemptionExplanationComment></LegalExemptionExplanationComment>
-    <NumberComment></NumberComment>
-    <DNKExplanation></DNKExplanation>
-    <DNKExplanationComment></DNKExplanationComment>
-    {{- else if notApplicable .props.HasRegisteredNotApplicable | eq "True"}}
-    <LegalExemptionExplanation></LegalExemptionExplanation>
-    <LegalExemptionExplanationComment></LegalExemptionExplanationComment>
-    <NumberComment></NumberComment>
+    {{if notApplicable .props.HasRegisteredNotApplicable | eq "True"}}
     <DNKExplanation>{{textarea .props.Explanation}}</DNKExplanation>
-    <DNKExplanationComment></DNKExplanationComment>
+    {{else if branch .props.HasRegistered | eq "No"}}
+    <LegalExemptionExplanation>{{textarea .props.Explanation}}</LegalExemptionExplanation>
+    {{else}}
+    <Number>{{text .props.RegistrationNumber}}</Number>
     {{end}}
   </Registration>
   <RegistrationRequired>
     <Answer>{{branch .props.WasBornAfter}}</Answer>
   </RegistrationRequired>
-  <RegistrationRequiredComment></RegistrationRequiredComment>
 </SelectiveServiceRegistration>
