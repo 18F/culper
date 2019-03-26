@@ -5,7 +5,11 @@
 
   {{if branch .props.WasBornAfter | eq "Yes"}}
   <Registered>
+    {{if notApplicable .props.HasRegisteredNotApplicable | eq "True"}}
+    <Answer>IDontKnow</Answer>
+    {{else}}
     <Answer>{{branch .props.HasRegistered}}</Answer>
+    {{end}}
   </Registered>
   <Registration>
     {{if notApplicable .props.HasRegisteredNotApplicable | eq "True"}}

@@ -3080,7 +3080,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -3099,25 +3102,25 @@
         "HasRegistered": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": ""
           }
         },
         "RegistrationNumber": {
           "type": "text",
           "props": {
-            "value": "1234567"
+            "value": ""
           }
         },
         "Explanation": {
           "type": "textarea",
           "props": {
-            "value": ""
+            "value": "I don't know what this is?"
           }
         },
         "HasRegisteredNotApplicable": {
           "type": "notapplicable",
           "props": {
-            "applicable": true
+            "applicable": false
           }
         }
       }

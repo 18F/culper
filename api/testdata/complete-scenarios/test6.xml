@@ -676,10 +676,10 @@
                 <Answer>Yes</Answer>
               </RegistrationRequired>
               <Registered>
-                <Answer>Yes</Answer>
-              </Registered>
+    
+  </Registered>
               <Registration>
-                <Number>1234567</Number>
+                <DNKExplanation>I don't know what this is?</DNKExplanation>
               </Registration>
             </SelectiveServiceRegistration>
             <FinancialRecord Type="Pooled" Version="1">
