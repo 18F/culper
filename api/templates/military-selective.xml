@@ -1,4 +1,9 @@
 <SelectiveServiceRegistration Version="1" Type="Pooled">
+  <RegistrationRequired>
+    <Answer>{{branch .props.WasBornAfter}}</Answer>
+  </RegistrationRequired>
+
+  {{if branch .props.WasBornAfter | eq "Yes"}}
   <Registered>
     <Answer>{{branch .props.HasRegistered}}</Answer>
   </Registered>
@@ -11,7 +16,5 @@
     <Number>{{text .props.RegistrationNumber}}</Number>
     {{end}}
   </Registration>
-  <RegistrationRequired>
-    <Answer>{{branch .props.WasBornAfter}}</Answer>
-  </RegistrationRequired>
+  {{end}}
 </SelectiveServiceRegistration>
