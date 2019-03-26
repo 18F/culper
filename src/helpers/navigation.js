@@ -72,8 +72,14 @@ export const completedSections = (state) => {
     const { subsections } = s
     const completedSection = Completed[s.name]
 
-    if (completedSection && completedSection.every(i => (
-      i.valid || !subsections.find(j => j.name === i.subsection)
+    const flatSections = reduceSubsections(subsections)
+
+    const completedSubsections = completedSection.filter(ss => (
+      flatSections.find(i => i.name === ss.subsection)
+    ))
+
+    if (completedSubsections.every(i => (
+      i.valid
     ))) {
       completedCount += 1
     }
