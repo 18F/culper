@@ -52,6 +52,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"citizenshipHas":         citizenshipHas,
 		"clearanceType":          clearanceType,
 		"date":                   date,
+		"dateOptional":           dateOptional,
 		"dateEstimated":          dateEstimated,
 		"daterange":              daterange,
 		"daysInRange":            daysInRange,
@@ -799,6 +800,19 @@ func monthYearDaterange(data map[string]interface{}) (template.HTML, error) {
 		"dateEstimated": dateEstimated,
 	}
 	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
+}
+
+func dateOptional(d, dnk map[string]interface{}) (template.HTML, error) {
+	view := make(map[string]interface{})
+	view["Date"] = d
+	view["DoNotKnow"] = dnk
+
+	fmap := template.FuncMap{
+		"dateEstimated": dateEstimated,
+		"notApplicable": notApplicable,
+		"padDigits":     padDigits,
+	}
+	return xmlTemplateWithFuncs("date-month-day-year-optional.xml", view, fmap)
 }
 
 func date(data map[string]interface{}) (template.HTML, error) {
