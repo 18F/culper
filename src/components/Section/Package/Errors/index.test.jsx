@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { MemoryRouter } from 'react-router'
 
 import { PackageErrors } from './index'
@@ -9,10 +9,11 @@ import InvalidSection from '../InvalidSection'
 
 describe('The PackageErrors component', () => {
   describe('with default props', () => {
-    const component = mount(<PackageErrors />)
+    const component = shallow(<PackageErrors />)
 
     it('renders without errors', () => {
       expect(component.exists()).toBe(true)
+      expect(component).toMatchSnapshot()
     })
 
     it('renders the FormStatus component', () => {

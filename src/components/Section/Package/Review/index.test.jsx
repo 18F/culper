@@ -1,18 +1,19 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 
 import { PackageReview } from './index'
 
 import FormStatus from '../FormStatus'
 
 describe('The PackageReview component', () => {
-  const component = mount(<PackageReview />)
-
   it('renders without errors', () => {
+    const component = shallow(<PackageReview />)
     expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
   })
 
   it('renders the FormStatus component', () => {
+    const component = mount(<PackageReview />)
     const formStatus = component.find(FormStatus)
     expect(formStatus.length).toBe(1)
     expect(formStatus.prop('isTransitioning')).toBe(true)

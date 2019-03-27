@@ -1,15 +1,16 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 
 import { PackageSubmit } from './index'
 
 import FormStatus from '../FormStatus'
 
 describe('The PackageSubmit component', () => {
-  const component = mount(<PackageSubmit />)
+  const component = shallow(<PackageSubmit />)
 
   it('renders without errors', () => {
     expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
   })
 
   it('renders the FormStatus component', () => {
