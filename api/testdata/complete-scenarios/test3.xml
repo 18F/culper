@@ -902,6 +902,59 @@
                     </OtherName>
                   </OtherNamesUsed>
                 </Contact>
+                <Contact ID="3">
+                  <Address DoNotKnow="True">
+  
+</Address>
+                  <Birth>
+                    <Date DoNotKnow="True">
+  
+</Date>
+                    <Place DoNotKnow="True">
+          
+        </Place>
+                  </Birth>
+                  <Citizenships>
+                    <Citizenship ID="1">
+                      <Country>Germany</Country>
+                    </Citizenship>
+                  </Citizenships>
+                  <Contact>
+                    <Frequency>Annually</Frequency>
+                    <Nature Personal="True"/>
+                    <Type InPerson="True"/>
+                  </Contact>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>02</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>02</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Employer>
+                    <Address DoNotKnow="True">
+  
+</Address>
+                    <Name DoNotKnow="True"/>
+                  </Employer>
+                  <ForeignAffiliation>
+                    <Answer>IDontKnow</Answer>
+                  </ForeignAffiliation>
+                  <FullName>
+                    <LegalName>
+                      <Last>Rod</Last>
+                      <First>Ramblin</First>
+                      <Middle Type="NMN"/>
+                    </LegalName>
+                  </FullName>
+                </Contact>
               </Contacts>
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
             </ForeignContacts>

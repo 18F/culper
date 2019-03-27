@@ -4,6 +4,8 @@ import {
   formSectionsSelector,
 } from 'selectors/navigation'
 
+import { navigationWalker } from 'config/navigation'
+
 export const getBackAndNext = (state, { currentPath }) => {
   const formSections = formSectionsSelector(state, true)
 
@@ -31,6 +33,17 @@ export const getBackAndNext = (state, { currentPath }) => {
   return { back, next }
 }
 
+export const reduceSubsections = sections => (
+  sections.reduce((acc, section) => {
+    if (section.subsections) {
+      return acc.concat(reduceSubsections(section.subsections))
+    }
+
+    acc.push(section)
+    return acc
+  }, [])
+)
+
 /**
  * Top-level sections only
  */
@@ -40,4 +53,74 @@ export const getSectionNumber = (state, { sectionKey }) => {
   const sectionIndex = formSections.findIndex(s => s.key === sectionKey)
 
   return sectionIndex + 1
+}
+
+export const totalSections = (state) => {
+  const formSections = nestedFormSectionsSelector(state)
+  return formSections.length
+}
+
+export const completedSections = (state) => {
+  const { application } = state
+  const { Completed } = application
+
+  const formSections = nestedFormSectionsSelector(state)
+
+  let completedCount = 0
+
+  formSections.forEach((s) => {
+    const { subsections } = s
+    const completedSection = Completed[s.name] || []
+
+    const flatSections = reduceSubsections(subsections)
+
+    const completedSubsections = completedSection.filter(ss => (
+      flatSections.find(i => i.name === ss.subsection)
+    ))
+
+    if (completedSubsections.length && completedSubsections.every(i => (
+      i.valid
+    ))) {
+      completedCount += 1
+    }
+  })
+
+  return completedCount
+}
+
+// TODO - migrate/deprecate this after form validation logic is cleaned up
+export const formHasErrors = (state) => {
+  const { application } = state
+
+  let errors = 0
+
+  navigationWalker((path, child) => {
+    if (path.length && path[0].store && child.store && child.validator) {
+      if (child.excluded || child.hidden || (child.hiddenFunc && child.hiddenFunc(application))) {
+        return
+      }
+
+      const data = (application[path[0].store] || {})[child.store] || {}
+      let subsectionName = child.url
+      if (path.length > 1) {
+        for (let i = path.length - 1; i > 0; i -= 1) {
+          subsectionName = `${path[i].url}/${subsectionName}`
+        }
+      }
+
+      let valid = null
+      try {
+        // eslint-disable-next-line new-cap
+        valid = new child.validator(data, data).isValid()
+      } catch (e) {
+        valid = null
+      }
+
+      if (valid !== true) {
+        errors += 1
+      }
+    }
+  })
+
+  return errors > 0
 }

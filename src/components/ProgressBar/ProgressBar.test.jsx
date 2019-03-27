@@ -13,17 +13,18 @@ describe('The progress bar component', () => {
         citizenship: [
           { section: 'citizenship', subsection: 'status', valid: true },
           { section: 'citizenship', subsection: 'multiple', valid: true },
-          { section: 'citizenship', subsection: 'passports', valid: true }
-        ]
-      }
+          { section: 'citizenship', subsection: 'passports', valid: true },
+        ],
+      },
     }
 
     const store = mockStore({
-      application: application,
+      application,
       section: {
         section: 'psychological',
-        subsection: 'competence'
-      }
+        subsection: 'competence',
+      },
+      authentication: { formType: 'SF86' },
     })
 
     const component = mount(

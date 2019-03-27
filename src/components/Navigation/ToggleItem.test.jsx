@@ -10,7 +10,11 @@ describe('The ToggleItem component', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
-  const mountSection = (section, initialPath = '/', state = {}) => {
+  const defaultState = {
+    application: { Errors: {}, Completed: {} },
+  }
+
+  const mountSection = (section, initialPath = '/', state = defaultState) => {
     const store = mockStore(state)
     return mount(
       <Provider store={store}>
@@ -23,34 +27,44 @@ describe('The ToggleItem component', () => {
 
   it('renders a ToggleItem with subsections', () => {
     const section = {
-      name: 'Foo',
-      url: 'foo',
+      label: 'Foo',
+      path: 'foo',
+      name: 'foo',
+      key: 'foo',
       subsections: [
         {
-          name: 'Bar',
-          url: 'bar'
+          label: 'Bar',
+          path: 'bar',
+          name: 'bar',
+          key: 'bar',
         },
         {
-          name: 'Baz',
-          url: 'baz',
+          label: 'Baz',
+          path: 'baz',
+          name: 'baz',
+          key: 'baz',
           subsections: [
             {
-              name: 'Blip',
-              url: 'blip'
-            }
-          ]
-        }
-      ]
+              label: 'Blip',
+              path: 'blip',
+              name: 'blip',
+              key: 'blip',
+            },
+          ],
+        },
+      ],
     }
 
-    const component = mountSection(section, '/form/foo/baz/blip')
+    const component = mountSection(section, '/foo/baz/blip')
 
-    expect(component.find('a').length).toBe(4)
-    expect(component.find('a[href="/form/foo"]').length).toBe(0)
-    expect(component.find('a[href="/form/foo/bar"]').length).toBe(1)
-    expect(component.find('a[href="/form/foo/baz"]').length).toBe(0)
-    expect(component.find('a[href="/form/foo/baz/blip"]').length).toBe(1)
+    expect(component.find('button').length).toBe(2)
+    expect(component.find('a').length).toBe(2)
 
-    expect(component.find('a.usa-current').length).toBe(3)
+    expect(component.find('a[href="/foo"]').length).toBe(0)
+    expect(component.find('a[href="/foo/bar"]').length).toBe(1)
+    expect(component.find('a[href="/foo/baz"]').length).toBe(0)
+    expect(component.find('a[href="/foo/baz/blip"]').length).toBe(1)
+
+    expect(component.find('.usa-current').length).toBe(3)
   })
 })
