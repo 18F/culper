@@ -140,12 +140,13 @@ export const walkValidationTree = (data) => {
   for (const property in data) {
     // When the property is not specific to this instance
     // skip it and go to the next.
+    if (!data.hasOwnProperty(property)) {
+      continue
+    }
 
-    if (!data[property]) {
-      const result = walkValidationTree(data[property])
-      if (!result) {
-        return false
-      }
+    const result = walkValidationTree(data[property])
+    if (!result) {
+      return false
     }
   }
 
