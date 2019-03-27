@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Advice from './Advice'
+import { Advice } from './Advice'
 
 describe('The foreign business advice component', () => {
   const mockStore = configureMockStore()
@@ -21,7 +21,7 @@ describe('The foreign business advice component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-advice',
-      HasForeignAdvice: { value: 'No' }
+      HasForeignAdvice: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -30,7 +30,7 @@ describe('The foreign business advice component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-advice',
-      HasForeignAdvice: { value: 'Yes' }
+      HasForeignAdvice: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -44,7 +44,7 @@ describe('The foreign business advice component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = createComponent(expected)
     component
@@ -65,8 +65,8 @@ describe('The foreign business advice component', () => {
       HasForeignAdvice: { value: 'Yes' },
       List: { items: [{}] },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)

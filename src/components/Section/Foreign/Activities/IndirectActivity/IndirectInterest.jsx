@@ -384,6 +384,7 @@ export default class IndirectInterest extends ValidationElement {
               {...this.props.Sold}
               minDate={this.props.Acquired}
               minDateEqualTo={true}
+              prefix="indirectControl"
               onUpdate={this.updateSold}
               onError={this.props.onError}
               required={this.props.required}

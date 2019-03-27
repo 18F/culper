@@ -30,5 +30,12 @@ func (service HashHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, api.Hash(service.Database, account.ID))
+	hash, err := api.Hash(service.Database, account.ID)
+	if err != nil {
+		service.Log.WarnError(api.HashingFailure, err, api.LogFields{})
+		RespondWithStructuredError(w, api.HashingFailure, http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprint(w, hash)
 }

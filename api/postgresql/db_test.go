@@ -275,6 +275,25 @@ func TestPayloadPersistence(t *testing.T) {
 	service.Configure()
 	api.Geocode = mock.Geocoder{}
 
+	account := api.Account{
+		Username:    "buzz1@example.com",
+		Email:       "buzz1@example.com",
+		FormType:    "SF86",
+		FormVersion: "2016-11",
+	}
+
+	_, err := account.Get(service, -1)
+	if err != nil {
+		if api.IsDatabaseErrorNotFound(err) {
+			_, err := account.Save(service, -1)
+			if err != nil {
+				t.Fatal(err)
+			}
+		} else {
+			t.Fatal(err)
+		}
+	}
+
 	tests := []struct {
 		Data string
 	}{
@@ -400,41 +419,14 @@ func TestPayloadPersistence(t *testing.T) {
 			t.Fatalf("Failed to unpackage the payload for [%s]: %v", test.Data, err)
 		}
 
-		account := 1
-		if _, err := entity.Save(service, account); err != nil {
+		if _, err := entity.Save(service, account.ID); err != nil {
 			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
-		if _, err := entity.Get(service, account); err != nil {
+		if _, err := entity.Get(service, account.ID); err != nil {
 			t.Fatalf("Error getting [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
-		if _, err := entity.Delete(service, account); err != nil {
+		if _, err := entity.Delete(service, account.ID); err != nil {
 			t.Fatalf("Error deleting [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
-	}
-}
-
-func TestApplication(t *testing.T) {
-	account := 1
-	settings := mock.Native{}
-	settings.Configure()
-	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
-	service.Configure()
-
-	js := api.Application(service, account, false)
-	if len(js) == 0 {
-		t.Fatal("Failed to get application state")
-	}
-}
-
-func TestHash(t *testing.T) {
-	account := 1
-	settings := mock.Native{}
-	settings.Configure()
-	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
-	service.Configure()
-
-	sig := api.Hash(service, account)
-	if len(sig) == 0 {
-		t.Fatal("Failed to get application data hash")
 	}
 }

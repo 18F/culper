@@ -1,17 +1,19 @@
+/* eslint import/prefer-default-export: 0 */
+
 export const military = {
   intro: {
-    title: 'Section 5: Military history',
+    title: 'Military history',
     body:
-      'You will be asked questions about your military history and be asked to provide details if necessary.'
+      'You will be asked questions about your military history and be asked to provide details if necessary.',
   },
   tour: {
-    para: 'Take a guided tour through the section'
+    para: 'Take a guided tour through the section',
   },
   review: {
-    para: 'View all the sections associated with military history at once'
+    para: 'View all the sections associated with military history at once',
   },
   section: {
-    name: 'Military history'
+    name: 'Military history',
   },
   subsection: {
     intro: 'Introduction',
@@ -19,7 +21,7 @@ export const military = {
     history: 'U.S. military',
     disciplinary: 'Disciplinary procedures',
     foreign: 'Foreign military',
-    review: 'Review'
+    review: 'Review',
   },
   destination: {
     intro: 'Military intro',
@@ -27,56 +29,56 @@ export const military = {
     history: 'U.S. military',
     disciplinary: 'Disciplinary procedures',
     foreign: 'Foreign military',
-    review: 'Review military history'
+    review: 'Review military history',
   },
   selective: {
     heading: {
       born: 'Were you born a male after December 31, 1959?',
       registered:
         'Have you registered with the Selective Service System (SSS)?',
-      number: 'Provide registration number'
+      number: 'Provide registration number',
     },
     para: {
-      or: 'or'
+      or: 'or',
     },
     label: {
       idk: "I don't know",
       number:
         'Note: Selective Service Number is not your Social Security Number',
-      explanation: 'Provide an explanation'
+      explanation: 'Provide an explanation',
     },
     help: {
       born: {
         title: 'Why are we asking?',
         message:
           'The selective service only applies to men born before after this date.',
-        note: ''
+        note: '',
       },
       registered: {
         title: 'Need help with whether you have registered?',
         message:
           'The Selective Service website (see link below) provides additional resources which may assist in finding your registration number or eligibility',
-        note: ''
+        note: '',
       },
       number: {
         title: 'Need help with your registration number?',
         message:
           'If additional assistance in determining your registration number is required please refer to the Selective Service information below',
-        note: ''
+        note: '',
       },
       explanation: {
         title: 'Need help with this explanation?',
         message:
           "To help the investigation let us know why you haven't registered.",
-        note: ''
+        note: '',
       },
       remember: {
         title: "Can't remember your registration number?",
         message:
           'The Selective Service website can help provide the registration number for persons who have registered. Use this link to look up your registration number then come back and enter it above.',
-        note: ''
-      }
-    }
+        note: '',
+      },
+    },
   },
   history: {
     heading: {
@@ -92,8 +94,8 @@ export const military = {
       details: 'Discharge details',
       discharge: {
         type: 'Provide the type of discharge you received',
-        date: 'Provide the date of discharge listed above'
-      }
+        date: 'Provide the date of discharge listed above',
+      },
     },
     label: {
       airforce: 'Air Force',
@@ -117,79 +119,79 @@ export const military = {
           general: 'General',
           badconduct: 'Bad conduct',
           other: 'Other<br>(provide type)',
-          otherex: 'Provide other type of discharge'
+          otherex: 'Provide other type of discharge',
         },
-        reason: 'Provide the reason(s) for the discharge'
-      }
+        reason: 'Provide the reason(s) for the discharge',
+      },
     },
     help: {
       served: {
         title: 'Any U.S. Military branch',
         message:
           'If you have ever served in the Air Force, Air National Guard, Army, Army National Guard, Coast Guard, Marine Corps, or Navy answer "Yes".',
-        note: ''
+        note: '',
       },
       service: {
         title: 'Need help with the branch of service?',
         message:
           'Please provide the branch of service you belonged to during this period',
-        note: ''
+        note: '',
       },
       status: {
         title: 'Need help with your status?',
         message: 'Provide your current status with this service',
-        note: ''
+        note: '',
       },
       officer: {
         title: 'Need help with your enlistment?',
         message: 'Select the most accurate option for your time in service',
-        note: ''
+        note: '',
       },
       number: {
         title: 'Service number or SSN',
         message:
           'Depending on the time of your service you may have been assigned a service number. If not then use your social security number.',
-        note: ''
+        note: '',
       },
       dates: {
         title: 'Estimate the date if unsure',
         message:
           'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
-        note: ''
+        note: '',
       },
       discharged: {
         title: 'Need help determining if you have been discharged?',
         message: 'Provide the type of discharge and the corresponding details',
-        note: ''
+        note: '',
       },
       discharge: {
         type: {
           title: 'Need help with the type of discharge?',
           message: 'Please select the most appropriate type of discharge',
-          note: ''
+          note: '',
         },
         reason: {
           title: 'Need help with the reason for discharge?',
           message: 'Provide the reasons or circumstances of the discharge',
-          note: ''
+          note: '',
         },
         date: {
           title: 'Estimate the date if unsure',
           message:
             'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
-          note: ''
-        }
-      }
+          note: '',
+        },
+      },
     },
     collection: {
       summary: {
         title: 'Summary of military history',
         item: 'Branch',
-        unknown: 'Provide your military history below'
+        unknown: 'Provide your military history below',
       },
       appendTitle: 'Do you have additional military service to report?',
-      append: 'Add additional military history'
-    }
+      append: 'Add additional military history',
+    },
   },
   disciplinary: {
     heading: {
@@ -202,11 +204,11 @@ export const military = {
       court:
         'Provide the description of the military court or other authority in which you were charged',
       outcome:
-        'Provide the description of the final outcome of the disciplinary procedure'
+        'Provide the description of the final outcome of the disciplinary procedure',
     },
     para: {
       info:
-        "In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain's mast, Article 135 Court of Inquiry, etc?"
+        "In the last {{years}} years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain's mast, Article 135 Court of Inquiry, etc?",
     },
     label: {
       name:
@@ -214,58 +216,58 @@ export const military = {
       court:
         'Title of court or convening authority, address, to include city and state or country if overseas',
       outcome:
-        'Such as found guilty, found not guilty, fine, reduction in rank, imprisonment, etc.'
+        'Such as found guilty, found not guilty, fine, reduction in rank, imprisonment, etc.',
     },
     help: {
       branch: {
         title: 'Need help determining disciplinary procedures?',
         message:
           'Have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?',
-        note: ''
+        note: '',
       },
       date: {
         title: 'Estimate the date if unsure',
         message:
           'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
-        note: ''
+        note: '',
       },
       offenses: {
         title: 'Need help with this description?',
         message:
           'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
-        note: ''
+        note: '',
       },
       name: {
         title: 'Need help with the procedure name?',
         message:
           'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
-        note: ''
+        note: '',
       },
       court: {
         title: 'Need help with the court information?',
         message:
           'Title of court or convening authority, address, to include city and state or country if overseas',
-        note: ''
+        note: '',
       },
       outcome: {
         title: 'Need help with the outcome?',
         message:
           'Such as found guilty, found not guilty, fine, reduction in rank, imprisonment, etc.',
-        note: ''
-      }
+        note: '',
+      },
     },
     collection: {
       summary: {
         title: 'Summary of disciplinary procedures',
         item: 'Procedure',
-        unknown: 'Provide the disciplinary procedure below'
+        unknown: 'Provide the disciplinary procedure below',
       },
       appendTitle:
-        'In the last 7 years do you have additional military disciplinary procedures to report?',
+        'In the last {{years}} years do you have additional military disciplinary procedures to report?',
       appendMessage:
-        'In the last 7 years do you have additional military disciplinary procedures to report?',
-      append: 'Add additional disciplinary procedures'
-    }
+        'In the last {{years}} years do you have additional military disciplinary procedures to report?',
+      append: 'Add additional disciplinary procedures',
+    },
   },
   foreign: {
     heading: {
@@ -288,14 +290,14 @@ export const military = {
         address: "Provide the contact's address",
         title: "Provide the contact's official title",
         dates: 'Provide the length of your association with the contact',
-        frequency: 'Provide the frequency of contact'
-      }
+        frequency: 'Provide the frequency of contact',
+      },
     },
     para: {
       served:
         "Have you ever served, as a civilian or military member in a foreign country's military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?",
       contact:
-        'Please provide full name, address (if known), official title, length of association, and frequency of contact for each former associate, colleague or acquaintance with whom you maintain contact.'
+        'Please provide full name, address (if known), official title, length of association, and frequency of contact for each former associate, colleague or acquaintance with whom you maintain contact.',
     },
     label: {
       organization: {
@@ -305,63 +307,63 @@ export const military = {
         security: 'Security Forces',
         militia: 'Militia',
         defense: 'Other Defense Forces',
-        other: 'Other Government Agency'
-      }
+        other: 'Other Government Agency',
+      },
     },
     help: {
       served: {
         title: 'Need help with foreign military?',
         message:
           'If you have served in a foreign military or service it will help in processing your application',
-        note: ''
+        note: '',
       },
       organization: {
         title: 'Need help with foreign service?',
         message: 'The type of foreign service',
-        note: ''
+        note: '',
       },
       name: {
         title: 'Need help with the name of the foreign organization?',
         message: 'The organization name',
-        note: ''
+        note: '',
       },
       dates: {
         title: 'Estimate the date if unsure',
         message:
           'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
-        note: ''
+        note: '',
       },
       country: {
         title: 'Need help with the name of the country?',
         message: 'The country name',
-        note: ''
+        note: '',
       },
       rank: {
         title: 'Need help with the highest position/rank held?',
         message: 'The highest rank or position held within the service',
-        note: ''
+        note: '',
       },
       division: {
         title: 'Need help with the division/department/office?',
         message: 'The name for the division, department, or office',
-        note: ''
+        note: '',
       },
       circumstances: {
         title: 'Need help describing the circumstances?',
         message:
           'Additional information regarding the circumstances of this foreign service',
-        note: ''
+        note: '',
       },
       left: {
         title: 'Need help with the reason for leaving?',
         message: 'Please provide any reasons for leaving this service',
-        note: ''
+        note: '',
       },
       maintainscontact: {
         title: 'Still in contact?',
         message:
           'If you are still in contact with any current or former foreign associates answer "Yes" and provide their contact information below.',
-        note: ''
+        note: '',
       },
       contact: {
         dates: {
@@ -369,37 +371,37 @@ export const military = {
             'Tell us the full time range you were in contact with this person',
           message:
             'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
-          note: ''
+          note: '',
         },
         address: {
           title: 'Acronyms:',
           message:
             'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
-          note: ''
+          note: '',
         },
         frequency: {
           title: 'How often?',
           message: 'Tell us how often you were in contact with this person.',
-          note: ''
-        }
-      }
+          note: '',
+        },
+      },
     },
     collection: {
       foreign: {
         appendTitle:
           'Do you have an additional foreign military service to report?',
-        append: 'Add another foreign military service'
+        append: 'Add another foreign military service',
       },
       contacts: {
         summary: {
           title: 'Summary of foreign military contacts',
           item: 'Name',
-          unknown: 'Provide foreign military contact below'
+          unknown: 'Provide foreign military contact below',
         },
         appendTitle:
           'Do you have an additional foreign military service contact to report?',
-        append: 'Add another contact'
-      }
-    }
-  }
+        append: 'Add another contact',
+      },
+    },
+  },
 }

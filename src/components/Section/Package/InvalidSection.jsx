@@ -1,30 +1,40 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-export default class InvalidSection extends React.Component {
-  render() {
-    const incompleteSubsections = this.props.mark.subsections.map(
-      (subsection, i) => {
-        return <li key={`${subsection.url}-${i}`}>{subsection.name}</li>
-      }
-    )
+/** For use with top-level form sections only */
+const InvalidSection = ({ section }) => (
+  <div className="field">
+    <div className="table expand">
+      <div className="usa-alert usa-alert-error" role="alert">
+        <div className="usa-alert-body">
+          <h5 className="usa-alert-heading">
+            {section.label}
+          </h5>
+          <ul>
+            {section.subsections.map(ss => (
+              <li key={`package-review-errors-${ss.key}`}>
+                {ss.label}
+              </li>
+            ))}
+          </ul>
 
-    return (
-      <div className="field">
-        <div className="table expand">
-          <div className="usa-alert usa-alert-error" role="alert">
-            <div className="usa-alert-body">
-              <h5 className="usa-alert-heading">{this.props.mark.section.title}</h5>
-              <ul>{incompleteSubsections}</ul>
-              <Link to={`/form/${this.props.mark.section.url}/review`}>
-                <button className="back usa-button-outline">
-                  Back to section
-                </button>
-              </Link>
-            </div>
-          </div>
+          <Link to={`/form/${section.path}/review`}>
+            <button
+              type="button"
+              className="back usa-button-outline"
+            >
+              Back to section
+            </button>
+          </Link>
         </div>
       </div>
-    )
-  }
+    </div>
+  </div>
+)
+
+InvalidSection.propTypes = {
+  section: PropTypes.object.isRequired,
 }
+
+export default InvalidSection

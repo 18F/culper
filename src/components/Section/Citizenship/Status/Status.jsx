@@ -76,7 +76,7 @@ export class Status extends Subsection {
     })
   }
 
-  updateField = (field, values) =>  {
+  updateField = (field, values) => {
     this.update({
       [field]: values,
     })

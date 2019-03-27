@@ -557,13 +557,51 @@
   </FederalServices>
             </FormerFederalServiceActivities>
             <Citizenship Version="1" Type="Pooled">
-              <Status>USByBirth</Status>
+              <Status>USByBirthOutsideUS</Status>
               <USCitizen>
                 <ProofOfUSCitizenship>
-      
-      
-      
-    </ProofOfUSCitizenship>
+                  <BornOnBase>
+                    <Answer>Yes</Answer>
+                  </BornOnBase>
+                  <CitizenshipCertificate>
+                    <CertificateNumber>7312</CertificateNumber>
+                    <DateIssued>
+                      <Date>
+                        <Month>01</Month>
+                        <Day>03</Day>
+                        <Year>1984</Year>
+                      </Date>
+                    </DateIssued>
+                    <IssuedName>
+                      <Last>Chris</Last>
+                      <First>Ian</First>
+                      <Middle Type="NMN"/>
+                    </IssuedName>
+                  </CitizenshipCertificate>
+                  <MilitaryBase>
+                    <Name>All Your Base</Name>
+                  </MilitaryBase>
+                  <StateDeptForm240>
+                    <DatePrepared>
+                      <Date>
+                        <Month>01</Month>
+                        <Day>02</Day>
+                        <Year>1984</Year>
+                      </Date>
+                    </DatePrepared>
+                    <DocumentNumber>9732</DocumentNumber>
+                    <DocumentType>FS240</DocumentType>
+                    <IssuedName>
+                      <Last>Chris</Last>
+                      <First>Ian</First>
+                      <Middle Type="NMN"/>
+                    </IssuedName>
+                    <Place>
+                      <City>San Jose</City>
+                      <State>CA</State>
+                    </Place>
+                  </StateDeptForm240>
+                </ProofOfUSCitizenship>
               </USCitizen>
             </Citizenship>
             <DualCitizenship Version="1" Type="Pooled">
@@ -634,15 +672,15 @@
               <Answer>No</Answer>
             </MilitaryHistory>
             <SelectiveServiceRegistration Version="1" Type="Pooled">
-              <Registered>
-                <Answer>Yes</Answer>
-              </Registered>
-              <Registration>
-                <Number>1234567</Number>
-              </Registration>
               <RegistrationRequired>
                 <Answer>Yes</Answer>
               </RegistrationRequired>
+              <Registered>
+                <Answer>IDontKnow</Answer>
+              </Registered>
+              <Registration>
+                <DNKExplanation>I don't know what this is?</DNKExplanation>
+              </Registration>
             </SelectiveServiceRegistration>
             <FinancialRecord Type="Pooled" Version="1">
               <Bankruptcy>

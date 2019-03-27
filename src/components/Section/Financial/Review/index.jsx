@@ -8,12 +8,11 @@ import Credit from 'components/Section/Financial/Credit'
 import Delinquent from 'components/Section/Financial/Delinquent'
 import Nonpayment from 'components/Section/Financial/Nonpayment'
 
-const Review = ({ forPrint = false }) => {
+const Review = () => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
     scrollToBottom: undefined,
-    defaultState: !forPrint,
   }
 
   const sectionDivider = (

@@ -1,43 +1,64 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import { Summary, DateSummary } from '../../../Summary'
-import validate, { HospitalizationValidator } from '../../../../validators'
-import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show } from '../../../Form'
+
+import i18n from 'util/i18n'
+
+import schema from 'schema'
+
+import validate, { HospitalizationValidator } from 'validators'
+
+import { Summary, DateSummary } from 'components/Summary'
+import { Accordion, Branch, Show } from 'components/Form'
+
+import Subsection from 'components/Section/shared/Subsection'
+
+import { PSYCHOLOGICAL, PSYCHOLOGICAL_HOSPITALIZATIONS } from 'config/formSections/psychological'
+import connectPsychologicalSection from '../PsychologicalConnector'
+
 import Hospitalization from './Hospitalization'
 
-export default class Hospitalizations extends SubsectionElement {
+const sectionConfig = {
+  section: PSYCHOLOGICAL.name,
+  store: PSYCHOLOGICAL.store,
+  subsection: PSYCHOLOGICAL_HOSPITALIZATIONS.name,
+  storeKey: PSYCHOLOGICAL_HOSPITALIZATIONS.storeKey,
+}
+
+export class Hospitalizations extends Subsection {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this)
-    this.updateHospitalized = this.updateHospitalized.bind(this)
-    this.updateList = this.updateList.bind(this)
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
+
+    this.section = section
+    this.subsection = subsection
+    this.store = store
+    this.storeKey = storeKey
   }
 
-  update(queue) {
-    this.props.onUpdate({
+  update = (queue) => {
+    this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       Hospitalized: this.props.Hospitalized,
-      ...queue
+      ...queue,
     })
   }
 
-  updateList(values) {
+  updateList = (values) => {
     this.update({
-      List: values
+      List: values,
     })
   }
 
-  updateHospitalized(values) {
+  updateHospitalized = (values) => {
     this.update({
       Hospitalized: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : [],
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const o = (item || {}).Item || {}
     const treatmentDate = o.TreatmentDate || {}
     const date = DateSummary(treatmentDate)
@@ -45,10 +66,10 @@ export default class Hospitalizations extends SubsectionElement {
 
     return Summary({
       type: i18n.t('psychological.hospitalization.collection.itemType'),
-      index: index,
+      index,
       left: facility,
       right: date,
-      placeholder: i18n.t('psychological.hospitalization.collection.summary')
+      placeholder: i18n.t('psychological.hospitalization.collection.summary'),
     })
   }
 
@@ -56,14 +77,15 @@ export default class Hospitalizations extends SubsectionElement {
     return (
       <div
         className="section-content hospitalizations"
-        {...super.dataAttributes(this.props)}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('psychological.destination.hospitalization')}</h1>
         <Branch
           name="hospitalized"
           label={i18n.t('psychological.heading.hospitalization')}
           labelSize="h4"
           {...this.props.Hospitalized}
-          warning={true}
+          warning
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHospitalized}
@@ -89,10 +111,11 @@ export default class Hospitalizations extends SubsectionElement {
               'psychological.hospitalization.collection.appendLabel'
             )}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Hospitalization
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -107,15 +130,11 @@ Hospitalizations.defaultProps = {
   Hospitalized: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  section: 'psychological',
-  subsection: 'hospitalizations',
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('psychological.hospitalizations', data))
-  },
-  scrollToBottom: ''
+  validator: data => validate(schema('psychological.hospitalizations', data)),
+  scrollToBottom: '.bottom-btns',
 }
+
+export default connectPsychologicalSection(Hospitalizations, sectionConfig)

@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Sponsorship from './Sponsorship'
+import { Sponsorship } from './Sponsorship'
 import { i18n } from '../../../../config'
 
 describe('The foreign business sponsorship component', () => {
@@ -22,7 +22,7 @@ describe('The foreign business sponsorship component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-sponsorship',
-      HasForeignSponsorship: { value: 'No' }
+      HasForeignSponsorship: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -31,7 +31,7 @@ describe('The foreign business sponsorship component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-sponsorship',
-      HasForeignSponsorship: { value: 'Yes' }
+      HasForeignSponsorship: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -45,7 +45,7 @@ describe('The foreign business sponsorship component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = createComponent(expected)
     component
@@ -76,13 +76,13 @@ describe('The foreign business sponsorship component', () => {
             Dates: {},
             Residence: {},
             Stay: {},
-            Sponsorship: {}
-          }
-        ]
+            Sponsorship: {},
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -119,14 +119,14 @@ describe('The foreign business sponsorship component', () => {
   const sponsorshipDateSetup = {
     name: 'Sponsorship',
     HasForeignSponsorship: {
-      value: 'Yes'
+      value: 'Yes',
     },
     applicantBirthdate: {
       estimated: false,
       day: '1',
       month: '1',
       name: 'birthdate',
-      year: '1970'
+      year: '1970',
     },
     List: {
       items: [
@@ -137,7 +137,7 @@ describe('The foreign business sponsorship component', () => {
               day: '1',
               month: '1',
               name: 'Birthdate',
-              year: '1980'
+              year: '1980',
             },
             Dates: {
               from: {
@@ -145,20 +145,20 @@ describe('The foreign business sponsorship component', () => {
                 day: '1',
                 month: '1',
                 name: 'from',
-                year: '1990'
-              }
-            }
+                year: '1990',
+              },
+            },
           },
-          open: true
-        }
-      ]
-    }
+          open: true,
+        },
+      ],
+    },
   }
 
   describe('handles dates', () => {
     it('with good data - the dates of stay in the U.S. for the sponsored foreign national are after applicant DOB and foreign national DOB', () => {
       const props = {
-        valid: true
+        valid: true,
       }
       const component = createComponent(props)
       expect(
@@ -181,14 +181,14 @@ describe('The foreign business sponsorship component', () => {
                     day: '1',
                     month: '1',
                     name: 'from',
-                    year: '1950'
-                  }
-                }
-              }
-            }
-          ]
+                    year: '1950',
+                  },
+                },
+              },
+            },
+          ],
         },
-        valid: false
+        valid: false,
       }
       const component = createComponent(props)
       expect(

@@ -16191,6 +16191,12 @@
                 "value": "joan@example.com"
               }
             },
+            "EmailNotApplicable": {
+              "type": "notapplicable",
+              "props": {
+                "applicable": true
+              }
+            },
             "EnteredCivilUnion": {
               "type": "datecontrol",
               "props": {

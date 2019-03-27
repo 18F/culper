@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Employment from './Employment'
+import { Employment } from './Employment'
 
 describe('The foreign business employment component', () => {
   const mockStore = configureMockStore()
@@ -21,7 +21,7 @@ describe('The foreign business employment component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: { value: 'No' }
+      HasForeignEmployment: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -30,7 +30,7 @@ describe('The foreign business employment component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: { value: 'Yes' }
+      HasForeignEmployment: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -44,7 +44,7 @@ describe('The foreign business employment component', () => {
       onError: (value, arr) => {
         validated = true
         return arr
-      }
+      },
     }
     const component = createComponent(expected)
     component
@@ -68,14 +68,14 @@ describe('The foreign business employment component', () => {
           {
             Item: {
               Address: { country: { value: 'United States' } },
-              Accepted: { value: 'Yes' }
-            }
-          }
-        ]
+              Accepted: { value: 'Yes' },
+            },
+          },
+        ],
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)

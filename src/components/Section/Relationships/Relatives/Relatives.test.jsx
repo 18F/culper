@@ -2,31 +2,34 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Relatives from './Relatives'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
+
+import { Relatives } from './Relatives'
 
 describe('The relatives component', () => {
   const mockStore = configureMockStore()
   const defaultAppState = {
     application: {
-      AddressBooks: {}
-    }
+      AddressBooks: {},
+    },
   }
   let createComponent
 
   beforeEach(() => {
     const store = mockStore(defaultAppState)
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Relatives {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'relatives'
+      name: 'relatives',
     }
 
     const component = mount(<Relatives {...expected} />)
@@ -37,9 +40,9 @@ describe('The relatives component', () => {
     const expected = {
       name: 'relatives',
       List: {
-        items: [{ Item: { Relation: { value: 'Mother' } } }]
+        items: [{ Item: { Relation: { value: 'Mother' } } }],
       },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
     component.find({ type: 'radio', value: 'Mother' }).simulate('change')
@@ -59,7 +62,7 @@ describe('The relatives component', () => {
       day: '1',
       month: '1',
       name: 'birthdate',
-      year: '1970'
+      year: '1970',
     },
     List: {
       items: [
@@ -70,32 +73,32 @@ describe('The relatives component', () => {
               day: '1',
               month: '1',
               name: 'Birthdate',
-              year: '1980'
+              year: '1980',
             },
             Citizenship: {
-              value: ['Germany']
+              value: ['Germany'],
             },
             IsDeceased: {
-              value: 'No'
+              value: 'No',
             },
             FirstContact: {
               estimated: false,
               day: '1',
               month: '1',
               name: 'FirstContact',
-              year: '1990'
-            }
+              year: '1990',
+            },
           },
-          open: true
-        }
-      ]
-    }
+          open: true,
+        },
+      ],
+    },
   }
 
   describe('handles foreign relative dates', () => {
     it('with good data - date first contacted is after applicant and relative DOB', () => {
       const props = {
-        valid: true
+        valid: true,
       }
 
       const component = createComponent(props)
@@ -118,13 +121,13 @@ describe('The relatives component', () => {
                   day: '1',
                   month: '1',
                   name: 'FirstContact',
-                  year: '1960'
-                }
-              }
-            }
-          ]
+                  year: '1960',
+                },
+              },
+            },
+          ],
         },
-        valid: false
+        valid: false,
       }
 
       const component = createComponent(props)

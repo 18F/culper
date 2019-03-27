@@ -7,6 +7,11 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
+import {
+  selectMultipleCitizenshipRenounced,
+  selectCitizenshipForeignPassportsSection,
+} from 'selectors/branches'
+
 const connectCitizenshipSection = (Component, {
   section, subsection, store, storeKey,
 }) => {
@@ -47,6 +52,8 @@ const connectCitizenshipSection = (Component, {
   }
 
   const mapStateToProps = (state) => {
+    const { authentication } = state
+    const { formType } = authentication
     const app = state.application || {}
     const citizenship = app.Citizenship || {}
     const errors = app.Errors || {}
@@ -54,13 +61,20 @@ const connectCitizenshipSection = (Component, {
 
     switch (storeKey) {
       case 'Status':
-        return { ...citizenship.Status } || {}
+        return {
+          ...citizenship.Status,
+        }
 
       case 'Multiple':
-        return { ...citizenship.Multiple } || {}
+        return {
+          ...citizenship.Multiple,
+          ...selectMultipleCitizenshipRenounced(state),
+          formType,
+        }
 
       case 'Passports':
         return { ...citizenship.Passports } || {}
+
       default:
         return {
           Application: app,
@@ -70,6 +84,7 @@ const connectCitizenshipSection = (Component, {
           Passports: citizenship.Passports || {},
           Errors: errors.citizenship || [],
           Completed: completed.citizenship || [],
+          ...selectCitizenshipForeignPassportsSection(state),
         }
     }
   }

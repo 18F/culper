@@ -37,7 +37,9 @@ describe('The Introduction component', () => {
   })
 
   it("displays when terms aren't accepted", () => {
-    const store = mockStore()
+    const store = mockStore({
+      authentication: {formType: 'SF86'}
+    })
     const component = mount(
       <Provider store={store}>
         <ConnectedIntroduction />
@@ -52,7 +54,8 @@ describe('The Introduction component', () => {
         Settings: {
           acceptedTerms: { value: 'Yes' }
         }
-      }
+      },
+      authentication: {formType: 'SF86'}
     })
     const component = mount(
       <Provider store={store}>
@@ -69,7 +72,9 @@ describe('The Introduction component', () => {
   })
 
   it('renders properly', () => {
-    const store = mockStore()
+    const store = mockStore({
+      authentication: {formType: 'SF86'}
+    })
     testSnapshot(
       <Provider store={store}>
         <ConnectedIntroduction forceOpen={true} />

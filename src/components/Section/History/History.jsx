@@ -86,7 +86,7 @@ History.defaultProps = {
 export default connect(mapStateToProps)(History)
 
 export const HistorySections = connect(mapStateToProps)((props) => {
-  const { formType, onError, Education } = props
+  const { formType, onError, Education = { HasAttended: {}, HasDegree10: {} } } = props
 
   const formTypeConfig = formType && formConfig[formType]
   const residenceYears = formTypeConfig && formTypeConfig.HISTORY_RESIDENCE_YEARS
@@ -97,7 +97,6 @@ export const HistorySections = connect(mapStateToProps)((props) => {
   return (
     <div className="history">
       <ConnectedResidence
-        defaultState={false}
         realtime
         overrideInitial
         onError={onError}
@@ -107,7 +106,6 @@ export const HistorySections = connect(mapStateToProps)((props) => {
       />
 
       <ConnectedEmployment
-        defaultState={false}
         realtime
         overrideInitial
         onError={onError}
@@ -138,7 +136,6 @@ export const HistorySections = connect(mapStateToProps)((props) => {
         }
       >
         <ConnectedEducation
-          defaultState={false}
           realtime
           overrideInitial
           onError={onError}
@@ -150,7 +147,6 @@ export const HistorySections = connect(mapStateToProps)((props) => {
 
       <hr className="section-divider" />
       <ConnectedFederal
-        defaultState={false}
         onError={onError}
         scrollIntoView={false}
       />

@@ -1,322 +1,73 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import { Route } from 'react-router'
 import { connect } from 'react-redux'
-import { updateApplication } from 'actions/ApplicationActions'
-import { i18n } from 'config'
-import { SectionViews, SectionView } from 'components/Section/SectionView'
-import SectionElement from 'components/Section/SectionElement'
-import { Field } from 'components/Form'
-import Relatives from 'components/Section/Relationships/Relatives'
-import Marital from 'components/Section/Relationships/RelationshipStatus/Marital'
-import Cohabitants from 'components/Section/Relationships/RelationshipStatus/Cohabitants'
-import People from 'components/Section/Relationships/People'
 
-class Relationships extends SectionElement {
-  constructor(props) {
-    super(props)
-    this.updateMarital = this.updateMarital.bind(this)
-    this.updatePeople = this.updatePeople.bind(this)
-    this.updateRelatives = this.updateRelatives.bind(this)
-    this.updateMarital = this.updateMarital.bind(this)
-    this.updateCohabitants = this.updateCohabitants.bind(this)
-    this.updateSpouse = this.updateSpouse.bind(this)
-  }
+import i18n from 'util/i18n'
 
-  updateMarital(values) {
-    this.handleUpdate('Marital', values)
-  }
+import { ErrorList } from 'components/ErrorList'
+import SectionNavigation from 'components/Section/shared/SectionNavigation'
+import Intro from './Intro'
+import ConnectedMarital from './RelationshipStatus/Marital'
+import ConnectedCohabitants from './RelationshipStatus/Cohabitants'
+import People from './People'
+import Relatives from './Relatives'
+import Review from './Review'
 
-  updatePeople(values) {
-    this.handleUpdate('People', values)
-  }
+const Relationships = (props) => {
+  const { subsection, location } = props
 
-  updateRelatives(values) {
-    this.handleUpdate('Relatives', values)
-  }
+  const subsectionClasses = classnames('view', `view-${subsection}`)
 
-  updateCohabitants(values) {
-    this.handleUpdate('Cohabitants', values)
-  }
+  const isReview = subsection === 'review'
+  const title = isReview && i18n.t('review.title')
+  const para = isReview && i18n.m('review.para')
 
-  /**
-   * Listens for updates when a spouses name is updated. This is to notify
-   * other parts of the app that this information has changed
-   */
-  updateSpouse(values) {
-    this.props.dispatch(
-      updateApplication('Relationships', 'ClearSameSpouseConfirmed', true)
-    )
-  }
+  return (
+    <div>
+      <div className="section-view">
+        {title && <h1 className="title">{title}</h1>}
+        {para}
 
-  render() {
-    return (
-      <div>
-        <SectionViews
-          current={this.props.subsection}
-          dispatch={this.props.dispatch}
-          update={this.props.update}>
-          <SectionView
-            name="intro"
-            back="history/review"
-            backLabel={i18n.t('history.destination.review')}
-            next="relationships/status/marital"
-            nextLabel={i18n.t('relationships.destination.marital')}>
-            <h1 className="section-header">{i18n.t('relationships.intro.title')}</h1>
-            <Field
-              optional={true}
-              className="no-margin-bottom">
-              {i18n.m('relationships.intro.body')}
-            </Field>
-          </SectionView>
+        <div className={subsectionClasses}>
+          {isReview && (
+            <div className="top-btns"><ErrorList /></div>
+          )}
 
-          <SectionView
-            name="status/marital"
-            back="relationships/intro"
-            backLabel={i18n.t('relationships.destination.intro')}
-            next="relationships/status/cohabitant"
-            nextLabel={i18n.t('relationships.destination.cohabitant')}>
-            <h1 className="section-header">{i18n.t('relationships.marital.sectionTitle.title')}</h1>
-            <Marital
-              name="marital"
-              {...this.props.Marital}
-              addressBooks={this.props.AddressBooks}
-              applicantBirthdate={this.props.applicantBirthdate}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateMarital}
-              onError={this.handleError}
-              onSpouseUpdate={this.updateSpouse}
-              currentAddress={this.props.CurrentAddress}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
+          <Route path="/form/relationships/intro" component={Intro} />
+          <Route path="/form/relationships/status/marital" component={ConnectedMarital} />
+          <Route path="/form/relationships/status/cohabitant" component={ConnectedCohabitants} />
+          <Route path="/form/relationships/people" component={People} />
+          <Route path="/form/relationships/relatives" component={Relatives} />
+          <Route path="/form/relationships/review" component={Review} />
 
-          <SectionView
-            name="status/cohabitant"
-            back="relationships/status/marital"
-            backLabel={i18n.t('relationships.destination.marital')}
-            next="relationships/people"
-            nextLabel={i18n.t('relationships.destination.people')}>
-            <h1 className="section-header">{i18n.t('relationships.cohabitant.sectionTitle.title')}</h1>
-            <Cohabitants
-              name="cohabitants"
-              {...this.props.Cohabitants}
-              spouse={this.props.Spouse}
-              applicantBirthdate={this.props.applicantBirthdate}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateCohabitants}
-              onError={this.handleError}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
-
-          <SectionView
-            name="people"
-            back="relationships/status/cohabitant"
-            backLabel={i18n.t('relationships.destination.cohabitant')}
-            next="relationships/relatives"
-            nextLabel={i18n.t('relationships.destination.relatives')}>
-            <h1 className="section-header">{i18n.t('relationships.people.sectionTitle.title')}</h1>
-            <People
-              name="people"
-              {...this.props.People}
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updatePeople}
-              onError={this.handleError}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
-
-          <SectionView
-            name="relatives"
-            back="relationships/people"
-            backLabel={i18n.t('relationships.destination.people')}
-            next="relationships/review"
-            nextLabel={i18n.t('relationships.destination.review')}>
-            <h1 className="section-header">{i18n.t('relationships.relatives.sectionTitle.title')}</h1>
-            <Relatives
-              name="relatives"
-              {...this.props.Relatives}
-              applicantBirthdate={this.props.applicantBirthdate}
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateRelatives}
-              onError={this.handleError}
-              scrollToBottom={this.props.scrollToBottom}
-            />
-          </SectionView>
-
-          <SectionView
-            name="review"
-            title={i18n.t('review.title')}
-            para={i18n.m('review.para')}
-            showTop={true}
-            back="relationships/relatives"
-            backLabel={i18n.t('relationships.destination.relatives')}
-            next="citizenship/intro"
-            nextLabel={i18n.t('citizenship.destination.intro')}>
-            <h1 className="section-header">{i18n.t('relationships.marital.sectionTitle.title')}</h1>
-            <Marital
-              name="marital"
-              {...this.props.Marital}
-              section="relationships"
-              subsection="status/marital"
-              applicantBirthdate={this.props.applicantBirthdate}
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateMarital}
-              onError={this.handleError}
-              onSpouseUpdate={this.updateSpouse}
-              currentAddress={this.props.CurrentAddress}
-              required={true}
-              scrollIntoView={false}
-            />
-
-            <hr className="section-divider" />
-            <h1 className="section-header">{i18n.t('relationships.cohabitant.sectionTitle.title')}</h1>
-            <Cohabitants
-              name="cohabitants"
-              {...this.props.Cohabitants}
-              applicantBirthdate={this.props.applicantBirthdate}
-              section="relationships"
-              subsection="status/cohabitant"
-              spouse={this.props.Spouse}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateCohabitants}
-              onError={this.handleError}
-              required={true}
-              scrollIntoView={false}
-            />
-
-            <hr className="section-divider" />
-            <h1 className="section-header">{i18n.t('relationships.people.sectionTitle.title')}</h1>
-            <People
-              name="people"
-              {...this.props.People}
-              section="relationships"
-              subsection="people"
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updatePeople}
-              onError={this.handleError}
-              required={true}
-              scrollIntoView={false}
-            />
-
-            <hr className="section-divider" />
-            <h1 className="section-header">{i18n.t('relationships.relatives.sectionTitle.title')}</h1>
-            <Relatives
-              name="relatives"
-              {...this.props.Relatives}
-              section="relationships"
-              applicantBirthdate={this.props.applicantBirthdate}
-              subsection="relatives"
-              addressBooks={this.props.AddressBooks}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateRelatives}
-              onError={this.handleError}
-              required={true}
-              scrollIntoView={false}
-            />
-          </SectionView>
-        </SectionViews>
+          <SectionNavigation currentPath={location.pathname} />
+        </div>
       </div>
-    )
+    </div>
+  )
+}
+
+const mapStateToProps = (state) => {
+  const { section } = state
+
+  return {
+    ...section,
   }
 }
 
-function mapStateToProps(state) {
-  const app = state.application || {}
-  const identification = app.Identification || {}
-  const relationships = app.Relationships || {}
-  const errors = app.Errors || {}
-  const completed = app.Completed || {}
-  const history = app.History || {}
-  const addressBooks = app.AddressBooks || {}
-
-  return {
-    applicantBirthdate: (identification.ApplicantBirthDate || {}).Date,
-    Relationships: relationships,
-    Relatives: relationships.Relatives || {},
-    Marital: relationships.Marital || {},
-    Spouse: extractSpouse(relationships.Marital),
-    Cohabitants: relationships.Cohabitants || {},
-    CurrentAddress: history.CurrentAddress,
-    People: relationships.People || {},
-    Errors: errors.relationships || [],
-    Completed: completed.relationships || [],
-    AddressBooks: addressBooks
-  }
+/* eslint react/forbid-prop-types: 0 */
+Relationships.propTypes = {
+  subsection: PropTypes.string,
+  location: PropTypes.object,
 }
 
 Relationships.defaultProps = {
-  section: 'relationships',
-  store: 'Relationships',
-  scrollToBottom: SectionView.BottomButtonsSelector
+  subsection: 'intro',
+  location: {},
 }
 
-const extractSpouse = marital => {
-  if (!marital || !marital.CivilUnion || !marital.CivilUnion.Name) {
-    return null
-  }
-  return marital.CivilUnion.Name
-}
-
-export class RelationshipSections extends React.Component {
-  render() {
-    return (
-      <div>
-        <Marital
-          name="marital"
-          {...this.props.Marital}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          applicantBirthdate={this.props.applicantBirthdate}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          currentAddress={this.props.CurrentAddress}
-          required={true}
-          scrollIntoView={false}
-        />
-
-        <hr className="section-divider" />
-        <Cohabitants
-          name="cohabitants"
-          {...this.props.Cohabitants}
-          defaultState={false}
-          applicantBirthdate={this.props.applicantBirthdate}
-          spouse={this.props.Spouse}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
-
-        <People
-          name="people"
-          {...this.props.People}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
-
-        <hr className="section-divider" />
-        <Relatives
-          name="relatives"
-          {...this.props.Relatives}
-          defaultState={false}
-          applicantBirthdate={this.props.applicantBirthdate}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
-      </div>
-    )
-  }
-}
+export const RelationshipSections = () => <Review forPrint />
 
 export default connect(mapStateToProps)(Relationships)

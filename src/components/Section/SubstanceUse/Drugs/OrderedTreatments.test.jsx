@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import OrderedTreatments from './OrderedTreatments'
+import { OrderedTreatments } from './OrderedTreatments'
 
 describe('The OrderedTreatments component', () => {
   it('Renders without errors', () => {
@@ -11,7 +11,7 @@ describe('The OrderedTreatments component', () => {
   it('Performs update', () => {
     let updates = 0
     const onUpdate = () => {
-      updates++
+      updates += 1
     }
     const component = mount(<OrderedTreatments onUpdate={onUpdate} />)
     expect(component.find('.ordered-treatments').length).toBe(1)
@@ -22,7 +22,7 @@ describe('The OrderedTreatments component', () => {
   it('Performs updates to accordion', () => {
     let updates = 0
     const onUpdate = () => {
-      updates++
+      updates += 1
     }
     const list = {
       items: [
@@ -30,12 +30,12 @@ describe('The OrderedTreatments component', () => {
           OrderedTreatment: {
             OrderedBy: ['Employer'],
             Explanation: {
-              value: 'The explanation'
+              value: 'The explanation',
             },
             ActionTaken: 'Yes',
             DrugType: 'Cocaine',
             TreatmentProvider: {
-              value: 'Provider'
+              value: 'Provider',
             },
             TreatmentProviderAddress: {
               country: 'United States',
@@ -43,31 +43,31 @@ describe('The OrderedTreatments component', () => {
               city: 'Arlington',
               state: 'Virginia',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             TreatmentProviderTelephone: {
               noNumber: '',
               number: '7031112222',
               numberType: 'Home',
               timeOfDay: 'Both',
-              extension: ''
+              extension: '',
             },
             TreatmentDates: {
               from: {
                 month: '1',
                 day: '1',
-                year: '2010'
+                year: '2010',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2012'
-              }
+                year: '2012',
+              },
             },
-            TreatmentCompleted: 'Yes'
-          }
-        }
-      ]
+            TreatmentCompleted: 'Yes',
+          },
+        },
+      ],
     }
     const component = mount(
       <OrderedTreatments

@@ -77,7 +77,8 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Name": {
@@ -180,7 +181,8 @@
         "PlaceIssued": {
           "type": "location",
           "props": {
-            "layout": ""
+            "layout": "",
+            "country": ""
           }
         },
         "CertificateNumber": {
@@ -255,7 +257,8 @@
           "props": {
             "layout": "City, State",
             "city": "ellis Island",
-            "state": "MN"
+            "state": "MN",
+            "country": ""
           }
         },
         "PriorCitizenship": {
@@ -699,6 +702,12 @@
                           "value": ""
                         }
                       },
+                      "OtherFrequencyTypeExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
                       "Received": {
                         "type": "datecontrol",
                         "props": {
@@ -774,6 +783,12 @@
                         }
                       },
                       "OtherFrequency": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequencyTypeExplanation": {
                         "type": "textarea",
                         "props": {
                           "value": ""
@@ -862,6 +877,12 @@
                         }
                       },
                       "OtherFrequency": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequencyTypeExplanation": {
                         "type": "textarea",
                         "props": {
                           "value": ""
@@ -979,6 +1000,12 @@
                           "value": ""
                         }
                       },
+                      "OtherFrequencyTypeExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
                       "Received": {
                         "type": "datecontrol",
                         "props": {
@@ -1055,6 +1082,12 @@
                         }
                       },
                       "OtherFrequency": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequencyTypeExplanation": {
                         "type": "textarea",
                         "props": {
                           "value": ""
@@ -1145,6 +1178,12 @@
                         }
                       },
                       "OtherFrequency": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequencyTypeExplanation": {
                         "type": "textarea",
                         "props": {
                           "value": ""
@@ -1809,6 +1848,35 @@
                       ]
                     }
                   },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
                   "Birthdate": {
                     "type": "datecontrol",
                     "props": {
@@ -2046,6 +2114,35 @@
                       ]
                     }
                   },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
                   "Birthdate": {
                     "type": "datecontrol",
                     "props": {
@@ -2173,6 +2270,241 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Peterson",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "NameExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "NameNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Relationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Personal"
+                      ]
+                    }
+                  },
+                  "RelationshipExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "AddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Affiliations": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Alias": {
+                              "type": "name",
+                              "props": {
+                                "first": "",
+                                "firstInitialOnly": false,
+                                "middle": "",
+                                "middleInitialOnly": false,
+                                "noMiddleName": false,
+                                "last": "",
+                                "suffix": "",
+                                "suffixOther": ""
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "BirthdateNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "BirthplaceNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "Germany"
+                      ]
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "02",
+                      "day": "01",
+                      "year": "2017",
+                      "estimated": true
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Annually"
+                    }
+                  },
+                  "FrequencyExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliations": {
+                    "type": "branch",
+                    "props": {
+                      "value": "I don't know"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "02",
+                      "day": "02",
+                      "year": "2017",
+                      "estimated": true
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "In person"
+                      ]
+                    }
+                  },
+                  "MethodsExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Ramblin",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Rod",
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -2350,7 +2682,8 @@
                                 "Address": {
                                   "type": "location",
                                   "props": {
-                                    "layout": ""
+                                    "layout": "",
+                                    "country": ""
                                   }
                                 },
                                 "Countries": {
@@ -2487,7 +2820,8 @@
                                 "Address": {
                                   "type": "location",
                                   "props": {
-                                    "layout": ""
+                                    "layout": "",
+                                    "country": ""
                                   }
                                 },
                                 "Countries": {
@@ -2671,7 +3005,8 @@
                                 "Address": {
                                   "type": "location",
                                   "props": {
-                                    "layout": ""
+                                    "layout": "",
+                                    "country": ""
                                   }
                                 },
                                 "Countries": {
@@ -3223,7 +3558,8 @@
                                 "Address": {
                                   "type": "location",
                                   "props": {
-                                    "layout": ""
+                                    "layout": "",
+                                    "country": ""
                                   }
                                 },
                                 "Countries": {
@@ -3377,7 +3713,8 @@
                                 "Address": {
                                   "type": "location",
                                   "props": {
-                                    "layout": ""
+                                    "layout": "",
+                                    "country": ""
                                   }
                                 },
                                 "Countries": {
@@ -3852,7 +4189,8 @@
                                 "Address": {
                                   "type": "location",
                                   "props": {
-                                    "layout": ""
+                                    "layout": "",
+                                    "country": ""
                                   }
                                 },
                                 "Countries": {
@@ -3989,7 +4327,8 @@
                                 "Address": {
                                   "type": "location",
                                   "props": {
-                                    "layout": ""
+                                    "layout": "",
+                                    "country": ""
                                   }
                                 },
                                 "Countries": {
@@ -5275,7 +5614,8 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "layout": ""
+                          "layout": "",
+                          "country": ""
                         }
                       },
                       "Telephone": {
@@ -5352,7 +5692,8 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "ReferenceName": {
@@ -6269,6 +6610,11 @@
       }
     }
   },
+  "Metadata": {
+    "form_type": "SF86",
+    "form_version": "2016-11",
+    "type": "metadata"
+  },
   "Military": {
     "Disciplinary": {
       "type": "military.disciplinary",
@@ -6564,12 +6910,6 @@
             "value": ""
           }
         },
-        "HasRegisteredNotApplicable": {
-          "type": "notapplicable",
-          "props": {
-            "applicable": true
-          }
-        },
         "RegistrationNumber": {
           "type": "text",
           "props": {
@@ -6580,6 +6920,12 @@
           "type": "textarea",
           "props": {
             "value": ""
+          }
+        },
+        "HasRegisteredNotApplicable": {
+          "type": "notapplicable",
+          "props": {
+            "applicable": true
           }
         }
       }
@@ -7218,6 +7564,12 @@
                 "value": "af@bj.com"
               }
             },
+            "EmailNotApplicable": {
+              "type": "notapplicable",
+              "props": {
+                "applicable": true
+              }
+            },
             "EnteredCivilUnion": {
               "type": "datecontrol",
               "props": {
@@ -7400,13 +7752,15 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "BirthPlace": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Birthdate": {
@@ -7433,12 +7787,6 @@
                       "estimated": false
                     }
                   },
-                  "DivorceLocation": {
-                    "type": "location",
-                    "props": {
-                      "layout": ""
-                    }
-                  },
                   "Deceased": {
                     "type": "radio",
                     "props": {
@@ -7448,13 +7796,21 @@
                   "DeceasedAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "DeceasedAddressNotApplicable": {
                     "type": "notapplicable",
                     "props": {
                       "applicable": false
+                    }
+                  },
+                  "DivorceLocation": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Name": {
@@ -8033,7 +8389,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -8282,7 +8639,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -8318,7 +8676,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -8566,7 +8925,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -8602,7 +8962,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -8738,7 +9099,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Aliases": {
@@ -8785,7 +9147,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -8821,7 +9184,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -8957,7 +9321,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Aliases": {
@@ -9004,7 +9369,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -9040,7 +9406,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {

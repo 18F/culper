@@ -7,6 +7,7 @@ import * as sections from 'constants/sections'
 
 import { hideSelectiveService } from 'validators/selectiveservice'
 import { hideDisciplinaryProcedures } from 'validators/militarydisciplinary'
+import { hideExistingConditions } from 'validators/psychological'
 
 export const hideSelectiveServiceSelector = (state) => {
   const { application } = state
@@ -19,11 +20,18 @@ export const hideDisciplinaryProceduresSelector = (state) => {
   return hideDisciplinaryProcedures(application)
 }
 
-export const formSectionsSelector = createSelector(
+export const hideExistingConditionsSelector = (state) => {
+  const { application } = state
+
+  return hideExistingConditions(application)
+}
+
+const getFormSections = createSelector(
   formTypeSelector,
   hideDisciplinaryProceduresSelector,
   hideSelectiveServiceSelector,
-  (formType, disciplinaryProceduresHidden, selectiveServiceHidden) => {
+  hideExistingConditionsSelector,
+  (formType, disciplinaryProceduresHidden, selectiveServiceHidden, existingConditionsHidden) => {
     // Make a copy b/c we are going to mutate this
     // Might want to add & use update here to make this easier
     let formTypeSections = formTypeConfig[formType]
@@ -52,6 +60,42 @@ export const formSectionsSelector = createSelector(
       })
     }
 
-    return formTypeConfig.reduceSubsections(formTypeSections)
+    if (existingConditionsHidden) {
+      const psychSectionIndex = formTypeSections.findIndex(s => s.key === sections.PSYCHOLOGICAL)
+
+      if (psychSectionIndex > -1) {
+        const psychSection = formTypeSections.find(s => s.key === sections.PSYCHOLOGICAL)
+        const psychSubsections = psychSection.subsections
+          .filter(s => s.key !== sections.PSYCHOLOGICAL_CONDITIONS)
+
+        const newPsychSection = update(psychSection, {
+          subsections: { $set: psychSubsections },
+        })
+
+        formTypeSections = update(formTypeSections, {
+          $splice: [[psychSectionIndex, 1, newPsychSection]],
+        })
+      }
+    }
+
+    return formTypeSections
   },
 )
+
+// Returns form sections in the nested structure
+export const nestedFormSectionsSelector = (state, includeReview = false) => {
+  let formSections = getFormSections(state)
+
+  if (includeReview) formSections = formSections.concat(formTypeConfig.reviewSections)
+
+  return formSections
+}
+
+// Returns flat list of form sections
+export const formSectionsSelector = (state, includeReview = false) => {
+  let formSections = getFormSections(state)
+
+  if (includeReview) formSections = formSections.concat(formTypeConfig.reviewSections)
+
+  return formTypeConfig.reduceSubsections(formSections)
+}

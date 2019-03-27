@@ -2,7 +2,7 @@
 
 \[Replace this with your description, include Fixes #123 to connect to the github issue\]
 
-## Checklist for Reveiwer
+## Checklist for Reviewer
 
 - [ ] Review code changes
 - [ ] Review changes for Database effects

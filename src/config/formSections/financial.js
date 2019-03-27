@@ -76,7 +76,6 @@ export const FINANCIAL_REVIEW = {
   key: sections.FINANCIAL_REVIEW,
   name: 'review',
   path: 'review',
-  storeKey: 'Review',
   label: i18n.t('financial.subsection.review'),
 }
 

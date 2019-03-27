@@ -10,12 +10,13 @@ describe('The legal associations engaged in terrorism component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <EngagedInTerrorism {...expected} />
         </Provider>
       )
+    )
   })
 
   it('renders without errors', () => {
@@ -27,8 +28,8 @@ describe('The legal associations engaged in terrorism component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -39,7 +40,7 @@ describe('The legal associations engaged in terrorism component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasEngaged: { value: 'Yes' }
+      HasEngaged: { value: 'Yes' },
     }
     const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
@@ -56,21 +57,21 @@ describe('The legal associations engaged in terrorism component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010'
+                  year: '2010',
                 },
                 to: {
                   month: '1',
                   day: '1',
-                  year: '2011'
-                }
+                  year: '2011',
+                },
               },
               Reasons: {
-                value: 'It was a tuesday'
-              }
-            }
-          }
-        ]
-      }
+                value: 'It was a tuesday',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()
