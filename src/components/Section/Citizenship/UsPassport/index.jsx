@@ -215,7 +215,7 @@ export class UsPassport extends Subsection {
 
             <Field
               title={i18n.t('citizenship.usPassport.issued')}
-              help="citizenship.usPassport.help.issued"
+              help={i18n.t('citizenship.usPassport.help.issued')}
               adjustFor="labels"
               shrink
               scrollIntoView={this.props.scrollIntoView}
@@ -233,7 +233,7 @@ export class UsPassport extends Subsection {
 
             <Field
               title={i18n.t('citizenship.usPassport.expiration')}
-              help="citizenship.usPassport.help.expiration"
+              help={i18n.t('citizenship.usPassport.help.expiration')}
               adjustFor="labels"
               shrink
               scrollIntoView={this.props.scrollIntoView}
@@ -254,7 +254,7 @@ export class UsPassport extends Subsection {
 
             <Field
               title={i18n.t('citizenship.usPassport.label.bookNumber')}
-              help="citizenship.usPassport.help.number"
+              help={i18n.t('citizenship.usPassport.help.number')}
               errorPrefix="passport"
               adjustFor="buttons"
               shrink
