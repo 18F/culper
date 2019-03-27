@@ -24,17 +24,15 @@ export const hideHippa = (store = {}) => {
   return !showHippa
 }
 
-export const formIsSigned = (store = {}, hideHippaSection) => {
-  const releases = (store.Submission || {}).Releases || {}
-
+export const formIsSigned = (signatures = {}, hideHippaSection) => {
   const medical = !hideHippaSection
-    ? new SignatureValidator(releases.Medical).isValid()
+    ? new SignatureValidator(signatures.Medical).isValid()
     : true
 
   return (
-    new SignatureValidator(releases.AdditionalComments).isValid()
-    && new SignatureValidator(releases.General).isValid()
-    && new SignatureValidator(releases.Credit).isValid()
+    new SignatureValidator(signatures.AdditionalComments).isValid()
+    && new SignatureValidator(signatures.General).isValid()
+    && new SignatureValidator(signatures.Credit).isValid()
     && medical
   )
 }
