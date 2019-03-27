@@ -672,15 +672,15 @@
               <Answer>No</Answer>
             </MilitaryHistory>
             <SelectiveServiceRegistration Version="1" Type="Pooled">
-              <Registered>
-                <Answer>Yes</Answer>
-              </Registered>
-              <Registration>
-                <Number>1234567</Number>
-              </Registration>
               <RegistrationRequired>
                 <Answer>Yes</Answer>
               </RegistrationRequired>
+              <Registered>
+                <Answer>IDontKnow</Answer>
+              </Registered>
+              <Registration>
+                <DNKExplanation>I don't know what this is?</DNKExplanation>
+              </Registration>
             </SelectiveServiceRegistration>
             <FinancialRecord Type="Pooled" Version="1">
               <Bankruptcy>
