@@ -11,7 +11,7 @@ import InvalidSection from '../InvalidSection'
 
 import connectPackageSection from '../PackageConnector'
 
-const PackageErrors = ({ formSections }) => {
+export const PackageErrors = ({ formSections }) => {
   const classes = classnames(
     'submission-status',
     'invalid'

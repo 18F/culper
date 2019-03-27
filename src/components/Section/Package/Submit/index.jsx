@@ -25,7 +25,7 @@ import connectPackageSection from '../PackageConnector'
 
 const signatureValid = data => new SignatureValidator(data).isValid()
 
-class PackageSubmit extends React.Component {
+export class PackageSubmit extends React.Component {
   constructor(props) {
     super(props)
 
