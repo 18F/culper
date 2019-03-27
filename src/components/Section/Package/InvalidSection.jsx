@@ -12,11 +12,16 @@ const InvalidSection = ({ section }) => (
             {section.label}
           </h5>
           <ul>
-            {section.subsections.map(ss => (
-              <li key={`package-review-errors-${ss.key}`}>
-                {ss.label}
-              </li>
-            ))}
+            {section.subsections.map((ss) => {
+              if (!ss.isValid) {
+                return (
+                  <li key={`package-review-errors-${ss.key}`}>
+                    {ss.label}
+                  </li>
+                )
+              }
+              return null
+            })}
           </ul>
 
           <Link to={`/form/${section.path}/review`}>
