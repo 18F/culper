@@ -272,6 +272,10 @@ func TestScenario2(t *testing.T) {
 // #20b Foreign Business, Professional
 // #20c Foreign Countries you have visited
 // #17 Marital/Relationship
+// In addition:
+// * a foreign contact where `I don't know` specified for
+//   birthplace, birthdate, employer, employer address,
+//   affiliations, address
 func TestScenario3(t *testing.T) {
 	executeScenario(t, "test3")
 }
