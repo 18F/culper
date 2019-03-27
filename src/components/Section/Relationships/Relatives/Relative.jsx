@@ -254,6 +254,7 @@ export default class Relative extends ValidationElement {
           >
             {this.getRelativeOptions().map(relative => (
               <Radio
+                key={relative.name}
                 name={relative.name}
                 label={relative.label}
                 value={relative.value}
