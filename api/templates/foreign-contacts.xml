@@ -16,7 +16,9 @@
       <Birth>
         {{dateOptional $Item.Birthdate $Item.BirthdateNotApplicable}}
         <Place DoNotKnow="{{notApplicable $Item.BirthplaceNotApplicable}}">
-          {{location $Item.Birthplace}}
+          {{if notApplicable $Item.BirthplaceNotApplicable | ne "True"}}
+            {{location $Item.Birthplace}}
+          {{end}}
         </Place>
       </Birth>
       <Citizenships>
