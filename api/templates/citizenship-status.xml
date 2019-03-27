@@ -81,7 +81,7 @@
         <DocumentType>{{radio $citizenship.AbroadDocumentation | selfAbroadDocType}}</DocumentType>
         <IssuedName>{{name $citizenship.DocumentName}}</IssuedName>
         <OtherExplanation>{{textarea $citizenship.Explanation}}</OtherExplanation>
-        <Place>{{location $citizenship.PlaceIssued}}</Place>
+        <Place>{{locationOverrideLayout $citizenship.PlaceIssued "Birthplace without County CountriesNoUS"}}</Place>
       </StateDeptForm240>
       {{end}}
       {{if radio $citizenship.CitizenshipStatus | eq "Naturalized"}}

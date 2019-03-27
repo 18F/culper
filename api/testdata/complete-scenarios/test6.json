@@ -314,8 +314,9 @@
           "type": "location",
           "props": {
             "layout": "Birthplace without County",
-            "city": "Victoria",
-            "country": "Canada"
+            "city": "San Jose",
+            "state": "CA",
+            "country": "United States"
           }
         },
         "CertificateNumber": {
