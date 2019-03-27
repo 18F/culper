@@ -25,6 +25,90 @@ import { countryString } from 'validators/location'
 import Alias from './Alias'
 
 export default class Relative extends ValidationElement {
+  getRelativeOptions = () => ([
+    {
+      name: 'relation-mother',
+      label: i18n.m('relationships.relatives.label.relation.mother'),
+      value: 'Mother',
+      className: 'relation-mother',
+    }, {
+      name: 'relation-father',
+      label: i18n.m('relationships.relatives.label.relation.father'),
+      value: 'Father',
+      className: 'relation-father',
+    }, {
+      name: 'relation-stepmother',
+      label: i18n.m('relationships.relatives.label.relation.stepmother'),
+      value: 'Stepmother',
+      className: 'relation-stepmother',
+    }, {
+      name: 'relation-stepfather',
+      label: i18n.m('relationships.relatives.label.relation.stepfather'),
+      value: 'Stepfather',
+      className: 'relation-stepfather',
+    }, {
+      name: 'relation-fosterparent',
+      label: i18n.m('relationships.relatives.label.relation.fosterparent'),
+      value: 'Fosterparent',
+      className: 'relation-fosterparent',
+    }, {
+      name: 'relation-child',
+      label: i18n.m('relationships.relatives.label.relation.child'),
+      value: 'Child',
+      className: 'relation-child',
+    }, {
+      name: 'relation-stepchild',
+      label: i18n.m('relationships.relatives.label.relation.stepchild'),
+      value: 'Stepchild',
+      className: 'relation-stepchild',
+    }, {
+      name: 'relation-brother',
+      label: i18n.m('relationships.relatives.label.relation.brother'),
+      value: 'Brother',
+      className: 'relation-brother',
+    }, {
+      name: 'relation-sister',
+      label: i18n.m('relationships.relatives.label.relation.sister'),
+      value: 'Sister',
+      className: 'relation-sister',
+    }, {
+      name: 'relation-stepbrother',
+      label: i18n.m('relationships.relatives.label.relation.stepbrother'),
+      value: 'Stepbrother',
+      className: 'relation-stepbrother',
+    }, {
+      name: 'relation-stepsister',
+      label: i18n.m('relationships.relatives.label.relation.stepsister'),
+      value: 'Stepsister',
+      className: 'relation-stepsister',
+    }, {
+      name: 'relation-halfbrother',
+      label: i18n.m('relationships.relatives.label.relation.halfbrother'),
+      value: 'Half-brother',
+      className: 'relation-halfbrother',
+    }, {
+      name: 'relation-halfsister',
+      label: i18n.m('relationships.relatives.label.relation.halfsister'),
+      value: 'Half-sister',
+      className: 'relation-halfsister',
+    }, {
+      name: 'relation-fatherinlaw',
+      label: i18n.m('relationships.relatives.label.relation.fatherinlaw'),
+      value: 'Father-in-law',
+      className: 'relation-fatherinlaw',
+    }, {
+      name: 'relation-motherinlaw',
+      label: i18n.m('relationships.relatives.label.relation.motherinlaw'),
+      value: 'Mother-in-law',
+      className: 'relation-motherinlaw',
+    }, {
+      name: 'relation-guardian',
+      label: i18n.m('relationships.relatives.label.relation.guardian'),
+      value: 'Guardian',
+      className: 'relation-guardian',
+    },
+  ])
+
   update = (queue) => {
     this.props.onUpdate({
       Relation: this.props.Relation,
@@ -168,134 +252,16 @@ export default class Relative extends ValidationElement {
             onError={this.props.onError}
             selectedValue={this.props.Relation.value}
           >
-            <Radio
-              name="relation-mother"
-              label={i18n.m('relationships.relatives.label.relation.mother')}
-              value="Mother"
-              className="relation-mother"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-father"
-              label={i18n.m('relationships.relatives.label.relation.father')}
-              value="Father"
-              className="relation-father"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-stepmother"
-              label={i18n.m('relationships.relatives.label.relation.stepmother')}
-              value="Stepmother"
-              className="relation-stepmother"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-stepfather"
-              label={i18n.m('relationships.relatives.label.relation.stepfather')}
-              value="Stepfather"
-              className="relation-stepfather"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-fosterparent"
-              label={i18n.m('relationships.relatives.label.relation.fosterparent')}
-              value="Fosterparent"
-              className="relation-fosterparent"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-child"
-              label={i18n.m('relationships.relatives.label.relation.child')}
-              value="Child"
-              className="relation-child"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-stepchild"
-              label={i18n.m('relationships.relatives.label.relation.stepchild')}
-              value="Stepchild"
-              className="relation-stepchild"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-brother"
-              label={i18n.m('relationships.relatives.label.relation.brother')}
-              value="Brother"
-              className="relation-brother"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-sister"
-              label={i18n.m('relationships.relatives.label.relation.sister')}
-              value="Sister"
-              className="relation-sister"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-stepbrother"
-              label={i18n.m('relationships.relatives.label.relation.stepbrother')}
-              value="Stepbrother"
-              className="relation-stepbrother"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-stepsister"
-              label={i18n.m('relationships.relatives.label.relation.stepsister')}
-              value="Stepsister"
-              className="relation-stepsister"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-halfbrother"
-              label={i18n.m('relationships.relatives.label.relation.halfbrother')}
-              value="Half-brother"
-              className="relation-halfbrother"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-halfsister"
-              label={i18n.m('relationships.relatives.label.relation.halfsister')}
-              value="Half-sister"
-              className="relation-halfsister"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-fatherinlaw"
-              label={i18n.m('relationships.relatives.label.relation.fatherinlaw')}
-              value="Father-in-law"
-              className="relation-fatherinlaw"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-motherinlaw"
-              label={i18n.m('relationships.relatives.label.relation.motherinlaw')}
-              value="Mother-in-law"
-              className="relation-motherinlaw"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
-            <Radio
-              name="relation-guardian"
-              label={i18n.m('relationships.relatives.label.relation.guardian')}
-              value="Guardian"
-              className="relation-guardian"
-              onError={this.props.onError}
-              onUpdate={(value) => { this.updateField('Relation', value) }}
-            />
+            {this.getRelativeOptions().map(relative => (
+              <Radio
+                name={relative.name}
+                label={relative.label}
+                value={relative.value}
+                className={relative.className}
+                onError={this.props.onError}
+                onUpdate={(value) => { this.updateField('Relation', value) }}
+              />
+            ))}
           </RadioGroup>
         </Field>
 
