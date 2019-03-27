@@ -293,19 +293,23 @@ export default class Relative extends ValidationElement {
 
   updateEmployerNotApplicable(values) {
     this.update({
-      EmployerNotApplicable: values
+      EmployerNotApplicable: values,
+      Employer: {},
     })
   }
 
   updateEmployerAddressNotApplicable(values) {
     this.update({
-      EmployerAddressNotApplicable: values
+      EmployerAddressNotApplicable: values,
+      EmployerAddress: {},
     })
   }
 
   updateEmployerRelationshipNotApplicable(values) {
     this.update({
-      EmployerRelationshipNotApplicable: values
+      EmployerRelationshipNotApplicable: values,
+      EmployerRelationship: {},
+      HasAffiliation: {},
     })
   }
 
@@ -389,9 +393,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepmother"
-              label={i18n.m(
-                'relationships.relatives.label.relation.stepmother'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.stepmother')}
               value="Stepmother"
               className="relation-stepmother"
               onError={this.props.onError}
@@ -399,9 +401,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepfather"
-              label={i18n.m(
-                'relationships.relatives.label.relation.stepfather'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.stepfather')}
               value="Stepfather"
               className="relation-stepfather"
               onError={this.props.onError}
@@ -409,9 +409,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-fosterparent"
-              label={i18n.m(
-                'relationships.relatives.label.relation.fosterparent'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.fosterparent')}
               value="Fosterparent"
               className="relation-fosterparent"
               onError={this.props.onError}
@@ -451,9 +449,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepbrother"
-              label={i18n.m(
-                'relationships.relatives.label.relation.stepbrother'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.stepbrother')}
               value="Stepbrother"
               className="relation-stepbrother"
               onError={this.props.onError}
@@ -461,9 +457,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepsister"
-              label={i18n.m(
-                'relationships.relatives.label.relation.stepsister'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.stepsister')}
               value="Stepsister"
               className="relation-stepsister"
               onError={this.props.onError}
@@ -471,9 +465,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-halfbrother"
-              label={i18n.m(
-                'relationships.relatives.label.relation.halfbrother'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.halfbrother')}
               value="Half-brother"
               className="relation-halfbrother"
               onError={this.props.onError}
@@ -481,9 +473,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-halfsister"
-              label={i18n.m(
-                'relationships.relatives.label.relation.halfsister'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.halfsister')}
               value="Half-sister"
               className="relation-halfsister"
               onError={this.props.onError}
@@ -491,9 +481,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-fatherinlaw"
-              label={i18n.m(
-                'relationships.relatives.label.relation.fatherinlaw'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.fatherinlaw')}
               value="Father-in-law"
               className="relation-fatherinlaw"
               onError={this.props.onError}
@@ -501,9 +489,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-motherinlaw"
-              label={i18n.m(
-                'relationships.relatives.label.relation.motherinlaw'
-              )}
+              label={i18n.m('relationships.relatives.label.relation.motherinlaw')}
               value="Mother-in-law"
               className="relation-motherinlaw"
               onError={this.props.onError}
@@ -1299,14 +1285,13 @@ export default class Relative extends ValidationElement {
               />
               <Show when={this.props.HasAffiliation.value === 'Yes'}>
                 <Field
-                  title={i18n.t(
-                    'relationships.relatives.heading.employer.relationship'
-                  )}
+                  title={i18n.t('relationships.relatives.heading.employer.relationship')}
                   scrollIntoView={this.props.scrollIntoView}>
                   <Textarea
                     name="EmployerRelationship"
                     className="relative-employer-relationship"
                     {...this.props.EmployerRelationship}
+                    disabled={!this.props.EmployerRelationshipNotApplicable.applicable}
                     onError={this.props.onError}
                     onUpdate={this.updateEmployerRelationship}
                     required={this.props.required}
