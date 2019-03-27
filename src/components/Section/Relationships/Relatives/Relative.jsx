@@ -54,8 +54,7 @@ export default class Relative extends ValidationElement {
       FrequencyComments: this.props.FrequencyComments,
       EmployerNotApplicable: this.props.EmployerNotApplicable,
       EmployerAddressNotApplicable: this.props.EmployerAddressNotApplicable,
-      EmployerRelationshipNotApplicable: this.props
-        .EmployerRelationshipNotApplicable,
+      EmployerRelationshipNotApplicable: this.props.EmployerRelationshipNotApplicable,
       Employer: this.props.Employer,
       EmployerAddress: this.props.EmployerAddress,
       HasAffiliation: this.props.HasAffiliation,
@@ -64,129 +63,9 @@ export default class Relative extends ValidationElement {
     })
   }
 
-  updateRelation = (values) => {
+  updateField = (field, values) => {
     this.update({
-      Relation: values,
-    })
-  }
-
-  updateName = (values) => {
-    this.update({
-      Name: values,
-    })
-  }
-
-  updateBirthdate = (values) => {
-    this.update({
-      Birthdate: values,
-    })
-  }
-
-  updateBirthplace = (values) => {
-    this.update({
-      Birthplace: values,
-    })
-  }
-
-  updateCitizenship = (values) => {
-    this.update({
-      Citizenship: values,
-    })
-  }
-
-  updateMaidenSameAsListed = (values) => {
-    this.update({
-      MaidenSameAsListed: values,
-    })
-  }
-
-  updateMaidenName = (values) => {
-    this.update({
-      MaidenName: values,
-    })
-  }
-
-  updateAliases = (values) => {
-    this.update({
-      Aliases: values,
-    })
-  }
-
-  updateIsDeceased = (values) => {
-    this.update({
-      IsDeceased: values,
-    })
-  }
-
-  updateAddress = (values) => {
-    this.update({
-      Address: values,
-    })
-  }
-
-  updateCitizenshipDocumentation = (values) => {
-    this.update({
-      CitizenshipDocumentation: values,
-    })
-  }
-
-  updateOtherCitizenshipDocumentation = (value) => {
-    this.update({
-      OtherCitizenshipDocumentation: value,
-    })
-  }
-
-  updateDocumentNumber = (values) => {
-    this.update({
-      DocumentNumber: values,
-    })
-  }
-
-  updateCourtName = (values) => {
-    this.update({
-      CourtName: values,
-    })
-  }
-
-  updateCourtAddress = (values) => {
-    this.update({
-      CourtAddress: values,
-    })
-  }
-
-  updateDocument = (values) => {
-    this.update({
-      Document: values,
-    })
-  }
-
-  updateDocumentComments = (value) => {
-    this.update({
-      DocumentComments: value,
-    })
-  }
-
-  updateResidenceDocumentNumber = (values) => {
-    this.update({
-      ResidenceDocumentNumber: values,
-    })
-  }
-
-  updateExpiration = (values) => {
-    this.update({
-      Expiration: values,
-    })
-  }
-
-  updateFirstContact = (values) => {
-    this.update({
-      FirstContact: values,
-    })
-  }
-
-  updateLastContact = (values) => {
-    this.update({
-      LastContact: values,
+      [field]: values,
     })
   }
 
@@ -214,12 +93,6 @@ export default class Relative extends ValidationElement {
     }
   }
 
-  updateMethodsComments = (values) => {
-    this.update({
-      MethodsComments: values,
-    })
-  }
-
   updateFrequency = (values) => {
     if ((values || {}).value !== 'Other') {
       this.update({
@@ -231,12 +104,6 @@ export default class Relative extends ValidationElement {
         Frequency: values,
       })
     }
-  }
-
-  updateFrequencyComments = (values) => {
-    this.update({
-      FrequencyComments: values,
-    })
   }
 
   updateEmployerNotApplicable = (values) => {
@@ -258,30 +125,6 @@ export default class Relative extends ValidationElement {
       EmployerRelationshipNotApplicable: values,
       EmployerRelationship: {},
       HasAffiliation: {},
-    })
-  }
-
-  updateEmployer = (values) => {
-    this.update({
-      Employer: values,
-    })
-  }
-
-  updateEmployerAddress = (values) => {
-    this.update({
-      EmployerAddress: values,
-    })
-  }
-
-  updateHasAffiliation = (values) => {
-    this.update({
-      HasAffiliation: values,
-    })
-  }
-
-  updateEmployerRelationship = (values) => {
-    this.update({
-      EmployerRelationship: values,
     })
   }
 
@@ -331,7 +174,7 @@ export default class Relative extends ValidationElement {
               value="Mother"
               className="relation-mother"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-father"
@@ -339,7 +182,7 @@ export default class Relative extends ValidationElement {
               value="Father"
               className="relation-father"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-stepmother"
@@ -347,7 +190,7 @@ export default class Relative extends ValidationElement {
               value="Stepmother"
               className="relation-stepmother"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-stepfather"
@@ -355,7 +198,7 @@ export default class Relative extends ValidationElement {
               value="Stepfather"
               className="relation-stepfather"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-fosterparent"
@@ -363,7 +206,7 @@ export default class Relative extends ValidationElement {
               value="Fosterparent"
               className="relation-fosterparent"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-child"
@@ -371,7 +214,7 @@ export default class Relative extends ValidationElement {
               value="Child"
               className="relation-child"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-stepchild"
@@ -379,7 +222,7 @@ export default class Relative extends ValidationElement {
               value="Stepchild"
               className="relation-stepchild"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-brother"
@@ -387,7 +230,7 @@ export default class Relative extends ValidationElement {
               value="Brother"
               className="relation-brother"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-sister"
@@ -395,7 +238,7 @@ export default class Relative extends ValidationElement {
               value="Sister"
               className="relation-sister"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-stepbrother"
@@ -403,7 +246,7 @@ export default class Relative extends ValidationElement {
               value="Stepbrother"
               className="relation-stepbrother"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-stepsister"
@@ -411,7 +254,7 @@ export default class Relative extends ValidationElement {
               value="Stepsister"
               className="relation-stepsister"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-halfbrother"
@@ -419,7 +262,7 @@ export default class Relative extends ValidationElement {
               value="Half-brother"
               className="relation-halfbrother"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-halfsister"
@@ -427,7 +270,7 @@ export default class Relative extends ValidationElement {
               value="Half-sister"
               className="relation-halfsister"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-fatherinlaw"
@@ -435,7 +278,7 @@ export default class Relative extends ValidationElement {
               value="Father-in-law"
               className="relation-fatherinlaw"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-motherinlaw"
@@ -443,7 +286,7 @@ export default class Relative extends ValidationElement {
               value="Mother-in-law"
               className="relation-motherinlaw"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
             <Radio
               name="relation-guardian"
@@ -451,7 +294,7 @@ export default class Relative extends ValidationElement {
               value="Guardian"
               className="relation-guardian"
               onError={this.props.onError}
-              onUpdate={this.updateRelation}
+              onUpdate={(value) => { this.updateField('Relation', value) }}
             />
           </RadioGroup>
         </Field>
@@ -467,7 +310,7 @@ export default class Relative extends ValidationElement {
             className="relative-name"
             {...this.props.Name}
             onError={this.props.onError}
-            onUpdate={this.updateName}
+            onUpdate={(value) => { this.updateField('Name', value) }}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           />
@@ -487,7 +330,7 @@ export default class Relative extends ValidationElement {
             prefix={mother || father ? 'parent.dob' : ''}
             relationship={(this.props.Relation || {}).value}
             onError={this.props.onError}
-            onUpdate={this.updateBirthdate}
+            onUpdate={(value) => { this.updateField('Birthdate', value) }}
             required={this.props.required}
           />
         </Field>
@@ -507,7 +350,7 @@ export default class Relative extends ValidationElement {
             hideCounty
             className="relative-birthplace"
             onError={this.props.onError}
-            onUpdate={this.updateBirthplace}
+            onUpdate={(value) => { this.updateField('Birthplace', value) }}
             required={this.props.required}
           />
         </Field>
@@ -523,7 +366,7 @@ export default class Relative extends ValidationElement {
             {...this.props.Citizenship}
             className="relative-citizenship"
             onError={this.props.onError}
-            onUpdate={this.updateCitizenship}
+            onUpdate={(value) => { this.updateField('Citizenship', value) }}
             required={this.props.required}
           />
         </Field>
@@ -538,7 +381,7 @@ export default class Relative extends ValidationElement {
               {...this.props.MaidenSameAsListed}
               yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
               noLabel={i18n.t('relationships.relatives.label.maiden.diff')}
-              onUpdate={this.updateMaidenSameAsListed}
+              onUpdate={(value) => { this.updateField('MaidenSameAsListed', value) }}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
               onError={this.props.onError}
@@ -554,7 +397,7 @@ export default class Relative extends ValidationElement {
                   className="relative-maidenname eapp-field-wrap"
                   {...this.props.MaidenName}
                   onError={this.props.onError}
-                  onUpdate={this.updateMaidenName}
+                  onUpdate={(value) => { this.updateField('MaidenName', value) }}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
                 />
@@ -570,7 +413,7 @@ export default class Relative extends ValidationElement {
             label={i18n.t('relationships.relatives.heading.alias.branch')}
             appendLabel={i18n.t('relationships.relatives.heading.alias.branch')}
             className="relative-alias"
-            onUpdate={this.updateAliases}
+            onUpdate={(value) => { this.updateField('Aliases', value) }}
             onError={this.props.onError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
@@ -596,7 +439,7 @@ export default class Relative extends ValidationElement {
           labelSize="h4"
           className="relative-deceased"
           {...this.props.IsDeceased}
-          onUpdate={this.updateIsDeceased}
+          onUpdate={(value) => { this.updateField('IsDeceased', value) }}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
           onError={this.props.onError}
@@ -618,7 +461,7 @@ export default class Relative extends ValidationElement {
               dispatch={this.props.dispatch}
               layout={Location.ADDRESS}
               geocode
-              onUpdate={this.updateAddress}
+              onUpdate={(value) => { this.updateField('Address', value) }}
               onError={this.props.onError}
               required={this.props.required}
             />
@@ -664,7 +507,7 @@ export default class Relative extends ValidationElement {
                   value="FS"
                   className="abroad-fs"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
                 <Radio
                   name="abroad-ds"
@@ -672,7 +515,7 @@ export default class Relative extends ValidationElement {
                   value="DS"
                   className="abroad-ds"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
               </RadioGroup>
 
@@ -689,33 +532,27 @@ export default class Relative extends ValidationElement {
               >
                 <Radio
                   name="naturalized-alien"
-                  label={i18n.m(
-                    'relationships.relatives.label.naturalized.alien'
-                  )}
+                  label={i18n.m('relationships.relatives.label.naturalized.alien')}
                   value="NaturalizedAlien"
                   className="naturalized-alien"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
                 <Radio
                   name="naturalized-permanent"
-                  label={i18n.m(
-                    'relationships.relatives.label.naturalized.permanent'
-                  )}
+                  label={i18n.m('relationships.relatives.label.naturalized.permanent')}
                   value="NaturalizedPermanent"
                   className="naturalized-permanent"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
                 <Radio
                   name="naturalized-certificate"
-                  label={i18n.m(
-                    'relationships.relatives.label.naturalized.certificate'
-                  )}
+                  label={i18n.m('relationships.relatives.label.naturalized.certificate')}
                   value="NaturalizedCertificate"
                   className="naturalized-certificate"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
               </RadioGroup>
 
@@ -734,27 +571,23 @@ export default class Relative extends ValidationElement {
                   value="DerivedAlien"
                   className="derived-alien"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
                 <Radio
                   name="derived-permanent"
-                  label={i18n.m(
-                    'relationships.relatives.label.derived.permanent'
-                  )}
+                  label={i18n.m('relationships.relatives.label.derived.permanent')}
                   value="DerivedPermanent"
                   className="derived-permanent"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
                 <Radio
                   name="derived-certificate"
-                  label={i18n.m(
-                    'relationships.relatives.label.derived.certificate'
-                  )}
+                  label={i18n.m('relationships.relatives.label.derived.certificate')}
                   value="DerivedCertificate"
                   className="derived-certificate"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
                 <Radio
                   name="derived-other"
@@ -762,7 +595,7 @@ export default class Relative extends ValidationElement {
                   value="Other"
                   className="derived-other"
                   onError={this.props.onError}
-                  onUpdate={this.updateCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                 />
               </RadioGroup>
               <Show
@@ -775,7 +608,7 @@ export default class Relative extends ValidationElement {
                   className="derived-other-explanation"
                   {...this.props.OtherCitizenshipDocumentation}
                   onError={this.props.onError}
-                  onUpdate={this.updateOtherCitizenshipDocumentation}
+                  onUpdate={(value) => { this.updateField('OtherCitizenshipDocumentation', value) }}
                   required={this.props.required}
                 />
               </Show>
@@ -793,7 +626,7 @@ export default class Relative extends ValidationElement {
                 prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onError={this.props.onError}
-                onUpdate={this.updateDocumentNumber}
+                onUpdate={(value) => { this.updateField('DocumentNumber', value) }}
                 required={this.props.required}
               />
             </Field>
@@ -807,7 +640,7 @@ export default class Relative extends ValidationElement {
                 className="relative-courtname"
                 {...this.props.CourtName}
                 onError={this.props.onError}
-                onUpdate={this.updateCourtName}
+                onUpdate={(value) => { this.updateField('CourtName', value) }}
                 required={this.props.required}
               />
             </Field>
@@ -826,7 +659,7 @@ export default class Relative extends ValidationElement {
                 geocode
                 className="relative-courtaddress"
                 onError={this.props.onError}
-                onUpdate={this.updateCourtAddress}
+                onUpdate={(value) => { this.updateField('Courtaddress', value) }}
                 required={this.props.required}
               />
             </Field>
@@ -867,73 +700,59 @@ export default class Relative extends ValidationElement {
                     >
                       <Radio
                         name="document-permanent"
-                        label={i18n.m(
-                          'relationships.relatives.label.document.permanent'
-                        )}
+                        label={i18n.m('relationships.relatives.label.document.permanent')}
                         value="Permanent"
                         className="document-permanent"
                         onError={this.props.onError}
-                        onUpdate={this.updateDocument}
+                        onUpdate={(value) => { this.updateField('Document', value) }}
                       />
                       <Radio
                         name="document-employment"
-                        label={i18n.m(
-                          'relationships.relatives.label.document.employment'
-                        )}
+                        label={i18n.m('relationships.relatives.label.document.employment')}
                         value="Employment"
                         className="document-employment"
                         onError={this.props.onError}
-                        onUpdate={this.updateDocument}
+                        onUpdate={(value) => { this.updateField('Document', value) }}
                       />
                       <Radio
                         name="document-arrival"
-                        label={i18n.m(
-                          'relationships.relatives.label.document.arrival'
-                        )}
+                        label={i18n.m('relationships.relatives.label.document.arrival')}
                         value="Arrival"
                         className="document-arrival"
                         onError={this.props.onError}
-                        onUpdate={this.updateDocument}
+                        onUpdate={(value) => { this.updateField('Document', value) }}
                       />
                       <Radio
                         name="document-visa"
-                        label={i18n.m(
-                          'relationships.relatives.label.document.visa'
-                        )}
+                        label={i18n.m('relationships.relatives.label.document.visa')}
                         value="Visa"
                         className="document-visa"
                         onError={this.props.onError}
-                        onUpdate={this.updateDocument}
+                        onUpdate={(value) => { this.updateField('Document', value) }}
                       />
                       <Radio
                         name="document-f1"
-                        label={i18n.m(
-                          'relationships.relatives.label.document.f1'
-                        )}
+                        label={i18n.m('relationships.relatives.label.document.f1')}
                         value="F1"
                         className="document-f1"
                         onError={this.props.onError}
-                        onUpdate={this.updateDocument}
+                        onUpdate={(value) => { this.updateField('Document', value) }}
                       />
                       <Radio
                         name="document-j1"
-                        label={i18n.m(
-                          'relationships.relatives.label.document.j1'
-                        )}
+                        label={i18n.m('relationships.relatives.label.document.j1')}
                         value="J1"
                         className="document-j1"
                         onError={this.props.onError}
-                        onUpdate={this.updateDocument}
+                        onUpdate={(value) => { this.updateField('Document', value) }}
                       />
                       <Radio
                         name="document-other"
-                        label={i18n.m(
-                          'relationships.relatives.label.document.other'
-                        )}
+                        label={i18n.m('relationships.relatives.label.document.other')}
                         value="Other"
                         className="document-other"
                         onError={this.props.onError}
-                        onUpdate={this.updateDocument}
+                        onUpdate={(value) => { this.updateField('Document', value) }}
                       />
                     </RadioGroup>
 
@@ -943,7 +762,7 @@ export default class Relative extends ValidationElement {
                         className="relative-document-other-comments"
                         {...this.props.DocumentComments}
                         onValidate={this.props.onValidate}
-                        onUpdate={this.updateDocumentComments}
+                        onUpdate={(value) => { this.updateField('DocumentComments', value) }}
                         required={this.props.required}
                       />
                     </Show>
@@ -964,7 +783,7 @@ export default class Relative extends ValidationElement {
                     maxlength="30"
                     pattern={alphaNumericRegEx}
                     prefix="alphanumeric"
-                    onUpdate={this.updateResidenceDocumentNumber}
+                    onUpdate={(value) => { this.updateField('ResidenceDocumentNumber', value) }}
                     required={this.props.required}
                   />
                 </Field>
@@ -984,7 +803,7 @@ export default class Relative extends ValidationElement {
                     prefix="relative"
                     applicantBirthdate={this.props.Birthdate}
                     onError={this.props.onError}
-                    onUpdate={this.updateExpiration}
+                    onUpdate={(value) => { this.updateField('Expiration', value) }}
                     noMaxDate
                     required={this.props.required}
                   />
@@ -1008,7 +827,7 @@ export default class Relative extends ValidationElement {
                 minDate={relativeContactMinDate}
                 minDateEqualTo
                 onError={this.props.onError}
-                onUpdate={this.updateFirstContact}
+                onUpdate={(value) => { this.updateField('FirstContact', value) }}
                 required={this.props.required}
               />
             </Field>
@@ -1030,7 +849,7 @@ export default class Relative extends ValidationElement {
                 minDate={this.props.FirstContact}
                 minDateEqualTo
                 onError={this.props.onError}
-                onUpdate={this.updateLastContact}
+                onUpdate={(value) => { this.updateField('LastContact', value) }}
                 required={this.props.required}
               />
             </Field>
@@ -1042,7 +861,7 @@ export default class Relative extends ValidationElement {
               commentsValue={this.props.MethodsComments}
               commentsActive={otherMethods}
               commentsRequired={otherMethods}
-              onUpdate={this.updateMethodsComments}
+              onUpdate={(value) => { this.updateField('MethodsComments', value) }}
               onError={this.props.onError}
               adjustFor="big-buttons"
               scrollIntoView={this.props.scrollIntoView}
@@ -1118,7 +937,7 @@ export default class Relative extends ValidationElement {
               commentsValue={this.props.FrequencyComments}
               commentsActive={otherFrequency}
               commentsRequired={otherFrequency}
-              onUpdate={this.updateFrequencyComments}
+              onUpdate={(value) => { this.updateField('FrequencyComments', value) }}
               onError={this.props.onError}
               scrollIntoView={this.props.scrollIntoView}
               adjustFor="big-buttons"
@@ -1211,7 +1030,7 @@ export default class Relative extends ValidationElement {
                   className="relative-employer"
                   {...this.props.Employer}
                   onError={this.props.onError}
-                  onUpdate={this.updateEmployer}
+                  onUpdate={(value) => { this.updateField('Employer', value) }}
                   required={this.props.required}
                 />
               </NotApplicable>
@@ -1238,7 +1057,7 @@ export default class Relative extends ValidationElement {
                   className="relative-employer-address"
                   showPostOffice
                   onError={this.props.onError}
-                  onUpdate={this.updateEmployerAddress}
+                  onUpdate={(value) => { this.updateField('EmployerAddress', value) }}
                   required={this.props.required}
                 />
               </NotApplicable>
@@ -1260,7 +1079,7 @@ export default class Relative extends ValidationElement {
                 labelSize="h4"
                 className="relative-affiliation"
                 {...this.props.HasAffiliation}
-                onUpdate={this.updateHasAffiliation}
+                onUpdate={(value) => { this.updateField('HasAffiliation', value) }}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.props.onError}
@@ -1276,7 +1095,7 @@ export default class Relative extends ValidationElement {
                     {...this.props.EmployerRelationship}
                     disabled={!this.props.EmployerRelationshipNotApplicable.applicable}
                     onError={this.props.onError}
-                    onUpdate={this.updateEmployerRelationship}
+                    onUpdate={(value) => { this.updateField('EmployerRelationship', value) }}
                     required={this.props.required}
                   />
                 </Field>
