@@ -741,6 +741,7 @@ export default class Relative extends ValidationElement {
                     >
                       {this.getNonCitizenDocumentation().map(document => (
                         <Radio
+                          key={document.name}
                           name={document.name}
                           label={document.label}
                           value={document.value}
