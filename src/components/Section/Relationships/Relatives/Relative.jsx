@@ -25,6 +25,103 @@ import { countryString } from 'validators/location'
 import Alias from './Alias'
 
 export default class Relative extends ValidationElement {
+  getCitizenshipDocumentation = () => ([
+    {
+      name: 'derived-alien',
+      label: i18n.m('relationships.relatives.label.derived.alien'),
+      value: 'DerivedAlien',
+      className: 'derived-alien',
+    }, {
+      name: 'derived-permanent',
+      label: i18n.m('relationships.relatives.label.derived.permanent'),
+      value: 'DerivedPermanent',
+      className: 'derived-permanent',
+    }, {
+      name: 'derived-certificate',
+      label: i18n.m('relationships.relatives.label.derived.certificate'),
+      value: 'DerivedCertificate',
+      className: 'derived-certificate',
+    }, {
+      name: 'derived-other',
+      label: i18n.m('relationships.relatives.label.derived.other'),
+      value: 'Other',
+      className: 'derived-other',
+    },
+  ])
+
+  getNonCitizenDocumentation = () => ([
+    {
+      name: 'document-permanent',
+      label: i18n.m('relationships.relatives.label.document.permanent'),
+      value: 'Permanent',
+      className: 'document-permanent',
+    }, {
+      name: 'document-employment',
+      label: i18n.m('relationships.relatives.label.document.employment'),
+      value: 'Employment',
+      className: 'document-employment',
+    }, {
+      name: 'document-arrival',
+      label: i18n.m('relationships.relatives.label.document.arrival'),
+      value: 'Arrival',
+      className: 'document-arrival',
+    }, {
+      name: 'document-visa',
+      label: i18n.m('relationships.relatives.label.document.visa'),
+      value: 'Visa',
+      className: 'document-visa',
+    }, {
+      name: 'document-f1',
+      label: i18n.m('relationships.relatives.label.document.f1'),
+      value: 'F1',
+      className: 'document-f1',
+    }, {
+      name: 'document-j1',
+      label: i18n.m('relationships.relatives.label.document.j1'),
+      value: 'J1',
+      className: 'document-j1',
+    }, {
+      name: 'document-other',
+      label: i18n.m('relationships.relatives.label.document.other'),
+      value: 'Other',
+      className: 'document-other',
+    },
+  ])
+
+  getFrequency = () => ([
+    {
+      name: 'frequency-daily',
+      label: i18n.m('relationships.relatives.label.frequency.daily'),
+      value: 'Daily',
+      className: 'frequency-daily',
+    }, {
+      name: 'frequency-weekly',
+      label: i18n.m('relationships.relatives.label.frequency.weekly'),
+      value: 'Weekly',
+      className: 'frequency-weekly',
+    }, {
+      name: 'frequency-monthly',
+      label: i18n.m('relationships.relatives.label.frequency.monthly'),
+      value: 'Monthly',
+      className: 'frequency-monthly',
+    }, {
+      name: 'frequency-quarterly',
+      label: i18n.m('relationships.relatives.label.frequency.quarterly'),
+      value: 'Quarterly',
+      className: 'frequency-quarterly',
+    }, {
+      name: 'frequency-annually',
+      label: i18n.m('relationships.relatives.label.frequency.annually'),
+      value: 'Annually',
+      className: 'frequency-annually',
+    }, {
+      name: 'frequency-other',
+      label: i18n.m('relationships.relatives.label.frequency.other'),
+      value: 'Other',
+      className: 'frequency-other',
+    },
+  ])
+
   getRelativeOptions = () => ([
     {
       name: 'relation-mother',
@@ -486,9 +583,7 @@ export default class Relative extends ValidationElement {
                 />
               </RadioGroup>
 
-              <label>
-                {i18n.t('relationships.relatives.para.naturalized')}
-              </label>
+              <label>{i18n.t('relationships.relatives.para.naturalized')}</label>
               <RadioGroup
                 className="relative-naturalized option-list option-list-vertical"
                 required={this.props.required}
@@ -532,38 +627,17 @@ export default class Relative extends ValidationElement {
                   (this.props.CitizenshipDocumentation || {}).value
                 }
               >
-                <Radio
-                  name="derived-alien"
-                  label={i18n.m('relationships.relatives.label.derived.alien')}
-                  value="DerivedAlien"
-                  className="derived-alien"
-                  onError={this.props.onError}
-                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
-                />
-                <Radio
-                  name="derived-permanent"
-                  label={i18n.m('relationships.relatives.label.derived.permanent')}
-                  value="DerivedPermanent"
-                  className="derived-permanent"
-                  onError={this.props.onError}
-                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
-                />
-                <Radio
-                  name="derived-certificate"
-                  label={i18n.m('relationships.relatives.label.derived.certificate')}
-                  value="DerivedCertificate"
-                  className="derived-certificate"
-                  onError={this.props.onError}
-                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
-                />
-                <Radio
-                  name="derived-other"
-                  label={i18n.m('relationships.relatives.label.derived.other')}
-                  value="Other"
-                  className="derived-other"
-                  onError={this.props.onError}
-                  onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
-                />
+                {this.getCitizenshipDocumentation().map(document => (
+                  <Radio
+                    key={document.name}
+                    name={document.name}
+                    label={document.label}
+                    value={document.value}
+                    className={document.className}
+                    onError={this.props.onError}
+                    onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
+                  />
+                ))}
               </RadioGroup>
               <Show
                 when={
@@ -665,62 +739,16 @@ export default class Relative extends ValidationElement {
                       onError={this.props.onError}
                       selectedValue={(this.props.Document || {}).value}
                     >
-                      <Radio
-                        name="document-permanent"
-                        label={i18n.m('relationships.relatives.label.document.permanent')}
-                        value="Permanent"
-                        className="document-permanent"
-                        onError={this.props.onError}
-                        onUpdate={(value) => { this.updateField('Document', value) }}
-                      />
-                      <Radio
-                        name="document-employment"
-                        label={i18n.m('relationships.relatives.label.document.employment')}
-                        value="Employment"
-                        className="document-employment"
-                        onError={this.props.onError}
-                        onUpdate={(value) => { this.updateField('Document', value) }}
-                      />
-                      <Radio
-                        name="document-arrival"
-                        label={i18n.m('relationships.relatives.label.document.arrival')}
-                        value="Arrival"
-                        className="document-arrival"
-                        onError={this.props.onError}
-                        onUpdate={(value) => { this.updateField('Document', value) }}
-                      />
-                      <Radio
-                        name="document-visa"
-                        label={i18n.m('relationships.relatives.label.document.visa')}
-                        value="Visa"
-                        className="document-visa"
-                        onError={this.props.onError}
-                        onUpdate={(value) => { this.updateField('Document', value) }}
-                      />
-                      <Radio
-                        name="document-f1"
-                        label={i18n.m('relationships.relatives.label.document.f1')}
-                        value="F1"
-                        className="document-f1"
-                        onError={this.props.onError}
-                        onUpdate={(value) => { this.updateField('Document', value) }}
-                      />
-                      <Radio
-                        name="document-j1"
-                        label={i18n.m('relationships.relatives.label.document.j1')}
-                        value="J1"
-                        className="document-j1"
-                        onError={this.props.onError}
-                        onUpdate={(value) => { this.updateField('Document', value) }}
-                      />
-                      <Radio
-                        name="document-other"
-                        label={i18n.m('relationships.relatives.label.document.other')}
-                        value="Other"
-                        className="document-other"
-                        onError={this.props.onError}
-                        onUpdate={(value) => { this.updateField('Document', value) }}
-                      />
+                      {this.getNonCitizenDocumentation().map(document => (
+                        <Radio
+                          name={document.name}
+                          label={document.label}
+                          value={document.value}
+                          className={document.className}
+                          onError={this.props.onError}
+                          onUpdate={(value) => { this.updateField('Document', value) }}
+                        />
+                      ))}
                     </RadioGroup>
 
                     <Show when={(this.props.Document || {}).value === 'Other'}>
@@ -915,66 +943,17 @@ export default class Relative extends ValidationElement {
                 onError={this.props.onError}
                 selectedValue={this.props.Frequency.value}
               >
-                <Radio
-                  name="frequency-daily"
-                  label={i18n.m(
-                    'relationships.relatives.label.frequency.daily'
-                  )}
-                  value="Daily"
-                  className="frequency-daily"
-                  onError={this.props.onError}
-                  onUpdate={this.updateFrequency}
-                />
-                <Radio
-                  name="frequency-weekly"
-                  label={i18n.m(
-                    'relationships.relatives.label.frequency.weekly'
-                  )}
-                  value="Weekly"
-                  className="frequency-weekly"
-                  onError={this.props.onError}
-                  onUpdate={this.updateFrequency}
-                />
-                <Radio
-                  name="frequency-monthly"
-                  label={i18n.m(
-                    'relationships.relatives.label.frequency.monthly'
-                  )}
-                  value="Monthly"
-                  className="frequency-monthly"
-                  onError={this.props.onError}
-                  onUpdate={this.updateFrequency}
-                />
-                <Radio
-                  name="frequency-quarterly"
-                  label={i18n.m(
-                    'relationships.relatives.label.frequency.quarterly'
-                  )}
-                  value="Quarterly"
-                  className="frequency-quarterly"
-                  onError={this.props.onError}
-                  onUpdate={this.updateFrequency}
-                />
-                <Radio
-                  name="frequency-annually"
-                  label={i18n.m(
-                    'relationships.relatives.label.frequency.annually'
-                  )}
-                  value="Annually"
-                  className="frequency-annually"
-                  onError={this.props.onError}
-                  onUpdate={this.updateFrequency}
-                />
-                <Radio
-                  name="frequency-other"
-                  label={i18n.m(
-                    'relationships.relatives.label.frequency.other'
-                  )}
-                  value="Other"
-                  className="frequency-other"
-                  onError={this.props.onError}
-                  onUpdate={this.updateFrequency}
-                />
+                {this.getFrequency().map(freq => (
+                  <Radio
+                    key={freq.name}
+                    name={freq.name}
+                    label={freq.label}
+                    value={freq.value}
+                    className={freq.className}
+                    onError={this.props.onError}
+                    onUpdate={this.updateFrequency}
+                  />
+                ))}
               </RadioGroup>
             </Field>
 
