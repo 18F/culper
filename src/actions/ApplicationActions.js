@@ -66,12 +66,20 @@ export function updateApplication(section, property, values) {
 export function validateApplication(dispatch, application = {}) {
   navigationWalker((path, child) => {
     if (path.length && path[0].store && child.store && child.validator) {
-      const sectionName = path[0].url
-      let data = (application[path[0].store] || {})[child.store] || {}
+      let sectionName = path[0].url
+      let data
+      // TODO HACK for moving Passports from Foreign to Citizenship
+      if (path[0].url === 'citizenship' && child.store === 'Passport') {
+        sectionName = 'Foreign'
+        data = application.Foreign.Passport
+      } else {
+        sectionName = path[0].url
+        data = (application[path[0].store] || {})[child.store] || {}
+      }
 
       let subsectionName = child.url
       if (path.length > 1) {
-        for (let i = path.length - 1; i > 0; i--) {
+        for (let i = path.length - 1; i > 0; i -= 1) {
           subsectionName = `${path[i].url}/${subsectionName}`
         }
       }
@@ -81,6 +89,7 @@ export function validateApplication(dispatch, application = {}) {
         if (data.type && data.props) {
           data = schema(data.type, unschema(data.props))
         }
+        console.log(sectionName, subsectionName, data)
         valid = validate(data)
       } catch (e) {
         valid = null
