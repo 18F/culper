@@ -272,6 +272,10 @@ func TestScenario2(t *testing.T) {
 // #20b Foreign Business, Professional
 // #20c Foreign Countries you have visited
 // #17 Marital/Relationship
+// In addition:
+// * a foreign contact where `I don't know` specified for
+//   birthplace, birthdate, employer, employer address,
+//   affiliations, address
 func TestScenario3(t *testing.T) {
 	executeScenario(t, "test3")
 }
@@ -296,6 +300,8 @@ func TestScenario5(t *testing.T) {
 // application plus:
 // * Other Foreign Benefit with Other Frequency Type and received at Other interval
 // * Divorced and not currently married
+// * Having an applicant that is a U.S. Citizen board abroad
+// * `I don't know` for Selective Service registration
 func TestScenario6(t *testing.T) {
 	executeScenario(t, "test6")
 }
@@ -305,7 +311,9 @@ func TestScenario7(t *testing.T) {
 	executeScenario(t, "test7")
 }
 
-// `test8` is for 21E, explicitly answering "No" to 21A, 21B, 21C, and 21D
+// `test8` is for:
+// * 21E, explicitly answering "No" to 21A, 21B, 21C, and 21D
+// * Having an applicant that is not a U.S. Citizen
 func TestScenario8(t *testing.T) {
 	executeScenario(t, "test8")
 }

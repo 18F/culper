@@ -908,15 +908,15 @@
               <Answer>No</Answer>
             </MilitaryHistory>
             <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <RegistrationRequired>
+                <Answer>Yes</Answer>
+              </RegistrationRequired>
               <Registered>
                 <Answer>Yes</Answer>
               </Registered>
               <Registration>
                 <Number>55533311234</Number>
               </Registration>
-              <RegistrationRequired>
-                <Answer>Yes</Answer>
-              </RegistrationRequired>
             </SelectiveServiceRegistration>
             <FinancialRecord Type="Pooled" Version="1">
               <Bankruptcy>
@@ -984,8 +984,8 @@
                   </APOFPO>
                   <Birth>
                     <Date DoNotKnow="True">
-          
-        </Date>
+  
+</Date>
                     <Place>
                       <City>Belfast</City>
                       <Country>United Kingdom</Country>

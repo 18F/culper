@@ -20,6 +20,7 @@ export const relationships = {
     status: 'Marital & relationship status',
     marital: 'Marital',
     cohabitants: 'Cohabitants',
+    cohabitant: 'Cohabitants',
     people: 'People who know you well',
     relatives: 'Relatives',
     review: 'Review',

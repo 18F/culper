@@ -25,6 +25,7 @@ describe('The progress bar component', () => {
         section: 'psychological',
         subsection: 'competence',
       },
+      authentication: { formType: 'SF86' },
     })
 
     const component = mount(
