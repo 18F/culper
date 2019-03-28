@@ -771,6 +771,10 @@ export const legal = {
           'The following pertain to your associations. You are required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.',
           'For the purpose of this question, terrorism is defined as any criminal acts that involve violence or are dangerous to human life and appear to be intended to intimidate or coerce a civilian population to influence the policy of a government by intimidation or coercion or to affect the conduct of a government by mass destruction, assassination or kidnapping.',
         ],
+        introWithoutSecurity: [
+          'The following pertain to your associations. You are required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment or credentialing decision.',
+          'For the purpose of this question, terrorism is defined as any criminal acts that involve violence or are dangerous to human life and appear to be intended to intimidate or coerce a civilian population to influence the policy of a government by intimidation or coercion or to affect the conduct of a government by mass destruction, assassination or kidnapping.',
+        ],
         or: 'or',
       },
       label: {

@@ -138,6 +138,7 @@ const connectLegalSection = (Component, {
         return {
           ...legal.TerroristOrganization,
           addressBooks,
+          formType: authentication.formType,
         }
 
       case 'EngagedInTerrorism':

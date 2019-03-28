@@ -17,8 +17,12 @@ const t = (key, opts) => {
   return removeMarkdown(string)
 }
 
+const markdownOptions = {
+  joinArrays: '\n\n',
+}
+
 const m = (key, opts) => {
-  const markdownString = i18next.t(key, opts)
+  const markdownString = i18next.t(key, { ...markdownOptions, ...opts })
   return renderMarkdown(markdownString)
 }
 
