@@ -30,22 +30,18 @@ export default class Relative extends ValidationElement {
       name: 'derived-alien',
       label: i18n.m('relationships.relatives.label.derived.alien'),
       value: 'DerivedAlien',
-      className: 'derived-alien',
     }, {
       name: 'derived-permanent',
       label: i18n.m('relationships.relatives.label.derived.permanent'),
       value: 'DerivedPermanent',
-      className: 'derived-permanent',
     }, {
       name: 'derived-certificate',
       label: i18n.m('relationships.relatives.label.derived.certificate'),
       value: 'DerivedCertificate',
-      className: 'derived-certificate',
     }, {
       name: 'derived-other',
       label: i18n.m('relationships.relatives.label.derived.other'),
       value: 'Other',
-      className: 'derived-other',
     },
   ])
 
@@ -54,37 +50,30 @@ export default class Relative extends ValidationElement {
       name: 'document-permanent',
       label: i18n.m('relationships.relatives.label.document.permanent'),
       value: 'Permanent',
-      className: 'document-permanent',
     }, {
       name: 'document-employment',
       label: i18n.m('relationships.relatives.label.document.employment'),
       value: 'Employment',
-      className: 'document-employment',
     }, {
       name: 'document-arrival',
       label: i18n.m('relationships.relatives.label.document.arrival'),
       value: 'Arrival',
-      className: 'document-arrival',
     }, {
       name: 'document-visa',
       label: i18n.m('relationships.relatives.label.document.visa'),
       value: 'Visa',
-      className: 'document-visa',
     }, {
       name: 'document-f1',
       label: i18n.m('relationships.relatives.label.document.f1'),
       value: 'F1',
-      className: 'document-f1',
     }, {
       name: 'document-j1',
       label: i18n.m('relationships.relatives.label.document.j1'),
       value: 'J1',
-      className: 'document-j1',
     }, {
       name: 'document-other',
       label: i18n.m('relationships.relatives.label.document.other'),
       value: 'Other',
-      className: 'document-other',
     },
   ])
 
@@ -93,17 +82,14 @@ export default class Relative extends ValidationElement {
       name: 'frequency-daily',
       label: i18n.m('relationships.relatives.label.frequency.daily'),
       value: 'Daily',
-      className: 'frequency-daily',
     }, {
       name: 'frequency-weekly',
       label: i18n.m('relationships.relatives.label.frequency.weekly'),
       value: 'Weekly',
-      className: 'frequency-weekly',
     }, {
       name: 'frequency-monthly',
       label: i18n.m('relationships.relatives.label.frequency.monthly'),
       value: 'Monthly',
-      className: 'frequency-monthly',
     }, {
       name: 'frequency-quarterly',
       label: i18n.m('relationships.relatives.label.frequency.quarterly'),
@@ -113,12 +99,10 @@ export default class Relative extends ValidationElement {
       name: 'frequency-annually',
       label: i18n.m('relationships.relatives.label.frequency.annually'),
       value: 'Annually',
-      className: 'frequency-annually',
     }, {
       name: 'frequency-other',
       label: i18n.m('relationships.relatives.label.frequency.other'),
       value: 'Other',
-      className: 'frequency-other',
     },
   ])
 
@@ -127,82 +111,66 @@ export default class Relative extends ValidationElement {
       name: 'relation-mother',
       label: i18n.m('relationships.relatives.label.relation.mother'),
       value: 'Mother',
-      className: 'relation-mother',
     }, {
       name: 'relation-father',
       label: i18n.m('relationships.relatives.label.relation.father'),
       value: 'Father',
-      className: 'relation-father',
     }, {
       name: 'relation-stepmother',
       label: i18n.m('relationships.relatives.label.relation.stepmother'),
       value: 'Stepmother',
-      className: 'relation-stepmother',
     }, {
       name: 'relation-stepfather',
       label: i18n.m('relationships.relatives.label.relation.stepfather'),
       value: 'Stepfather',
-      className: 'relation-stepfather',
     }, {
       name: 'relation-fosterparent',
       label: i18n.m('relationships.relatives.label.relation.fosterparent'),
       value: 'Fosterparent',
-      className: 'relation-fosterparent',
     }, {
       name: 'relation-child',
       label: i18n.m('relationships.relatives.label.relation.child'),
       value: 'Child',
-      className: 'relation-child',
     }, {
       name: 'relation-stepchild',
       label: i18n.m('relationships.relatives.label.relation.stepchild'),
       value: 'Stepchild',
-      className: 'relation-stepchild',
     }, {
       name: 'relation-brother',
       label: i18n.m('relationships.relatives.label.relation.brother'),
       value: 'Brother',
-      className: 'relation-brother',
     }, {
       name: 'relation-sister',
       label: i18n.m('relationships.relatives.label.relation.sister'),
       value: 'Sister',
-      className: 'relation-sister',
     }, {
       name: 'relation-stepbrother',
       label: i18n.m('relationships.relatives.label.relation.stepbrother'),
       value: 'Stepbrother',
-      className: 'relation-stepbrother',
     }, {
       name: 'relation-stepsister',
       label: i18n.m('relationships.relatives.label.relation.stepsister'),
       value: 'Stepsister',
-      className: 'relation-stepsister',
     }, {
       name: 'relation-halfbrother',
       label: i18n.m('relationships.relatives.label.relation.halfbrother'),
       value: 'Half-brother',
-      className: 'relation-halfbrother',
     }, {
       name: 'relation-halfsister',
       label: i18n.m('relationships.relatives.label.relation.halfsister'),
       value: 'Half-sister',
-      className: 'relation-halfsister',
     }, {
       name: 'relation-fatherinlaw',
       label: i18n.m('relationships.relatives.label.relation.fatherinlaw'),
       value: 'Father-in-law',
-      className: 'relation-fatherinlaw',
     }, {
       name: 'relation-motherinlaw',
       label: i18n.m('relationships.relatives.label.relation.motherinlaw'),
       value: 'Mother-in-law',
-      className: 'relation-motherinlaw',
     }, {
       name: 'relation-guardian',
       label: i18n.m('relationships.relatives.label.relation.guardian'),
       value: 'Guardian',
-      className: 'relation-guardian',
     },
   ])
 
@@ -355,7 +323,7 @@ export default class Relative extends ValidationElement {
                 name={relative.name}
                 label={relative.label}
                 value={relative.value}
-                className={relative.className}
+                className={relative.name}
                 onError={this.props.onError}
                 onUpdate={(value) => { this.updateField('Relation', value) }}
               />
@@ -633,7 +601,7 @@ export default class Relative extends ValidationElement {
                     name={document.name}
                     label={document.label}
                     value={document.value}
-                    className={document.className}
+                    className={document.name}
                     onError={this.props.onError}
                     onUpdate={(value) => { this.updateField('CitizenshipDocumentation', value) }}
                   />
@@ -745,7 +713,7 @@ export default class Relative extends ValidationElement {
                           name={document.name}
                           label={document.label}
                           value={document.value}
-                          className={document.className}
+                          className={document.name}
                           onError={this.props.onError}
                           onUpdate={(value) => { this.updateField('Document', value) }}
                         />
@@ -950,7 +918,7 @@ export default class Relative extends ValidationElement {
                     name={freq.name}
                     label={freq.label}
                     value={freq.value}
-                    className={freq.className}
+                    className={freq.name}
                     onError={this.props.onError}
                     onUpdate={this.updateFrequency}
                   />
