@@ -70,8 +70,8 @@ export function validateApplication(dispatch, application = {}) {
       let data
       // TODO HACK for moving Passports from Foreign to Citizenship
       if (path[0].url === 'citizenship' && child.store === 'Passport') {
-        sectionName = 'Foreign'
-        data = application.Foreign.Passport
+        sectionName = 'foreign'
+        data = application.Foreign
       } else {
         sectionName = path[0].url
         data = (application[path[0].store] || {})[child.store] || {}
@@ -89,7 +89,6 @@ export function validateApplication(dispatch, application = {}) {
         if (data.type && data.props) {
           data = schema(data.type, unschema(data.props))
         }
-        console.log(sectionName, subsectionName, data)
         valid = validate(data)
       } catch (e) {
         valid = null
