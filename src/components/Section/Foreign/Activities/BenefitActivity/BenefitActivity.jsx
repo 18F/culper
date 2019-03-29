@@ -66,7 +66,7 @@ export class BenefitActivity extends Subsection {
         case 'Future':
           b = o.FutureBenefit || {}
           benefit.Country = (b.Country || {}).value
-          benefit.Date = DateSummary(b.Begin)
+          benefit.Date = DateSummary(b.Began)
           break
         case 'Continuing':
           b = o.ContinuingBenefit || {}
