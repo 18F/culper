@@ -29,6 +29,7 @@ type serviceSet struct {
 func cleanTestServices() serviceSet {
 	env := &env.Native{}
 	os.Setenv(api.LogLevel, "info")
+	os.Setenv(api.DatabaseName, "eapp_test")
 	env.Configure()
 
 	log := &log.Service{Log: log.NewLogger()}

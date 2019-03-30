@@ -5,6 +5,7 @@ package api
 import (
 	"path/filepath"
 
+	"github.com/pkg/errors"
 	"github.com/truetandem/plucked/migration"
 )
 
@@ -17,14 +18,14 @@ type Migration struct {
 func (service Migration) Up(directory, environment, schema string) error {
 	conf, err := service.databaseConf(directory, environment, schema)
 	if err != nil {
-		return err
+		return errors.Wrap(err, "Couldn't determine db Conf")
 	}
 
 	target, err := migration.NumericComponent(service.Env.String(DbMigrationTarget))
 	if err != nil {
 		target, err = migration.GetMostRecentDBVersion(conf.MigrationsDir)
 		if err != nil {
-			return err
+			return errors.Wrap(err, "Couldn't Get most recent version")
 		}
 	}
 
