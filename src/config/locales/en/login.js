@@ -1,5 +1,5 @@
 export const login = {
-  title: 'Welcome to the Questionnaire for\nNational Security Positions',
+  title: 'Welcome to the Questionnaire for\nNational Background Investigation Services',
   error: {
     title: "Sorry, but we couldn't log you in!",
     generic: 'The username or password was incorrect.'
