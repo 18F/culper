@@ -8,7 +8,7 @@ import { env } from 'config'
 import FormStatus from '../FormStatus'
 import connectPackageSection from '../PackageConnector'
 
-class PackageReview extends React.Component {
+export class PackageReview extends React.Component {
   constructor(props) {
     super(props)
 
