@@ -5471,16 +5471,7 @@ exports[`The section component renders foreign.review 1`] = `
       className="top-btns"
     />
     <div>
-      <div
-        className="section-content foreign-contacts"
-        data-section="foreign"
-        data-subsection="contacts"
-      >
-        <h1
-          className="section-header"
-        >
-          Foreign contacts
-        </h1>
+      <span>
         <div
           className="section-content foreign-contacts"
           data-section="foreign"

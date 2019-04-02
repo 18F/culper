@@ -6873,16 +6873,7 @@ exports[`The print section renders properly 1`] = `
         Foreign associations
       </h3>
       <div>
-        <div
-          className="section-content foreign-contacts"
-          data-section="foreign"
-          data-subsection="contacts"
-        >
-          <h1
-            className="section-header"
-          >
-            Foreign contacts
-          </h1>
+        <span>
           <div
             className="section-content foreign-contacts"
             data-section="foreign"
