@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/pkg/errors"
 
@@ -50,6 +51,8 @@ func cleanTestServices() serviceSet {
 
 // randomEmail an example.com email address with 10 random characters
 func randomEmail() string {
+
+	rand.Seed(time.Now().UTC().UnixNano())
 
 	len := 10
 	bytes := make([]byte, len)
