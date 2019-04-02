@@ -117,6 +117,7 @@ export default class PhysicalAddress extends ValidationElement {
               {...this.props.Telephone}
               className="physical-address-telephone"
               onUpdate={this.updateTelephone}
+              allowNotApplicable={false}
               onError={this.props.onError}
               required={this.props.required}
             />
