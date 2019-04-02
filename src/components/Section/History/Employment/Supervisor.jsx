@@ -174,6 +174,7 @@ export default class Supervisor extends ValidationElement {
             {...this.props.Telephone}
             className="supervisor-telephone"
             onUpdate={this.updateTelephone}
+            allowNotApplicable={false}
             onError={this.props.onError}
             required={this.props.required}
           />
