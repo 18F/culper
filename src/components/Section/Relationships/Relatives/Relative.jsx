@@ -967,6 +967,7 @@ export default class Relative extends ValidationElement {
                 <Location
                   name="EmployerAddress"
                   {...this.props.EmployerAddress}
+                  isEnabled={this.props.EmployerAddressNotApplicable.applicable}
                   layout={Location.ADDRESS}
                   geocode
                   className="relative-employer-address"
@@ -999,23 +1000,23 @@ export default class Relative extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.props.onError}
               />
-              <Show when={this.props.HasAffiliation.value === 'Yes'}>
-                <Field
-                  title={i18n.t('relationships.relatives.heading.employer.relationship')}
-                  scrollIntoView={this.props.scrollIntoView}
-                >
-                  <Textarea
-                    name="EmployerRelationship"
-                    className="relative-employer-relationship"
-                    {...this.props.EmployerRelationship}
-                    disabled={!this.props.EmployerRelationshipNotApplicable.applicable}
-                    onError={this.props.onError}
-                    onUpdate={(value) => { this.updateField('EmployerRelationship', value) }}
-                    required={this.props.required}
-                  />
-                </Field>
-              </Show>
             </NotApplicable>
+            <Show when={this.props.HasAffiliation.value === 'Yes'}>
+              <Field
+                title={i18n.t('relationships.relatives.heading.employer.relationship')}
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Textarea
+                  name="EmployerRelationship"
+                  className="relative-employer-relationship"
+                  {...this.props.EmployerRelationship}
+                  disabled={!this.props.EmployerRelationshipNotApplicable.applicable}
+                  onError={this.props.onError}
+                  onUpdate={(value) => { this.updateField('EmployerRelationship', value) }}
+                  required={this.props.required}
+                />
+              </Field>
+            </Show>
           </div>
         </Show>
       </div>

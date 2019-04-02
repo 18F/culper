@@ -160,6 +160,10 @@ export default class Address extends ValidationElement {
   }
 
   addressType() {
+    if (!this.props.isEnabled) {
+      return ''
+    }
+
     let country = this.props.country
     if (typeof country === 'object') {
       country = countryString(this.props.country)
