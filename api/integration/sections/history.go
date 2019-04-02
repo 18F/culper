@@ -1,5 +1,6 @@
 package sections
 
+// HistResidenceSingle contains a single residence
 const HistResidenceSingle = `
 {
 	"type": "history.residence",
@@ -180,6 +181,7 @@ const HistResidenceSingle = `
 }
 `
 
+// HistResidenceUnfinishedList contains an unfinished list
 const HistResidenceUnfinishedList = `
 {
 	"type": "history.residence",
@@ -360,6 +362,7 @@ const HistResidenceUnfinishedList = `
 }
 `
 
+// HistEmployment contains an employment
 const HistEmployment = `
 {
 	"type": "history.employment",

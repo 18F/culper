@@ -1010,6 +1010,7 @@ func (entity *IdentificationOtherNames) Find(context DatabaseService) error {
 	return nil
 }
 
+// ClearIdentificationOtherNamesNos clears nos from identifcation.other_names
 func ClearIdentificationOtherNamesNos(context DatabaseService, accountID int) error {
 	otherNames := IdentificationOtherNames{}
 	_, err := otherNames.Get(context, accountID)

@@ -144,6 +144,7 @@ func (entity *HistoryResidence) Find(context DatabaseService) error {
 	return nil
 }
 
+// ClearHistoryResidenceNos clears the necessary Nos from the histroy.residence section for kickback
 func ClearHistoryResidenceNos(context DatabaseService, accountID int) error {
 	residence := HistoryResidence{}
 	_, err := residence.Get(context, accountID)
@@ -345,6 +346,7 @@ func (entity *HistoryEmployment) Find(context DatabaseService) error {
 	return nil
 }
 
+// ClearHistoryEmploymentNos clears Nos from history.employment
 func ClearHistoryEmploymentNos(context DatabaseService, accountID int) error {
 	employment := HistoryEmployment{}
 	_, err := employment.Get(context, accountID)

@@ -1,5 +1,6 @@
 package sections
 
+// IDOtherNamesNo has no other names
 const IDOtherNamesNo = `
 {
   "type": "identification.othernames",
@@ -26,6 +27,7 @@ const IDOtherNamesNo = `
 }
 `
 
+// IDOtherNamesYes has other names
 const IDOtherNamesYes = `
 {
   "type": "identification.othernames",
@@ -159,6 +161,7 @@ const IDOtherNamesYes = `
 }
   `
 
+// IDOtherNamesUnfinishedList has an unfinished list
 const IDOtherNamesUnfinishedList = `
 {
   "type": "identification.othernames",

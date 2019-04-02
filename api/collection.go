@@ -391,6 +391,7 @@ func (ci CollectionItem) Each(action func(string, string, Entity, error) error) 
 	return err
 }
 
+// GetItemValue returns the entity stored at the key in the collection item
 func (ci CollectionItem) GetItemValue(key string) (Entity, error) {
 
 	item, ok := ci.Item[key]
@@ -406,6 +407,7 @@ func (ci CollectionItem) GetItemValue(key string) (Entity, error) {
 	return entity, nil
 }
 
+// SetItemValue sets a value for a key in the CollectionItem
 func (ci *CollectionItem) SetItemValue(key string, value Entity) error {
 
 	payload := value.Marshal()

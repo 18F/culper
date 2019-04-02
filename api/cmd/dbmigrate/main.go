@@ -55,12 +55,12 @@ func resetDB(dbName string, force bool) error {
 			text := scanner.Text()
 
 			if scanner.Err() != nil {
-				return errors.New("Error getting user confirmation.")
+				return errors.New("error getting user confirmation")
 			}
 
 			fmt.Println(text)
 			if !(text == "y" || text == "Y" || text == "YES" || text == "yes") {
-				return errors.New("User disconfirmed reset.")
+				return errors.New("user disconfirmed reset")
 			}
 
 		}
