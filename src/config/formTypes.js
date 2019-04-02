@@ -47,13 +47,6 @@ export const SF85 = [
     ],
   },
   {
-    ...formSections.FOREIGN,
-    subsections: [
-      formSections.FOREIGN_INTRO,
-      formSections.FOREIGN_REVIEW,
-    ],
-  },
-  {
     ...formSections.FINANCIAL,
     subsections: [
       formSections.FINANCIAL_INTRO,
