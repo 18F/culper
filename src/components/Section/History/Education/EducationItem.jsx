@@ -370,6 +370,7 @@ export default class EducationItem extends ValidationElement {
                     className="reference-phone"
                     {...this.props.ReferencePhone}
                     onUpdate={this.updateReferencePhone}
+                    allowNotApplicable={false}
                     onError={this.props.onError}
                     required={this.props.required}
                   />
