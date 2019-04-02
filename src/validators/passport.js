@@ -4,6 +4,9 @@ import { extractDate } from '../components/Section/History/dateranges'
 
 const reBook = '^[a-zA-Z0-9]{9}$'
 
+/**
+ * This is for U.S. Passports
+ */
 export default class PassportValidator {
   constructor(data = {}) {
     this.name = data.Name
@@ -76,17 +79,17 @@ export default class PassportValidator {
     const range = {
       from: this.issued,
       to: this.expiration,
-      present: false
+      present: false,
     }
     return new DateRangeValidator(range).isValid()
   }
 
   isValid() {
     return (
-      this.validHasPassports() &&
-      this.validName() &&
-      this.validPassportNumber() &&
-      this.validDates()
+      this.validHasPassports()
+      && this.validName()
+      && this.validPassportNumber()
+      && this.validDates()
     )
   }
 }

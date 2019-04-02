@@ -11,32 +11,38 @@ const navigation = {
     {
       exclude: true,
       name: 'Introduction',
-      url: 'intro'
+      url: 'intro',
+    },
+    {
+      name: 'U.S. passport information',
+      url: 'passport',
+      store: 'Passport',
+      validator: validators.PassportValidator,
     },
     {
       name: 'Citizenship status',
       url: 'status',
       store: 'Status',
-      validator: validators.CitizenshipValidator
+      validator: validators.CitizenshipValidator,
     },
     {
       name: 'Dual/multiple citizenship',
       url: 'multiple',
       store: 'Multiple',
-      validator: validators.CitizenshipMultipleValidator
+      validator: validators.CitizenshipMultipleValidator,
     },
     {
       name: 'Foreign passports',
       url: 'passports',
       store: 'Passports',
-      validator: validators.CitizenshipPassportsValidator
+      validator: validators.CitizenshipPassportsValidator,
     },
     {
       exclude: true,
       name: 'Review',
-      url: 'review'
-    }
-  ]
+      url: 'review',
+    },
+  ],
 }
 
 export default navigation

@@ -6,10 +6,10 @@ import {
   sectionsTotal,
   sectionsCompleted,
   findPosition,
-  didRouteChange
+  didRouteChange,
 } from './navigation-helpers'
 
-describe('Navigation component validation', function() {
+describe('Navigation component validation', () => {
   it('can count number of validations', () => {
     const section = {
       subsections: [
@@ -17,7 +17,7 @@ describe('Navigation component validation', function() {
         { url: 'two' },
         {
           url: 'three',
-          subsections: [{ url: 'four' }, { url: 'five' }]
+          subsections: [{ url: 'four' }, { url: 'five' }],
         },
         {
           url: 'six',
@@ -25,13 +25,11 @@ describe('Navigation component validation', function() {
             { url: 'seven' },
             {
               url: 'eight',
-              hiddenFunc: () => {
-                return true
-              }
-            }
-          ]
-        }
-      ]
+              hiddenFunc: () => true,
+            },
+          ],
+        },
+      ],
     }
 
     expect(validations(section, {})).toBe(4)
@@ -41,9 +39,9 @@ describe('Navigation component validation', function() {
     expect(
       isActive('/form/identification', '/form/foreign/activities/direct')
     ).toBe(false)
-    expect(isActive('/form/foreign', '/form/foreign/activities/direct')).toBe(
-      true
-    )
+    expect(
+      isActive('/form/foreign', '/form/foreign/activities/direct')
+    ).toBe(true)
     expect(
       isActive('/form/foreign/activities', '/form/foreign/activities/direct')
     ).toBe(true)
@@ -51,10 +49,7 @@ describe('Navigation component validation', function() {
       isActive('/form/foreign/activities', '/my/form/foreign/activities/direct')
     ).toBe(false)
     expect(
-      isActive(
-        '/form/foreign/activities/direct',
-        '/form/foreign/activities/direct'
-      )
+      isActive('/form/foreign/activities/direct', '/form/foreign/activities/direct')
     ).toBe(true)
   })
 
@@ -65,22 +60,22 @@ describe('Navigation component validation', function() {
           section: 'foreign',
           subsection: 'activities/direct',
           valid: false,
-          code: 'date.month.notfound'
+          code: 'date.month.notfound',
         },
         {
           section: 'foreign',
           subsection: 'activities/direct',
           valid: true,
-          code: 'acquired.length'
+          code: 'acquired.length',
         },
         {
           section: 'foreign',
           subsection: 'activities/indirect',
           valid: false,
-          code: 'date.month.notfound'
-        }
+          code: 'date.month.notfound',
+        },
       ],
-      identification: []
+      identification: [],
     }
 
     expect(hasErrors('/form/foreign', errors)).toBe(true)
@@ -94,19 +89,16 @@ describe('Navigation component validation', function() {
         foreign: [
           { section: 'foreign', subsection: 'activities/direct', valid: false },
           { section: 'foreign', subsection: 'activities/direct', valid: true },
-          {
-            section: 'foreign',
-            subsection: 'activities/indirect',
-            valid: false
-          }
+          { section: 'foreign', subsection: 'activities/indirect', valid: false },
         ],
         identification: [],
         citizenship: [
+          { section: 'citizenship', subsection: 'usPassport', valid: true },
           { section: 'citizenship', subsection: 'status', valid: true },
           { section: 'citizenship', subsection: 'multiple', valid: true },
-          { section: 'citizenship', subsection: 'passports', valid: true }
-        ]
-      }
+          { section: 'citizenship', subsection: 'passports', valid: true },
+        ],
+      },
     }
 
     expect(isValid('/form/foreign', props)).toBe(false)
@@ -126,19 +118,16 @@ describe('Navigation component validation', function() {
         foreign: [
           { section: 'foreign', subsection: 'activities/direct', valid: false },
           { section: 'foreign', subsection: 'activities/direct', valid: true },
-          {
-            section: 'foreign',
-            subsection: 'activities/indirect',
-            valid: false
-          }
+          { section: 'foreign', subsection: 'activities/indirect', valid: false },
         ],
         identification: [],
         citizenship: [
+          { section: 'citizenship', subsection: 'usPassport', valid: true },
           { section: 'citizenship', subsection: 'status', valid: true },
           { section: 'citizenship', subsection: 'multiple', valid: true },
-          { section: 'citizenship', subsection: 'passports', valid: true }
-        ]
-      }
+          { section: 'citizenship', subsection: 'passports', valid: true },
+        ],
+      },
     }
 
     expect(sectionsCompleted(store.completed, { application: store })).toBe(1)
@@ -146,12 +135,12 @@ describe('Navigation component validation', function() {
 })
 
 describe('UI helpers', () => {
-  it('should find the position', function() {
+  it('should find the position', () => {
     const el = {
       offsetTop: 10,
       offsetParent: {
-        offsetTop: 2
-      }
+        offsetTop: 2,
+      },
     }
     const top = findPosition(el)
     expect(top).toEqual([12])
@@ -159,26 +148,26 @@ describe('UI helpers', () => {
 })
 
 describe('didRouteChange()', () => {
-  it('considers locations with the same pathname the same', function() {
+  it('considers locations with the same pathname the same', () => {
     const loc = {
       pathname: '/foo',
-      otherprop: 'bar'
+      otherprop: 'bar',
     }
     const prevLoc = {
       pathname: '/foo',
-      otherprop: 'baz'
+      otherprop: 'baz',
     }
     expect(didRouteChange(loc, prevLoc)).toEqual(false)
   })
 
-  it('considers locations with different pathnames to be different', function() {
+  it('considers locations with different pathnames to be different', () => {
     const loc = {
       pathname: '/foo',
-      otherprop: 'bar'
+      otherprop: 'bar',
     }
     const prevLoc = {
       pathname: '/baz',
-      otherprop: 'bar'
+      otherprop: 'bar',
     }
     expect(didRouteChange(loc, prevLoc)).toEqual(true)
   })
