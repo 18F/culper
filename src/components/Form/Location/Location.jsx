@@ -626,6 +626,7 @@ export default class Location extends ValidationElement {
         return (
           <Address
             {...this.props}
+            isEnabled={this.props.isEnabled}
             disableToggle={this.props.layout === Location.US_ADDRESS}
             onBlur={this.handleBlur}
             onUpdate={this.updateAddress}
