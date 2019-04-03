@@ -2,20 +2,19 @@ import { api } from 'services/api'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import { SF86 } from 'constants/formTypes'
 import {
   login,
   logout,
   handleLoginSuccess,
-  handleLoginError
+  handleLoginError,
 } from './AuthActions'
 import AuthConstants from './AuthConstants'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-describe('Auth actions', function() {
-  it('should create an action to login using username and password', function() {
+describe('Auth actions', () => {
+  it('should create an action to login using username and password', () => {
     // Mock POST response
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/auth/basic').reply(200, 'faketoken')
@@ -24,29 +23,26 @@ describe('Auth actions', function() {
       {
         type: AuthConstants.LOGIN_SUCCESS,
         token: 'faketoken',
-        formType: SF86
-      }
+      },
     ]
 
     const store = mockStore({ authentication: [] })
 
-    return store.dispatch(login('john', 'admin')).then(function() {
+    return store.dispatch(login('john', 'admin')).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
     })
   })
 
-  it('should create an action to handle a successful login', function() {
+  it('should create an action to handle a successful login', () => {
     const token = 'faketoken'
-    const formType = SF86
     const expectedAction = {
       type: AuthConstants.LOGIN_SUCCESS,
       token,
-      formType
     }
     expect(handleLoginSuccess(token)).toEqual(expectedAction)
   })
 
-  it('should create an action to handle logout', function() {
+  it('should create an action to handle logout', () => {
     const mock = new MockAdapter(api.proxy)
     mock.onGet('/me/logout').reply(200)
 
@@ -57,24 +53,24 @@ describe('Auth actions', function() {
     })
   })
 
-  it('should create an action an unsuccessful login action', function() {
+  it('should create an action an unsuccessful login action', () => {
     const error = 'Invalid account'
     const expectedAction = {
       type: AuthConstants.LOGIN_ERROR,
-      error: 'Invalid account'
+      error: 'Invalid account',
     }
     expect(handleLoginError(error)).toEqual(expectedAction)
   })
 
-  it('should create an action to handle unsuccessful login when login credentials fail', function() {
+  it('should create an action to handle unsuccessful login when login credentials fail', () => {
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/auth/basic').reply(500, 'Invalid account')
     const store = mockStore({ authentication: {} })
     const expectedAction = [
       {
         error: 'Invalid account',
-        type: AuthConstants.LOGIN_ERROR
-      }
+        type: AuthConstants.LOGIN_ERROR,
+      },
     ]
     return store.dispatch(login('john', 'doe')).then(() => {
       expect(store.getActions()).toEqual(expectedAction)

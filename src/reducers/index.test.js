@@ -1,8 +1,7 @@
-import { SF86 } from 'constants/formTypes'
 import rootReducer from './index'
 import AuthConstants from '../actions/AuthConstants'
 
-describe('Root Reducer', function() {
+describe('Root Reducer', () => {
   const defaultState = {
     application: {
       AddressBooks: {},
@@ -20,38 +19,39 @@ describe('Root Reducer', function() {
       Settings: {},
       Submission: {},
       Substance: {},
-      TBD: {}
+      TBD: {},
     },
     authentication: {
       authenticated: false,
-      formType: SF86,
-      token: null
+      formType: '',
+      formVersion: '',
+      token: null,
     },
     section: {
       section: 'identification',
-      subsection: ''
-    }
+      subsection: '',
+    },
   }
 
-  it('should populate the state', function() {
+  it('should populate the state', () => {
     const startState = {}
     const action = { type: 'unknown' }
     expect(rootReducer(startState, action)).toEqual(defaultState)
   })
 
-  it('should handle logout', function() {
+  it('should handle logout', () => {
     const startState = {
       application: {
-        AddressBooks: { foo: 'bar' }
+        AddressBooks: { foo: 'bar' },
       },
       authentication: {
         authenticated: true,
-        token: 'dummytoken'
+        token: 'dummytoken',
       },
       section: {
         section: 'identification',
-        subsection: ''
-      }
+        subsection: '',
+      },
     }
 
     const action = { type: AuthConstants.LOGOUT }

@@ -1,14 +1,14 @@
-import { SF86 } from 'constants/formTypes'
 import AuthConstants from '../actions/AuthConstants'
 
 const defaultState = {
   authenticated: false,
   token: null,
-  formType: SF86
+  formType: '',
+  formVersion: '',
 }
 
 // Defines the authentication sub-state for the application.
-const authentication = function(state = defaultState, action) {
+const authentication = (state = defaultState, action) => {
   switch (action.type) {
     case AuthConstants.LOGIN_SUCCESS:
       // Logs the user in
@@ -16,8 +16,7 @@ const authentication = function(state = defaultState, action) {
         ...state,
         authenticated: true,
         token: action.token,
-        formType: action.formType || SF86,
-        error: ''
+        error: '',
       }
 
     case AuthConstants.LOGIN_ERROR:
@@ -25,9 +24,14 @@ const authentication = function(state = defaultState, action) {
         ...state,
         authenticated: false,
         token: null,
-        error: action.error
+        error: action.error,
       }
-
+    case AuthConstants.UPDATE_FORM_TYPE:
+      return {
+        ...state,
+        formType: action.formType,
+        formVersion: action.formVersion,
+      }
     default:
       return state
   }
