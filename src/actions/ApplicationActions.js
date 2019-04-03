@@ -35,12 +35,8 @@ export function getApplicationState(done) {
         }
         return api.form().then((r) => {
           formData = r.data
-          dispatch(
-            handleUpdateFormType(
-              formData.Metadata.form_type,
-              formData.Metadata.form_version
-            )
-          )
+          dispatch(updateApplication('Settings', 'formType', formData.Metadata.form_type))
+          dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
           for (const section in formData) {
             for (const subsection in formData[section]) {
               dispatch(
@@ -163,12 +159,4 @@ export function updateIdentificationBirthDate(values) {
 
 export function updateIdentificationSSN(values) {
   return updateApplication('Identification', 'ApplicantSSN', values)
-}
-
-export function handleUpdateFormType(formType, formVersion) {
-  return {
-    type: AuthConstants.UPDATE_FORM_TYPE,
-    formType,
-    formVersion,
-  }
 }

@@ -3,8 +3,6 @@ import AuthConstants from '../actions/AuthConstants'
 const defaultState = {
   authenticated: false,
   token: null,
-  formType: '',
-  formVersion: '',
 }
 
 // Defines the authentication sub-state for the application.
@@ -25,12 +23,6 @@ const authentication = (state = defaultState, action) => {
         authenticated: false,
         token: null,
         error: action.error,
-      }
-    case AuthConstants.UPDATE_FORM_TYPE:
-      return {
-        ...state,
-        formType: action.formType,
-        formVersion: action.formVersion,
       }
     default:
       return state

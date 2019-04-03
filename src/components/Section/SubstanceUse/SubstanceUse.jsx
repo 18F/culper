@@ -69,10 +69,10 @@ const SubstanceUse = ({ subsection, location, formType }) => {
 
 function mapStateToProps(state) {
   const { section } = state
-  const auth = state.authentication || {}
+  const settings = state.application.Settings || {}
 
   return {
-    formType: auth.formType,
+    formType: settings.formType,
     ...section,
   }
 }

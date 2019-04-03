@@ -41,7 +41,7 @@ export default combineReducers({
   Submission: reducer('Submission'),
   Completed: errorReducer('Completed'),
   Errors: errorReducer('Errors'),
-  AddressBooks: reducer('AddressBooks')
+  AddressBooks: reducer('AddressBooks'),
 })
 
 // Or alternative...

@@ -83,10 +83,11 @@ const Foreign = ({ subsection, location, formType }) => {
 }
 
 function mapStateToProps(state) {
-  const { authentication, section } = state
+  const { application, section } = state
+  const settings = application.Settings
 
   return {
-    formType: authentication.formType,
+    formType: settings.formType,
     ...section,
   }
 }

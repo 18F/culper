@@ -1,2 +1,2 @@
-export const formTypeSelector = state => state.authentication.formType
+export const formTypeSelector = state => state.application.Settings.formType
 export default 'formTypeSelector'
