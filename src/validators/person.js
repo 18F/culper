@@ -31,9 +31,12 @@ const validateRelationship = (relationship, relationshipOther) => {
   return true
 }
 
-const validatePhones = (mobileTelephone, otherTelephone) => (
-  validPhoneNumber(mobileTelephone) && validPhoneNumber(otherTelephone)
-)
+const validatePhones = (mobileTelephone, otherTelephone) => {
+  // At least one phone number is required
+  if (mobileTelephone.noNumber && otherTelephone.noNumber) return false
+
+  return validPhoneNumber(mobileTelephone) && validPhoneNumber(otherTelephone)
+}
 
 const validateEmail = (emailNotApplicable, email) => (
   validNotApplicable(emailNotApplicable, () => validGenericTextfield(email))
@@ -57,8 +60,6 @@ export const validatePerson = (data = {}) => {
     && validatePhones(MobileTelephone, OtherTelephone)
     && validateEmail(EmailNotApplicable, Email)
     && validateAddress(Address)
-
-  console.log('validate person', isValid, data)
 
   return isValid
 }
