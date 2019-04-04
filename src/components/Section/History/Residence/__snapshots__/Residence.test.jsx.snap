@@ -1,0 +1,398 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Residence component renders without errors 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="section-content residence"
+    data-section="history"
+    data-subsection="residence"
+  >
+    <Accordion
+      appendClass=""
+      appendHelp={null}
+      appendLabel="Add another residence"
+      appendMessage={null}
+      appendTitle="Do you have an additional residence to report?"
+      branch={Object {}}
+      byline={[Function]}
+      caption={null}
+      className=""
+      closeLabel="Close"
+      customDetails={[Function]}
+      customSummary={[Function]}
+      defaultState={true}
+      description="Summary of places you have lived"
+      incomplete="There is a problem with this item, please open it and fix the issue(s)."
+      initial={true}
+      inject={[Function]}
+      items={Array []}
+      minimum={1}
+      onError={[Function]}
+      onUpdate={[Function]}
+      openLabel="Open"
+      realtime={false}
+      removeLabel="Remove"
+      required={false}
+      scrollToBottom=""
+      scrollToTop=""
+      skipWarning={false}
+      sort={null}
+      summary={[Function]}
+      timeout={500}
+      transformer={[Function]}
+      validator={[Function]}
+    >
+      <ResidenceItem
+        Address={Object {}}
+        Comments={Object {}}
+        Dates={Object {}}
+        ReferenceAddress={Object {}}
+        ReferenceEmail={Object {}}
+        ReferenceEmailNotApplicable={Object {}}
+        ReferenceLastContact={Object {}}
+        ReferenceName={Object {}}
+        ReferencePhoneDay={Object {}}
+        ReferencePhoneEvening={Object {}}
+        ReferencePhoneMobile={Object {}}
+        ReferenceRelationship={Object {}}
+        ReferenceRelationshipComments={Object {}}
+        ReferenceRelationshipOther={Object {}}
+        Role={Object {}}
+        RoleOther={Object {}}
+        addressBooks={Object {}}
+        bind={true}
+        dispatch={[Function]}
+        name="Item"
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+      />
+    </Accordion>
+  </div>,
+  "nodes": Array [
+    <div
+      className="section-content residence"
+      data-section="history"
+      data-subsection="residence"
+    >
+      <Accordion
+        appendClass=""
+        appendHelp={null}
+        appendLabel="Add another residence"
+        appendMessage={null}
+        appendTitle="Do you have an additional residence to report?"
+        branch={Object {}}
+        byline={[Function]}
+        caption={null}
+        className=""
+        closeLabel="Close"
+        customDetails={[Function]}
+        customSummary={[Function]}
+        defaultState={true}
+        description="Summary of places you have lived"
+        incomplete="There is a problem with this item, please open it and fix the issue(s)."
+        initial={true}
+        inject={[Function]}
+        items={Array []}
+        minimum={1}
+        onError={[Function]}
+        onUpdate={[Function]}
+        openLabel="Open"
+        realtime={false}
+        removeLabel="Remove"
+        required={false}
+        scrollToBottom=""
+        scrollToTop=""
+        skipWarning={false}
+        sort={null}
+        summary={[Function]}
+        timeout={500}
+        transformer={[Function]}
+        validator={[Function]}
+      >
+        <ResidenceItem
+          Address={Object {}}
+          Comments={Object {}}
+          Dates={Object {}}
+          ReferenceAddress={Object {}}
+          ReferenceEmail={Object {}}
+          ReferenceEmailNotApplicable={Object {}}
+          ReferenceLastContact={Object {}}
+          ReferenceName={Object {}}
+          ReferencePhoneDay={Object {}}
+          ReferencePhoneEvening={Object {}}
+          ReferencePhoneMobile={Object {}}
+          ReferenceRelationship={Object {}}
+          ReferenceRelationshipComments={Object {}}
+          ReferenceRelationshipOther={Object {}}
+          Role={Object {}}
+          RoleOther={Object {}}
+          addressBooks={Object {}}
+          bind={true}
+          dispatch={[Function]}
+          name="Item"
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+        />
+      </Accordion>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <Residence
+        List={
+          Object {
+            "branch": Object {},
+            "items": Array [],
+          }
+        }
+        addressBooks={Object {}}
+        caption={null}
+        defaultState={true}
+        dispatch={[Function]}
+        onError={[Function]}
+        onUpdate={[Function]}
+        overrideInitial={false}
+        realtime={false}
+        required={false}
+        scrollToTop=""
+        sort={null}
+        totalYears={10}
+        validator={[Function]}
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": Residence {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "customResidenceByline": [Function],
+        "customResidenceDetails": [Function],
+        "fillGap": [Function],
+        "handleCompletion": [Function],
+        "handleError": [Function],
+        "handleUpdate": [Function],
+        "inject": [Function],
+        "props": Object {
+          "List": Object {
+            "branch": Object {},
+            "items": Array [],
+          },
+          "addressBooks": Object {},
+          "caption": null,
+          "defaultState": true,
+          "dispatch": [Function],
+          "onError": [Function],
+          "onUpdate": [Function],
+          "overrideInitial": false,
+          "realtime": false,
+          "required": false,
+          "scrollToTop": "",
+          "sort": null,
+          "totalYears": 10,
+          "validator": [Function],
+        },
+        "refs": Object {},
+        "section": "history",
+        "state": null,
+        "store": "History",
+        "storeKey": "Residence",
+        "subsection": "residence",
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="section-content residence"
+          data-section="history"
+          data-subsection="residence"
+        >
+          <Accordion
+            appendClass=""
+            appendHelp={null}
+            appendLabel="Add another residence"
+            appendMessage={null}
+            appendTitle="Do you have an additional residence to report?"
+            branch={Object {}}
+            byline={[Function]}
+            caption={null}
+            className=""
+            closeLabel="Close"
+            customDetails={[Function]}
+            customSummary={[Function]}
+            defaultState={true}
+            description="Summary of places you have lived"
+            incomplete="There is a problem with this item, please open it and fix the issue(s)."
+            initial={true}
+            inject={[Function]}
+            items={Array []}
+            minimum={1}
+            onError={[Function]}
+            onUpdate={[Function]}
+            openLabel="Open"
+            realtime={false}
+            removeLabel="Remove"
+            required={false}
+            scrollToBottom=""
+            scrollToTop=""
+            skipWarning={false}
+            sort={null}
+            summary={[Function]}
+            timeout={500}
+            transformer={[Function]}
+            validator={[Function]}
+          >
+            <ResidenceItem
+              Address={Object {}}
+              Comments={Object {}}
+              Dates={Object {}}
+              ReferenceAddress={Object {}}
+              ReferenceEmail={Object {}}
+              ReferenceEmailNotApplicable={Object {}}
+              ReferenceLastContact={Object {}}
+              ReferenceName={Object {}}
+              ReferencePhoneDay={Object {}}
+              ReferencePhoneEvening={Object {}}
+              ReferencePhoneMobile={Object {}}
+              ReferenceRelationship={Object {}}
+              ReferenceRelationshipComments={Object {}}
+              ReferenceRelationshipOther={Object {}}
+              Role={Object {}}
+              RoleOther={Object {}}
+              addressBooks={Object {}}
+              bind={true}
+              dispatch={[Function]}
+              name="Item"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+            />
+          </Accordion>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="section-content residence"
+          data-section="history"
+          data-subsection="residence"
+        >
+          <Accordion
+            appendClass=""
+            appendHelp={null}
+            appendLabel="Add another residence"
+            appendMessage={null}
+            appendTitle="Do you have an additional residence to report?"
+            branch={Object {}}
+            byline={[Function]}
+            caption={null}
+            className=""
+            closeLabel="Close"
+            customDetails={[Function]}
+            customSummary={[Function]}
+            defaultState={true}
+            description="Summary of places you have lived"
+            incomplete="There is a problem with this item, please open it and fix the issue(s)."
+            initial={true}
+            inject={[Function]}
+            items={Array []}
+            minimum={1}
+            onError={[Function]}
+            onUpdate={[Function]}
+            openLabel="Open"
+            realtime={false}
+            removeLabel="Remove"
+            required={false}
+            scrollToBottom=""
+            scrollToTop=""
+            skipWarning={false}
+            sort={null}
+            summary={[Function]}
+            timeout={500}
+            transformer={[Function]}
+            validator={[Function]}
+          >
+            <ResidenceItem
+              Address={Object {}}
+              Comments={Object {}}
+              Dates={Object {}}
+              ReferenceAddress={Object {}}
+              ReferenceEmail={Object {}}
+              ReferenceEmailNotApplicable={Object {}}
+              ReferenceLastContact={Object {}}
+              ReferenceName={Object {}}
+              ReferencePhoneDay={Object {}}
+              ReferencePhoneEvening={Object {}}
+              ReferencePhoneMobile={Object {}}
+              ReferenceRelationship={Object {}}
+              ReferenceRelationshipComments={Object {}}
+              ReferenceRelationshipOther={Object {}}
+              Role={Object {}}
+              RoleOther={Object {}}
+              addressBooks={Object {}}
+              bind={true}
+              dispatch={[Function]}
+              name="Item"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+            />
+          </Accordion>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Residence
+    List={
+      Object {
+        "branch": Object {},
+        "items": Array [],
+      }
+    }
+    addressBooks={Object {}}
+    caption={null}
+    defaultState={true}
+    dispatch={[Function]}
+    onError={[Function]}
+    onUpdate={[Function]}
+    overrideInitial={false}
+    realtime={false}
+    required={false}
+    scrollToTop=""
+    sort={null}
+    totalYears={10}
+    validator={[Function]}
+  />,
+}
+`;

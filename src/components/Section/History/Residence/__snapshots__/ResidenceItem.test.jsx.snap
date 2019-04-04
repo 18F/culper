@@ -1,0 +1,3332 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ResidenceItem component renders without errors 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="residence"
+  >
+    <Field
+      adjustFor="address"
+      className=""
+      comments={false}
+      commentsActive={false}
+      commentsAdd="history.residence.label.comments"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help="history.residence.help.address"
+      helpActive={false}
+      onError={[Function]}
+      onUpdate={[Function]}
+      optional={true}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={true}
+      title="Provide the street address"
+      titleSize="h4"
+      validate={true}
+    >
+      <Location
+        addressBook="Residence"
+        addressBooks={Object {}}
+        cityLabel="City"
+        countryLabel="Country"
+        countyLabel="County"
+        dispatch={[Function]}
+        geocode={true}
+        geocodeResult={Object {}}
+        label="This address is"
+        layout="Address"
+        name="Address"
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+        showPostOffice={true}
+        spinner={false}
+        stateLabel="State"
+        street2Label="Apt, suite, building, floor, etc."
+        streetLabel="Street address"
+        suggestions={false}
+        validated={false}
+        zipcodeLabel="ZIP Code"
+      />
+    </Field>
+    <Connect(AlternateAddress)
+      belongingTo="AlternateAddress"
+      militaryAddressLabel="Did you have an APO/FPO address while at this location?"
+      onUpdate={[Function]}
+    />
+    <Field
+      adjustFor=""
+      className=""
+      comments={false}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help="history.residence.help.dates"
+      helpActive={false}
+      optional={false}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={false}
+      title="Provide dates of residence"
+      titleSize="h4"
+      validate={true}
+    >
+      <label
+        className="info-label"
+      >
+        You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.
+      </label>
+      <DateRange
+        allowPresent={true}
+        dateRangePrefix=""
+        disabled={false}
+        from={
+          Object {
+            "touched": false,
+          }
+        }
+        label="You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address."
+        maxDate={2019-04-04T00:00:00.000Z}
+        maxDateEqualTo={false}
+        minDate={null}
+        minDateEqualTo={true}
+        name="Dates"
+        onError={[Function]}
+        onUpdate={[Function]}
+        prefix=""
+        present={false}
+        relationship=""
+        to={
+          Object {
+            "touched": false,
+          }
+        }
+      />
+    </Field>
+    <Field
+      adjustFor=""
+      className=""
+      comments={false}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help=""
+      helpActive={false}
+      optional={false}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={false}
+      title="Is/was this residence"
+      titleSize="h4"
+      validate={true}
+    >
+      <RadioGroup
+        className="role option-list option-list-vertical"
+        disabled={false}
+        onError={[Function]}
+        required={false}
+      >
+        <Radio
+          ariaLabel=""
+          checked={false}
+          disabled={false}
+          error={false}
+          focus={false}
+          label={
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="Owned by you"
+            />
+          }
+          name="role-owned"
+          native={false}
+          onError={[Function]}
+          onUpdate={[Function]}
+          valid={false}
+          value="Own"
+          valued=""
+        />
+        <Radio
+          ariaLabel=""
+          checked={false}
+          disabled={false}
+          error={false}
+          focus={false}
+          label={
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="Rented or leased by you"
+            />
+          }
+          name="role-rented"
+          native={false}
+          onError={[Function]}
+          onUpdate={[Function]}
+          valid={false}
+          value="Rent"
+          valued=""
+        />
+        <Radio
+          ariaLabel=""
+          checked={false}
+          disabled={false}
+          error={false}
+          focus={false}
+          label={
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="Military housing"
+            />
+          }
+          name="role-military"
+          native={false}
+          onError={[Function]}
+          onUpdate={[Function]}
+          valid={false}
+          value="MilitaryHousing"
+          valued=""
+        />
+        <Radio
+          ariaLabel=""
+          checked={false}
+          disabled={false}
+          error={false}
+          focus={false}
+          label={
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="Other"
+            />
+          }
+          name="role-other"
+          native={false}
+          onError={[Function]}
+          onUpdate={[Function]}
+          valid={false}
+          value="Other"
+          valued=""
+        />
+      </RadioGroup>
+    </Field>
+    <Show
+      when={false}
+    >
+      <Field
+        adjustFor="text"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help=""
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Please provide an explanation"
+        titleSize="h4"
+        validate={true}
+      >
+        <Text
+          className="other"
+          maxlength="100"
+          name="RoleOther"
+          onError={[Function]}
+          onUpdate={[Function]}
+          prefilter={[Function]}
+          prefix=""
+          required={false}
+          status={true}
+          value=""
+        />
+      </Field>
+    </Show>
+    <Show
+      when={null}
+    >
+      <div>
+        <Field
+          adjustFor=""
+          className="no-margin-bottom"
+          comments={false}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help=""
+          helpActive={false}
+          optional={true}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={false}
+          title="Add a person that knows you"
+          titleSize="h3"
+          validate={true}
+        >
+          <ReactMarkdown
+            containerTagName="div"
+            parserOptions={Object {}}
+            renderers={
+              Object {
+                "link": [Function],
+              }
+            }
+            source="For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives as the verifier for period of residence."
+          />
+        </Field>
+        <div
+          className="reference"
+        >
+          <Field
+            adjustFor=""
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide this person's full name"
+            titleSize="h4"
+            validate={true}
+          >
+            <Name
+              className="reference-name"
+              error={false}
+              errorCodes={Array []}
+              first=""
+              firstInitialOnly={false}
+              focus={false}
+              hideMiddleName={false}
+              last=""
+              middle=""
+              middleInitialOnly={false}
+              name="ReferenceName"
+              noMiddleName={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              prefix="name"
+              required={false}
+              suffix=""
+              suffixOther=""
+              valid={false}
+            />
+          </Field>
+          <Field
+            adjustFor="labels"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="reference.help.contact"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Provide date of last contact"
+            titleSize="h4"
+            validate={true}
+          >
+            <Connect(DateControl)
+              className="reference-last-contact"
+              minDateEqualTo={true}
+              name="ReferenceLastContact"
+              onError={[Function]}
+              onUpdate={[Function]}
+            />
+          </Field>
+          <Field
+            adjustFor="labels"
+            className=""
+            comments={true}
+            commentsActive={false}
+            commentsAdd="reference.label.relationship.comments"
+            commentsName="ReferenceRelationshipComments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            onUpdate={[Function]}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Relationship"
+            titleSize="h4"
+            validate={true}
+          >
+            <label>
+              Provide your relationship to this person (check all that apply):
+            </label>
+            <CheckboxGroup
+              className="relationship option-list eapp-extend-labels option-list-vertical"
+              onError={[Function]}
+              selectedValues={Array []}
+            >
+              <Checkbox
+                checked={false}
+                className="reference-relationship-neighbor"
+                error={false}
+                focus={false}
+                label="Neighbor"
+                name="relationship-neighbor"
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Neighbor"
+              />
+              <Checkbox
+                checked={false}
+                className="reference-relationship-friend"
+                error={false}
+                focus={false}
+                label="Friend"
+                name="relationship-friend"
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Friend"
+              />
+              <Checkbox
+                checked={false}
+                className="reference-relationship-landlord"
+                error={false}
+                focus={false}
+                label="Landlord"
+                name="relationship-landlord"
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Landlord"
+              />
+              <Checkbox
+                checked={false}
+                className="reference-relationship-business"
+                error={false}
+                focus={false}
+                label="Business associate"
+                name="relationship-business"
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Business"
+              />
+              <Checkbox
+                checked={false}
+                className="reference-relationship-other"
+                error={false}
+                focus={false}
+                label="Other"
+                name="relationship-other"
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Other"
+              />
+            </CheckboxGroup>
+            <Show
+              when={false}
+            >
+              <Text
+                className="relationship-other"
+                label="Please provide an explanation"
+                maxlength="100"
+                name="ReferenceRelationshipOther"
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefilter={[Function]}
+                prefix=""
+                required={false}
+                status={true}
+                value=""
+              />
+            </Show>
+          </Field>
+          <Field
+            adjustFor=""
+            className="no-margin-bottom"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Their contact information"
+            titleSize="h3"
+            validate={true}
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="Provide the following contact information for this person."
+            />
+          </Field>
+          <Field
+            adjustFor="telephone"
+            className="override-required"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="reference.help.phone"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide this person's evening phone number"
+            titleSize="h4"
+            validate={true}
+          >
+            <Telephone
+              allowNotApplicable={true}
+              className="reference-phone-evening"
+              extension=""
+              name="ReferencePhoneEvening"
+              noNumber={false}
+              number=""
+              numberType=""
+              onError={[Function]}
+              onUpdate={[Function]}
+              showNumberType={false}
+              showTimeOfDay={false}
+              tab={[Function]}
+              timeOfDay="Both"
+              type="Domestic"
+              typeClass=""
+              value=""
+            />
+          </Field>
+          <Field
+            adjustFor="telephone"
+            className="override-required"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="reference.help.phone"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide this person's daytime phone number"
+            titleSize="h4"
+            validate={true}
+          >
+            <Telephone
+              allowNotApplicable={true}
+              className="reference-phone-day"
+              extension=""
+              name="ReferencePhoneDay"
+              noNumber={false}
+              number=""
+              numberType=""
+              onError={[Function]}
+              onUpdate={[Function]}
+              showNumberType={false}
+              showTimeOfDay={false}
+              tab={[Function]}
+              timeOfDay="Both"
+              type="Domestic"
+              typeClass=""
+              value=""
+            />
+          </Field>
+          <Field
+            adjustFor="telephone"
+            className="override-required"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="reference.help.phone"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide this person's cell/mobile phone number"
+            titleSize="h4"
+            validate={true}
+          >
+            <Telephone
+              allowNotApplicable={true}
+              className="reference-phone-mobile"
+              extension=""
+              name="ReferencePhoneMobile"
+              noNumber={false}
+              number=""
+              numberType=""
+              onError={[Function]}
+              onUpdate={[Function]}
+              showNumberType={false}
+              showTimeOfDay={false}
+              tab={[Function]}
+              timeOfDay="Both"
+              type="Domestic"
+              typeClass=""
+              value=""
+            />
+          </Field>
+          <Field
+            adjustFor="label"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="reference.help.email"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide this person's email address"
+            titleSize="h4"
+            validate={true}
+          >
+            <NotApplicable
+              applicable={true}
+              label="I don't know"
+              name="ReferenceEmailNotApplicable"
+              onError={[Function]}
+              onUpdate={[Function]}
+              or={
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="or"
+                />
+              }
+            >
+              <Email
+                autocapitalize={false}
+                autocomplete={true}
+                autocorrect={false}
+                className="reference-email"
+                label="Provide email address for this person"
+                name="ReferenceEmail"
+                onError={[Function]}
+                onUpdate={[Function]}
+                pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                spellcheck={false}
+                value=""
+              />
+            </NotApplicable>
+          </Field>
+          <Field
+            adjustFor="address"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="reference.help.address"
+            helpActive={false}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide this person's street address"
+            titleSize="h4"
+            validate={true}
+          >
+            <p>
+              Provide street address for this person (including apartment number).
+            </p>
+            <Location
+              addressBook="Reference"
+              addressBooks={Object {}}
+              cityLabel="City"
+              className="reference-address"
+              countryLabel="Country"
+              countyLabel="County"
+              dispatch={[Function]}
+              geocode={true}
+              geocodeResult={Object {}}
+              label="The address of your contact during this time period"
+              layout="Address"
+              name="ReferenceAddress"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              showPostOffice={true}
+              spinner={false}
+              stateLabel="State"
+              street2Label="Apt, suite, building, floor, etc."
+              streetLabel="Street address"
+              suggestions={false}
+              validated={false}
+              zipcodeLabel="ZIP Code"
+            />
+          </Field>
+          <Connect(AlternateAddress)
+            belongingTo="ReferenceAlternateAddress"
+            militaryAddressLabel="Does the person who knew you have an APO/FPO address?"
+            onUpdate={[Function]}
+          />
+        </div>
+      </div>
+    </Show>
+  </div>,
+  "nodes": Array [
+    <div
+      className="residence"
+    >
+      <Field
+        adjustFor="address"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="history.residence.label.comments"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="history.residence.help.address"
+        helpActive={false}
+        onError={[Function]}
+        onUpdate={[Function]}
+        optional={true}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={true}
+        title="Provide the street address"
+        titleSize="h4"
+        validate={true}
+      >
+        <Location
+          addressBook="Residence"
+          addressBooks={Object {}}
+          cityLabel="City"
+          countryLabel="Country"
+          countyLabel="County"
+          dispatch={[Function]}
+          geocode={true}
+          geocodeResult={Object {}}
+          label="This address is"
+          layout="Address"
+          name="Address"
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+          showPostOffice={true}
+          spinner={false}
+          stateLabel="State"
+          street2Label="Apt, suite, building, floor, etc."
+          streetLabel="Street address"
+          suggestions={false}
+          validated={false}
+          zipcodeLabel="ZIP Code"
+        />
+      </Field>
+      <Connect(AlternateAddress)
+        belongingTo="AlternateAddress"
+        militaryAddressLabel="Did you have an APO/FPO address while at this location?"
+        onUpdate={[Function]}
+      />
+      <Field
+        adjustFor=""
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="history.residence.help.dates"
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Provide dates of residence"
+        titleSize="h4"
+        validate={true}
+      >
+        <label
+          className="info-label"
+        >
+          You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.
+        </label>
+        <DateRange
+          allowPresent={true}
+          dateRangePrefix=""
+          disabled={false}
+          from={
+            Object {
+              "touched": false,
+            }
+          }
+          label="You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address."
+          maxDate={2019-04-04T00:00:00.000Z}
+          maxDateEqualTo={false}
+          minDate={null}
+          minDateEqualTo={true}
+          name="Dates"
+          onError={[Function]}
+          onUpdate={[Function]}
+          prefix=""
+          present={false}
+          relationship=""
+          to={
+            Object {
+              "touched": false,
+            }
+          }
+        />
+      </Field>
+      <Field
+        adjustFor=""
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help=""
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Is/was this residence"
+        titleSize="h4"
+        validate={true}
+      >
+        <RadioGroup
+          className="role option-list option-list-vertical"
+          disabled={false}
+          onError={[Function]}
+          required={false}
+        >
+          <Radio
+            ariaLabel=""
+            checked={false}
+            disabled={false}
+            error={false}
+            focus={false}
+            label={
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="Owned by you"
+              />
+            }
+            name="role-owned"
+            native={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            valid={false}
+            value="Own"
+            valued=""
+          />
+          <Radio
+            ariaLabel=""
+            checked={false}
+            disabled={false}
+            error={false}
+            focus={false}
+            label={
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="Rented or leased by you"
+              />
+            }
+            name="role-rented"
+            native={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            valid={false}
+            value="Rent"
+            valued=""
+          />
+          <Radio
+            ariaLabel=""
+            checked={false}
+            disabled={false}
+            error={false}
+            focus={false}
+            label={
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="Military housing"
+              />
+            }
+            name="role-military"
+            native={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            valid={false}
+            value="MilitaryHousing"
+            valued=""
+          />
+          <Radio
+            ariaLabel=""
+            checked={false}
+            disabled={false}
+            error={false}
+            focus={false}
+            label={
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="Other"
+              />
+            }
+            name="role-other"
+            native={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            valid={false}
+            value="Other"
+            valued=""
+          />
+        </RadioGroup>
+      </Field>
+      <Show
+        when={false}
+      >
+        <Field
+          adjustFor="text"
+          className=""
+          comments={false}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help=""
+          helpActive={false}
+          optional={false}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={false}
+          title="Please provide an explanation"
+          titleSize="h4"
+          validate={true}
+        >
+          <Text
+            className="other"
+            maxlength="100"
+            name="RoleOther"
+            onError={[Function]}
+            onUpdate={[Function]}
+            prefilter={[Function]}
+            prefix=""
+            required={false}
+            status={true}
+            value=""
+          />
+        </Field>
+      </Show>
+      <Show
+        when={null}
+      >
+        <div>
+          <Field
+            adjustFor=""
+            className="no-margin-bottom"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Add a person that knows you"
+            titleSize="h3"
+            validate={true}
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives as the verifier for period of residence."
+            />
+          </Field>
+          <div
+            className="reference"
+          >
+            <Field
+              adjustFor=""
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's full name"
+              titleSize="h4"
+              validate={true}
+            >
+              <Name
+                className="reference-name"
+                error={false}
+                errorCodes={Array []}
+                first=""
+                firstInitialOnly={false}
+                focus={false}
+                hideMiddleName={false}
+                last=""
+                middle=""
+                middleInitialOnly={false}
+                name="ReferenceName"
+                noMiddleName={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefix="name"
+                required={false}
+                suffix=""
+                suffixOther=""
+                valid={false}
+              />
+            </Field>
+            <Field
+              adjustFor="labels"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.contact"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={true}
+              title="Provide date of last contact"
+              titleSize="h4"
+              validate={true}
+            >
+              <Connect(DateControl)
+                className="reference-last-contact"
+                minDateEqualTo={true}
+                name="ReferenceLastContact"
+                onError={[Function]}
+                onUpdate={[Function]}
+              />
+            </Field>
+            <Field
+              adjustFor="labels"
+              className=""
+              comments={true}
+              commentsActive={false}
+              commentsAdd="reference.label.relationship.comments"
+              commentsName="ReferenceRelationshipComments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              onUpdate={[Function]}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={true}
+              title="Relationship"
+              titleSize="h4"
+              validate={true}
+            >
+              <label>
+                Provide your relationship to this person (check all that apply):
+              </label>
+              <CheckboxGroup
+                className="relationship option-list eapp-extend-labels option-list-vertical"
+                onError={[Function]}
+                selectedValues={Array []}
+              >
+                <Checkbox
+                  checked={false}
+                  className="reference-relationship-neighbor"
+                  error={false}
+                  focus={false}
+                  label="Neighbor"
+                  name="relationship-neighbor"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Neighbor"
+                />
+                <Checkbox
+                  checked={false}
+                  className="reference-relationship-friend"
+                  error={false}
+                  focus={false}
+                  label="Friend"
+                  name="relationship-friend"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Friend"
+                />
+                <Checkbox
+                  checked={false}
+                  className="reference-relationship-landlord"
+                  error={false}
+                  focus={false}
+                  label="Landlord"
+                  name="relationship-landlord"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Landlord"
+                />
+                <Checkbox
+                  checked={false}
+                  className="reference-relationship-business"
+                  error={false}
+                  focus={false}
+                  label="Business associate"
+                  name="relationship-business"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Business"
+                />
+                <Checkbox
+                  checked={false}
+                  className="reference-relationship-other"
+                  error={false}
+                  focus={false}
+                  label="Other"
+                  name="relationship-other"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Other"
+                />
+              </CheckboxGroup>
+              <Show
+                when={false}
+              >
+                <Text
+                  className="relationship-other"
+                  label="Please provide an explanation"
+                  maxlength="100"
+                  name="ReferenceRelationshipOther"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  prefilter={[Function]}
+                  prefix=""
+                  required={false}
+                  status={true}
+                  value=""
+                />
+              </Show>
+            </Field>
+            <Field
+              adjustFor=""
+              className="no-margin-bottom"
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Their contact information"
+              titleSize="h3"
+              validate={true}
+            >
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="Provide the following contact information for this person."
+              />
+            </Field>
+            <Field
+              adjustFor="telephone"
+              className="override-required"
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.phone"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's evening phone number"
+              titleSize="h4"
+              validate={true}
+            >
+              <Telephone
+                allowNotApplicable={true}
+                className="reference-phone-evening"
+                extension=""
+                name="ReferencePhoneEvening"
+                noNumber={false}
+                number=""
+                numberType=""
+                onError={[Function]}
+                onUpdate={[Function]}
+                showNumberType={false}
+                showTimeOfDay={false}
+                tab={[Function]}
+                timeOfDay="Both"
+                type="Domestic"
+                typeClass=""
+                value=""
+              />
+            </Field>
+            <Field
+              adjustFor="telephone"
+              className="override-required"
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.phone"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's daytime phone number"
+              titleSize="h4"
+              validate={true}
+            >
+              <Telephone
+                allowNotApplicable={true}
+                className="reference-phone-day"
+                extension=""
+                name="ReferencePhoneDay"
+                noNumber={false}
+                number=""
+                numberType=""
+                onError={[Function]}
+                onUpdate={[Function]}
+                showNumberType={false}
+                showTimeOfDay={false}
+                tab={[Function]}
+                timeOfDay="Both"
+                type="Domestic"
+                typeClass=""
+                value=""
+              />
+            </Field>
+            <Field
+              adjustFor="telephone"
+              className="override-required"
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.phone"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's cell/mobile phone number"
+              titleSize="h4"
+              validate={true}
+            >
+              <Telephone
+                allowNotApplicable={true}
+                className="reference-phone-mobile"
+                extension=""
+                name="ReferencePhoneMobile"
+                noNumber={false}
+                number=""
+                numberType=""
+                onError={[Function]}
+                onUpdate={[Function]}
+                showNumberType={false}
+                showTimeOfDay={false}
+                tab={[Function]}
+                timeOfDay="Both"
+                type="Domestic"
+                typeClass=""
+                value=""
+              />
+            </Field>
+            <Field
+              adjustFor="label"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.email"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's email address"
+              titleSize="h4"
+              validate={true}
+            >
+              <NotApplicable
+                applicable={true}
+                label="I don't know"
+                name="ReferenceEmailNotApplicable"
+                onError={[Function]}
+                onUpdate={[Function]}
+                or={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="or"
+                  />
+                }
+              >
+                <Email
+                  autocapitalize={false}
+                  autocomplete={true}
+                  autocorrect={false}
+                  className="reference-email"
+                  label="Provide email address for this person"
+                  name="ReferenceEmail"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                  spellcheck={false}
+                  value=""
+                />
+              </NotApplicable>
+            </Field>
+            <Field
+              adjustFor="address"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.address"
+              helpActive={false}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's street address"
+              titleSize="h4"
+              validate={true}
+            >
+              <p>
+                Provide street address for this person (including apartment number).
+              </p>
+              <Location
+                addressBook="Reference"
+                addressBooks={Object {}}
+                cityLabel="City"
+                className="reference-address"
+                countryLabel="Country"
+                countyLabel="County"
+                dispatch={[Function]}
+                geocode={true}
+                geocodeResult={Object {}}
+                label="The address of your contact during this time period"
+                layout="Address"
+                name="ReferenceAddress"
+                onError={[Function]}
+                onUpdate={[Function]}
+                required={false}
+                showPostOffice={true}
+                spinner={false}
+                stateLabel="State"
+                street2Label="Apt, suite, building, floor, etc."
+                streetLabel="Street address"
+                suggestions={false}
+                validated={false}
+                zipcodeLabel="ZIP Code"
+              />
+            </Field>
+            <Connect(AlternateAddress)
+              belongingTo="ReferenceAlternateAddress"
+              militaryAddressLabel="Does the person who knew you have an APO/FPO address?"
+              onUpdate={[Function]}
+            />
+          </div>
+        </div>
+      </Show>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <ResidenceItem
+        Address={Object {}}
+        Comments={Object {}}
+        Dates={
+          Object {
+            "maxDate": 2019-04-04T00:00:00.000Z,
+          }
+        }
+        ReferenceAddress={Object {}}
+        ReferenceEmail={Object {}}
+        ReferenceEmailNotApplicable={Object {}}
+        ReferenceLastContact={Object {}}
+        ReferenceName={Object {}}
+        ReferencePhoneDay={Object {}}
+        ReferencePhoneEvening={Object {}}
+        ReferencePhoneMobile={Object {}}
+        ReferenceRelationship={Object {}}
+        ReferenceRelationshipComments={Object {}}
+        ReferenceRelationshipOther={Object {}}
+        Role={Object {}}
+        RoleOther={Object {}}
+        addressBooks={Object {}}
+        dispatch={[Function]}
+        onError={[Function]}
+        onUpdate={[Function]}
+      />,
+      "_debugID": 1452,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": ResidenceItem {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "handleBlur": [Function],
+        "handleChange": [Function],
+        "handleFocus": [Function],
+        "handleKeyDown": [Function],
+        "handleValidation": [Function],
+        "props": Object {
+          "Address": Object {},
+          "Comments": Object {},
+          "Dates": Object {
+            "maxDate": 2019-04-04T00:00:00.000Z,
+          },
+          "ReferenceAddress": Object {},
+          "ReferenceEmail": Object {},
+          "ReferenceEmailNotApplicable": Object {},
+          "ReferenceLastContact": Object {},
+          "ReferenceName": Object {},
+          "ReferencePhoneDay": Object {},
+          "ReferencePhoneEvening": Object {},
+          "ReferencePhoneMobile": Object {},
+          "ReferenceRelationship": Object {},
+          "ReferenceRelationshipComments": Object {},
+          "ReferenceRelationshipOther": Object {},
+          "Role": Object {},
+          "RoleOther": Object {},
+          "addressBooks": Object {},
+          "dispatch": [Function],
+          "onError": [Function],
+          "onUpdate": [Function],
+        },
+        "refs": Object {},
+        "state": null,
+        "update": [Function],
+        "updateAddress": [Function],
+        "updateComments": [Function],
+        "updateDates": [Function],
+        "updateReferenceAddress": [Function],
+        "updateReferenceEmail": [Function],
+        "updateReferenceEmailNotApplicable": [Function],
+        "updateReferenceLastContact": [Function],
+        "updateReferenceName": [Function],
+        "updateReferencePhoneDay": [Function],
+        "updateReferencePhoneEvening": [Function],
+        "updateReferencePhoneMobile": [Function],
+        "updateReferenceRelationship": [Function],
+        "updateReferenceRelationshipComments": [Function],
+        "updateReferenceRelationshipOther": [Function],
+        "updateRole": [Function],
+        "updateRoleOther": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="residence"
+        >
+          <Field
+            adjustFor="address"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="history.residence.label.comments"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="history.residence.help.address"
+            helpActive={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Provide the street address"
+            titleSize="h4"
+            validate={true}
+          >
+            <Location
+              addressBook="Residence"
+              addressBooks={Object {}}
+              cityLabel="City"
+              countryLabel="Country"
+              countyLabel="County"
+              dispatch={[Function]}
+              geocode={true}
+              geocodeResult={Object {}}
+              label="This address is"
+              layout="Address"
+              name="Address"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              showPostOffice={true}
+              spinner={false}
+              stateLabel="State"
+              street2Label="Apt, suite, building, floor, etc."
+              streetLabel="Street address"
+              suggestions={false}
+              validated={false}
+              zipcodeLabel="ZIP Code"
+            />
+          </Field>
+          <Connect(AlternateAddress)
+            belongingTo="AlternateAddress"
+            militaryAddressLabel="Did you have an APO/FPO address while at this location?"
+            onUpdate={[Function]}
+          />
+          <Field
+            adjustFor=""
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="history.residence.help.dates"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide dates of residence"
+            titleSize="h4"
+            validate={true}
+          >
+            <label
+              className="info-label"
+            >
+              You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.
+            </label>
+            <DateRange
+              allowPresent={true}
+              dateRangePrefix=""
+              disabled={false}
+              from={
+                Object {
+                  "touched": false,
+                }
+              }
+              label="You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address."
+              maxDate={2019-04-04T00:00:00.000Z}
+              maxDateEqualTo={false}
+              minDate={null}
+              minDateEqualTo={true}
+              name="Dates"
+              onError={[Function]}
+              onUpdate={[Function]}
+              prefix=""
+              present={false}
+              relationship=""
+              to={
+                Object {
+                  "touched": false,
+                }
+              }
+            />
+          </Field>
+          <Field
+            adjustFor=""
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Is/was this residence"
+            titleSize="h4"
+            validate={true}
+          >
+            <RadioGroup
+              className="role option-list option-list-vertical"
+              disabled={false}
+              onError={[Function]}
+              required={false}
+            >
+              <Radio
+                ariaLabel=""
+                checked={false}
+                disabled={false}
+                error={false}
+                focus={false}
+                label={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Owned by you"
+                  />
+                }
+                name="role-owned"
+                native={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Own"
+                valued=""
+              />
+              <Radio
+                ariaLabel=""
+                checked={false}
+                disabled={false}
+                error={false}
+                focus={false}
+                label={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Rented or leased by you"
+                  />
+                }
+                name="role-rented"
+                native={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Rent"
+                valued=""
+              />
+              <Radio
+                ariaLabel=""
+                checked={false}
+                disabled={false}
+                error={false}
+                focus={false}
+                label={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Military housing"
+                  />
+                }
+                name="role-military"
+                native={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="MilitaryHousing"
+                valued=""
+              />
+              <Radio
+                ariaLabel=""
+                checked={false}
+                disabled={false}
+                error={false}
+                focus={false}
+                label={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Other"
+                  />
+                }
+                name="role-other"
+                native={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Other"
+                valued=""
+              />
+            </RadioGroup>
+          </Field>
+          <Show
+            when={false}
+          >
+            <Field
+              adjustFor="text"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Please provide an explanation"
+              titleSize="h4"
+              validate={true}
+            >
+              <Text
+                className="other"
+                maxlength="100"
+                name="RoleOther"
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefilter={[Function]}
+                prefix=""
+                required={false}
+                status={true}
+                value=""
+              />
+            </Field>
+          </Show>
+          <Show
+            when={null}
+          >
+            <div>
+              <Field
+                adjustFor=""
+                className="no-margin-bottom"
+                comments={false}
+                commentsActive={false}
+                commentsAdd="comments.add"
+                commentsName="Comments"
+                commentsRemove="comments.remove"
+                commentsRequired={false}
+                commentsValue={Object {}}
+                errorPrefix=""
+                errors={Array []}
+                filterErrors={[Function]}
+                help=""
+                helpActive={false}
+                optional={true}
+                optionalText=""
+                scrollIntoView={true}
+                shrink={false}
+                title="Add a person that knows you"
+                titleSize="h3"
+                validate={true}
+              >
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives as the verifier for period of residence."
+                />
+              </Field>
+              <div
+                className="reference"
+              >
+                <Field
+                  adjustFor=""
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  optional={true}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's full name"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Name
+                    className="reference-name"
+                    error={false}
+                    errorCodes={Array []}
+                    first=""
+                    firstInitialOnly={false}
+                    focus={false}
+                    hideMiddleName={false}
+                    last=""
+                    middle=""
+                    middleInitialOnly={false}
+                    name="ReferenceName"
+                    noMiddleName={false}
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    prefix="name"
+                    required={false}
+                    suffix=""
+                    suffixOther=""
+                    valid={false}
+                  />
+                </Field>
+                <Field
+                  adjustFor="labels"
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.contact"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={true}
+                  title="Provide date of last contact"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Connect(DateControl)
+                    className="reference-last-contact"
+                    minDateEqualTo={true}
+                    name="ReferenceLastContact"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                  />
+                </Field>
+                <Field
+                  adjustFor="labels"
+                  className=""
+                  comments={true}
+                  commentsActive={false}
+                  commentsAdd="reference.label.relationship.comments"
+                  commentsName="ReferenceRelationshipComments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  onUpdate={[Function]}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={true}
+                  title="Relationship"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <label>
+                    Provide your relationship to this person (check all that apply):
+                  </label>
+                  <CheckboxGroup
+                    className="relationship option-list eapp-extend-labels option-list-vertical"
+                    onError={[Function]}
+                    selectedValues={Array []}
+                  >
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-neighbor"
+                      error={false}
+                      focus={false}
+                      label="Neighbor"
+                      name="relationship-neighbor"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Neighbor"
+                    />
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-friend"
+                      error={false}
+                      focus={false}
+                      label="Friend"
+                      name="relationship-friend"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Friend"
+                    />
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-landlord"
+                      error={false}
+                      focus={false}
+                      label="Landlord"
+                      name="relationship-landlord"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Landlord"
+                    />
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-business"
+                      error={false}
+                      focus={false}
+                      label="Business associate"
+                      name="relationship-business"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Business"
+                    />
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-other"
+                      error={false}
+                      focus={false}
+                      label="Other"
+                      name="relationship-other"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Other"
+                    />
+                  </CheckboxGroup>
+                  <Show
+                    when={false}
+                  >
+                    <Text
+                      className="relationship-other"
+                      label="Please provide an explanation"
+                      maxlength="100"
+                      name="ReferenceRelationshipOther"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      prefilter={[Function]}
+                      prefix=""
+                      required={false}
+                      status={true}
+                      value=""
+                    />
+                  </Show>
+                </Field>
+                <Field
+                  adjustFor=""
+                  className="no-margin-bottom"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  optional={true}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Their contact information"
+                  titleSize="h3"
+                  validate={true}
+                >
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Provide the following contact information for this person."
+                  />
+                </Field>
+                <Field
+                  adjustFor="telephone"
+                  className="override-required"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.phone"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's evening phone number"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Telephone
+                    allowNotApplicable={true}
+                    className="reference-phone-evening"
+                    extension=""
+                    name="ReferencePhoneEvening"
+                    noNumber={false}
+                    number=""
+                    numberType=""
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    showNumberType={false}
+                    showTimeOfDay={false}
+                    tab={[Function]}
+                    timeOfDay="Both"
+                    type="Domestic"
+                    typeClass=""
+                    value=""
+                  />
+                </Field>
+                <Field
+                  adjustFor="telephone"
+                  className="override-required"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.phone"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's daytime phone number"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Telephone
+                    allowNotApplicable={true}
+                    className="reference-phone-day"
+                    extension=""
+                    name="ReferencePhoneDay"
+                    noNumber={false}
+                    number=""
+                    numberType=""
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    showNumberType={false}
+                    showTimeOfDay={false}
+                    tab={[Function]}
+                    timeOfDay="Both"
+                    type="Domestic"
+                    typeClass=""
+                    value=""
+                  />
+                </Field>
+                <Field
+                  adjustFor="telephone"
+                  className="override-required"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.phone"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's cell/mobile phone number"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Telephone
+                    allowNotApplicable={true}
+                    className="reference-phone-mobile"
+                    extension=""
+                    name="ReferencePhoneMobile"
+                    noNumber={false}
+                    number=""
+                    numberType=""
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    showNumberType={false}
+                    showTimeOfDay={false}
+                    tab={[Function]}
+                    timeOfDay="Both"
+                    type="Domestic"
+                    typeClass=""
+                    value=""
+                  />
+                </Field>
+                <Field
+                  adjustFor="label"
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.email"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's email address"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <NotApplicable
+                    applicable={true}
+                    label="I don't know"
+                    name="ReferenceEmailNotApplicable"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    or={
+                      <ReactMarkdown
+                        containerTagName="div"
+                        parserOptions={Object {}}
+                        renderers={
+                          Object {
+                            "link": [Function],
+                          }
+                        }
+                        source="or"
+                      />
+                    }
+                  >
+                    <Email
+                      autocapitalize={false}
+                      autocomplete={true}
+                      autocorrect={false}
+                      className="reference-email"
+                      label="Provide email address for this person"
+                      name="ReferenceEmail"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                      spellcheck={false}
+                      value=""
+                    />
+                  </NotApplicable>
+                </Field>
+                <Field
+                  adjustFor="address"
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.address"
+                  helpActive={false}
+                  optional={true}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's street address"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <p>
+                    Provide street address for this person (including apartment number).
+                  </p>
+                  <Location
+                    addressBook="Reference"
+                    addressBooks={Object {}}
+                    cityLabel="City"
+                    className="reference-address"
+                    countryLabel="Country"
+                    countyLabel="County"
+                    dispatch={[Function]}
+                    geocode={true}
+                    geocodeResult={Object {}}
+                    label="The address of your contact during this time period"
+                    layout="Address"
+                    name="ReferenceAddress"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    required={false}
+                    showPostOffice={true}
+                    spinner={false}
+                    stateLabel="State"
+                    street2Label="Apt, suite, building, floor, etc."
+                    streetLabel="Street address"
+                    suggestions={false}
+                    validated={false}
+                    zipcodeLabel="ZIP Code"
+                  />
+                </Field>
+                <Connect(AlternateAddress)
+                  belongingTo="ReferenceAlternateAddress"
+                  militaryAddressLabel="Does the person who knew you have an APO/FPO address?"
+                  onUpdate={[Function]}
+                />
+              </div>
+            </div>
+          </Show>
+        </div>,
+        "_debugID": 1453,
+        "_renderedOutput": <div
+          className="residence"
+        >
+          <Field
+            adjustFor="address"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="history.residence.label.comments"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="history.residence.help.address"
+            helpActive={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Provide the street address"
+            titleSize="h4"
+            validate={true}
+          >
+            <Location
+              addressBook="Residence"
+              addressBooks={Object {}}
+              cityLabel="City"
+              countryLabel="Country"
+              countyLabel="County"
+              dispatch={[Function]}
+              geocode={true}
+              geocodeResult={Object {}}
+              label="This address is"
+              layout="Address"
+              name="Address"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              showPostOffice={true}
+              spinner={false}
+              stateLabel="State"
+              street2Label="Apt, suite, building, floor, etc."
+              streetLabel="Street address"
+              suggestions={false}
+              validated={false}
+              zipcodeLabel="ZIP Code"
+            />
+          </Field>
+          <Connect(AlternateAddress)
+            belongingTo="AlternateAddress"
+            militaryAddressLabel="Did you have an APO/FPO address while at this location?"
+            onUpdate={[Function]}
+          />
+          <Field
+            adjustFor=""
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="history.residence.help.dates"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide dates of residence"
+            titleSize="h4"
+            validate={true}
+          >
+            <label
+              className="info-label"
+            >
+              You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.
+            </label>
+            <DateRange
+              allowPresent={true}
+              dateRangePrefix=""
+              disabled={false}
+              from={
+                Object {
+                  "touched": false,
+                }
+              }
+              label="You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address."
+              maxDate={2019-04-04T00:00:00.000Z}
+              maxDateEqualTo={false}
+              minDate={null}
+              minDateEqualTo={true}
+              name="Dates"
+              onError={[Function]}
+              onUpdate={[Function]}
+              prefix=""
+              present={false}
+              relationship=""
+              to={
+                Object {
+                  "touched": false,
+                }
+              }
+            />
+          </Field>
+          <Field
+            adjustFor=""
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Is/was this residence"
+            titleSize="h4"
+            validate={true}
+          >
+            <RadioGroup
+              className="role option-list option-list-vertical"
+              disabled={false}
+              onError={[Function]}
+              required={false}
+            >
+              <Radio
+                ariaLabel=""
+                checked={false}
+                disabled={false}
+                error={false}
+                focus={false}
+                label={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Owned by you"
+                  />
+                }
+                name="role-owned"
+                native={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Own"
+                valued=""
+              />
+              <Radio
+                ariaLabel=""
+                checked={false}
+                disabled={false}
+                error={false}
+                focus={false}
+                label={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Rented or leased by you"
+                  />
+                }
+                name="role-rented"
+                native={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Rent"
+                valued=""
+              />
+              <Radio
+                ariaLabel=""
+                checked={false}
+                disabled={false}
+                error={false}
+                focus={false}
+                label={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Military housing"
+                  />
+                }
+                name="role-military"
+                native={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="MilitaryHousing"
+                valued=""
+              />
+              <Radio
+                ariaLabel=""
+                checked={false}
+                disabled={false}
+                error={false}
+                focus={false}
+                label={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Other"
+                  />
+                }
+                name="role-other"
+                native={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                valid={false}
+                value="Other"
+                valued=""
+              />
+            </RadioGroup>
+          </Field>
+          <Show
+            when={false}
+          >
+            <Field
+              adjustFor="text"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Please provide an explanation"
+              titleSize="h4"
+              validate={true}
+            >
+              <Text
+                className="other"
+                maxlength="100"
+                name="RoleOther"
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefilter={[Function]}
+                prefix=""
+                required={false}
+                status={true}
+                value=""
+              />
+            </Field>
+          </Show>
+          <Show
+            when={null}
+          >
+            <div>
+              <Field
+                adjustFor=""
+                className="no-margin-bottom"
+                comments={false}
+                commentsActive={false}
+                commentsAdd="comments.add"
+                commentsName="Comments"
+                commentsRemove="comments.remove"
+                commentsRequired={false}
+                commentsValue={Object {}}
+                errorPrefix=""
+                errors={Array []}
+                filterErrors={[Function]}
+                help=""
+                helpActive={false}
+                optional={true}
+                optionalText=""
+                scrollIntoView={true}
+                shrink={false}
+                title="Add a person that knows you"
+                titleSize="h3"
+                validate={true}
+              >
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives as the verifier for period of residence."
+                />
+              </Field>
+              <div
+                className="reference"
+              >
+                <Field
+                  adjustFor=""
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  optional={true}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's full name"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Name
+                    className="reference-name"
+                    error={false}
+                    errorCodes={Array []}
+                    first=""
+                    firstInitialOnly={false}
+                    focus={false}
+                    hideMiddleName={false}
+                    last=""
+                    middle=""
+                    middleInitialOnly={false}
+                    name="ReferenceName"
+                    noMiddleName={false}
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    prefix="name"
+                    required={false}
+                    suffix=""
+                    suffixOther=""
+                    valid={false}
+                  />
+                </Field>
+                <Field
+                  adjustFor="labels"
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.contact"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={true}
+                  title="Provide date of last contact"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Connect(DateControl)
+                    className="reference-last-contact"
+                    minDateEqualTo={true}
+                    name="ReferenceLastContact"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                  />
+                </Field>
+                <Field
+                  adjustFor="labels"
+                  className=""
+                  comments={true}
+                  commentsActive={false}
+                  commentsAdd="reference.label.relationship.comments"
+                  commentsName="ReferenceRelationshipComments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  onUpdate={[Function]}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={true}
+                  title="Relationship"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <label>
+                    Provide your relationship to this person (check all that apply):
+                  </label>
+                  <CheckboxGroup
+                    className="relationship option-list eapp-extend-labels option-list-vertical"
+                    onError={[Function]}
+                    selectedValues={Array []}
+                  >
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-neighbor"
+                      error={false}
+                      focus={false}
+                      label="Neighbor"
+                      name="relationship-neighbor"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Neighbor"
+                    />
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-friend"
+                      error={false}
+                      focus={false}
+                      label="Friend"
+                      name="relationship-friend"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Friend"
+                    />
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-landlord"
+                      error={false}
+                      focus={false}
+                      label="Landlord"
+                      name="relationship-landlord"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Landlord"
+                    />
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-business"
+                      error={false}
+                      focus={false}
+                      label="Business associate"
+                      name="relationship-business"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Business"
+                    />
+                    <Checkbox
+                      checked={false}
+                      className="reference-relationship-other"
+                      error={false}
+                      focus={false}
+                      label="Other"
+                      name="relationship-other"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      valid={false}
+                      value="Other"
+                    />
+                  </CheckboxGroup>
+                  <Show
+                    when={false}
+                  >
+                    <Text
+                      className="relationship-other"
+                      label="Please provide an explanation"
+                      maxlength="100"
+                      name="ReferenceRelationshipOther"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      prefilter={[Function]}
+                      prefix=""
+                      required={false}
+                      status={true}
+                      value=""
+                    />
+                  </Show>
+                </Field>
+                <Field
+                  adjustFor=""
+                  className="no-margin-bottom"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  optional={true}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Their contact information"
+                  titleSize="h3"
+                  validate={true}
+                >
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="Provide the following contact information for this person."
+                  />
+                </Field>
+                <Field
+                  adjustFor="telephone"
+                  className="override-required"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.phone"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's evening phone number"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Telephone
+                    allowNotApplicable={true}
+                    className="reference-phone-evening"
+                    extension=""
+                    name="ReferencePhoneEvening"
+                    noNumber={false}
+                    number=""
+                    numberType=""
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    showNumberType={false}
+                    showTimeOfDay={false}
+                    tab={[Function]}
+                    timeOfDay="Both"
+                    type="Domestic"
+                    typeClass=""
+                    value=""
+                  />
+                </Field>
+                <Field
+                  adjustFor="telephone"
+                  className="override-required"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.phone"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's daytime phone number"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Telephone
+                    allowNotApplicable={true}
+                    className="reference-phone-day"
+                    extension=""
+                    name="ReferencePhoneDay"
+                    noNumber={false}
+                    number=""
+                    numberType=""
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    showNumberType={false}
+                    showTimeOfDay={false}
+                    tab={[Function]}
+                    timeOfDay="Both"
+                    type="Domestic"
+                    typeClass=""
+                    value=""
+                  />
+                </Field>
+                <Field
+                  adjustFor="telephone"
+                  className="override-required"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.phone"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's cell/mobile phone number"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <Telephone
+                    allowNotApplicable={true}
+                    className="reference-phone-mobile"
+                    extension=""
+                    name="ReferencePhoneMobile"
+                    noNumber={false}
+                    number=""
+                    numberType=""
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    showNumberType={false}
+                    showTimeOfDay={false}
+                    tab={[Function]}
+                    timeOfDay="Both"
+                    type="Domestic"
+                    typeClass=""
+                    value=""
+                  />
+                </Field>
+                <Field
+                  adjustFor="label"
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.email"
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's email address"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <NotApplicable
+                    applicable={true}
+                    label="I don't know"
+                    name="ReferenceEmailNotApplicable"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    or={
+                      <ReactMarkdown
+                        containerTagName="div"
+                        parserOptions={Object {}}
+                        renderers={
+                          Object {
+                            "link": [Function],
+                          }
+                        }
+                        source="or"
+                      />
+                    }
+                  >
+                    <Email
+                      autocapitalize={false}
+                      autocomplete={true}
+                      autocorrect={false}
+                      className="reference-email"
+                      label="Provide email address for this person"
+                      name="ReferenceEmail"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                      spellcheck={false}
+                      value=""
+                    />
+                  </NotApplicable>
+                </Field>
+                <Field
+                  adjustFor="address"
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help="reference.help.address"
+                  helpActive={false}
+                  optional={true}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's street address"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <p>
+                    Provide street address for this person (including apartment number).
+                  </p>
+                  <Location
+                    addressBook="Reference"
+                    addressBooks={Object {}}
+                    cityLabel="City"
+                    className="reference-address"
+                    countryLabel="Country"
+                    countyLabel="County"
+                    dispatch={[Function]}
+                    geocode={true}
+                    geocodeResult={Object {}}
+                    label="The address of your contact during this time period"
+                    layout="Address"
+                    name="ReferenceAddress"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    required={false}
+                    showPostOffice={true}
+                    spinner={false}
+                    stateLabel="State"
+                    street2Label="Apt, suite, building, floor, etc."
+                    streetLabel="Street address"
+                    suggestions={false}
+                    validated={false}
+                    zipcodeLabel="ZIP Code"
+                  />
+                </Field>
+                <Connect(AlternateAddress)
+                  belongingTo="ReferenceAlternateAddress"
+                  militaryAddressLabel="Does the person who knew you have an APO/FPO address?"
+                  onUpdate={[Function]}
+                />
+              </div>
+            </div>
+          </Show>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <ResidenceItem
+    Address={Object {}}
+    Comments={Object {}}
+    Dates={
+      Object {
+        "maxDate": 2019-04-04T00:00:00.000Z,
+      }
+    }
+    ReferenceAddress={Object {}}
+    ReferenceEmail={Object {}}
+    ReferenceEmailNotApplicable={Object {}}
+    ReferenceLastContact={Object {}}
+    ReferenceName={Object {}}
+    ReferencePhoneDay={Object {}}
+    ReferencePhoneEvening={Object {}}
+    ReferencePhoneMobile={Object {}}
+    ReferenceRelationship={Object {}}
+    ReferenceRelationshipComments={Object {}}
+    ReferenceRelationshipOther={Object {}}
+    Role={Object {}}
+    RoleOther={Object {}}
+    addressBooks={Object {}}
+    dispatch={[Function]}
+    onError={[Function]}
+    onUpdate={[Function]}
+  />,
+}
+`;

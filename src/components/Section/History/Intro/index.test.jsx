@@ -1,10 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Residence } from './Residence'
 
-describe('The Residence component', () => {
+import Intro from './index'
+
+describe('History Intro', () => {
   it('renders without errors', () => {
-    const component = shallow(<Residence />)
+    const component = shallow(<Intro />)
 
     expect(component.exists()).toBe(true)
     expect(component).toMatchSnapshot()

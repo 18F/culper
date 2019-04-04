@@ -6,15 +6,15 @@ import * as formConfig from 'config/forms'
 
 import { Show } from 'components/Form'
 
-import connectHistorySection from './HistoryConnector'
+import connectHistorySection from '../HistoryConnector'
 
-import ResidenceSummaryProgress from './Residence/ResidenceSummaryProgress'
-import EmploymentSummaryProgress from './Employment/EmploymentSummaryProgress'
-import EducationSummaryProgress from './Education/EducationSummaryProgress'
-import ConnectedResidence from './Residence'
-import ConnectedEmployment from './Employment'
-import EducationWrapper from './Education/EducationWrapper'
-import FederalWrapper from './Federal/FederalWrapper'
+import ResidenceSummaryProgress from '../Residence/ResidenceSummaryProgress'
+import EmploymentSummaryProgress from '../Employment/EmploymentSummaryProgress'
+import EducationSummaryProgress from '../Education/EducationSummaryProgress'
+import ConnectedResidence from '../Residence'
+import ConnectedEmployment from '../Employment'
+import EducationWrapper from '../Education/EducationWrapper'
+import FederalWrapper from '../Federal/FederalWrapper'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -22,7 +22,7 @@ const sectionConfig = {
   subsection: HISTORY_REVIEW.name,
 }
 
-const Review = (props) => {
+export const Review = (props) => {
   const {
     Birthdate, Education, Residence, Employment, formType, requireHistoryFederalSection, forPrint,
   } = props
@@ -100,6 +100,13 @@ const Review = (props) => {
       {requireHistoryFederalSection && <FederalWrapper inReview />}
     </div>
   )
+}
+
+Review.defaultProps = {
+  Education: {
+    HasAttended: {},
+    HasDegree10: {},
+  },
 }
 
 export default connectHistorySection(Review, sectionConfig)
