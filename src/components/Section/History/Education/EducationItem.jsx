@@ -396,7 +396,7 @@ export default class EducationItem extends ValidationElement {
                 <Field
                   title={i18n.t('reference.heading.address')}
                   titleSize="h4"
-                  optiona
+                  optional
                   help="reference.help.address"
                   adjustFor="address"
                   scrollIntoView={this.props.scrollIntoView}
