@@ -1,0 +1,608 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ResidenceWrapper component renders without errors 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div>
+    <h1
+      className="section-header"
+    >
+      Where you have lived
+    </h1>
+    <Field
+      adjustFor=""
+      className="no-margin-bottom"
+      comments={false}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help=""
+      helpActive={false}
+      optional={true}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={false}
+      title="List the places where you have lived beginning with your present residence and working back  years."
+      titleSize="h3"
+      validate={true}
+    >
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source="Residences for the entire period must be accounted for without breaks."
+      />
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source=" - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there."
+      />
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source=" - **If you split your time between one or more residences during a time period**, you must list all residences."
+      />
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source=" - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history."
+      />
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source=" - **You are not required to list temporary locations of less than 90 days** that did not serve as your permanent or mailing address."
+      />
+    </Field>
+    <span
+      id="scrollToHistory"
+    />
+    <ResidenceSummaryProgress
+      years={10}
+    />
+    <Connect(ConnectedHistorySection)
+      realtime={true}
+      scrollToTop="scrollToHistory"
+    />
+    <Show
+      when={true}
+    >
+      <div
+        className="not-complete"
+      >
+        <hr
+          className="section-divider"
+        />
+        <Field
+          adjustFor=""
+          className="no-margin-bottom"
+          comments={false}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help=""
+          helpActive={false}
+          optional={true}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={false}
+          title="Before you leave this section"
+          titleSize="h4"
+          validate={true}
+        >
+          <ReactMarkdown
+            containerTagName="div"
+            parserOptions={Object {}}
+            renderers={
+              Object {
+                "link": [Function],
+              }
+            }
+            source="**The full  year period of residence history is not covered.** Your  cannot be submitted until all  years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back."
+          />
+        </Field>
+      </div>
+    </Show>
+  </div>,
+  "nodes": Array [
+    <div>
+      <h1
+        className="section-header"
+      >
+        Where you have lived
+      </h1>
+      <Field
+        adjustFor=""
+        className="no-margin-bottom"
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help=""
+        helpActive={false}
+        optional={true}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="List the places where you have lived beginning with your present residence and working back  years."
+        titleSize="h3"
+        validate={true}
+      >
+        <ReactMarkdown
+          containerTagName="div"
+          parserOptions={Object {}}
+          renderers={
+            Object {
+              "link": [Function],
+            }
+          }
+          source="Residences for the entire period must be accounted for without breaks."
+        />
+        <ReactMarkdown
+          containerTagName="div"
+          parserOptions={Object {}}
+          renderers={
+            Object {
+              "link": [Function],
+            }
+          }
+          source=" - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there."
+        />
+        <ReactMarkdown
+          containerTagName="div"
+          parserOptions={Object {}}
+          renderers={
+            Object {
+              "link": [Function],
+            }
+          }
+          source=" - **If you split your time between one or more residences during a time period**, you must list all residences."
+        />
+        <ReactMarkdown
+          containerTagName="div"
+          parserOptions={Object {}}
+          renderers={
+            Object {
+              "link": [Function],
+            }
+          }
+          source=" - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history."
+        />
+        <ReactMarkdown
+          containerTagName="div"
+          parserOptions={Object {}}
+          renderers={
+            Object {
+              "link": [Function],
+            }
+          }
+          source=" - **You are not required to list temporary locations of less than 90 days** that did not serve as your permanent or mailing address."
+        />
+      </Field>
+      <span
+        id="scrollToHistory"
+      />
+      <ResidenceSummaryProgress
+        years={10}
+      />
+      <Connect(ConnectedHistorySection)
+        realtime={true}
+        scrollToTop="scrollToHistory"
+      />
+      <Show
+        when={true}
+      >
+        <div
+          className="not-complete"
+        >
+          <hr
+            className="section-divider"
+          />
+          <Field
+            adjustFor=""
+            className="no-margin-bottom"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Before you leave this section"
+            titleSize="h4"
+            validate={true}
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="**The full  year period of residence history is not covered.** Your  cannot be submitted until all  years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back."
+            />
+          </Field>
+        </div>
+      </Show>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <ResidenceWrapper />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "Birthdate": undefined,
+          "Residence": undefined,
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div>
+          <h1
+            className="section-header"
+          >
+            Where you have lived
+          </h1>
+          <Field
+            adjustFor=""
+            className="no-margin-bottom"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="List the places where you have lived beginning with your present residence and working back  years."
+            titleSize="h3"
+            validate={true}
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="Residences for the entire period must be accounted for without breaks."
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source=" - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there."
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source=" - **If you split your time between one or more residences during a time period**, you must list all residences."
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source=" - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history."
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source=" - **You are not required to list temporary locations of less than 90 days** that did not serve as your permanent or mailing address."
+            />
+          </Field>
+          <span
+            id="scrollToHistory"
+          />
+          <ResidenceSummaryProgress
+            years={10}
+          />
+          <Connect(ConnectedHistorySection)
+            realtime={true}
+            scrollToTop="scrollToHistory"
+          />
+          <Show
+            when={true}
+          >
+            <div
+              className="not-complete"
+            >
+              <hr
+                className="section-divider"
+              />
+              <Field
+                adjustFor=""
+                className="no-margin-bottom"
+                comments={false}
+                commentsActive={false}
+                commentsAdd="comments.add"
+                commentsName="Comments"
+                commentsRemove="comments.remove"
+                commentsRequired={false}
+                commentsValue={Object {}}
+                errorPrefix=""
+                errors={Array []}
+                filterErrors={[Function]}
+                help=""
+                helpActive={false}
+                optional={true}
+                optionalText=""
+                scrollIntoView={true}
+                shrink={false}
+                title="Before you leave this section"
+                titleSize="h4"
+                validate={true}
+              >
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="**The full  year period of residence history is not covered.** Your  cannot be submitted until all  years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back."
+                />
+              </Field>
+            </div>
+          </Show>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div>
+          <h1
+            className="section-header"
+          >
+            Where you have lived
+          </h1>
+          <Field
+            adjustFor=""
+            className="no-margin-bottom"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="List the places where you have lived beginning with your present residence and working back  years."
+            titleSize="h3"
+            validate={true}
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="Residences for the entire period must be accounted for without breaks."
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source=" - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there."
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source=" - **If you split your time between one or more residences during a time period**, you must list all residences."
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source=" - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history."
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source=" - **You are not required to list temporary locations of less than 90 days** that did not serve as your permanent or mailing address."
+            />
+          </Field>
+          <span
+            id="scrollToHistory"
+          />
+          <ResidenceSummaryProgress
+            years={10}
+          />
+          <Connect(ConnectedHistorySection)
+            realtime={true}
+            scrollToTop="scrollToHistory"
+          />
+          <Show
+            when={true}
+          >
+            <div
+              className="not-complete"
+            >
+              <hr
+                className="section-divider"
+              />
+              <Field
+                adjustFor=""
+                className="no-margin-bottom"
+                comments={false}
+                commentsActive={false}
+                commentsAdd="comments.add"
+                commentsName="Comments"
+                commentsRemove="comments.remove"
+                commentsRequired={false}
+                commentsValue={Object {}}
+                errorPrefix=""
+                errors={Array []}
+                filterErrors={[Function]}
+                help=""
+                helpActive={false}
+                optional={true}
+                optionalText=""
+                scrollIntoView={true}
+                shrink={false}
+                title="Before you leave this section"
+                titleSize="h4"
+                validate={true}
+              >
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="**The full  year period of residence history is not covered.** Your  cannot be submitted until all  years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back."
+                />
+              </Field>
+            </div>
+          </Show>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <ResidenceWrapper />,
+}
+`;

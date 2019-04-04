@@ -18,7 +18,7 @@ const sectionConfig = {
   subsection: HISTORY_RESIDENCE.name,
 }
 
-const ResidenceWrapper = (props) => {
+export const ResidenceWrapper = (props) => {
   const { Residence, Birthdate, formType } = props
 
   const years = formType
