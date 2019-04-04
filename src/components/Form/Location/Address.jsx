@@ -160,6 +160,11 @@ export default class Address extends ValidationElement {
   }
 
   addressType() {
+    // If address is not applicable ("I don't know"), return ""
+    if (!this.props.isEnabled) {
+      return ''
+    }
+
     let country = this.props.country
     if (typeof country === 'object') {
       country = countryString(this.props.country)
@@ -573,6 +578,7 @@ Address.defaultProps = {
     return arr
   },
   showPostOffice: false,
+  isEnabled: true,
   streetLabel: i18n.t('address.us.street.label'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),
   postOfficeZipcodeLabel: i18n.t('address.apoFpo.zipcode.label'),

@@ -55,13 +55,13 @@ describe('The status component', () => {
         updates += 1
       },
     }
-    const component = createComponent(expected)
-    component
-      .find('.citizenship-abroad-other input')
-      .simulate('change')
+    let component = createComponent(expected)
+    component.find('.citizenship-abroad-other input').simulate('change')
     component
       .find({ name: 'Explanation' })
       .simulate('change', { target: { value: 'explanation' } })
+    expected.AbroadDocumentation.value = 'FS-545'
+    component = createComponent(expected)
     component
       .find({ name: 'DocumentNumber' })
       .simulate('change', { target: { value: 'number' } })

@@ -49,6 +49,9 @@ export const getValidatorForSection = (section) => {
     case sections.RELATIONSHIPS_RELATIVES:
       return validators.RelativesValidator
 
+    case sections.CITIZENSHIP_US_PASSPORT:
+      return validators.PassportValidator
+
     case sections.CITIZENSHIP_STATUS:
       return validators.CitizenshipValidator
 
@@ -69,9 +72,6 @@ export const getValidatorForSection = (section) => {
 
     case sections.MILITARY_FOREIGN:
       return validators.MilitaryForeignValidator
-
-    case sections.FOREIGN_PASSPORT:
-      return validators.PassportValidator
 
     case sections.FOREIGN_CONTACTS:
       return validators.ForeignContactsValidator

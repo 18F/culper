@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The PackageReview component renders without errors 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="submission-status"
+  >
+    <ReactMarkdown
+      containerTagName="div"
+      parserOptions={Object {}}
+      renderers={
+        Object {
+          "link": [Function],
+        }
+      }
+      source="# Verifying your information is complete
+Checking your form..."
+    />
+    <FormStatus
+      isTransitioning={true}
+      isValid={false}
+      onTransitionEnd={[Function]}
+      progressWidth={0}
+    />
+  </div>,
+  "nodes": Array [
+    <div
+      className="submission-status"
+    >
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source="# Verifying your information is complete
+Checking your form..."
+      />
+      <FormStatus
+        isTransitioning={true}
+        isValid={false}
+        onTransitionEnd={[Function]}
+        progressWidth={0}
+      />
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <PackageReview
+        formIsValid={false}
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": PackageReview {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "onTransitionEnd": [Function],
+        "props": Object {
+          "formIsValid": false,
+        },
+        "refs": Object {},
+        "state": Object {
+          "width": 0,
+        },
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="submission-status"
+        >
+          <ReactMarkdown
+            containerTagName="div"
+            parserOptions={Object {}}
+            renderers={
+              Object {
+                "link": [Function],
+              }
+            }
+            source="# Verifying your information is complete
+Checking your form..."
+          />
+          <FormStatus
+            isTransitioning={true}
+            isValid={false}
+            onTransitionEnd={[Function]}
+            progressWidth={0}
+          />
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="submission-status"
+        >
+          <ReactMarkdown
+            containerTagName="div"
+            parserOptions={Object {}}
+            renderers={
+              Object {
+                "link": [Function],
+              }
+            }
+            source="# Verifying your information is complete
+Checking your form..."
+          />
+          <FormStatus
+            isTransitioning={true}
+            isValid={false}
+            onTransitionEnd={[Function]}
+            progressWidth={0}
+          />
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <PackageReview
+    formIsValid={false}
+  />,
+}
+`;

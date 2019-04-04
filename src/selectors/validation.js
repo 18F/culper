@@ -25,7 +25,17 @@ const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
         }
       }
 
-      const sectionData = application[store][s.storeKey] || {}
+      // TODO HACK
+      // The if else conditional was introduced as a one-off hack to fix
+      // validation errors that occurred. This hack should be removed.
+      // https://github.com/18F/e-QIP-prototype/issues/1608
+      let sectionData
+      if (store === 'Citizenship' && s.storeKey === 'Passport') {
+        sectionData = application.Foreign.Passport
+      } else {
+        sectionData = application[store][s.storeKey] || {}
+      }
+
       const isValid = validateSection({ ...s, data: sectionData })
 
       return {

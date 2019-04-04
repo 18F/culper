@@ -16,20 +16,65 @@ var (
 	ErrDatastoreConnection = errors.New("Unable to connect to datastore")
 )
 
+// knownFormVersions is a map of FormType -> slice of known versions sorted with most recent first.
+var knownFormVersions = map[string][]string{
+
+	"SF86": []string{
+		"2016-11",
+	},
+
+	"SF85": []string{
+		"2017-12_draft7",
+	},
+}
+
 // Account represents a user account
 type Account struct {
-	ID        int
-	Username  string
-	Firstname string
-	Lastname  string
-	Token     string
-	TokenUsed bool
-	Email     string
-	Locked    bool
+	ID          int
+	Username    string
+	Firstname   string
+	Lastname    string
+	Token       string
+	TokenUsed   bool
+	Email       string
+	Locked      bool
+	FormType    string `db:"form_type"`
+	FormVersion string `db:"form_version"`
+}
+
+// validate returns nil if the account is valid or an error describing what's wrong otherwise.
+// This is intended to ensure data integrity by not saving invalid data to the database
+func (entity Account) validate() error {
+
+	// the required fields are Username, FormType, and FormVersion
+	errorString := "Account is invalid. "
+	isValid := true
+
+	if entity.Username == "" {
+		errorString += "Missing Username. "
+		isValid = false
+	}
+
+	if !entity.FormTypeIsKnown() {
+		errorString += fmt.Sprintf("%s + %s is not a known form version", entity.FormType, entity.FormVersion)
+		isValid = false
+	}
+
+	if !isValid {
+		return errors.New(errorString)
+	}
+
+	return nil
+
 }
 
 // Save the Account entity.
 func (entity *Account) Save(context DatabaseService, account int) (int, error) {
+
+	if err := entity.validate(); err != nil {
+		return entity.ID, err
+	}
+
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
@@ -101,6 +146,17 @@ func (entity *Account) Unlock(context DatabaseService) error {
 	return err
 }
 
+// FormTypeIsKnown returns wether the form type and version are known to eApp
+func (entity *Account) FormTypeIsKnown() bool {
+	versions := knownFormVersions[entity.FormType]
+	for _, version := range versions {
+		if entity.FormVersion == version {
+			return true
+		}
+	}
+	return false
+}
+
 // BasicAuthentication checks if the username and password are valid and returns the users account
 func (entity *Account) BasicAuthentication(context DatabaseService, password string) error {
 	var basicMembership BasicAuthMembership
@@ -126,6 +182,8 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 		entity.TokenUsed = basicMembership.Account.TokenUsed
 		entity.Email = basicMembership.Account.Email
 		entity.Locked = basicMembership.Account.Locked
+		entity.FormType = basicMembership.Account.FormType
+		entity.FormVersion = basicMembership.Account.FormVersion
 	}
 	return nil
 }

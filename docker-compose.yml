@@ -10,8 +10,8 @@ services:
       - ./conf/postgres.conf:/srv/postgresql.conf
       - ./api/eapp.crt:/srv/server.crt
       - ./api/eapp.key:/srv/server.key
-    expose:
-      - '5432'
+    ports:
+      - '5432:5432'
     networks:
       - eapp
 

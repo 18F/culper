@@ -110,11 +110,11 @@ exports[`The section component renders citizenship.intro 1`] = `
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Citizenship status"
+            aria-label="Go to next section U.S. passport information"
             className="btn-cell next"
-            href="/form/citizenship/status"
+            href="/form/citizenship/passport"
             onClick={[Function]}
-            title="Go to next section Citizenship status"
+            title="Go to next section U.S. passport information"
           >
             <div
               className="actions next"
@@ -130,7 +130,7 @@ exports[`The section component renders citizenship.intro 1`] = `
                 <div
                   className="label"
                 >
-                  Citizenship status
+                  U.S. passport information
                 </div>
               </div>
               <div
@@ -346,6 +346,224 @@ exports[`The section component renders citizenship.multiple 1`] = `
                   className="label"
                 >
                   Foreign passports
+                </div>
+              </div>
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The section component renders citizenship.passport 1`] = `
+<div
+  className="section-view"
+>
+  <div
+    className="view view-passport"
+  >
+    <div
+      className="section-content passport"
+      data-section="citizenship"
+      data-subsection="passport"
+    >
+      <h1
+        className="section-header"
+      >
+        U.S. passport information
+      </h1>
+      <h3>
+        Provide the following information for the most recent U.S. passport you currently possess.
+      </h3>
+      <div
+        aria-label="Do you possess a U.S. passport (current or expired)?"
+        className="field required branch"
+        data-uuid="field-MOCK-GUID"
+      >
+        <a
+          aria-hidden="true"
+          className="anchor"
+          id="field-MOCK-GUID"
+          name="field-MOCK-GUID"
+        />
+        <h4
+          className="title h4"
+        >
+          Do you possess a U.S. passport (current or expired)?
+        </h4>
+        <span
+          className="icon"
+        />
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages help-messages"
+          />
+        </div>
+        <div
+          className="table expand"
+        >
+          <span
+            aria-live="polite"
+            className="messages error-messages"
+            role="alert"
+          />
+        </div>
+        <div
+          className="table"
+        >
+          <span
+            className="content"
+          >
+            <span
+              className="component shrink"
+            >
+              <div
+                className="content"
+              />
+              <div
+                className="blocks option-list branch"
+              >
+                <div
+                  className="yes block"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_passport-MOCK-GUID"
+                    name="has_passport-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <label
+                    className=""
+                    htmlFor="has_passport-MOCK-GUID"
+                  >
+                    <span>
+                      Yes
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="no block"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_passport-MOCK-GUID"
+                    name="has_passport-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <label
+                    className=""
+                    htmlFor="has_passport-MOCK-GUID"
+                  >
+                    <span>
+                      No
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="bottom-btns"
+    >
+      <div
+        className="btn-wrap"
+      >
+        <div
+          className="btn-container"
+        >
+          <a
+            aria-label="Go to previous section Citizenship intro"
+            className="btn-cell back"
+            href="/form/citizenship/intro"
+            onClick={[Function]}
+            title="Go to previous section Citizenship intro"
+          >
+            <div
+              className="actions back"
+            >
+              <div
+                className="icon"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-left"
+                />
+              </div>
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Back
+                </div>
+                <div
+                  className="label"
+                >
+                  Citizenship intro
+                </div>
+              </div>
+            </div>
+          </a>
+          <div
+            className="btn-spacer"
+          />
+          <a
+            aria-label="Go to next section Citizenship status"
+            className="btn-cell next"
+            href="/form/citizenship/status"
+            onClick={[Function]}
+            title="Go to next section Citizenship status"
+          >
+            <div
+              className="actions next"
+            >
+              <div
+                className="text"
+              >
+                <div
+                  className="direction"
+                >
+                  Next
+                </div>
+                <div
+                  className="label"
+                >
+                  Citizenship status
                 </div>
               </div>
               <div
@@ -607,6 +825,155 @@ exports[`The section component renders citizenship.review 1`] = `
       className="top-btns"
     />
     <div>
+      <div
+        className="section-content passport"
+        data-section="citizenship"
+        data-subsection="passport"
+      >
+        <h1
+          className="section-header"
+        >
+          U.S. passport information
+        </h1>
+        <h3>
+          Provide the following information for the most recent U.S. passport you currently possess.
+        </h3>
+        <div
+          aria-label="Do you possess a U.S. passport (current or expired)?"
+          className="field required branch"
+          data-uuid="field-MOCK-GUID"
+        >
+          <a
+            aria-hidden="true"
+            className="anchor"
+            id="field-MOCK-GUID"
+            name="field-MOCK-GUID"
+          />
+          <h4
+            className="title h4"
+          >
+            Do you possess a U.S. passport (current or expired)?
+          </h4>
+          <span
+            className="icon"
+          />
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages help-messages"
+            />
+          </div>
+          <div
+            className="table expand"
+          >
+            <span
+              aria-live="polite"
+              className="messages error-messages"
+              role="alert"
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            className="table"
+          >
+            <span
+              className="content"
+            >
+              <span
+                className="component shrink"
+              >
+                <div
+                  className="content"
+                />
+                <div
+                  className="blocks option-list branch usa-input-error"
+                >
+                  <div
+                    className="yes block"
+                  >
+                    <input
+                      aria-label="Yes for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_passport-MOCK-GUID"
+                      name="has_passport-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Yes"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_passport-MOCK-GUID"
+                    >
+                      <span>
+                        Yes
+                      </span>
+                    </label>
+                  </div>
+                  <div
+                    className="no block"
+                  >
+                    <input
+                      aria-label="No for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="has_passport-MOCK-GUID"
+                      name="has_passport-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="No"
+                    />
+                    <label
+                      className=""
+                      htmlFor="has_passport-MOCK-GUID"
+                    >
+                      <span>
+                        No
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr
+        className="section-divider"
+      />
       <div
         className="section-content status"
         data-section="citizenship"
@@ -1470,11 +1837,11 @@ exports[`The section component renders citizenship.status 1`] = `
           className="btn-container"
         >
           <a
-            aria-label="Go to previous section Citizenship intro"
+            aria-label="Go to previous section U.S. passport information"
             className="btn-cell back"
-            href="/form/citizenship/intro"
+            href="/form/citizenship/passport"
             onClick={[Function]}
-            title="Go to previous section Citizenship intro"
+            title="Go to previous section U.S. passport information"
           >
             <div
               className="actions back"
@@ -1498,7 +1865,7 @@ exports[`The section component renders citizenship.status 1`] = `
                 <div
                   className="label"
                 >
-                  Citizenship intro
+                  U.S. passport information
                 </div>
               </div>
             </div>
@@ -4840,11 +5207,11 @@ exports[`The section component renders foreign.contacts 1`] = `
           className="btn-container"
         >
           <a
-            aria-label="Go to previous section U.S. passport information"
+            aria-label="Go to previous section Foreign intro"
             className="btn-cell back"
-            href="/form/foreign/passport"
+            href="/form/foreign/intro"
             onClick={[Function]}
-            title="Go to previous section U.S. passport information"
+            title="Go to previous section Foreign intro"
           >
             <div
               className="actions back"
@@ -4868,7 +5235,7 @@ exports[`The section component renders foreign.contacts 1`] = `
                 <div
                   className="label"
                 >
-                  U.S. passport information
+                  Foreign intro
                 </div>
               </div>
             </div>
@@ -5027,224 +5394,6 @@ exports[`The section component renders foreign.intro 1`] = `
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section U.S. passport information"
-            className="btn-cell next"
-            href="/form/foreign/passport"
-            onClick={[Function]}
-            title="Go to next section U.S. passport information"
-          >
-            <div
-              className="actions next"
-            >
-              <div
-                className="text"
-              >
-                <div
-                  className="direction"
-                >
-                  Next
-                </div>
-                <div
-                  className="label"
-                >
-                  U.S. passport information
-                </div>
-              </div>
-              <div
-                className="icon"
-              >
-                <i
-                  aria-hidden="true"
-                  className="fa fa-arrow-circle-right"
-                />
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`The section component renders foreign.passport 1`] = `
-<div
-  className="section-view"
->
-  <div
-    className="view view-passport"
-  >
-    <div
-      className="section-content passport"
-      data-section="foreign"
-      data-subsection="passport"
-    >
-      <h1
-        className="section-header"
-      >
-        U.S. passport information
-      </h1>
-      <h3>
-        Provide the following information for the most recent U.S. passport you currently possess.
-      </h3>
-      <div
-        aria-label="Do you possess a U.S. passport (current or expired)?"
-        className="field required branch"
-        data-uuid="field-MOCK-GUID"
-      >
-        <a
-          aria-hidden="true"
-          className="anchor"
-          id="field-MOCK-GUID"
-          name="field-MOCK-GUID"
-        />
-        <h4
-          className="title h4"
-        >
-          Do you possess a U.S. passport (current or expired)?
-        </h4>
-        <span
-          className="icon"
-        />
-        <div
-          className="table expand"
-        >
-          <span
-            aria-live="polite"
-            className="messages help-messages"
-          />
-        </div>
-        <div
-          className="table expand"
-        >
-          <span
-            aria-live="polite"
-            className="messages error-messages"
-            role="alert"
-          />
-        </div>
-        <div
-          className="table"
-        >
-          <span
-            className="content"
-          >
-            <span
-              className="component shrink"
-            >
-              <div
-                className="content"
-              />
-              <div
-                className="blocks option-list branch"
-              >
-                <div
-                  className="yes block"
-                >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_passport-MOCK-GUID"
-                    name="has_passport-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
-                  <label
-                    className=""
-                    htmlFor="has_passport-MOCK-GUID"
-                  >
-                    <span>
-                      Yes
-                    </span>
-                  </label>
-                </div>
-                <div
-                  className="no block"
-                >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_passport-MOCK-GUID"
-                    name="has_passport-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
-                  <label
-                    className=""
-                    htmlFor="has_passport-MOCK-GUID"
-                  >
-                    <span>
-                      No
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </span>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div
-      className="bottom-btns"
-    >
-      <div
-        className="btn-wrap"
-      >
-        <div
-          className="btn-container"
-        >
-          <a
-            aria-label="Go to previous section Foreign intro"
-            className="btn-cell back"
-            href="/form/foreign/intro"
-            onClick={[Function]}
-            title="Go to previous section Foreign intro"
-          >
-            <div
-              className="actions back"
-            >
-              <div
-                className="icon"
-              >
-                <i
-                  aria-hidden="true"
-                  className="fa fa-arrow-circle-left"
-                />
-              </div>
-              <div
-                className="text"
-              >
-                <div
-                  className="direction"
-                >
-                  Back
-                </div>
-                <div
-                  className="label"
-                >
-                  Foreign intro
-                </div>
-              </div>
-            </div>
-          </a>
-          <div
-            className="btn-spacer"
-          />
-          <a
             aria-label="Go to next section Foreign contacts"
             className="btn-cell next"
             href="/form/foreign/contacts"
@@ -5306,155 +5455,6 @@ exports[`The section component renders foreign.review 1`] = `
       className="top-btns"
     />
     <div>
-      <div
-        className="section-content passport"
-        data-section="foreign"
-        data-subsection="passport"
-      >
-        <h1
-          className="section-header"
-        >
-          U.S. passport information
-        </h1>
-        <h3>
-          Provide the following information for the most recent U.S. passport you currently possess.
-        </h3>
-        <div
-          aria-label="Do you possess a U.S. passport (current or expired)?"
-          className="field required branch"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Do you possess a U.S. passport (current or expired)?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch usa-input-error"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_passport-MOCK-GUID"
-                      name="has_passport-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_passport-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_passport-MOCK-GUID"
-                      name="has_passport-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_passport-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="section-divider"
-      />
       <div
         className="section-content foreign-contacts"
         data-section="foreign"

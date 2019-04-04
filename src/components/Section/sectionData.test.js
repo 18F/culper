@@ -1,4 +1,4 @@
-import { sectionData } from './sectionData'
+import sectionData from './sectionData'
 
 describe('Retrieving section data', () => {
   it('can get section data', () => {
@@ -10,7 +10,7 @@ describe('Retrieving section data', () => {
         ApplicantBirthDate: true,
         ApplicantBirthPlace: true,
         ApplicantSSN: true,
-        Physical: true
+        Physical: true,
       },
       Financial: {
         Bankruptcy: true,
@@ -19,30 +19,30 @@ describe('Retrieving section data', () => {
         Card: true,
         Credit: true,
         Delinquent: true,
-        Nonpayment: true
+        Nonpayment: true,
       },
       History: {
         Residence: true,
         Employment: true,
         Education: true,
-        Federal: true
+        Federal: true,
       },
       Relationships: {
         Marital: true,
         Cohabitants: true,
         People: true,
-        Relatives: true
+        Relatives: true,
       },
       Citizenship: {
         Status: true,
         Multiple: true,
-        Passports: true
+        Passports: true,
       },
       Military: {
         Selective: true,
         History: true,
         Disciplinary: true,
-        Foreign: true
+        Foreign: true,
       },
       Foreign: {
         Passport: true,
@@ -61,7 +61,7 @@ describe('Retrieving section data', () => {
         Sponsorship: true,
         Political: true,
         Voting: true,
-        Travel: true
+        Travel: true,
       },
       Substance: {
         DrugUses: true,
@@ -74,7 +74,7 @@ describe('Retrieving section data', () => {
         NegativeImpacts: true,
         OrderedCounselings: true,
         VoluntaryCounselings: true,
-        ReceivedCounselings: true
+        ReceivedCounselings: true,
       },
       Legal: {
         PoliceOffenses: true,
@@ -93,368 +93,416 @@ describe('Retrieving section data', () => {
         MembershipOverthrow: true,
         MembershipViolence: true,
         ActivitiesToOverthrow: true,
-        TerrorismAssociation: true
+        TerrorismAssociation: true,
       },
       Psychological: {
         Competence: true,
         Consultations: true,
         Hospitalizations: true,
         Diagnoses: true,
-        ExistingConditions: true
-      }
+        ExistingConditions: true,
+      },
     }
 
     const tests = [
       {
         section: 'identification',
         subsection: 'name',
-        application: application
+        application,
       },
       {
         section: 'identification',
         subsection: 'contacts',
-        application: application
+        application,
       },
       {
         section: 'identification',
         subsection: 'othernames',
-        application: application
+        application,
       },
       {
         section: 'identification',
         subsection: 'birthdate',
-        application: application
+        application,
       },
       {
         section: 'identification',
         subsection: 'birthplace',
-        application: application
+        application,
       },
       {
         section: 'identification',
         subsection: 'ssn',
-        application: application
+        application,
       },
       {
         section: 'identification',
         subsection: 'physical',
-        application: application
+        application,
       },
       {
         section: 'financial',
         subsection: 'bankruptcy',
-        application: application
+        application,
       },
       {
         section: 'financial',
         subsection: 'gambling',
-        application: application
+        application,
       },
-      { section: 'financial', subsection: 'taxes', application: application },
-      { section: 'financial', subsection: 'card', application: application },
-      { section: 'financial', subsection: 'credit', application: application },
+      {
+        section: 'financial',
+        subsection: 'taxes',
+        application,
+      },
+      {
+        section: 'financial',
+        subsection: 'card',
+        application,
+      },
+      {
+        section: 'financial',
+        subsection: 'credit',
+        application,
+      },
       {
         section: 'financial',
         subsection: 'delinquent',
-        application: application
+        application,
       },
       {
         section: 'financial',
         subsection: 'nonpayment',
-        application: application
+        application,
       },
-      { section: 'history', subsection: 'residence', application: application },
+      {
+        section: 'history',
+        subsection: 'residence',
+        application,
+      },
       {
         section: 'history',
         subsection: 'employment',
-        application: application
+        application,
       },
-      { section: 'history', subsection: 'education', application: application },
-      { section: 'history', subsection: 'federal', application: application },
+      {
+        section: 'history',
+        subsection: 'education',
+        application,
+      },
+      {
+        section: 'history',
+        subsection: 'federal',
+        application,
+      },
       {
         section: 'relationships',
         subsection: 'status/marital',
-        application: application
+        application,
       },
       {
         section: 'relationships',
         subsection: 'status/cohabitant',
-        application: application
+        application,
       },
       {
         section: 'relationships',
         subsection: 'people',
-        application: application
+        application,
       },
       {
         section: 'relationships',
         subsection: 'relatives',
-        application: application
+        application,
       },
       {
         section: 'citizenship',
         subsection: 'status',
-        application: application
+        application,
       },
       {
         section: 'citizenship',
         subsection: 'multiple',
-        application: application
+        application,
       },
       {
         section: 'citizenship',
         subsection: 'passports',
-        application: application
+        application,
       },
       {
         section: 'military',
         subsection: 'selective',
-        application: application
+        application,
       },
-      { section: 'military', subsection: 'history', application: application },
+      {
+        section: 'military',
+        subsection: 'history',
+        application,
+      },
       {
         section: 'military',
         subsection: 'disciplinary',
-        application: application
+        application,
       },
-      { section: 'military', subsection: 'foreign', application: application },
-      { section: 'foreign', subsection: 'passport', application: application },
-      { section: 'foreign', subsection: 'contacts', application: application },
+      {
+        section: 'military',
+        subsection: 'foreign',
+        application,
+      },
+      {
+        section: 'foreign',
+        subsection: 'passport',
+        application,
+      },
+      {
+        section: 'foreign',
+        subsection: 'contacts',
+        application,
+      },
       {
         section: 'foreign',
         subsection: 'activities/direct',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'activities/indirect',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'activities/realestate',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'activities/benefits',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'activities/support',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/advice',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/family',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/employment',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/ventures',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/conferences',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/contact',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/sponsorship',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/political',
-        application: application
+        application,
       },
       {
         section: 'foreign',
         subsection: 'business/voting',
-        application: application
+        application,
       },
-      { section: 'foreign', subsection: 'travel', application: application },
+      {
+        section: 'foreign',
+        subsection: 'travel',
+        application,
+      },
       {
         section: 'substance',
         subsection: 'drugs/usage',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'drugs/purchase',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'drugs/clearance',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'drugs/publicsafety',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'drugs/misuse',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'drugs/ordered',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'drugs/voluntary',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'alcohol/negative',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'alcohol/ordered',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'alcohol/voluntary',
-        application: application
+        application,
       },
       {
         section: 'substance',
         subsection: 'alcohol/additional',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'police/offenses',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'police/additionaloffenses',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'police/domesticviolence',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'investigations/history',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'investigations/revoked',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'investigations/debarred',
-        application: application
+        application,
       },
-      { section: 'legal', subsection: 'court', application: application },
+      {
+        section: 'legal',
+        subsection: 'court',
+        application,
+      },
       {
         section: 'legal',
         subsection: 'technology/unauthorized',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'technology/manipulating',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'technology/unlawful',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'associations/terrorist-organization',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'associations/engaged-in-terrorism',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'associations/advocating',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'associations/membership-overthrow',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'associations/membership-violence-or-force',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'associations/activities-to-overthrow',
-        application: application
+        application,
       },
       {
         section: 'legal',
         subsection: 'associations/terrorism-association',
-        application: application
+        application,
       },
       {
         section: 'psychological',
         subsection: 'competence',
-        application: application
+        application,
       },
       {
         section: 'psychological',
         subsection: 'consultations',
-        application: application
+        application,
       },
       {
         section: 'psychological',
         subsection: 'hospitalizations',
-        application: application
+        application,
       },
       {
         section: 'psychological',
         subsection: 'diagnoses',
-        application: application
+        application,
       },
       {
         section: 'psychological',
         subsection: 'conditions',
-        application: application
-      }
+        application,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const results = sectionData(
         test.section,
         test.subsection,

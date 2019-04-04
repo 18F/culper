@@ -2212,15 +2212,15 @@
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
             </MilitaryHistory>
             <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <RegistrationRequired>
+                <Answer>Yes</Answer>
+              </RegistrationRequired>
               <Registered>
                 <Answer>Yes</Answer>
               </Registered>
               <Registration>
                 <Number>55555555</Number>
               </Registration>
-              <RegistrationRequired>
-                <Answer>Yes</Answer>
-              </RegistrationRequired>
             </SelectiveServiceRegistration>
             <FinancialRecord Type="Pooled" Version="1">
               <Bankruptcy>
@@ -2583,12 +2583,10 @@
 </Address>
                   <Birth>
                     <Date DoNotKnow="True">
-          
-        </Date>
+  
+</Date>
                     <Place DoNotKnow="True">
           
-
-
         </Place>
                   </Birth>
                   <Citizenships>

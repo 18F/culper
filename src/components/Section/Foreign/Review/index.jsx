@@ -1,5 +1,4 @@
 import React from 'react'
-import Passport from '../Passport'
 import Contacts from '../Contacts'
 import {
   DirectActivity,
@@ -32,8 +31,6 @@ const Review = () => {
 
   return (
     <div>
-      <Passport {...props} />
-      {sectionDivider}
       <Contacts {...props} />
       {sectionDivider}
       <DirectActivity {...props} />

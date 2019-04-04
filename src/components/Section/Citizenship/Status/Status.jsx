@@ -3,6 +3,7 @@ import { i18n } from 'config'
 import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
 import schema from 'schema'
 import validate from 'validators'
+import { isDocumentRequired, isCertificateRequired } from 'validators/citizenship'
 import {
   Branch,
   Show,
@@ -101,6 +102,33 @@ export class Status extends Subsection {
   )
 
   render() {
+    const {
+      CitizenshipStatus,
+      AbroadDocumentation,
+      Explanation,
+      DocumentNumber,
+      DocumentIssued,
+      PlaceIssued,
+      DocumentName,
+      CertificateNumber,
+      CertificateIssued,
+      CertificateName,
+    } = this.props
+
+    const data = {
+      citizenshipstatus: (CitizenshipStatus || {}).value,
+      abroadDocumentation: (AbroadDocumentation || {}).value,
+      explanation: (Explanation || {}),
+      documentNumber: DocumentNumber,
+      documentIssued: DocumentIssued,
+      placeIssued: PlaceIssued,
+      documentName: DocumentName,
+      certificateNumber: CertificateNumber,
+      certificateIssued: CertificateIssued,
+      certificateName: CertificateName,
+    }
+    const resultIsCertificateRequired = isCertificateRequired(data)
+    const resultIsDocumentRequired = isDocumentRequired(data)
     return (
       <div
         className="section-content status"
@@ -172,7 +200,7 @@ export class Status extends Subsection {
             >
               <RadioGroup
                 className="citizenship-abroad"
-                required={this.props.required}
+                required={resultIsDocumentRequired && this.props.required}
                 onError={this.handleError}
                 selectedValue={(this.props.AbroadDocumentation || {}).value}
               >
@@ -232,7 +260,7 @@ export class Status extends Subsection {
                     {...this.props.Explanation}
                     onUpdate={(value) => { this.updateField('Explanation', value) }}
                     onError={this.handleError}
-                    required={this.props.required}
+                    required={resultIsDocumentRequired && this.props.required}
                   />
                 </Field>
               </Show>
@@ -256,6 +284,7 @@ export class Status extends Subsection {
                   onUpdate={(value) => { this.updateField('DocumentNumber', value) }}
                   onError={this.handleError}
                   required={this.props.required}
+
                 />
               </Field>
 

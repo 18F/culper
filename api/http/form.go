@@ -38,5 +38,12 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, string(api.Application(service.Database, account.ID, false)))
+	jsonBytes, err := api.Application(service.Database, account.ID, false)
+	if err != nil {
+		service.Log.WarnError(api.FormDecodingError, err, api.LogFields{})
+		RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprint(w, string(jsonBytes))
 }
