@@ -1,0 +1,792 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Physical component renders without errors 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="section-content physical"
+    data-section="identification"
+    data-subsection="physical"
+  >
+    <h1
+      className="section-header"
+    >
+      Your identifying information
+    </h1>
+    <Field
+      adjustFor="labels"
+      className=""
+      comments={false}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help="identification.traits.help.height"
+      helpActive={false}
+      optional={false}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={true}
+      title="Height"
+      titleSize="h4"
+      validate={true}
+    >
+      <Height
+        error={false}
+        feet=""
+        inches=""
+        name="height"
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+        tab={[Function]}
+        valid={false}
+      />
+    </Field>
+    <Field
+      adjustFor="labels"
+      className=""
+      comments={false}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help="identification.traits.help.weight"
+      helpActive={false}
+      optional={false}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={true}
+      title="Weight"
+      titleSize="h4"
+      validate={true}
+    >
+      <Weight
+        name="weight"
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+        value=""
+      />
+    </Field>
+    <Field
+      adjustFor="big-buttons"
+      className=""
+      comments={false}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help="identification.traits.help.hair"
+      helpActive={false}
+      optional={false}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={false}
+      title="Hair color"
+      titleSize="h4"
+      validate={true}
+    >
+      <HairColor
+        className=""
+        help="identification.traits.help.hair"
+        name="hair"
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+        value=""
+      />
+    </Field>
+    <Field
+      adjustFor="big-buttons"
+      className=""
+      comments={false}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help="identification.traits.help.eye"
+      helpActive={false}
+      optional={false}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={false}
+      title="Eye color"
+      titleSize="h4"
+      validate={true}
+    >
+      <EyeColor
+        className=""
+        name="eye"
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+      />
+    </Field>
+    <Field
+      adjustFor="big-buttons"
+      className=""
+      comments={true}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help="identification.traits.help.sex"
+      helpActive={false}
+      onUpdate={[Function]}
+      optional={false}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={true}
+      title="Select your sex"
+      titleSize="h4"
+      validate={true}
+    >
+      <Sex
+        name="sex"
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+        value=""
+      />
+    </Field>
+  </div>,
+  "nodes": Array [
+    <div
+      className="section-content physical"
+      data-section="identification"
+      data-subsection="physical"
+    >
+      <h1
+        className="section-header"
+      >
+        Your identifying information
+      </h1>
+      <Field
+        adjustFor="labels"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="identification.traits.help.height"
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={true}
+        title="Height"
+        titleSize="h4"
+        validate={true}
+      >
+        <Height
+          error={false}
+          feet=""
+          inches=""
+          name="height"
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+          tab={[Function]}
+          valid={false}
+        />
+      </Field>
+      <Field
+        adjustFor="labels"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="identification.traits.help.weight"
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={true}
+        title="Weight"
+        titleSize="h4"
+        validate={true}
+      >
+        <Weight
+          name="weight"
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+          value=""
+        />
+      </Field>
+      <Field
+        adjustFor="big-buttons"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="identification.traits.help.hair"
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Hair color"
+        titleSize="h4"
+        validate={true}
+      >
+        <HairColor
+          className=""
+          help="identification.traits.help.hair"
+          name="hair"
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+          value=""
+        />
+      </Field>
+      <Field
+        adjustFor="big-buttons"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="identification.traits.help.eye"
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Eye color"
+        titleSize="h4"
+        validate={true}
+      >
+        <EyeColor
+          className=""
+          name="eye"
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+        />
+      </Field>
+      <Field
+        adjustFor="big-buttons"
+        className=""
+        comments={true}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="identification.traits.help.sex"
+        helpActive={false}
+        onUpdate={[Function]}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={true}
+        title="Select your sex"
+        titleSize="h4"
+        validate={true}
+      >
+        <Sex
+          name="sex"
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+          value=""
+        />
+      </Field>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <Physical
+        Comments={Object {}}
+        EyeColor=""
+        HairColor=""
+        Height={Object {}}
+        Sex=""
+        Weight={Object {}}
+        dispatch={[Function]}
+        onError={[Function]}
+        required={false}
+        validator={[Function]}
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": Physical {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "handleCompletion": [Function],
+        "handleError": [Function],
+        "props": Object {
+          "Comments": Object {},
+          "EyeColor": "",
+          "HairColor": "",
+          "Height": Object {},
+          "Sex": "",
+          "Weight": Object {},
+          "dispatch": [Function],
+          "onError": [Function],
+          "required": false,
+          "validator": [Function],
+        },
+        "refs": Object {},
+        "section": "identification",
+        "state": null,
+        "store": "Identification",
+        "storeKey": "Physical",
+        "subsection": "physical",
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="section-content physical"
+          data-section="identification"
+          data-subsection="physical"
+        >
+          <h1
+            className="section-header"
+          >
+            Your identifying information
+          </h1>
+          <Field
+            adjustFor="labels"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.height"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Height"
+            titleSize="h4"
+            validate={true}
+          >
+            <Height
+              error={false}
+              feet=""
+              inches=""
+              name="height"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              tab={[Function]}
+              valid={false}
+            />
+          </Field>
+          <Field
+            adjustFor="labels"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.weight"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Weight"
+            titleSize="h4"
+            validate={true}
+          >
+            <Weight
+              name="weight"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              value=""
+            />
+          </Field>
+          <Field
+            adjustFor="big-buttons"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.hair"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Hair color"
+            titleSize="h4"
+            validate={true}
+          >
+            <HairColor
+              className=""
+              help="identification.traits.help.hair"
+              name="hair"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              value=""
+            />
+          </Field>
+          <Field
+            adjustFor="big-buttons"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.eye"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Eye color"
+            titleSize="h4"
+            validate={true}
+          >
+            <EyeColor
+              className=""
+              name="eye"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+            />
+          </Field>
+          <Field
+            adjustFor="big-buttons"
+            className=""
+            comments={true}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.sex"
+            helpActive={false}
+            onUpdate={[Function]}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Select your sex"
+            titleSize="h4"
+            validate={true}
+          >
+            <Sex
+              name="sex"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              value=""
+            />
+          </Field>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="section-content physical"
+          data-section="identification"
+          data-subsection="physical"
+        >
+          <h1
+            className="section-header"
+          >
+            Your identifying information
+          </h1>
+          <Field
+            adjustFor="labels"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.height"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Height"
+            titleSize="h4"
+            validate={true}
+          >
+            <Height
+              error={false}
+              feet=""
+              inches=""
+              name="height"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              tab={[Function]}
+              valid={false}
+            />
+          </Field>
+          <Field
+            adjustFor="labels"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.weight"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Weight"
+            titleSize="h4"
+            validate={true}
+          >
+            <Weight
+              name="weight"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              value=""
+            />
+          </Field>
+          <Field
+            adjustFor="big-buttons"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.hair"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Hair color"
+            titleSize="h4"
+            validate={true}
+          >
+            <HairColor
+              className=""
+              help="identification.traits.help.hair"
+              name="hair"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              value=""
+            />
+          </Field>
+          <Field
+            adjustFor="big-buttons"
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.eye"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Eye color"
+            titleSize="h4"
+            validate={true}
+          >
+            <EyeColor
+              className=""
+              name="eye"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+            />
+          </Field>
+          <Field
+            adjustFor="big-buttons"
+            className=""
+            comments={true}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.traits.help.sex"
+            helpActive={false}
+            onUpdate={[Function]}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={true}
+            title="Select your sex"
+            titleSize="h4"
+            validate={true}
+          >
+            <Sex
+              name="sex"
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              value=""
+            />
+          </Field>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Physical
+    Comments={Object {}}
+    EyeColor=""
+    HairColor=""
+    Height={Object {}}
+    Sex=""
+    Weight={Object {}}
+    dispatch={[Function]}
+    onError={[Function]}
+    required={false}
+    validator={[Function]}
+  />,
+}
+`;

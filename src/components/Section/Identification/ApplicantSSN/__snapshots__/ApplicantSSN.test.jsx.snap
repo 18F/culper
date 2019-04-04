@@ -1,5 +1,598 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`The ApplicantSSN component renders without errors 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="section-content applicant-ssn"
+    data-section="identification"
+    data-subsection="ssn"
+  >
+    <h1
+      className="section-header"
+    >
+      Social security number
+    </h1>
+    <Field
+      adjustFor=""
+      className=""
+      comments={false}
+      commentsActive={false}
+      commentsAdd="comments.add"
+      commentsName="Comments"
+      commentsRemove="comments.remove"
+      commentsRequired={false}
+      commentsValue={Object {}}
+      errorPrefix=""
+      errors={Array []}
+      filterErrors={[Function]}
+      help="identification.ssn.help"
+      helpActive={false}
+      optional={false}
+      optionalText=""
+      scrollIntoView={true}
+      shrink={false}
+      title="Provide your U.S. Social Security Number"
+      titleSize="h4"
+      validate={true}
+    >
+      <SSN
+        className="applicant-ssn-initial"
+        error={false}
+        first=""
+        focus={false}
+        hideNotApplicable={false}
+        last=""
+        middle=""
+        name="ssn"
+        notApplicable={false}
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+        tab={[Function]}
+        valid={false}
+        value=""
+      />
+    </Field>
+    <Show
+      when={false}
+    >
+      <Field
+        adjustFor=""
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help=""
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Please confirm your social security number"
+        titleSize="h4"
+        validate={true}
+      >
+        <SSN
+          className="applicant-ssn-verification"
+          error={false}
+          first=""
+          focus={false}
+          hideNotApplicable={true}
+          last=""
+          middle=""
+          name="verification"
+          notApplicable={false}
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+          tab={[Function]}
+          valid={false}
+          value=""
+        />
+      </Field>
+    </Show>
+    <Show
+      when={false}
+    >
+      <Field
+        adjustFor=""
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help=""
+        helpActive={false}
+        optional={true}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Thank you for confirming your social security number!"
+        titleSize="h4"
+        validate={true}
+      />
+    </Show>
+  </div>,
+  "nodes": Array [
+    <div
+      className="section-content applicant-ssn"
+      data-section="identification"
+      data-subsection="ssn"
+    >
+      <h1
+        className="section-header"
+      >
+        Social security number
+      </h1>
+      <Field
+        adjustFor=""
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="identification.ssn.help"
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Provide your U.S. Social Security Number"
+        titleSize="h4"
+        validate={true}
+      >
+        <SSN
+          className="applicant-ssn-initial"
+          error={false}
+          first=""
+          focus={false}
+          hideNotApplicable={false}
+          last=""
+          middle=""
+          name="ssn"
+          notApplicable={false}
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+          tab={[Function]}
+          valid={false}
+          value=""
+        />
+      </Field>
+      <Show
+        when={false}
+      >
+        <Field
+          adjustFor=""
+          className=""
+          comments={false}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help=""
+          helpActive={false}
+          optional={false}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={false}
+          title="Please confirm your social security number"
+          titleSize="h4"
+          validate={true}
+        >
+          <SSN
+            className="applicant-ssn-verification"
+            error={false}
+            first=""
+            focus={false}
+            hideNotApplicable={true}
+            last=""
+            middle=""
+            name="verification"
+            notApplicable={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            required={false}
+            tab={[Function]}
+            valid={false}
+            value=""
+          />
+        </Field>
+      </Show>
+      <Show
+        when={false}
+      >
+        <Field
+          adjustFor=""
+          className=""
+          comments={false}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help=""
+          helpActive={false}
+          optional={true}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={false}
+          title="Thank you for confirming your social security number!"
+          titleSize="h4"
+          validate={true}
+        />
+      </Show>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <ApplicantSSN
+        dispatch={[Function]}
+        onError={[Function]}
+        onUpdate={[Function]}
+        required={false}
+        ssn={Object {}}
+        validator={[Function]}
+        verified={false}
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": ApplicantSSN {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "handleCompletion": [Function],
+        "handleError": [Function],
+        "props": Object {
+          "dispatch": [Function],
+          "onError": [Function],
+          "onUpdate": [Function],
+          "required": false,
+          "ssn": Object {},
+          "validator": [Function],
+          "verified": false,
+        },
+        "refs": Object {},
+        "section": "identification",
+        "state": Object {
+          "error": false,
+          "uid": "undefined-MOCK-GUID",
+          "verification": Object {},
+        },
+        "store": "Identification",
+        "storeKey": "ApplicantSSN",
+        "subsection": "ssn",
+        "updateSSN": [Function],
+        "updateVerification": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+        "verificationError": [Function],
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="section-content applicant-ssn"
+          data-section="identification"
+          data-subsection="ssn"
+        >
+          <h1
+            className="section-header"
+          >
+            Social security number
+          </h1>
+          <Field
+            adjustFor=""
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.ssn.help"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide your U.S. Social Security Number"
+            titleSize="h4"
+            validate={true}
+          >
+            <SSN
+              className="applicant-ssn-initial"
+              error={false}
+              first=""
+              focus={false}
+              hideNotApplicable={false}
+              last=""
+              middle=""
+              name="ssn"
+              notApplicable={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              tab={[Function]}
+              valid={false}
+              value=""
+            />
+          </Field>
+          <Show
+            when={false}
+          >
+            <Field
+              adjustFor=""
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Please confirm your social security number"
+              titleSize="h4"
+              validate={true}
+            >
+              <SSN
+                className="applicant-ssn-verification"
+                error={false}
+                first=""
+                focus={false}
+                hideNotApplicable={true}
+                last=""
+                middle=""
+                name="verification"
+                notApplicable={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                required={false}
+                tab={[Function]}
+                valid={false}
+                value=""
+              />
+            </Field>
+          </Show>
+          <Show
+            when={false}
+          >
+            <Field
+              adjustFor=""
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Thank you for confirming your social security number!"
+              titleSize="h4"
+              validate={true}
+            />
+          </Show>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="section-content applicant-ssn"
+          data-section="identification"
+          data-subsection="ssn"
+        >
+          <h1
+            className="section-header"
+          >
+            Social security number
+          </h1>
+          <Field
+            adjustFor=""
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help="identification.ssn.help"
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide your U.S. Social Security Number"
+            titleSize="h4"
+            validate={true}
+          >
+            <SSN
+              className="applicant-ssn-initial"
+              error={false}
+              first=""
+              focus={false}
+              hideNotApplicable={false}
+              last=""
+              middle=""
+              name="ssn"
+              notApplicable={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              required={false}
+              tab={[Function]}
+              valid={false}
+              value=""
+            />
+          </Field>
+          <Show
+            when={false}
+          >
+            <Field
+              adjustFor=""
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Please confirm your social security number"
+              titleSize="h4"
+              validate={true}
+            >
+              <SSN
+                className="applicant-ssn-verification"
+                error={false}
+                first=""
+                focus={false}
+                hideNotApplicable={true}
+                last=""
+                middle=""
+                name="verification"
+                notApplicable={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                required={false}
+                tab={[Function]}
+                valid={false}
+                value=""
+              />
+            </Field>
+          </Show>
+          <Show
+            when={false}
+          >
+            <Field
+              adjustFor=""
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Thank you for confirming your social security number!"
+              titleSize="h4"
+              validate={true}
+            />
+          </Show>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <ApplicantSSN
+    dispatch={[Function]}
+    onError={[Function]}
+    onUpdate={[Function]}
+    required={false}
+    ssn={Object {}}
+    validator={[Function]}
+    verified={false}
+  />,
+}
+`;
+
 exports[`The applicant SSN component renders without errors 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
