@@ -57,14 +57,12 @@ const connectMilitarySection = (Component, {
   }
 
   const mapStateToProps = (state) => {
-    const { authentication } = state
-    const { formType } = authentication
-
     const app = state.application || {}
     const military = app.Military || {}
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
+    const { formType } = app.Settings
 
     switch (storeKey) {
       case 'Selective':

@@ -27,8 +27,10 @@ const shouldSkip = (section, subsection) => (
 
 describe('The section component', () => {
   const mockStore = configureMockStore({
-    authentication: {
-      formType: 'SF86',
+    application: {
+      Settings: {
+        formType: 'SF86',
+      },
     },
   })
 
@@ -54,7 +56,6 @@ describe('The section component', () => {
           authentication: {
             authenticated: true,
             token: 'fake-token',
-            formType: 'SF86',
           },
           section: { section: section.url, subsection: subsection.url },
           application: {
@@ -70,6 +71,9 @@ describe('The section component', () => {
               Consultations: { Consulted: { value: 'No' } },
               Diagnoses: { Diagnosed: { value: 'No' } },
               Hospitalizations: { Hospitalized: { value: 'No' } },
+            },
+            Settings: {
+              formType: 'SF86',
             },
           },
         })

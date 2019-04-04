@@ -5,8 +5,6 @@ describe('Authentication Reducer', () => {
   const defaultState = {
     authenticated: false,
     token: null,
-    formType: '',
-    formVersion: '',
   }
 
   it('should return the initial state', () => {
@@ -18,8 +16,6 @@ describe('Authentication Reducer', () => {
       authenticated: true,
       token: 'faketoken',
       error: '',
-      formType: '',
-      formVersion: '',
     }
 
     const action = handleLoginSuccess('faketoken')
@@ -31,8 +27,6 @@ describe('Authentication Reducer', () => {
       authenticated: false,
       token: null,
       error: undefined,
-      formType: '',
-      formVersion: '',
     }
 
     const action = handleLoginError()

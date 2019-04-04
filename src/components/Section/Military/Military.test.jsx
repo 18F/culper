@@ -9,7 +9,14 @@ import Section from 'components/Section'
 describe('The military section', () => {
   const mockStore = configureMockStore()
 
-  const emptyStore = mockStore({ application: { Military: {} }, authentication: { formType: 'SF86' } })
+  const emptyStore = mockStore({
+    application: {
+      Military: {},
+      Settings: {
+        formType: 'SF86',
+      },
+    },
+  })
 
   const createComponent = (
     expected = { section: 'military', subsection: 'intro' },
@@ -81,8 +88,10 @@ describe('The military section', () => {
           ApplicantBirthDate: { Date: { month: '1', day: '1', year: '1900' } },
         },
         Military: {},
+        Settings: {
+          formType: 'SF86',
+        },
       },
-      authentication: { formType: 'SF86' },
     })
 
     const component = createComponent(
@@ -103,8 +112,10 @@ describe('The military section', () => {
           ApplicantBirthDate: { Date: { month: '1', day: '1', year: '1980' } },
         },
         Military: {},
+        Settings: {
+          formType: 'SF86',
+        },
       },
-      authentication: { formType: 'SF86' },
     })
 
     const component = createComponent(
@@ -122,8 +133,10 @@ describe('The military section', () => {
     const modifiedStore = mockStore({
       application: {
         Military: { History: { HasServed: { value: 'No' } } },
+        Settings: {
+          formType: 'SF86',
+        },
       },
-      authentication: { formType: 'SF86' },
     })
 
     const component = createComponent(
@@ -141,8 +154,10 @@ describe('The military section', () => {
     const modifiedStore = mockStore({
       application: {
         Military: { History: { HasServed: { value: 'Yes' } } },
+        Settings: {
+          formType: 'SF86',
+        },
       },
-      authentication: { formType: 'SF86' },
     })
 
     const component = createComponent(

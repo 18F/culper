@@ -14,8 +14,8 @@ describe('The Introduction component', () => {
     let dispatched = 0
     const props = {
       dispatch: () => {
-        dispatched++
-      }
+        dispatched += 1
+      },
     }
     const component = mount(<Introduction {...props} />)
     expect(component.find('.branch .no').length).toBe(1)
@@ -27,8 +27,8 @@ describe('The Introduction component', () => {
     let dispatched = 0
     const props = {
       dispatch: () => {
-        dispatched++
-      }
+        dispatched += 1
+      },
     }
     const component = mount(<Introduction {...props} />)
     expect(component.find('.branch .yes').length).toBe(1)
@@ -37,9 +37,7 @@ describe('The Introduction component', () => {
   })
 
   it("displays when terms aren't accepted", () => {
-    const store = mockStore({
-      authentication: {formType: 'SF86'}
-    })
+    const store = mockStore()
     const component = mount(
       <Provider store={store}>
         <ConnectedIntroduction />
@@ -52,10 +50,9 @@ describe('The Introduction component', () => {
     const store = mockStore({
       application: {
         Settings: {
-          acceptedTerms: { value: 'Yes' }
-        }
+          acceptedTerms: { value: 'Yes' },
+        },
       },
-      authentication: {formType: 'SF86'}
     })
     const component = mount(
       <Provider store={store}>
@@ -72,12 +69,10 @@ describe('The Introduction component', () => {
   })
 
   it('renders properly', () => {
-    const store = mockStore({
-      authentication: {formType: 'SF86'}
-    })
+    const store = mockStore()
     testSnapshot(
       <Provider store={store}>
-        <ConnectedIntroduction forceOpen={true} />
+        <ConnectedIntroduction forceOpen />
       </Provider>
     )
   })

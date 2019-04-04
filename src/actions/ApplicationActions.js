@@ -2,7 +2,6 @@ import { env, navigationWalker } from 'config'
 import { api } from 'services'
 import schema, { unschema } from 'schema'
 import validate from 'validators'
-import AuthConstants from 'actions/AuthConstants'
 
 export function updateApplication(section, property, values) {
   return {
@@ -141,7 +140,7 @@ export function reportCompletion(section, subsection, status) {
       section,
       subsection,
       valid: status,
-    }
+    },
   ])
 }
 

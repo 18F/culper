@@ -6,7 +6,7 @@ import errorReducer from './error'
 const defaultState = {}
 
 // Defines the authentication sub-state for the application.
-export const reducer = function(sectionName) {
+export const reducer = function (sectionName) {
   return function(state = defaultState, action) {
     // Check that section matches intended section reducer. This is to prevent
     // merging of everything every time an action is dispatched. We only

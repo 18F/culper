@@ -23,8 +23,6 @@ describe('Root Reducer', () => {
     },
     authentication: {
       authenticated: false,
-      formType: '',
-      formVersion: '',
       token: null,
     },
     section: {
@@ -43,6 +41,9 @@ describe('Root Reducer', () => {
     const startState = {
       application: {
         AddressBooks: { foo: 'bar' },
+        Settings: {
+          formType: 'SF86',
+        },
       },
       authentication: {
         authenticated: true,
