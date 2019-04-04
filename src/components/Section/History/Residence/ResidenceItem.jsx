@@ -1,5 +1,7 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
+
 import {
   ValidationElement,
   DateRange,
@@ -13,21 +15,18 @@ import {
   DateControl,
   CheckboxGroup,
   Checkbox,
-  Svg,
   Telephone,
   NotApplicable,
-  Email
-} from '../../../Form'
-import AlternateAddress from '../../../Form/Location/AlternateAddress'
+  Email,
+} from 'components/Form'
+import ConnectedAlternateAddress from 'components/Form/Location/AlternateAddress'
 import { today, daysAgo, extractDate } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
-const withinThreeYears = (from, to, present) => {
-  return (
-    present || (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
-  )
-}
+const withinThreeYears = (from, to, present) => (
+  present || (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+)
 
 /**
  * Residence item in a collection
@@ -36,145 +35,110 @@ const withinThreeYears = (from, to, present) => {
  * when particular portions of this should be rendered.
  */
 export default class ResidenceItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateReferenceName = this.updateReferenceName.bind(this)
-    this.updateReferenceLastContact = this.updateReferenceLastContact.bind(this)
-    this.updateReferenceRelationshipComments = this.updateReferenceRelationshipComments.bind(
-      this
-    )
-    this.updateReferenceRelationship = this.updateReferenceRelationship.bind(
-      this
-    )
-    this.updateReferenceRelationshipOther = this.updateReferenceRelationshipOther.bind(
-      this
-    )
-    this.updateReferencePhoneEvening = this.updateReferencePhoneEvening.bind(
-      this
-    )
-    this.updateReferencePhoneDay = this.updateReferencePhoneDay.bind(this)
-    this.updateReferencePhoneMobile = this.updateReferencePhoneMobile.bind(this)
-    this.updateReferenceEmailNotApplicable = this.updateReferenceEmailNotApplicable.bind(
-      this
-    )
-    this.updateReferenceEmail = this.updateReferenceEmail.bind(this)
-    this.updateReferenceAddress = this.updateReferenceAddress.bind(this)
-    this.updateComments = this.updateComments.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateDates = this.updateDates.bind(this)
-    this.updateRole = this.updateRole.bind(this)
-    this.updateRoleOther = this.updateRoleOther.bind(this)
-  }
-
   /**
    * Handle any updates and bubble them up.
    */
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       ...this.props,
-      ...queue
+      ...queue,
     })
   }
 
-  updateReferenceName(values) {
+  updateReferenceName = (values) => {
     this.update({
-      ReferenceName: values
+      ReferenceName: values,
     })
   }
 
-  updateReferenceLastContact(values) {
+  updateReferenceLastContact = (values) => {
     this.update({
-      ReferenceLastContact: values
+      ReferenceLastContact: values,
     })
   }
 
-  updateReferenceRelationshipComments(values) {
+  updateReferenceRelationshipComments = (values) => {
     this.update({
-      ReferenceRelationshipComments: values
+      ReferenceRelationshipComments: values,
     })
   }
 
-  updateReferenceRelationship(values) {
-    let selected = [...((this.props.ReferenceRelationship || {}).values || [])]
+  updateReferenceRelationship = (values) => {
+    const selected = [...((this.props.ReferenceRelationship || {}).values || [])]
 
     if (values.checked) {
       // Add the new relationship
       selected.push(values.value)
-    } else {
-      if (selected.includes(values.value)) {
-        // Remove the relationship if it was previously selected
-        selected.splice(selected.indexOf(values.value), 1)
-      }
+    } else if (selected.includes(values.value)) {
+      // Remove the relationship if it was previously selected
+      selected.splice(selected.indexOf(values.value), 1)
     }
 
     this.update({
       ReferenceRelationship: {
-        values: selected
-      }
+        values: selected,
+      },
     })
   }
 
-  updateReferenceRelationshipOther(values) {
+  updateReferenceRelationshipOther = (values) => {
     this.update({
-      ReferenceRelationshipOther: values
+      ReferenceRelationshipOther: values,
     })
   }
 
-  updateReferencePhoneEvening(values) {
+  updateReferencePhoneEvening = (values) => {
     this.update({
-      ReferencePhoneEvening: values
+      ReferencePhoneEvening: values,
     })
   }
 
-  updateReferencePhoneDay(values) {
+  updateReferencePhoneDay = (values) => {
     this.update({
-      ReferencePhoneDay: values
+      ReferencePhoneDay: values,
     })
   }
 
-  updateReferencePhoneMobile(values) {
+  updateReferencePhoneMobile = (values) => {
     this.update({
-      ReferencePhoneMobile: values
+      ReferencePhoneMobile: values,
     })
   }
 
-  updateReferenceEmailNotApplicable(values) {
+  updateReferenceEmailNotApplicable = (values) => {
     this.update({
       ReferenceEmailNotApplicable: values,
-      ReferenceEmail: values.applicable ? this.props.ReferenceEmail : {}
+      ReferenceEmail: values.applicable ? this.props.ReferenceEmail : {},
     })
   }
 
-  updateReferenceEmail(values) {
+  updateReferenceEmail = (values) => {
     this.update({
-      ReferenceEmail: values
+      ReferenceEmail: values,
     })
   }
 
-  updateReferenceAddress(values) {
+  updateReferenceAddress = (values) => {
     this.update({
-      ReferenceAddress: values
+      ReferenceAddress: values,
     })
   }
 
-  updateComments(values) {
+  updateComments = (values) => {
     this.update({
-      Comments: values
+      Comments: values,
     })
   }
 
-  updateAddress(values) {
+  updateAddress = (values) => {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
-  updateDates(values) {
+  updateDates = (values) => {
     const dates = this.props.Dates || {}
-    const from = dates.from
-    const to = dates.to
+    const { from, to } = dates
     const zeroReference = !withinThreeYears(from, to, dates.present)
     this.update({
       Dates: values,
@@ -202,19 +166,19 @@ export default class ResidenceItem extends ValidationElement {
         ? {}
         : this.props.ReferenceEmailNotApplicable,
       ReferenceEmail: zeroReference ? {} : this.props.ReferenceEmail,
-      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress,
     })
   }
 
-  updateRole(values) {
+  updateRole = (values) => {
     this.update({
-      Role: values
+      Role: values,
     })
   }
 
-  updateRoleOther(values) {
+  updateRoleOther = (values) => {
     this.update({
-      RoleOther: values
+      RoleOther: values,
     })
   }
 
@@ -240,7 +204,8 @@ export default class ResidenceItem extends ValidationElement {
           onError={this.props.onError}
           adjustFor="address"
           shrink
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="Address"
             {...this.props.Address}
@@ -256,7 +221,7 @@ export default class ResidenceItem extends ValidationElement {
             required={this.props.required}
           />
         </Field>
-        <AlternateAddress
+        <ConnectedAlternateAddress
           address={this.props.AlternateAddress}
           belongingTo="AlternateAddress"
           country={this.props.Address.country}
@@ -267,7 +232,10 @@ export default class ResidenceItem extends ValidationElement {
           title={i18n.t('history.residence.heading.dates')}
           titleSize="h4"
           help="history.residence.help.dates"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
+          {/* eslint jsx-a11y/label-has-associated-control: 0 */}
+          {/* eslint jsx-a11y/label-has-for: 0 */}
           <label className="info-label">
             {i18n.t('history.residence.label.dates')}
           </label>
@@ -275,7 +243,7 @@ export default class ResidenceItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             label={i18n.t('history.residence.label.dates')}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -288,12 +256,14 @@ export default class ResidenceItem extends ValidationElement {
           className={
             (this.props.Role || {}).value === 'Other' ? 'no-margin-bottom' : ''
           }
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <RadioGroup
             className="role option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
-            selectedValue={(this.props.Role || {}).value}>
+            selectedValue={(this.props.Role || {}).value}
+          >
             <Radio
               name="role-owned"
               label={i18n.m('history.residence.label.role.owned')}
@@ -329,7 +299,8 @@ export default class ResidenceItem extends ValidationElement {
             title={i18n.t('history.residence.label.role.explanation')}
             titleSize="h4"
             adjustFor="text"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Text
               name="RoleOther"
               {...this.props.RoleOther}
@@ -349,7 +320,8 @@ export default class ResidenceItem extends ValidationElement {
               titleSize="h3"
               optional
               className="no-margin-bottom"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               {i18n.m('history.residence.para.reference')}
             </Field>
 
@@ -359,10 +331,11 @@ export default class ResidenceItem extends ValidationElement {
                 titleSize="h4"
                 optional
                 filterErrors={Name.requiredErrorsOnly}
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Name
                   name="ReferenceName"
-                  prefix={'name'}
+                  prefix="name"
                   className="reference-name"
                   {...this.props.ReferenceName}
                   scrollIntoView={this.props.scrollIntoView}
@@ -375,15 +348,16 @@ export default class ResidenceItem extends ValidationElement {
               <Field
                 title={i18n.t('reference.heading.contact')}
                 titleSize="h4"
-                help={'reference.help.contact'}
+                help="reference.help.contact"
                 adjustFor="labels"
                 shrink
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <DateControl
                   name="ReferenceLastContact"
                   className="reference-last-contact"
                   {...this.props.ReferenceLastContact}
-                  minDateEqualTo={true}
+                  minDateEqualTo
                   onUpdate={this.updateReferenceLastContact}
                   onError={this.props.onError}
                   required={this.props.required}
@@ -396,11 +370,12 @@ export default class ResidenceItem extends ValidationElement {
                 comments
                 commentsName="ReferenceRelationshipComments"
                 commentsValue={this.props.ReferenceRelationshipComments}
-                commentsAdd={'reference.label.relationship.comments'}
+                commentsAdd="reference.label.relationship.comments"
                 onUpdate={this.updateReferenceRelationshipComments}
                 adjustFor="labels"
                 shrink
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <label>{i18n.t('reference.label.relationship.title')}</label>
                 <CheckboxGroup
                   className="relationship option-list eapp-extend-labels option-list-vertical"
@@ -408,7 +383,8 @@ export default class ResidenceItem extends ValidationElement {
                   onError={this.props.onError}
                   selectedValues={
                     (this.props.ReferenceRelationship || {}).values || []
-                  }>
+                  }
+                >
                   <Checkbox
                     name="relationship-neighbor"
                     className="reference-relationship-neighbor"
@@ -448,9 +424,8 @@ export default class ResidenceItem extends ValidationElement {
                 <Show
                   when={(
                     (this.props.ReferenceRelationship || {}).values || []
-                  ).some(x => {
-                    return x === 'Other'
-                  })}>
+                  ).some(x => x === 'Other')}
+                >
                   <Text
                     name="ReferenceRelationshipOther"
                     label={i18n.t('reference.label.relationship.explanation')}
@@ -469,7 +444,8 @@ export default class ResidenceItem extends ValidationElement {
                 titleSize="h3"
                 optional
                 className="no-margin-bottom"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 {i18n.m('reference.para.correspondence')}
               </Field>
 
@@ -477,9 +453,10 @@ export default class ResidenceItem extends ValidationElement {
                 title={i18n.t('reference.heading.phone.evening')}
                 titleSize="h4"
                 className="override-required"
-                help={'reference.help.phone'}
+                help="reference.help.phone"
                 adjustFor="telephone"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Telephone
                   name="ReferencePhoneEvening"
                   className="reference-phone-evening"
@@ -495,9 +472,10 @@ export default class ResidenceItem extends ValidationElement {
                 title={i18n.t('reference.heading.phone.day')}
                 titleSize="h4"
                 className="override-required"
-                help={'reference.help.phone'}
+                help="reference.help.phone"
                 adjustFor="telephone"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Telephone
                   name="ReferencePhoneDay"
                   className="reference-phone-day"
@@ -513,9 +491,10 @@ export default class ResidenceItem extends ValidationElement {
                 title={i18n.t('reference.heading.phone.mobile')}
                 titleSize="h4"
                 className="override-required"
-                help={'reference.help.phone'}
+                help="reference.help.phone"
                 adjustFor="telephone"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Telephone
                   name="ReferencePhoneMobile"
                   className="reference-phone-mobile"
@@ -530,16 +509,18 @@ export default class ResidenceItem extends ValidationElement {
               <Field
                 title={i18n.t('reference.heading.email')}
                 titleSize="h4"
-                help={'reference.help.email'}
+                help="reference.help.email"
                 adjustFor="label"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <NotApplicable
                   name="ReferenceEmailNotApplicable"
                   {...this.props.ReferenceEmailNotApplicable}
                   label={i18n.t('reference.label.idk')}
                   or={i18n.m('reference.para.or')}
                   onUpdate={this.updateReferenceEmailNotApplicable}
-                  onError={this.props.onError}>
+                  onError={this.props.onError}
+                >
                   <Email
                     name="ReferenceEmail"
                     {...this.props.ReferenceEmail}
@@ -555,9 +536,10 @@ export default class ResidenceItem extends ValidationElement {
                 title={i18n.t('reference.heading.address')}
                 titleSize="h4"
                 optional
-                help={'reference.help.address'}
+                help="reference.help.address"
                 adjustFor="address"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <p>{i18n.t('reference.para.address')}</p>
                 <Location
                   name="ReferenceAddress"
@@ -574,7 +556,7 @@ export default class ResidenceItem extends ValidationElement {
                   onError={this.props.onError}
                 />
               </Field>
-              <AlternateAddress
+              <ConnectedAlternateAddress
                 belongingTo="ReferenceAlternateAddress"
                 address={this.props.ReferenceAlternateAddress}
                 country={this.props.ReferenceAddress.country}
@@ -605,13 +587,11 @@ ResidenceItem.defaultProps = {
   ReferencePhoneEvening: {},
   ReferencePhoneDay: {},
   ReferencePhoneMobile: {},
-  ReferenceEmailNotApplicable: {},
+  ReferenceEmailNotApplicable: { applicable: true },
   ReferenceEmail: {},
   ReferenceAddress: {},
   addressBooks: {},
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

@@ -1048,7 +1048,7 @@ Relative.defaultProps = {
   MethodsComments: {},
   Frequency: '',
   FrequencyComments: {},
-  EmployerNotApplicable: {},
+  EmployerNotApplicable: { applicable: true },
   EmployerAddressNotApplicable: { applicable: true },
   EmployerRelationshipNotApplicable: { applicable: true },
   Employer: {},
