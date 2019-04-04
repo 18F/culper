@@ -1,26 +1,23 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { ContactInformation } from './ContactInformation'
 
 describe('The ContactInformation component', () => {
-  it('no error on empty', () => {
-    let blurs = 0
-    const expected = {
-      name: 'input-focus',
-      HomeEmail: {},
-      WorkEmail: {},
-      PhoneNumbers: { items: [{}] },
-      onBlur: function(event) {
-        blurs++
-      }
-    }
-    const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.usa-input-error-label').length).toEqual(0)
-    expect(blurs).toEqual(0)
+  it('renders without errors', () => {
+    const component = shallow(<ContactInformation />)
+
+    expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
   })
 
-  it('formats phone numbers appropriately', () => {
-    const expected = {
+  it('displays no error by default', () => {
+    const component = mount(<ContactInformation />)
+    component.find('.email-home input').simulate('change')
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
+  })
+
+  describe('with phone number data', () => {
+    const testProps = {
       PhoneNumbers: {
         items: [
           {
@@ -28,85 +25,66 @@ describe('The ContactInformation component', () => {
               Telephone: {
                 type: 'Domestic',
                 number: '2028675309',
-                extension: '1234'
-              }
-            }
+                extension: '1234',
+              },
+            },
           },
           {
             Item: {
               Telephone: {
                 type: 'Domestic',
                 number: '2028675309',
-                extension: ''
-              }
-            }
+                extension: '',
+              },
+            },
           },
           {
             Item: {
               Telephone: {
                 type: 'DSN',
-                number: '8675309'
-              }
-            }
+                number: '8675309',
+              },
+            },
           },
           {
             Item: {
               Telephone: {
                 type: 'International',
                 number: '0011234567890',
-                extension: '1234'
-              }
-            }
+                extension: '1234',
+              },
+            },
           },
           {
             Item: {
               Telephone: {
                 type: 'International',
                 number: '0011234567890',
-                extension: ''
-              }
-            }
-          }
-        ]
-      }
+                extension: '',
+              },
+            },
+          },
+        ],
+      },
     }
-    const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.index').length).toEqual(5)
-    expect(
-      component
-        .find('.summary strong')
-        .at(0)
-        .text()
-    ).toEqual('(202) 867-5309 x1234')
-    expect(
-      component
-        .find('.summary strong')
-        .at(1)
-        .text()
-    ).toEqual('(202) 867-5309')
-    expect(
-      component
-        .find('.summary strong')
-        .at(2)
-        .text()
-    ).toEqual('867-5309')
-    expect(
-      component
-        .find('.summary strong')
-        .at(3)
-        .text()
-    ).toEqual('+001 1234567890 x1234')
-    expect(
-      component
-        .find('.summary strong')
-        .at(4)
-        .text()
-    ).toEqual('+001 1234567890')
+
+    const component = mount(<ContactInformation {...testProps} />)
+
+    it('renders each phone number', () => {
+      expect(component.find('.index').length).toEqual(5)
+    })
+
+    it('formats each phone number appropriately', () => {
+      expect(component.find('.summary strong').at(0).text()).toEqual('(202) 867-5309 x1234')
+      expect(component.find('.summary strong').at(1).text()).toEqual('(202) 867-5309')
+      expect(component.find('.summary strong').at(2).text()).toEqual('867-5309')
+      expect(component.find('.summary strong').at(3).text()).toEqual('+001 1234567890 x1234')
+      expect(component.find('.summary strong').at(4).text()).toEqual('+001 1234567890')
+    })
   })
 
-  it('should filter empty items out leaving only the minimum visible', () => {
-    let phoneNumbers = {}
-    const expected = {
+  describe('with empty items', () => {
+    const testProps = {
       shouldFilterEmptyItems: true,
       PhoneNumbers: {
         items: [
@@ -116,20 +94,19 @@ describe('The ContactInformation component', () => {
               Telephone: {
                 type: 'International',
                 number: '0011234567890',
-                extension: ''
-              }
-            }
-          }
-        ]
-      }
+                extension: '',
+              },
+            },
+          },
+        ],
+      },
     }
-    const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.index').length).toEqual(1)
-    expect(
-      component
-        .find('.summary strong')
-        .at(0)
-        .text()
-    ).toEqual('+001 1234567890')
+
+    const component = mount(<ContactInformation {...testProps} />)
+
+    it('should filter out empty items', () => {
+      expect(component.find('.index').length).toEqual(1)
+      expect(component.find('.summary strong').at(0).text()).toEqual('+001 1234567890')
+    })
   })
 })

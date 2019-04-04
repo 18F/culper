@@ -1,12 +1,12 @@
 import React from 'react'
 
-import ApplicantName from './ApplicantName'
-import ApplicantBirthDate from './ApplicantBirthDate'
-import ApplicantBirthPlace from './ApplicantBirthPlace'
-import ApplicantSSN from './ApplicantSSN'
-import OtherNames from './OtherNames'
-import ContactInformation from './ContactInformation'
-import Physical from './Physical'
+import ApplicantName from '../ApplicantName'
+import ApplicantBirthDate from '../ApplicantBirthDate'
+import ApplicantBirthPlace from '../ApplicantBirthPlace'
+import ApplicantSSN from '../ApplicantSSN'
+import OtherNames from '../OtherNames'
+import ContactInformation from '../ContactInformation'
+import Physical from '../Physical'
 
 const Review = () => {
   const subsectionProps = {

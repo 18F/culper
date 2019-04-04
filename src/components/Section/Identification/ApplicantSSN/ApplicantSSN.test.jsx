@@ -1,81 +1,91 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { ApplicantSSN } from './ApplicantSSN'
 
-describe('The applicant SSN component', () => {
-  it('asks for one SSN initially', () => {
-    const props = {}
-    const component = mount(<ApplicantSSN {...props} />)
-    expect(component.find('.applicant-ssn-initial').length).toBe(1)
-    expect(component.find('.applicant-ssn-verification').length).toBe(0)
+// give a fake GUID so the field IDs don't differ between snapshots
+jest.mock('components/Form/ValidationElement/index')
+
+describe('The ApplicantSSN component', () => {
+  it('renders without errors', () => {
+    const component = shallow(<ApplicantSSN />)
+
+    expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
   })
 
-  it('asks for verification', () => {
-    const props = {
-      ssn: {
-        first: '123',
-        middle: '12',
-        last: '1234'
+  it('implements an onUpdate handler', () => {
+    let updates = 0
+    const testProps = {
+      onUpdate: () => {
+        updates += 1
       },
-      verified: false
     }
-    const component = mount(<ApplicantSSN {...props} />)
-    expect(component.find('.applicant-ssn-initial').length).toBe(1)
-    expect(component.find('.applicant-ssn-verification').length).toBe(1)
-  })
 
-  it('does not ask to be verified if already verified', () => {
-    const props = {
-      ssn: {
-        first: '123',
-        middle: '12',
-        last: '1234'
-      },
-      verified: true
-    }
-    const component = mount(<ApplicantSSN {...props} />)
-    expect(component.find('.applicant-ssn-initial').length).toBe(1)
-    expect(component.find('.applicant-ssn-verification').length).toBe(0)
-  })
-
-  it('modifying initial SSN during verification makes things dirty', () => {
-    let dirty = false
-    const props = {
-      ssn: {
-        first: '123',
-        middle: '12',
-        last: '1234'
-      },
-      verified: true,
-      onUpdate: queue => {
-        dirty = !queue.verified
-      }
-    }
-    const component = mount(<ApplicantSSN {...props} />)
-    expect(component.find('.applicant-ssn-initial').length).toBe(1)
-    expect(component.find('.applicant-ssn-verification').length).toBe(0)
+    const component = mount(<ApplicantSSN {...testProps} />)
     component.find('.applicant-ssn-initial .first input').simulate('change')
-    expect(dirty).toBe(true)
+    expect(updates).toBe(1)
   })
 
-  it('handles updates', () => {
-    let updated = false
-    const props = {
-      ssn: {
-        first: '123',
-        middle: '12',
-        last: '1234'
-      },
-      verified: false,
-      onUpdate: queue => {
-        updated = true
+  describe('initial state', () => {
+    it('asks for only one SSN', () => {
+      const component = mount(<ApplicantSSN />)
+      expect(component.find('.applicant-ssn-initial').length).toBe(1)
+      expect(component.find('.applicant-ssn-verification').length).toBe(0)
+    })
+  })
+
+  describe('with a value, unverified', () => {
+    it('asks for verification', () => {
+      const props = {
+        ssn: {
+          first: '123',
+          middle: '12',
+          last: '1234',
+        },
+        verified: false,
       }
-    }
-    const component = mount(<ApplicantSSN {...props} />)
-    component
-      .find('.applicant-ssn-verification .first input')
-      .simulate('change')
-    component.find('.applicant-ssn-initial .first input').simulate('change')
-    expect(updated).toBe(true)
+
+      const component = mount(<ApplicantSSN {...props} />)
+      expect(component.find('.applicant-ssn-initial').length).toBe(1)
+      expect(component.find('.applicant-ssn-verification').length).toBe(1)
+    })
+  })
+
+  describe('with a value, verified', () => {
+    it('does not ask to be verified again', () => {
+      const props = {
+        ssn: {
+          first: '123',
+          middle: '12',
+          last: '1234',
+        },
+        verified: true,
+      }
+
+      const component = mount(<ApplicantSSN {...props} />)
+      expect(component.find('.applicant-ssn-initial').length).toBe(1)
+      expect(component.find('.applicant-ssn-verification').length).toBe(0)
+    })
+
+    it('sets verified to false if the initial SSN is edited', () => {
+      let dirty = false
+      const props = {
+        ssn: {
+          first: '123',
+          middle: '12',
+          last: '1234',
+        },
+        verified: true,
+        onUpdate: (queue) => {
+          dirty = !queue.verified
+        },
+      }
+
+      const component = mount(<ApplicantSSN {...props} />)
+      expect(component.find('.applicant-ssn-initial').length).toBe(1)
+      expect(component.find('.applicant-ssn-verification').length).toBe(0)
+      component.find('.applicant-ssn-initial .first input').simulate('change')
+      expect(dirty).toBe(true)
+    })
   })
 })
