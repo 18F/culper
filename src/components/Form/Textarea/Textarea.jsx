@@ -11,7 +11,7 @@ export default class Textarea extends ValidationElement {
       value: props.value,
       focus: props.focus,
       error: props.error,
-      valid: props.valid
+      valid: props.valid,
     }
   }
 
@@ -20,14 +20,10 @@ export default class Textarea extends ValidationElement {
    */
   handleChange(event) {
     event.persist()
-    this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          value: this.state.value
-        })
-      }
+    super.handleChange(event)
+    this.props.onUpdate({
+      name: this.props.name,
+      value: event.target.value,
     })
   }
 
@@ -55,7 +51,7 @@ export default class Textarea extends ValidationElement {
    * Execute validation checks on the value.
    */
   handleValidation(event) {
-    const value = `${this.state.value}`.trim()
+    const value = `${this.props.value}`.trim()
     const errors =
       this.props.onError(
         value,
@@ -145,14 +141,14 @@ export default class Textarea extends ValidationElement {
           autoComplete={this.props.autocomplete}
           spellCheck={this.props.spellcheck}
           required={this.props.required}
-          value={this.state.value}
+          value={this.props.value}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           ref="textarea"
         />
         <div className="textarea-print print-only">
-          {this.state.value}
+          {this.props.value}
         </div>
       </div>
     )
@@ -173,7 +169,8 @@ Textarea.defaultProps = {
   autocomplete: true,
   onError: (value, arr) => {
     return arr
-  }
+  },
+  onUpdate: () => {},
 }
 
 Textarea.errors = [

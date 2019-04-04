@@ -119,9 +119,9 @@ export class RelativeValidator {
 
   citizen() {
     return (
-      !!this.citizenship &&
-      !!this.citizenship.length &&
-      this.citizenship.some(x => x === 'United States')
+      !!this.citizenship
+      && !!this.citizenship.length
+      && this.citizenship.indexOf('United States') > -1
     )
   }
 
