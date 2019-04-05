@@ -352,4 +352,45 @@ describe('The status component', () => {
       expect(instance.derivedCertificateNumberRequired()).toBe(false)
     })
   })
+
+  it('does not ask for documentation if a foreign born applicant has a passport', () => {
+    const expected = {
+      CitizenshipStatus: {
+        value: 'ForeignBorn',
+      },
+      Passport: {
+        Card: { value: 'Book' },
+        Comments: { value: '' },
+        Expiration: {
+          day: '12',
+          estimated: false,
+          month: '12',
+          year: '2020',
+        },
+        HasPassports: { value: 'Yes' },
+        Issued: {
+          day: '12',
+          estimated: false,
+          month: '12',
+          year: '2010',
+        },
+        Name: {
+          first: 'John',
+          firstInitialOnly: false,
+          last: 'Doe',
+          middle: 'Hello',
+          middleInitialOnly: false,
+          noMiddleName: false,
+          suffix: '',
+          suffixOther: '',
+        },
+        Number: {
+          value: 'asdf12345',
+        },
+      },
+    }
+
+    const component = mount(<Status {...expected} />)
+    expect(component.find('.citizenship-abroad').length).toEqual(0)
+  })
 })
