@@ -30,7 +30,7 @@ describe('Passport component validation', function() {
     ]
 
     tests.forEach(test => {
-      expect(new PassportValidator(test.data, null).validHasPassports()).toBe(
+      expect(new PassportValidator(test.data, null).checkHasPassports()).toBe(
         test.expected
       )
     })

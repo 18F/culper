@@ -75,6 +75,7 @@ const connectCitizenshipSection = (Component, {
       case 'Status':
         return {
           ...citizenship.Status,
+          Passport: foreign.Passport,
         }
 
       case 'Multiple':

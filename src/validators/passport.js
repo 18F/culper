@@ -19,7 +19,7 @@ export default class PassportValidator {
     this.card = data.Card
   }
 
-  validHasPassports() {
+  checkHasPassports() {
     if (!this.hasPassports) {
       return false
     }
@@ -32,18 +32,10 @@ export default class PassportValidator {
   }
 
   validName() {
-    if (this.hasPassports === 'No') {
-      return true
-    }
-
     return new NameValidator(this.name).isValid()
   }
 
   validPassportNumber() {
-    if (this.hasPassports === 'No') {
-      return true
-    }
-
     if (!this.number || !this.number.value) {
       return false
     }
@@ -72,10 +64,6 @@ export default class PassportValidator {
   }
 
   validDates() {
-    if (this.hasPassports === 'No') {
-      return true
-    }
-
     const range = {
       from: this.issued,
       to: this.expiration,
@@ -86,7 +74,16 @@ export default class PassportValidator {
 
   isValid() {
     return (
-      this.validHasPassports()
+      this.checkHasPassports()
+      && this.validName()
+      && this.validPassportNumber()
+      && this.validDates()
+    )
+  }
+
+  checkPassportValidity() {
+    return (
+      this.hasPassports === 'Yes'
       && this.validName()
       && this.validPassportNumber()
       && this.validDates()
