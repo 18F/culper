@@ -385,15 +385,6 @@ export default class EmploymentItem extends ValidationElement {
               required={this.props.required}
             />
           </Field>
-          {!hasDifferentPhysicalAddress && (
-            <ConnectedAlternateAddress
-              address={this.props.AlternateAddress}
-              addressBook="Employment"
-              belongingTo="AlternateAddress"
-              country={this.props.Address.country}
-              onUpdate={this.update}
-            />
-          )}
         </Show>
 
         <Show when={this.showEmployed()}>
@@ -432,11 +423,25 @@ export default class EmploymentItem extends ValidationElement {
               address={this.props.PhysicalAlternateAddress}
               addressBook="Employment"
               belongingTo="PhysicalAlternateAddress"
-              country={this.props.PhysicalAddress.Address.country}
+              country={(
+                this.props.PhysicalAddress
+                && this.props.PhysicalAddress.Address
+                && this.props.PhysicalAddress.Address.country
+              )}
               onUpdate={this.update}
             />
           )}
         </Show>
+
+        {this.showEmployed() && !hasDifferentPhysicalAddress && (
+          <ConnectedAlternateAddress
+            address={this.props.AlternateAddress}
+            addressBook="Employment"
+            belongingTo="AlternateAddress"
+            country={this.props.Address.country}
+            onUpdate={this.update}
+          />
+        )}
 
         <Show when={this.showSupervisor()}>
           <Supervisor
