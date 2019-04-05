@@ -2,7 +2,7 @@
 
 export const legal = {
   intro: {
-    title: 'Section 9: Investigative and criminal history',
+    title: 'Investigative and criminal history',
     body:
       'You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.',
   },

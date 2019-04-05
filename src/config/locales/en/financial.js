@@ -2,7 +2,7 @@
 
 export const financial = {
   intro: {
-    title: 'Section 7: Financial record',
+    title: 'Financial record',
     body:
       'You will be asked questions about your financial history and be asked to provide details if necessary.',
   },

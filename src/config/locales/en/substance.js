@@ -2,7 +2,7 @@
 
 export const substance = {
   intro: {
-    title: 'Section 8: Substance use',
+    title: 'Substance use',
     body:
       'You will be asked questions about your substance use and be asked to provide details if necessary.',
   },
