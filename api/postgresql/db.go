@@ -17,6 +17,7 @@ type Service struct {
 	database *pg.DB
 }
 
+// DBConfig contains everything neccecary to setup a postgres db connection
 type DBConfig struct {
 	User     string
 	Password string
@@ -24,6 +25,7 @@ type DBConfig struct {
 	DBName   string
 }
 
+// PostgresConnectURI creates a connection string, which is used by the golang sql Open() function
 func PostgresConnectURI(conf DBConfig) string {
 	// By user (+ password) + database + host
 	uri := &url.URL{Scheme: "postgres"}
@@ -51,7 +53,7 @@ func PostgresConnectURI(conf DBConfig) string {
 	return uri.String()
 }
 
-// NewPostgresServices returns a configured postgres service
+// NewPostgresService returns a configured postgres service
 func NewPostgresService(config DBConfig, logger api.LogService) *Service {
 	service := Service{
 		Log: logger,
