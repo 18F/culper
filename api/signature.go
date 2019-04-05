@@ -1,6 +1,8 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 // Signature is a basic input.
 type Signature struct {
@@ -109,18 +111,18 @@ func (entity *Signature) Delete(context DatabaseService, account int) (int, erro
 		return entity.ID, err
 	}
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Name.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.Date.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
@@ -31,10 +32,20 @@ func readBinaryData(filepath string) ([]byte, error) {
 }
 
 func TestCollections(t *testing.T) {
-	settings := mock.Native{}
+	settings := env.Native{}
 	settings.Configure()
-	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
-	service.Configure()
+
+	logger := &mock.LogService{Off: true}
+
+	dbConf := DBConfig{
+		User:     settings.String(api.DatabaseUser),
+		Password: settings.String(api.DatabasePassword),
+		Address:  settings.String(api.DatabaseHost),
+		DBName:   settings.String(api.TestDatabaseName),
+	}
+
+	service := NewPostgresService(dbConf, logger)
+
 	account := 1
 
 	tests := []struct {
@@ -269,10 +280,20 @@ func TestPayloadValidate(t *testing.T) {
 }
 
 func TestPayloadPersistence(t *testing.T) {
-	settings := mock.Native{}
+	settings := env.Native{}
 	settings.Configure()
-	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
-	service.Configure()
+
+	logger := &mock.LogService{Off: true}
+
+	dbConf := DBConfig{
+		User:     settings.String(api.DatabaseUser),
+		Password: settings.String(api.DatabasePassword),
+		Address:  settings.String(api.DatabaseHost),
+		DBName:   settings.String(api.TestDatabaseName),
+	}
+
+	service := NewPostgresService(dbConf, logger)
+
 	api.Geocode = mock.Geocoder{}
 
 	account := api.Account{

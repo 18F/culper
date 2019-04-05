@@ -23,24 +23,24 @@ import (
 type serviceSet struct {
 	env api.Settings
 	log api.LogService
-	// token    api.TokenService
-	db api.DatabaseService
+	db  api.DatabaseService
 }
 
 func cleanTestServices() serviceSet {
 	env := &env.Native{}
 	os.Setenv(api.LogLevel, "info")
-	os.Setenv(api.DatabaseName, "eapp_test")
 	env.Configure()
 
 	log := &log.Service{Log: log.NewLogger()}
 
-	db := &postgresql.Service{
-		Log: log,
-		Env: env,
+	dbConf := postgresql.DBConfig{
+		User:     env.String(api.DatabaseUser),
+		Password: env.String(api.DatabasePassword),
+		Address:  env.String(api.DatabaseHost),
+		DBName:   env.String(api.TestDatabaseName),
 	}
 
-	db.Configure()
+	db := postgresql.NewPostgresService(dbConf, log)
 
 	return serviceSet{
 		env,

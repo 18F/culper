@@ -22,7 +22,6 @@ func IsDatabaseErrorNotFound(err error) bool {
 
 // DatabaseService represents a persisted data storage.
 type DatabaseService interface {
-	Configure()
 	CheckTable(entity interface{}) error
 	Raw(query interface{}, params ...interface{}) error
 	Find(query interface{}, callback func(query interface{}))

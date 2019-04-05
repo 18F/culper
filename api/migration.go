@@ -15,8 +15,8 @@ type Migration struct {
 }
 
 // Up attempts to push any pending updates to the database
-func (service Migration) Up(directory, environment, schema string) error {
-	conf, err := service.databaseConf(directory, environment, schema)
+func (service Migration) Up(dbURI, directory, environment, schema string) error {
+	conf, err := service.databaseConf(dbURI, directory, environment, schema)
 	if err != nil {
 		return errors.Wrap(err, "Couldn't determine db Conf")
 	}
@@ -33,8 +33,8 @@ func (service Migration) Up(directory, environment, schema string) error {
 }
 
 // CurrentVersion gets the database current version according to the migration status
-func (service Migration) CurrentVersion(directory, environment, schema string) (int64, error) {
-	conf, err := service.databaseConf(directory, environment, schema)
+func (service Migration) CurrentVersion(dbURI, directory, environment, schema string) (int64, error) {
+	conf, err := service.databaseConf(dbURI, directory, environment, schema)
 	if err != nil {
 		return 0, err
 	}
@@ -44,14 +44,12 @@ func (service Migration) CurrentVersion(directory, environment, schema string) (
 
 // databaseConf will generate the configuration in memory using environment variables
 // instead of the YAML file. This is ideal to reduce the dependencies in production.
-func (service Migration) databaseConf(directory, environment, schema string) (*migration.DBConf, error) {
-	// Pull from database connection string from the environment
-	uri := service.Env.String(DatabaseURI)
+func (service Migration) databaseConf(dbURI, directory, environment, schema string) (*migration.DBConf, error) {
 	return &migration.DBConf{
 		MigrationsDir: filepath.Join(directory, "migrations"),
 		Env:           environment,
 		PgSchema:      schema,
-		Driver:        service.databaseDriver(uri),
+		Driver:        service.databaseDriver(dbURI),
 	}, nil
 }
 

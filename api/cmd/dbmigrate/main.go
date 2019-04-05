@@ -14,6 +14,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
+	"github.com/18F/e-QIP-prototype/api/postgresql"
 )
 
 func checkDBNameIsAllowed(dbName string) bool {
@@ -32,8 +33,18 @@ func resetDB(dbName string, force bool) error {
 		return errors.New(fmt.Sprintf("Attempted to reset a db with a strange name: %s", dbName))
 	}
 
-	// TODO: get the connection url
-	connStr := "postgres://postgres@localhost/template1"
+	settings := env.Native{}
+	settings.Configure()
+
+	dbConf := postgresql.DBConfig{
+		User:     settings.String(api.DatabaseUser),
+		Password: settings.String(api.DatabasePassword),
+		Address:  settings.String(api.DatabaseHost),
+		DBName:   "template1", // template1 exists on all default postgres instances.
+	}
+
+	connStr := postgresql.PostgresConnectURI(dbConf)
+
 	db, openErr := sql.Open("postgres", connStr)
 	if openErr != nil {
 		return errors.Wrap(openErr, "Error opening connection")
@@ -124,10 +135,19 @@ func runMigrations(dbName string, migrationsPath string) error {
 	settings := env.Native{}
 	settings.Configure()
 
+	dbConf := postgresql.DBConfig{
+		User:     settings.String(api.DatabaseUser),
+		Password: settings.String(api.DatabasePassword),
+		Address:  settings.String(api.DatabaseHost),
+		DBName:   dbName,
+	}
+
+	connStr := postgresql.PostgresConnectURI(dbConf)
+
 	apiPath := filepath.Dir(filepath.Clean(migrationsPath))
 
 	migration := api.Migration{Env: settings}
-	if migrationErr := migration.Up(apiPath, settings.String(api.GolangEnv), ""); migrationErr != nil {
+	if migrationErr := migration.Up(connStr, apiPath, settings.String(api.GolangEnv), ""); migrationErr != nil {
 		return errors.Wrap(migrationErr, fmt.Sprintf("Error running migrations in path: %s", migrationsPath))
 	}
 
@@ -139,8 +159,6 @@ type stackTracer interface {
 }
 
 func main() {
-	fmt.Println("Hello World")
-
 	shouldReset := flag.Bool("reset", false, "resets the data in the given db by deleting it and re-creating it")
 	forceReset := flag.Bool("force", false, "skips the interactive dialog triggered by reset")
 	migrationsPath := flag.String("migrations_path", "", "path to the directory containing migrations. If left out it will be guessed.")

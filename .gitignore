@@ -67,6 +67,7 @@ package-lock.json
 /api/bin/submit
 /api/bin/transmit
 /api/bin/unlock
+/api/bin/dbmigrate
 /build/
 /doc/
 /dist/

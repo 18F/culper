@@ -1,13 +1,13 @@
 package postgresql
 
 import (
+	"fmt"
 	"net/url"
-	"strings"
 	"time"
 
-	"github.com/18F/e-QIP-prototype/api"
 	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+
+	"github.com/18F/e-QIP-prototype/api"
 )
 
 // Service to help abstract the technical implementation per driver used.
@@ -17,28 +17,51 @@ type Service struct {
 	database *pg.DB
 }
 
-// Configure establishes a new database connection
-func (service *Service) Configure() {
-	addr := service.Env.String(api.DatabaseURI)
+type DBConfig struct {
+	User     string
+	Password string
+	Address  string
+	DBName   string
+}
 
-	// Parse the address as a URI. If it fails return an empty connection
-	uri, err := url.Parse(addr)
-	if err != nil {
-		service.database = pg.Connect(&pg.Options{})
-		return
+func PostgresConnectURI(conf DBConfig) string {
+	// By user (+ password) + database + host
+	uri := &url.URL{Scheme: "postgres"}
+	username := conf.User
+
+	// Check if there is a password set. If not then we need to create
+	// the Userinfo structure in a different way so we don't include
+	// exta colons (:).
+	pw := conf.Password
+	if pw == "" {
+		uri.User = url.User(username)
+	} else {
+		uri.User = url.UserPassword(username, pw)
 	}
 
-	// Remove the leading slash on the path to retrieve the database name
-	dbURI := strings.TrimPrefix(uri.Path, "/")
+	// The database name will be part of the URI path so it needs
+	// a prefix of "/"
+	database := conf.DBName
+	uri.Path = fmt.Sprintf("/%s", database)
 
-	// Ignore whether the password was set or not since an empty string suffices
-	// for the connection options as well.
-	pw, _ := uri.User.Password()
+	// Host can be either "address + port" or just "address"
+	host := conf.Address
+	uri.Host = host
+
+	return uri.String()
+}
+
+// NewPostgresServices returns a configured postgres service
+func NewPostgresService(config DBConfig, logger api.LogService) *Service {
+	service := Service{
+		Log: logger,
+	}
+
 	db := pg.Connect(&pg.Options{
-		User:     uri.User.Username(),
-		Password: pw,
-		Addr:     uri.Host,
-		Database: dbURI,
+		User:     config.User,
+		Password: config.Password,
+		Addr:     config.Address,
+		Database: config.DBName,
 	})
 
 	// Add logging
@@ -53,17 +76,12 @@ func (service *Service) Configure() {
 	})
 
 	service.database = db
+
+	return &service
 }
 
 // CheckTable ensures a the table exists for the persistor.
 func (service *Service) CheckTable(entity interface{}) error {
-	if service.Env.String(api.GolangEnv) == "test" {
-		options := &orm.CreateTableOptions{
-			Temp:        true,
-			IfNotExists: true,
-		}
-		return service.database.CreateTable(entity, options)
-	}
 	return nil
 }
 
