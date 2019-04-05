@@ -76,10 +76,6 @@ func (entity *Account) Save(context DatabaseService, account int) (int, error) {
 		return entity.ID, err
 	}
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -89,9 +85,6 @@ func (entity *Account) Save(context DatabaseService, account int) (int, error) {
 
 // Delete the Account entity.
 func (entity *Account) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
@@ -104,9 +97,6 @@ func (entity *Account) Delete(context DatabaseService, account int) (int, error)
 
 // Get the Account entity.
 func (entity *Account) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

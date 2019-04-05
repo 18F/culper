@@ -71,10 +71,6 @@ func (entity *DateControl) Valid() (bool, error) {
 
 // Save the date control to data storage.
 func (entity *DateControl) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -84,10 +80,6 @@ func (entity *DateControl) Save(context DatabaseService, account int) (int, erro
 
 // Delete the date control from data storage.
 func (entity *DateControl) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -99,10 +91,6 @@ func (entity *DateControl) Delete(context DatabaseService, account int) (int, er
 
 // Get the date control from data storage.
 func (entity *DateControl) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

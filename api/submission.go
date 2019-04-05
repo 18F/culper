@@ -121,10 +121,6 @@ func (entity *Submission) Save(context DatabaseService, account int) (int, error
 	}
 	entity.Hash = hash
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -170,10 +166,6 @@ func (entity *Submission) Save(context DatabaseService, account int) (int, error
 func (entity *Submission) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -210,10 +202,6 @@ func (entity *Submission) Delete(context DatabaseService, account int) (int, err
 // Get will retrieve the entity from the database.
 func (entity *Submission) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -353,10 +341,6 @@ func (entity *SubmissionAdditionalComments) Valid() (bool, error) {
 func (entity *SubmissionAdditionalComments) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -378,10 +362,6 @@ func (entity *SubmissionAdditionalComments) Save(context DatabaseService, accoun
 func (entity *SubmissionAdditionalComments) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -402,10 +382,6 @@ func (entity *SubmissionAdditionalComments) Delete(context DatabaseService, acco
 // Get will retrieve the entity from the database.
 func (entity *SubmissionAdditionalComments) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -497,10 +473,6 @@ func (entity *SubmissionGeneral) Valid() (bool, error) {
 func (entity *SubmissionGeneral) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -522,10 +494,6 @@ func (entity *SubmissionGeneral) Save(context DatabaseService, account int) (int
 func (entity *SubmissionGeneral) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -546,10 +514,6 @@ func (entity *SubmissionGeneral) Delete(context DatabaseService, account int) (i
 // Get will retrieve the entity from the database.
 func (entity *SubmissionGeneral) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -641,10 +605,6 @@ func (entity *SubmissionMedical) Valid() (bool, error) {
 func (entity *SubmissionMedical) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -666,10 +626,6 @@ func (entity *SubmissionMedical) Save(context DatabaseService, account int) (int
 func (entity *SubmissionMedical) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -690,10 +646,6 @@ func (entity *SubmissionMedical) Delete(context DatabaseService, account int) (i
 // Get will retrieve the entity from the database.
 func (entity *SubmissionMedical) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -785,10 +737,6 @@ func (entity *SubmissionCredit) Valid() (bool, error) {
 func (entity *SubmissionCredit) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -810,10 +758,6 @@ func (entity *SubmissionCredit) Save(context DatabaseService, account int) (int,
 func (entity *SubmissionCredit) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -834,10 +778,6 @@ func (entity *SubmissionCredit) Delete(context DatabaseService, account int) (in
 // Get will retrieve the entity from the database.
 func (entity *SubmissionCredit) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -929,10 +869,6 @@ func (entity *SubmissionAttachments) Valid() (bool, error) {
 func (entity *SubmissionAttachments) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -954,10 +890,6 @@ func (entity *SubmissionAttachments) Save(context DatabaseService, account int) 
 func (entity *SubmissionAttachments) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -978,10 +910,6 @@ func (entity *SubmissionAttachments) Delete(context DatabaseService, account int
 // Get will retrieve the entity from the database.
 func (entity *SubmissionAttachments) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

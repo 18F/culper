@@ -82,11 +82,6 @@ func NewPostgresService(config DBConfig, logger api.LogService) *Service {
 	return &service
 }
 
-// CheckTable ensures a the table exists for the persistor.
-func (service *Service) CheckTable(entity interface{}) error {
-	return nil
-}
-
 // Raw executes a string of SQL.
 func (service *Service) Raw(query interface{}, params ...interface{}) error {
 	_, err := service.database.Exec(query, params...)

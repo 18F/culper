@@ -130,10 +130,6 @@ func (entity *Supervisor) Valid() (bool, error) {
 func (entity *Supervisor) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -185,10 +181,6 @@ func (entity *Supervisor) Save(context DatabaseService, account int) (int, error
 func (entity *Supervisor) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -229,10 +221,6 @@ func (entity *Supervisor) Delete(context DatabaseService, account int) (int, err
 // Get the Supervisor entity.
 func (entity *Supervisor) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

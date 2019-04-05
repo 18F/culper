@@ -108,10 +108,6 @@ func (entity *ForeignBornDocument) Valid() (bool, error) {
 func (entity *ForeignBornDocument) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -157,10 +153,6 @@ func (entity *ForeignBornDocument) Save(context DatabaseService, account int) (i
 func (entity *ForeignBornDocument) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -197,10 +189,6 @@ func (entity *ForeignBornDocument) Delete(context DatabaseService, account int) 
 // Get the ForeignBornDocument entity.
 func (entity *ForeignBornDocument) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

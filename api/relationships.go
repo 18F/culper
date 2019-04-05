@@ -92,10 +92,6 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 func (entity *RelationshipsMarital) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -129,10 +125,6 @@ func (entity *RelationshipsMarital) Save(context DatabaseService, account int) (
 func (entity *RelationshipsMarital) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -161,10 +153,6 @@ func (entity *RelationshipsMarital) Delete(context DatabaseService, account int)
 // Get will retrieve the entity from the database.
 func (entity *RelationshipsMarital) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -291,10 +279,6 @@ func (entity *RelationshipsCohabitants) Valid() (bool, error) {
 func (entity *RelationshipsCohabitants) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -322,10 +306,6 @@ func (entity *RelationshipsCohabitants) Save(context DatabaseService, account in
 func (entity *RelationshipsCohabitants) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -350,10 +330,6 @@ func (entity *RelationshipsCohabitants) Delete(context DatabaseService, account 
 // Get will retrieve the entity from the database.
 func (entity *RelationshipsCohabitants) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -453,10 +429,6 @@ func (entity *RelationshipsPeople) Valid() (bool, error) {
 func (entity *RelationshipsPeople) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -478,10 +450,6 @@ func (entity *RelationshipsPeople) Save(context DatabaseService, account int) (i
 func (entity *RelationshipsPeople) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -502,10 +470,6 @@ func (entity *RelationshipsPeople) Delete(context DatabaseService, account int) 
 // Get will retrieve the entity from the database.
 func (entity *RelationshipsPeople) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -594,10 +558,6 @@ func (entity *RelationshipsRelatives) Valid() (bool, error) {
 func (entity *RelationshipsRelatives) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -619,10 +579,6 @@ func (entity *RelationshipsRelatives) Save(context DatabaseService, account int)
 func (entity *RelationshipsRelatives) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -643,10 +599,6 @@ func (entity *RelationshipsRelatives) Delete(context DatabaseService, account in
 // Get will retrieve the entity from the database.
 func (entity *RelationshipsRelatives) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

@@ -25,10 +25,6 @@ func (entity *NotApplicable) Valid() (bool, error) {
 
 // Save the entity to data storage.
 func (entity *NotApplicable) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -38,10 +34,6 @@ func (entity *NotApplicable) Save(context DatabaseService, account int) (int, er
 
 // Delete the entity from data storage.
 func (entity *NotApplicable) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -53,10 +45,6 @@ func (entity *NotApplicable) Delete(context DatabaseService, account int) (int, 
 
 // Get the entity from data storage.
 func (entity *NotApplicable) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

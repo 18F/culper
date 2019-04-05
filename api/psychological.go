@@ -73,10 +73,6 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 func (entity *PsychologicalCompetence) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -104,10 +100,6 @@ func (entity *PsychologicalCompetence) Save(context DatabaseService, account int
 func (entity *PsychologicalCompetence) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -132,10 +124,6 @@ func (entity *PsychologicalCompetence) Delete(context DatabaseService, account i
 // Get will retrieve the entity from the database.
 func (entity *PsychologicalCompetence) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -257,10 +245,6 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 func (entity *PsychologicalConsultations) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -288,10 +272,6 @@ func (entity *PsychologicalConsultations) Save(context DatabaseService, account 
 func (entity *PsychologicalConsultations) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -316,10 +296,6 @@ func (entity *PsychologicalConsultations) Delete(context DatabaseService, accoun
 // Get will retrieve the entity from the database.
 func (entity *PsychologicalConsultations) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -491,10 +467,6 @@ func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
 func (entity *PsychologicalDiagnoses) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -540,10 +512,6 @@ func (entity *PsychologicalDiagnoses) Save(context DatabaseService, account int)
 func (entity *PsychologicalDiagnoses) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -580,10 +548,6 @@ func (entity *PsychologicalDiagnoses) Delete(context DatabaseService, account in
 // Get will retrieve the entity from the database.
 func (entity *PsychologicalDiagnoses) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -741,10 +705,6 @@ func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
 func (entity *PsychologicalHospitalizations) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -772,10 +732,6 @@ func (entity *PsychologicalHospitalizations) Save(context DatabaseService, accou
 func (entity *PsychologicalHospitalizations) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -800,10 +756,6 @@ func (entity *PsychologicalHospitalizations) Delete(context DatabaseService, acc
 // Get will retrieve the entity from the database.
 func (entity *PsychologicalHospitalizations) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -995,10 +947,6 @@ func (entity *PsychologicalExisting) Valid() (bool, error) {
 func (entity *PsychologicalExisting) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1050,10 +998,6 @@ func (entity *PsychologicalExisting) Save(context DatabaseService, account int) 
 func (entity *PsychologicalExisting) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1094,10 +1038,6 @@ func (entity *PsychologicalExisting) Delete(context DatabaseService, account int
 // Get will retrieve the entity from the database.
 func (entity *PsychologicalExisting) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

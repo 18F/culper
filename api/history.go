@@ -51,10 +51,6 @@ func (entity *HistoryResidence) Valid() (bool, error) {
 func (entity *HistoryResidence) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -76,10 +72,6 @@ func (entity *HistoryResidence) Save(context DatabaseService, account int) (int,
 func (entity *HistoryResidence) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -100,10 +92,6 @@ func (entity *HistoryResidence) Delete(context DatabaseService, account int) (in
 // Get will retrieve the entity from the database.
 func (entity *HistoryResidence) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -231,10 +219,6 @@ func (entity *HistoryEmployment) Valid() (bool, error) {
 func (entity *HistoryEmployment) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -262,10 +246,6 @@ func (entity *HistoryEmployment) Save(context DatabaseService, account int) (int
 func (entity *HistoryEmployment) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -290,10 +270,6 @@ func (entity *HistoryEmployment) Delete(context DatabaseService, account int) (i
 // Get will retrieve the entity from the database.
 func (entity *HistoryEmployment) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -490,10 +466,6 @@ func (entity *HistoryEducation) Valid() (bool, error) {
 func (entity *HistoryEducation) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -527,10 +499,6 @@ func (entity *HistoryEducation) Save(context DatabaseService, account int) (int,
 func (entity *HistoryEducation) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -559,10 +527,6 @@ func (entity *HistoryEducation) Delete(context DatabaseService, account int) (in
 // Get will retrieve the entity from the database.
 func (entity *HistoryEducation) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -688,10 +652,6 @@ func (entity *HistoryFederal) Valid() (bool, error) {
 func (entity *HistoryFederal) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -719,10 +679,6 @@ func (entity *HistoryFederal) Save(context DatabaseService, account int) (int, e
 func (entity *HistoryFederal) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -747,10 +703,6 @@ func (entity *HistoryFederal) Delete(context DatabaseService, account int) (int,
 // Get will retrieve the entity from the database.
 func (entity *HistoryFederal) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

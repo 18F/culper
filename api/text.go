@@ -34,10 +34,6 @@ func (entity *Text) Valid() (bool, error) {
 
 // Save the text to data storage.
 func (entity *Text) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -47,10 +43,6 @@ func (entity *Text) Save(context DatabaseService, account int) (int, error) {
 
 // Delete the text from data storage.
 func (entity *Text) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -62,10 +54,6 @@ func (entity *Text) Delete(context DatabaseService, account int) (int, error) {
 
 // Get the text from data storage.
 func (entity *Text) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

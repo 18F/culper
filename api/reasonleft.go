@@ -80,10 +80,6 @@ func (entity *ReasonLeft) Valid() (bool, error) {
 func (entity *ReasonLeft) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -117,10 +113,6 @@ func (entity *ReasonLeft) Save(context DatabaseService, account int) (int, error
 func (entity *ReasonLeft) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -149,10 +141,6 @@ func (entity *ReasonLeft) Delete(context DatabaseService, account int) (int, err
 // Get the ReasonLeft entity.
 func (entity *ReasonLeft) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

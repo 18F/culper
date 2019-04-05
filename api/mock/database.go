@@ -6,11 +6,6 @@ type DatabaseService struct {
 	SelectCount int
 }
 
-// CheckTable ensures a the table exists for the persistor.
-func (service *DatabaseService) CheckTable(entity interface{}) error {
-	return nil
-}
-
 // Raw executes a string of SQL.
 func (service *DatabaseService) Raw(query interface{}, params ...interface{}) error {
 	return nil

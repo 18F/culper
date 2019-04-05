@@ -37,10 +37,6 @@ func (entity *Number) Valid() (bool, error) {
 
 // Save the number to data storage.
 func (entity *Number) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -50,10 +46,6 @@ func (entity *Number) Save(context DatabaseService, account int) (int, error) {
 
 // Delete the number from data storage.
 func (entity *Number) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -65,10 +57,6 @@ func (entity *Number) Delete(context DatabaseService, account int) (int, error) 
 
 // Get the number from data storage.
 func (entity *Number) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

@@ -74,10 +74,6 @@ func (entity *Telephone) Valid() (bool, error) {
 
 // Save the telephone to data storage.
 func (entity *Telephone) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -87,10 +83,6 @@ func (entity *Telephone) Save(context DatabaseService, account int) (int, error)
 
 // Delete the telephone from data storage.
 func (entity *Telephone) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -102,10 +94,6 @@ func (entity *Telephone) Delete(context DatabaseService, account int) (int, erro
 
 // Get the telephone from data storage.
 func (entity *Telephone) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

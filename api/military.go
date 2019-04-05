@@ -4,25 +4,25 @@ import "encoding/json"
 
 // MilitarySelective represents the payload for the military service section.
 type MilitarySelective struct {
-	PayloadWasBornAfter       Payload `json:"WasBornAfter" sql:"-"`
-	PayloadHasRegistered      Payload `json:"HasRegistered" sql:"-"`
-	PayloadRegistrationNumber Payload `json:"RegistrationNumber" sql:"-"`
-	PayloadExplanation        Payload `json:"Explanation" sql:"-"`
+	PayloadWasBornAfter               Payload `json:"WasBornAfter" sql:"-"`
+	PayloadHasRegistered              Payload `json:"HasRegistered" sql:"-"`
+	PayloadRegistrationNumber         Payload `json:"RegistrationNumber" sql:"-"`
+	PayloadExplanation                Payload `json:"Explanation" sql:"-"`
 	PayloadHasRegisteredNotApplicable Payload `json:"HasRegisteredNotApplicable" sql:"-"`
 
 	// Validator specific fields
-	WasBornAfter       *Branch   `json:"-"`
-	HasRegistered      *Branch   `json:"-"`
-	RegistrationNumber *Text     `json:"-"`
-	Explanation        *Textarea `json:"-"`
+	WasBornAfter               *Branch        `json:"-"`
+	HasRegistered              *Branch        `json:"-"`
+	RegistrationNumber         *Text          `json:"-"`
+	Explanation                *Textarea      `json:"-"`
 	HasRegisteredNotApplicable *NotApplicable `json:"-"`
 
 	// Persister specific fields
-	ID                   int `json:"-"`
-	WasBornAfterID       int `json:"-" pg:", fk:WasBornAfter"`
-	HasRegisteredID      int `json:"-" pg:", fk:HasRegistered"`
-	RegistrationNumberID int `json:"-" pg:", fk:RegistrationNumber"`
-	ExplanationID        int `json:"-" pg:", fk:Explanation"`
+	ID                           int `json:"-"`
+	WasBornAfterID               int `json:"-" pg:", fk:WasBornAfter"`
+	HasRegisteredID              int `json:"-" pg:", fk:HasRegistered"`
+	RegistrationNumberID         int `json:"-" pg:", fk:RegistrationNumber"`
+	ExplanationID                int `json:"-" pg:", fk:Explanation"`
 	HasRegisteredNotApplicableID int `json:"-" pg:", fk:HasRegisteredNotApplicable"`
 }
 
@@ -123,10 +123,6 @@ func (entity *MilitarySelective) Valid() (bool, error) {
 func (entity *MilitarySelective) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -172,10 +168,6 @@ func (entity *MilitarySelective) Save(context DatabaseService, account int) (int
 func (entity *MilitarySelective) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -212,10 +204,6 @@ func (entity *MilitarySelective) Delete(context DatabaseService, account int) (i
 // Get will retrieve the entity from the database.
 func (entity *MilitarySelective) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -373,10 +361,6 @@ func (entity *MilitaryHistory) Valid() (bool, error) {
 func (entity *MilitaryHistory) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -404,10 +388,6 @@ func (entity *MilitaryHistory) Save(context DatabaseService, account int) (int, 
 func (entity *MilitaryHistory) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -432,10 +412,6 @@ func (entity *MilitaryHistory) Delete(context DatabaseService, account int) (int
 // Get will retrieve the entity from the database.
 func (entity *MilitaryHistory) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -557,10 +533,6 @@ func (entity *MilitaryDisciplinary) Valid() (bool, error) {
 func (entity *MilitaryDisciplinary) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -588,10 +560,6 @@ func (entity *MilitaryDisciplinary) Save(context DatabaseService, account int) (
 func (entity *MilitaryDisciplinary) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -616,10 +584,6 @@ func (entity *MilitaryDisciplinary) Delete(context DatabaseService, account int)
 // Get will retrieve the entity from the database.
 func (entity *MilitaryDisciplinary) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -723,10 +687,6 @@ func (entity *MilitaryForeign) Valid() (bool, error) {
 func (entity *MilitaryForeign) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -748,10 +708,6 @@ func (entity *MilitaryForeign) Save(context DatabaseService, account int) (int, 
 func (entity *MilitaryForeign) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -772,10 +728,6 @@ func (entity *MilitaryForeign) Delete(context DatabaseService, account int) (int
 // Get will retrieve the entity from the database.
 func (entity *MilitaryForeign) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

@@ -86,10 +86,6 @@ func (entity *Collection) Save(context DatabaseService, account int) (int, error
 		entity.Branch = &Branch{}
 	}
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -121,10 +117,6 @@ func (entity *Collection) Save(context DatabaseService, account int) (int, error
 func (entity *Collection) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -154,10 +146,6 @@ func (entity *Collection) Delete(context DatabaseService, account int) (int, err
 // Get the Collection entity.
 func (entity *Collection) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
@@ -250,10 +238,6 @@ func (ci *CollectionItem) Valid() (bool, error) {
 func (ci *CollectionItem) Save(context DatabaseService, account, collectionID, index int) (int, error) {
 	ci.ID = collectionID
 
-	if err := context.CheckTable(&CollectionItem{}); err != nil {
-		return ci.ID, err
-	}
-
 	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
 		// If a named payload was not able to be decoded then skip the saving
 		// bit.
@@ -284,10 +268,6 @@ func (ci *CollectionItem) Save(context DatabaseService, account, collectionID, i
 func (ci *CollectionItem) Delete(context DatabaseService, account, collectionID, index int) (int, error) {
 	ci.ID = collectionID
 
-	if err := context.CheckTable(&CollectionItem{}); err != nil {
-		return ci.ID, err
-	}
-
 	ci.getItemPropertyNames(context)
 	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
 		if err != nil {
@@ -299,10 +279,6 @@ func (ci *CollectionItem) Delete(context DatabaseService, account, collectionID,
 			Index: index,
 			Name:  name,
 			Type:  entityType,
-		}
-
-		if err := context.CheckTable(entity); err != nil {
-			return err
 		}
 
 		id, err := entity.Delete(context, account)
@@ -332,10 +308,6 @@ func (ci *CollectionItem) Delete(context DatabaseService, account, collectionID,
 func (ci *CollectionItem) Get(context DatabaseService, account, collectionID, index int) (int, error) {
 	ci.ID = collectionID
 
-	if err := context.CheckTable(&CollectionItem{}); err != nil {
-		return ci.ID, err
-	}
-
 	ci.getItemPropertyNames(context)
 	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
 		item := &CollectionItem{
@@ -350,10 +322,6 @@ func (ci *CollectionItem) Get(context DatabaseService, account, collectionID, in
 		}
 		entity, _ = transform[item.Type]()
 		entity.SetID(item.ItemID)
-
-		if err := context.CheckTable(entity); err != nil {
-			return err
-		}
 
 		if _, err = entity.Get(context, account); err != nil {
 			return err

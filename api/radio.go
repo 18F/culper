@@ -26,10 +26,6 @@ func (entity *Radio) Valid() (bool, error) {
 
 // Save the radio to data storage.
 func (entity *Radio) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -39,10 +35,6 @@ func (entity *Radio) Save(context DatabaseService, account int) (int, error) {
 
 // Delete the radio from data storage.
 func (entity *Radio) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -54,10 +46,6 @@ func (entity *Radio) Delete(context DatabaseService, account int) (int, error) {
 
 // Get the radio from data storage.
 func (entity *Radio) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err
