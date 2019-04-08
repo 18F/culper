@@ -591,6 +591,52 @@ func (entity *HistoryEducation) Find(context DatabaseService) error {
 	return nil
 }
 
+func (e *HistoryEducation) ClearNos() bool {
+	updated := false
+
+	if e.List != nil && e.List.Branch != nil {
+		if e.List.Branch.Value == "No" {
+			e.List.Branch.Value = ""
+			updated = true
+		}
+	}
+
+	if e.HasAttended != nil && e.HasAttended.Value == "No" {
+		e.HasAttended.Value = ""
+		updated = true
+	}
+
+	if e.HasDegree10 != nil && e.HasDegree10.Value == "No" {
+		e.HasDegree10.Value = ""
+		updated = true
+	}
+
+	return updated
+
+}
+
+// ClearHistoryEducationNos clears Nos from history.education
+func ClearHistoryEducationNos(context DatabaseService, accountID int) error {
+	education := HistoryEducation{}
+	_, err := education.Get(context, accountID)
+	if err != nil {
+		if IsDatabaseErrorNotFound(err) {
+			return nil
+		}
+		return errors.Wrap(err, "Failed to clear nos: unable to load education")
+	}
+
+	updated := education.ClearNos()
+
+	if updated {
+		if _, err := education.Save(context, accountID); err != nil {
+			return errors.Wrap(err, "Unable to save education")
+		}
+	}
+
+	return nil
+}
+
 // HistoryFederal represents the payload for the history federal section.
 type HistoryFederal struct {
 	PayloadHasFederalService Payload `json:"HasFederalService" sql:"-"`

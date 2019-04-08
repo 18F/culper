@@ -197,5 +197,9 @@ func (entity *Account) ClearNoBranches(context DatabaseService) error {
 		return err
 	}
 
+	if err := ClearHistoryEducationNos(context, entity.ID); err != nil {
+		return err
+	}
+
 	return nil
 }

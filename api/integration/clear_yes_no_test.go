@@ -227,3 +227,48 @@ func TestClearHistoryEmployment(t *testing.T) {
 	}
 
 }
+
+func TestClearHistoryEducation(t *testing.T) {
+	services := cleanTestServices()
+
+	account, err := createTestAccount(services.db)
+	if err != nil {
+		t.Fatal("couldn't create account", err)
+	}
+
+	// TEST complete list
+	resp := saveJSON(services, sections.HistEducationDegrees, account.ID)
+	if resp.StatusCode != 200 {
+		t.Fatal("Failed to save HistEducationDegrees", resp.StatusCode)
+	}
+
+	rejector := admin.Rejector{
+		DB: services.db,
+	}
+	err = rejector.Reject(account)
+	if err != nil {
+		t.Fatal("Failed to reject account: ", err)
+	}
+
+	education := api.HistoryEducation{}
+	_, err = education.Get(services.db, account.ID)
+	if err != nil {
+		t.Fatal("couldn't reload education")
+	}
+
+	if education.List.Branch.Value != "" {
+		t.Log("education list was not reset")
+		t.Fail()
+	}
+
+	if education.HasAttended.Value != "" {
+		t.Log("education has attended was not reset")
+		t.Fail()
+	}
+
+	if education.HasDegree10.Value != "Yes" {
+		t.Log("education has degree was changed")
+		t.Fail()
+	}
+
+}
