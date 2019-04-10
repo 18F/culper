@@ -1,3 +1,6 @@
+/* eslint jsx-a11y/label-has-associated-control: 0 */
+/* eslint jsx-a11y/label-has-for: 0 */
+
 import React from 'react'
 import { i18n } from 'config'
 import { pickDate, alphaNumericRegEx } from 'validators/helpers'
@@ -19,7 +22,7 @@ import {
   NotApplicable,
   Location,
 } from 'components/Form'
-import AlternateAddress from 'components/Form/Location/AlternateAddress'
+import ConnectedAlternateAddress from 'components/Form/Location/AlternateAddress'
 import { RelativeValidator } from 'validators'
 import { countryString } from 'validators/location'
 import Alias from './Alias'
@@ -255,6 +258,13 @@ export default class Relative extends ValidationElement {
     }
   }
 
+  updateEmployer = (values) => {
+    this.update({
+      Employer: values,
+      EmployerNotApplicable: { applicable: true },
+    })
+  }
+
   updateEmployerNotApplicable = (values) => {
     this.update({
       EmployerNotApplicable: values,
@@ -262,10 +272,24 @@ export default class Relative extends ValidationElement {
     })
   }
 
+  updateEmployerAddress = (values) => {
+    this.update({
+      EmployerAddress: values,
+      EmployerAddressNotApplicable: { applicable: true },
+    })
+  }
+
   updateEmployerAddressNotApplicable = (values) => {
     this.update({
       EmployerAddressNotApplicable: values,
       EmployerAddress: {},
+    })
+  }
+
+  updateEmployerRelationship = (values) => {
+    this.update({
+      EmployerRelationship: values,
+      EmployerRelationshipNotApplicable: { applicable: true },
     })
   }
 
@@ -498,7 +522,7 @@ export default class Relative extends ValidationElement {
               required={this.props.required}
             />
           </Field>
-          <AlternateAddress
+          <ConnectedAlternateAddress
             address={this.props.AlternateAddress}
             addressBook={this.props.addressBook}
             belongingTo="AlternateAddress"
@@ -945,7 +969,7 @@ export default class Relative extends ValidationElement {
                   className="relative-employer"
                   {...this.props.Employer}
                   onError={this.props.onError}
-                  onUpdate={(value) => { this.updateField('Employer', value) }}
+                  onUpdate={(value) => { this.updateEmployer(value) }}
                   required={this.props.required}
                 />
               </NotApplicable>
@@ -973,7 +997,7 @@ export default class Relative extends ValidationElement {
                   className="relative-employer-address"
                   showPostOffice
                   onError={this.props.onError}
-                  onUpdate={(value) => { this.updateField('EmployerAddress', value) }}
+                  onUpdate={(value) => { this.updateEmployerAddress(value) }}
                   required={this.props.required}
                 />
               </NotApplicable>
@@ -1012,7 +1036,7 @@ export default class Relative extends ValidationElement {
                   {...this.props.EmployerRelationship}
                   disabled={!this.props.EmployerRelationshipNotApplicable.applicable}
                   onError={this.props.onError}
-                  onUpdate={(value) => { this.updateField('EmployerRelationship', value) }}
+                  onUpdate={(value) => { this.updateEmployerRelationship(value) }}
                   required={this.props.required}
                 />
               </Field>

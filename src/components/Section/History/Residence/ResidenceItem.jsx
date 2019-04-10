@@ -115,6 +115,7 @@ export default class ResidenceItem extends ValidationElement {
   updateReferenceEmail = (values) => {
     this.update({
       ReferenceEmail: values,
+      ReferenceEmailNotApplicable: { applicable: true },
     })
   }
 

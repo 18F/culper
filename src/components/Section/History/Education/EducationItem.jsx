@@ -99,6 +99,7 @@ export default class EducationItem extends ValidationElement {
   updateReferenceName = (values) => {
     this.update({
       ReferenceName: values,
+      ReferenceNameNotApplicable: { applicable: true },
     })
   }
 
@@ -117,6 +118,7 @@ export default class EducationItem extends ValidationElement {
   updateReferenceEmail = (values) => {
     this.update({
       ReferenceEmail: values,
+      ReferenceEmailNotApplicable: { applicable: true },
     })
   }
 
