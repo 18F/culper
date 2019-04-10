@@ -3,6 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
+  selectForeignContactsSection,
+  selectForeignActivitiesSection,
+  selectForeignBusinessSection,
+  selectForeignTravelSection,
+} from 'selectors/branches'
+
+import {
   updateApplication,
   reportErrors,
 } from 'actions/ApplicationActions'
@@ -118,6 +125,10 @@ const connectForeignSection = (Component, {
           Travel: foreign.Travel,
           Errors: errors.foreign || [],
           Completed: completed.foreign || [],
+          ...selectForeignContactsSection(state),
+          ...selectForeignActivitiesSection(state),
+          ...selectForeignBusinessSection(state),
+          ...selectForeignTravelSection(state),
         }
     }
   }

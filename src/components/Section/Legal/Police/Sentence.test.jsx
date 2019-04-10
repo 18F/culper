@@ -10,17 +10,18 @@ describe('The Sentence  component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <Sentence {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <Sentence {...expected} />
+      </Provider>
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'sentence'
+      name: 'sentence',
+      requireLegalOffenseSentenced: true,
+      requireLegalOffenseIncarcerated: true,
     }
     const component = createComponent(expected)
     expect(component.find('.description').length).toEqual(1)
@@ -35,27 +36,29 @@ describe('The Sentence  component', () => {
     const expected = {
       name: 'sentence',
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
+      requireLegalOffenseSentenced: true,
+      requireLegalOffenseIncarcerated: true,
     }
     const component = createComponent(expected)
 
     let selectors = [
       '.description textarea',
       '.exceeds-year .yes input',
-      '.incarcerated .yes input'
+      '.incarcerated .yes input',
     ]
 
-    selectors.forEach(selector => {
+    selectors.forEach((selector) => {
       component.find(selector).simulate('change')
     })
 
     selectors = [
       '.probation-dates .month input',
-      '.incarceration-dates .month input'
+      '.incarceration-dates .month input',
     ]
 
-    selectors.forEach(selector => {
+    selectors.forEach((selector) => {
       component
         .find(selector)
         .first()
@@ -64,10 +67,10 @@ describe('The Sentence  component', () => {
 
     selectors = [
       '.not-applicable .probation-dates-na .button input',
-      '.not-applicable .incarceration-dates-na .button input'
+      '.not-applicable .incarceration-dates-na .button input',
     ]
 
-    selectors.forEach(selector => {
+    selectors.forEach((selector) => {
       component
         .find(selector)
         .first()

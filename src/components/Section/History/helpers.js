@@ -79,16 +79,3 @@ export const sort = (a, b) => {
 
   return 0
 }
-
-export const getYearsString = (years) => {
-  switch (years) {
-    case 5:
-      return 'five'
-    case 7:
-      return 'seven'
-    case 10:
-      return 'ten'
-    default:
-      return ''
-  }
-}

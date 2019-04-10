@@ -895,7 +895,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
           <span
             className="score-card-total"
           >
-            8
+            7
           </span>
           <span
             className="score-card-text"
@@ -1438,69 +1438,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               className="toggle-item"
             >
               <button
-                aria-controls="/form/foreign"
-                aria-expanded={false}
-                className="section-link usa-accordion-button"
-                type="button"
-              >
-                <span
-                  className="section-name"
-                >
-                  Foreign associations
-                </span>
-                <span
-                  className="eapp-status-icon"
-                />
-              </button>
-              <div
-                aria-hidden={true}
-                className="usa-accordion-content"
-                id="/form/foreign"
-              >
-                <ol
-                  className="usa-accordion usa-sidenav-sub_list"
-                >
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/intro"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Introduction
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/review"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Review
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </li>
-            <li
-              className="toggle-item"
-            >
-              <button
                 aria-controls="/form/financial"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
@@ -1544,40 +1481,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/financial/bankruptcy"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Bankruptcy
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/financial/gambling"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Gambling
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
                       href="/form/financial/taxes"
                       onClick={[Function]}
                     >
@@ -1595,40 +1498,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/financial/card"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Employer card abuse
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/financial/credit"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Credit counseling
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
                       href="/form/financial/delinquent"
                       onClick={[Function]}
                     >
@@ -1636,23 +1505,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         className="section-name"
                       >
                         Delinquent payments
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/financial/nonpayment"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Non-payment consequence
                       </span>
                       <span
                         className="eapp-status-icon"
@@ -1776,40 +1628,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                               className="section-name"
                             >
                               Purchase
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/drugs/clearance"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Security clearance position
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/drugs/publicsafety"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Public safety position
                             </span>
                             <span
                               className="eapp-status-icon"
@@ -1987,23 +1805,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                               className="section-name"
                             >
                               Offenses
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/legal/police/additionaloffenses"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Additional offenses
                             </span>
                             <span
                               className="eapp-status-icon"

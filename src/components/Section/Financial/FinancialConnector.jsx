@@ -7,6 +7,18 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
+import {
+  selectFinancialBankruptcySection,
+  selectFinancialGamblingSection,
+  selectFinancialTaxesSection,
+  selectFinancialCardSection,
+  selectFinancialCreditSection,
+  selectFinancialDelinquentSection,
+  selectFinancialDelinquentName,
+  selectFinancialDelinquentNonFederal,
+  selectFinancialNonpaymentSection,
+} from 'selectors/branches'
+
 const connectFinancialSection = (Component, {
   section, subsection, store, storeKey,
 }) => {
@@ -52,6 +64,7 @@ const connectFinancialSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
+    const { authentication } = state
 
     switch (storeKey) {
       case 'Bankruptcy':
@@ -68,6 +81,7 @@ const connectFinancialSection = (Component, {
       case 'Taxes':
         return {
           ...financial.Taxes,
+          formType: authentication.formType,
         }
 
       case 'Card':
@@ -86,6 +100,9 @@ const connectFinancialSection = (Component, {
         return {
           ...financial.Delinquent,
           addressBooks,
+          formType: authentication.formType,
+          ...selectFinancialDelinquentName(state),
+          ...selectFinancialDelinquentNonFederal(state),
         }
 
       case 'Nonpayment':
@@ -106,6 +123,13 @@ const connectFinancialSection = (Component, {
           Errors: errors.financial || [],
           Completed: completed.financial || [],
           AddressBooks: addressBooks,
+          ...selectFinancialBankruptcySection(state),
+          ...selectFinancialGamblingSection(state),
+          ...selectFinancialTaxesSection(state),
+          ...selectFinancialCardSection(state),
+          ...selectFinancialCreditSection(state),
+          ...selectFinancialDelinquentSection(state),
+          ...selectFinancialNonpaymentSection(state),
         }
     }
   }

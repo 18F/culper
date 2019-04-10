@@ -47,23 +47,11 @@ export const SF85 = [
     ],
   },
   {
-    ...formSections.FOREIGN,
-    subsections: [
-      formSections.FOREIGN_INTRO,
-      formSections.FOREIGN_REVIEW,
-    ],
-  },
-  {
     ...formSections.FINANCIAL,
     subsections: [
       formSections.FINANCIAL_INTRO,
-      formSections.FINANCIAL_BANKRUPTCY,
-      formSections.FINANCIAL_GAMBLING,
       formSections.FINANCIAL_TAXES,
-      formSections.FINANCIAL_CARD,
-      formSections.FINANCIAL_CREDIT,
       formSections.FINANCIAL_DELINQUENT,
-      formSections.FINANCIAL_NONPAYMENT,
       formSections.FINANCIAL_REVIEW,
     ],
   },
@@ -76,8 +64,6 @@ export const SF85 = [
         subsections: [
           formSections.SUBSTANCE_USE_DRUGS_USAGE,
           formSections.SUBSTANCE_USE_DRUGS_PURCHASE,
-          formSections.SUBSTANCE_USE_DRUGS_CLEARANCE,
-          formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
           formSections.SUBSTANCE_USE_DRUGS_MISUSE,
           formSections.SUBSTANCE_USE_DRUGS_ORDERED,
           formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
@@ -95,7 +81,6 @@ export const SF85 = [
         subsections: [
           formSections.LEGAL_POLICE_INTRO,
           formSections.LEGAL_POLICE_OFFENSES,
-          formSections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
           formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE,
         ],
       },
