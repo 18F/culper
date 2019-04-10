@@ -529,7 +529,7 @@ func FormStatus(context DatabaseService, account int, locked bool) ([]byte, erro
 }
 
 // Application returns the application state in JSON format.
-func Application(context DatabaseService, account int, hashable bool) ([]byte, error) {
+func ApplicationJSON(context DatabaseService, account int, hashable bool) ([]byte, error) {
 	application := make(map[string]map[string]Payload)
 
 	for _, section := range catalogue {
@@ -583,7 +583,7 @@ func Application(context DatabaseService, account int, hashable bool) ([]byte, e
 
 // Package an application for transmitting to cold storage
 func Package(context DatabaseService, xml XMLService, account int, hashable bool) (template.HTML, error) {
-	jsonBytes, err := Application(context, account, hashable)
+	jsonBytes, err := ApplicationJSON(context, account, hashable)
 	if err != nil {
 		return template.HTML(""), err
 	}
@@ -596,7 +596,7 @@ func Package(context DatabaseService, xml XMLService, account int, hashable bool
 
 // ApplicationData returns the entire application in a JSON structure.
 func ApplicationData(context DatabaseService, account int, hashable bool) (map[string]interface{}, error) {
-	jsonBytes, err := Application(context, account, hashable)
+	jsonBytes, err := ApplicationJSON(context, account, hashable)
 	if err != nil {
 		return nil, err
 	}
@@ -627,7 +627,7 @@ func PurgeAccountStorage(context DatabaseService, account int) {
 
 // Hash returns the SHA256 hash of the application state in hexadecimal
 func Hash(context DatabaseService, account int) (string, error) {
-	jsonBytes, err := Application(context, account, true)
+	jsonBytes, err := ApplicationJSON(context, account, true)
 	if err != nil {
 		return "", errors.Wrap(err, "Unable to generate hash")
 	}
