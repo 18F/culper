@@ -1,3 +1,4 @@
+import queryString from 'query-string'
 import { env } from 'config'
 import { api } from 'services/api'
 import AuthConstants from './AuthConstants'
@@ -26,6 +27,17 @@ export function login(username, password) {
     return api
       .login(username, password)
       .then((response) => {
+        /**
+         * In local development and staging, we have the ability to manually
+         * set the formType by using URL params.
+         */
+        if (env.IsDevelopment() || env.IsStaging()) {
+          const params = location.search
+          const query = queryString.parse(params)
+          if (query.formType) {
+            window.formType = query.formType
+          }
+        }
         api.setToken(response.data)
         dispatch(handleLoginSuccess(response.data))
         env.History().push('/loading')

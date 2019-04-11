@@ -34,7 +34,9 @@ export function getApplicationState(done) {
         }
         return api.form().then((r) => {
           formData = r.data
-          dispatch(updateApplication('Settings', 'formType', formData.Metadata.form_type))
+          const formType = window.formType ? window.formType : formData.Metadata.form_type
+
+          dispatch(updateApplication('Settings', 'formType', formType))
           dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
           for (const section in formData) {
             for (const subsection in formData[section]) {
