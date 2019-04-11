@@ -3,7 +3,7 @@ import { i18n } from 'config'
 import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
 import schema from 'schema'
 import validate, { PassportValidator } from 'validators'
-import { isDocumentRequired, isCertificateRequired } from 'validators/citizenship'
+import { isDocumentRequired } from 'validators/citizenship'
 import {
   Branch,
   Show,
@@ -77,9 +77,56 @@ export class Status extends Subsection {
     })
   }
 
+  /**
+   * This function for hacking together the value of the documentation type.
+   * Previously the radio group directly leveraged the AbroadDocumentation. But because
+   * Certificate of Citizenship isn't an accepted document type value in e-QIP, we
+   * need to get a bit creative in how we save and display the document type.
+   */
+  getAbroadDocumentationValue = () => {
+    const { AbroadDocumentation, Explanation } = this.props
+
+    if (AbroadDocumentation.value === 'Other' && Explanation.value === 'Certificate of Citizenship') {
+      return 'CitizenshipCertificate'
+    }
+
+    return AbroadDocumentation.value
+  }
+
   updateField = (field, values) => {
     this.update({
       [field]: values,
+    })
+  }
+
+  /**
+   * This is a one-off function when a user selected Certificate of Citizenship.
+   * This is because e-QIP does not have Certificate of Citizenship as a form
+   * type like how we are displaying in the UI.
+   *
+   * Instead, of setting AbroadDocumentation to CitizenshipCertificate, its value
+   * will be set to Otheer and the explanation will be Certificate of Citizenship.
+   */
+  updateCertificateOfCitizenship = () => {
+    this.update({
+      AbroadDocumentation: {
+        name: 'citizenship-abroad-other',
+        value: 'Other',
+      },
+      Explanation: {
+        name: 'Explanation',
+        value: 'Certificate of Citizenship',
+      },
+    })
+  }
+
+  updateOtherDocumentationType = (value) => {
+    this.update({
+      AbroadDocumentation: value,
+      Explanation: {
+        name: 'Explanation',
+        value: '',
+      },
     })
   }
 
@@ -128,7 +175,6 @@ export class Status extends Subsection {
       certificateIssued: CertificateIssued,
       certificateName: CertificateName,
     }
-    const resultIsCertificateRequired = isCertificateRequired(data)
     const resultIsDocumentRequired = isDocumentRequired(data)
     const isPassportValid = new PassportValidator(Passport).checkPassportValidity()
     return (
@@ -206,7 +252,7 @@ export class Status extends Subsection {
                   className="citizenship-abroad"
                   required={resultIsDocumentRequired && this.props.required}
                   onError={this.handleError}
-                  selectedValue={(this.props.AbroadDocumentation || {}).value}
+                  selectedValue={this.getAbroadDocumentationValue()}
                 >
                   <Radio
                     name="citizenship-abroad-fs240"
@@ -237,7 +283,7 @@ export class Status extends Subsection {
                     label={i18n.t('citizenship.status.label.abroad.certificateOfCitizenship')}
                     value="CitizenshipCertificate"
                     className="citizenship-abroad-certificate-of-citizenship"
-                    onUpdate={(value) => { this.updateField('AbroadDocumentation', value) }}
+                    onUpdate={this.updateCertificateOfCitizenship}
                     onError={this.handleError}
                   />
                   <Radio
@@ -245,13 +291,13 @@ export class Status extends Subsection {
                     label={i18n.t('citizenship.status.label.abroad.other')}
                     value="Other"
                     className="citizenship-abroad-other"
-                    onUpdate={(value) => { this.updateField('AbroadDocumentation', value) }}
+                    onUpdate={this.updateOtherDocumentationType}
                     onError={this.handleError}
                   />
                 </RadioGroup>
 
                 <Show
-                  when={(this.props.AbroadDocumentation || {}).value === 'Other'}
+                  when={this.getAbroadDocumentationValue() === 'Other'}
                 >
                   <Field
                     title={i18n.t('citizenship.status.label.explanation')}
@@ -270,7 +316,7 @@ export class Status extends Subsection {
                 </Show>
               </Field>
 
-              <Show when={['FS-240', 'DS-1350', 'FS-545', 'Other'].indexOf(this.props.AbroadDocumentation.value) > -1}>
+              <Show when={['FS-240', 'DS-1350', 'FS-545', 'Other'].indexOf(this.getAbroadDocumentationValue()) > -1}>
 
                 <Field
                   title={i18n.t(
@@ -342,7 +388,7 @@ export class Status extends Subsection {
                 </Field>
               </Show>
 
-              <Show when={(this.props.AbroadDocumentation || {}).value === 'CitizenshipCertificate'}>
+              <Show when={this.getAbroadDocumentationValue() === 'CitizenshipCertificate'}>
                 <Field
                   title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}
                   scrollIntoView={this.props.scrollIntoView}
