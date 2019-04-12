@@ -22,6 +22,8 @@ describe('App component', () => {
     const store = mockStore({
       authentication: { formType: 'SF86' },
       application: {
+        Errors: {},
+        Completed: {},
         Settings: {
           mobileNavigation: false,
         },
@@ -56,6 +58,8 @@ describe('App component', () => {
     const store = mockStore({
       authentication: { formType: 'SF85' },
       application: {
+        Errors: {},
+        Completed: {},
         Settings: {
           mobileNavigation: false,
         },
@@ -90,6 +94,8 @@ describe('App component', () => {
     const store = mockStore({
       authentication: { formType: 'SF85P' },
       application: {
+        Errors: {},
+        Completed: {},
         Settings: {
           mobileNavigation: false,
         },

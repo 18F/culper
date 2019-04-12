@@ -10,21 +10,22 @@ describe('The delinquent item component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <DelinquentItem {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <DelinquentItem {...expected} />
+      </Provider>
+    )
   })
 
   it('triggers updates when changing values', () => {
     let updates = 0
     const expected = {
       name: 'delinquent',
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
+      allowFinancialDelinquentNonFederal: true,
+      requireFinancialDelinquentName: true,
     }
     const component = createComponent(expected)
     component

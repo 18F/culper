@@ -895,7 +895,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
           <span
             className="score-card-total"
           >
-            10
+            7
           </span>
           <span
             className="score-card-text"
@@ -913,11 +913,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/identification"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -927,7 +927,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -1095,11 +1095,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/history"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -1109,7 +1109,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -1190,23 +1190,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/history/federal"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Former federal service
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
                       href="/form/history/review"
                       onClick={[Function]}
                     >
@@ -1226,171 +1209,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
-                aria-controls="/form/relationships"
-                aria-expanded={false}
-                className="section-link usa-accordion-button"
-                role="button"
-              >
-                <span
-                  className="section-name"
-                >
-                  Relationships
-                </span>
-                <span
-                  className="eapp-status-icon"
-                />
-              </a>
-              <div
-                aria-hidden={true}
-                className="usa-accordion-content"
-                id="/form/relationships"
-              >
-                <ol
-                  className="usa-accordion usa-sidenav-sub_list"
-                >
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/relationships/intro"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Introduction
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li
-                    className="toggle-item"
-                  >
-                    <a
-                      aria-controls="/form/relationships/status"
-                      aria-expanded={false}
-                      className="section-link usa-accordion-button"
-                      role="button"
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Marital & relationship status
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                    <div
-                      aria-hidden={true}
-                      className="usa-accordion-content"
-                      id="/form/relationships/status"
-                    >
-                      <ol
-                        className="usa-accordion usa-sidenav-sub_list"
-                      >
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/relationships/status/marital"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Marital
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/relationships/status/cohabitant"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Cohabitants
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                      </ol>
-                    </div>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/relationships/people"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        People who know you well
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/relationships/relatives"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Relatives
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/relationships/review"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Review
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </li>
-            <li
-              className="toggle-item"
-            >
-              <a
+              <button
                 aria-controls="/form/citizenship"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -1400,7 +1223,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -1420,6 +1243,23 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         className="section-name"
                       >
                         Introduction
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      aria-current={false}
+                      className="section-link"
+                      href="/form/citizenship/passport"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        U.S. passport information
                       </span>
                       <span
                         className="eapp-status-icon"
@@ -1464,23 +1304,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/citizenship/passports"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Foreign passports
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
                       href="/form/citizenship/review"
                       onClick={[Function]}
                     >
@@ -1500,11 +1323,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/military"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -1514,7 +1337,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -1614,421 +1437,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
-                aria-controls="/form/foreign"
-                aria-expanded={false}
-                className="section-link usa-accordion-button"
-                role="button"
-              >
-                <span
-                  className="section-name"
-                >
-                  Foreign associations
-                </span>
-                <span
-                  className="eapp-status-icon"
-                />
-              </a>
-              <div
-                aria-hidden={true}
-                className="usa-accordion-content"
-                id="/form/foreign"
-              >
-                <ol
-                  className="usa-accordion usa-sidenav-sub_list"
-                >
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/intro"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Introduction
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/passport"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        U.S. passport information
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/contacts"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Foreign contacts
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li
-                    className="toggle-item"
-                  >
-                    <a
-                      aria-controls="/form/foreign/activities"
-                      aria-expanded={false}
-                      className="section-link usa-accordion-button"
-                      role="button"
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Foreign activities
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                    <div
-                      aria-hidden={true}
-                      className="usa-accordion-content"
-                      id="/form/foreign/activities"
-                    >
-                      <ol
-                        className="usa-accordion usa-sidenav-sub_list"
-                      >
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/direct"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Direct control
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/indirect"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Indirect control
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/realestate"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Real estate purchase
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/benefits"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Foreign benefits
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/support"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Foreign national support
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                      </ol>
-                    </div>
-                  </li>
-                  <li
-                    className="toggle-item"
-                  >
-                    <a
-                      aria-controls="/form/foreign/business"
-                      aria-expanded={false}
-                      className="section-link usa-accordion-button"
-                      role="button"
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Foreign business, professional activities, and government contacts
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                    <div
-                      aria-hidden={true}
-                      className="usa-accordion-content"
-                      id="/form/foreign/business"
-                    >
-                      <ol
-                        className="usa-accordion usa-sidenav-sub_list"
-                      >
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/advice"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Support provided
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/family"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Immediate family foreign support
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/employment"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Employment
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/ventures"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Other business ventures
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/conferences"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Event participation
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/contact"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Immediate family contact
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/sponsorship"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Foreign national sponsorship
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/political"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Held political office
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/voting"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Voting
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                      </ol>
-                    </div>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/travel"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Foreign countries you have visited
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/review"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Review
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </li>
-            <li
-              className="toggle-item"
-            >
-              <a
+              <button
                 aria-controls="/form/financial"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -2038,7 +1451,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -2068,40 +1481,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/financial/bankruptcy"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Bankruptcy
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/financial/gambling"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Gambling
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
                       href="/form/financial/taxes"
                       onClick={[Function]}
                     >
@@ -2119,40 +1498,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/financial/card"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Employer card abuse
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/financial/credit"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Credit counseling
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
                       href="/form/financial/delinquent"
                       onClick={[Function]}
                     >
@@ -2160,23 +1505,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         className="section-name"
                       >
                         Delinquent payments
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/financial/nonpayment"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Non-payment consequence
                       </span>
                       <span
                         className="eapp-status-icon"
@@ -2206,11 +1534,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/substance"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -2220,7 +1548,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -2249,11 +1577,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/substance/drugs"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -2263,7 +1591,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -2300,40 +1628,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                               className="section-name"
                             >
                               Purchase
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/drugs/clearance"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Security clearance position
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/drugs/publicsafety"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Public safety position
                             </span>
                             <span
                               className="eapp-status-icon"
@@ -2394,103 +1688,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       </ol>
                     </div>
                   </li>
-                  <li
-                    className="toggle-item"
-                  >
-                    <a
-                      aria-controls="/form/substance/alcohol"
-                      aria-expanded={false}
-                      className="section-link usa-accordion-button"
-                      role="button"
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Use of alcohol
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                    <div
-                      aria-hidden={true}
-                      className="usa-accordion-content"
-                      id="/form/substance/alcohol"
-                    >
-                      <ol
-                        className="usa-accordion usa-sidenav-sub_list"
-                      >
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/alcohol/negative"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Negative impact
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/alcohol/ordered"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Mandatory counseling or treatment
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/alcohol/voluntary"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Voluntary counseling or treatment
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/alcohol/additional"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Additional instances
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                      </ol>
-                    </div>
-                  </li>
                   <li>
                     <a
                       aria-current={false}
@@ -2514,11 +1711,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/legal"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -2528,7 +1725,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -2557,11 +1754,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/police"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -2571,7 +1768,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -2618,23 +1815,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                           <a
                             aria-current={false}
                             className="section-link"
-                            href="/form/legal/police/additionaloffenses"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Additional offenses
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
                             href="/form/legal/police/domesticviolence"
                             onClick={[Function]}
                           >
@@ -2654,11 +1834,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/investigations"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -2668,7 +1848,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -2731,111 +1911,14 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       </ol>
                     </div>
                   </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/legal/court"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Involvement in non-criminal court actions
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
                   <li
                     className="toggle-item"
                   >
-                    <a
-                      aria-controls="/form/legal/technology"
-                      aria-expanded={false}
-                      className="section-link usa-accordion-button"
-                      role="button"
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Use of information technology systems
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                    <div
-                      aria-hidden={true}
-                      className="usa-accordion-content"
-                      id="/form/legal/technology"
-                    >
-                      <ol
-                        className="usa-accordion usa-sidenav-sub_list"
-                      >
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/legal/technology/unauthorized"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Unauthorized access
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/legal/technology/manipulating"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Manipulating access
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/legal/technology/unlawful"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Unlawful use
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                      </ol>
-                    </div>
-                  </li>
-                  <li
-                    className="toggle-item"
-                  >
-                    <a
+                    <button
                       aria-controls="/form/legal/associations"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -2845,7 +1928,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -2999,142 +2082,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
-                aria-controls="/form/psychological"
-                aria-expanded={false}
-                className="section-link usa-accordion-button"
-                role="button"
-              >
-                <span
-                  className="section-name"
-                >
-                  Psychological and emotional health
-                </span>
-                <span
-                  className="eapp-status-icon"
-                />
-              </a>
-              <div
-                aria-hidden={true}
-                className="usa-accordion-content"
-                id="/form/psychological"
-              >
-                <ol
-                  className="usa-accordion usa-sidenav-sub_list"
-                >
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/intro"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Introduction
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/competence"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Competence
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/consultations"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Consultations
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/hospitalizations"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Hospitalizations
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/diagnoses"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Diagnoses
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/review"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Review
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </li>
-            <li
-              className="toggle-item"
-            >
-              <a
+              <button
                 aria-controls="/form/package"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -3144,7 +2096,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -3174,7 +2126,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link locked"
-                      href="javascript:;;;"
+                      href="/form/package/submit"
                       onClick={[Function]}
                     >
                       <span
@@ -3191,7 +2143,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link locked"
-                      href="javascript:;;;"
+                      href="/form/package/print"
                       onClick={[Function]}
                     >
                       <span
@@ -4109,7 +3061,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
           <span
             className="score-card-total"
           >
-            10
+            9
           </span>
           <span
             className="score-card-text"
@@ -4127,11 +3079,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/identification"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -4141,7 +3093,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -4309,11 +3261,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/history"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -4323,7 +3275,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -4440,11 +3392,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/relationships"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -4454,7 +3406,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -4483,11 +3435,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/relationships/status"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -4497,7 +3449,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -4600,11 +3552,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/citizenship"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -4614,7 +3566,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -4634,6 +3586,23 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         className="section-name"
                       >
                         Introduction
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      aria-current={false}
+                      className="section-link"
+                      href="/form/citizenship/passport"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        U.S. passport information
                       </span>
                       <span
                         className="eapp-status-icon"
@@ -4714,11 +3683,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/military"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -4728,7 +3697,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -4828,11 +3797,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/foreign"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -4842,7 +3811,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -4867,336 +3836,6 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         className="eapp-status-icon"
                       />
                     </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/passport"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        U.S. passport information
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/foreign/contacts"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Foreign contacts
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li
-                    className="toggle-item"
-                  >
-                    <a
-                      aria-controls="/form/foreign/activities"
-                      aria-expanded={false}
-                      className="section-link usa-accordion-button"
-                      role="button"
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Foreign activities
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                    <div
-                      aria-hidden={true}
-                      className="usa-accordion-content"
-                      id="/form/foreign/activities"
-                    >
-                      <ol
-                        className="usa-accordion usa-sidenav-sub_list"
-                      >
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/direct"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Direct control
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/indirect"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Indirect control
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/realestate"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Real estate purchase
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/benefits"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Foreign benefits
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/activities/support"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Foreign national support
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                      </ol>
-                    </div>
-                  </li>
-                  <li
-                    className="toggle-item"
-                  >
-                    <a
-                      aria-controls="/form/foreign/business"
-                      aria-expanded={false}
-                      className="section-link usa-accordion-button"
-                      role="button"
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Foreign business, professional activities, and government contacts
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                    <div
-                      aria-hidden={true}
-                      className="usa-accordion-content"
-                      id="/form/foreign/business"
-                    >
-                      <ol
-                        className="usa-accordion usa-sidenav-sub_list"
-                      >
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/advice"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Support provided
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/family"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Immediate family foreign support
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/employment"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Employment
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/ventures"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Other business ventures
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/conferences"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Event participation
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/contact"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Immediate family contact
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/sponsorship"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Foreign national sponsorship
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/political"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Held political office
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/foreign/business/voting"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Voting
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                      </ol>
-                    </div>
                   </li>
                   <li>
                     <a
@@ -5238,11 +3877,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/financial"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -5252,7 +3891,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -5420,11 +4059,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/substance"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -5434,7 +4073,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -5463,11 +4102,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/substance/drugs"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -5477,7 +4116,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -5611,11 +4250,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/substance/alcohol"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -5625,7 +4264,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -5728,11 +4367,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/legal"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -5742,7 +4381,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -5771,11 +4410,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/police"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -5785,7 +4424,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -5868,11 +4507,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/investigations"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -5882,7 +4521,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -5965,11 +4604,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/technology"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -5979,7 +4618,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -6045,11 +4684,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/associations"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -6059,7 +4698,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -6213,142 +4852,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
-                aria-controls="/form/psychological"
-                aria-expanded={false}
-                className="section-link usa-accordion-button"
-                role="button"
-              >
-                <span
-                  className="section-name"
-                >
-                  Psychological and emotional health
-                </span>
-                <span
-                  className="eapp-status-icon"
-                />
-              </a>
-              <div
-                aria-hidden={true}
-                className="usa-accordion-content"
-                id="/form/psychological"
-              >
-                <ol
-                  className="usa-accordion usa-sidenav-sub_list"
-                >
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/intro"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Introduction
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/competence"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Competence
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/consultations"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Consultations
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/hospitalizations"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Hospitalizations
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/diagnoses"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Diagnoses
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
-                      href="/form/psychological/review"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        Review
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </li>
-            <li
-              className="toggle-item"
-            >
-              <a
+              <button
                 aria-controls="/form/package"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -6358,7 +4866,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -6388,7 +4896,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link locked"
-                      href="javascript:;;;"
+                      href="/form/package/submit"
                       onClick={[Function]}
                     >
                       <span
@@ -6405,7 +4913,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link locked"
-                      href="javascript:;;;"
+                      href="/form/package/print"
                       onClick={[Function]}
                     >
                       <span
@@ -7341,11 +5849,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/identification"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -7355,7 +5863,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -7523,11 +6031,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/history"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -7537,7 +6045,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -7654,11 +6162,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/relationships"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -7668,7 +6176,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -7697,11 +6205,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/relationships/status"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -7711,7 +6219,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -7814,11 +6322,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/citizenship"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -7828,7 +6336,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -7848,6 +6356,23 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         className="section-name"
                       >
                         Introduction
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      aria-current={false}
+                      className="section-link"
+                      href="/form/citizenship/passport"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        U.S. passport information
                       </span>
                       <span
                         className="eapp-status-icon"
@@ -7928,11 +6453,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/military"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -7942,7 +6467,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -8042,11 +6567,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/foreign"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -8056,7 +6581,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -8086,23 +6611,6 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link"
-                      href="/form/foreign/passport"
-                      onClick={[Function]}
-                    >
-                      <span
-                        className="section-name"
-                      >
-                        U.S. passport information
-                      </span>
-                      <span
-                        className="eapp-status-icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      aria-current={false}
-                      className="section-link"
                       href="/form/foreign/contacts"
                       onClick={[Function]}
                     >
@@ -8119,11 +6627,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/foreign/activities"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -8133,7 +6641,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -8233,11 +6741,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/foreign/business"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -8247,7 +6755,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -8452,11 +6960,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/financial"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -8466,7 +6974,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -8634,11 +7142,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/substance"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -8648,7 +7156,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -8677,11 +7185,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/substance/drugs"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -8691,7 +7199,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -8825,11 +7333,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/substance/alcohol"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -8839,7 +7347,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -8942,11 +7450,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/legal"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -8956,7 +7464,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -8985,11 +7493,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/police"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -8999,7 +7507,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -9082,11 +7590,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/investigations"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -9096,7 +7604,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -9179,11 +7687,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/technology"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -9193,7 +7701,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -9259,11 +7767,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   <li
                     className="toggle-item"
                   >
-                    <a
+                    <button
                       aria-controls="/form/legal/associations"
                       aria-expanded={false}
                       className="section-link usa-accordion-button"
-                      role="button"
+                      type="button"
                     >
                       <span
                         className="section-name"
@@ -9273,7 +7781,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       <span
                         className="eapp-status-icon"
                       />
-                    </a>
+                    </button>
                     <div
                       aria-hidden={true}
                       className="usa-accordion-content"
@@ -9427,11 +7935,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/psychological"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -9441,7 +7949,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -9558,11 +8066,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             <li
               className="toggle-item"
             >
-              <a
+              <button
                 aria-controls="/form/package"
                 aria-expanded={false}
                 className="section-link usa-accordion-button"
-                role="button"
+                type="button"
               >
                 <span
                   className="section-name"
@@ -9572,7 +8080,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <span
                   className="eapp-status-icon"
                 />
-              </a>
+              </button>
               <div
                 aria-hidden={true}
                 className="usa-accordion-content"
@@ -9602,7 +8110,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link locked"
-                      href="javascript:;;;"
+                      href="/form/package/submit"
                       onClick={[Function]}
                     >
                       <span
@@ -9619,7 +8127,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                     <a
                       aria-current={false}
                       className="section-link locked"
-                      href="javascript:;;;"
+                      href="/form/package/print"
                       onClick={[Function]}
                     >
                       <span

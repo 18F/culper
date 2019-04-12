@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 
 import { CITIZENSHIP, CITIZENSHIP_REVIEW } from 'config/formSections/citizenship'
 
-import Status from '../Status'
-import Multiple from '../Multiple'
+import ConnectedUsPassport from '../UsPassport'
+import ConnectedStatus from '../Status'
+import ConnectedMultiple from '../Multiple'
 import ConnectedPassports from '../Multiple/Passports'
 
 import connectCitizenshipSection from '../CitizenshipConnector'
@@ -27,9 +28,11 @@ export const Review = ({ requireCitizenshipForeignPassportsSection }) => {
 
   return (
     <div>
-      <Status {...subsectionProps} />
+      <ConnectedUsPassport {...subsectionProps} />
       {sectionDivider}
-      <Multiple {...subsectionProps} />
+      <ConnectedStatus {...subsectionProps} />
+      {sectionDivider}
+      <ConnectedMultiple {...subsectionProps} />
       {requireCitizenshipForeignPassportsSection && sectionDivider}
       {requireCitizenshipForeignPassportsSection && <ConnectedPassports {...subsectionProps} />}
     </div>

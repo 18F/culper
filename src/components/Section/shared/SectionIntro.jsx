@@ -8,14 +8,16 @@ import { Field } from 'components/Form'
 
 import { getSectionNumber } from 'helpers/navigation'
 
-const SectionIntro = ({ title, body, sectionNumber }) => {
+const SectionIntro = ({
+  title, body, sectionNumber, fieldTitle,
+}) => {
   const introTitle = `${i18n.t('section.section')} ${sectionNumber}: ${title}`
 
   return (
     <div>
       <h1 className="section-header">{introTitle}</h1>
 
-      <Field optional className="no-margin-bottom">
+      <Field title={fieldTitle} optional className="no-margin-bottom">
         {body}
       </Field>
     </div>
@@ -26,6 +28,11 @@ SectionIntro.propTypes = {
   title: PropTypes.node.isRequired,
   body: PropTypes.node.isRequired,
   sectionNumber: PropTypes.number.isRequired,
+  fieldTitle: PropTypes.node,
+}
+
+SectionIntro.defaultProps = {
+  fieldTitle: undefined,
 }
 
 const mapStateToProps = (state, ownProps) => ({

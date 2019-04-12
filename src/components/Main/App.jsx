@@ -6,6 +6,9 @@ import classnames from 'classnames'
 
 import i18n from 'util/i18n'
 import * as formTypes from 'constants/formTypes'
+import { reviewSections } from 'config/formTypes'
+
+import { nestedFormSectionsSelector } from 'selectors/navigation'
 
 import {
   SectionTitle,
@@ -45,15 +48,15 @@ import StickyHeader from 'components/Sticky/StickyHeader'
 class App extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       instructions: false,
     }
-    this.showInstructions = this.showInstructions.bind(this)
-    this.dismissInstructions = this.dismissInstructions.bind(this)
 
     // workaround for not having React.createRef(), introduced in React 16.3
     // https://reactjs.org/docs/refs-and-the-dom.html#dont-overuse-refs
     this.sectionFocusEl = null
+
     this.setSectionFocusEl = (el) => {
       this.sectionFocusEl = el
     }
@@ -61,6 +64,7 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { location } = this.props
+
     /**
      * for keyboard navigation accessbility, focus on the main content area after a new section is
      * navigated to */
@@ -69,11 +73,11 @@ class App extends React.Component {
     }
   }
 
-  showInstructions() {
+  showInstructions = () => {
     this.setState({ instructions: true })
   }
 
-  dismissInstructions() {
+  dismissInstructions = () => {
     this.setState({ instructions: false })
   }
 
@@ -101,7 +105,7 @@ class App extends React.Component {
 
   render() {
     const {
-      formType, settings, dispatch, children,
+      formType, formSections, settings, dispatch, children,
     } = this.props
     const { instructions } = this.state
 
@@ -258,7 +262,7 @@ class App extends React.Component {
           <div className="eapp-structure-row">
             <div className={navigationClasses}>
               <ScoreCard />
-              <Navigation />
+              <Navigation sections={formSections} />
               <button
                 type="button"
                 onClick={this.showInstructions}
@@ -289,9 +293,14 @@ class App extends React.Component {
 App.propTypes = {
   location: PropTypes.object.isRequired,
   formType: PropTypes.string.isRequired,
+  formSections: PropTypes.array,
   settings: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+}
+
+App.defaultProps = {
+  formSections: [],
 }
 
 function mapStateToProps(state) {
@@ -300,9 +309,12 @@ function mapStateToProps(state) {
   const settings = application.Settings
     || { mobileNavigation: false, modalOpen: false }
 
+  const formSections = nestedFormSectionsSelector(state).concat(reviewSections)
+
   return {
     settings,
     formType,
+    formSections,
   }
 }
 

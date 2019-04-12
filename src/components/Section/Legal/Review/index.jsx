@@ -1,9 +1,12 @@
 import React from 'react'
-import Offenses from '../Police/Offenses'
-import OtherOffenses from '../Police/OtherOffenses'
-import DomesticViolenceList from '../Police/DomesticViolenceList'
+
+import { LEGAL, LEGAL_REVIEW } from 'config/formSections/legal'
+
+import ConnectedOffenses from '../Police/Offenses'
+import ConnectedOtherOffenses from '../Police/OtherOffenses'
+import ConnectedDomesticViolenceList from '../Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from '../Investigations'
-import NonCriminalCourtActions from '../NonCriminalCourtActions'
+import ConnectedNonCriminalCourtActions from '../NonCriminalCourtActions'
 import { Unauthorized, Manipulating, Unlawful } from '../Technology'
 import {
   TerroristOrganization,
@@ -15,7 +18,19 @@ import {
   TerrorismAssociation,
 } from '../Associations'
 
-const Review = () => {
+import connectLegalSection from '../LegalConnector'
+
+const sectionConfig = {
+  section: LEGAL.name,
+  store: LEGAL.store,
+  subsection: LEGAL_REVIEW.name,
+}
+
+export const Review = ({
+  requireLegalOtherOffensesSection,
+  requireLegalNonCriminalCourtSection,
+  requireLegalTechnologySection,
+}) => {
   const props = {
     required: true,
     scrollIntoView: false,
@@ -27,25 +42,43 @@ const Review = () => {
 
   return (
     <div>
-      <Offenses {...props} />
+      <ConnectedOffenses {...props} />
+
+      {requireLegalOtherOffensesSection && (
+        <span>
+          {sectionDivider}
+          <ConnectedOtherOffenses {...props} />
+        </span>
+      )}
+
       {sectionDivider}
-      <OtherOffenses {...props} />
-      {sectionDivider}
-      <DomesticViolenceList {...props} />
+      <ConnectedDomesticViolenceList {...props} />
+
       {sectionDivider}
       <History {...props} />
       {sectionDivider}
       <Revoked {...props} />
       {sectionDivider}
       <Debarred {...props} />
-      {sectionDivider}
-      <NonCriminalCourtActions {...props} />
-      {sectionDivider}
-      <Unauthorized {...props} />
-      {sectionDivider}
-      <Manipulating {...props} />
-      {sectionDivider}
-      <Unlawful {...props} />
+
+      {requireLegalNonCriminalCourtSection && (
+        <span>
+          {sectionDivider}
+          <ConnectedNonCriminalCourtActions {...props} />
+        </span>
+      )}
+
+      {requireLegalTechnologySection && (
+        <span>
+          {sectionDivider}
+          <Unauthorized {...props} />
+          {sectionDivider}
+          <Manipulating {...props} />
+          {sectionDivider}
+          <Unlawful {...props} />
+        </span>
+      )}
+
       {sectionDivider}
       <TerroristOrganization {...props} />
       {sectionDivider}
@@ -64,4 +97,4 @@ const Review = () => {
   )
 }
 
-export default Review
+export default connectLegalSection(Review, sectionConfig)

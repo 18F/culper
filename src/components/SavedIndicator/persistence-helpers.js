@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { updateApplication } from '../../actions/ApplicationActions'
-import { sectionData } from '../Section/sectionData'
+import sectionData from '../Section/sectionData'
 import schema from '../../schema'
 import { api } from '../../services'
 import { i18n } from '../../config'
@@ -8,7 +8,7 @@ import { i18n } from '../../config'
 export const saveSection = (application, section, subsection, dispatch) => {
   const pending = sectionData(section, subsection, application) || []
 
-  let requests = []
+  const requests = []
   for (const p of pending) {
     requests.push(api.save(schema(p.path.replace(/\//g, '.'), p.data, false)))
   }

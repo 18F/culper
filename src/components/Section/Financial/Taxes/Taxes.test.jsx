@@ -2,8 +2,9 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Taxes from './Taxes'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
+import { Taxes } from './Taxes'
 
 describe('The taxes component', () => {
   const mockStore = configureMockStore()
@@ -11,17 +12,16 @@ describe('The taxes component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <Taxes {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <Taxes {...expected} />
+      </Provider>
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'taxes'
+      name: 'taxes',
     }
     const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(0)
@@ -31,7 +31,7 @@ describe('The taxes component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'taxes',
-      HasTaxes: { value: 'Yes' }
+      HasTaxes: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -40,7 +40,7 @@ describe('The taxes component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'taxes',
-      HasTaxes: { value: 'No' }
+      HasTaxes: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -52,9 +52,9 @@ describe('The taxes component', () => {
       name: 'taxes',
       HasTaxes: { value: 'Yes' },
       List: { branch: { value: 'Yes' }, items: [{}] },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -95,7 +95,7 @@ describe('The taxes component', () => {
   describe('handles tax dates', () => {
     it('with good data - the year failed to file or pay is before the date satisfied', () => {
       const props = {
-        valid: true
+        valid: true,
       }
       const component = createComponent(props)
       expect(
@@ -108,7 +108,7 @@ describe('The taxes component', () => {
       const props = {
         HasTaxes: {
           name: 'has_taxes',
-          value: 'Yes'
+          value: 'Yes',
         },
         List: {
           items: [
@@ -118,19 +118,19 @@ describe('The taxes component', () => {
                   estimated: false,
                   month: '1',
                   day: '1',
-                  year: '2000'
+                  year: '2000',
                 },
                 Date: {
                   estimated: false,
                   month: '1',
                   day: '1',
-                  year: '1970'
-                }
-              }
-            }
-          ]
+                  year: '1970',
+                },
+              },
+            },
+          ],
         },
-        valid: false
+        valid: false,
       }
 
       const component = createComponent(props)

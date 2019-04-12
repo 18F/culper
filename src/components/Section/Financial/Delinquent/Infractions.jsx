@@ -1,16 +1,18 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { ValidationElement, CheckboxGroup, Checkbox } from '../../../Form'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
-export default class Infractions extends ValidationElement {
-  constructor(props) {
-    super(props)
-    this.update = this.update.bind(this)
-  }
+import i18n from 'util/i18n'
+import { CheckboxGroup, Checkbox } from 'components/Form'
 
-  update(values) {
-    let selected = values.value
-    let list = [...(this.props.values || [])]
+const Infractions = (props) => {
+  const {
+    values, onUpdate, onError, name, years, yearsString, className,
+  } = props
+
+  const update = (newValues) => {
+    const selected = newValues.value
+    const list = [...(values || [])]
 
     if (list.includes(selected)) {
       list.splice(list.indexOf(selected), 1)
@@ -18,58 +20,75 @@ export default class Infractions extends ValidationElement {
       list.push(selected)
     }
 
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        name: this.props.name,
-        values: list
+    if (onUpdate) {
+      onUpdate({
+        name,
+        values: list,
       })
     }
   }
 
-  render() {
-    return (
-      <div>
-        {i18n.m('financial.delinquent.para.checkAll')}
-        <CheckboxGroup
-          className={`option-list option-list-vertical ${this.props.className || ''}`.trim()}
-          selectedValues={this.props.values}>
-          <Checkbox
-            label={i18n.m('financial.delinquent.para.alimony')}
-            value="Alimony"
-            className="delinquent-alimony"
-            onUpdate={this.update}
-            onError={this.props.onError}
-          />
-          <Checkbox
-            label={i18n.m('financial.delinquent.para.judgement')}
-            value="Judgement"
-            className="delinquent-judgement"
-            onUpdate={this.update}
-            onError={this.props.onError}
-          />
-          <Checkbox
-            label={i18n.m('financial.delinquent.para.lien')}
-            value="Lien"
-            className="delinquent-lien"
-            onUpdate={this.update}
-            onError={this.props.onError}
-          />
-          <Checkbox
-            label={i18n.m('financial.delinquent.para.federal')}
-            value="Federal"
-            className="delinquent-federal"
-            onUpdate={this.update}
-            onError={this.props.onError}
-          />
-        </CheckboxGroup>
-      </div>
-    )
-  }
+  const classes = classnames(
+    'option-list',
+    'option-list-vertical',
+    className,
+  )
+
+  return (
+    <div>
+      {i18n.m('financial.delinquent.para.checkAll')}
+      <CheckboxGroup
+        className={classes}
+        selectedValues={values}
+      >
+        <Checkbox
+          label={i18n.m('financial.delinquent.para.alimony', { years, yearsString })}
+          value="Alimony"
+          className="delinquent-alimony"
+          onUpdate={update}
+          onError={onError}
+        />
+        <Checkbox
+          label={i18n.m('financial.delinquent.para.judgement', { years, yearsString })}
+          value="Judgement"
+          className="delinquent-judgement"
+          onUpdate={update}
+          onError={onError}
+        />
+        <Checkbox
+          label={i18n.m('financial.delinquent.para.lien', { years, yearsString })}
+          value="Lien"
+          className="delinquent-lien"
+          onUpdate={update}
+          onError={onError}
+        />
+        <Checkbox
+          label={i18n.m('financial.delinquent.para.federal')}
+          value="Federal"
+          className="delinquent-federal"
+          onUpdate={update}
+          onError={onError}
+        />
+      </CheckboxGroup>
+    </div>
+  )
+}
+
+Infractions.propTypes = {
+  values: PropTypes.array,
+  onUpdate: PropTypes.func,
+  onError: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  years: PropTypes.number.isRequired,
+  yearsString: PropTypes.string.isRequired,
+  className: PropTypes.string,
 }
 
 Infractions.defaultProps = {
   values: [],
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  className: null,
 }
+
+export default Infractions

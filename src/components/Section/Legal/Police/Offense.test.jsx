@@ -2,6 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
+
 import Offense from './Offense'
 
 describe('The offense component', () => {
@@ -10,17 +11,17 @@ describe('The offense component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <Offense {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <Offense {...expected} />
+      </Provider>
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'offense'
+      name: 'offense',
+      requireLegalOffenseInvolvements: true,
     }
 
     const component = createComponent(expected)
@@ -46,7 +47,7 @@ describe('The offense component', () => {
     const expected = {
       name: 'offense',
       WasCited: { value: 'Yes' },
-      WasCharged: { value: 'No' }
+      WasCharged: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.offense-explanation').length).toEqual(1)
@@ -62,8 +63,9 @@ describe('The offense component', () => {
     const expected = {
       name: 'offense',
       WasCited: { value: 'Yes' },
-      WasCharged: { value: 'Yes' }
+      WasCharged: { value: 'Yes' },
     }
+
     const component = createComponent(expected)
     expect(component.find('.offense-courtname').length).toEqual(1)
     expect(component.find('.offense-courtaddress').length).toEqual(1)
@@ -82,8 +84,10 @@ describe('The offense component', () => {
       WasCharged: { value: 'Yes' },
       WasSentenced: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
+      requireLegalOffenseInvolvements: true,
+      requireLegalOffenseSentenced: true,
     }
     const component = createComponent(expected)
     component
@@ -151,8 +155,9 @@ describe('The offense component', () => {
       WasSentenced: { value: 'No' },
       AwaitingTrial: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
+      requireLegalOffenseInvolvements: true,
     }
     const component = createComponent(expected)
     component
@@ -215,8 +220,8 @@ describe('The offense component', () => {
       WasCited: { value: 'Yes' },
       WasCharged: { value: 'No' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component.find('.offense-charged .no input').simulate('change')

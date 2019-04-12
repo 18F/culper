@@ -4,7 +4,7 @@ import DateRangeValidator from './daterange'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import IdentificationContactInformationValidator, {
-  ContactPhoneNumberValidator
+  ContactPhoneNumberValidator,
 } from './identificationcontacts'
 import IdentificationValidator from './identification'
 import IdentificationNameValidator from './identificationname'
@@ -13,7 +13,7 @@ import IdentificationBirthPlaceValidator from './identificationbirthplace'
 import IdentificationSSNValidator from './identificationssn'
 import NameValidator from './name'
 import IdentificationOtherNamesValidator, {
-  OtherNameValidator
+  OtherNameValidator,
 } from './identificationothernames'
 import PassportValidator from './passport'
 import IdentificationPhysicalValidator from './identificationphysical'
@@ -22,45 +22,45 @@ import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
 import HistoryEducationValidator, { EducationItemValidator } from './education'
 import FederalServiceValidator, {
-  FederalServiceItemValidator
+  FederalServiceItemValidator,
 } from './federalservice'
 import SelectiveServiceValidator, {
-  hideSelectiveService
+  hideSelectiveService,
 } from './selectiveservice'
 import MilitaryHistoryValidator, {
-  MilitaryServiceValidator
+  MilitaryServiceValidator,
 } from './militaryhistory'
 import MilitaryDisciplinaryValidator, {
   ProcedureValidator,
-  hideDisciplinaryProcedures
+  hideDisciplinaryProcedures,
 } from './militarydisciplinary'
 import MilitaryForeignValidator, {
   ForeignServiceValidator,
-  ForeignContactValidator
+  ForeignContactValidator,
 } from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
 import OtherOffenseValidator from './otheroffense'
 import DomesticViolenceValidator, {
-  DomesticViolenceItem
+  DomesticViolenceItem,
 } from './domesticviolence'
 import OffenseValidator from './offense'
 import RelativesValidator, {
   RelativeValidator,
-  AliasValidator
+  AliasValidator,
 } from './relatives'
 import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
 import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
 import CreditValidator, { CreditItemValidator } from './credit'
 import HospitalizationsValidator, {
-  HospitalizationValidator
+  HospitalizationValidator,
 } from './hospitalization'
 import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
 import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import DiagnosesValidator from './diagnoses'
 import DiagnosisValidator, {
-  ExistingConditionsDiagnosisValidator
+  ExistingConditionsDiagnosisValidator,
 } from './diagnosis'
 import ExistingConditionsValidator from './existingconditions'
 import PsychologicalValidator, { hideExistingConditions } from './psychological'
@@ -68,10 +68,10 @@ import CompetenceValidator from './competence'
 import TreatmentValidator from './treatment'
 import CitizenshipValidator from './citizenship'
 import CitizenshipMultipleValidator, {
-  CitizenshipItemValidator
+  CitizenshipItemValidator,
 } from './citizenship-multiple'
 import CitizenshipPassportsValidator, {
-  TravelItemValidator
+  TravelItemValidator,
 } from './citizenship-passports'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
@@ -81,7 +81,7 @@ import DivorceValidator from './divorce'
 import PeopleValidator from './people'
 import PersonValidator from './person'
 import ForeignContactsValidator, {
-  ForeignNationalValidator
+  ForeignNationalValidator,
 } from './foreigncontacts'
 import ForeignDirectActivityValidator from './foreigndirectactivity'
 import ForeignDirectInterestValidator from './foreigndirectinterest'
@@ -91,107 +91,107 @@ import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
 import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
 import ForeignBenefitActivityValidator from './foreignbenefitactivity'
 import LegalNonCriminalCourtActionsValidator, {
-  NonCriminalCourtActionValidator
+  NonCriminalCourtActionValidator,
 } from './legalnoncriminalcourtactions'
 import LegalInvestigationsHistoryValidator, {
-  HistoryValidator
+  HistoryValidator,
 } from './legalinvestigationshistory'
 import LegalInvestigationsRevokedValidator, {
-  RevokedValidator
+  RevokedValidator,
 } from './legalinvestigationsrevoked'
 import LegalInvestigationsDebarredValidator, {
-  DebarredValidator
+  DebarredValidator,
 } from './legalinvestigationsdebarred'
 import LegalTechnologyUnauthorizedValidator, {
-  UnauthorizedValidator
+  UnauthorizedValidator,
 } from './legaltechnologyunauthorized'
 import LegalTechnologyManipulatingValidator, {
-  ManipulatingValidator
+  ManipulatingValidator,
 } from './legaltechnologymanipulating'
 import LegalTechnologyUnlawfulValidator, {
-  UnlawfulValidator
+  UnlawfulValidator,
 } from './legaltechnologyunlawful'
 import LegalAssociationsTerroristValidator, {
-  TerroristValidator
+  TerroristValidator,
 } from './legalassociationsterrorist'
 import ForeignBenefitValidator from './foreignbenefit'
 import ForeignActivitiesSupportValidator, {
-  SupportValidator
+  SupportValidator,
 } from './foreignsupport'
 import ForeignBornDocumentValidator from './foreignborndocument'
 import ForeignBusinessAdviceValidator, {
-  AdviceValidator
+  AdviceValidator,
 } from './foreignbusinessadvice'
 import ForeignBusinessFamilyValidator, {
-  FamilyValidator
+  FamilyValidator,
 } from './foreignbusinessfamily'
 import ForeignBusinessEmploymentValidator, {
-  ForeignBusinessEmploymentItemValidator
+  ForeignBusinessEmploymentItemValidator,
 } from './foreignbusinessemployment'
 import ForeignBusinessVenturesValidator, {
-  VenturesValidator
+  VenturesValidator,
 } from './foreignbusinessventures'
 import ForeignBusinessConferencesValidator, {
-  ConferencesValidator
+  ConferencesValidator,
 } from './foreignbusinessconferences'
 import ForeignBusinessContactValidator, {
-  ContactValidator
+  ContactValidator,
 } from './foreignbusinesscontact'
 import ForeignBusinessSponsorshipValidator, {
-  SponsorshipValidator
+  SponsorshipValidator,
 } from './foreignbusinesssponsorship'
 import ForeignBusinessPoliticalValidator, {
-  PoliticalValidator
+  PoliticalValidator,
 } from './foreignbusinesspolitical'
 import ForeignBusinessVotingValidator, {
-  VotingValidator
+  VotingValidator,
 } from './foreignbusinessvoting'
-import ForeignTravelValidator, { TravelValidator } from './foreigntravel.js'
+import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
 import AlcoholNegativeImpactsValidator, {
-  NegativeImpactValidator
+  NegativeImpactValidator,
 } from './alcoholnegativeimpact'
 import AlcoholOrderedCounselingsValidator, {
-  OrderedCounselingValidator
+  OrderedCounselingValidator,
 } from './alcoholorderedcounseling'
 import AlcoholVoluntaryCounselingsValidator, {
-  VoluntaryCounselingValidator
+  VoluntaryCounselingValidator,
 } from './alcoholvoluntarycounseling'
 import AlcoholReceivedCounselingsValidator, {
-  ReceivedCounselingValidator
+  ReceivedCounselingValidator,
 } from './alcoholreceivedcounseling'
 import DrugUsesValidator, { DrugUseValidator } from './druguses'
 import DrugInvolvementsValidator, {
-  DrugInvolvementValidator
+  DrugInvolvementValidator,
 } from './druginvolvements'
 import DrugClearanceUsesValidator, {
-  DrugClearanceUseValidator
+  DrugClearanceUseValidator,
 } from './drugclearanceuses'
 import DrugPublicSafetyUsesValidator, {
-  DrugPublicSafetyUseValidator
+  DrugPublicSafetyUseValidator,
 } from './drugpublicsafetyuses'
 import DrugPrescriptionUsesValidator, {
-  DrugPrescriptionUseValidator
+  DrugPrescriptionUseValidator,
 } from './drugprescriptionuses'
 import DrugOrderedTreatmentsValidator, {
-  DrugOrderedTreatmentValidator
+  DrugOrderedTreatmentValidator,
 } from './drugorderedtreatments'
 import DrugVoluntaryTreatmentsValidator, {
-  DrugVoluntaryTreatmentValidator
+  DrugVoluntaryTreatmentValidator,
 } from './drugvoluntarytreatments'
 import LegalAssociationsOverthrowValidator, {
-  OverthrowValidator
+  OverthrowValidator,
 } from './legalassociationsoverthrow'
 import LegalAssociationsViolenceValidator, {
-  ViolenceValidator
+  ViolenceValidator,
 } from './legalassociationsviolence'
 import LegalAssociationsEngagedValidator, {
-  EngagedValidator
+  EngagedValidator,
 } from './legalassociationsengaged'
 import LegalAssociationsAdvocatingValidator, {
-  AdvocatingValidator
+  AdvocatingValidator,
 } from './legalassociationsadvocating'
 import LegalAssociationsActivitiesValidator, {
-  ActivitiesValidator
+  ActivitiesValidator,
 } from './legalassociationsactivities'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
@@ -202,13 +202,13 @@ import {
   validBranch,
   validGenericTextfield,
   validPhoneNumber,
-  validSSN
+  validSSN,
 } from './helpers'
 import OrderValidator, {
   CompetenceOrderValidator,
-  ConsultationOrderValidator
+  ConsultationOrderValidator,
 } from './order'
-import { hideReleases, hideHippa, formIsSigned, formIsLocked } from './releases'
+import { hideHippa, formIsSigned, formIsLocked } from './releases'
 
 export default validate
 export {
@@ -386,8 +386,7 @@ export {
   hideDisciplinaryProcedures,
   hideExistingConditions,
   hideSelectiveService,
-  hideReleases,
   hideHippa,
   formIsSigned,
-  formIsLocked
+  formIsLocked,
 }

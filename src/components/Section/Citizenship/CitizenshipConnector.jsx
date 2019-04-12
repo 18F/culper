@@ -7,6 +7,8 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
+import { extractOtherNames } from 'components/Section/extractors'
+
 import {
   selectMultipleCitizenshipRenounced,
   selectCitizenshipForeignPassportsSection,
@@ -56,10 +58,20 @@ const connectCitizenshipSection = (Component, {
     const { formType } = authentication
     const app = state.application || {}
     const citizenship = app.Citizenship || {}
+    const foreign = app.Foreign || {}
     const errors = app.Errors || {}
     const completed = app.Completed || {}
 
+    const names = extractOtherNames(app)
+
     switch (storeKey) {
+      // TODO: We are keeping U.S. passport information inside of Foreign temporary
+      // solution. Future iteration will be moving it to Citizenship on frontend, backend, XMl, etc.
+      case 'Passport':
+        return {
+          ...foreign.Passport,
+          suggestedNames: names,
+        }
       case 'Status':
         return {
           ...citizenship.Status,
@@ -79,6 +91,7 @@ const connectCitizenshipSection = (Component, {
         return {
           Application: app,
           Citizenship: citizenship,
+          Passport: foreign.Passport || {},
           Status: citizenship.Status || {},
           Multiple: citizenship.Multiple || {},
           Passports: citizenship.Passports || {},
