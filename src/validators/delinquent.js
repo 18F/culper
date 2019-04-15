@@ -120,8 +120,8 @@ export const validateDelinquent = (data = {}, formType = formTypes.SF86) => {
 export default class DelinquentValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { authentication } = state
-    const { formType } = authentication
+    const { formType } = state.application.Settings
+
 
     this.data = data
     this.formType = formType
@@ -150,8 +150,7 @@ export default class DelinquentValidator {
 export class DelinquentItemValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { authentication } = state
-    const { formType } = authentication
+    const { formType = 'SF86' } = state.application.Settings
 
     this.data = data
     this.formType = formType

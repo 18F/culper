@@ -70,7 +70,14 @@ describe('The financial section', () => {
   })
 
   it('renders the FinancialSections component', () => {
-    const store = mockStore({ authentication: { formType: SF86 } })
+    const store = mockStore({
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
+    })
+
     testSnapshot(
       <Provider store={store}>
         <FinancialSections />
