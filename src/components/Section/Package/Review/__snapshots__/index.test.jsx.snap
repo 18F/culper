@@ -20,6 +20,7 @@ ShallowWrapper {
         }
       }
       source="# Verifying your information is complete
+
 Checking your form..."
     />
     <FormStatus
@@ -42,6 +43,7 @@ Checking your form..."
           }
         }
         source="# Verifying your information is complete
+
 Checking your form..."
       />
       <FormStatus
@@ -105,6 +107,7 @@ Checking your form..."
               }
             }
             source="# Verifying your information is complete
+
 Checking your form..."
           />
           <FormStatus
@@ -127,6 +130,7 @@ Checking your form..."
               }
             }
             source="# Verifying your information is complete
+
 Checking your form..."
           />
           <FormStatus
