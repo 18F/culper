@@ -16,7 +16,9 @@ describe('Root Reducer', () => {
       Military: {},
       Psychological: {},
       Relationships: {},
-      Settings: {},
+      Settings: {
+        formType: 'SF86',
+      },
       Submission: {},
       Substance: {},
       TBD: {},

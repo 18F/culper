@@ -150,7 +150,7 @@ export default class DelinquentValidator {
 export class DelinquentItemValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { formType = 'SF86' } = state.application.Settings
+    const { formType } = state.application.Settings
 
     this.data = data
     this.formType = formType
