@@ -1,13 +1,18 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { OffenseValidator } from 'validators'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+
 import {
   LEGAL,
   LEGAL_POLICE_OFFENSES,
 } from 'config/formSections/legal'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
+
 import Subsection from 'components/Section/shared/Subsection'
 import connectLegalSection from '../LegalConnector'
 import Offense from './Offense'
@@ -72,6 +77,17 @@ export class Offenses extends Subsection {
   }
 
   render() {
+    const {
+      formType,
+      requireLegalOffenseInvolvements,
+      requireLegalOffenseSentenced,
+      requireLegalOffenseIncarcerated,
+    } = this.props
+
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.LEGAL_POLICE_RECORD_YEARS
+    const numberOfYearsString = getNumberOfYearsString(years)
+
     return (
       <div
         className="section-content police-offenses"
@@ -91,10 +107,10 @@ export class Offenses extends Subsection {
           scrollIntoView={this.props.scrollIntoView}
         >
           <ul>
-            <li>{i18n.m('legal.police.label.summons')}</li>
-            <li>{i18n.m('legal.police.label.arrests')}</li>
-            <li>{i18n.m('legal.police.label.charges')}</li>
-            <li>{i18n.m('legal.police.label.probation')}</li>
+            <li>{i18n.m('legal.police.label.summons', { numberOfYearsString })}</li>
+            <li>{i18n.m('legal.police.label.arrests', { numberOfYearsString })}</li>
+            <li>{i18n.m('legal.police.label.charges', { numberOfYearsString })}</li>
+            <li>{i18n.m('legal.police.label.probation', { numberOfYearsString })}</li>
             <li>{i18n.m('legal.police.label.trial')}</li>
           </ul>
         </Branch>
@@ -110,7 +126,7 @@ export class Offenses extends Subsection {
               summary={this.summary}
               description={i18n.t('legal.police.collection.summary.title')}
               appendTitle={i18n.t('legal.police.collection.appendTitle')}
-              appendMessage={i18n.m('legal.police.collection.appendMessage')}
+              appendMessage={i18n.m('legal.police.collection.appendMessage', { numberOfYearsString })}
               appendLabel={i18n.t('legal.police.collection.append')}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
@@ -122,6 +138,9 @@ export class Offenses extends Subsection {
                 bind
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
+                requireLegalOffenseInvolvements={requireLegalOffenseInvolvements}
+                requireLegalOffenseSentenced={requireLegalOffenseSentenced}
+                requireLegalOffenseIncarcerated={requireLegalOffenseIncarcerated}
               />
             </Accordion>
           </div>

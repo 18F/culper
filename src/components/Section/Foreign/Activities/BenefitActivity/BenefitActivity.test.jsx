@@ -1,5 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { BenefitActivity } from './BenefitActivity'
 
 describe('The BenefitActivity component', () => {
@@ -72,7 +74,7 @@ describe('The BenefitActivity component', () => {
   it('Renders summary based on benefit', () => {
     const tests = [
       {
-        expected: 'Yourself - Germany',
+        expected: 'Yourself - Cambodia',
         HasBenefits: { value: 'Yes' },
         List: {
           items: [
@@ -81,7 +83,7 @@ describe('The BenefitActivity component', () => {
                 InterestTypes: {
                   values: ['Yourself'],
                 },
-                BenefitFrequency: 'OneTime',
+                BenefitFrequency: { value: 'OneTime' },
                 OneTimeBenefit: {
                   Received: {
                     month: '1',
@@ -89,7 +91,7 @@ describe('The BenefitActivity component', () => {
                     year: '2010',
                   },
                   Country: {
-                    value: 'Germany',
+                    value: 'Cambodia',
                   },
                 },
               },
@@ -107,7 +109,7 @@ describe('The BenefitActivity component', () => {
                 InterestTypes: {
                   values: ['Yourself'],
                 },
-                BenefitFrequency: 'Future',
+                BenefitFrequency: { value: 'Future' },
                 FutureBenefit: {
                   Received: {
                     month: '1',
@@ -133,7 +135,7 @@ describe('The BenefitActivity component', () => {
                 InterestTypes: {
                   values: ['Yourself'],
                 },
-                BenefitFrequency: 'Continuing',
+                BenefitFrequency: { value: 'Continuing' },
                 ContinuingBenefit: {
                   Received: {
                     month: '1',
@@ -148,8 +150,14 @@ describe('The BenefitActivity component', () => {
       },
     ]
 
+    const mockStore = configureMockStore()
     tests.forEach((test) => {
-      const component = mount(<BenefitActivity {...test} />)
+      const store = mockStore(test)
+      const component = mount(
+        <Provider store={store}>
+          <BenefitActivity {...test} />
+        </Provider>
+      )
       expect(component.find('.context').text()).toContain(test.expected)
     })
   })

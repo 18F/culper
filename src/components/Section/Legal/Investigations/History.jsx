@@ -69,6 +69,8 @@ export class History extends Subsection {
   }
 
   render() {
+    const { requireLegalInvestigationClearanceGranted } = this.props
+
     return (
       <div
         className="section-content investigations-history"
@@ -108,6 +110,7 @@ export class History extends Subsection {
               bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireLegalInvestigationClearanceGranted={requireLegalInvestigationClearanceGranted}
             />
           </Accordion>
         </Show>

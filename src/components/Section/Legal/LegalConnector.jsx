@@ -7,6 +7,16 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
+import {
+  selectLegalOtherOffensesSection,
+  selectLegalNonCriminalCourtSection,
+  selectLegalTechnologySection,
+  selectLegalOffenseInvolvements,
+  selectLegalOffenseSentenced,
+  selectLegalOffenseIncarcerated,
+  selectLegalInvestigationClearanceGranted,
+} from 'selectors/branches'
+
 const connectLegalSection = (Component, {
   section, subsection, store, storeKey,
 }) => {
@@ -56,42 +66,112 @@ const connectLegalSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
+    const { authentication } = state
 
     switch (storeKey) {
       case 'PoliceOffenses':
-        return { ...legal.PoliceOffenses, addressBooks } || {}
+        return {
+          ...legal.PoliceOffenses,
+          addressBooks,
+          formType: authentication.formType,
+          ...selectLegalOffenseInvolvements(state),
+          ...selectLegalOffenseSentenced(state),
+          ...selectLegalOffenseIncarcerated(state),
+        }
+
       case 'PoliceOtherOffenses':
-        return { ...legal.PoliceOtherOffenses, addressBooks } || {}
+        return {
+          ...legal.PoliceOtherOffenses,
+          addressBooks,
+        }
+
       case 'PoliceDomesticViolence':
-        return { ...legal.PoliceDomesticViolence, addressBooks } || {}
+        return {
+          ...legal.PoliceDomesticViolence,
+          addressBooks,
+        }
+
       case 'History':
-        return { ...legal.History } || {}
+        return {
+          ...legal.History,
+          formType: authentication.formType,
+          ...selectLegalInvestigationClearanceGranted(state),
+        }
+
       case 'Revoked':
-        return { ...legal.Revoked } || {}
+        return {
+          ...legal.Revoked,
+          formType: authentication.formType,
+        }
+
       case 'Debarred':
-        return { ...legal.Debarred } || {}
+        return {
+          ...legal.Debarred,
+          formType: authentication.formType,
+        }
+
       case 'NonCriminalCourtActions':
-        return { ...legal.NonCriminalCourtActions, addressBooks } || {}
+        return {
+          ...legal.NonCriminalCourtActions,
+          addressBooks,
+        }
+
       case 'Unauthorized':
-        return { ...legal.Unauthorized, addressBooks } || {}
+        return {
+          ...legal.Unauthorized,
+          addressBooks,
+        }
+
       case 'Manipulating':
-        return { ...legal.Manipulating, addressBooks } || {}
+        return {
+          ...legal.Manipulating,
+          addressBooks,
+        }
+
       case 'Unlawful':
-        return { ...legal.Unlawful, addressBooks } || {}
+        return {
+          ...legal.Unlawful,
+          addressBooks,
+        }
+
       case 'TerroristOrganization':
-        return { ...legal.TerroristOrganization, addressBooks } || {}
+        return {
+          ...legal.TerroristOrganization,
+          addressBooks,
+          formType: authentication.formType,
+        }
+
       case 'EngagedInTerrorism':
-        return { ...legal.EngagedInTerrorism } || {}
+        return {
+          ...legal.EngagedInTerrorism,
+        }
+
       case 'Advocating':
-        return { ...legal.Advocating } || {}
+        return {
+          ...legal.Advocating,
+        }
+
       case 'MembershipOverthrow':
-        return { ...legal.MembershipOverthrow, addressBooks } || {}
+        return {
+          ...legal.MembershipOverthrow,
+          addressBooks,
+        }
+
       case 'MembershipViolence':
-        return { ...legal.MembershipViolence, addressBooks } || {}
+        return {
+          ...legal.MembershipViolence,
+          addressBooks,
+        }
+
       case 'ActivitiesToOverthrow':
-        return { ...legal.ActivitiesToOverthrow } || {}
+        return {
+          ...legal.ActivitiesToOverthrow,
+        }
+
       case 'TerrorismAssociation':
-        return { ...legal.TerrorismAssociation } || {}
+        return {
+          ...legal.TerrorismAssociation,
+        }
 
       default:
         return {
@@ -116,6 +196,10 @@ const connectLegalSection = (Component, {
           Errors: errors.legal || [],
           Completed: completed.legal || [],
           AddressBooks: addressBooks || [],
+          formType: authentication.formType,
+          ...selectLegalOtherOffensesSection(state),
+          ...selectLegalNonCriminalCourtSection(state),
+          ...selectLegalTechnologySection(state),
         }
     }
   }

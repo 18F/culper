@@ -2,8 +2,9 @@ import React from 'react'
 import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import Financial, { FinancialSections } from 'components/Section/Financial'
 import { mount } from 'enzyme'
+
+import Financial, { FinancialSections } from 'components/Section/Financial'
 import { testSnapshot } from 'components/test-helpers'
 
 // give a fake GUID so the field IDs don't differ between snapshots
@@ -69,6 +70,11 @@ describe('The financial section', () => {
   })
 
   it('renders the FinancialSections component', () => {
-    testSnapshot(<FinancialSections />)
+    const store = mockStore({ authentication: { formType: SF86 } })
+    testSnapshot(
+      <Provider store={store}>
+        <FinancialSections />
+      </Provider>
+    )
   })
 })

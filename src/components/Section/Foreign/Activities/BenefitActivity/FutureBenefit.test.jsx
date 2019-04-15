@@ -33,7 +33,7 @@ describe('The FutureBenefit component', () => {
     const component = createComponent(expected)
     expect(component.find('.future-benefit').length).toBe(1)
     component
-      .find('.begin input[name="month"]')
+      .find('.began input[name="month"]')
       .simulate('change', { target: { value: '1' } })
     component
       .find('.frequency input')

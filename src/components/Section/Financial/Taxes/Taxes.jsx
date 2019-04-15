@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { TaxValidator } from 'validators'
 
@@ -9,6 +9,10 @@ import { Summary, DateSummary } from 'components/Summary'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_TAXES } from 'config/formSections/financial'
+import * as formConfig from 'config/forms'
+
+import { getYearsString } from 'helpers/text'
+
 import connectFinancialSection from '../FinancialConnector'
 
 import TaxesItem from './TaxesItem'
@@ -82,6 +86,11 @@ export class Taxes extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.FINANCIAL_RECORD_TAXES_YEARS
+    const yearsString = getYearsString(years)
+
     return (
       <div
         className="section-content taxes"
@@ -90,7 +99,7 @@ export class Taxes extends Subsection {
         <h1 className="section-header">{i18n.t('financial.destination.taxes')}</h1>
         <Branch
           name="has_taxes"
-          label={i18n.t('financial.taxes.title')}
+          label={i18n.t('financial.taxes.title', { years, yearsString })}
           labelSize="h4"
           className="taxes-branch"
           {...this.props.HasTaxes}
@@ -112,7 +121,7 @@ export class Taxes extends Subsection {
             scrollIntoView={this.props.scrollIntoView}
             validator={TaxValidator}
             description={i18n.t('financial.taxes.collection.summary.title')}
-            appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
+            appendTitle={i18n.t('financial.taxes.collection.appendTitle', { years, yearsString })}
             appendLabel={i18n.t('financial.taxes.collection.append')}
           >
             <TaxesItem

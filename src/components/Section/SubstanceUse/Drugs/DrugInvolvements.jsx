@@ -1,13 +1,18 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DrugInvolvementValidator } from 'validators'
 import { Summary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
+
 import {
   SUBSTANCE_USE,
   SUBSTANCE_USE_DRUGS_PURCHASE,
 } from 'config/formSections/substanceUse'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
+
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubstanceUseSection from '../SubstanceUseConnector'
 import DrugInvolvement from './DrugInvolvement'
@@ -71,6 +76,13 @@ export class DrugInvolvements extends Subsection {
   }
 
   render() {
+    const {
+      formType, requireDrugWhileSafety, requireDrugWithClearance, requireDrugInFuture,
+    } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_USE_YEARS
+    const numberOfYearsString = getNumberOfYearsString(years)
+
     return (
       <div
         className="section-content drug-involvements"
@@ -79,7 +91,7 @@ export class DrugInvolvements extends Subsection {
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.purchase')}</h1>
         <Branch
           name="Involved"
-          label={i18n.t('substance.drugs.heading.drugInvolvement')}
+          label={i18n.t('substance.drugs.heading.drugInvolvement', { numberOfYearsString })}
           labelSize="h4"
           className="involved"
           {...this.props.Involved}
@@ -110,6 +122,9 @@ export class DrugInvolvements extends Subsection {
               bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireDrugWhileSafety={requireDrugWhileSafety}
+              requireDrugWithClearance={requireDrugWithClearance}
+              requireDrugInFuture={requireDrugInFuture}
             />
           </Accordion>
         </Show>

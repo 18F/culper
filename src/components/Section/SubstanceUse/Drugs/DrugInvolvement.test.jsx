@@ -10,12 +10,11 @@ describe('The DrugInvolvement component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <DrugInvolvement {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <DrugInvolvement {...expected} />
+      </Provider>
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +26,11 @@ describe('The DrugInvolvement component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
+      requireDrugWhileSafety: true,
+      requireDrugWithClearance: true,
+      requireDrugInFuture: true,
     }
     const component = createComponent(expected)
     expect(component.find('.drug-involvement').length).toBe(1)
@@ -47,9 +49,12 @@ describe('The DrugInvolvement component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
-      InvolvementInFuture: { value: 'Yes' }
+      InvolvementInFuture: { value: 'Yes' },
+      requireDrugWhileSafety: true,
+      requireDrugWithClearance: true,
+      requireDrugInFuture: true,
     }
     const component = createComponent(expected)
     expect(component.find('.drug-involvement').length).toBe(1)

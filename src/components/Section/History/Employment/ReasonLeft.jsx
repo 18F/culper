@@ -10,7 +10,7 @@ import {
   BranchCollection,
 } from 'components/Form'
 
-import { getYearsString } from '../helpers'
+import { getYearsString } from 'helpers/text'
 import { today, daysAgo, extractDate } from '../dateranges'
 import ReasonOptions from './ReasonOptions'
 
