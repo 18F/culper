@@ -96,8 +96,7 @@ export const validateCitizenshipMultiple = (data = {}, formType = formTypes.SF86
 export default class CitizenshipMultipleValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { authentication } = state
-    const { formType } = authentication
+    const { formType } = state.application.Settings
 
     this.data = data
     this.formType = formType
@@ -134,8 +133,7 @@ export default class CitizenshipMultipleValidator {
 export class CitizenshipItemValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { authentication } = state
-    const { formType } = authentication
+    const { formType } = state.application.Settings
 
     this.data = data
     this.formType = formType
