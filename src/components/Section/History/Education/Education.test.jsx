@@ -1,45 +1,46 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { Education } from './Education'
 
 describe('The Education component', () => {
-  const mockStore = configureMockStore()
-  let createComponent
+  it('renders without errors', () => {
+    const component = shallow(<Education />)
 
-  beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) => (
-      mount(
-        <Provider store={store}>
-          <Education {...expected} />
-        </Provider>
-      )
-    )
+    expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
   })
 
-  it('no error on empty', () => {
-    const expected = {
-      name: 'education',
-    }
+  it('renders an education item', () => {
+    const component = shallow(<Education />)
 
-    const component = createComponent(expected)
     expect(component.find('.education').length).toEqual(1)
   })
 
-  it('no error on with items', () => {
-    const expected = {
-      name: 'education',
+  const mockStore = configureMockStore()
+
+  const mountComponentWithStore = (props = {}, defaultState = {}) => {
+    const store = mockStore({ ...defaultState })
+
+    return mount(
+      <Provider store={store}>
+        <Education {...props} />
+      </Provider>
+    )
+  }
+
+  describe('with one item', () => {
+    const testProps = {
       List: {
-        items: [
-          {
-            Item: {},
-          },
-        ],
+        items: [{ Item: {} }],
       },
     }
-    const component = createComponent(expected)
-    expect(component.find('.education').length).toEqual(2)
+
+    const component = mountComponentWithStore(testProps)
+
+    it('renders two education items', () => {
+      expect(component.find('.education').length).toEqual(2)
+    })
   })
 })

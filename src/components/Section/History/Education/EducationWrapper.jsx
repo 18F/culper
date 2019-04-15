@@ -22,7 +22,7 @@ const sectionConfig = {
   subsection: HISTORY_EDUCATION.name,
 }
 
-class EducationWrapper extends React.Component {
+export class EducationWrapper extends React.Component {
   updateBranchAttendance = (values) => {
     const { Education, onUpdate, dispatch } = this.props
     const education = Education || {}

@@ -1,0 +1,2652 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The education component renders without errors 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="education"
+  >
+    <div
+      className="content"
+    >
+      <Field
+        adjustFor="labels"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help=""
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={false}
+        title="Provide the name of the school"
+        titleSize="h4"
+        validate={true}
+      >
+        <Text
+          className="school-name"
+          maxlength="100"
+          name="Name"
+          onError={[Function]}
+          onUpdate={[Function]}
+          prefilter={[Function]}
+          prefix=""
+          required={false}
+          status={true}
+          value=""
+        />
+      </Field>
+      <Field
+        adjustFor="daterange"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="history.education.help.dates"
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={true}
+        title="Provide dates of attendance"
+        titleSize="h4"
+        validate={true}
+      >
+        <label
+          className="info-label"
+        >
+          You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.
+        </label>
+        <DateRange
+          allowPresent={true}
+          dateRangePrefix=""
+          disabled={false}
+          from={
+            Object {
+              "touched": false,
+            }
+          }
+          label="You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address."
+          maxDate={2019-04-04T00:00:00.000Z}
+          maxDateEqualTo={false}
+          minDate={null}
+          minDateEqualTo={true}
+          name="Dates"
+          onError={[Function]}
+          onUpdate={[Function]}
+          prefix=""
+          present={false}
+          relationship=""
+          to={
+            Object {
+              "touched": false,
+            }
+          }
+        />
+      </Field>
+      <Field
+        adjustFor="address"
+        className=""
+        comments={true}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help="history.education.help.address"
+        helpActive={false}
+        onError={[Function]}
+        onUpdate={[Function]}
+        optional={true}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={true}
+        title="Provide the street address of the school"
+        titleSize="h4"
+        validate={true}
+      >
+        <label
+          className="into-label"
+        >
+          <ReactMarkdown
+            containerTagName="div"
+            parserOptions={Object {}}
+            renderers={
+              Object {
+                "link": [Function],
+              }
+            }
+            source="For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx)."
+          />
+        </label>
+        <Location
+          addressBook="Education"
+          addressBooks={Object {}}
+          cityLabel="City"
+          countryLabel="Country"
+          countyLabel="County"
+          dispatch={[Function]}
+          geocode={true}
+          geocodeResult={Object {}}
+          label="This address is"
+          layout="Address"
+          name="Address"
+          onError={[Function]}
+          onUpdate={[Function]}
+          required={false}
+          showPostOffice={true}
+          spinner={false}
+          stateLabel="State"
+          street2Label="Apt, suite, building, floor, etc."
+          streetLabel="Street address"
+          suggestions={false}
+          validated={false}
+          zipcodeLabel="ZIP Code"
+        />
+      </Field>
+      <Field
+        adjustFor="big-buttons"
+        className=""
+        comments={false}
+        commentsActive={false}
+        commentsAdd="comments.add"
+        commentsName="Comments"
+        commentsRemove="comments.remove"
+        commentsRequired={false}
+        commentsValue={Object {}}
+        errorPrefix=""
+        errors={Array []}
+        filterErrors={[Function]}
+        help=""
+        helpActive={false}
+        optional={false}
+        optionalText=""
+        scrollIntoView={true}
+        shrink={true}
+        title="Select the most appropriate option to describe your school"
+        titleSize="h4"
+        validate={true}
+      >
+        <RadioGroup
+          className="type option-list option-list-vertical"
+          disabled={false}
+          onError={[Function]}
+          required={false}
+        >
+          <Radio
+            ariaLabel=""
+            checked={false}
+            className="type-highschool"
+            disabled={false}
+            error={false}
+            focus={false}
+            label={
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="High school"
+              />
+            }
+            name="type-highschool"
+            native={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            valid={false}
+            value="High School"
+            valued=""
+          />
+          <Radio
+            ariaLabel=""
+            checked={false}
+            className="type-college"
+            disabled={false}
+            error={false}
+            focus={false}
+            label={
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="College, university, or military college"
+              />
+            }
+            name="type-college"
+            native={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            valid={false}
+            value="College"
+            valued=""
+          />
+          <Radio
+            ariaLabel=""
+            checked={false}
+            className="type-vocational"
+            disabled={false}
+            error={false}
+            focus={false}
+            label={
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="Vocational, technical, or trade school"
+              />
+            }
+            name="type-vocational"
+            native={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            valid={false}
+            value="Vocational"
+            valued=""
+          />
+          <Radio
+            ariaLabel=""
+            checked={false}
+            className="type-correspondence"
+            disabled={false}
+            error={false}
+            focus={false}
+            label={
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="Correspondence, distance, extension, or online school"
+              />
+            }
+            name="type-correspondence"
+            native={false}
+            onError={[Function]}
+            onUpdate={[Function]}
+            valid={false}
+            value="Correspondence"
+            valued=""
+          />
+        </RadioGroup>
+      </Field>
+      <Show
+        when={null}
+      >
+        <div
+          className="reference"
+        >
+          <Field
+            adjustFor=""
+            className="no-margin-bottom"
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={false}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="List a person who can verify that you attended this school"
+            titleSize="h3"
+            validate={true}
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="For schools you attended in the last 3 years, list a person who knew you at the school (instructor, student, etc.). Do not list people for education periods completed more than 3 years ago. For correspondence/distance/extension/online schools, list someone who knew you while you received this education."
+            />
+          </Field>
+          <Field
+            adjustFor=""
+            className=""
+            comments={false}
+            commentsActive={false}
+            commentsAdd="comments.add"
+            commentsName="Comments"
+            commentsRemove="comments.remove"
+            commentsRequired={false}
+            commentsValue={Object {}}
+            errorPrefix=""
+            errors={Array []}
+            filterErrors={[Function]}
+            help=""
+            helpActive={false}
+            optional={true}
+            optionalText=""
+            scrollIntoView={true}
+            shrink={false}
+            title="Provide this person's full name"
+            titleSize="h4"
+            validate={true}
+          >
+            <NotApplicable
+              applicable={true}
+              label="I don't know"
+              name="ReferenceNameNotApplicable"
+              onError={[Function]}
+              onUpdate={[Function]}
+              or={
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="or"
+                />
+              }
+            >
+              <Name
+                className="reference-name"
+                error={false}
+                errorCodes={Array []}
+                first=""
+                firstInitialOnly={false}
+                focus={false}
+                hideMiddleName={true}
+                last=""
+                middle=""
+                middleInitialOnly={false}
+                name="ReferenceName"
+                noMiddleName={false}
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefix="name"
+                required={false}
+                suffix=""
+                suffixOther=""
+                valid={false}
+              />
+            </NotApplicable>
+          </Field>
+          <Show
+            when={false}
+          >
+            <Field
+              adjustFor=""
+              className="no-margin-bottom"
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Their contact information"
+              titleSize="h4"
+              validate={true}
+            >
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="Provide the following contact information for this person."
+              />
+            </Field>
+            <Field
+              adjustFor="telephone"
+              className="override-required"
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.phone"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's phone number"
+              titleSize="h4"
+              validate={true}
+            >
+              <Telephone
+                allowNotApplicable={false}
+                className="reference-phone"
+                extension=""
+                name="ReferencePhone"
+                noNumber={false}
+                number=""
+                numberType=""
+                onError={[Function]}
+                onUpdate={[Function]}
+                showNumberType={false}
+                showTimeOfDay={true}
+                tab={[Function]}
+                timeOfDay="Both"
+                type="Domestic"
+                typeClass=""
+                value=""
+              />
+            </Field>
+            <Field
+              adjustFor="label"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.email"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's email address"
+              titleSize="h4"
+              validate={true}
+            >
+              <NotApplicable
+                applicable={true}
+                label="I don't know"
+                name="ReferenceEmailNotApplicable"
+                onError={[Function]}
+                onUpdate={[Function]}
+                or={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="or"
+                  />
+                }
+              >
+                <Email
+                  autocapitalize={false}
+                  autocomplete={true}
+                  autocorrect={false}
+                  className="reference-email"
+                  label="Provide email address for this person"
+                  name="ReferenceEmail"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                  spellcheck={false}
+                  value=""
+                />
+              </NotApplicable>
+            </Field>
+            <Field
+              adjustFor="address"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="reference.help.address"
+              helpActive={false}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's street address"
+              titleSize="h4"
+              validate={true}
+            >
+              <p>
+                Provide street address for this person (including apartment number).
+              </p>
+              <Location
+                addressBook="Reference"
+                addressBooks={Object {}}
+                cityLabel="City"
+                className="reference-address"
+                countryLabel="Country"
+                countyLabel="County"
+                dispatch={[Function]}
+                geocode={true}
+                geocodeResult={Object {}}
+                label="The address of your contact during this time period"
+                layout="Address"
+                name="ReferenceAddress"
+                onError={[Function]}
+                onUpdate={[Function]}
+                required={false}
+                showPostOffice={true}
+                spinner={false}
+                stateLabel="State"
+                street2Label="Apt, suite, building, floor, etc."
+                streetLabel="Street address"
+                suggestions={false}
+                validated={false}
+                zipcodeLabel="ZIP Code"
+              />
+            </Field>
+          </Show>
+        </div>
+      </Show>
+      <BranchCollection
+        appendContent={null}
+        appendLabel="Do you have another degree/diploma from this school to add?"
+        appendSize="h4"
+        branchClassName=""
+        branchName="branchcollection"
+        className="receive-degree"
+        content={null}
+        help=""
+        items={Array []}
+        label="Did you receive a degree/diploma?"
+        labelSize="h4"
+        onError={[Function]}
+        onUpdate={[Function]}
+        removable={true}
+        scrollToBottom=""
+        titleSize="h4"
+        valueKey="Has"
+      >
+        <DiplomaItem
+          Date={Object {}}
+          Diploma={Object {}}
+          DiplomaOther={Object {}}
+          bind={true}
+          name="Item"
+          onError={[Function]}
+          onUpdate={[Function]}
+        />
+      </BranchCollection>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="education"
+    >
+      <div
+        className="content"
+      >
+        <Field
+          adjustFor="labels"
+          className=""
+          comments={false}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help=""
+          helpActive={false}
+          optional={false}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={false}
+          title="Provide the name of the school"
+          titleSize="h4"
+          validate={true}
+        >
+          <Text
+            className="school-name"
+            maxlength="100"
+            name="Name"
+            onError={[Function]}
+            onUpdate={[Function]}
+            prefilter={[Function]}
+            prefix=""
+            required={false}
+            status={true}
+            value=""
+          />
+        </Field>
+        <Field
+          adjustFor="daterange"
+          className=""
+          comments={false}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help="history.education.help.dates"
+          helpActive={false}
+          optional={false}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={true}
+          title="Provide dates of attendance"
+          titleSize="h4"
+          validate={true}
+        >
+          <label
+            className="info-label"
+          >
+            You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.
+          </label>
+          <DateRange
+            allowPresent={true}
+            dateRangePrefix=""
+            disabled={false}
+            from={
+              Object {
+                "touched": false,
+              }
+            }
+            label="You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address."
+            maxDate={2019-04-04T00:00:00.000Z}
+            maxDateEqualTo={false}
+            minDate={null}
+            minDateEqualTo={true}
+            name="Dates"
+            onError={[Function]}
+            onUpdate={[Function]}
+            prefix=""
+            present={false}
+            relationship=""
+            to={
+              Object {
+                "touched": false,
+              }
+            }
+          />
+        </Field>
+        <Field
+          adjustFor="address"
+          className=""
+          comments={true}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help="history.education.help.address"
+          helpActive={false}
+          onError={[Function]}
+          onUpdate={[Function]}
+          optional={true}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={true}
+          title="Provide the street address of the school"
+          titleSize="h4"
+          validate={true}
+        >
+          <label
+            className="into-label"
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx)."
+            />
+          </label>
+          <Location
+            addressBook="Education"
+            addressBooks={Object {}}
+            cityLabel="City"
+            countryLabel="Country"
+            countyLabel="County"
+            dispatch={[Function]}
+            geocode={true}
+            geocodeResult={Object {}}
+            label="This address is"
+            layout="Address"
+            name="Address"
+            onError={[Function]}
+            onUpdate={[Function]}
+            required={false}
+            showPostOffice={true}
+            spinner={false}
+            stateLabel="State"
+            street2Label="Apt, suite, building, floor, etc."
+            streetLabel="Street address"
+            suggestions={false}
+            validated={false}
+            zipcodeLabel="ZIP Code"
+          />
+        </Field>
+        <Field
+          adjustFor="big-buttons"
+          className=""
+          comments={false}
+          commentsActive={false}
+          commentsAdd="comments.add"
+          commentsName="Comments"
+          commentsRemove="comments.remove"
+          commentsRequired={false}
+          commentsValue={Object {}}
+          errorPrefix=""
+          errors={Array []}
+          filterErrors={[Function]}
+          help=""
+          helpActive={false}
+          optional={false}
+          optionalText=""
+          scrollIntoView={true}
+          shrink={true}
+          title="Select the most appropriate option to describe your school"
+          titleSize="h4"
+          validate={true}
+        >
+          <RadioGroup
+            className="type option-list option-list-vertical"
+            disabled={false}
+            onError={[Function]}
+            required={false}
+          >
+            <Radio
+              ariaLabel=""
+              checked={false}
+              className="type-highschool"
+              disabled={false}
+              error={false}
+              focus={false}
+              label={
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="High school"
+                />
+              }
+              name="type-highschool"
+              native={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              valid={false}
+              value="High School"
+              valued=""
+            />
+            <Radio
+              ariaLabel=""
+              checked={false}
+              className="type-college"
+              disabled={false}
+              error={false}
+              focus={false}
+              label={
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="College, university, or military college"
+                />
+              }
+              name="type-college"
+              native={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              valid={false}
+              value="College"
+              valued=""
+            />
+            <Radio
+              ariaLabel=""
+              checked={false}
+              className="type-vocational"
+              disabled={false}
+              error={false}
+              focus={false}
+              label={
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="Vocational, technical, or trade school"
+                />
+              }
+              name="type-vocational"
+              native={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              valid={false}
+              value="Vocational"
+              valued=""
+            />
+            <Radio
+              ariaLabel=""
+              checked={false}
+              className="type-correspondence"
+              disabled={false}
+              error={false}
+              focus={false}
+              label={
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="Correspondence, distance, extension, or online school"
+                />
+              }
+              name="type-correspondence"
+              native={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              valid={false}
+              value="Correspondence"
+              valued=""
+            />
+          </RadioGroup>
+        </Field>
+        <Show
+          when={null}
+        >
+          <div
+            className="reference"
+          >
+            <Field
+              adjustFor=""
+              className="no-margin-bottom"
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="List a person who can verify that you attended this school"
+              titleSize="h3"
+              validate={true}
+            >
+              <ReactMarkdown
+                containerTagName="div"
+                parserOptions={Object {}}
+                renderers={
+                  Object {
+                    "link": [Function],
+                  }
+                }
+                source="For schools you attended in the last 3 years, list a person who knew you at the school (instructor, student, etc.). Do not list people for education periods completed more than 3 years ago. For correspondence/distance/extension/online schools, list someone who knew you while you received this education."
+              />
+            </Field>
+            <Field
+              adjustFor=""
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide this person's full name"
+              titleSize="h4"
+              validate={true}
+            >
+              <NotApplicable
+                applicable={true}
+                label="I don't know"
+                name="ReferenceNameNotApplicable"
+                onError={[Function]}
+                onUpdate={[Function]}
+                or={
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="or"
+                  />
+                }
+              >
+                <Name
+                  className="reference-name"
+                  error={false}
+                  errorCodes={Array []}
+                  first=""
+                  firstInitialOnly={false}
+                  focus={false}
+                  hideMiddleName={true}
+                  last=""
+                  middle=""
+                  middleInitialOnly={false}
+                  name="ReferenceName"
+                  noMiddleName={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  prefix="name"
+                  required={false}
+                  suffix=""
+                  suffixOther=""
+                  valid={false}
+                />
+              </NotApplicable>
+            </Field>
+            <Show
+              when={false}
+            >
+              <Field
+                adjustFor=""
+                className="no-margin-bottom"
+                comments={false}
+                commentsActive={false}
+                commentsAdd="comments.add"
+                commentsName="Comments"
+                commentsRemove="comments.remove"
+                commentsRequired={false}
+                commentsValue={Object {}}
+                errorPrefix=""
+                errors={Array []}
+                filterErrors={[Function]}
+                help=""
+                helpActive={false}
+                optional={true}
+                optionalText=""
+                scrollIntoView={true}
+                shrink={false}
+                title="Their contact information"
+                titleSize="h4"
+                validate={true}
+              >
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="Provide the following contact information for this person."
+                />
+              </Field>
+              <Field
+                adjustFor="telephone"
+                className="override-required"
+                comments={false}
+                commentsActive={false}
+                commentsAdd="comments.add"
+                commentsName="Comments"
+                commentsRemove="comments.remove"
+                commentsRequired={false}
+                commentsValue={Object {}}
+                errorPrefix=""
+                errors={Array []}
+                filterErrors={[Function]}
+                help="reference.help.phone"
+                helpActive={false}
+                optional={false}
+                optionalText=""
+                scrollIntoView={true}
+                shrink={false}
+                title="Provide this person's phone number"
+                titleSize="h4"
+                validate={true}
+              >
+                <Telephone
+                  allowNotApplicable={false}
+                  className="reference-phone"
+                  extension=""
+                  name="ReferencePhone"
+                  noNumber={false}
+                  number=""
+                  numberType=""
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  showNumberType={false}
+                  showTimeOfDay={true}
+                  tab={[Function]}
+                  timeOfDay="Both"
+                  type="Domestic"
+                  typeClass=""
+                  value=""
+                />
+              </Field>
+              <Field
+                adjustFor="label"
+                className=""
+                comments={false}
+                commentsActive={false}
+                commentsAdd="comments.add"
+                commentsName="Comments"
+                commentsRemove="comments.remove"
+                commentsRequired={false}
+                commentsValue={Object {}}
+                errorPrefix=""
+                errors={Array []}
+                filterErrors={[Function]}
+                help="reference.help.email"
+                helpActive={false}
+                optional={false}
+                optionalText=""
+                scrollIntoView={true}
+                shrink={false}
+                title="Provide this person's email address"
+                titleSize="h4"
+                validate={true}
+              >
+                <NotApplicable
+                  applicable={true}
+                  label="I don't know"
+                  name="ReferenceEmailNotApplicable"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  or={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="or"
+                    />
+                  }
+                >
+                  <Email
+                    autocapitalize={false}
+                    autocomplete={true}
+                    autocorrect={false}
+                    className="reference-email"
+                    label="Provide email address for this person"
+                    name="ReferenceEmail"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                    spellcheck={false}
+                    value=""
+                  />
+                </NotApplicable>
+              </Field>
+              <Field
+                adjustFor="address"
+                className=""
+                comments={false}
+                commentsActive={false}
+                commentsAdd="comments.add"
+                commentsName="Comments"
+                commentsRemove="comments.remove"
+                commentsRequired={false}
+                commentsValue={Object {}}
+                errorPrefix=""
+                errors={Array []}
+                filterErrors={[Function]}
+                help="reference.help.address"
+                helpActive={false}
+                optional={true}
+                optionalText=""
+                scrollIntoView={true}
+                shrink={false}
+                title="Provide this person's street address"
+                titleSize="h4"
+                validate={true}
+              >
+                <p>
+                  Provide street address for this person (including apartment number).
+                </p>
+                <Location
+                  addressBook="Reference"
+                  addressBooks={Object {}}
+                  cityLabel="City"
+                  className="reference-address"
+                  countryLabel="Country"
+                  countyLabel="County"
+                  dispatch={[Function]}
+                  geocode={true}
+                  geocodeResult={Object {}}
+                  label="The address of your contact during this time period"
+                  layout="Address"
+                  name="ReferenceAddress"
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  required={false}
+                  showPostOffice={true}
+                  spinner={false}
+                  stateLabel="State"
+                  street2Label="Apt, suite, building, floor, etc."
+                  streetLabel="Street address"
+                  suggestions={false}
+                  validated={false}
+                  zipcodeLabel="ZIP Code"
+                />
+              </Field>
+            </Show>
+          </div>
+        </Show>
+        <BranchCollection
+          appendContent={null}
+          appendLabel="Do you have another degree/diploma from this school to add?"
+          appendSize="h4"
+          branchClassName=""
+          branchName="branchcollection"
+          className="receive-degree"
+          content={null}
+          help=""
+          items={Array []}
+          label="Did you receive a degree/diploma?"
+          labelSize="h4"
+          onError={[Function]}
+          onUpdate={[Function]}
+          removable={true}
+          scrollToBottom=""
+          titleSize="h4"
+          valueKey="Has"
+        >
+          <DiplomaItem
+            Date={Object {}}
+            Diploma={Object {}}
+            DiplomaOther={Object {}}
+            bind={true}
+            name="Item"
+            onError={[Function]}
+            onUpdate={[Function]}
+          />
+        </BranchCollection>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <EducationItem
+        Address={Object {}}
+        Comments={Object {}}
+        Dates={
+          Object {
+            "maxDate": 2019-04-04T00:00:00.000Z,
+          }
+        }
+        Diplomas={
+          Object {
+            "items": Array [],
+          }
+        }
+        Name={Object {}}
+        ReferenceAddress={Object {}}
+        ReferenceEmail={Object {}}
+        ReferenceEmailNotApplicable={Object {}}
+        ReferenceName={Object {}}
+        ReferenceNameNotApplicable={Object {}}
+        ReferencePhone={Object {}}
+        Type={Object {}}
+        onError={[Function]}
+        onUpdate={[Function]}
+      />,
+      "_debugID": 1770,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": EducationItem {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "handleBlur": [Function],
+        "handleChange": [Function],
+        "handleFocus": [Function],
+        "handleKeyDown": [Function],
+        "handleValidation": [Function],
+        "props": Object {
+          "Address": Object {},
+          "Comments": Object {},
+          "Dates": Object {
+            "maxDate": 2019-04-04T00:00:00.000Z,
+          },
+          "Diplomas": Object {
+            "items": Array [],
+          },
+          "Name": Object {},
+          "ReferenceAddress": Object {},
+          "ReferenceEmail": Object {},
+          "ReferenceEmailNotApplicable": Object {},
+          "ReferenceName": Object {},
+          "ReferenceNameNotApplicable": Object {},
+          "ReferencePhone": Object {},
+          "Type": Object {},
+          "onError": [Function],
+          "onUpdate": [Function],
+        },
+        "refs": Object {},
+        "state": null,
+        "update": [Function],
+        "updateAddress": [Function],
+        "updateComments": [Function],
+        "updateDates": [Function],
+        "updateDiplomas": [Function],
+        "updateName": [Function],
+        "updateReferenceAddress": [Function],
+        "updateReferenceEmail": [Function],
+        "updateReferenceEmailNotApplicable": [Function],
+        "updateReferenceName": [Function],
+        "updateReferenceNameNotApplicable": [Function],
+        "updateReferencePhone": [Function],
+        "updateType": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="education"
+        >
+          <div
+            className="content"
+          >
+            <Field
+              adjustFor="labels"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide the name of the school"
+              titleSize="h4"
+              validate={true}
+            >
+              <Text
+                className="school-name"
+                maxlength="100"
+                name="Name"
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefilter={[Function]}
+                prefix=""
+                required={false}
+                status={true}
+                value=""
+              />
+            </Field>
+            <Field
+              adjustFor="daterange"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="history.education.help.dates"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={true}
+              title="Provide dates of attendance"
+              titleSize="h4"
+              validate={true}
+            >
+              <label
+                className="info-label"
+              >
+                You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.
+              </label>
+              <DateRange
+                allowPresent={true}
+                dateRangePrefix=""
+                disabled={false}
+                from={
+                  Object {
+                    "touched": false,
+                  }
+                }
+                label="You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address."
+                maxDate={2019-04-04T00:00:00.000Z}
+                maxDateEqualTo={false}
+                minDate={null}
+                minDateEqualTo={true}
+                name="Dates"
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefix=""
+                present={false}
+                relationship=""
+                to={
+                  Object {
+                    "touched": false,
+                  }
+                }
+              />
+            </Field>
+            <Field
+              adjustFor="address"
+              className=""
+              comments={true}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="history.education.help.address"
+              helpActive={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={true}
+              title="Provide the street address of the school"
+              titleSize="h4"
+              validate={true}
+            >
+              <label
+                className="into-label"
+              >
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx)."
+                />
+              </label>
+              <Location
+                addressBook="Education"
+                addressBooks={Object {}}
+                cityLabel="City"
+                countryLabel="Country"
+                countyLabel="County"
+                dispatch={[Function]}
+                geocode={true}
+                geocodeResult={Object {}}
+                label="This address is"
+                layout="Address"
+                name="Address"
+                onError={[Function]}
+                onUpdate={[Function]}
+                required={false}
+                showPostOffice={true}
+                spinner={false}
+                stateLabel="State"
+                street2Label="Apt, suite, building, floor, etc."
+                streetLabel="Street address"
+                suggestions={false}
+                validated={false}
+                zipcodeLabel="ZIP Code"
+              />
+            </Field>
+            <Field
+              adjustFor="big-buttons"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={true}
+              title="Select the most appropriate option to describe your school"
+              titleSize="h4"
+              validate={true}
+            >
+              <RadioGroup
+                className="type option-list option-list-vertical"
+                disabled={false}
+                onError={[Function]}
+                required={false}
+              >
+                <Radio
+                  ariaLabel=""
+                  checked={false}
+                  className="type-highschool"
+                  disabled={false}
+                  error={false}
+                  focus={false}
+                  label={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="High school"
+                    />
+                  }
+                  name="type-highschool"
+                  native={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="High School"
+                  valued=""
+                />
+                <Radio
+                  ariaLabel=""
+                  checked={false}
+                  className="type-college"
+                  disabled={false}
+                  error={false}
+                  focus={false}
+                  label={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="College, university, or military college"
+                    />
+                  }
+                  name="type-college"
+                  native={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="College"
+                  valued=""
+                />
+                <Radio
+                  ariaLabel=""
+                  checked={false}
+                  className="type-vocational"
+                  disabled={false}
+                  error={false}
+                  focus={false}
+                  label={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="Vocational, technical, or trade school"
+                    />
+                  }
+                  name="type-vocational"
+                  native={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Vocational"
+                  valued=""
+                />
+                <Radio
+                  ariaLabel=""
+                  checked={false}
+                  className="type-correspondence"
+                  disabled={false}
+                  error={false}
+                  focus={false}
+                  label={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="Correspondence, distance, extension, or online school"
+                    />
+                  }
+                  name="type-correspondence"
+                  native={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Correspondence"
+                  valued=""
+                />
+              </RadioGroup>
+            </Field>
+            <Show
+              when={null}
+            >
+              <div
+                className="reference"
+              >
+                <Field
+                  adjustFor=""
+                  className="no-margin-bottom"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="List a person who can verify that you attended this school"
+                  titleSize="h3"
+                  validate={true}
+                >
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="For schools you attended in the last 3 years, list a person who knew you at the school (instructor, student, etc.). Do not list people for education periods completed more than 3 years ago. For correspondence/distance/extension/online schools, list someone who knew you while you received this education."
+                  />
+                </Field>
+                <Field
+                  adjustFor=""
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  optional={true}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's full name"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <NotApplicable
+                    applicable={true}
+                    label="I don't know"
+                    name="ReferenceNameNotApplicable"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    or={
+                      <ReactMarkdown
+                        containerTagName="div"
+                        parserOptions={Object {}}
+                        renderers={
+                          Object {
+                            "link": [Function],
+                          }
+                        }
+                        source="or"
+                      />
+                    }
+                  >
+                    <Name
+                      className="reference-name"
+                      error={false}
+                      errorCodes={Array []}
+                      first=""
+                      firstInitialOnly={false}
+                      focus={false}
+                      hideMiddleName={true}
+                      last=""
+                      middle=""
+                      middleInitialOnly={false}
+                      name="ReferenceName"
+                      noMiddleName={false}
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      prefix="name"
+                      required={false}
+                      suffix=""
+                      suffixOther=""
+                      valid={false}
+                    />
+                  </NotApplicable>
+                </Field>
+                <Show
+                  when={false}
+                >
+                  <Field
+                    adjustFor=""
+                    className="no-margin-bottom"
+                    comments={false}
+                    commentsActive={false}
+                    commentsAdd="comments.add"
+                    commentsName="Comments"
+                    commentsRemove="comments.remove"
+                    commentsRequired={false}
+                    commentsValue={Object {}}
+                    errorPrefix=""
+                    errors={Array []}
+                    filterErrors={[Function]}
+                    help=""
+                    helpActive={false}
+                    optional={true}
+                    optionalText=""
+                    scrollIntoView={true}
+                    shrink={false}
+                    title="Their contact information"
+                    titleSize="h4"
+                    validate={true}
+                  >
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="Provide the following contact information for this person."
+                    />
+                  </Field>
+                  <Field
+                    adjustFor="telephone"
+                    className="override-required"
+                    comments={false}
+                    commentsActive={false}
+                    commentsAdd="comments.add"
+                    commentsName="Comments"
+                    commentsRemove="comments.remove"
+                    commentsRequired={false}
+                    commentsValue={Object {}}
+                    errorPrefix=""
+                    errors={Array []}
+                    filterErrors={[Function]}
+                    help="reference.help.phone"
+                    helpActive={false}
+                    optional={false}
+                    optionalText=""
+                    scrollIntoView={true}
+                    shrink={false}
+                    title="Provide this person's phone number"
+                    titleSize="h4"
+                    validate={true}
+                  >
+                    <Telephone
+                      allowNotApplicable={false}
+                      className="reference-phone"
+                      extension=""
+                      name="ReferencePhone"
+                      noNumber={false}
+                      number=""
+                      numberType=""
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      showNumberType={false}
+                      showTimeOfDay={true}
+                      tab={[Function]}
+                      timeOfDay="Both"
+                      type="Domestic"
+                      typeClass=""
+                      value=""
+                    />
+                  </Field>
+                  <Field
+                    adjustFor="label"
+                    className=""
+                    comments={false}
+                    commentsActive={false}
+                    commentsAdd="comments.add"
+                    commentsName="Comments"
+                    commentsRemove="comments.remove"
+                    commentsRequired={false}
+                    commentsValue={Object {}}
+                    errorPrefix=""
+                    errors={Array []}
+                    filterErrors={[Function]}
+                    help="reference.help.email"
+                    helpActive={false}
+                    optional={false}
+                    optionalText=""
+                    scrollIntoView={true}
+                    shrink={false}
+                    title="Provide this person's email address"
+                    titleSize="h4"
+                    validate={true}
+                  >
+                    <NotApplicable
+                      applicable={true}
+                      label="I don't know"
+                      name="ReferenceEmailNotApplicable"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      or={
+                        <ReactMarkdown
+                          containerTagName="div"
+                          parserOptions={Object {}}
+                          renderers={
+                            Object {
+                              "link": [Function],
+                            }
+                          }
+                          source="or"
+                        />
+                      }
+                    >
+                      <Email
+                        autocapitalize={false}
+                        autocomplete={true}
+                        autocorrect={false}
+                        className="reference-email"
+                        label="Provide email address for this person"
+                        name="ReferenceEmail"
+                        onError={[Function]}
+                        onUpdate={[Function]}
+                        pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                        spellcheck={false}
+                        value=""
+                      />
+                    </NotApplicable>
+                  </Field>
+                  <Field
+                    adjustFor="address"
+                    className=""
+                    comments={false}
+                    commentsActive={false}
+                    commentsAdd="comments.add"
+                    commentsName="Comments"
+                    commentsRemove="comments.remove"
+                    commentsRequired={false}
+                    commentsValue={Object {}}
+                    errorPrefix=""
+                    errors={Array []}
+                    filterErrors={[Function]}
+                    help="reference.help.address"
+                    helpActive={false}
+                    optional={true}
+                    optionalText=""
+                    scrollIntoView={true}
+                    shrink={false}
+                    title="Provide this person's street address"
+                    titleSize="h4"
+                    validate={true}
+                  >
+                    <p>
+                      Provide street address for this person (including apartment number).
+                    </p>
+                    <Location
+                      addressBook="Reference"
+                      addressBooks={Object {}}
+                      cityLabel="City"
+                      className="reference-address"
+                      countryLabel="Country"
+                      countyLabel="County"
+                      dispatch={[Function]}
+                      geocode={true}
+                      geocodeResult={Object {}}
+                      label="The address of your contact during this time period"
+                      layout="Address"
+                      name="ReferenceAddress"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      required={false}
+                      showPostOffice={true}
+                      spinner={false}
+                      stateLabel="State"
+                      street2Label="Apt, suite, building, floor, etc."
+                      streetLabel="Street address"
+                      suggestions={false}
+                      validated={false}
+                      zipcodeLabel="ZIP Code"
+                    />
+                  </Field>
+                </Show>
+              </div>
+            </Show>
+            <BranchCollection
+              appendContent={null}
+              appendLabel="Do you have another degree/diploma from this school to add?"
+              appendSize="h4"
+              branchClassName=""
+              branchName="branchcollection"
+              className="receive-degree"
+              content={null}
+              help=""
+              items={Array []}
+              label="Did you receive a degree/diploma?"
+              labelSize="h4"
+              onError={[Function]}
+              onUpdate={[Function]}
+              removable={true}
+              scrollToBottom=""
+              titleSize="h4"
+              valueKey="Has"
+            >
+              <DiplomaItem
+                Date={Object {}}
+                Diploma={Object {}}
+                DiplomaOther={Object {}}
+                bind={true}
+                name="Item"
+                onError={[Function]}
+                onUpdate={[Function]}
+              />
+            </BranchCollection>
+          </div>
+        </div>,
+        "_debugID": 1771,
+        "_renderedOutput": <div
+          className="education"
+        >
+          <div
+            className="content"
+          >
+            <Field
+              adjustFor="labels"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={false}
+              title="Provide the name of the school"
+              titleSize="h4"
+              validate={true}
+            >
+              <Text
+                className="school-name"
+                maxlength="100"
+                name="Name"
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefilter={[Function]}
+                prefix=""
+                required={false}
+                status={true}
+                value=""
+              />
+            </Field>
+            <Field
+              adjustFor="daterange"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="history.education.help.dates"
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={true}
+              title="Provide dates of attendance"
+              titleSize="h4"
+              validate={true}
+            >
+              <label
+                className="info-label"
+              >
+                You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.
+              </label>
+              <DateRange
+                allowPresent={true}
+                dateRangePrefix=""
+                disabled={false}
+                from={
+                  Object {
+                    "touched": false,
+                  }
+                }
+                label="You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address."
+                maxDate={2019-04-04T00:00:00.000Z}
+                maxDateEqualTo={false}
+                minDate={null}
+                minDateEqualTo={true}
+                name="Dates"
+                onError={[Function]}
+                onUpdate={[Function]}
+                prefix=""
+                present={false}
+                relationship=""
+                to={
+                  Object {
+                    "touched": false,
+                  }
+                }
+              />
+            </Field>
+            <Field
+              adjustFor="address"
+              className=""
+              comments={true}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help="history.education.help.address"
+              helpActive={false}
+              onError={[Function]}
+              onUpdate={[Function]}
+              optional={true}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={true}
+              title="Provide the street address of the school"
+              titleSize="h4"
+              validate={true}
+            >
+              <label
+                className="into-label"
+              >
+                <ReactMarkdown
+                  containerTagName="div"
+                  parserOptions={Object {}}
+                  renderers={
+                    Object {
+                      "link": [Function],
+                    }
+                  }
+                  source="For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx)."
+                />
+              </label>
+              <Location
+                addressBook="Education"
+                addressBooks={Object {}}
+                cityLabel="City"
+                countryLabel="Country"
+                countyLabel="County"
+                dispatch={[Function]}
+                geocode={true}
+                geocodeResult={Object {}}
+                label="This address is"
+                layout="Address"
+                name="Address"
+                onError={[Function]}
+                onUpdate={[Function]}
+                required={false}
+                showPostOffice={true}
+                spinner={false}
+                stateLabel="State"
+                street2Label="Apt, suite, building, floor, etc."
+                streetLabel="Street address"
+                suggestions={false}
+                validated={false}
+                zipcodeLabel="ZIP Code"
+              />
+            </Field>
+            <Field
+              adjustFor="big-buttons"
+              className=""
+              comments={false}
+              commentsActive={false}
+              commentsAdd="comments.add"
+              commentsName="Comments"
+              commentsRemove="comments.remove"
+              commentsRequired={false}
+              commentsValue={Object {}}
+              errorPrefix=""
+              errors={Array []}
+              filterErrors={[Function]}
+              help=""
+              helpActive={false}
+              optional={false}
+              optionalText=""
+              scrollIntoView={true}
+              shrink={true}
+              title="Select the most appropriate option to describe your school"
+              titleSize="h4"
+              validate={true}
+            >
+              <RadioGroup
+                className="type option-list option-list-vertical"
+                disabled={false}
+                onError={[Function]}
+                required={false}
+              >
+                <Radio
+                  ariaLabel=""
+                  checked={false}
+                  className="type-highschool"
+                  disabled={false}
+                  error={false}
+                  focus={false}
+                  label={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="High school"
+                    />
+                  }
+                  name="type-highschool"
+                  native={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="High School"
+                  valued=""
+                />
+                <Radio
+                  ariaLabel=""
+                  checked={false}
+                  className="type-college"
+                  disabled={false}
+                  error={false}
+                  focus={false}
+                  label={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="College, university, or military college"
+                    />
+                  }
+                  name="type-college"
+                  native={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="College"
+                  valued=""
+                />
+                <Radio
+                  ariaLabel=""
+                  checked={false}
+                  className="type-vocational"
+                  disabled={false}
+                  error={false}
+                  focus={false}
+                  label={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="Vocational, technical, or trade school"
+                    />
+                  }
+                  name="type-vocational"
+                  native={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Vocational"
+                  valued=""
+                />
+                <Radio
+                  ariaLabel=""
+                  checked={false}
+                  className="type-correspondence"
+                  disabled={false}
+                  error={false}
+                  focus={false}
+                  label={
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="Correspondence, distance, extension, or online school"
+                    />
+                  }
+                  name="type-correspondence"
+                  native={false}
+                  onError={[Function]}
+                  onUpdate={[Function]}
+                  valid={false}
+                  value="Correspondence"
+                  valued=""
+                />
+              </RadioGroup>
+            </Field>
+            <Show
+              when={null}
+            >
+              <div
+                className="reference"
+              >
+                <Field
+                  adjustFor=""
+                  className="no-margin-bottom"
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  optional={false}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="List a person who can verify that you attended this school"
+                  titleSize="h3"
+                  validate={true}
+                >
+                  <ReactMarkdown
+                    containerTagName="div"
+                    parserOptions={Object {}}
+                    renderers={
+                      Object {
+                        "link": [Function],
+                      }
+                    }
+                    source="For schools you attended in the last 3 years, list a person who knew you at the school (instructor, student, etc.). Do not list people for education periods completed more than 3 years ago. For correspondence/distance/extension/online schools, list someone who knew you while you received this education."
+                  />
+                </Field>
+                <Field
+                  adjustFor=""
+                  className=""
+                  comments={false}
+                  commentsActive={false}
+                  commentsAdd="comments.add"
+                  commentsName="Comments"
+                  commentsRemove="comments.remove"
+                  commentsRequired={false}
+                  commentsValue={Object {}}
+                  errorPrefix=""
+                  errors={Array []}
+                  filterErrors={[Function]}
+                  help=""
+                  helpActive={false}
+                  optional={true}
+                  optionalText=""
+                  scrollIntoView={true}
+                  shrink={false}
+                  title="Provide this person's full name"
+                  titleSize="h4"
+                  validate={true}
+                >
+                  <NotApplicable
+                    applicable={true}
+                    label="I don't know"
+                    name="ReferenceNameNotApplicable"
+                    onError={[Function]}
+                    onUpdate={[Function]}
+                    or={
+                      <ReactMarkdown
+                        containerTagName="div"
+                        parserOptions={Object {}}
+                        renderers={
+                          Object {
+                            "link": [Function],
+                          }
+                        }
+                        source="or"
+                      />
+                    }
+                  >
+                    <Name
+                      className="reference-name"
+                      error={false}
+                      errorCodes={Array []}
+                      first=""
+                      firstInitialOnly={false}
+                      focus={false}
+                      hideMiddleName={true}
+                      last=""
+                      middle=""
+                      middleInitialOnly={false}
+                      name="ReferenceName"
+                      noMiddleName={false}
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      prefix="name"
+                      required={false}
+                      suffix=""
+                      suffixOther=""
+                      valid={false}
+                    />
+                  </NotApplicable>
+                </Field>
+                <Show
+                  when={false}
+                >
+                  <Field
+                    adjustFor=""
+                    className="no-margin-bottom"
+                    comments={false}
+                    commentsActive={false}
+                    commentsAdd="comments.add"
+                    commentsName="Comments"
+                    commentsRemove="comments.remove"
+                    commentsRequired={false}
+                    commentsValue={Object {}}
+                    errorPrefix=""
+                    errors={Array []}
+                    filterErrors={[Function]}
+                    help=""
+                    helpActive={false}
+                    optional={true}
+                    optionalText=""
+                    scrollIntoView={true}
+                    shrink={false}
+                    title="Their contact information"
+                    titleSize="h4"
+                    validate={true}
+                  >
+                    <ReactMarkdown
+                      containerTagName="div"
+                      parserOptions={Object {}}
+                      renderers={
+                        Object {
+                          "link": [Function],
+                        }
+                      }
+                      source="Provide the following contact information for this person."
+                    />
+                  </Field>
+                  <Field
+                    adjustFor="telephone"
+                    className="override-required"
+                    comments={false}
+                    commentsActive={false}
+                    commentsAdd="comments.add"
+                    commentsName="Comments"
+                    commentsRemove="comments.remove"
+                    commentsRequired={false}
+                    commentsValue={Object {}}
+                    errorPrefix=""
+                    errors={Array []}
+                    filterErrors={[Function]}
+                    help="reference.help.phone"
+                    helpActive={false}
+                    optional={false}
+                    optionalText=""
+                    scrollIntoView={true}
+                    shrink={false}
+                    title="Provide this person's phone number"
+                    titleSize="h4"
+                    validate={true}
+                  >
+                    <Telephone
+                      allowNotApplicable={false}
+                      className="reference-phone"
+                      extension=""
+                      name="ReferencePhone"
+                      noNumber={false}
+                      number=""
+                      numberType=""
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      showNumberType={false}
+                      showTimeOfDay={true}
+                      tab={[Function]}
+                      timeOfDay="Both"
+                      type="Domestic"
+                      typeClass=""
+                      value=""
+                    />
+                  </Field>
+                  <Field
+                    adjustFor="label"
+                    className=""
+                    comments={false}
+                    commentsActive={false}
+                    commentsAdd="comments.add"
+                    commentsName="Comments"
+                    commentsRemove="comments.remove"
+                    commentsRequired={false}
+                    commentsValue={Object {}}
+                    errorPrefix=""
+                    errors={Array []}
+                    filterErrors={[Function]}
+                    help="reference.help.email"
+                    helpActive={false}
+                    optional={false}
+                    optionalText=""
+                    scrollIntoView={true}
+                    shrink={false}
+                    title="Provide this person's email address"
+                    titleSize="h4"
+                    validate={true}
+                  >
+                    <NotApplicable
+                      applicable={true}
+                      label="I don't know"
+                      name="ReferenceEmailNotApplicable"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      or={
+                        <ReactMarkdown
+                          containerTagName="div"
+                          parserOptions={Object {}}
+                          renderers={
+                            Object {
+                              "link": [Function],
+                            }
+                          }
+                          source="or"
+                        />
+                      }
+                    >
+                      <Email
+                        autocapitalize={false}
+                        autocomplete={true}
+                        autocorrect={false}
+                        className="reference-email"
+                        label="Provide email address for this person"
+                        name="ReferenceEmail"
+                        onError={[Function]}
+                        onUpdate={[Function]}
+                        pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                        spellcheck={false}
+                        value=""
+                      />
+                    </NotApplicable>
+                  </Field>
+                  <Field
+                    adjustFor="address"
+                    className=""
+                    comments={false}
+                    commentsActive={false}
+                    commentsAdd="comments.add"
+                    commentsName="Comments"
+                    commentsRemove="comments.remove"
+                    commentsRequired={false}
+                    commentsValue={Object {}}
+                    errorPrefix=""
+                    errors={Array []}
+                    filterErrors={[Function]}
+                    help="reference.help.address"
+                    helpActive={false}
+                    optional={true}
+                    optionalText=""
+                    scrollIntoView={true}
+                    shrink={false}
+                    title="Provide this person's street address"
+                    titleSize="h4"
+                    validate={true}
+                  >
+                    <p>
+                      Provide street address for this person (including apartment number).
+                    </p>
+                    <Location
+                      addressBook="Reference"
+                      addressBooks={Object {}}
+                      cityLabel="City"
+                      className="reference-address"
+                      countryLabel="Country"
+                      countyLabel="County"
+                      dispatch={[Function]}
+                      geocode={true}
+                      geocodeResult={Object {}}
+                      label="The address of your contact during this time period"
+                      layout="Address"
+                      name="ReferenceAddress"
+                      onError={[Function]}
+                      onUpdate={[Function]}
+                      required={false}
+                      showPostOffice={true}
+                      spinner={false}
+                      stateLabel="State"
+                      street2Label="Apt, suite, building, floor, etc."
+                      streetLabel="Street address"
+                      suggestions={false}
+                      validated={false}
+                      zipcodeLabel="ZIP Code"
+                    />
+                  </Field>
+                </Show>
+              </div>
+            </Show>
+            <BranchCollection
+              appendContent={null}
+              appendLabel="Do you have another degree/diploma from this school to add?"
+              appendSize="h4"
+              branchClassName=""
+              branchName="branchcollection"
+              className="receive-degree"
+              content={null}
+              help=""
+              items={Array []}
+              label="Did you receive a degree/diploma?"
+              labelSize="h4"
+              onError={[Function]}
+              onUpdate={[Function]}
+              removable={true}
+              scrollToBottom=""
+              titleSize="h4"
+              valueKey="Has"
+            >
+              <DiplomaItem
+                Date={Object {}}
+                Diploma={Object {}}
+                DiplomaOther={Object {}}
+                bind={true}
+                name="Item"
+                onError={[Function]}
+                onUpdate={[Function]}
+              />
+            </BranchCollection>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <EducationItem
+    Address={Object {}}
+    Comments={Object {}}
+    Dates={
+      Object {
+        "maxDate": 2019-04-04T00:00:00.000Z,
+      }
+    }
+    Diplomas={
+      Object {
+        "items": Array [],
+      }
+    }
+    Name={Object {}}
+    ReferenceAddress={Object {}}
+    ReferenceEmail={Object {}}
+    ReferenceEmailNotApplicable={Object {}}
+    ReferenceName={Object {}}
+    ReferenceNameNotApplicable={Object {}}
+    ReferencePhone={Object {}}
+    Type={Object {}}
+    onError={[Function]}
+    onUpdate={[Function]}
+  />,
+}
+`;

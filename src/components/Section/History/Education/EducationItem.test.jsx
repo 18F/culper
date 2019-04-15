@@ -1,107 +1,45 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import EducationItem from './EducationItem'
 
 describe('The education component', () => {
+  it('renders without errors', () => {
+    const component = shallow(
+      <EducationItem Dates={{ maxDate: new Date('04/04/2019') }} />
+    )
+
+    expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
+  })
+
+  it('renders an education input and school name input', () => {
+    const component = shallow(<EducationItem />)
+
+    expect(component.find('.education').length).toEqual(1)
+    expect(component.find('.school-name').length).toEqual(1)
+  })
+
   const mockStore = configureMockStore()
-  let createComponent
 
-  beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <EducationItem {...expected} />
-        </Provider>
-      )
-  })
+  const mountComponentWithStore = (props = {}, defaultState = {}) => {
+    const store = mockStore({
+      application: {},
+      ...defaultState,
+    })
 
-  it('no error on empty', () => {
-    const expected = {
-      name: 'education'
-    }
-    const component = createComponent(expected)
-    expect(component.find('.education').length).toEqual(1)
-    expect(component.find('.school-name').length).toEqual(1)
-  })
+    return mount(
+      <Provider store={store}>
+        <EducationItem {...props} />
+      </Provider>
+    )
+  }
 
-  it('should ask if they attended school in last 10 years', () => {
-    const expected = {
-      name: 'education'
-    }
-    const component = createComponent(expected)
-    expect(component.find('.education').length).toEqual(1)
-    expect(component.find('.school-name').length).toEqual(1)
-  })
-
-  it('should ask for a reference if within the last 3 years', () => {
-    const expected = {
-      name: 'education',
-      Dates: {
-        from: {
-          month: '1',
-          day: '1',
-          year: '2015'
-        },
-        to: {
-          month: `${new Date().getMonth() + 1}`,
-          day: `${new Date().getDate()}`,
-          year: `${new Date().getFullYear()}`
-        }
-      }
-    }
-    const component = createComponent(expected)
-    expect(component.find('.reference').length).toEqual(1)
-  })
-
-  it('should ask for diplomas/degrees if we say "yes"', () => {
-    const expected = {
-      name: 'education',
-      Diplomas: {
-        items: [
-          {
-            Item: {
-              Has: { value: 'Yes' },
-              Diploma: 'Other',
-              DiplomaOther: 'PhD in awesomeness',
-              Date: {
-                month: `${new Date().getMonth() + 1}`,
-                day: `${new Date().getDate()}`,
-                year: `${new Date().getFullYear()}`
-              }
-            }
-          },
-          {
-            Item: {
-              Has: { value: 'Yes' },
-              Diploma: 'High School Diploma',
-              DiplomaOther: '',
-              Date: {}
-            }
-          }
-        ]
-      }
-    }
-    const component = createComponent(expected)
-    expect(component.find('.diploma').length).toEqual(2)
-  })
-
-  it('should not ask for diplomas/degrees if we say "no"', () => {
-    const expected = {
-      name: 'education',
-      HasAttended: { value: 'Yes' },
-      HasDegree: { value: 'No' }
-    }
-    const component = createComponent(expected)
-    expect(component.find('.diploma').length).toEqual(0)
-  })
-
-  it('can trigger updates', () => {
-    let updates = 0
+  it('implements an onUpdate handler', () => {
+    const onUpdate = jest.fn()
     const today = new Date()
-    const expected = {
+    const testProps = {
       name: 'education',
       HasAttended: { value: 'Yes' },
       HasDegree: { value: 'Yes' },
@@ -110,30 +48,30 @@ describe('The education component', () => {
           {
             Item: {
               Has: { value: 'Yes' },
-              Diploma: { value: 'Other' }
-            }
-          }
-        ]
+              Diploma: { value: 'Other' },
+            },
+          },
+        ],
       },
       Dates: {
         from: {
           month: '1',
           day: '1',
           year: '2010',
-          present: false
+          present: false,
         },
         to: {
           month: `${today.getMonth() + 1}`,
           day: `${today.getDate()}`,
           year: `${today.getFullYear()}`,
-          present: true
-        }
+          present: true,
+        },
       },
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate,
     }
-    const component = createComponent(expected)
+
+    const component = mountComponentWithStore(testProps)
+
     component
       .find('.school-name input')
       .simulate('change', { target: { name: 'Name', value: 'some text' } })
@@ -161,6 +99,82 @@ describe('The education component', () => {
       .find('.other input')
       .at(0)
       .simulate('change', { target: { name: 'DiplomaOther', value: 'Other' } })
-    expect(updates).toEqual(8)
+
+    expect(onUpdate.mock.calls.length).toEqual(8)
+  })
+
+  describe('default state', () => {
+    const component = mountComponentWithStore()
+
+    it('does not ask for a reference', () => {
+      expect(component.find('.reference').length).toEqual(0)
+    })
+  })
+
+  describe('if item is within the last 3 years', () => {
+    const testProps = {
+      Dates: {
+        from: { month: '1', day: '1', year: '2015' },
+        to: {
+          month: `${new Date().getMonth() + 1}`,
+          day: `${new Date().getDate()}`,
+          year: `${new Date().getFullYear()}`,
+        },
+      },
+    }
+
+    const component = mountComponentWithStore(testProps)
+
+    it('asks for a reference', () => {
+      expect(component.find('.reference').length).toEqual(1)
+    })
+  })
+
+  describe('if answer to diploma is yes', () => {
+    const testProps = {
+      Diplomas: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Diploma: 'Other',
+              DiplomaOther: 'PhD in awesomeness',
+              Date: {
+                month: `${new Date().getMonth() + 1}`,
+                day: `${new Date().getDate()}`,
+                year: `${new Date().getFullYear()}`,
+              },
+            },
+          },
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Diploma: 'High School Diploma',
+              DiplomaOther: '',
+              Date: {},
+            },
+          },
+        ],
+      },
+    }
+
+    const component = mountComponentWithStore(testProps)
+
+    it('renders a diploma input', () => {
+      expect(component.find('.diploma').length).toEqual(2)
+    })
+  })
+
+  describe('if answer to diploma is no', () => {
+    const testProps = {
+      HasAttended: { value: 'Yes' },
+      HasDegree: { value: 'No' },
+    }
+
+    const component = mountComponentWithStore(testProps)
+
+    it('does not render a diploma input', () => {
+      expect(component.find('.diploma').length).toEqual(0)
+    })
   })
 })
