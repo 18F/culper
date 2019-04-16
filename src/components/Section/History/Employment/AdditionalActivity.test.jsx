@@ -1,54 +1,62 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import AdditionalActivity from './AdditionalActivity'
 
 describe('The employment additional activity component', () => {
-  const mockStore = configureMockStore()
-  let createComponent
+  it('renders without errors', () => {
+    const component = shallow(<AdditionalActivity />)
 
-  beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <AdditionalActivity {...expected} />
-        </Provider>
-      )
+    expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
   })
 
-  it('renders default additional activity', () => {
-    const component = createComponent()
+  const mockStore = configureMockStore()
+
+  const mountComponentWithStore = (props = {}, defaultState = {}) => {
+    const store = mockStore({
+      application: {},
+      ...defaultState,
+    })
+
+    return mount(
+      <Provider store={store}>
+        <AdditionalActivity {...props} />
+      </Provider>
+    )
+  }
+
+  it('renders the default state', () => {
+    const component = mountComponentWithStore()
+
     expect(component.find('.branch .yes').length).toBe(1)
     expect(component.find('.branch .no').length).toBe(1)
   })
 
-  it('loads data', () => {
-    let updates = 0
+  it('implements an onUpdate handler', () => {
+    const onUpdate = jest.fn()
     const expected = {
-      onUpdate: () => {
-        updates++
-      },
+      onUpdate,
       items: [
         {
           Item: {
             Has: { value: 'Yes' },
             Position: {
               name: 'Position',
-              value: 'Dev'
-            }
-          }
-        }
-      ]
+              value: 'Dev',
+            },
+          },
+        },
+      ],
     }
 
-    const component = createComponent(expected)
+    const component = mountComponentWithStore(expected)
     component
       .find('.branch .yes input')
       .at(0)
       .simulate('change')
     component.find({ type: 'text', name: 'Position' }).simulate('change')
-    expect(updates).toBeGreaterThan(0)
+    expect(onUpdate.mock.calls.length).toBe(2)
   })
 })
