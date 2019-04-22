@@ -140,13 +140,13 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/textarea.json"},
 
 		// Section: Identification
-		{Data: "testdata/identification-birthdate.json"},
-		{Data: "testdata/identification-birthplace.json"},
-		{Data: "testdata/identification-contacts.json"},
-		{Data: "testdata/identification-name.json"},
-		{Data: "testdata/identification-othernames.json"},
-		{Data: "testdata/identification-physical.json"},
-		{Data: "testdata/identification-ssn.json"},
+		{Data: "testdata/identification/identification-birthdate.json"},
+		{Data: "testdata/identification/identification-birthplace.json"},
+		{Data: "testdata/identification/identification-contacts.json"},
+		{Data: "testdata/identification/identification-name.json"},
+		{Data: "testdata/identification/identification-othernames.json"},
+		{Data: "testdata/identification/identification-physical.json"},
+		{Data: "testdata/identification/identification-ssn.json"},
 
 		// Section: Financial
 		{Data: "testdata/financial-bankruptcy.json"},
@@ -158,10 +158,10 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/financial-nonpayment.json"},
 
 		// Section: Your history
-		{Data: "testdata/history-residence.json"},
-		{Data: "testdata/history-employment.json"},
-		{Data: "testdata/history-education.json"},
-		{Data: "testdata/history-federal.json"},
+		{Data: "testdata/history/history-residence.json"},
+		{Data: "testdata/history/history-employment.json"},
+		{Data: "testdata/history/history-education.json"},
+		{Data: "testdata/history/history-federal.json"},
 
 		// Section: Relationships
 		{Data: "testdata/relationships-status-marital.json"},
@@ -319,13 +319,13 @@ func TestPayloadPersistence(t *testing.T) {
 		Data string
 	}{
 		// Section: Identification
-		{Data: "testdata/identification-birthdate.json"},
-		{Data: "testdata/identification-birthplace.json"},
-		{Data: "testdata/identification-contacts.json"},
-		{Data: "testdata/identification-name.json"},
-		{Data: "testdata/identification-othernames.json"},
-		{Data: "testdata/identification-physical.json"},
-		{Data: "testdata/identification-ssn.json"},
+		{Data: "testdata/identification/identification-birthdate.json"},
+		{Data: "testdata/identification/identification-birthplace.json"},
+		{Data: "testdata/identification/identification-contacts.json"},
+		{Data: "testdata/identification/identification-name.json"},
+		{Data: "testdata/identification/identification-othernames.json"},
+		{Data: "testdata/identification/identification-physical.json"},
+		{Data: "testdata/identification/identification-ssn.json"},
 
 		// Section: Financial
 		{Data: "testdata/financial-bankruptcy.json"},
@@ -337,10 +337,10 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/financial-nonpayment.json"},
 
 		// Section: Your history
-		{Data: "testdata/history-residence.json"},
-		{Data: "testdata/history-employment.json"},
-		{Data: "testdata/history-education.json"},
-		{Data: "testdata/history-federal.json"},
+		{Data: "testdata/history/history-residence.json"},
+		{Data: "testdata/history/history-employment.json"},
+		{Data: "testdata/history/history-education.json"},
+		{Data: "testdata/history/history-federal.json"},
 
 		// Section: Relationships
 		{Data: "testdata/relationships-status-marital.json"},

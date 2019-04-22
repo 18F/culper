@@ -5,7 +5,6 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/admin"
-	"github.com/18F/e-QIP-prototype/api/integration/sections"
 )
 
 func TestClearEmptyAccount(t *testing.T) {
@@ -39,7 +38,12 @@ func TestClearInformation(t *testing.T) {
 	}
 
 	// Test top level no
-	resp := saveJSON(services, sections.IDOtherNamesNo, account.ID)
+	otherNo, err := readTestData("../testdata/identification/identification-othernames-no.json")
+	if err != nil {
+		t.Fatal("Bad Test Data", err)
+	}
+
+	resp := saveJSON(services, otherNo, account.ID)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save topLevelNoJSON", resp.StatusCode)
 	}
@@ -63,7 +67,12 @@ func TestClearInformation(t *testing.T) {
 	}
 
 	// Test list no
-	resp = saveJSON(services, sections.IDOtherNamesYes, account.ID)
+	listNo, err := readTestData("../testdata/identification/identification-othernames.json")
+	if err != nil {
+		t.Fatal("Bad Test Data", err)
+	}
+
+	resp = saveJSON(services, listNo, account.ID)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save listNoJSON", resp.StatusCode)
 	}
@@ -87,8 +96,12 @@ func TestClearInformation(t *testing.T) {
 	}
 
 	// test list unset
+	unifishedList, err := readTestData("../testdata/identification/identification-othernames-unfinished.json")
+	if err != nil {
+		t.Fatal("Bad Test Data", err)
+	}
 
-	resp = saveJSON(services, sections.IDOtherNamesUnfinishedList, account.ID)
+	resp = saveJSON(services, unifishedList, account.ID)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save unfinishedListJSON", resp.StatusCode)
 	}
@@ -121,8 +134,13 @@ func TestClearHistoryResidence(t *testing.T) {
 		t.Fatal("couldn't create account", err)
 	}
 
+	residenceSingle, err := readTestData("../testdata/history/history-residence.json")
+	if err != nil {
+		t.Fatal("Bad Test Data", err)
+	}
+
 	// TEST complete list
-	resp := saveJSON(services, sections.HistResidenceSingle, account.ID)
+	resp := saveJSON(services, residenceSingle, account.ID)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save HistResidenceSingle", resp.StatusCode)
 	}
@@ -145,8 +163,13 @@ func TestClearHistoryResidence(t *testing.T) {
 		t.Fatal("residences was not reset")
 	}
 
+	residenceUnfinished, err := readTestData("../testdata/history/history-residence-unfinished-list.json")
+	if err != nil {
+		t.Fatal("Bad Test Data", err)
+	}
+
 	// TEST incomplete list
-	resp = saveJSON(services, sections.HistResidenceUnfinishedList, account.ID)
+	resp = saveJSON(services, residenceUnfinished, account.ID)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save HistResidenceSingle", resp.StatusCode)
 	}
@@ -175,8 +198,13 @@ func TestClearHistoryEmployment(t *testing.T) {
 		t.Fatal("couldn't create account", err)
 	}
 
+	employmentSection, err := readTestData("../testdata/history/history-employment-full.json")
+	if err != nil {
+		t.Fatal("Bad Test Data", err)
+	}
+
 	// TEST complete list
-	resp := saveJSON(services, sections.HistEmployment, account.ID)
+	resp := saveJSON(services, employmentSection, account.ID)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save HistResidenceSingle", resp.StatusCode)
 	}

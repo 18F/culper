@@ -1,0 +1,177 @@
+{
+  "type": "history.residence",
+  "props": {
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "316 Washington Ave",
+                  "city": "Wheeling",
+                  "state": "WV",
+                  "zipcode": "26003",
+                  "country": "United States",
+                  "validated": true
+                }
+              },
+              "Comments": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Dates": {
+                "type": "daterange",
+                "props": {
+                  "from": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "12",
+                      "day": "13",
+                      "year": "1990",
+                      "estimated": false
+                    }
+                  },
+                  "to": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "8",
+                      "day": "24",
+                      "year": "2018",
+                      "estimated": false
+                    }
+                  },
+                  "present": true
+                }
+              },
+              "ReferenceAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "317 WASHINGTON AVE",
+                  "city": "WHEELING",
+                  "state": "WV",
+                  "zipcode": "26003",
+                  "country": "United States",
+                  "validated": true
+                }
+              },
+              "ReferenceEmail": {
+                "type": "email",
+                "props": {
+                  "value": "ashley.Emily@testemail.com"
+                }
+              },
+              "ReferenceEmailNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": false
+                }
+              },
+              "ReferenceLastContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "08",
+                  "day": "01",
+                  "year": "2018",
+                  "estimated": false
+                }
+              },
+              "ReferenceName": {
+                "type": "name",
+                "props": {
+                  "first": "Ashley",
+                  "firstInitialOnly": false,
+                  "middle": "",
+                  "middleInitialOnly": false,
+                  "noMiddleName": true,
+                  "last": "Emily",
+                  "suffix": "",
+                  "suffixOther": ""
+                }
+              },
+              "ReferencePhoneDay": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "",
+                  "number": "7245555551",
+                  "extension": "",
+                  "noNumber": false
+                }
+              },
+              "ReferencePhoneEvening": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "",
+                  "number": "7245555551",
+                  "extension": "",
+                  "noNumber": false
+                }
+              },
+              "ReferencePhoneMobile": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "",
+                  "number": "7245555551",
+                  "extension": "",
+                  "noNumber": false
+                }
+              },
+              "ReferenceRelationship": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": [
+                    "Neighbor",
+                    "Friend"
+                  ]
+                }
+              },
+              "ReferenceRelationshipComments": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": null
+                }
+              },
+              "ReferenceRelationshipOther": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Role": {
+                "type": "radio",
+                "props": {
+                  "value": "Own",
+                  "checked": true
+                }
+              },
+              "RoleOther": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

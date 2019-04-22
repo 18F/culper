@@ -68,6 +68,7 @@ package-lock.json
 /api/bin/transmit
 /api/bin/unlock
 /api/bin/dbmigrate
+/api/bin/dbreset
 /build/
 /doc/
 /dist/

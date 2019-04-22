@@ -124,6 +124,15 @@ func populateAccount(db api.DatabaseService, account api.Account, testCasePath s
 	return nil
 }
 
+// readTestData pulls in test data as a string
+func readTestData(filepath string) (string, error) {
+	b, err := ioutil.ReadFile(filepath)
+	if err != nil {
+		return "", err
+	}
+	return string(b), nil
+}
+
 // saveJSON calls the save handler with the given json body.
 func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response {
 
