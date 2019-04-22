@@ -64,8 +64,7 @@ export const validateDrugUses = (data = {}, formType = formTypes.SF86) => {
 export default class DrugUsesValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { authentication } = state
-    const { formType } = authentication
+    const { formType } = state.application.Settings
 
     this.data = data
     this.formType = formType
@@ -94,8 +93,7 @@ export default class DrugUsesValidator {
 export class DrugUseValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { authentication } = state
-    const { formType } = authentication
+    const { formType } = state.application.Settings
 
     this.data = data
     this.formType = formType

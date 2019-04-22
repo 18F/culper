@@ -97,6 +97,7 @@ function mapStateToProps(state) {
   const errors = application.Errors || {}
   const completed = application.Completed || {}
   const addressBooks = application.AddressBooks || {}
+  const settings = application.Settings || {}
 
   return {
     Legal: legal,
@@ -121,7 +122,7 @@ function mapStateToProps(state) {
     Errors: errors.legal || [],
     Completed: completed.legal || [],
     AddressBooks: addressBooks,
-    formType: authentication.formType,
+    formType: settings.formType,
     ...section,
   }
 }

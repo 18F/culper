@@ -78,18 +78,15 @@ const connectHistorySection = (Component, {
   }
 
   const mapStateToProps = (state) => {
-    const { authentication } = state
-    const { formType } = authentication
-
     const app = state.application || {}
     const identification = app.Identification || {}
     const history = app.History || {}
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
-
     const emptyItems = { items: [] }
     const emptyList = { List: emptyItems }
+    const { formType } = app.Settings
 
     switch (storeKey) {
       case 'Residence':

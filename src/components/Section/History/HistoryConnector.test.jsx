@@ -25,7 +25,11 @@ describe('The HistoryConnector HOC', () => {
 
   describe('default behavior', () => {
     const store = mockStore({
-      authentication: { formType: 'SF86' },
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
     })
 
     const component = mount(
@@ -58,7 +62,6 @@ describe('The HistoryConnector HOC', () => {
 
   describe('if an applicant has less than 10 years of history', () => {
     const store = mockStore({
-      authentication: { formType: 'SF86' },
       application: {
         Identification: {
           ApplicantBirthDate: {
@@ -69,6 +72,9 @@ describe('The HistoryConnector HOC', () => {
               estimated: false,
             },
           },
+        },
+        Settings: {
+          formType: 'SF86',
         },
       },
     })
@@ -86,7 +92,6 @@ describe('The HistoryConnector HOC', () => {
 
   describe('if an applicant has more than 10 years of history', () => {
     const store = mockStore({
-      authentication: { formType: 'SF86' },
       application: {
         Identification: {
           ApplicantBirthDate: {
@@ -97,6 +102,9 @@ describe('The HistoryConnector HOC', () => {
               estimated: false,
             },
           },
+        },
+        Settings: {
+          formType: 'SF86',
         },
       },
     })

@@ -6,7 +6,6 @@ import { mount } from 'enzyme'
 
 import Financial, { FinancialSections } from 'components/Section/Financial'
 import { testSnapshot } from 'components/test-helpers'
-import { SF86 } from 'constants/formTypes'
 
 // give a fake GUID so the field IDs don't differ between snapshots
 // https://github.com/facebook/jest/issues/936#issuecomment-404246102
@@ -21,7 +20,13 @@ describe('The financial section', () => {
 
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { formType: SF86 } })
+    const store = mockStore({
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
+    })
 
     const component = mount(
       <MemoryRouter initialEntries={['/form/financial/review']}>
@@ -44,7 +49,13 @@ describe('The financial section', () => {
       'nonpayment',
     ]
 
-    const store = mockStore({ authentication: { formType: SF86 } })
+    const store = mockStore({
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
+    })
 
     sections.forEach((section) => {
       const component = mount(
@@ -59,7 +70,14 @@ describe('The financial section', () => {
   })
 
   it('renders the FinancialSections component', () => {
-    const store = mockStore({ authentication: { formType: SF86 } })
+    const store = mockStore({
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
+    })
+
     testSnapshot(
       <Provider store={store}>
         <FinancialSections />

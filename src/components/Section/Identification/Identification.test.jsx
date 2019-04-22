@@ -13,6 +13,9 @@ const applicationState = {
       PhoneNumbers: { items: [] },
     },
   },
+  Settings: {
+    formType: 'SF86',
+  },
 }
 
 // give a fake GUID so the field IDs don't differ between snapshots
@@ -29,7 +32,6 @@ describe('The identification section', () => {
   it('can review all subsections', () => {
     const store = mockStore({
       application: applicationState,
-      authentication: { formType: 'SF86' },
     })
 
     const component = mount(
@@ -47,7 +49,6 @@ describe('The identification section', () => {
     const sections = ['name', 'birthdate', 'birthplace', 'ssn']
     const store = mockStore({
       application: applicationState,
-      authentication: { formType: 'SF86' },
     })
 
     sections.forEach((section) => {
