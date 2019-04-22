@@ -877,6 +877,15 @@ export const error = {
           message: 'APO/FPO state code must be 2 letters',
           note: 'Note: Typically the value is either AA, AE, or AP.'
         }
+      },
+      street: {
+        poBox: {
+          pattern: {
+            title: 'There is a problem with the Street Address',
+            message: 'Addresses that include a Post Office Box are not accepted.',
+            note: 'Note: Do not use a post office box as an address.'
+          }
+        }
       }
     }
   },

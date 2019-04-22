@@ -79,6 +79,7 @@ export default class Text extends ValidationElement {
           tabBack={this.props.tabBack}
           tabNext={this.props.tabNext}
           ref="text"
+          regexFlags={this.props.regexFlags}
         />
     )
   }
@@ -90,6 +91,7 @@ Text.defaultProps = {
   prefix: '',
   required: false,
   status: true,
+  regexFlags: '',
   prefilter: value => {
     return value
   },

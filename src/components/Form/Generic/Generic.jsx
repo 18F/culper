@@ -339,6 +339,7 @@ Generic.defaultProps = {
   autocorrect: true,
   autocomplete: true,
   ariaLabel: '',
+  regexFlags: '',
   tabNext: () => {},
   tabBack: () => {},
   onError: (value, arr) => {
@@ -375,9 +376,9 @@ Generic.errors = [
         return null
       }
 
-      const re = new RegExp(props.pattern)
+      const re = new RegExp(props.pattern, props.regexFlags)
       return re.test(value)
-    }
+    },
   },
   {
     code: 'status',

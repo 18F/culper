@@ -344,6 +344,7 @@ export default class Address extends ValidationElement {
                   onBlur={this.blurField}
                   required={this.props.required}
                   disabled={this.props.disabled}
+                  isPoBoxAllowed={this.props.isPoBoxAllowed}
                 />
               </div>
               <div className="usa-form-control">
@@ -358,6 +359,7 @@ export default class Address extends ValidationElement {
                   onError={this.handleError}
                   onFocus={this.focusField}
                   onBlur={this.blurField}
+                  isPoBoxAllowed={this.props.isPoBoxAllowed}
                 />
               </div>
               <div className="usa-form-control">
@@ -420,6 +422,7 @@ export default class Address extends ValidationElement {
                 onBlur={this.props.onBlur}
                 required={this.props.required}
                 disabled={this.props.disabled}
+                isPoBoxAllowed={this.props.isPoBoxAllowed}
               />
             </div>
             <div className="usa-form-control">
@@ -434,6 +437,7 @@ export default class Address extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 disabled={this.props.disabled}
+                isPoBoxAllowed={this.props.isPoBoxAllowed}
               />
             </div>
             <div className="usa-form-control">
@@ -481,6 +485,7 @@ export default class Address extends ValidationElement {
                   onBlur={this.blurField}
                   required={this.props.required}
                   disabled={this.props.disabled}
+                  isPoBoxAllowed={this.props.isPoBoxAllowed}
                 />
               </div>
               <div className="usa-form-control">
@@ -584,7 +589,8 @@ Address.defaultProps = {
   postOfficeZipcodeLabel: i18n.t('address.apoFpo.zipcode.label'),
   street2Label: i18n.t('address.us.street2.label'),
   addressBooks: {},
-  addressBook: ''
+  addressBook: '',
+  isPoBoxAllowed: true,
 }
 
 Address.errors = [
