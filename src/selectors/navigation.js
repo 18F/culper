@@ -9,7 +9,6 @@ import { hideSelectiveService } from 'validators/selectiveservice'
 import { hideDisciplinaryProcedures } from 'validators/militarydisciplinary'
 import { hideExistingConditions } from 'validators/psychological'
 
-// TODO - migrate/deprecate formHasErrors after form validation logic is cleaned up
 import { formHasErrors, reduceSubsections } from 'helpers/navigation'
 
 const getSectionErrors = (state, props) => {
