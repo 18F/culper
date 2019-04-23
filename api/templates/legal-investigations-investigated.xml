@@ -13,8 +13,11 @@
     <OtherAgency>{{text $Item.AgencyExplanation}}</OtherAgency>
     {{end}}
     {{end}}
-    <!-- XXX https://github.com/18F/e-QIP-prototype/issues/1489 -->
+    {{if notApplicable $Item.ClearanceLevelNotApplicable | eq "True"}}
+    <ClearanceLevel>Unknown</ClearanceLevel>
+    {{else}}
     <ClearanceLevel>{{radio $Item.ClearanceLevel.props.Level | clearanceType}}</ClearanceLevel>
+    {{end}}
     <EntryComment></EntryComment>
     <GrantedDate>
       {{monthYearOptional $Item.Granted $Item.GrantedNotApplicable}}

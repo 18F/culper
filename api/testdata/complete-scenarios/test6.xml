@@ -992,7 +992,7 @@
               <Investigations>
                 <Investigation ID="1">
                   <Agency>Unknown</Agency>
-                  <ClearanceLevel>None</ClearanceLevel>
+                  <ClearanceLevel>Unknown</ClearanceLevel>
                   <GrantedDate>
                     <Date DoNotKnow="True">
   
