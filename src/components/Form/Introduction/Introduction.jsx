@@ -46,7 +46,7 @@ export class Introduction extends React.Component {
       this.props.forceOpen ? 'closeable' : ''
     }`.trim()
     const accepted = (this.props.settings.acceptedTerms || {}).value === 'Yes'
-  
+
     let introductionContent = ''
     switch(this.props.formType) {
       case formTypes.SF86: {
@@ -106,7 +106,7 @@ function mapStateToProps(state) {
 
   return {
     settings: settings,
-    formType: state.authentication.formType
+    formType: settings.formType,
   }
 }
 

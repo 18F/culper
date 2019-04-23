@@ -14,8 +14,14 @@ describe('Navigation component', () => {
 
   it('renders correctly', () => {
     const store = mockStore({
-      authentication: { authenticated: true, formType: 'SF86' },
-      application: { Errors: {}, Completed: {} },
+      authentication: { authenticated: true },
+      application: {
+        Errors: {},
+        Completed: {},
+        Settings: {
+          formType: 'SF86',
+        },
+      },
     })
 
     const formSections = SF86.concat(reviewSections)

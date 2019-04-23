@@ -13,11 +13,11 @@ describe('AppWithForm', () => {
   const store = mockStore({
     authentication: {
       authenticated: true,
-      formType: 'SF86',
     },
     application: {
       Settings: {
         acceptedTerms: 'Yes',
+        formType: 'SF86',
       },
       Errors: {},
       Completed: {},

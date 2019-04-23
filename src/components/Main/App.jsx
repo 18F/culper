@@ -304,8 +304,7 @@ App.defaultProps = {
 }
 
 function mapStateToProps(state) {
-  const { authentication, application } = state
-  const { formType } = authentication
+  const { application } = state
   const settings = application.Settings
     || { mobileNavigation: false, modalOpen: false }
 
@@ -313,7 +312,7 @@ function mapStateToProps(state) {
 
   return {
     settings,
-    formType,
+    formType: settings.formType,
     formSections,
   }
 }

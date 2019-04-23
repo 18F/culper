@@ -56,11 +56,11 @@ const Citizenship = ({ subsection, location, formType }) => {
 }
 
 function mapStateToProps(state) {
-  const { section } = state
-  const auth = state.authentication || {}
+  const { section, application } = state
+  const settings = application.Settings || {}
 
   return {
-    formType: auth.formType,
+    formType: settings.formType,
     ...section,
   }
 }

@@ -1,8 +1,21 @@
 import queryString from 'query-string'
 import { env } from 'config'
 import { api } from 'services/api'
-import { SF86 } from 'constants/formTypes'
 import AuthConstants from './AuthConstants'
+
+export function handleLoginSuccess(token) {
+  return {
+    type: AuthConstants.LOGIN_SUCCESS,
+    token,
+  }
+}
+
+export function handleLoginError(error) {
+  return {
+    type: AuthConstants.LOGIN_ERROR,
+    error,
+  }
+}
 
 /**
  * Executes a request to log in the user and then
@@ -10,27 +23,28 @@ import AuthConstants from './AuthConstants'
  * home page.
  */
 export function login(username, password) {
-  // TEMP SOUTION FOR DEVELOPMENT
-  // URL param is only available on development and staging
-  let formType
-  if (env.IsDevelopment() || env.IsStaging()) {
-    const params = location.search
-    const query = queryString.parse(params)
-    formType = query.formType ? query.formType : SF86
-  }
-
-  return function(dispatch, getState) {
+  return (dispatch) => {
     return api
       .login(username, password)
-      .then(response => {
+      .then((response) => {
+        /**
+         * In local development and staging, we have the ability to manually
+         * set the formType by using URL params.
+         */
+        if (env.IsDevelopment() || env.IsStaging()) {
+          const params = location.search
+          const query = queryString.parse(params)
+          if (query.formType) {
+            window.formType = query.formType
+          }
+        }
         api.setToken(response.data)
-        dispatch(handleLoginSuccess(response.data, formType))
+        dispatch(handleLoginSuccess(response.data))
         env.History().push('/loading')
       })
-      .catch(error => {
-        switch (error.response.status) {
-          case 500:
-            dispatch(handleLoginError(error.response.data))
+      .catch((error) => {
+        if (error.response.status === 500) {
+          dispatch(handleLoginError(error.response.data))
         }
       })
   }
@@ -40,7 +54,7 @@ export function login(username, password) {
  * Logs out a user
  */
 export function logout() {
-  return function(dispatch, getState) {
+  return (dispatch) => {
     const clear = () => {
       api.setToken('')
       dispatch({ type: AuthConstants.LOGOUT })
@@ -54,7 +68,7 @@ export function logout() {
 }
 
 export function tokenError() {
-  return function(dispatch, getState) {
+  return (dispatch) => {
     const clear = () => {
       api.setToken('')
       dispatch({ type: AuthConstants.LOGOUT })
@@ -64,20 +78,5 @@ export function tokenError() {
       .logout()
       .then(clear)
       .catch(clear)
-  }
-}
-
-export function handleLoginSuccess(token, formType = SF86) {
-  return {
-    type: AuthConstants.LOGIN_SUCCESS,
-    token,
-    formType
-  }
-}
-
-export function handleLoginError(error) {
-  return {
-    type: AuthConstants.LOGIN_ERROR,
-    error
   }
 }

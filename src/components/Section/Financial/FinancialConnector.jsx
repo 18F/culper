@@ -64,7 +64,7 @@ const connectFinancialSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
-    const { authentication } = state
+    const settings = app.Settings
 
     switch (storeKey) {
       case 'Bankruptcy':
@@ -81,7 +81,7 @@ const connectFinancialSection = (Component, {
       case 'Taxes':
         return {
           ...financial.Taxes,
-          formType: authentication.formType,
+          formType: settings.formType,
         }
 
       case 'Card':
@@ -100,7 +100,7 @@ const connectFinancialSection = (Component, {
         return {
           ...financial.Delinquent,
           addressBooks,
-          formType: authentication.formType,
+          formType: settings.formType,
           ...selectFinancialDelinquentName(state),
           ...selectFinancialDelinquentNonFederal(state),
         }

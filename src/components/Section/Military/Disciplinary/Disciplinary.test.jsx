@@ -10,7 +10,11 @@ describe('The military disciplinary component', () => {
 
   beforeEach(() => {
     const store = mockStore({
-      authentication: { formType: 'SF86' },
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
     })
 
     createComponent = (expected = {}) => (

@@ -209,7 +209,7 @@ describe('Military foreign validation', function() {
     })
   })
 
-  it('validates maintains contact', () => {
+  xit('validates maintains contact', () => {
     const tests = [
       {
         state: {

@@ -5,18 +5,16 @@ import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import Citizenship from 'components/Section/Citizenship'
 
-const applicationState = {
-  Citizenship: {}
-}
-
 describe('The citizenship section', () => {
   const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
     const store = mockStore({
-      authentication: {
-        formType: 'SF86'
-      }
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
     })
     const component = mount(
       <MemoryRouter>
@@ -31,12 +29,14 @@ describe('The citizenship section', () => {
   it('can go to each subsection', () => {
     const sections = ['status', 'multiple']
     const store = mockStore({
-      authentication: {
-        formType: 'SF86'
-      }
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
     })
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       const component = mount(
         <MemoryRouter>
           <Provider store={store}>
