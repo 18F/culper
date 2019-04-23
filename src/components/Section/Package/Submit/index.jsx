@@ -252,9 +252,9 @@ export class PackageSubmit extends React.Component {
   }
 
   render() {
-    const { Application = {} } = this.props
+    const { Application = {}, Settings = {} } = this.props
     const { signatures, isSubmitting, submissionError } = this.state
-    const { formType } = this.props.Settings
+    const { formType } = Settings
     const formName = formType
       && formConfig[formType]
       && formConfig[formType].FORM_LABEL
