@@ -219,9 +219,6 @@ export default class EducationItem extends ValidationElement {
             adjustFor="daterange"
             shrink={true}
             scrollIntoView={this.props.scrollIntoView}>
-            <label className="info-label">
-              {i18n.t('history.education.label.dates')}
-            </label>
             <DateRange
               name="Dates"
               {...this.props.Dates}

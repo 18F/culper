@@ -1630,7 +1630,7 @@ export const history = {
         'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       name: 'School name',
       address: 'This address is',
-      addressLink: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
+      addressLink: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained. For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
       comments: 'Add optional comment',
       type: {
         highschool: 'High school',
