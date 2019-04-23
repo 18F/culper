@@ -2635,7 +2635,7 @@
                       "Level": {
                         "type": "radio",
                         "props": {
-                          "value": "None"
+                          "value": ""
                         }
                       },
                       "Explanation": {
@@ -2649,7 +2649,7 @@
                   "ClearanceLevelNotApplicable": {
                     "type": "notapplicable",
                     "props": {
-                      "applicable": true
+                      "applicable": false
                     }
                   },
                   "Completed": {
