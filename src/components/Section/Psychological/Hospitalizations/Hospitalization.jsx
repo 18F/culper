@@ -149,6 +149,7 @@ class Hospitalization extends ValidationElement {
             onUpdate={this.updateFacilityAddress}
             onError={this.props.onError}
             required={this.props.required}
+            isPoBoxAllowed={false}
           />
         </Field>
       </div>

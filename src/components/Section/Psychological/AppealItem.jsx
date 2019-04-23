@@ -73,6 +73,7 @@ export class AppealItem extends ValidationElement {
             onUpdate={this.updateCourtAddress}
             onError={this.props.onError}
             required={this.props.required}
+            isPoBoxAllowed={false}
           />
         </Field>
 
