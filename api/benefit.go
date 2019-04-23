@@ -216,10 +216,6 @@ func (entity *Benefit) Valid() (bool, error) {
 func (entity *Benefit) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -319,10 +315,6 @@ func (entity *Benefit) Save(context DatabaseService, account int) (int, error) {
 func (entity *Benefit) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -399,10 +391,6 @@ func (entity *Benefit) Delete(context DatabaseService, account int) (int, error)
 // Get will retrieve the entity from the database.
 func (entity *Benefit) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

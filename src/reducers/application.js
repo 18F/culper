@@ -3,10 +3,8 @@ import relationshipsReducer from './relationships'
 import historyReducer from './history'
 import errorReducer from './error'
 
-const defaultState = {}
-
 // Defines the authentication sub-state for the application.
-export const reducer = function(sectionName) {
+export const reducer = function (sectionName, defaultState) {
   return function(state = defaultState, action) {
     // Check that section matches intended section reducer. This is to prevent
     // merging of everything every time an action is dispatched. We only
@@ -26,22 +24,24 @@ export const reducer = function(sectionName) {
 
 // High level pre-defined sub-state tree
 export default combineReducers({
-  Settings: reducer('Settings'),
-  Identification: reducer('Identification'),
-  Financial: reducer('Financial'),
+  Settings: reducer('Settings', {
+    formType: 'SF86',
+  }),
+  Identification: reducer('Identification', {}),
+  Financial: reducer('Financial', {}),
   Relationships: relationshipsReducer,
-  Citizenship: reducer('Citizenship'),
-  Military: reducer('Military'),
+  Citizenship: reducer('Citizenship', {}),
+  Military: reducer('Military', {}),
   History: historyReducer,
-  Foreign: reducer('Foreign'),
-  TBD: reducer('Tbd'),
-  Legal: reducer('Legal'),
-  Psychological: reducer('Psychological'),
-  Substance: reducer('Substance'),
-  Submission: reducer('Submission'),
-  Completed: errorReducer('Completed'),
-  Errors: errorReducer('Errors'),
-  AddressBooks: reducer('AddressBooks')
+  Foreign: reducer('Foreign', {}),
+  TBD: reducer('Tbd', {}),
+  Legal: reducer('Legal', {}),
+  Psychological: reducer('Psychological', {}),
+  Substance: reducer('Substance', {}),
+  Submission: reducer('Submission', {}),
+  Completed: errorReducer('Completed', {}),
+  Errors: errorReducer('Errors', {}),
+  AddressBooks: reducer('AddressBooks', {}),
 })
 
 // Or alternative...

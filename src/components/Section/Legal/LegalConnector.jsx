@@ -66,14 +66,14 @@ const connectLegalSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
-    const { authentication } = state
+    const settings = app.Settings
 
     switch (storeKey) {
       case 'PoliceOffenses':
         return {
           ...legal.PoliceOffenses,
           addressBooks,
-          formType: authentication.formType,
+          formType: settings.formType,
           ...selectLegalOffenseInvolvements(state),
           ...selectLegalOffenseSentenced(state),
           ...selectLegalOffenseIncarcerated(state),
@@ -94,20 +94,20 @@ const connectLegalSection = (Component, {
       case 'History':
         return {
           ...legal.History,
-          formType: authentication.formType,
+          formType: settings.formType,
           ...selectLegalInvestigationClearanceGranted(state),
         }
 
       case 'Revoked':
         return {
           ...legal.Revoked,
-          formType: authentication.formType,
+          formType: settings.formType,
         }
 
       case 'Debarred':
         return {
           ...legal.Debarred,
-          formType: authentication.formType,
+          formType: settings.formType,
         }
 
       case 'NonCriminalCourtActions':
@@ -138,7 +138,7 @@ const connectLegalSection = (Component, {
         return {
           ...legal.TerroristOrganization,
           addressBooks,
-          formType: authentication.formType,
+          formType: settings.formType,
         }
 
       case 'EngagedInTerrorism':
@@ -196,7 +196,7 @@ const connectLegalSection = (Component, {
           Errors: errors.legal || [],
           Completed: completed.legal || [],
           AddressBooks: addressBooks || [],
-          formType: authentication.formType,
+          formType: settings.formType,
           ...selectLegalOtherOffensesSection(state),
           ...selectLegalNonCriminalCourtSection(state),
           ...selectLegalTechnologySection(state),

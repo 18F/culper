@@ -1,0 +1,459 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The PackageSubmit component renders without errors 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="submission-status valid"
+  >
+    <ReactMarkdown
+      containerTagName="div"
+      parserOptions={Object {}}
+      renderers={
+        Object {
+          "link": [Function],
+        }
+      }
+      source="# All required fields are complete
+
+Not a guarantee of acceptance, but all required fields are complete."
+    />
+    <FormStatus
+      isTransitioning={false}
+      isValid={true}
+      onTransitionEnd={[Function]}
+      progressWidth={100}
+    />
+    <div
+      className="valid-form"
+    >
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source="### Please sign the releases below and submit your form"
+      />
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source="After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the attached release(s)."
+      />
+      <BasicAccordion
+        items={
+          Array [
+            Object {
+              "component": [Function],
+              "onClick": [Function],
+              "open": true,
+              "scrollIntoView": false,
+              "title": "Certification",
+              "valid": [Function],
+            },
+            Object {
+              "component": [Function],
+              "onClick": [Function],
+              "open": false,
+              "scrollIntoView": false,
+              "title": "Release of Information & HIPAA",
+              "valid": [Function],
+            },
+            Object {
+              "component": [Function],
+              "onClick": [Function],
+              "open": false,
+              "scrollIntoView": false,
+              "title": "Credit reporting disclosure",
+              "valid": [Function],
+            },
+          ]
+        }
+      />
+      <div
+        className="text-right"
+      >
+        <button
+          className="submit usa-button"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Submit your SF-86
+          <i
+            aria-hidden="true"
+            className="fa fa-arrow-circle-right"
+          />
+        </button>
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="submission-status valid"
+    >
+      <ReactMarkdown
+        containerTagName="div"
+        parserOptions={Object {}}
+        renderers={
+          Object {
+            "link": [Function],
+          }
+        }
+        source="# All required fields are complete
+
+Not a guarantee of acceptance, but all required fields are complete."
+      />
+      <FormStatus
+        isTransitioning={false}
+        isValid={true}
+        onTransitionEnd={[Function]}
+        progressWidth={100}
+      />
+      <div
+        className="valid-form"
+      >
+        <ReactMarkdown
+          containerTagName="div"
+          parserOptions={Object {}}
+          renderers={
+            Object {
+              "link": [Function],
+            }
+          }
+          source="### Please sign the releases below and submit your form"
+        />
+        <ReactMarkdown
+          containerTagName="div"
+          parserOptions={Object {}}
+          renderers={
+            Object {
+              "link": [Function],
+            }
+          }
+          source="After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the attached release(s)."
+        />
+        <BasicAccordion
+          items={
+            Array [
+              Object {
+                "component": [Function],
+                "onClick": [Function],
+                "open": true,
+                "scrollIntoView": false,
+                "title": "Certification",
+                "valid": [Function],
+              },
+              Object {
+                "component": [Function],
+                "onClick": [Function],
+                "open": false,
+                "scrollIntoView": false,
+                "title": "Release of Information & HIPAA",
+                "valid": [Function],
+              },
+              Object {
+                "component": [Function],
+                "onClick": [Function],
+                "open": false,
+                "scrollIntoView": false,
+                "title": "Credit reporting disclosure",
+                "valid": [Function],
+              },
+            ]
+          }
+        />
+        <div
+          className="text-right"
+        >
+          <button
+            className="submit usa-button"
+            disabled={true}
+            onClick={[Function]}
+            type="button"
+          >
+            Submit your SF-86
+            <i
+              aria-hidden="true"
+              className="fa fa-arrow-circle-right"
+            />
+          </button>
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <PackageSubmit
+        Application={Object {}}
+        History={Object {}}
+        Identification={Object {}}
+        Submission={Object {}}
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": PackageSubmit {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "handleSubmit": [Function],
+        "props": Object {
+          "Application": Object {},
+          "History": Object {},
+          "Identification": Object {},
+          "Submission": Object {},
+        },
+        "refs": Object {},
+        "renderAccordion": [Function],
+        "state": Object {
+          "isSubmitting": false,
+          "showAdditionalComments": true,
+          "showCreditItem": false,
+          "showGeneralItem": false,
+          "signatures": Object {},
+          "submissionError": false,
+        },
+        "togglePanel": [Function],
+        "update": [Function],
+        "updateComments": [Function],
+        "updateCredit": [Function],
+        "updateGeneral": [Function],
+        "updateMedical": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="submission-status valid"
+        >
+          <ReactMarkdown
+            containerTagName="div"
+            parserOptions={Object {}}
+            renderers={
+              Object {
+                "link": [Function],
+              }
+            }
+            source="# All required fields are complete
+
+Not a guarantee of acceptance, but all required fields are complete."
+          />
+          <FormStatus
+            isTransitioning={false}
+            isValid={true}
+            onTransitionEnd={[Function]}
+            progressWidth={100}
+          />
+          <div
+            className="valid-form"
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="### Please sign the releases below and submit your form"
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the attached release(s)."
+            />
+            <BasicAccordion
+              items={
+                Array [
+                  Object {
+                    "component": [Function],
+                    "onClick": [Function],
+                    "open": true,
+                    "scrollIntoView": false,
+                    "title": "Certification",
+                    "valid": [Function],
+                  },
+                  Object {
+                    "component": [Function],
+                    "onClick": [Function],
+                    "open": false,
+                    "scrollIntoView": false,
+                    "title": "Release of Information & HIPAA",
+                    "valid": [Function],
+                  },
+                  Object {
+                    "component": [Function],
+                    "onClick": [Function],
+                    "open": false,
+                    "scrollIntoView": false,
+                    "title": "Credit reporting disclosure",
+                    "valid": [Function],
+                  },
+                ]
+              }
+            />
+            <div
+              className="text-right"
+            >
+              <button
+                className="submit usa-button"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                Submit your SF-86
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </button>
+            </div>
+          </div>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="submission-status valid"
+        >
+          <ReactMarkdown
+            containerTagName="div"
+            parserOptions={Object {}}
+            renderers={
+              Object {
+                "link": [Function],
+              }
+            }
+            source="# All required fields are complete
+
+Not a guarantee of acceptance, but all required fields are complete."
+          />
+          <FormStatus
+            isTransitioning={false}
+            isValid={true}
+            onTransitionEnd={[Function]}
+            progressWidth={100}
+          />
+          <div
+            className="valid-form"
+          >
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="### Please sign the releases below and submit your form"
+            />
+            <ReactMarkdown
+              containerTagName="div"
+              parserOptions={Object {}}
+              renderers={
+                Object {
+                  "link": [Function],
+                }
+              }
+              source="After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the attached release(s)."
+            />
+            <BasicAccordion
+              items={
+                Array [
+                  Object {
+                    "component": [Function],
+                    "onClick": [Function],
+                    "open": true,
+                    "scrollIntoView": false,
+                    "title": "Certification",
+                    "valid": [Function],
+                  },
+                  Object {
+                    "component": [Function],
+                    "onClick": [Function],
+                    "open": false,
+                    "scrollIntoView": false,
+                    "title": "Release of Information & HIPAA",
+                    "valid": [Function],
+                  },
+                  Object {
+                    "component": [Function],
+                    "onClick": [Function],
+                    "open": false,
+                    "scrollIntoView": false,
+                    "title": "Credit reporting disclosure",
+                    "valid": [Function],
+                  },
+                ]
+              }
+            />
+            <div
+              className="text-right"
+            >
+              <button
+                className="submit usa-button"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                Submit your SF-86
+                <i
+                  aria-hidden="true"
+                  className="fa fa-arrow-circle-right"
+                />
+              </button>
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <PackageSubmit
+    Application={Object {}}
+    History={Object {}}
+    Identification={Object {}}
+    Submission={Object {}}
+  />,
+}
+`;

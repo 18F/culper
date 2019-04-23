@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
@@ -31,10 +32,20 @@ func readBinaryData(filepath string) ([]byte, error) {
 }
 
 func TestCollections(t *testing.T) {
-	settings := mock.Native{}
+	settings := env.Native{}
 	settings.Configure()
-	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
-	service.Configure()
+
+	logger := &mock.LogService{Off: true}
+
+	dbConf := DBConfig{
+		User:     settings.String(api.DatabaseUser),
+		Password: settings.String(api.DatabasePassword),
+		Address:  settings.String(api.DatabaseHost),
+		DBName:   settings.String(api.TestDatabaseName),
+	}
+
+	service := NewPostgresService(dbConf, logger)
+
 	account := 1
 
 	tests := []struct {
@@ -129,13 +140,13 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/textarea.json"},
 
 		// Section: Identification
-		{Data: "testdata/identification-birthdate.json"},
-		{Data: "testdata/identification-birthplace.json"},
-		{Data: "testdata/identification-contacts.json"},
-		{Data: "testdata/identification-name.json"},
-		{Data: "testdata/identification-othernames.json"},
-		{Data: "testdata/identification-physical.json"},
-		{Data: "testdata/identification-ssn.json"},
+		{Data: "testdata/identification/identification-birthdate.json"},
+		{Data: "testdata/identification/identification-birthplace.json"},
+		{Data: "testdata/identification/identification-contacts.json"},
+		{Data: "testdata/identification/identification-name.json"},
+		{Data: "testdata/identification/identification-othernames.json"},
+		{Data: "testdata/identification/identification-physical.json"},
+		{Data: "testdata/identification/identification-ssn.json"},
 
 		// Section: Financial
 		{Data: "testdata/financial-bankruptcy.json"},
@@ -147,10 +158,10 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/financial-nonpayment.json"},
 
 		// Section: Your history
-		{Data: "testdata/history-residence.json"},
-		{Data: "testdata/history-employment.json"},
-		{Data: "testdata/history-education.json"},
-		{Data: "testdata/history-federal.json"},
+		{Data: "testdata/history/history-residence.json"},
+		{Data: "testdata/history/history-employment.json"},
+		{Data: "testdata/history/history-education.json"},
+		{Data: "testdata/history/history-federal.json"},
 
 		// Section: Relationships
 		{Data: "testdata/relationships-status-marital.json"},
@@ -269,10 +280,20 @@ func TestPayloadValidate(t *testing.T) {
 }
 
 func TestPayloadPersistence(t *testing.T) {
-	settings := mock.Native{}
+	settings := env.Native{}
 	settings.Configure()
-	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
-	service.Configure()
+
+	logger := &mock.LogService{Off: true}
+
+	dbConf := DBConfig{
+		User:     settings.String(api.DatabaseUser),
+		Password: settings.String(api.DatabasePassword),
+		Address:  settings.String(api.DatabaseHost),
+		DBName:   settings.String(api.TestDatabaseName),
+	}
+
+	service := NewPostgresService(dbConf, logger)
+
 	api.Geocode = mock.Geocoder{}
 
 	account := api.Account{
@@ -298,13 +319,13 @@ func TestPayloadPersistence(t *testing.T) {
 		Data string
 	}{
 		// Section: Identification
-		{Data: "testdata/identification-birthdate.json"},
-		{Data: "testdata/identification-birthplace.json"},
-		{Data: "testdata/identification-contacts.json"},
-		{Data: "testdata/identification-name.json"},
-		{Data: "testdata/identification-othernames.json"},
-		{Data: "testdata/identification-physical.json"},
-		{Data: "testdata/identification-ssn.json"},
+		{Data: "testdata/identification/identification-birthdate.json"},
+		{Data: "testdata/identification/identification-birthplace.json"},
+		{Data: "testdata/identification/identification-contacts.json"},
+		{Data: "testdata/identification/identification-name.json"},
+		{Data: "testdata/identification/identification-othernames.json"},
+		{Data: "testdata/identification/identification-physical.json"},
+		{Data: "testdata/identification/identification-ssn.json"},
 
 		// Section: Financial
 		{Data: "testdata/financial-bankruptcy.json"},
@@ -316,10 +337,10 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/financial-nonpayment.json"},
 
 		// Section: Your history
-		{Data: "testdata/history-residence.json"},
-		{Data: "testdata/history-employment.json"},
-		{Data: "testdata/history-education.json"},
-		{Data: "testdata/history-federal.json"},
+		{Data: "testdata/history/history-residence.json"},
+		{Data: "testdata/history/history-employment.json"},
+		{Data: "testdata/history/history-education.json"},
+		{Data: "testdata/history/history-federal.json"},
 
 		// Section: Relationships
 		{Data: "testdata/relationships-status-marital.json"},

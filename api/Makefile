@@ -5,6 +5,12 @@ all: clean test build
 test:
 	GOLANG_ENV=test go test -coverprofile=coverage.txt -covermode=atomic -cover $(shell go list ./... | grep -v /vendor/)
 
+reset-test-db:
+	go build -o bin/dbmigrate ./cmd/dbmigrate
+	go build -o bin/dbreset ./cmd/dbreset
+	./bin/dbreset -force eapp_test
+	./bin/dbmigrate -migrations_path ./migrations eapp_test
+
 coverage:
 	# Use -c to remove processed reports so coverage-js won't find it
 	codecov -c -F backend -f coverage.txt -X gcov
@@ -21,6 +27,7 @@ clean:
 .PHONY: cmd
 cmd:
 	go build -o bin/compare ./cmd/compare
+	go build -o bin/dbmigrate ./cmd/dbmigrate
 	go build -o bin/flush ./cmd/flush
 	go build -o bin/form ./cmd/form
 	go build -o bin/fuzzer ./cmd/fuzzer

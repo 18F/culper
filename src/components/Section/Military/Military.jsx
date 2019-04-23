@@ -62,7 +62,7 @@ function mapStateToProps(state) {
   const errors = app.Errors || {}
   const completed = app.Completed || {}
   const addressBooks = app.AddressBooks || {}
-  const auth = state.authentication || {}
+  const settings = app.Settings || {}
 
   return {
     ...section,
@@ -71,7 +71,7 @@ function mapStateToProps(state) {
     Errors: errors.military || [],
     Completed: completed.military || [],
     addressBooks,
-    formType: auth.formType,
+    formType: settings.formType,
   }
 }
 

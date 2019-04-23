@@ -36,10 +36,6 @@ func (entity *Height) Valid() (bool, error) {
 
 // Save the height to data storage.
 func (entity *Height) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -49,10 +45,6 @@ func (entity *Height) Save(context DatabaseService, account int) (int, error) {
 
 // Delete the height from data storage.
 func (entity *Height) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -64,10 +56,6 @@ func (entity *Height) Delete(context DatabaseService, account int) (int, error) 
 
 // Get the height from data storage.
 func (entity *Height) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

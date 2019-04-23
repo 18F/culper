@@ -69,19 +69,19 @@ func TestPackage(t *testing.T) {
 func applicationData(t *testing.T) map[string]interface{} {
 	return map[string]interface{}{
 		"Identification": map[string]interface{}{
-			"ApplicantName":       readSectionData("identification-name.json", t),
-			"Contacts":            readSectionData("identification-contacts.json", t),
-			"OtherNames":          readSectionData("identification-othernames.json", t),
-			"ApplicantBirthDate":  readSectionData("identification-birthdate.json", t),
-			"ApplicantBirthPlace": readSectionData("identification-birthplace.json", t),
-			"ApplicantSSN":        readSectionData("identification-ssn.json", t),
-			"Physical":            readSectionData("identification-physical.json", t),
+			"ApplicantName":       readSectionData("identification/identification-name.json", t),
+			"Contacts":            readSectionData("identification/identification-contacts.json", t),
+			"OtherNames":          readSectionData("identification/identification-othernames.json", t),
+			"ApplicantBirthDate":  readSectionData("identification/identification-birthdate.json", t),
+			"ApplicantBirthPlace": readSectionData("identification/identification-birthplace.json", t),
+			"ApplicantSSN":        readSectionData("identification/identification-ssn.json", t),
+			"Physical":            readSectionData("identification/identification-physical.json", t),
 		},
 		"Submission": map[string]interface{}{
 			"Releases": readSectionData("submission.json", t),
 		},
 		"History": map[string]interface{}{
-			"Residence": readSectionData("history-residence.json", t),
+			"Residence": readSectionData("history/history-residence.json", t),
 		},
 	}
 }

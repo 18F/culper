@@ -9,8 +9,14 @@ import Print from 'components/Section/Package/Print'
 import { testSnapshot } from 'components/test-helpers'
 
 const mockState = {
-  authentication: { formType: 'SF86' },
-  application: { Application: {}, Errors: {}, Completed: {} },
+  application: {
+    Application: {},
+    Errors: {},
+    Completed: {},
+    Settings: {
+      formType: 'SF86',
+    },
+  },
 }
 
 // give a fake GUID so the field IDs don't differ between snapshots

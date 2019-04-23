@@ -4,7 +4,11 @@ describe('Navigation helpers', () => {
   describe('totalSections function', () => {
     it('returns the number of top-level form sections', () => {
       const state = {
-        authentication: { formType: 'SF86' },
+        application: {
+          Settings: {
+            formType: 'SF86',
+          },
+        },
       }
 
       expect(totalSections(state)).toEqual(10)
@@ -14,7 +18,6 @@ describe('Navigation helpers', () => {
   describe('completedSections function', () => {
     it('returns the number of completed top-level form sections', () => {
       const state = {
-        authentication: { formType: 'SF86' },
         application: {
           Completed: {
             citizenship: [
@@ -34,6 +37,9 @@ describe('Navigation helpers', () => {
               { subsection: 'people', valid: true },
               { subsection: 'relatives', valid: true },
             ],
+          },
+          Settings: {
+            formType: 'SF86',
           },
         },
       }

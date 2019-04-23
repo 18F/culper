@@ -9,6 +9,9 @@ describe('The progress bar component', () => {
 
   it('increments counter', () => {
     const application = {
+      Settings: {
+        formType: 'SF86',
+      },
       Completed: {
         citizenship: [
           { section: 'citizenship', subsection: 'passport', valid: true },
@@ -25,7 +28,6 @@ describe('The progress bar component', () => {
         section: 'psychological',
         subsection: 'competence',
       },
-      authentication: { formType: 'SF86' },
     })
 
     const component = mount(

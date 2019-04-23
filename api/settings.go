@@ -137,6 +137,12 @@ const (
 	// Default: `postgres`
 	DatabaseName = "DATABASE_NAME"
 
+	// TestDatabaseName PostgreSQL database instance name for tests
+	//
+	// Target: Back-end (api)
+	// Default: `eapp_test`
+	TestDatabaseName = "TEST_DATABASE_NAME"
+
 	// DatabaseHost PostgreSQL database host name and port.
 	//
 	// Target: Back-end (api)

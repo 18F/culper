@@ -65,13 +65,13 @@ const connectSubstanceUseSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
-    const { authentication } = state
+    const settings = app.Settings
 
     switch (storeKey) {
       case 'DrugUses':
         return {
           ...substance.DrugUses,
-          formType: authentication.formType,
+          formType: settings.formType,
           ...selectDrugWhileSafety(state),
           ...selectDrugWithClearance(state),
           ...selectDrugInFuture(state),
@@ -80,7 +80,7 @@ const connectSubstanceUseSection = (Component, {
       case 'DrugInvolvements':
         return {
           ...substance.DrugInvolvements,
-          formType: authentication.formType,
+          formType: settings.formType,
           ...selectDrugWhileSafety(state),
           ...selectDrugWithClearance(state),
           ...selectDrugInFuture(state),
@@ -101,13 +101,13 @@ const connectSubstanceUseSection = (Component, {
           ...substance.PrescriptionUses,
           ...selectDrugWhileSafety(state),
           ...selectDrugWithClearance(state),
-          formType: authentication.formType,
+          formType: settings.formType,
         }
 
       case 'OrderedTreatments':
         return {
           ...substance.OrderedTreatments,
-          formType: authentication.formType,
+          formType: settings.formType,
           addressBooks,
         }
 
@@ -115,7 +115,7 @@ const connectSubstanceUseSection = (Component, {
         return {
           ...substance.VoluntaryTreatments,
           addressBooks,
-          formType: authentication.formType,
+          formType: settings.formType,
         }
 
       case 'NegativeImpacts':
@@ -157,7 +157,7 @@ const connectSubstanceUseSection = (Component, {
           Errors: errors.identification || [],
           Completed: completed.identification || [],
           AddressBooks: addressBooks,
-          formType: authentication.formType,
+          formType: settings.formType,
           ...selectDrugWhileSafetySection(state),
           ...selectDrugWithClearanceSection(state),
           ...selectAlcoholSections(state),

@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
 )
@@ -14,10 +15,44 @@ type Native struct{}
 
 // Configure the environment.
 func (env Native) Configure() {
+	// Setting DatabaseURI overwrites all of the other database environment variables.
+	if env.Has(api.DatabaseURI) {
+
+		// Parse the address as a URI. If it fails behave as if DatabaseURI is not set
+		dbString := env.String(api.DatabaseURI)
+		uri, err := url.Parse(dbString)
+		if err != nil {
+			fmt.Printf("ERROR: The %s did not parse: %s\n", api.DatabaseURI, dbString)
+		} else {
+			// Remove the leading slash on the path to retrieve the database name
+			dbName := strings.TrimPrefix(uri.Path, "/")
+
+			// Ignore whether the password was set or not since an empty string suffices
+			// for the connection options as well.
+			dbPassword, _ := uri.User.Password()
+
+			if env.Has(api.DatabaseUser) || env.Has(api.DatabasePassword) ||
+				env.Has(api.DatabaseHost) || env.Has(api.DatabaseName) {
+				fmt.Printf("WARNING: Setting %s is overwriting the values set in %s, %s, %s, and %s.\n",
+					api.DatabaseURI, api.DatabaseUser, api.DatabasePassword, api.DatabaseHost, api.DatabaseName)
+			}
+
+			os.Setenv(api.DatabaseUser, uri.User.Username())
+			os.Setenv(api.DatabasePassword, dbPassword)
+			os.Setenv(api.DatabaseHost, uri.Host)
+			os.Setenv(api.DatabaseName, dbName)
+		}
+	}
+
+	// ensure the db variable defaults are set
+	env.ensure(api.DatabaseUser, "postgres")
+	env.ensure(api.DatabaseHost, "localhost:5432")
+	env.ensure(api.DatabaseName, "postgres")
+	env.ensure(api.TestDatabaseName, "eapp_test")
+
 	env.ensure(api.GolangEnv, "development")
 	env.ensure(api.LogLevel, "warning")
 	env.ensure(api.SessionTimeout, "15")
-	env.ensure(api.DatabaseURI, env.buildDatabaseURI())
 	env.ensure(api.Port, "3000")
 	env.ensure(api.HashRouting, "0")
 	env.ensure(api.FlushStorage, "0")
@@ -64,40 +99,4 @@ func (env Native) ensure(name, value string) {
 	if !env.Has(name) {
 		os.Setenv(name, value)
 	}
-}
-
-func (env Native) buildDatabaseURI() string {
-	// By user (+ password) + database + host
-	uri := &url.URL{Scheme: "postgres"}
-	username := env.String(api.DatabaseUser)
-	if username == "" {
-		username = "postgres"
-	}
-
-	// Check if there is a password set. If not then we need to create
-	// the Userinfo structure in a different way so we don't include
-	// exta colons (:).
-	pw := env.String(api.DatabasePassword)
-	if pw == "" {
-		uri.User = url.User(username)
-	} else {
-		uri.User = url.UserPassword(username, pw)
-	}
-
-	// The database name will be part of the URI path so it needs
-	// a prefix of "/"
-	database := env.String(api.DatabaseName)
-	if database == "" {
-		database = "postgres"
-	}
-	uri.Path = fmt.Sprintf("/%s", database)
-
-	// Host can be either "address + port" or just "address"
-	host := env.String(api.DatabaseHost)
-	if host == "" {
-		host = "localhost:5432"
-	}
-	uri.Host = host
-
-	return uri.String()
 }

@@ -73,10 +73,6 @@ func (entity *FinancialBankruptcy) Valid() (bool, error) {
 func (entity *FinancialBankruptcy) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -104,10 +100,6 @@ func (entity *FinancialBankruptcy) Save(context DatabaseService, account int) (i
 func (entity *FinancialBankruptcy) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -132,10 +124,6 @@ func (entity *FinancialBankruptcy) Delete(context DatabaseService, account int) 
 // Get will retrieve the entity from the database.
 func (entity *FinancialBankruptcy) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -257,10 +245,6 @@ func (entity *FinancialGambling) Valid() (bool, error) {
 func (entity *FinancialGambling) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -288,10 +272,6 @@ func (entity *FinancialGambling) Save(context DatabaseService, account int) (int
 func (entity *FinancialGambling) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -316,10 +296,6 @@ func (entity *FinancialGambling) Delete(context DatabaseService, account int) (i
 // Get will retrieve the entity from the database.
 func (entity *FinancialGambling) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -441,10 +417,6 @@ func (entity *FinancialTaxes) Valid() (bool, error) {
 func (entity *FinancialTaxes) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -461,10 +433,6 @@ func (entity *FinancialTaxes) Save(context DatabaseService, account int) (int, e
 	}
 	entity.ListID = listID
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -475,10 +443,6 @@ func (entity *FinancialTaxes) Save(context DatabaseService, account int) (int, e
 // Delete will remove the entity from the database.
 func (entity *FinancialTaxes) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
@@ -504,10 +468,6 @@ func (entity *FinancialTaxes) Delete(context DatabaseService, account int) (int,
 // Get will retrieve the entity from the database.
 func (entity *FinancialTaxes) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -629,10 +589,6 @@ func (entity *FinancialCard) Valid() (bool, error) {
 func (entity *FinancialCard) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -649,10 +605,6 @@ func (entity *FinancialCard) Save(context DatabaseService, account int) (int, er
 	}
 	entity.ListID = listID
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -663,10 +615,6 @@ func (entity *FinancialCard) Save(context DatabaseService, account int) (int, er
 // Delete will remove the entity from the database.
 func (entity *FinancialCard) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
@@ -692,10 +640,6 @@ func (entity *FinancialCard) Delete(context DatabaseService, account int) (int, 
 // Get will retrieve the entity from the database.
 func (entity *FinancialCard) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -817,10 +761,6 @@ func (entity *FinancialCredit) Valid() (bool, error) {
 func (entity *FinancialCredit) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -837,10 +777,6 @@ func (entity *FinancialCredit) Save(context DatabaseService, account int) (int, 
 	}
 	entity.ListID = listID
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -851,10 +787,6 @@ func (entity *FinancialCredit) Save(context DatabaseService, account int) (int, 
 // Delete will remove the entity from the database.
 func (entity *FinancialCredit) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
@@ -880,10 +812,6 @@ func (entity *FinancialCredit) Delete(context DatabaseService, account int) (int
 // Get will retrieve the entity from the database.
 func (entity *FinancialCredit) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1005,10 +933,6 @@ func (entity *FinancialDelinquent) Valid() (bool, error) {
 func (entity *FinancialDelinquent) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1036,10 +960,6 @@ func (entity *FinancialDelinquent) Save(context DatabaseService, account int) (i
 func (entity *FinancialDelinquent) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1064,10 +984,6 @@ func (entity *FinancialDelinquent) Delete(context DatabaseService, account int) 
 // Get will retrieve the entity from the database.
 func (entity *FinancialDelinquent) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1189,10 +1105,6 @@ func (entity *FinancialNonpayment) Valid() (bool, error) {
 func (entity *FinancialNonpayment) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1220,10 +1132,6 @@ func (entity *FinancialNonpayment) Save(context DatabaseService, account int) (i
 func (entity *FinancialNonpayment) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1248,10 +1156,6 @@ func (entity *FinancialNonpayment) Delete(context DatabaseService, account int) 
 // Get will retrieve the entity from the database.
 func (entity *FinancialNonpayment) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

@@ -54,9 +54,8 @@ const connectCitizenshipSection = (Component, {
   }
 
   const mapStateToProps = (state) => {
-    const { authentication } = state
-    const { formType } = authentication
     const app = state.application || {}
+    const { formType } = app.Settings
     const citizenship = app.Citizenship || {}
     const foreign = app.Foreign || {}
     const errors = app.Errors || {}

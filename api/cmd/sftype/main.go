@@ -23,8 +23,14 @@ func configureDB() api.DatabaseService {
 	settings := &env.Native{}
 	settings.Configure()
 
-	db := &postgresql.Service{Log: logger, Env: settings}
-	db.Configure()
+	dbConf := postgresql.DBConfig{
+		User:     os.Getenv(api.DatabaseUser),
+		Password: os.Getenv(api.DatabasePassword),
+		Address:  os.Getenv(api.DatabaseHost),
+		DBName:   os.Getenv(api.DatabaseName),
+	}
+
+	db := postgresql.NewPostgresService(dbConf, logger)
 
 	return db
 }

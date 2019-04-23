@@ -85,10 +85,6 @@ func (entity *Treatment) Valid() (bool, error) {
 
 // Save the treatment to data storage.
 func (entity *Treatment) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -120,10 +116,6 @@ func (entity *Treatment) Save(context DatabaseService, account int) (int, error)
 
 // Delete the treatment from data storage.
 func (entity *Treatment) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -151,10 +143,6 @@ func (entity *Treatment) Delete(context DatabaseService, account int) (int, erro
 
 // Get the treatment from data storage.
 func (entity *Treatment) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

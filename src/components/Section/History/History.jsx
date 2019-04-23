@@ -63,8 +63,9 @@ const History = (props) => {
 }
 
 function mapStateToProps(state) {
-  const { section, authentication } = state
-  const { formType } = authentication
+  const { section, application } = state
+  const { formType } = application.Settings
+
 
   return {
     ...section,

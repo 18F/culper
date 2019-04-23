@@ -82,10 +82,6 @@ func (entity *PhysicalAddress) Valid() (bool, error) {
 func (entity *PhysicalAddress) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -119,10 +115,6 @@ func (entity *PhysicalAddress) Save(context DatabaseService, account int) (int, 
 func (entity *PhysicalAddress) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -151,10 +143,6 @@ func (entity *PhysicalAddress) Delete(context DatabaseService, account int) (int
 // Get the PhysicalAddress entity.
 func (entity *PhysicalAddress) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

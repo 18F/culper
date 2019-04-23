@@ -17,9 +17,6 @@ type BasicAuthMembership struct {
 
 // Save the basic membership.
 func (entity *BasicAuthMembership) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
@@ -30,9 +27,6 @@ func (entity *BasicAuthMembership) Save(context DatabaseService, account int) (i
 
 // Delete the basic membership.
 func (entity *BasicAuthMembership) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
@@ -45,9 +39,6 @@ func (entity *BasicAuthMembership) Delete(context DatabaseService, account int) 
 
 // Get the basic membership.
 func (entity *BasicAuthMembership) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

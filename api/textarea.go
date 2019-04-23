@@ -34,10 +34,6 @@ func (entity *Textarea) Valid() (bool, error) {
 
 // Save the textarea to data storage.
 func (entity *Textarea) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -47,10 +43,6 @@ func (entity *Textarea) Save(context DatabaseService, account int) (int, error) 
 
 // Delete the textarea from data storage.
 func (entity *Textarea) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -62,10 +54,6 @@ func (entity *Textarea) Delete(context DatabaseService, account int) (int, error
 
 // Get the textarea from data storage.
 func (entity *Textarea) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

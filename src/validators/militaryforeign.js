@@ -54,8 +54,7 @@ export class ForeignContactValidator {
 export class ForeignServiceValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { authentication } = state
-    const { formType } = authentication
+    const { formType } = state.application.Settings
 
     this.formType = formType
 

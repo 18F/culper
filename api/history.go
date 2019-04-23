@@ -1,6 +1,10 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/pkg/errors"
+)
 
 // HistoryResidence represents the payload for the history residence section.
 type HistoryResidence struct {
@@ -47,10 +51,6 @@ func (entity *HistoryResidence) Valid() (bool, error) {
 func (entity *HistoryResidence) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -72,10 +72,6 @@ func (entity *HistoryResidence) Save(context DatabaseService, account int) (int,
 func (entity *HistoryResidence) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -96,10 +92,6 @@ func (entity *HistoryResidence) Delete(context DatabaseService, account int) (in
 // Get will retrieve the entity from the database.
 func (entity *HistoryResidence) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -137,6 +129,30 @@ func (entity *HistoryResidence) Find(context DatabaseService) error {
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
+	return nil
+}
+
+// ClearHistoryResidenceNos clears the necessary Nos from the histroy.residence section for kickback
+func ClearHistoryResidenceNos(context DatabaseService, accountID int) error {
+	residence := HistoryResidence{}
+	_, err := residence.Get(context, accountID)
+	if err != nil {
+		if IsDatabaseErrorNotFound(err) {
+			return nil
+		}
+		return errors.Wrap(err, "Failed to clear nos: unable to load residence")
+	}
+
+	if residence.List != nil && residence.List.Branch != nil {
+		if residence.List.Branch.Value == "No" {
+			residence.List.Branch.Value = ""
+			_, err = residence.Save(context, accountID)
+			if err != nil {
+				return errors.Wrap(err, "Failed to clear nos: unable to save residence")
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -203,10 +219,6 @@ func (entity *HistoryEmployment) Valid() (bool, error) {
 func (entity *HistoryEmployment) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -234,10 +246,6 @@ func (entity *HistoryEmployment) Save(context DatabaseService, account int) (int
 func (entity *HistoryEmployment) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -262,10 +270,6 @@ func (entity *HistoryEmployment) Delete(context DatabaseService, account int) (i
 // Get will retrieve the entity from the database.
 func (entity *HistoryEmployment) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -315,6 +319,77 @@ func (entity *HistoryEmployment) Find(context DatabaseService) error {
 		entity.EmploymentRecord.ID = previous.EmploymentRecordID
 		entity.EmploymentRecordID = previous.EmploymentRecordID
 	})
+	return nil
+}
+
+// ClearHistoryEmploymentNos clears Nos from history.employment
+func ClearHistoryEmploymentNos(context DatabaseService, accountID int) error {
+	employment := HistoryEmployment{}
+	_, err := employment.Get(context, accountID)
+	if err != nil {
+		if IsDatabaseErrorNotFound(err) {
+			return nil
+		}
+		return errors.Wrap(err, "Failed to clear nos: unable to load residence")
+	}
+
+	employmentUpdated := false
+
+	if employment.List != nil && employment.List.Branch != nil {
+		if employment.List.Branch.Value == "No" {
+			employment.List.Branch.Value = ""
+			employmentUpdated = true
+		}
+	}
+
+	if employment.EmploymentRecord != nil {
+		if employment.EmploymentRecord.Value == "No" {
+			employment.EmploymentRecord.Value = ""
+			employmentUpdated = true
+		}
+	}
+
+	// loop through all the records of employment.
+	if employment.List != nil {
+		for _, employmentInstance := range employment.List.Items {
+			reprimandsEntity, repErr := employmentInstance.GetItemValue("Reprimand")
+			if repErr != nil {
+				return errors.Wrap(err, "Failed to pull a reprimand from an employment instance")
+			}
+
+			reprimands := reprimandsEntity.(*Collection)
+			for _, reprimand := range reprimands.Items {
+				HasAdditionalEntity, hasAddErr := reprimand.GetItemValue("Has")
+				if hasAddErr != nil {
+					return errors.Wrap(err, "Failed to pull Has from a reprimand")
+				}
+
+				hasAdditional := HasAdditionalEntity.(*Branch)
+				if hasAdditional.Value == "No" {
+					hasAdditional.Value = ""
+					setErr := reprimand.SetItemValue("Has", hasAdditional)
+					if setErr != nil {
+						return setErr
+					}
+					employmentUpdated = true
+				}
+			}
+
+			if employmentUpdated {
+				setErr := employmentInstance.SetItemValue("Reprimand", reprimands)
+				if setErr != nil {
+					return setErr
+				}
+			}
+		}
+	}
+
+	if employmentUpdated {
+		if _, err := employment.Save(context, accountID); err != nil {
+			return errors.Wrap(err, "Unable to save Employment")
+		}
+	}
+
 	return nil
 }
 
@@ -391,10 +466,6 @@ func (entity *HistoryEducation) Valid() (bool, error) {
 func (entity *HistoryEducation) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -428,10 +499,6 @@ func (entity *HistoryEducation) Save(context DatabaseService, account int) (int,
 func (entity *HistoryEducation) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -460,10 +527,6 @@ func (entity *HistoryEducation) Delete(context DatabaseService, account int) (in
 // Get will retrieve the entity from the database.
 func (entity *HistoryEducation) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -589,10 +652,6 @@ func (entity *HistoryFederal) Valid() (bool, error) {
 func (entity *HistoryFederal) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -620,10 +679,6 @@ func (entity *HistoryFederal) Save(context DatabaseService, account int) (int, e
 func (entity *HistoryFederal) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -648,10 +703,6 @@ func (entity *HistoryFederal) Delete(context DatabaseService, account int) (int,
 // Get will retrieve the entity from the database.
 func (entity *HistoryFederal) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

@@ -30,8 +30,16 @@ func main() {
 	localClock := clock.New()
 	settings := env.Native{}
 	settings.Configure()
-	database := &postgresql.Service{Log: logger, Env: settings}
-	database.Configure()
+
+	dbConf := postgresql.DBConfig{
+		User:     settings.String(api.DatabaseUser),
+		Password: settings.String(api.DatabasePassword),
+		Address:  settings.String(api.DatabaseHost),
+		DBName:   settings.String(api.DatabaseName),
+	}
+
+	database := postgresql.NewPostgresService(dbConf, logger)
+
 	token := jwt.Service{Env: settings}
 	xmlsvc := xml.Service{Log: logger, Clock: localClock}
 	pdfsvc := pdf.Service{Log: logger, Env: settings}
@@ -42,7 +50,8 @@ func main() {
 	if !*flagSkipMigration {
 		ex, _ := os.Executable()
 		migration := api.Migration{Env: settings}
-		if err := migration.Up(filepath.Dir(ex), settings.String(api.GolangEnv), ""); err != nil {
+		connStr := postgresql.PostgresConnectURI(dbConf)
+		if err := migration.Up(connStr, filepath.Dir(ex), settings.String(api.GolangEnv), ""); err != nil {
 			logger.WarnError(api.WarnFailedMigration, err, api.LogFields{})
 		}
 	}

@@ -3,7 +3,7 @@ import { updateApplication } from '../actions/ApplicationActions'
 
 describe('Application reducers', () => {
   it('reducer should return default state', () => {
-    expect(reducer('')(undefined, {})).toEqual({})
+    expect(reducer('', {})(undefined, {})).toEqual({})
   })
 
   it('can update new property', () => {

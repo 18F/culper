@@ -11,7 +11,11 @@ describe('The citizenship item component', () => {
 
   beforeEach(() => {
     const store = mockStore({
-      authentication: { formType: 'SF86' },
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
     })
 
     createComponent = (expected = {}) => (
