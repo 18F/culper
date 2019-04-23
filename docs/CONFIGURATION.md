@@ -30,6 +30,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`DATABASE_USER`](#database_user)                       |                 |                        | X                     |
 | [`DATABASE_PASSWORD`](#database_password)                   |                 |                        | X                     |
 | [`DATABASE_NAME`](#database_name)                       |                 |                        | X                     |
+| [`TEST_DATABASE_NAME`](#database_name)                       |                 |                        | X                     |
 | [`DATABASE_HOST`](#database_host)                       |                 |                        | X                     |
 | [`CORS_ALLOWED`](#cors_allowed)                        | X               |                        | X                     |
 | [`FLUSH_STORAGE`](#flush_storage)                       |                 |                        | X                     |
@@ -193,6 +194,13 @@ PostgreSQL database instance name.
 
 **Target** - Back-end (api)<br>
 **Default** - `postgres`<br>
+
+## `TEST_DATABASE_NAME`
+
+PostgreSQL database instance name for running any tests that require a database.
+
+**Target** - Back-end (api)<br>
+**Default** - `eapp_test`<br>
 
 ## `DATABASE_HOST`
 

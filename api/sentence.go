@@ -148,10 +148,6 @@ func (entity *Sentence) Valid() (bool, error) {
 func (entity *Sentence) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -209,10 +205,6 @@ func (entity *Sentence) Save(context DatabaseService, account int) (int, error) 
 func (entity *Sentence) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -257,10 +249,6 @@ func (entity *Sentence) Delete(context DatabaseService, account int) (int, error
 // Get the Sentence entity.
 func (entity *Sentence) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

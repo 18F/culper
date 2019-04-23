@@ -6,15 +6,6 @@ type DatabaseService struct {
 	SelectCount int
 }
 
-// Configure establishes a new database connection
-func (service *DatabaseService) Configure() {
-}
-
-// CheckTable ensures a the table exists for the persistor.
-func (service *DatabaseService) CheckTable(entity interface{}) error {
-	return nil
-}
-
 // Raw executes a string of SQL.
 func (service *DatabaseService) Raw(query interface{}, params ...interface{}) error {
 	return nil

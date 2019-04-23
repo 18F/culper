@@ -63,10 +63,6 @@ func (entity *Location) Marshal() Payload {
 
 // Save the location to data storage.
 func (entity *Location) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -76,10 +72,6 @@ func (entity *Location) Save(context DatabaseService, account int) (int, error) 
 
 // Delete the location from data storage.
 func (entity *Location) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -91,10 +83,6 @@ func (entity *Location) Delete(context DatabaseService, account int) (int, error
 
 // Get the location from data storage.
 func (entity *Location) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

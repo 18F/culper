@@ -25,10 +25,6 @@ func (entity *CheckboxGroup) Valid() (bool, error) {
 
 // Save the checkbox group to data storage.
 func (entity *CheckboxGroup) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -38,10 +34,6 @@ func (entity *CheckboxGroup) Save(context DatabaseService, account int) (int, er
 
 // Delete the checkbox group to data storage.
 func (entity *CheckboxGroup) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -53,10 +45,6 @@ func (entity *CheckboxGroup) Delete(context DatabaseService, account int) (int, 
 
 // Get the checkbox group to data storage.
 func (entity *CheckboxGroup) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

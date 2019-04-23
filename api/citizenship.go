@@ -441,10 +441,6 @@ func (entity *CitizenshipStatus) Valid() (bool, error) {
 func (entity *CitizenshipStatus) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -610,10 +606,6 @@ func (entity *CitizenshipStatus) Save(context DatabaseService, account int) (int
 func (entity *CitizenshipStatus) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -730,10 +722,6 @@ func (entity *CitizenshipStatus) Delete(context DatabaseService, account int) (i
 // Get will retrieve the entity from the database.
 func (entity *CitizenshipStatus) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1131,10 +1119,6 @@ func (entity *CitizenshipMultiple) Valid() (bool, error) {
 func (entity *CitizenshipMultiple) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1162,10 +1146,6 @@ func (entity *CitizenshipMultiple) Save(context DatabaseService, account int) (i
 func (entity *CitizenshipMultiple) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1190,10 +1170,6 @@ func (entity *CitizenshipMultiple) Delete(context DatabaseService, account int) 
 // Get will retrieve the entity from the database.
 func (entity *CitizenshipMultiple) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1292,10 +1268,6 @@ func (entity *CitizenshipPassports) Valid() (bool, error) {
 func (entity *CitizenshipPassports) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1317,10 +1289,6 @@ func (entity *CitizenshipPassports) Save(context DatabaseService, account int) (
 func (entity *CitizenshipPassports) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1337,10 +1305,6 @@ func (entity *CitizenshipPassports) Delete(context DatabaseService, account int)
 // Get will retrieve the entity from the database.
 func (entity *CitizenshipPassports) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

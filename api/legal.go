@@ -63,10 +63,6 @@ func (entity *LegalCourt) Valid() (bool, error) {
 func (entity *LegalCourt) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -94,10 +90,6 @@ func (entity *LegalCourt) Save(context DatabaseService, account int) (int, error
 func (entity *LegalCourt) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -122,10 +114,6 @@ func (entity *LegalCourt) Delete(context DatabaseService, account int) (int, err
 // Get will retrieve the entity from the database.
 func (entity *LegalCourt) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -239,10 +227,6 @@ func (entity *LegalPoliceOffenses) Valid() (bool, error) {
 func (entity *LegalPoliceOffenses) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -270,10 +254,6 @@ func (entity *LegalPoliceOffenses) Save(context DatabaseService, account int) (i
 func (entity *LegalPoliceOffenses) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -298,10 +278,6 @@ func (entity *LegalPoliceOffenses) Delete(context DatabaseService, account int) 
 // Get will retrieve the entity from the database.
 func (entity *LegalPoliceOffenses) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -415,10 +391,6 @@ func (entity *LegalPoliceAdditionalOffenses) Valid() (bool, error) {
 func (entity *LegalPoliceAdditionalOffenses) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -446,10 +418,6 @@ func (entity *LegalPoliceAdditionalOffenses) Save(context DatabaseService, accou
 func (entity *LegalPoliceAdditionalOffenses) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -474,10 +442,6 @@ func (entity *LegalPoliceAdditionalOffenses) Delete(context DatabaseService, acc
 // Get will retrieve the entity from the database.
 func (entity *LegalPoliceAdditionalOffenses) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -590,10 +554,6 @@ func (entity *LegalPoliceDomesticViolence) Valid() (bool, error) {
 func (entity *LegalPoliceDomesticViolence) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -621,10 +581,6 @@ func (entity *LegalPoliceDomesticViolence) Save(context DatabaseService, account
 func (entity *LegalPoliceDomesticViolence) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -649,10 +605,6 @@ func (entity *LegalPoliceDomesticViolence) Delete(context DatabaseService, accou
 // Get will retrieve the entity from the database.
 func (entity *LegalPoliceDomesticViolence) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -766,10 +718,6 @@ func (entity *LegalInvestigationsDebarred) Valid() (bool, error) {
 func (entity *LegalInvestigationsDebarred) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -797,10 +745,6 @@ func (entity *LegalInvestigationsDebarred) Save(context DatabaseService, account
 func (entity *LegalInvestigationsDebarred) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -825,10 +769,6 @@ func (entity *LegalInvestigationsDebarred) Delete(context DatabaseService, accou
 // Get will retrieve the entity from the (int, database).
 func (entity *LegalInvestigationsDebarred) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -942,10 +882,6 @@ func (entity *LegalInvestigationsHistory) Valid() (bool, error) {
 func (entity *LegalInvestigationsHistory) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -973,10 +909,6 @@ func (entity *LegalInvestigationsHistory) Save(context DatabaseService, account 
 func (entity *LegalInvestigationsHistory) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1001,10 +933,6 @@ func (entity *LegalInvestigationsHistory) Delete(context DatabaseService, accoun
 // Get will retrieve the entity from the database.
 func (entity *LegalInvestigationsHistory) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1118,10 +1046,6 @@ func (entity *LegalInvestigationsRevoked) Valid() (bool, error) {
 func (entity *LegalInvestigationsRevoked) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1149,10 +1073,6 @@ func (entity *LegalInvestigationsRevoked) Save(context DatabaseService, account 
 func (entity *LegalInvestigationsRevoked) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1177,10 +1097,6 @@ func (entity *LegalInvestigationsRevoked) Delete(context DatabaseService, accoun
 // Get will retrieve the entity from the database.
 func (entity *LegalInvestigationsRevoked) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1294,10 +1210,6 @@ func (entity *LegalTechnologyManipulating) Valid() (bool, error) {
 func (entity *LegalTechnologyManipulating) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1325,10 +1237,6 @@ func (entity *LegalTechnologyManipulating) Save(context DatabaseService, account
 func (entity *LegalTechnologyManipulating) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1353,10 +1261,6 @@ func (entity *LegalTechnologyManipulating) Delete(context DatabaseService, accou
 // Get will retrieve the entity from the database.
 func (entity *LegalTechnologyManipulating) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1470,10 +1374,6 @@ func (entity *LegalTechnologyUnauthorized) Valid() (bool, error) {
 func (entity *LegalTechnologyUnauthorized) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1501,10 +1401,6 @@ func (entity *LegalTechnologyUnauthorized) Save(context DatabaseService, account
 func (entity *LegalTechnologyUnauthorized) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1529,10 +1425,6 @@ func (entity *LegalTechnologyUnauthorized) Delete(context DatabaseService, accou
 // Get will retrieve the entity from the database.
 func (entity *LegalTechnologyUnauthorized) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1646,10 +1538,6 @@ func (entity *LegalTechnologyUnlawful) Valid() (bool, error) {
 func (entity *LegalTechnologyUnlawful) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1677,10 +1565,6 @@ func (entity *LegalTechnologyUnlawful) Save(context DatabaseService, account int
 func (entity *LegalTechnologyUnlawful) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1705,10 +1589,6 @@ func (entity *LegalTechnologyUnlawful) Delete(context DatabaseService, account i
 // Get will retrieve the entity from the database.
 func (entity *LegalTechnologyUnlawful) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1822,10 +1702,6 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Valid() (bool, error) {
 func (entity *LegalAssociationsActivitiesToOverthrow) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1853,10 +1729,6 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Save(context DatabaseServi
 func (entity *LegalAssociationsActivitiesToOverthrow) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1881,10 +1753,6 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Delete(context DatabaseSer
 // Get will retrieve the entity from the database.
 func (entity *LegalAssociationsActivitiesToOverthrow) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -1998,10 +1866,6 @@ func (entity *LegalAssociationsAdvocating) Valid() (bool, error) {
 func (entity *LegalAssociationsAdvocating) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2029,10 +1893,6 @@ func (entity *LegalAssociationsAdvocating) Save(context DatabaseService, account
 func (entity *LegalAssociationsAdvocating) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2057,10 +1917,6 @@ func (entity *LegalAssociationsAdvocating) Delete(context DatabaseService, accou
 // Get will retrieve the entity from the database.
 func (entity *LegalAssociationsAdvocating) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -2174,10 +2030,6 @@ func (entity *LegalAssociationsEngagedInTerrorism) Valid() (bool, error) {
 func (entity *LegalAssociationsEngagedInTerrorism) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2205,10 +2057,6 @@ func (entity *LegalAssociationsEngagedInTerrorism) Save(context DatabaseService,
 func (entity *LegalAssociationsEngagedInTerrorism) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2233,10 +2081,6 @@ func (entity *LegalAssociationsEngagedInTerrorism) Delete(context DatabaseServic
 // Get will retrieve the entity from the database.
 func (entity *LegalAssociationsEngagedInTerrorism) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -2350,10 +2194,6 @@ func (entity *LegalAssociationsMembershipOverthrow) Valid() (bool, error) {
 func (entity *LegalAssociationsMembershipOverthrow) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2381,10 +2221,6 @@ func (entity *LegalAssociationsMembershipOverthrow) Save(context DatabaseService
 func (entity *LegalAssociationsMembershipOverthrow) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2409,10 +2245,6 @@ func (entity *LegalAssociationsMembershipOverthrow) Delete(context DatabaseServi
 // Get will retrieve the entity from the database.
 func (entity *LegalAssociationsMembershipOverthrow) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -2526,10 +2358,6 @@ func (entity *LegalAssociationsMembershipViolence) Valid() (bool, error) {
 func (entity *LegalAssociationsMembershipViolence) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2557,10 +2385,6 @@ func (entity *LegalAssociationsMembershipViolence) Save(context DatabaseService,
 func (entity *LegalAssociationsMembershipViolence) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2585,10 +2409,6 @@ func (entity *LegalAssociationsMembershipViolence) Delete(context DatabaseServic
 // Get will retrieve the entity from the database.
 func (entity *LegalAssociationsMembershipViolence) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -2702,10 +2522,6 @@ func (entity *LegalAssociationsTerrorismAssociation) Valid() (bool, error) {
 func (entity *LegalAssociationsTerrorismAssociation) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2733,10 +2549,6 @@ func (entity *LegalAssociationsTerrorismAssociation) Save(context DatabaseServic
 func (entity *LegalAssociationsTerrorismAssociation) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2761,10 +2573,6 @@ func (entity *LegalAssociationsTerrorismAssociation) Delete(context DatabaseServ
 // Get will retrieve the entity from the database.
 func (entity *LegalAssociationsTerrorismAssociation) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -2878,10 +2686,6 @@ func (entity *LegalAssociationsTerroristOrganization) Valid() (bool, error) {
 func (entity *LegalAssociationsTerroristOrganization) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2909,10 +2713,6 @@ func (entity *LegalAssociationsTerroristOrganization) Save(context DatabaseServi
 func (entity *LegalAssociationsTerroristOrganization) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -2937,10 +2737,6 @@ func (entity *LegalAssociationsTerroristOrganization) Delete(context DatabaseSer
 // Get will retrieve the entity from the database.
 func (entity *LegalAssociationsTerroristOrganization) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

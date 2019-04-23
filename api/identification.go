@@ -2,6 +2,8 @@ package api
 
 import (
 	"encoding/json"
+
+	"github.com/pkg/errors"
 )
 
 // IdentificationName represents the payload for the identification name section.
@@ -49,10 +51,6 @@ func (entity *IdentificationName) Valid() (bool, error) {
 func (entity *IdentificationName) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -74,10 +72,6 @@ func (entity *IdentificationName) Save(context DatabaseService, account int) (in
 func (entity *IdentificationName) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -98,10 +92,6 @@ func (entity *IdentificationName) Delete(context DatabaseService, account int) (
 // Get will retrieve the entity from the database.
 func (entity *IdentificationName) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -187,10 +177,6 @@ func (entity *IdentificationBirthPlace) Valid() (bool, error) {
 func (entity *IdentificationBirthPlace) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -212,10 +198,6 @@ func (entity *IdentificationBirthPlace) Save(context DatabaseService, account in
 func (entity *IdentificationBirthPlace) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -236,10 +218,6 @@ func (entity *IdentificationBirthPlace) Delete(context DatabaseService, account 
 // Get will retrieve the entity from the database.
 func (entity *IdentificationBirthPlace) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -337,10 +315,6 @@ func (entity *IdentificationBirthDate) Valid() (bool, error) {
 func (entity *IdentificationBirthDate) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -368,10 +342,6 @@ func (entity *IdentificationBirthDate) Save(context DatabaseService, account int
 func (entity *IdentificationBirthDate) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -396,10 +366,6 @@ func (entity *IdentificationBirthDate) Delete(context DatabaseService, account i
 // Get will retrieve the entity from the database.
 func (entity *IdentificationBirthDate) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -507,10 +473,6 @@ func (entity *IdentificationSSN) Valid() (bool, error) {
 func (entity *IdentificationSSN) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -532,10 +494,6 @@ func (entity *IdentificationSSN) Save(context DatabaseService, account int) (int
 func (entity *IdentificationSSN) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -556,10 +514,6 @@ func (entity *IdentificationSSN) Delete(context DatabaseService, account int) (i
 // Get will retrieve the entity from the database.
 func (entity *IdentificationSSN) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -602,19 +556,19 @@ func (entity *IdentificationSSN) Find(context DatabaseService) error {
 
 // IdentificationContacts represents the payload for the identification contact information section.
 type IdentificationContacts struct {
-	PayloadHomeEmail       Payload `json:"HomeEmail" sql:"-"`
-	PayloadWorkEmail       Payload `json:"WorkEmail" sql:"-"`
+	PayloadHomeEmail    Payload `json:"HomeEmail" sql:"-"`
+	PayloadWorkEmail    Payload `json:"WorkEmail" sql:"-"`
 	PayloadPhoneNumbers Payload `json:"PhoneNumbers" sql:"-"`
 
 	// Validator specific fields
-	HomeEmail       *Email `json:"-"`
-	WorkEmail       *Email `json:"-"`
+	HomeEmail    *Email      `json:"-"`
+	WorkEmail    *Email      `json:"-"`
 	PhoneNumbers *Collection `json:"-"`
 
 	// Persister specific fields
 	ID             int `json:"-"`
-	HomeEmailID       int `json:"-" pg:", fk:HomeEmail"`
-	WorkEmailID       int `json:"-" pg:", fk:WorkEmail"`
+	HomeEmailID    int `json:"-" pg:", fk:HomeEmail"`
+	WorkEmailID    int `json:"-" pg:", fk:WorkEmail"`
 	PhoneNumbersID int `json:"-" pg:", fk:PhoneNumbers"`
 }
 
@@ -683,10 +637,6 @@ func (entity *IdentificationContacts) Valid() (bool, error) {
 func (entity *IdentificationContacts) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -720,10 +670,6 @@ func (entity *IdentificationContacts) Save(context DatabaseService, account int)
 func (entity *IdentificationContacts) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -752,10 +698,6 @@ func (entity *IdentificationContacts) Delete(context DatabaseService, account in
 // Get will retrieve the entity from the database.
 func (entity *IdentificationContacts) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -889,10 +831,6 @@ func (entity *IdentificationOtherNames) Valid() (bool, error) {
 func (entity *IdentificationOtherNames) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -920,10 +858,6 @@ func (entity *IdentificationOtherNames) Save(context DatabaseService, account in
 func (entity *IdentificationOtherNames) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -949,15 +883,11 @@ func (entity *IdentificationOtherNames) Delete(context DatabaseService, account 
 func (entity *IdentificationOtherNames) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID != 0 {
+	if entity.ID != 0 { // DUMB, we just set it to account above, so unless you are calling this with a null account..........
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err
 		}
@@ -1005,6 +935,45 @@ func (entity *IdentificationOtherNames) Find(context DatabaseService) error {
 		entity.List.ID = previous.ListID
 		entity.ListID = previous.ListID
 	})
+	return nil
+}
+
+// ClearIdentificationOtherNamesNos clears nos from identifcation.other_names
+func ClearIdentificationOtherNamesNos(context DatabaseService, accountID int) error {
+	otherNames := IdentificationOtherNames{}
+	_, err := otherNames.Get(context, accountID)
+	if err != nil {
+		if IsDatabaseErrorNotFound(err) {
+			return nil
+		}
+		return errors.Wrap(err, "Unable to load Other Names")
+	}
+
+	otherNamesModified := false
+	if otherNames.HasOtherNames != nil {
+		if otherNames.HasOtherNames.Value == "No" {
+			otherNames.HasOtherNames.Value = ""
+			otherNamesModified = true
+		} else {
+			// the last thing in the list will be another branch, which must also be cleared.
+			if otherNames.List != nil {
+				if otherNames.List.Branch != nil {
+					if otherNames.List.Branch.Value == "No" {
+						otherNames.List.Branch.Value = ""
+						otherNamesModified = true
+					}
+				}
+			}
+		}
+	}
+
+	if otherNamesModified {
+		_, err = otherNames.Save(context, accountID)
+		if err != nil {
+			return errors.Wrap(err, "Unable to save Other Names")
+		}
+	}
+
 	return nil
 }
 
@@ -1135,10 +1104,6 @@ func (entity *IdentificationPhysical) Valid() (bool, error) {
 func (entity *IdentificationPhysical) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1190,10 +1155,6 @@ func (entity *IdentificationPhysical) Save(context DatabaseService, account int)
 func (entity *IdentificationPhysical) Delete(context DatabaseService, account int) (int, error) {
 	entity.ID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -1234,10 +1195,6 @@ func (entity *IdentificationPhysical) Delete(context DatabaseService, account in
 // Get will retrieve the entity from the database.
 func (entity *IdentificationPhysical) Get(context DatabaseService, account int) (int, error) {
 	entity.ID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

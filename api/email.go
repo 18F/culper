@@ -37,10 +37,6 @@ func (entity *Email) Valid() (bool, error) {
 
 // Save the email to data storage.
 func (entity *Email) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -50,10 +46,6 @@ func (entity *Email) Save(context DatabaseService, account int) (int, error) {
 
 // Delete the email from data storage.
 func (entity *Email) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -65,10 +57,6 @@ func (entity *Email) Delete(context DatabaseService, account int) (int, error) {
 
 // Get the email from data storage.
 func (entity *Email) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err
