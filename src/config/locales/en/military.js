@@ -75,7 +75,7 @@ export const military = {
       remember: {
         title: "Can't remember your registration number?",
         message:
-          'The Selective Service website, [www.sss.gov](https://www.sss.gov/) can help provide the registration number for persons who have registered. Use this link to look up your registration number then come back and enter it above.',
+          'The Selective Service website, [www.sss.gov](https://www.sss.gov/) can help provide the registration number for persons who have registered.',
         note: '',
       },
     },
