@@ -8,7 +8,7 @@ import (
 	"os"
 	"unicode"
 
-	_ "github.com/lib/pq"
+	"github.com/lib/pq"
 	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -48,6 +48,7 @@ func resetDB(dbName string, force bool) error {
 	if openErr != nil {
 		return errors.Wrap(openErr, "Error opening connection")
 	}
+	defer db.Close()
 
 	check, checkErr := db.Exec("SELECT 1 AS result FROM pg_database WHERE datname=$1", dbName)
 	if checkErr != nil {
@@ -75,7 +76,7 @@ func resetDB(dbName string, force bool) error {
 
 		}
 
-		dropCmd := "DROP DATABASE " + dbName
+		dropCmd := "DROP DATABASE " + pq.QuoteIdentifier(dbName)
 		_, dropErr := db.Exec(dropCmd)
 		if dropErr != nil {
 			return dropErr
@@ -83,7 +84,7 @@ func resetDB(dbName string, force bool) error {
 
 	}
 
-	createCmd := "CREATE DATABASE " + dbName
+	createCmd := "CREATE DATABASE " + pq.QuoteIdentifier(dbName)
 	_, createErr := db.Exec(createCmd)
 	if createErr != nil {
 		return errors.Wrap(createErr, "Error Creating db")
@@ -109,7 +110,5 @@ func main() {
 		fmt.Println(resetErr)
 		os.Exit(1)
 	}
-
-	fmt.Println("HI THERE")
 
 }
