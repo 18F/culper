@@ -1,7 +1,8 @@
-import { env, navigationWalker } from 'config'
+import { env } from 'config'
 import { api } from 'services'
-import schema, { unschema } from 'schema'
-import validate from 'validators'
+import { unschema } from 'schema'
+
+import * as actionTypes from 'constants/actionTypes'
 
 export function updateApplication(section, property, values) {
   return {
@@ -32,31 +33,40 @@ export function getApplicationState(done) {
         if (locked) {
           return
         }
-        return api.form().then((r) => {
-          formData = r.data
-          const formType = window.formType ? window.formType : formData.Metadata.form_type
 
-          dispatch(updateApplication('Settings', 'formType', formType))
-          dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
-          for (const section in formData) {
-            for (const subsection in formData[section]) {
-              dispatch(
-                updateApplication(
-                  section,
-                  subsection,
-                  unschema(formData[section][subsection])
+        api
+          .form()
+          .then((r) => {
+            formData = r.data
+            const formType = window.formType ? window.formType : formData.Metadata.form_type
+
+            dispatch(updateApplication('Settings', 'formType', formType))
+            dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
+
+            /* eslint no-restricted-syntax: 0 */
+            /* eslint guard-for-in: 0 */
+            for (const section in formData) {
+              for (const subsection in formData[section]) {
+                dispatch(
+                  updateApplication(
+                    section,
+                    subsection,
+                    unschema(formData[section][subsection])
+                  )
                 )
-              )
+              }
             }
-          }
-        })
+          })
       })
       .then(() => {
         if (locked) {
           return
         }
 
-        validateApplication(dispatch, formData)
+        dispatch({
+          type: actionTypes.VALIDATE_FORM_DATA,
+        })
+
         if (done) {
           done()
         }
@@ -67,49 +77,9 @@ export function getApplicationState(done) {
   }
 }
 
-export function validateApplication(dispatch, application = {}) {
-  navigationWalker((path, child) => {
-    if (path.length && path[0].store && child.store && child.validator) {
-      let sectionName = path[0].url
-      let data
-      // TODO HACK for moving Passports from Foreign to Citizenship
-      if (path[0].url === 'citizenship' && child.store === 'Passport') {
-        sectionName = 'foreign'
-        data = application.Foreign
-      } else {
-        sectionName = path[0].url
-        data = (application[path[0].store] || {})[child.store] || {}
-      }
-
-      let subsectionName = child.url
-      if (path.length > 1) {
-        for (let i = path.length - 1; i > 0; i -= 1) {
-          subsectionName = `${path[i].url}/${subsectionName}`
-        }
-      }
-
-      let valid = null
-      try {
-        if (data.type && data.props) {
-          data = schema(data.type, unschema(data.props))
-        }
-        valid = validate(data)
-      } catch (e) {
-        valid = null
-      }
-
-      dispatch(
-        reportCompletion(
-          sectionName.toLowerCase(),
-          subsectionName.toLowerCase(),
-          valid
-        )
-      )
-    }
-  })
-}
-
-// Special action that provides a way to flush all errors for a section+subsection upon entry so it may be stored with the re-validated data.
+/* Special action that provides a way to flush all errors for a section+subsection upon entry so
+ * it may be stored with the re-validated data.
+ */
 export function clearErrors(property, subsection) {
   const section = 'Errors'
   return {
