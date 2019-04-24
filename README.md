@@ -18,7 +18,7 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
 
 ## Project Management
 
-The project team utilizes [GitHub Issues][9] to administer User Stories and Tasks, prioritized and tracked in [a Kanban board](https://github.com/18F/e-QIP-prototype/projects/1). Higher-level and non-development tasks are tracked in [a Trello board](https://trello.com/b/xexcFZ81/eapp-internal).
+The project team primarily utilizes a [private NBIS tool](https://docs.google.com/document/d/1X-4M4-hLOziK6CyXoe8GhdfSjzzY5EYQLXcLmXpNqds) to administer user stories, defects, and tasks. Users of this open source code however are welcome to report issues via [GitHub](https://github.com/18F/e-QIP-prototype/issues). Higher-level and non-development tasks are tracked in [a Trello board](https://trello.com/b/xexcFZ81/eapp-internal).
 
 ## Development
 
