@@ -18,7 +18,10 @@ const configureStore = (params) => {
 
   switch (process.env.NODE_ENV) {
     case 'test':
-      return createStore(rootReducer)
+      return createStore(
+        rootReducer,
+        applyMiddleware(...middleware)
+      )
 
     case 'production':
       return createStore(

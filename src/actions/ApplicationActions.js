@@ -4,6 +4,10 @@ import { unschema } from 'schema'
 
 import * as actionTypes from 'constants/actionTypes'
 
+export const validateFormData = () => ({
+  type: actionTypes.VALIDATE_FORM_DATA,
+})
+
 export function updateApplication(section, property, values) {
   return {
     type: `${section}.${property}`,
@@ -63,9 +67,7 @@ export function getApplicationState(done) {
           return
         }
 
-        dispatch({
-          type: actionTypes.VALIDATE_FORM_DATA,
-        })
+        dispatch(validateFormData())
 
         if (done) {
           done()

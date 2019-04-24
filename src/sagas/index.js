@@ -10,7 +10,7 @@ import { validateSection } from 'helpers/validation'
 
 import { reportCompletion } from 'actions/ApplicationActions'
 
-function* updateSectionStatus(section, store = '', state = {}) {
+export function* updateSectionStatus(section, store = '', state = {}) {
   if (!section.subsections && !section.storeKey) {
     yield
   } else if (section.subsections) {
@@ -31,7 +31,7 @@ function* updateSectionStatus(section, store = '', state = {}) {
       sectionData = application[store][section.storeKey] || {}
     }
 
-    const isValid = validateSection({ ...section, data: sectionData })
+    const isValid = yield call(validateSection, { ...section, data: sectionData })
 
     yield put(reportCompletion(
       sectionName,
@@ -41,16 +41,18 @@ function* updateSectionStatus(section, store = '', state = {}) {
   }
 }
 
-function* validateFormData() {
+export const selectState = state => state
+
+export function* validateFormData() {
   const formSections = yield select(nestedFormSectionsSelector)
-  const state = yield select(s => s)
+  const state = yield select(selectState)
   yield all(formSections.map(section => call(updateSectionStatus, section, '', state)))
 }
 
-function* validateApplication() {
+export function* validateApplication() {
   yield takeLatest(actionTypes.VALIDATE_FORM_DATA, validateFormData)
 }
 
 export default function* rootSaga() {
-  yield validateApplication()
+  yield call(validateApplication)
 }
