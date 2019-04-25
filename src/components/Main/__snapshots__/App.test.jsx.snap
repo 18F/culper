@@ -845,9 +845,6 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     Logout
                   </a>
                 </div>
-                <h1
-                  className="title"
-                />
               </div>
             </div>
           </div>
@@ -3011,9 +3008,6 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     Logout
                   </a>
                 </div>
-                <h1
-                  className="title"
-                />
               </div>
             </div>
           </div>
@@ -5781,9 +5775,6 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                     Logout
                   </a>
                 </div>
-                <h1
-                  className="title"
-                />
               </div>
             </div>
           </div>

@@ -486,14 +486,8 @@ export const reduceSubsections = (sections, parentPath, breadcrumbs = []) => (
         : section.path
 
       /* eslint no-param-reassign: 0 */
-      if (parentPath) {
-        breadcrumbs.push(section.label)
-      } else {
-        breadcrumbs = [section.label]
-      }
-
       accumulator = accumulator
-        .concat(reduceSubsections(section.subsections, builtPath, breadcrumbs))
+        .concat(reduceSubsections(section.subsections, builtPath, [...breadcrumbs, section.label]))
     } else {
       accumulator.push({
         ...section,

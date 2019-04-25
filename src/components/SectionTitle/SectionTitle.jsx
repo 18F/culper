@@ -30,7 +30,7 @@ const trail = crumbs => (
   })
 )
 
-const SectionTitle = ({ location }) => {
+export const SectionTitle = ({ location }) => {
   const formSection = FLAT_SF86.find(s => s.fullPath === location.pathname)
 
   if (!formSection || !formSection.breadcrumbs) {
