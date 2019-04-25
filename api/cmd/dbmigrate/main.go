@@ -38,6 +38,7 @@ func runMigrations(dbName string, migrationsPath string) error {
 		Password: settings.String(api.DatabasePassword),
 		Address:  settings.String(api.DatabaseHost),
 		DBName:   dbName,
+		SSLMode:  settings.String(api.DatabaseSSLMode),
 	}
 
 	connStr := postgresql.PostgresConnectURI(dbConf)

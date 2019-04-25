@@ -40,6 +40,7 @@ func resetDB(dbName string, force bool) error {
 		Password: settings.String(api.DatabasePassword),
 		Address:  settings.String(api.DatabaseHost),
 		DBName:   "template1", // template1 exists on all default postgres instances.
+		SSLMode:  settings.String(api.DatabaseSSLMode),
 	}
 
 	connStr := postgresql.PostgresConnectURI(dbConf)
@@ -52,7 +53,7 @@ func resetDB(dbName string, force bool) error {
 
 	check, checkErr := db.Exec("SELECT 1 AS result FROM pg_database WHERE datname=$1", dbName)
 	if checkErr != nil {
-		return errors.Wrap(checkErr, fmt.Sprintf("ERROR Checking for existence of %s", dbName))
+		return errors.Wrap(checkErr, fmt.Sprintf("ERROR Checking for existence of %s", connStr))
 	}
 
 	checkCount, _ := check.RowsAffected()
