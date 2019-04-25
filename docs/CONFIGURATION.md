@@ -30,8 +30,9 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`DATABASE_USER`](#database_user)                       |                 |                        | X                     |
 | [`DATABASE_PASSWORD`](#database_password)                   |                 |                        | X                     |
 | [`DATABASE_NAME`](#database_name)                       |                 |                        | X                     |
-| [`TEST_DATABASE_NAME`](#database_name)                       |                 |                        | X                     |
+| [`TEST_DATABASE_NAME`](#test_database_name)                       |                 |                        | X                     |
 | [`DATABASE_HOST`](#database_host)                       |                 |                        | X                     |
+| [`DATABASE_SSLMODE`](#database_sslmode)                       |                 |                        | X                     |
 | [`CORS_ALLOWED`](#cors_allowed)                        | X               |                        | X                     |
 | [`FLUSH_STORAGE`](#flush_storage)                       |                 |                        | X                     |
 | [`USPS_API_API_KEY`](#usps_api_api_key)                    |                 |                        | X                     |
@@ -208,6 +209,13 @@ PostgreSQL database host name and port.
 
 **Target** - Back-end (api)<br>
 **Default** - `localhost:5432`<br>
+
+## `DATABASE_SSLMODE`
+
+The PostgreSQL sslmode to use to connect to the db.
+
+**Target** - Back-end (api)<br>
+**Default** - `require`<br>
 
 ## `CORS_ALLOWED`
 

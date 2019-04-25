@@ -137,6 +137,12 @@ const (
 	// Default: `postgres`
 	DatabaseName = "DATABASE_NAME"
 
+	// DatabaseSSLMode The PostgreSQL sslmode to use to connect to the db
+	//
+	// Target: Back-end (api)
+	// Default: `require`
+	DatabaseSSLMode = "DATABASE_SSLMODE"
+
 	// TestDatabaseName PostgreSQL database instance name for tests
 	//
 	// Target: Back-end (api)

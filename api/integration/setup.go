@@ -38,6 +38,7 @@ func cleanTestServices() serviceSet {
 		Password: env.String(api.DatabasePassword),
 		Address:  env.String(api.DatabaseHost),
 		DBName:   env.String(api.TestDatabaseName),
+		SSLMode:  env.String(api.DatabaseSSLMode),
 	}
 
 	db := postgresql.NewPostgresService(dbConf, log)

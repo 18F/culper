@@ -1,6 +1,7 @@
 package postgresql
 
 import (
+	"crypto/tls"
 	"fmt"
 	"net/url"
 	"time"
@@ -23,6 +24,7 @@ type DBConfig struct {
 	Password string
 	Address  string
 	DBName   string
+	SSLMode  string
 }
 
 // PostgresConnectURI creates a connection string, which is used by the golang sql Open() function
@@ -50,6 +52,12 @@ func PostgresConnectURI(conf DBConfig) string {
 	host := conf.Address
 	uri.Host = host
 
+	if conf.SSLMode != "" {
+		params := url.Values{}
+		params.Set("sslmode", conf.SSLMode)
+		uri.RawQuery = params.Encode()
+	}
+
 	return uri.String()
 }
 
@@ -59,12 +67,28 @@ func NewPostgresService(config DBConfig, logger api.LogService) *Service {
 		Log: logger,
 	}
 
-	db := pg.Connect(&pg.Options{
+	options := &pg.Options{
 		User:     config.User,
 		Password: config.Password,
 		Addr:     config.Address,
 		Database: config.DBName,
-	})
+	}
+
+	if config.SSLMode != "" {
+		// Copied from the implementation of go-pg /sigh
+		switch config.SSLMode {
+		case "allow", "prefer", "require":
+			options.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+		case "disable":
+			options.TLSConfig = nil
+		default:
+			service.Log.Warn("Unknown PG sslmdode specified, ignoring", api.LogFields{
+				"sslmode": config.SSLMode,
+			})
+		}
+	}
+
+	db := pg.Connect(options)
 
 	// Add logging
 	db.OnQueryProcessed(func(event *pg.QueryProcessedEvent) {
