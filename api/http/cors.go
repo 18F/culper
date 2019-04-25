@@ -9,6 +9,11 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// Default to a preflight cache of 10 minutes, chosen to match the value
+// that Chrome caps its max age to (ostensibly to minimize risk of poisoned
+// cache). As the intent of a preflight is to protect old, non-CORS-aware
+// servers, and the CORS Origin is just our own frontend, and we are using TLS,
+// it's not an applicable risk here.
 const defaultMaxAge = 600
 
 // CORSHandler is the handler for CORS.
