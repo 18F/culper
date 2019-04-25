@@ -170,9 +170,8 @@ export const identification = {
     title: 'Provide your contact information',
     help: {
       email: {
-        title: 'Email addresses are not required',
-        message:
-          'Email addresses are not required but may assist in the completion of your background investigation.',
+        title: 'One (1) email address is required',
+        message: 'Etiher one work or one personal email is required for the completion of your background investigation.',
         note: 'Email format example: name@example.com',
       },
       phoneNumber: {
