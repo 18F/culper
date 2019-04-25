@@ -72,7 +72,8 @@ export class Advocating extends Subsection {
     return (
       <div
         className="section-content legal-associations-advocating"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_ASSOCIATIONS_ADVOCATING.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.associations.advocating')}</h1>
         <Branch

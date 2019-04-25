@@ -89,7 +89,8 @@ class Disciplinary extends Subsection {
     return (
       <div
         className="section-content disciplinary"
-        {...super.dataAttributes(this.props)}
+        data-section={MILITARY.key}
+        data-subsection={MILITARY_DISCIPLINARY.key}
       >
         <h1 className="section-header">{i18n.t('military.destination.disciplinary')}</h1>
         <Branch

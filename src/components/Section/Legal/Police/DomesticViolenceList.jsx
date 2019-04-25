@@ -74,7 +74,8 @@ export class DomesticViolenceList extends Subsection {
     return (
       <div
         className="section-content domestic-violence-list"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_POLICE_DOMESTIC_VIOLENCE.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.police.domesticViolence')}</h1>
         <Branch

@@ -73,7 +73,8 @@ export class Manipulating extends Subsection {
     return (
       <div
         className="section-content legal-technology-manipulating"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_TECHNOLOGY_MANIPULATING.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.technology.manipulating')}</h1>
         <Branch

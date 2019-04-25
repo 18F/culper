@@ -53,7 +53,11 @@ export class ApplicantName extends Subsection {
       ''}`.trim()
 
     return (
-      <div className={klass} {...super.dataAttributes()}>
+      <div
+        className={klass}
+        data-section={IDENTIFICATION.key}
+        data-subsection={IDENTIFICATION_NAME.key}
+      >
         <h1 className="section-header">{i18n.t('identification.destination.name')}</h1>
         <Field
           title={i18n.t('identification.name.title')}

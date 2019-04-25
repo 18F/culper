@@ -82,7 +82,8 @@ export class PrescriptionUses extends Subsection {
     return (
       <div
         className="section-content prescription-uses"
-        {...super.dataAttributes()}
+        data-section={SUBSTANCE_USE.key}
+        data-subsection={SUBSTANCE_USE_DRUGS_MISUSE.key}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.misuse')}</h1>
         <Branch

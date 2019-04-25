@@ -98,7 +98,8 @@ class History extends Subsection {
     return (
       <div
         className="section-content military-history"
-        {...super.dataAttributes(this.props)}
+        data-section={MILITARY.key}
+        data-subsection={MILITARY_HISTORY.key}
       >
         <h1 className="section-header">{i18n.t('military.destination.history')}</h1>
         <Branch

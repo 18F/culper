@@ -73,7 +73,8 @@ export class Political extends Subsection {
     return (
       <div
         className="section-content foreign-business-political"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_BUSINESS_POLITICAL.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.business.political')}</h1>
         <Branch

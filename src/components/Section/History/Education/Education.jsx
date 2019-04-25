@@ -76,7 +76,8 @@ export class Education extends Subsection {
     return (
       <div
         className="section-content education"
-        {...super.dataAttributes()}
+        data-section={HISTORY.key}
+        data-subsection={HISTORY_EDUCATION.key}
       >
         <Accordion
           scrollToTop={this.props.scrollToTop}

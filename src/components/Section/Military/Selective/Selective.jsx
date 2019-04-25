@@ -107,7 +107,8 @@ class Selective extends Subsection {
     return (
       <div
         className="section-content selective"
-        {...super.dataAttributes(this.props)}
+        data-section={MILITARY.key}
+        data-subsection={MILITARY_SELECTIVE.key}
       >
         <h1 className="section-header">{i18n.t('military.destination.selective')}</h1>
         <Branch

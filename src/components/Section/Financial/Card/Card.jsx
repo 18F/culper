@@ -84,7 +84,8 @@ export class Card extends Subsection {
     return (
       <div
         className="section-content card-abuse"
-        {...super.dataAttributes()}
+        data-section={FINANCIAL.key}
+        data-subsection={FINANCIAL_CARD.key}
       >
         <h1 className="section-header">{i18n.t('financial.destination.card')}</h1>
         <Branch

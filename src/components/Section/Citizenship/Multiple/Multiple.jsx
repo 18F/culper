@@ -84,7 +84,8 @@ export class Multiple extends Subsection {
     return (
       <div
         className="section-content multiple"
-        {...super.dataAttributes()}
+        data-section={CITIZENSHIP.key}
+        data-subsection={CITIZENSHIP_MULTIPLE.key}
       >
         <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
         <Branch
