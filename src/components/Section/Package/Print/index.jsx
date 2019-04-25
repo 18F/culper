@@ -41,7 +41,7 @@ const blobFromBase64 = (base64, contentType = '', size = 512) => {
   return new window.Blob(buffer, { type: contentType })
 }
 
-class PackagePrint extends React.Component {
+export class PackagePrint extends React.Component {
   constructor(props) {
     super(props)
 
