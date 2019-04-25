@@ -6,6 +6,8 @@ import configureMockStore from 'redux-mock-store'
 
 import { PackagePrint } from './index'
 
+jest.mock('services')
+
 describe('The PackagePrint component', () => {
   it('renders without errors', () => {
     const component = shallow(<PackagePrint />)

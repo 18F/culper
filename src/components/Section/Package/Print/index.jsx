@@ -103,6 +103,9 @@ export class PackagePrint extends React.Component {
           attachments: response.data || [],
         })
       })
+      .catch((e) => {
+        console.warn('Error getting attachments', e)
+      })
   }
 
   download = (id) => {
