@@ -32,8 +32,12 @@ const trail = crumbs => (
 
 const SectionTitle = ({ location }) => {
   const formSection = FLAT_SF86.find(s => s.fullPath === location.pathname)
-  const title = trail(formSection.breadcrumbs)
 
+  if (!formSection || !formSection.breadcrumbs) {
+    return null
+  }
+
+  const title = trail(formSection.breadcrumbs)
   return <h1 className="title">{title}</h1>
 }
 
