@@ -478,7 +478,7 @@ export const reviewSections = {
   ],
 }
 
-export const reduceSubsections = (sections, parentPath) => (
+export const reduceSubsections = (sections, parentPath, breadcrumbs = []) => (
   sections.reduce((accumulator, section) => {
     if (section.subsections && section.subsections.length) {
       const builtPath = parentPath
@@ -486,13 +486,22 @@ export const reduceSubsections = (sections, parentPath) => (
         : section.path
 
       /* eslint no-param-reassign: 0 */
-      accumulator = accumulator.concat(reduceSubsections(section.subsections, builtPath))
+      if (parentPath) {
+        breadcrumbs.push(section.label)
+      } else {
+        breadcrumbs = [section.label]
+      }
+
+      accumulator = accumulator
+        .concat(reduceSubsections(section.subsections, builtPath, breadcrumbs))
     } else {
       accumulator.push({
         ...section,
         fullPath: `/form/${parentPath}/${section.path}`,
+        breadcrumbs: [...breadcrumbs, section.label],
       })
     }
+
     return accumulator
   }, [])
 )
