@@ -33,6 +33,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`TEST_DATABASE_NAME`](#database_name)                       |                 |                        | X                     |
 | [`DATABASE_HOST`](#database_host)                       |                 |                        | X                     |
 | [`CORS_ALLOWED`](#cors_allowed)                        | X               |                        | X                     |
+| [`CORS_MAX_AGE`](#cors_max_age)                    |                 |                        | X                     |
 | [`FLUSH_STORAGE`](#flush_storage)                       |                 |                        | X                     |
 | [`USPS_API_API_KEY`](#usps_api_api_key)                    |                 |                        | X                     |
 | [`JWT_SECRET`](#jwt_secret)                          | X               |                        | X                     |
@@ -224,6 +225,23 @@ Whitelist of address(es) for cross-origin resource sharing (CORS). CORS restrict
 
 **Target** - Back-end (api)<br>
 **Default** - *empty*<br>
+
+## `CORS_MAX_AGE`
+
+Sets the `Access-Control-Max-Age` header in the response to a cross-origin
+resources sharing (CORS) preflight request (i.e., `HTTP OPTIONS`).
+
+The value indicates the number of seconds the preflight results should be
+cached by the browser. Chrome caps maximum age to 10 minutes. FireFox caps
+it to 24 hours. Safari caps it to 5 minutes.
+
+Preflight caching is done against the host/URL/headers. Setting this to zero
+will disable the browser preflight cache and result in every CORS call being
+preceeded by a preflight HTTP OPTIONS request.
+
+**Target** - Back-end (api)<br>
+**Default** - `600`<br>
+
 
 ## `FLUSH_STORAGE`
 
