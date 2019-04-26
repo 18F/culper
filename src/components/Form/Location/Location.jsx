@@ -867,7 +867,6 @@ Location.defaultProps = {
   required: false,
   addressBooks: {},
   addressBook: '',
-  disallowPoBox: false,
   isPoBoxAllowed: true,
   onUpdate: queue => {},
   dispatch: action => {},
