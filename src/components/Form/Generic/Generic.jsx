@@ -377,7 +377,7 @@ Generic.errors = [
 
       const re = new RegExp(props.pattern)
       return re.test(value)
-    }
+    },
   },
   {
     code: 'status',

@@ -49,20 +49,28 @@ export default class Street extends ValidationElement {
   }
 
   render() {
+    const label = this.label()
+    const props = {
+      name: this.props.name,
+      className: this.props.className,
+      label,
+      placeholder: this.props.placeholder,
+      value: this.state.value,
+      onUpdate: this.props.onUpdate,
+      onError: this.handleError,
+      onFocus: this.props.onFocus,
+      onBlur: this.props.onBlur,
+      required: this.props.required,
+      disabled: this.props.disabled,
+    }
+
+    if (!this.props.isPoBoxAllowed) {
+      props.pattern = /^((?!PO Box|P.O. Box|Post Office Box).)*$/i
+      props.prefix = 'poBox'
+    }
+
     return (
-      <Text
-        name={this.props.name}
-        className={this.props.className}
-        label={this.label()}
-        placeholder={this.props.placeholder}
-        value={this.state.value}
-        onUpdate={this.props.onUpdate}
-        onError={this.handleError}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
-        required={this.props.required}
-        disabled={this.props.disabled}
-      />
+      <Text {...props} />
     )
   }
 }

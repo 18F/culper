@@ -128,13 +128,13 @@ class AlternateAddress extends ValidationElement {
               {...this.prepareProps({
                 country: 'POSTOFFICE',
                 disableToggle: true,
-                layout: Location.US_ADDRESS
+                layout: Location.US_ADDRESS,
               })}
             />
           </Field>
         </Show>
         <Show when={this.isMilitaryAddress()}>
-          <Field 
+          <Field
             title={i18n.t('address.physicalLocationRequired')}
             titleSize="h4">
             <Location
@@ -144,7 +144,8 @@ class AlternateAddress extends ValidationElement {
                 geocode: true,
                 streetLabel: i18n.t('address.physical.street.label'),
                 cityLabel: i18n.t('address.physical.city.label'),
-                layout: this.props.layout
+                layout: this.props.layout,
+                isPoBoxAllowed: false,
               })}
             />
           </Field>
