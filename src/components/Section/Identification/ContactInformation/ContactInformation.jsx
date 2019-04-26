@@ -63,7 +63,7 @@ export class ContactInformation extends Subsection {
     })
   }
 
-  updatePhoneNumbers(values) {
+  updatePhoneNumbers = (values) => {
     this.update({
       PhoneNumbers: values,
     })
@@ -143,7 +143,7 @@ export class ContactInformation extends Subsection {
         <Field
           title={i18n.t('identification.contacts.heading.emailHome')}
           titleSize="h4"
-          optional={WorkEmail.value}
+          optional={!!WorkEmail.value}
           scrollIntoView={this.props.scrollIntoView}
         >
           <Email
@@ -155,11 +155,10 @@ export class ContactInformation extends Subsection {
             required={isReview && !WorkEmail.value}
           />
         </Field>
-
         <Field
           title={i18n.t('identification.contacts.heading.emailWork')}
           titleSize="h4"
-          optional={HomeEmail.value}
+          optional={!!HomeEmail.value}
           scrollIntoView={this.props.scrollIntoView}
         >
           <Email

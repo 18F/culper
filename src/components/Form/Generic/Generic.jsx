@@ -153,27 +153,34 @@ export default class Generic extends ValidationElement {
     this.setState(updates)
   }
 
-  errors(value, props = this.props) {
-    return (
-      this.props.onError(
-        value,
-        this.constructor.errors.map(err => {
-          return {
-            code: err.code,
-            valid: err.func(value, props),
-            uid: this.state.uid
-          }
-        })
-      ) || []
-    )
+
+  componentDidUpdate(prevProps) {
+    // Written specifically for Email fields that are dependent on each other
+    // If a fields requiredness changes, check validations again.
+    if (this.props.required !== prevProps.required) {
+      this.handleValidation()
+    }
   }
+
+  errors = (value, props = this.props) => (
+    this.props.onError(
+      value,
+      this.constructor.errors.map(err => ({
+        code: err.code,
+        valid: err.func(value, props),
+        uid: this.state.uid,
+      }))
+    ) || []
+  )
 
   /**
    * Handle the change event.
    */
-  handleChange(event) {
+  handleChange = (event) => {
     event.persist()
-    this.setState({ value: event.target.value }, () => {
+    this.setState({
+      value: event.target.value,
+    }, () => {
       super.handleChange(event)
     })
   }
@@ -181,9 +188,11 @@ export default class Generic extends ValidationElement {
   /**
    * Handle the focus event.
    */
-  handleFocus(event) {
+  handleFocus = (event) => {
     event.persist()
-    this.setState({ focus: true }, () => {
+    this.setState({
+      focus: true,
+    }, () => {
       super.handleFocus(event)
     })
   }
@@ -191,9 +200,12 @@ export default class Generic extends ValidationElement {
   /**
    * Handle the blur event.
    */
-  handleBlur(event) {
+  handleBlur = (event) => {
     event.persist()
-    this.setState({ focus: false, value: `${this.state.value}`.trim() }, () => {
+    this.setState({
+      focus: false,
+      value: `${this.state.value}`.trim(),
+    }, () => {
       super.handleChange(event)
       super.handleBlur(event)
     })
@@ -202,48 +214,53 @@ export default class Generic extends ValidationElement {
   /**
    * Execute validation checks on the value.
    */
-  handleValidation(event) {
+  handleValidation = () => {
     const errors = this.errors(`${this.state.value}`.trim())
     this.setState({
       error: errors.some(x => x.valid === false),
-      valid: errors.every(x => x.valid === true)
+      valid: errors.every(x => x.valid === true),
     })
   }
 
   /**
    * Handle the key down event.
    */
-  handleKeyDown(event) {
-    autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
+  handleKeyDown = (event) => {
+    autotab(
+      event,
+      this.props.maxlength,
+      this.props.tabBack,
+      this.props.tabNext,
+    )
   }
 
   /**
    * Prevents clipboard events from making changes to the value of the elements
    */
-  disallowClipboard(event) {
+  disallowClipboard = (event) => {
     event.preventDefault()
   }
 
   /**
    * Generated name for the error message.
    */
-  errorName() {
-    return `${this.props.name || ''}-error`
-  }
+  errorName = () => (
+    `${this.props.name || ''}-error`
+  )
 
   /**
    * Style classes applied to the wrapper.
    */
-  divClass() {
-    return `${this.props.className || ''} ${
+  divClass = () => (
+    `${this.props.className || ''} ${
       !this.props.disabled && this.state.error ? 'usa-input-error' : ''
     }`.trim()
-  }
+  )
 
   /**
    * Style classes applied to the label element.
    */
-  labelClass() {
+  labelClass = () => {
     if (this.props.disabled) {
       return 'disabled'
     }
@@ -254,7 +271,7 @@ export default class Generic extends ValidationElement {
   /**
    * Style classes applied to the input element.
    */
-  inputClass() {
+  inputClass = () => {
     if (this.props.disabled) {
       return null
     }
@@ -341,9 +358,7 @@ Generic.defaultProps = {
   ariaLabel: '',
   tabNext: () => {},
   tabBack: () => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onError: (value, arr) => arr,
 }
 
 Generic.errors = [
@@ -363,10 +378,10 @@ Generic.errors = [
         return null
       }
       return (
-        value.length >= parseInt(props.minlength) &&
-        value.length <= parseInt(props.maxlength)
+        value.length >= parseInt(props.minlength, 10)
+        && value.length <= parseInt(props.maxlength, 10)
       )
-    }
+    },
   },
   {
     code: 'pattern',
@@ -377,7 +392,7 @@ Generic.errors = [
 
       const re = new RegExp(props.pattern)
       return re.test(value)
-    }
+    },
   },
   {
     code: 'status',
@@ -387,6 +402,6 @@ Generic.errors = [
       }
 
       return props.status
-    }
-  }
+    },
+  },
 ]
