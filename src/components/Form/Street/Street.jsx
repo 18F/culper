@@ -65,9 +65,8 @@ export default class Street extends ValidationElement {
     }
 
     if (!this.props.isPoBoxAllowed) {
-      props.pattern = '^((?!PO Box|P.O. Box|Post Office Box).)*$'
+      props.pattern = /^((?!PO Box|P.O. Box|Post Office Box).)*$/i
       props.prefix = 'poBox'
-      props.regexFlags = 'i'
     }
 
     return (
