@@ -162,8 +162,8 @@ export default class Generic extends ValidationElement {
     }
   }
 
-  errors = (value, props = this.props) => (
-    this.props.onError(
+  errors(value, props = this.props) {
+    return this.props.onError(
       value,
       this.constructor.errors.map(err => ({
         code: err.code,
@@ -171,12 +171,12 @@ export default class Generic extends ValidationElement {
         uid: this.state.uid,
       }))
     ) || []
-  )
+  }
 
   /**
    * Handle the change event.
    */
-  handleChange = (event) => {
+  handleChange(event) {
     event.persist()
     this.setState({
       value: event.target.value,
@@ -188,7 +188,7 @@ export default class Generic extends ValidationElement {
   /**
    * Handle the focus event.
    */
-  handleFocus = (event) => {
+  handleFocus(event) {
     event.persist()
     this.setState({
       focus: true,
@@ -200,7 +200,7 @@ export default class Generic extends ValidationElement {
   /**
    * Handle the blur event.
    */
-  handleBlur = (event) => {
+  handleBlur(event) {
     event.persist()
     this.setState({
       focus: false,
@@ -214,7 +214,7 @@ export default class Generic extends ValidationElement {
   /**
    * Execute validation checks on the value.
    */
-  handleValidation = () => {
+  handleValidation() {
     const errors = this.errors(`${this.state.value}`.trim())
     this.setState({
       error: errors.some(x => x.valid === false),
@@ -225,7 +225,7 @@ export default class Generic extends ValidationElement {
   /**
    * Handle the key down event.
    */
-  handleKeyDown = (event) => {
+  handleKeyDown(event) {
     autotab(
       event,
       this.props.maxlength,
@@ -237,30 +237,30 @@ export default class Generic extends ValidationElement {
   /**
    * Prevents clipboard events from making changes to the value of the elements
    */
-  disallowClipboard = (event) => {
+  disallowClipboard(event) {
     event.preventDefault()
   }
 
   /**
    * Generated name for the error message.
    */
-  errorName = () => (
-    `${this.props.name || ''}-error`
-  )
+  errorName() {
+    return `${this.props.name || ''}-error`
+  }
 
   /**
    * Style classes applied to the wrapper.
    */
-  divClass = () => (
-    `${this.props.className || ''} ${
+  divClass() {
+    return `${this.props.className || ''} ${
       !this.props.disabled && this.state.error ? 'usa-input-error' : ''
     }`.trim()
-  )
+  }
 
   /**
    * Style classes applied to the label element.
    */
-  labelClass = () => {
+  labelClass() {
     if (this.props.disabled) {
       return 'disabled'
     }
@@ -271,7 +271,7 @@ export default class Generic extends ValidationElement {
   /**
    * Style classes applied to the input element.
    */
-  inputClass = () => {
+  inputClass() {
     if (this.props.disabled) {
       return null
     }

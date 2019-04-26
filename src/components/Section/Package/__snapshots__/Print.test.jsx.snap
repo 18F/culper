@@ -1854,7 +1854,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="Home email address"
-            className="field"
+            className="field required"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -1886,7 +1886,29 @@ exports[`The print section renders properly 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              />
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.email.required"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Your response is required
+                      </h5>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
             </div>
             <div
               className="table"
@@ -1898,7 +1920,7 @@ exports[`The print section renders properly 1`] = `
                   className="component"
                 >
                   <div
-                    className="hide-for-print email email-home"
+                    className="hide-for-print email email-home usa-input-error"
                   >
                     <input
                       aria-describedby="HomeEmail-error"
@@ -1931,7 +1953,7 @@ exports[`The print section renders properly 1`] = `
           </div>
           <div
             aria-label="Work email address"
-            className="field"
+            className="field required"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -1963,7 +1985,29 @@ exports[`The print section renders properly 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              />
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.email.required"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Your response is required
+                      </h5>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
             </div>
             <div
               className="table"
@@ -1975,7 +2019,7 @@ exports[`The print section renders properly 1`] = `
                   className="component"
                 >
                   <div
-                    className="hide-for-print email email-work"
+                    className="hide-for-print email email-work usa-input-error"
                   >
                     <input
                       aria-describedby="WorkEmail-error"
