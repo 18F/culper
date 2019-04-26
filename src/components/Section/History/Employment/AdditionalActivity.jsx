@@ -43,7 +43,7 @@ export default class AdditionalActivity extends ValidationElement {
             required={this.props.required}>
             <Field
               title={i18n.t(
-                'history.employment.default.additionalActivity.heading.position'
+                'history.employment.default.additionalActivity.position.label'
               )}
               titleSize="h4"
               adjustFor="labels"
@@ -51,9 +51,6 @@ export default class AdditionalActivity extends ValidationElement {
               <Text
                 name="Position"
                 className="text"
-                label={i18n.t(
-                  'history.employment.default.additionalActivity.position.label'
-                )}
                 bind={true}
                 required={this.props.required}
               />
@@ -61,7 +58,7 @@ export default class AdditionalActivity extends ValidationElement {
 
             <Field
               title={i18n.t(
-                'history.employment.default.additionalActivity.heading.supervisor'
+                'history.employment.default.additionalActivity.supervisor.label'
               )}
               titleSize="h4"
               adjustFor="labels"
@@ -69,9 +66,6 @@ export default class AdditionalActivity extends ValidationElement {
               <Text
                 name="Supervisor"
                 className="text"
-                label={i18n.t(
-                  'history.employment.default.additionalActivity.supervisor.label'
-                )}
                 bind={true}
                 required={this.props.required}
               />

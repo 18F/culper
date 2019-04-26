@@ -140,6 +140,9 @@ export class Status extends Subsection {
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}
         >
+          <label>
+            {i18n.t('citizenship.status.heading.citizenshipstatusLabel')}
+          </label>
           <RadioGroup
             className="citizenship-status option-list option-list-vertical"
             required={this.props.required}

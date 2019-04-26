@@ -358,10 +358,10 @@ export const history = {
         heading: {
           position: 'Provide position title',
           supervisor: 'Provide supervisor',
-          datesEmployed: 'Provide dates of employment',
+          datesEmployed: 'Dates of employment',
         },
         position: {
-          label: 'Position',
+          label: 'Position title',
           help: {
             title: 'Need help with the position title?',
             message: 'Provide the position title',
