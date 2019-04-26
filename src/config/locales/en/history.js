@@ -446,7 +446,7 @@ export const history = {
         status: 'Select the employment status for this position',
         address: 'Provide the address of employer',
         supervisor: 'Your Supervisor',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer',
@@ -461,7 +461,7 @@ export const history = {
         title: 'Provide your most recent rank/position title',
         status: 'Select the employment status for this position',
         address: 'Provide address of duty station',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
         physicalAddress:
@@ -603,7 +603,7 @@ export const history = {
         title: 'Provide your most recent rank/position title',
         status: 'Select the employment status for this position',
         address: 'Provide address of duty station',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
         physicalAddress:
@@ -744,7 +744,7 @@ export const history = {
         title: 'Provide your most recent rank/position title',
         status: 'Select the employment status for this position',
         address: 'Provide address of duty station',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
         physicalAddress:
@@ -886,7 +886,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference: 'Provide a reference',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
@@ -997,7 +997,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference: 'Provide a reference',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
@@ -1108,7 +1108,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference: 'Provide a reference',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
@@ -1219,7 +1219,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference: 'Provide a reference',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
@@ -1330,7 +1330,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference:
           'Provide the name of someone that can verify your self-employment',
         physicalAddress:
@@ -1450,7 +1450,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference:
           'Provide the name of someone who can verify your unemployment activities and means of support',
         physicalAddress:
