@@ -73,6 +73,7 @@ test-react:
 	@docker-compose run --rm js yarn test $(FLAGS) $(FILES)
 test-go:
 	$(info Running Go test suite)
+	@docker-compose run --rm api make reset-test-db
 	@docker-compose run --rm api make test
 
 #

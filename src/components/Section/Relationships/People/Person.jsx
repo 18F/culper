@@ -1,5 +1,10 @@
+// TODO: tmp since destructuring causes some naming conflicts with components
+/* eslint react/destructuring-assignment: 0 */
+
 import React from 'react'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
+
 import {
   Name,
   DateRange,
@@ -12,29 +17,13 @@ import {
   Show,
   CheckboxGroup,
   Checkbox,
-  Svg
-} from '../../../Form'
+} from 'components/Form'
 
 export default class Person extends React.Component {
-  constructor(props) {
-    super(props)
+  update = (queue) => {
+    const { onUpdate } = this.props
 
-    this.update = this.update.bind(this)
-    this.updateName = this.updateName.bind(this)
-    this.updateDates = this.updateDates.bind(this)
-    this.updateRank = this.updateRank.bind(this)
-    this.updateRankNotApplicable = this.updateRankNotApplicable.bind(this)
-    this.updateRelationship = this.updateRelationship.bind(this)
-    this.updateRelationshipOther = this.updateRelationshipOther.bind(this)
-    this.updateMobileTelephone = this.updateMobileTelephone.bind(this)
-    this.updateOtherTelephone = this.updateOtherTelephone.bind(this)
-    this.updateEmail = this.updateEmail.bind(this)
-    this.updateEmailNotApplicable = this.updateEmailNotApplicable.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-  }
-
-  update(queue) {
-    this.props.onUpdate({
+    onUpdate({
       Name: this.props.Name,
       Dates: this.props.Dates,
       Rank: this.props.Rank,
@@ -46,38 +35,38 @@ export default class Person extends React.Component {
       Email: this.props.Email,
       EmailNotApplicable: this.props.EmailNotApplicable,
       Address: this.props.Address,
-      ...queue
+      ...queue,
     })
   }
 
-  updateName(values) {
+  updateName = (values) => {
     this.update({
-      Name: values
+      Name: values,
     })
   }
 
-  updateDates(values) {
+  updateDates = (values) => {
     this.update({
-      Dates: values
+      Dates: values,
     })
   }
 
-  updateRank(values) {
+  updateRank = (values) => {
     this.update({
-      Rank: values
+      Rank: values,
     })
   }
 
-  updateRankNotApplicable(values) {
+  updateRankNotApplicable = (values) => {
     this.update({
-      RankNotApplicable: values
+      RankNotApplicable: values,
     })
   }
 
-  updateRelationship(values) {
-    let relations = values.value
-    let currentRelationships = (this.props.Relationship || {}).values || []
-    let selected = [...currentRelationships]
+  updateRelationship = (values) => {
+    const relations = values.value
+    const currentRelationships = (this.props.Relationship || {}).values || []
+    const selected = [...currentRelationships]
 
     if (selected.includes(relations)) {
       // Remove the relationship if it was previously selected
@@ -89,45 +78,45 @@ export default class Person extends React.Component {
 
     this.update({
       Relationship: {
-        values: selected
-      }
+        values: selected,
+      },
     })
   }
 
-  updateRelationshipOther(values) {
+  updateRelationshipOther = (values) => {
     this.update({
-      RelationshipOther: values
+      RelationshipOther: values,
     })
   }
 
-  updateMobileTelephone(values) {
+  updateMobileTelephone = (values) => {
     this.update({
-      MobileTelephone: values
+      MobileTelephone: values,
     })
   }
 
-  updateOtherTelephone(values) {
+  updateOtherTelephone = (values) => {
     this.update({
-      OtherTelephone: values
+      OtherTelephone: values,
     })
   }
 
-  updateEmail(values) {
+  updateEmail = (values) => {
     this.update({
-      Email: values
+      Email: values,
     })
   }
 
-  updateEmailNotApplicable(values) {
+  updateEmailNotApplicable = (values) => {
     this.update({
       Email: {},
-      EmailNotApplicable: values
+      EmailNotApplicable: values,
     })
   }
 
-  updateAddress(values) {
+  updateAddress = (values) => {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
@@ -138,11 +127,12 @@ export default class Person extends React.Component {
           title={i18n.t('relationships.people.person.heading.knownDates')}
           help="relationships.people.person.help.knownDates"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="daterange">
+          adjustFor="daterange"
+        >
           <DateRange
             name="Dates"
             className="known-dates"
-            minDateEqualTo={true}
+            minDateEqualTo
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}
@@ -152,9 +142,10 @@ export default class Person extends React.Component {
 
         <Field
           title={i18n.t('relationships.people.person.heading.name')}
-          optional={true}
+          optional
           filterErrors={Name.requiredErrorsOnly}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Name
             name="Name"
             className="name"
@@ -168,7 +159,8 @@ export default class Person extends React.Component {
 
         <Field
           title={i18n.t('relationships.people.person.heading.rank')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="RankNotApplicable"
             className="rank-notapplicable"
@@ -178,7 +170,8 @@ export default class Person extends React.Component {
             )}
             or={i18n.m('relationships.people.person.label.or')}
             onError={this.props.onError}
-            onUpdate={this.updateRankNotApplicable}>
+            onUpdate={this.updateRankNotApplicable}
+          >
             <Text
               name="Rank"
               className="rank"
@@ -186,84 +179,80 @@ export default class Person extends React.Component {
               onUpdate={this.updateRank}
               onError={this.props.onError}
               required={
-                (this.props.RankNotApplicable || {}).applicable &&
-                this.props.required
+                (this.props.RankNotApplicable || {}).applicable
+                && this.props.required
               }
             />
           </NotApplicable>
         </Field>
 
         <Field
-          title={i18n.t(`relationships.people.person.heading.relationship`)}
+          title={i18n.t('relationships.people.person.heading.relationship')}
           className="relationships"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
+          adjustFor="labels"
+        >
+          {/* eslint jsx-a11y/label-has-associated-control: 0 */}
+          {/* eslint jsx-a11y/label-has-for: 0 */}
           <label>
-            {i18n.t(`relationships.people.person.label.relationship.title`)}
+            {i18n.t('relationships.people.person.label.relationship.title')}
           </label>
           <CheckboxGroup
             className="relationship option-list eapp-extend-labels option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
-            selectedValues={this.props.Relationship.values}>
+            selectedValues={this.props.Relationship.values}
+          >
             <Checkbox
               name="relationship-neighbor"
               label={i18n.t(
-                `relationships.people.person.label.relationship.neighbor`
+                'relationships.people.person.label.relationship.neighbor'
               )}
               value="Neighbor"
               onError={this.props.onError}
-              onUpdate={this.updateRelationship}>
-            </Checkbox>
+              onUpdate={this.updateRelationship}
+            />
             <Checkbox
               name="relationship-friend"
-              label={i18n.t(
-                `relationships.people.person.label.relationship.friend`
-              )}
+              label={i18n.t('relationships.people.person.label.relationship.friend')}
               value="Friend"
               onError={this.props.onError}
-              onUpdate={this.updateRelationship}>
-            </Checkbox>
+              onUpdate={this.updateRelationship}
+            />
             <Checkbox
               name="relationship-landlord"
-              label={i18n.t(
-                `relationships.people.person.label.relationship.workAssociate`
-              )}
+              label={i18n.t('relationships.people.person.label.relationship.workAssociate')}
               value="WorkAssociate"
               onError={this.props.onError}
-              onUpdate={this.updateRelationship}>
-            </Checkbox>
+              onUpdate={this.updateRelationship}
+            />
             <Checkbox
               name="relationship-business"
-              label={i18n.t(
-                `relationships.people.person.label.relationship.schoolmate`
-              )}
+              label={i18n.t('relationships.people.person.label.relationship.schoolmate')}
               value="Schoolmate"
               onError={this.props.onError}
-              onUpdate={this.updateRelationship}>
-            </Checkbox>
+              onUpdate={this.updateRelationship}
+            />
             <Checkbox
               name="relationship-other"
-              label={i18n.t(
-                `relationships.people.person.label.relationship.other`
-              )}
+              label={i18n.t('relationships.people.person.label.relationship.other')}
               value="Other"
               onError={this.props.onError}
-              onUpdate={this.updateRelationship}>
-            </Checkbox>
+              onUpdate={this.updateRelationship}
+            />
           </CheckboxGroup>
 
           <Show
             when={((this.props.Relationship || {}).values || []).includes(
               'Other'
-            )}>
+            )}
+          >
             <Field
-              title={i18n.t(
-                `relationships.people.person.label.relationship.explanation`
-              )}
+              title={i18n.t('relationships.people.person.label.relationship.explanation')}
               titleSize="label"
               adjustFor="text"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="RelationshipOther"
                 maxlength="100"
@@ -281,13 +270,15 @@ export default class Person extends React.Component {
           title={i18n.t('relationships.people.person.heading.mobileTelephone')}
           className="mobile-telephone override-required"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="telephone">
+          adjustFor="telephone"
+        >
           <Telephone
             name="MobileTelephone"
             {...this.props.MobileTelephone}
             onUpdate={this.updateMobileTelephone}
             onError={this.props.onError}
             required={this.props.required}
+            allowNotApplicable={this.props.OtherTelephone && !this.props.OtherTelephone.noNumber}
           />
         </Field>
 
@@ -295,19 +286,22 @@ export default class Person extends React.Component {
           title={i18n.t('relationships.people.person.heading.otherTelephone')}
           className="other-telephone override-required"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="telephone">
+          adjustFor="telephone"
+        >
           <Telephone
             name="OtherTelephone"
             {...this.props.OtherTelephone}
             onUpdate={this.updateOtherTelephone}
             onError={this.props.onError}
             required={this.props.required}
+            allowNotApplicable={this.props.MobileTelephone && !this.props.MobileTelephone.noNumber}
           />
         </Field>
 
         <Field
           title={i18n.t('relationships.people.person.heading.email')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="EmailNotApplicable"
             className="email-notapplicable"
@@ -317,7 +311,8 @@ export default class Person extends React.Component {
             )}
             or={i18n.m('relationships.people.person.label.or')}
             onError={this.props.onError}
-            onUpdate={this.updateEmailNotApplicable}>
+            onUpdate={this.updateEmailNotApplicable}
+          >
             <Email
               name="Email"
               className="email"
@@ -325,8 +320,8 @@ export default class Person extends React.Component {
               onUpdate={this.updateEmail}
               onError={this.props.onError}
               required={
-                (this.props.EmailNotApplicable || {}).applicable &&
-                this.props.required
+                (this.props.EmailNotApplicable || {}).applicable
+                && this.props.required
               }
             />
           </NotApplicable>
@@ -334,10 +329,11 @@ export default class Person extends React.Component {
 
         <Field
           title={i18n.t('relationships.people.person.heading.address')}
-          optional={true}
+          optional
           help="relationships.people.person.help.address"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="address">
+          adjustFor="address"
+        >
           <Location
             name="Address"
             label={i18n.t('relationships.people.person.label.address')}
@@ -347,8 +343,8 @@ export default class Person extends React.Component {
             addressBook={this.props.addressBook}
             dispatch={this.props.dispatch}
             layout={Location.ADDRESS}
-            geocode={true}
-            showPostOffice={true}
+            geocode
+            showPostOffice
             onUpdate={this.updateAddress}
             onError={this.props.onError}
             required={this.props.required}
@@ -365,9 +361,7 @@ Person.defaultProps = {
   EmailNotApplicable: { applicable: true },
   addressBooks: {},
   addressBook: 'Reference',
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

@@ -1,6 +1,8 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 // Signature is a basic input.
 type Signature struct {
@@ -70,10 +72,6 @@ func (entity *Signature) Valid() (bool, error) {
 func (entity *Signature) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -101,12 +99,14 @@ func (entity *Signature) Save(context DatabaseService, account int) (int, error)
 func (entity *Signature) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
+	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
 
-	if err := entity.Find(context); err != nil {
-		return entity.ID, err
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if _, err := entity.Name.Delete(context, account); err != nil {
@@ -117,22 +117,12 @@ func (entity *Signature) Delete(context DatabaseService, account int) (int, erro
 		return entity.ID, err
 	}
 
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
-	}
-
 	return entity.ID, nil
 }
 
 // Get the signature from data storage.
 func (entity *Signature) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

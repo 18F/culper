@@ -4,11 +4,71 @@ import NameValidator from './name'
 import {
   validGenericTextfield,
   validPhoneNumber,
-  validNotApplicable
+  validNotApplicable,
 } from './helpers'
 
+/** Attribute Validators */
+const validateName = name => new NameValidator(name).isValid()
+
+const validateDates = dates => new DateRangeValidator(dates).isValid()
+
+const validateRank = (rankNotApplicable, rank) => (
+  validNotApplicable(rankNotApplicable, () => validGenericTextfield(rank))
+)
+
+const validateRelationship = (relationship, relationshipOther) => {
+  if (!relationship || !relationship.length) return false
+
+  const relationshipTypes = ['Neighbor', 'Friend', 'WorkAssociate', 'Schoolmate', 'Other']
+
+  for (let i = 0; i < relationship.length; i += 1) {
+    const r = relationship[i]
+    if (!relationshipTypes.includes(r)) return false
+  }
+
+  if (relationship.includes('Other')) return validGenericTextfield(relationshipOther)
+
+  return true
+}
+
+const validatePhones = (mobileTelephone, otherTelephone) => {
+  // At least one phone number is required
+  if (mobileTelephone.noNumber && otherTelephone.noNumber) return false
+
+  return validPhoneNumber(mobileTelephone) && validPhoneNumber(otherTelephone)
+}
+
+const validateEmail = (emailNotApplicable, email) => (
+  validNotApplicable(emailNotApplicable, () => validGenericTextfield(email))
+)
+
+const validateAddress = address => new LocationValidator(address).isValid()
+
+/** Object Validators (as functions) */
+export const validatePerson = (data = {}) => {
+  const {
+    Name, Dates, Rank, RankNotApplicable, Relationship, RelationshipOther,
+    MobileTelephone, OtherTelephone, Email, EmailNotApplicable, Address,
+  } = data
+
+  const relationshipValues = (Relationship || {}).values || []
+
+  const isValid = validateName(Name)
+    && validateDates(Dates)
+    && validateRank(RankNotApplicable, Rank)
+    && validateRelationship(relationshipValues, RelationshipOther)
+    && validatePhones(MobileTelephone, OtherTelephone)
+    && validateEmail(EmailNotApplicable, Email)
+    && validateAddress(Address)
+
+  return isValid
+}
+
+/** Object Validators (as classes) - legacy */
 export default class PersonValidator {
   constructor(data = {}) {
+    this.data = data
+
     this.name = data.Name
     this.dates = data.Dates
     this.rank = data.Rank
@@ -23,68 +83,34 @@ export default class PersonValidator {
   }
 
   validName() {
-    return new NameValidator(this.name).isValid()
+    return validateName(this.name)
   }
 
   validDates() {
-    return new DateRangeValidator(this.dates).isValid()
+    return validateDates(this.dates)
   }
 
   validRank() {
-    return validNotApplicable(this.rankNotApplicable, () => {
-      return validGenericTextfield(this.rank)
-    })
+    return validateRank(this.rankNotApplicable, this.rank)
   }
 
   validRelationship() {
-    if (!this.relationship || !this.relationship.length) {
-      return false
-    }
-    for (let r of this.relationship) {
-      if (
-        ![
-          'Neighbor',
-          'Friend',
-          'WorkAssociate',
-          'Schoolmate',
-          'Other'
-        ].includes(r)
-      ) {
-        return false
-      }
-    }
-    if (this.relationship.includes('Other')) {
-      return validGenericTextfield(this.relationshipOther)
-    }
-    return true
+    return validateRelationship(this.relationship, this.relationshipOther)
   }
 
   validPhones() {
-    return (
-      validPhoneNumber(this.mobileTelephone) &&
-      validPhoneNumber(this.otherTelephone)
-    )
+    return validatePhones(this.mobileTelephone, this.otherTelephone)
   }
 
   validEmail() {
-    return validNotApplicable(this.emailNotApplicable, () => {
-      return validGenericTextfield(this.email)
-    })
+    return validateEmail(this.emailNotApplicable, this.email)
   }
 
   validAddress() {
-    return new LocationValidator(this.address).isValid()
+    return validateAddress(this.address)
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validDates() &&
-      this.validRank() &&
-      this.validRelationship() &&
-      this.validPhones() &&
-      this.validEmail() &&
-      this.validAddress()
-    )
+    return validatePerson(this.data)
   }
 }

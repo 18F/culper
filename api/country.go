@@ -32,10 +32,6 @@ func (entity *Country) Valid() (bool, error) {
 
 // Save the country to data storage.
 func (entity *Country) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -45,10 +41,6 @@ func (entity *Country) Save(context DatabaseService, account int) (int, error) {
 
 // Delete the country from data storage.
 func (entity *Country) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -60,10 +52,6 @@ func (entity *Country) Delete(context DatabaseService, account int) (int, error)
 
 // Get the country from data storage.
 func (entity *Country) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

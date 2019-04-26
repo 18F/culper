@@ -72,10 +72,6 @@ func (entity *ClearanceLevel) Valid() (bool, error) {
 func (entity *ClearanceLevel) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -103,10 +99,6 @@ func (entity *ClearanceLevel) Save(context DatabaseService, account int) (int, e
 func (entity *ClearanceLevel) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -131,10 +123,6 @@ func (entity *ClearanceLevel) Delete(context DatabaseService, account int) (int,
 // Get the ClearanceLevel entity.
 func (entity *ClearanceLevel) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err

@@ -87,10 +87,6 @@ func (entity *SSN) Valid() (bool, error) {
 
 // Save the SSN to data storage.
 func (entity *SSN) Save(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -100,10 +96,6 @@ func (entity *SSN) Save(context DatabaseService, account int) (int, error) {
 
 // Delete the SSN from data storage.
 func (entity *SSN) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -115,10 +107,6 @@ func (entity *SSN) Delete(context DatabaseService, account int) (int, error) {
 
 // Get the SSN from data storage.
 func (entity *SSN) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

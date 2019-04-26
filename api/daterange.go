@@ -75,10 +75,6 @@ func (entity *DateRange) Valid() (bool, error) {
 func (entity *DateRange) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -106,10 +102,6 @@ func (entity *DateRange) Save(context DatabaseService, account int) (int, error)
 func (entity *DateRange) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := entity.Find(context); err != nil {
 		return entity.ID, err
 	}
@@ -134,10 +126,6 @@ func (entity *DateRange) Delete(context DatabaseService, account int) (int, erro
 // Get the DateRange entity.
 func (entity *DateRange) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

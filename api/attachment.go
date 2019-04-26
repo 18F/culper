@@ -42,11 +42,6 @@ func (entity *Attachment) Valid() (bool, error) {
 // Save the attachment.
 func (entity *Attachment) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -56,10 +51,6 @@ func (entity *Attachment) Save(context DatabaseService, account int) (int, error
 
 // Delete the attachment.
 func (entity *Attachment) Delete(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
@@ -71,10 +62,6 @@ func (entity *Attachment) Delete(context DatabaseService, account int) (int, err
 
 // Get the attachment.
 func (entity *Attachment) Get(context DatabaseService, account int) (int, error) {
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err

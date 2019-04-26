@@ -19,8 +19,15 @@ func Command(log api.LogService, action func(api.DatabaseService, *api.Account))
 	cloudfoundry.Configure()
 	settings := &env.Native{}
 	settings.Configure()
-	database := &postgresql.Service{Log: log, Env: settings}
-	database.Configure()
+
+	dbConf := postgresql.DBConfig{
+		User:     settings.String(api.DatabaseUser),
+		Password: settings.String(api.DatabasePassword),
+		Address:  settings.String(api.DatabaseHost),
+		DBName:   settings.String(api.TestDatabaseName),
+	}
+	database := postgresql.NewPostgresService(dbConf, log)
+
 	flag.Parse()
 
 	if *flagAll {

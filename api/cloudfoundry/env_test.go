@@ -68,7 +68,7 @@ func TestDatabaseDefaults(t *testing.T) {
 	os.Setenv(api.DatabaseURI, "")
 	Configure()
 
-	// Test agains the environment variables
+	// Test against the environment variables
 	expected := ""
 	uri := env.String(api.DatabaseURI)
 	if uri != expected {
