@@ -16,6 +16,7 @@
   "dependencies": {
     "@18f/stylelint-rules": "^2.0.0",
     "@babel/polyfill": "^7.0.0",
+    "@storybook/react": "^5.0.11",
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.15.0",
     "cache-loader": "^1.2.2",
@@ -79,7 +80,8 @@
     "build-js": "npm run build-assets && webpack -p --progress",
     "build": "npm run build-assets && npm run build-js",
     "watch-js": "echo \"Starting JS compilation... (Will be ready once you see 'eqip.js' message, after ~60 seconds.)\" && webpack --watch --progress",
-    "docs": "jsdoc ./src -r -d ./doc/frontend"
+    "docs": "jsdoc ./src -r -d ./doc/frontend",
+    "storybook": "start-storybook"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -109,6 +111,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.0.4"
   }

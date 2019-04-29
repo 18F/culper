@@ -2,7 +2,7 @@
   margin-top: 5rem;
 
   .valid-icon {
-    background: url('../img/checkmark.svg') no-repeat right 0 center / 1.7rem
+    background: url('#{$asset-path}/img/checkmark.svg') no-repeat right 0 center / 1.7rem
       auto;
     width: 1.7rem;
     height: 1.7rem;

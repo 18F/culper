@@ -1,5 +1,12 @@
+$asset-path: '../dist/';
+$fa-font-path: '../dist/fonts/';
+
 @import '../node_modules/font-awesome/scss/font-awesome.scss';
 @import '../node_modules/uswds/src/stylesheets/uswds.scss';
+
+@import 'sass/eqip-colors';
+@import 'sass/eqip-fonts';
+
 // COMPONENTS
 @import 'components/ErrorList/ErrorList';
 @import 'components/Form/Accordion/Accordion';

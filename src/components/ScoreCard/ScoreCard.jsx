@@ -7,7 +7,7 @@ import i18n from 'util/i18n'
 
 import { totalSections, completedSections } from 'helpers/navigation'
 
-const ScoreCard = ({ total, completed }) => {
+export const ScoreCard = ({ total, completed }) => {
   const scoreCardClasses = classnames(
     'score-card',
     { completed: completed >= total }
