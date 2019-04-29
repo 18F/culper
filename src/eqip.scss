@@ -1,9 +1,11 @@
 $asset-path: '../dist/';
 $fa-font-path: '../dist/fonts/';
 
+// MODULES
 @import '../node_modules/font-awesome/scss/font-awesome.scss';
 @import '../node_modules/uswds/src/stylesheets/uswds.scss';
 
+// VARIABLES
 @import 'sass/eqip-colors';
 @import 'sass/eqip-fonts';
 
