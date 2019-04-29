@@ -3615,7 +3615,7 @@ exports[`The identification section renders the IdentificationSections component
       </div>
     </div>
     <div
-      aria-label="Select your sex"
+      aria-label="Sex"
       className="field required"
       data-uuid="field-MOCK-GUID"
     >
@@ -3628,17 +3628,17 @@ exports[`The identification section renders the IdentificationSections component
       <h4
         className="title h4"
       >
-        Select your sex
+        Sex
       </h4>
       <span
         className="icon"
       >
         <a
-          aria-label="Show help for Select your sex"
+          aria-label="Show help for Sex"
           className="toggle h4 adjust-for-big-buttons"
           href="javascript:;"
           onClick={[Function]}
-          title="Show help for Select your sex"
+          title="Show help for Sex"
         >
           <svg
             alt="Scalable vector graphic"

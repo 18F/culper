@@ -985,7 +985,7 @@ exports[`The section component renders citizenship.review 1`] = `
           Citizenship status
         </h1>
         <div
-          aria-label="Provide your current citizenship status"
+          aria-label="Select the box that reflects your current citizenship status"
           className="field required"
           data-uuid="field-MOCK-GUID"
         >
@@ -998,7 +998,7 @@ exports[`The section component renders citizenship.review 1`] = `
           <h4
             className="title h4"
           >
-            Provide your current citizenship status
+            Select the box that reflects your current citizenship status
           </h4>
           <span
             className="icon"
@@ -1051,6 +1051,9 @@ exports[`The section component renders citizenship.review 1`] = `
               <span
                 className="component"
               >
+                <label>
+                  Provide your current citizenship status
+                </label>
                 <div
                   className="blocks citizenship-status option-list option-list-vertical usa-input-error"
                 >
@@ -1619,7 +1622,7 @@ exports[`The section component renders citizenship.status 1`] = `
         Citizenship status
       </h1>
       <div
-        aria-label="Provide your current citizenship status"
+        aria-label="Select the box that reflects your current citizenship status"
         className="field required"
         data-uuid="field-MOCK-GUID"
       >
@@ -1632,7 +1635,7 @@ exports[`The section component renders citizenship.status 1`] = `
         <h4
           className="title h4"
         >
-          Provide your current citizenship status
+          Select the box that reflects your current citizenship status
         </h4>
         <span
           className="icon"
@@ -1663,6 +1666,9 @@ exports[`The section component renders citizenship.status 1`] = `
             <span
               className="component"
             >
+              <label>
+                Provide your current citizenship status
+              </label>
               <div
                 className="blocks citizenship-status option-list option-list-vertical"
               >
@@ -14679,7 +14685,7 @@ exports[`The section component renders identification.physical 1`] = `
         </div>
       </div>
       <div
-        aria-label="Select your sex"
+        aria-label="Sex"
         className="field required"
         data-uuid="field-MOCK-GUID"
       >
@@ -14692,17 +14698,17 @@ exports[`The section component renders identification.physical 1`] = `
         <h4
           className="title h4"
         >
-          Select your sex
+          Sex
         </h4>
         <span
           className="icon"
         >
           <a
-            aria-label="Show help for Select your sex"
+            aria-label="Show help for Sex"
             className="toggle h4 adjust-for-big-buttons"
             href="javascript:;"
             onClick={[Function]}
-            title="Show help for Select your sex"
+            title="Show help for Sex"
           >
             <svg
               alt="Scalable vector graphic"
@@ -18576,7 +18582,7 @@ exports[`The section component renders identification.review 1`] = `
           </div>
         </div>
         <div
-          aria-label="Select your sex"
+          aria-label="Sex"
           className="field required"
           data-uuid="field-MOCK-GUID"
         >
@@ -18589,17 +18595,17 @@ exports[`The section component renders identification.review 1`] = `
           <h4
             className="title h4"
           >
-            Select your sex
+            Sex
           </h4>
           <span
             className="icon"
           >
             <a
-              aria-label="Show help for Select your sex"
+              aria-label="Show help for Sex"
               className="toggle h4 adjust-for-big-buttons"
               href="javascript:;"
               onClick={[Function]}
-              title="Show help for Select your sex"
+              title="Show help for Sex"
             >
               <svg
                 alt="Scalable vector graphic"

@@ -4,7 +4,7 @@ export const reference = {
     contact: 'Provide date of last contact',
     relationship: 'Relationship',
     phone: {
-      default: "Provide this person's phone number",
+      default: "Provide the telephone number for this person",
       evening: "Provide this person's evening phone number",
       day: "Provide this person's daytime phone number",
       mobile: "Provide this person's cell/mobile phone number"

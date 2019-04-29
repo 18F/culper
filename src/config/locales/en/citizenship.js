@@ -85,7 +85,8 @@ export const citizenship = {
   status: {
     heading: {
       title: 'Citizenship status',
-      citizenshipstatus: 'Provide your current citizenship status',
+      citizenshipstatus: 'Select the box that reflects your current citizenship status',
+      citizenshipstatusLabel: 'Provide your current citizenship status',
       abroad: 'Provide type of documentation of U.S. citizen born abroad',
       documentnumber: {
         foreignborn: 'Provide document number for U.S. citizen born abroad',

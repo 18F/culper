@@ -177,17 +177,6 @@ class Selective extends Subsection {
                           {i18n.t('military.selective.help.remember.title')}
                         </strong>
                         {i18n.m('military.selective.help.remember.message')}
-                        <div>
-                          <p>
-                            <a
-                              href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              www.sss.gov
-                            </a>
-                          </p>
-                        </div>
                       </div>
                     </div>
                   </div>

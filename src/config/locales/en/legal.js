@@ -96,7 +96,7 @@ export const legal = {
       chargedetails:
         'Provide all the charges brought against you for this offense, and the outcome of each charged offense',
       chargeType: 'Type of charge',
-      courtdate: 'Date of outcome',
+      courtdate: 'Date',
       sentenced: 'Were you sentenced as a result of this offense?',
       needmore: 'Since you answered yes we need more information',
       sentenceDescription: 'Provide a description of the sentence',
