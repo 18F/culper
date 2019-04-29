@@ -153,19 +153,24 @@ export default class Generic extends ValidationElement {
     this.setState(updates)
   }
 
+
+  componentDidUpdate(prevProps) {
+    // Written specifically for Email fields that are dependent on each other
+    // If a fields requiredness changes, check validations again.
+    if (this.props.required !== prevProps.required) {
+      this.handleValidation()
+    }
+  }
+
   errors(value, props = this.props) {
-    return (
-      this.props.onError(
-        value,
-        this.constructor.errors.map(err => {
-          return {
-            code: err.code,
-            valid: err.func(value, props),
-            uid: this.state.uid
-          }
-        })
-      ) || []
-    )
+    return this.props.onError(
+      value,
+      this.constructor.errors.map(err => ({
+        code: err.code,
+        valid: err.func(value, props),
+        uid: this.state.uid,
+      }))
+    ) || []
   }
 
   /**
@@ -173,7 +178,9 @@ export default class Generic extends ValidationElement {
    */
   handleChange(event) {
     event.persist()
-    this.setState({ value: event.target.value }, () => {
+    this.setState({
+      value: event.target.value,
+    }, () => {
       super.handleChange(event)
     })
   }
@@ -183,7 +190,9 @@ export default class Generic extends ValidationElement {
    */
   handleFocus(event) {
     event.persist()
-    this.setState({ focus: true }, () => {
+    this.setState({
+      focus: true,
+    }, () => {
       super.handleFocus(event)
     })
   }
@@ -193,7 +202,10 @@ export default class Generic extends ValidationElement {
    */
   handleBlur(event) {
     event.persist()
-    this.setState({ focus: false, value: `${this.state.value}`.trim() }, () => {
+    this.setState({
+      focus: false,
+      value: `${this.state.value}`.trim(),
+    }, () => {
       super.handleChange(event)
       super.handleBlur(event)
     })
@@ -202,11 +214,11 @@ export default class Generic extends ValidationElement {
   /**
    * Execute validation checks on the value.
    */
-  handleValidation(event) {
+  handleValidation() {
     const errors = this.errors(`${this.state.value}`.trim())
     this.setState({
       error: errors.some(x => x.valid === false),
-      valid: errors.every(x => x.valid === true)
+      valid: errors.every(x => x.valid === true),
     })
   }
 
@@ -214,7 +226,12 @@ export default class Generic extends ValidationElement {
    * Handle the key down event.
    */
   handleKeyDown(event) {
-    autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
+    autotab(
+      event,
+      this.props.maxlength,
+      this.props.tabBack,
+      this.props.tabNext,
+    )
   }
 
   /**
@@ -341,9 +358,7 @@ Generic.defaultProps = {
   ariaLabel: '',
   tabNext: () => {},
   tabBack: () => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onError: (value, arr) => arr,
 }
 
 Generic.errors = [
@@ -363,10 +378,10 @@ Generic.errors = [
         return null
       }
       return (
-        value.length >= parseInt(props.minlength) &&
-        value.length <= parseInt(props.maxlength)
+        value.length >= parseInt(props.minlength, 10)
+        && value.length <= parseInt(props.maxlength, 10)
       )
-    }
+    },
   },
   {
     code: 'pattern',
@@ -387,6 +402,6 @@ Generic.errors = [
       }
 
       return props.status
-    }
-  }
+    },
+  },
 ]

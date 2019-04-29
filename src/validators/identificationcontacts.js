@@ -41,10 +41,26 @@ export default class IdentificationContactInformationValidator {
   }
 
   /**
+   * This function does not check for the validity of an email, but
+   * rather it checks for the prescence of a required email.
+   */
+  validEmailPresent() {
+    if (
+      (this.homeEmail && this.homeEmail.value)
+      || (this.workEmail && this.workEmail.value)
+    ) {
+      return true
+    }
+    return false
+  }
+
+  /**
    * Validates emails and phone numbers
    */
   isValid() {
-    return this.validPhoneNumbers() && this.validPhoneTypes()
+    return this.validPhoneNumbers()
+    && this.validPhoneTypes()
+    && this.validEmailPresent()
   }
 }
 

@@ -4,7 +4,7 @@ import { i18n } from 'config'
 
 import {
   IdentificationContactInformationValidator,
-  ContactPhoneNumberValidator
+  ContactPhoneNumberValidator,
 } from 'validators'
 
 import {
@@ -12,14 +12,14 @@ import {
   Email,
   Accordion,
   AccordionItem,
-  Telephone
+  Telephone,
 } from 'components/Form'
 import { Summary, TelephoneSummary } from 'components/Summary'
+import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from 'config/formSections/identification'
 
 import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
 
-import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from 'config/formSections/identification'
 
 const sectionConfig = {
   section: IDENTIFICATION.name,
@@ -32,63 +32,58 @@ export class ContactInformation extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
-
-    this.update = this.update.bind(this)
-    this.updateHomeEmail = this.updateHomeEmail.bind(this)
-    this.updateWorkEmail = this.updateWorkEmail.bind(this)
-    this.updatePhoneNumbers = this.updatePhoneNumbers.bind(this)
   }
 
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate(this.storeKey, {
       HomeEmail: this.props.HomeEmail,
       WorkEmail: this.props.WorkEmail,
       PhoneNumbers: this.props.PhoneNumbers,
-      ...queue
+      ...queue,
     })
   }
 
-  updateHomeEmail(values) {
+  updateHomeEmail = (values) => {
     this.update({
-      HomeEmail: values
+      HomeEmail: values,
     })
   }
 
-  updateWorkEmail(values) {
+  updateWorkEmail = (values) => {
     this.update({
-      WorkEmail: values
+      WorkEmail: values,
     })
   }
 
-  updatePhoneNumbers(values) {
+  updatePhoneNumbers = (values) => {
     this.update({
-      PhoneNumbers: values
+      PhoneNumbers: values,
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  phoneNumberSummary(item, index) {
+  phoneNumberSummary = (item, index) => {
     const number = TelephoneSummary((item.Item || {}).Telephone)
     return Summary({
       type: i18n.t('identification.contacts.collection.summary.phoneNumber'),
-      index: index,
+      index,
       left: number,
       right: null,
-      placeholder: i18n.t(
-        'identification.contacts.collection.summary.unknownPhone'
-      )
+      placeholder: i18n.t('identification.contacts.collection.summary.unknownPhone'),
     })
   }
 
-  firstItemRequired(item, index, initial, callback) {
+  firstItemRequired = (item, index, initial, callback) => {
     if (index === 0) {
       return <span className="required">{callback()}</span>
     }
@@ -103,15 +98,16 @@ export class ContactInformation extends Subsection {
   }
 
   render() {
+    const { HomeEmail = {}, WorkEmail = {}, isReview } = this.props
     const klass = `${this.props.className || ''}`.trim()
-    let phoneNumbers = this.props.PhoneNumbers
+    const phoneNumbers = this.props.PhoneNumbers
 
     if (this.props.shouldFilterEmptyItems) {
       let filtered = phoneNumbers.items.length
-      const filteredPhoneNumbers = phoneNumbers.items.filter(x => {
+      const filteredPhoneNumbers = phoneNumbers.items.filter((x) => {
         const item = x.Item || {}
         if (!item.Telephone || !item.Telephone.value) {
-          filtered--
+          filtered -= 1
           if (filtered < 1) {
             return item
           }
@@ -129,54 +125,60 @@ export class ContactInformation extends Subsection {
     return (
       <div
         className="section-content contact"
-        {...super.dataAttributes()}>
+        {...super.dataAttributes()}
+      >
         <h1 className="section-header">{i18n.t('identification.destination.contacts')}</h1>
 
         <Field
           title={i18n.t('identification.contacts.heading.email')}
           titleSize="h3"
           help="identification.contacts.help.email"
-          optional={true}
+          optional
           className="no-margin-bottom"
-          scrollIntoView={false}>
+          scrollIntoView={false}
+        >
           {i18n.m('identification.contacts.para.email')}
         </Field>
 
         <Field
           title={i18n.t('identification.contacts.heading.emailHome')}
           titleSize="h4"
-          optional={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          optional={!!WorkEmail.value}
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Email
             name="HomeEmail"
             className="email-home"
-            {...this.props.HomeEmail}
+            {...HomeEmail}
             onUpdate={this.updateHomeEmail}
             onError={this.props.onError}
+            required={isReview && !WorkEmail.value}
           />
         </Field>
-
         <Field
           title={i18n.t('identification.contacts.heading.emailWork')}
           titleSize="h4"
-          optional={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          optional={!!HomeEmail.value}
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Email
             name="WorkEmail"
             className="email-work"
-            {...this.props.WorkEmail}
+            {...WorkEmail}
             onUpdate={this.updateWorkEmail}
             onError={this.props.onError}
+            required={isReview && !HomeEmail.value}
           />
         </Field>
 
         <Field
           title={i18n.t('identification.contacts.heading.phoneNumber')}
           titleSize="h3"
-          optional={true}
+          optional
           help="identification.contacts.help.phoneNumber"
           className="no-margin-bottom"
-          scrollIntoView={false}>
+          scrollIntoView={false}
+        >
           {i18n.m('identification.contacts.para.phoneNumber')}
         </Field>
 
@@ -185,7 +187,7 @@ export class ContactInformation extends Subsection {
           className={this.uniquePhoneTypes() && 'hidden'}
         />
 
-        <div className={klass + ' telephone-collection'}>
+        <div className={`${klass} telephone-collection`}>
           <Accordion
             {...phoneNumbers}
             minimum={phoneMin}
@@ -196,23 +198,21 @@ export class ContactInformation extends Subsection {
             customDetails={this.firstItemRequired}
             validator={ContactPhoneNumberValidator}
             summary={this.phoneNumberSummary}
-            description={i18n.t(
-              'identification.contacts.collection.phoneNumbers.summary.title'
-            )}
-            appendLabel={i18n.t(
-              'identification.contacts.collection.phoneNumbers.append'
-            )}
-            scrollIntoView={this.props.scrollIntoView}>
+            description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
+            appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <AccordionItem
               scrollIntoView={this.props.scrollIntoView}
-              required={this.props.required}>
-              <Field optional={true} scrollIntoView={this.props.scrollIntoView}>
+              required={this.props.required}
+            >
+              <Field optional scrollIntoView={this.props.scrollIntoView}>
                 <Telephone
                   name="Telephone"
                   typeClass="title"
-                  showNumberType={true}
+                  showNumberType
                   allowNotApplicable={false}
-                  bind={true}
+                  bind
                 />
               </Field>
             </AccordionItem>
@@ -229,15 +229,14 @@ ContactInformation.defaultProps = {
   PhoneNumbers: Accordion.defaultList,
   minimumPhoneNumbers: 1,
   shouldFilterEmptyItems: false,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return new IdentificationContactInformationValidator(data).isValid()
-  },
-  defaultState: true
+  validator: data => (
+    new IdentificationContactInformationValidator(data).isValid()
+  ),
+  defaultState: true,
+  isReview: false,
 }
 
 export default connectIdentificationSection(ContactInformation, sectionConfig)
