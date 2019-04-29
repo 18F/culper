@@ -4,6 +4,7 @@ import classnames from 'classnames'
 import axios from 'axios'
 
 import i18n from 'util/i18n'
+import * as formConfig from 'config/forms'
 
 import { api } from 'services'
 
@@ -251,8 +252,12 @@ export class PackageSubmit extends React.Component {
   }
 
   render() {
-    const { Application = {} } = this.props
+    const { Application = {}, Settings = {} } = this.props
     const { signatures, isSubmitting, submissionError } = this.state
+    const { formType } = Settings
+    const formName = formType
+      && formConfig[formType]
+      && formConfig[formType].FORM_LABEL
 
     const classes = classnames(
       'submission-status',
@@ -264,7 +269,7 @@ export class PackageSubmit extends React.Component {
 
     const buttonText = isSubmitting
       ? i18n.t('application.validForm.submitting')
-      : i18n.t('application.validForm.submit')
+      : i18n.t('application.validForm.submit', { formName })
 
     return (
       <div className={classes}>

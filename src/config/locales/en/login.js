@@ -44,7 +44,7 @@ export const login = {
     button: 'Back to login'
   },
   token: {
-    heading: 'Questionnaire for National Security Positions',
+    heading: 'Questionnaire for National Background Investigation Services',
     title: 'For security reasons you have been logged out',
     saved: 'Your data was saved 1 minute prior to logout at {time}.',
     para: [

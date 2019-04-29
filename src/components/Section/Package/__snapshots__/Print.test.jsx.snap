@@ -3708,7 +3708,7 @@ exports[`The print section renders properly 1`] = `
             </div>
           </div>
           <div
-            aria-label="Select your sex"
+            aria-label="Sex"
             className="field required"
             data-uuid="field-MOCK-GUID"
           >
@@ -3721,17 +3721,17 @@ exports[`The print section renders properly 1`] = `
             <h4
               className="title h4"
             >
-              Select your sex
+              Sex
             </h4>
             <span
               className="icon"
             >
               <a
-                aria-label="Show help for Select your sex"
+                aria-label="Show help for Sex"
                 className="toggle h4 adjust-for-big-buttons"
                 href="javascript:;"
                 onClick={[Function]}
-                title="Show help for Select your sex"
+                title="Show help for Sex"
               >
                 <svg
                   alt="Scalable vector graphic"
@@ -5834,7 +5834,7 @@ exports[`The print section renders properly 1`] = `
             Citizenship status
           </h1>
           <div
-            aria-label="Provide your current citizenship status"
+            aria-label="Select the box that reflects your current citizenship status"
             className="field required"
             data-uuid="field-MOCK-GUID"
           >
@@ -5847,7 +5847,7 @@ exports[`The print section renders properly 1`] = `
             <h4
               className="title h4"
             >
-              Provide your current citizenship status
+              Select the box that reflects your current citizenship status
             </h4>
             <span
               className="icon"
@@ -5900,6 +5900,9 @@ exports[`The print section renders properly 1`] = `
                 <span
                   className="component"
                 >
+                  <label>
+                    Provide your current citizenship status
+                  </label>
                   <div
                     className="blocks citizenship-status option-list option-list-vertical usa-input-error"
                   >
