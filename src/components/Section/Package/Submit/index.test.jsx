@@ -6,7 +6,7 @@ import { PackageSubmit } from './index'
 import FormStatus from '../FormStatus'
 
 describe('The PackageSubmit component', () => {
-  const component = shallow(<PackageSubmit />)
+  const component = shallow(<PackageSubmit Settings={{ formType:'SF86' }}/>)
 
   it('renders without errors', () => {
     expect(component.exists()).toBe(true)

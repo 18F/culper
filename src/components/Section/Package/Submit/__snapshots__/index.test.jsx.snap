@@ -91,7 +91,7 @@ Not a guarantee of acceptance, but all required fields are complete."
           onClick={[Function]}
           type="button"
         >
-          Submit your
+          Submit your SF-86
           <i
             aria-hidden="true"
             className="fa fa-arrow-circle-right"
@@ -184,7 +184,7 @@ Not a guarantee of acceptance, but all required fields are complete."
             onClick={[Function]}
             type="button"
           >
-            Submit your
+            Submit your SF-86
             <i
               aria-hidden="true"
               className="fa fa-arrow-circle-right"
@@ -204,6 +204,11 @@ Not a guarantee of acceptance, but all required fields are complete."
         Application={Object {}}
         History={Object {}}
         Identification={Object {}}
+        Settings={
+          Object {
+            "formType": "SF86",
+          }
+        }
         Submission={Object {}}
       />,
       "_debugID": 1,
@@ -217,6 +222,9 @@ Not a guarantee of acceptance, but all required fields are complete."
           "Application": Object {},
           "History": Object {},
           "Identification": Object {},
+          "Settings": Object {
+            "formType": "SF86",
+          },
           "Submission": Object {},
         },
         "refs": Object {},
@@ -336,7 +344,7 @@ Not a guarantee of acceptance, but all required fields are complete."
                 onClick={[Function]}
                 type="button"
               >
-                Submit your
+                Submit your SF-86
                 <i
                   aria-hidden="true"
                   className="fa fa-arrow-circle-right"
@@ -429,7 +437,7 @@ Not a guarantee of acceptance, but all required fields are complete."
                 onClick={[Function]}
                 type="button"
               >
-                Submit your
+                Submit your SF-86
                 <i
                   aria-hidden="true"
                   className="fa fa-arrow-circle-right"
@@ -453,6 +461,11 @@ Not a guarantee of acceptance, but all required fields are complete."
     Application={Object {}}
     History={Object {}}
     Identification={Object {}}
+    Settings={
+      Object {
+        "formType": "SF86",
+      }
+    }
     Submission={Object {}}
   />,
 }
