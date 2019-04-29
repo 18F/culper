@@ -94,8 +94,6 @@ export const validPhoneNumber = (phone, opts = { numberType: false }) => {
   switch (phone.type) {
     case 'Domestic':
       return trimmed.length === 10
-    case 'DSN':
-      return trimmed.length === 7
     case 'International':
       return trimmed.length > 10
     default:
