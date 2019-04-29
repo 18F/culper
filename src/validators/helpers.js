@@ -2,31 +2,31 @@ import {
   daysAgo,
   today,
   extractDate,
-  validDate
+  validDate,
 } from '../components/Section/History/dateranges'
 
 /**
- * Determines if a value is defined vs false, 0, or empty string
- * Useful when boolean short circuiting a value that might be
- * 'truthy' even when javascript defines it as false
- **/
+  * Determines if a value is defined vs false, 0, or empty string
+  * Useful when boolean short circuiting a value that might be
+  * 'truthy' even when javascript defines it as false
+*/
 export const isDefined = x => x !== undefined && x !== null
 
-export const validGenericMonthYear = obj => {
+export const validGenericMonthYear = (obj) => {
   if (!obj || !obj.month || !obj.year) {
     return false
   }
   return true
 }
 
-export const validGenericTextfield = obj => {
+export const validGenericTextfield = (obj) => {
   if (!obj || !obj.value) {
     return false
   }
   return true
 }
 
-export const validCurrency = obj => {
+export const validCurrency = (obj) => {
   if (!obj || !obj.value || isNaN(obj.value)) {
     return false
   }
@@ -151,9 +151,9 @@ export const validAccordion = (collection, valid, ignoreBranch = false) => {
     return false
   }
 
-  return items.every(x => {
-    return valid(x.Item || {})
-  })
+  return items.every(x => (
+    valid(x.Item || {})
+  ))
 }
 
 /**
@@ -170,9 +170,9 @@ export class BranchCollection {
    */
   empty() {
     if (
-      !this.collection ||
-      !this.collection.items ||
-      !this.collection.items.length
+      !this.collection
+      || !this.collection.items
+      || !this.collection.items.length
     ) {
       return true
     }
@@ -180,10 +180,10 @@ export class BranchCollection {
   }
 
   /**
-   * Ensures that the collection is not empty and that valid Yes/No responses were included.
-   * Since users are required to mark an answer, an empty collection does not mean it's valid. It must have
-   * at least one Yes/No item
-   */
+    * Ensures that the collection is not empty and that valid Yes/No responses were included.
+    * Since users are required to mark an answer, an empty collection does not mean it's valid. It must have
+    * at least one Yes/No item
+  */
   validKeyValues() {
     return !this.empty() && (this.hasNo() || this.hasYes())
   }
@@ -264,7 +264,7 @@ export const battery = (tests, validator, fn) => {
   })
 }
 
-export const validSSN = ssn => {
+export const validSSN = (ssn) => {
   if (ssn.notApplicable === true) {
     return true
   }
@@ -277,16 +277,16 @@ export const validSSN = ssn => {
   }
 
   return (
-    !!ssn.first &&
-    !!ssn.middle &&
-    !!ssn.last &&
-    ssn.first.length === 3 &&
-    ssn.middle.length === 2 &&
-    ssn.last.length === 4
+    !!ssn.first
+    && !!ssn.middle
+    && !!ssn.last
+    && ssn.first.length === 3
+    && ssn.middle.length === 2
+    && ssn.last.length === 4
   )
 }
 
-export const nameIsEmpty = name => {
+export const nameIsEmpty = (name) => {
   switch (true) {
     case !name:
     case !name.first && !name.middle && !name.last:

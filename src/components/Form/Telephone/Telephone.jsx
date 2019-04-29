@@ -47,14 +47,16 @@ export default class Telephone extends ValidationElement {
       domestic: {
         first: this.parseNumber(0, 3, props.number),
         second: this.parseNumber(3, 6, props.number),
-        third: this.parseNumber(6, 10, props.number)
+        third: this.parseNumber(6, 10, props.number),
       },
       international: {
         first: this.parseNumber(0, 3, props.number),
-        second: this.parseNumber(3, 13, props.number)
+        second: this.parseNumber(3, 13, props.number),
       },
     }
 
+    this.domestic = this.domestic.bind(this)
+    this.international = this.international.bind(this)
     this.errors = []
   }
 
@@ -194,57 +196,57 @@ export default class Telephone extends ValidationElement {
     }
   }
 
-  handleErrorDomesticFirst = (value, arr) => {
-    return this.handleErrorDomestic('first', value, arr)
-  }
+  handleErrorDomesticFirst = (value, arr) => (
+    this.handleErrorDomestic('first', value, arr)
+  )
 
-  handleErrorDomesticSecond = (value, arr) => {
-    return this.handleErrorDomestic('second', value, arr)
-  }
+  handleErrorDomesticSecond = (value, arr) => (
+    this.handleErrorDomestic('second', value, arr)
+  )
 
-  handleErrorDomesticThird = (value, arr) => {
-    return this.handleErrorDomestic('third', value, arr)
-  }
+  handleErrorDomesticThird = (value, arr) => (
+    this.handleErrorDomestic('third', value, arr)
+  )
 
-  handleErrorDomesticExtension = (value, arr) => {
-    return this.handleErrorDomestic('extension', value, arr)
-  }
+  handleErrorDomesticExtension = (value, arr) => (
+    this.handleErrorDomestic('extension', value, arr)
+  )
 
-  handleErrorDomestic = (code, value, arr) => {
-    return this.handleError(`domestic.${code}`, value, arr)
-  }
+  handleErrorDomestic = (code, value, arr) => (
+    this.handleError(`domestic.${code}`, value, arr)
+  )
 
-  handleErrorInternationalFirst = (value, arr) => {
-    return this.handleErrorInternational('first', value, arr)
-  }
+  handleErrorInternationalFirst = (value, arr) => (
+    this.handleErrorInternational('first', value, arr)
+  )
 
-  handleErrorInternationalSecond = (value, arr) => {
-    return this.handleErrorInternational('second', value, arr)
-  }
+  handleErrorInternationalSecond = (value, arr) => (
+    this.handleErrorInternational('second', value, arr)
+  )
 
-  handleErrorInternationalExtension = (value, arr) => {
-    return this.handleErrorInternational('extension', value, arr)
-  }
+  handleErrorInternationalExtension = (value, arr) => (
+    this.handleErrorInternational('extension', value, arr)
+  )
 
-  handleErrorInternational = (code, value, arr) => {
-    return this.handleError(`international.${code}`, value, arr)
-  }
+  handleErrorInternational = (code, value, arr) => (
+    this.handleError(`international.${code}`, value, arr)
+  )
 
-  handleErrorNoNumber = (value, arr) => {
-    return this.handleError('none', value, arr)
-  }
+  handleErrorNoNumber = (value, arr) => (
+    this.handleError('none', value, arr)
+  )
 
-  handleErrorTime = (value, arr) => {
-    return this.handleError('time', value, arr)
-  }
+  handleErrorTime = (value, arr) => (
+    this.handleError('time', value, arr)
+  )
 
-  handleErrorType = (value, arr) => {
-    return this.handleError('type', value, arr)
-  }
+  handleErrorType = (value, arr) => (
+    this.handleError('type', value, arr)
+  )
 
-  handleErrorNumberType = (value, arr) => {
-    return this.handleError('numberType', value, arr)
-  }
+  handleErrorNumberType = (value, arr) => (
+    this.handleError('numberType', value, arr)
+  )
 
   handleError = (code, value, arr) => {
     const localErr = arr.map(err => ({
@@ -522,7 +524,7 @@ export default class Telephone extends ValidationElement {
     )
   }
 
-  required(type) {
+  required = (type) => {
     if (type && type !== (this.props.type || 'Domestic')) {
       return false
     }

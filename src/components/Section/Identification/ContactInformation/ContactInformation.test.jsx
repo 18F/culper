@@ -10,9 +10,9 @@ describe('The ContactInformation component', () => {
       HomeEmail: {},
       WorkEmail: {},
       PhoneNumbers: { items: [{}] },
-      onBlur: function(event) {
-        blurs++
-      }
+      onBlur: () => {
+        blurs += 1
+      },
     }
     const component = mount(<ContactInformation {...expected} />)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -28,50 +28,42 @@ describe('The ContactInformation component', () => {
               Telephone: {
                 type: 'Domestic',
                 number: '2028675309',
-                extension: '1234'
-              }
-            }
+                extension: '1234',
+              },
+            },
           },
           {
             Item: {
               Telephone: {
                 type: 'Domestic',
                 number: '2028675309',
-                extension: ''
-              }
-            }
-          },
-          {
-            Item: {
-              Telephone: {
-                type: 'DSN',
-                number: '8675309'
-              }
-            }
+                extension: '',
+              },
+            },
           },
           {
             Item: {
               Telephone: {
                 type: 'International',
                 number: '0011234567890',
-                extension: '1234'
-              }
-            }
+                extension: '1234',
+              },
+            },
           },
           {
             Item: {
               Telephone: {
                 type: 'International',
                 number: '0011234567890',
-                extension: ''
-              }
-            }
-          }
-        ]
-      }
+                extension: '',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.index').length).toEqual(5)
+    expect(component.find('.index').length).toEqual(4)
     expect(
       component
         .find('.summary strong')
@@ -89,23 +81,17 @@ describe('The ContactInformation component', () => {
         .find('.summary strong')
         .at(2)
         .text()
-    ).toEqual('867-5309')
+    ).toEqual('+001 1234567890 x1234')
     expect(
       component
         .find('.summary strong')
         .at(3)
         .text()
-    ).toEqual('+001 1234567890 x1234')
-    expect(
-      component
-        .find('.summary strong')
-        .at(4)
-        .text()
     ).toEqual('+001 1234567890')
   })
 
   it('should filter empty items out leaving only the minimum visible', () => {
-    let phoneNumbers = {}
+    const phoneNumbers = {}
     const expected = {
       shouldFilterEmptyItems: true,
       PhoneNumbers: {
@@ -116,12 +102,12 @@ describe('The ContactInformation component', () => {
               Telephone: {
                 type: 'International',
                 number: '0011234567890',
-                extension: ''
-              }
-            }
-          }
-        ]
-      }
+                extension: '',
+              },
+            },
+          },
+        ],
+      },
     }
     const component = mount(<ContactInformation {...expected} />)
     expect(component.find('.index').length).toEqual(1)
