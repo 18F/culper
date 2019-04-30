@@ -14806,7 +14806,7 @@ exports[`The section component renders IDENTIFICATION_CONTACTS 1`] = `
       </div>
       <div
         aria-label="Home email address"
-        className="field"
+        className="field required"
         data-uuid="field-MOCK-GUID"
       >
         <a
@@ -14883,7 +14883,7 @@ exports[`The section component renders IDENTIFICATION_CONTACTS 1`] = `
       </div>
       <div
         aria-label="Work email address"
-        className="field"
+        className="field required"
         data-uuid="field-MOCK-GUID"
       >
         <a
@@ -17776,7 +17776,7 @@ exports[`The section component renders IDENTIFICATION_PHYSICAL 1`] = `
         </div>
       </div>
       <div
-        aria-label="Select your sex"
+        aria-label="Sex"
         className="field required"
         data-uuid="field-MOCK-GUID"
       >
@@ -17789,17 +17789,17 @@ exports[`The section component renders IDENTIFICATION_PHYSICAL 1`] = `
         <h4
           className="title h4"
         >
-          Select your sex
+          Sex
         </h4>
         <span
           className="icon"
         >
           <a
-            aria-label="Show help for Select your sex"
+            aria-label="Show help for Sex"
             className="toggle h4 adjust-for-big-buttons"
             href="javascript:;"
             onClick={[Function]}
-            title="Show help for Select your sex"
+            title="Show help for Sex"
           >
             <svg
               alt="Scalable vector graphic"
@@ -19775,7 +19775,7 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
         </div>
         <div
           aria-label="Home email address"
-          className="field"
+          className="field required"
           data-uuid="field-MOCK-GUID"
         >
           <a
@@ -19807,7 +19807,29 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
               aria-live="polite"
               className="messages error-messages"
               role="alert"
-            />
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.email.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
           </div>
           <div
             className="table"
@@ -19819,7 +19841,7 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
                 className="component"
               >
                 <div
-                  className="hide-for-print email email-home"
+                  className="hide-for-print email email-home usa-input-error"
                 >
                   <input
                     aria-describedby="HomeEmail-error"
@@ -19852,7 +19874,7 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
         </div>
         <div
           aria-label="Work email address"
-          className="field"
+          className="field required"
           data-uuid="field-MOCK-GUID"
         >
           <a
@@ -19884,7 +19906,29 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
               aria-live="polite"
               className="messages error-messages"
               role="alert"
-            />
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.email.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
           </div>
           <div
             className="table"
@@ -19896,7 +19940,7 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
                 className="component"
               >
                 <div
-                  className="hide-for-print email email-work"
+                  className="hide-for-print email email-work usa-input-error"
                 >
                   <input
                     aria-describedby="WorkEmail-error"
@@ -21629,7 +21673,7 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
           </div>
         </div>
         <div
-          aria-label="Select your sex"
+          aria-label="Sex"
           className="field required"
           data-uuid="field-MOCK-GUID"
         >
@@ -21642,17 +21686,17 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
           <h4
             className="title h4"
           >
-            Select your sex
+            Sex
           </h4>
           <span
             className="icon"
           >
             <a
-              aria-label="Show help for Select your sex"
+              aria-label="Show help for Sex"
               className="toggle h4 adjust-for-big-buttons"
               href="javascript:;"
               onClick={[Function]}
-              title="Show help for Select your sex"
+              title="Show help for Sex"
             >
               <svg
                 alt="Scalable vector graphic"
