@@ -591,23 +591,24 @@ func (entity *HistoryEducation) Find(context DatabaseService) error {
 	return nil
 }
 
-func (e *HistoryEducation) ClearNos() bool {
+// ClearNos clears any questions answered nos on a kickback
+func (entity *HistoryEducation) ClearNos() bool {
 	updated := false
 
-	if e.List != nil && e.List.Branch != nil {
-		if e.List.Branch.Value == "No" {
-			e.List.Branch.Value = ""
+	if entity.List != nil && entity.List.Branch != nil {
+		if entity.List.Branch.Value == "No" {
+			entity.List.Branch.Value = ""
 			updated = true
 		}
 	}
 
-	if e.HasAttended != nil && e.HasAttended.Value == "No" {
-		e.HasAttended.Value = ""
+	if entity.HasAttended != nil && entity.HasAttended.Value == "No" {
+		entity.HasAttended.Value = ""
 		updated = true
 	}
 
-	if e.HasDegree10 != nil && e.HasDegree10.Value == "No" {
-		e.HasDegree10.Value = ""
+	if entity.HasDegree10 != nil && entity.HasDegree10.Value == "No" {
+		entity.HasDegree10.Value = ""
 		updated = true
 	}
 
