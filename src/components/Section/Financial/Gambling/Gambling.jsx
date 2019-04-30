@@ -93,7 +93,8 @@ export class Gambling extends Subsection {
     return (
       <div
         className="section-content gambling"
-        {...super.dataAttributes()}
+        data-section={FINANCIAL.key}
+        data-subsection={FINANCIAL_GAMBLING.key}
       >
         <h1 className="section-header">{i18n.t('financial.destination.gambling')}</h1>
         <Branch

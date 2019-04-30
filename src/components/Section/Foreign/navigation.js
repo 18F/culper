@@ -11,19 +11,13 @@ const navigation = {
     {
       exclude: true,
       name: 'Introduction',
-      url: 'intro'
-    },
-    {
-      name: 'U.S. passport information',
-      url: 'passport',
-      store: 'Passport',
-      validator: validators.PassportValidator
+      url: 'intro',
     },
     {
       name: 'Foreign contacts',
       url: 'contacts',
       store: 'Contacts',
-      validator: validators.ForeignContactsValidator
+      validator: validators.ForeignContactsValidator,
     },
     {
       name: 'Foreign activities',
@@ -33,33 +27,33 @@ const navigation = {
           name: 'Direct control',
           url: 'direct',
           store: 'DirectActivity',
-          validator: validators.ForeignDirectActivityValidator
+          validator: validators.ForeignDirectActivityValidator,
         },
         {
           name: 'Indirect control',
           url: 'indirect',
           store: 'IndirectActivity',
-          validator: validators.ForeignIndirectActivityValidator
+          validator: validators.ForeignIndirectActivityValidator,
         },
         {
           name: 'Real estate purchase',
           url: 'realestate',
           store: 'RealEstateActivity',
-          validator: validators.ForeignRealEstateActivityValidator
+          validator: validators.ForeignRealEstateActivityValidator,
         },
         {
           name: 'Foreign benefits',
           url: 'benefits',
           store: 'BenefitActivity',
-          validator: validators.ForeignBenefitActivityValidator
+          validator: validators.ForeignBenefitActivityValidator,
         },
         {
           name: 'Foreign national support',
           url: 'support',
           store: 'Support',
-          validator: validators.ForeignActivitiesSupportValidator
-        }
-      ]
+          validator: validators.ForeignActivitiesSupportValidator,
+        },
+      ],
     },
     {
       name:
@@ -70,70 +64,70 @@ const navigation = {
           name: 'Support provided',
           url: 'advice',
           store: 'Advice',
-          validator: validators.ForeignBusinessAdviceValidator
+          validator: validators.ForeignBusinessAdviceValidator,
         },
         {
           name: 'Immediate family foreign support',
           url: 'family',
           store: 'Family',
-          validator: validators.ForeignBusinessFamilyValidator
+          validator: validators.ForeignBusinessFamilyValidator,
         },
         {
           name: 'Employment',
           url: 'employment',
           store: 'Employment',
-          validator: validators.ForeignBusinessEmploymentValidator
+          validator: validators.ForeignBusinessEmploymentValidator,
         },
         {
           name: 'Other business ventures',
           url: 'ventures',
           store: 'Ventures',
-          validator: validators.ForeignBusinessVenturesValidator
+          validator: validators.ForeignBusinessVenturesValidator,
         },
         {
           name: 'Event participation',
           url: 'conferences',
           store: 'Conferences',
-          validator: validators.ForeignBusinessConferencesValidator
+          validator: validators.ForeignBusinessConferencesValidator,
         },
         {
           name: 'Immediate family contact',
           url: 'contact',
           store: 'Contact',
-          validator: validators.ForeignBusinessContactValidator
+          validator: validators.ForeignBusinessContactValidator,
         },
         {
           name: 'Foreign national sponsorship',
           url: 'sponsorship',
           store: 'Sponsorship',
-          validator: validators.ForeignBusinessSponsorshipValidator
+          validator: validators.ForeignBusinessSponsorshipValidator,
         },
         {
           name: 'Held political office',
           url: 'political',
           store: 'Political',
-          validator: validators.ForeignBusinessPoliticalValidator
+          validator: validators.ForeignBusinessPoliticalValidator,
         },
         {
           name: 'Voting',
           url: 'voting',
           store: 'Voting',
-          validator: validators.ForeignBusinessVotingValidator
-        }
-      ]
+          validator: validators.ForeignBusinessVotingValidator,
+        },
+      ],
     },
     {
       name: 'Foreign countries you have visited',
       url: 'travel',
       store: 'Travel',
-      validator: validators.ForeignTravelValidator
+      validator: validators.ForeignTravelValidator,
     },
     {
       exclude: true,
       name: 'Review',
-      url: 'review'
-    }
-  ]
+      url: 'review',
+    },
+  ],
 }
 
 export default navigation

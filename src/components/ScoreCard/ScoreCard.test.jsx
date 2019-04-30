@@ -9,7 +9,16 @@ describe('The score card component', () => {
   it('shows', () => {
     const mockStore = configureMockStore([thunk])
     const store = mockStore({
+      authentication: { authenticated: true },
+      application: {
+        Errors: {},
+        Completed: {},
+        Settings: {
+          formType: 'SF86',
+        },
+      },
     })
+
     const component = mount(
       <Provider store={store}>
         <ScoreCard />

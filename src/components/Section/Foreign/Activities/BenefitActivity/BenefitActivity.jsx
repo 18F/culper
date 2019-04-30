@@ -56,25 +56,29 @@ export class BenefitActivity extends Subsection {
     const who = ((o.InterestTypes || {}).values || []).join(', ')
 
     let b = null
-    switch (o.BenefitFrequency) {
-      case 'OneTime':
-        b = o.OneTimeBenefit || {}
-        benefit.Country = (b.Country || {}).value
-        benefit.Date = DateSummary(b.Received)
-        break
-      case 'Future':
-        b = o.FutureBenefit || {}
-        benefit.Country = (b.Country || {}).value
-        benefit.Date = DateSummary(b.Begin)
-        break
-      case 'Continuing':
-        b = o.ContinuingBenefit || {}
-        benefit.Country = (b.Country || {}).value
-        benefit.Date = DateSummary(b.Began)
-        break
-      default:
-        console.warn(' There is no such benefit type')
-        break
+    if (o.BenefitFrequency) {
+      switch (o.BenefitFrequency.value) {
+        case 'OneTime':
+          b = o.OneTimeBenefit || {}
+          benefit.Country = (b.Country || {}).value
+          benefit.Date = DateSummary(b.Received)
+          break
+        case 'Future':
+          b = o.FutureBenefit || {}
+          benefit.Country = (b.Country || {}).value
+          benefit.Date = DateSummary(b.Began)
+          break
+        case 'Continuing':
+          b = o.ContinuingBenefit || {}
+          benefit.Country = (b.Country || {}).value
+          benefit.Date = DateSummary(b.Began)
+          break
+        case 'Other':
+          break
+        default:
+          console.warn(' There is no such benefit type')
+          break
+      }
     }
 
     const summary = [who, benefit.Country].reduce((prev, next) => {
@@ -97,7 +101,8 @@ export class BenefitActivity extends Subsection {
     return (
       <div
         className="section-content benefit-activity"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_ACTIVITIES_BENEFITS.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.activities.benefits')}</h1>
         <Branch

@@ -1,17 +1,16 @@
 import React from 'react'
-import { i18n } from 'config'
-import { Field } from 'components/Form'
+
+import i18n from 'util/i18n'
+import { LEGAL } from 'config/formSections/legal'
+
+import SectionIntro from 'components/Section/shared/SectionIntro'
 
 const Intro = () => (
-  <div>
-    <h1 className="section-header">{i18n.t('legal.intro.title')}</h1>
-    <Field
-      optional
-      className="no-margin-bottom"
-    >
-      {i18n.m('legal.intro.body')}
-    </Field>
-  </div>
+  <SectionIntro
+    title={i18n.t('legal.intro.title')}
+    body={i18n.m('legal.intro.body')}
+    sectionKey={LEGAL.key}
+  />
 )
 
 export default Intro

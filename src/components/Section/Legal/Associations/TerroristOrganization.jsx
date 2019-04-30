@@ -1,13 +1,20 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import * as formTypes from 'constants/formTypes'
+
+import i18n from 'util/i18n'
+
 import schema from 'schema'
 import validate, { TerroristValidator } from 'validators'
+
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
+
 import {
   LEGAL,
   LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION,
 } from 'config/formSections/legal'
+
 import Subsection from 'components/Section/shared/Subsection'
 import connectLegalSection from '../LegalConnector'
 import TerroristOrganizationItem from './TerroristOrganizationItem'
@@ -69,13 +76,20 @@ export class TerroristOrganization extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+
+    const introCopy = formType === formTypes.SF86
+      ? i18n.m('legal.associations.terrorist.para.intro')
+      : i18n.m('legal.associations.terrorist.para.introWithoutSecurity')
+
     return (
       <div
         className="section-content legal-associations-terrorist"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.associations.terroristOrganization')}</h1>
-        {i18n.m('legal.associations.terrorist.para.intro')}
+        {introCopy}
         <Branch
           name="has_terrorist"
           label={i18n.t('legal.associations.terrorist.heading.title')}

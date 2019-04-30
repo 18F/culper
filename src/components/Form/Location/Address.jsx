@@ -160,6 +160,11 @@ export default class Address extends ValidationElement {
   }
 
   addressType() {
+    // If address is not applicable ("I don't know"), return ""
+    if (!this.props.isEnabled) {
+      return ''
+    }
+
     let country = this.props.country
     if (typeof country === 'object') {
       country = countryString(this.props.country)
@@ -339,6 +344,7 @@ export default class Address extends ValidationElement {
                   onBlur={this.blurField}
                   required={this.props.required}
                   disabled={this.props.disabled}
+                  isPoBoxAllowed={this.props.isPoBoxAllowed}
                 />
               </div>
               <div className="usa-form-control">
@@ -353,6 +359,7 @@ export default class Address extends ValidationElement {
                   onError={this.handleError}
                   onFocus={this.focusField}
                   onBlur={this.blurField}
+                  isPoBoxAllowed={this.props.isPoBoxAllowed}
                 />
               </div>
               <div className="usa-form-control">
@@ -415,6 +422,7 @@ export default class Address extends ValidationElement {
                 onBlur={this.props.onBlur}
                 required={this.props.required}
                 disabled={this.props.disabled}
+                isPoBoxAllowed={this.props.isPoBoxAllowed}
               />
             </div>
             <div className="usa-form-control">
@@ -429,6 +437,7 @@ export default class Address extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 disabled={this.props.disabled}
+                isPoBoxAllowed={this.props.isPoBoxAllowed}
               />
             </div>
             <div className="usa-form-control">
@@ -476,6 +485,7 @@ export default class Address extends ValidationElement {
                   onBlur={this.blurField}
                   required={this.props.required}
                   disabled={this.props.disabled}
+                  isPoBoxAllowed={this.props.isPoBoxAllowed}
                 />
               </div>
               <div className="usa-form-control">
@@ -573,12 +583,14 @@ Address.defaultProps = {
     return arr
   },
   showPostOffice: false,
+  isEnabled: true,
   streetLabel: i18n.t('address.us.street.label'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),
   postOfficeZipcodeLabel: i18n.t('address.apoFpo.zipcode.label'),
   street2Label: i18n.t('address.us.street2.label'),
   addressBooks: {},
-  addressBook: ''
+  addressBook: '',
+  isPoBoxAllowed: true,
 }
 
 Address.errors = [

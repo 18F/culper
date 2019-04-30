@@ -78,7 +78,8 @@ export class Relatives extends Subsection {
     return (
       <div
         className="section-content relatives"
-        {...super.dataAttributes()}
+        data-section={RELATIONSHIPS.key}
+        data-subsection={RELATIONSHIPS_RELATIVES.key}
       >
         <h1 className="section-header">{i18n.t('relationships.relatives.sectionTitle.title')}</h1>
 

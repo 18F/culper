@@ -1,13 +1,18 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DebarredValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
+
 import {
   LEGAL,
   LEGAL_INVESTIGATIONS_DEBARRED,
 } from 'config/formSections/legal'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
+
 import Subsection from 'components/Section/shared/Subsection'
 import connectLegalSection from '../LegalConnector'
 import DebarredItem from './DebarredItem'
@@ -69,15 +74,25 @@ export class Debarred extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.LEGAL_INVESTIGATED_DEBARRED_YEARS
+    const numberOfYearsString = getNumberOfYearsString(years)
+
+    const titleCopy = years === 'EVER'
+      ? i18n.t('legal.investigations.debarred.heading.titleEver')
+      : i18n.t('legal.investigations.debarred.heading.title', { numberOfYearsString })
+
     return (
       <div
         className="section-content investigations-debarred"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_INVESTIGATIONS_DEBARRED.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.investigations.debarred')}</h1>
         <Branch
           name="has_debarred"
-          label={i18n.t('legal.investigations.debarred.heading.title')}
+          label={titleCopy}
           labelSize="h4"
           className="legal-investigations-debarred-has-debarment"
           {...this.props.HasDebarment}

@@ -5,7 +5,6 @@ import {
   Currency,
   Branch,
   Field,
-  Text,
   DateControl,
   Textarea,
   Radio,
@@ -13,7 +12,6 @@ import {
   RadioGroup,
   Show,
   Checkbox,
-  CheckboxGroup
 } from '../../../../Form'
 
 export default class FutureBenefit extends ValidationElement {
@@ -21,7 +19,7 @@ export default class FutureBenefit extends ValidationElement {
     super(props)
 
     this.update = this.update.bind(this)
-    this.updateBegin = this.updateBegin.bind(this)
+    this.updateBegan = this.updateBegan.bind(this)
     this.updateFrequency = this.updateFrequency.bind(this)
     this.updateOtherFrequency = this.updateOtherFrequency.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
@@ -34,7 +32,7 @@ export default class FutureBenefit extends ValidationElement {
 
   update(queue) {
     this.props.onUpdate({
-      Begin: this.props.Begin,
+      Began: this.props.Began,
       Frequency: this.props.Frequency,
       OtherFrequency: this.props.OtherFrequency,
       Country: this.props.Country,
@@ -43,79 +41,84 @@ export default class FutureBenefit extends ValidationElement {
       Reason: this.props.Reason,
       Obligated: this.props.Obligated,
       ObligatedExplanation: this.props.ObligatedExplanation,
-      ...queue
+      ...queue,
     })
   }
 
-  updateBegin(values) {
+  updateBegan(values) {
     this.update({
-      Begin: values
+      Began: values,
     })
   }
 
   updateFrequency(values) {
     this.update({
-      Frequency: values
+      Frequency: values,
     })
   }
 
   updateOtherFrequency(values) {
     this.update({
-      OtherFrequency: values
+      OtherFrequency: values,
     })
   }
 
   updateCountry(values) {
     this.update({
-      Country: values
+      Country: values,
     })
   }
 
   updateValue(values) {
     this.update({
-      Value: values
+      Value: values,
     })
   }
 
   updateValueEstimated(values) {
     this.update({
-      ValueEstimated: values
+      ValueEstimated: values,
     })
   }
 
   updateReason(values) {
     this.update({
-      Reason: values
+      Reason: values,
     })
   }
 
   updateObligated(values) {
     this.update({
-      Obligated: values
+      Obligated: values,
     })
   }
 
   updateObligatedExplanation(values) {
     this.update({
-      ObligatedExplanation: values
+      ObligatedExplanation: values,
     })
   }
 
   render() {
+    // TODO
+    // One of the things to go back and fix is the grammar.
+    // The backend is expecting Began, which is past tense
+    // Future should be Begin
     return (
       <div className="future-benefit">
         <Field
           title={i18n.t('foreign.activities.benefit.future.heading.begin')}
-          help={'foreign.activities.benefit.future.help.begin'}
+          help="foreign.activities.benefit.future.help.begin"
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
-            name="Begin"
-            className="begin"
-            {...this.props.Begin}
-            onUpdate={this.updateBegin}
+            name="Began"
+            className="began"
+            {...this.props.Began}
+            onUpdate={this.updateBegan}
             onError={this.props.onError}
-            noMaxDate={true}
+            noMaxDate
             required={this.props.required}
           />
         </Field>
@@ -123,12 +126,14 @@ export default class FutureBenefit extends ValidationElement {
         <Field
           title={i18n.t('foreign.activities.benefit.future.heading.frequency')}
           adjustFor="big-buttons"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <RadioGroup
             className="frequency option-list option-list-vertical"
             selectedValue={(this.props.Frequency || {}).value}
             onError={this.props.onError}
-            required={this.props.required}>
+            required={this.props.required}
+          >
             <Radio
               name="benefit_frequency"
               label={i18n.m(
@@ -192,7 +197,8 @@ export default class FutureBenefit extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.activities.benefit.future.heading.country')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Country
             name="Country"
             {...this.props.Country}
@@ -204,7 +210,8 @@ export default class FutureBenefit extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.activities.benefit.future.heading.value')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Currency
             name="Value"
             className="value"
@@ -230,7 +237,8 @@ export default class FutureBenefit extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.activities.benefit.future.heading.reason')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="Reason"
             className="reason"
@@ -259,7 +267,8 @@ export default class FutureBenefit extends ValidationElement {
               'foreign.activities.benefit.future.label.obligatedExplanation'
             )}
             titleSize="label"
-            adjustFor="textarea">
+            adjustFor="textarea"
+          >
             <Textarea
               name="Explanation"
               className="explanation"
@@ -277,8 +286,6 @@ export default class FutureBenefit extends ValidationElement {
 
 FutureBenefit.defaultProps = {
   Obligated: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

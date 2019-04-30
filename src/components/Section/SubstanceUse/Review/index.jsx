@@ -1,17 +1,32 @@
 import React from 'react'
-import NegativeImpacts from '../Alcohol/NegativeImpacts'
-import OrderedCounselings from '../Alcohol/OrderedCounselings'
-import VoluntaryCounselings from '../Alcohol/VoluntaryCounselings'
-import ReceivedCounselings from '../Alcohol/ReceivedCounselings'
-import DrugUses from '../Drugs/DrugUses'
-import DrugInvolvements from '../Drugs/DrugInvolvements'
-import DrugClearanceUses from '../Drugs/DrugClearanceUses'
-import DrugPublicSafetyUses from '../Drugs/DrugPublicSafetyUses'
-import PrescriptionUses from '../Drugs/PrescriptionUses'
-import OrderedTreatments from '../Drugs/OrderedTreatments'
-import VoluntaryTreatments from '../Drugs/VoluntaryTreatments'
 
-const Review = () => {
+import { SUBSTANCE_USE, SUBSTANCE_USE_REVIEW } from 'config/formSections/substanceUse'
+
+import ConnectedNegativeImpacts from '../Alcohol/NegativeImpacts'
+import ConnectedOrderedCounselings from '../Alcohol/OrderedCounselings'
+import ConnectedVoluntaryCounselings from '../Alcohol/VoluntaryCounselings'
+import ConnectedReceivedCounselings from '../Alcohol/ReceivedCounselings'
+import ConnectedDrugUses from '../Drugs/DrugUses'
+import ConnectedDrugInvolvements from '../Drugs/DrugInvolvements'
+import ConnectedDrugClearanceUses from '../Drugs/DrugClearanceUses'
+import ConnectedDrugPublicSafetyUses from '../Drugs/DrugPublicSafetyUses'
+import ConnectedPrescriptionUses from '../Drugs/PrescriptionUses'
+import ConnectedOrderedTreatments from '../Drugs/OrderedTreatments'
+import ConnectedVoluntaryTreatments from '../Drugs/VoluntaryTreatments'
+
+import connectSubstanceUseSection from '../SubstanceUseConnector'
+
+const sectionConfig = {
+  section: SUBSTANCE_USE.name,
+  store: SUBSTANCE_USE.store,
+  subsection: SUBSTANCE_USE_REVIEW.name,
+}
+
+export const Review = ({
+  requireDrugWhileSafetySection,
+  requireDrugWithClearanceSection,
+  requireAlcoholSections,
+}) => {
   const props = {
     required: true,
     scrollIntoView: false,
@@ -23,29 +38,45 @@ const Review = () => {
 
   return (
     <div>
-      <DrugUses {...props} />
+      <ConnectedDrugUses {...props} />
       {sectionDivider}
-      <DrugInvolvements {...props} />
+      <ConnectedDrugInvolvements {...props} />
+
+      {requireDrugWithClearanceSection && (
+        <span>
+          {sectionDivider}
+          <ConnectedDrugClearanceUses {...props} />
+        </span>
+      )}
+
+      {requireDrugWhileSafetySection && (
+        <span>
+          {sectionDivider}
+          <ConnectedDrugPublicSafetyUses {...props} />
+        </span>
+      )}
+
       {sectionDivider}
-      <DrugClearanceUses {...props} />
+      <ConnectedPrescriptionUses {...props} />
       {sectionDivider}
-      <DrugPublicSafetyUses {...props} />
+      <ConnectedOrderedTreatments {...props} />
       {sectionDivider}
-      <PrescriptionUses {...props} />
-      {sectionDivider}
-      <OrderedTreatments {...props} />
-      {sectionDivider}
-      <VoluntaryTreatments {...props} />
-      {sectionDivider}
-      <NegativeImpacts {...props} />
-      {sectionDivider}
-      <OrderedCounselings {...props} />
-      {sectionDivider}
-      <VoluntaryCounselings {...props} />
-      {sectionDivider}
-      <ReceivedCounselings {...props} />
+      <ConnectedVoluntaryTreatments {...props} />
+
+      {requireAlcoholSections && (
+        <span>
+          {sectionDivider}
+          <ConnectedNegativeImpacts {...props} />
+          {sectionDivider}
+          <ConnectedOrderedCounselings {...props} />
+          {sectionDivider}
+          <ConnectedVoluntaryCounselings {...props} />
+          {sectionDivider}
+          <ConnectedReceivedCounselings {...props} />
+        </span>
+      )}
     </div>
   )
 }
 
-export default Review
+export default connectSubstanceUseSection(Review, sectionConfig)

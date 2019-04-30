@@ -1,5 +1,5 @@
 export const login = {
-  title: 'Welcome to the Questionnaire for\nNational Security Positions',
+  title: 'Welcome to the Questionnaire for\nNational Background Investigation Services',
   error: {
     title: "Sorry, but we couldn't log you in!",
     generic: 'The username or password was incorrect.'
@@ -44,7 +44,7 @@ export const login = {
     button: 'Back to login'
   },
   token: {
-    heading: 'Questionnaire for National Security Positions',
+    heading: 'Questionnaire for National Background Investigation Services',
     title: 'For security reasons you have been logged out',
     saved: 'Your data was saved 1 minute prior to logout at {time}.',
     para: [

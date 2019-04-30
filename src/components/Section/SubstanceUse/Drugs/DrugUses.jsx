@@ -1,5 +1,6 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DrugUseValidator } from 'validators'
 import { Summary } from 'components/Summary'
@@ -9,6 +10,9 @@ import {
   SUBSTANCE_USE,
   SUBSTANCE_USE_DRUGS_USAGE,
 } from 'config/formSections/substanceUse'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
+
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubstanceUseSection from '../SubstanceUseConnector'
 
@@ -70,16 +74,24 @@ export class DrugUses extends Subsection {
   }
 
   render() {
+    const {
+      formType, requireDrugWhileSafety, requireDrugWithClearance, requireDrugInFuture,
+    } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_USE_YEARS
+    const numberOfYearsString = getNumberOfYearsString(years)
+
     return (
       <div
         className="section-content drug-uses"
-        {...super.dataAttributes()}
+        data-section={SUBSTANCE_USE.key}
+        data-subsection={SUBSTANCE_USE_DRUGS_USAGE.key}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.usage')}</h1>
         {i18n.m('substance.drugs.para.drugUses')}
         <Branch
           name="UsedDrugs"
-          label={i18n.t('substance.drugs.heading.drugUses')}
+          label={i18n.t('substance.drugs.heading.drugUses', { numberOfYearsString })}
           labelSize="h4"
           className="used-drugs"
           {...this.props.UsedDrugs}
@@ -112,6 +124,9 @@ export class DrugUses extends Subsection {
               bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireDrugWhileSafety={requireDrugWhileSafety}
+              requireDrugWithClearance={requireDrugWithClearance}
+              requireDrugInFuture={requireDrugInFuture}
             />
           </Accordion>
         </Show>

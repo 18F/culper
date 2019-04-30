@@ -24,7 +24,8 @@ func Command(log api.LogService, action func(api.DatabaseService, *api.Account))
 		User:     settings.String(api.DatabaseUser),
 		Password: settings.String(api.DatabasePassword),
 		Address:  settings.String(api.DatabaseHost),
-		DBName:   settings.String(api.TestDatabaseName),
+		DBName:   settings.String(api.DatabaseName),
+		SSLMode:  settings.String(api.DatabaseSSLMode),
 	}
 	database := postgresql.NewPostgresService(dbConf, log)
 

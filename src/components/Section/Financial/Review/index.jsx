@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { FINANCIAL, FINANCIAL_REVIEW } from 'config/formSections/financial'
+
 import Bankruptcies from 'components/Section/Financial/Bankruptcy'
 import Gambling from 'components/Section/Financial/Gambling'
 import Taxes from 'components/Section/Financial/Taxes'
@@ -8,7 +10,23 @@ import Credit from 'components/Section/Financial/Credit'
 import Delinquent from 'components/Section/Financial/Delinquent'
 import Nonpayment from 'components/Section/Financial/Nonpayment'
 
-const Review = () => {
+import connectFinancialSection from '../FinancialConnector'
+
+const sectionConfig = {
+  section: FINANCIAL.name,
+  store: FINANCIAL.store,
+  subsection: FINANCIAL_REVIEW.name,
+}
+
+const Review = ({
+  requireFinancialBankruptcySection,
+  requireFinancialGamblingSection,
+  requireFinancialTaxesSection,
+  requireFinancialCardSection,
+  requireFinancialCreditSection,
+  requireFinancialDelinquentSection,
+  requireFinancialNonpaymentSection,
+}) => {
   const subsectionProps = {
     required: true,
     scrollIntoView: false,
@@ -21,21 +39,55 @@ const Review = () => {
 
   return (
     <div>
-      <Bankruptcies {...subsectionProps} />
-      {sectionDivider}
-      <Gambling {...subsectionProps} />
-      {sectionDivider}
-      <Taxes {...subsectionProps} />
-      {sectionDivider}
-      <Card {...subsectionProps} />
-      {sectionDivider}
-      <Credit {...subsectionProps} />
-      {sectionDivider}
-      <Delinquent {...subsectionProps} />
-      {sectionDivider}
-      <Nonpayment {...subsectionProps} />
+      {requireFinancialBankruptcySection && (
+        <span>
+          <Bankruptcies {...subsectionProps} />
+          {sectionDivider}
+        </span>
+      )}
+
+      {requireFinancialGamblingSection && (
+        <span>
+          <Gambling {...subsectionProps} />
+          {sectionDivider}
+        </span>
+      )}
+
+      {requireFinancialTaxesSection && (
+        <span>
+          <Taxes {...subsectionProps} />
+          {sectionDivider}
+        </span>
+      )}
+
+      {requireFinancialCardSection && (
+        <span>
+          <Card {...subsectionProps} />
+          {sectionDivider}
+        </span>
+
+      )}
+
+      {requireFinancialCreditSection && (
+        <span>
+          <Credit {...subsectionProps} />
+          {sectionDivider}
+        </span>
+
+      )}
+
+      {requireFinancialDelinquentSection && (
+        <span>
+          <Delinquent {...subsectionProps} />
+          {sectionDivider}
+        </span>
+      )}
+
+      {requireFinancialNonpaymentSection && (
+        <Nonpayment {...subsectionProps} />
+      )}
     </div>
   )
 }
 
-export default Review
+export default connectFinancialSection(Review, sectionConfig)

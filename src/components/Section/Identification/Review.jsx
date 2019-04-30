@@ -33,6 +33,7 @@ const Review = () => {
       <ContactInformation
         {...subsectionProps}
         shouldFilterEmptyItems
+        isReview
       />
       {sectionDivider}
       <Physical {...subsectionProps} />

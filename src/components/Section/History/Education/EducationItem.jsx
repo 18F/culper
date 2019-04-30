@@ -1,6 +1,7 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { nameIsEmpty } from '../../../../validators'
+
+import i18n from 'util/i18n'
+import { nameIsEmpty } from 'validators'
 import {
   ValidationElement,
   BranchCollection,
@@ -14,18 +15,17 @@ import {
   Name,
   Telephone,
   Show,
-  Email
-} from '../../../Form'
+  Email,
+} from 'components/Form'
+
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo, extractDate } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
-const withinThreeYears = (from, to, present) => {
-  return (
-    present || (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
-  )
-}
+const withinThreeYears = (from, to, present) => (
+  present || (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+)
 
 /**
  * Education item in a collection
@@ -34,29 +34,7 @@ const withinThreeYears = (from, to, present) => {
  * when particular portions of this should be rendered.
  */
 export default class EducationItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateDates = this.updateDates.bind(this)
-    this.updateType = this.updateType.bind(this)
-    this.updateName = this.updateName.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateComments = this.updateComments.bind(this)
-    this.updateReferenceName = this.updateReferenceName.bind(this)
-    this.updateReferenceNameNotApplicable = this.updateReferenceNameNotApplicable.bind(
-      this
-    )
-    this.updateReferencePhone = this.updateReferencePhone.bind(this)
-    this.updateReferenceEmail = this.updateReferenceEmail.bind(this)
-    this.updateReferenceEmailNotApplicable = this.updateReferenceEmailNotApplicable.bind(
-      this
-    )
-    this.updateReferenceAddress = this.updateReferenceAddress.bind(this)
-    this.updateDiplomas = this.updateDiplomas.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Dates: this.props.Dates,
       Type: this.props.Type,
@@ -70,15 +48,15 @@ export default class EducationItem extends ValidationElement {
       ReferenceEmailNotApplicable: this.props.ReferenceEmailNotApplicable,
       ReferenceAddress: this.props.ReferenceAddress,
       Diplomas: this.props.Diplomas,
-      ...queue
+      ...queue,
     })
   }
 
-  updateDates(values) {
+  updateDates = (values) => {
     const dates = values || {}
-    const from = dates.from
-    const to = dates.to
+    const { from, to } = dates
     const zeroReference = !withinThreeYears(from, to, dates.present)
+
     this.update({
       Dates: values,
       ReferenceName: zeroReference ? {} : this.props.ReferenceName,
@@ -90,91 +68,94 @@ export default class EducationItem extends ValidationElement {
       ReferenceEmailNotApplicable: zeroReference
         ? {}
         : this.props.ReferenceEmailNotApplicable,
-      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress,
     })
   }
 
-  updateType(values) {
+  updateType = (values) => {
     this.update({
-      Type: values
+      Type: values,
     })
   }
 
-  updateName(values) {
+  updateName = (values) => {
     this.update({
-      Name: values
+      Name: values,
     })
   }
 
-  updateAddress(values) {
+  updateAddress = (values) => {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
-  updateComments(values) {
+  updateComments = (values) => {
     this.update({
-      Comments: values
+      Comments: values,
     })
   }
 
-  updateReferenceName(values) {
+  updateReferenceName = (values) => {
     this.update({
-      ReferenceName: values
+      ReferenceName: values,
+      ReferenceNameNotApplicable: { applicable: true },
     })
   }
 
-  updateReferenceNameNotApplicable(values) {
+  updateReferenceNameNotApplicable = (values) => {
     this.update({
-      ReferenceNameNotApplicable: values
+      ReferenceNameNotApplicable: values,
     })
   }
 
-  updateReferencePhone(values) {
+  updateReferencePhone = (values) => {
     this.update({
-      ReferencePhone: values
+      ReferencePhone: values,
     })
   }
 
-  updateReferenceEmail(values) {
+  updateReferenceEmail = (values) => {
     this.update({
-      ReferenceEmail: values
+      ReferenceEmail: values,
+      ReferenceEmailNotApplicable: { applicable: true },
     })
   }
 
-  updateReferenceEmailNotApplicable(values) {
+  updateReferenceEmailNotApplicable = (values) => {
     this.update({
       ReferenceEmailNotApplicable: values,
-      ReferenceEmail: values.applicable ? this.props.ReferenceEmail : {}
+      ReferenceEmail: values.applicable ? this.props.ReferenceEmail : {},
     })
   }
 
-  updateReferenceAddress(values) {
+  updateReferenceAddress = (values) => {
     this.update({
-      ReferenceAddress: values
+      ReferenceAddress: values,
     })
   }
 
-  updateDiplomas(values) {
+  updateDiplomas = (values) => {
     this.update({
-      Diplomas: values
+      Diplomas: values,
     })
   }
 
-  diplomaSummary(item, index) {
+  diplomaSummary = (item, index) => {
     const unk = i18n.t('history.education.collection.diploma.summary.unknown')
     const diploma = item.Diploma || {}
     const d = diploma.Date || {}
-    const text =
-      (diploma.Diploma === 'Other' ? diploma.DiplomaOther : diploma.Diploma) ||
-      unk
+    const text = (
+      diploma.Diploma === 'Other'
+        ? diploma.DiplomaOther
+        : diploma.Diploma
+    ) || unk
     const dd = d ? `${d.month}/${d.year}` : unk
 
     return (
       <span>
         <span className="index">
-          {i18n.t('history.education.collection.diploma.summary.item')}{' '}
-          {index + 1}:
+          {`${i18n.t('history.education.collection.diploma.summary.item')} ${index + 1}:`}
         </span>
         <span className="">
           <strong>{text}</strong>
@@ -200,7 +181,8 @@ export default class EducationItem extends ValidationElement {
             title={i18n.t('history.education.heading.name')}
             titleSize="h4"
             adjustFor="labels"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Text
               name="Name"
               {...this.props.Name}
@@ -219,14 +201,11 @@ export default class EducationItem extends ValidationElement {
             adjustFor="daterange"
             shrink={true}
             scrollIntoView={this.props.scrollIntoView}>
-            <label className="info-label">
-              {i18n.t('history.education.label.dates')}
-            </label>
             <DateRange
               name="Dates"
               {...this.props.Dates}
               label={i18n.t('history.education.label.dates')}
-              minDateEqualTo={true}
+              minDateEqualTo
               onUpdate={this.updateDates}
               onError={this.props.onError}
               required={this.props.required}
@@ -236,16 +215,17 @@ export default class EducationItem extends ValidationElement {
           <Field
             title={i18n.t('history.education.heading.address')}
             titleSize="h4"
-            optional={true}
+            optional
             help="history.education.help.address"
-            comments={true}
+            comments
             commentsName="Comments"
             commentsValue={this.props.Comments}
             onUpdate={this.updateComments}
             onError={this.props.onError}
             adjustFor="address"
-            shrink={true}
-            scrollIntoView={this.props.scrollIntoView}>
+            shrink
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <label className="into-label">
               {i18n.m('history.education.label.addressLink')}
             </label>
@@ -257,8 +237,8 @@ export default class EducationItem extends ValidationElement {
               dispatch={this.props.dispatch}
               addressBooks={this.props.addressBooks}
               addressBook="Education"
-              geocode={true}
-              showPostOffice={true}
+              geocode
+              showPostOffice
               onUpdate={this.updateAddress}
               onError={this.props.onError}
               required={this.props.required}
@@ -269,13 +249,15 @@ export default class EducationItem extends ValidationElement {
             title={i18n.t('history.education.heading.type')}
             titleSize="h4"
             adjustFor="big-buttons"
-            shrink={true}
-            scrollIntoView={this.props.scrollIntoView}>
+            shrink
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <RadioGroup
               className="type option-list option-list-vertical"
               required={this.props.required}
               onError={this.props.onError}
-              selectedValue={(this.props.Type || {}).value}>
+              selectedValue={(this.props.Type || {}).value}
+            >
               <Radio
                 name="type-highschool"
                 className="type-highschool"
@@ -317,30 +299,33 @@ export default class EducationItem extends ValidationElement {
                 title={i18n.t('history.education.heading.reference')}
                 titleSize="h3"
                 className="no-margin-bottom"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 {i18n.m('history.education.para.reference')}
               </Field>
 
               <Field
                 title={i18n.t('reference.heading.name')}
                 titleSize="h4"
-                optional={true}
+                optional
                 filterErrors={Name.requiredErrorsOnly}
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <NotApplicable
                   name="ReferenceNameNotApplicable"
                   {...this.props.ReferenceNameNotApplicable}
                   label={i18n.t('reference.label.idk')}
                   or={i18n.m('reference.para.or')}
                   onUpdate={this.updateReferenceNameNotApplicable}
-                  onError={this.props.onError}>
+                  onError={this.props.onError}
+                >
                   <Name
                     name="ReferenceName"
-                    prefix={'name'}
+                    prefix="name"
                     className="reference-name"
                     {...this.props.ReferenceName}
                     scrollIntoView={this.props.scrollIntoView}
-                    hideMiddleName={true}
+                    hideMiddleName
                     onUpdate={this.updateReferenceName}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -352,9 +337,10 @@ export default class EducationItem extends ValidationElement {
                 <Field
                   title={i18n.t('reference.heading.correspondence')}
                   titleSize="h4"
-                  optional={true}
+                  optional
                   className="no-margin-bottom"
-                  scrollIntoView={this.props.scrollIntoView}>
+                  scrollIntoView={this.props.scrollIntoView}
+                >
                   {i18n.m('reference.para.correspondence')}
                 </Field>
 
@@ -362,14 +348,16 @@ export default class EducationItem extends ValidationElement {
                   title={i18n.t('reference.heading.phone.default')}
                   titleSize="h4"
                   className="override-required"
-                  help={'reference.help.phone'}
+                  help="reference.help.phone"
                   adjustFor="telephone"
-                  scrollIntoView={this.props.scrollIntoView}>
+                  scrollIntoView={this.props.scrollIntoView}
+                >
                   <Telephone
                     name="ReferencePhone"
                     className="reference-phone"
                     {...this.props.ReferencePhone}
                     onUpdate={this.updateReferencePhone}
+                    allowNotApplicable={false}
                     onError={this.props.onError}
                     required={this.props.required}
                   />
@@ -378,16 +366,18 @@ export default class EducationItem extends ValidationElement {
                 <Field
                   title={i18n.t('reference.heading.email')}
                   titleSize="h4"
-                  help={'reference.help.email'}
+                  help="reference.help.email"
                   adjustFor="label"
-                  scrollIntoView={this.props.scrollIntoView}>
+                  scrollIntoView={this.props.scrollIntoView}
+                >
                   <NotApplicable
                     name="ReferenceEmailNotApplicable"
                     {...this.props.ReferenceEmailNotApplicable}
                     label={i18n.t('reference.label.idk')}
                     or={i18n.m('reference.para.or')}
                     onUpdate={this.updateReferenceEmailNotApplicable}
-                    onError={this.props.onError}>
+                    onError={this.props.onError}
+                  >
                     <Email
                       name="ReferenceEmail"
                       {...this.props.ReferenceEmail}
@@ -402,10 +392,11 @@ export default class EducationItem extends ValidationElement {
                 <Field
                   title={i18n.t('reference.heading.address')}
                   titleSize="h4"
-                  optional={true}
-                  help={'reference.help.address'}
+                  optional
+                  help="reference.help.address"
                   adjustFor="address"
-                  scrollIntoView={this.props.scrollIntoView}>
+                  scrollIntoView={this.props.scrollIntoView}
+                >
                   <p>{i18n.t('reference.para.address')}</p>
                   <Location
                     name="ReferenceAddress"
@@ -413,10 +404,10 @@ export default class EducationItem extends ValidationElement {
                     {...this.props.ReferenceAddress}
                     label={i18n.t('reference.label.address')}
                     layout={Location.ADDRESS}
-                    geocode={true}
+                    geocode
                     addressBooks={this.props.addressBooks}
                     addressBook="Reference"
-                    showPostOffice={true}
+                    showPostOffice
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateReferenceAddress}
                     onError={this.props.onError}
@@ -435,10 +426,11 @@ export default class EducationItem extends ValidationElement {
             onUpdate={this.updateDiplomas}
             onError={this.props.onError}
             required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <DiplomaItem
               name="Item"
-              bind={true}
+              bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
@@ -456,14 +448,12 @@ EducationItem.defaultProps = {
   Address: {},
   Comments: {},
   ReferenceName: {},
-  ReferenceNameNotApplicable: {},
+  ReferenceNameNotApplicable: { applicable: true },
   ReferencePhone: {},
   ReferenceEmail: {},
-  ReferenceEmailNotApplicable: {},
+  ReferenceEmailNotApplicable: { applicable: true },
   ReferenceAddress: {},
   Diplomas: { items: [] },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

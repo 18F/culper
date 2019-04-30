@@ -38,6 +38,7 @@ func cleanTestServices() serviceSet {
 		Password: env.String(api.DatabasePassword),
 		Address:  env.String(api.DatabaseHost),
 		DBName:   env.String(api.TestDatabaseName),
+		SSLMode:  env.String(api.DatabaseSSLMode),
 	}
 
 	db := postgresql.NewPostgresService(dbConf, log)
@@ -122,6 +123,15 @@ func populateAccount(db api.DatabaseService, account api.Account, testCasePath s
 	}
 
 	return nil
+}
+
+// readTestData pulls in test data as a string
+func readTestData(filepath string) (string, error) {
+	b, err := ioutil.ReadFile(filepath)
+	if err != nil {
+		return "", err
+	}
+	return string(b), nil
 }
 
 // saveJSON calls the save handler with the given json body.

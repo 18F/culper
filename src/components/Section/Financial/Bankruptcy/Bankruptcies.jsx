@@ -79,7 +79,8 @@ export class Bankruptcies extends Subsection {
     return (
       <div
         className="section-content bankruptcies"
-        {...super.dataAttributes()}
+        data-section={FINANCIAL.key}
+        data-subsection={FINANCIAL_BANKRUPTCY.key}
       >
         <h1 className="section-header">{i18n.t('financial.destination.bankruptcy')}</h1>
         <Branch

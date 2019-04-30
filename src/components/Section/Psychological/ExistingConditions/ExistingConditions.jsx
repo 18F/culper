@@ -129,7 +129,8 @@ export class ExistingConditions extends Subsection {
     return (
       <div
         className="section-content existingconditions"
-        {...super.dataAttributes()}
+        data-section={PSYCHOLOGICAL.key}
+        data-subsection={PSYCHOLOGICAL_CONDITIONS.key}
       >
         <h1 className="section-header">{i18n.t('psychological.destination.existingConditions')}</h1>
         <Branch

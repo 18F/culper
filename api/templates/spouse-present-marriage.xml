@@ -24,7 +24,7 @@
         <Comment></Comment>
         <DocumentExpiration Type="{{dateEstimated $doc.DocumentExpiration}}">{{date $doc.DocumentExpiration}}</DocumentExpiration>
         <DocumentNumber>{{text $doc.DocumentNumber}}</DocumentNumber>
-        <Type>{{text $doc.DocumentType | foreignDocType}}</Type>
+        <Type>{{text $doc.DocumentType | spouseForeignDocType}}</Type>
         <TypeOtherExplanation>{{text $doc.OtherExplanation}}</TypeOtherExplanation>
       </ProofOfStatus>
     </Citizenship>

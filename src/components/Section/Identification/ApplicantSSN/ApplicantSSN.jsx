@@ -123,7 +123,11 @@ export class ApplicantSSN extends Subsection {
       !this.props.ssn.notApplicable
 
     return (
-      <div className={klass} {...super.dataAttributes()}>
+      <div
+        className={klass}
+        data-section={IDENTIFICATION.key}
+        data-subsection={IDENTIFICATION_SSN.key}
+      >
       <h1 className="section-header">{i18n.t('identification.destination.ssn')}</h1>
         <Field
           title={i18n.t('identification.ssn.title')}

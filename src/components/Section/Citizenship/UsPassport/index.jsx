@@ -11,20 +11,21 @@ import {
   DateControl,
   Branch,
 } from 'components/Form'
-import { FOREIGN, FOREIGN_PASSPORT } from 'config/formSections/foreign'
+import { FOREIGN } from 'config/formSections/foreign'
+import { CITIZENSHIP, CITIZENSHIP_US_PASSPORT } from 'config/formSections/citizenship'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectCitizenshipSection from '../CitizenshipConnector'
 import { extractDate } from '../../History/dateranges'
 
 
 const sectionConfig = {
-  section: FOREIGN.name,
+  section: CITIZENSHIP.name,
   store: FOREIGN.store,
-  subsection: FOREIGN_PASSPORT.name,
-  storeKey: FOREIGN_PASSPORT.storeKey,
+  subsection: CITIZENSHIP_US_PASSPORT.name,
+  storeKey: CITIZENSHIP_US_PASSPORT.storeKey,
 }
 
-export class Passport extends Subsection {
+export class UsPassport extends Subsection {
   constructor(props) {
     super(props)
 
@@ -34,6 +35,7 @@ export class Passport extends Subsection {
 
     this.section = section
     this.subsection = subsection
+    // TODO: Temporary solution to limit risk of changing Redux, backend, and XML changes
     this.store = store
     this.storeKey = storeKey
   }
@@ -160,14 +162,14 @@ export class Passport extends Subsection {
     return (
       <div
         className="section-content passport"
-        {...super.dataAttributes()}
+        data-section={CITIZENSHIP.key}
+        data-subsection={CITIZENSHIP_US_PASSPORT.key}
       >
-        <h1 className="section-header">{i18n.t('foreign.passport.title')}</h1>
-
-        <h3>{i18n.t('foreign.passport.info.text')}</h3>
+        <h1 className="section-header">{i18n.t('citizenship.usPassport.title')}</h1>
+        <h3>{i18n.t('citizenship.usPassport.info.text')}</h3>
         <Branch
           name="has_passport"
-          label={i18n.t('foreign.passport.question.title')}
+          label={i18n.t('citizenship.usPassport.question.title')}
           labelSize="h4"
           {...this.props.HasPassports}
           warning
@@ -179,7 +181,7 @@ export class Passport extends Subsection {
         <Show when={this.props.HasPassports.value === 'Yes'}>
           <div>
             <Field
-              title={i18n.t('foreign.passport.name')}
+              title={i18n.t('citizenship.usPassport.name')}
               titleSize="h4"
               optional
               className="no-margin-bottom"
@@ -213,8 +215,8 @@ export class Passport extends Subsection {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.issued')}
-              help="foreign.passport.help.issued"
+              title={i18n.t('citizenship.usPassport.issued')}
+              help={i18n.t('citizenship.usPassport.help.issued.message')}
               adjustFor="labels"
               shrink
               scrollIntoView={this.props.scrollIntoView}
@@ -231,8 +233,8 @@ export class Passport extends Subsection {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.expiration')}
-              help="foreign.passport.help.expiration"
+              title={i18n.t('citizenship.usPassport.expiration')}
+              help={i18n.t('citizenship.usPassport.help.expiration.message')}
               adjustFor="labels"
               shrink
               scrollIntoView={this.props.scrollIntoView}
@@ -252,8 +254,8 @@ export class Passport extends Subsection {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.label.bookNumber')}
-              help="foreign.passport.help.number"
+              title={i18n.t('citizenship.usPassport.label.bookNumber')}
+              help={i18n.t('citizenship.usPassport.help.number.message')}
               errorPrefix="passport"
               adjustFor="buttons"
               shrink
@@ -285,7 +287,7 @@ export class Passport extends Subsection {
 // U.S. Citizenship and Immigration Services (USCIS) at:
 //
 // https://e-verify-uscis.gov/esp/help/EvHelpPassportandPassportCardNbr.htm
-Passport.defaultProps = {
+UsPassport.defaultProps = {
   Name: {},
   Number: {},
   Card: { value: 'Book' },
@@ -303,4 +305,4 @@ Passport.defaultProps = {
   validator: data => validate(schema('foreign.passport', data)),
 }
 
-export default connectForeignSection(Passport, sectionConfig)
+export default connectCitizenshipSection(UsPassport, sectionConfig)

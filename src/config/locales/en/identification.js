@@ -102,12 +102,12 @@ export const identification = {
     },
     heading: {
       name: 'Provide other name used',
-      maiden: 'Was this your maiden name?',
+      maiden: 'Maiden name?',
       used: 'Dates used',
       reason: 'Provide the reasons why the name was changed',
     },
     label: {
-      maiden: 'Was this your maiden name?',
+      maiden: 'Maiden name?',
       reason: 'Provide the reasons why the name changed',
     },
   },
@@ -170,9 +170,8 @@ export const identification = {
     title: 'Provide your contact information',
     help: {
       email: {
-        title: 'Email addresses are not required',
-        message:
-          'Email addresses are not required but may assist in the completion of your background investigation.',
+        title: 'One (1) email address is required',
+        message: 'Etiher one work or one personal email is required for the completion of your background investigation.',
         note: 'Email format example: name@example.com',
       },
       phoneNumber: {
@@ -241,7 +240,7 @@ export const identification = {
       eye: 'Eye color',
       height: 'Height',
       weight: 'Weight',
-      sex: 'Select your sex',
+      sex: 'Sex',
       comments: 'Add your comment about sex',
     },
     help: {

@@ -71,7 +71,8 @@ export class Voting extends Subsection {
     return (
       <div
         className="section-content foreign-business-voting"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_BUSINESS_VOTING.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.business.voting')}</h1>
         <Branch

@@ -15,7 +15,7 @@ import { InjectGaps, EmploymentCustomSummary } from 'components/Section/History/
 import EmploymentItem from 'components/Section/History/Employment/EmploymentItem'
 import { Gap } from 'components/Section/History/Gap'
 
-import { getYearsString } from 'components/Section/History/helpers'
+import { getYearsString } from 'helpers/text'
 
 import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
 
@@ -168,7 +168,8 @@ export class Employment extends Subsection {
     return (
       <div
         className="section-content employment"
-        {...super.dataAttributes()}
+        data-section={HISTORY.key}
+        data-subsection={HISTORY_EMPLOYMENT.key}
       >
         <Accordion
           scrollToTop={this.props.scrollToTop}

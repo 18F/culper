@@ -69,10 +69,13 @@ export class History extends Subsection {
   }
 
   render() {
+    const { requireLegalInvestigationClearanceGranted } = this.props
+
     return (
       <div
         className="section-content investigations-history"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_INVESTIGATIONS_HISTORY.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.investigations.history')}</h1>
         <Branch
@@ -108,6 +111,7 @@ export class History extends Subsection {
               bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireLegalInvestigationClearanceGranted={requireLegalInvestigationClearanceGranted}
             />
           </Accordion>
         </Show>

@@ -1,13 +1,18 @@
 import React from 'react'
-import { i18n } from 'config'
+
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DrugVoluntaryTreatmentValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+
 import {
   SUBSTANCE_USE,
   SUBSTANCE_USE_DRUGS_VOLUNTARY,
 } from 'config/formSections/substanceUse'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
+
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubstanceUseSection from '../SubstanceUseConnector'
 import VoluntaryTreatment from './VoluntaryTreatment'
@@ -71,15 +76,31 @@ export class VoluntaryTreatments extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_TREATMENT_YEARS
+
+    let branchLabelCopy
+    let appendTitleCopy
+    if (years === 'EVER') {
+      branchLabelCopy = i18n.t('substance.drugs.heading.voluntaryTreatmentsEver')
+      appendTitleCopy = i18n.t('substance.drugs.voluntary.collection.appendTitleEver')
+    } else {
+      const numberOfYearsString = getNumberOfYearsString(years)
+      branchLabelCopy = i18n.t('substance.drugs.heading.voluntaryTreatments', { numberOfYearsString })
+      appendTitleCopy = i18n.t('substance.drugs.voluntary.collection.appendTitle', { numberOfYearsString })
+    }
+
     return (
       <div
         className="section-content voluntary-treatments"
-        {...super.dataAttributes()}
+        data-section={SUBSTANCE_USE.key}
+        data-subsection={SUBSTANCE_USE_DRUGS_VOLUNTARY.key}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.voluntary')}</h1>
         <Branch
           name="TreatmentVoluntary"
-          label={i18n.t('substance.drugs.heading.voluntaryTreatments')}
+          label={branchLabelCopy}
           labelSize="h4"
           className="treatment-voluntary"
           {...this.props.TreatmentVoluntary}
@@ -100,7 +121,7 @@ export class VoluntaryTreatments extends Subsection {
             onError={this.handleError}
             validator={DrugVoluntaryTreatmentValidator}
             description={i18n.t('substance.drugs.voluntary.collection.description')}
-            appendTitle={i18n.t('substance.drugs.voluntary.collection.appendTitle')}
+            appendTitle={appendTitleCopy}
             appendLabel={i18n.t('substance.drugs.voluntary.collection.appendLabel')}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}

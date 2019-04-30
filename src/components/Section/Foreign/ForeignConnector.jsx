@@ -2,7 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { extractOtherNames } from 'components/Section/extractors'
+import {
+  selectForeignContactsSection,
+  selectForeignActivitiesSection,
+  selectForeignBusinessSection,
+  selectForeignTravelSection,
+} from 'selectors/branches'
 
 import {
   updateApplication,
@@ -55,16 +60,9 @@ const connectForeignSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
 
-    const names = extractOtherNames(app)
     const applicantBirthdate = (identification.ApplicantBirthDate || {}).Date
 
     switch (storeKey) {
-      case 'Passport':
-        return {
-          ...foreign.Passport,
-          suggestedNames: names,
-        }
-
       case 'Contacts':
         return {
           ...foreign.Contacts,
@@ -109,7 +107,6 @@ const connectForeignSection = (Component, {
         return {
           Application: app,
           Foreign: foreign,
-          Passport: foreign.Passport,
           Contacts: foreign.Contacts,
           DirectActivity: foreign.DirectActivity,
           IndirectActivity: foreign.IndirectActivity,
@@ -128,6 +125,10 @@ const connectForeignSection = (Component, {
           Travel: foreign.Travel,
           Errors: errors.foreign || [],
           Completed: completed.foreign || [],
+          ...selectForeignContactsSection(state),
+          ...selectForeignActivitiesSection(state),
+          ...selectForeignBusinessSection(state),
+          ...selectForeignTravelSection(state),
         }
     }
   }

@@ -61,7 +61,8 @@ export class TerrorismAssociation extends Subsection {
     return (
       <div
         className="section-content legal-associations-terrorism"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.associations.terrorismAssociation')}</h1>
         <Branch

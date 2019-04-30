@@ -1,6 +1,6 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
-import { shallow,mount } from 'enzyme'
+import { mount } from 'enzyme'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import configureMockStore from 'redux-mock-store'
@@ -9,19 +9,24 @@ import AppWithForm from 'components/Main/AppWithForm'
 describe('AppWithForm', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
+
   const store = mockStore({
     authentication: {
-      authenticated: true
+      authenticated: true,
     },
     application: {
       Settings: {
-        acceptedTerms: 'Yes'
-      }
+        acceptedTerms: 'Yes',
+        formType: 'SF86',
+      },
+      Errors: {},
+      Completed: {},
     },
-    section: {}
+    section: {},
   })
+
   const props = {
-    example: 'MyProperty'
+    example: 'MyProperty',
   }
   let component
 

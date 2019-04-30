@@ -4,6 +4,7 @@ import classnames from 'classnames'
 import axios from 'axios'
 
 import i18n from 'util/i18n'
+import * as formConfig from 'config/forms'
 
 import { api } from 'services'
 
@@ -25,7 +26,7 @@ import connectPackageSection from '../PackageConnector'
 
 const signatureValid = data => new SignatureValidator(data).isValid()
 
-class PackageSubmit extends React.Component {
+export class PackageSubmit extends React.Component {
   constructor(props) {
     super(props)
 
@@ -35,13 +36,16 @@ class PackageSubmit extends React.Component {
       showAdditionalComments: true,
       showGeneralItem: false,
       showCreditItem: false,
+      signatures: {},
     }
   }
 
   handleSubmit = () => {
     if (window.confirm('Are you sure you want to submit this application?')) {
-      const { Submission = {}, updateApplication, history } = this.props
-      const data = { ...Submission.Releases }
+      const { updateApplication, history } = this.props
+      const { signatures } = this.state
+
+      const data = { ...signatures }
       const payload = schema('package.submit', data, false)
 
       this.setState({
@@ -63,8 +67,6 @@ class PackageSubmit extends React.Component {
           updateApplication('Settings', 'hash', statusData.Hash)
 
           history.push('/form/package/print')
-
-          updateApplication('Submission', 'Releases', Submission.Releases)
         })
         .catch(() => {
           console.warn('Failed to form package')
@@ -73,25 +75,18 @@ class PackageSubmit extends React.Component {
             isSubmitting: false,
             submissionError: true,
           })
-
-          updateApplication('Submission', 'Releases', data)
         })
     }
   }
 
   update = (values) => {
-    const {
-      Submission, updateApplication,
-    } = this.props
+    const { signatures } = this.state
 
-    const { Releases = {} } = Submission
-
-    updateApplication('Submission', 'Releases', {
-      AdditionalComments: Releases.AdditionalComments,
-      General: Releases.General,
-      Medical: Releases.Medical,
-      Credit: Releases.Credit,
-      ...values,
+    this.setState({
+      signatures: {
+        ...signatures,
+        ...values,
+      },
     })
   }
 
@@ -149,9 +144,10 @@ class PackageSubmit extends React.Component {
 
   renderAccordion = () => {
     const {
-      Application = {}, Identification = {}, Submission = {}, History = {},
+      Application = {}, Identification = {}, History = {},
     } = this.props
-    const { Releases = {} } = Submission
+    const { signatures } = this.state
+
     const { ApplicantName = {} } = Identification
 
     const {
@@ -160,11 +156,11 @@ class PackageSubmit extends React.Component {
 
     const hideHippaSection = hideHippa(Application)
 
-    const additionalCommentsSignatureValid = signatureValid(Releases.AdditionalComments)
-    const generalItemSignatureValid = signatureValid(Releases.General)
+    const additionalCommentsSignatureValid = signatureValid(signatures.AdditionalComments)
+    const generalItemSignatureValid = signatureValid(signatures.General)
     const medicalSignatureValid = hideHippaSection
-      || (!hideHippaSection && signatureValid(Releases.Medical))
-    const creditSignatureValid = signatureValid(Releases.Credit)
+      || (!hideHippaSection && signatureValid(signatures.Medical))
+    const creditSignatureValid = signatureValid(signatures.Credit)
 
     const accordionItems = [
       {
@@ -176,7 +172,7 @@ class PackageSubmit extends React.Component {
         component: () => (
           <div>
             <AdditionalComments
-              {...Releases.AdditionalComments}
+              {...signatures.AdditionalComments}
               onUpdate={this.updateComments}
               LegalName={ApplicantName}
             />
@@ -206,7 +202,7 @@ class PackageSubmit extends React.Component {
             />
             <hr />
             <General
-              {...Releases.General}
+              {...signatures.General}
               onUpdate={this.updateGeneral}
               LegalName={ApplicantName}
             />
@@ -214,7 +210,7 @@ class PackageSubmit extends React.Component {
               <div>
                 <hr />
                 <Medical
-                  {...Releases.Medical}
+                  {...signatures.Medical}
                   onUpdate={this.updateMedical}
                   LegalName={ApplicantName}
                 />
@@ -241,7 +237,7 @@ class PackageSubmit extends React.Component {
         component: () => (
           <div>
             <Credit
-              {...Releases.Credit}
+              {...signatures.Credit}
               onUpdate={this.updateCredit}
               LegalName={ApplicantName}
             />
@@ -256,8 +252,12 @@ class PackageSubmit extends React.Component {
   }
 
   render() {
-    const { Application = {}, Submission = {} } = this.props
-    const { isSubmitting, submissionError } = this.state
+    const { Application = {}, Settings = {} } = this.props
+    const { signatures, isSubmitting, submissionError } = this.state
+    const { formType } = Settings
+    const formName = formType
+      && formConfig[formType]
+      && formConfig[formType].FORM_LABEL
 
     const classes = classnames(
       'submission-status',
@@ -265,11 +265,11 @@ class PackageSubmit extends React.Component {
     )
 
     const hideHippaSection = hideHippa(Application)
-    const isSigned = formIsSigned({ Submission }, hideHippaSection)
+    const isSigned = formIsSigned(signatures, hideHippaSection)
 
     const buttonText = isSubmitting
       ? i18n.t('application.validForm.submitting')
-      : i18n.t('application.validForm.submit')
+      : i18n.t('application.validForm.submit', { formName })
 
     return (
       <div className={classes}>
@@ -327,14 +327,7 @@ PackageSubmit.defaultProps = {
   Application: {},
   Identification: {},
   History: {},
-  Submission: {
-    Releases: {
-      AdditionalComments: { Signature: {} },
-      General: { Signature: {} },
-      Medical: { Signature: {} },
-      Credit: { Signature: {} },
-    },
-  },
+  Submission: {},
 }
 
 export default connectPackageSection(PackageSubmit)

@@ -20,10 +20,12 @@ describe('App component', () => {
 
   describe('for the SF86', () => {
     const store = mockStore({
-      authentication: { formType: 'SF86' },
       application: {
+        Errors: {},
+        Completed: {},
         Settings: {
           mobileNavigation: false,
+          formType: 'SF86',
         },
       },
     })
@@ -54,10 +56,12 @@ describe('App component', () => {
 
   describe('for the SF85', () => {
     const store = mockStore({
-      authentication: { formType: 'SF85' },
       application: {
+        Errors: {},
+        Completed: {},
         Settings: {
           mobileNavigation: false,
+          formType: 'SF85',
         },
       },
     })
@@ -88,10 +92,12 @@ describe('App component', () => {
 
   describe('for the SF85P', () => {
     const store = mockStore({
-      authentication: { formType: 'SF85P' },
       application: {
+        Errors: {},
+        Completed: {},
         Settings: {
           mobileNavigation: false,
+          formType: 'SF85P',
         },
       },
     })

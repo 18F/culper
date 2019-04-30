@@ -4,7 +4,6 @@ import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 
-import { SF86 } from 'constants/formTypes'
 import Psychological from 'components/Section/Psychological/Psychological'
 
 describe('The psych section', () => {
@@ -12,8 +11,13 @@ describe('The psych section', () => {
 
   it('can review all subsections', () => {
     const store = mockStore({
-      authentication: { formType: SF86 },
-      application: { Errors: {}, Completed: {} },
+      application: {
+        Errors: {},
+        Completed: {},
+        Settings: {
+          formType: 'SF86',
+        },
+      },
     })
 
     const component = mount(
@@ -36,10 +40,12 @@ describe('The psych section', () => {
           IsIncompetent: { value: 'Yes' },
         },
       },
+      Settings: {
+        formType: 'SF86',
+      },
     }
 
     const store = mockStore({
-      authentication: { formType: SF86 },
       application: appState,
     })
 
@@ -77,10 +83,12 @@ describe('The psych section', () => {
           ReceivedTreatment: { value: 'Decline' },
         },
       },
+      Settings: {
+        formType: 'SF86',
+      },
     }
 
     const store = mockStore({
-      authentication: { formType: SF86 },
       application: appState,
     })
 
@@ -122,10 +130,12 @@ describe('The psych section', () => {
           HasCondition: { value: 'No' },
         },
       },
+      Settings: {
+        formType: 'SF86',
+      },
     }
 
     const store = mockStore({
-      authentication: { formType: SF86 },
       application: appState,
     })
 

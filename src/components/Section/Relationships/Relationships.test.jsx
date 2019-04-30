@@ -3,7 +3,6 @@ import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { SF86 } from 'constants/formTypes'
 
 import Relationships from 'components/Section/Relationships/Relationships'
 
@@ -11,7 +10,14 @@ describe('The family and friends section', () => {
   const mockStore = configureMockStore()
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { formType: SF86 }, application: {} })
+    const store = mockStore({
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
+    })
+
     const component = mount(
       <MemoryRouter initialEntries={['/form/relationships/review']}>
         <Provider store={store}>
@@ -25,7 +31,13 @@ describe('The family and friends section', () => {
 
   it('can go to each subsection', () => {
     const sections = ['marital', 'friends', 'relatives', 'review']
-    const store = mockStore({ authentication: { formType: SF86 }, application: {} })
+    const store = mockStore({
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
+    })
 
     sections.forEach((section) => {
       const component = mount(

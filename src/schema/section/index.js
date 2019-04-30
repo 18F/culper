@@ -27,7 +27,6 @@ import { foreignBusinessSponsorship } from './foreign-business-sponsorship'
 import { foreignBusinessVentures } from './foreign-business-ventures'
 import { foreignBusinessVoting } from './foreign-business-voting'
 import { foreignContacts } from './foreign-contacts'
-import { foreignPassport } from './foreign-passport'
 import { foreignTravel } from './foreign-travel'
 import { legalAssociationsActivitiesToOverthrow } from './legal-associations-activities-to-overthrow'
 import { legalAssociationsAdvocating } from './legal-associations-advocating'
@@ -66,6 +65,7 @@ import { substanceDrugPublicSafety } from './substance-drug-publicsafety'
 import { substanceDrugPurchase } from './substance-drug-purchase'
 import { substanceDrugUsage } from './substance-drug-usage'
 import { substanceDrugVoluntary } from './substance-drug-voluntary'
+import foreignPassport from './foreign-passport'
 import { citizenshipMultiple } from './citizenship-multiple'
 import { citizenshipPassports } from './citizenship-passports'
 import { citizenshipStatus } from './citizenship-status'
@@ -159,5 +159,5 @@ export {
   historyEmployment,
   historyFederal,
   historyResidence,
-  submission
+  submission,
 }

@@ -29,6 +29,7 @@ export const SF85 = [
     ...formSections.CITIZENSHIP,
     subsections: [
       formSections.CITIZENSHIP_INTRO,
+      formSections.CITIZENSHIP_US_PASSPORT,
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_REVIEW,
@@ -46,24 +47,11 @@ export const SF85 = [
     ],
   },
   {
-    ...formSections.FOREIGN,
-    subsections: [
-      formSections.FOREIGN_INTRO,
-      formSections.FOREIGN_PASSPORT,
-      formSections.FOREIGN_REVIEW,
-    ],
-  },
-  {
     ...formSections.FINANCIAL,
     subsections: [
       formSections.FINANCIAL_INTRO,
-      formSections.FINANCIAL_BANKRUPTCY,
-      formSections.FINANCIAL_GAMBLING,
       formSections.FINANCIAL_TAXES,
-      formSections.FINANCIAL_CARD,
-      formSections.FINANCIAL_CREDIT,
       formSections.FINANCIAL_DELINQUENT,
-      formSections.FINANCIAL_NONPAYMENT,
       formSections.FINANCIAL_REVIEW,
     ],
   },
@@ -76,8 +64,6 @@ export const SF85 = [
         subsections: [
           formSections.SUBSTANCE_USE_DRUGS_USAGE,
           formSections.SUBSTANCE_USE_DRUGS_PURCHASE,
-          formSections.SUBSTANCE_USE_DRUGS_CLEARANCE,
-          formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
           formSections.SUBSTANCE_USE_DRUGS_MISUSE,
           formSections.SUBSTANCE_USE_DRUGS_ORDERED,
           formSections.SUBSTANCE_USE_DRUGS_VOLUNTARY,
@@ -95,7 +81,6 @@ export const SF85 = [
         subsections: [
           formSections.LEGAL_POLICE_INTRO,
           formSections.LEGAL_POLICE_OFFENSES,
-          formSections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
           formSections.LEGAL_POLICE_DOMESTIC_VIOLENCE,
         ],
       },
@@ -171,6 +156,7 @@ export const SF85P = [
     ...formSections.CITIZENSHIP,
     subsections: [
       formSections.CITIZENSHIP_INTRO,
+      formSections.CITIZENSHIP_US_PASSPORT,
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_PASSPORTS,
@@ -191,7 +177,6 @@ export const SF85P = [
     ...formSections.FOREIGN,
     subsections: [
       formSections.FOREIGN_INTRO,
-      formSections.FOREIGN_PASSPORT,
       formSections.FOREIGN_TRAVEL,
       formSections.FOREIGN_REVIEW,
     ],
@@ -331,6 +316,7 @@ export const SF86 = [
     ...formSections.CITIZENSHIP,
     subsections: [
       formSections.CITIZENSHIP_INTRO,
+      formSections.CITIZENSHIP_US_PASSPORT,
       formSections.CITIZENSHIP_STATUS,
       formSections.CITIZENSHIP_MULTIPLE,
       formSections.CITIZENSHIP_PASSPORTS,
@@ -352,7 +338,6 @@ export const SF86 = [
     ...formSections.FOREIGN,
     subsections: [
       formSections.FOREIGN_INTRO,
-      formSections.FOREIGN_PASSPORT,
       formSections.FOREIGN_CONTACTS,
       {
         ...formSections.FOREIGN_ACTIVITIES,
@@ -493,7 +478,7 @@ export const reviewSections = {
   ],
 }
 
-export const reduceSubsections = (sections, parentPath) => (
+export const reduceSubsections = (sections, parentPath, breadcrumbs = []) => (
   sections.reduce((accumulator, section) => {
     if (section.subsections && section.subsections.length) {
       const builtPath = parentPath
@@ -501,13 +486,16 @@ export const reduceSubsections = (sections, parentPath) => (
         : section.path
 
       /* eslint no-param-reassign: 0 */
-      accumulator = accumulator.concat(reduceSubsections(section.subsections, builtPath))
+      accumulator = accumulator
+        .concat(reduceSubsections(section.subsections, builtPath, [...breadcrumbs, section.label]))
     } else {
       accumulator.push({
         ...section,
         fullPath: `/form/${parentPath}/${section.path}`,
+        breadcrumbs: [...breadcrumbs, section.label],
       })
     }
+
     return accumulator
   }, [])
 )

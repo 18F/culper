@@ -252,14 +252,13 @@
         "CitizenshipStatus": {
           "type": "radio",
           "props": {
-            "value": "Citizen",
-            "checked": true
+            "value": "ForeignBorn"
           }
         },
         "AbroadDocumentation": {
           "type": "radio",
           "props": {
-            "value": ""
+            "value": "FS-240"
           }
         },
         "Explanation": {
@@ -271,27 +270,27 @@
         "DocumentNumber": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "9732"
           }
         },
         "DocumentIssued": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "1984",
             "estimated": false
           }
         },
         "DocumentName": {
           "type": "name",
           "props": {
-            "first": "",
+            "first": "Ian",
             "firstInitialOnly": false,
             "middle": "",
             "middleInitialOnly": false,
-            "noMiddleName": false,
-            "last": "",
+            "noMiddleName": true,
+            "last": "Chris",
             "suffix": "",
             "suffixOther": ""
           }
@@ -314,34 +313,36 @@
         "PlaceIssued": {
           "type": "location",
           "props": {
-            "layout": "",
-            "country": ""
+            "layout": "Birthplace without County",
+            "city": "San Jose",
+            "state": "CA",
+            "country": "United States"
           }
         },
         "CertificateNumber": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "7312"
           }
         },
         "CertificateIssued": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "03",
+            "year": "1984",
             "estimated": false
           }
         },
         "CertificateName": {
           "type": "name",
           "props": {
-            "first": "",
+            "first": "Ian",
             "firstInitialOnly": false,
             "middle": "",
             "middleInitialOnly": false,
-            "noMiddleName": false,
-            "last": "",
+            "noMiddleName": true,
+            "last": "Chris",
             "suffix": "",
             "suffixOther": ""
           }
@@ -362,13 +363,13 @@
         "BornOnMilitaryInstallation": {
           "type": "branch",
           "props": {
-            "value": ""
+            "value": "Yes"
           }
         },
         "MilitaryBase": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "All Your Base"
           }
         },
         "EntryDate": {
@@ -2634,7 +2635,7 @@
                       "Level": {
                         "type": "radio",
                         "props": {
-                          "value": "None"
+                          "value": ""
                         }
                       },
                       "Explanation": {
@@ -2648,7 +2649,7 @@
                   "ClearanceLevelNotApplicable": {
                     "type": "notapplicable",
                     "props": {
-                      "applicable": true
+                      "applicable": false
                     }
                   },
                   "Completed": {
@@ -2935,6 +2936,11 @@
       }
     }
   },
+  "Metadata": {
+    "form_type": "SF86",
+    "form_version": "2016-11",
+    "type": "metadata"
+  },
   "Military": {
     "Disciplinary": {
       "type": "military.disciplinary",
@@ -3075,7 +3081,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -3094,25 +3103,25 @@
         "HasRegistered": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": ""
           }
         },
         "RegistrationNumber": {
           "type": "text",
           "props": {
-            "value": "1234567"
+            "value": ""
           }
         },
         "Explanation": {
           "type": "textarea",
           "props": {
-            "value": ""
+            "value": "I don't know what this is?"
           }
         },
         "HasRegisteredNotApplicable": {
           "type": "notapplicable",
           "props": {
-            "applicable": true
+            "applicable": false
           }
         }
       }

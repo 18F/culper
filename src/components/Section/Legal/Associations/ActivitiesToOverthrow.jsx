@@ -72,7 +72,8 @@ export class ActivitiesToOverthrow extends Subsection {
     return (
       <div
         className="section-content legal-associations-activities"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.associations.activitiesOverthrow')}</h1>
         <Branch

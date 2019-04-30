@@ -42,13 +42,6 @@ export default class SubsectionElement extends React.Component {
   guid() {
     return newGuid()
   }
-
-  dataAttributes(props = {}) {
-    return {
-      'data-section': props.section,
-      'data-subsection': props.subsection
-    }
-  }
 }
 
 SubsectionElement.defaultProps = {

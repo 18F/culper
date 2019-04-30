@@ -174,13 +174,12 @@ export const history = {
       employmentRecord: {
         title:
           'Have any of the following happened to you in the last {{yearsString}} ({{years}}) years at employment activities that you have not previously listed?',
-        list: [
-          '- Fired from a job?',
-          '- Quit a job after being told you would be fired?',
-          '- Have you left a job by mutual agreement following charges or allegations of misconduct?',
-          '- Left a job by mutual agreement following notice of unsatisfactory performance?',
-          '- Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?',
-        ],
+        list:
+`* Fired from a job?
+* Quit a job after being told you would be fired?
+* Have you left a job by mutual agreement following charges or allegations of misconduct?
+* Left a job by mutual agreement following notice of unsatisfactory performance?
+* Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?`,
         para:
           'If you answer "Yes", you will be required to add an additional employment record above.',
       },
@@ -359,10 +358,10 @@ export const history = {
         heading: {
           position: 'Provide position title',
           supervisor: 'Provide supervisor',
-          datesEmployed: 'Provide dates of employment',
+          datesEmployed: 'Dates of employment',
         },
         position: {
-          label: 'Position',
+          label: 'Position title',
           help: {
             title: 'Need help with the position title?',
             message: 'Provide the position title',
@@ -447,7 +446,7 @@ export const history = {
         status: 'Select the employment status for this position',
         address: 'Provide the address of employer',
         supervisor: 'Your Supervisor',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer',
@@ -462,7 +461,7 @@ export const history = {
         title: 'Provide your most recent rank/position title',
         status: 'Select the employment status for this position',
         address: 'Provide address of duty station',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
         physicalAddress:
@@ -604,7 +603,7 @@ export const history = {
         title: 'Provide your most recent rank/position title',
         status: 'Select the employment status for this position',
         address: 'Provide address of duty station',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
         physicalAddress:
@@ -745,7 +744,7 @@ export const history = {
         title: 'Provide your most recent rank/position title',
         status: 'Select the employment status for this position',
         address: 'Provide address of duty station',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
         physicalAddress:
@@ -887,7 +886,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference: 'Provide a reference',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
@@ -998,7 +997,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference: 'Provide a reference',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
@@ -1109,7 +1108,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference: 'Provide a reference',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
@@ -1220,7 +1219,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference: 'Provide a reference',
         physicalAddress:
           "Is/was your physical work address different than your employer's address?",
@@ -1331,7 +1330,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference:
           'Provide the name of someone that can verify your self-employment',
         physicalAddress:
@@ -1451,7 +1450,7 @@ export const history = {
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
-        telephone: 'Provide your employment telephone number',
+        telephone: 'Provide telephone number',
         reference:
           'Provide the name of someone who can verify your unemployment activities and means of support',
         physicalAddress:
@@ -1631,7 +1630,7 @@ export const history = {
         'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       name: 'School name',
       address: 'This address is',
-      addressLink: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
+      addressLink: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained. For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
       comments: 'Add optional comment',
       type: {
         highschool: 'High school',

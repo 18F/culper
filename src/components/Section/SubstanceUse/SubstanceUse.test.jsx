@@ -12,8 +12,10 @@ describe('The substance use section', () => {
 
   it('can review all subsections', () => {
     const store = mockStore({
-      authentication: {
-        formType: 'SF86',
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
       },
     })
     const component = mount(
@@ -33,8 +35,10 @@ describe('The substance use section', () => {
     const subsections = reduceSubsections([currentSection])
 
     const store = mockStore({
-      authentication: {
-        formType: 'SF86',
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
       },
     })
 

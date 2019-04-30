@@ -70,7 +70,8 @@ export class Family extends Subsection {
     return (
       <div
         className="section-content foreign-business-family"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_BUSINESS_FAMILY.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.business.family')}</h1>
         <Branch

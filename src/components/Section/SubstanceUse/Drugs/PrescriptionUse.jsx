@@ -1,27 +1,18 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+
+import i18n from 'util/i18n'
+
 import {
   Field,
   ValidationElement,
   Branch,
   Text,
   Textarea,
-  DateRange
-} from '../../../Form'
+  DateRange,
+} from 'components/Form'
 
 export default class PrescriptionUse extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updatePrescriptionName = this.updatePrescriptionName.bind(this)
-    this.updateInvolvementDates = this.updateInvolvementDates.bind(this)
-    this.updateReason = this.updateReason.bind(this)
-    this.updateUseWhileEmployed = this.updateUseWhileEmployed.bind(this)
-    this.updateUseWithClearance = this.updateUseWithClearance.bind(this)
-  }
-
-  update(updateValues) {
+  update = (updateValues) => {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         PrescriptionName: this.props.PrescriptionName,
@@ -29,39 +20,42 @@ export default class PrescriptionUse extends ValidationElement {
         Reason: this.props.Reason,
         UseWhileEmployed: this.props.UseWhileEmployed,
         UseWithClearance: this.props.UseWithClearance,
-        ...updateValues
+        ...updateValues,
       })
     }
   }
 
-  updatePrescriptionName(values) {
+  updatePrescriptionName = (values) => {
     this.update({ PrescriptionName: values })
   }
 
-  updateInvolvementDates(values) {
+  updateInvolvementDates = (values) => {
     this.update({ InvolvementDates: values })
   }
 
-  updateReason(values) {
+  updateReason = (values) => {
     this.update({ Reason: values })
   }
 
-  updateUseWhileEmployed(values) {
+  updateUseWhileEmployed = (values) => {
     this.update({ UseWhileEmployed: values })
   }
 
-  updateUseWithClearance(values) {
+  updateUseWithClearance = (values) => {
     this.update({ UseWithClearance: values })
   }
 
   render() {
+    const { requireDrugWhileSafety, requireDrugWithClearance } = this.props
+
     return (
       <div className="prescription-use">
         <Field
           title={i18n.t(
             'substance.drugs.prescription.heading.prescriptionName'
           )}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="PrescriptionName"
             className="prescription-name"
@@ -77,13 +71,14 @@ export default class PrescriptionUse extends ValidationElement {
             'substance.drugs.prescription.heading.involvementDates'
           )}
           adjustFor="daterange"
-          help={'substance.drugs.prescription.help.involvementDates'}
-          scrollIntoView={this.props.scrollIntoView}>
+          help="substance.drugs.prescription.help.involvementDates"
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="InvolvementDates"
             className="involvement-dates"
             {...this.props.InvolvementDates}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateInvolvementDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -92,7 +87,8 @@ export default class PrescriptionUse extends ValidationElement {
 
         <Field
           title={i18n.t('substance.drugs.prescription.heading.reason')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="Reason"
             className="reason"
@@ -103,33 +99,37 @@ export default class PrescriptionUse extends ValidationElement {
           />
         </Field>
 
-        <Branch
-          name="UseWhileEmployed"
-          label={i18n.t(
-            'substance.drugs.prescription.heading.useWhileEmployed'
-          )}
-          labelSize="h4"
-          className="use-while-employed"
-          {...this.props.UseWhileEmployed}
-          onError={this.props.onError}
-          onUpdate={this.updateUseWhileEmployed}
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {requireDrugWhileSafety && (
+          <Branch
+            name="UseWhileEmployed"
+            label={i18n.t(
+              'substance.drugs.prescription.heading.useWhileEmployed'
+            )}
+            labelSize="h4"
+            className="use-while-employed"
+            {...this.props.UseWhileEmployed}
+            onError={this.props.onError}
+            onUpdate={this.updateUseWhileEmployed}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
 
-        <Branch
-          name="UseWithClearance"
-          label={i18n.t(
-            'substance.drugs.prescription.heading.useWithClearance'
-          )}
-          labelSize="h4"
-          className="use-with-clearance"
-          {...this.props.UseWithClearance}
-          onError={this.props.onError}
-          onUpdate={this.updateUseWithClearance}
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        {requireDrugWithClearance && (
+          <Branch
+            name="UseWithClearance"
+            label={i18n.t(
+              'substance.drugs.prescription.heading.useWithClearance'
+            )}
+            labelSize="h4"
+            className="use-with-clearance"
+            {...this.props.UseWithClearance}
+            onError={this.props.onError}
+            onUpdate={this.updateUseWithClearance}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        )}
       </div>
     )
   }
@@ -138,7 +138,5 @@ export default class PrescriptionUse extends ValidationElement {
 PrescriptionUse.defaultProps = {
   UseWhileEmployed: {},
   UseWhileClearance: {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onError: (value, arr) => arr,
 }

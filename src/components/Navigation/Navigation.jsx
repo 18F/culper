@@ -1,17 +1,16 @@
 import React from 'react'
-import { navigation } from 'config'
+import PropTypes from 'prop-types'
+
 import SectionList from 'components/Navigation/SectionList'
 
-class Navigation extends React.Component {
-  render() {
-    return (
-      <nav className="form-navigation" role="navigation">
-        <SectionList sections={navigation} />
-      </nav>
-    )
-  }
-}
+const Navigation = ({ sections }) => (
+  <nav className="form-navigation" role="navigation">
+    <SectionList sections={sections} basePath="/form" />
+  </nav>
+)
 
-Navigation.propTypes = {}
+Navigation.propTypes = {
+  sections: PropTypes.array.isRequired,
+}
 
 export default Navigation

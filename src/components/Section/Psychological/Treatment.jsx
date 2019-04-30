@@ -92,6 +92,7 @@ export default class Treatment extends ValidationElement {
             onUpdate={this.updateAddress}
             onError={this.props.onError}
             required={this.props.required}
+            isPoBoxAllowed={false}
           />
         </Field>
       </div>

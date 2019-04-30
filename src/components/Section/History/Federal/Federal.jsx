@@ -86,7 +86,8 @@ export class Federal extends Subsection {
     return (
       <div
         className="section-content federal"
-        {...super.dataAttributes()}
+        data-section={HISTORY.key}
+        data-subsection={HISTORY_FEDERAL.key}
       >
         <Branch
           name="has_federalservice"

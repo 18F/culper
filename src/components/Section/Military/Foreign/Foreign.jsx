@@ -42,7 +42,8 @@ class Foreign extends Subsection {
     return (
       <div
         className="section-content foreign"
-        {...super.dataAttributes()}
+        data-section={MILITARY.key}
+        data-subsection={MILITARY_FOREIGN.key}
       >
         <h1 className="section-header">{i18n.t('military.destination.foreign')}</h1>
         <BranchCollection

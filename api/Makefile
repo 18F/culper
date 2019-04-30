@@ -7,7 +7,9 @@ test:
 
 reset-test-db:
 	go build -o bin/dbmigrate ./cmd/dbmigrate
-	./bin/dbmigrate -reset -force eapp_test
+	go build -o bin/dbreset ./cmd/dbreset
+	./bin/dbreset -force eapp_test
+	./bin/dbmigrate -migrations_path ./migrations eapp_test
 
 coverage:
 	# Use -c to remove processed reports so coverage-js won't find it

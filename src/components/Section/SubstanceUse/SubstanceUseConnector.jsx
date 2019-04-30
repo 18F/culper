@@ -7,6 +7,15 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
+import {
+  selectDrugWhileSafetySection,
+  selectDrugWithClearanceSection,
+  selectAlcoholSections,
+  selectDrugWhileSafety,
+  selectDrugWithClearance,
+  selectDrugInFuture,
+} from 'selectors/branches'
+
 const connectSubstanceUseSection = (Component, {
   section, subsection, store, storeKey,
 }) => {
@@ -56,30 +65,81 @@ const connectSubstanceUseSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
+    const settings = app.Settings
 
     switch (storeKey) {
       case 'DrugUses':
-        return { ...substance.DrugUses } || {}
+        return {
+          ...substance.DrugUses,
+          formType: settings.formType,
+          ...selectDrugWhileSafety(state),
+          ...selectDrugWithClearance(state),
+          ...selectDrugInFuture(state),
+        }
+
       case 'DrugInvolvements':
-        return { ...substance.DrugInvolvements } || {}
+        return {
+          ...substance.DrugInvolvements,
+          formType: settings.formType,
+          ...selectDrugWhileSafety(state),
+          ...selectDrugWithClearance(state),
+          ...selectDrugInFuture(state),
+        }
+
       case 'DrugClearanceUses':
-        return { ...substance.DrugClearanceUses } || {}
+        return {
+          ...substance.DrugClearanceUses,
+        }
+
       case 'DrugPublicSafetyUses':
-        return { ...substance.DrugPublicSafetyUses } || {}
+        return {
+          ...substance.DrugPublicSafetyUses,
+        }
+
       case 'PrescriptionUses':
-        return { ...substance.PrescriptionUses } || {}
+        return {
+          ...substance.PrescriptionUses,
+          ...selectDrugWhileSafety(state),
+          ...selectDrugWithClearance(state),
+          formType: settings.formType,
+        }
+
       case 'OrderedTreatments':
-        return { ...substance.OrderedTreatments, addressBooks } || {}
+        return {
+          ...substance.OrderedTreatments,
+          formType: settings.formType,
+          addressBooks,
+        }
+
       case 'VoluntaryTreatments':
-        return { ...substance.VoluntaryTreatments, addressBooks } || {}
+        return {
+          ...substance.VoluntaryTreatments,
+          addressBooks,
+          formType: settings.formType,
+        }
+
       case 'NegativeImpacts':
-        return { ...substance.NegativeImpacts } || {}
+        return {
+          ...substance.NegativeImpacts,
+        }
+
       case 'OrderedCounselings':
-        return { ...substance.OrderedCounselings, addressBooks } || {}
+        return {
+          ...substance.OrderedCounselings,
+          addressBooks,
+        }
+
       case 'VoluntaryCounselings':
-        return { ...substance.VoluntaryCounselings, addressBooks } || {}
+        return {
+          ...substance.VoluntaryCounselings,
+          addressBooks,
+        }
+
       case 'ReceivedCounselings':
-        return { ...substance.ReceivedCounselings } || {}
+        return {
+          ...substance.ReceivedCounselings,
+        }
+
       default:
         return {
           Substance: substance,
@@ -97,6 +157,10 @@ const connectSubstanceUseSection = (Component, {
           Errors: errors.identification || [],
           Completed: completed.identification || [],
           AddressBooks: addressBooks,
+          formType: settings.formType,
+          ...selectDrugWhileSafetySection(state),
+          ...selectDrugWithClearanceSection(state),
+          ...selectAlcoholSections(state),
         }
     }
   }

@@ -11,11 +11,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/identification"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -25,7 +25,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -193,11 +193,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/history"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -207,7 +207,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -324,11 +324,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/relationships"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -338,7 +338,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -367,11 +367,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/relationships/status"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -381,7 +381,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -484,11 +484,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/citizenship"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -498,7 +498,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -518,6 +518,23 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Introduction
+              </span>
+              <span
+                className="eapp-status-icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              aria-current={false}
+              className="section-link"
+              href="/form/citizenship/passport"
+              onClick={[Function]}
+            >
+              <span
+                className="section-name"
+              >
+                U.S. passport information
               </span>
               <span
                 className="eapp-status-icon"
@@ -598,11 +615,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/military"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -612,7 +629,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -676,6 +693,23 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link"
+              href="/form/military/disciplinary"
+              onClick={[Function]}
+            >
+              <span
+                className="section-name"
+              >
+                Disciplinary procedures
+              </span>
+              <span
+                className="eapp-status-icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              aria-current={false}
+              className="section-link"
               href="/form/military/foreign"
               onClick={[Function]}
             >
@@ -712,11 +746,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/foreign"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -726,7 +760,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -756,23 +790,6 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link"
-              href="/form/foreign/passport"
-              onClick={[Function]}
-            >
-              <span
-                className="section-name"
-              >
-                U.S. passport information
-              </span>
-              <span
-                className="eapp-status-icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              aria-current={false}
-              className="section-link"
               href="/form/foreign/contacts"
               onClick={[Function]}
             >
@@ -789,11 +806,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/foreign/activities"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -803,7 +820,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -903,11 +920,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/foreign/business"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -917,7 +934,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -1122,11 +1139,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/financial"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -1136,7 +1153,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -1304,11 +1321,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/substance"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -1318,7 +1335,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -1347,11 +1364,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/substance/drugs"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -1361,7 +1378,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -1495,11 +1512,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/substance/alcohol"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -1509,7 +1526,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -1612,11 +1629,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/legal"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -1626,7 +1643,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -1655,11 +1672,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/legal/police"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -1669,7 +1686,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -1752,11 +1769,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/legal/investigations"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -1766,7 +1783,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -1849,11 +1866,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/legal/technology"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -1863,7 +1880,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -1929,11 +1946,11 @@ exports[`Navigation component renders correctly 1`] = `
           <li
             className="toggle-item"
           >
-            <a
+            <button
               aria-controls="/form/legal/associations"
               aria-expanded={false}
               className="section-link usa-accordion-button"
-              role="button"
+              type="button"
             >
               <span
                 className="section-name"
@@ -1943,7 +1960,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="eapp-status-icon"
               />
-            </a>
+            </button>
             <div
               aria-hidden={true}
               className="usa-accordion-content"
@@ -2097,11 +2114,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/psychological"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -2111,7 +2128,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -2209,6 +2226,23 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link"
+              href="/form/psychological/conditions"
+              onClick={[Function]}
+            >
+              <span
+                className="section-name"
+              >
+                Existing conditions
+              </span>
+              <span
+                className="eapp-status-icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              aria-current={false}
+              className="section-link"
               href="/form/psychological/review"
               onClick={[Function]}
             >
@@ -2228,11 +2262,11 @@ exports[`Navigation component renders correctly 1`] = `
     <li
       className="toggle-item"
     >
-      <a
+      <button
         aria-controls="/form/package"
         aria-expanded={false}
         className="section-link usa-accordion-button"
-        role="button"
+        type="button"
       >
         <span
           className="section-name"
@@ -2242,7 +2276,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="eapp-status-icon"
         />
-      </a>
+      </button>
       <div
         aria-hidden={true}
         className="usa-accordion-content"
@@ -2272,7 +2306,7 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link locked"
-              href="javascript:;;;"
+              href="/form/package/submit"
               onClick={[Function]}
             >
               <span
@@ -2289,7 +2323,7 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link locked"
-              href="javascript:;;;"
+              href="/form/package/print"
               onClick={[Function]}
             >
               <span
