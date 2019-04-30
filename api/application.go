@@ -13,6 +13,115 @@ import (
 	"github.com/18F/e-QIP-prototype/api/eqip"
 )
 
+// Application represents a single SF application
+type Application struct {
+	AccountID   int
+	formType    string
+	formVersion string
+	sections    map[string]Entity
+}
+
+// BlankApplication returns a constructed Application
+func BlankApplication(accountID int, formType string, formVersion string) Application {
+	return Application{
+		AccountID:   accountID,
+		formType:    formType,
+		formVersion: formVersion,
+	}
+}
+
+// Section returns a single section of the application, by identifier
+func (a Application) Section(identifier string) Entity {
+	return a.sections[identifier]
+}
+
+// SetSection sets a section in the application
+func (a *Application) SetSection(section Entity) {
+	sectionPayload := section.Marshal()
+	id := sectionPayload.Type
+
+	if a.sections == nil {
+		a.sections = make(map[string]Entity)
+	}
+
+	a.sections[id] = section
+}
+
+// MarshalJSON implements json.Marshaller to custom marshal our JSON.
+func (a Application) MarshalJSON() ([]byte, error) {
+	applicationPayload := make(map[string]map[string]Payload)
+
+	for _, section := range catalogue {
+		entity := a.Section(section.Payload)
+		if entity == nil {
+			continue
+		}
+
+		if _, ok := applicationPayload[section.Name]; !ok {
+			applicationPayload[section.Name] = make(map[string]Payload)
+		}
+		applicationPayload[section.Name][section.Subsection] = entity.Marshal()
+	}
+
+	// set the metadata for the form
+	metadata := make(map[string]string)
+	metadata["type"] = "metadata"
+
+	metadata["form_type"] = a.formType
+	metadata["form_version"] = a.formVersion
+
+	// Since `applicationPayload` is typed to have a Payload as the map value and we
+	// want to have a simpler metatadata section, we have to copy to a less-typed
+	// map and then add the metadata.
+	unsafeApplication := make(map[string]interface{})
+	for k := range applicationPayload {
+		unsafeApplication[k] = applicationPayload[k]
+	}
+	unsafeApplication["Metadata"] = metadata
+
+	return json.Marshal(unsafeApplication)
+
+}
+
+// UnmarshalJSON implements json.Unmarshaller
+func (a *Application) UnmarshalJSON(bytes []byte) error {
+	unsafeApplication := map[string]map[string]json.RawMessage{}
+
+	unErr := json.Unmarshal(bytes, &unsafeApplication)
+	if unErr != nil {
+		return unErr
+	}
+
+	for _, section := range catalogue {
+
+		nameSection, ok := unsafeApplication[section.Name]
+		if !ok {
+			continue
+		}
+
+		rawPayload, ok := nameSection[section.Subsection]
+		if !ok {
+			continue
+		}
+
+		var payload Payload
+		payloadErr := json.Unmarshal(rawPayload, &payload)
+		if payloadErr != nil {
+			return payloadErr
+		}
+
+		entity, entityErr := payload.Entity()
+		if entityErr != nil {
+			return entityErr
+		}
+
+		a.SetSection(entity)
+
+	}
+
+	return nil
+}
+
 // SectionInformation represents a structure to quickly organize the different
 // sections and subsections with the payload type(s).
 type SectionInformation struct {
@@ -528,7 +637,7 @@ func FormStatus(context DatabaseService, account int, locked bool) ([]byte, erro
 	return js, nil
 }
 
-// Application returns the application state in JSON format.
+// ApplicationJSON returns the application state in JSON format.
 func ApplicationJSON(context DatabaseService, account int, hashable bool) ([]byte, error) {
 	application := make(map[string]map[string]Payload)
 
@@ -626,6 +735,7 @@ func PurgeAccountStorage(context DatabaseService, account int) {
 }
 
 // Hash returns the SHA256 hash of the application state in hexadecimal
+// This is the only place application JSON is called with hashable set to true.
 func Hash(context DatabaseService, account int) (string, error) {
 	jsonBytes, err := ApplicationJSON(context, account, true)
 	if err != nil {

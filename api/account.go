@@ -10,8 +10,8 @@ var (
 	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")
 
-	// ErrAccoundDoesNotExist is an error when a users account does not exist
-	ErrAccoundDoesNotExist = errors.New("Account does not exist")
+	// ErrAccountDoesNotExist is an error when a users account does not exist
+	ErrAccountDoesNotExist = errors.New("Account does not exist")
 
 	// ErrDatastoreConnection is an error when a database connection cannot be made
 	ErrDatastoreConnection = errors.New("Unable to connect to datastore")
@@ -156,7 +156,7 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 	err := context.ColumnsWhere(&basicMembership, []string{"basic_auth_membership.*", "Account"}, "Account.username = ?", entity.Username)
 	if err != nil {
 		fmt.Printf("Basic Authentication Error: [%v]\n", err)
-		return ErrAccoundDoesNotExist
+		return ErrAccountDoesNotExist
 	}
 
 	// Check if plaintext password matches hashed password

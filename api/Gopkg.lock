@@ -61,7 +61,7 @@
   version = "v3.0.0"
 
 [[projects]]
-  digest = "1:ab9f01cc2330d1001324d5c7bd0414cc0afad739d1b513bed980214a7fee089a"
+  digest = "1:0a2260bcfa15237979ef496f03fb6af215c247ad998881a4d039992228876ae3"
   name = "github.com/go-pg/pg"
   packages = [
     ".",
@@ -72,8 +72,16 @@
     "types",
   ]
   pruneopts = "UT"
-  revision = "5b73ce88484575f3480edf393237f6bf79d5f166"
-  version = "v6.11.2"
+  revision = "ae5d5e7df4b2e598390e10b66b849c6af94f092b"
+  version = "v6.15.1"
+
+[[projects]]
+  digest = "1:582b704bebaa06b48c29b0cec224a6058a09c86883aaddabde889cd1a5f73e1b"
+  name = "github.com/google/uuid"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "0cd6bf5da1e1c83f8b45653022c74f71af0538a4"
+  version = "v1.1.1"
 
 [[projects]]
   digest = "1:c79fb010be38a59d657c48c6ba1d003a8aa651fa56b579d959d74573b7dff8e1"
@@ -98,6 +106,17 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "04140366298a54a039076d798123ffa108fff46c"
+
+[[projects]]
+  digest = "1:6c41d4f998a03b6604227ccad36edaed6126c397e5d78709ef4814a1145a6757"
+  name = "github.com/jmoiron/sqlx"
+  packages = [
+    ".",
+    "reflectx",
+  ]
+  pruneopts = "UT"
+  revision = "d161d7a76b5661016ad0b085869f77fd410f3e6a"
+  version = "v1.2.0"
 
 [[projects]]
   branch = "master"
@@ -185,11 +204,12 @@
   revision = "0f6081814ce7f59da72e48a6748bf9b5c444e813"
 
 [[projects]]
-  digest = "1:001a4e7a40e50ff2ef32e2556bca50c4f77daa457db3ac6afc8bea9bb2122cfb"
+  digest = "1:7310f5459b88177d24e26c5ec7deb100b78ec03c0437d7a7aaec3c7eac333a55"
   name = "golang.org/x/crypto"
   packages = [
     "bcrypt",
     "blowfish",
+    "pbkdf2",
     "ssh/terminal",
   ]
   pruneopts = "UT"
@@ -243,6 +263,14 @@
   revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
   version = "v0.3.0"
 
+[[projects]]
+  digest = "1:999d566ad1ae4303c456af5a155f7b42401cca4fd33552567ed9dd997b107a08"
+  name = "mellium.im/sasl"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "e58e780e1378aa4df5dc705364ff5ae9a4dd1e04"
+  version = "v0.2.1"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
@@ -254,8 +282,10 @@
     "github.com/cloudfoundry-community/go-cfenv",
     "github.com/dgrijalva/jwt-go",
     "github.com/go-pg/pg",
-    "github.com/go-pg/pg/orm",
+    "github.com/google/uuid",
     "github.com/gorilla/mux",
+    "github.com/jmoiron/sqlx",
+    "github.com/lib/pq",
     "github.com/pkg/errors",
     "github.com/rifflock/lfshook",
     "github.com/satori/go.uuid",
