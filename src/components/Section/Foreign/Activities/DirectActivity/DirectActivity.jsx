@@ -77,7 +77,8 @@ export class DirectActivity extends Subsection {
     return (
       <div
         className="section-content direct"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_ACTIVITIES_DIRECT.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.activities.direct')}</h1>
         <Branch

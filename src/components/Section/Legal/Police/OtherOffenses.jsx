@@ -89,7 +89,8 @@ export class OtherOffenses extends Subsection {
     return (
       <div
         className="section-content police-other-offenses"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_POLICE_ADDITIONAL_OFFENSES.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.police.additionalOffenses')}</h1>
         <Branch

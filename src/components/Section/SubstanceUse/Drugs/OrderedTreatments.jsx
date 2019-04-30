@@ -89,7 +89,8 @@ export class OrderedTreatments extends Subsection {
     return (
       <div
         className="section-content ordered-treatments"
-        {...super.dataAttributes()}
+        data-section={SUBSTANCE_USE.key}
+        data-subsection={SUBSTANCE_USE_DRUGS_ORDERED.key}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.ordered')}</h1>
         <Branch

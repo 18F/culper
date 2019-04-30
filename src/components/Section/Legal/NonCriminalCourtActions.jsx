@@ -72,7 +72,8 @@ export class NonCriminalCourtActions extends Subsection {
     return (
       <div
         className="section-content non-criminal-court-actions"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_COURT.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.court')}</h1>
         <Branch

@@ -132,7 +132,8 @@ export class Status extends Subsection {
     return (
       <div
         className="section-content status"
-        {...super.dataAttributes()}
+        data-section={CITIZENSHIP.key}
+        data-subsection={CITIZENSHIP_STATUS.key}
       >
         <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
         <Field

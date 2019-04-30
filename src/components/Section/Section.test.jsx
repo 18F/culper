@@ -4,7 +4,9 @@ import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router'
 import { mount } from 'enzyme'
 
-import navigation from 'config/navigation'
+// Use SF86 for now since it's a superset of all form sections.
+// These tests should be moved into each component.
+import { FLAT_SF86 } from 'config/formTypes'
 
 import Section from './Section'
 import { testSnapshot } from '../test-helpers'
@@ -17,71 +19,73 @@ jest.mock('../Form/ValidationElement/helpers', () => (
   })
 ))
 
-const shouldSkip = (section, subsection) => (
-  section.exclude
-    || (section.url === 'foreign' && subsection.url === 'activities') // these need special handling, which we will come back to
-    || (section.url === 'substance' && subsection.url === 'drugs')
-    || (section.url === 'substance' && subsection.url === 'alcohol')
-    || (section.url === 'psychological' && subsection.url === 'review')
-)
-
 describe('The section component', () => {
-  const mockStore = configureMockStore({
-    application: {
-      Settings: {
-        formType: 'SF86',
-      },
-    },
-  })
+  const mockStore = configureMockStore()
 
   it('is visible', () => {
+    const store = mockStore({
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
+    })
+
     const component = mount(
-      <MemoryRouter>
-        <Section />
+      <MemoryRouter initialEntries={['/form/identification/intro']}>
+        <Provider store={store}>
+          <Section />
+        </Provider>
       </MemoryRouter>,
     )
     expect(component.find('div').length > 0).toBe(true)
   })
 
-  navigation.forEach((section) => {
-    section.subsections.forEach((subsection) => {
-      if (shouldSkip(section, subsection)) {
-        return
-      }
-
-      window.token = 'fake-token'
-
-      it(`renders ${section.url}.${subsection.url}`, () => {
-        const store = mockStore({
-          authentication: {
-            authenticated: true,
-            token: 'fake-token',
-          },
-          section: { section: section.url, subsection: subsection.url },
-          application: {
-            Military: {
-              History: {
-                HasServed: {
-                  value: 'Yes',
-                },
+  describe('renders', () => {
+    FLAT_SF86.forEach((section) => {
+      const store = mockStore({
+        authentication: {
+          authenticated: true,
+          token: 'fake-token',
+        },
+        section: {
+          subsection: section.name,
+        },
+        application: {
+          Identification: {},
+          History: {},
+          Relationships: {},
+          Citizenship: {},
+          Military: {
+            History: {
+              HasServed: {
+                value: 'Yes',
               },
             },
-            Psychological: {
-              Competence: { IsIncompetent: { value: 'No' } },
-              Consultations: { Consulted: { value: 'No' } },
-              Diagnoses: { Diagnosed: { value: 'No' } },
-              Hospitalizations: { Hospitalized: { value: 'No' } },
-            },
-            Settings: {
-              formType: 'SF86',
-            },
           },
-        })
+          Foreign: {},
+          Financial: {},
+          Substance: {},
+          Legal: {},
+          Psychological: {
+            Competence: { IsIncompetent: { value: 'No' } },
+            Consultations: { Consulted: { value: 'No' } },
+            Diagnoses: { Diagnosed: { value: 'No' } },
+            Hospitalizations: { Hospitalized: { value: 'No' } },
+          },
+          Settings: {
+            formType: 'SF86',
+          },
+          Errors: {},
+          Completed: {},
+        },
+      })
 
+      it(`${section.key}`, () => {
         testSnapshot(
           <Provider store={store}>
-            <MemoryRouter initialEntries={[`/form/${section.url}/${subsection.url}`]}>
-              <Section section={section.url} subsection={subsection.url} />
+            <MemoryRouter initialEntries={[section.fullPath]}>
+              <Section />
             </MemoryRouter>
           </Provider>,
         )

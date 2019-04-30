@@ -68,7 +68,8 @@ export class Advice extends Subsection {
     return (
       <div
         className="section-content foreign-business-advice"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_BUSINESS_ADVICE.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.business.advice')}</h1>
         <Branch

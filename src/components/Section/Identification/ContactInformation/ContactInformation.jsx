@@ -125,7 +125,8 @@ export class ContactInformation extends Subsection {
     return (
       <div
         className="section-content contact"
-        {...super.dataAttributes()}
+        data-section={IDENTIFICATION.key}
+        data-subsection={IDENTIFICATION_CONTACTS.key}
       >
         <h1 className="section-header">{i18n.t('identification.destination.contacts')}</h1>
 

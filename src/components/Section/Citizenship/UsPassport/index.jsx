@@ -162,7 +162,8 @@ export class UsPassport extends Subsection {
     return (
       <div
         className="section-content passport"
-        {...super.dataAttributes()}
+        data-section={CITIZENSHIP.key}
+        data-subsection={CITIZENSHIP_US_PASSPORT.key}
       >
         <h1 className="section-header">{i18n.t('citizenship.usPassport.title')}</h1>
         <h3>{i18n.t('citizenship.usPassport.info.text')}</h3>

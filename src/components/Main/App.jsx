@@ -247,7 +247,7 @@ class App extends React.Component {
                         </button>
                         <Logout />
                       </div>
-                      <SectionTitle hidden={mobileNavigation} />
+                      {!mobileNavigation && <SectionTitle />}
                     </div>
                   </div>
                 </div>
