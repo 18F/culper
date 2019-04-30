@@ -19909,6 +19909,7 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
             >
               <div
                 aria-live="polite"
+                className="message error usa-alert usa-alert-error"
                 role="alert"
               >
                 <div
@@ -19929,6 +19930,9 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
               </div>
             </span>
           </div>
+          <div
+            className="table"
+          >
             <span
               className="content"
             >
@@ -21688,15 +21692,15 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
             className="icon"
           >
             <a
-<<<<<<< HEAD
               aria-label="Show help for Sex"
               className="toggle h4 adjust-for-big-buttons"
               href="javascript:;"
+              onClick={[Function]}
               title="Show help for Sex"
-=======
-              aria-label="Show help for Select your sex"
-              className="toggle h4 adjust-for-big-buttons"
-              href="javascript:;"
+            >
+              <svg
+                alt="Scalable vector graphic"
+                focusable="false"
                 height="14.57px"
                 tabIndex="-1"
                 viewBox="0 0 14.57 14.57"
@@ -21949,7 +21953,6 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
             </div>
           </a>
         </div>
-<<<<<<< HEAD
       </div>
     </div>
   </div>
@@ -22257,336 +22260,6 @@ exports[`The section component renders IDENTIFICATION_SSN 1`] = `
             </div>
           </a>
         </div>
-=======
->>>>>>> Remove navigation from Section test, update snapshots
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-<<<<<<< HEAD
-exports[`The section component renders LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW 1`] = `
-=======
-exports[`The section component renders IDENTIFICATION_SSN 1`] = `
->>>>>>> Remove navigation from Section test, update snapshots
-<div
-  className="legal"
->
-  <div
-<<<<<<< HEAD
-    className="section-view"
-  >
-    <div
-      className="view view-associations/activities-to-overthrow"
-    >
-      <div
-        className="section-content legal-associations-activities"
-        data-section="LEGAL"
-        data-subsection="LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW"
-=======
-    className="view view-ssn"
-  >
-    <div
-      className="section-content applicant-ssn"
-      data-section="IDENTIFICATION"
-      data-subsection="IDENTIFICATION_SSN"
-    >
-      <h1
-        className="section-header"
-      >
-        Social security number
-      </h1>
-      <div
-        aria-label="Provide your U.S. Social Security Number"
-        className="field required"
-        data-uuid="field-MOCK-GUID"
->>>>>>> Remove navigation from Section test, update snapshots
-      >
-        <h1
-          className="section-header"
-        >
-<<<<<<< HEAD
-          Activities to overthrow
-        </h1>
-=======
-          Provide your U.S. Social Security Number
-        </h4>
-        <span
-          className="icon"
-        >
-          <a
-            aria-label="Show help for Provide your U.S. Social Security Number"
-            className="toggle h4"
-            href="javascript:;"
-            onClick={[Function]}
-            title="Show help for Provide your U.S. Social Security Number"
-          >
-            <svg
-              alt="Scalable vector graphic"
-              focusable="false"
-              height="14.57px"
-              tabIndex="-1"
-              viewBox="0 0 14.57 14.57"
-              width="14.57px"
-            >
-              <g>
-                <path
-                  className="eapp-help-icon"
-                  d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
-                />
-              </g>
-            </svg>
-          </a>
-        </span>
->>>>>>> Remove navigation from Section test, update snapshots
-        <div
-          aria-label="Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?"
-          className="field required branch legal-associations-activities-has-activities"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-<<<<<<< HEAD
-=======
-        </div>
-        <div
-          className="table expand"
-        >
-          <span
-            aria-live="polite"
-            className="messages error-messages"
-            role="alert"
-          />
-        </div>
-        <div
-          className="table"
-        >
-          <span
-            className="content"
-          >
-            <span
-              className="component"
-            >
-              <div
-                className="ssn applicant-ssn-initial"
-              >
-                <div
-                  className="hide-for-print first eapp-short-input"
-                >
-                  <input
-                    aria-describedby="first-error"
-                    aria-label={null}
-                    autoCapitalize={true}
-                    autoComplete={true}
-                    autoCorrect={true}
-                    className=""
-                    disabled={false}
-                    id="first-MOCK-GUID"
-                    maxLength="3"
-                    name="first"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onCopy={[Function]}
-                    onCut={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onPaste={[Function]}
-                    pattern="^[0-9]{3}$"
-                    spellCheck={true}
-                    type="text"
-                    value=""
-                  />
-                  <div
-                    className="text-print print-only"
-                  >
-                    
-                  </div>
-                </div>
-                <div
-                  className="hide-for-print middle eapp-short-input"
-                >
-                  <input
-                    aria-describedby="middle-error"
-                    aria-label={null}
-                    autoCapitalize={true}
-                    autoComplete={true}
-                    autoCorrect={true}
-                    className=""
-                    disabled={false}
-                    id="middle-MOCK-GUID"
-                    maxLength="2"
-                    name="middle"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onCopy={[Function]}
-                    onCut={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onPaste={[Function]}
-                    pattern="^[0-9]{2}$"
-                    spellCheck={true}
-                    type="text"
-                    value=""
-                  />
-                  <div
-                    className="text-print print-only"
-                  >
-                    
-                  </div>
-                </div>
-                <div
-                  className="hide-for-print last eapp-short-input"
-                >
-                  <input
-                    aria-describedby="last-error"
-                    aria-label={null}
-                    autoCapitalize={true}
-                    autoComplete={true}
-                    autoCorrect={true}
-                    className=""
-                    disabled={false}
-                    id="last-MOCK-GUID"
-                    maxLength="4"
-                    name="last"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onCopy={[Function]}
-                    onCut={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onPaste={[Function]}
-                    pattern="^[0-9]{4}$"
-                    spellCheck={true}
-                    type="text"
-                    value=""
-                  />
-                  <div
-                    className="text-print print-only"
-                  >
-                    
-                  </div>
-                </div>
-                <div
-                  className="flags"
-                >
-                  <div
-                    className="not-applicable block"
-                  >
-                    <input
-                      aria-label="Not applicable for null"
-                      checked={false}
-                      className="usa-input-success"
-                      id="notApplicable-MOCK-GUID"
-                      name="notApplicable"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="checkbox"
-                      value={false}
-                    />
-                    <label
-                      className="checkbox no-toggle"
-                      htmlFor="notApplicable-MOCK-GUID"
-                    >
-                      <span>
-                        Not applicable
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </span>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div
-      className="bottom-btns"
-    >
-      <div
-        className="btn-wrap"
-      >
-        <div
-          className="btn-container"
-        >
-          <a
-            aria-label="Go to previous section Place of birth"
-            className="btn-cell back"
-            href="/form/identification/birthplace"
-            onClick={[Function]}
-            title="Go to previous section Place of birth"
-          >
-            <div
-              className="actions back"
-            >
-              <div
-                className="icon"
-              >
-                <i
-                  aria-hidden="true"
-                  className="fa fa-arrow-circle-left"
-                />
-              </div>
-              <div
-                className="text"
-              >
-                <div
-                  className="direction"
-                >
-                  Back
-                </div>
-                <div
-                  className="label"
-                >
-                  Place of birth
-                </div>
-              </div>
-            </div>
-          </a>
-          <div
-            className="btn-spacer"
-          />
-          <a
-            aria-label="Go to next section Other names used"
-            className="btn-cell next"
-            href="/form/identification/othernames"
-            onClick={[Function]}
-            title="Go to next section Other names used"
-          >
-            <div
-              className="actions next"
-            >
-              <div
-                className="text"
-              >
-                <div
-                  className="direction"
-                >
-                  Next
-                </div>
-                <div
-                  className="label"
-                >
-                  Other names used
-                </div>
-              </div>
-              <div
-                className="icon"
-              >
-                <i
-                  aria-hidden="true"
-                  className="fa fa-arrow-circle-right"
-                />
-              </div>
-            </div>
-          </a>
-        </div>
       </div>
     </div>
   </div>
@@ -22624,7 +22297,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHRO
             id="field-MOCK-GUID"
             name="field-MOCK-GUID"
           />
->>>>>>> Remove navigation from Section test, update snapshots
           <h4
             className="title h4"
           >
@@ -22757,15 +22429,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHRO
                 >
                   <div
                     className="direction"
-<<<<<<< HEAD
-                  >
-                    Back
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Membership - violence or force
-=======
                   >
                     Back
                   </div>
@@ -22797,130 +22460,8 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHRO
                     className="direction"
                   >
                     Next
->>>>>>> Remove navigation from Section test, update snapshots
                   </div>
-                </div>
-              </div>
-            </a>
-            <div
-              className="btn-spacer"
-            />
-            <a
-              aria-label="Go to next section Terrorism association"
-              className="btn-cell next"
-              href="/form/legal/associations/terrorism-association"
-              onClick={[Function]}
-              title="Go to next section Terrorism association"
-            >
-              <div
-                className="actions next"
-              >
-                <div
-                  className="text"
-                >
                   <div
-<<<<<<< HEAD
-                    className="direction"
-                  >
-                    Next
-=======
-                    className="label"
-                  >
-                    Terrorism association
->>>>>>> Remove navigation from Section test, update snapshots
-                  </div>
-                </div>
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-right"
-                  />
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`The section component renders LEGAL_ASSOCIATIONS_ADVOCATING 1`] = `
-<div
-  className="legal"
->
-  <div
-    className="section-view"
-  >
-    <div
-      className="view view-associations/advocating"
-    >
-      <div
-        className="section-content legal-associations-advocating"
-        data-section="LEGAL"
-        data-subsection="LEGAL_ASSOCIATIONS_ADVOCATING"
-      >
-        <h1
-          className="section-header"
-        >
-          Advocating
-        </h1>
-        <div
-          aria-label="Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?"
-          className="field required branch legal-associations-advocating-has-advocated"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-<<<<<<< HEAD
                     className="label"
                   >
                     Terrorism association
@@ -23018,10 +22559,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_ADVOCATING 1`] = `
                   <div
                     className="yes block"
                   >
-=======
-                    className="yes block"
-                  >
->>>>>>> Remove navigation from Section test, update snapshots
                     <input
                       aria-label="Yes for null"
                       checked={false}
@@ -23043,7 +22580,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_ADVOCATING 1`] = `
                     >
                       <span>
                         Yes
-<<<<<<< HEAD
                       </span>
                     </label>
                   </div>
@@ -23073,37 +22609,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_ADVOCATING 1`] = `
                         No
                       </span>
                     </label>
-=======
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_advocated-MOCK-GUID"
-                      name="has_advocated-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_advocated-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
->>>>>>> Remove navigation from Section test, update snapshots
                   </div>
                 </div>
               </span>
@@ -23369,7 +22874,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM 1
                     className="label"
                   >
                     Terrorist organization
-<<<<<<< HEAD
                   </div>
                 </div>
               </div>
@@ -23391,71 +22895,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM 1
                   className="text"
                 >
                   <div
-                    className="direction"
-                  >
-                    Next
-=======
->>>>>>> Remove navigation from Section test, update snapshots
-                  </div>
-                </div>
-              </div>
-            </a>
-            <div
-              className="btn-spacer"
-            />
-            <a
-              aria-label="Go to next section Advocating"
-              className="btn-cell next"
-              href="/form/legal/associations/advocating"
-              onClick={[Function]}
-              title="Go to next section Advocating"
-            >
-              <div
-                className="actions next"
-              >
-                <div
-                  className="text"
-                >
-                  <div
-<<<<<<< HEAD
-                    className="label"
-                  >
-                    Advocating
-                  </div>
-                </div>
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-right"
-                  />
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`The section component renders LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW 1`] = `
-<div
-  className="legal"
->
-  <div
-    className="section-view"
-  >
-    <div
-      className="view view-associations/membership-overthrow"
-    >
-      <div
-        className="section-content legal-associations-overthrow"
-        data-section="LEGAL"
-        data-subsection="LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW"
-=======
                     className="direction"
                   >
                     Next
@@ -23617,127 +23056,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW 1
       </div>
       <div
         className="bottom-btns"
->>>>>>> Remove navigation from Section test, update snapshots
-      >
-        <h1
-          className="section-header"
-        >
-          Membership - overthrow
-        </h1>
-        <div
-<<<<<<< HEAD
-          aria-label="Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization's dedication to that end or with the specific intent to further such activities?"
-          className="field required branch legal-associations-overthrow-has-overthrow"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization's dedication to that end or with the specific intent to further such activities?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_overthrow-MOCK-GUID"
-                      name="has_overthrow-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_overthrow-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_overthrow-MOCK-GUID"
-                      name="has_overthrow-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_overthrow-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
-        className="bottom-btns"
       >
         <div
           className="btn-wrap"
@@ -23752,20 +23070,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW 1
               onClick={[Function]}
               title="Go to previous section Advocating"
             >
-=======
-          className="btn-wrap"
-        >
-          <div
-            className="btn-container"
-          >
-            <a
-              aria-label="Go to previous section Advocating"
-              className="btn-cell back"
-              href="/form/legal/associations/advocating"
-              onClick={[Function]}
-              title="Go to previous section Advocating"
-            >
->>>>>>> Remove navigation from Section test, update snapshots
               <div
                 className="actions back"
               >
@@ -24325,7 +23629,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION
           />
           <div
             className="table expand"
-<<<<<<< HEAD
           >
             <span
               aria-live="polite"
@@ -24337,19 +23640,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION
           >
             <span
               aria-live="polite"
-=======
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
->>>>>>> Remove navigation from Section test, update snapshots
               className="messages error-messages"
               role="alert"
             />
@@ -24459,7 +23749,6 @@ exports[`The section component renders LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION
                 <div
                   className="text"
                 >
-<<<<<<< HEAD
                   <div
                     className="direction"
                   >
@@ -24621,401 +23910,6 @@ exports[`The section component renders LEGAL_COURT 1`] = `
                   >
                     <input
                       aria-label="No for null"
-=======
-                  <div
-                    className="direction"
-                  >
-                    Back
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Unlawful use
-                  </div>
-                </div>
-              </div>
-            </a>
-            <div
-              className="btn-spacer"
-            />
-            <a
-              aria-label="Go to next section Engaged in terrorism"
-              className="btn-cell next"
-              href="/form/legal/associations/engaged-in-terrorism"
-              onClick={[Function]}
-              title="Go to next section Engaged in terrorism"
-            >
-              <div
-                className="actions next"
-              >
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Next
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Engaged in terrorism
-                  </div>
-                </div>
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-right"
-                  />
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`The section component renders LEGAL_COURT 1`] = `
-<div
-  className="legal"
->
-  <div
-    className="section-view"
-  >
-    <div
-      className="view view-court"
-    >
-      <div
-        className="section-content non-criminal-court-actions"
-        data-section="LEGAL"
-        data-subsection="LEGAL_COURT"
-      >
-        <h1
-          className="section-header"
-        >
-          Involvement in non-criminal court actions
-        </h1>
-        <div
-          aria-label="In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?"
-          className="field required branch has-court-actions"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                />
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
->>>>>>> Remove navigation from Section test, update snapshots
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="HasCourtActions-MOCK-GUID"
-                      name="HasCourtActions-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-<<<<<<< HEAD
-                      value="No"
-=======
-                      value="Yes"
->>>>>>> Remove navigation from Section test, update snapshots
-                    />
-                    <label
-                      className=""
-                      htmlFor="HasCourtActions-MOCK-GUID"
-                    >
-                      <span>
-<<<<<<< HEAD
-                        No
-=======
-                        Yes
->>>>>>> Remove navigation from Section test, update snapshots
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
-        className="bottom-btns"
-      >
-        <div
-          className="btn-wrap"
-        >
-          <div
-            className="btn-container"
-          >
-            <a
-              aria-label="Go to previous section Debarment"
-              className="btn-cell back"
-              href="/form/legal/investigations/debarred"
-              onClick={[Function]}
-              title="Go to previous section Debarment"
-            >
-              <div
-                className="actions back"
-              >
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-left"
-                  />
-                </div>
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Back
-                  </div>
-                  <div
-<<<<<<< HEAD
-                    className="label"
-                  >
-                    Debarment
-                  </div>
-                </div>
-              </div>
-            </a>
-            <div
-              className="btn-spacer"
-            />
-            <a
-              aria-label="Go to next section Unauthorized access"
-              className="btn-cell next"
-              href="/form/legal/technology/unauthorized"
-              onClick={[Function]}
-              title="Go to next section Unauthorized access"
-            >
-              <div
-                className="actions next"
-              >
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Next
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Unauthorized access
-                  </div>
-                </div>
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-right"
-                  />
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`The section component renders LEGAL_INTRO 1`] = `
-<div
-  className="legal"
->
-  <div
-    className="section-view"
-  >
-    <div
-      className="view view-intro"
-    >
-      <div>
-        <h1
-          className="section-header"
-        >
-          Section 9: Investigative and criminal history
-        </h1>
-        <div
-          aria-label=""
-          className="field no-margin-bottom"
-          data-uuid="field-MOCK-GUID"
-        >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component"
-              >
-                <div>
-                  <p>
-                    You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.
-                  </p>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
-        className="bottom-btns"
-      >
-        <div
-          className="btn-wrap"
-        >
-          <div
-            className="btn-container"
-          >
-            <a
-              aria-label="Go to previous section Review substance use"
-              className="btn-cell back"
-              href="/form/substance/review"
-              onClick={[Function]}
-              title="Go to previous section Review substance use"
-            >
-              <div
-                className="actions back"
-              >
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-left"
-                  />
-                </div>
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Back
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Review substance use
-                  </div>
-                </div>
-              </div>
-            </a>
-            <div
-              className="btn-spacer"
-            />
-            <a
-              aria-label="Go to next section Police record"
-              className="btn-cell next"
-              href="/form/legal/police/intro"
-              onClick={[Function]}
-              title="Go to next section Police record"
-            >
-              <div
-                className="actions next"
-              >
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Next
-=======
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
@@ -25037,7 +23931,6 @@ exports[`The section component renders LEGAL_INTRO 1`] = `
                         No
                       </span>
                     </label>
->>>>>>> Remove navigation from Section test, update snapshots
                   </div>
                 </div>
               </span>
@@ -26027,8 +24920,6 @@ exports[`The section component renders LEGAL_POLICE_ADDITIONAL_OFFENSES 1`] = `
                           </strong>
                            in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form
                         </p>
-<<<<<<< HEAD
-=======
                       </div>
                     </li>
                     <li>
@@ -26059,7 +24950,6 @@ exports[`The section component renders LEGAL_POLICE_ADDITIONAL_OFFENSES 1`] = `
                           </strong>
                            with an offense involving firearms or explosives?
                         </p>
->>>>>>> Remove navigation from Section test, update snapshots
                       </div>
                     </li>
                     <li>
@@ -26068,39 +24958,6 @@ exports[`The section component renders LEGAL_POLICE_ADDITIONAL_OFFENSES 1`] = `
                           <strong>
                             Have you EVER been charged
                           </strong>
-<<<<<<< HEAD
-                           with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            Have you EVER been convicted
-                          </strong>
-                           of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            Have you EVER been charged
-                          </strong>
-                           with an offense involving firearms or explosives?
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            Have you EVER been charged
-                          </strong>
-=======
->>>>>>> Remove navigation from Section test, update snapshots
                            with an offense involving alcohol or drugs?
                         </p>
                       </div>
@@ -26529,7 +25386,6 @@ exports[`The section component renders LEGAL_POLICE_INTRO 1`] = `
           >
             <span
               className="content"
-<<<<<<< HEAD
             >
               <span
                 className="component"
@@ -26608,13 +25464,10 @@ exports[`The section component renders LEGAL_POLICE_INTRO 1`] = `
               href="/form/legal/police/offenses"
               onClick={[Function]}
               title="Go to next section Offenses"
-=======
->>>>>>> Remove navigation from Section test, update snapshots
             >
               <div
                 className="actions next"
               >
-<<<<<<< HEAD
                 <div
                   className="text"
                 >
@@ -26821,406 +25674,6 @@ exports[`The section component renders LEGAL_POLICE_OFFENSES 1`] = `
                         No
                       </span>
                     </label>
-=======
-                <div>
-                  <p>
-                    For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    <strong>
-                      Be sure to include all incidents whether occurring in the U.S. or abroad.
-                    </strong>
-                  </p>
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
-        className="bottom-btns"
-      >
-        <div
-          className="btn-wrap"
-        >
-          <div
-            className="btn-container"
-          >
-            <a
-              aria-label="Go to previous section Investigative and criminal history intro"
-              className="btn-cell back"
-              href="/form/legal/intro"
-              onClick={[Function]}
-              title="Go to previous section Investigative and criminal history intro"
-            >
-              <div
-                className="actions back"
-              >
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-left"
-                  />
-                </div>
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Back
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Investigative and criminal history intro
-                  </div>
-                </div>
-              </div>
-            </a>
-            <div
-              className="btn-spacer"
-            />
-            <a
-              aria-label="Go to next section Offenses"
-              className="btn-cell next"
-              href="/form/legal/police/offenses"
-              onClick={[Function]}
-              title="Go to next section Offenses"
-            >
-              <div
-                className="actions next"
-              >
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Next
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Offenses
->>>>>>> Remove navigation from Section test, update snapshots
-                  </div>
-                </div>
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-right"
-                  />
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-<<<<<<< HEAD
-      <div
-        className="bottom-btns"
-=======
-    </div>
-  </div>
-</div>
-`;
-
-exports[`The section component renders LEGAL_POLICE_OFFENSES 1`] = `
-<div
-  className="legal"
->
-  <div
-    className="section-view"
-  >
-    <div
-      className="view view-police/offenses"
-    >
-      <div
-        className="section-content police-offenses"
-        data-section="LEGAL"
-        data-subsection="LEGAL_POLICE_OFFENSES"
->>>>>>> Remove navigation from Section test, update snapshots
-      >
-        <div
-          className="btn-wrap"
-        >
-<<<<<<< HEAD
-          <div
-            className="btn-container"
-          >
-            <a
-              aria-label="Go to previous section Police record"
-              className="btn-cell back"
-              href="/form/legal/police/intro"
-              onClick={[Function]}
-              title="Go to previous section Police record"
-            >
-              <div
-                className="actions back"
-              >
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-left"
-                  />
-                </div>
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Back
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Police record
-                  </div>
-                </div>
-              </div>
-            </a>
-            <div
-              className="btn-spacer"
-            />
-            <a
-              aria-label="Go to next section Additional offenses"
-              className="btn-cell next"
-              href="/form/legal/police/additionaloffenses"
-              onClick={[Function]}
-              title="Go to next section Additional offenses"
-            >
-              <div
-                className="actions next"
-              >
-                <div
-                  className="text"
-                >
-                  <div
-                    className="direction"
-                  >
-                    Next
-                  </div>
-                  <div
-                    className="label"
-                  >
-                    Additional offenses
-                  </div>
-                </div>
-                <div
-                  className="icon"
-                >
-                  <i
-                    aria-hidden="true"
-                    className="fa fa-arrow-circle-right"
-                  />
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`The section component renders LEGAL_REVIEW 1`] = `
-<div
-  className="legal"
->
-  <div
-    className="section-view"
-  >
-    <h1
-      className="title"
-    >
-      Review your answers
-    </h1>
-    <div>
-      <p>
-        View the full section to make sure everything looks right and make changes if needed.
-      </p>
-    </div>
-    <div
-      className="view view-review"
-    >
-      <div
-        className="top-btns"
-      />
-      <div>
-        <div
-          className="section-content police-offenses"
-          data-section="LEGAL"
-          data-subsection="LEGAL_POLICE_OFFENSES"
-=======
-          Offenses
-        </h1>
-        <div
-          aria-label="Have any of the following happened?"
-          className="field required branch has-offenses"
-          data-uuid="field-MOCK-GUID"
->>>>>>> Remove navigation from Section test, update snapshots
-        >
-          <h1
-            className="section-header"
-          >
-<<<<<<< HEAD
-=======
-            Have any of the following happened?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
-            >
-              <span
-                className="component shrink"
-              >
-                <div
-                  className="content"
-                >
-                  <ul>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            In the last seven (7) years
-                          </strong>
-                           have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            In the last seven (7) years
-                          </strong>
-                           have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            In the last seven (7) years
-                          </strong>
-                           have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            In the last seven (7) years
-                          </strong>
-                           have you been or are you currently on probation or parole?
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          Are you currently on trial or awaiting a trial on criminal charges?
-                        </p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-                    className="yes block"
-                  >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_offenses-MOCK-GUID"
-                      name="has_offenses-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_offenses-MOCK-GUID"
-                    >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_offenses-MOCK-GUID"
-                      name="has_offenses-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_offenses-MOCK-GUID"
-                    >
-                      <span>
-                        No
-                      </span>
-                    </label>
                   </div>
                 </div>
               </span>
@@ -27348,7 +25801,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
           <h1
             className="section-header"
           >
->>>>>>> Remove navigation from Section test, update snapshots
             Offenses
           </h1>
           <div
@@ -27545,7 +25997,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
           >
             <h1
               className="section-header"
-<<<<<<< HEAD
             >
               Additional offenses
             </h1>
@@ -27554,16 +26005,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
               className="field required branch has-otheroffenses"
               data-uuid="field-MOCK-GUID"
             >
-=======
-            >
-              Additional offenses
-            </h1>
-            <div
-              aria-label="Other than those offenses already listed, have you EVER had the following happen to you?"
-              className="field required branch has-otheroffenses"
-              data-uuid="field-MOCK-GUID"
-            >
->>>>>>> Remove navigation from Section test, update snapshots
               <a
                 aria-hidden="true"
                 className="anchor"
@@ -27902,7 +26343,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
         >
           <h1
             className="section-header"
-<<<<<<< HEAD
           >
             Ever been investigated
           </h1>
@@ -27911,32 +26351,11 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
             className="field required branch legal-investigations-history-has-history"
             data-uuid="field-MOCK-GUID"
           >
-=======
-          >
-            Ever been investigated
-          </h1>
-          <div
-            aria-label="Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?"
-            className="field required branch legal-investigations-history-has-history"
-            data-uuid="field-MOCK-GUID"
-          >
->>>>>>> Remove navigation from Section test, update snapshots
             <a
               aria-hidden="true"
               className="anchor"
               id="field-MOCK-GUID"
               name="field-MOCK-GUID"
-<<<<<<< HEAD
-            />
-            <h4
-              className="title h4"
-            >
-              Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?
-            </h4>
-            <span
-              className="icon"
-            />
-=======
             />
             <h4
               className="title h4"
@@ -27954,23 +26373,11 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
                 className="messages help-messages"
               />
             </div>
->>>>>>> Remove navigation from Section test, update snapshots
             <div
               className="table expand"
             >
               <span
                 aria-live="polite"
-<<<<<<< HEAD
-                className="messages help-messages"
-              />
-            </div>
-            <div
-              className="table expand"
-            >
-              <span
-                aria-live="polite"
-=======
->>>>>>> Remove navigation from Section test, update snapshots
                 className="messages error-messages"
                 role="alert"
               >
@@ -28381,7 +26788,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
           >
             <h1
               className="section-header"
-<<<<<<< HEAD
             >
               Involvement in non-criminal court actions
             </h1>
@@ -28390,16 +26796,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
               className="field required branch has-court-actions"
               data-uuid="field-MOCK-GUID"
             >
-=======
-            >
-              Involvement in non-criminal court actions
-            </h1>
-            <div
-              aria-label="In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?"
-              className="field required branch has-court-actions"
-              data-uuid="field-MOCK-GUID"
-            >
->>>>>>> Remove navigation from Section test, update snapshots
               <a
                 aria-hidden="true"
                 className="anchor"
@@ -28540,7 +26936,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
           >
             <h1
               className="section-header"
-<<<<<<< HEAD
             >
               Unauthorized access
             </h1>
@@ -28559,26 +26954,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
               className="field required branch legal-technology-unauthorized-has-unauthorized"
               data-uuid="field-MOCK-GUID"
             >
-=======
-            >
-              Unauthorized access
-            </h1>
-            <div>
-              <p>
-                We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding.
-              </p>
-            </div>
-            <div>
-              <p>
-                As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions ask about your use of information technology systems. Information technology systems include all related computer hardware, software, firmware, and data used for the communication, transmission, processing, manipulation, storage or protection of information.
-              </p>
-            </div>
-            <div
-              aria-label="In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?"
-              className="field required branch legal-technology-unauthorized-has-unauthorized"
-              data-uuid="field-MOCK-GUID"
-            >
->>>>>>> Remove navigation from Section test, update snapshots
               <a
                 aria-hidden="true"
                 className="anchor"
@@ -28587,7 +26962,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
               />
               <h4
                 className="title h4"
-<<<<<<< HEAD
               >
                 In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?
               </h4>
@@ -28639,59 +27013,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
                 <span
                   className="content"
                 >
-=======
-              >
-                In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?
-              </h4>
-              <span
-                className="icon"
-              />
-              <div
-                className="table expand"
-              >
-                <span
-                  aria-live="polite"
-                  className="messages help-messages"
-                />
-              </div>
-              <div
-                className="table expand"
-              >
-                <span
-                  aria-live="polite"
-                  className="messages error-messages"
-                  role="alert"
-                >
-                  <div
-                    aria-live="polite"
-                    className="message error usa-alert usa-alert-error"
-                    role="alert"
-                  >
-                    <div
-                      className="usa-alert-body"
-                    >
-                      <div
-                        data-i18n="error.required"
-                      >
-                        <h5
-                          className="usa-alert-heading"
-                        >
-                          Your response is required
-                        </h5>
-                        
-                        
-                      </div>
-                    </div>
-                  </div>
-                </span>
-              </div>
-              <div
-                className="table"
-              >
-                <span
-                  className="content"
-                >
->>>>>>> Remove navigation from Section test, update snapshots
                   <span
                     className="component shrink"
                   >
@@ -29994,7 +28315,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
                   <div
                     className="usa-alert-body"
                   >
-<<<<<<< HEAD
                     <div
                       data-i18n="error.required"
                     >
@@ -30026,39 +28346,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
                     className="blocks option-list branch usa-input-error"
                   >
                     <div
-=======
-                    <div
-                      data-i18n="error.required"
-                    >
-                      <h5
-                        className="usa-alert-heading"
-                      >
-                        Your response is required
-                      </h5>
-                      
-                      
-                    </div>
-                  </div>
-                </div>
-              </span>
-            </div>
-            <div
-              className="table"
-            >
-              <span
-                className="content"
-              >
-                <span
-                  className="component shrink"
-                >
-                  <div
-                    className="content"
-                  />
-                  <div
-                    className="blocks option-list branch usa-input-error"
-                  >
-                    <div
->>>>>>> Remove navigation from Section test, update snapshots
                       className="yes block"
                     >
                       <input
