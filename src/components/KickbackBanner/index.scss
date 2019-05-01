@@ -1,0 +1,25 @@
+.kickback-banner {
+  margin: 0;
+  background-image: none;
+  border-radius: 0;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @media (min-width: 767px) {
+      flex-direction: row;
+    }
+  }
+
+  &__exclamation {
+    padding-right: 2rem;
+    font-size: 1.5em;
+  }
+
+  &__text {
+    font-weight: 600;
+  }
+
+}

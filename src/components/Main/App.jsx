@@ -20,6 +20,7 @@ import {
 import { Introduction } from 'components/Form'
 import Logout from 'components/Navigation/Logout'
 import StickyHeader from 'components/Sticky/StickyHeader'
+import KickbackBanner from 'components/KickbackBanner'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish
@@ -255,6 +256,8 @@ class App extends React.Component {
               <div id="scrollToProgress" />
               <div className="usa-overlay" />
               <ProgressBar />
+              {/* If status API returns KICKBACK, then display kickback banner */}
+              {/* <KickbackBanner /> */}
             </div>
           </div>
         </StickyHeader>
