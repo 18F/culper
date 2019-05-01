@@ -3,10 +3,18 @@ package http
 import (
 	"net/http"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
 )
+
+// Default to a preflight cache of 10 minutes, chosen to match the value
+// that Chrome caps its max age to (ostensibly to minimize risk of poisoned
+// cache). As the intent of a preflight is to protect old, non-CORS-aware
+// servers, and the CORS Origin is just our own frontend, and we are using TLS,
+// it's not an applicable risk here.
+const defaultMaxAge = 600
 
 // CORSHandler is the handler for CORS.
 type CORSHandler struct {
@@ -35,6 +43,12 @@ func (service CORSHandler) Middleware(next http.Handler) http.Handler {
 			w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 			w.Header().Set("Access-Control-Allow-Headers",
 				"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+
+			maxAge := defaultMaxAge
+			if service.Env.Has(api.CORSMaxAge) {
+				maxAge = service.Env.Int(api.CORSMaxAge)
+			}
+			w.Header().Set("Access-Control-Max-Age", strconv.Itoa(maxAge))
 		} else {
 			service.Log.Info(api.CORSDenied, api.LogFields{"origin": origin})
 			RespondWithStructuredError(w, api.CORSDenied, http.StatusBadRequest)

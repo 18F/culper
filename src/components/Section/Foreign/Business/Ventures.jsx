@@ -71,7 +71,8 @@ export class Ventures extends Subsection {
     return (
       <div
         className="section-content foreign-business-ventures"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_BUSINESS_VENTURES.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.business.ventures')}</h1>
         <Branch

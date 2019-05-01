@@ -86,7 +86,8 @@ export class Debarred extends Subsection {
     return (
       <div
         className="section-content investigations-debarred"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_INVESTIGATIONS_DEBARRED.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.investigations.debarred')}</h1>
         <Branch

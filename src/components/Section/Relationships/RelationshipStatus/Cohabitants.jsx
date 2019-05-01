@@ -77,7 +77,8 @@ export class Cohabitants extends Subsection {
     return (
       <div
         className="section-content cohabitants"
-        {...super.dataAttributes()}
+        data-section={RELATIONSHIPS.key}
+        data-subsection={RELATIONSHIPS_STATUS_COHABITANTS.key}
       >
         <h1 className="section-header">{i18n.t('relationships.cohabitant.sectionTitle.title')}</h1>
 

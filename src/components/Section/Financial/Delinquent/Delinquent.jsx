@@ -113,7 +113,8 @@ export class Delinquent extends Subsection {
     return (
       <div
         className="section-content delinquent"
-        {...super.dataAttributes()}
+        data-section={FINANCIAL.key}
+        data-subsection={FINANCIAL_DELINQUENT.key}
       >
         <h1 className="section-header">{i18n.t('financial.destination.delinquent')}</h1>
         <Branch

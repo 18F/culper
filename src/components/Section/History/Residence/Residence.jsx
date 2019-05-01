@@ -129,7 +129,8 @@ export class Residence extends Subsection {
     return (
       <div
         className="section-content residence"
-        {...super.dataAttributes()}
+        data-section={HISTORY.key}
+        data-subsection={HISTORY_RESIDENCE.key}
       >
         <Accordion
           scrollToTop={this.props.scrollToTop}

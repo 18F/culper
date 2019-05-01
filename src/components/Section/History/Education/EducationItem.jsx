@@ -199,14 +199,8 @@ export default class EducationItem extends ValidationElement {
             titleSize="h4"
             help="history.education.help.dates"
             adjustFor="daterange"
-            shrink
-            scrollIntoView={this.props.scrollIntoView}
-          >
-            {/* eslint jsx-a11y/label-has-associated-control: 0 */}
-            {/* eslint jsx-a11y/label-has-for: 0 */}
-            <label className="info-label">
-              {i18n.t('history.education.label.dates')}
-            </label>
+            shrink={true}
+            scrollIntoView={this.props.scrollIntoView}>
             <DateRange
               name="Dates"
               {...this.props.Dates}

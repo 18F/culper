@@ -123,7 +123,8 @@ export class Diagnoses extends Subsection {
     return (
       <div
         className="section-content diagnoses"
-        {...super.dataAttributes()}
+        data-section={PSYCHOLOGICAL.key}
+        data-subsection={PSYCHOLOGICAL_DIAGNOSES.key}
       >
         <h1 className="section-header">{i18n.t('psychological.destination.diagnoses')}</h1>
         {i18n.m('psychological.heading.diagnoses')}

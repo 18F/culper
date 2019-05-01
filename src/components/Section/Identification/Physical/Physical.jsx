@@ -47,7 +47,11 @@ export class Physical extends Subsection {
       ''}`.trim()
 
     return (
-      <div className={klass} {...super.dataAttributes()}>
+      <div
+        className={klass}
+        data-section={IDENTIFICATION.key}
+        data-subsection={IDENTIFICATION_PHYSICAL.key}
+      >
         <h1 className="section-header">{i18n.t('identification.destination.physical')}</h1>
 
         <Field

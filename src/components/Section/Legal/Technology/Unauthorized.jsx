@@ -72,7 +72,8 @@ export class Unauthorized extends Subsection {
     return (
       <div
         className="section-content legal-technology-unauthorized"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_TECHNOLOGY_UNAUTHORIZED.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.technology.unauthorized')}</h1>
         {i18n.m('legal.technology.unauthorized.para.intro')}

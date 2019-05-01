@@ -71,7 +71,8 @@ export class NegativeImpacts extends Subsection {
     return (
       <div
         className="section-content negative-impacts"
-        {...super.dataAttributes()}
+        data-section={SUBSTANCE_USE.key}
+        data-subsection={SUBSTANCE_USE_ALCOHOL_NEGATIVE.key}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.alcohol.negative')}</h1>
         <Branch

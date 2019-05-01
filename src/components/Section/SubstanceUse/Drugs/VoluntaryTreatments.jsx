@@ -94,7 +94,8 @@ export class VoluntaryTreatments extends Subsection {
     return (
       <div
         className="section-content voluntary-treatments"
-        {...super.dataAttributes()}
+        data-section={SUBSTANCE_USE.key}
+        data-subsection={SUBSTANCE_USE_DRUGS_VOLUNTARY.key}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.voluntary')}</h1>
         <Branch

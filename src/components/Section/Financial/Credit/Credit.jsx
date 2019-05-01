@@ -82,7 +82,8 @@ export class Credit extends Subsection {
     return (
       <div
         className="section-content credit-counseling"
-        {...super.dataAttributes()}
+        data-section={FINANCIAL.key}
+        data-subsection={FINANCIAL_CREDIT.key}
       >
         <h1 className="section-header">{i18n.t('financial.destination.credit')}</h1>
         <Branch

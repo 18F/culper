@@ -107,7 +107,8 @@ class Selective extends Subsection {
     return (
       <div
         className="section-content selective"
-        {...super.dataAttributes(this.props)}
+        data-section={MILITARY.key}
+        data-subsection={MILITARY_SELECTIVE.key}
       >
         <h1 className="section-header">{i18n.t('military.destination.selective')}</h1>
         <Branch
@@ -177,17 +178,6 @@ class Selective extends Subsection {
                           {i18n.t('military.selective.help.remember.title')}
                         </strong>
                         {i18n.m('military.selective.help.remember.message')}
-                        <div>
-                          <p>
-                            <a
-                              href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              www.sss.gov
-                            </a>
-                          </p>
-                        </div>
                       </div>
                     </div>
                   </div>

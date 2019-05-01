@@ -1,60 +1,38 @@
 import React from 'react'
-import configureMockStore from 'redux-mock-store'
-import { Provider } from 'react-redux'
-import SectionTitle from 'components/SectionTitle/SectionTitle'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 
-describe('The title section', () => {
-  const mockStore = configureMockStore()
+import { SectionTitle } from 'components/SectionTitle/SectionTitle'
+
+describe('The SectionTitle component', () => {
+  it('renders without errors', () => {
+    const component = shallow(<SectionTitle location={{}} />)
+
+    expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
+  })
 
   it('can handle no title', () => {
-    const store = mockStore({ section: { section: '' } })
-    const component = mount(
-      <Provider store={store}>
-        <SectionTitle />
-      </Provider>
-    )
-    expect(component.find('h1').length).toEqual(1)
-    expect(component.find('h1').text()).toEqual('')
+    const component = shallow(<SectionTitle location={{}} />)
+    expect(component.find('h1').length).toBe(0)
   })
 
   it('can handle title 1 deep', () => {
-    const store = mockStore({ section: { section: 'legal', subsection: '' } })
-    const component = mount(
-      <Provider store={store}>
-        <SectionTitle />
-      </Provider>
-    )
-    expect(component.find('h1').length).toEqual(1)
-    expect(component.find('h1').text()).toEqual(
-      'Investigative and criminal history'
-    )
+    const component = shallow(<SectionTitle location={{ pathname: '/form/legal' }} />)
+    expect(component.find('h1').length).toBe(0)
   })
 
   it('can handle title 2 deep', () => {
-    const store = mockStore({
-      section: { section: 'legal', subsection: 'technology' }
-    })
-    const component = mount(
-      <Provider store={store}>
-        <SectionTitle />
-      </Provider>
-    )
+    const component = shallow(<SectionTitle location={{ pathname: '/form/identification/name' }} />)
+
     expect(component.find('h1').length).toEqual(1)
     expect(component.find('h1').text()).toEqual(
-      'Investigative and criminal history > Use of information technology systems'
+      'Information about you > Full name'
     )
   })
 
   it('can handle title 3 deep', () => {
-    const store = mockStore({
-      section: { section: 'legal', subsection: 'technology/unauthorized' }
-    })
-    const component = mount(
-      <Provider store={store}>
-        <SectionTitle />
-      </Provider>
-    )
+    const component = shallow(<SectionTitle location={{ pathname: '/form/legal/technology/unauthorized' }} />)
+
     expect(component.find('h1').length).toEqual(1)
     expect(component.find('h1').text()).toEqual(
       'Investigative and criminal history > Use of information technology systems > Unauthorized access'

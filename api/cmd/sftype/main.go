@@ -28,6 +28,7 @@ func configureDB() api.DatabaseService {
 		Password: os.Getenv(api.DatabasePassword),
 		Address:  os.Getenv(api.DatabaseHost),
 		DBName:   os.Getenv(api.DatabaseName),
+		SSLMode:  os.Getenv(api.DatabaseSSLMode),
 	}
 
 	db := postgresql.NewPostgresService(dbConf, logger)

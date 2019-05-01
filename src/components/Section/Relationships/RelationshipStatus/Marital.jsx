@@ -106,7 +106,8 @@ export class Marital extends Subsection {
     return (
       <div
         className="section-content marital"
-        {...super.dataAttributes()}
+        data-section={RELATIONSHIPS.key}
+        data-subsection={RELATIONSHIPS_STATUS_MARITAL.key}
       >
         <h1 className="section-header">{i18n.t('relationships.marital.sectionTitle.title')}</h1>
 

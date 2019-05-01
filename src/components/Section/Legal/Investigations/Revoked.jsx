@@ -86,7 +86,8 @@ export class Revoked extends Subsection {
     return (
       <div
         className="section-content investigations-revoked"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_INVESTIGATIONS_REVOKED.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.investigations.revoked')}</h1>
         <Branch

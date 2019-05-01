@@ -72,7 +72,8 @@ export class DrugPublicSafetyUses extends Subsection {
     return (
       <div
         className="section-content drug-public-safety-uses"
-        {...super.dataAttributes()}
+        data-section={SUBSTANCE_USE.key}
+        data-subsection={SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY.key}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.publicsafety')}</h1>
         <Branch

@@ -76,7 +76,8 @@ export class MembershipViolence extends Subsection {
     return (
       <div
         className="section-content legal-associations-violence"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.associations.violence')}</h1>
         <Branch

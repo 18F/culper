@@ -80,7 +80,8 @@ export class IndirectActivity extends Subsection {
     return (
       <div
         className="section-content indirect"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_ACTIVITIES_INDIRECT.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.activities.indirect')}</h1>
         <Branch
