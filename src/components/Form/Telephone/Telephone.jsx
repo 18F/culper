@@ -103,42 +103,35 @@ export default class Telephone extends ValidationElement {
     })
   }
 
-  updateDomesticFirst = (values) => {
-    this.setState({
-      first: values.value,
-    }, () => {
+  updateDomesticNumber = (values) => {
+    const fieldNameMap = {
+      domestic_first: 'first',
+      domestic_second: 'second',
+      domestic_third: 'third',
+    }
+
+    this.setState(prevState => ({
+      domestic: {
+        ...prevState.domestic,
+        [fieldNameMap[values.name]]: values.value,
+      },
+    }), () => {
       this.updateNumber('Domestic')
     })
   }
 
-  updateDomesticSecond = (values) => {
-    this.setState({
-      second: values.value,
-    }, () => {
-      this.updateNumber('Domestic')
-    })
-  }
+  updateInternationalNumber = (values) => {
+    const fieldNameMap = {
+      international_first: 'first',
+      international_second: 'second',
+    }
 
-  updateDomesticThird = (values) => {
-    this.setState({
-      third: values.value,
-    }, () => {
-      this.updateNumber('Domestic')
-    })
-  }
-
-  updateInternationalFirst = (values) => {
-    this.setState({
-      first: values.value,
-    }, () => {
-      this.updateNumber('International')
-    })
-  }
-
-  updateInternationalSecond = (values) => {
-    this.setState({
-      second: values.value,
-    }, () => {
+    this.setState(prevState => ({
+      domestic: {
+        ...prevState.domestic,
+        [fieldNameMap[values.name]]: values.value,
+      },
+    }), () => {
       this.updateNumber('International')
     })
   }
@@ -291,7 +284,7 @@ export default class Telephone extends ValidationElement {
       this.constructor.errors.map((err) => {
         const errProps = {
           ...this.props,
-          ...this.state
+          ...this.state,
         }
         if (code === 'none') {
           errProps.noNumber = value
@@ -316,7 +309,7 @@ export default class Telephone extends ValidationElement {
         <label
           className={[
             `${this.props.typeClass || ''}`,
-            `${this.props.noNumber ? 'disabled' : ''}`
+            `${this.props.noNumber ? 'disabled' : ''}`,
           ].join(' ').trim()}
         >
           {i18n.t('telephone.domestic.label')}
@@ -336,7 +329,7 @@ export default class Telephone extends ValidationElement {
             readonly={this.props.readonly}
             required={this.required('Domestic')}
             value={trimleading(this.state.domestic.first)}
-            onUpdate={this.updateDomesticFirst}
+            onUpdate={this.updateDomesticNumber}
             onError={this.handleErrorDomesticFirst}
             tabNext={() => {
               this.props.tab(this.refs.domestic_second.refs.text.refs.input)
@@ -356,7 +349,7 @@ export default class Telephone extends ValidationElement {
             readonly={this.props.readonly}
             required={this.required('Domestic')}
             value={trimleading(this.state.domestic.second)}
-            onUpdate={this.updateDomesticSecond}
+            onUpdate={this.updateDomesticNumber}
             onError={this.handleErrorDomesticSecond}
             tabBack={() => {
               this.props.tab(this.refs.domestic_first.refs.text.refs.input)
@@ -380,7 +373,7 @@ export default class Telephone extends ValidationElement {
             readonly={this.props.readonly}
             required={this.required('Domestic')}
             value={trimleading(this.state.domestic.third)}
-            onUpdate={this.updateDomesticThird}
+            onUpdate={this.updateDomesticNumber}
             onError={this.handleErrorDomesticThird}
             tabBack={() => {
               this.props.tab(this.refs.domestic_second.refs.text.refs.input)
@@ -436,7 +429,7 @@ export default class Telephone extends ValidationElement {
         <label
           className={[
             `${this.props.typeClass || ''}`,
-            `${this.props.noNumber ? 'disabled' : ''}`
+            `${this.props.noNumber ? 'disabled' : ''}`,
           ].join(' ').trim()}
         >
           {i18n.t('telephone.international.label')}
@@ -455,7 +448,7 @@ export default class Telephone extends ValidationElement {
           readonly={this.props.readonly}
           required={this.required('International')}
           value={trimleading(this.state.international.first)}
-          onUpdate={this.updateInternationalFirst}
+          onUpdate={this.updateInternationalNumber}
           onError={this.handleErrorInternationalFirst}
           tabNext={() => {
             this.props.tab(this.refs.int_second.refs.text.refs.input)
@@ -475,7 +468,7 @@ export default class Telephone extends ValidationElement {
           readonly={this.props.readonly}
           required={this.required('International')}
           value={trimleading(this.state.international.second)}
-          onUpdate={this.updateInternationalSecond}
+          onUpdate={this.updateInternationalNumber}
           onError={this.handleErrorInternationalSecond}
           tabBack={() => {
             this.props.tab(this.refs.int_first.refs.text.refs.input)
@@ -553,7 +546,8 @@ export default class Telephone extends ValidationElement {
                 className="domestic-number link"
                 onClick={this.updateToggleDomestic}
                 title={i18n.t('telephone.aria.domestic')}
-                aria-label={i18n.t('telephone.aria.domestic')}>
+                aria-label={i18n.t('telephone.aria.domestic')}
+              >
                 {i18n.t('telephone.type.domestic')}
               </button>
             </span>
@@ -565,7 +559,8 @@ export default class Telephone extends ValidationElement {
                 className="international-number link"
                 onClick={this.updateToggleInternational}
                 title={i18n.t('telephone.aria.international')}
-                aria-label={i18n.t('telephone.aria.international')}>
+                aria-label={i18n.t('telephone.aria.international')}
+              >
                 {i18n.t('telephone.type.international')}
               </button>
             </span>
@@ -581,7 +576,8 @@ export default class Telephone extends ValidationElement {
             <RadioGroup
               selectedValue={this.props.timeOfDay}
               name="timeofday"
-              disabled={this.props.noNumber}>
+              disabled={this.props.noNumber}
+            >
               <Radio
                 native
                 className="time day"
@@ -702,9 +698,9 @@ Telephone.errors = [
         switch (props.type) {
           case 'Domestic':
             return (
-              !!props.domestic.first &&
-              !!props.domestic.second &&
-              !!props.domestic.third
+              !!props.domestic.first
+              && !!props.domestic.second
+              && !!props.domestic.third
             )
           case 'International':
             return !!props.international.first && !!props.international.second
