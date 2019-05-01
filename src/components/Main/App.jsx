@@ -256,8 +256,9 @@ class App extends React.Component {
               <div id="scrollToProgress" />
               <div className="usa-overlay" />
               <ProgressBar />
-              {/* If status API returns KICKBACK, then display kickback banner */}
-              {/* <KickbackBanner /> */}
+              {settings.status === 'KICKBACK' && (
+                <KickbackBanner />
+              )}
             </div>
           </div>
         </StickyHeader>

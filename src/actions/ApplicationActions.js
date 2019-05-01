@@ -38,6 +38,8 @@ export function getApplicationState(done) {
 
           dispatch(updateApplication('Settings', 'formType', formType))
           dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
+          dispatch(updateApplication('Settings', 'status', window.status))
+
           for (const section in formData) {
             for (const subsection in formData[section]) {
               dispatch(
