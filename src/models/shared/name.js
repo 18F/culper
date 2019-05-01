@@ -18,9 +18,9 @@ const name = {
   },
   middleInitialOnly: {},
   noMiddleName: {},
-  hideMiddleName: {}, // TODO
+  hideMiddleName: {},
   middle: (value, attributes) => {
-    if (attributes.noMiddleName) {
+    if (attributes.hideMiddleName || attributes.noMiddleName) {
       return { presence: false }
     }
 
