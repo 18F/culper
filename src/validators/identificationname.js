@@ -1,11 +1,16 @@
-import NameValidator from './name'
+import { validateModel } from 'models/validate'
+import name from 'models/shared/name'
+
+export const validateIdentificationName = data => (
+  validateModel(data, name) === true
+)
 
 export default class IdentificationNameValidator {
-  constructor(data = {}) {
-    this.name = data.Name || {}
+  constructor(data = { Name: {} }) {
+    this.data = data
   }
 
   isValid() {
-    return new NameValidator(this.name).isValid()
+    return validateIdentificationName(this.data.Name)
   }
 }
