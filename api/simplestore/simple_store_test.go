@@ -103,7 +103,7 @@ func TestSaveSection(t *testing.T) {
 	store := getSimpleStore()
 	account := createAccount(t, store)
 
-	sectionFilename := "../testdata/identification-name.json"
+	sectionFilename := "../testdata/identification/identification-name.json"
 
 	rawSection, err := ioutil.ReadFile(sectionFilename)
 	if err != nil {
@@ -178,7 +178,7 @@ func TestStoreErrors(t *testing.T) {
 	store := getSimpleStore()
 	account := createAccount(t, store)
 
-	sectionFilename := "../testdata/identification-name.json"
+	sectionFilename := "../testdata/identification/identification-name.json"
 
 	rawSection, err := ioutil.ReadFile(sectionFilename)
 	if err != nil {
