@@ -2,7 +2,7 @@ import { validateModel } from '../validate'
 
 import ssn from '../shared/ssn'
 
-describe.only('The ssn model', () => {
+describe('The ssn model', () => {
   describe('when notApplicable is false', () => {
     it('verified is required', () => {
       const testData = {
