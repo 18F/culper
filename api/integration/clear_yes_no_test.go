@@ -1,6 +1,7 @@
 package integration
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -12,9 +13,7 @@ func TestClearEmptyAccount(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
-	rejector := admin.Rejector{
-		DB: services.db,
-	}
+	rejector := admin.NewRejector(services.db, services.store, nil)
 
 	err := rejector.Reject(account)
 	if err != nil {
@@ -37,20 +36,19 @@ func TestClearInformation(t *testing.T) {
 		t.Fatal("Failed to save topLevelNoJSON", resp.StatusCode)
 	}
 
-	rejector := admin.Rejector{
-		DB: services.db,
-	}
+	rejector := admin.NewRejector(services.db, services.store, nil)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
 	}
 
-	// check that the no is no longer set.
-	resetNames := api.IdentificationOtherNames{}
-	_, err = resetNames.Get(services.db, account.ID)
-	if err != nil {
-		t.Fatal("couldn't reload other names", err)
+	resetApp := getApplication(t, services, account)
+
+	resetNames := resetApp.Section("identification.othernames").(*api.IdentificationOtherNames)
+	if resetNames == nil {
+		t.Fatal("No other names section in the app")
 	}
+
 	if resetNames.HasOtherNames.Value != "" {
 		t.Fatal("OtherNames was not reset")
 	}
@@ -68,12 +66,13 @@ func TestClearInformation(t *testing.T) {
 		t.Fatal("Failed to reject account: ", err)
 	}
 
-	// check that the no is no longer set.
-	resetNames = api.IdentificationOtherNames{}
-	_, err = resetNames.Get(services.db, account.ID)
-	if err != nil {
-		t.Fatal("couldn't reload other names", err)
+	resetApp = getApplication(t, services, account)
+
+	resetNames = resetApp.Section("identification.othernames").(*api.IdentificationOtherNames)
+	if resetNames == nil {
+		t.Fatal("No other names section in the app")
 	}
+
 	if resetNames.HasOtherNames.Value != "Yes" {
 		t.Fatal("topLevel Yes was changed")
 	}
@@ -94,12 +93,13 @@ func TestClearInformation(t *testing.T) {
 		t.Fatal("Failed to reject account: ", err)
 	}
 
-	// check that the no is no longer set.
-	resetNames = api.IdentificationOtherNames{}
-	_, err = resetNames.Get(services.db, account.ID)
-	if err != nil {
-		t.Fatal("couldn't reload other names", err)
+	resetApp = getApplication(t, services, account)
+
+	resetNames = resetApp.Section("identification.othernames").(*api.IdentificationOtherNames)
+	if resetNames == nil {
+		t.Fatal("No other names section in the app")
 	}
+
 	if resetNames.HasOtherNames.Value != "Yes" {
 		t.Fatal("topLevel Yes was changed")
 	}
@@ -121,21 +121,21 @@ func TestClearHistoryResidence(t *testing.T) {
 		t.Fatal("Failed to save HistResidenceSingle", resp.StatusCode)
 	}
 
-	rejector := admin.Rejector{
-		DB: services.db,
-	}
+	rejector := admin.NewRejector(services.db, services.store, nil)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
 	}
 
-	// check that the no is no longer set.
-	residence := api.HistoryResidence{}
-	_, err = residence.Get(services.db, account.ID)
-	if err != nil {
-		t.Fatal("couldn't reload residences")
+	resetApp := getApplication(t, services, account)
+	fmt.Println("RESET", resetApp)
+
+	resetResidences := resetApp.Section("history.residence").(*api.HistoryResidence)
+	if resetResidences == nil {
+		t.Fatal("No history section in the app")
 	}
-	if residence.List.Branch.Value != "" {
+
+	if resetResidences.List.Branch.Value != "" {
 		t.Fatal("residences was not reset")
 	}
 
@@ -152,12 +152,13 @@ func TestClearHistoryResidence(t *testing.T) {
 		t.Fatal("Failed to reject account: ", err)
 	}
 
-	// check that the no is no longer set.
-	residence = api.HistoryResidence{}
-	_, err = residence.Get(services.db, account.ID)
-	if err != nil {
-		t.Fatal("couldn't reload residences")
+	resetApp = getApplication(t, services, account)
+
+	residence := resetApp.Section("history.residence").(*api.HistoryResidence)
+	if residence == nil {
+		t.Fatal("No history residence section in the app")
 	}
+
 	if residence.List.Branch.Value != "" {
 		t.Fatal("residences was not reset")
 	}
@@ -172,22 +173,20 @@ func TestClearHistoryEmployment(t *testing.T) {
 	// TEST complete list
 	resp := saveJSON(services, employmentSection, account.ID)
 	if resp.StatusCode != 200 {
-		t.Fatal("Failed to save HistResidenceSingle", resp.StatusCode)
+		t.Fatal("Failed to save employmentSection", resp.StatusCode)
 	}
 
-	rejector := admin.Rejector{
-		DB: services.db,
-	}
+	rejector := admin.NewRejector(services.db, services.store, nil)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
 	}
 
-	// check that the no is no longer set.
-	employment := api.HistoryEmployment{}
-	_, err = employment.Get(services.db, account.ID)
-	if err != nil {
-		t.Fatal("couldn't reload employment")
+	resetApp := getApplication(t, services, account)
+
+	employment := resetApp.Section("history.employment").(*api.HistoryEmployment)
+	if employment == nil {
+		t.Fatal("No history.employment section in the app")
 	}
 
 	if employment.List.Branch.Value != "" {
@@ -235,18 +234,17 @@ func TestClearHistoryEducation(t *testing.T) {
 		t.Fatal("Failed to save HistEducationDegrees", resp.StatusCode)
 	}
 
-	rejector := admin.Rejector{
-		DB: services.db,
-	}
+	rejector := admin.NewRejector(services.db, services.store, nil)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
 	}
 
-	education := api.HistoryEducation{}
-	_, err = education.Get(services.db, account.ID)
-	if err != nil {
-		t.Fatal("couldn't reload education")
+	resetApp := getApplication(t, services, account)
+
+	education := resetApp.Section("history.education").(*api.HistoryEducation)
+	if education == nil {
+		t.Fatal("No history.education section in the app")
 	}
 
 	if education.List.Branch.Value != "" {

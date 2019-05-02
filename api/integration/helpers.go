@@ -173,6 +173,48 @@ func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response 
 
 }
 
+func getForm(services serviceSet, accountID int) *gohttp.Response {
+	// create request/response
+	r := httptest.NewRequest("GET", "/me/form/"+string(accountID), nil)
+	// authenticate user.
+	authCtx := http.SetAccountIDInRequestContext(r, accountID)
+	r = r.WithContext(authCtx)
+
+	w := httptest.NewRecorder()
+
+	formHandler := http.FormHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	formHandler.ServeHTTP(w, r)
+
+	formResp := w.Result()
+
+	return formResp
+}
+
+func getApplication(t *testing.T, services serviceSet, account api.Account) api.Application {
+	t.Helper()
+
+	formResp := getForm(services, account.ID)
+	if formResp.StatusCode != 200 {
+		t.Fatal("Failed to load Employment History", formResp.StatusCode)
+	}
+	formBody := readBody(t, formResp)
+
+	app := api.BlankApplication(account.ID, account.FormType, account.FormVersion)
+	jsonErr := json.Unmarshal([]byte(formBody), &app)
+	if jsonErr != nil {
+		t.Fatal(jsonErr)
+	}
+
+	return app
+
+}
+
 func readBody(t *testing.T, resp *gohttp.Response) string {
 	t.Helper()
 

@@ -8,13 +8,22 @@ import (
 
 // Rejector is used to reject/kickback an application
 type Rejector struct {
-	DB  api.DatabaseService
-	PDF api.PdfService
+	db    api.DatabaseService
+	store api.StorageService
+	pdf   api.PdfService
+}
+
+func NewRejector(db api.DatabaseService, store api.StorageService, pdf api.PdfService) Rejector {
+	return Rejector{
+		db,
+		store,
+		pdf,
+	}
 }
 
 // Reject rejects the application for a given account
 func (r Rejector) Reject(account api.Account) error {
-	err := account.Unlock(r.DB)
+	err := account.Unlock(r.db)
 	if err != nil {
 		return errors.Wrap(err, "Reject failed to unlock account")
 	}
@@ -25,9 +34,22 @@ func (r Rejector) Reject(account api.Account) error {
 	// 	return errors.Wrap(err, "Reject failed to remove PDFs")
 	// }
 
-	err = account.ClearNoBranches(r.DB)
-	if err != nil {
-		return errors.Wrap(err, "Reject failed to clear the no branches")
+	app, loadErr := r.store.LoadApplication(account.ID)
+	if loadErr != nil {
+		if loadErr == api.ErrApplicationDoesNotExist {
+			return nil
+		}
+		return errors.Wrap(loadErr, "Unable to load application to reject it")
+	}
+
+	clearErr := app.ClearNoBranches()
+	if clearErr != nil {
+		return clearErr
+	}
+
+	saveErr := r.store.UpdateApplication(app)
+	if saveErr != nil {
+		return errors.Wrap(saveErr, "Unable to save application after rejecting it")
 	}
 
 	return nil

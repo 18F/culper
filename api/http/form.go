@@ -42,9 +42,14 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	app, loadErr := service.Store.LoadApplication(account.ID)
 	if loadErr != nil {
-		service.Log.WarnError(api.FormDecodingError, loadErr, api.LogFields{})
-		RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
-		return
+		if loadErr == api.ErrApplicationDoesNotExist {
+			// They've never saved anything, so just return an in-memory one.
+			app = api.BlankApplication(account.ID, account.FormType, account.FormVersion)
+		} else {
+			service.Log.WarnError(api.FormDecodingError, loadErr, api.LogFields{})
+			RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
+			return
+		}
 	}
 
 	jsonBytes, jsonErr := json.Marshal(app)

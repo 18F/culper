@@ -2,8 +2,6 @@ package api
 
 import (
 	"encoding/json"
-
-	"github.com/pkg/errors"
 )
 
 // IdentificationName represents the payload for the identification name section.
@@ -938,42 +936,21 @@ func (entity *IdentificationOtherNames) Find(context DatabaseService) error {
 	return nil
 }
 
-// ClearIdentificationOtherNamesNos clears nos from identifcation.other_names
-func ClearIdentificationOtherNamesNos(context DatabaseService, accountID int) error {
-	otherNames := IdentificationOtherNames{}
-	_, err := otherNames.Get(context, accountID)
-	if err != nil {
-		if IsDatabaseErrorNotFound(err) {
-			return nil
-		}
-		return errors.Wrap(err, "Unable to load Other Names")
-	}
-
-	otherNamesModified := false
-	if otherNames.HasOtherNames != nil {
-		if otherNames.HasOtherNames.Value == "No" {
-			otherNames.HasOtherNames.Value = ""
-			otherNamesModified = true
+func (entity *IdentificationOtherNames) ClearNos() error {
+	if entity.HasOtherNames != nil {
+		if entity.HasOtherNames.Value == "No" {
+			entity.HasOtherNames.Value = ""
 		} else {
 			// the last thing in the list will be another branch, which must also be cleared.
-			if otherNames.List != nil {
-				if otherNames.List.Branch != nil {
-					if otherNames.List.Branch.Value == "No" {
-						otherNames.List.Branch.Value = ""
-						otherNamesModified = true
+			if entity.List != nil {
+				if entity.List.Branch != nil {
+					if entity.List.Branch.Value == "No" {
+						entity.List.Branch.Value = ""
 					}
 				}
 			}
 		}
 	}
-
-	if otherNamesModified {
-		_, err = otherNames.Save(context, accountID)
-		if err != nil {
-			return errors.Wrap(err, "Unable to save Other Names")
-		}
-	}
-
 	return nil
 }
 

@@ -3,10 +3,7 @@ package integration
 import (
 	"encoding/json"
 	"fmt"
-	"net/http/httptest"
 	"testing"
-
-	"github.com/18F/e-QIP-prototype/api/http"
 )
 
 func TestSaveSection(t *testing.T) {
@@ -20,28 +17,10 @@ func TestSaveSection(t *testing.T) {
 		t.Fatal("Failed to save Employment History", resp.StatusCode)
 	}
 
-	// create request/response
-	r := httptest.NewRequest("GET", "/me/form", nil)
-	// authenticate user.
-	authCtx := http.SetAccountIDInRequestContext(r, account.ID)
-	r = r.WithContext(authCtx)
-
-	w := httptest.NewRecorder()
-
-	formHandler := http.FormHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-	}
-
-	formHandler.ServeHTTP(w, r)
-
-	formResp := w.Result()
+	formResp := getForm(services, account.ID)
 	if formResp.StatusCode != 200 {
 		t.Fatal("Failed to load Employment History", resp.StatusCode)
 	}
-
 	body := readBody(t, formResp)
 
 	var form map[string]map[string]json.RawMessage

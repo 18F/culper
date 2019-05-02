@@ -27,6 +27,7 @@ func TestFormVersionReturned(t *testing.T) {
 		Env:      services.env,
 		Log:      services.log,
 		Database: services.db,
+		Store:    services.store,
 	}
 
 	formHandler.ServeHTTP(w, r)

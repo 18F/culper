@@ -132,27 +132,13 @@ func (entity *HistoryResidence) Find(context DatabaseService) error {
 	return nil
 }
 
-// ClearHistoryResidenceNos clears the necessary Nos from the histroy.residence section for kickback
-func ClearHistoryResidenceNos(context DatabaseService, accountID int) error {
-	residence := HistoryResidence{}
-	_, err := residence.Get(context, accountID)
-	if err != nil {
-		if IsDatabaseErrorNotFound(err) {
-			return nil
-		}
-		return errors.Wrap(err, "Failed to clear nos: unable to load residence")
-	}
-
-	if residence.List != nil && residence.List.Branch != nil {
-		if residence.List.Branch.Value == "No" {
-			residence.List.Branch.Value = ""
-			_, err = residence.Save(context, accountID)
-			if err != nil {
-				return errors.Wrap(err, "Failed to clear nos: unable to save residence")
-			}
+// ClearNos clears any questions answered nos on a kickback
+func (entity *HistoryResidence) ClearNos() error {
+	if entity.List != nil && entity.List.Branch != nil {
+		if entity.List.Branch.Value == "No" {
+			entity.List.Branch.Value = ""
 		}
 	}
-
 	return nil
 }
 
@@ -322,46 +308,34 @@ func (entity *HistoryEmployment) Find(context DatabaseService) error {
 	return nil
 }
 
-// ClearHistoryEmploymentNos clears Nos from history.employment
-func ClearHistoryEmploymentNos(context DatabaseService, accountID int) error {
-	employment := HistoryEmployment{}
-	_, err := employment.Get(context, accountID)
-	if err != nil {
-		if IsDatabaseErrorNotFound(err) {
-			return nil
-		}
-		return errors.Wrap(err, "Failed to clear nos: unable to load residence")
-	}
-
-	employmentUpdated := false
-
-	if employment.List != nil && employment.List.Branch != nil {
-		if employment.List.Branch.Value == "No" {
-			employment.List.Branch.Value = ""
-			employmentUpdated = true
+// ClearNos clears any questions answered nos on a kickback
+func (entity *HistoryEmployment) ClearNos() error {
+	if entity.List != nil && entity.List.Branch != nil {
+		if entity.List.Branch.Value == "No" {
+			entity.List.Branch.Value = ""
 		}
 	}
 
-	if employment.EmploymentRecord != nil {
-		if employment.EmploymentRecord.Value == "No" {
-			employment.EmploymentRecord.Value = ""
-			employmentUpdated = true
+	if entity.EmploymentRecord != nil {
+		if entity.EmploymentRecord.Value == "No" {
+			entity.EmploymentRecord.Value = ""
 		}
 	}
 
 	// loop through all the records of employment.
-	if employment.List != nil {
-		for _, employmentInstance := range employment.List.Items {
+	if entity.List != nil {
+		for _, employmentInstance := range entity.List.Items {
+			reprimandUpdated := false
 			reprimandsEntity, repErr := employmentInstance.GetItemValue("Reprimand")
 			if repErr != nil {
-				return errors.Wrap(err, "Failed to pull a reprimand from an employment instance")
+				return errors.Wrap(repErr, "Failed to pull a reprimand from an employment instance")
 			}
 
 			reprimands := reprimandsEntity.(*Collection)
 			for _, reprimand := range reprimands.Items {
 				HasAdditionalEntity, hasAddErr := reprimand.GetItemValue("Has")
 				if hasAddErr != nil {
-					return errors.Wrap(err, "Failed to pull Has from a reprimand")
+					return errors.Wrap(hasAddErr, "Failed to pull Has from a reprimand")
 				}
 
 				hasAdditional := HasAdditionalEntity.(*Branch)
@@ -371,22 +345,16 @@ func ClearHistoryEmploymentNos(context DatabaseService, accountID int) error {
 					if setErr != nil {
 						return setErr
 					}
-					employmentUpdated = true
+					reprimandUpdated = true
 				}
 			}
 
-			if employmentUpdated {
+			if reprimandUpdated {
 				setErr := employmentInstance.SetItemValue("Reprimand", reprimands)
 				if setErr != nil {
 					return setErr
 				}
 			}
-		}
-	}
-
-	if employmentUpdated {
-		if _, err := employment.Save(context, accountID); err != nil {
-			return errors.Wrap(err, "Unable to save Employment")
 		}
 	}
 
@@ -592,50 +560,24 @@ func (entity *HistoryEducation) Find(context DatabaseService) error {
 }
 
 // ClearNos clears any questions answered nos on a kickback
-func (entity *HistoryEducation) ClearNos() bool {
-	updated := false
+func (entity *HistoryEducation) ClearNos() error {
 
 	if entity.List != nil && entity.List.Branch != nil {
 		if entity.List.Branch.Value == "No" {
 			entity.List.Branch.Value = ""
-			updated = true
 		}
 	}
 
 	if entity.HasAttended != nil && entity.HasAttended.Value == "No" {
 		entity.HasAttended.Value = ""
-		updated = true
 	}
 
 	if entity.HasDegree10 != nil && entity.HasDegree10.Value == "No" {
 		entity.HasDegree10.Value = ""
-		updated = true
-	}
-
-	return updated
-
-}
-
-// ClearHistoryEducationNos clears Nos from history.education
-func ClearHistoryEducationNos(context DatabaseService, accountID int) error {
-	education := HistoryEducation{}
-	_, err := education.Get(context, accountID)
-	if err != nil {
-		if IsDatabaseErrorNotFound(err) {
-			return nil
-		}
-		return errors.Wrap(err, "Failed to clear nos: unable to load education")
-	}
-
-	updated := education.ClearNos()
-
-	if updated {
-		if _, err := education.Save(context, accountID); err != nil {
-			return errors.Wrap(err, "Unable to save education")
-		}
 	}
 
 	return nil
+
 }
 
 // HistoryFederal represents the payload for the history federal section.

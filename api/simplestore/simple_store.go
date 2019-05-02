@@ -93,7 +93,7 @@ func (s SimpleStore) UpdateApplication(app api.Application) error {
 }
 
 // SaveSection saves a single section in a given application
-func (s SimpleStore) SaveSection(section api.Entity, accountID int) error {
+func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 
 	tx, txErr := s.db.Beginx()
 	if txErr != nil {

@@ -18,7 +18,7 @@ type Application struct {
 	AccountID   int
 	formType    string
 	formVersion string
-	sections    map[string]Entity
+	sections    map[string]Section
 }
 
 // BlankApplication returns a constructed Application
@@ -31,17 +31,17 @@ func BlankApplication(accountID int, formType string, formVersion string) Applic
 }
 
 // Section returns a single section of the application, by identifier
-func (a Application) Section(identifier string) Entity {
+func (a Application) Section(identifier string) Section {
 	return a.sections[identifier]
 }
 
 // SetSection sets a section in the application
-func (a *Application) SetSection(section Entity) {
+func (a *Application) SetSection(section Section) {
 	sectionPayload := section.Marshal()
 	id := sectionPayload.Type
 
 	if a.sections == nil {
-		a.sections = make(map[string]Entity)
+		a.sections = make(map[string]Section)
 	}
 
 	a.sections[id] = section
@@ -115,8 +115,37 @@ func (a *Application) UnmarshalJSON(bytes []byte) error {
 			return entityErr
 		}
 
-		a.SetSection(entity)
+		//TODO: Make this cleaner.
+		section, ok := entity.(Section)
+		if !ok {
+			return errors.New("We unmarshalled a section that was not a section")
+		}
 
+		a.SetSection(section)
+
+	}
+
+	return nil
+}
+
+// ClearNoBranches clears all the branches answered "No" that must be
+// re answered after rejection
+func (a *Application) ClearNoBranches() error {
+	sectionNames := []string{
+		"identification.othernames",
+		"history.residence",
+		"history.employment",
+		"history.education",
+	}
+
+	for _, sectionName := range sectionNames {
+		section := a.Section(sectionName)
+		if section != nil {
+			clearErr := section.ClearNos()
+			if clearErr != nil {
+				return errors.Wrap(clearErr, fmt.Sprintf("Error clearing nos from %s", sectionName))
+			}
+		}
 	}
 
 	return nil

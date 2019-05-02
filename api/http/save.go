@@ -61,12 +61,20 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// TODO: Figure out how to make this cleaner.
+	section, ok := entity.(api.Section)
+	if !ok {
+		service.Log.WarnError(api.PayloadEntityError, err, api.LogFields{})
+		RespondWithStructuredError(w, api.PayloadEntityError, http.StatusBadRequest)
+		return
+	}
+
 	// Save to storage and report any errors
-	if saveErr := service.Store.SaveSection(entity, id); saveErr != nil {
+	if saveErr := service.Store.SaveSection(section, id); saveErr != nil {
 		if saveErr == api.ErrApplicationDoesNotExist {
 			// if the application doesn't exist, we need to create it.
 			newApplication := api.BlankApplication(account.ID, account.FormType, account.FormVersion)
-			newApplication.SetSection(entity)
+			newApplication.SetSection(section)
 
 			createErr := service.Store.CreateApplication(newApplication)
 			if createErr != nil {

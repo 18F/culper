@@ -13,6 +13,6 @@ var (
 type StorageService interface {
 	CreateApplication(app Application) error
 	UpdateApplication(app Application) error
-	SaveSection(section Entity, accountID int) error
+	SaveSection(section Section, accountID int) error
 	LoadApplication(accountID int) (Application, error)
 }

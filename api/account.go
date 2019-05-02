@@ -178,28 +178,3 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 	}
 	return nil
 }
-
-// ClearNoBranches clears all the branches answered "No" that must be
-// re answered after rejection
-func (entity *Account) ClearNoBranches(context DatabaseService) error {
-
-	// Identification.OtherNames
-	if err := ClearIdentificationOtherNamesNos(context, entity.ID); err != nil {
-		return err
-	}
-
-	// Your History
-	if err := ClearHistoryResidenceNos(context, entity.ID); err != nil {
-		return err
-	}
-
-	if err := ClearHistoryEmploymentNos(context, entity.ID); err != nil {
-		return err
-	}
-
-	if err := ClearHistoryEducationNos(context, entity.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
