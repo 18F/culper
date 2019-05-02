@@ -1,8 +1,13 @@
+/** numberType = Home, Work, Cell, not always required (options.requireNumberType) */
+/** type = Domestic, International, DSN */
+
 const phone = {
   noNumber: {},
-  numberType: (value, attributes) => {
-    // TODO - this is conditionally required
-    if (attributes.noNumber === true) return {}
+  numberType: (value, attributes, attributeName, options) => {
+    const { requireNumberType } = options
+
+    if (!requireNumberType || attributes.noNumber === true) return {}
+
     return { presence: { allowEmpty: false } }
   },
   timeOfDay: (value, attributes) => {

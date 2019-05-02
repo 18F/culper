@@ -26,7 +26,7 @@ describe('The phone model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('numberType is required', () => {
+    it('numberType is not required', () => {
       const testData = {
         type: 'Domestic',
       }
@@ -34,7 +34,7 @@ describe('The phone model', () => {
       const expectedErrors = ['numberType.required']
 
       expect(validateModel(testData, phone))
-        .toEqual(expect.arrayContaining(expectedErrors))
+        .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
     it('timeOfDay is required', () => {
@@ -49,8 +49,18 @@ describe('The phone model', () => {
     })
   })
 
-  // TODO
-  describe.skip('if numberType is not required', () => {})
+  describe('if options.requireNumberType is true', () => {
+    it('numberType is required', () => {
+      const testData = {
+        type: 'Domestic',
+      }
+
+      const expectedErrors = ['numberType.required']
+
+      expect(validateModel(testData, phone, { requireNumberType: true }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
 
   describe('for Domestic numbers', () => {
     it('number must be 10 digits', () => {
