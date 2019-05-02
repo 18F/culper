@@ -8,7 +8,9 @@ import (
 	gohttp "net/http"
 	"net/http/httptest"
 	"os"
+	"reflect"
 	"strings"
+	"testing"
 	"time"
 
 	"github.com/pkg/errors"
@@ -18,15 +20,19 @@ import (
 	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/log"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 type serviceSet struct {
-	env api.Settings
-	log api.LogService
-	db  api.DatabaseService
+	env   api.Settings
+	log   api.LogService
+	db    api.DatabaseService
+	store api.StorageService
 }
 
-func cleanTestServices() serviceSet {
+func cleanTestServices(t *testing.T) serviceSet {
+	t.Helper()
+
 	env := &env.Native{}
 	os.Setenv(api.LogLevel, "info")
 	env.Configure()
@@ -43,10 +49,16 @@ func cleanTestServices() serviceSet {
 
 	db := postgresql.NewPostgresService(dbConf, log)
 
+	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), log)
+	if storeErr != nil {
+		t.Fatal(storeErr)
+	}
+
 	return serviceSet{
 		env,
 		log,
 		db,
+		store,
 	}
 }
 
@@ -70,7 +82,8 @@ func randomEmail() string {
 
 }
 
-func createTestAccount(db api.DatabaseService) (api.Account, error) {
+func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
+	t.Helper()
 
 	email := randomEmail()
 
@@ -83,10 +96,10 @@ func createTestAccount(db api.DatabaseService) (api.Account, error) {
 
 	_, err := account.Save(db, -1)
 	if err != nil {
-		return api.Account{}, err
+		t.Fatal(err)
 	}
 
-	return account, nil
+	return account
 
 }
 
@@ -126,17 +139,17 @@ func populateAccount(db api.DatabaseService, account api.Account, testCasePath s
 }
 
 // readTestData pulls in test data as a string
-func readTestData(filepath string) (string, error) {
+func readTestData(t *testing.T, filepath string) string {
+	t.Helper()
 	b, err := ioutil.ReadFile(filepath)
 	if err != nil {
-		return "", err
+		t.Fatal(err)
 	}
-	return string(b), nil
+	return string(b)
 }
 
 // saveJSON calls the save handler with the given json body.
 func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response {
-
 	// create request/response
 	r := httptest.NewRequest("POST", "/me/save", strings.NewReader(json))
 	// authenticate user.
@@ -149,6 +162,7 @@ func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response 
 		Env:      services.env,
 		Log:      services.log,
 		Database: services.db,
+		Store:    services.store,
 	}
 
 	saveHandler.ServeHTTP(w, r)
@@ -157,4 +171,34 @@ func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response 
 
 	return resp
 
+}
+
+func readBody(t *testing.T, resp *gohttp.Response) string {
+	t.Helper()
+
+	body, readErr := ioutil.ReadAll(resp.Body)
+	if readErr != nil {
+		t.Fatal(readErr)
+	}
+	return string(body)
+}
+
+func areEqualJSON(t *testing.T, s1, s2 []byte) bool {
+	t.Helper()
+	var o1 interface{}
+	var o2 interface{}
+
+	var err error
+	err = json.Unmarshal(s1, &o1)
+	if err != nil {
+		t.Log("Unable to unmarshal tested JSON 1")
+		t.Fail()
+	}
+	err = json.Unmarshal(s2, &o2)
+	if err != nil {
+		t.Log("Unable to unmarshal tested JSON 2")
+		t.Fail()
+	}
+
+	return reflect.DeepEqual(o1, o2)
 }

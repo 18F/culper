@@ -13,6 +13,7 @@ type SaveHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP saves a payload of information for the provided account.
@@ -61,10 +62,23 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Save to storage and report any errors
-	if _, err = entity.Save(service.Database, account.ID); err != nil {
-		service.Log.WarnError(api.EntitySaveError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
-		return
+	if saveErr := service.Store.SaveSection(entity, id); saveErr != nil {
+		if saveErr == api.ErrApplicationDoesNotExist {
+			// if the application doesn't exist, we need to create it.
+			newApplication := api.BlankApplication(account.ID, account.FormType, account.FormVersion)
+			newApplication.SetSection(entity)
+
+			createErr := service.Store.CreateApplication(newApplication)
+			if createErr != nil {
+				service.Log.WarnError(api.EntitySaveError, saveErr, api.LogFields{})
+				RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+				return
+			}
+		} else {
+			service.Log.WarnError(api.EntitySaveError, saveErr, api.LogFields{})
+			RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+			return
+		}
 	}
 
 }
