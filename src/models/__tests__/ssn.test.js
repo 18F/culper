@@ -3,87 +3,18 @@ import { validateModel } from '../validate'
 import ssn from '../shared/ssn'
 
 describe('The ssn model', () => {
-  describe('when notApplicable is false', () => {
-    it('verified is required', () => {
-      const testData = {
-        ssn: {
-          first: '123', middle: '12', last: '1234', notApplicable: false,
-        },
-        verified: false,
-      }
+  it('ssn is required', () => {
+    const testData = {}
 
-      const expectedErrors = ['verified.requireTrue']
+    const expectedErrors = ['ssn.required']
 
-      expect(validateModel(testData, ssn))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('ssn is required', () => {
-      const testData = {
-        verified: true,
-      }
-
-      const expectedErrors = ['ssn.required']
-
-      expect(validateModel(testData, ssn))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('ssn first, middle, and last are required', () => {
-      const testData = {
-        ssn: {},
-        verified: true,
-      }
-
-      const expectedErrors = ['ssn.first.required', 'ssn.middle.required', 'ssn.last.required']
-
-      expect(validateModel(testData, ssn))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('ssn first must be 3 digits', () => {
-      const testData = {
-        ssn: { first: '1234' },
-        verified: true,
-      }
-
-      const expectedErrors = ['ssn.first.format']
-
-      expect(validateModel(testData, ssn))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('ssn middle must be 2 digits', () => {
-      const testData = {
-        ssn: { middle: 'ab' },
-        verified: true,
-      }
-
-      const expectedErrors = ['ssn.middle.format']
-
-      expect(validateModel(testData, ssn))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('ssn last must be 4 digits', () => {
-      const testData = {
-        ssn: { last: 'CDEF' },
-        verified: true,
-      }
-
-      const expectedErrors = ['ssn.last.format']
-
-      expect(validateModel(testData, ssn))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
+    expect(validateModel(testData, ssn))
+      .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('validates against specific invalid SSNs', () => {
     const testData = {
-      ssn: {
-        first: '999', middle: '99', last: '9999', notApplicable: false,
-      },
-      verified: true,
+      ssn: '999-99-9999',
     }
 
     const expectedErrors = ['ssn.ssn']
@@ -92,23 +23,56 @@ describe('The ssn model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('passes a notApplicable ssn', () => {
+  it('ssn first, middle, and last are required', () => {
     const testData = {
-      ssn: {
-        first: '', middle: '', last: '', notApplicable: true,
-      },
-      verified: false,
+      ssn: '',
     }
 
-    expect(validateModel(testData, ssn)).toEqual(true)
+    const expectedErrors = ['first.required', 'middle.required', 'last.required']
+
+    expect(validateModel(testData, ssn))
+      .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('passes a valid, verified ssn', () => {
+  it('ssn first must be 3 digits', () => {
     const testData = {
-      ssn: {
-        first: '123', middle: '12', last: '1234', notApplicable: false,
-      },
-      verified: true,
+      first: '1234',
+    }
+
+    const expectedErrors = ['first.format']
+
+    expect(validateModel(testData, ssn))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('ssn middle must be 2 digits', () => {
+    const testData = {
+      middle: 'ab',
+    }
+
+    const expectedErrors = ['middle.format']
+
+    expect(validateModel(testData, ssn))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('ssn last must be 4 digits', () => {
+    const testData = {
+      last: 'CDEF',
+    }
+
+    const expectedErrors = ['last.format']
+
+    expect(validateModel(testData, ssn))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('passes a valid ssn', () => {
+    const testData = {
+      ssn: '123-12-1234',
+      first: '123',
+      middle: '12',
+      last: '1234',
     }
 
     expect(validateModel(testData, ssn)).toEqual(true)

@@ -3,21 +3,21 @@
 
 const phone = {
   noNumber: {},
-  numberType: (value, attributes, attributeName, options) => {
+  numberType: (value, attributes = {}, attributeName, options) => {
     const { requireNumberType } = options
 
     if (!requireNumberType || attributes.noNumber === true) return {}
 
     return { presence: { allowEmpty: false } }
   },
-  timeOfDay: (value, attributes) => {
+  timeOfDay: (value, attributes = {}) => {
     if (attributes.noNumber === true) return {}
     return { presence: { allowEmpty: false } }
   },
   type: {
     inclusion: ['Domestic', 'DSN', 'International'],
   },
-  number: (value, attributes) => {
+  number: (value, attributes = {}) => {
     if (attributes.noNumber === true) return {}
 
     switch (attributes.type) {

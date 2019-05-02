@@ -1,40 +1,19 @@
 const ssn = {
-  verified: (value, attributes) => {
-    if (attributes.ssn && attributes.ssn.notApplicable === true) return {}
-    return { requireTrue: true }
+  ssn: {
+    presence: { allowEmpty: false },
+    ssn: true,
   },
-  ssn: (value) => {
-    if (value && value.notApplicable === true) return {}
-
-    return {
-      presence: { allowEmpty: false },
-      ssn: true,
-    }
+  first: {
+    presence: { allowEmpty: false },
+    format: { pattern: /^\d{3}$/ },
   },
-  'ssn.notApplicable': {},
-  'ssn.first': (value, attributes) => {
-    if (attributes.ssn && attributes.ssn.notApplicable === true) return {}
-
-    return {
-      presence: { allowEmpty: false },
-      format: { pattern: /^\d{3}$/ },
-    }
+  middle: {
+    presence: { allowEmpty: false },
+    format: { pattern: /^\d{2}$/ },
   },
-  'ssn.middle': (value, attributes) => {
-    if (attributes.ssn && attributes.ssn.notApplicable === true) return {}
-
-    return {
-      presence: { allowEmpty: false },
-      format: { pattern: /^\d{2}$/ },
-    }
-  },
-  'ssn.last': (value, attributes) => {
-    if (attributes.ssn && attributes.ssn.notApplicable === true) return {}
-
-    return {
-      presence: { allowEmpty: false },
-      format: { pattern: /^\d{4}$/ },
-    }
+  last: {
+    presence: { allowEmpty: false },
+    format: { pattern: /^\d{4}$/ },
   },
 }
 

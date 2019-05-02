@@ -3,7 +3,7 @@ import suffixOptions from 'constants/enums/nameSuffixOptions'
 const name = {
   first: {
     presence: { allowEmpty: false },
-    length: (value, attributes) => {
+    length: (value, attributes = {}) => {
       if (attributes.firstInitialOnly) {
         return { is: 1 }
       }
@@ -19,7 +19,7 @@ const name = {
   middleInitialOnly: {},
   noMiddleName: {},
   hideMiddleName: {},
-  middle: (value, attributes) => {
+  middle: (value, attributes = {}) => {
     if (attributes.hideMiddleName || attributes.noMiddleName) {
       return { presence: false }
     }
@@ -39,7 +39,7 @@ const name = {
   suffix: {
     inclusion: suffixOptions,
   },
-  suffixOther: (value, attributes) => {
+  suffixOther: (value, attributes = {}) => {
     if (attributes.suffix === 'Other') {
       return { presence: { allowEmpty: false } }
     }
