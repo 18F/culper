@@ -140,12 +140,15 @@ func (a *Application) ClearNoBranches() error {
 
 	for _, sectionName := range sectionNames {
 		section := a.Section(sectionName)
-		if section != nil {
-			clearErr := section.ClearNos()
+
+		clearable, ok := section.(Rejector)
+		if ok {
+			clearErr := clearable.ClearNos()
 			if clearErr != nil {
 				return errors.Wrap(clearErr, fmt.Sprintf("Error clearing nos from %s", sectionName))
 			}
 		}
+
 	}
 
 	return nil

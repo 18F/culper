@@ -175,7 +175,8 @@ func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response 
 
 func getForm(services serviceSet, accountID int) *gohttp.Response {
 	// create request/response
-	r := httptest.NewRequest("GET", "/me/form/"+string(accountID), nil)
+	path := "/me/form/" + string(accountID)
+	r := httptest.NewRequest("GET", path, nil)
 	// authenticate user.
 	authCtx := http.SetAccountIDInRequestContext(r, accountID)
 	r = r.WithContext(authCtx)
