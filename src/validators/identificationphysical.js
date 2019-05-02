@@ -1,125 +1,73 @@
-const eyeColors = [
-  'Black',
-  'Blue',
-  'Brown',
-  'Gray',
-  'Green',
-  'Hazel',
-  'Maroon',
-  'Multicolored',
-  'Pink',
-  'Unknown'
-]
+import { validateModel } from 'models/validate'
 
-const hairColors = [
-  'Bald',
-  'Black',
-  'Blonde',
-  'Brown',
-  'Gray',
-  'Red',
-  'Sandy',
-  'White',
-  'Blue',
-  'Green',
-  'Orange',
-  'Pink',
-  'Purple',
-  'Unknown'
-]
+import eyeColor from 'models/shared/eyeColor'
+import hairColor from 'models/shared/hairColor'
+import height from 'models/shared/height'
+import sex from 'models/shared/sex'
+import weight from 'models/shared/weight'
 
+export const validateHeight = data => (
+  validateModel(data, height) === true
+)
+
+export const validateWeight = data => (
+  validateModel(data, weight) === true
+)
+
+export const validateHairColor = data => (
+  validateModel(data, hairColor) === true
+)
+
+export const validateEyeColor = data => (
+  validateModel(data, eyeColor) === true
+)
+
+export const validateSex = data => (
+  validateModel(data, sex) === true
+)
+
+export const validateIdentificationPhysical = (data) => {
+  const {
+    Height, Weight, HairColor, EyeColor, Sex,
+  } = data
+
+  return validateHeight(Height)
+    && validateWeight(Weight)
+    && validateHairColor(HairColor)
+    && validateEyeColor(EyeColor)
+    && validateSex(Sex)
+}
+
+/** LEGACY */
 export default class PhysicalValidator {
   constructor(data = {}) {
-    this.height = data.Height
-    this.weight = (data.Weight || {}).value
-    this.hairColor = (data.HairColor || {}).value
-    this.eyeColor = (data.EyeColor || {}).value
-    this.sex = (data.Sex || {}).value
+    this.data = data
   }
 
   /**
    * Validates all physical attributes
    */
   isValid() {
-    return (
-      this.validHeight() &&
-      this.validWeight() &&
-      this.validHairColor() &&
-      this.validEyeColor() &&
-      this.validSex()
-    )
+    return validateIdentificationPhysical(this.data)
   }
 
-  /**
-   * Validates a users height
-   */
   validHeight() {
-    if (!this.height) {
-      return false
-    }
-
-    if (
-      this.height.feet < 1 ||
-      this.height.inches < 0 ||
-      this.height.inches > 11
-    ) {
-      return false
-    }
-
-    return true
+    return validateHeight(this.data.Height)
   }
 
-  /**
-   * Validats a users weight
-   */
   validWeight() {
-    if (!this.weight) {
-      return false
-    }
-
-    if (this.weight < 10) {
-      return false
-    }
-    return true
+    return validateWeight(this.data.Weight)
   }
 
-  /**
-   * Validates a users hair color
-   */
   validHairColor() {
-    if (!this.hairColor) {
-      return false
-    }
-
-    let found = false
-    for (let validColor of hairColors) {
-      if (validColor === this.hairColor) {
-        found = true
-      }
-    }
-
-    return found
+    return validateHairColor(this.data.HairColor)
   }
 
   validEyeColor() {
-    if (!this.eyeColor) {
-      return false
-    }
-
-    let found = false
-    for (let validColor of eyeColors) {
-      if (validColor === this.eyeColor) {
-        found = true
-      }
-    }
-
-    return found
+    return validateEyeColor(this.data.EyeColor)
   }
 
   validSex() {
-    if (!this.sex || !this.sex.length) {
-      return false
-    }
-    return true
+    return validateSex(this.data.Sex)
   }
 }
