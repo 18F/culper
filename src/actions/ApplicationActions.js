@@ -1,11 +1,16 @@
 import { env } from 'config'
 import { api } from 'services'
-import { unschema } from 'schema'
 
 import * as actionTypes from 'constants/actionTypes'
 
 export const validateFormData = () => ({
   type: actionTypes.VALIDATE_FORM_DATA,
+})
+
+export const setFormData = (data, cb = () => {}) => ({
+  type: actionTypes.SET_FORM_DATA,
+  data,
+  cb,
 })
 
 export function updateApplication(section, property, values) {
@@ -46,32 +51,8 @@ export function getApplicationState(done) {
 
             dispatch(updateApplication('Settings', 'formType', formType))
             dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
-
-            /* eslint no-restricted-syntax: 0 */
-            /* eslint guard-for-in: 0 */
-            for (const section in formData) {
-              for (const subsection in formData[section]) {
-                dispatch(
-                  updateApplication(
-                    section,
-                    subsection,
-                    unschema(formData[section][subsection])
-                  )
-                )
-              }
-            }
+            dispatch(setFormData(formData, done))
           })
-      })
-      .then(() => {
-        if (locked) {
-          return
-        }
-
-        dispatch(validateFormData())
-
-        if (done) {
-          done()
-        }
       })
       .catch(() => {
         env.History().push('/error')
