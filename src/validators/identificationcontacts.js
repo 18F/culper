@@ -6,19 +6,19 @@ export const validateContactEmail = data => (
   validateModel(data, email) === true
 )
 
-export const validateContactPhoneNumber = (data) => {
+export const validateContactPhoneNumber = (data = {}) => {
   const { Telephone } = data
   return validateModel(Telephone, phone, { requireNumberType: true }) === true
 }
 
 // Requires at least one valid phone number item
-export const validateContactPhoneNumbers = data => (
-  data && data.items && data.items.length > 0
-    && data.items.some(i => validateContactPhoneNumber(i))
+export const validateContactPhoneNumbers = (data = []) => (
+  data && data.length > 0
+    && data.some(i => validateContactPhoneNumber(i.Item))
 )
 
 // There can only be one of each phone number type (Cell, Home, Work)
-export const validateContactPhoneTypes = (data) => {
+export const validateContactPhoneTypes = (data = []) => {
   const types = []
 
   data.forEach((i) => {
@@ -34,14 +34,14 @@ export const validateContactPhoneTypes = (data) => {
 }
 
 // Checks for at least one valid phone number, valid home email, and valid work email
-export const validateIdentificationContactInformation = (data) => {
-  const { HomeEmail, WorkEmail, PhoneNumbers } = data
+export const validateIdentificationContactInformation = (data = {}) => {
+  const { HomeEmail, WorkEmail, PhoneNumbers = { items: [] } } = data
 
   const validEmailPresent = (HomeEmail && validateContactEmail(HomeEmail))
     || (WorkEmail && validateContactEmail(WorkEmail))
 
-  return validateContactPhoneNumbers(PhoneNumbers)
-    && validateContactPhoneTypes(PhoneNumbers)
+  return validateContactPhoneNumbers(PhoneNumbers.items)
+    && validateContactPhoneTypes(PhoneNumbers.items)
     && validEmailPresent
 }
 
@@ -49,9 +49,11 @@ export const validateIdentificationContactInformation = (data) => {
 export default class IdentificationContactInformationValidator {
   constructor(data = {}) {
     this.data = data
-    this.homeEmail = data.HomeEmail
-    this.workEmail = data.WorkEmail
     this.phoneNumbers = (data.PhoneNumbers || { items: [] }).items
+  }
+
+  validPhoneNumbers() {
+    return validateContactPhoneNumbers(this.phoneNumbers)
   }
 
   validPhoneTypes() {
