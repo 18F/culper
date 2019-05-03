@@ -936,6 +936,7 @@ func (entity *IdentificationOtherNames) Find(context DatabaseService) error {
 	return nil
 }
 
+// ClearNos Implements the Rejector interface and clears any nos on applicaiton kickback
 func (entity *IdentificationOtherNames) ClearNos() error {
 	if entity.HasOtherNames != nil {
 		if entity.HasOtherNames.Value == "No" {

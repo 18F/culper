@@ -13,6 +13,7 @@ type Rejector struct {
 	pdf   api.PdfService
 }
 
+// NewRejector returns a configured Rejector
 func NewRejector(db api.DatabaseService, store api.StorageService, pdf api.PdfService) Rejector {
 	return Rejector{
 		db,
