@@ -122,13 +122,13 @@ export default class Telephone extends ValidationElement {
 
   updateInternationalNumber = (values) => {
     const fieldNameMap = {
-      international_first: 'first',
-      international_second: 'second',
+      int_first: 'first',
+      int_second: 'second',
     }
 
     this.setState(prevState => ({
-      domestic: {
-        ...prevState.domestic,
+      international: {
+        ...prevState.international,
         [fieldNameMap[values.name]]: values.value,
       },
     }), () => {
