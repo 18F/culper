@@ -9,8 +9,13 @@ type RelationshipsMarital struct {
 	PayloadDivorcedList Payload `json:"DivorcedList" sql:"-"`
 
 	// Validator specific fields
-	Status       *Radio      `json:"-"`
-	CivilUnion   *CivilUnion `json:"-"`
+	Status *Radio `json:"-"`
+	// This is VERY weird. Without the sql:"-" tag we can't save one of these
+	// go-pg complains that the civil_union column doesn't exist.
+	// But it doesn't complain that the divorced_list or status columns don't exist
+	// It may be rare for a top level section to point to a non-basic type? (*CivilUnion vs. *Collection)
+	// But I'm at a loss. Thankfully we are switching away from go-pg soon.
+	CivilUnion   *CivilUnion `json:"-" sql:"-"`
 	DivorcedList *Collection `json:"-"`
 
 	// Persister specific fields

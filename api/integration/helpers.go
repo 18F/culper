@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"reflect"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -175,7 +176,7 @@ func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response 
 
 func getForm(services serviceSet, accountID int) *gohttp.Response {
 	// create request/response
-	path := "/me/form/" + string(accountID)
+	path := "/me/form/" + strconv.Itoa(accountID)
 	r := httptest.NewRequest("GET", path, nil)
 	// authenticate user.
 	authCtx := http.SetAccountIDInRequestContext(r, accountID)
