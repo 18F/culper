@@ -50,7 +50,9 @@ func cleanTestServices(t *testing.T) serviceSet {
 
 	db := postgresql.NewPostgresService(dbConf, log)
 
-	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), log)
+	serializer := simplestore.NewJSONSerializer()
+
+	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), log, serializer)
 	if storeErr != nil {
 		t.Fatal(storeErr)
 	}

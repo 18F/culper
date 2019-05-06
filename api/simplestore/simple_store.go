@@ -2,7 +2,6 @@ package simplestore
 
 import (
 	"database/sql"
-	"encoding/json"
 
 	_ "github.com/go-pg/pg" // pg is required for the sqlx package to work
 	"github.com/jmoiron/sqlx"
@@ -21,12 +20,13 @@ type simpleConnection interface {
 
 // SimpleStore saves JSON in the db for applications
 type SimpleStore struct {
-	db     *sqlx.DB
-	logger api.LogService
+	db         *sqlx.DB
+	serializer api.Serializer
+	logger     api.LogService
 }
 
 // NewSimpleStore returns a configured SimpleStore
-func NewSimpleStore(connectionString string, logger api.LogService) (SimpleStore, error) {
+func NewSimpleStore(connectionString string, logger api.LogService, serializer api.Serializer) (SimpleStore, error) {
 	db, connErr := sqlx.Connect("postgres", connectionString)
 	if connErr != nil {
 		logger.WarnError("Unable to connect to DB", connErr, api.LogFields{})
@@ -35,21 +35,22 @@ func NewSimpleStore(connectionString string, logger api.LogService) (SimpleStore
 
 	store := SimpleStore{
 		db,
+		serializer,
 		logger,
 	}
 
 	return store, nil
 }
 
-func runCreateApplication(conn simpleConnection, app api.Application) error {
-	json, marshalErr := json.Marshal(app)
-	if marshalErr != nil {
-		return errors.Wrap(marshalErr, "Failed to convert application to JSON")
+func runCreateApplication(conn simpleConnection, serializer api.Serializer, app api.Application) error {
+	serializedApp, serializeErr := serializer.SerializeApplication(app)
+	if serializeErr != nil {
+		return errors.Wrap(serializeErr, "Failed to serialize Application.")
 	}
 
 	saveQuery := "INSERT INTO applications (account_id, body) VALUES ($1, $2)"
 
-	_, saveErr := conn.Exec(saveQuery, app.AccountID, string(json))
+	_, saveErr := conn.Exec(saveQuery, app.AccountID, serializedApp)
 	if saveErr != nil {
 		return errors.Wrap(saveErr, "Failed to create Application")
 	}
@@ -59,18 +60,18 @@ func runCreateApplication(conn simpleConnection, app api.Application) error {
 
 // CreateApplication saves an application in the db
 func (s SimpleStore) CreateApplication(app api.Application) error {
-	return runCreateApplication(s.db, app)
+	return runCreateApplication(s.db, s.serializer, app)
 }
 
-func runUpdateApplication(conn simpleConnection, app api.Application) error {
-	json, marshalErr := json.Marshal(app)
-	if marshalErr != nil {
-		return errors.Wrap(marshalErr, "Failed to convert application to JSON")
+func runUpdateApplication(conn simpleConnection, serializer api.Serializer, app api.Application) error {
+	serializedApp, serializeErr := serializer.SerializeApplication(app)
+	if serializeErr != nil {
+		return errors.Wrap(serializeErr, "Failed to serialize Application.")
 	}
 
 	updateQuery := "UPDATE applications SET body = $1 WHERE account_id = $2"
 
-	result, saveErr := conn.Exec(updateQuery, string(json), app.AccountID)
+	result, saveErr := conn.Exec(updateQuery, serializedApp, app.AccountID)
 	if saveErr != nil {
 		return errors.Wrap(saveErr, "Failed to save Application")
 	}
@@ -89,7 +90,7 @@ func runUpdateApplication(conn simpleConnection, app api.Application) error {
 
 // UpdateApplication updates an existing application
 func (s SimpleStore) UpdateApplication(app api.Application) error {
-	return runUpdateApplication(s.db, app)
+	return runUpdateApplication(s.db, s.serializer, app)
 }
 
 // SaveSection saves a single section in a given application
@@ -100,7 +101,7 @@ func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 		return txErr
 	}
 
-	app, loadErr := runLoadApplication(tx, accountID)
+	app, loadErr := runLoadApplication(tx, s.serializer, accountID)
 	if loadErr != nil {
 		s.logger.WarnError("Unable to load the application before saving", loadErr, api.LogFields{"accountID": accountID})
 		return loadErr
@@ -108,7 +109,7 @@ func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 
 	app.SetSection(section)
 
-	updateErr := runUpdateApplication(tx, app)
+	updateErr := runUpdateApplication(tx, s.serializer, app)
 	if updateErr != nil {
 		return updateErr
 	}
@@ -132,7 +133,7 @@ type applicationAccountRow struct {
 	api.Account
 }
 
-func runLoadApplication(conn simpleConnection, accountID int) (api.Application, error) {
+func runLoadApplication(conn simpleConnection, serializer api.Serializer, accountID int) (api.Application, error) {
 
 	selectQuery := `SELECT applications.account_id, applications.body,
 					accounts.id, accounts.form_version, accounts.form_type
@@ -148,10 +149,9 @@ func runLoadApplication(conn simpleConnection, accountID int) (api.Application, 
 		return api.Application{}, errors.Wrap(selectErr, "Couldn't find Application")
 	}
 
-	app := api.BlankApplication(row.Account.ID, row.Account.FormType, row.Account.FormVersion)
-	jsonErr := json.Unmarshal([]byte(row.Body), &app)
-	if jsonErr != nil {
-		return api.Application{}, errors.Wrap(jsonErr, "Couldn't unmarshal the loaded Application")
+	app, serializeErr := serializer.DeserializeApplication(row.Account.ID, row.Account.FormType, row.Account.FormVersion, row.Body)
+	if serializeErr != nil {
+		return api.Application{}, errors.Wrap(serializeErr, "Couldn't unmarshal the loaded Application")
 	}
 
 	return app, nil
@@ -159,5 +159,5 @@ func runLoadApplication(conn simpleConnection, accountID int) (api.Application, 
 
 // LoadApplication loads an application from the DB, it will return a NotFound error if it does not exist.
 func (s SimpleStore) LoadApplication(accountID int) (api.Application, error) {
-	return runLoadApplication(s.db, accountID)
+	return runLoadApplication(s.db, s.serializer, accountID)
 }

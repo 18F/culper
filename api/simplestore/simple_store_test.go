@@ -32,7 +32,9 @@ func getSimpleStore() SimpleStore {
 
 	connString := postgresql.PostgresConnectURI(dbConf)
 
-	store, storeErr := NewSimpleStore(connString, log)
+	serializer := JSONSerializer{}
+
+	store, storeErr := NewSimpleStore(connString, log, serializer)
 	if storeErr != nil {
 		fmt.Println("Unable to configure simple store", storeErr)
 		os.Exit(1)
