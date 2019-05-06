@@ -8,7 +8,25 @@ import { ScoreCard } from './ScoreCard'
 
 storiesOf('ScoreCard', module)
   .addDecorator(withKnobs)
-  .add('default', () => (
+  .add('empty', () => (
+    <ScoreCard
+      total={10}
+      completed={0}
+    />
+  ))
+  .add('partial', () => (
+    <ScoreCard
+      total={10}
+      completed={3}
+    />
+  ))
+  .add('completed', () => (
+    <ScoreCard
+      total={10}
+      completed={10}
+    />
+  ))
+  .add('custom', () => (
     <ScoreCard
       total={number('Total', 10)}
       completed={number('Completed', 5)}
