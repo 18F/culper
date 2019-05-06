@@ -55,13 +55,13 @@ export default class Field extends ValidationElement {
       uuid: `field-${super.guid()}`,
       errors: props.errors,
       helpActive: props.helpActive,
+      isCommentActive: !!props.commentsValue.value,
     }
 
     this.errorMessagesRef = null
     this.helpMessageRef = null
 
     this.toggleHelp = this.toggleHelp.bind(this)
-    this.toggleComments = this.toggleComments.bind(this)
     this.handleError = this.handleError.bind(this)
     this.children = this.children.bind(this)
     this.errors = props.errors || []
@@ -81,27 +81,33 @@ export default class Field extends ValidationElement {
   /**
    * Toggle the comment visibility.
    */
-  toggleComments() {
-    const { commentsName, commentsValue, onUpdate } = this.props
+  toggleComments = () => {
+    this.setState(prevState => ({
+      isCommentActive: !prevState.isCommentActive,
+    }), () => {
+      if (!this.state.isCommentActive) {
+        this.clearComment()
+      }
+    })
+  }
 
-    const future = !this.visibleComments()
-    const value = future ? commentsValue : ''
-
-    if (onUpdate) {
-      onUpdate({
-        name: commentsName,
-        value,
-      })
-    }
+  clearComment = () => {
+    const { commentsName, onUpdate } = this.props
+    onUpdate({
+      name: commentsName,
+      value: '',
+    })
   }
 
   /**
    * Determines if the comments should be visible.
    */
-  visibleComments() {
-    const { comments, commentsValue, commentsActive } = this.props
+  visibleComments = () => {
+    const { comments, commentsActive } = this.props
+    const { isCommentActive } = this.state
+
     return (
-      comments && (commentsValue || commentsActive)
+      comments && (isCommentActive || commentsActive)
     )
   }
 
@@ -259,7 +265,6 @@ export default class Field extends ValidationElement {
     const {
       comments, commentsName, commentsValue, onError, onUpdate, onValidate, commentsRequired,
     } = this.props
-
     if (!comments || !this.visibleComments()) {
       return null
     }
