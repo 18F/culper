@@ -125,7 +125,7 @@ func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 
 type applicationRow struct {
 	AccountID int    `db:"account_id"`
-	Body      string `db:"body"`
+	Body      []byte `db:"body"`
 }
 
 type applicationAccountRow struct {

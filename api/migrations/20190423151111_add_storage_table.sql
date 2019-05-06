@@ -4,7 +4,7 @@
 -- +goose StatementBegin
 CREATE TABLE applications(
 	account_id					integer PRIMARY KEY,
-	body									text
+	body									bytea
 );
 
 -- +goose StatementEnd
