@@ -1,6 +1,5 @@
-import { validateModel } from '../validate'
-
-import phone from '../shared/phone'
+import { validateModel } from 'models/validate'
+import phone from '../phone'
 
 describe('The phone model', () => {
   describe('with noNumber set to false', () => {

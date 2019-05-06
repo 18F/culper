@@ -1,5 +1,10 @@
 import { validate } from 'validate.js'
 
+import requireTrue from 'models/validators/requireTrue'
+import requireEmpty from 'models/validators/requireEmpty'
+import ssn from 'models/validators/ssn'
+
+// Error message format
 validate.formatters.errorKeys = errors => (
   errors.map((e) => {
     let { validator } = e
@@ -11,32 +16,21 @@ validate.formatters.errorKeys = errors => (
   })
 )
 
-validate.validators.requireTrue = (value) => {
-  if (value === true) return null
+// Set default options/config
+validate.validators.presence.options = { allowEmpty: false }
+validate.options = { format: 'errorKeys' }
 
-  return 'Value must be true'
-}
+// Implement custom validators
+validate.validators.requireTrue = requireTrue
+validate.validators.requireEmpty = requireEmpty
+validate.validators.ssn = ssn
 
-validate.validators.ssn = (value) => {
-  // Legacy system only excluded explicit values
-  const invalidSSNs = [
-    '999-99-9999',
-    '123-45-6789',
-  ]
+export const validateModel = (data, model, options) => {
+  const errors = options
+    ? validate(data, model, options)
+    : validate(data, model)
 
-  if (invalidSSNs.indexOf(value) > -1) return 'Invalid SSN'
-
-  return null
-}
-
-export const validateModel = (data, model, options = {}) => {
-  const defaultOptions = {
-    format: 'errorKeys',
-  }
-
-  const errors = validate(data, model, { ...defaultOptions, ...options })
-
-  console.log('validate model', data, model, errors)
+  // console.log('validate model', data, model, errors)
 
   if (!errors) return true
 

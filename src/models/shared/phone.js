@@ -8,11 +8,11 @@ const phone = {
 
     if (!requireNumberType || attributes.noNumber === true) return {}
 
-    return { presence: { allowEmpty: false } }
+    return { presence: true }
   },
   timeOfDay: (value, attributes = {}) => {
     if (attributes.noNumber === true) return {}
-    return { presence: { allowEmpty: false } }
+    return { presence: true }
   },
   type: {
     inclusion: ['Domestic', 'DSN', 'International'],
@@ -23,21 +23,21 @@ const phone = {
     switch (attributes.type) {
       case 'Domestic':
         return {
-          presence: { allowEmpty: false },
+          presence: true,
           format: { pattern: /^\d{10}$/ },
         }
       case 'DSN':
         return {
-          presence: { allowEmpty: false },
+          presence: true,
           format: { pattern: /^\d{7}$/ },
         }
       case 'International':
         return {
-          presence: { allowEmpty: false },
+          presence: true,
           format: { pattern: /^\d{11,}$/ },
         }
       default: {
-        return { presence: { allowEmpty: false } }
+        return { presence: true }
       }
     }
   },

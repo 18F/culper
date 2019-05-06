@@ -1,6 +1,5 @@
-import { validateModel } from '../validate'
-
-import ssn from '../shared/ssn'
+import { validateModel } from 'models/validate'
+import ssn from '../ssn'
 
 describe('The ssn model', () => {
   it('ssn is required', () => {

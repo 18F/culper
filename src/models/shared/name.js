@@ -1,8 +1,10 @@
+import { namePattern } from 'constants/patterns'
 import suffixOptions from 'constants/enums/nameSuffixOptions'
 
 const name = {
   first: {
-    presence: { allowEmpty: false },
+    presence: true,
+    format: namePattern,
     length: (value, attributes = {}) => {
       if (attributes.firstInitialOnly) {
         return { is: 1 }
@@ -13,7 +15,8 @@ const name = {
   },
   firstInitialOnly: {},
   last: {
-    presence: { allowEmpty: false },
+    format: namePattern,
+    presence: true,
     length: { maximum: 100 },
   },
   middleInitialOnly: {},
@@ -21,19 +24,21 @@ const name = {
   hideMiddleName: {},
   middle: (value, attributes = {}) => {
     if (attributes.hideMiddleName || attributes.noMiddleName) {
-      return { presence: false }
+      return { requireEmpty: true }
     }
 
     if (attributes.middleInitialOnly) {
       return {
-        presence: { allowEmpty: false },
+        presence: true,
         length: { is: 1 },
+        format: namePattern,
       }
     }
 
     return {
-      presence: { allowEmpty: false },
+      presence: true,
       length: { minimum: 2, maximum: 100 },
+      format: namePattern,
     }
   },
   suffix: {
@@ -41,7 +46,7 @@ const name = {
   },
   suffixOther: (value, attributes = {}) => {
     if (attributes.suffix === 'Other') {
-      return { presence: { allowEmpty: false } }
+      return { presence: true }
     }
 
     return {}

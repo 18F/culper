@@ -1,5 +1,5 @@
 const sex = {
-  value: { presence: { allowEmpty: false } },
+  value: { presence: true },
 }
 
 export default sex

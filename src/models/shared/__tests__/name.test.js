@@ -1,6 +1,5 @@
-import { validateModel } from '../validate'
-
-import name from '../shared/name'
+import { validateModel } from 'models/validate'
+import name from '../name'
 
 describe('The name model', () => {
   it('first name is required', () => {
@@ -49,17 +48,16 @@ describe('The name model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  // TODO - need to validate that presence is false
-  it.skip('middle name should be empty if noMiddleName is checked', () => {
+  it('middle name should be empty if noMiddleName is checked', () => {
     const testData = {
       middle: 'Foo',
       noMiddleName: true,
     }
 
-    const expectedErrors = ['middle.required']
+    const expectedErrors = ['middle.requireEmpty']
 
     expect(validateModel(testData, name))
-      .not.toEqual(expect.arrayContaining(expectedErrors))
+      .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('middle name must be 1 character if middleInitialOnly is checked', () => {

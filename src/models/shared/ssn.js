@@ -1,18 +1,18 @@
 const ssn = {
   ssn: {
-    presence: { allowEmpty: false },
-    ssn: true,
+    presence: true,
+    ssn: true, // custom SSN validator
   },
   first: {
-    presence: { allowEmpty: false },
+    presence: true,
     format: { pattern: /^\d{3}$/ },
   },
   middle: {
-    presence: { allowEmpty: false },
+    presence: true,
     format: { pattern: /^\d{2}$/ },
   },
   last: {
-    presence: { allowEmpty: false },
+    presence: true,
     format: { pattern: /^\d{4}$/ },
   },
 }

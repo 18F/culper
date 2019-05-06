@@ -2,7 +2,7 @@ import eyeColorOptions from 'constants/enums/eyeColorOptions'
 
 const eyeColor = {
   value: {
-    presence: { allowEmpty: false },
+    presence: true,
     inclusion: eyeColorOptions,
   },
 }
