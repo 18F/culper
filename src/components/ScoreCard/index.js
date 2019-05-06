@@ -1,3 +1,3 @@
-import ScoreCard from './ScoreCard'
+import ConnectedScoreCard from './ScoreCard'
 
-export default ScoreCard
+export default ConnectedScoreCard
