@@ -1,5 +1,8 @@
 const email = {
-  value: { email: true },
+  value: {
+    presence: true,
+    email: true,
+  },
 }
 
 export default email
