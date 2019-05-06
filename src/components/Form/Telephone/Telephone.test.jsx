@@ -3,19 +3,9 @@ import { mount } from 'enzyme'
 import Telephone from './Telephone'
 
 describe('The Telephone component', () => {
-  it('renders DSN fields', () => {
-    const component = mount(<Telephone name="phone" type="DSN" />)
-    expect(component.find('.nonumber').length).toBeGreaterThan(0)
-    expect(component.find('.domestic-number').length).toEqual(1)
-    expect(component.find('.international-number').length).toEqual(1)
-    expect(component.find('input[name="dsn_first"]').length).toEqual(1)
-    expect(component.find('input[name="dsn_second"]').length).toEqual(1)
-  })
-
   it('renders international fields', () => {
     const component = mount(<Telephone name="phone" type="International" />)
     expect(component.find('.domestic-number').length).toEqual(1)
-    expect(component.find('.dsn-number').length).toEqual(1)
     expect(component.find('input[name="int_first"]').length).toEqual(1)
     expect(component.find('input[name="int_second"]').length).toEqual(1)
   })
@@ -36,19 +26,6 @@ describe('The Telephone component', () => {
     ).toEqual('4567')
   })
 
-  it('populates dsn fields using number', () => {
-    const component = mount(
-      <Telephone name="phone" type="DSN" number="1234567" />
-    )
-    expect(component.find('input[name="dsn_first"]').length).toEqual(1)
-    expect(component.find('input[name="dsn_first"]').props().value).toEqual(
-      '123'
-    )
-    expect(component.find('input[name="dsn_second"]').props().value).toEqual(
-      '4567'
-    )
-  })
-
   it('bubbles up error event', () => {
     let hits = 0
     const expected = {
@@ -59,9 +36,9 @@ describe('The Telephone component', () => {
       focus: false,
       valid: false,
       onError: (value, arr) => {
-        hits++
+        hits += 1
         return arr
-      }
+      },
     }
     const component = mount(
       <Telephone
@@ -85,9 +62,9 @@ describe('The Telephone component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function(event) {
-        changes++
-      }
+      handleChange: () => {
+        changes += 1
+      },
     }
     const component = mount(
       <Telephone name={expected.name} onUpdate={expected.handleChange} />
@@ -105,9 +82,9 @@ describe('The Telephone component', () => {
       name: 'telephone-component',
       numberType: 'Work',
       showNumberType: true,
-      onUpdate: values => {
+      onUpdate: (values) => {
         numberType = values.numberType
-      }
+      },
     }
     const component = mount(<Telephone {...expected} />)
     expect(numberType).toBe('')
@@ -121,9 +98,9 @@ describe('The Telephone component', () => {
       name: 'telephone-component',
       type: 'Domestic',
       showNumberType: true,
-      onUpdate: values => {
-        updated++
-      }
+      onUpdate: () => {
+        updated += 1
+      },
     }
     const component = mount(<Telephone {...expected} />)
     component.find('.international-number').simulate('click')
@@ -145,42 +122,17 @@ describe('The Telephone component', () => {
     expect(updated).toBe(8)
   })
 
-  it('handles updates to DSN field values', () => {
-    let updated = 0
-    const expected = {
-      name: 'telephone-component',
-      type: 'DSN',
-      showNumberType: true,
-      onUpdate: values => {
-        updated++
-      }
-    }
-    const component = mount(<Telephone {...expected} />)
-    component.find('.domestic-number').simulate('click')
-    component
-      .find({ type: 'text', name: 'dsn_first' })
-      .simulate('change', { target: { value: '111' } })
-    component
-      .find({ type: 'text', name: 'dsn_second' })
-      .simulate('change', { target: { value: '222' } })
-    component.find('.nonumber input').simulate('change')
-    component.find('.time.day input').simulate('change')
-    component.find('.phonetype-option.work input').simulate('change')
-    expect(updated).toBe(6)
-  })
-
   it('handles updates to international field values', () => {
     let updated = 0
     const expected = {
       name: 'telephone-component',
       type: 'International',
       showNumberType: true,
-      onUpdate: values => {
-        updated++
-      }
+      onUpdate: () => {
+        updated += 1
+      },
     }
     const component = mount(<Telephone {...expected} />)
-    component.find('.dsn-number').simulate('click')
     component
       .find({ type: 'text', name: 'int_first' })
       .simulate('change', { target: { value: '111' } })
@@ -193,7 +145,7 @@ describe('The Telephone component', () => {
     component.find('.nonumber input').simulate('change')
     component.find('.time.day input').simulate('change')
     component.find('.phonetype-option.work input').simulate('change')
-    expect(updated).toBe(7)
+    expect(updated).toBe(6)
   })
 
   it('can autotab forward', () => {
@@ -202,7 +154,7 @@ describe('The Telephone component', () => {
       name: 'telephone',
       tab: () => {
         tabbed = true
-      }
+      },
     }
 
     // Domestic
@@ -223,14 +175,6 @@ describe('The Telephone component', () => {
     componentDomestic
       .find({ type: 'text', name: 'domestic_third' })
       .simulate('keydown', { keyCode: 48, target: { value: '1234' } })
-    expect(tabbed).toBe(true)
-
-    // DSN
-    const componentDsn = mount(<Telephone {...expected} type="DSN" />)
-    tabbed = false
-    componentDsn
-      .find({ type: 'text', name: 'dsn_first' })
-      .simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     // International
@@ -256,7 +200,7 @@ describe('The Telephone component', () => {
       name: 'telephone',
       tab: () => {
         tabbed = true
-      }
+      },
     }
 
     // Domestic
@@ -276,14 +220,6 @@ describe('The Telephone component', () => {
     tabbed = false
     componentDomestic
       .find({ type: 'text', name: 'domestic_second' })
-      .simulate('keydown', { keyCode: 8, target: { value: '' } })
-    expect(tabbed).toBe(true)
-
-    // DSN
-    const componentDsn = mount(<Telephone {...expected} type="DSN" />)
-    tabbed = false
-    componentDsn
-      .find({ type: 'text', name: 'dsn_second' })
       .simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
@@ -314,7 +250,7 @@ describe('The Telephone component', () => {
 
   it('can hide time of day', () => {
     const props = {
-      showTimeOfDay: false
+      showTimeOfDay: false,
     }
     const component = mount(<Telephone {...props} />)
     expect(component.find('.time.day input').length).toBe(0)
@@ -322,7 +258,7 @@ describe('The Telephone component', () => {
 
   it('can disable not applicable on on telephone', () => {
     const props = {
-      allowNotApplicable: false
+      allowNotApplicable: false,
     }
     const component = mount(<Telephone {...props} />)
     expect(component.find('.nonumber').length).toBe(0)
@@ -337,23 +273,11 @@ describe('The Telephone component', () => {
           domestic: {
             first: '111',
             second: '111',
-            third: '1111'
+            third: '1111',
           },
-          required: true
+          required: true,
         },
-        expected: true
-      },
-      {
-        telephone: {
-          numberType: 'Home',
-          type: 'DSN',
-          dsn: {
-            first: '111',
-            second: '111'
-          },
-          required: true
-        },
-        expected: true
+        expected: true,
       },
       {
         telephone: {
@@ -362,11 +286,11 @@ describe('The Telephone component', () => {
           international: {
             first: '111',
             second: '1111',
-            third: '1111'
+            third: '1111',
           },
-          required: true
+          required: true,
         },
-        expected: true
+        expected: true,
       },
       {
         telephone: {
@@ -374,19 +298,19 @@ describe('The Telephone component', () => {
           domestic: {
             first: '111',
             second: '111',
-            third: '1111'
+            third: '1111',
           },
-          required: true
+          required: true,
         },
-        expected: false
+        expected: false,
       },
       {
         telephone: {
           showNumberType: true,
           numberType: '',
-          required: true
+          required: true,
         },
-        expected: false
+        expected: false,
       },
       {
         telephone: {
@@ -394,13 +318,13 @@ describe('The Telephone component', () => {
           noNumber: 'NA',
           required: true,
           showNumberType: true,
-          allowNotApplicable: true
+          allowNotApplicable: true,
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
     const errorHandler = Telephone.errors.find(e => e.code === 'required').func
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(errorHandler(null, test.telephone)).toBe(test.expected)
     })
   })
