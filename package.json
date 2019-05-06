@@ -80,7 +80,7 @@
     "build": "npm run build-assets && npm run build-js",
     "watch-js": "echo \"Starting JS compilation... (Will be ready once you see 'eqip.js' message, after ~60 seconds.)\" && webpack --watch --progress",
     "docs": "jsdoc ./src -r -d ./doc/frontend",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook -s ./dist -p 9001"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
