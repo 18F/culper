@@ -55,8 +55,6 @@ export default class Field extends ValidationElement {
       uuid: `field-${super.guid()}`,
       errors: props.errors,
       helpActive: props.helpActive,
-      commentsActive: props.commentsActive,
-      commentsValue: (props.commentsValue || {}).value || '',
     }
 
     this.errorMessagesRef = null
@@ -84,33 +82,26 @@ export default class Field extends ValidationElement {
    * Toggle the comment visibility.
    */
   toggleComments() {
-    const { commentsValue } = this.state
+    const { commentsName, commentsValue, onUpdate } = this.props
 
     const future = !this.visibleComments()
     const value = future ? commentsValue : ''
 
-    this.setState({
-      commentsActive: future,
-      commentsValue: value,
-    }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.commentsName,
-          value,
-        })
-      }
-    })
+    if (onUpdate) {
+      onUpdate({
+        name: commentsName,
+        value,
+      })
+    }
   }
 
   /**
    * Determines if the comments should be visible.
    */
   visibleComments() {
+    const { comments, commentsValue, commentsActive } = this.props
     return (
-      this.props.comments
-      && (this.state.commentsValue
-        || this.state.commentsActive
-        || this.props.commentsActive)
+      comments && (commentsValue || commentsActive)
     )
   }
 
@@ -231,7 +222,8 @@ export default class Field extends ValidationElement {
    * Render the comments toggle link if needed.
    */
   commentsButton() {
-    if (!this.props.comments) {
+    const { comments, commentsRemove, commentsAdd } = this.props
+    if (!comments) {
       return null
     }
 
@@ -242,7 +234,7 @@ export default class Field extends ValidationElement {
           onClick={this.toggleComments}
           className="comments-button remove"
         >
-          <span>{i18n.t(this.props.commentsRemove)}</span>
+          <span>{i18n.t(commentsRemove)}</span>
           <i className="fa fa-times-circle" />
         </a>
       )
@@ -254,7 +246,7 @@ export default class Field extends ValidationElement {
         onClick={this.toggleComments}
         className="comments-button add"
       >
-        <span>{i18n.t(this.props.commentsAdd)}</span>
+        <span>{i18n.t(commentsAdd)}</span>
         <i className="fa fa-plus-circle" />
       </a>
     )
@@ -264,19 +256,23 @@ export default class Field extends ValidationElement {
    * Render the comments if necessary.
    */
   comments() {
-    if (!this.props.comments || !this.visibleComments()) {
+    const {
+      comments, commentsName, commentsValue, onError, onUpdate, onValidate, commentsRequired,
+    } = this.props
+
+    if (!comments || !this.visibleComments()) {
       return null
     }
 
     return (
       <Textarea
-        name={this.props.commentsName}
-        value={this.state.commentsValue}
+        name={commentsName}
+        value={commentsValue.value}
         className="comments"
-        onError={this.props.onError}
-        onUpdate={this.props.onUpdate}
-        onValidate={this.props.onValidate}
-        required={this.props.commentsRequired}
+        onError={onError}
+        onUpdate={onUpdate}
+        onValidate={onValidate}
+        required={commentsRequired}
       />
     )
   }
@@ -323,12 +319,19 @@ export default class Field extends ValidationElement {
    */
 
   helpMessage() {
-    if (this.state.helpActive && this.props.help) {
+    const { help, helpMessage, helpTitle } = this.props
+
+    if (this.state.helpActive && help) {
       return (
         <div className="usa-alert usa-alert-info" role="alert">
           <div className="usa-alert-body">
-            {renderMessage(this.props.help, this.props.helpMessage, this.props.helpTitle)}
-            <a href="javascript:;;" className="close" onClick={this.toggleHelp} title={i18n.t('help.close')}>
+            {renderMessage(help, helpMessage, helpTitle)}
+            <a
+              href="javascript:;;"
+              className="close"
+              onClick={this.toggleHelp}
+              title={i18n.t('help.close')}
+            >
               {i18n.t('help.close')}
             </a>
           </div>
