@@ -2629,7 +2629,7 @@
             "Telephone": {
               "type": "telephone",
               "props": {
-                "timeOfDay": "",
+                "timeOfDay": "Both",
                 "type": "Domestic",
                 "numberType": "",
                 "number": "2135554321",
@@ -2724,7 +2724,7 @@
                   "MobileTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Night",
                       "type": "Domestic",
                       "numberType": "",
                       "number": "1115556633",
@@ -2836,7 +2836,7 @@
                   "MobileTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
                       "number": "1115556789",
@@ -2948,7 +2948,7 @@
                   "MobileTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Both",
                       "type": "Domestic",
                       "numberType": "",
                       "number": "4325551234",
