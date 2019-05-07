@@ -1,7 +1,9 @@
+/* eslint import/prefer-default-export: 0  */
+
 import * as form from '../form'
 
 export const historyEmployment = (data = {}) => {
-  const items = ((data.List || {}).items || []).map(x => {
+  const items = ((data.List || {}).items || []).map((x) => {
     const xitem = x.Item || {}
     const reprimand = xitem.Reprimand || {}
     return {
@@ -13,30 +15,31 @@ export const historyEmployment = (data = {}) => {
         Title: form.text(xitem.Title),
         DutyStation: form.text(xitem.DutyStation),
         Address: form.location(xitem.Address),
+        AlternateAddress: form.physicaladdress(xitem.AlternateAddress),
         Additional: form.collection(
-          ((xitem.Additional || {}).items || []).map(y => {
+          ((xitem.Additional || {}).items || []).map((y) => {
             const yitem = y.Item || {}
             return {
               Item: {
                 Has: form.branch(yitem.Has),
                 Position: form.text(yitem.Position),
                 Supervisor: form.text(yitem.Supervisor),
-                DatesEmployed: form.daterange(yitem.DatesEmployed)
-              }
+                DatesEmployed: form.daterange(yitem.DatesEmployed),
+              },
             }
           })
         ),
         Telephone: form.telephone(xitem.Telephone),
         ReasonLeft: form.reasonleft(xitem.ReasonLeft),
         Reprimand: form.collection(
-          ((reprimand || {}).items || []).map(y => {
+          ((reprimand || {}).items || []).map((y) => {
             const yitem = y.Item || {}
             return {
               Item: {
                 Has: form.branch(yitem.Has),
                 Text: form.textarea(yitem.Text),
-                Date: form.datecontrol(yitem.Date)
-              }
+                Date: form.datecontrol(yitem.Date),
+              },
             }
           })
         ),
@@ -46,12 +49,14 @@ export const historyEmployment = (data = {}) => {
         ReferencePhone: form.telephone(xitem.ReferencePhone),
         ReferenceAddress: form.location(xitem.ReferenceAddress),
         ReferenceAlternateAddress: form.physicaladdress(xitem.ReferenceAlternateAddress),
-        PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress)
-      }
+        PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress),
+        PhysicalAlternateAddress: form.physicaladdress(xitem.PhysicalAlternateAddress),
+      },
     }
   })
+
   return {
     EmploymentRecord: form.branch(data.EmploymentRecord),
-    List: form.collection(items, (data.List || {}).branch)
+    List: form.collection(items, (data.List || {}).branch),
   }
 }
