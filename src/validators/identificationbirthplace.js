@@ -7,9 +7,10 @@ import { countryString } from 'validators/location'
 export const validateIdentificationBirthPlace = (data) => {
   const { Location } = data
 
-  Location.country = countryString(Location.country)
-
-  return validateModel(Location, birthplace) === true
+  return validateModel({
+    ...Location,
+    country: countryString(Location && Location.country),
+  }, birthplace) === true
 }
 
 export default class IdentificationBirthPlaceValidator {
