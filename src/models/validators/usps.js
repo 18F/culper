@@ -1,6 +1,8 @@
 import { validate } from 'validate.js'
 import { api } from 'services/api'
 
+/** WIP - NOT IN USE */
+
 const isSystemError = (data) => {
   if (!data || !data.Errors || !data.Errors.length) {
     return false
@@ -16,9 +18,9 @@ const isSystemError = (data) => {
   return false
 }
 
-const uspsValidator = (value, attributes) => (
+const uspsValidator = (value, options, key, attributes) => (
   new validate.Promise((res, rej) => {
-    console.log('VALIDATE', attributes)
+    // console.log('VALIDATE', attributes)
 
     api
       .validate({
