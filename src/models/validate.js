@@ -3,6 +3,7 @@ import { validate } from 'validate.js'
 import requireTrue from 'models/validators/requireTrue'
 import requireEmpty from 'models/validators/requireEmpty'
 import ssn from 'models/validators/ssn'
+import zipcode from 'models/validators/zipcode'
 
 import { isDateTime, createDateFromObject, createDateFromTimestamp } from 'helpers/date'
 
@@ -43,12 +44,16 @@ validate.extend(validate.validators.datetime, {
 
 // Set default options/config
 validate.validators.presence.options = { allowEmpty: false }
-validate.options = { format: 'errorKeys' }
+validate.options = {
+  format: 'errorKeys',
+  allowPOBox: true,
+}
 
 // Implement custom validators
 validate.validators.requireTrue = requireTrue
 validate.validators.requireEmpty = requireEmpty
 validate.validators.ssn = ssn
+validate.validators.zipcode = zipcode
 
 export const validateModel = (data, model, options) => {
   const errors = options

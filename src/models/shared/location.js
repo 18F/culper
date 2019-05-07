@@ -4,10 +4,19 @@ import { militaryStatesValues } from 'constants/enums/militaryStates'
 import postOfficeCities from 'constants/enums/postOfficeCities'
 
 import { isPO, isUS } from 'helpers/location'
-import { zipCodePattern } from 'constants/patterns'
+import { zipCodePattern, notPOBoxPattern } from 'constants/patterns'
 
 const location = {
-  street: { presence: true },
+  street: (value, attributes, attributeName, options) => {
+    if (options.allowPOBox) {
+      return { presence: true }
+    }
+
+    return {
+      presence: true,
+      format: { pattern: notPOBoxPattern },
+    }
+  },
   city: (value, attributes = {}) => {
     if (isPO(attributes)) {
       return {
@@ -16,11 +25,15 @@ const location = {
       }
     }
 
-    return { presence: true }
+    return {
+      presence: true,
+      length: {
+        minimum: 2,
+        maximum: 100,
+      },
+    }
   },
   state: (value, attributes = {}) => {
-    console.log('validate state', attributes)
-
     if (isPO(attributes)) {
       return {
         presence: true,
@@ -40,7 +53,7 @@ const location = {
   zipcode: {
     presence: true,
     format: { pattern: zipCodePattern },
-    // TODO - validZipcodeState
+    zipcode: true, // zipcode + state validator
   },
   country: { presence: true },
   county: { presence: true },
