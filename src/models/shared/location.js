@@ -1,48 +1,51 @@
 import { usStatesValues } from 'constants/enums/usStates'
 import { usTerritoriesValues } from 'constants/enums/usTerritories'
 import { militaryStatesValues } from 'constants/enums/militaryStates'
+import postOfficeCities from 'constants/enums/postOfficeCities'
+
+import { isPO, isUS } from 'helpers/location'
+import { zipCodePattern } from 'constants/patterns'
 
 const location = {
-  street: {
-    presence: { allowEmpty: false },
-  },
+  street: { presence: true },
   city: (value, attributes = {}) => {
-    if (attributes.country === 'POSTOFFICE') {
+    if (isPO(attributes)) {
       return {
-        inclusion: ['APO', 'FPO', 'DPO'],
+        presence: true,
+        inclusion: postOfficeCities,
       }
     }
 
-    return { presence: { allowEmpty: false } }
+    return { presence: true }
   },
   state: (value, attributes = {}) => {
-    console.log('validate state', attributes.country)
+    console.log('validate state', attributes)
 
-    if (attributes.country === 'POSTOFFICE') {
+    if (isPO(attributes)) {
       return {
-        presence: { allowEmpty: false },
+        presence: true,
         inclusion: militaryStatesValues,
       }
     }
 
-    if (attributes.country === 'United States') {
+    if (isUS(attributes)) {
       return {
-        presence: { allowEmpty: false },
+        presence: true,
         inclusion: [...usStatesValues, ...usTerritoriesValues],
       }
     }
 
-    return {}
+    return { requireEmpty: true }
   },
   zipcode: {
-    presence: { allowEmpty: false },
+    presence: true,
     format: {
-      pattern: /\d{5}(-\d{4})?/,
+      pattern: zipCodePattern,
     },
     // TODO - validZipcodeState
   },
-  country: { presence: { allowEmpty: false } },
-  county: { presence: { allowEmpty: false } },
+  country: { presence: true },
+  county: { presence: true },
 }
 
 export default location

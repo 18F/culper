@@ -1,4 +1,4 @@
 // Define regex patterns
-/* eslint import/prefer-default-export: 0 */
 
 export const namePattern = /^[a-zA-Z\-.' ]*$/
+export const zipCodePattern = /\d{5}(-\d{4})?/
