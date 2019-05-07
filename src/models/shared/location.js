@@ -3,7 +3,7 @@ import { usTerritoriesValues } from 'constants/enums/usTerritories'
 import { militaryStatesValues } from 'constants/enums/militaryStates'
 import postOfficeCities from 'constants/enums/postOfficeCities'
 
-import { isPO, isUS } from 'helpers/location'
+import { isPO, isUS, isInternational } from 'helpers/location'
 import { zipCodePattern, notPOBoxPattern } from 'constants/patterns'
 
 const location = {
@@ -50,13 +50,25 @@ const location = {
 
     return { requireEmpty: true }
   },
-  zipcode: {
-    presence: true,
-    format: { pattern: zipCodePattern },
-    zipcode: true, // zipcode + state validator
+  zipcode: (value, attributes = {}) => {
+    if (!isInternational(attributes)) {
+      return {
+        presence: true,
+        format: { pattern: zipCodePattern },
+        zipcode: true, // zipcode + state validator
+      }
+    }
+
+    return { requireEmpty: true }
   },
   country: { presence: true },
-  county: { presence: true },
+  county: (value, attributes = {}) => {
+    if (!isInternational(attributes)) {
+      return { presence: true }
+    }
+
+    return { requireEmpty: true }
+  },
 }
 
 export default location
