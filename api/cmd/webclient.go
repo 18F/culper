@@ -188,7 +188,7 @@ func echo(visible bool) {
 	var termios = &syscall.Termios{}
 	var fd = os.Stdout.Fd()
 
-	if _, _, err := syscall.Syscall(syscall.SYS_IOCTL, fd, syscall.TCGETS, uintptr(unsafe.Pointer(termios))); err != 0 {
+	if _, _, err := syscall.Syscall(syscall.SYS_IOCTL, fd, ioctlReadTermios, uintptr(unsafe.Pointer(termios))); err != 0 {
 		return
 	}
 
@@ -198,7 +198,7 @@ func echo(visible bool) {
 		termios.Lflag &^= syscall.ECHO
 	}
 
-	if _, _, err := syscall.Syscall(syscall.SYS_IOCTL, fd, syscall.TCSETS, uintptr(unsafe.Pointer(termios))); err != 0 {
+	if _, _, err := syscall.Syscall(syscall.SYS_IOCTL, fd, ioctlWriteTermios, uintptr(unsafe.Pointer(termios))); err != 0 {
 		return
 	}
 }
