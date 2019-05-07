@@ -39,9 +39,7 @@ const location = {
   },
   zipcode: {
     presence: true,
-    format: {
-      pattern: zipCodePattern,
-    },
+    format: { pattern: zipCodePattern },
     // TODO - validZipcodeState
   },
   country: { presence: true },
