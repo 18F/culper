@@ -5,12 +5,15 @@ import {
 
 const residence = {
   Dates: {
-    // DateRangeValidator
+    presence: true,
+    daterange: true,
   },
   Address: {
-    // LocationValidator ADDRESS
+    presence: true,
+    address: true,
   },
   AlternateAddress: {},
+
   // reference required if date range is within 3 years
   ReferenceName: {
     // valid name
@@ -20,7 +23,7 @@ const residence = {
   },
   ReferenceComments: {}, // not used?
   ReferenceRelationship: {
-    inclusive: relationshipOptions,
+    inclusion: relationshipOptions,
   },
   ReferenceRelationshipOther: {
     // required if relationship is other
@@ -37,7 +40,7 @@ const residence = {
   },
   ReferenceAlternateAddress: {},
   Role: {
-    inclusive: roleOptions,
+    inclusion: roleOptions,
   },
   RoleOther: {},
 }

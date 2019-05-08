@@ -1,18 +1,23 @@
+import { validateModel } from 'models/validate'
+import residence from 'models/residence'
+
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import NameValidator from './name'
 import {
   daysAgo,
   today,
-  extractDate
+  extractDate,
 } from '../components/Section/History/dateranges'
 import {
   validPhoneNumber,
   validNotApplicable,
   validDateField,
   validAccordion,
-  validGenericTextfield
+  validGenericTextfield,
 } from './helpers'
+
+// import { validateCollection } from 'helpers/validation'
 
 // Options for relationships
 const relationshipOptions = [
@@ -20,30 +25,23 @@ const relationshipOptions = [
   'Friend',
   'Landlord',
   'Business',
-  'Other'
+  'Other',
 ]
 
 // Options for roles
 const roleOptions = ['Other', 'MilitaryHousing', 'Own', 'Rent']
+
 const threeYearsAgo = daysAgo(today, 365 * 3)
-const withinThreeYears = (from, to) => {
-  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
-}
+const withinThreeYears = (from, to) => (
+  (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+)
 
-export default class HistoryResidenceValidator {
-  constructor(data = {}) {
-    this.list = data.List || {}
-  }
-
-  isValid() {
-    return validAccordion(this.list, item => {
-      return new ResidenceValidator(item).isValid()
-    })
-  }
-}
+export const validateResidence = data => validateModel(data, residence)
 
 export class ResidenceValidator {
   constructor(data = {}) {
+    this.data = data
+
     this.dates = data.Dates || {}
     this.address = data.Address || {}
     this.referenceName = data.ReferenceName || {}
@@ -73,26 +71,23 @@ export class ResidenceValidator {
     const from = extractDate(this.dates.from)
     const to = extractDate(this.dates.to)
     if (withinThreeYears(from, to)) {
-      const other =
-        this.referenceRelationship.every(x => {
-          return relationshipOptions.includes(x)
-        }) ||
-        (this.referenceRelationship.some(x => {
-          return x === 'Other'
-        }) &&
-          validGenericTextfield(this.referenceRelationshipOther))
+      const other = this.referenceRelationship.every(x => relationshipOptions.includes(x))
+        || (this.referenceRelationship.some(x => x === 'Other')
+        && validGenericTextfield(this.referenceRelationshipOther))
+
       const validRelationship = this.referenceRelationship && other
+
       return (
-        new NameValidator(this.referenceName).isValid() &&
-        validDateField(this.referenceLastContact) &&
-        validPhoneNumber(this.referencePhoneEvening) &&
-        validPhoneNumber(this.referencePhoneDay) &&
-        validPhoneNumber(this.referencePhoneMobile) &&
-        validRelationship &&
-        validNotApplicable(this.referenceEmailNotApplicable, () => {
-          return validGenericTextfield(this.referenceEmail)
-        }) &&
-        new LocationValidator(this.referenceAddress).isValid()
+        new NameValidator(this.referenceName).isValid()
+          && validDateField(this.referenceLastContact)
+          && validPhoneNumber(this.referencePhoneEvening)
+          && validPhoneNumber(this.referencePhoneDay)
+          && validPhoneNumber(this.referencePhoneMobile)
+          && validRelationship
+          && validNotApplicable(this.referenceEmailNotApplicable, () => (
+            validGenericTextfield(this.referenceEmail)
+          ))
+          && new LocationValidator(this.referenceAddress).isValid()
       )
     }
 
@@ -119,11 +114,23 @@ export class ResidenceValidator {
   }
 
   isValid() {
+    validateResidence(this.data)
+
     return (
-      this.validDates() &&
-      this.validAddress() &&
-      this.validReference() &&
-      this.validRole()
+      this.validDates()
+        && this.validAddress()
+        && this.validReference()
+        && this.validRole()
     )
+  }
+}
+
+export default class HistoryResidenceValidator {
+  constructor(data = {}) {
+    this.list = data.List || {}
+  }
+
+  isValid() {
+    return validAccordion(this.list, item => new ResidenceValidator(item).isValid())
   }
 }

@@ -13,6 +13,7 @@ import location from 'models/validators/location'
 import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
 import daterange from 'models/validators/daterange'
+import address from 'models/validators/address'
 
 import {
   isDateTime, cleanDateObject, createDateFromObject, createDateFromTimestamp,
@@ -77,6 +78,7 @@ validate.validators.location = location
 validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
 validate.validators.daterange = daterange
+validate.validators.address = address
 
 export const validateModel = (data, model, options) => {
   const errors = options
