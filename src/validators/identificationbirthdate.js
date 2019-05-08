@@ -1,13 +1,14 @@
 import { validateModel } from 'models/validate'
-import date from 'models/shared/date'
+import dateModel from 'models/shared/date'
 import { SELF } from 'constants/dateLimits'
 
-export const validateIdentificationBirthDate = (data) => {
-  const { day, month, year } = data.Date
+export const validateIdentificationBirthDate = (data = { Date: {} }) => {
+  const date = data.Date || {}
+  const { day, month, year } = date
 
   return validateModel({
     date: { day, month, year },
-  }, date, { ...SELF }) === true
+  }, dateModel, { ...SELF }) === true
 }
 
 export default class IdentificationBirthDateValidator {
