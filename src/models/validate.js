@@ -35,9 +35,8 @@ validate.extend(validate.validators.datetime, {
   },
   format: (value) => {
     // Value is the datetime as a unix timestamp
-    // Return formatted date
+    // Return formatted date (used in error messages)
     const dateTime = createDateFromTimestamp(value)
-
     return dateTime.toLocaleString()
   },
 })

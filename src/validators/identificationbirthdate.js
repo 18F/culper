@@ -3,8 +3,7 @@ import date from 'models/shared/date'
 import { SELF } from 'constants/dateLimits'
 
 export const validateIdentificationBirthDate = (data) => {
-  const { Date } = data
-  const { day, month, year } = Date
+  const { day, month, year } = data.Date
 
   return validateModel({
     date: { day, month, year },
@@ -14,7 +13,6 @@ export const validateIdentificationBirthDate = (data) => {
 export default class IdentificationBirthDateValidator {
   constructor(data = {}) {
     this.data = data
-    this.date = data.Date || {}
   }
 
   isValid() {
