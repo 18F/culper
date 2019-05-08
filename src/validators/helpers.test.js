@@ -11,10 +11,10 @@ import {
   validBranch,
   validSSN,
   validCurrency,
-  isDefined
+  isDefined,
 } from './helpers'
 
-describe('Helpers for validators', function() {
+describe('Helpers for validators', () => {
   describe('.isDefined', () => {
     expect(isDefined(0)).toBe(true)
     expect(isDefined('')).toBe(true)
@@ -23,180 +23,180 @@ describe('Helpers for validators', function() {
     expect(isDefined(null)).toBe(false)
   })
 
-  it('should return if a property has a status', function() {
+  it('should return if a property has a status', () => {
     const tests = [
       {
         completed: {
           name: {
-            status: false
-          }
+            status: false,
+          },
         },
         property: 'name',
         status: {
           name: {
-            status: false
-          }
+            status: false,
+          },
         },
-        val: false
-      }
+        val: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         hasStatus(test.completed)(test.property, test.status, test.val)
       ).toBe(true)
     })
   })
 
-  it('should validate generic text field', function() {
+  it('should validate generic text field', () => {
     const tests = [
       {
         Field: {
-          value: 'hello'
+          value: 'hello',
         },
-        expected: true
+        expected: true,
       },
       {
         Field: {
-          value: ''
+          value: '',
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(validGenericTextfield(test.Field)).toBe(test.expected)
     })
   })
 
-  it('should validate currency field', function() {
+  it('should validate currency field', () => {
     const tests = [
       {
         Field: {
-          value: '1'
+          value: '1',
         },
-        expected: true
+        expected: true,
       },
       {
         Field: {
-          value: ''
+          value: '',
         },
-        expected: false
+        expected: false,
       },
       {
         Field: {
-          value: 'f'
+          value: 'f',
         },
-        expected: false
+        expected: false,
       },
       {
         Field: {
-          value: '2147483648'
+          value: '2147483648',
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(validCurrency(test.Field)).toBe(test.expected)
     })
   })
 
-  it('should return if a all properties have the same status', function() {
+  it('should return if a all properties have the same status', () => {
     const tests = [
       {
         completed: {
           name: {
-            status: false
+            status: false,
           },
           age: {
-            status: false
-          }
+            status: false,
+          },
         },
         properties: ['name', 'age'],
         status: {
           name: {
-            status: false
-          }
+            status: false,
+          },
         },
         val: false,
-        expected: true
+        expected: true,
       },
       {
         completed: {
           name: {
-            status: false
+            status: false,
           },
           age: {
-            status: true
-          }
+            status: true,
+          },
         },
         properties: ['name', 'age'],
         status: {
           name: {
-            status: false
-          }
+            status: false,
+          },
         },
         val: false,
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         allHaveStatus(test.completed)(test.properties, test.status, test.val)
       ).toBe(test.expected)
     })
   })
 
-  it('should return if a any properties have the specified status', function() {
+  it('should return if a any properties have the specified status', () => {
     const tests = [
       {
         completed: {
           name: {
-            status: false
+            status: false,
           },
           age: {
-            status: true
-          }
+            status: true,
+          },
         },
         properties: ['name', 'age'],
         status: {
           name: {
-            status: false
-          }
+            status: false,
+          },
         },
         val: false,
-        expected: true
+        expected: true,
       },
       {
         completed: {
           name: {
-            status: false
+            status: false,
           },
           age: {
-            status: false
-          }
+            status: false,
+          },
         },
         properties: ['name', 'age'],
         status: {
           name: {
-            status: false
-          }
+            status: false,
+          },
         },
         val: true,
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         anyHasStatus(test.completed)(test.properties, test.status, test.val)
       ).toBe(test.expected)
     })
   })
 
-  it('should validate parts of a phone number', function() {
+  it('should validate parts of a phone number', () => {
     const tests = [
       {
         phone: {
@@ -205,9 +205,9 @@ describe('Helpers for validators', function() {
           numberType: 'Home',
           timeOfDay: 'Both',
           type: 'Domestic',
-          extension: ''
+          extension: '',
         },
-        expected: true
+        expected: true,
       },
       {
         phone: {
@@ -216,9 +216,9 @@ describe('Helpers for validators', function() {
           numberType: 'Home',
           timeOfDay: 'Both',
           type: 'International',
-          extension: ''
+          extension: '',
         },
-        expected: true
+        expected: true,
       },
       {
         phone: {
@@ -227,9 +227,9 @@ describe('Helpers for validators', function() {
           numberType: 'Home',
           timeOfDay: 'Both',
           type: 'International',
-          extension: ''
+          extension: '',
         },
-        expected: false
+        expected: false,
       },
       {
         phone: {
@@ -238,33 +238,9 @@ describe('Helpers for validators', function() {
           numberType: 'Home',
           timeOfDay: 'Both',
           type: 'International',
-          extension: ''
+          extension: '',
         },
-        expected: false
-      },
-      {
-        phone: {
-          noNumber: '',
-          number: '1234567',
-          numberType: 'Home',
-          timeOfDay: 'Both',
-          type: 'DSN',
-          extension: ''
-        },
-        expected: true
-      },
-      {
-        phone: {
-          noNumber: '',
-          number: '1234567',
-          timeOfDay: 'Both',
-          type: 'DSN',
-          extension: ''
-        },
-        options: {
-          numberType: false
-        },
-        expected: true
+        expected: false,
       },
       {
         phone: {
@@ -273,42 +249,42 @@ describe('Helpers for validators', function() {
           numberType: 'Home',
           timeOfDay: 'Both',
           type: 'Unknown',
-          extension: ''
+          extension: '',
         },
-        expected: false
+        expected: false,
       },
       {
         phone: {
-          noNumber: 'NA'
+          noNumber: 'NA',
         },
-        expected: true
-      },
-      {
-        phone: {
-          noNumber: '',
-          number: ''
-        },
-        expected: false
+        expected: true,
       },
       {
         phone: {
           noNumber: '',
-          number: '7031112222',
-          numberType: ''
+          number: '',
         },
-        expected: false
+        expected: false,
       },
       {
         phone: {
           noNumber: '',
           number: '7031112222',
-          numberType: 'Home'
+          numberType: '',
         },
-        expected: false
+        expected: false,
+      },
+      {
+        phone: {
+          noNumber: '',
+          number: '7031112222',
+          numberType: 'Home',
+        },
+        expected: false,
       },
       {
         phone: null,
-        expected: false
+        expected: false,
       },
       {
         phone: {
@@ -317,293 +293,281 @@ describe('Helpers for validators', function() {
           numberType: 'Home',
           timeOfDay: '',
           type: 'Domestic',
-          extension: ''
+          extension: '',
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(validPhoneNumber(test.phone, test.options)).toBe(test.expected)
     })
   })
 
-  it('should validate a date field', function() {
+  it('should validate a date field', () => {
     const tests = [
       {
         date: {
           day: '1',
           month: '1',
-          year: '2016'
+          year: '2016',
         },
-        expected: true
+        expected: true,
       },
       {
         date: {
           day: '',
           month: '1',
-          year: '2016'
+          year: '2016',
         },
-        expected: false
+        expected: false,
       },
       {
         date: {
           day: '1',
           month: '',
-          year: '2016'
+          year: '2016',
         },
-        expected: false
+        expected: false,
       },
       {
         date: {
           day: '1',
           month: '1',
-          year: ''
+          year: '',
         },
-        expected: false
+        expected: false,
       },
       {
         date: null,
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(validDateField(test.date)).toBe(test.expected)
     })
   })
 
-  it('should validate if within seven years', function() {
+  it('should validate if within seven years', () => {
     const tests = [
       {
         Dates: {
           from: {
             month: '1',
             day: '1',
-            year: '2010'
+            year: '2010',
           },
           to: {
             month: '1',
             day: '1',
-            year: '2016'
+            year: '2016',
           },
-          present: false
+          present: false,
         },
-        expected: true
+        expected: true,
       },
       {
         Dates: {
           from: {
             month: '1',
             day: '1',
-            year: '2000'
+            year: '2000',
           },
           to: {
             month: '1',
             day: '1',
-            year: '2001'
+            year: '2001',
           },
-          present: false
+          present: false,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(withinSevenYears(test.Dates.from, test.Dates.to)).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate if branch collection is empty', function() {
+  it('should validate if branch collection is empty', () => {
     const tests = [
       {
         Collection: {
-          items: [{ Item: { Has: { value: 'Yes' } } }]
+          items: [{ Item: { Has: { value: 'Yes' } } }],
         },
-        expected: false
+        expected: false,
       },
       {
         Collection: {
-          items: [{ Item: { Has: { value: 'No' } } }]
+          items: [{ Item: { Has: { value: 'No' } } }],
         },
-        expected: false
+        expected: false,
       },
       {
         Collection: {
-          items: []
+          items: [],
         },
-        expected: true
+        expected: true,
       },
       {
         Collection: null,
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const branchValidator = new BranchCollection(test.Collection)
       expect(branchValidator.empty()).toBe(test.expected)
     })
   })
 
-  it('should validate if branch collection has a key', function() {
+  it('should validate if branch collection has a key', () => {
     const tests = [
       {
         Collection: {
-          items: [{ Item: { Has: { value: 'Yes' } } }]
+          items: [{ Item: { Has: { value: 'Yes' } } }],
         },
         value: 'Yes',
-        expected: true
+        expected: true,
       },
       {
         Collection: {
-          items: [{ Item: { Has: { value: 'No' } } }]
+          items: [{ Item: { Has: { value: 'No' } } }],
         },
         value: 'No',
-        expected: true
+        expected: true,
       },
       {
         Collection: {
-          items: []
+          items: [],
         },
         expected: false,
-        value: 'No'
+        value: 'No',
       },
       {
         Collection: null,
         expected: false,
-        value: 'Yes'
-      }
+        value: 'Yes',
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const branchValidator = new BranchCollection(test.Collection)
       expect(branchValidator.hasKeyValue(test.value)).toBe(test.expected)
     })
   })
 
-  it('should validate with custom each function', function() {
+  it('should validate with custom each function', () => {
     const tests = [
       {
-        Function: item => {
-          return true
-        },
+        Function: item => true,
         Collection: {
-          items: [{ Item: { Has: { value: 'Yes' } } }]
+          items: [{ Item: { Has: { value: 'Yes' } } }],
         },
-        expected: true
+        expected: true,
       },
       {
-        Function: item => {
-          return true
-        },
+        Function: item => true,
         Collection: {
-          items: []
+          items: [],
         },
-        expected: false
+        expected: false,
       },
       {
-        Function: item => {
-          return false
-        },
+        Function: item => false,
         Collection: {
-          items: [{ Item: { Has: { value: 'Yes' } } }]
+          items: [{ Item: { Has: { value: 'Yes' } } }],
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const branchValidator = new BranchCollection(test.Collection)
       expect(branchValidator.each(test.Function)).toBe(test.expected)
     })
   })
 
-  it('should validate not applicable groups', function() {
+  it('should validate not applicable groups', () => {
     const tests = [
       {
-        logic: () => {
-          return false
-        },
-        expected: false
+        logic: () => false,
+        expected: false,
       },
       {
         NotApplicable: {
-          applicable: true
+          applicable: true,
         },
-        logic: () => {
-          return false
-        },
-        expected: false
+        logic: () => false,
+        expected: false,
       },
       {
         NotApplicable: {
-          applicable: false
+          applicable: false,
         },
-        logic: () => {
-          return false
-        },
-        expected: true
-      }
+        logic: () => false,
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(validNotApplicable(test.NotApplicable, test.logic)).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate branch options', function() {
+  it('should validate branch options', () => {
     const tests = [
       {
         Value: 'Yes',
         YesValue: 'Yes',
         NoValue: 'No',
-        expected: true
+        expected: true,
       },
       {
         Value: 'Yessss',
         YesValue: 'Yes',
         NoValue: 'No',
-        expected: false
+        expected: false,
       },
       {
         Value: 'Nope',
         YesValue: 'Yes',
         NoValue: 'Nope',
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(validBranch(test.Value, test.YesValue, test.NoValue)).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate ssn', function() {
+  it('should validate ssn', () => {
     const tests = [
       {
         ssn: {
           first: '111',
           middle: '11',
           last: '1111',
-          notApplicable: false
+          notApplicable: false,
         },
-        expected: true
+        expected: true,
       },
       {
         ssn: {
-          notApplicable: true
+          notApplicable: true,
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(validSSN(test.ssn)).toBe(test.expected)
     })
   })

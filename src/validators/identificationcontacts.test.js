@@ -1,7 +1,41 @@
-import IdentificationContactInformationValidator from './identificationcontacts'
+import IdentificationContactInformationValidator, {
+  ContactPhoneNumberValidator,
+} from './identificationcontacts'
 
-describe('Contact Information validation', function() {
-  it('should validate phone numbers', function() {
+describe('Contact Phone Number Validator', () => {
+  it('should validate a single phone number', () => {
+    const testData = {
+      Telephone: {
+        noNumber: false,
+        number: '7031112222',
+        numberType: 'Home',
+        type: 'Domestic',
+        timeOfDay: 'Both',
+        extension: '',
+      },
+    }
+
+    expect(new ContactPhoneNumberValidator(testData).isValid()).toBe(true)
+  })
+
+  it('should fail an invalid phone number', () => {
+    const testData = {
+      Telephone: {
+        noNumber: false,
+        number: '7031112222',
+        numberType: '',
+        type: 'Domestic',
+        timeOfDay: 'Both',
+        extension: '',
+      },
+    }
+
+    expect(new ContactPhoneNumberValidator(testData).isValid()).toBe(false)
+  })
+})
+
+describe('Contact Information validation', () => {
+  it('should validate phone numbers', () => {
     const tests = [
       {
         state: {
@@ -15,9 +49,9 @@ describe('Contact Information validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
+                    extension: '',
+                  },
+                },
               },
               {
                 Item: {
@@ -27,14 +61,14 @@ describe('Contact Information validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
-              }
-            ]
-          }
+                    extension: '',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -48,14 +82,14 @@ describe('Contact Information validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
-              }
-            ]
-          }
+                    extension: '',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -69,17 +103,17 @@ describe('Contact Information validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
+                    extension: '',
+                  },
+                },
               },
               {
-                Telephone: {}
-              }
-            ]
-          }
+                Telephone: {},
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -93,27 +127,27 @@ describe('Contact Information validation', function() {
                     numberType: '',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
+                    extension: '',
+                  },
+                },
               },
               {
-                Telephone: {}
-              }
-            ]
-          }
+                Telephone: {},
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          PhoneNumbers: { items: [] }
+          PhoneNumbers: { items: [] },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new IdentificationContactInformationValidator(
           test.state,
@@ -123,15 +157,15 @@ describe('Contact Information validation', function() {
     })
   })
 
-  it('should validate contact information', function() {
+  it('should validate contact information', () => {
     const tests = [
       {
         state: {
           HomeEmail: {
-            value: 'foobar2@local.dev'
+            value: 'foobar2@local.dev',
           },
           WorkEmail: {
-            value: 'foobar2@local.dev'
+            value: 'foobar2@local.dev',
           },
           PhoneNumbers: {
             items: [
@@ -143,9 +177,9 @@ describe('Contact Information validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
+                    extension: '',
+                  },
+                },
               },
               {
                 Item: {
@@ -155,18 +189,18 @@ describe('Contact Information validation', function() {
                     numberType: 'Work',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
-              }
-            ]
-          }
+                    extension: '',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new IdentificationContactInformationValidator(
           test.state,
@@ -176,7 +210,57 @@ describe('Contact Information validation', function() {
     })
   })
 
-  it('should validate unique phone types', function() {
+  it('requires at least one email address', () => {
+    const testData = {
+      HomeEmail: {},
+      WorkEmail: {},
+      PhoneNumbers: {
+        items: [
+          {
+            Item: {
+              Telephone: {
+                noNumber: false,
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+            },
+          },
+        ],
+      },
+    }
+
+    expect(new IdentificationContactInformationValidator(testData).isValid()).toBe(false)
+  })
+
+  it('does not require both email addresses', () => {
+    const testData = {
+      HomeEmail: { value: 'foobar2@local.dev' },
+      WorkEmail: {},
+      PhoneNumbers: {
+        items: [
+          {
+            Item: {
+              Telephone: {
+                noNumber: false,
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+            },
+          },
+        ],
+      },
+    }
+
+    expect(new IdentificationContactInformationValidator(testData).isValid()).toBe(true)
+  })
+
+  it('should validate unique phone types', () => {
     const tests = [
       {
         state: {
@@ -190,9 +274,9 @@ describe('Contact Information validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
+                    extension: '',
+                  },
+                },
               },
               {
                 Item: {
@@ -202,14 +286,14 @@ describe('Contact Information validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
-              }
-            ]
-          }
+                    extension: '',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -223,9 +307,9 @@ describe('Contact Information validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
+                    extension: '',
+                  },
+                },
               },
               {
                 Item: {
@@ -235,18 +319,18 @@ describe('Contact Information validation', function() {
                     numberType: 'Work',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
-                  }
-                }
-              }
-            ]
-          }
+                    extension: '',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new IdentificationContactInformationValidator(
           test.state,

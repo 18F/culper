@@ -1,14 +1,13 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import { mount } from 'enzyme'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import configureMockStore from 'redux-mock-store'
+
 import AppWithForm from 'components/Main/AppWithForm'
 
 describe('AppWithForm', () => {
-  const middlewares = [thunk]
-  const mockStore = configureMockStore(middlewares)
+  const mockStore = configureMockStore()
 
   const store = mockStore({
     authentication: {
@@ -21,6 +20,16 @@ describe('AppWithForm', () => {
       },
       Errors: {},
       Completed: {},
+      Citizenship: {},
+      Financial: {},
+      Foreign: {},
+      History: {},
+      Identification: {},
+      Legal: {},
+      Military: {},
+      Psychological: {},
+      Relationships: {},
+      Substance: {},
     },
     section: {},
   })
@@ -45,10 +54,12 @@ describe('AppWithForm', () => {
     expect(component.find('Connect(App)').length).toBe(1)
     expect(component.find('Connect(App)').props().example).toBe('MyProperty')
   })
+
   it('renders form with props', () => {
     expect(component.find('Form').length).toBe(1)
     expect(component.find('Form').props().example).toBe('MyProperty')
   })
+
   it('is wrapped with AuthenticatedView', () => {
     expect(component.find('Connect(RequiresAuth)').length).toBe(1)
   })
