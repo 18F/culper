@@ -80,7 +80,8 @@ export class RealEstateActivity extends Subsection {
     return (
       <div
         className="section-content realestate"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_ACTIVITIES_REAL_ESTATE.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.activities.realestate')}</h1>
         <Branch

@@ -91,7 +91,8 @@ export class Offenses extends Subsection {
     return (
       <div
         className="section-content police-offenses"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_POLICE_OFFENSES.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.police.offenses')}</h1>
         <Branch

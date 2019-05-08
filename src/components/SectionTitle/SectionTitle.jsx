@@ -1,47 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { navigation } from '../../config'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router'
 
-class SectionTitle extends React.Component {
-  render() {
-    if (this.props.hidden) {
-      return null
-    }
-
-    const splitSubsections = (this.props.section.subsection || '').split('/')
-
-    let title = null
-    navigation.forEach(s => {
-      if (s.url === this.props.section.section) {
-        title = trail(breadcrumbs(splitSubsections, s))
-      }
-    })
-
-    return <h1 className="title">{title}</h1>
-  }
-}
-
-/**
- * Creates an array of breadcrumbs
- */
-const breadcrumbs = (urls, node) => {
-  return (node.subsections || []).reduce(
-    (a, b) => {
-      if (!urls.includes(b.url)) {
-        return a
-      }
-
-      return a.concat(breadcrumbs(urls, b))
-    },
-    [node.title || node.name]
-  )
-}
+// Using the SF86 since it is a superset of all form sections. This could be improved on.
+import { FLAT_SF86 } from 'config/formTypes'
 
 /**
  * Takes an array of breadcrumbs and formats it in to a pretty trail
  */
-const trail = crumbs => {
-  return crumbs.map((crumb, i, arr) => {
+/* eslint react/no-array-index-key: 0 */
+const trail = crumbs => (
+  crumbs.map((crumb, i, arr) => {
     if (arr.length === i + 1) {
       return (
         <span key={`crumb-${i}`} className="title-text">
@@ -52,29 +21,28 @@ const trail = crumbs => {
 
     return (
       <span key={`crumb-${i}`} className="crumb">
-        {crumb} &gt;{' '}
+        {crumb}
+        {' '}
+        &gt;
+        {' '}
       </span>
     )
   })
-}
+)
 
-/**
- * Maps the relevant subtree state from the applications state tree.
- * In this case, we pull the authentication sub-state. This is mapped
- * to the authentication reducer. When actions are dispatched, this
- * method is executed which causes a re-render.
- */
-function mapStateToProps(state) {
-  const section = state.section || {}
-  return {
-    section: section
+export const SectionTitle = ({ location }) => {
+  const formSection = FLAT_SF86.find(s => s.fullPath === location.pathname)
+
+  if (!formSection || !formSection.breadcrumbs) {
+    return null
   }
+
+  const title = trail(formSection.breadcrumbs)
+  return <h1 className="title">{title}</h1>
 }
 
-SectionTitle.defaultProps = {
-  hidden: false
+SectionTitle.propTypes = {
+  location: PropTypes.object.isRequired,
 }
 
-// Wraps the the component with connect() which adds the dispatch()
-// function to the props property for this component
-export default connect(mapStateToProps)(SectionTitle)
+export default withRouter(SectionTitle)

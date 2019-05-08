@@ -67,7 +67,8 @@ export class Contacts extends Subsection {
     return (
       <div
         className="section-content foreign-contacts"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_CONTACTS.key}
       >
         <h1 className="section-header">{i18n.t('foreign.destination.contacts')}</h1>
         <Branch

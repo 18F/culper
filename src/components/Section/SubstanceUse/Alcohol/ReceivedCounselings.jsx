@@ -77,7 +77,8 @@ export class ReceivedCounselings extends Subsection {
     return (
       <div
         className="section-content received-counselings"
-        {...super.dataAttributes()}
+        data-section={SUBSTANCE_USE.key}
+        data-subsection={SUBSTANCE_USE_ALCOHOL_ADDITIONAL.key}
       >
         <h1 className="section-header">{i18n.t('substance.subsection.alcohol.additional')}</h1>
         <Branch

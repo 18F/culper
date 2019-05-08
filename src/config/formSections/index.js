@@ -10,7 +10,7 @@ import legalSections from './legal'
 import psychologicalSections from './psychological'
 import reviewSections from './review'
 
-export default {
+const formSections = {
   ...identificationSections,
   ...historySections,
   ...relationshipsSections,
@@ -23,3 +23,7 @@ export default {
   ...psychologicalSections,
   ...reviewSections,
 }
+
+export default formSections
+
+export const formSectionIndex = Object.keys(formSections).map(s => formSections[s])

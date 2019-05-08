@@ -18,6 +18,8 @@ import {
   Location,
 } from 'components/Form'
 
+import { countryString } from 'validators/location'
+
 import {
   CITIZENSHIP,
   CITIZENSHIP_STATUS,
@@ -83,6 +85,24 @@ export class Status extends Subsection {
     })
   }
 
+  updatePlaceIssued = (values) => {
+    const { PlaceIssued } = this.props
+    // If country changes, it means the branch changed.
+    // This means we need to clear out the state value
+    if (countryString(PlaceIssued.country) !== values.country.value) {
+      this.update({
+        PlaceIssued: {
+          ...values,
+          state: undefined,
+        },
+      })
+    } else {
+      this.update({
+        PlaceIssued: values,
+      })
+    }
+  }
+
   derivedAlienRegistrationNumberRequired = () => (
     this.props.required
     && !validGenericTextfield(this.props.PermanentResidentCardNumber)
@@ -132,7 +152,8 @@ export class Status extends Subsection {
     return (
       <div
         className="section-content status"
-        {...super.dataAttributes()}
+        data-section={CITIZENSHIP.key}
+        data-subsection={CITIZENSHIP_STATUS.key}
       >
         <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
         <Field
@@ -309,7 +330,7 @@ export class Status extends Subsection {
                   {...this.props.PlaceIssued}
                   layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
                   className="place-issued"
-                  onUpdate={(value) => { this.updateField('PlaceIssued', value) }}
+                  onUpdate={this.updatePlaceIssued}
                   onError={this.handleError}
                   required={resultIsDocumentRequired && this.props.required}
                 />

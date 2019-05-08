@@ -142,7 +142,8 @@ export class People extends Subsection {
     return (
       <div
         className="section-content people"
-        {...super.dataAttributes()}
+        data-section={RELATIONSHIPS.key}
+        data-subsection={RELATIONSHIPS_PEOPLE.key}
       >
         <h1 className="section-header">{i18n.t('relationships.people.sectionTitle.title')}</h1>
 

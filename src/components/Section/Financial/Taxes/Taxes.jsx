@@ -94,7 +94,8 @@ export class Taxes extends Subsection {
     return (
       <div
         className="section-content taxes"
-        {...super.dataAttributes()}
+        data-section={FINANCIAL.key}
+        data-subsection={FINANCIAL_TAXES.key}
       >
         <h1 className="section-header">{i18n.t('financial.destination.taxes')}</h1>
         <Branch

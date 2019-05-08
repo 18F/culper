@@ -72,7 +72,8 @@ export class Unlawful extends Subsection {
     return (
       <div
         className="section-content legal-technology-unlawful"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_TECHNOLOGY_UNLAWFUL.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.technology.unlawful')}</h1>
         <Branch

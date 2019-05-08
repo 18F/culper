@@ -4,8 +4,8 @@ exports[`The identification section renders the IdentificationSections component
 <div>
   <div
     className="section-content applicant-name"
-    data-section="identification"
-    data-subsection="name"
+    data-section="IDENTIFICATION"
+    data-subsection="IDENTIFICATION_NAME"
   >
     <h1
       className="section-header"
@@ -658,8 +658,8 @@ exports[`The identification section renders the IdentificationSections component
   />
   <div
     className="section-content birthdate"
-    data-section="identification"
-    data-subsection="birthdate"
+    data-section="IDENTIFICATION"
+    data-subsection="IDENTIFICATION_BIRTH_DATE"
   >
     <h1
       className="section-header"
@@ -930,8 +930,8 @@ exports[`The identification section renders the IdentificationSections component
   />
   <div
     className="section-content applicant-birthplace"
-    data-section="identification"
-    data-subsection="birthplace"
+    data-section="IDENTIFICATION"
+    data-subsection="IDENTIFICATION_BIRTH_PLACE"
   >
     <h1
       className="section-header"
@@ -1167,8 +1167,8 @@ exports[`The identification section renders the IdentificationSections component
   />
   <div
     className="section-content applicant-ssn"
-    data-section="identification"
-    data-subsection="ssn"
+    data-section="IDENTIFICATION"
+    data-subsection="IDENTIFICATION_SSN"
   >
     <h1
       className="section-header"
@@ -1405,8 +1405,8 @@ exports[`The identification section renders the IdentificationSections component
   />
   <div
     className="section-content other-names"
-    data-section="identification"
-    data-subsection="othernames"
+    data-section="IDENTIFICATION"
+    data-subsection="IDENTIFICATION_OTHER_NAMES"
   >
     <h1
       className="section-header"
@@ -1629,8 +1629,8 @@ exports[`The identification section renders the IdentificationSections component
   />
   <div
     className="section-content contact"
-    data-section="identification"
-    data-subsection="contacts"
+    data-section="IDENTIFICATION"
+    data-subsection="IDENTIFICATION_CONTACTS"
   >
     <h1
       className="section-header"
@@ -1717,7 +1717,7 @@ exports[`The identification section renders the IdentificationSections component
     </div>
     <div
       aria-label="Home email address"
-      className="field"
+      className="field required"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1749,7 +1749,29 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages error-messages"
           role="alert"
-        />
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.email.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -1761,7 +1783,7 @@ exports[`The identification section renders the IdentificationSections component
             className="component"
           >
             <div
-              className="hide-for-print email email-home"
+              className="hide-for-print email email-home usa-input-error"
             >
               <input
                 aria-describedby="HomeEmail-error"
@@ -1794,7 +1816,7 @@ exports[`The identification section renders the IdentificationSections component
     </div>
     <div
       aria-label="Work email address"
-      className="field"
+      className="field required"
       data-uuid="field-MOCK-GUID"
     >
       <a
@@ -1826,7 +1848,29 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages error-messages"
           role="alert"
-        />
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.email.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -1838,7 +1882,7 @@ exports[`The identification section renders the IdentificationSections component
             className="component"
           >
             <div
-              className="hide-for-print email email-work"
+              className="hide-for-print email email-work usa-input-error"
             >
               <input
                 aria-describedby="WorkEmail-error"
@@ -2031,8 +2075,8 @@ exports[`The identification section renders the IdentificationSections component
   />
   <div
     className="section-content physical"
-    data-section="identification"
-    data-subsection="physical"
+    data-section="IDENTIFICATION"
+    data-subsection="IDENTIFICATION_PHYSICAL"
   >
     <h1
       className="section-header"

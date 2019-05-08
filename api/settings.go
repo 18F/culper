@@ -137,6 +137,12 @@ const (
 	// Default: `postgres`
 	DatabaseName = "DATABASE_NAME"
 
+	// DatabaseSSLMode The PostgreSQL sslmode to use to connect to the db
+	//
+	// Target: Back-end (api)
+	// Default: `require`
+	DatabaseSSLMode = "DATABASE_SSLMODE"
+
 	// TestDatabaseName PostgreSQL database instance name for tests
 	//
 	// Target: Back-end (api)
@@ -163,6 +169,12 @@ const (
 	// Target: Back-end (api)
 	// Default: *empty*
 	CORSAllowed = "CORS_ALLOWED"
+
+	// CORSMaxAge The number of seconds browsers should cache preflight requests.
+	//
+	// Target: Back-end (api)
+	// Default: `600`
+	CORSMaxAge = "CORS_MAX_AGE"
 
 	// FlushStorage Flag to enable flushing of persisted information for an account during the logon process.
 	//

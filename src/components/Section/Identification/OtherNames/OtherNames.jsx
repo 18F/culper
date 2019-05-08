@@ -89,7 +89,9 @@ export class OtherNames extends Subsection {
     return (
       <div
         className="section-content other-names"
-        {...super.dataAttributes()}>
+        data-section={IDENTIFICATION.key}
+        data-subsection={IDENTIFICATION_OTHER_NAMES.key}
+      >
         <h1 className="section-header">{i18n.t('identification.destination.othernames')}</h1>
         <Field
           title={i18n.t('identification.othernames.title')}

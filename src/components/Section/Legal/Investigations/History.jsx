@@ -74,7 +74,8 @@ export class History extends Subsection {
     return (
       <div
         className="section-content investigations-history"
-        {...super.dataAttributes()}
+        data-section={LEGAL.key}
+        data-subsection={LEGAL_INVESTIGATIONS_HISTORY.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.investigations.history')}</h1>
         <Branch

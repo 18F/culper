@@ -8,15 +8,6 @@ describe('The telephone summary', () => {
     expect(summary).toEqual('Unknown')
   })
 
-  it('display DSN format', () => {
-    const phone = {
-      type: 'DSN',
-      number: '8675309'
-    }
-    const summary = TelephoneSummary(phone, 'Unknown')
-    expect(summary).toEqual(<span className="title-case">867-5309</span>)
-  })
-
   it('display international format', () => {
     const phone = {
       type: 'International',
