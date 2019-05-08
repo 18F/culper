@@ -71,7 +71,8 @@ export class Sponsorship extends Subsection {
     return (
       <div
         className="section-content foreign-business-sponsorship"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_BUSINESS_SPONSORSHIP.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.business.sponsorship')}</h1>
         <Branch

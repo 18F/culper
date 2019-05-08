@@ -76,7 +76,8 @@ export class Competence extends Subsection {
     return (
       <div
         className="section-content competence"
-        {...super.dataAttributes()}
+        data-section={PSYCHOLOGICAL.key}
+        data-subsection={PSYCHOLOGICAL_COMPETENCE.key}
       >
         <h1 className="section-header">{i18n.t('psychological.destination.competence')}</h1>
         <Branch

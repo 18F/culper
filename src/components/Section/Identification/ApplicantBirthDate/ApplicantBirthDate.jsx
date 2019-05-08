@@ -117,7 +117,11 @@ export class ApplicantBirthDate extends Subsection {
       ''}`.trim()
 
     return (
-      <div className={klass} {...super.dataAttributes()}>
+      <div
+        className={klass}
+        data-section={IDENTIFICATION.key}
+        data-subsection={IDENTIFICATION_BIRTH_DATE.key}
+      >
         <h1 className="section-header">{i18n.t('identification.destination.birthdate')}</h1>
         <Field
           title={i18n.t('identification.birthdate.title')}

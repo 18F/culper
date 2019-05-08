@@ -75,7 +75,8 @@ export class Travel extends Subsection {
     return (
       <div
         className="section-content foreign-travel"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_TRAVEL.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.travel')}</h1>
         <Branch

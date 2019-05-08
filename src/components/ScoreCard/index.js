@@ -1,2 +1,3 @@
-import ScoreCard, { sectionsTotal, sectionsCompleted } from './ScoreCard'
-export { ScoreCard, sectionsTotal, sectionsCompleted }
+import ScoreCard from './ScoreCard'
+
+export default ScoreCard

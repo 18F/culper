@@ -18,7 +18,7 @@ export const application = {
     certificationItem: 'Certification',
     generalItem: 'Release of Information & HIPAA',
     creditItem: 'Credit reporting disclosure',
-    submit: 'Submit your SF-86',
+    submit: 'Submit your {{formName}}',
     next: 'Go to next release',
     submitting: 'Submitting form...',
   },

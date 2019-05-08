@@ -65,7 +65,8 @@ export class Support extends Subsection {
     return (
       <div
         className="section-content foreign-activities-support"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_ACTIVITIES_SUPPORT.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.activities.support')}</h1>
         <Branch

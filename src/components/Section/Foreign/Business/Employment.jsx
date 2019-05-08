@@ -70,7 +70,8 @@ export class Employment extends Subsection {
     return (
       <div
         className="section-content foreign-business-employment"
-        {...super.dataAttributes()}
+        data-section={FOREIGN.key}
+        data-subsection={FOREIGN_BUSINESS_EMPLOYMENT.key}
       >
         <h1 className="section-header">{i18n.t('foreign.subsection.business.employment')}</h1>
         <Branch

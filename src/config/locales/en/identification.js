@@ -102,12 +102,12 @@ export const identification = {
     },
     heading: {
       name: 'Provide other name used',
-      maiden: 'Was this your maiden name?',
+      maiden: 'Maiden name?',
       used: 'Dates used',
       reason: 'Provide the reasons why the name was changed',
     },
     label: {
-      maiden: 'Was this your maiden name?',
+      maiden: 'Maiden name?',
       reason: 'Provide the reasons why the name changed',
     },
   },
@@ -240,7 +240,7 @@ export const identification = {
       eye: 'Eye color',
       height: 'Height',
       weight: 'Weight',
-      sex: 'Select your sex',
+      sex: 'Sex',
       comments: 'Add your comment about sex',
     },
     help: {

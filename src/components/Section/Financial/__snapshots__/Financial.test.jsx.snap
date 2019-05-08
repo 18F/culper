@@ -5,8 +5,8 @@ exports[`The financial section renders the FinancialSections component 1`] = `
   <span>
     <div
       className="section-content bankruptcies"
-      data-section="financial"
-      data-subsection="bankruptcy"
+      data-section="FINANCIAL"
+      data-subsection="FINANCIAL_BANKRUPTCY"
     >
       <h1
         className="section-header"
@@ -177,8 +177,8 @@ exports[`The financial section renders the FinancialSections component 1`] = `
   <span>
     <div
       className="section-content gambling"
-      data-section="financial"
-      data-subsection="gambling"
+      data-section="FINANCIAL"
+      data-subsection="FINANCIAL_GAMBLING"
     >
       <h1
         className="section-header"
@@ -325,8 +325,8 @@ exports[`The financial section renders the FinancialSections component 1`] = `
   <span>
     <div
       className="section-content taxes"
-      data-section="financial"
-      data-subsection="taxes"
+      data-section="FINANCIAL"
+      data-subsection="FINANCIAL_TAXES"
     >
       <h1
         className="section-header"
@@ -473,8 +473,8 @@ exports[`The financial section renders the FinancialSections component 1`] = `
   <span>
     <div
       className="section-content card-abuse"
-      data-section="financial"
-      data-subsection="card"
+      data-section="FINANCIAL"
+      data-subsection="FINANCIAL_CARD"
     >
       <h1
         className="section-header"
@@ -621,8 +621,8 @@ exports[`The financial section renders the FinancialSections component 1`] = `
   <span>
     <div
       className="section-content credit-counseling"
-      data-section="financial"
-      data-subsection="credit"
+      data-section="FINANCIAL"
+      data-subsection="FINANCIAL_CREDIT"
     >
       <h1
         className="section-header"
@@ -769,8 +769,8 @@ exports[`The financial section renders the FinancialSections component 1`] = `
   <span>
     <div
       className="section-content delinquent"
-      data-section="financial"
-      data-subsection="delinquent"
+      data-section="FINANCIAL"
+      data-subsection="FINANCIAL_DELINQUENT"
     >
       <h1
         className="section-header"
@@ -963,8 +963,8 @@ exports[`The financial section renders the FinancialSections component 1`] = `
   </span>
   <div
     className="section-content nonpayment"
-    data-section="financial"
-    data-subsection="nonpayment"
+    data-section="FINANCIAL"
+    data-subsection="FINANCIAL_NONPAYMENT"
   >
     <h1
       className="section-header"

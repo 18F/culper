@@ -42,6 +42,7 @@ func TestCollections(t *testing.T) {
 		Password: settings.String(api.DatabasePassword),
 		Address:  settings.String(api.DatabaseHost),
 		DBName:   settings.String(api.TestDatabaseName),
+		SSLMode:  settings.String(api.DatabaseSSLMode),
 	}
 
 	service := NewPostgresService(dbConf, logger)
@@ -290,6 +291,7 @@ func TestPayloadPersistence(t *testing.T) {
 		Password: settings.String(api.DatabasePassword),
 		Address:  settings.String(api.DatabaseHost),
 		DBName:   settings.String(api.TestDatabaseName),
+		SSLMode:  settings.String(api.DatabaseSSLMode),
 	}
 
 	service := NewPostgresService(dbConf, logger)

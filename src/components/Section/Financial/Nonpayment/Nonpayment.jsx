@@ -100,7 +100,8 @@ export class Nonpayment extends Subsection {
     return (
       <div
         className="section-content nonpayment"
-        {...super.dataAttributes()}
+        data-section={FINANCIAL.key}
+        data-subsection={FINANCIAL_NONPAYMENT.key}
       >
         <h1 className="section-header">{i18n.t('financial.destination.nonpayment')}</h1>
         <Branch

@@ -49,7 +49,8 @@ export class Passports extends Subsection {
     return (
       <div
         className="section-content passports"
-        {...super.dataAttributes()}
+        data-section={CITIZENSHIP.key}
+        data-subsection={CITIZENSHIP_PASSPORTS.key}
       >
         <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
         <BranchCollection

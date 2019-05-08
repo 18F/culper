@@ -52,7 +52,11 @@ export class ApplicantBirthPlace extends Subsection {
     const klass = `section-content applicant-birthplace ${this.props.className || ''}`.trim()
 
     return (
-      <div className={klass} {...super.dataAttributes()}>
+      <div
+        className={klass}
+        data-section={IDENTIFICATION.key}
+        data-subsection={IDENTIFICATION_BIRTH_PLACE.key}
+      >
         <h1 className="section-header">{i18n.t('identification.destination.birthplace')}</h1>
         <Field
           title={i18n.t('identification.birthplace.title')}

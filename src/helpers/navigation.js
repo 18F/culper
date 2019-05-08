@@ -4,7 +4,7 @@ import {
   formSectionsSelector,
 } from 'selectors/navigation'
 
-import { navigationWalker } from 'config/navigation'
+import { formStatusSelector } from 'selectors/validation'
 
 export const getBackAndNext = (state, { currentPath }) => {
   const formSections = formSectionsSelector(state, true)
@@ -88,39 +88,8 @@ export const completedSections = (state) => {
   return completedCount
 }
 
-// TODO - migrate/deprecate this after form validation logic is cleaned up
 export const formHasErrors = (state) => {
-  const { application } = state
-
-  let errors = 0
-
-  navigationWalker((path, child) => {
-    if (path.length && path[0].store && child.store && child.validator) {
-      if (child.excluded || child.hidden || (child.hiddenFunc && child.hiddenFunc(application))) {
-        return
-      }
-
-      const data = (application[path[0].store] || {})[child.store] || {}
-      let subsectionName = child.url
-      if (path.length > 1) {
-        for (let i = path.length - 1; i > 0; i -= 1) {
-          subsectionName = `${path[i].url}/${subsectionName}`
-        }
-      }
-
-      let valid = null
-      try {
-        // eslint-disable-next-line new-cap
-        valid = new child.validator(data, data).isValid()
-      } catch (e) {
-        valid = null
-      }
-
-      if (valid !== true) {
-        errors += 1
-      }
-    }
-  })
-
-  return errors > 0
+  const formStatus = formStatusSelector(state)
+  const { formIsValid } = formStatus
+  return !formIsValid
 }
