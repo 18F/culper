@@ -539,4 +539,5 @@ Field.defaultProps = {
   shrink: false,
   scrollIntoView: true,
   filterErrors: errors => errors,
+  onUpdate: () => {},
 }
