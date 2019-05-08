@@ -2,7 +2,9 @@ import { DateTime } from 'luxon'
 
 import { validateModel } from 'models/validate'
 import date from 'models/shared/date'
-import { SELF } from 'constants/dateLimits'
+import {
+  SELF, PARENT, CHILD, OTHER, DEFAULT_LIMITS,
+} from 'constants/dateLimits'
 
 describe('The date model', () => {
   const TODAY = DateTime.local()
@@ -43,6 +45,134 @@ describe('The date model', () => {
     it('passes a valid birthdate', () => {
       const testData = { date: TODAY.minus({ years: 30 }) }
       expect(validateModel(testData, date, { ...SELF })).toEqual(true)
+    })
+  })
+
+  describe('with PARENT birthdate limits', () => {
+    const applicantBirthdate = TODAY.minus({ years: 30 })
+    const parentLimits = PARENT(applicantBirthdate)
+
+    it('must be no more than 200 years and 1 day ago', () => {
+      const testData = { date: TODAY.minus({ years: 205 }) }
+      const expectedErrors = ['date.datetime']
+
+      expect(validateModel(testData, date, { ...parentLimits }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('must be older than the applicant', () => {
+      const testData = { date: TODAY.minus({ years: 2 }) }
+      const expectedErrors = ['date.datetime']
+
+      expect(validateModel(testData, date, { ...parentLimits }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid birthdate', () => {
+      const testData = { date: TODAY.minus({ years: 60 }) }
+      expect(validateModel(testData, date, { ...parentLimits })).toEqual(true)
+    })
+  })
+
+  describe('with CHILD birthdate limits', () => {
+    const applicantBirthdate = TODAY.minus({ years: 30 })
+    const childLimits = CHILD(applicantBirthdate)
+
+    it('must be younger than the applicant', () => {
+      const testData = { date: TODAY.minus({ years: 35 }) }
+      const expectedErrors = ['date.datetime']
+
+      expect(validateModel(testData, date, { ...childLimits }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('must not be in the future', () => {
+      const testData = { date: TODAY.plus({ years: 2 }) }
+      const expectedErrors = ['date.datetime']
+
+      expect(validateModel(testData, date, { ...childLimits }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid birthdate', () => {
+      const testData = { date: TODAY.minus({ years: 2 }) }
+      expect(validateModel(testData, date, { ...childLimits })).toEqual(true)
+    })
+  })
+
+  describe('with OTHER birthdate limits', () => {
+    it('must be no more than 200 years and 1 day ago', () => {
+      const testData = { date: TODAY.minus({ years: 205 }) }
+      const expectedErrors = ['date.datetime']
+
+      expect(validateModel(testData, date, { ...OTHER }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('must not be in the future', () => {
+      const testData = { date: TODAY.plus({ years: 2 }) }
+      const expectedErrors = ['date.datetime']
+
+      expect(validateModel(testData, date, { ...OTHER }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid birthdate', () => {
+      const testData = { date: TODAY.minus({ years: 45 }) }
+      expect(validateModel(testData, date, { ...OTHER })).toEqual(true)
+    })
+  })
+
+  describe('with DEFAULT date limits', () => {
+    describe('with an applicant birthdate', () => {
+      const applicantBirthdate = TODAY.minus({ years: 30 })
+      const defaultLimits = DEFAULT_LIMITS(applicantBirthdate)
+
+      it('must be no more than 200 years and 1 day ago', () => {
+        const testData = { date: TODAY.minus({ years: 205 }) }
+        const expectedErrors = ['date.datetime']
+
+        expect(validateModel(testData, date, { ...defaultLimits }))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('must be younger than the applicant', () => {
+        const testData = { date: TODAY.minus({ years: 35 }) }
+        const expectedErrors = ['date.datetime']
+
+        expect(validateModel(testData, date, { ...defaultLimits }))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid date', () => {
+        const testData = { date: TODAY.minus({ years: 5 }) }
+        expect(validateModel(testData, date, { ...defaultLimits })).toEqual(true)
+      })
+    })
+
+    describe('without an applicant birthdate', () => {
+      const defaultLimits = DEFAULT_LIMITS()
+
+      it('must be no more than 200 years and 1 day ago', () => {
+        const testData = { date: TODAY.minus({ years: 205 }) }
+        const expectedErrors = ['date.datetime']
+
+        expect(validateModel(testData, date, { ...defaultLimits }))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('must not be in the future', () => {
+        const testData = { date: TODAY.plus({ years: 2 }) }
+        const expectedErrors = ['date.datetime']
+
+        expect(validateModel(testData, date, { ...defaultLimits }))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid date', () => {
+        const testData = { date: TODAY.minus({ years: 65 }) }
+        expect(validateModel(testData, date, { ...defaultLimits })).toEqual(true)
+      })
     })
   })
 })
