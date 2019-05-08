@@ -1,35 +1,52 @@
-import thunk from 'redux-thunk'
-import rootReducer from '../reducers'
 import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 import queryString from 'query-string'
 
-const middleware = [thunk]
-const params = location.search
+import rootReducer from 'reducers'
+import rootSaga from 'sagas'
 
-// Creates a redux store that defines the state tree for the application.
-// See rootReducer for all sub-states.
-let store
-switch (process.env.NODE_ENV) {
-  case 'test':
-    store = createStore(rootReducer)
-    break
-  case 'production':
-    store = createStore(rootReducer, applyMiddleware(...middleware))
-    break
-  default:
-    if (params) {
-      const query = queryString.parse(params)
+const sagaMiddleware = createSagaMiddleware()
 
-      if (query.reduxLogger === 'true') {
-        middleware.push(createLogger())
+const configureStore = (params) => {
+  const middleware = [
+    sagaMiddleware,
+    thunk,
+  ]
+
+  switch (process.env.NODE_ENV) {
+    case 'test':
+      return createStore(
+        rootReducer,
+        applyMiddleware(...middleware)
+      )
+
+    case 'production':
+      return createStore(
+        rootReducer,
+        applyMiddleware(...middleware)
+      )
+
+    default:
+      if (params) {
+        const query = queryString.parse(params)
+
+        if (query.reduxLogger === 'true') {
+          middleware.push(createLogger())
+        }
       }
-    }
-    store = createStore(
-      rootReducer,
-      composeWithDevTools(applyMiddleware(...middleware))
-    )
+
+      return createStore(
+        rootReducer,
+        composeWithDevTools(applyMiddleware(...middleware))
+      )
+  }
 }
+
+const store = configureStore(window.location.search)
+
+sagaMiddleware.run(rootSaga)
 
 export default store
