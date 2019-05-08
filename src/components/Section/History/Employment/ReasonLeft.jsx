@@ -80,7 +80,6 @@ export default class ReasonLeft extends ValidationElement {
           <Field
             title={i18n.t('history.employment.default.left.title')}
             titleSize="h4"
-            comments={false}
             scrollIntoView={this.props.scrollIntoView}
           >
             <Textarea

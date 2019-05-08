@@ -130,11 +130,8 @@ export class Physical extends Subsection {
           titleSize="h4"
           help="identification.traits.help.sex"
           adjustFor="big-buttons"
-          shrink
-          onUpdate={this.handleUpdate.bind(this, 'Comments')}
-          commentsValue={this.props.Comments}
           scrollIntoView={this.props.scrollIntoView}
-          comments
+          shrink
         >
           <Sex
             name="sex"

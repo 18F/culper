@@ -60,12 +60,6 @@ export default class HistoryItem extends ValidationElement {
     })
   }
 
-  updateCompletedComments = (values) => {
-    this.update({
-      CompletedComments: values,
-    })
-  }
-
   updateIssued = (values) => {
     this.update({
       Issued: values,
@@ -82,12 +76,6 @@ export default class HistoryItem extends ValidationElement {
   updateGranted = (values) => {
     this.update({
       Granted: values,
-    })
-  }
-
-  updateGrantedComments = (values) => {
-    this.update({
-      GrantedComments: values,
     })
   }
 
@@ -145,10 +133,6 @@ export default class HistoryItem extends ValidationElement {
           title={i18n.t('legal.investigations.history.heading.completed')}
           help="legal.investigations.history.help.completed"
           adjustFor="datecontrol"
-          comments
-          commentsName="CompletedComments"
-          commentsValue={this.props.CompletedComments}
-          onUpdate={this.updateCompletedComments}
           scrollIntoView={this.props.scrollIntoView}
         >
           <NotApplicable
@@ -193,10 +177,6 @@ export default class HistoryItem extends ValidationElement {
             <Field
               title={i18n.t('legal.investigations.history.heading.granted')}
               help="legal.investigations.history.help.granted"
-              comments
-              commentsName="GrantedComments"
-              commentsValue={this.props.GrantedComments}
-              onUpdate={this.updateGrantedComments}
               adjustFor="datecontrol"
               scrollIntoView={this.props.scrollIntoView}
             >

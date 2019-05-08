@@ -125,12 +125,6 @@ export default class ResidenceItem extends ValidationElement {
     })
   }
 
-  updateComments = (values) => {
-    this.update({
-      Comments: values,
-    })
-  }
-
   updateAddress = (values) => {
     this.update({
       Address: values,
@@ -197,11 +191,7 @@ export default class ResidenceItem extends ValidationElement {
           titleSize="h4"
           optional
           help="history.residence.help.address"
-          comments={false}
-          commentsName="Comments"
-          commentsValue={this.props.Comments}
           commentsAdd="history.residence.label.comments"
-          onUpdate={this.updateComments}
           onError={this.props.onError}
           adjustFor="address"
           shrink
@@ -369,11 +359,6 @@ export default class ResidenceItem extends ValidationElement {
               <Field
                 title={i18n.t('reference.heading.relationship')}
                 titleSize="h4"
-                comments
-                commentsName="ReferenceRelationshipComments"
-                commentsValue={this.props.ReferenceRelationshipComments}
-                commentsAdd="reference.label.relationship.comments"
-                onUpdate={this.updateReferenceRelationshipComments}
                 adjustFor="labels"
                 shrink
                 scrollIntoView={this.props.scrollIntoView}

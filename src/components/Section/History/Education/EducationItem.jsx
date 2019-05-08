@@ -90,12 +90,6 @@ export default class EducationItem extends ValidationElement {
     })
   }
 
-  updateComments = (values) => {
-    this.update({
-      Comments: values,
-    })
-  }
-
   updateReferenceName = (values) => {
     this.update({
       ReferenceName: values,
@@ -217,10 +211,6 @@ export default class EducationItem extends ValidationElement {
             titleSize="h4"
             optional
             help="history.education.help.address"
-            comments
-            commentsName="Comments"
-            commentsValue={this.props.Comments}
-            onUpdate={this.updateComments}
             onError={this.props.onError}
             adjustFor="address"
             shrink
