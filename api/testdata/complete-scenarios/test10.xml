@@ -123,6 +123,7 @@
                     <Mobile>
                       <Number>1115556633</Number>
                       <Extension>4</Extension>
+                      <Time>Night</Time>
                     </Mobile>
                   </Telephone>
                   <Title NotApplicable="True"/>
@@ -161,6 +162,7 @@
           </Home>
                     <Mobile>
                       <Number>1115556789</Number>
+                      <Time>Day</Time>
                     </Mobile>
                   </Telephone>
                   <Title NotApplicable="True"/>
@@ -202,6 +204,7 @@
           </Home>
                     <Mobile>
                       <Number>4325551234</Number>
+                      <Time>Both</Time>
                     </Mobile>
                   </Telephone>
                   <Title NotApplicable="True"/>
@@ -394,6 +397,7 @@
                   </Separated>
                   <Telephone>
                     <Number>2135554321</Number>
+                    <Time>Both</Time>
                   </Telephone>
                 </CurrentSpouse>
               </PresentMarriage>
