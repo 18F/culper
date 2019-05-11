@@ -32,6 +32,11 @@ const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
       let sectionData
       if (store === 'Citizenship' && s.storeKey === 'Passport') {
         sectionData = application.Foreign.Passport
+      } else if (store === 'Citizenship' && s.storeKey === 'Status') {
+        sectionData = {
+          Status: application.Citizenship.Status,
+          Passport: application.Foreign.Passport,
+        }
       } else {
         sectionData = application[store][s.storeKey] || {}
       }

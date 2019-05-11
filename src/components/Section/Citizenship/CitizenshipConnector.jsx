@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import schema from 'schema'
+import validate from 'validators'
 
 import {
   updateApplication,
@@ -74,6 +76,13 @@ const connectCitizenshipSection = (Component, {
       case 'Status':
         return {
           ...citizenship.Status,
+          usPassport: foreign.Passport,
+          validator: data => (
+            validate(schema('citizenship.status', {
+              Status: data,
+              Passport: foreign.Passport,
+            }))
+          ),
         }
 
       case 'Multiple':

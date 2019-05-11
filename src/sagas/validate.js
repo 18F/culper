@@ -29,6 +29,11 @@ export function* updateSectionStatus(section, store = '', state = {}) {
     if (store === 'Citizenship' && section.storeKey === 'Passport') {
       sectionName = 'foreign'
       sectionData = application.Foreign.Passport
+    } else if (store === 'Citizenship' && section.storeKey === 'Status') {
+      sectionData = {
+        Passport: application.Foreign.Passport,
+        Status: application.Citizenship.Status,
+      }
     } else {
       sectionData = application[store][section.storeKey] || {}
     }
