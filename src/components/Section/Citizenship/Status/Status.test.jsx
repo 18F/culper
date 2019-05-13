@@ -422,7 +422,7 @@ describe('The status component', () => {
     expect(component.find('.citizenship-abroad').length).toBe(0)
   })
 
-  it('displays u.s. citizen born abroad documentation fields if there is a valid passport', () => {
+  it('displays u.s. citizen born abroad documentation fields if there is not a valid passport', () => {
     const testStore = mockStore()
     const usPassport = {
       Name: {},
@@ -431,7 +431,7 @@ describe('The status component', () => {
       Issued: {},
       Expiration: {},
       Comments: {},
-      HasPassports: { value: 'Yes' },
+      HasPassports: { value: 'No' },
       suggestedName: [],
     }
 
