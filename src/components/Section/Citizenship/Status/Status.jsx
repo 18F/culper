@@ -1,8 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
 import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
-import schema from 'schema'
-import validate from 'validators'
 import { isDocumentRequired, isCertificateRequired } from 'validators/citizenship'
 import { validatePassport } from 'validators/passport'
 import {
@@ -1108,9 +1106,11 @@ Status.defaultProps = {
   ResidenceStatus: {},
   DocumentType: {},
   DocumentExpiration: {},
+  usPassport: {},
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
+  validator: () => {},
   scrollIntoView: false,
 }
 

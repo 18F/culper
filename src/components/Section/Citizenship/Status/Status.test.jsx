@@ -359,4 +359,73 @@ describe('The status component', () => {
       expect(instance.derivedCertificateNumberRequired()).toBe(false)
     })
   })
+
+  it('hides u.s. citizen born abroad documentation fields if there is a valid passport', () => {
+    const usPassport = {
+      Name: {
+        first: 'John',
+        firstInitialOnly: false,
+        middle: 'Bob',
+        middleInitialOnly: false,
+        noMiddleName: false,
+        last: 'Ross',
+        suffix: '',
+        suffixOther: '',
+      },
+      Number: {
+        value: '123456789',
+        name: 'number',
+      },
+      Card: { value: 'Book' },
+      Issued: {
+        month: '12',
+        day: '12',
+        year: '2017',
+        estimated: false,
+      },
+      Expiration: {
+        month: '12',
+        day: '12',
+        year: '2022',
+        estimated: false,
+      },
+      Comments: { value: '' },
+      HasPassports: { value: 'Yes' },
+      suggestedName: [],
+    }
+
+    const component = mount(
+      <Status
+        usPassport={usPassport}
+        CitizenshipStatus={{ value: 'ForeignBorn' }}
+      />
+    )
+
+    expect(component.find('.citizenship-abroad').length).toBe(0)
+  })
+
+  it('displays u.s. citizen born abroad documentation fields if there is a valid passport', () => {
+    const testStore = mockStore()
+    const usPassport = {
+      Name: {},
+      Number: {},
+      Card: {},
+      Issued: {},
+      Expiration: {},
+      Comments: {},
+      HasPassports: { value: 'Yes' },
+      suggestedName: [],
+    }
+
+    const component = mount(
+      <Provider store={testStore}>
+        <Status
+          usPassport={usPassport}
+          CitizenshipStatus={{ value: 'ForeignBorn' }}
+        />
+      </Provider>
+    )
+
+    expect(component.find('.citizenship-abroad').length).toBe(1)
+  })
 })
