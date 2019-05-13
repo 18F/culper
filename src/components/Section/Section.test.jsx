@@ -63,7 +63,9 @@ describe('The section component', () => {
               },
             },
           },
-          Foreign: {},
+          Foreign: {
+            Passport: { HasPassports: { value: 'No' } },
+          },
           Financial: {},
           Substance: {},
           Legal: {},

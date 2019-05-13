@@ -271,6 +271,9 @@ describe('citizenship component validation', () => {
           Explanation: {
             value: 'Explanation',
           },
+          Passport: {
+            HasPassports: { value: 'No' },
+          },
         },
         expected: true,
       },
@@ -483,6 +486,9 @@ describe('citizenship component validation', () => {
           Status: {
             CitizenshipStatus: { value: 'Citizen' },
           },
+          Passport: {
+            HasPassports: { value: 'Yes' },
+          },
         },
         expected: true,
       },
@@ -519,6 +525,9 @@ describe('citizenship component validation', () => {
             },
             BornOnMilitaryInstallation: { value: 'No' },
           },
+          Passport: {
+            HasPassports: { value: 'No' },
+          },
         },
         expected: true,
       },
@@ -548,13 +557,15 @@ describe('citizenship component validation', () => {
               value: 'Camp Pendleton',
             },
           },
+          Passport: {
+            HasPassports: { value: 'No' },
+          },
         },
         expected: true,
       },
       {
         data: {
           Status: {
-
             CitizenshipStatus: { value: 'Naturalized' },
             EntryDate: {
               day: '1',
@@ -607,6 +618,9 @@ describe('citizenship component validation', () => {
               value: 'Explanation',
             },
           },
+          Passport: {
+            HasPassports: { value: 'No' },
+          },
         },
         expected: true,
       },
@@ -641,6 +655,9 @@ describe('citizenship component validation', () => {
             Explanation: {
               value: 'Explanation',
             },
+          },
+          Passport: {
+            HasPassports: { value: 'No' },
           },
         },
         expected: false,
@@ -677,6 +694,9 @@ describe('citizenship component validation', () => {
               value: 'Explanation',
             },
           },
+          Passport: {
+            HasPassports: { value: 'No' },
+          },
         },
         expected: true,
       },
@@ -711,6 +731,9 @@ describe('citizenship component validation', () => {
             Explanation: {
               value: 'Explanation',
             },
+          },
+          Passport: {
+            HasPassports: { value: 'No' },
           },
         },
         expected: true,
@@ -747,6 +770,9 @@ describe('citizenship component validation', () => {
               value: 'Explanation',
             },
           },
+          Passport: {
+            HasPassports: { value: 'No' },
+          },
         },
         expected: true,
       },
@@ -781,6 +807,9 @@ describe('citizenship component validation', () => {
             Explanation: {
               value: 'Explanation',
             },
+          },
+          Passport: {
+            HasPassports: { value: 'No' },
           },
         },
         expected: true,
@@ -840,6 +869,9 @@ describe('citizenship component validation', () => {
               month: '1',
               year: '2016',
             },
+          },
+          Passport: {
+            HasPassports: { value: 'No' },
           },
         },
         expected: true,

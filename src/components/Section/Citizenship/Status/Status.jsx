@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from 'config'
 import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
 import { isDocumentRequired, isCertificateRequired } from 'validators/citizenship'
-import { validatePassport } from 'validators/passport'
+import { validateHasPassport, validatePassport } from 'validators/passport'
 import {
   Branch,
   Show,
@@ -135,7 +135,10 @@ export class Status extends Subsection {
       usPassport,
     } = this.props
 
-    const hasValidUnitedStatesPassport = validatePassport(usPassport)
+    const hasValidUnitedStatesPassport = (
+      validateHasPassport(usPassport.HasPassports.value)
+      && validatePassport(usPassport)
+    )
 
     const data = {
       citizenshipstatus: (CitizenshipStatus || {}).value,
