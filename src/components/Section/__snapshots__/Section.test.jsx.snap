@@ -654,29 +654,7 @@ exports[`The section component renders CITIZENSHIP_REVIEW 1`] = `
               aria-live="polite"
               className="messages error-messages"
               role="alert"
-            >
-              <div
-                aria-live="polite"
-                className="message error usa-alert usa-alert-error"
-                role="alert"
-              >
-                <div
-                  className="usa-alert-body"
-                >
-                  <div
-                    data-i18n="error.required"
-                  >
-                    <h5
-                      className="usa-alert-heading"
-                    >
-                      Your response is required
-                    </h5>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </span>
+            />
           </div>
           <div
             className="table"
@@ -691,7 +669,7 @@ exports[`The section component renders CITIZENSHIP_REVIEW 1`] = `
                   className="content"
                 />
                 <div
-                  className="blocks option-list branch usa-input-error"
+                  className="blocks option-list branch"
                 >
                   <div
                     className="yes block"
@@ -725,8 +703,8 @@ exports[`The section component renders CITIZENSHIP_REVIEW 1`] = `
                   >
                     <input
                       aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
+                      checked={true}
+                      className="usa-input-success selected"
                       disabled={false}
                       id="has_passport-MOCK-GUID"
                       name="has_passport-MOCK-GUID"
@@ -739,7 +717,7 @@ exports[`The section component renders CITIZENSHIP_REVIEW 1`] = `
                       value="No"
                     />
                     <label
-                      className=""
+                      className="checked"
                       htmlFor="has_passport-MOCK-GUID"
                     >
                       <span>
@@ -1805,8 +1783,8 @@ exports[`The section component renders CITIZENSHIP_US_PASSPORT 1`] = `
                 >
                   <input
                     aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
+                    checked={true}
+                    className="usa-input-success selected"
                     disabled={false}
                     id="has_passport-MOCK-GUID"
                     name="has_passport-MOCK-GUID"
@@ -1819,7 +1797,7 @@ exports[`The section component renders CITIZENSHIP_US_PASSPORT 1`] = `
                     value="No"
                   />
                   <label
-                    className=""
+                    className="checked"
                     htmlFor="has_passport-MOCK-GUID"
                   >
                     <span>
