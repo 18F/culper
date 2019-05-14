@@ -14,6 +14,9 @@ import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
 import daterange from 'models/validators/daterange'
 import address from 'models/validators/address'
+import name from 'models/validators/name'
+import phone from 'models/validators/phone'
+import array from 'models/validators/array'
 
 import {
   isDateTime, cleanDateObject, createDateFromObject, createDateFromTimestamp,
@@ -79,6 +82,9 @@ validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
 validate.validators.daterange = daterange
 validate.validators.address = address
+validate.validators.name = name
+validate.validators.phone = phone
+validate.validators.array = array
 
 export const validateModel = (data, model, options) => {
   const errors = options
