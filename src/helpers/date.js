@@ -4,8 +4,6 @@ import { validate } from 'validate.js'
 
 export const today = DateTime.local()
 
-export const today = DateTime.local()
-
 export const isDateTime = (obj = {}) => DateTime.isDateTime(obj)
 
 export const cleanDateObject = (obj) => {
