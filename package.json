@@ -30,6 +30,7 @@
     "js-cookie": "^2.2.0",
     "jsdoc": "^3.5.5",
     "lodash": "^4.17.11",
+    "luxon": "^1.13.1",
     "prop-types": "^15.6.0",
     "query-string": "^5.1.1",
     "react": "^15.6.2",

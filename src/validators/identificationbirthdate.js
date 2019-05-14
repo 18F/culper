@@ -1,12 +1,22 @@
-import DateControlValidator from './datecontrol'
+import { validateModel } from 'models/validate'
+import dateModel from 'models/shared/date'
+import { SELF } from 'constants/dateLimits'
+
+export const validateIdentificationBirthDate = (data = { Date: {} }) => {
+  const date = data.Date || {}
+  const { day, month, year } = date
+
+  return validateModel({
+    date: { day, month, year },
+  }, dateModel, { ...SELF }) === true
+}
 
 export default class IdentificationBirthDateValidator {
   constructor(data = {}) {
-    this.date = data.Date || {}
+    this.data = data
   }
 
   isValid() {
-    this.date.minDateEqualTo = true
-    return new DateControlValidator(this.date).isValid()
+    return validateIdentificationBirthDate(this.data)
   }
 }
