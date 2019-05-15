@@ -981,11 +981,3141 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
+                      "street": "Blockbuster address Rd.",
+                      "city": "Toronto",
+                      "country": "Canada"
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "05",
+                          "day": "05",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "5",
+                          "day": "13",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "Blockbuster Video"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Blockbuster APO Physical different",
+                          "city": "APO",
+                          "state": "AA",
+                          "zipcode": "34038",
+                          "country": "POSTOFFICE",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "2503339878",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Physical Different Physical Address for APO",
+                          "city": "Del Rey Oaks",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": []
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "PartTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Roberta Fuad"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Store Manager"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "674 Supervisor Lane",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "6542228931",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "2503433343",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Rewind clerk"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Employment APO",
+                      "city": "APO",
+                      "state": "AA",
+                      "zipcode": "34038",
+                      "country": "POSTOFFICE",
+                      "validated": true
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "04",
+                          "day": "22",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "05",
+                          "day": "01",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "Thrifty Foods"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Thrifty Physical Different",
+                          "city": "Sooke",
+                          "country": "Canada"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "6041133343",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "Thrifty APO Physical Different",
+                          "city": "APO",
+                          "state": "AA",
+                          "zipcode": "34038",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": [
+                            {
+                              "Item": {
+                                "Date": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "Has": {
+                                  "type": "branch",
+                                  "props": {
+                                    "value": "No"
+                                  }
+                                },
+                                "Reason": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                },
+                                "Text": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Reason for leaving Thrifty Foods"
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "PartTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Maria Villagomez"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Product Manager"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "350 Supervisor Rd.",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "6541334333",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "3123134333",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Cashier"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Foreign Oak Bay Lodge",
+                      "city": "Nanaimo",
+                      "country": "Canada"
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "APO for Oak Bay",
+                          "city": "APO",
+                          "state": "AA",
+                          "zipcode": "34050",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "04",
+                          "day": "11",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "04",
+                          "day": "20",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "Oak Bay Lodge"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": [
+                            {
+                              "Item": {
+                                "Date": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "Has": {
+                                  "type": "branch",
+                                  "props": {
+                                    "value": "No"
+                                  }
+                                },
+                                "Reason": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                },
+                                "Text": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Reason for leaving Oak Bay Lodge"
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "FullTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Susan Ross"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Manager"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Supervisor for OakBay Rd.",
+                          "city": "Nanaimo",
+                          "country": "Canada"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "5553124343",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "3406043317",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Innkeeper"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "APO Address",
+                      "city": "APO",
+                      "state": "aa",
+                      "zipcode": "34050",
+                      "country": "POSTOFFICE",
+                      "validated": true
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "04",
+                          "day": "01",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "04",
+                          "day": "10",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "Ramblin Rod Productions"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Foreign Address Physical Address is different",
+                          "city": "Kamloops",
+                          "country": "Canada"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "5555313333",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "Kamloops APO",
+                          "city": "APO",
+                          "state": "AA",
+                          "zipcode": "34050",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": [
+                            {
+                              "Item": {
+                                "Date": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "Has": {
+                                  "type": "branch",
+                                  "props": {
+                                    "value": "No"
+                                  }
+                                },
+                                "Reason": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                },
+                                "Text": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Reason for leaving Ramblin Rod"
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "FullTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Joan Rivers"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Chief of Production"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Kamloops Supervisor",
+                          "city": "Kamloops",
+                          "country": "Canada"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "5341242331",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "5555553124",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Production Assistant"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Employment address APO",
+                      "city": "APO",
+                      "state": "AA",
+                      "zipcode": "34050",
+                      "country": "POSTOFFICE",
+                      "validated": true
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Physical location for Physical Work address Not Different",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "01",
+                          "day": "01",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "03",
+                          "day": "31",
+                          "year": "2019",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "CompuServe"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": [
+                            {
+                              "Item": {
+                                "Date": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "Has": {
+                                  "type": "branch",
+                                  "props": {
+                                    "value": "No"
+                                  }
+                                },
+                                "Reason": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                },
+                                "Text": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Reason for leaving CompuServe"
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "FullTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Joseph Carpenter"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Senior Manager"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "CompuServe Address for Supervisor",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "3313344433",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "9083332123",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Compact Disc assessor"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Foreign Address Duty Station",
+                      "city": "Victoria",
+                      "country": "Canada"
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "APO address for foreign duty station",
+                          "city": "APO",
+                          "state": "AA",
+                          "zipcode": "34050",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "01",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "12",
+                          "day": "31",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": "DLIFLC"
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "ActiveMilitary"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": [
+                            {
+                              "Item": {
+                                "Date": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "Has": {
+                                  "type": "branch",
+                                  "props": {
+                                    "value": "No"
+                                  }
+                                },
+                                "Reason": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                },
+                                "Text": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Reason for leaving DLIFLC"
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "FullTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Mark Marcus"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "ADM"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Another supervisor address",
+                          "city": "Pacific Grove",
+                          "state": "CA",
+                          "zipcode": "93950",
+                          "country": "United States",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "1234333333",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "6042506703",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "CAP"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "APO address For Duty Station",
+                      "city": "APO",
+                      "state": "AA",
+                      "zipcode": "34038",
+                      "country": "POSTOFFICE"
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Physical location for Duty Station APO address",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "09",
+                          "day": "01",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "10",
+                          "day": "31",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": "FLENUMMETOCCEN"
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "ActiveMilitary"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": [
+                            {
+                              "Item": {
+                                "Date": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "Has": {
+                                  "type": "branch",
+                                  "props": {
+                                    "value": "No"
+                                  }
+                                },
+                                "Reason": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                },
+                                "Text": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Reason for leaving FLENUMMETOCCEN"
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "FullTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Bob Supervisor"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "CAP"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Supervisor Address",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "5561243333",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "3431313134",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "CDR"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
                       "street": "331 Canyon Del Rey Ave.",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
                       "country": "United States"
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
                     }
                   },
                   "Dates": {
@@ -1037,6 +4167,35 @@
                         "type": "branch",
                         "props": {
                           "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
                         }
                       },
                       "Address": {
@@ -1122,6 +4281,35 @@
                     "props": {
                       "layout": "",
                       "country": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
                     }
                   },
                   "ReferenceName": {
@@ -1234,6 +4422,35 @@
                           "type": "Domestic",
                           "numberType": "",
                           "number": "8314441432",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "",
+                          "country": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
                           "extension": "",
                           "noNumber": false
                         }
@@ -2001,6 +5218,11 @@
         }
       }
     }
+  },
+  "Metadata": {
+    "form_type": "SF86",
+    "form_version": "2016-11",
+    "type": "metadata"
   },
   "Military": {
     "Disciplinary": {
