@@ -1,7 +1,7 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import { nameIsEmpty } from 'validators'
+import { nameIsEmpty } from 'validators/helpers'
 import {
   ValidationElement,
   BranchCollection,

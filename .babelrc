@@ -1,9 +1,22 @@
 {
-    "presets": ["es2015", "react", "stage-2"],
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node": "current",
+                },
+            },
+        ],
+        "@babel/preset-react",
+    ],
     "plugins": [
-        ["module-resolver", {
-            "root": "./src",
-        }],
-	"transform-class-properties"
+        ["module-resolver", { "root": "./src" }],
+        "@babel/plugin-proposal-class-properties",
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        "@babel/plugin-proposal-function-sent",
+        "@babel/plugin-proposal-export-namespace-from",
+        "@babel/plugin-proposal-numeric-separator",
+        "@babel/plugin-proposal-throw-expressions"
     ]
 }

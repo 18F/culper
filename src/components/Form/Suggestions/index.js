@@ -1,3 +1,3 @@
-import Suggestions, { applyFixedModal } from './Suggestions'
+import Suggestions from './Suggestions'
+
 export default Suggestions
-export { applyFixedModal }
