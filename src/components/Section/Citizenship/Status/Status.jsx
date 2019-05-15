@@ -136,7 +136,7 @@ export class Status extends Subsection {
     } = this.props
 
     const hasValidUnitedStatesPassport = (
-      validateHasPassport(usPassport.HasPassports.value)
+      validateHasPassport((usPassport.HasPassports || {}).value)
       && validatePassport(usPassport)
     )
 
