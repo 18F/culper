@@ -43,7 +43,7 @@ mkdir -p $HOME/.cf
 
 # This wonderful image pulls the `cf` tool along with the
 # `autopilot` plugin
-docker pull governmentpaas/cf-cli
+docker pull governmentpaas/cf-cli:latest
 
 # For some reason, aliases aren't working here
 # so we're using this function instead
