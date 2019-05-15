@@ -17,6 +17,7 @@ import address from 'models/validators/address'
 import name from 'models/validators/name'
 import phone from 'models/validators/phone'
 import array from 'models/validators/array'
+import date from 'models/validators/date'
 
 import {
   isDateTime, cleanDateObject, createDateFromObject, createDateFromTimestamp,
@@ -85,6 +86,7 @@ validate.validators.address = address
 validate.validators.name = name
 validate.validators.phone = phone
 validate.validators.array = array
+validate.validators.date = date
 
 export const validateModel = (data, model, options) => {
   const errors = options

@@ -3,10 +3,8 @@ import name from '../name'
 describe('The name validator', () => {
   it('fails an invalid name', () => {
     const testData = {
-      Name: {
-        first: 'Blah',
-        middle: [],
-      },
+      first: 'Blah',
+      middle: [],
     }
 
     expect(name(testData)).toBeTruthy()
@@ -14,11 +12,9 @@ describe('The name validator', () => {
 
   it('passes a valid name', () => {
     const testData = {
-      Name: {
-        first: 'Person',
-        noMiddleName: true,
-        last: 'Lastname',
-      },
+      first: 'Person',
+      noMiddleName: true,
+      last: 'Lastname',
     }
 
     expect(name(testData)).toBeNull()

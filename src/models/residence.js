@@ -3,6 +3,17 @@ import {
   roleOptions,
 } from 'constants/enums/residenceOptions'
 
+import { today, dateWithinRange } from 'helpers/date'
+
+const residenceRequiresReference = (dates = {}) => {
+  const { from, present } = dates
+  const to = present ? today.toObject() : dates.to
+  const referenceTimeframe = { years: 3 }
+
+  return dateWithinRange(to, referenceTimeframe)
+    || dateWithinRange(from, referenceTimeframe)
+}
+
 const residence = {
   Dates: {
     presence: true,
@@ -12,37 +23,115 @@ const residence = {
     presence: true,
     address: true,
   },
-  AlternateAddress: {},
 
-  // reference required if date range is within 3 years
-  ReferenceName: {
-    // valid name
+  AlternateAddress: {
+    // TODO - currently no validation in place
+    // - figure out required/not required
+    // - valid address
   },
-  ReferenceLastContact: {
-    // valid date
-  },
-  ReferenceComments: {}, // not used?
-  ReferenceRelationship: {
-    inclusion: relationshipOptions,
-  },
-  ReferenceRelationshipOther: {
-    // required if relationship is other
-  },
-  // valid phone numbers
-  ReferencePhoneEvening: {},
-  ReferencePhoneDay: {},
-  ReferencePhoneMobile: {},
-  // valid not applicable
-  ReferenceEmailNotApplicable: {},
-  ReferenceEmail: {},
-  ReferenceAddress: {
-    // LocationValidator ADDRESS
-  },
-  ReferenceAlternateAddress: {},
+
   Role: {
+    presence: true,
     inclusion: roleOptions,
   },
-  RoleOther: {},
+  RoleOther: (value, attributes = {}) => {
+    if (attributes.Role && attributes.Role === 'Other') {
+      return { presence: true }
+    }
+
+    return {}
+  },
+
+  // Reference required if date range is within 3 years
+  ReferenceName: (value, attributes = {}) => (
+    residenceRequiresReference(attributes.Dates)
+      ? {
+        presence: true,
+        name: true,
+      }
+      : {}
+  ),
+  ReferenceLastContact: (value, attributes = {}) => (
+    residenceRequiresReference(attributes.Dates)
+      ? {
+        presence: true,
+        datetime: true,
+      } : {}
+  ),
+  ReferenceComments: {}, // not used?
+
+  ReferencePhoneEvening: (value, attributes = {}) => (
+    residenceRequiresReference(attributes.Dates)
+      ? {
+        presence: true,
+        phone: true,
+      } : {}
+  ),
+  ReferencePhoneDay: (value, attributes = {}) => (
+    residenceRequiresReference(attributes.Dates)
+      ? {
+        presence: true,
+        phone: true,
+      } : {}
+  ),
+  ReferencePhoneMobile: (value, attributes = {}) => (
+    residenceRequiresReference(attributes.Dates)
+      ? {
+        presence: true,
+        phone: true,
+      } : {}
+  ),
+
+  ReferenceRelationship: (value, attributes) => (
+    residenceRequiresReference(attributes.Dates)
+      ? {
+        presence: true,
+        length: { minimum: 1 },
+        array: {
+          validator: {
+            presence: true,
+            inclusion: relationshipOptions,
+          },
+        },
+      } : {}
+  ),
+  ReferenceRelationshipOther: (value, attributes) => {
+    if (attributes.ReferenceRelationship
+      && attributes.ReferenceRelationship.some
+      && attributes.ReferenceRelationship.some(i => i === 'Other')) {
+      return { presence: true }
+    }
+
+    return {}
+  },
+
+  ReferenceEmail: (value, attributes) => {
+    const { Dates, ReferenceEmailNotApplicable } = attributes
+    if (!residenceRequiresReference(Dates)) return {}
+
+    if (ReferenceEmailNotApplicable && !ReferenceEmailNotApplicable.applicable) {
+      return {}
+    }
+
+    return {
+      presence: true,
+      email: true,
+    }
+  },
+  ReferenceEmailNotApplicable: {},
+
+  ReferenceAddress: (value, attributes) => (
+    residenceRequiresReference(attributes.Dates)
+      ? {
+        presence: true,
+        address: true,
+      } : {}
+  ),
+  ReferenceAlternateAddress: {
+    // TODO - currently no validation in place
+    // - figure out required/not required
+    // - valid address
+  },
 }
 
 export default residence

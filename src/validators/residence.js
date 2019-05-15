@@ -36,7 +36,16 @@ const withinThreeYears = (from, to) => (
   (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
 )
 
-export const validateResidence = data => validateModel(data, residence)
+export const validateResidence = (data) => {
+  const modelData = {
+    ...data,
+    Role: data.Role ? data.Role.value : null,
+    ReferenceEmail: data.ReferenceEmail ? data.ReferenceEmail.value : null,
+    ReferenceRelationship: data.ReferenceRelationship ? data.ReferenceRelationship.values : [],
+  }
+
+  return validateModel(modelData, residence)
+}
 
 export class ResidenceValidator {
   constructor(data = {}) {
@@ -114,7 +123,7 @@ export class ResidenceValidator {
   }
 
   isValid() {
-    validateResidence(this.data)
+    // console.log(validateResidence(this.data))
 
     return (
       this.validDates()
