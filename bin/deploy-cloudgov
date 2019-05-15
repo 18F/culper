@@ -52,6 +52,7 @@ cf_run() {
 					 --rm \
 					 -v $HOME/.cf:/root/.cf \
 					 -v $PWD:/app \
+					 -w /app \
 					 governmentpaas/cf-cli \
 					 cf "$@"
 }
