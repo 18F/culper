@@ -76,14 +76,6 @@
   version = "v6.15.1"
 
 [[projects]]
-  digest = "1:582b704bebaa06b48c29b0cec224a6058a09c86883aaddabde889cd1a5f73e1b"
-  name = "github.com/google/uuid"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "0cd6bf5da1e1c83f8b45653022c74f71af0538a4"
-  version = "v1.1.1"
-
-[[projects]]
   digest = "1:c79fb010be38a59d657c48c6ba1d003a8aa651fa56b579d959d74573b7dff8e1"
   name = "github.com/gorilla/context"
   packages = ["."]
@@ -151,6 +143,14 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "00c29f56e2386353d58c599509e8dc3801b0d716"
+
+[[projects]]
+  branch = "master"
+  digest = "1:391d1b14e1ecd881577cf36712dca8b0ca1c70401fe9941b6fe20175d5d5c34b"
+  name = "github.com/nsf/jsondiff"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "dbf513526b7f2fba155b179a9730071180a69e9c"
 
 [[projects]]
   branch = "master"
@@ -282,10 +282,10 @@
     "github.com/cloudfoundry-community/go-cfenv",
     "github.com/dgrijalva/jwt-go",
     "github.com/go-pg/pg",
-    "github.com/google/uuid",
     "github.com/gorilla/mux",
     "github.com/jmoiron/sqlx",
     "github.com/lib/pq",
+    "github.com/nsf/jsondiff",
     "github.com/pkg/errors",
     "github.com/rifflock/lfshook",
     "github.com/satori/go.uuid",

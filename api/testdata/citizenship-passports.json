@@ -4,6 +4,9 @@
     "Passports": {
       "type": "collection",
       "props": {
+        "branch": {
+            "type": ""
+        },
         "items": [
           {
             "Item": {

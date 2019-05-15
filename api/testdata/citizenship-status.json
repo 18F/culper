@@ -66,6 +66,7 @@
     "PlaceIssued": {
       "type": "location",
       "props": {
+        "country": "",
         "layout": ""
       }
     },
@@ -106,6 +107,7 @@
     "CertificateCourtAddress": {
       "type": "location",
       "props": {
+        "country": "",
         "layout": ""
       }
     },
@@ -133,6 +135,7 @@
     "EntryLocation": {
       "type": "location",
       "props": {
+        "country": "",
         "layout": ""
       }
     },

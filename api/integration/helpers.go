@@ -2,6 +2,7 @@ package integration
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"math/rand"
@@ -14,6 +15,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/nsf/jsondiff"
 	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -23,6 +25,8 @@ import (
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
+
+var updateGolden = flag.Bool("update-golden", false, "update golden files")
 
 type serviceSet struct {
 	env   api.Settings
@@ -247,4 +251,46 @@ func areEqualJSON(t *testing.T, s1, s2 []byte) bool {
 	}
 
 	return reflect.DeepEqual(o1, o2)
+}
+
+func compareGoldenJSON(t *testing.T, testJSON []byte, goldenPath string) {
+	t.Helper()
+
+	if *updateGolden {
+
+		// To get the format right, we unmarshal then marshal indent whatever we are comparing
+		var parsed interface{}
+		unmarshalErr := json.Unmarshal(testJSON, &parsed)
+		if unmarshalErr != nil {
+			t.Fatal(unmarshalErr)
+		}
+		prettyJSON, marshalErr := json.MarshalIndent(parsed, "", "  ")
+		if marshalErr != nil {
+			t.Fatal(marshalErr)
+		}
+
+		writeErr := ioutil.WriteFile(goldenPath, prettyJSON, 0644)
+		if writeErr != nil {
+			t.Fatal(writeErr)
+		}
+
+		t.Log("Wrote new Golden File for ", goldenPath)
+		t.Fail()
+
+	}
+
+	expectedJSON, readErr := ioutil.ReadFile(goldenPath)
+	if readErr != nil {
+		t.Fatal(readErr)
+	}
+
+	opts := jsondiff.DefaultConsoleOptions()
+	diff, output := jsondiff.Compare(expectedJSON, testJSON, &opts)
+	if diff != jsondiff.FullMatch {
+		fmt.Println("Not Equal", output)
+		fmt.Println("Raw", string(testJSON))
+		t.Log(fmt.Sprintf("Didn't get the same thing back in %s", goldenPath))
+		t.Fail()
+	}
+
 }
