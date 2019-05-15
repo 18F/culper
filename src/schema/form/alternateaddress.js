@@ -1,16 +1,13 @@
 import { general } from './general'
 
 const defaultState = (options = {}) => ({
-  Address: {
-    country: null
-  },
+  Address: {},
   HasDifferentAddress: { value: '' },
   Telephone: {},
-  ...options
+  ...options,
 })
 
-const alternateaddress = (data = {}) =>
-  general('alternateaddress', defaultState(data))
+const alternateaddress = (data = {}) => general('alternateaddress', defaultState(data))
 
 export { alternateaddress }
 export default defaultState
