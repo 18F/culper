@@ -27,8 +27,9 @@ Tools:
 |  7777777777777777777777777777777777777709 | <pre>/STREET_ADDRESS                          /</pre> |
 
 7. Export each OmniGraffle file to PDF as `[file name]-1.pdf` this will help to keep track of each of the following steps.
-8. Use `qpdf --qdf [file name]-1.pdf [file name]-2.pdf` on each PDF to get a text editable file.
-9. OmniGraffle will embed a subset of the TrueType font instead of relying on the default PDF fonts. Replace those with equivalent Type1 directives for `Helvetica`, `Helvetica-Bold`, `Helvetica-Oblique`, and `Courier`, adjusting the object IDs in the below example to match your existing document:
+8. Use `qpdf --qdf [file name]-1.pdf [file name]-2.pdf` to get a text editable file.
+9. Open the newly created `[file name]-2.pdf` in a text editor.
+10. OmniGraffle will embed a subset of the TrueType font instead of relying on the default PDF fonts. Replace those with equivalent Type1 directives for `Helvetica`, `Helvetica-Bold`, `Helvetica-Oblique`, and `Courier`, adjusting the object IDs in the below example to match your existing document:
 ```
 %% Original object ID: 17 0
 17 0 obj
@@ -70,9 +71,9 @@ endobj
 >>
 endobj
 ```
-10. Replace number strings field placeholders with more self-describing equivalent (e.g., `SSN`, `FIRST_MIDDLE_LAST`, `DOB`, etc.). Use the table above for reference of which number strings correspond to which self-describing strings. Copy and paste the self-descibing strings between the first and last `/` which includes spaces, this preserves the object and xref byte offsets in the PDF, so we don't have to parse and re-calculate these values at run-time (i.e., field placeholder character length plus trailing space characters should match original character length of number string in OmniGraffle). See `pdf.go` for current list of supported field names and existing template PDFs for how padding works.
-11. Run `fix-qdf <[file name]-2.pdf> [new file name]-3.pdf` on each file to renumber the internal PDF objects.
-12. Run `qpdf --qdf [file name]-3.pdf [new file name]-4.pdf` on each file again to remove dangling PDF object references (e.g., the embedded fonts that are no longer used).
-13. Validate templates with the [3-Heights PDF validator](https://www.pdf-online.com/osa/validate.aspx) or similar.
-14. Remove the `-4 ` from the last file generated.
-15. When complete, archive the `.graffle` in `api/pdf/graffle` and place the new template `.pdf` in `api/pdf/templates` respectively. Note: if the OmniGraffle file contains an image it will be in the macOS package format (e.g., directory), otherwise it will be a single file.
+11. Replace number strings field placeholders with their self-describing equivalent (e.g., `SSN`, `FIRST_MIDDLE_LAST`, `DOB`, etc.). Use the table above for reference of which number strings correspond to which self-describing strings. Copy and paste the self-descibing strings between the first and last `/` which includes spaces, this preserves the object and xref byte offsets in the PDF, so we don't have to parse and re-calculate these values at run-time (i.e., field placeholder character length plus trailing space characters should match original character length of number string in OmniGraffle). See `pdf.go` for current list of supported field names and existing template PDFs for how padding works.
+12. Run `fix-qdf <[file name]-2.pdf> [new file name]-3.pdf` to renumber the internal PDF objects.
+13. Run `qpdf --qdf [file name]-3.pdf [new file name]-4.pdf` again to remove dangling PDF object references (e.g., the embedded fonts that are no longer used).
+14. Validate templates with the [3-Heights PDF validator](https://www.pdf-online.com/osa/validate.aspx) or similar.
+15. Remove the `-4 ` from the last file generated.
+16. When complete, archive the `.graffle` in `api/pdf/graffle` and place the new template `.pdf` in `api/pdf/templates` respectively. Note: if the OmniGraffle file contains an image it will be in the macOS package format (e.g., directory), otherwise it will be a single file.
