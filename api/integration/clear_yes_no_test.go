@@ -2,6 +2,7 @@ package integration
 
 import (
 	"fmt"
+	"path"
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -324,4 +325,96 @@ func TestClearHistoryFederal(t *testing.T) {
 		t.Fail()
 	}
 
+}
+
+type sectionNoTest struct {
+	path string
+	name string
+	test func(t *testing.T, section api.Section)
+}
+
+func TestClearRelationshipNos(t *testing.T) {
+	services := cleanTestServices(t)
+
+	tests := []sectionNoTest{
+		{"../testdata/relationships/relationships-status-marital-not-separated.json", "relationships.status.marital", func(t *testing.T, section api.Section) {
+			marital := section.(*api.RelationshipsMarital)
+
+			if marital.CivilUnion.Separated.Value != "" {
+				t.Log("Is Separated was not reset")
+				t.Fail()
+			}
+
+			// This is a dumb way to call it
+			if marital.CivilUnion.Divorced.Value != "" {
+				t.Log("Has additional divorces was not reset")
+				t.Fail()
+			}
+
+			if marital.DivorcedList.Branch.Value != "" {
+				t.Log("Has Divorce was not reset")
+				t.Fail()
+			}
+
+		}},
+		{"../testdata/relationships/relationships-status-marital-annulled.json", "relationships.status.marital", func(t *testing.T, section api.Section) {
+			marital := section.(*api.RelationshipsMarital)
+
+			fmt.Println(marital.CivilUnion.Separated.Value)
+
+			if marital.DivorcedList.Branch.Value != "" {
+				t.Log("Has Divorce was not reset")
+				t.Fail()
+			}
+
+			for _, divorcedItem := range marital.DivorcedList.Items {
+
+				deceased, itemErr := divorcedItem.GetItemValue("Deceased")
+				if itemErr != nil {
+					t.Log("Got an error trying to figure out if they are dead", itemErr)
+					t.Fail()
+				}
+				deceasedRadio := deceased.(*api.Radio)
+
+				if deceasedRadio.Value != "" {
+					t.Log("Didn't clear the deceased bit")
+					t.Fail()
+				}
+
+			}
+
+		}},
+	}
+
+	for _, clearTest := range tests {
+
+		t.Run(path.Base(clearTest.path), func(t *testing.T) {
+
+			account := createTestAccount(t, services.db)
+
+			sectionJSON := readTestData(t, clearTest.path)
+
+			resp := saveJSON(services, sectionJSON, account.ID)
+			if resp.StatusCode != 200 {
+				t.Fatal("Failed to save HistEducationDegrees", resp.StatusCode)
+			}
+
+			rejector := admin.NewRejector(services.db, services.store, nil)
+			err := rejector.Reject(account)
+			if err != nil {
+				t.Fatal("Failed to reject account: ", err)
+			}
+
+			resetApp := getApplication(t, services, account)
+
+			section := resetApp.Section(clearTest.name)
+			if section == nil {
+				t.Fatal(fmt.Sprintf("No %s  section in the app", clearTest.name))
+			}
+
+			clearTest.test(t, section)
+
+		})
+
+	}
 }

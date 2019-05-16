@@ -1,0 +1,286 @@
+{
+    "props": {
+        "CivilUnion": {
+            "props": {
+                "Address": {
+                    "props": {},
+                    "type": "location"
+                },
+                "AddressSeparated": {
+                    "props": {},
+                    "type": "location"
+                },
+                "AddressSeparatedNotApplicable": {
+                    "props": {},
+                    "type": "notapplicable"
+                },
+                "AlternateAddress": {
+                    "props": {
+                        "Address": {
+                            "props": {},
+                            "type": "location"
+                        },
+                        "HasDifferentAddress": {
+                            "props": {},
+                            "type": "branch"
+                        },
+                        "Telephone": {
+                            "props": {},
+                            "type": "telephone"
+                        }
+                    },
+                    "type": "physicaladdress"
+                },
+                "BirthPlace": {
+                    "props": {},
+                    "type": "location"
+                },
+                "Birthdate": {
+                    "props": {},
+                    "type": "datecontrol"
+                },
+                "Citizenship": {
+                    "props": {},
+                    "type": "country"
+                },
+                "DateSeparated": {
+                    "props": {},
+                    "type": "datecontrol"
+                },
+                "Divorced": {
+                    "props": {},
+                    "type": "branch"
+                },
+                "Email": {
+                    "props": {},
+                    "type": "email"
+                },
+                "EmailNotApplicable": {
+                    "props": {},
+                    "type": "notapplicable"
+                },
+                "EnteredCivilUnion": {
+                    "props": {},
+                    "type": "datecontrol"
+                },
+                "ForeignBornDocument": {
+                    "props": {
+                        "DocumentExpiration": {
+                            "props": {},
+                            "type": "datecontrol"
+                        },
+                        "DocumentExpirationNotApplicable": {
+                            "props": {},
+                            "type": "notapplicable"
+                        },
+                        "DocumentNumber": {
+                            "props": {},
+                            "type": "text"
+                        },
+                        "DocumentType": {
+                            "props": {},
+                            "type": "radio"
+                        },
+                        "OtherExplanation": {
+                            "props": {},
+                            "type": "textarea"
+                        }
+                    },
+                    "type": "foreignborndocument"
+                },
+                "Location": {
+                    "props": {},
+                    "type": "location"
+                },
+                "Name": {
+                    "props": {},
+                    "type": "name"
+                },
+                "OtherNames": {
+                    "props": {
+                        "branch": null,
+                        "items": []
+                    },
+                    "type": "collection"
+                },
+                "SSN": {
+                    "props": {},
+                    "type": "ssn"
+                },
+                "Separated": {
+                    "props": {},
+                    "type": "branch"
+                },
+                "Telephone": {
+                    "props": {},
+                    "type": "telephone"
+                },
+                "UseCurrentAddress": {
+                    "props": {},
+                    "type": "notapplicable"
+                }
+            },
+            "type": "civilunion"
+        },
+        "DivorcedList": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "items": [
+                    {
+                        "Item": {
+                            "Address": {
+                                "props": {
+                                    "city": "Pensacola",
+                                    "country": "United States",
+                                    "layout": "Birthplace without County",
+                                    "state": "FL",
+                                    "uid": "address-36891807-af74-e65f-bebd-edfcdd02420c",
+                                    "validated": false
+                                },
+                                "type": "location"
+                            },
+                            "BirthPlace": {
+                                "props": {
+                                    "city": "San Francisco",
+                                    "country": "United States",
+                                    "layout": "Birthplace without County",
+                                    "state": "CA",
+                                    "uid": "birthplace-472e72ac-fa3e-7e75-2647-9129faaeb913",
+                                    "validated": false
+                                },
+                                "type": "location"
+                            },
+                            "Birthdate": {
+                                "props": {
+                                    "day": "2",
+                                    "estimated": false,
+                                    "month": "2",
+                                    "name": "birthdate",
+                                    "touched": true,
+                                    "year": "1922"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "Citizenship": {
+                                "props": {
+                                    "name": "Citizenship",
+                                    "showComments": false,
+                                    "value": [
+                                        "United States",
+                                        "Norway"
+                                    ]
+                                },
+                                "type": "country"
+                            },
+                            "DateDivorced": {
+                                "props": {
+                                    "day": "4",
+                                    "estimated": false,
+                                    "month": "4",
+                                    "name": "DateDivorced",
+                                    "touched": true,
+                                    "year": "1991"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "Deceased": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "deceased-56f83616-8748-b8e3-f45c-a2138813d366-deceased",
+                                    "value": "No"
+                                },
+                                "type": "radio"
+                            },
+                            "DeceasedAddress": {
+                                "props": {
+                                    "country": "United States",
+                                    "layout": "Address",
+                                    "street": "",
+                                    "uid": "location-395ac23e-faed-378a-108b-3a70fbcae6bf",
+                                    "validated": false
+                                },
+                                "type": "location"
+                            },
+                            "DeceasedAddressNotApplicable": {
+                                "props": {},
+                                "type": "notapplicable"
+                            },
+                            "DivorceLocation": {
+                                "props": {
+                                    "city": "Nashville",
+                                    "country": "United States",
+                                    "layout": "US City, State, Zipcode International city",
+                                    "state": "TN",
+                                    "uid": "location-786ce74b-56fd-6b08-2d5e-fd8b30bf36be",
+                                    "validated": false,
+                                    "zipcode": "37205"
+                                },
+                                "type": "location"
+                            },
+                            "Name": {
+                                "props": {
+                                    "first": "Odin",
+                                    "firstInitialOnly": false,
+                                    "hideMiddleName": false,
+                                    "last": "Thorn",
+                                    "middle": "S",
+                                    "middleInitialOnly": true,
+                                    "noMiddleName": false,
+                                    "suffix": "",
+                                    "suffixOther": ""
+                                },
+                                "type": "name"
+                            },
+                            "Recognized": {
+                                "props": {
+                                    "day": "4",
+                                    "estimated": false,
+                                    "month": "4",
+                                    "name": "Recognized",
+                                    "touched": true,
+                                    "year": "1989"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "Status": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "status-31edb7c1-c889-fb3b-da39-1b46e7a97af7-status",
+                                    "value": "Annulled"
+                                },
+                                "type": "radio"
+                            },
+                            "Telephone": {
+                                "props": {
+                                    "extension": "",
+                                    "name": "Telephone",
+                                    "noNumber": false,
+                                    "number": "3323232323",
+                                    "numberType": "",
+                                    "timeOfDay": "Both",
+                                    "type": "Domestic"
+                                },
+                                "type": "telephone"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        },
+        "Status": {
+            "props": {
+                "checked": false,
+                "name": "status-999713cf-e322-5dab-2049-cdc5b19649d4-status",
+                "value": "Annulled"
+            },
+            "type": "radio"
+        }
+    },
+    "type": "relationships.status.marital"
+}

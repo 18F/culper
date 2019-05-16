@@ -1,6 +1,10 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/pkg/errors"
+)
 
 // RelationshipsMarital represents the payload for the relationships marital section.
 type RelationshipsMarital struct {
@@ -221,6 +225,44 @@ func (entity *RelationshipsMarital) Find(context DatabaseService) error {
 		entity.DivorcedListID = previous.DivorcedListID
 	})
 	return nil
+}
+
+// ClearNos clears any questions answered nos on a kickback
+func (entity *RelationshipsMarital) ClearNos() error {
+
+	if entity.CivilUnion != nil && entity.CivilUnion.Separated != nil && entity.CivilUnion.Separated.Value == "No" {
+		entity.CivilUnion.Separated.Value = ""
+	}
+
+	if entity.CivilUnion != nil && entity.CivilUnion.Divorced != nil && entity.CivilUnion.Divorced.Value == "No" {
+		entity.CivilUnion.Divorced.Value = ""
+	}
+
+	if entity.DivorcedList != nil && entity.DivorcedList.Branch != nil && entity.DivorcedList.Branch.Value == "No" {
+		entity.DivorcedList.Branch.Value = ""
+	}
+
+	for _, divorcedItem := range entity.DivorcedList.Items {
+
+		deceased, itemErr := divorcedItem.GetItemValue("Deceased")
+		if itemErr != nil {
+			return errors.Wrap(itemErr, "Failed to pull deceased from a divorcee")
+		}
+		deceasedRadio := deceased.(*Radio)
+
+		if deceasedRadio.Value == "No" {
+			deceasedRadio.Value = ""
+		}
+
+		setErr := divorcedItem.SetItemValue("Deceased", deceasedRadio)
+		if setErr != nil {
+			return errors.Wrap(setErr, "Failed to set deceased for a divorcee")
+		}
+
+	}
+
+	return nil
+
 }
 
 // RelationshipsCohabitants represents the payload for the relationships cohabitants section.
