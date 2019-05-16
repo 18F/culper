@@ -20,7 +20,6 @@ func TestClearEmptyAccount(t *testing.T) {
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
 	}
-
 }
 
 type sectionNoTest struct {
@@ -32,7 +31,11 @@ type sectionNoTest struct {
 func TestClearRelationshipNos(t *testing.T) {
 	services := cleanTestServices(t)
 
-	tests := []sectionNoTest{
+	tests := []struct {
+		path string
+		name string
+		test func(t *testing.T, section api.Section)
+	}{
 		// --- Identification ---
 		{"../testdata/identification/identification-othernames-no.json", "identification.othernames", func(t *testing.T, section api.Section) {
 			otherNames := section.(*api.IdentificationOtherNames)
@@ -234,9 +237,111 @@ func TestClearRelationshipNos(t *testing.T) {
 					t.Fail()
 				}
 			}
-
 			if relatives.List.Branch.Value != "" {
 				t.Log("Should have cleared the relatives list")
+				t.Fail()
+			}
+		}},
+		// --- Citizenship ---
+		{"../testdata/citizenship/citizenship-status-alien.json", "citizenship.status", func(t *testing.T, section api.Section) {
+			status := section.(*api.CitizenshipStatus)
+
+			if status.CitizenshipStatus.Value != "" {
+				t.Log("Should have cleared the citizenship status")
+				t.Fail()
+			}
+			if status.HasAlienRegistration.Value != "" {
+				t.Log("Should have cleared the alien reg")
+				t.Fail()
+			}
+		}},
+		{"../testdata/citizenship/citizenship-no-multiple.json", "citizenship.multiple", func(t *testing.T, section api.Section) {
+			multiple := section.(*api.CitizenshipMultiple)
+
+			if multiple.HasMultiple.Value != "" {
+				t.Log("Should have cleared the citizenship status")
+				t.Fail()
+			}
+		}},
+		{"../testdata/citizenship/citizenship-multiple-renounced.json", "citizenship.multiple", func(t *testing.T, section api.Section) {
+			multiple := section.(*api.CitizenshipMultiple)
+
+			if multiple.HasMultiple.Value != "Yes" {
+				t.Log("Should not have cleared the initial multiple")
+				t.Fail()
+			}
+			if multiple.List.Branch.Value != "" {
+				t.Log("Should have cleared final multiple")
+				t.Fail()
+			}
+			for _, foreignItem := range multiple.List.Items {
+
+				renounced, itemErr := foreignItem.GetItemValue("Renounced")
+				if itemErr != nil {
+					t.Log("Got an error trying to figure out if they renounced", itemErr)
+					t.Fail()
+				}
+				renouncedBranch := renounced.(*api.Branch)
+
+				if renouncedBranch.Value != "" {
+					t.Log("Should have cleared the renounced bit")
+					t.Fail()
+				}
+			}
+		}},
+		{"../testdata/citizenship/citizenship-passports-no.json", "citizenship.passports", func(t *testing.T, section api.Section) {
+			passports := section.(*api.CitizenshipPassports)
+
+			// for none, there is a single empty passport
+			has, itemErr := passports.Passports.Items[0].GetItemValue("Has")
+			if itemErr != nil {
+				t.Log("Error on getting item", itemErr)
+				t.Fail()
+			}
+			hasBranch := has.(*api.Branch)
+
+			if hasBranch.Value != "" {
+				t.Log("Should have cleared the passport list")
+				t.Fail()
+			}
+		}},
+		{"../testdata/citizenship/citizenship-passports-two.json", "citizenship.passports", func(t *testing.T, section api.Section) {
+			passports := section.(*api.CitizenshipPassports)
+
+			// For a list, it's the last one that will be no
+			firstHas, itemErr := passports.Passports.Items[0].GetItemValue("Has")
+			if itemErr != nil {
+				t.Log("Error on getting item", itemErr)
+				t.Fail()
+			}
+			firstHasBranch := firstHas.(*api.Branch)
+
+			if firstHasBranch.Value != "Yes" {
+				t.Log("Should not have cleared the first passport has")
+				t.Fail()
+			}
+
+			used, itemErr := passports.Passports.Items[0].GetItemValue("Used")
+			if itemErr != nil {
+				t.Log("Error on getting item", itemErr)
+				t.Fail()
+			}
+			usedBranch := used.(*api.Branch)
+
+			if usedBranch.Value != "" {
+				t.Log("Should have cleared the used field")
+				t.Fail()
+			}
+
+			lastHas, itemErr := passports.Passports.Items[2].GetItemValue("Has")
+			if itemErr != nil {
+				t.Log("Error on getting item", itemErr)
+				t.Fail()
+			}
+			lastHasBranch := lastHas.(*api.Branch)
+
+			if lastHasBranch.Value != "" {
+				t.Log("Should have cleared the last passport has")
 				t.Fail()
 			}
 		}},
@@ -252,7 +357,7 @@ func TestClearRelationshipNos(t *testing.T) {
 
 			resp := saveJSON(services, sectionJSON, account.ID)
 			if resp.StatusCode != 200 {
-				t.Fatal("Failed to save HistEducationDegrees", resp.StatusCode)
+				t.Fatal("Failed to save JSON", resp.StatusCode)
 			}
 
 			rejector := admin.NewRejector(services.db, services.store, nil)

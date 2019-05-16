@@ -2,6 +2,8 @@ package api
 
 import (
 	"encoding/json"
+
+	"github.com/pkg/errors"
 )
 
 // CitizenshipStatus represents the payload for the citizenship status section.
@@ -1050,6 +1052,19 @@ func (entity *CitizenshipStatus) Find(context DatabaseService) error {
 	return nil
 }
 
+// ClearNos clears any questions answered nos on a kickback
+func (entity *CitizenshipStatus) ClearNos() error {
+
+	if entity.CitizenshipStatus != nil {
+		entity.CitizenshipStatus.Value = ""
+	}
+
+	if entity.HasAlienRegistration != nil && entity.HasAlienRegistration.Value == "No" {
+		entity.HasAlienRegistration.Value = ""
+	}
+	return nil
+}
+
 // CitizenshipMultiple represents the payload for the citizenship multiple section.
 type CitizenshipMultiple struct {
 	PayloadHasMultiple Payload `json:"HasMultiple" sql:"-"`
@@ -1222,6 +1237,40 @@ func (entity *CitizenshipMultiple) Find(context DatabaseService) error {
 	return nil
 }
 
+// ClearNos clears any questions answered nos on a kickback
+func (entity *CitizenshipMultiple) ClearNos() error {
+
+	if entity.HasMultiple != nil && entity.HasMultiple.Value == "No" {
+		entity.HasMultiple.Value = ""
+	}
+
+	if entity.List != nil && entity.List.Branch != nil && entity.List.Branch.Value == "No" {
+		entity.List.Branch.Value = ""
+	}
+
+	if entity.List != nil {
+		for _, foreignItem := range entity.List.Items {
+
+			renounced, itemErr := foreignItem.GetItemValue("Renounced")
+			if itemErr != nil {
+				return errors.Wrap(itemErr, "Failed to pull renounced from a foriegn cit")
+			}
+			renouncedBranch := renounced.(*Branch)
+
+			if renouncedBranch.Value == "No" {
+				renouncedBranch.Value = ""
+			}
+
+			setErr := foreignItem.SetItemValue("Renounced", renouncedBranch)
+			if setErr != nil {
+				return errors.Wrap(setErr, "Failed to set renounced for a foreign cit")
+			}
+		}
+	}
+
+	return nil
+}
+
 // CitizenshipPassports represents the payload for the citizenship passports section.
 type CitizenshipPassports struct {
 	PayloadPassports Payload `json:"Passports" sql:"-"`
@@ -1342,5 +1391,50 @@ func (entity *CitizenshipPassports) Find(context DatabaseService) error {
 		entity.PassportsID = previous.PassportsID
 		entity.Passports.ID = previous.PassportsID
 	})
+	return nil
+}
+
+// ClearNos clears any questions answered nos on a kickback
+func (entity *CitizenshipPassports) ClearNos() error {
+
+	// This should be how this works, but it isn't right now.
+	// if entity.Passports != nil && entity.Passports.Branch != nil && entity.List.Branch.Value == "No" {
+	// 	entity.List.Branch.Value = ""
+	// }
+
+	if entity.Passports != nil {
+		for _, passportItem := range entity.Passports.Items {
+
+			has, itemErr := passportItem.GetItemValue("Has")
+			if itemErr != nil {
+				return errors.Wrap(itemErr, "Failed to pull has from a foriegn passport")
+			}
+			hasBranch := has.(*Branch)
+
+			if hasBranch.Value == "No" {
+				hasBranch.Value = ""
+				setErr := passportItem.SetItemValue("Has", hasBranch)
+				if setErr != nil {
+					return errors.Wrap(setErr, "Failed to set has for a foreign passport")
+				}
+			}
+
+			used, usedErr := passportItem.GetItemValue("Used")
+			if usedErr != nil {
+				return errors.Wrap(usedErr, "Failed to pull used from a foriegn passport")
+			}
+			usedBranch := used.(*Branch)
+
+			if usedBranch.Value == "No" {
+				usedBranch.Value = ""
+				setErr := passportItem.SetItemValue("Used", usedBranch)
+				if setErr != nil {
+					return errors.Wrap(setErr, "Failed to set used for a foreign passport")
+				}
+			}
+
+		}
+	}
+
 	return nil
 }

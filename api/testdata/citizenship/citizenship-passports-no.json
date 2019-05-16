@@ -1,0 +1,59 @@
+{
+    "props": {
+        "Passports": {
+            "props": {
+                "branch": null,
+                "items": [
+                    {
+                        "Item": {
+                            "Countries": {
+                                "props": {
+                                    "branch": null,
+                                    "items": []
+                                },
+                                "type": "collection"
+                            },
+                            "Country": {
+                                "props": {},
+                                "type": "country"
+                            },
+                            "Expiration": {
+                                "props": {},
+                                "type": "datecontrol"
+                            },
+                            "Has": {
+                                "props": {
+                                    "name": "branchcollection",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "Issued": {
+                                "props": {},
+                                "type": "datecontrol"
+                            },
+                            "Location": {
+                                "props": {},
+                                "type": "location"
+                            },
+                            "Name": {
+                                "props": {},
+                                "type": "name"
+                            },
+                            "Number": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "Used": {
+                                "props": {},
+                                "type": "branch"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        }
+    },
+    "type": "citizenship.passports"
+}

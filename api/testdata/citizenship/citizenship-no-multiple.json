@@ -1,0 +1,23 @@
+{
+  "type": "citizenship.multiple",
+  "props": {
+    "HasMultiple": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": []
+      }
+    }
+  }
+}
