@@ -6,6 +6,7 @@ import array from 'models/validators/array'
 import branchCollection from 'models/validators/branchCollection'
 import customModel from 'models/validators/customModel'
 import date from 'models/validators/date'
+import location from 'models/validators/location'
 import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
 
@@ -63,6 +64,7 @@ validate.validators.array = array
 validate.validators.branchCollection = branchCollection
 validate.validators.model = customModel
 validate.validators.date = date
+validate.validators.location = location
 validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
 

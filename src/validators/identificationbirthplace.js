@@ -1,16 +1,14 @@
 import { validateModel } from 'models/validate'
 import birthplace from 'models/shared/locations/birthplace'
 
-// Temporary while country values are inconsistent
-import { countryString } from 'validators/location'
-
 export const validateIdentificationBirthPlace = (data) => {
-  const { Location } = data
+  const applicantBirthPlaceModel = {
+    Location: {
+      model: { validator: birthplace },
+    },
+  }
 
-  return validateModel({
-    ...Location,
-    country: countryString(Location && Location.country),
-  }, birthplace) === true
+  return validateModel(data, applicantBirthPlaceModel) === true
 }
 
 export default class IdentificationBirthPlaceValidator {
