@@ -299,10 +299,6 @@ func (entity *MilitarySelective) Find(context DatabaseService) error {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *MilitarySelective) ClearNos() error {
 
-	if entity.WasBornAfter != nil && entity.WasBornAfter.Value == "No" {
-		entity.WasBornAfter.Value = ""
-	}
-
 	if entity.HasRegistered != nil && entity.HasRegistered.Value == "No" {
 		entity.HasRegistered.Value = ""
 	}

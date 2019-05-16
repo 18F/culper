@@ -2,7 +2,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -30,9 +29,6 @@ func TestMuxContextParsing(t *testing.T) {
 		vars := mux.Vars(r)
 		urlData := vars["name"]
 		contextualData := r.Context().Value(testKey).(string)
-
-		fmt.Println("URL: ", urlData)
-		fmt.Println("CONTEXT: ", contextualData)
 
 		if urlData != urlName {
 			t.Fatal("We didn't get the url data into the handler", urlData)

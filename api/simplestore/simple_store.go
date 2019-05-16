@@ -103,7 +103,6 @@ func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 
 	app, loadErr := runLoadApplication(tx, s.serializer, accountID)
 	if loadErr != nil {
-		s.logger.WarnError("Unable to load the application before saving", loadErr, api.LogFields{"accountID": accountID})
 		return loadErr
 	}
 

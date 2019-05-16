@@ -28,7 +28,7 @@ type sectionNoTest struct {
 	test func(t *testing.T, section api.Section)
 }
 
-func TestClearRelationshipNos(t *testing.T) {
+func TestClearSectionNos(t *testing.T) {
 	services := cleanTestServices(t)
 
 	tests := []struct {
@@ -36,7 +36,11 @@ func TestClearRelationshipNos(t *testing.T) {
 		name string
 		test func(t *testing.T, section api.Section)
 	}{
+
+		// ---
 		// --- Identification ---
+		// ---
+
 		{"../testdata/identification/identification-othernames-no.json", "identification.othernames", func(t *testing.T, section api.Section) {
 			otherNames := section.(*api.IdentificationOtherNames)
 
@@ -64,7 +68,11 @@ func TestClearRelationshipNos(t *testing.T) {
 				t.Fatal("List branch did not remain unset")
 			}
 		}},
+
+		// ---
 		// --- History ---
+		// ---
+
 		{"../testdata/history/history-residence.json", "history.residence", func(t *testing.T, section api.Section) {
 			residences := section.(*api.HistoryResidence)
 
@@ -143,7 +151,11 @@ func TestClearRelationshipNos(t *testing.T) {
 				t.Fail()
 			}
 		}},
+
+		// ---
 		// --- Relationships ---
+		// ---
+
 		{"../testdata/relationships/relationships-status-marital-not-separated.json", "relationships.status.marital", func(t *testing.T, section api.Section) {
 			marital := section.(*api.RelationshipsMarital)
 
@@ -232,7 +244,11 @@ func TestClearRelationshipNos(t *testing.T) {
 				t.Fail()
 			}
 		}},
+
+		// ---
 		// --- Citizenship ---
+		// ---
+
 		{"../testdata/citizenship/citizenship-status-alien.json", "citizenship.status", func(t *testing.T, section api.Section) {
 			status := section.(*api.CitizenshipStatus)
 
@@ -307,7 +323,11 @@ func TestClearRelationshipNos(t *testing.T) {
 				t.Fail()
 			}
 		}},
+
+		// ---
 		// --- Military History ---
+		// ---
+
 		{"../testdata/military/military-selective.json", "military.selective", func(t *testing.T, section api.Section) {
 			selective := section.(*api.MilitarySelective)
 
@@ -323,7 +343,7 @@ func TestClearRelationshipNos(t *testing.T) {
 		{"../testdata/military/military-selective-no.json", "military.selective", func(t *testing.T, section api.Section) {
 			selective := section.(*api.MilitarySelective)
 
-			if selective.WasBornAfter.Value != "" {
+			if selective.WasBornAfter.Value != "No" {
 				t.Log("Should not have cleared born after")
 				t.Fail()
 			}
