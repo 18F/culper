@@ -1,0 +1,22 @@
+{
+  "type": "military.disciplinary",
+  "props": {
+    "HasDisciplinary": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+          }
+        },
+        "items": []
+      }
+    }
+  }
+}

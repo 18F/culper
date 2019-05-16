@@ -1,0 +1,217 @@
+{
+    "props": {
+        "List": {
+            "props": {
+                "branch": null,
+                "items": [
+                    {
+                        "Item": {
+                            "Circumstances": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "Country": {
+                                "props": {},
+                                "type": "country"
+                            },
+                            "Dates": {
+                                "props": {
+                                    "from": {
+                                        "props": {},
+                                        "type": "datecontrol"
+                                    },
+                                    "to": {
+                                        "props": {},
+                                        "type": "datecontrol"
+                                    }
+                                },
+                                "type": "daterange"
+                            },
+                            "Division": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "Has": {
+                                "props": {
+                                    "name": "has_foreign",
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "List": {
+                                "props": {
+                                    "branch": null,
+                                    "items": []
+                                },
+                                "type": "collection"
+                            },
+                            "MaintainsContact": {
+                                "props": {
+                                    "value": "No"},
+                                "type": "branch"
+                            },
+                            "Name": {
+                                "props": {
+                                    "name": "Name",
+                                    "value": "The Blue Devils"
+                                },
+                                "type": "text"
+                            },
+                            "Organization": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "organization-military",
+                                    "value": "Military"
+                                },
+                                "type": "radio"
+                            },
+                            "Rank": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "ReasonLeft": {
+                                "props": {},
+                                "type": "textarea"
+                            }
+                        }
+                    },
+                    {
+                        "Item": {
+                            "Circumstances": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "Country": {
+                                "props": {},
+                                "type": "country"
+                            },
+                            "Dates": {
+                                "props": {
+                                    "from": {
+                                        "props": {},
+                                        "type": "datecontrol"
+                                    },
+                                    "to": {
+                                        "props": {},
+                                        "type": "datecontrol"
+                                    }
+                                },
+                                "type": "daterange"
+                            },
+                            "Division": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "Has": {
+                                "props": {
+                                    "name": "has_foreign",
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "List": {
+                                "props": {
+                                    "branch": null,
+                                    "items": []
+                                },
+                                "type": "collection"
+                            },
+                            "MaintainsContact": {
+                                "props": {},
+                                "type": "branch"
+                            },
+                            "Name": {
+                                "props": {
+                                    "name": "Name",
+                                    "value": "The KGB"
+                                },
+                                "type": "text"
+                            },
+                            "Organization": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "organization-intelligence",
+                                    "value": "Intelligence"
+                                },
+                                "type": "radio"
+                            },
+                            "Rank": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "ReasonLeft": {
+                                "props": {},
+                                "type": "textarea"
+                            }
+                        }
+                    },
+                    {
+                        "Item": {
+                            "Circumstances": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "Country": {
+                                "props": {},
+                                "type": "country"
+                            },
+                            "Dates": {
+                                "props": {
+                                    "from": {
+                                        "props": {},
+                                        "type": "datecontrol"
+                                    },
+                                    "to": {
+                                        "props": {},
+                                        "type": "datecontrol"
+                                    }
+                                },
+                                "type": "daterange"
+                            },
+                            "Division": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "Has": {
+                                "props": {
+                                    "name": "has_foreign",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "List": {
+                                "props": {
+                                    "branch": null,
+                                    "items": []
+                                },
+                                "type": "collection"
+                            },
+                            "MaintainsContact": {
+                                "props": {},
+                                "type": "branch"
+                            },
+                            "Name": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "Organization": {
+                                "props": {},
+                                "type": "radio"
+                            },
+                            "Rank": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "ReasonLeft": {
+                                "props": {},
+                                "type": "textarea"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        }
+    },
+    "type": "military.foreign"
+}

@@ -99,14 +99,9 @@ func TestClearRelationshipNos(t *testing.T) {
 			if repErr != nil {
 				t.Fatal("couldn't get the reprimand", repErr)
 			}
-
 			reprimands := reprimandEnt.(*api.Collection)
-			hasReprimandEnt, hasRepErr := reprimands.Items[0].GetItemValue("Has")
-			if hasRepErr != nil {
-				t.Fatal("couldn't get has rep", hasRepErr)
-			}
 
-			hasReprimand := hasReprimandEnt.(*api.Branch)
+			hasReprimand := getBranchItemValue(t, reprimands.Items[0], "Has")
 			if hasReprimand.Value != "" {
 				t.Log("has reprimand has not been reset")
 				t.Fail()
@@ -225,12 +220,7 @@ func TestClearRelationshipNos(t *testing.T) {
 
 			for _, personItem := range relatives.List.Items {
 
-				deceased, itemErr := personItem.GetItemValue("IsDeceased")
-				if itemErr != nil {
-					t.Log("Got an error trying to figure out if they are dead", itemErr)
-					t.Fail()
-				}
-				deceasedBranch := deceased.(*api.Branch)
+				deceasedBranch := getBranchItemValue(t, personItem, "IsDeceased")
 
 				if deceasedBranch.Value != "" {
 					t.Log("Should have cleared the dead bit")
@@ -276,12 +266,7 @@ func TestClearRelationshipNos(t *testing.T) {
 			}
 			for _, foreignItem := range multiple.List.Items {
 
-				renounced, itemErr := foreignItem.GetItemValue("Renounced")
-				if itemErr != nil {
-					t.Log("Got an error trying to figure out if they renounced", itemErr)
-					t.Fail()
-				}
-				renouncedBranch := renounced.(*api.Branch)
+				renouncedBranch := getBranchItemValue(t, foreignItem, "Renounced")
 
 				if renouncedBranch.Value != "" {
 					t.Log("Should have cleared the renounced bit")
@@ -293,12 +278,7 @@ func TestClearRelationshipNos(t *testing.T) {
 			passports := section.(*api.CitizenshipPassports)
 
 			// for none, there is a single empty passport
-			has, itemErr := passports.Passports.Items[0].GetItemValue("Has")
-			if itemErr != nil {
-				t.Log("Error on getting item", itemErr)
-				t.Fail()
-			}
-			hasBranch := has.(*api.Branch)
+			hasBranch := getBranchItemValue(t, passports.Passports.Items[0], "Has")
 
 			if hasBranch.Value != "" {
 				t.Log("Should have cleared the passport list")
@@ -309,39 +289,149 @@ func TestClearRelationshipNos(t *testing.T) {
 			passports := section.(*api.CitizenshipPassports)
 
 			// For a list, it's the last one that will be no
-			firstHas, itemErr := passports.Passports.Items[0].GetItemValue("Has")
-			if itemErr != nil {
-				t.Log("Error on getting item", itemErr)
-				t.Fail()
-			}
-			firstHasBranch := firstHas.(*api.Branch)
-
+			firstHasBranch := getBranchItemValue(t, passports.Passports.Items[0], "Has")
 			if firstHasBranch.Value != "Yes" {
 				t.Log("Should not have cleared the first passport has")
 				t.Fail()
 			}
 
-			used, itemErr := passports.Passports.Items[0].GetItemValue("Used")
-			if itemErr != nil {
-				t.Log("Error on getting item", itemErr)
-				t.Fail()
-			}
-			usedBranch := used.(*api.Branch)
-
+			usedBranch := getBranchItemValue(t, passports.Passports.Items[0], "Used")
 			if usedBranch.Value != "" {
 				t.Log("Should have cleared the used field")
 				t.Fail()
 			}
 
-			lastHas, itemErr := passports.Passports.Items[2].GetItemValue("Has")
-			if itemErr != nil {
-				t.Log("Error on getting item", itemErr)
-				t.Fail()
-			}
-			lastHasBranch := lastHas.(*api.Branch)
-
+			lastHasBranch := getBranchItemValue(t, passports.Passports.Items[2], "Has")
 			if lastHasBranch.Value != "" {
 				t.Log("Should have cleared the last passport has")
+				t.Fail()
+			}
+		}},
+		// --- Military History ---
+		{"../testdata/military/military-selective.json", "military.selective", func(t *testing.T, section api.Section) {
+			selective := section.(*api.MilitarySelective)
+
+			if selective.WasBornAfter.Value != "Yes" {
+				t.Log("Should not have cleared born after")
+				t.Fail()
+			}
+			if selective.HasRegistered.Value != "" {
+				t.Log("Should have cleared the didn't register")
+				t.Fail()
+			}
+		}},
+		{"../testdata/military/military-selective-no.json", "military.selective", func(t *testing.T, section api.Section) {
+			selective := section.(*api.MilitarySelective)
+
+			if selective.WasBornAfter.Value != "" {
+				t.Log("Should not have cleared born after")
+				t.Fail()
+			}
+			if selective.HasRegistered.Value != "" {
+				t.Log("Should have cleared the didn't register")
+				t.Fail()
+			}
+		}},
+		{"../testdata/military/military-history.json", "military.history", func(t *testing.T, section api.Section) {
+			history := section.(*api.MilitaryHistory)
+
+			if history.HasServed.Value != "Yes" {
+				t.Log("Should not have cleared has served")
+				t.Fail()
+			}
+
+			discharged := getBranchItemValue(t, history.List.Items[0], "HasBeenDischarged")
+
+			if discharged.Value != "Yes" {
+				t.Log("Should not have cleared discharged")
+				t.Fail()
+			}
+
+			if history.List.Branch.Value != "" {
+				t.Log("Should have cleared the list")
+				t.Fail()
+			}
+		}},
+		{"../testdata/military/military-history-no.json", "military.history", func(t *testing.T, section api.Section) {
+			history := section.(*api.MilitaryHistory)
+
+			if history.HasServed.Value != "" {
+				t.Log("Should have cleared has served")
+				t.Fail()
+			}
+		}},
+		{"../testdata/military/military-history-no-discharge.json", "military.history", func(t *testing.T, section api.Section) {
+			history := section.(*api.MilitaryHistory)
+
+			if history.HasServed.Value != "Yes" {
+				t.Log("Should not have cleared has served")
+				t.Fail()
+			}
+
+			discharged := getBranchItemValue(t, history.List.Items[0], "HasBeenDischarged")
+
+			if discharged.Value != "" {
+				t.Log("Should have cleared discharged")
+				t.Fail()
+			}
+
+			if history.List.Branch.Value != "" {
+				t.Log("Should have cleared the list")
+				t.Fail()
+			}
+		}},
+		{"../testdata/military/military-disciplinary.json", "military.disciplinary", func(t *testing.T, section api.Section) {
+			dicipline := section.(*api.MilitaryDisciplinary)
+
+			if dicipline.HasDisciplinary.Value != "Yes" {
+				t.Log("Should not have cleared has dicipline")
+				t.Fail()
+			}
+
+			if dicipline.List.Branch.Value != "" {
+				t.Log("Should have cleared the list")
+				t.Fail()
+			}
+		}},
+		{"../testdata/military/military-disciplinary-no.json", "military.disciplinary", func(t *testing.T, section api.Section) {
+			dicipline := section.(*api.MilitaryDisciplinary)
+
+			if dicipline.HasDisciplinary.Value != "" {
+				t.Log("Should have cleared has dicipline")
+				t.Fail()
+			}
+		}},
+		{"../testdata/military/military-foreign-two.json", "military.foreign", func(t *testing.T, section api.Section) {
+			foreign := section.(*api.MilitaryForeign)
+
+			// For a list, it's the last one that will be no
+			firstHasBranch := getBranchItemValue(t, foreign.List.Items[0], "Has")
+			if firstHasBranch.Value != "Yes" {
+				t.Log("Should not have cleared the first has")
+				t.Fail()
+			}
+
+			usedBranch := getBranchItemValue(t, foreign.List.Items[0], "MaintainsContact")
+			if usedBranch.Value != "" {
+				t.Log("Should have cleared the MaintainsContact field")
+				t.Fail()
+			}
+
+			lastHasBranch := getBranchItemValue(t, foreign.List.Items[2], "Has")
+			if lastHasBranch.Value != "" {
+				t.Log("Should have cleared the last foreign has")
+				t.Fail()
+			}
+
+		}},
+		{"../testdata/military/military-foreign-no.json", "military.foreign", func(t *testing.T, section api.Section) {
+			foreign := section.(*api.MilitaryForeign)
+
+			// for none, there is a single empty item
+			hasBranch := getBranchItemValue(t, foreign.List.Items[0], "Has")
+
+			if hasBranch.Value != "" {
+				t.Log("Should have cleared the foreign list")
 				t.Fail()
 			}
 		}},

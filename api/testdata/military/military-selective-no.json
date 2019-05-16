@@ -1,0 +1,35 @@
+{
+  "type": "military.selective",
+  "props": {
+    "WasBornAfter": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "HasRegistered": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "HasRegisteredNotApplicable": {
+      "type": "notapplicable",
+      "props": {
+        "applicable": true
+      }
+    },
+    "RegistrationNumber": {
+      "type": "text",
+      "props": {
+        "value": "No"
+      }
+    },
+    "Explanation": {
+      "type": "textarea",
+      "props": {
+        "value": "i have never heard of this"
+      }
+    }
+  }
+}

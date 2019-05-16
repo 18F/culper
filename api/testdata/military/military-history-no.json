@@ -1,0 +1,19 @@
+{
+    "props": {
+        "HasServed": {
+            "props": {
+                "name": "has_served",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": null,
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "military.history"
+}
