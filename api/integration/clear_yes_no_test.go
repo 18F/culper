@@ -400,6 +400,37 @@ func TestClearRelationshipNos(t *testing.T) {
 				t.Fail()
 			}
 		}},
+		{"../testdata/relationships/relationships-people.json", "relationships.people", func(t *testing.T, section api.Section) {
+			people := section.(*api.RelationshipsPeople)
+
+			if people.List.Branch.Value != "" {
+				t.Log("Should have cleared the people list")
+				t.Fail()
+			}
+		}},
+		{"../testdata/relationships/relationships-relatives.json", "relationships.relatives", func(t *testing.T, section api.Section) {
+			relatives := section.(*api.RelationshipsRelatives)
+
+			for _, personItem := range relatives.List.Items {
+
+				deceased, itemErr := personItem.GetItemValue("IsDeceased")
+				if itemErr != nil {
+					t.Log("Got an error trying to figure out if they are dead", itemErr)
+					t.Fail()
+				}
+				deceasedBranch := deceased.(*api.Branch)
+
+				if deceasedBranch.Value != "" {
+					t.Log("Should have cleared the dead bit")
+					t.Fail()
+				}
+			}
+
+			if relatives.List.Branch.Value != "" {
+				t.Log("Should have cleared the relatives list")
+				t.Fail()
+			}
+		}},
 	}
 
 	for _, clearTest := range tests {

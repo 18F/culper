@@ -131,29 +131,18 @@ func (a *Application) UnmarshalJSON(bytes []byte) error {
 // ClearNoBranches clears all the branches answered "No" that must be
 // re answered after rejection
 func (a *Application) ClearNoBranches() error {
-	sectionNames := []string{
-		"identification.othernames",
-		"history.residence",
-		"history.employment",
-		"history.education",
-		"history.federal",
-		"relationships.status.marital",
-		"relationships.status.cohabitant",
-	}
 
-	for _, sectionName := range sectionNames {
-		section := a.Section(sectionName)
+	for _, sectionInfo := range catalogue {
+		section := a.Section(sectionInfo.Payload)
 
 		clearable, ok := section.(Rejector)
 		if ok {
 			clearErr := clearable.ClearNos()
 			if clearErr != nil {
-				return errors.Wrap(clearErr, fmt.Sprintf("Error clearing nos from %s", sectionName))
+				return errors.Wrap(clearErr, fmt.Sprintf("Error clearing nos from %s", sectionInfo.Payload))
 			}
 		}
-
 	}
-
 	return nil
 }
 

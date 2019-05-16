@@ -242,27 +242,28 @@ func (entity *RelationshipsMarital) ClearNos() error {
 		entity.DivorcedList.Branch.Value = ""
 	}
 
-	for _, divorcedItem := range entity.DivorcedList.Items {
+	if entity.DivorcedList != nil {
+		for _, divorcedItem := range entity.DivorcedList.Items {
 
-		deceased, itemErr := divorcedItem.GetItemValue("Deceased")
-		if itemErr != nil {
-			return errors.Wrap(itemErr, "Failed to pull deceased from a divorcee")
+			deceased, itemErr := divorcedItem.GetItemValue("Deceased")
+			if itemErr != nil {
+				return errors.Wrap(itemErr, "Failed to pull deceased from a divorcee")
+			}
+			deceasedRadio := deceased.(*Radio)
+
+			if deceasedRadio.Value == "No" {
+				deceasedRadio.Value = ""
+			}
+
+			setErr := divorcedItem.SetItemValue("Deceased", deceasedRadio)
+			if setErr != nil {
+				return errors.Wrap(setErr, "Failed to set deceased for a divorcee")
+			}
+
 		}
-		deceasedRadio := deceased.(*Radio)
-
-		if deceasedRadio.Value == "No" {
-			deceasedRadio.Value = ""
-		}
-
-		setErr := divorcedItem.SetItemValue("Deceased", deceasedRadio)
-		if setErr != nil {
-			return errors.Wrap(setErr, "Failed to set deceased for a divorcee")
-		}
-
 	}
 
 	return nil
-
 }
 
 // RelationshipsCohabitants represents the payload for the relationships cohabitants section.
@@ -575,6 +576,16 @@ func (entity *RelationshipsPeople) Find(context DatabaseService) error {
 	return nil
 }
 
+// ClearNos clears any questions answered nos on a kickback
+func (entity *RelationshipsPeople) ClearNos() error {
+
+	if entity.List != nil && entity.List.Branch != nil && entity.List.Branch.Value == "No" {
+		entity.List.Branch.Value = ""
+	}
+
+	return nil
+}
+
 // RelationshipsRelatives represents the payload for the relationships relatives section.
 type RelationshipsRelatives struct {
 	PayloadList Payload `json:"List" sql:"-"`
@@ -701,5 +712,36 @@ func (entity *RelationshipsRelatives) Find(context DatabaseService) error {
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
+	return nil
+}
+
+// ClearNos clears any questions answered nos on a kickback
+func (entity *RelationshipsRelatives) ClearNos() error {
+
+	if entity.List != nil {
+		for _, divorcedItem := range entity.List.Items {
+
+			deceased, itemErr := divorcedItem.GetItemValue("IsDeceased")
+			if itemErr != nil {
+				return errors.Wrap(itemErr, "Failed to pull deceased from a divorcee")
+			}
+			deceasedBranch := deceased.(*Branch)
+
+			if deceasedBranch.Value == "No" {
+				deceasedBranch.Value = ""
+			}
+
+			setErr := divorcedItem.SetItemValue("IsDeceased", deceasedBranch)
+			if setErr != nil {
+				return errors.Wrap(setErr, "Failed to set deceased for a divorcee")
+			}
+
+		}
+	}
+
+	if entity.List != nil && entity.List.Branch != nil && entity.List.Branch.Value == "No" {
+		entity.List.Branch.Value = ""
+	}
+
 	return nil
 }
