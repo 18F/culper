@@ -41,20 +41,20 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/history/history-education.json", "History", "Education"},
 		{"../testdata/history/history-federal.json", "History", "Federal"},
 
-		{"../testdata/relationships-status-marital.json", "Relationships", "Marital"},
-		{"../testdata/relationships-status-cohabitant.json", "Relationships", "Cohabitants"},
-		{"../testdata/relationships-people.json", "Relationships", "People"},
-		{"../testdata/relationships-relatives.json", "Relationships", "Relatives"},
+		{"../testdata/relationships/relationships-status-marital.json", "Relationships", "Marital"},
+		{"../testdata/relationships/relationships-status-cohabitant.json", "Relationships", "Cohabitants"},
+		{"../testdata/relationships/relationships-people.json", "Relationships", "People"},
+		{"../testdata/relationships/relationships-relatives.json", "Relationships", "Relatives"},
 
-		{"../testdata/citizenship-status.json", "Citizenship", "Status"},
-		{"../testdata/citizenship-multiple.json", "Citizenship", "Multiple"},
-		{"../testdata/citizenship-passports.json", "Citizenship", "Passports"},
-		{"../testdata/citizenship-passports-thin.json", "Citizenship", "Passports"},
+		{"../testdata/citizenship/citizenship-status.json", "Citizenship", "Status"},
+		{"../testdata/citizenship/citizenship-multiple.json", "Citizenship", "Multiple"},
+		{"../testdata/citizenship/citizenship-passports.json", "Citizenship", "Passports"},
+		{"../testdata/citizenship/citizenship-passports-thin.json", "Citizenship", "Passports"},
 
-		{"../testdata/military-selective.json", "Military", "Selective"},
-		{"../testdata/military-history.json", "Military", "History"},
-		{"../testdata/military-disciplinary.json", "Military", "Disciplinary"},
-		{"../testdata/military-foreign.json", "Military", "Foreign"},
+		{"../testdata/military/military-selective.json", "Military", "Selective"},
+		{"../testdata/military/military-history.json", "Military", "History"},
+		{"../testdata/military/military-disciplinary.json", "Military", "Disciplinary"},
+		{"../testdata/military/military-foreign.json", "Military", "Foreign"},
 
 		{"../testdata/foreign-passport.json", "Foreign", "Passport"},
 		{"../testdata/foreign-contacts.json", "Foreign", "Contacts"},
@@ -111,31 +111,34 @@ func TestSaveSection(t *testing.T) {
 	}
 
 	for _, secTest := range tests {
-		section := readTestData(t, secTest.path)
 
-		resp := saveJSON(services, section, account.ID)
-		if resp.StatusCode != 200 {
-			t.Fatal(fmt.Sprintf("Failed to save %s %s", secTest.section, secTest.subSection), resp.StatusCode)
-		}
+		t.Run(fmt.Sprintf("%s:%s", secTest.section, secTest.subSection), func(t *testing.T) {
+			section := readTestData(t, secTest.path)
 
-		formResp := getForm(services, account.ID)
-		if formResp.StatusCode != 200 {
-			t.Fatal(fmt.Sprintf("Failed to load %s %s", secTest.section, secTest.subSection), resp.StatusCode)
-		}
-		body := readBody(t, formResp)
+			resp := saveJSON(services, section, account.ID)
+			if resp.StatusCode != 200 {
+				t.Fatal(fmt.Sprintf("Failed to save %s %s", secTest.section, secTest.subSection), resp.StatusCode)
+			}
 
-		var form map[string]map[string]json.RawMessage
-		jsonErr := json.Unmarshal([]byte(body), &form)
-		if jsonErr != nil {
-			t.Fatal(jsonErr)
-		}
+			formResp := getForm(services, account.ID)
+			if formResp.StatusCode != 200 {
+				t.Fatal(fmt.Sprintf("Failed to load %s %s", secTest.section, secTest.subSection), resp.StatusCode)
+			}
+			body := readBody(t, formResp)
 
-		rawSection, ok := form[secTest.section][secTest.subSection]
-		if !ok {
-			t.Fatal(fmt.Sprintf("The %s %s section is not in the returned form", secTest.section, secTest.subSection), resp.StatusCode)
-		}
+			var form map[string]map[string]json.RawMessage
+			jsonErr := json.Unmarshal([]byte(body), &form)
+			if jsonErr != nil {
+				t.Fatal(jsonErr)
+			}
 
-		compareGoldenJSON(t, rawSection, secTest.path)
+			rawSection, ok := form[secTest.section][secTest.subSection]
+			if !ok {
+				t.Fatal(fmt.Sprintf("The %s %s section is not in the returned form", secTest.section, secTest.subSection), resp.StatusCode)
+			}
+
+			compareGoldenJSON(t, rawSection, secTest.path)
+		})
 	}
 
 }
