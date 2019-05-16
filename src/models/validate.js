@@ -2,6 +2,9 @@ import { validate } from 'validate.js'
 
 import requireTrue from 'models/validators/requireTrue'
 import requireEmpty from 'models/validators/requireEmpty'
+import array from 'models/validators/array'
+import branchCollection from 'models/validators/branchCollection'
+import customModel from 'models/validators/customModel'
 import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
 
@@ -52,6 +55,9 @@ validate.options = {
 // Implement custom validators
 validate.validators.requireTrue = requireTrue
 validate.validators.requireEmpty = requireEmpty
+validate.validators.array = array
+validate.validators.branchCollection = branchCollection
+validate.validators.model = customModel
 validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
 
