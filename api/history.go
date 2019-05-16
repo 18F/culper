@@ -743,3 +743,20 @@ func (entity *HistoryFederal) Find(context DatabaseService) error {
 	})
 	return nil
 }
+
+// ClearNos clears any questions answered nos on a kickback
+func (entity *HistoryFederal) ClearNos() error {
+
+	if entity.HasFederalService != nil && entity.HasFederalService.Value == "No" {
+		entity.HasFederalService.Value = ""
+	}
+
+	if entity.List != nil && entity.List.Branch != nil {
+		if entity.List.Branch.Value == "No" {
+			entity.List.Branch.Value = ""
+		}
+	}
+
+	return nil
+
+}

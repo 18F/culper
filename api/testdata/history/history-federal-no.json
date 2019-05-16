@@ -1,0 +1,14 @@
+{
+  "type": "history.federal",
+  "props": {
+    "HasFederalService": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "List": {
+      "type": "collection"
+    }
+  }
+}

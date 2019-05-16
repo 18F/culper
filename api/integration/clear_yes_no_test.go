@@ -263,3 +263,65 @@ func TestClearHistoryEducation(t *testing.T) {
 	}
 
 }
+
+func TestClearHistoryFederal(t *testing.T) {
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	// TEST complete list
+
+	historySection := readTestData(t, "../testdata/history/history-federal.json")
+
+	resp := saveJSON(services, historySection, account.ID)
+	if resp.StatusCode != 200 {
+		t.Fatal("Failed to save HistEducationDegrees", resp.StatusCode)
+	}
+
+	rejector := admin.NewRejector(services.db, services.store, nil)
+	err := rejector.Reject(account)
+	if err != nil {
+		t.Fatal("Failed to reject account: ", err)
+	}
+
+	resetApp := getApplication(t, services, account)
+
+	federal := resetApp.Section("history.federal").(*api.HistoryFederal)
+	if federal == nil {
+		t.Fatal("No history.federal section in the app")
+	}
+
+	if federal.List.Branch.Value != "" {
+		t.Log("federal list was not reset")
+		t.Fail()
+	}
+
+	if federal.HasFederalService.Value != "Yes" {
+		t.Log("federal has service was changed")
+		t.Fail()
+	}
+
+	historySectionNo := readTestData(t, "../testdata/history/history-federal-no.json")
+
+	resp = saveJSON(services, historySectionNo, account.ID)
+	if resp.StatusCode != 200 {
+		t.Fatal("Failed to save HistEducationDegrees", resp.StatusCode)
+	}
+
+	err = rejector.Reject(account)
+	if err != nil {
+		t.Fatal("Failed to reject account: ", err)
+	}
+
+	resetAppNo := getApplication(t, services, account)
+
+	federalNo := resetAppNo.Section("history.federal").(*api.HistoryFederal)
+	if federalNo == nil {
+		t.Fatal("No history.federal section in the app")
+	}
+
+	if federalNo.HasFederalService.Value != "" {
+		t.Log("federal has service was not reset")
+		t.Fail()
+	}
+
+}
