@@ -331,7 +331,7 @@ func TestScenario9(t *testing.T) {
 	executeScenario(t, "test9")
 }
 
-// `test10` is a derived from test1 for:
+// `test10` is derived from test1 for:
 // * a current spouse with "I don't know" as email response
 // * secondary (alternate) address workflows for employment entries
 func TestScenario10(t *testing.T) {
