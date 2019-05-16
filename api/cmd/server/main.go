@@ -14,6 +14,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/pdf"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/saml"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 	"github.com/18F/e-QIP-prototype/api/usps"
 	"github.com/18F/e-QIP-prototype/api/xml"
 	"github.com/benbjohnson/clock"
@@ -39,6 +40,12 @@ func main() {
 	}
 
 	database := postgresql.NewPostgresService(dbConf, logger)
+
+	serializer := simplestore.NewJSONSerializer()
+	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), logger, serializer)
+	if storeErr != nil {
+		logger.WarnError("Error configuring Simple Store", storeErr, api.LogFields{})
+	}
 
 	token := jwt.Service{Env: settings}
 	xmlsvc := xml.Service{Log: logger, Clock: localClock}
@@ -85,9 +92,9 @@ func main() {
 	a := r.PathPrefix("/me").Subrouter()
 	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 	a.Handle("/validate", sec.Middleware(http.ValidateHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST")
-	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "PUT")
+	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("POST", "PUT")
 	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
-	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
 	a.Handle("/form/hash", sec.Middleware(http.HashHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 	a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, XML: xmlsvc, Pdf: pdfsvc})).Methods("POST")
 	a.Handle("/form/section", sec.Middleware(http.SectionHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
