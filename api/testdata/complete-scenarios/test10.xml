@@ -465,6 +465,652 @@
                   <DateRange>
                     <From>
                       <Date>
+                        <Month>02</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>SelfEmployed</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <APOFPO>
+                    <PhysicalLocation>
+                      <Address>
+                        <StreetUnitDutyLocation>Self Employment Physical Different APO Then Physical </StreetUnitDutyLocation>
+                        <CityPostName>Berlin</CityPostName>
+                        <Country>Germany</Country>
+                      </Address>
+                    </PhysicalLocation>
+                  </APOFPO>
+                  <SelfEmployment>
+                    <Occupation>Proprietor</Occupation>
+                    <Business>
+                      <Name>Typewriter Repair</Name>
+                      <Address>
+                        <Street>Self Employment APO </Street>
+                        <City>Winnipeg</City>
+                        <Country>Canada</Country>
+                      </Address>
+                      <Telephone>
+                        <Number>4312223431</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Business>
+                  </SelfEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Street>Self Employment APO Physical Different Yes </Street>
+                      <City>APO</City>
+                      <State>AA</State>
+                      <ZipCode>34038</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>3431333333</Number>
+                      <Extension>3</Extension>
+                      <Time>Night</Time>
+                    </Telephone>
+                  </JobLocation>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Alien</Last>
+                      <First Type="IO">Q</First>
+                    </LegalName>
+                    <Address>
+                      <Street>Verifier for Q </Street>
+                      <City>Tinian</City>
+                      <State>MP</State>
+                      <ZipCode>96952</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>5551224333</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Verifier>
+                </Employment>
+                <Employment ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>03</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>FederalContractor</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <APOFPO>
+                    <PhysicalLocation>
+                      <Address>
+                        <StreetUnitDutyLocation>Foreign EDS address </StreetUnitDutyLocation>
+                        <CityPostName>Avonlea</CityPostName>
+                        <Country>Canada</Country>
+                      </Address>
+                    </PhysicalLocation>
+                  </APOFPO>
+                  <CivilEmployment>
+                    <Employer>EDS</Employer>
+                    <PositionTitle>Comptroller</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>EDS APO </Street>
+                        <City>APO</City>
+                        <State>AA</State>
+                        <ZipCode>34038</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>3122123224</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>Bran the Builder</Name>
+                    <Title>King of the North</Title>
+                    <Address>
+                      <Street>43 Wall St. </Street>
+                      <City>Westeros</City>
+                      <State>CA</State>
+                      <ZipCode>93950</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>3339031313</Number>
+                      <Time>Day</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="3">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <APOFPO>
+                    <PhysicalLocation>
+                      <Address>
+                        <StreetUnitDutyLocation>Physical Different Physical Address for APO </StreetUnitDutyLocation>
+                        <CityPostName>Del Rey Oaks</CityPostName>
+                        <State>CA</State>
+                        <ZipCode>93940</ZipCode>
+                      </Address>
+                    </PhysicalLocation>
+                  </APOFPO>
+                  <CivilEmployment>
+                    <Employer>Blockbuster Video</Employer>
+                    <PositionTitle>Rewind clerk</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>Blockbuster address Rd. </Street>
+                        <City>Toronto</City>
+                        <Country>Canada</Country>
+                      </Address>
+                      <Telephone>
+                        <Number>2503433343</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Street>Blockbuster APO Physical different </Street>
+                      <City>APO</City>
+                      <State>AA</State>
+                      <ZipCode>34038</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>2503339878</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>Roberta Fuad</Name>
+                    <Title>Store Manager</Title>
+                    <Address>
+                      <Street>674 Supervisor Lane </Street>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <ZipCode>93940</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>6542228931</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="4">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>04</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <APOFPO>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Address>Thrifty APO Physical Different</Address>
+                      <ApoFpo>APO</ApoFpo>
+                      <State>AA</State>
+                      <ZipCode>34038</ZipCode>
+                    </Address>
+                  </APOFPO>
+                  <CivilEmployment>
+                    <Employer>Thrifty Foods</Employer>
+                    <PositionTitle>Cashier</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>Employment APO </Street>
+                        <City>APO</City>
+                        <State>AA</State>
+                        <ZipCode>34038</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>3123134333</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Street>Thrifty Physical Different </Street>
+                      <City>Sooke</City>
+                      <Country>Canada</Country>
+                    </Address>
+                    <Telephone>
+                      <Number>6041133343</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </JobLocation>
+                  <LeftJob>
+                    <Reason>Reason for leaving Thrifty Foods</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Maria Villagomez</Name>
+                    <Title>Product Manager</Title>
+                    <Address>
+                      <Street>350 Supervisor Rd. </Street>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <ZipCode>93940</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>6541334333</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="5">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>04</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>04</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <APOFPO>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Address>APO for Oak Bay</Address>
+                      <ApoFpo>APO</ApoFpo>
+                      <State>AA</State>
+                      <ZipCode>34050</ZipCode>
+                    </Address>
+                  </APOFPO>
+                  <CivilEmployment>
+                    <Employer>Oak Bay Lodge</Employer>
+                    <PositionTitle>Innkeeper</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>Foreign Oak Bay Lodge </Street>
+                        <City>Nanaimo</City>
+                        <Country>Canada</Country>
+                      </Address>
+                      <Telephone>
+                        <Number>3406043317</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <LeftJob>
+                    <Reason>Reason for leaving Oak Bay Lodge</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Susan Ross</Name>
+                    <Title>Manager</Title>
+                    <Address>
+                      <Street>Supervisor for OakBay Rd. </Street>
+                      <City>Nanaimo</City>
+                      <Country>Canada</Country>
+                    </Address>
+                    <APOFPO>
+                      <Answer>No</Answer>
+                    </APOFPO>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>5553124343</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="6">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>04</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>04</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <APOFPO>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Address>Kamloops APO</Address>
+                      <ApoFpo>APO</ApoFpo>
+                      <State>AA</State>
+                      <ZipCode>34050</ZipCode>
+                    </Address>
+                  </APOFPO>
+                  <CivilEmployment>
+                    <Employer>Ramblin Rod Productions</Employer>
+                    <PositionTitle>Production Assistant</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>APO Address </Street>
+                        <City>APO</City>
+                        <State>AA</State>
+                        <ZipCode>34050</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5555553124</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Street>Foreign Address Physical Address is different </Street>
+                      <City>Kamloops</City>
+                      <Country>Canada</Country>
+                    </Address>
+                    <Telephone>
+                      <Number>5555313333</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </JobLocation>
+                  <LeftJob>
+                    <Reason>Reason for leaving Ramblin Rod</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Joan Rivers</Name>
+                    <Title>Chief of Production</Title>
+                    <Address>
+                      <Street>Kamloops Supervisor </Street>
+                      <City>Kamloops</City>
+                      <Country>Canada</Country>
+                    </Address>
+                    <APOFPO>
+                      <Answer>No</Answer>
+                    </APOFPO>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>5341242331</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="7">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>03</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <APOFPO>
+                    <PhysicalLocation>
+                      <Address>
+                        <StreetUnitDutyLocation>Physical location for Physical Work address Not Different </StreetUnitDutyLocation>
+                        <CityPostName>Monterey</CityPostName>
+                        <State>CA</State>
+                        <ZipCode>93940</ZipCode>
+                      </Address>
+                    </PhysicalLocation>
+                  </APOFPO>
+                  <CivilEmployment>
+                    <Employer>CompuServe</Employer>
+                    <PositionTitle>Compact Disc assessor</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>Employment address APO </Street>
+                        <City>APO</City>
+                        <State>AA</State>
+                        <ZipCode>34050</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>9083332123</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <LeftJob>
+                    <Reason>Reason for leaving CompuServe</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Joseph Carpenter</Name>
+                    <Title>Senior Manager</Title>
+                    <Address>
+                      <Street>CompuServe Address for Supervisor </Street>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <ZipCode>93940</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>3313344433</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="8">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>11</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>12</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>ActiveMilitaryDuty</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <APOFPO>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Address>APO address for foreign duty station</Address>
+                      <ApoFpo>APO</ApoFpo>
+                      <State>AA</State>
+                      <ZipCode>34050</ZipCode>
+                    </Address>
+                  </APOFPO>
+                  <MilitaryService>
+                    <DutyStation>
+                      <DutyLocation>DLIFLC</DutyLocation>
+                      <Address>
+                        <Street>Foreign Address Duty Station </Street>
+                        <City>Victoria</City>
+                        <Country>Canada</Country>
+                      </Address>
+                      <Telephone>
+                        <Number>6042506703</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </DutyStation>
+                    <Rank>CAP</Rank>
+                  </MilitaryService>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <LeftJob>
+                    <Reason>Reason for leaving DLIFLC</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Mark Marcus</Name>
+                    <Title>ADM</Title>
+                    <Address>
+                      <Street>Another supervisor address </Street>
+                      <City>Pacific Grove</City>
+                      <State>CA</State>
+                      <ZipCode>93950</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>1234333333</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="9">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>10</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>ActiveMilitaryDuty</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <APOFPO>
+                    <PhysicalLocation>
+                      <Address>
+                        <StreetUnitDutyLocation>Physical location for Duty Station APO address </StreetUnitDutyLocation>
+                        <CityPostName>Monterey</CityPostName>
+                        <State>CA</State>
+                        <ZipCode>93940</ZipCode>
+                      </Address>
+                    </PhysicalLocation>
+                  </APOFPO>
+                  <MilitaryService>
+                    <DutyStation>
+                      <DutyLocation>FLENUMMETOCCEN</DutyLocation>
+                      <Address>
+                        <Street>APO address For Duty Station </Street>
+                        <City>APO</City>
+                        <State>AA</State>
+                        <ZipCode>34038</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>3431313134</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </DutyStation>
+                    <Rank>CDR</Rank>
+                  </MilitaryService>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <LeftJob>
+                    <Reason>Reason for leaving FLENUMMETOCCEN</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Bob Supervisor</Name>
+                    <Title>CAP</Title>
+                    <Address>
+                      <Street>Supervisor Address </Street>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <ZipCode>93940</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>5561243333</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="10">
+                  <DateRange>
+                    <From>
+                      <Date>
                         <Month>01</Month>
                         <Year>2000</Year>
                       </Date>

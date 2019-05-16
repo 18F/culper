@@ -331,7 +331,9 @@ func TestScenario9(t *testing.T) {
 	executeScenario(t, "test9")
 }
 
-// `test10` is a copy of test1 to allow testing married data without affecting OPM approved tests
+// `test10` is derived from test1 for:
+// * a current spouse with "I don't know" as email response
+// * secondary (alternate) address workflows for employment entries
 func TestScenario10(t *testing.T) {
 	executeScenario(t, "test10")
 }
