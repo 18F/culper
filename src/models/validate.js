@@ -5,6 +5,7 @@ import requireEmpty from 'models/validators/requireEmpty'
 import array from 'models/validators/array'
 import branchCollection from 'models/validators/branchCollection'
 import customModel from 'models/validators/customModel'
+import date from 'models/validators/date'
 import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
 
@@ -50,6 +51,9 @@ validate.validators.presence.options = { allowEmpty: false }
 validate.options = {
   format: 'errorKeys',
   allowPOBox: true,
+  requireDay: true,
+  requireMonth: true,
+  requireYear: true,
 }
 
 // Implement custom validators
@@ -58,6 +62,7 @@ validate.validators.requireEmpty = requireEmpty
 validate.validators.array = array
 validate.validators.branchCollection = branchCollection
 validate.validators.model = customModel
+validate.validators.date = date
 validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
 
