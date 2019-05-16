@@ -138,6 +138,7 @@ func (a *Application) ClearNoBranches() error {
 		"history.education",
 		"history.federal",
 		"relationships.status.marital",
+		"relationships.status.cohabitant",
 	}
 
 	for _, sectionName := range sectionNames {

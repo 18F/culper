@@ -355,12 +355,9 @@ func TestClearRelationshipNos(t *testing.T) {
 				t.Log("Has Divorce was not reset")
 				t.Fail()
 			}
-
 		}},
 		{"../testdata/relationships/relationships-status-marital-annulled.json", "relationships.status.marital", func(t *testing.T, section api.Section) {
 			marital := section.(*api.RelationshipsMarital)
-
-			fmt.Println(marital.CivilUnion.Separated.Value)
 
 			if marital.DivorcedList.Branch.Value != "" {
 				t.Log("Has Divorce was not reset")
@@ -380,9 +377,28 @@ func TestClearRelationshipNos(t *testing.T) {
 					t.Log("Didn't clear the deceased bit")
 					t.Fail()
 				}
+			}
+		}},
+		{"../testdata/relationships/relationships-status-no-cohabitant.json", "relationships.status.cohabitant", func(t *testing.T, section api.Section) {
+			cohabitant := section.(*api.RelationshipsCohabitants)
 
+			if cohabitant.HasCohabitant.Value != "" {
+				t.Log("Should have cleared HasCohabitant")
+				t.Fail()
+			}
+		}},
+		{"../testdata/relationships/relationships-status-cohabitant.json", "relationships.status.cohabitant", func(t *testing.T, section api.Section) {
+			cohabitant := section.(*api.RelationshipsCohabitants)
+
+			if cohabitant.HasCohabitant.Value != "Yes" {
+				t.Log("Should not have cleared HasCohabitant")
+				t.Fail()
 			}
 
+			if cohabitant.CohabitantList.Branch.Value != "" {
+				t.Log("Should have cleared the cohabitant list")
+				t.Fail()
+			}
 		}},
 	}
 

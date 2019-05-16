@@ -431,6 +431,21 @@ func (entity *RelationshipsCohabitants) Find(context DatabaseService) error {
 	return nil
 }
 
+// ClearNos clears any questions answered nos on a kickback
+func (entity *RelationshipsCohabitants) ClearNos() error {
+
+	if entity.HasCohabitant != nil && entity.HasCohabitant.Value == "No" {
+		entity.HasCohabitant.Value = ""
+	}
+
+	if entity.CohabitantList != nil && entity.CohabitantList.Branch != nil && entity.CohabitantList.Branch.Value == "No" {
+		entity.CohabitantList.Branch.Value = ""
+	}
+
+	return nil
+
+}
+
 // RelationshipsPeople represents the payload for the relationships people section.
 type RelationshipsPeople struct {
 	PayloadList Payload `json:"List" sql:"-"`

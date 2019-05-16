@@ -1,0 +1,24 @@
+{
+  "type": "relationships.status.cohabitant",
+  "props": {
+    "HasCohabitant": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "CohabitantList": {
+      "type": "collection",
+      "props": {
+        "items": [
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    }
+  }
+}
