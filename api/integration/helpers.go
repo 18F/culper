@@ -10,7 +10,6 @@ import (
 	"net/http/httptest"
 	"os"
 	"reflect"
-	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -146,19 +145,19 @@ func populateAccount(db api.DatabaseService, account api.Account, testCasePath s
 }
 
 // readTestData pulls in test data as a string
-func readTestData(t *testing.T, filepath string) string {
+func readTestData(t *testing.T, filepath string) []byte {
 	t.Helper()
 	b, err := ioutil.ReadFile(filepath)
 	if err != nil {
 		t.Fatal(err)
 	}
-	return string(b)
+	return b
 }
 
 // saveJSON calls the save handler with the given json body.
-func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response {
+func saveJSON(services serviceSet, json []byte, accountID int) *gohttp.Response {
 	// create request/response
-	r := httptest.NewRequest("POST", "/me/save", strings.NewReader(json))
+	r := httptest.NewRequest("POST", "/me/save", strings.NewReader(string(json)))
 	// authenticate user.
 	authCtx := http.SetAccountIDInRequestContext(r, accountID)
 	r = r.WithContext(authCtx)
@@ -182,7 +181,7 @@ func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response 
 
 func getForm(services serviceSet, accountID int) *gohttp.Response {
 	// create request/response
-	path := "/me/form/" + strconv.Itoa(accountID)
+	path := "/me/form/"
 	r := httptest.NewRequest("GET", path, nil)
 	// authenticate user.
 	authCtx := http.SetAccountIDInRequestContext(r, accountID)

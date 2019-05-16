@@ -60,6 +60,7 @@ type AttachmentSaveHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -89,7 +90,6 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	}
 
 	// Retrieve the file and metadata from the multipart form data.
-	r.ParseMultipartForm(32 << 20)
 	file, header, err := r.FormFile("file")
 	if err != nil {
 		service.Log.WarnError(api.AttachmentNoFile, err, api.LogFields{})
@@ -144,7 +144,9 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		Size:      header.Size,
 		Raw:       buffer.Bytes(),
 	}
-	if _, err := attachment.Save(service.Database, id); err != nil {
+
+	createErr := service.Store.CreateAttachment(attachment)
+	if createErr != nil {
 		service.Log.WarnError(api.AttachmentNotSaved, err, api.LogFields{})
 		RespondWithStructuredError(w, api.AttachmentNotSaved, http.StatusInternalServerError)
 		return
@@ -231,6 +233,7 @@ type AttachmentGetHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -263,8 +266,10 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 		RespondWithStructuredError(w, api.AttachmentNoID, http.StatusBadRequest)
 		return
 	}
-	attachment := &api.Attachment{ID: attachmentID}
-	if _, err := attachment.Get(service.Database, account.ID); err != nil {
+
+	//LoadAttachment wants the AccountID then the AttachmentID
+	attachment, loadErr := service.Store.LoadAttachment(id, attachmentID)
+	if loadErr != nil {
 		service.Log.WarnError(api.AttachmentNotFound, err, api.LogFields{"attachment": attachmentID})
 		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusNotFound)
 		return

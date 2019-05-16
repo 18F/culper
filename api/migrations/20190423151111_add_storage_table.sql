@@ -12,5 +12,5 @@ CREATE TABLE applications(
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
 -- +goose StatementBegin
-DROP TABLE applications
+DROP TABLE applications;
 -- +goose StatementEnd
