@@ -6,9 +6,11 @@ import {
   UNEMPLOYMENT,
 } from 'constants/enums/employmentOptions'
 
-// import { today, dateWithinRange } from 'helpers/date'
+import physicalAddress from 'models/shared/physicalAddress'
+import date from 'models/shared/date'
 
-/*
+import { today, dateWithinRange } from 'helpers/date'
+
 const withinSevenYears = (dates = {}) => {
   const { from, present } = dates
   const to = present ? today.toObject() : dates.to
@@ -17,7 +19,6 @@ const withinSevenYears = (dates = {}) => {
   return dateWithinRange(to, employmentTimeFrame)
     || dateWithinRange(from, employmentTimeFrame)
 }
-*/
 
 const supervisor = {
   SupervisorName: { presence: true },
@@ -32,6 +33,18 @@ const supervisor = {
   Telephone: { presence: true, phone: true },
 }
 
+const additional = {
+  Position: { presence: true },
+  Supervisor: { presence: true },
+  DatesEmployed: { presence: true, daterange: true },
+}
+
+const reprimand = {
+  Text: { presence: true },
+  Date: { presence: true, model: { validator: date } },
+}
+
+// TODO
 /*
 const reasonLeftReason = {
   Reason: { presence: true },
@@ -65,8 +78,6 @@ const employment = {
     presence: true,
     daterange: true,
   },
-
-  /** TODO TESTS FOR EVERYTHING BELOW */
 
   // Required by all but Unemployment
   Title: (value, attributes = {}) => {
@@ -106,16 +117,26 @@ const employment = {
       },
     }
   },
+  */
+
   Reprimand: (value, attributes = {}) => {
     if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
+    const { Dates } = attributes
+    if (withinSevenYears(Dates)) {
+      return {
+        presence: true,
+        branchCollection: {
+          validator: reprimand,
+        },
+      }
+    }
 
-    // TODO if within 7 years
+    return {}
   },
-  */
 
   // Required by military & other
   Supervisor: (value, attributes = {}) => {
-    if ([...militaryEmploymentOptions, otherEmploymentOptions]
+    if ([...militaryEmploymentOptions, ...otherEmploymentOptions]
       .includes(attributes.EmploymentActivity)) {
       return {
         presence: true,
@@ -136,9 +157,19 @@ const employment = {
 
     return {}
   },
-  /*
-  PhysicalAddress: {},
-  */
+
+  PhysicalAddress: (value, attributes = {}) => {
+    if ([...otherEmploymentOptions, SELF_EMPLOYMENT].includes(attributes.EmploymentActivity)) {
+      return {
+        presence: true,
+        model: {
+          validator: physicalAddress,
+        },
+      }
+    }
+
+    return {}
+  },
 
   // Required by self-employment & unemployed
   ReferenceName: (value, attributes = {}) => {
@@ -181,10 +212,12 @@ const employment = {
     return {}
   },
 
-  /*
-  // Required by other
-  Additional: {},
-  */
+  // Applies to other employment
+  Additional: {
+    branchCollection: {
+      validator: additional,
+    },
+  },
 }
 
 export default employment
