@@ -12,7 +12,7 @@
       {{if radio $Item.EmploymentActivity | ne "Unemployment"}}
       {{if branch $Item.PhysicalAddress.props.HasDifferentAddress | eq "Yes"}}
       {{apoFpo $Item.PhysicalAddress.props.Address $Item.PhysicalAlternateAddress}}
-      {{else}}
+      {{else if radio $Item.EmploymentActivity | ne "SelfEmployment"}}
       {{apoFpo $Item.Address $Item.AlternateAddress}}
       {{end}}
       {{end}}

@@ -465,6 +465,140 @@
                   <DateRange>
                     <From>
                       <Date>
+                        <Month>02</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>SelfEmployed</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <APOFPO>
+                    <PhysicalLocation>
+                      <Address>
+                        <StreetUnitDutyLocation>Self Employment Physical Different APO Then Physical </StreetUnitDutyLocation>
+                        <CityPostName>Berlin</CityPostName>
+                        <Country>Germany</Country>
+                      </Address>
+                    </PhysicalLocation>
+                  </APOFPO>
+                  <SelfEmployment>
+                    <Occupation>Proprietor</Occupation>
+                    <Business>
+                      <Name>Typewriter Repair</Name>
+                      <Address>
+                        <Street>Self Employment APO </Street>
+                        <City>Winnipeg</City>
+                        <Country>Canada</Country>
+                      </Address>
+                      <Telephone>
+                        <Number>4312223431</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Business>
+                  </SelfEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Street>Self Employment APO Physical Different Yes </Street>
+                      <City>APO</City>
+                      <State>AA</State>
+                      <ZipCode>34038</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>3431333333</Number>
+                      <Extension>3</Extension>
+                      <Time>Night</Time>
+                    </Telephone>
+                  </JobLocation>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Alien</Last>
+                      <First Type="IO">Q</First>
+                    </LegalName>
+                    <Address>
+                      <Street>Verifier for Q </Street>
+                      <City>Tinian</City>
+                      <State>MP</State>
+                      <ZipCode>96952</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>5551224333</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Verifier>
+                </Employment>
+                <Employment ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>03</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>FederalContractor</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <APOFPO>
+                    <PhysicalLocation>
+                      <Address>
+                        <StreetUnitDutyLocation>Foreign EDS address </StreetUnitDutyLocation>
+                        <CityPostName>Avonlea</CityPostName>
+                        <Country>Canada</Country>
+                      </Address>
+                    </PhysicalLocation>
+                  </APOFPO>
+                  <CivilEmployment>
+                    <Employer>EDS</Employer>
+                    <PositionTitle>Comptroller</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>EDS APO </Street>
+                        <City>APO</City>
+                        <State>AA</State>
+                        <ZipCode>34038</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>3122123224</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>Bran the Builder</Name>
+                    <Title>King of the North</Title>
+                    <Address>
+                      <Street>43 Wall St. </Street>
+                      <City>Westeros</City>
+                      <State>CA</State>
+                      <ZipCode>93950</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>3339031313</Number>
+                      <Time>Day</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="3">
+                  <DateRange>
+                    <From>
+                      <Date>
                         <Month>05</Month>
                         <Year>2019</Year>
                       </Date>
@@ -533,7 +667,7 @@
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="2">
+                <Employment ID="4">
                   <DateRange>
                     <From>
                       <Date>
@@ -613,7 +747,7 @@
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="3">
+                <Employment ID="5">
                   <DateRange>
                     <From>
                       <Date>
@@ -685,7 +819,7 @@
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="4">
+                <Employment ID="6">
                   <DateRange>
                     <From>
                       <Date>
@@ -767,7 +901,7 @@
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="5">
+                <Employment ID="7">
                   <DateRange>
                     <From>
                       <Date>
@@ -839,7 +973,7 @@
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="6">
+                <Employment ID="8">
                   <DateRange>
                     <From>
                       <Date>
@@ -905,7 +1039,7 @@
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="7">
+                <Employment ID="9">
                   <DateRange>
                     <From>
                       <Date>
@@ -973,7 +1107,7 @@
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="8">
+                <Employment ID="10">
                   <DateRange>
                     <From>
                       <Date>
