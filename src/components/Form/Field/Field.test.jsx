@@ -79,6 +79,24 @@ describe('The field component', () => {
     expect(component.state().isCommentActive).toBe(true)
   })
 
+  it('triggers onUpdate when comments are typed', () => {
+    const expected = {
+      comments: true,
+      onUpdate: jest.fn(),
+    }
+
+    const component = mount(<Field {...expected} />)
+    component.setState({ isCommentActive: true })
+    component
+      .find('textarea')
+      .simulate('change', { target: { value: 'H' } })
+    component
+      .find('textarea')
+      .simulate('change', { target: { value: 'He' } })
+
+    expect(expected.onUpdate).toHaveBeenCalledTimes(2)
+  })
+
   it('does not displays optional text if nothing was specified', () => {
     const props = {
       title: 'Test field',
