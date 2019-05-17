@@ -4,6 +4,7 @@ import requireTrue from 'models/validators/requireTrue'
 import requireEmpty from 'models/validators/requireEmpty'
 import hasValue from 'models/validators/hasValue'
 import array from 'models/validators/array'
+import accordion from 'models/validators/accordion'
 import branchCollection from 'models/validators/branchCollection'
 import customModel from 'models/validators/customModel'
 import date from 'models/validators/date'
@@ -66,6 +67,7 @@ validate.validators.requireTrue = requireTrue
 validate.validators.requireEmpty = requireEmpty
 validate.validators.hasValue = hasValue
 validate.validators.array = array
+validate.validators.accordion = accordion
 validate.validators.branchCollection = branchCollection
 validate.validators.model = customModel
 validate.validators.date = date
@@ -87,3 +89,8 @@ export const validateModel = (data, model, options) => {
 }
 
 export default validateModel
+
+/** require Yes or No */
+export const hasYesOrNo = {
+  inclusion: ['Yes', 'No'],
+}

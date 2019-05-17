@@ -1,4 +1,4 @@
-import { validate } from 'validate.js'
+import { validateModel } from 'models/validate'
 
 const branchCollectionValidator = (value, options = {}) => {
   if (!value) return null // Only validate if there's a value
@@ -19,8 +19,8 @@ const branchCollectionValidator = (value, options = {}) => {
     if (Item && Item.Has && Item.Has.value === 'No') {
       // Skip it
     } else {
-      const itemErrors = validate(Item, validator)
-      if (itemErrors) return itemErrors
+      const itemErrors = validateModel(Item, validator)
+      if (itemErrors !== true) return itemErrors
     }
   }
 

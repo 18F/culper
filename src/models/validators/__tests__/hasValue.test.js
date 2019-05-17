@@ -20,4 +20,18 @@ describe('The hasValue validator', () => {
     const testData = { value: 'something' }
     expect(hasValue(testData)).toBeNull()
   })
+
+  describe('with a validator passed in', () => {
+    it('fails if the value does not pass the validator', () => {
+      const testData = { value: 'test' }
+      const validator = { inclusion: ['Yes', 'No'] }
+      expect(hasValue(testData, { validator })).toBeTruthy()
+    })
+
+    it('passes if the value passes the validator', () => {
+      const testData = { value: 'No' }
+      const validator = { inclusion: ['Yes', 'No'] }
+      expect(hasValue(testData, { validator })).toBeNull()
+    })
+  })
 })
