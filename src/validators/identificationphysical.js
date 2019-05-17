@@ -6,36 +6,16 @@ import height from 'models/shared/height'
 import sex from 'models/shared/sex'
 import weight from 'models/shared/weight'
 
-export const validateHeight = data => (
-  validateModel(data, height) === true
-)
-
-export const validateWeight = data => (
-  validateModel(data, weight) === true
-)
-
-export const validateHairColor = data => (
-  validateModel(data, hairColor) === true
-)
-
-export const validateEyeColor = data => (
-  validateModel(data, eyeColor) === true
-)
-
-export const validateSex = data => (
-  validateModel(data, sex) === true
-)
-
 export const validateIdentificationPhysical = (data) => {
-  const {
-    Height, Weight, HairColor, EyeColor, Sex,
-  } = data
+  const physicalModel = {
+    Height: { presence: true, model: { validator: height } },
+    Weight: { presence: true, model: { validator: weight } },
+    HairColor: { presence: true, model: { validator: hairColor } },
+    EyeColor: { presence: true, model: { validator: eyeColor } },
+    Sex: { presence: true, model: { validator: sex } },
+  }
 
-  return validateHeight(Height)
-    && validateWeight(Weight)
-    && validateHairColor(HairColor)
-    && validateEyeColor(EyeColor)
-    && validateSex(Sex)
+  return validateModel(data, physicalModel) === true
 }
 
 /** LEGACY */
@@ -52,22 +32,22 @@ export default class PhysicalValidator {
   }
 
   validHeight() {
-    return validateHeight(this.data.Height)
+    return validateModel(this.data.Height, height) === true
   }
 
   validWeight() {
-    return validateWeight(this.data.Weight)
+    return validateModel(this.data.Weight, weight) === true
   }
 
   validHairColor() {
-    return validateHairColor(this.data.HairColor)
+    return validateModel(this.data.HairColor, hairColor) === true
   }
 
   validEyeColor() {
-    return validateEyeColor(this.data.EyeColor)
+    return validateModel(this.data.EyeColor, eyeColor) === true
   }
 
   validSex() {
-    return validateSex(this.data.Sex)
+    return validateModel(this.data.Sex, sex) === true
   }
 }
