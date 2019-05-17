@@ -36,8 +36,6 @@ export const validateOtherNames = data => (
 export default class OtherNamesValidator {
   constructor(data = {}) {
     this.data = data
-    this.hasOtherNames = (data.HasOtherNames || {}).value
-    this.list = data.List || {}
   }
 
   /**
