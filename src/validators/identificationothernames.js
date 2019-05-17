@@ -1,9 +1,41 @@
-import NameValidator from './name'
-import { validAccordion, validGenericTextfield } from './helpers'
-import DateRangeValidator from './daterange'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import name from 'models/shared/name'
+
+const otherNameModel = {
+  Name: {
+    presence: true,
+    model: { validator: name },
+  },
+  MaidenName: { presence: true, hasValue: true },
+  DatesUsed: { presence: true, daterange: true },
+  Reason: { presence: true, hasValue: true },
+}
+
+const otherNamesModel = {
+  HasOtherNames: { presence: true, hasValue: { validator: hasYesOrNo } },
+  List: (value, attributes) => {
+    if (attributes.HasOtherNames
+      && attributes.HasOtherNames.value
+      && attributes.HasOtherNames.value === 'No') return {}
+
+    return {
+      presence: true,
+      accordion: { validator: otherNameModel },
+    }
+  },
+}
+
+export const validateOtherName = data => (
+  validateModel(data, otherNameModel) === true
+)
+
+export const validateOtherNames = data => (
+  validateModel(data, otherNamesModel) === true
+)
 
 export default class OtherNamesValidator {
   constructor(data = {}) {
+    this.data = data
     this.hasOtherNames = (data.HasOtherNames || {}).value
     this.list = data.List || {}
   }
@@ -12,35 +44,23 @@ export default class OtherNamesValidator {
    * Validates that proper values were included for branching
    */
   validHasOtherNames() {
-    if (!this.hasOtherNames) {
-      return false
-    }
-
-    if (!(this.hasOtherNames === 'Yes' || this.hasOtherNames === 'No')) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, { HasOtherNames: otherNamesModel.HasOtherNames }) === true
   }
 
   /**
    * Checks if any of the other names is valid
    */
   validOtherNames() {
-    if (this.hasOtherNames === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new OtherNameValidator(item).isValid()
-    })
+    return validateModel(this.data, {
+      List: otherNamesModel.List,
+    }) === true
   }
 
   /**
    * Validates the branching hasOtherNames property and all other name values
    */
   isValid() {
-    return this.validHasOtherNames() && this.validOtherNames()
+    return validateOtherNames(this.data)
   }
 }
 
@@ -49,49 +69,38 @@ export default class OtherNamesValidator {
  */
 export class OtherNameValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.maidenName = data.MaidenName
-    this.datesUsed = data.DatesUsed
-    this.reason = data.Reason
+    this.data = data
   }
 
   /**
    * Validates a name
    */
   validName() {
-    return new NameValidator(this.name).isValid()
+    return validateModel(this.data, { Name: otherNameModel.Name }) === true
   }
 
   /**
    * Validates a maiden name
    */
   validMaidenName() {
-    if (!this.maidenName || !this.maidenName.value) {
-      return false
-    }
-    return true
+    return validateModel(this.data, { MaidenName: otherNameModel.MaidenName }) === true
   }
 
   /**
    * Validates the other names dates used
    */
   validDatesUsed() {
-    return new DateRangeValidator(this.datesUsed).isValid()
+    return validateModel(this.data, { DatesUsed: otherNameModel.DatesUsed }) === true
   }
 
   validReason() {
-    return validGenericTextfield(this.reason)
+    return validateModel(this.data, { Reason: otherNameModel.Reason }) === true
   }
 
   /**
    * Validates all portions of an other name
    */
   isValid() {
-    return (
-      this.validName() &&
-      this.validMaidenName() &&
-      this.validDatesUsed() &&
-      this.validReason()
-    )
+    return validateOtherName(this.data)
   }
 }
