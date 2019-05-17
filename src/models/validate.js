@@ -2,6 +2,7 @@ import { validate } from 'validate.js'
 
 import requireTrue from 'models/validators/requireTrue'
 import requireEmpty from 'models/validators/requireEmpty'
+import hasValue from 'models/validators/hasValue'
 import array from 'models/validators/array'
 import branchCollection from 'models/validators/branchCollection'
 import customModel from 'models/validators/customModel'
@@ -63,6 +64,7 @@ validate.options = {
 // Implement custom validators
 validate.validators.requireTrue = requireTrue
 validate.validators.requireEmpty = requireEmpty
+validate.validators.hasValue = hasValue
 validate.validators.array = array
 validate.validators.branchCollection = branchCollection
 validate.validators.model = customModel
