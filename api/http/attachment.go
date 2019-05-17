@@ -20,6 +20,7 @@ type AttachmentListHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -44,9 +45,9 @@ func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	var attachments []api.Attachment
-	if err := service.Database.Where(&attachments, "account_id = ?", account.ID); err != nil {
-		service.Log.Warn(api.AttachmentNotFound, api.LogFields{})
+	attachments, listErr := service.Store.ListAttachmentsMetadata(account.ID)
+	if listErr != nil {
+		service.Log.WarnError(api.AttachmentNotFound, listErr, api.LogFields{})
 		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusInternalServerError)
 		return
 	}
@@ -215,6 +216,7 @@ type AttachmentDeleteHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -251,10 +253,17 @@ func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.
 		RespondWithStructuredError(w, api.AttachmentNoID, http.StatusBadRequest)
 		return
 	}
-	attachment := &api.Attachment{ID: attachmentID}
-	if _, err := attachment.Delete(service.Database, account.ID); err != nil {
-		service.Log.WarnError(api.AttachmentDeleted, err, api.LogFields{"attachment": attachmentID})
-		RespondWithStructuredError(w, api.AttachmentDeleted, http.StatusInternalServerError)
+
+	delErr := service.Store.DeleteAttachment(account.ID, attachmentID)
+	if delErr != nil {
+		if delErr == api.ErrAttachmentDoesNotExist {
+			service.Log.Warn(api.AttachmentNotFound, api.LogFields{"attachment": attachmentID})
+			RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusNotFound)
+			return
+		}
+
+		service.Log.WarnError(api.AttachmentNotDeleted, err, api.LogFields{"attachment": attachmentID})
+		RespondWithStructuredError(w, api.AttachmentNotDeleted, http.StatusInternalServerError)
 		return
 	}
 

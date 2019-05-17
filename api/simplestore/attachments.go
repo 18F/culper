@@ -31,6 +31,7 @@ func (s SimpleStore) CreateAttachment(attachment *api.Attachment) error {
 }
 
 type attachmentRow struct {
+	ID       int    `db:"id"`
 	Metadata []byte `db:"metadata"`
 	Body     []byte `db:"body"`
 }
@@ -56,4 +57,60 @@ func (s SimpleStore) LoadAttachment(accountID int, attachmentID int) (api.Attach
 	}
 
 	return attachment, nil
+}
+
+// LoadAttachment loads an attachment from the database
+// NOTE, it does not fetch the body of the attachments, just the metadata
+func (s SimpleStore) ListAttachmentsMetadata(accountID int) ([]api.Attachment, error) {
+
+	selectQuery := `SELECT id, metadata FROM attachments WHERE account_id = $1`
+
+	rows, selectErr := s.db.Queryx(selectQuery, accountID)
+	if selectErr != nil {
+		if selectErr == sql.ErrNoRows {
+			return []api.Attachment{}, api.ErrAttachmentDoesNotExist
+		}
+		return []api.Attachment{}, errors.Wrap(selectErr, "Couldn't list Attachments")
+	}
+
+	var attachments []api.Attachment
+
+	row := attachmentRow{}
+	for rows.Next() {
+		scanErr := rows.StructScan(&row)
+		if scanErr != nil {
+			return []api.Attachment{}, errors.Wrap(scanErr, "Failed to unpack an Attachment while listing.")
+		}
+
+		attachment, serializeErr := s.serializer.DeserializeAttachment(accountID, row.ID, row.Metadata, row.Body)
+		if serializeErr != nil {
+			return []api.Attachment{}, errors.Wrap(serializeErr, "Couldn't unmarshal the loaded Attachment")
+		}
+
+		attachments = append(attachments, attachment)
+
+	}
+
+	return attachments, nil
+}
+
+func (s SimpleStore) DeleteAttachment(accountID int, attachmentID int) error {
+
+	deleteQuery := "DELETE FROM attachments WHERE account_id = $1 AND id = $2"
+
+	result, delErr := s.db.Exec(deleteQuery, accountID, attachmentID)
+	if delErr != nil {
+		return errors.Wrap(delErr, "Failed to delete Attachment")
+	}
+
+	rows, affectedErr := result.RowsAffected()
+	if affectedErr != nil {
+		return errors.Wrap(affectedErr, "Bizzarely unable to read affected rows")
+	}
+
+	if rows != 1 {
+		return api.ErrAttachmentDoesNotExist
+	}
+
+	return nil
 }

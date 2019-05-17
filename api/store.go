@@ -28,4 +28,8 @@ type StorageService interface {
 	CreateAttachment(attachment *Attachment) error
 	// LoadAttachment loads an attachment from the database
 	LoadAttachment(accountID int, attachmentID int) (Attachment, error)
+	// ListAttachmentMetadata returns a slice of attachments' metadata for a given account.
+	ListAttachmentsMetadata(accountID int) ([]Attachment, error)
+	//DeleteAttachment deletes an attachment for the given account
+	DeleteAttachment(accountID int, attachmentID int) error
 }
