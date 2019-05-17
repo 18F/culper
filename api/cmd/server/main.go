@@ -102,7 +102,6 @@ func main() {
 	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 	if settings.True(api.AttachmentsEnabled) {
 		a.Handle("/attachment", sec.Middleware(http.AttachmentSaveHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "PUT")
-		a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentUpdateHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "PUT")
 		a.Handle("/attachment/{id}/delete", sec.Middleware(http.AttachmentDeleteHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "DELETE")
 	}
 
