@@ -6,11 +6,14 @@ import array from 'models/validators/array'
 import branchCollection from 'models/validators/branchCollection'
 import customModel from 'models/validators/customModel'
 import date from 'models/validators/date'
+import daterange from 'models/validators/daterange'
 import location from 'models/validators/location'
 import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
 
-import { isDateTime, createDateFromObject, createDateFromTimestamp } from 'helpers/date'
+import {
+  isDateTime, cleanDateObject, createDateFromObject, createDateFromTimestamp,
+} from 'helpers/date'
 
 // Error message format
 validate.formatters.errorKeys = errors => (
@@ -31,7 +34,7 @@ validate.extend(validate.validators.datetime, {
     // Return unix timestamp
     const dateTime = value && isDateTime(value)
       ? value
-      : createDateFromObject(value)
+      : createDateFromObject(cleanDateObject(value))
 
     if (dateTime.isValid) {
       return dateTime.toMillis()
@@ -64,6 +67,7 @@ validate.validators.array = array
 validate.validators.branchCollection = branchCollection
 validate.validators.model = customModel
 validate.validators.date = date
+validate.validators.daterange = daterange
 validate.validators.location = location
 validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
