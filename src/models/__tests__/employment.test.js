@@ -14,7 +14,7 @@ describe('The employment model', () => {
     const testData = {
       EmploymentActivity: 'Some other thing',
     }
-    const expectedErrors = ['EmploymentActivity.inclusion']
+    const expectedErrors = ['EmploymentActivity.hasValue']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -46,7 +46,7 @@ describe('The employment model', () => {
   describe('if EmploymentActivity is Unemployment', () => {
     it('the Reference fields are required', () => {
       const testData = {
-        EmploymentActivity: 'Unemployment',
+        EmploymentActivity: { value: 'Unemployment' },
       }
 
       const expectedErrors = [
@@ -61,7 +61,7 @@ describe('The employment model', () => {
 
     it('ReferenceName must be a valid name', () => {
       const testData = {
-        EmploymentActivity: 'Unemployment',
+        EmploymentActivity: { value: 'Unemployment' },
         ReferenceName: {
           last: 'Lastname',
         },
@@ -77,7 +77,7 @@ describe('The employment model', () => {
 
     it('ReferencePhone must be a valid phone', () => {
       const testData = {
-        EmploymentActivity: 'Unemployment',
+        EmploymentActivity: { value: 'Unemployment' },
         ReferencePhone: {
           number: 'abcde',
         },
@@ -93,7 +93,7 @@ describe('The employment model', () => {
 
     it('ReferenceAddress must be a valid address', () => {
       const testData = {
-        EmploymentActivity: 'Unemployment',
+        EmploymentActivity: { value: 'Unemployment' },
         ReferenceAddress: 'Not an address',
       }
 
@@ -107,7 +107,7 @@ describe('The employment model', () => {
 
     it('passes a valid Employment item', () => {
       const testData = {
-        EmploymentActivity: 'Unemployment',
+        EmploymentActivity: { value: 'Unemployment' },
         Dates: {
           from: { year: 1990, month: 5, day: 12 },
           to: { year: 2000, month: 12, day: 1 },
@@ -140,7 +140,7 @@ describe('The employment model', () => {
     describe('if the activity is not within the last 7 years', () => {
       it('the Reprimand field is not required', () => {
         const testData = {
-          EmploymentActivity: 'Other',
+          EmploymentActivity: { value: 'Other' },
           Dates: {
             from: { year: 1990, month: 1, day: 1 },
             to: { year: 1991, month: 10, day: 30 },
@@ -157,7 +157,7 @@ describe('The employment model', () => {
     describe('if the activity is within the last 7 years', () => {
       it('the Reprimand field is required', () => {
         const testData = {
-          EmploymentActivity: 'Other',
+          EmploymentActivity: { value: 'Other' },
           Dates: {
             from: { year: 2010, month: 1, day: 1 },
             present: true,
@@ -172,7 +172,7 @@ describe('The employment model', () => {
 
       it('the Reprimand field must be valid', () => {
         const testData = {
-          EmploymentActivity: 'Other',
+          EmploymentActivity: { value: 'Other' },
           Dates: {
             from: { year: 2010, month: 1, day: 1 },
             present: true,
@@ -188,7 +188,7 @@ describe('The employment model', () => {
 
       it('passes if no reprimands', () => {
         const testData = {
-          EmploymentActivity: 'Other',
+          EmploymentActivity: { value: 'Other' },
           Dates: {
             from: { year: 2010, month: 1, day: 1 },
             present: true,
@@ -210,7 +210,7 @@ describe('The employment model', () => {
       describe('if there are reprimands', () => {
         it('the reprimand items must be valid', () => {
           const testData = {
-            EmploymentActivity: 'Other',
+            EmploymentActivity: { value: 'Other' },
             Dates: {
               from: { year: 2010, month: 1, day: 1 },
               present: true,
@@ -230,7 +230,7 @@ describe('The employment model', () => {
 
         it('passes if valid reprimands', () => {
           const testData = {
-            EmploymentActivity: 'Other',
+            EmploymentActivity: { value: 'Other' },
             Dates: {
               from: { year: 2010, month: 1, day: 1 },
               present: true,
@@ -260,7 +260,7 @@ describe('The employment model', () => {
     describe('if the date range extends to the present', () => {
       it('the ReasonLeft field is not required', () => {
         const testData = {
-          EmploymentActivity: 'Other',
+          EmploymentActivity: { value: 'Other' },
           Dates: {
             from: { year: 2015, month: 2, day: 5 },
             present: true,
@@ -277,7 +277,7 @@ describe('The employment model', () => {
     describe('if the date range does not extend to the present', () => {
       it('the ReasonLeft field is required', () => {
         const testData = {
-          EmploymentActivity: 'Other',
+          EmploymentActivity: { value: 'Other' },
           Dates: {
             from: { year: 2015, month: 2, day: 5 },
             to: { year: 2018, month: 10, day: 20 },
@@ -293,7 +293,7 @@ describe('The employment model', () => {
 
       it('the ReasonLeft field must be valid', () => {
         const testData = {
-          EmploymentActivity: 'Other',
+          EmploymentActivity: { value: 'Other' },
           Dates: {
             from: { year: 2015, month: 2, day: 5 },
             to: { year: 2018, month: 10, day: 20 },
@@ -313,7 +313,7 @@ describe('The employment model', () => {
       describe('if the date range is not within the last 7 years', () => {
         it('the ReasonLeft field does not require reasons', () => {
           const testData = {
-            EmploymentActivity: 'Other',
+            EmploymentActivity: { value: 'Other' },
             Dates: {
               from: { year: 2000, month: 2, day: 5 },
               to: { year: 2005, month: 10, day: 20 },
@@ -334,7 +334,7 @@ describe('The employment model', () => {
       describe('if the date range is within the last 7 years', () => {
         it('the ReasonLeft field requires reasons', () => {
           const testData = {
-            EmploymentActivity: 'Other',
+            EmploymentActivity: { value: 'Other' },
             Dates: {
               from: { year: 2017, month: 2, day: 5 },
               to: { year: 2018, month: 10, day: 20 },
@@ -353,7 +353,7 @@ describe('The employment model', () => {
 
         it('the ReasonLeft Reasons must be valid', () => {
           const testData = {
-            EmploymentActivity: 'Other',
+            EmploymentActivity: { value: 'Other' },
             Dates: {
               from: { year: 2017, month: 2, day: 5 },
               to: { year: 2018, month: 10, day: 20 },
@@ -377,7 +377,7 @@ describe('The employment model', () => {
 
         it('passes valid ReasonLeft Reasons', () => {
           const testData = {
-            EmploymentActivity: 'Other',
+            EmploymentActivity: { value: 'Other' },
             Dates: {
               from: { year: 2017, month: 2, day: 5 },
               to: { year: 2018, month: 10, day: 20 },
@@ -413,7 +413,7 @@ describe('The employment model', () => {
   describe('if EmploymentActivity is SelfEmployment', () => {
     it('the Title field is required', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
       }
 
       const expectedErrors = [
@@ -426,7 +426,7 @@ describe('The employment model', () => {
 
     it('the Status field is required', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
       }
 
       const expectedErrors = [
@@ -439,7 +439,7 @@ describe('The employment model', () => {
 
     it('the Address field is required', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
       }
 
       const expectedErrors = [
@@ -452,7 +452,7 @@ describe('The employment model', () => {
 
     it('the Address field must be a valid address', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
         Address: 'Not a valid address',
       }
 
@@ -466,7 +466,7 @@ describe('The employment model', () => {
 
     it('the PhysicalAddress field is required', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
       }
 
       const expectedErrors = [
@@ -479,7 +479,7 @@ describe('The employment model', () => {
 
     it('the PhysicalAddress field must be a valid physical address', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
         PhysicalAddress: {
           HasDifferentAddress: 'blah',
         },
@@ -495,7 +495,7 @@ describe('The employment model', () => {
 
     it('the Telephone field is required', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
       }
 
       const expectedErrors = [
@@ -508,7 +508,7 @@ describe('The employment model', () => {
 
     it('the Telephone field must be a valid phone', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
         Telephone: {
           number: 'notvalid',
         },
@@ -524,7 +524,7 @@ describe('The employment model', () => {
 
     it('the Employment field is required', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
       }
 
       const expectedErrors = [
@@ -537,7 +537,7 @@ describe('The employment model', () => {
 
     it('the Reference fields are required', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
       }
 
       const expectedErrors = [
@@ -552,7 +552,7 @@ describe('The employment model', () => {
 
     it('ReferenceName must be a valid name', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
         ReferenceName: {
           last: 'Lastname',
         },
@@ -568,7 +568,7 @@ describe('The employment model', () => {
 
     it('ReferencePhone must be a valid phone', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
         ReferencePhone: {
           number: 'abcde',
         },
@@ -584,7 +584,7 @@ describe('The employment model', () => {
 
     it('ReferenceAddress must be a valid address', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
         ReferenceAddress: 'Not an address',
       }
 
@@ -598,7 +598,7 @@ describe('The employment model', () => {
 
     it('passes a valid Employment item', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
         Dates: {
           from: { year: 1990, month: 5, day: 12 },
           present: true,
@@ -650,7 +650,7 @@ describe('The employment model', () => {
 
     it('passes a valid Employment item requiring a physical address', () => {
       const testData = {
-        EmploymentActivity: 'SelfEmployment',
+        EmploymentActivity: { value: 'SelfEmployment' },
         Dates: {
           from: { year: 1990, month: 5, day: 12 },
           present: true,
@@ -716,7 +716,7 @@ describe('The employment model', () => {
   describe('if EmploymentActivity is military', () => {
     it('the Title field is required', () => {
       const testData = {
-        EmploymentActivity: 'ActiveMilitary',
+        EmploymentActivity: { value: 'ActiveMilitary' },
       }
 
       const expectedErrors = [
@@ -729,7 +729,7 @@ describe('The employment model', () => {
 
     it('the DutyStation field is required', () => {
       const testData = {
-        EmploymentActivity: 'ActiveMilitary',
+        EmploymentActivity: { value: 'ActiveMilitary' },
       }
 
       const expectedErrors = [
@@ -742,7 +742,7 @@ describe('The employment model', () => {
 
     it('the Status field is required', () => {
       const testData = {
-        EmploymentActivity: 'NationalGuard',
+        EmploymentActivity: { value: 'NationalGuard' },
       }
 
       const expectedErrors = [
@@ -755,7 +755,7 @@ describe('The employment model', () => {
 
     it('the Address field is required', () => {
       const testData = {
-        EmploymentActivity: 'USPHS',
+        EmploymentActivity: { value: 'USPHS' },
       }
 
       const expectedErrors = [
@@ -768,7 +768,7 @@ describe('The employment model', () => {
 
     it('the Address field must be a valid address', () => {
       const testData = {
-        EmploymentActivity: 'ActiveMilitary',
+        EmploymentActivity: { value: 'ActiveMilitary' },
         Address: 'Not a valid address',
       }
 
@@ -782,7 +782,7 @@ describe('The employment model', () => {
 
     it('the Telephone field is required', () => {
       const testData = {
-        EmploymentActivity: 'NationalGuard',
+        EmploymentActivity: { value: 'NationalGuard' },
       }
 
       const expectedErrors = [
@@ -795,7 +795,7 @@ describe('The employment model', () => {
 
     it('the Telephone field must be a valid phone', () => {
       const testData = {
-        EmploymentActivity: 'USPHS',
+        EmploymentActivity: { value: 'USPHS' },
         Telephone: {
           number: 'notvalid',
         },
@@ -811,7 +811,7 @@ describe('The employment model', () => {
 
     it('the Supervisor field is required', () => {
       const testData = {
-        EmploymentActivity: 'NationalGuard',
+        EmploymentActivity: { value: 'NationalGuard' },
       }
 
       const expectedErrors = [
@@ -824,7 +824,7 @@ describe('The employment model', () => {
 
     it('the Supervisor field must be a valid supervisor', () => {
       const testData = {
-        EmploymentActivity: 'NationalGuard',
+        EmploymentActivity: { value: 'NationalGuard' },
         Supervisor: {
           SupervisorName: 'something',
         },
@@ -840,7 +840,7 @@ describe('The employment model', () => {
 
     it('passes a valid Employment item', () => {
       const testData = {
-        EmploymentActivity: 'ActiveMilitary',
+        EmploymentActivity: { value: 'ActiveMilitary' },
         Dates: {
           from: { year: 1990, month: 5, day: 12 },
           present: true,
@@ -891,7 +891,7 @@ describe('The employment model', () => {
   describe('if EmploymentActivity is other', () => {
     it('the Title field is required', () => {
       const testData = {
-        EmploymentActivity: 'OtherFederal',
+        EmploymentActivity: { value: 'OtherFederal' },
       }
 
       const expectedErrors = [
@@ -904,7 +904,7 @@ describe('The employment model', () => {
 
     it('the Employment field is required', () => {
       const testData = {
-        EmploymentActivity: 'StateGovernment',
+        EmploymentActivity: { value: 'StateGovernment' },
       }
 
       const expectedErrors = [
@@ -917,7 +917,7 @@ describe('The employment model', () => {
 
     it('the Status field is required', () => {
       const testData = {
-        EmploymentActivity: 'StateGovernment',
+        EmploymentActivity: { value: 'StateGovernment' },
       }
 
       const expectedErrors = [
@@ -930,7 +930,7 @@ describe('The employment model', () => {
 
     it('the Address field is required', () => {
       const testData = {
-        EmploymentActivity: 'FederalContractor',
+        EmploymentActivity: { value: 'FederalContractor' },
       }
 
       const expectedErrors = [
@@ -943,7 +943,7 @@ describe('The employment model', () => {
 
     it('the Address field must be a valid address', () => {
       const testData = {
-        EmploymentActivity: 'NonGovernment',
+        EmploymentActivity: { value: 'NonGovernment' },
         Address: 'Not a valid address',
       }
 
@@ -957,7 +957,7 @@ describe('The employment model', () => {
 
     it('the Telephone field is required', () => {
       const testData = {
-        EmploymentActivity: 'Other',
+        EmploymentActivity: { value: 'Other' },
       }
 
       const expectedErrors = [
@@ -970,7 +970,7 @@ describe('The employment model', () => {
 
     it('the Telephone field must be a valid phone', () => {
       const testData = {
-        EmploymentActivity: 'OtherFederal',
+        EmploymentActivity: { value: 'OtherFederal' },
         Telephone: {
           number: 'notvalid',
         },
@@ -986,7 +986,7 @@ describe('The employment model', () => {
 
     it('the Supervisor field is required', () => {
       const testData = {
-        EmploymentActivity: 'StateGovernment',
+        EmploymentActivity: { value: 'StateGovernment' },
       }
 
       const expectedErrors = [
@@ -999,7 +999,7 @@ describe('The employment model', () => {
 
     it('the Supervisor field must be a valid supervisor', () => {
       const testData = {
-        EmploymentActivity: 'FederalContractor',
+        EmploymentActivity: { value: 'FederalContractor' },
         Supervisor: {
           SupervisorName: 'something',
         },
@@ -1015,7 +1015,7 @@ describe('The employment model', () => {
 
     it('passes a valid Employment item', () => {
       const testData = {
-        EmploymentActivity: 'NonGovernment',
+        EmploymentActivity: { value: 'NonGovernment' },
         Dates: {
           from: { year: 1990, month: 5, day: 12 },
           present: true,
@@ -1083,7 +1083,7 @@ describe('The employment model', () => {
 
       it('passes a valid Employment item', () => {
         const testData = {
-          EmploymentActivity: 'NonGovernment',
+          EmploymentActivity: { value: 'NonGovernment' },
           Dates: {
             from: { year: 1990, month: 5, day: 12 },
             present: true,

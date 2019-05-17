@@ -32,7 +32,7 @@ const supervisor = {
     if (EmailNotApplicable && !EmailNotApplicable.applicable) return {}
     return { presence: true, model: { validator: email } }
   },
-  Address: { presence: true, model: { validator: address } },
+  Address: { presence: true, location: { validator: address } },
   Telephone: { presence: true, model: { validator: phone } },
 }
 
@@ -73,7 +73,9 @@ const employment = {
   /** Required by all */
   EmploymentActivity: {
     presence: true,
-    inclusion: employmentActivityOptions,
+    hasValue: {
+      validator: { inclusion: employmentActivityOptions },
+    },
   },
   Dates: {
     presence: true,
@@ -82,22 +84,26 @@ const employment = {
 
   // Required by all but Unemployment
   Title: (value, attributes = {}) => {
-    if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
+    if (attributes.EmploymentActivity
+      && attributes.EmploymentActivity.value === UNEMPLOYMENT) return {}
     return { presence: true }
   },
   Status: (value, attributes = {}) => {
-    if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
+    if (attributes.EmploymentActivity
+      && attributes.EmploymentActivity.value === UNEMPLOYMENT) return {}
     return { presence: true }
   },
   Address: (value, attributes = {}) => {
-    if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
+    if (attributes.EmploymentActivity
+      && attributes.EmploymentActivity.value === UNEMPLOYMENT) return {}
     return {
       presence: true,
       location: { validator: address },
     }
   },
   Telephone: (value, attributes = {}) => {
-    if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
+    if (attributes.EmploymentActivity
+      && attributes.EmploymentActivity.value === UNEMPLOYMENT) return {}
     return {
       presence: true,
       model: { validator: phone },
@@ -105,7 +111,8 @@ const employment = {
   },
 
   ReasonLeft: (value, attributes = {}) => {
-    if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
+    if (attributes.EmploymentActivity
+      && attributes.EmploymentActivity.value === UNEMPLOYMENT) return {}
 
     const { Dates } = attributes
     if (Dates && Dates.present === true) return {}
@@ -120,7 +127,8 @@ const employment = {
   },
 
   Reprimand: (value, attributes = {}) => {
-    if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
+    if (attributes.EmploymentActivity
+      && attributes.EmploymentActivity.value === UNEMPLOYMENT) return {}
     const { Dates } = attributes
     if (withinSevenYears(Dates)) {
       return {
@@ -136,8 +144,9 @@ const employment = {
 
   // Required by military & other
   Supervisor: (value, attributes = {}) => {
-    if ([...militaryEmploymentOptions, ...otherEmploymentOptions]
-      .includes(attributes.EmploymentActivity)) {
+    if (attributes.EmploymentActivity
+      && [...militaryEmploymentOptions, ...otherEmploymentOptions]
+        .includes(attributes.EmploymentActivity.value)) {
       return {
         presence: true,
         model: {
@@ -151,7 +160,9 @@ const employment = {
 
   // Required by other & self-employment
   Employment: (value, attributes = {}) => {
-    if ([...otherEmploymentOptions, SELF_EMPLOYMENT].includes(attributes.EmploymentActivity)) {
+    if (attributes.EmploymentActivity
+      && [...otherEmploymentOptions, SELF_EMPLOYMENT]
+        .includes(attributes.EmploymentActivity.value)) {
       return { presence: true }
     }
 
@@ -159,7 +170,9 @@ const employment = {
   },
 
   PhysicalAddress: (value, attributes = {}) => {
-    if ([...otherEmploymentOptions, SELF_EMPLOYMENT].includes(attributes.EmploymentActivity)) {
+    if (attributes.EmploymentActivity
+      && [...otherEmploymentOptions, SELF_EMPLOYMENT]
+        .includes(attributes.EmploymentActivity.value)) {
       return {
         presence: true,
         model: {
@@ -173,11 +186,14 @@ const employment = {
 
   // Required by self-employment & unemployed
   ReferenceName: (value, attributes = {}) => {
-    if ([SELF_EMPLOYMENT, UNEMPLOYMENT].includes(attributes.EmploymentActivity)) {
+    if (attributes.EmploymentActivity
+      && [SELF_EMPLOYMENT, UNEMPLOYMENT]
+        .includes(attributes.EmploymentActivity.value)) {
       return {
         presence: true,
         model: {
           validator: name,
+          hideMiddleName: true,
         },
       }
     }
@@ -185,7 +201,8 @@ const employment = {
     return {}
   },
   ReferencePhone: (value, attributes = {}) => {
-    if ([SELF_EMPLOYMENT, UNEMPLOYMENT].includes(attributes.EmploymentActivity)) {
+    if (attributes.EmploymentActivity
+      && [SELF_EMPLOYMENT, UNEMPLOYMENT].includes(attributes.EmploymentActivity.value)) {
       return {
         presence: true,
         model: { validator: phone },
@@ -195,7 +212,8 @@ const employment = {
     return {}
   },
   ReferenceAddress: (value, attributes = {}) => {
-    if ([SELF_EMPLOYMENT, UNEMPLOYMENT].includes(attributes.EmploymentActivity)) {
+    if (attributes.EmploymentActivity
+      && [SELF_EMPLOYMENT, UNEMPLOYMENT].includes(attributes.EmploymentActivity.value)) {
       return {
         presence: true,
         location: { validator: address },
@@ -207,7 +225,8 @@ const employment = {
 
   // Required by military
   DutyStation: (value, attributes = {}) => {
-    if (militaryEmploymentOptions.includes(attributes.EmploymentActivity)) {
+    if (attributes.EmploymentActivity
+      && militaryEmploymentOptions.includes(attributes.EmploymentActivity.value)) {
       return { presence: true }
     }
 

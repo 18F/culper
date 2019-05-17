@@ -9,22 +9,22 @@ describe('The PhysicalAddress model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('HasDifferentAddress.value is required', () => {
+  it('HasDifferentAddress must have a value', () => {
     const testData = {
       HasDifferentAddress: '',
     }
-    const expectedErrors = ['HasDifferentAddress.value.required']
+    const expectedErrors = ['HasDifferentAddress.hasValue']
     expect(validateModel(testData, physicalAddress))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('HasDifferentAddress.value must be a valid value', () => {
+  it('HasDifferentAddress value must be valid', () => {
     const testData = {
       HasDifferentAddress: {
-        value: 'invalid',
+        value: 'Nope',
       },
     }
-    const expectedErrors = ['HasDifferentAddress.value.inclusion']
+    const expectedErrors = ['HasDifferentAddress.hasValue']
     expect(validateModel(testData, physicalAddress))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -78,19 +78,19 @@ describe('The PhysicalAddress model', () => {
         },
       }
 
-      const expectedErrors = ['Address.address']
+      const expectedErrors = ['Address.location']
       expect(validateModel(testData, physicalAddress))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('Telephone is required', () => {
+    it('Telephone is not required', () => {
       const testData = {
         HasDifferentAddress: { value: 'Yes' },
       }
 
       const expectedErrors = ['Telephone.required']
       expect(validateModel(testData, physicalAddress))
-        .toEqual(expect.arrayContaining(expectedErrors))
+        .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
     it('Telephone must be a valid phone', () => {
@@ -99,7 +99,7 @@ describe('The PhysicalAddress model', () => {
         Telephone: 'something',
       }
 
-      const expectedErrors = ['Telephone.phone']
+      const expectedErrors = ['Telephone.model']
       expect(validateModel(testData, physicalAddress))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
