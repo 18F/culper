@@ -7,7 +7,10 @@ import {
 } from 'constants/enums/employmentOptions'
 
 import physicalAddress from 'models/shared/physicalAddress'
-import date from 'models/shared/date'
+import name from 'models/shared/name'
+import email from 'models/shared/email'
+import address from 'models/shared/locations/address'
+import phone from 'models/shared/phone'
 
 import { today, dateWithinRange } from 'helpers/date'
 
@@ -21,27 +24,27 @@ const withinSevenYears = (dates = {}) => {
 }
 
 const supervisor = {
-  SupervisorName: { presence: true },
-  Title: { presence: true },
+  SupervisorName: { presence: true, hasValue: true },
+  Title: { presence: true, hasValue: true },
   EmailNotApplicable: {},
   Email: (value, attributes = {}) => {
     const { EmailNotApplicable } = attributes
     if (EmailNotApplicable && !EmailNotApplicable.applicable) return {}
-    return { presence: true, email: true }
+    return { presence: true, model: { validator: email } }
   },
-  Address: { presence: true, address: true },
-  Telephone: { presence: true, phone: true },
+  Address: { presence: true, model: { validator: address } },
+  Telephone: { presence: true, model: { validator: phone } },
 }
 
 const additional = {
-  Position: { presence: true },
-  Supervisor: { presence: true },
+  Position: { presence: true, hasValue: true },
+  Supervisor: { presence: true, hasValue: true },
   DatesEmployed: { presence: true, daterange: true },
 }
 
 const reprimand = {
-  Text: { presence: true },
-  Date: { presence: true, model: { validator: date } },
+  Text: { presence: true, hasValue: true },
+  Date: { presence: true, date: { requireDay: false } },
 }
 
 // TODO
@@ -92,14 +95,14 @@ const employment = {
     if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
     return {
       presence: true,
-      address: true,
+      location: { validator: address },
     }
   },
   Telephone: (value, attributes = {}) => {
     if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
     return {
       presence: true,
-      phone: true,
+      model: { validator: phone },
     }
   },
   /*
@@ -176,7 +179,9 @@ const employment = {
     if ([SELF_EMPLOYMENT, UNEMPLOYMENT].includes(attributes.EmploymentActivity)) {
       return {
         presence: true,
-        name: true,
+        model: {
+          validator: name,
+        },
       }
     }
 
@@ -186,7 +191,7 @@ const employment = {
     if ([SELF_EMPLOYMENT, UNEMPLOYMENT].includes(attributes.EmploymentActivity)) {
       return {
         presence: true,
-        phone: true,
+        model: { validator: phone },
       }
     }
 
@@ -196,7 +201,7 @@ const employment = {
     if ([SELF_EMPLOYMENT, UNEMPLOYMENT].includes(attributes.EmploymentActivity)) {
       return {
         presence: true,
-        address: true,
+        location: { validator: address },
       }
     }
 

@@ -1,3 +1,6 @@
+import address from 'models/shared/locations/address'
+import phone from 'models/shared/phone'
+
 const physicalAddress = {
   HasDifferentAddress: { presence: true },
   'HasDifferentAddress.value': {
@@ -11,7 +14,7 @@ const physicalAddress = {
       && HasDifferentAddress.value === 'Yes') {
       return {
         presence: true,
-        address: true,
+        location: { validator: address },
       }
     }
 
@@ -24,7 +27,7 @@ const physicalAddress = {
       && HasDifferentAddress.value === 'Yes') {
       return {
         presence: true,
-        phone: true,
+        model: { validator: phone },
       }
     }
 

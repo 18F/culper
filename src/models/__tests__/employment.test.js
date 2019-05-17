@@ -68,7 +68,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.name',
+        'ReferenceName.model',
       ]
 
       expect(validateModel(testData, employment))
@@ -84,7 +84,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.phone',
+        'ReferencePhone.model',
       ]
 
       expect(validateModel(testData, employment))
@@ -98,7 +98,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceAddress.address',
+        'ReferenceAddress.location',
       ]
 
       expect(validateModel(testData, employment))
@@ -228,7 +228,6 @@ describe('The employment model', () => {
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
-        // TODO - fix date model/validation
         it('passes if valid reprimands', () => {
           const testData = {
             EmploymentActivity: 'Other',
@@ -238,7 +237,13 @@ describe('The employment model', () => {
             },
             Reprimand: {
               items: [
-                { Item: { Has: { value: 'Yes' }, Text: 'Reasons', Date: { year: 2015, month: 2 } } },
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Text: { value: 'Reasons' },
+                    Date: { year: 2015, month: 2 },
+                  },
+                },
                 { Item: { Has: { value: 'No' } } },
               ],
             },
@@ -308,7 +313,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.address',
+        'Address.location',
       ]
 
       expect(validateModel(testData, employment))
@@ -366,7 +371,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.phone',
+        'Telephone.model',
       ]
 
       expect(validateModel(testData, employment))
@@ -410,7 +415,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.name',
+        'ReferenceName.model',
       ]
 
       expect(validateModel(testData, employment))
@@ -426,7 +431,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.phone',
+        'ReferencePhone.model',
       ]
 
       expect(validateModel(testData, employment))
@@ -440,7 +445,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceAddress.address',
+        'ReferenceAddress.location',
       ]
 
       expect(validateModel(testData, employment))
@@ -488,6 +493,11 @@ describe('The employment model', () => {
           state: 'NY',
           zipcode: '10001',
           country: 'United States',
+        },
+        Reprimand: {
+          items: [
+            { Item: { Has: { value: 'No' } } },
+          ],
         },
       }
 
@@ -547,6 +557,11 @@ describe('The employment model', () => {
           state: 'NY',
           zipcode: '10001',
           country: 'United States',
+        },
+        Reprimand: {
+          items: [
+            { Item: { Has: { value: 'No' } } },
+          ],
         },
       }
 
@@ -614,7 +629,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.address',
+        'Address.location',
       ]
 
       expect(validateModel(testData, employment))
@@ -643,7 +658,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.phone',
+        'Telephone.model',
       ]
 
       expect(validateModel(testData, employment))
@@ -702,8 +717,8 @@ describe('The employment model', () => {
           timeOfDay: 'Day',
         },
         Supervisor: {
-          SupervisorName: 'Person Supervisor',
-          Title: 'VP',
+          SupervisorName: { value: 'Person Supervisor' },
+          Title: { value: 'VP' },
           EmailNotApplicable: { applicable: false },
           Address: {
             street: '40 Office St',
@@ -717,6 +732,11 @@ describe('The employment model', () => {
             type: 'Domestic',
             timeOfDay: 'Day',
           },
+        },
+        Reprimand: {
+          items: [
+            { Item: { Has: { value: 'No' } } },
+          ],
         },
       }
 
@@ -784,7 +804,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.address',
+        'Address.location',
       ]
 
       expect(validateModel(testData, employment))
@@ -813,7 +833,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.phone',
+        'Telephone.model',
       ]
 
       expect(validateModel(testData, employment))
@@ -875,8 +895,8 @@ describe('The employment model', () => {
           timeOfDay: 'Day',
         },
         Supervisor: {
-          SupervisorName: 'Person Supervisor',
-          Title: 'VP',
+          SupervisorName: { value: 'Person Supervisor' },
+          Title: { value: 'VP' },
           EmailNotApplicable: { applicable: false },
           Address: {
             street: '40 Office St',
@@ -890,6 +910,11 @@ describe('The employment model', () => {
             type: 'Domestic',
             timeOfDay: 'Day',
           },
+        },
+        Reprimand: {
+          items: [
+            { Item: { Has: { value: 'No' } } },
+          ],
         },
       }
 
@@ -938,8 +963,8 @@ describe('The employment model', () => {
             timeOfDay: 'Day',
           },
           Supervisor: {
-            SupervisorName: 'Person Supervisor',
-            Title: 'VP',
+            SupervisorName: { value: 'Person Supervisor' },
+            Title: { value: 'VP' },
             EmailNotApplicable: { applicable: false },
             Address: {
               street: '40 Office St',
@@ -954,13 +979,18 @@ describe('The employment model', () => {
               timeOfDay: 'Day',
             },
           },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
           Additional: {
             items: [
               {
                 Item: {
                   Has: { value: 'Yes' },
-                  Position: 'Something',
-                  Supervisor: 'Someone',
+                  Position: { value: 'Something' },
+                  Supervisor: { value: 'Someone' },
                   DatesEmployed: {
                     from: { year: 2005, month: 1, day: 1 },
                     to: { year: 2006, month: 5, day: 10 },
