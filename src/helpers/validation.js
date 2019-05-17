@@ -270,7 +270,3 @@ export const sectionIsInvalid = (formSections = []) => (
     return s.isValid === false
   })
 )
-
-export const validateCollection = (items, validator) => (
-  items && items.length > 0 && items.every(i => i.Item && validator(i.Item))
-)

@@ -1,16 +1,17 @@
 import { validateModel } from 'models/validate'
-import { validateCollection } from 'helpers/validation'
 import residence from 'models/residence'
 
-export const validateResidence = (data) => {
-  const modelData = {
-    ...data,
-    Role: data.Role ? data.Role.value : null,
-    ReferenceEmail: data.ReferenceEmail ? data.ReferenceEmail.value : null,
-    ReferenceRelationship: data.ReferenceRelationship ? data.ReferenceRelationship.values : [],
+export const validateResidence = data => validateModel(data, residence) === true
+
+export const validateHistoryResidence = (data) => {
+  const historyResidenceModel = {
+    List: {
+      presence: true,
+      accordion: { validator: residence },
+    },
   }
 
-  return validateModel(modelData, residence) === true
+  return validateModel(data, historyResidenceModel) === true
 }
 
 export class ResidenceValidator {
@@ -25,12 +26,10 @@ export class ResidenceValidator {
 
 export default class HistoryResidenceValidator {
   constructor(data = {}) {
-    this.list = data.List || {}
+    this.data = data
   }
 
   isValid() {
-    const { items } = this.list
-
-    return validateCollection(items, validateResidence)
+    return validateHistoryResidence(this.data)
   }
 }

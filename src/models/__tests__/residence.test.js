@@ -54,10 +54,10 @@ describe('The residence model', () => {
 
   it('the Role field must be a valid role', () => {
     const testData = {
-      Role: 'Blah',
+      Role: { value: 'Blah' },
     }
 
-    const expectedErrors = ['Role.inclusion']
+    const expectedErrors = ['Role.hasValue']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -65,11 +65,23 @@ describe('The residence model', () => {
 
   it('the RoleOther field is required if Role is "Other"', () => {
     const testData = {
-      Role: 'Other',
+      Role: { value: 'Other' },
       RoleOther: undefined,
     }
 
     const expectedErrors = ['RoleOther.required']
+
+    expect(validateModel(testData, residence))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('the RoleOther field must have a value if Role is "Other"', () => {
+    const testData = {
+      Role: { value: 'Other' },
+      RoleOther: { value: null },
+    }
+
+    const expectedErrors = ['RoleOther.hasValue']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -103,7 +115,7 @@ describe('The residence model', () => {
           zipcode: '10002',
           country: 'United States',
         },
-        Role: 'Own',
+        Role: { value: 'Own' },
       }
 
       expect(validateModel(testData, residence)).toEqual(true)
@@ -124,7 +136,7 @@ describe('The residence model', () => {
           zipcode: '10002',
           country: 'United States',
         },
-        Role: 'Own',
+        Role: { value: 'Own' },
       }
 
       const expectedErrors = [
@@ -226,10 +238,10 @@ describe('The residence model', () => {
           from: { year: 2015, month: 1, day: 1 },
           present: true,
         },
-        ReferenceRelationship: [],
+        ReferenceRelationship: { values: [] },
       }
 
-      const expectedErrors = ['ReferenceRelationship.length']
+      const expectedErrors = ['ReferenceRelationship.array']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -240,7 +252,7 @@ describe('The residence model', () => {
           from: { year: 2015, month: 1, day: 1 },
           present: true,
         },
-        ReferenceRelationship: ['blah', 'test', 'x'],
+        ReferenceRelationship: { values: ['blah', 'test', 'x'] },
       }
 
       const expectedErrors = ['ReferenceRelationship.array']
@@ -254,7 +266,7 @@ describe('The residence model', () => {
           from: { year: 2015, month: 1, day: 1 },
           present: true,
         },
-        ReferenceRelationship: ['Neighbor', 'Friend'],
+        ReferenceRelationship: { values: ['Neighbor', 'Friend'] },
       }
 
       const expectedErrors = ['ReferenceRelationshipOther.required']
@@ -268,10 +280,25 @@ describe('The residence model', () => {
           from: { year: 2015, month: 1, day: 1 },
           present: true,
         },
-        ReferenceRelationship: ['Neighbor', 'Other'],
+        ReferenceRelationship: { values: ['Neighbor', 'Other'] },
       }
 
       const expectedErrors = ['ReferenceRelationshipOther.required']
+      expect(validateModel(testData, residence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('ReferenceRelationshipOther must have a value', () => {
+      const testData = {
+        Dates: {
+          from: { year: 2015, month: 1, day: 1 },
+          present: true,
+        },
+        ReferenceRelationship: { values: ['Neighbor', 'Other'] },
+        ReferenceRelationshipOther: { value: '' },
+      }
+
+      const expectedErrors = ['ReferenceRelationshipOther.hasValue']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -285,7 +312,7 @@ describe('The residence model', () => {
         ReferenceEmail: 'notanemail',
       }
 
-      const expectedErrors = ['ReferenceEmail.email']
+      const expectedErrors = ['ReferenceEmail.model']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -350,7 +377,7 @@ describe('The residence model', () => {
           zipcode: '10002',
           country: 'United States',
         },
-        Role: 'Own',
+        Role: { value: 'Own' },
         ReferenceName: {
           first: 'Person',
           noMiddleName: true,
@@ -360,8 +387,8 @@ describe('The residence model', () => {
         ReferencePhoneEvening: { number: '1234567890', type: 'Domestic', timeOfDay: 'NA' },
         ReferencePhoneDay: { noNumber: true },
         ReferencePhoneMobile: { number: '1234567890', type: 'Domestic', timeOfDay: 'NA' },
-        ReferenceRelationship: ['Friend', 'Neighbor'],
-        ReferenceEmail: 'myfriend@gmail.com',
+        ReferenceRelationship: { values: ['Friend', 'Neighbor'] },
+        ReferenceEmail: { value: 'myfriend@gmail.com' },
         ReferenceAddress: {
           street: '456 Main St',
           city: 'New York',

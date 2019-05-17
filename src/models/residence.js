@@ -3,6 +3,7 @@ import { relationshipOptions, roleOptions } from 'constants/enums/residenceOptio
 import address from 'models/shared/locations/address'
 import name from 'models/shared/name'
 import phone from 'models/shared/phone'
+import email from 'models/shared/email'
 
 import { today, dateWithinRange } from 'helpers/date'
 
@@ -33,11 +34,11 @@ const residence = {
 
   Role: {
     presence: true,
-    inclusion: roleOptions,
+    hasValue: { validator: { inclusion: roleOptions } },
   },
   RoleOther: (value, attributes = {}) => {
-    if (attributes.Role && attributes.Role === 'Other') {
-      return { presence: true }
+    if (attributes.Role && attributes.Role.value && attributes.Role.value === 'Other') {
+      return { presence: true, hasValue: true }
     }
 
     return {}
@@ -87,20 +88,21 @@ const residence = {
     residenceRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        length: { minimum: 1 },
         array: {
           validator: {
             presence: true,
             inclusion: relationshipOptions,
           },
+          length: { minimum: 1 },
         },
       } : {}
   ),
   ReferenceRelationshipOther: (value, attributes) => {
     if (attributes.ReferenceRelationship
-      && attributes.ReferenceRelationship.some
-      && attributes.ReferenceRelationship.some(i => i === 'Other')) {
-      return { presence: true }
+      && attributes.ReferenceRelationship.values
+      && attributes.ReferenceRelationship.values.some
+      && attributes.ReferenceRelationship.values.some(i => i === 'Other')) {
+      return { presence: true, hasValue: true }
     }
 
     return {}
@@ -116,7 +118,7 @@ const residence = {
 
     return {
       presence: true,
-      email: true,
+      model: { validator: email },
     }
   },
   ReferenceEmailNotApplicable: {},
