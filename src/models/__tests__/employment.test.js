@@ -258,11 +258,155 @@ describe('The employment model', () => {
     })
 
     describe('if the date range extends to the present', () => {
+      it('the ReasonLeft field is not required', () => {
+        const testData = {
+          EmploymentActivity: 'Other',
+          Dates: {
+            from: { year: 2015, month: 2, day: 5 },
+            present: true,
+          },
+        }
 
+        const expectedErrors = ['ReasonLeft.required']
+
+        expect(validateModel(testData, employment))
+          .not.toEqual(expect.arrayContaining(expectedErrors))
+      })
     })
 
     describe('if the date range does not extend to the present', () => {
+      it('the ReasonLeft field is required', () => {
+        const testData = {
+          EmploymentActivity: 'Other',
+          Dates: {
+            from: { year: 2015, month: 2, day: 5 },
+            to: { year: 2018, month: 10, day: 20 },
+            present: false,
+          },
+        }
 
+        const expectedErrors = ['ReasonLeft.required']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('the ReasonLeft field must be valid', () => {
+        const testData = {
+          EmploymentActivity: 'Other',
+          Dates: {
+            from: { year: 2015, month: 2, day: 5 },
+            to: { year: 2018, month: 10, day: 20 },
+            present: false,
+          },
+          ReasonLeft: {
+            ReasonDescription: 'invalid',
+          },
+        }
+
+        const expectedErrors = ['ReasonLeft.model']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      describe('if the date range is not within the last 7 years', () => {
+        it('the ReasonLeft field does not require reasons', () => {
+          const testData = {
+            EmploymentActivity: 'Other',
+            Dates: {
+              from: { year: 2000, month: 2, day: 5 },
+              to: { year: 2005, month: 10, day: 20 },
+              present: false,
+            },
+            ReasonLeft: {
+              ReasonDescription: { value: 'My reason' },
+            },
+          }
+
+          const expectedErrors = ['ReasonLeft.model']
+
+          expect(validateModel(testData, employment))
+            .not.toEqual(expect.arrayContaining(expectedErrors))
+        })
+      })
+
+      describe('if the date range is within the last 7 years', () => {
+        it('the ReasonLeft field requires reasons', () => {
+          const testData = {
+            EmploymentActivity: 'Other',
+            Dates: {
+              from: { year: 2017, month: 2, day: 5 },
+              to: { year: 2018, month: 10, day: 20 },
+              present: false,
+            },
+            ReasonLeft: {
+              ReasonDescription: { value: 'My reason' },
+            },
+          }
+
+          const expectedErrors = ['ReasonLeft.model']
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('the ReasonLeft Reasons must be valid', () => {
+          const testData = {
+            EmploymentActivity: 'Other',
+            Dates: {
+              from: { year: 2017, month: 2, day: 5 },
+              to: { year: 2018, month: 10, day: 20 },
+              present: false,
+            },
+            ReasonLeft: {
+              ReasonDescription: { value: 'My reason' },
+              Reasons: {
+                items: [
+                  { Item: { test: 'testing' } },
+                ],
+              },
+            },
+          }
+
+          const expectedErrors = ['ReasonLeft.model']
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes valid ReasonLeft Reasons', () => {
+          const testData = {
+            EmploymentActivity: 'Other',
+            Dates: {
+              from: { year: 2017, month: 2, day: 5 },
+              to: { year: 2018, month: 10, day: 20 },
+              present: false,
+            },
+            ReasonLeft: {
+              ReasonDescription: { value: 'My reason' },
+              Reasons: {
+                items: [
+                  {
+                    Item: {
+                      Has: { value: 'Yes' },
+                      Reason: { value: 'My reason' },
+                      Text: { value: 'Some explanation' },
+                      Date: { year: 2018, month: 9, day: 30 },
+                    },
+                  },
+                  { Item: { Has: { value: 'No' } } },
+                ],
+              },
+            },
+          }
+
+          const expectedErrors = ['ReasonLeft.model']
+
+          expect(validateModel(testData, employment))
+            .not.toEqual(expect.arrayContaining(expectedErrors))
+        })
+      })
     })
   })
 

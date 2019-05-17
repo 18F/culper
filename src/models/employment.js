@@ -47,19 +47,18 @@ const reprimand = {
   Date: { presence: true, date: { requireDay: false } },
 }
 
-// TODO
-/*
 const reasonLeftReason = {
-  Reason: { presence: true },
-  Date: { presence: true, datetime: true },
-  Text: { presence: true },
+  Reason: { presence: true, hasValue: true },
+  Date: { presence: true, date: true },
+  Text: { presence: true, hasValue: true },
 }
 
 const reasonLeft = {
-  ReasonDescription: { presence: true },
+  ReasonDescription: { presence: true, hasValue: true },
   Reasons: (value, attributes, attributeName, options) => {
     if (options && options.reasonsRequired) {
       return {
+        presence: true,
         branchCollection: {
           validator: reasonLeftReason,
         },
@@ -69,7 +68,6 @@ const reasonLeft = {
     return {}
   },
 }
-*/
 
 const employment = {
   /** Required by all */
@@ -105,7 +103,7 @@ const employment = {
       model: { validator: phone },
     }
   },
-  /*
+
   ReasonLeft: (value, attributes = {}) => {
     if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
 
@@ -113,14 +111,13 @@ const employment = {
     if (Dates && Dates.present === true) return {}
 
     return {
-      present: true,
+      presence: true,
       model: {
         validator: reasonLeft,
         reasonsRequired: withinSevenYears(Dates),
       },
     }
   },
-  */
 
   Reprimand: (value, attributes = {}) => {
     if (attributes.EmploymentActivity === UNEMPLOYMENT) return {}
