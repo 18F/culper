@@ -1,7 +1,8 @@
-import {
-  relationshipOptions,
-  roleOptions,
-} from 'constants/enums/residenceOptions'
+import { relationshipOptions, roleOptions } from 'constants/enums/residenceOptions'
+
+import address from 'models/shared/locations/address'
+import name from 'models/shared/name'
+import phone from 'models/shared/phone'
 
 import { today, dateWithinRange } from 'helpers/date'
 
@@ -21,7 +22,7 @@ const residence = {
   },
   Address: {
     presence: true,
-    address: true,
+    location: { validator: address },
   },
 
   AlternateAddress: {
@@ -47,7 +48,7 @@ const residence = {
     residenceRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        name: true,
+        model: { validator: name },
       }
       : {}
   ),
@@ -55,7 +56,7 @@ const residence = {
     residenceRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        datetime: true,
+        date: true,
       } : {}
   ),
   ReferenceComments: {}, // not used?
@@ -64,21 +65,21 @@ const residence = {
     residenceRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        phone: true,
+        model: { validator: phone },
       } : {}
   ),
   ReferencePhoneDay: (value, attributes = {}) => (
     residenceRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        phone: true,
+        model: { validator: phone },
       } : {}
   ),
   ReferencePhoneMobile: (value, attributes = {}) => (
     residenceRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        phone: true,
+        model: { validator: phone },
       } : {}
   ),
 
@@ -124,7 +125,7 @@ const residence = {
     residenceRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        address: true,
+        location: { validator: address },
       } : {}
   ),
   ReferenceAlternateAddress: {

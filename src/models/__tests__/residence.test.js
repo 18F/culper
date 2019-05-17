@@ -38,7 +38,7 @@ describe('The residence model', () => {
       Address: 'Not a valid address',
     }
 
-    const expectedErrors = ['Address.address']
+    const expectedErrors = ['Address.location']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -153,7 +153,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferenceName.name']
+      const expectedErrors = ['ReferenceName.model']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -167,7 +167,7 @@ describe('The residence model', () => {
         ReferenceLastContact: ['not', 'a', 'date'],
       }
 
-      const expectedErrors = ['ReferenceLastContact.datetime']
+      const expectedErrors = ['ReferenceLastContact.date']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -183,7 +183,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneEvening.phone']
+      const expectedErrors = ['ReferencePhoneEvening.model']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -199,7 +199,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneDay.phone']
+      const expectedErrors = ['ReferencePhoneDay.model']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -215,7 +215,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneMobile.phone']
+      const expectedErrors = ['ReferencePhoneMobile.model']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -331,7 +331,7 @@ describe('The residence model', () => {
         ReferenceAddress: 'Not a valid address',
       }
 
-      const expectedErrors = ['ReferenceAddress.address']
+      const expectedErrors = ['ReferenceAddress.location']
 
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
