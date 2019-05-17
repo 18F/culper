@@ -1,6 +1,8 @@
 import { validateModel } from 'models/validate'
 
 const arrayValidator = (value = [], options) => {
+  if (!value || !value.length) return null // Only validate if there's a value
+
   const { validator } = options
 
   for (let i = 0; i < value.length; i += 1) {

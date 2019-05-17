@@ -1,6 +1,8 @@
 import { validateModel } from 'models/validate'
 
 const accordionValidator = (value, options = {}) => {
+  if (!value) return null // Only validate if there's a value
+
   const { validator } = options
   if (!validator) return 'Invalid validator'
 
