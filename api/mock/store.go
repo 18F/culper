@@ -26,3 +26,23 @@ func (s *StorageService) SaveSection(section api.Section, accountID int) error {
 func (s *StorageService) LoadApplication(accountID int) (api.Application, error) {
 	return api.Application{}, nil
 }
+
+// CreateAttachment creates an attachment in the database
+func (s *StorageService) CreateAttachment(attachment *api.Attachment) error {
+	return nil
+}
+
+// LoadAttachment loads an attachment from the database
+func (s *StorageService) LoadAttachment(accountID int, attachmentID int) (api.Attachment, error) {
+	return api.Attachment{}, nil
+}
+
+// ListAttachmentMetadata returns a slice of attachments' metadata for a given account.
+func (s *StorageService) ListAttachmentsMetadata(accountID int) ([]api.Attachment, error) {
+	return []api.Attachment{}, nil
+}
+
+//DeleteAttachment deletes an attachment for the given account
+func (s *StorageService) DeleteAttachment(accountID int, attachmentID int) error {
+	return nil
+}
