@@ -43,11 +43,11 @@ func TestSaveAttachment(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
-	certificationPath := "../testdata/attachments/certification.pdf"
+	certificationPath := "../testdata/attachments/signature-form.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 
-	req := postAttachmentRequest(t, "certification.pdf", certificationBytes)
+	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes)
 
 	authCtx := http.SetAccountIDInRequestContext(req, account.ID)
 	req = req.WithContext(authCtx)
@@ -188,7 +188,7 @@ func TestListAttachments(t *testing.T) {
 
 	createdAttachments := map[int]api.Attachment{}
 
-	attachmentPaths := []string{"../testdata/attachments/certification.pdf", "../testdata/attachments/general_release.pdf"}
+	attachmentPaths := []string{"../testdata/attachments/signature-form.pdf", "../testdata/attachments/release-medical.pdf"}
 
 	for _, attachmentPath := range attachmentPaths {
 
@@ -292,11 +292,11 @@ func TestDeleteAttachment(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
-	certificationPath := "../testdata/attachments/certification.pdf"
+	certificationPath := "../testdata/attachments/signature-form.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 
-	req := postAttachmentRequest(t, "certification.pdf", certificationBytes)
+	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes)
 
 	authCtx := http.SetAccountIDInRequestContext(req, account.ID)
 	req = req.WithContext(authCtx)

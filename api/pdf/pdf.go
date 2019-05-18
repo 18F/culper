@@ -17,10 +17,10 @@ import (
 var (
 	// DocumentTypes lists the supported archival PDFs.
 	DocumentTypes = []api.ArchivalPdf{
-		{"Certification", "certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"},
-		{"Fair Credit Reporting", "credit-SF86-November2016.template.pdf", "Credit", "FCR"},
-		{"Medical Release", "medical-SF86-November2016.template.pdf", "Medical", "MEL"},
-		{"General Release", "general-SF86-November2016.template.pdf", "General", "REL"},
+		{"signature-form", "certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"},
+		{"release-credit", "credit-SF86-November2016.template.pdf", "Credit", "FCR"},
+		{"release-medical", "medical-SF86-November2016.template.pdf", "Medical", "MEL"},
+		{"release-information", "general-SF86-November2016.template.pdf", "General", "REL"},
 	}
 )
 

@@ -42,7 +42,7 @@ func TestPackage(t *testing.T) {
 			t.Fatalf("Error creating PDF from %s: %s", p.Template, err.Error())
 		}
 
-		rpath := path.Join(testdataDir, p.Name+fileExtension)
+		rpath := path.Join(testdataDir, "attachments", p.Name+fileExtension)
 		reference, err := ioutil.ReadFile(rpath)
 		if err != nil {
 			t.Fatalf("Error reading reference PDF: %s", err.Error())
