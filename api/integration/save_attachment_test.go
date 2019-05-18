@@ -19,14 +19,14 @@ import (
 )
 
 func postAttachmentRequest(t *testing.T, filename string, filebytes []byte) *gohttp.Request {
+	t.Helper()
 
 	body := &bytes.Buffer{}
 
 	formWriter := multipart.NewWriter(body)
 	pdfWriter, writeErr := formWriter.CreateFormFile("file", filename)
 	if writeErr != nil {
-		t.Log("Didn't get a file writer")
-		t.Fatal()
+		t.Fatal("Didn't get a file writer")
 	}
 
 	pdfWriter.Write(filebytes)
@@ -126,10 +126,58 @@ func TestSaveAttachment(t *testing.T) {
 	}
 }
 
+func TestListNoAttachments(t *testing.T) {
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	listAttachmentHandler := http.AttachmentListHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	indexReq := httptest.NewRequest("GET", "/me/attachments/", nil)
+
+	getAuthCtx := http.SetAccountIDInRequestContext(indexReq, account.ID)
+	indexReq = indexReq.WithContext(getAuthCtx)
+
+	w := httptest.NewRecorder()
+
+	listAttachmentHandler.ServeHTTP(w, indexReq)
+
+	resp := w.Result()
+
+	if resp.StatusCode != 200 {
+		t.Log("Got an error back from ListAttachments")
+		t.Fail()
+	}
+
+	// comes back as JSON, leaving out the body
+
+	body, readErr := ioutil.ReadAll(resp.Body)
+	if readErr != nil {
+		t.Fatal(readErr)
+	}
+
+	if string(body) != "[]\n" {
+		t.Log("Should have returned an empty array, got", string(body))
+		t.Fail()
+	}
+
+}
+
 func TestListAttachments(t *testing.T) {
 
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
+
+	listAttachmentHandler := http.AttachmentListHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
 		Env:      services.env,
@@ -190,25 +238,14 @@ func TestListAttachments(t *testing.T) {
 	getAuthCtx := http.SetAccountIDInRequestContext(indexReq, account.ID)
 	indexReq = indexReq.WithContext(getAuthCtx)
 
-	// indexReq = mux.SetURLVars(indexReq, map[string]string{
-	// 	"id": attachmentID,
-	// })
-
 	w := httptest.NewRecorder()
-
-	listAttachmentHandler := http.AttachmentListHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-	}
 
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 
 	resp := w.Result()
 
 	if resp.StatusCode != 200 {
-		t.Log("Got an error back from ListApplications")
+		t.Log("Got an error back from ListAttachments")
 		t.Fail()
 	}
 

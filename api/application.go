@@ -128,6 +128,18 @@ func (a *Application) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
+// Hash returns the SHA256 hash of the application state in hexadecimal
+func (a *Application) Hash() (string, error) {
+	jsonBytes, jsonErr := json.Marshal(a)
+	if jsonErr != nil {
+		return "", errors.Wrap(jsonErr, "Unable to generate hash")
+	}
+
+	// TODO: do we care about excluding some sections from the hash? Here would be where.
+	hash := sha256.Sum256(jsonBytes)
+	return hex.EncodeToString(hash[:]), nil
+}
+
 // ClearNoBranches clears all the branches answered "No" that must be
 // re answered after rejection
 func (a *Application) ClearNoBranches() error {

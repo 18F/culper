@@ -73,7 +73,7 @@ func (s SimpleStore) ListAttachmentsMetadata(accountID int) ([]api.Attachment, e
 		return []api.Attachment{}, errors.Wrap(selectErr, "Couldn't list Attachments")
 	}
 
-	var attachments []api.Attachment
+	attachments := []api.Attachment{}
 
 	row := attachmentRow{}
 	for rows.Next() {

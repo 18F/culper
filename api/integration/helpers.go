@@ -88,6 +88,27 @@ func randomEmail() string {
 
 }
 
+func createLockedTestAccount(t *testing.T, db api.DatabaseService) api.Account {
+	t.Helper()
+
+	email := randomEmail()
+
+	account := api.Account{
+		Username:    email,
+		Email:       email,
+		FormType:    "SF86",
+		FormVersion: "2016-11",
+		Locked:      true,
+	}
+
+	_, err := account.Save(db, -1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	return account
+}
+
 func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 	t.Helper()
 

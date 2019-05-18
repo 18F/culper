@@ -6,11 +6,11 @@ import (
 
 var (
 	// ErrApplicationDoesNotExist is an error when a given application does not exist
-	ErrApplicationDoesNotExist = errors.New("Account does not exist")
+	ErrApplicationDoesNotExist = errors.New("Application does not exist")
 
 	// ErrAttachmentDoesNotExist is returned when the requested attchment does not exist.
 	// Note: this could mean that you requested a valid ID but for a different user.
-	ErrAttachmentDoesNotExist = errors.New("Application does not exist")
+	ErrAttachmentDoesNotExist = errors.New("Attachment does not exist")
 )
 
 // StorageService stores eapp related data
