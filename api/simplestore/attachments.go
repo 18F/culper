@@ -67,9 +67,6 @@ func (s SimpleStore) ListAttachmentsMetadata(accountID int) ([]api.Attachment, e
 
 	rows, selectErr := s.db.Queryx(selectQuery, accountID)
 	if selectErr != nil {
-		if selectErr == sql.ErrNoRows {
-			return []api.Attachment{}, api.ErrAttachmentDoesNotExist
-		}
 		return []api.Attachment{}, errors.Wrap(selectErr, "Couldn't list Attachments")
 	}
 
