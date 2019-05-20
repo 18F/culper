@@ -86,7 +86,7 @@ func (entity *Submission) Marshal() Payload {
 	if entity.Attachments != nil {
 		entity.PayloadAttachments = entity.Attachments.Marshal()
 	}
-	return MarshalPayloadEntity("submission", entity)
+	return MarshalPayloadEntity("submission.releases", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.

@@ -108,6 +108,8 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/psychological-diagnoses.json", "Psychological", "Diagnoses"},
 		{"../testdata/psychological-conditions.json", "Psychological", "ExistingConditions"},
 		{"../testdata/psychological-hospitalizations.json", "Psychological", "Hospitalizations"},
+
+		{"../testdata/submission.json", "Submission", "Releases"},
 	}
 
 	for _, secTest := range tests {
@@ -140,8 +142,8 @@ func TestSaveSection(t *testing.T) {
 
 }
 
-// TestSaveSections makes sure that calls to /save are addative.
-func TestSaveSections(t *testing.T) {
+// TestSaveMultipleSections makes sure that calls to /save are addative.
+func TestSaveMultipleSections(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
