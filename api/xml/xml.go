@@ -3,22 +3,54 @@ package xml
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"html/template"
 	"path"
 	"reflect"
 	"regexp"
+	"runtime"
 	"strings"
 
-	"github.com/18F/e-QIP-prototype/api"
 	"github.com/benbjohnson/clock"
+	"github.com/pkg/errors"
+
+	"github.com/18F/e-QIP-prototype/api"
 )
 
 // Service is an implementation of handling XML.
 type Service struct {
-	Log   api.LogService
-	Clock clock.Clock
+	clock clock.Clock
+}
+
+func NewXMLService() Service {
+	localClock := clock.New()
+	return Service{
+		clock: localClock,
+	}
+}
+
+func NewXMLServiceWithMockClock(clock clock.Clock) Service {
+	return Service{
+		clock,
+	}
+}
+
+func (service Service) PackageXML(app api.Application) (template.HTML, error) {
+	// This is perhaps silly. I think that things might work with just the raw application sections
+	// but I think that rather than expose that it will be better to keep the JSON as the interface
+	jsonBytes, jsonErr := json.Marshal(app)
+	if jsonErr != nil {
+		return template.HTML(""), errors.Wrap(jsonErr, "Unable to marshal application")
+	}
+
+	var data map[string]interface{}
+	unmarhalErr := json.Unmarshal(jsonBytes, &data)
+	if unmarhalErr != nil {
+		return template.HTML(""), errors.Wrap(jsonErr, "Unable to re-un-marshal application")
+	}
+
+	return service.DefaultTemplate("application.xml", data)
+
 }
 
 // DefaultTemplate returns a template given data.
@@ -26,7 +58,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 
 	// now returns the server's local time in yyyy-MM-dd
 	now := func() string {
-		t := service.Clock.Now()
+		t := service.clock.Now()
 		return fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 	}
 
@@ -136,7 +168,7 @@ func applyBulkFixes(xml string) string {
 }
 
 func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
-	path := path.Join("templates", name)
+	path := path.Join(templatesDir(), name)
 	tmpl := template.Must(template.New(name).ParseFiles(path))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
@@ -145,10 +177,21 @@ func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error
 	return template.HTML(applyBulkFixes(output.String())), nil
 }
 
+func templatesDir() string {
+	// Find the path to the template directory
+	_, xmlDir, _, ok := runtime.Caller(0) // This is the path to the current file
+	if !ok {
+		return "BAD_DIRECTORY"
+	}
+	apiDir := path.Dir(path.Dir(xmlDir))
+	dir := path.Join(apiDir, "templates")
+	return dir
+}
+
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
 // given entity.
 func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) (template.HTML, error) {
-	path := path.Join("templates", name)
+	path := path.Join(templatesDir(), name)
 	tmpl := template.Must(template.New(name).Funcs(fmap).ParseFiles(path))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
@@ -521,13 +564,13 @@ func spouseForeignDocType(docType string) string {
 		"DerivedAlienRegistration":           "DerivedAlienRegistration",
 		"DerivedPermanentResident":           "DerivedPermanentResident",
 		"DerivedCertificateOfNaturalization": "DerivedCitizenshipCertificate",
-		"I-551":               "NonCitizenI551",
-		"I-766":               "NonCitizenI766",
-		"I-94":                "NonCitizenI94",
-		"Visa":                "NonCitizenVisa",
-		"NonImmigrantStudent": "NonCitizenI20",
-		"ExchangeVisitor":     "NonCitizenDS2019",
-		"Other":               "Other",
+		"I-551":                              "NonCitizenI551",
+		"I-766":                              "NonCitizenI766",
+		"I-94":                               "NonCitizenI94",
+		"Visa":                               "NonCitizenVisa",
+		"NonImmigrantStudent":                "NonCitizenI20",
+		"ExchangeVisitor":                    "NonCitizenDS2019",
+		"Other":                              "Other",
 	}
 	return alias[docType]
 }
@@ -1047,10 +1090,10 @@ func clearanceType(v string) string {
 		"Secret":                              "Secret",
 		"Top Secret":                          "TopSecret",
 		"Sensitive Compartmented Information": "SCI",
-		"Q": "Q",
-		"L": "L",
-		"Issued by foreign country": "Foreign",
-		"Other":                     "Other",
+		"Q":                                   "Q",
+		"L":                                   "L",
+		"Issued by foreign country":           "Foreign",
+		"Other":                               "Other",
 	}
 	return basis[v]
 }

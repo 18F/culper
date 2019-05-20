@@ -12,6 +12,7 @@ type ArchivalPdf struct {
 
 // PdfService declares operations to create and query archival PDFs.
 type PdfService interface {
+	GenerateReleases(account Account, app Application) ([]Attachment, error)
 	CreatePdf(application map[string]interface{}, pdfType ArchivalPdf, hash string) ([]byte, error)
 	SignatureAvailable(application map[string]interface{}, pdfType ArchivalPdf) (*time.Time, bool)
 }

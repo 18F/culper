@@ -14,6 +14,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/nsf/jsondiff"
 	"github.com/pkg/errors"
 
@@ -99,6 +100,7 @@ func createLockedTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 		FormType:    "SF86",
 		FormVersion: "2016-11",
 		Locked:      true,
+		ExternalID:  uuid.New().String(),
 	}
 
 	_, err := account.Save(db, -1)
@@ -119,6 +121,7 @@ func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 		Email:       email,
 		FormType:    "SF86",
 		FormVersion: "2016-11",
+		ExternalID:  uuid.New().String(),
 	}
 
 	_, err := account.Save(db, -1)
@@ -197,6 +200,29 @@ func saveJSON(services serviceSet, json []byte, accountID int) *gohttp.Response 
 	resp := w.Result()
 
 	return resp
+
+}
+
+func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, accountID int) {
+	t.Helper()
+
+	var form map[string]map[string]json.RawMessage
+
+	jsonErr := json.Unmarshal(formJSON, &form)
+	if jsonErr != nil {
+		t.Fatal(jsonErr)
+	}
+
+	for sectionName := range form {
+		for subSectionName := range form[sectionName] {
+			sectionJSON := form[sectionName][subSectionName]
+
+			resp := saveJSON(services, sectionJSON, accountID)
+			if resp.StatusCode != 200 {
+				t.Fatal("Couldn't save section", sectionName, subSectionName)
+			}
+		}
+	}
 
 }
 

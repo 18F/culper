@@ -41,6 +41,7 @@ type Account struct {
 	Locked      bool
 	FormType    string `db:"form_type"`
 	FormVersion string `db:"form_version"`
+	ExternalID  string `db:"external_id"` // ExternalID is an identifier used by external systems to id applications
 }
 
 // validate returns nil if the account is valid or an error describing what's wrong otherwise.
