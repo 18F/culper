@@ -9,8 +9,6 @@ import (
 	"os"
 	"path"
 	"testing"
-
-	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
 const (
@@ -27,8 +25,7 @@ func TestPackage(t *testing.T) {
 	defer os.Chdir(packageDir)
 
 	application := applicationData(t)
-	logger := &mock.LogService{}
-	service := Service{Log: logger}
+	service := NewPDFService()
 	var fauxHash [sha256.Size]byte
 
 	for _, p := range DocumentTypes {

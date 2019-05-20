@@ -8,6 +8,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/google/uuid"
+
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/mock"
@@ -303,6 +305,7 @@ func TestPayloadPersistence(t *testing.T) {
 		Email:       "buzz1@example.com",
 		FormType:    "SF86",
 		FormVersion: "2016-11",
+		ExternalID:  uuid.New().String(),
 	}
 
 	_, err := account.Get(service, -1)

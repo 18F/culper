@@ -10,6 +10,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
+
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/log"
@@ -85,13 +87,15 @@ func areEqualJSON(t *testing.T, s1, s2 []byte) bool {
 func createAccount(t *testing.T, store SimpleStore) api.Account {
 	t.Helper()
 
-	createQuery := `INSERT INTO accounts (username, email, form_type, form_version) VALUES ($1, $1, $2, $3) RETURNING id, username, email, form_type, form_version`
+	createQuery := `INSERT INTO accounts (username, email, form_type, form_version, external_id) VALUES ($1, $1, $2, $3, $4) RETURNING id, username, email, form_type, form_version, external_id`
 
 	email := randomEmail()
 
 	result := api.Account{}
 
-	createErr := store.db.Get(&result, createQuery, email, "SF86", "2016-11")
+	externalID := uuid.New().String()
+
+	createErr := store.db.Get(&result, createQuery, email, "SF86", "2016-11", externalID)
 	if createErr != nil {
 		t.Log("Failed to create Account", createErr)
 		t.Fatal()

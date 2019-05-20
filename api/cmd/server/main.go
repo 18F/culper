@@ -47,7 +47,7 @@ func main() {
 
 	token := jwt.Service{Env: settings}
 	xmlsvc := xml.NewXMLService(logger)
-	pdfsvc := pdf.Service{Log: logger, Env: settings}
+	pdfsvc := pdf.NewPDFService()
 	samlsvc := &saml.Service{Log: logger, Env: settings}
 	api.Geocode = usps.Geocoder{Log: logger, Env: settings}
 
