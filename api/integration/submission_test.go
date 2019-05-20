@@ -2,8 +2,10 @@ package integration
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net/http/httptest"
 	"os"
 	"os/exec"
 	"testing"
@@ -13,6 +15,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/admin"
+	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/pdf"
 	"github.com/18F/e-QIP-prototype/api/xml"
 )
@@ -124,4 +127,47 @@ func TestSubmitter(t *testing.T) {
 			checkInfoRelease(t, attachment)
 		}
 	}
+
+	// Check that the generated PDFs can be retrieved via the API
+	listAttachmentHandler := http.AttachmentListHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	indexReq := httptest.NewRequest("GET", "/me/attachments/", nil)
+
+	getAuthCtx := http.SetAccountIDInRequestContext(indexReq, account.ID)
+	indexReq = indexReq.WithContext(getAuthCtx)
+
+	w := httptest.NewRecorder()
+
+	listAttachmentHandler.ServeHTTP(w, indexReq)
+
+	indexResp := w.Result()
+
+	if indexResp.StatusCode != 200 {
+		t.Log("Got an error back from ListAttachments")
+		t.Fail()
+	}
+
+	// comes back as JSON, leaving out the body
+
+	body, readErr := ioutil.ReadAll(indexResp.Body)
+	if readErr != nil {
+		t.Fatal(readErr)
+	}
+
+	retrievedAttachments := []api.Attachment{}
+
+	jsonErr := json.Unmarshal(body, &retrievedAttachments)
+	if jsonErr != nil {
+		t.Fatal(jsonErr)
+	}
+
+	if len(retrievedAttachments) != 4 {
+		t.Fatal("didn't get back the same number of attachments!")
+	}
+
 }
