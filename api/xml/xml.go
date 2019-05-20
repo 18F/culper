@@ -22,6 +22,7 @@ type Service struct {
 	clock clock.Clock
 }
 
+// NewXMLService returns a new XML service
 func NewXMLService() Service {
 	localClock := clock.New()
 	return Service{
@@ -29,12 +30,14 @@ func NewXMLService() Service {
 	}
 }
 
+// NewXMLServiceWithMockClock allows you to create an XML service with a minuplable clock
 func NewXMLServiceWithMockClock(clock clock.Clock) Service {
 	return Service{
 		clock,
 	}
 }
 
+// PackageXML returns the XML representation of an application
 func (service Service) PackageXML(app api.Application) (template.HTML, error) {
 	// This is perhaps silly. I think that things might work with just the raw application sections
 	// but I think that rather than expose that it will be better to keep the JSON as the interface

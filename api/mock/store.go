@@ -37,7 +37,7 @@ func (s *StorageService) LoadAttachment(accountID int, attachmentID int) (api.At
 	return api.Attachment{}, nil
 }
 
-// ListAttachmentMetadata returns a slice of attachments' metadata for a given account.
+// ListAttachmentsMetadata returns a slice of attachments' metadata for a given account.
 func (s *StorageService) ListAttachmentsMetadata(accountID int) ([]api.Attachment, error) {
 	return []api.Attachment{}, nil
 }

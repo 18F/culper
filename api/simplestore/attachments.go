@@ -59,7 +59,7 @@ func (s SimpleStore) LoadAttachment(accountID int, attachmentID int) (api.Attach
 	return attachment, nil
 }
 
-// LoadAttachment loads an attachment from the database
+// ListAttachmentsMetadata loads an attachment from the database
 // NOTE, it does not fetch the body of the attachments, just the metadata
 func (s SimpleStore) ListAttachmentsMetadata(accountID int) ([]api.Attachment, error) {
 
@@ -91,6 +91,7 @@ func (s SimpleStore) ListAttachmentsMetadata(accountID int) ([]api.Attachment, e
 	return attachments, nil
 }
 
+// DeleteAttachment deletes an attachment from the database
 func (s SimpleStore) DeleteAttachment(accountID int, attachmentID int) error {
 
 	deleteQuery := "DELETE FROM attachments WHERE account_id = $1 AND id = $2"
