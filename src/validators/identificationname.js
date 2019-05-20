@@ -2,8 +2,14 @@ import { validateModel } from 'models/validate'
 import name from 'models/shared/name'
 
 export const validateIdentificationName = (data) => {
-  const { Name } = data
-  return validateModel(Name, name) === true
+  const applicantNameModel = {
+    Name: {
+      presence: true,
+      model: { validator: name },
+    },
+  }
+
+  return validateModel(data, applicantNameModel) === true
 }
 
 /** LEGACY */

@@ -6,8 +6,37 @@ import {
   SELF, PARENT, CHILD, OTHER, DEFAULT_LIMITS,
 } from 'constants/dateLimits'
 
+// Set these to false to make testing the date limits easier
+const testRequirements = {
+  requireDay: false, requireMonth: false, requireYear: false,
+}
+
 describe('The date model', () => {
   const TODAY = DateTime.local()
+
+  it('the day field is required', () => {
+    const testData = {}
+    const expectedErrors = ['day.required']
+
+    expect(validateModel(testData, date))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('the month field is required', () => {
+    const testData = {}
+    const expectedErrors = ['month.required']
+
+    expect(validateModel(testData, date))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('the year field is required', () => {
+    const testData = {}
+    const expectedErrors = ['year.required']
+
+    expect(validateModel(testData, date))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
 
   it('the date field is required', () => {
     const testData = {}
@@ -44,7 +73,8 @@ describe('The date model', () => {
 
     it('passes a valid birthdate', () => {
       const testData = { date: TODAY.minus({ years: 30 }) }
-      expect(validateModel(testData, date, { ...SELF })).toEqual(true)
+      expect(validateModel(testData, date, { ...SELF, ...testRequirements }))
+        .toEqual(true)
     })
   })
 
@@ -70,7 +100,8 @@ describe('The date model', () => {
 
     it('passes a valid birthdate', () => {
       const testData = { date: TODAY.minus({ years: 60 }) }
-      expect(validateModel(testData, date, { ...parentLimits })).toEqual(true)
+      expect(validateModel(testData, date, { ...parentLimits, ...testRequirements }))
+        .toEqual(true)
     })
   })
 
@@ -96,7 +127,8 @@ describe('The date model', () => {
 
     it('passes a valid birthdate', () => {
       const testData = { date: TODAY.minus({ years: 2 }) }
-      expect(validateModel(testData, date, { ...childLimits })).toEqual(true)
+      expect(validateModel(testData, date, { ...childLimits, ...testRequirements }))
+        .toEqual(true)
     })
   })
 
@@ -119,7 +151,8 @@ describe('The date model', () => {
 
     it('passes a valid birthdate', () => {
       const testData = { date: TODAY.minus({ years: 45 }) }
-      expect(validateModel(testData, date, { ...OTHER })).toEqual(true)
+      expect(validateModel(testData, date, { ...OTHER, ...testRequirements }))
+        .toEqual(true)
     })
   })
 
@@ -146,7 +179,8 @@ describe('The date model', () => {
 
       it('passes a valid date', () => {
         const testData = { date: TODAY.minus({ years: 5 }) }
-        expect(validateModel(testData, date, { ...defaultLimits })).toEqual(true)
+        expect(validateModel(testData, date, { ...defaultLimits, ...testRequirements }))
+          .toEqual(true)
       })
     })
 
@@ -171,7 +205,8 @@ describe('The date model', () => {
 
       it('passes a valid date', () => {
         const testData = { date: TODAY.minus({ years: 65 }) }
-        expect(validateModel(testData, date, { ...defaultLimits })).toEqual(true)
+        expect(validateModel(testData, date, { ...defaultLimits, ...testRequirements }))
+          .toEqual(true)
       })
     })
   })
