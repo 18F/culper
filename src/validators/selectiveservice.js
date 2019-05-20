@@ -10,12 +10,12 @@ export const hideSelectiveService = (store = {}) => {
 }
 
 const selectiveServiceModel = {
-  wasBornAfter: {
+  WasBornAfter: {
     presence: true,
     hasValue: { validator: hasYesOrNo },
   },
-  hasRegistered: (value, attributes = {}) => {
-    if (attributes.WasBornAfter && attributes.WasBornAfter.value === 'Yes') {
+  HasRegistered: (value, attributes = {}) => {
+    if (attributes.WasBornAfter === 'Yes') {
       return {
         presence: true,
         hasValue: { validator: hasYesOrNo },
@@ -23,8 +23,8 @@ const selectiveServiceModel = {
     }
     return {}
   },
-  registrationNumber: (value, attributes = {}) => {
-    if (attributes.HasRegistered && attributes.HasRegistered.value === 'Yes') {
+  RegistrationNumber: (value, attributes = {}) => {
+    if (attributes.HasRegistered === 'Yes') {
       return {
         presence: true,
         numericality: {
@@ -34,10 +34,10 @@ const selectiveServiceModel = {
     }
     return {}
   },
-  explanation: (value, attributes = {}) => {
+  Explanation: (value, attributes = {}) => {
     if (
       (attributes.HasRegisteredNotApplicable && !attributes.HasRegisteredNotApplicable.applicable)
-      || (attributes.HasRegistered && attributes.HasRegistered.value === 'No')
+      || attributes.HasRegistered === 'No'
     ) {
       return {
         presence: true,
@@ -47,38 +47,39 @@ const selectiveServiceModel = {
   },
 }
 
+export const validateBornAfter = data => (
+  validateModel(data, { value: selectiveServiceModel.WasBornAfter }) === true
+)
+
+export const validateRegistered = data => (
+  validateModel(data, { value: selectiveServiceModel.HasRegistered }) === true
+)
+
+export const validateRegistrationNumber = data => (
+  validateModel(data, { value: selectiveServiceModel.RegistrationNumber }) === true
+)
+
+export const validateExplanation = data => (
+  validateModel(data, { value: selectiveServiceModel.Explanation }) === true
+)
+
+export const validateSelectiveService = (data = {}) => {
+  const {
+    WasBornAfter, HasRegistered, RegistrationNumber, Explanation,
+  } = data
+
+  return validateBornAfter(WasBornAfter)
+    && validateRegistered(HasRegistered)
+    && validateRegistrationNumber(RegistrationNumber)
+    && validateExplanation(Explanation)
+}
+
 export default class SelectiveServiceValidator {
   constructor(data = {}) {
     this.data = data
-    this.wasBornAfter = (data.WasBornAfter || {}).value
-    this.hasRegistered = (data.HasRegistered || {}).value
-    this.hasRegisteredNotApplicable = data.HasRegisteredNotApplicable
-    this.registrationNumber = data.RegistrationNumber
-    this.explanation = data.Explanation
-  }
-
-  validBornAfter() {
-    return validateModel(this.data, { WasBornAfter: selectiveServiceModel.wasBornAfter }) === true
-  }
-
-  validRegistered() {
-    return validateModel(this.data, { HasRegistered: selectiveServiceModel.hasRegistered }) === true
-  }
-
-  validRegistrationNumber() {
-    return validateModel(this.data, { RegistrationNumber: selectiveServiceModel.registrationNumber }) === true
-  }
-
-  validExplanation() {
-    return validateModel(this.data, { Explanation: selectiveServiceModel.explanation }) === true
   }
 
   isValid() {
-    return (
-      this.validBornAfter()
-      && this.validRegistered()
-      && this.validRegistrationNumber()
-      && this.validExplanation()
-    )
+    return validateSelectiveService(this.data)
   }
 }
