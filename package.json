@@ -68,7 +68,8 @@
     ],
     "globals": {
       "EAPP_VERSION": "MAJOR.MINOR.PATCH-IDENTIFIER"
-    }
+    },
+    "setupFiles": ["<rootDir>/node_modules/regenerator-runtime/runtime"]
   },
   "scripts": {
     "test": "NODE_ENV=test jest",
