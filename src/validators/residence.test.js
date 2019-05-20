@@ -124,7 +124,7 @@ describe('The HistoryResidenceValidator', () => {
       },
     ]
 
-    expect(new HistoryResidenceValidator({ List: { items: list } }).isValid()).toBe(false)
+    expect(new HistoryResidenceValidator({ List: { items: list, branch: { value: 'No' } } }).isValid()).toBe(false)
   })
 
   it('should pass a valid list of residences', () => {
@@ -217,7 +217,7 @@ describe('The HistoryResidenceValidator', () => {
       },
     ]
 
-    expect(new HistoryResidenceValidator({ List: { items: list } }).isValid()).toBe(true)
+    expect(new HistoryResidenceValidator({ List: { items: list, branch: { value: 'No' } } }).isValid()).toBe(true)
   })
 })
 
