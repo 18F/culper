@@ -13,7 +13,7 @@ func TestClearEmptyAccount(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
-	rejector := admin.NewRejector(services.db, services.store, nil)
+	rejector := admin.NewRejecter(services.db, services.store, nil)
 
 	err := rejector.Reject(account)
 	if err != nil {
@@ -36,7 +36,7 @@ func TestClearInformation(t *testing.T) {
 		t.Fatal("Failed to save topLevelNoJSON", resp.StatusCode)
 	}
 
-	rejector := admin.NewRejector(services.db, services.store, nil)
+	rejector := admin.NewRejecter(services.db, services.store, nil)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
@@ -121,7 +121,7 @@ func TestClearHistoryResidence(t *testing.T) {
 		t.Fatal("Failed to save HistResidenceSingle", resp.StatusCode)
 	}
 
-	rejector := admin.NewRejector(services.db, services.store, nil)
+	rejector := admin.NewRejecter(services.db, services.store, nil)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
@@ -176,7 +176,7 @@ func TestClearHistoryEmployment(t *testing.T) {
 		t.Fatal("Failed to save employmentSection", resp.StatusCode)
 	}
 
-	rejector := admin.NewRejector(services.db, services.store, nil)
+	rejector := admin.NewRejecter(services.db, services.store, nil)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
@@ -234,7 +234,7 @@ func TestClearHistoryEducation(t *testing.T) {
 		t.Fatal("Failed to save HistEducationDegrees", resp.StatusCode)
 	}
 
-	rejector := admin.NewRejector(services.db, services.store, nil)
+	rejector := admin.NewRejecter(services.db, services.store, nil)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)

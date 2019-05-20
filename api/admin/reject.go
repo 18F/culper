@@ -6,16 +6,16 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
-// Rejector is used to reject/kickback an application
-type Rejector struct {
+// Rejecter is used to reject/kickback an application
+type Rejecter struct {
 	db    api.DatabaseService
 	store api.StorageService
 	pdf   api.PdfService
 }
 
-// NewRejector returns a configured Rejector
-func NewRejector(db api.DatabaseService, store api.StorageService, pdf api.PdfService) Rejector {
-	return Rejector{
+// NewRejecter returns a configured Rejecter
+func NewRejecter(db api.DatabaseService, store api.StorageService, pdf api.PdfService) Rejecter {
+	return Rejecter{
 		db,
 		store,
 		pdf,
@@ -23,7 +23,7 @@ func NewRejector(db api.DatabaseService, store api.StorageService, pdf api.PdfSe
 }
 
 // Reject rejects the application for a given account
-func (r Rejector) Reject(account api.Account) error {
+func (r Rejecter) Reject(account api.Account) error {
 	err := account.Unlock(r.db)
 	if err != nil {
 		return errors.Wrap(err, "Reject failed to unlock account")
