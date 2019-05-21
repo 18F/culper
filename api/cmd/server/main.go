@@ -85,13 +85,9 @@ func main() {
 
 	a := r.PathPrefix("/me").Subrouter()
 	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
-	//a.Handle("/validate", sec.Middleware(http.ValidateHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST")
 	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("POST", "PUT")
 	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
 	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
-	// a.Handle("/form/hash", sec.Middleware(http.HashHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
-	// a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, XML: xmlsvc, Pdf: pdfsvc})).Methods("POST")
-	// a.Handle("/form/section", sec.Middleware(http.SectionHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 	a.Handle("/attachment", sec.Middleware(http.AttachmentListHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
 	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
 	if settings.True(api.AttachmentsEnabled) {
