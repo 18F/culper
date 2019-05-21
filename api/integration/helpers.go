@@ -28,6 +28,8 @@ import (
 
 var updateGolden = flag.Bool("update-golden", false, "update golden files")
 
+var serializerInitializer = simplestore.NewJSONSerializer
+
 type serviceSet struct {
 	env   api.Settings
 	log   api.LogService
@@ -54,7 +56,7 @@ func cleanTestServices(t *testing.T) serviceSet {
 
 	db := postgresql.NewPostgresService(dbConf, log)
 
-	serializer := simplestore.NewJSONSerializer()
+	serializer := serializerInitializer()
 
 	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), log, serializer)
 	if storeErr != nil {
