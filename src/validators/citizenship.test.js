@@ -9,57 +9,43 @@ describe('citizenship component validation', () => {
     const tests = [
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: '' },
-          },
+          CitizenshipStatus: { value: '' },
         },
         expected: false,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Yuppers' },
-          },
+          CitizenshipStatus: { value: 'Yuppers' },
         },
         expected: false,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Citizen' },
-          },
+          CitizenshipStatus: { value: 'Citizen' },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'ForeignBorn' },
-          },
+          CitizenshipStatus: { value: 'ForeignBorn' },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Naturalized' },
-          },
+          CitizenshipStatus: { value: 'Naturalized' },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Derived' },
-          },
+          CitizenshipStatus: { value: 'Derived' },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'NotCitizen' },
-          },
+          CitizenshipStatus: { value: 'NotCitizen' },
         },
         expected: true,
       },
@@ -483,395 +469,345 @@ describe('citizenship component validation', () => {
     const tests = [
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Citizen' },
+          CitizenshipStatus: { value: 'Citizen' },
+        },
+        expected: true,
+      },
+      {
+        data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
+          AbroadDocumentation: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation',
           },
-          Passport: {
-            HasPassports: { value: 'Yes' },
+          DocumentNumber: {
+            value: 'document number',
+          },
+          DocumentIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          PlaceIssued: {
+            layout: Location.CITY_STATE_COUNTRY,
+            country: { value: 'United States' },
+            city: 'Arlington',
+            state: 'VA',
+          },
+          DocumentName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          BornOnMilitaryInstallation: { value: 'No' },
+        },
+        expected: true,
+      },
+      {
+        data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
+          CertificateNumber: {
+            value: 'certificate number',
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          BornOnMilitaryInstallation: { value: 'Yes' },
+          MilitaryBase: {
+            value: 'Camp Pendleton',
           },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'Other' },
-            Explanation: {
-              value: 'Explanation',
-            },
-            DocumentNumber: {
-              value: 'document number',
-            },
-            DocumentIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            PlaceIssued: {
-              layout: Location.CITY_STATE_COUNTRY,
-              country: { value: 'United States' },
-              city: 'Arlington',
-              state: 'VA',
-            },
-            DocumentName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            BornOnMilitaryInstallation: { value: 'No' },
+          CitizenshipStatus: { value: 'Naturalized' },
+          EntryDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          EntryLocation: {
+            country: { value: 'United States' },
+            city: 'Arlington',
+            state: 'VA',
+            layout: Location.CITY_STATE,
           },
-        },
-        expected: true,
-      },
-      {
-        data: {
-          Status: {
-            CitizenshipStatus: { value: 'ForeignBorn' },
-            CertificateNumber: {
-              value: 'certificate number',
-            },
-            CertificateIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            CertificateName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            BornOnMilitaryInstallation: { value: 'Yes' },
-            MilitaryBase: {
-              value: 'Camp Pendleton',
-            },
+          PriorCitizenship: {
+            value: ['Germany'],
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          HasAlienRegistration: { value: 'Yes' },
+          AlienRegistrationNumber: {
+            value: 'number',
+          },
+          CertificateNumber: {
+            value: 'certificate number',
+          },
+          CertificateCourtName: {
+            value: 'court name',
+          },
+          CertificateCourtAddress: {
+            country: 'United States',
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'VA',
+            zipcode: '22202',
+            layout: Location.US_ADDRESS,
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation',
           },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Naturalized' },
-            EntryDate: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            EntryLocation: {
-              country: { value: 'United States' },
-              city: 'Arlington',
-              state: 'VA',
-              layout: Location.CITY_STATE,
-            },
-            PriorCitizenship: {
-              value: ['Germany'],
-            },
-            HasAlienRegistration: { value: 'Yes' },
-            AlienRegistrationNumber: {
-              value: 'number',
-            },
-            CertificateNumber: {
-              value: 'certificate number',
-            },
-            CertificateCourtName: {
-              value: 'court name',
-            },
-            CertificateCourtAddress: {
-              country: 'United States',
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'VA',
-              zipcode: '22202',
-              layout: Location.US_ADDRESS,
-            },
-            CertificateIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            CertificateName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            Basis: { value: 'Other' },
-            Explanation: {
-              value: 'Explanation',
-            },
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
+            value: '',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          PermanentResidentCardNumber: {
+            value: '',
           },
-        },
-        expected: true,
-      },
-      {
-        data: {
-          Status: {
-            CitizenshipStatus: { value: 'Derived' },
-            AlienRegistrationNumber: {
-              value: '',
-            },
-            PermanentResidentCardNumber: {
-              value: '',
-            },
-            CertificateNumber: {
-              value: '',
-            },
-            CertificateName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            CertificateIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            Basis: { value: 'Other' },
-            Explanation: {
-              value: 'Explanation',
-            },
+          CertificateNumber: {
+            value: '',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation',
           },
         },
         expected: false,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Derived' },
-            AlienRegistrationNumber: {
-              value: 'number',
-            },
-            PermanentResidentCardNumber: {
-              value: 'number',
-            },
-            CertificateNumber: {
-              value: 'certificate number',
-            },
-            CertificateName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            CertificateIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            Basis: { value: 'Other' },
-            Explanation: {
-              value: 'Explanation',
-            },
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
+            value: 'number',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          PermanentResidentCardNumber: {
+            value: 'number',
+          },
+          CertificateNumber: {
+            value: 'certificate number',
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation',
           },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Derived' },
-            AlienRegistrationNumber: {
-              value: 'number',
-            },
-            PermanentResidentCardNumber: {
-              value: '',
-            },
-            CertificateNumber: {
-              value: '',
-            },
-            CertificateName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            CertificateIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            Basis: { value: 'Other' },
-            Explanation: {
-              value: 'Explanation',
-            },
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
+            value: 'number',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          PermanentResidentCardNumber: {
+            value: '',
+          },
+          CertificateNumber: {
+            value: '',
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation',
           },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Derived' },
-            AlienRegistrationNumber: {
-              value: '',
-            },
-            PermanentResidentCardNumber: {
-              value: 'number',
-            },
-            CertificateNumber: {
-              value: '',
-            },
-            CertificateName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            CertificateIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            Basis: { value: 'Other' },
-            Explanation: {
-              value: 'Explanation',
-            },
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
+            value: '',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          PermanentResidentCardNumber: {
+            value: 'number',
+          },
+          CertificateNumber: {
+            value: '',
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation',
           },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'Derived' },
-            AlienRegistrationNumber: {
-              value: 'number',
-            },
-            PermanentResidentCardNumber: {
-              value: '',
-            },
-            CertificateNumber: {
-              value: '',
-            },
-            CertificateName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            CertificateIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            Basis: { value: 'Other' },
-            Explanation: {
-              value: 'Explanation',
-            },
+          CitizenshipStatus: { value: 'Derived' },
+          AlienRegistrationNumber: {
+            value: 'number',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          PermanentResidentCardNumber: {
+            value: '',
+          },
+          CertificateNumber: {
+            value: '',
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          Basis: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation',
           },
         },
         expected: true,
       },
       {
         data: {
-          Status: {
-            CitizenshipStatus: { value: 'NotCitizen' },
-            ResidenceStatus: {
-              value: 'status',
-            },
-            EntryDate: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            EntryLocation: {
-              city: 'Arlington',
-              state: 'VA',
-              country: { value: 'United States' },
-              layout: Location.CITY_STATE,
-            },
-            PriorCitizenship: {
-              value: ['Germany'],
-            },
-            AlienRegistrationNumber: {
-              value: 'number',
-            },
-            AlienRegistrationExpiration: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            DocumentType: { value: 'Other' },
-            Explanation: {
-              value: 'Explanation',
-            },
-            DocumentNumber: {
-              value: 'document number',
-            },
-            DocumentName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              suffix: 'Jr',
-            },
-            DocumentIssued: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
-            DocumentExpiration: {
-              day: '1',
-              month: '1',
-              year: '2016',
-            },
+          CitizenshipStatus: { value: 'NotCitizen' },
+          ResidenceStatus: {
+            value: 'status',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
+          EntryDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          EntryLocation: {
+            city: 'Arlington',
+            state: 'VA',
+            country: { value: 'United States' },
+            layout: Location.CITY_STATE,
+          },
+          PriorCitizenship: {
+            value: ['Germany'],
+          },
+          AlienRegistrationNumber: {
+            value: 'number',
+          },
+          AlienRegistrationExpiration: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          DocumentType: { value: 'Other' },
+          Explanation: {
+            value: 'Explanation',
+          },
+          DocumentNumber: {
+            value: 'document number',
+          },
+          DocumentName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          DocumentIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          DocumentExpiration: {
+            day: '1',
+            month: '1',
+            year: '2016',
           },
         },
         expected: true,
