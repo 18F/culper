@@ -41,6 +41,7 @@ func main() {
 	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), logger, serializer)
 	if storeErr != nil {
 		logger.WarnError("Error configuring Simple Store", storeErr, api.LogFields{})
+		return
 	}
 
 	token := jwt.Service{Env: settings}
@@ -71,7 +72,7 @@ func main() {
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
-		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
+		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store}.ServeHTTP).Methods("POST")
 	}
 	if settings.True(api.SamlEnabled) {
 		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Token: token, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")

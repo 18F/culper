@@ -60,9 +60,6 @@ func TestCollections(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		// Purge the account
-		api.PurgeAccountStorage(service, account)
-
 		// Get the test data as a byte array
 		raw, err := readBinaryData(test.Data)
 		if err != nil {

@@ -8,6 +8,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/cloudfoundry"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 var (
@@ -15,7 +16,7 @@ var (
 )
 
 // Command represents a basic utility command.
-func Command(log api.LogService, action func(api.DatabaseService, *api.Account)) {
+func Command(log api.LogService, action func(api.DatabaseService, api.StorageService, *api.Account)) {
 	cloudfoundry.Configure()
 	settings := &env.Native{}
 	settings.Configure()
@@ -28,6 +29,13 @@ func Command(log api.LogService, action func(api.DatabaseService, *api.Account))
 		SSLMode:  settings.String(api.DatabaseSSLMode),
 	}
 	database := postgresql.NewPostgresService(dbConf, log)
+
+	serializer := simplestore.NewJSONSerializer()
+	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), log, serializer)
+	if storeErr != nil {
+		log.WarnError("Error configuring Simple Store", storeErr, api.LogFields{})
+		return
+	}
 
 	flag.Parse()
 
@@ -48,7 +56,7 @@ func Command(log api.LogService, action func(api.DatabaseService, *api.Account))
 			}
 
 			// Perform the provided actions on the given account.
-			action(database, account)
+			action(database, store, account)
 		}
 	} else {
 		// Assume all arguments are a username delimited by white space.
@@ -61,7 +69,7 @@ func Command(log api.LogService, action func(api.DatabaseService, *api.Account))
 			}
 
 			// Perform the provided actions on the given account.
-			action(database, account)
+			action(database, store, account)
 		}
 	}
 }

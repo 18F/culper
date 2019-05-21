@@ -128,3 +128,25 @@ func runLoadApplication(conn simpleConnection, serializer api.Serializer, accoun
 func (s SimpleStore) LoadApplication(accountID int) (api.Application, error) {
 	return runLoadApplication(s.db, s.serializer, accountID)
 }
+
+// DeleteApplication deletes an application from the database
+func (s SimpleStore) DeleteApplication(accountID int) error {
+
+	deleteQuery := "DELETE FROM applications WHERE account_id = $1"
+
+	result, delErr := s.db.Exec(deleteQuery, accountID)
+	if delErr != nil {
+		return errors.Wrap(delErr, "Failed to delete Application")
+	}
+
+	rows, affectedErr := result.RowsAffected()
+	if affectedErr != nil {
+		return errors.Wrap(affectedErr, "Bizzarely unable to read affected rows")
+	}
+
+	if rows != 1 {
+		return api.ErrApplicationDoesNotExist
+	}
+
+	return nil
+}

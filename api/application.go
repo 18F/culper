@@ -659,24 +659,6 @@ var (
 	}
 )
 
-// PurgeAccountStorage removes all data associated with an account
-func PurgeAccountStorage(context DatabaseService, account int) {
-	for _, section := range catalogue {
-		payload := &Payload{
-			Type: section.Payload,
-		}
-
-		entity, err := payload.Entity()
-		if err != nil {
-			continue
-		}
-
-		if _, err = entity.Delete(context, account); err != nil {
-			continue
-		}
-	}
-}
-
 // Catalogue eturns an array of the sub-sections of the form
 func Catalogue() []SectionInformation {
 	c := make([]SectionInformation, len(catalogue))

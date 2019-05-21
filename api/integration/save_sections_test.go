@@ -217,3 +217,32 @@ func TestSaveMultipleSections(t *testing.T) {
 	}
 
 }
+
+func TestDeleteApplication(t *testing.T) {
+
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	section := readTestData(t, "../testdata/identification/identification-birthplace-full.json")
+
+	resp := saveJSON(services, section, account.ID)
+	if resp.StatusCode != 200 {
+		t.Fatal("Failed to save a section", resp.StatusCode)
+	}
+
+	delErr := services.store.DeleteApplication(account.ID)
+	if delErr != nil {
+		t.Fatal(delErr)
+	}
+
+	formResp := getForm(services, account.ID)
+	if formResp.StatusCode != 200 {
+		t.Fatal(fmt.Sprintf("Failed to load form"), resp.StatusCode)
+	}
+	body := readBody(t, formResp)
+
+	if string(body) != `{"Metadata":{"form_type":"SF86","form_version":"2016-11","type":"metadata"}}` {
+		t.Fatal("Should have just got back the metadata")
+	}
+
+}

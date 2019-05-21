@@ -23,6 +23,8 @@ type StorageService interface {
 	SaveSection(section Section, accountID int) error
 	// LoadApplication returns the given application from the db.
 	LoadApplication(accountID int) (Application, error)
+	// DeleteApplication deletes all the form data for a given account
+	DeleteApplication(accountID int) error
 
 	// CreateAttachment creates an attachment in the database
 	CreateAttachment(attachment *Attachment) error
