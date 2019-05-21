@@ -6,7 +6,11 @@ const accordionValidator = (value, options = {}) => {
   const { validator } = options
   if (!validator) return 'Invalid validator'
 
-  const { items } = value
+  const { items, branch } = value
+  if (!branch || !branch.value || branch.value !== 'No') {
+    return 'Invalid branch'
+  }
+
   if (!items || (items && items.length < 1)) return 'No items'
 
   let itemErrors

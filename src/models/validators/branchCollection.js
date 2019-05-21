@@ -1,7 +1,8 @@
 import { validateModel } from 'models/validate'
 
 const branchCollectionValidator = (value, options = {}) => {
-  if (!value) return null // Only validate if there's a value
+  if (value === undefined) return null // Only validate if there's a value
+  if (value === null) return 'Invalid value'
 
   const { items } = value
   const { validator } = options
