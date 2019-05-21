@@ -107,35 +107,6 @@ describe('The reason left component', () => {
     expect(component.find('.employment-left').length).toEqual(1)
   })
 
-  it('adds a comment and description', () => {
-    let updates = 0
-    const past = daysAgo(today, 365 * 7)
-    const expected = {
-      name: 'peace_i_am_out',
-      Dates: {
-        present: false,
-        from: {
-          month: `${past.getMonth() + 1}`,
-          day: `${past.getDate()}`,
-          year: `${past.getFullYear()}`
-        },
-        to: {}
-      },
-      Comments: { value: '' },
-      ReasonDescription: { value: 'Foo' },
-      onUpdate: () => {
-        updates++
-      }
-    }
-    const component = createComponent(expected)
-    component.find({ name: 'reason_description' }).simulate('change')
-    component.find('.comments-button.add').simulate('click')
-    let comment = component.find({ name: 'comments' })
-    expect(comment.length).toBe(1)
-    comment.simulate('change')
-    expect(updates).toBe(1)
-  })
-
   it('renders verbiage differently based on reason', () => {
     const past = daysAgo(today, 365 * 7)
     const expectations = [

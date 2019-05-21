@@ -1,5 +1,14 @@
+$asset-path: '/';
+$fa-font-path: '/fonts/';
+
+// MODULES
 @import '../node_modules/font-awesome/scss/font-awesome.scss';
 @import '../node_modules/uswds/src/stylesheets/uswds.scss';
+
+// VARIABLES
+@import 'sass/eqip-colors';
+@import 'sass/eqip-fonts';
+
 // COMPONENTS
 @import 'components/ErrorList/ErrorList';
 @import 'components/Form/Accordion/Accordion';
@@ -47,6 +56,7 @@
 @import 'components/Form/TimeoutWarning/TimeoutWarning';
 @import 'components/Form/Weight/Weight';
 @import 'components/Form/ZipCode/ZipCode';
+@import 'components/KickbackBanner/index';
 @import 'components/Navigation/Navigation';
 @import 'components/Navigation/NavigationToggle';
 @import 'components/Navigation/SectionLink';

@@ -37,6 +37,10 @@ export function login(username, password) {
           if (query.formType) {
             window.formType = query.formType
           }
+
+          if (query.status) {
+            window.status = query.status.toUpperCase()
+          }
         }
         api.setToken(response.data)
         dispatch(handleLoginSuccess(response.data))

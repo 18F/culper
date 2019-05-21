@@ -1,7 +1,7 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import { nameIsEmpty } from 'validators'
+import { nameIsEmpty } from 'validators/helpers'
 import {
   ValidationElement,
   BranchCollection,
@@ -87,12 +87,6 @@ export default class EducationItem extends ValidationElement {
   updateAddress = (values) => {
     this.update({
       Address: values,
-    })
-  }
-
-  updateComments = (values) => {
-    this.update({
-      Comments: values,
     })
   }
 
@@ -217,10 +211,6 @@ export default class EducationItem extends ValidationElement {
             titleSize="h4"
             optional
             help="history.education.help.address"
-            comments
-            commentsName="Comments"
-            commentsValue={this.props.Comments}
-            onUpdate={this.updateComments}
             onError={this.props.onError}
             adjustFor="address"
             shrink

@@ -1,125 +1,53 @@
-const eyeColors = [
-  'Black',
-  'Blue',
-  'Brown',
-  'Gray',
-  'Green',
-  'Hazel',
-  'Maroon',
-  'Multicolored',
-  'Pink',
-  'Unknown'
-]
+import { validateModel } from 'models/validate'
 
-const hairColors = [
-  'Bald',
-  'Black',
-  'Blonde',
-  'Brown',
-  'Gray',
-  'Red',
-  'Sandy',
-  'White',
-  'Blue',
-  'Green',
-  'Orange',
-  'Pink',
-  'Purple',
-  'Unknown'
-]
+import eyeColor from 'models/shared/eyeColor'
+import hairColor from 'models/shared/hairColor'
+import height from 'models/shared/height'
+import sex from 'models/shared/sex'
+import weight from 'models/shared/weight'
 
+export const validateIdentificationPhysical = (data) => {
+  const physicalModel = {
+    Height: { presence: true, model: { validator: height } },
+    Weight: { presence: true, model: { validator: weight } },
+    HairColor: { presence: true, model: { validator: hairColor } },
+    EyeColor: { presence: true, model: { validator: eyeColor } },
+    Sex: { presence: true, model: { validator: sex } },
+  }
+
+  return validateModel(data, physicalModel) === true
+}
+
+/** LEGACY */
 export default class PhysicalValidator {
   constructor(data = {}) {
-    this.height = data.Height
-    this.weight = (data.Weight || {}).value
-    this.hairColor = (data.HairColor || {}).value
-    this.eyeColor = (data.EyeColor || {}).value
-    this.sex = (data.Sex || {}).value
+    this.data = data
   }
 
   /**
    * Validates all physical attributes
    */
   isValid() {
-    return (
-      this.validHeight() &&
-      this.validWeight() &&
-      this.validHairColor() &&
-      this.validEyeColor() &&
-      this.validSex()
-    )
+    return validateIdentificationPhysical(this.data)
   }
 
-  /**
-   * Validates a users height
-   */
   validHeight() {
-    if (!this.height) {
-      return false
-    }
-
-    if (
-      this.height.feet < 1 ||
-      this.height.inches < 0 ||
-      this.height.inches > 11
-    ) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data.Height, height) === true
   }
 
-  /**
-   * Validats a users weight
-   */
   validWeight() {
-    if (!this.weight) {
-      return false
-    }
-
-    if (this.weight < 10) {
-      return false
-    }
-    return true
+    return validateModel(this.data.Weight, weight) === true
   }
 
-  /**
-   * Validates a users hair color
-   */
   validHairColor() {
-    if (!this.hairColor) {
-      return false
-    }
-
-    let found = false
-    for (let validColor of hairColors) {
-      if (validColor === this.hairColor) {
-        found = true
-      }
-    }
-
-    return found
+    return validateModel(this.data.HairColor, hairColor) === true
   }
 
   validEyeColor() {
-    if (!this.eyeColor) {
-      return false
-    }
-
-    let found = false
-    for (let validColor of eyeColors) {
-      if (validColor === this.eyeColor) {
-        found = true
-      }
-    }
-
-    return found
+    return validateModel(this.data.EyeColor, eyeColor) === true
   }
 
   validSex() {
-    if (!this.sex || !this.sex.length) {
-      return false
-    }
-    return true
+    return validateModel(this.data.Sex, sex) === true
   }
 }

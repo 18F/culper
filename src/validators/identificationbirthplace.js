@@ -1,11 +1,22 @@
-import LocationValidator from './location'
+import { validateModel } from 'models/validate'
+import birthplace from 'models/shared/locations/birthplace'
+
+export const validateIdentificationBirthPlace = (data) => {
+  const applicantBirthPlaceModel = {
+    Location: {
+      location: { validator: birthplace },
+    },
+  }
+
+  return validateModel(data, applicantBirthPlaceModel) === true
+}
 
 export default class IdentificationBirthPlaceValidator {
   constructor(data = {}) {
-    this.location = data.Location
+    this.data = data
   }
 
   isValid() {
-    return new LocationValidator(this.location).isValid()
+    return validateIdentificationBirthPlace(this.data)
   }
 }

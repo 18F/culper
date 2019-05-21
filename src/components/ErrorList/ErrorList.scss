@@ -46,12 +46,12 @@
   }
 
   &.usa-alert-error {
-    background-image: url('../img/error.svg');
+    background-image: url('#{$asset-path}img/error.svg');
     background-size: 2rem;
   }
 
   &.usa-alert-info {
-    background-image: url('../img/help-icon-v2-01.svg');
+    background-image: url('#{$asset-path}img/help-icon-v2-01.svg');
     background-size: 2rem;
 
     .close {

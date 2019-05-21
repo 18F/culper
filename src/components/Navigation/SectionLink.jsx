@@ -10,7 +10,7 @@ import {
   sectionIsValidSelector,
 } from 'selectors/navigation'
 
-const SectionLink = ({
+export const SectionLink = ({
   section, basePath, errors, completed, locked,
 }) => {
   const url = `${basePath}/${section.path}`

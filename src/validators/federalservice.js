@@ -1,58 +1,48 @@
-import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import federal from 'models/federal'
+
+export const validateFederalServiceItem = data => (
+  validateModel(data, federal) === true
+)
+
+export const validateHistoryFederal = (data) => {
+  const historyFederalModel = {
+    HasFederalService: {
+      presence: true,
+      hasValue: { validator: hasYesOrNo },
+    },
+    List: (value, attributes) => {
+      // Only required if HasFederalService is yes
+      if (attributes.HasFederalService && attributes.HasFederalService.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: federal },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, historyFederalModel) === true
+}
 
 export default class FederalServiceValidator {
   constructor(data = {}) {
-    this.hasFederalService = (data.HasFederalService || {}).value
-    this.list = data.List
-  }
-
-  validList() {
-    if (this.hasFederalService === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new FederalServiceItemValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateHistoryFederal(this.data)
   }
 }
 
 export class FederalServiceItemValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.position = data.Position
-    this.dates = data.Dates
-    this.address = data.Address
-  }
-
-  validName() {
-    return validGenericTextfield(this.name)
-  }
-
-  validPosition() {
-    return validGenericTextfield(this.position)
-  }
-
-  validAddress() {
-    return new LocationValidator(this.address).isValid()
-  }
-
-  validDates() {
-    return new DateRangeValidator(this.dates, null).isValid()
+    this.data = data
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validPosition() &&
-      this.validAddress() &&
-      this.validDates()
-    )
+    return validateFederalServiceItem(this.data)
   }
 }
