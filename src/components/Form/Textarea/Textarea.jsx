@@ -8,7 +8,6 @@ export default class Textarea extends ValidationElement {
 
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
-      value: props.value,
       focus: props.focus,
       error: props.error,
       valid: props.valid,

@@ -4,12 +4,13 @@ import { i18n } from 'config'
 import schema from 'schema'
 import validate from 'validators'
 
-import { Field, Height, Weight, HairColor, EyeColor, Sex } from 'components/Form'
-
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
+import {
+  Field, Height, Weight, HairColor, EyeColor, Sex,
+} from 'components/Form'
 
 import { IDENTIFICATION, IDENTIFICATION_PHYSICAL } from 'config/formSections/identification'
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
 
 const sectionConfig = {
   section: IDENTIFICATION.name,
@@ -22,7 +23,9 @@ export class Physical extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
@@ -43,8 +46,7 @@ export class Physical extends Subsection {
   }
 
   render() {
-    const klass = `section-content physical ${this.props.className ||
-      ''}`.trim()
+    const klass = `section-content physical ${this.props.className || ''}`.trim()
 
     return (
       <div
@@ -60,7 +62,8 @@ export class Physical extends Subsection {
           help="identification.traits.help.height"
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
+          shrink
+        >
           <Height
             name="height"
             {...this.props.Height}
@@ -76,7 +79,8 @@ export class Physical extends Subsection {
           help="identification.traits.help.weight"
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
+          shrink
+        >
           <Weight
             name="weight"
             {...this.props.Weight}
@@ -91,7 +95,8 @@ export class Physical extends Subsection {
           titleSize="h4"
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}
-          help="identification.traits.help.hair">
+          help="identification.traits.help.hair"
+        >
           <HairColor
             name="hair"
             help="identification.traits.help.hair"
@@ -108,7 +113,8 @@ export class Physical extends Subsection {
           titleSize="h4"
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}
-          help="identification.traits.help.eye">
+          help="identification.traits.help.eye"
+        >
           <EyeColor
             name="eye"
             className=""
@@ -124,11 +130,9 @@ export class Physical extends Subsection {
           titleSize="h4"
           help="identification.traits.help.sex"
           adjustFor="big-buttons"
-          shrink={true}
-          onUpdate={this.handleUpdate.bind(this, 'Comments')}
-          commentsValue={this.props.Comments}
           scrollIntoView={this.props.scrollIntoView}
-          comments={true}>
+          shrink
+        >
           <Sex
             name="sex"
             {...this.props.Sex}
@@ -149,14 +153,12 @@ Physical.defaultProps = {
   EyeColor: '',
   Sex: '',
   Comments: {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('identification.physical', data))
-  },
-  required: false
+  validator: data => (
+    validate(schema('identification.physical', data))
+  ),
+  required: false,
 }
 
 export default connectIdentificationSection(Physical, sectionConfig)
