@@ -119,7 +119,7 @@
         "CitizenshipStatus": {
           "type": "radio",
           "props": {
-            "value": "ForeignBorn"
+            "value": "NotCitizen"
           }
         },
         "AbroadDocumentation": {
@@ -137,27 +137,27 @@
         "DocumentNumber": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "129456"
           }
         },
         "DocumentIssued": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "2017",
             "estimated": false
           }
         },
         "DocumentName": {
           "type": "name",
           "props": {
-            "first": "",
+            "first": "Alexander",
             "firstInitialOnly": false,
             "middle": "",
             "middleInitialOnly": false,
-            "noMiddleName": false,
-            "last": "",
+            "noMiddleName": true,
+            "last": "Hamilton",
             "suffix": "",
             "suffixOther": ""
           }
@@ -165,17 +165,16 @@
         "DocumentExpiration": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "2019",
             "estimated": false
           }
         },
         "DocumentType": {
           "type": "radio",
           "props": {
-            "value": "",
-            "checked": true
+            "value": "U.S. Visa"
           }
         },
         "PlaceIssued": {
@@ -229,35 +228,39 @@
         "BornOnMilitaryInstallation": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": ""
           }
         },
         "MilitaryBase": {
           "type": "text",
           "props": {
-            "value": "Some Military Base"
+            "value": ""
           }
         },
         "EntryDate": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "2017",
             "estimated": false
           }
         },
         "EntryLocation": {
           "type": "location",
           "props": {
-            "layout": "",
+            "layout": "City, State",
+            "city": "Portland",
+            "state": "OR",
             "country": ""
           }
         },
         "PriorCitizenship": {
           "type": "country",
           "props": {
-            "value": null
+            "value": [
+              "Saint Kitts and Nevis"
+            ]
           }
         },
         "HasAlienRegistration": {
@@ -269,15 +272,15 @@
         "AlienRegistrationNumber": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "723456"
           }
         },
         "AlienRegistrationExpiration": {
           "type": "datecontrol",
           "props": {
-            "month": "",
-            "day": "",
-            "year": "",
+            "month": "01",
+            "day": "02",
+            "year": "2017",
             "estimated": false
           }
         },
@@ -296,7 +299,7 @@
         "ResidenceStatus": {
           "type": "text",
           "props": {
-            "value": ""
+            "value": "Landed"
           }
         }
       }
@@ -649,18 +652,18 @@
         "HasPassports": {
           "type": "branch",
           "props": {
-            "value": "Yes"
+            "value": "No"
           }
         },
         "Name": {
           "type": "name",
           "props": {
-            "first": "Alexander",
+            "first": "",
             "firstInitialOnly": false,
             "middle": "",
             "middleInitialOnly": false,
-            "noMiddleName": true,
-            "last": "Hamilton",
+            "noMiddleName": false,
+            "last": "",
             "suffix": "",
             "suffixOther": ""
           }
@@ -674,24 +677,24 @@
         "Number": {
           "type": "text",
           "props": {
-            "value": "123456789"
+            "value": ""
           }
         },
         "Issued": {
           "type": "datecontrol",
           "props": {
-            "month": "12",
-            "day": "12",
-            "year": "2018",
+            "month": "",
+            "day": "",
+            "year": "",
             "estimated": false
           }
         },
         "Expiration": {
           "type": "datecontrol",
           "props": {
-            "month": "12",
-            "day": "12",
-            "year": "2023",
+            "month": "",
+            "day": "",
+            "year": "",
             "estimated": false
           }
         },
@@ -1533,7 +1536,7 @@
         "HomeEmail": {
           "type": "email",
           "props": {
-            "value": "alexanderhamilton@test.com"
+            "value": ""
           }
         },
         "WorkEmail": {
@@ -1976,11 +1979,6 @@
         }
       }
     }
-  },
-  "Metadata": {
-    "form_type": "SF86",
-    "form_version": "2016-11",
-    "type": "metadata"
   },
   "Military": {
     "Disciplinary": {
