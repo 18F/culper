@@ -5,8 +5,6 @@ import email from 'models/shared/email'
 
 import { today, dateWithinRange } from 'helpers/date'
 
-// TODO - clarification on reference not applicable validation rule
-
 /** Helpers */
 const educationRequiresReference = (dates = {}) => {
   const { from, present } = dates

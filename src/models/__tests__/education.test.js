@@ -334,6 +334,34 @@ describe('The education model', () => {
         expect(validateModel(testData, education))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
+
+      it('the other Reference fields are still required', () => {
+        const testData = {
+          Dates: {
+            from: { year: 2017, month: 9, day: 1 },
+            to: { year: 2019, month: 1, day: 30 },
+          },
+          Address: {
+            street: '40 School St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          Name: { value: 'My School' },
+          Type: { value: 'College' },
+          ReferenceNameNotApplicable: { applicable: false },
+        }
+
+        const expectedErrors = [
+          'ReferenceEmail.required',
+          'ReferencePhone.required',
+          'ReferenceAddress.required',
+        ]
+
+        expect(validateModel(testData, education))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
     })
 
     describe('if ReferenceEmailNotApplicable is checked', () => {
