@@ -1,145 +1,102 @@
-import DateRangeValidator from './daterange'
-import {
-  daysAgo,
-  today,
-  extractDate
-} from '../components/Section/History/dateranges'
-import {
-  BranchCollection,
-  validDateField,
-  validAccordion,
-  validNotApplicable,
-  validPhoneNumber,
-  validGenericTextfield
-} from './helpers'
-import LocationValidator from './location'
-import NameValidator from './name'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import education from 'models/education'
+
+const historyEducationModel = {
+  HasAttended: {
+    presence: true,
+    hasValue: { validator: hasYesOrNo },
+  },
+  HasDegree10: (value, attributes) => {
+    // Only required if HasAttended is "No"
+    if (attributes.HasAttended && attributes.HasAttended.value === 'No') {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+
+    return {}
+  },
+  List: (value, attributes) => {
+    // Only required if either HasAttended or HasDegree10 is yes
+    if ((attributes.HasAttended && attributes.HasAttended.value === 'Yes')
+      || (attributes.HasDegree10 && attributes.HasDegree10.value === 'Yes')) {
+      return {
+        presence: true,
+        accordion: { validator: education },
+      }
+    }
+
+    return {}
+  },
+}
+
+export const validateEducation = data => (
+  validateModel(data, education) === true
+)
+
+export const validateHistoryEducation = data => (
+  validateModel(data, historyEducationModel) === true
+)
 
 export default class HistoryEducationValidator {
   constructor(data = {}) {
-    data = data.value || data || {}
-    this.hasAttended = (data.HasAttended || {}).value
-    this.hasDegree10 = (data.HasDegree10 || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   validAttendance() {
-    if (!(this.hasAttended === 'No' || this.hasAttended === 'Yes')) {
-      return false
-    }
-
-    if (
-      this.hasAttended === 'No' &&
-      !(this.hasDegree10 === 'No' || this.hasDegree10 === 'Yes')
-    ) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, {
+      HasAttended: historyEducationModel.HasAttended,
+      HasDegree10: historyEducationModel.HasDegree10,
+    }) === true
   }
 
   validList() {
-    if (this.hasAttended === 'No' && this.hasDegree10 === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new EducationItemValidator(item).isValid()
-    })
+    return validateModel(this.data, {
+      List: historyEducationModel.List,
+    }) === true
   }
 
   isValid() {
-    return this.validAttendance() && this.validList()
+    return validateHistoryEducation(this.data)
   }
 }
 
 export class EducationItemValidator {
   constructor(data = {}) {
-    this.dates = data.Dates || {}
-    this.address = data.Address || {}
-    this.name = data.Name || {}
-    this.type = (data.Type || {}).value
-    this.referenceName = data.ReferenceName || {}
-    this.referenceNameNotApplicable = data.ReferenceNameNotApplicable || {
-      applicable: true
-    }
-    this.referencePhone = data.ReferencePhone || {}
-    this.referenceEmailNotApplicable = data.ReferenceEmailNotApplicable || {}
-    this.referenceEmail = data.ReferenceEmail || {}
-    this.referenceAddress = data.ReferenceAddress || {}
-    this.diplomas = data.Diplomas || { items: [] }
+    this.data = data
   }
 
   validDates() {
-    return new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, { Dates: education.Dates }) === true
   }
 
   validAddress() {
-    return new LocationValidator(this.address).isValid()
+    return validateModel(this.data, { Address: education.Address }) === true
   }
 
   validName() {
-    return this.name && validGenericTextfield(this.name)
+    return validateModel(this.data, { Name: education.Name }) === true
   }
 
   validType() {
-    return !!this.type && this.type.length > 0
+    return validateModel(this.data, { Type: education.Type }) === true
   }
 
   validReference() {
-    const threeYearsAgo = daysAgo(today, 365 * 3)
-    const from = extractDate(this.dates.from)
-    const to = extractDate(this.dates.to)
-    if ((from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)) {
-      if ((this.referenceNameNotApplicable || {}).applicable === false) {
-        return true
-      }
-
-      return (
-        validNotApplicable(this.referenceNameNotApplicable, () => {
-          return new NameValidator(this.referenceName).isValid()
-        }) &&
-        validPhoneNumber(this.referencePhone) &&
-        validNotApplicable(this.referenceEmailNotApplicable, () => {
-          return validGenericTextfield(this.referenceEmail)
-        }) &&
-        new LocationValidator(this.referenceAddress).isValid()
-      )
-    }
-
-    return true
+    return validateModel(this.data, {
+      ReferenceName: education.ReferenceName,
+      ReferencePhone: education.ReferencePhone,
+      ReferenceEmail: education.ReferenceEmail,
+      ReferenceAddress: education.ReferenceAddress,
+    }) === true
   }
 
   validDiplomas() {
-    const branchValidator = new BranchCollection(this.diplomas)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
-
-    if (!branchValidator.hasNo()) {
-      return false
-    }
-
-    return branchValidator.each(item => {
-      // If the diploma type is "Other" then they must give it a name
-      if (
-        (item.Diploma || {}).value === 'Other' &&
-        !validGenericTextfield(item.DiplomaOther)
-      ) {
-        return false
-      }
-      return validGenericTextfield(item.Diploma) && validDateField(item.Date)
-    })
+    return validateModel(this.data, { Diplomas: education.Diplomas }) === true
   }
 
   isValid() {
-    return (
-      this.validDates() &&
-      this.validAddress() &&
-      this.validName() &&
-      this.validType() &&
-      this.validReference() &&
-      this.validDiplomas()
-    )
+    return validateEducation(this.data)
   }
 }

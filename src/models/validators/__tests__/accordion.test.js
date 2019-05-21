@@ -36,6 +36,7 @@ describe('The accordion validator', () => {
         { Item: { value: 'email@gmail.com' } },
         { Item: { value: 'another@email.org' } },
       ],
+      branch: { value: 'No' },
     }
 
     const validator = { value: { email: true } }

@@ -3796,18 +3796,6 @@ exports[`The identification section renders the IdentificationSections component
                 </div>
               </div>
             </div>
-            <a
-              className="comments-button add"
-              href="javascript:;;"
-              onClick={[Function]}
-            >
-              <span>
-                Add a comment
-              </span>
-              <i
-                className="fa fa-plus-circle"
-              />
-            </a>
           </span>
         </span>
       </div>
