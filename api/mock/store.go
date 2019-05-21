@@ -27,6 +27,11 @@ func (s *StorageService) LoadApplication(accountID int) (api.Application, error)
 	return api.Application{}, nil
 }
 
+//DeleteApplication deletes an attachment for the given account
+func (s *StorageService) DeleteApplication(accountID int) error {
+	return nil
+}
+
 // CreateAttachment creates an attachment in the database
 func (s *StorageService) CreateAttachment(attachment *api.Attachment) error {
 	return nil

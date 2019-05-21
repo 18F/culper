@@ -16,7 +16,6 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/nsf/jsondiff"
-	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
@@ -133,41 +132,6 @@ func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 
 	return account
 
-}
-
-func populateAccount(db api.DatabaseService, account api.Account, testCasePath string) error {
-
-	b, err := ioutil.ReadFile(testCasePath)
-	if err != nil {
-		return err
-	}
-
-	sections := make(map[string]map[string]api.Payload)
-	err = json.Unmarshal(b, &sections)
-	if err != nil {
-		return err
-	}
-
-	for sectionName := range sections {
-		section := sections[sectionName]
-
-		for subName := range section {
-			subPayload := section[subName]
-
-			entity, err := subPayload.Entity()
-			if err != nil {
-				errstr := fmt.Sprintf("Failed to unpack %s %s ... %s", sectionName, subName, err.Error())
-				return errors.New(errstr)
-			}
-
-			if _, err := entity.Save(db, account.ID); err != nil {
-				errstr := fmt.Sprintf("Failed to save %s %s ... %s", sectionName, subName, err.Error())
-				return errors.New(errstr)
-			}
-		}
-	}
-
-	return nil
 }
 
 // readTestData pulls in test data as a string

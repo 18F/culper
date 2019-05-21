@@ -8,7 +8,7 @@ import (
 
 func main() {
 	logger := &log.Service{Log: log.NewLogger()}
-	cmd.Command(logger, func(context api.DatabaseService, account *api.Account) {
+	cmd.Command(logger, func(context api.DatabaseService, store api.StorageService, account *api.Account) {
 		if err := account.Unlock(context); err != nil {
 			logger.WarnError("Failed to unlock account", err, api.LogFields{"account": account.Username})
 		} else {
