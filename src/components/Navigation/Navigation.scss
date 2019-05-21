@@ -57,10 +57,10 @@
       width: $status-icon-width;
     }
     .is-valid .eapp-status-icon {
-      background-image: url('#{$asset-path}/img/checkmark.svg');
+      background-image: url('#{$asset-path}img/checkmark.svg');
     }
     .has-errors .eapp-status-icon {
-      background-image: url('#{$asset-path}/img/exclamation-point-white-bg.svg');
+      background-image: url('#{$asset-path}img/exclamation-point-white-bg.svg');
     }
   }
 
