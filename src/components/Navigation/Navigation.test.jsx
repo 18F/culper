@@ -21,6 +21,16 @@ describe('Navigation component', () => {
         Settings: {
           formType: 'SF86',
         },
+        Citizenship: {},
+        Financial: {},
+        Foreign: {},
+        History: {},
+        Identification: {},
+        Legal: {},
+        Military: {},
+        Psychological: {},
+        Relationships: {},
+        Substance: {},
       },
     })
 

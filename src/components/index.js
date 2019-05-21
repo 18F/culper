@@ -1,4 +1,4 @@
-import { ScoreCard } from './ScoreCard'
+import ScoreCard from './ScoreCard'
 import { Navigation, NavigationToggle } from './Navigation'
 import { SectionTitle } from './SectionTitle'
 import Section from './Section'
@@ -14,5 +14,5 @@ export {
   Section,
   SavedIndicator,
   ProgressBar,
-  TimeoutWarning
+  TimeoutWarning,
 }

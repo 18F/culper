@@ -1,7 +1,6 @@
 import { unschema } from '../schema'
 import { historyEmployment } from './history-employment'
 import alternateAddress from '../form/alternateaddress'
-import { physicaladdress } from '../form/physicaladdress'
 
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
@@ -16,22 +15,36 @@ describe('Schema for financial taxes', () => {
               PhysicalAddress: {
                 Address: {
                   country: null,
-                  type: "location",
+                  type: 'location',
                 },
                 HasDifferentAddress: {},
-                Telephone: {}
+                Telephone: {},
+              },
+              PhysicalAlternateAddress: {
+                Address: {
+                  country: null,
+                },
+                HasDifferentAddress: {},
+                Telephone: {},
               },
               Dates: {
                 from: {},
                 to: {},
-                present: null
+                present: null,
               },
               Employment: {},
               Status: {},
               Title: {},
               DutyStation: {},
               Address: {
-                country: null
+                country: null,
+              },
+              AlternateAddress: {
+                Address: {
+                  country: null,
+                },
+                HasDifferentAddress: {},
+                Telephone: {},
               },
               Additional: {
                 branch: null,
@@ -44,11 +57,11 @@ describe('Schema for financial taxes', () => {
                       DatesEmployed: {
                         from: {},
                         to: {},
-                        present: null
-                      }
-                    }
-                  }
-                ]
+                        present: null,
+                      },
+                    },
+                  },
+                ],
               },
               Telephone: {},
               ReferenceAlternateAddress: alternateAddress(),
@@ -62,12 +75,12 @@ describe('Schema for financial taxes', () => {
                         Has: {},
                         Reason: {},
                         Text: {},
-                        Date: {}
-                      }
-                    }
-                  ]
+                        Date: {},
+                      },
+                    },
+                  ],
                 },
-                ReasonDescription: {}
+                ReasonDescription: {},
               },
               Reprimand: {
                 branch: null,
@@ -76,10 +89,10 @@ describe('Schema for financial taxes', () => {
                     Item: {
                       Has: {},
                       Text: {},
-                      Date: {}
-                    }
-                  }
-                ]
+                      Date: {},
+                    },
+                  },
+                ],
               },
               Supervisor: {
                 SupervisorName: {},
@@ -87,20 +100,20 @@ describe('Schema for financial taxes', () => {
                 Email: {},
                 EmailNotApplicable: {},
                 Address: {
-                  country: null
+                  country: null,
                 },
-                Telephone: {}
+                Telephone: {},
               },
               SupervisorAlternateAddress: alternateAddress(),
               ReferenceName: {},
               ReferencePhone: {},
               ReferenceAddress: {
-                country: null
-              }
-            }
-          }
-        ]
-      }
+                country: null,
+              },
+            },
+          },
+        ],
+      },
     }
 
     expect(unschema(historyEmployment(data))).toEqual(data)

@@ -1,35 +1,35 @@
 import HistoryEmploymentValidator, { EmploymentValidator } from 'validators/employment'
 import Location from 'components/Form/Location'
 
-describe('Employment component validation', function() {
-  it('should validate active military, national guard and USPHS', function() {
+describe('Employment component validation', () => {
+  it('should validate active military, national guard and USPHS', () => {
     const tests = [
       {
         data: {
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Dates: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           Status: {
-            value: 'FullTime'
+            value: 'FullTime',
           },
           Title: {
-            value: 'IT Support'
+            value: 'IT Support',
           },
           DutyStation: {
-            value: 'Station 1'
+            value: 'Station 1',
           },
           Address: {
             country: { value: 'United States' },
@@ -37,14 +37,14 @@ describe('Employment component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Telephone: {
             noNumber: '',
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
-            timeOfDay: 'Day'
+            timeOfDay: 'Day',
           },
           Supervisor: {
             Address: {
@@ -53,24 +53,24 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Email: {
-              value: 'foo@local.dev'
+              value: 'foo@local.dev',
             },
             SupervisorName: {
-              value: 'John Doe'
+              value: 'John Doe',
             },
             Telephone: {
               noNumber: '',
               number: '2021112222',
               numberType: '',
               timeOfDay: 'Day',
-              type: 'Domestic'
+              type: 'Domestic',
             },
             Title: {
-              value: 'The Foo'
-            }
+              value: 'The Foo',
+            },
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -83,15 +83,15 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: '1',
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: 'Some excuse'
-                    }
-                  }
-                }
-              ]
-            }
+                      value: 'Some excuse',
+                    },
+                  },
+                },
+              ],
+            },
           },
           Reprimand: {
             items: [
@@ -101,44 +101,44 @@ describe('Employment component validation', function() {
                   Date: {
                     month: '1',
                     day: '1',
-                    year: '2015'
+                    year: '2015',
                   },
                   Text: {
-                    value: 'Foo'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Foo',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           EmploymentActivity: {
-            value: 'NationalGuard'
+            value: 'NationalGuard',
           },
           Dates: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           Status: {
-            value: 'FullTime'
+            value: 'FullTime',
           },
           Title: {
-            value: 'IT Support'
+            value: 'IT Support',
           },
           DutyStation: {
-            value: 'Station 1'
+            value: 'Station 1',
           },
           Address: {
             country: { value: 'United States' },
@@ -146,14 +146,14 @@ describe('Employment component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Telephone: {
             noNumber: '',
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
-            timeOfDay: 'Day'
+            timeOfDay: 'Day',
           },
           Supervisor: {
             Address: {
@@ -162,24 +162,24 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Email: {
-              value: 'foo@local.dev'
+              value: 'foo@local.dev',
             },
             SupervisorName: {
-              value: 'John Doe'
+              value: 'John Doe',
             },
             Telephone: {
               noNumber: '',
               number: '2021112222',
               numberType: '',
               type: 'Domestic',
-              timeOfDay: 'Day'
+              timeOfDay: 'Day',
             },
             Title: {
-              value: 'The Foo'
-            }
+              value: 'The Foo',
+            },
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -192,15 +192,15 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: '1',
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: 'Some excuse'
-                    }
-                  }
-                }
-              ]
-            }
+                      value: 'Some excuse',
+                    },
+                  },
+                },
+              ],
+            },
           },
           Reprimand: {
             items: [
@@ -210,53 +210,53 @@ describe('Employment component validation', function() {
                   Date: {
                     month: '1',
                     day: '1',
-                    year: '2015'
+                    year: '2015',
                   },
                   Text: {
-                    value: 'Foo'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Foo',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
-  it('should validate federal employment, state government, federal contractor, non-government and other', function() {
+  it('should validate federal employment, state government, federal contractor, non-government and other', () => {
     const tests = [
       {
         data: {
           EmploymentActivity: {
-            value: 'FederalContractor'
+            value: 'FederalContractor',
           },
           Dates: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           Status: {
-            value: 'FullTime'
+            value: 'FullTime',
           },
           Employment: {
-            value: 'LM'
+            value: 'LM',
           },
           Title: {
-            value: 'IT Support'
+            value: 'IT Support',
           },
           Address: {
             country: { value: 'United States' },
@@ -264,7 +264,7 @@ describe('Employment component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           PhysicalAddress: {
             HasDifferentAddress: { value: 'Yes' },
@@ -274,8 +274,8 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
-            }
+              layout: Location.ADDRESS,
+            },
           },
           Additional: { items: [{ Item: { Has: { value: 'No' } } }] },
           Telephone: {
@@ -283,7 +283,7 @@ describe('Employment component validation', function() {
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
-            timeOfDay: 'Day'
+            timeOfDay: 'Day',
           },
           Supervisor: {
             Address: {
@@ -292,24 +292,24 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Email: {
-              value: 'foo@local.dev'
+              value: 'foo@local.dev',
             },
             SupervisorName: {
-              value: 'John Doe'
+              value: 'John Doe',
             },
             Telephone: {
               noNumber: '',
               number: '2021112222',
               numberType: '',
               type: 'Domestic',
-              timeOfDay: 'Day'
+              timeOfDay: 'Day',
             },
             Title: {
-              value: 'The Foo'
-            }
+              value: 'The Foo',
+            },
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -322,15 +322,15 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: '1',
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: 'Some excuse'
-                    }
-                  }
-                }
-              ]
-            }
+                      value: 'Some excuse',
+                    },
+                  },
+                },
+              ],
+            },
           },
           Reprimand: {
             items: [
@@ -340,44 +340,44 @@ describe('Employment component validation', function() {
                   Date: {
                     month: '1',
                     day: '1',
-                    year: '2015'
+                    year: '2015',
                   },
                   Text: {
-                    value: 'Foo'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Foo',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           EmploymentActivity: {
-            value: 'StateGovernment'
+            value: 'StateGovernment',
           },
           Dates: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           Status: {
-            value: 'FullTime'
+            value: 'FullTime',
           },
           Title: {
-            value: 'IT Support'
+            value: 'IT Support',
           },
           Employment: {
-            value: 'US'
+            value: 'US',
           },
           Address: {
             country: { value: 'United States' },
@@ -385,7 +385,7 @@ describe('Employment component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           PhysicalAddress: {
             HasDifferentAddress: { value: 'Yes' },
@@ -395,15 +395,15 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
-            }
+              layout: Location.ADDRESS,
+            },
           },
           Telephone: {
             noNumber: '',
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
-            timeOfDay: 'Day'
+            timeOfDay: 'Day',
           },
           Supervisor: {
             Address: {
@@ -412,24 +412,24 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Email: {
-              value: 'foo@local.dev'
+              value: 'foo@local.dev',
             },
             SupervisorName: {
-              value: 'John Doe'
+              value: 'John Doe',
             },
             Telephone: {
               noNumber: '',
               number: '2021112222',
               numberType: '',
               type: 'Domestic',
-              timeOfDay: 'Day'
+              timeOfDay: 'Day',
             },
             Title: {
-              value: 'The Foo'
-            }
+              value: 'The Foo',
+            },
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -442,15 +442,15 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: '1',
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: 'Some excuse'
-                    }
-                  }
-                }
-              ]
-            }
+                      value: 'Some excuse',
+                    },
+                  },
+                },
+              ],
+            },
           },
           Reprimand: {
             items: [
@@ -460,14 +460,14 @@ describe('Employment component validation', function() {
                   Date: {
                     month: '1',
                     day: '1',
-                    year: '2015'
+                    year: '2015',
                   },
                   Text: {
-                    value: 'Foo'
-                  }
-                }
-              }
-            ]
+                    value: 'Foo',
+                  },
+                },
+              },
+            ],
           },
           Additional: {
             items: [
@@ -475,66 +475,66 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'No' },
                   Position: {
-                    value: 'Dev1'
+                    value: 'Dev1',
                   },
                   Supervisor: {
-                    value: 'Homer'
+                    value: 'Homer',
                   },
                   DatesEmployed: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2011'
+                      year: '2011',
                     },
                     to: {
                       month: '3',
                       day: '1',
-                      year: '2011'
+                      year: '2011',
                     },
-                    present: false
-                  }
-                }
-              }
-            ]
-          }
+                    present: false,
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
-  it('should validate self employment', function() {
+  it('should validate self employment', () => {
     const tests = [
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployment'
+            value: 'SelfEmployment',
           },
           Dates: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           Status: {
-            value: 'FullTime'
+            value: 'FullTime',
           },
           Employment: {
-            value: 'Self Enterprises'
+            value: 'Self Enterprises',
           },
           Title: {
-            value: 'Boss'
+            value: 'Boss',
           },
           Address: {
             country: { value: 'United States' },
@@ -542,7 +542,7 @@ describe('Employment component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           PhysicalAddress: {
             HasDifferentAddress: { value: 'Yes' },
@@ -552,15 +552,15 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
-            }
+              layout: Location.ADDRESS,
+            },
           },
           Telephone: {
             noNumber: '',
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
-            timeOfDay: 'Day'
+            timeOfDay: 'Day',
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -573,29 +573,29 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: '1',
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: 'Some excuse'
-                    }
-                  }
-                }
-              ]
-            }
+                      value: 'Some excuse',
+                    },
+                  },
+                },
+              ],
+            },
           },
           ReferenceName: {
             first: 'Foo',
             firstInitialOnly: false,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           ReferencePhone: {
             noNumber: '',
             number: '7031112222',
             type: 'Domestic',
             timeOfDay: 'Both',
-            extension: ''
+            extension: '',
           },
           ReferenceAddress: {
             country: { value: 'United States' },
@@ -603,7 +603,7 @@ describe('Employment component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Reprimand: {
             items: [
@@ -613,44 +613,44 @@ describe('Employment component validation', function() {
                   Date: {
                     month: '1',
                     day: '1',
-                    year: '2015'
+                    year: '2015',
                   },
                   Text: {
-                    value: 'Foo'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Foo',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
-  it('should validate unemployment', function() {
+  it('should validate unemployment', () => {
     const tests = [
       {
         data: {
           EmploymentActivity: {
-            value: 'Unemployment'
+            value: 'Unemployment',
           },
           Dates: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Gained employment again' },
@@ -658,25 +658,25 @@ describe('Employment component validation', function() {
               items: [
                 {
                   Item: {
-                    Has: { value: 'No' }
-                  }
-                }
-              ]
-            }
+                    Has: { value: 'No' },
+                  },
+                },
+              ],
+            },
           },
           ReferenceName: {
             first: 'Foo',
             firstInitialOnly: false,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           ReferencePhone: {
             noNumber: '',
             number: '7031112222',
             timeOfDay: 'Both',
             type: 'Domestic',
-            extension: ''
+            extension: '',
           },
           ReferenceAddress: {
             country: { value: 'United States' },
@@ -684,78 +684,42 @@ describe('Employment component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
-  it('should validate additional activity', function() {
+  it('should validate additional activity', () => {
     const tests = [
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed'
+            value: 'SelfEmployed',
           },
-          Additional: null
+          Additional: null,
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed'
+            value: 'SelfEmployed',
           },
-          Additional: { items: [{ Item: { Has: { value: 'Yes' } } }] }
+          Additional: { items: [{ Item: { Has: { value: 'Yes' } } }] },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed'
-          },
-          Additional: {
-            items: [
-              {
-                Item: {
-                  Has: { value: 'Yes' },
-                  Position: {
-                    value: 'Dev1'
-                  },
-                  Supervisor: {
-                    value: 'Homer'
-                  },
-                  DatesEmployed: {
-                    from: {
-                      month: '1',
-                      day: '1',
-                      year: '2011'
-                    },
-                    to: {
-                      month: '3',
-                      day: '1',
-                      year: '2011'
-                    },
-                    present: false
-                  }
-                }
-              }
-            ]
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          EmploymentActivity: {
-            value: 'SelfEmployed'
+            value: 'SelfEmployed',
           },
           Additional: {
             items: [
@@ -763,68 +727,107 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'Yes' },
                   Position: {
-                    value: ''
+                    value: 'Dev1',
                   },
                   Supervisor: {
-                    value: 'Homer'
+                    value: 'Homer',
                   },
                   DatesEmployed: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2011'
+                      year: '2011',
                     },
                     to: {
                       month: '3',
                       day: '1',
-                      year: '2011'
+                      year: '2011',
                     },
-                    present: false
-                  }
-                }
-              }
-            ]
-          }
+                    present: false,
+                  },
+                },
+              },
+              {
+                Item: { Has: { value: 'No' } },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed'
+            value: 'SelfEmployed',
+          },
+          Additional: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Position: {
+                    value: '',
+                  },
+                  Supervisor: {
+                    value: 'Homer',
+                  },
+                  DatesEmployed: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2011',
+                    },
+                    to: {
+                      month: '3',
+                      day: '1',
+                      year: '2011',
+                    },
+                    present: false,
+                  },
+                },
+              },
+            ],
+          },
+        },
+        expected: false,
+      },
+      {
+        data: {
+          EmploymentActivity: {
+            value: 'SelfEmployed',
           },
           Additional: {
             items: [
               {
                 Has: { value: 'Foo' },
                 Position: {
-                  value: ''
+                  value: '',
                 },
                 Supervisor: {
-                  value: 'Homer'
+                  value: 'Homer',
                 },
                 DatesEmployed: {
                   from: {
                     month: '1',
                     day: '1',
-                    year: '2011'
+                    year: '2011',
                   },
                   to: {
                     month: '3',
                     day: '1',
-                    year: '2011'
+                    year: '2011',
                   },
-                  present: false
-                }
-              }
-            ]
-          }
+                  present: false,
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validAdditionalActivity()).toBe(
         test.expected
       )
@@ -836,7 +839,7 @@ describe('Employment component validation', function() {
       {
         data: {
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'Other',
           },
           PhysicalAddress: {
             HasDifferentAddress: { value: 'Yes' },
@@ -846,37 +849,37 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
-            }
-          }
+              layout: Location.ADDRESS,
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'Other',
           },
           PhysicalAddress: {
-            HasDifferentAddress: { value: 'No' }
-          }
+            HasDifferentAddress: { value: 'No' },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'Other',
           },
           PhysicalAddress: {
-            HasDifferentAddress: { value: 'Nope' }
-          }
+            HasDifferentAddress: { value: 'Nope' },
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validPhysicalAddress()).toBe(
         test.expected
       )
@@ -888,7 +891,7 @@ describe('Employment component validation', function() {
       {
         data: {
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Address: {
             country: { value: 'United States' },
@@ -896,14 +899,14 @@ describe('Employment component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validAddress()).toBe(
         test.expected
       )
@@ -915,25 +918,25 @@ describe('Employment component validation', function() {
       {
         data: {
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Title: {
-            value: 'Dev'
-          }
+            value: 'Dev',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Title: {
-            value: 'Dev'
-          }
+            value: 'Dev',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validTitle()).toBe(
         test.expected
       )
@@ -945,17 +948,17 @@ describe('Employment component validation', function() {
       {
         data: {
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Status: {
-            value: 'Foo'
-          }
+            value: 'Foo',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validStatus()).toBe(
         test.expected
       )
@@ -971,14 +974,14 @@ describe('Employment component validation', function() {
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
-            timeOfDay: 'Day'
-          }
+            timeOfDay: 'Day',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validTelephone()).toBe(
         test.expected
       )
@@ -989,17 +992,17 @@ describe('Employment component validation', function() {
       {
         data: {
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Supervisor: {
             SupervisorName: {
-              value: 'Homer'
+              value: 'Homer',
             },
             Title: {
-              value: 'Nuclear Plan Engineer'
+              value: 'Nuclear Plan Engineer',
             },
             Email: {
-              value: 'homer@simpson.com'
+              value: 'homer@simpson.com',
             },
             Address: {
               country: { value: 'United States' },
@@ -1007,22 +1010,22 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Telephone: {
               noNumber: '',
               number: '2028675309',
               numberType: '',
               type: 'Domestic',
-              timeOfDay: 'Day'
-            }
-          }
+              timeOfDay: 'Day',
+            },
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validSupervisor()).toBe(
         test.expected
       )
@@ -1037,17 +1040,17 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -1060,18 +1063,18 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: '1',
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: 'Some excuse'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      value: 'Some excuse',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -1079,17 +1082,17 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -1102,18 +1105,18 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: '1',
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: 'Some excuse'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      value: 'Some excuse',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1121,21 +1124,21 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
-          ReasonLeft: {}
+          ReasonLeft: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1143,21 +1146,21 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
-          ReasonLeft: null
+          ReasonLeft: null,
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1165,17 +1168,17 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -1188,18 +1191,18 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: null,
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: 'Some excuse'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      value: 'Some excuse',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1207,26 +1210,26 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
             Reasons: {
-              items: [{ Item: { Has: { value: 'No' } } }]
-            }
-          }
+              items: [{ Item: { Has: { value: 'No' } } }],
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -1234,17 +1237,17 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           ReasonLeft: {
             ReasonDescription: { value: 'Because' },
@@ -1257,22 +1260,22 @@ describe('Employment component validation', function() {
                     Date: {
                       day: '1',
                       month: '1',
-                      year: '2016'
+                      year: '2016',
                     },
                     Text: {
-                      value: null
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      value: null,
+                    },
+                  },
+                },
+              ],
+            },
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validReasonLeft()).toBe(
         test.expected
       )
@@ -1287,17 +1290,17 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Reprimand: {
             items: [
@@ -1306,22 +1309,22 @@ describe('Employment component validation', function() {
                   Has: { value: 'Yes' },
                   Date: {
                     month: '1',
-                    year: '2015'
+                    year: '2015',
                   },
                   Text: {
-                    value: 'Foo'
-                  }
-                }
+                    value: 'Foo',
+                  },
+                },
               },
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -1329,21 +1332,21 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
-          Reprimand: {}
+          Reprimand: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1351,17 +1354,17 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Reprimand: {
             items: [
@@ -1370,17 +1373,17 @@ describe('Employment component validation', function() {
                   Has: { value: 'Yes' },
                   Date: {
                     month: '1',
-                    year: '2015'
+                    year: '2015',
                   },
                   Text: {
-                    value: null
-                  }
-                }
-              }
-            ]
-          }
+                    value: null,
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1388,17 +1391,17 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Reprimand: {
             items: [
@@ -1407,17 +1410,17 @@ describe('Employment component validation', function() {
                   Has: { value: 'Yes' },
                   Date: {
                     month: '1',
-                    year: null
+                    year: null,
                   },
                   Text: {
-                    value: 'Hello'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Hello',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1425,33 +1428,33 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016'
+              year: '2016',
             },
-            present: false
+            present: false,
           },
           EmploymentActivity: {
-            value: 'ActiveMilitary'
+            value: 'ActiveMilitary',
           },
           Reprimand: {
             items: [
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EmploymentValidator(test.data).validReprimand()).toBe(
         test.expected
       )
@@ -1464,29 +1467,29 @@ describe('Employment component validation', function() {
         {
           Item: {
             EmploymentActivity: {
-              value: 'NationalGuard'
+              value: 'NationalGuard',
             },
             Dates: {
               from: {
                 month: '1',
                 day: '1',
-                year: '2010'
+                year: '2010',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2016'
+                year: '2016',
               },
-              present: false
+              present: false,
             },
             Status: {
-              value: 'FullTime'
+              value: 'FullTime',
             },
             Title: {
-              value: 'IT Support'
+              value: 'IT Support',
             },
             DutyStation: {
-              value: 'Station 1'
+              value: 'Station 1',
             },
             Address: {
               country: { value: 'United States' },
@@ -1494,14 +1497,14 @@ describe('Employment component validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Telephone: {
               noNumber: '',
               number: '2028675309',
               numberType: '',
               type: 'Domestic',
-              timeOfDay: 'Day'
+              timeOfDay: 'Day',
             },
             Supervisor: {
               Address: {
@@ -1510,24 +1513,24 @@ describe('Employment component validation', function() {
                 city: 'Arlington',
                 state: 'VA',
                 zipcode: '22202',
-                layout: Location.ADDRESS
+                layout: Location.ADDRESS,
               },
               Email: {
-                value: 'foo@local.dev'
+                value: 'foo@local.dev',
               },
               SupervisorName: {
-                value: 'John Doe'
+                value: 'John Doe',
               },
               Telephone: {
                 noNumber: '',
                 number: '2021112222',
                 numberType: '',
                 type: 'Domestic',
-                timeOfDay: 'Day'
+                timeOfDay: 'Day',
               },
               Title: {
-                value: 'The Foo'
-              }
+                value: 'The Foo',
+              },
             },
             ReasonLeft: {
               ReasonDescription: { value: 'Because' },
@@ -1540,15 +1543,15 @@ describe('Employment component validation', function() {
                       Date: {
                         day: '1',
                         month: '1',
-                        year: '2016'
+                        year: '2016',
                       },
                       Text: {
-                        value: 'Some excuse'
-                      }
-                    }
-                  }
-                ]
-              }
+                        value: 'Some excuse',
+                      },
+                    },
+                  },
+                ],
+              },
             },
             Reprimand: {
               items: [
@@ -1557,21 +1560,21 @@ describe('Employment component validation', function() {
                     Has: { value: 'No' },
                     Date: {
                       month: '1',
-                      year: '2015'
+                      year: '2015',
                     },
                     Text: {
-                      value: 'Foo'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        }
+                      value: 'Foo',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
       ],
       branch: {
-        value: 'No'
-      }
+        value: 'No',
+      },
     }
 
     const tests = [
@@ -1579,60 +1582,60 @@ describe('Employment component validation', function() {
         data: {
           List: list,
           EmploymentRecord: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           List: list,
           EmploymentRecord: {
-            value: 'Yes'
-          }
+            value: 'Yes',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           List: list,
           EmploymentRecord: {
-            value: 'No'
-          }
+            value: 'No',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           List: {
             ...list,
             branch: {
-              value: ''
-            }
+              value: '',
+            },
           },
           EmploymentRecord: {
-            value: 'No'
-          }
+            value: 'No',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           List: {
             ...list,
             branch: {
-              value: 'Yes'
-            }
+              value: 'Yes',
+            },
           },
           EmploymentRecord: {
-            value: 'No'
-          }
+            value: 'No',
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new HistoryEmploymentValidator(test.data).isValid()).toBe(
         test.expected
       )
