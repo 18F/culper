@@ -275,12 +275,6 @@ export const identification = {
           'Choose the hair color that most closely represents your hair today.',
         note: '',
       },
-      sex: {
-        title: 'Provide more information',
-        message:
-          'Choose the sex that most closely represents your gender.',
-        note: '',
-      },
     },
     label: {
       sex: 'Select your sex at the time of birth',
