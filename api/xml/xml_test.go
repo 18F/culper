@@ -340,7 +340,7 @@ func TestScenario10(t *testing.T) {
 // `test11` is a clone of `test8` with certain revisions.
 // `test11` is for:
 // * Having an applicant that has a valid U.S. Passport
-// * Having an applicant that has ForeignBorn citizenship
+// * Having an applicant that has ForeignBorn (aka USByBirthOutsideUS) citizenship and has a U.S. Passport
 func TestScenario11(t *testing.T) {
 	executeScenario(t, "test11")
 }
