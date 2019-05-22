@@ -1,8 +1,6 @@
 import { validateModel } from 'models/validate'
 import divorce from '../divorce'
 
-// TODO - default constraints on date model
-
 describe('The divorce model', () => {
   it('the name field is required', () => {
     const testData = {}
