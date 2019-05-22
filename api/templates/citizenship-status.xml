@@ -65,8 +65,6 @@
         <Comment></Comment>
         <Name>{{text $citizenship.MilitaryBase}}</Name>
       </MilitaryBase>
-      {{end}}
-      {{if radio $citizenship.CitizenshipStatus | eq "ForeignBorn"}}
       {{if branch $passport.HasPassports | eq "No"}}
       <CitizenshipCertificate>
         <CertificateNumber>{{text $citizenship.CertificateNumber}}</CertificateNumber>
