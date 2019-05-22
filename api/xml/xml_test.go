@@ -14,7 +14,6 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/cmd"
-	"github.com/18F/e-QIP-prototype/api/mock"
 	"github.com/Jeffail/gabs"
 	"github.com/antchfx/xmlquery"
 	"github.com/benbjohnson/clock"
@@ -56,26 +55,26 @@ func TestPackage(t *testing.T) {
 		{Schema: "history-federal.xml", Data: r("history/history-federal.json")},
 		{Schema: "history-residence.xml", Data: r("history/history-residence.json")},
 		{Schema: "relationships.xml", Data: application},
-		{Schema: "relatives-and-associates.xml", Data: r("relationships-relatives.json")},
-		{Schema: "spouse-cohabitants.xml", Data: r("relationships-status-cohabitant.json")},
+		{Schema: "relatives-and-associates.xml", Data: r("relationships/relationships-relatives.json")},
+		{Schema: "spouse-cohabitants.xml", Data: r("relationships/relationships-status-cohabitant.json")},
 		{Schema: "spouse-former.xml", Data: r("spouse-former.json")},
 		{Schema: "spouse-marital-status.xml", Data: r("spouse-marital-status.json")},
 		{Schema: "spouse-present-marriage.xml", Data: r("spouse-present-marriage.json")},
-		{Schema: "personal-references.xml", Data: r("relationships-people.json")},
+		{Schema: "personal-references.xml", Data: r("relationships/relationships-people.json")},
 		{Schema: "citizenship.xml", Data: application},
 		{Schema: "citizenship-status.xml", Data: application},
-		{Schema: "citizenship-multiple.xml", Data: r("citizenship-multiple.json")},
+		{Schema: "citizenship-multiple.xml", Data: r("citizenship/citizenship-multiple.json")},
 		{Schema: "military.xml", Data: application},
-		{Schema: "military-disciplinary.xml", Data: r("military-disciplinary.json")},
-		{Schema: "military-foreign.xml", Data: r("military-foreign.json")},
-		{Schema: "military-history.xml", Data: r("military-history.json")},
-		{Schema: "military-selective.xml", Data: r("military-selective.json")},
+		{Schema: "military-disciplinary.xml", Data: r("military/military-disciplinary.json")},
+		{Schema: "military-foreign.xml", Data: r("military/military-foreign.json")},
+		{Schema: "military-history.xml", Data: r("military/military-history.json")},
+		{Schema: "military-selective.xml", Data: r("military/military-selective.json")},
 		{Schema: "foreign.xml", Data: application},
 		{Schema: "foreign-travel.xml", Data: r("foreign-travel.json")},
 		{Schema: "foreign-contacts.xml", Data: r("foreign-contacts.json")},
 		{Schema: "foreign-direct-interests.xml", Data: r("foreign-activities-direct.json")},
 		{Schema: "foreign-indirect-interests.xml", Data: r("foreign-activities-indirect.json")},
-		{Schema: "foreign-passports.xml", Data: r("citizenship-passports.json")},
+		{Schema: "foreign-passports.xml", Data: r("citizenship/citizenship-passports.json")},
 		{Schema: "foreign-realestate-holdings.xml", Data: r("foreign-activities-realestate.json")},
 		{Schema: "foreign-financial-benefits.xml", Data: r("foreign-activities-benefits.json")},
 		{Schema: "foreign-national-support.xml", Data: r("foreign-activities-support.json")},
@@ -126,8 +125,7 @@ func TestPackage(t *testing.T) {
 		{Schema: "psychological-hospitalizations.xml", Data: r("psychological-hospitalizations.json")},
 	}
 
-	logger := &mock.LogService{}
-	service := Service{Log: logger, Clock: mockedClock()}
+	service := NewXMLServiceWithMockClock(mockedClock())
 
 	re := regexp.MustCompile("map\\[")
 	for _, test := range tests {
@@ -152,9 +150,9 @@ func TestPackage(t *testing.T) {
 }
 
 func mockedClock() clock.Clock {
-	// Epoch seconds for September 10, 2018 UTC;
+	// Epoch seconds for September 10, 2018 PDT;
 	// It is not a special date, just used in test fixtures.
-	const base = 1536540831
+	const base = 1536570831
 
 	c := clock.NewMock()
 	c.Add(base * time.Second)
@@ -186,7 +184,7 @@ func TestCitizenStatus(t *testing.T) {
 
 	// Born in US with passport
 	form := newForm(t,
-		"citizenship-status.json",
+		"citizenship/citizenship-status.json",
 		"foreign-passport.json",
 	)
 	snippet := applyForm(t, template, form)
@@ -194,7 +192,7 @@ func TestCitizenStatus(t *testing.T) {
 
 	// Born in US without passport
 	form = newForm(t,
-		"citizenship-status.json",
+		"citizenship/citizenship-status.json",
 		"no-passport.json",
 	)
 	snippet = applyForm(t, template, form)
@@ -216,7 +214,7 @@ func TestRelativeAddress(t *testing.T) {
 
 	// Relative is alive
 	form := newForm(t,
-		"relationships-relatives.json",
+		"relationships/relationships-relatives.json",
 	)
 	form = extractPart(t, form, templateContext(t, parent, template))
 	snippet := applyForm(t, template, form)
@@ -331,7 +329,9 @@ func TestScenario9(t *testing.T) {
 	executeScenario(t, "test9")
 }
 
-// `test10` is a copy of test1 to allow testing married data without affecting OPM approved tests
+// `test10` is derived from test1 for:
+// * a current spouse with "I don't know" as email response
+// * secondary (alternate) address workflows for employment entries
 func TestScenario10(t *testing.T) {
 	executeScenario(t, "test10")
 }
@@ -397,21 +397,21 @@ func applicationData(t *testing.T) map[string]interface{} {
 		"identification/identification-birthplace.json",
 		"identification/identification-ssn.json",
 		"identification/identification-physical.json",
-		"relationships-status-marital.json",
-		"relationships-status-cohabitant.json",
-		"relationships-people.json",
-		"relationships-relatives.json",
+		"relationships/relationships-status-marital.json",
+		"relationships/relationships-status-cohabitant.json",
+		"relationships/relationships-people.json",
+		"relationships/relationships-relatives.json",
 		"history/history-education.json",
 		"history/history-employment.json",
 		"history/history-federal.json",
 		"history/history-residence.json",
-		"citizenship-status.json",
-		"citizenship-multiple.json",
-		"citizenship-passports.json",
-		"military-disciplinary.json",
-		"military-foreign.json",
-		"military-history.json",
-		"military-selective.json",
+		"citizenship/citizenship-status.json",
+		"citizenship/citizenship-multiple.json",
+		"citizenship/citizenship-passports.json",
+		"military/military-disciplinary.json",
+		"military/military-foreign.json",
+		"military/military-history.json",
+		"military/military-selective.json",
 		"foreign-contacts.json",
 		"foreign-activities-direct.json",
 		"foreign-activities-indirect.json",
@@ -500,8 +500,7 @@ func loadFormData(t *testing.T, form map[string]interface{}, filepath string) {
 
 // applyForm generates an XML snippet given the path to an XML template and form data.
 func applyForm(t *testing.T, template string, data map[string]interface{}) string {
-	logger := &mock.LogService{}
-	service := Service{Log: logger, Clock: mockedClock()}
+	service := NewXMLServiceWithMockClock(mockedClock())
 
 	snippet, err := service.DefaultTemplate(template, data)
 	if err != nil {
@@ -530,7 +529,7 @@ func xmlDoc(t *testing.T, snippet string) *xmlquery.Node {
 
 // templateContext returns the JSON path that a parent XML template file calls with a child template.
 func templateContext(t *testing.T, parent string, template string) string {
-	file, err := os.Open(path.Join("templates", parent))
+	file, err := os.Open(path.Join(templatesDir(), parent))
 	if err != nil {
 		t.Fatal(err)
 	}

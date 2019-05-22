@@ -1,6 +1,3 @@
-@import 'eqip-colors';
-@import 'eqip-fonts';
-
 .usa-sidenav-list {
   $num-width: 2rem;
   $num-right-margin: 0.8rem;
@@ -60,10 +57,10 @@
       width: $status-icon-width;
     }
     .is-valid .eapp-status-icon {
-      background-image: url('../img/checkmark.svg');
+      background-image: url('#{$asset-path}img/checkmark.svg');
     }
     .has-errors .eapp-status-icon {
-      background-image: url('../img/exclamation-point-white-bg.svg');
+      background-image: url('#{$asset-path}img/exclamation-point-white-bg.svg');
     }
   }
 

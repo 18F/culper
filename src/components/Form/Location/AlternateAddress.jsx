@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import Field from '../Field'
 import Branch from '../Branch'
 import Show from '../Show'
 import Location from './Location'
-import LocationValidator, { countryString } from '../../../validators/location'
+import { countryString } from '../../../validators/location'
 import ValidationElement from '../ValidationElement'
-import alternateAddress from '../../../schema/form/alternateaddress'
+import { defaultAlternateAddress } from '../../../schema/form/alternateaddress'
 
-const alternateAddressDefaultState = alternateAddress
+const alternateAddressDefaultState = defaultAlternateAddress
 const propTypes = {
   address: PropTypes.object,
   addressBook: PropTypes.string,
@@ -19,14 +19,14 @@ const propTypes = {
   country: PropTypes.string,
   // XXX Rename this prop
   forceAPO: PropTypes.bool,
-  onUpdate: PropTypes.func
+  onUpdate: PropTypes.func,
 }
 
 class AlternateAddress extends ValidationElement {
   constructor(props) {
     super(props)
 
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this)
     this.setAlternateAddress = this.setAlternateAddress.bind(this)
   }
 
@@ -40,15 +40,15 @@ class AlternateAddress extends ValidationElement {
     return {
       [this.props.belongingTo]: {
         ...this.props.address,
-        ...toUpdate
-      }
+        ...toUpdate,
+      },
     }
   }
 
   handleUpdate(values) {
     this.props.onUpdate(
       this.prepareUpdate({
-        Address: values
+        Address: values,
       })
     )
   }
@@ -56,7 +56,7 @@ class AlternateAddress extends ValidationElement {
   setAlternateAddress(values) {
     this.props.onUpdate(
       this.prepareUpdate({
-        HasDifferentAddress: values
+        HasDifferentAddress: values,
       })
     )
   }
@@ -75,15 +75,15 @@ class AlternateAddress extends ValidationElement {
 
   isForeignAddress() {
     if (this.props.forceAPO) {
-      return true;
+      return true
     }
 
-    const country = countryString(this.props.country);
+    const country = countryString(this.props.country)
 
-    return country !== null &&
-      country !== undefined &&
-      country !== 'POSTOFFICE' &&
-      country !== 'United States'
+    return country !== null
+      && country !== undefined
+      && country !== 'POSTOFFICE'
+      && country !== 'United States'
   }
 
   isSameCountry(comparedCountry) {
@@ -96,12 +96,12 @@ class AlternateAddress extends ValidationElement {
       ...this.props.address.Address,
       label: i18n.t('address.label'),
       onUpdate: this.handleUpdate,
-      required: true
+      required: true,
     }
 
     return {
       ...defaults,
-      ...extraProps
+      ...extraProps,
     }
   }
 
@@ -136,7 +136,8 @@ class AlternateAddress extends ValidationElement {
         <Show when={this.isMilitaryAddress()}>
           <Field
             title={i18n.t('address.physicalLocationRequired')}
-            titleSize="h4">
+            titleSize="h4"
+          >
             <Location
               {...this.prepareProps({
                 addressBook: this.props.addressBook,

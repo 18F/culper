@@ -10,13 +10,12 @@ import (
 	"net/http/httptest"
 	"os"
 	"reflect"
-	"strconv"
 	"strings"
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/nsf/jsondiff"
-	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
@@ -27,6 +26,8 @@ import (
 )
 
 var updateGolden = flag.Bool("update-golden", false, "update golden files")
+
+var serializerInitializer = simplestore.NewJSONSerializer
 
 type serviceSet struct {
 	env   api.Settings
@@ -54,7 +55,7 @@ func cleanTestServices(t *testing.T) serviceSet {
 
 	db := postgresql.NewPostgresService(dbConf, log)
 
-	serializer := simplestore.NewJSONSerializer()
+	serializer := serializerInitializer()
 
 	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), log, serializer)
 	if storeErr != nil {
@@ -89,6 +90,28 @@ func randomEmail() string {
 
 }
 
+func createLockedTestAccount(t *testing.T, db api.DatabaseService) api.Account {
+	t.Helper()
+
+	email := randomEmail()
+
+	account := api.Account{
+		Username:    email,
+		Email:       email,
+		FormType:    "SF86",
+		FormVersion: "2016-11",
+		Locked:      true,
+		ExternalID:  uuid.New().String(),
+	}
+
+	_, err := account.Save(db, -1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	return account
+}
+
 func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 	t.Helper()
 
@@ -99,6 +122,7 @@ func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 		Email:       email,
 		FormType:    "SF86",
 		FormVersion: "2016-11",
+		ExternalID:  uuid.New().String(),
 	}
 
 	_, err := account.Save(db, -1)
@@ -110,55 +134,20 @@ func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 
 }
 
-func populateAccount(db api.DatabaseService, account api.Account, testCasePath string) error {
-
-	b, err := ioutil.ReadFile(testCasePath)
-	if err != nil {
-		return err
-	}
-
-	sections := make(map[string]map[string]api.Payload)
-	err = json.Unmarshal(b, &sections)
-	if err != nil {
-		return err
-	}
-
-	for sectionName := range sections {
-		section := sections[sectionName]
-
-		for subName := range section {
-			subPayload := section[subName]
-
-			entity, err := subPayload.Entity()
-			if err != nil {
-				errstr := fmt.Sprintf("Failed to unpack %s %s ... %s", sectionName, subName, err.Error())
-				return errors.New(errstr)
-			}
-
-			if _, err := entity.Save(db, account.ID); err != nil {
-				errstr := fmt.Sprintf("Failed to save %s %s ... %s", sectionName, subName, err.Error())
-				return errors.New(errstr)
-			}
-		}
-	}
-
-	return nil
-}
-
 // readTestData pulls in test data as a string
-func readTestData(t *testing.T, filepath string) string {
+func readTestData(t *testing.T, filepath string) []byte {
 	t.Helper()
 	b, err := ioutil.ReadFile(filepath)
 	if err != nil {
 		t.Fatal(err)
 	}
-	return string(b)
+	return b
 }
 
 // saveJSON calls the save handler with the given json body.
-func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response {
+func saveJSON(services serviceSet, json []byte, accountID int) *gohttp.Response {
 	// create request/response
-	r := httptest.NewRequest("POST", "/me/save", strings.NewReader(json))
+	r := httptest.NewRequest("POST", "/me/save", strings.NewReader(string(json)))
 	// authenticate user.
 	authCtx := http.SetAccountIDInRequestContext(r, accountID)
 	r = r.WithContext(authCtx)
@@ -180,9 +169,32 @@ func saveJSON(services serviceSet, json string, accountID int) *gohttp.Response 
 
 }
 
+func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, accountID int) {
+	t.Helper()
+
+	var form map[string]map[string]json.RawMessage
+
+	jsonErr := json.Unmarshal(formJSON, &form)
+	if jsonErr != nil {
+		t.Fatal(jsonErr)
+	}
+
+	for sectionName := range form {
+		for subSectionName := range form[sectionName] {
+			sectionJSON := form[sectionName][subSectionName]
+
+			resp := saveJSON(services, sectionJSON, accountID)
+			if resp.StatusCode != 200 {
+				t.Fatal("Couldn't save section", sectionName, subSectionName)
+			}
+		}
+	}
+
+}
+
 func getForm(services serviceSet, accountID int) *gohttp.Response {
 	// create request/response
-	path := "/me/form/" + strconv.Itoa(accountID)
+	path := "/me/form/"
 	r := httptest.NewRequest("GET", path, nil)
 	// authenticate user.
 	authCtx := http.SetAccountIDInRequestContext(r, accountID)

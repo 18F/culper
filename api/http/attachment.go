@@ -20,6 +20,7 @@ type AttachmentListHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -44,9 +45,9 @@ func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	var attachments []api.Attachment
-	if err := service.Database.Where(&attachments, "account_id = ?", account.ID); err != nil {
-		service.Log.Warn(api.AttachmentNotFound, api.LogFields{})
+	attachments, listErr := service.Store.ListAttachmentsMetadata(account.ID)
+	if listErr != nil {
+		service.Log.WarnError(api.AttachmentNotFound, listErr, api.LogFields{})
 		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusInternalServerError)
 		return
 	}
@@ -60,6 +61,7 @@ type AttachmentSaveHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -89,7 +91,6 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	}
 
 	// Retrieve the file and metadata from the multipart form data.
-	r.ParseMultipartForm(32 << 20)
 	file, header, err := r.FormFile("file")
 	if err != nil {
 		service.Log.WarnError(api.AttachmentNoFile, err, api.LogFields{})
@@ -144,7 +145,9 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		Size:      header.Size,
 		Raw:       buffer.Bytes(),
 	}
-	if _, err := attachment.Save(service.Database, id); err != nil {
+
+	createErr := service.Store.CreateAttachment(attachment)
+	if createErr != nil {
 		service.Log.WarnError(api.AttachmentNotSaved, err, api.LogFields{})
 		RespondWithStructuredError(w, api.AttachmentNotSaved, http.StatusInternalServerError)
 		return
@@ -155,82 +158,13 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	fmt.Fprint(w, attachment.ID)
 }
 
-// AttachmentUpdateHandler is the handler for updating attachments.
-type AttachmentUpdateHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Token    api.TokenService
-	Database api.DatabaseService
-}
-
-// ServeHTTP serves the HTTP response.
-func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.AttachmentsEnabled) {
-		service.Log.Warn(api.AttachmentsNotImplemented, api.LogFields{})
-		RespondWithStructuredError(w, api.AttachmentsNotImplemented, http.StatusInternalServerError)
-		return
-	}
-
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
-
-	// Get the account information from the data store
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
-
-	// If the account is locked then we cannot proceed
-	if account.Locked {
-		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
-		return
-	}
-
-	// Get the attachment by identifier.
-	vars := mux.Vars(r)
-	attachmentID, err := strconv.Atoi(vars["id"])
-	if err != nil {
-		service.Log.WarnError(api.AttachmentNoID, err, api.LogFields{})
-		RespondWithStructuredError(w, api.AttachmentNoID, http.StatusBadRequest)
-		return
-	}
-	attachment := &api.Attachment{ID: attachmentID}
-	if _, err := attachment.Get(service.Database, account.ID); err != nil {
-		service.Log.WarnError(api.AttachmentNotFound, err, api.LogFields{"attachment": attachmentID})
-		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusNotFound)
-		return
-	}
-
-	// Get the body of additional settings to update.
-	var body struct {
-		Description string `json:"description"`
-	}
-	if err := DecodeJSON(r.Body, &body); err != nil {
-		service.Log.WarnError(api.PayloadDeserializeError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.PayloadDeserializeError, http.StatusBadRequest)
-	}
-
-	// Apply the settings and save it back to storage.
-	attachment.Description = body.Description
-	if _, err := attachment.Save(service.Database, account.ID); err != nil {
-		service.Log.WarnError(api.AttachmentNotSaved, err, api.LogFields{})
-		RespondWithStructuredError(w, api.AttachmentNotSaved, http.StatusBadRequest)
-		return
-	}
-
-	service.Log.Info(api.AttachmentSaved, api.LogFields{"attachment": attachment.ID})
-	fmt.Fprint(w, attachment.ID)
-}
-
 // AttachmentGetHandler is the handler for getting attachments.
 type AttachmentGetHandler struct {
 	Env      api.Settings
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -263,8 +197,10 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 		RespondWithStructuredError(w, api.AttachmentNoID, http.StatusBadRequest)
 		return
 	}
-	attachment := &api.Attachment{ID: attachmentID}
-	if _, err := attachment.Get(service.Database, account.ID); err != nil {
+
+	//LoadAttachment wants the AccountID then the AttachmentID
+	attachment, loadErr := service.Store.LoadAttachment(id, attachmentID)
+	if loadErr != nil {
 		service.Log.WarnError(api.AttachmentNotFound, err, api.LogFields{"attachment": attachmentID})
 		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusNotFound)
 		return
@@ -280,6 +216,7 @@ type AttachmentDeleteHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -316,10 +253,17 @@ func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.
 		RespondWithStructuredError(w, api.AttachmentNoID, http.StatusBadRequest)
 		return
 	}
-	attachment := &api.Attachment{ID: attachmentID}
-	if _, err := attachment.Delete(service.Database, account.ID); err != nil {
-		service.Log.WarnError(api.AttachmentDeleted, err, api.LogFields{"attachment": attachmentID})
-		RespondWithStructuredError(w, api.AttachmentDeleted, http.StatusInternalServerError)
+
+	delErr := service.Store.DeleteAttachment(account.ID, attachmentID)
+	if delErr != nil {
+		if delErr == api.ErrAttachmentDoesNotExist {
+			service.Log.Warn(api.AttachmentNotFound, api.LogFields{"attachment": attachmentID})
+			RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusNotFound)
+			return
+		}
+
+		service.Log.WarnError(api.AttachmentNotDeleted, err, api.LogFields{"attachment": attachmentID})
+		RespondWithStructuredError(w, api.AttachmentNotDeleted, http.StatusInternalServerError)
 		return
 	}
 

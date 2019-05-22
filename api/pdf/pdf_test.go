@@ -9,8 +9,6 @@ import (
 	"os"
 	"path"
 	"testing"
-
-	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
 const (
@@ -27,8 +25,7 @@ func TestPackage(t *testing.T) {
 	defer os.Chdir(packageDir)
 
 	application := applicationData(t)
-	logger := &mock.LogService{}
-	service := Service{Log: logger}
+	service := NewPDFService()
 	var fauxHash [sha256.Size]byte
 
 	for _, p := range DocumentTypes {
@@ -42,7 +39,7 @@ func TestPackage(t *testing.T) {
 			t.Fatalf("Error creating PDF from %s: %s", p.Template, err.Error())
 		}
 
-		rpath := path.Join(testdataDir, p.Name+fileExtension)
+		rpath := path.Join(testdataDir, "attachments", p.Name+fileExtension)
 		reference, err := ioutil.ReadFile(rpath)
 		if err != nil {
 			t.Fatalf("Error reading reference PDF: %s", err.Error())

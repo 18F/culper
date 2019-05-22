@@ -108,6 +108,8 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/psychological-diagnoses.json", "Psychological", "Diagnoses"},
 		{"../testdata/psychological-conditions.json", "Psychological", "ExistingConditions"},
 		{"../testdata/psychological-hospitalizations.json", "Psychological", "Hospitalizations"},
+
+		{"../testdata/submission.json", "Submission", "Releases"},
 	}
 
 	for _, secTest := range tests {
@@ -143,8 +145,8 @@ func TestSaveSection(t *testing.T) {
 
 }
 
-// TestSaveSections makes sure that calls to /save are addative.
-func TestSaveSections(t *testing.T) {
+// TestSaveMultipleSections makes sure that calls to /save are addative.
+func TestSaveMultipleSections(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
@@ -215,6 +217,35 @@ func TestSaveSections(t *testing.T) {
 	if !areEqualJSON(t, rawEmploymentAgain, []byte(employmentSection)) {
 		fmt.Println("Not Equal", string(rawEmploymentAgain), employmentSection)
 		t.Fatal("Didn't get the same thing back.")
+	}
+
+}
+
+func TestDeleteApplication(t *testing.T) {
+
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	section := readTestData(t, "../testdata/identification/identification-birthplace-full.json")
+
+	resp := saveJSON(services, section, account.ID)
+	if resp.StatusCode != 200 {
+		t.Fatal("Failed to save a section", resp.StatusCode)
+	}
+
+	delErr := services.store.DeleteApplication(account.ID)
+	if delErr != nil {
+		t.Fatal(delErr)
+	}
+
+	formResp := getForm(services, account.ID)
+	if formResp.StatusCode != 200 {
+		t.Fatal(fmt.Sprintf("Failed to load form"), resp.StatusCode)
+	}
+	body := readBody(t, formResp)
+
+	if string(body) != `{"Metadata":{"form_type":"SF86","form_version":"2016-11","type":"metadata"}}` {
+		t.Fatal("Should have just got back the metadata")
 	}
 
 }

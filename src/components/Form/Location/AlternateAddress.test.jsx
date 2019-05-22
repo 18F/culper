@@ -1,9 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import { fn } from 'jest'
 import { AlternateAddress } from './AlternateAddress'
 import { address } from '../../../config/locales/en/address'
-import alternateAddress from '../../../schema/form/alternateaddress'
 
 describe('<AlternateAddress />', () => {
   describe('when a user indicates a foreign address', () => {
@@ -12,13 +10,13 @@ describe('<AlternateAddress />', () => {
         country: '',
         address: {
           HasDifferentAddress: '',
-          Address: { country: '' }
-        }
+          Address: { country: '' },
+        },
       }
-     
+
       const component = mount(<AlternateAddress {...props} />)
       const branch = component.find('Branch')
-  
+
       expect(branch.length).toEqual(1)
       expect(branch.prop('label')).toEqual(address.militaryAddress.meEmployment)
     })
@@ -27,8 +25,8 @@ describe('<AlternateAddress />', () => {
       const props = {
         country: '',
         address: {
-          HasDifferentAddress: { value: 'Yes' }
-        }
+          HasDifferentAddress: { value: 'Yes' },
+        },
       }
 
       const component = mount(<AlternateAddress {...props} />)
@@ -41,8 +39,8 @@ describe('<AlternateAddress />', () => {
       const props = {
         country: '',
         address: {
-          HasDifferentAddress: { value: 'No' }
-        }
+          HasDifferentAddress: { value: 'No' },
+        },
       }
       const component = mount(<AlternateAddress {...props} />)
 
@@ -55,12 +53,12 @@ describe('<AlternateAddress />', () => {
           onUpdate: () => ({}),
           country: 'Spain',
           address: {
-            HasDifferentAddress: { value: 'Yes' }
-          }
+            HasDifferentAddress: { value: 'Yes' },
+          },
         }
         const component = mount(<AlternateAddress {...props} />)
         expect(component.find('Branch').length).toBe(1)
-        component.setProps({ country: { value: 'POSTOFFICE' } });
+        component.setProps({ country: { value: 'POSTOFFICE' } })
 
         expect(component.find('Branch').length).toBe(0)
 
@@ -77,8 +75,8 @@ describe('<AlternateAddress />', () => {
       country: 'POSTOFFICE',
       address: {
         HasDifferentAddress: { value: '' },
-        Address: {}
-      }
+        Address: {},
+      },
     }
     const component = mount(<AlternateAddress {...props} />)
     const field = component.find('Field')
@@ -95,24 +93,24 @@ describe('<AlternateAddress />', () => {
       address: {
         Address: {
           country: 'POSTOFFICE',
-          state: 'AA'
+          state: 'AA',
         },
-        HasDifferentAddress: { value: 'Yes' }
-      }
+        HasDifferentAddress: { value: 'Yes' },
+      },
     }
 
     const component = mount(<AlternateAddress {...props} />)
-    expect(component.prop('address').Address.country).toEqual(props.address.Address.country);
+    expect(component.prop('address').Address.country).toEqual(props.address.Address.country)
 
     component.setProps({ country: 'United States' })
 
     expect(props.onUpdate.mock.calls.length).toBe(1)
     expect(props.onUpdate.mock.calls[0][0]).toEqual({
       Address: {
-        Address: { country: null },
+        Address: {},
         HasDifferentAddress: { value: '' },
-        Telephone: {}
-      }
+        Telephone: {},
+      },
     })
   })
 
@@ -123,8 +121,8 @@ describe('<AlternateAddress />', () => {
       country: 'United States',
       address: {
         Address: {},
-        HasDifferentAddress: { value: '' }
-      }
+        HasDifferentAddress: { value: '' },
+      },
     }
 
     const component = shallow(<AlternateAddress {...props} />)
@@ -137,16 +135,16 @@ describe('<AlternateAddress />', () => {
         country: 'POSTOFFICE',
         address: {
           Address: {
-            country: ''
+            country: '',
           },
-          HasDifferentAddress: { value: '' }
-        }
+          HasDifferentAddress: { value: '' },
+        },
       }
       const component = mount(<AlternateAddress {...props} />)
-      const location = component.find('Location');
+      const location = component.find('Location')
 
-      expect(location.prop('disableToggle')).toEqual(undefined);
-      expect(location.prop('geocode')).toEqual(true);
+      expect(location.prop('disableToggle')).toEqual(undefined)
+      expect(location.prop('geocode')).toEqual(true)
       expect(location.prop('country')).toEqual(props.address.Address.country)
     })
   })

@@ -1,26 +1,29 @@
 package pdf
 
 import (
-	"errors"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"path"
 	"regexp"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/18F/e-QIP-prototype/api"
 	"github.com/Jeffail/gabs"
+	"github.com/pkg/errors"
+
+	"github.com/18F/e-QIP-prototype/api"
 )
 
 var (
 	// DocumentTypes lists the supported archival PDFs.
 	DocumentTypes = []api.ArchivalPdf{
-		{"Certification", "certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"},
-		{"Fair Credit Reporting", "credit-SF86-November2016.template.pdf", "Credit", "FCR"},
-		{"Medical Release", "medical-SF86-November2016.template.pdf", "Medical", "MEL"},
-		{"General Release", "general-SF86-November2016.template.pdf", "General", "REL"},
+		{"signature-form", "certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"},
+		{"release-credit", "credit-SF86-November2016.template.pdf", "Credit", "FCR"},
+		{"release-medical", "medical-SF86-November2016.template.pdf", "Medical", "MEL"},
+		{"release-information", "general-SF86-November2016.template.pdf", "General", "REL"},
 	}
 )
 
@@ -33,8 +36,66 @@ type field struct {
 
 // Service implements operations to create and query archival PDFs
 type Service struct {
-	Env api.Settings
-	Log api.LogService
+}
+
+// NewPDFService returns a new PDF service
+func NewPDFService() Service {
+	return Service{}
+}
+
+// GenerateReleases generates the four signed pdfs for a given Application
+func (service Service) GenerateReleases(account api.Account, app api.Application) ([]api.Attachment, error) {
+
+	// Same as for XML, we convert the applicaiton to a raw JSON form for templating
+	// This can be cleaned up in the future, these functions should all work on the model objects instead of JSON
+	jsonBytes, jsonErr := json.Marshal(app)
+	if jsonErr != nil {
+		return []api.Attachment{}, errors.Wrap(jsonErr, "Unable to marshal application")
+	}
+
+	var appData map[string]interface{}
+	unmarhalErr := json.Unmarshal(jsonBytes, &appData)
+	if unmarhalErr != nil {
+		return []api.Attachment{}, errors.Wrap(unmarhalErr, "Unable to re-un-marshal application")
+	}
+
+	hash, hashErr := app.Hash()
+	if hashErr != nil {
+		return []api.Attachment{}, errors.Wrap(hashErr, "Unable to hash application")
+	}
+
+	attachments := []api.Attachment{}
+
+	for _, docInfo := range DocumentTypes {
+
+		docBytes, createErr := service.CreatePdf(appData, docInfo, hash)
+		if createErr != nil {
+			return []api.Attachment{}, errors.Wrap(createErr, "Unable to create document")
+		}
+
+		attachment := api.Attachment{
+			AccountID: account.ID,
+			Filename:  fmt.Sprintf("%s.%s.pdf", docInfo.Name, account.ExternalID),
+			Size:      int64(len(docBytes)),
+			Raw:       docBytes,
+			DocType:   docInfo.DocType,
+		}
+
+		attachments = append(attachments, attachment)
+	}
+
+	return attachments, nil
+}
+
+func templatesDir() string {
+	// Find the path to the template directory
+	_, fileDir, _, ok := runtime.Caller(0) // This is the path to the current file
+	if !ok {
+		return "BAD_DIRECTORY"
+	}
+	pdfDir := path.Dir(fileDir)
+	dir := path.Join(pdfDir, "templates")
+	return dir
 }
 
 // CreatePdf creates an in-memory PDF from a template, populated with values from the application,
@@ -71,7 +132,7 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 		{"APPLICATION_SHA256_HASH", 64, hexHash},
 	}
 
-	dat, err := ioutil.ReadFile(path.Join("pdf/templates", pdfType.Template))
+	dat, err := ioutil.ReadFile(path.Join(templatesDir(), pdfType.Template))
 	if err != nil {
 		return nil, err
 	}

@@ -61,37 +61,6 @@ func (entity *Location) Marshal() Payload {
 	return MarshalPayloadEntity("location", entity)
 }
 
-// Save the location to data storage.
-func (entity *Location) Save(context DatabaseService, account int) (int, error) {
-	if err := context.Save(entity); err != nil {
-		return entity.ID, err
-	}
-
-	return entity.ID, nil
-}
-
-// Delete the location from data storage.
-func (entity *Location) Delete(context DatabaseService, account int) (int, error) {
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
-	}
-
-	return entity.ID, nil
-}
-
-// Get the location from data storage.
-func (entity *Location) Get(context DatabaseService, account int) (int, error) {
-	if entity.ID != 0 {
-		if err := context.Select(entity); err != nil {
-			return entity.ID, err
-		}
-	}
-
-	return entity.ID, nil
-}
-
 // Valid checks the value(s) against an battery of tests.
 func (entity *Location) Valid() (bool, error) {
 	if entity.Validated {
@@ -240,22 +209,6 @@ func has(target string, options ...string) bool {
 
 	return false
 }
-
-// GetID returns the entity identifier.
-func (entity *Location) GetID() int {
-	return entity.ID
-}
-
-// SetID sets the entity identifier.
-func (entity *Location) SetID(id int) {
-	entity.ID = id
-}
-
-// Find is not used for locations. Please use the `Get` method.
-func (entity *Location) Find(context DatabaseService) error {
-	return nil
-}
-
 // IsDomestic returns whether the location is in the United States.
 func (entity *Location) IsDomestic() bool {
 	return entity.Country == "United States" || entity.Layout == LayoutUSAddress

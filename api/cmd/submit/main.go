@@ -8,7 +8,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api/eqip"
 	"github.com/18F/e-QIP-prototype/api/log"
 	"github.com/18F/e-QIP-prototype/api/xml"
-	"github.com/benbjohnson/clock"
 	"io/ioutil"
 	"os"
 )
@@ -24,8 +23,7 @@ func main() {
 	settings := &env.Native{}
 	settings.Configure()
 	logger := &log.Service{Log: log.NewLogger()}
-	localClock := clock.New()
-	xmlsvc := xml.Service{Log: logger, Clock: localClock}
+	xmlsvc := xml.NewXMLService()
 
 	fatal := func(err error) {
 		if err != nil {

@@ -14,18 +14,12 @@ func TestClearEmptyAccount(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
-	rejector := admin.NewRejector(services.db, services.store, nil)
+	rejector := admin.NewRejecter(services.db, services.store, nil)
 
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
 	}
-}
-
-type sectionNoTest struct {
-	path string
-	name string
-	test func(t *testing.T, section api.Section)
 }
 
 func TestClearSectionNos(t *testing.T) {
@@ -470,7 +464,7 @@ func TestClearSectionNos(t *testing.T) {
 				t.Fatal("Failed to save JSON", resp.StatusCode)
 			}
 
-			rejector := admin.NewRejector(services.db, services.store, nil)
+			rejector := admin.NewRejecter(services.db, services.store, nil)
 			err := rejector.Reject(account)
 			if err != nil {
 				t.Fatal("Failed to reject account: ", err)
@@ -486,6 +480,5 @@ func TestClearSectionNos(t *testing.T) {
 			clearTest.test(t, section)
 
 		})
-
 	}
 }

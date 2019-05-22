@@ -1,80 +1,26 @@
-import { ResidenceValidator } from './residence'
+import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import Location from '../components/Form/Location'
 
-describe('Residence component validation', function() {
-  it('should validate role', function() {
-    const tests = [
+describe('The HistoryResidenceValidator', () => {
+  it('should fail an invalid list of residences', () => {
+    const list = [
       {
-        state: {
-          Role: {
-            value: 'MilitaryHousing'
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Role: {
-            value: 'Other'
-          },
-          RoleOther: {
-            value: 'Hello world'
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Role: {
-            value: 'Other'
-          },
-          RoleOther: {
-            value: ''
-          }
-        },
-        expected: false
-      },
-      {
-        state: {
-          Role: {}
-        },
-        expected: false
-      },
-      {
-        state: {
-          Role: {
-            value: 'foo'
-          }
-        },
-        expected: false
-      }
-    ]
-    tests.forEach(test => {
-      expect(new ResidenceValidator(test.state, null).validRole()).toBe(
-        test.expected
-      )
-    })
-  })
-
-  it('should validate residence', function() {
-    const tests = [
-      {
-        state: {
+        Item: {
           Dates: {
             from: {
               day: '1',
               month: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               day: '1',
               month: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
+            present: false,
           },
           Role: {
-            value: 'MilitaryHousing'
+            value: 'MilitaryHousing',
           },
           Address: {
             country: { value: 'United States' },
@@ -82,7 +28,7 @@ describe('Residence component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           ReferenceName: {
             first: 'Foo',
@@ -91,18 +37,18 @@ describe('Residence component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           ReferenceLastContact: {
             day: '1',
             month: '1',
-            year: '2016'
+            year: '2016',
           },
           ReferenceRelationshipComments: {
-            value: ''
+            value: '',
           },
           ReferenceRelationship: {
-            values: ['Friend']
+            values: ['Friend'],
           },
           ReferencePhoneEvening: {
             noNumber: '',
@@ -110,7 +56,7 @@ describe('Residence component validation', function() {
             numberType: 'Home',
             type: 'Domestic',
             timeOfDay: 'Both',
-            extension: ''
+            extension: '',
           },
           ReferencePhoneDay: {
             noNumber: '',
@@ -118,7 +64,7 @@ describe('Residence component validation', function() {
             numberType: 'Home',
             type: 'Domestic',
             timeOfDay: 'Both',
-            extension: ''
+            extension: '',
           },
           ReferencePhoneMobile: {
             noNumber: '',
@@ -126,13 +72,13 @@ describe('Residence component validation', function() {
             numberType: 'Home',
             type: 'Domestic',
             timeOfDay: 'Both',
-            extension: ''
+            extension: '',
           },
           ReferenceEmailNotApplicable: {
-            applicable: true
+            applicable: true,
           },
           ReferenceEmail: {
-            value: 'user@local.dev'
+            value: 'user@local.dev',
           },
           ReferenceAddress: {
             country: { value: 'United States' },
@@ -140,49 +86,269 @@ describe('Residence component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
       },
       {
-        state: {
+        Item: {
           Role: {
-            value: 'Other'
+            value: 'Other',
           },
           RoleOther: {
-            value: 'Hello world'
-          }
+            value: 'Hello world',
+          },
         },
-        expected: false
       },
       {
-        state: {
+        Item: {
           Role: {
-            value: 'Other'
+            value: 'Other',
           },
           RoleOther: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
       },
       {
-        state: {
-          Role: {}
+        Item: {
+          Role: {},
         },
-        expected: false
       },
       {
-        state: {
+        Item: {
           Role: {
-            value: 'foo'
-          }
+            value: 'foo',
+          },
         },
-        expected: false
-      }
+      },
     ]
-    tests.forEach(test => {
+
+    expect(new HistoryResidenceValidator({ List: { items: list, branch: { value: 'No' } } }).isValid()).toBe(false)
+  })
+
+  it('should pass a valid list of residences', () => {
+    const list = [
+      {
+        Item: {
+          Dates: {
+            from: {
+              day: '1',
+              month: '1',
+              year: '2010',
+            },
+            to: {
+              day: '1',
+              month: '1',
+              year: '2012',
+            },
+            present: false,
+          },
+          Role: {
+            value: 'MilitaryHousing',
+          },
+          Address: {
+            country: { value: 'United States' },
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'VA',
+            zipcode: '22202',
+            layout: Location.ADDRESS,
+          },
+          ReferenceName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          ReferenceLastContact: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          ReferenceRelationshipComments: {
+            value: '',
+          },
+          ReferenceRelationship: {
+            values: ['Friend'],
+          },
+          ReferencePhoneEvening: {
+            noNumber: '',
+            number: '7031112222',
+            numberType: 'Home',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+            extension: '',
+          },
+          ReferencePhoneDay: {
+            noNumber: '',
+            number: '7031112222',
+            numberType: 'Home',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+            extension: '',
+          },
+          ReferencePhoneMobile: {
+            noNumber: '',
+            number: '7031112222',
+            numberType: 'Home',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+            extension: '',
+          },
+          ReferenceEmailNotApplicable: {
+            applicable: true,
+          },
+          ReferenceEmail: {
+            value: 'user@local.dev',
+          },
+          ReferenceAddress: {
+            country: { value: 'United States' },
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'VA',
+            zipcode: '22202',
+            layout: Location.ADDRESS,
+          },
+        },
+      },
+    ]
+
+    expect(new HistoryResidenceValidator({ List: { items: list, branch: { value: 'No' } } }).isValid()).toBe(true)
+  })
+})
+
+describe('Residence component validation', () => {
+  it('should validate residence', () => {
+    const tests = [
+      {
+        state: {
+          Dates: {
+            from: {
+              day: '1',
+              month: '1',
+              year: '2010',
+            },
+            to: {
+              day: '1',
+              month: '1',
+              year: '2012',
+            },
+            present: false,
+          },
+          Role: {
+            value: 'MilitaryHousing',
+          },
+          Address: {
+            country: { value: 'United States' },
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'VA',
+            zipcode: '22202',
+            layout: Location.ADDRESS,
+          },
+          ReferenceName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            suffix: 'Jr',
+          },
+          ReferenceLastContact: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          ReferenceRelationshipComments: {
+            value: '',
+          },
+          ReferenceRelationship: {
+            values: ['Friend'],
+          },
+          ReferencePhoneEvening: {
+            noNumber: '',
+            number: '7031112222',
+            numberType: 'Home',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+            extension: '',
+          },
+          ReferencePhoneDay: {
+            noNumber: '',
+            number: '7031112222',
+            numberType: 'Home',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+            extension: '',
+          },
+          ReferencePhoneMobile: {
+            noNumber: '',
+            number: '7031112222',
+            numberType: 'Home',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+            extension: '',
+          },
+          ReferenceEmailNotApplicable: {
+            applicable: true,
+          },
+          ReferenceEmail: {
+            value: 'user@local.dev',
+          },
+          ReferenceAddress: {
+            country: { value: 'United States' },
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'VA',
+            zipcode: '22202',
+            layout: Location.ADDRESS,
+          },
+        },
+        expected: true,
+      },
+      {
+        state: {
+          Role: {
+            value: 'Other',
+          },
+          RoleOther: {
+            value: 'Hello world',
+          },
+        },
+        expected: false,
+      },
+      {
+        state: {
+          Role: {
+            value: 'Other',
+          },
+          RoleOther: {
+            value: '',
+          },
+        },
+        expected: false,
+      },
+      {
+        state: {
+          Role: {},
+        },
+        expected: false,
+      },
+      {
+        state: {
+          Role: {
+            value: 'foo',
+          },
+        },
+        expected: false,
+      },
+    ]
+    tests.forEach((test) => {
       expect(new ResidenceValidator(test.state, null).isValid()).toBe(
         test.expected
       )

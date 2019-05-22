@@ -17935,18 +17935,6 @@ exports[`The section component renders IDENTIFICATION_PHYSICAL 1`] = `
                   </div>
                 </div>
               </div>
-              <a
-                className="comments-button add"
-                href="javascript:;;"
-                onClick={[Function]}
-              >
-                <span>
-                  Add a comment
-                </span>
-                <i
-                  className="fa fa-plus-circle"
-                />
-              </a>
             </span>
           </span>
         </div>
@@ -21854,18 +21842,6 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
                     </div>
                   </div>
                 </div>
-                <a
-                  className="comments-button add"
-                  href="javascript:;;"
-                  onClick={[Function]}
-                >
-                  <span>
-                    Add a comment
-                  </span>
-                  <i
-                    className="fa fa-plus-circle"
-                  />
-                </a>
               </span>
             </span>
           </div>

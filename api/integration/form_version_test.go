@@ -83,7 +83,7 @@ func TestFormVersionSave(t *testing.T) {
 	"form_version": "2016-11"
 }`
 
-	resp := saveJSON(services, metadataBody, account.ID)
+	resp := saveJSON(services, []byte(metadataBody), account.ID)
 
 	if resp.StatusCode != 400 {
 		t.Log(fmt.Sprintf("Status should have been 400: %d", resp.StatusCode))
