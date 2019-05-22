@@ -7,8 +7,15 @@ const selectiveService = {
   },
   HasRegistered: (value, attributes = {}) => {
     if (
-      attributes.WasBornAfter
-      && attributes.WasBornAfter.value === 'Yes') {
+      (
+        attributes.WasBornAfter
+        && attributes.WasBornAfter.value === 'Yes'
+      )
+      && (
+        attributes.HasRegisteredNotApplicable
+        && attributes.HasRegisteredNotApplicable.applicable
+      )
+    ) {
       return {
         presence: true,
         hasValue: { validator: hasYesOrNo },
