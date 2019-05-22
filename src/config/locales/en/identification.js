@@ -198,7 +198,6 @@ export const identification = {
       emailHome: 'Home email address',
       emailWork: 'Work email address',
       phoneNumber: 'Your phone numbers',
-      comments: 'Add optional comments',
     },
     para: {
       email:
@@ -241,7 +240,6 @@ export const identification = {
       height: 'Height',
       weight: 'Weight',
       sex: 'Sex',
-      comments: 'Add your comment about sex',
     },
     help: {
       feet: {
