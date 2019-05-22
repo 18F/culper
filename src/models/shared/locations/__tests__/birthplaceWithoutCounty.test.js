@@ -1,12 +1,12 @@
 import { validateModel } from 'models/validate'
-import birthplace from '../birthplace'
+import birthplaceWithoutCounty from '../birthplaceWithoutCounty'
 
-describe('The location/birthplace model', () => {
+describe('The location/birthplaceWithoutCounty model', () => {
   it('city is required', () => {
     const testData = { city: '' }
     const expectedErrors = ['city.required']
 
-    expect(validateModel(testData, birthplace))
+    expect(validateModel(testData, birthplaceWithoutCounty))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -14,7 +14,7 @@ describe('The location/birthplace model', () => {
     const testData = { country: '' }
     const expectedErrors = ['country.required']
 
-    expect(validateModel(testData, birthplace))
+    expect(validateModel(testData, birthplaceWithoutCounty))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -23,16 +23,16 @@ describe('The location/birthplace model', () => {
       const testData = { state: 'XY', country: 'United States' }
       const expectedErrors = ['state.inclusion']
 
-      expect(validateModel(testData, birthplace))
+      expect(validateModel(testData, birthplaceWithoutCounty))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('county is required', () => {
+    it('county is not required', () => {
       const testData = { state: 'NY', country: 'United States' }
       const expectedErrors = ['county.required']
 
-      expect(validateModel(testData, birthplace))
-        .toEqual(expect.arrayContaining(expectedErrors))
+      expect(validateModel(testData, birthplaceWithoutCounty))
+        .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
     it('passes a valid domestic address', () => {
@@ -40,10 +40,9 @@ describe('The location/birthplace model', () => {
         city: 'New York',
         state: 'NY',
         country: 'United States',
-        county: 'Manhattan',
       }
 
-      expect(validateModel(testData, birthplace)).toEqual(true)
+      expect(validateModel(testData, birthplaceWithoutCounty)).toEqual(true)
     })
   })
 
@@ -52,7 +51,7 @@ describe('The location/birthplace model', () => {
       const testData = { state: 'MA', country: 'Canada' }
       const expectedErrors = ['state.requireEmpty']
 
-      expect(validateModel(testData, birthplace))
+      expect(validateModel(testData, birthplaceWithoutCounty))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -62,7 +61,7 @@ describe('The location/birthplace model', () => {
         country: 'Canada',
       }
 
-      expect(validateModel(testData, birthplace)).toEqual(true)
+      expect(validateModel(testData, birthplaceWithoutCounty)).toEqual(true)
     })
   })
 })
