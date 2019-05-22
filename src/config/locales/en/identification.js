@@ -280,7 +280,7 @@ export const identification = {
       sex: {
         title: 'Provide more information',
         message:
-          'To add more information regarding your gender, select “Add a comment” below.',
+          'Choose the sex that most closely represents your gender.',
         note: '',
       },
     },
@@ -289,7 +289,6 @@ export const identification = {
       feet: 'Feet',
       inches: 'Inches',
       pounds: 'Pounds',
-      comments: 'Add a comment about sex',
     },
     hair: {
       bald: 'Bald',

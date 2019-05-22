@@ -805,7 +805,7 @@ export const error = {
         notfound: {
           title: 'This country is not on our current list',
           message: [
-            "If you don't see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.",
+            "If you don't see your country in the list, select the country that presently governs the location you are referring to.",
           ],
           note: '',
         },
@@ -866,7 +866,7 @@ export const error = {
         notfound: {
           title: 'This country is not on our current list',
           message: [
-            "If you don't see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.",
+            "If you don't see your country in the list, select the country that presently governs the location you are referring to.",
           ],
           note: '',
         },
@@ -929,7 +929,7 @@ export const error = {
     notfound: {
       title: 'This Country is not on our current list',
       message: [
-        "If you don't see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.",
+        "If you don't see your country in the list, select the country that presently governs the location you are referring to.",
       ],
       note: '',
     },
