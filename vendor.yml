@@ -1,6 +1,0 @@
-# Vendored files and directories are excluded from language statistics
-# on GitHub. See: https://github.com/github/linguist
-
-# These directories are no longer present, but still affect historical stats
-- node_modules/
-- vendor/
