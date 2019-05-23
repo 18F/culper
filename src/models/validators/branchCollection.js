@@ -7,7 +7,7 @@ const branchCollectionValidator = (value, options = {}) => {
   const { items } = value
   const { validator } = options
 
-  if (!items || !items.length) return 'Collection is empty'
+  if (!items || !items.length) return null
   if (!validator) return 'Invalid validator'
 
   const hasNo = items.some(i => i.Item && i.Item.Has && i.Item.Has.value === 'No')
