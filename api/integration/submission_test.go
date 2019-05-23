@@ -2,16 +2,18 @@ package integration
 
 import (
 	"bytes"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http/httptest"
 	"os"
 	"os/exec"
+	"strconv"
 	"testing"
 	"time"
 
 	"github.com/benbjohnson/clock"
+	"github.com/gorilla/mux"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/admin"
@@ -91,11 +93,19 @@ func TestSubmitter(t *testing.T) {
 	const base = 1536570831 // Epoch seconds for September 10, 2018 PDT
 	mockClock.Add(base * time.Second)
 
-	fmt.Println("HIHIHIH", mockClock.Now())
-
 	xmlService := xml.NewXMLServiceWithMockClock(mockClock)
 	pdfService := pdf.NewPDFService()
+	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
 
+	submitHandler := http.SubmitHandler{
+		Env:       services.env,
+		Log:       services.log,
+		Database:  services.db,
+		Store:     services.store,
+		Submitter: submitter,
+	}
+
+	// Setup a test scenario
 	form := readTestData(t, "../testdata/complete-scenarios/test1.json")
 	saveFormJSON(t, services, form, account.ID)
 	// in addition to the base form data, we need submission data to get the date signed
@@ -105,28 +115,24 @@ func TestSubmitter(t *testing.T) {
 		t.Fatal("Didn't save the submission section")
 	}
 
-	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
+	// call the /form/submit handler. It's a dummy handler that just returns
+	// the XML on success.
+	w, req := standardResponseAndRequest("GET", "/me/form/submit", nil, account.ID)
+	submitHandler.ServeHTTP(w, req)
 
-	// Make the Call to generate files/xml
-	xml, attachments, submitErr := submitter.FilesForSubmission(account.ID)
-	if submitErr != nil {
-		t.Fatal("Failed to prep the submission materials", submitErr)
+	submitResp := w.Result()
+
+	if submitResp.StatusCode != 200 {
+		t.Fatal("submit didn't succeed")
+	}
+
+	xml, readErr := ioutil.ReadAll(submitResp.Body)
+	if readErr != nil {
+		t.Fatal(readErr)
 	}
 
 	// Check that the XML is right
 	checkXML(t, xml, "../testdata/complete-scenarios/test1.xml")
-
-	// check that the attachments are right
-	if len(attachments) != 4 {
-		t.Log("Should have gotten 4 attachments")
-		t.Fail()
-	}
-
-	for _, attachment := range attachments {
-		if attachment.DocType == "REL" {
-			checkInfoRelease(t, attachment)
-		}
-	}
 
 	// Check that the generated PDFs can be retrieved via the API
 	listAttachmentHandler := http.AttachmentListHandler{
@@ -136,13 +142,7 @@ func TestSubmitter(t *testing.T) {
 		Store:    services.store,
 	}
 
-	indexReq := httptest.NewRequest("GET", "/me/attachments/", nil)
-
-	getAuthCtx := http.SetAccountIDInRequestContext(indexReq, account.ID)
-	indexReq = indexReq.WithContext(getAuthCtx)
-
-	w := httptest.NewRecorder()
-
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account.ID)
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 
 	indexResp := w.Result()
@@ -159,6 +159,8 @@ func TestSubmitter(t *testing.T) {
 		t.Fatal(readErr)
 	}
 
+	fmt.Println(string(body))
+
 	retrievedAttachments := []api.Attachment{}
 
 	jsonErr := json.Unmarshal(body, &retrievedAttachments)
@@ -167,7 +169,47 @@ func TestSubmitter(t *testing.T) {
 	}
 
 	if len(retrievedAttachments) != 4 {
-		t.Fatal("didn't get back the same number of attachments!")
+		t.Log("didn't get back the expected number of attachments!")
+		t.Fail()
+	}
+
+	for _, attachment := range retrievedAttachments {
+		if attachment.DocType == "REL" {
+
+			w, req := standardResponseAndRequest("GET", "/attachements/id", nil, account.ID)
+			req = mux.SetURLVars(req, map[string]string{
+				"id": strconv.Itoa(attachment.ID),
+			})
+
+			getAttachmentHandler := http.AttachmentGetHandler{
+				Env:      services.env,
+				Log:      services.log,
+				Database: services.db,
+				Store:    services.store,
+			}
+
+			getAttachmentHandler.ServeHTTP(w, req)
+
+			getResp := w.Result()
+
+			if getResp.StatusCode != 200 {
+				t.Fatal("Didn't successfully get the attachment")
+			}
+
+			attachmentBase64, readErr := ioutil.ReadAll(getResp.Body)
+			if readErr != nil {
+				t.Fatal(readErr)
+			}
+
+			attachmentBody, decodeErr := base64.StdEncoding.DecodeString(string(attachmentBase64))
+			if decodeErr != nil {
+				t.Fatal(decodeErr)
+			}
+
+			attachment.Raw = attachmentBody
+
+			checkInfoRelease(t, attachment)
+		}
 	}
 
 }

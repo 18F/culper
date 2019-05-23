@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"math/rand"
 	gohttp "net/http"
@@ -144,15 +145,21 @@ func readTestData(t *testing.T, filepath string) []byte {
 	return b
 }
 
+func standardResponseAndRequest(method string, path string, body io.Reader, accountID int) (*httptest.ResponseRecorder, *gohttp.Request) {
+	req := httptest.NewRequest(method, path, body)
+	authCtx := http.SetAccountIDInRequestContext(req, accountID)
+	req = req.WithContext(authCtx)
+
+	w := httptest.NewRecorder()
+
+	return w, req
+
+}
+
 // saveJSON calls the save handler with the given json body.
 func saveJSON(services serviceSet, json []byte, accountID int) *gohttp.Response {
 	// create request/response
-	r := httptest.NewRequest("POST", "/me/save", strings.NewReader(string(json)))
-	// authenticate user.
-	authCtx := http.SetAccountIDInRequestContext(r, accountID)
-	r = r.WithContext(authCtx)
-
-	w := httptest.NewRecorder()
+	w, r := standardResponseAndRequest("POST", "/me/save", strings.NewReader(string(json)), accountID)
 
 	saveHandler := http.SaveHandler{
 		Env:      services.env,
@@ -194,13 +201,8 @@ func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, accountID 
 
 func getForm(services serviceSet, accountID int) *gohttp.Response {
 	// create request/response
-	path := "/me/form/"
-	r := httptest.NewRequest("GET", path, nil)
-	// authenticate user.
-	authCtx := http.SetAccountIDInRequestContext(r, accountID)
-	r = r.WithContext(authCtx)
 
-	w := httptest.NewRecorder()
+	w, r := standardResponseAndRequest("GET", "/me/form", nil, accountID)
 
 	formHandler := http.FormHandler{
 		Env:      services.env,
