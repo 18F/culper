@@ -1,5 +1,4 @@
 import { validateModel } from 'models/validate'
-import ssnModel from 'models/shared/ssn'
 
 export const validateIdentificationSSN = (data) => {
   const { verified, ssn } = data
@@ -10,11 +9,14 @@ export const validateIdentificationSSN = (data) => {
 
   if (verified !== true) return false
 
-  const { first, middle, last } = ssn
-  const completeSSN = `${first}-${middle}-${last}`
-  ssn.ssn = completeSSN
+  const ssnModel = {
+    ssn: {
+      presence: true,
+      ssn: true,
+    },
+  }
 
-  return validateModel(ssn, ssnModel) === true
+  return validateModel({ ssn }, ssnModel) === true
 }
 
 /** LEGACY */
