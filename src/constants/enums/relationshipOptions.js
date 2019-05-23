@@ -24,3 +24,11 @@ export const maritalStatusOptions = [
   DIVORCED,
   WIDOWED,
 ]
+
+export const relationshipOptions = [
+  'Neighbor',
+  'Friend',
+  'WorkAssociate',
+  'Schoolmate',
+  'Other',
+]
