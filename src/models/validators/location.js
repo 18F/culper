@@ -4,6 +4,8 @@ import { validateModel } from 'models/validate'
 import { countryString } from 'validators/location'
 
 const locationValidator = (value, options = {}) => {
+  if (!value) return null // Don't validate if there is no value
+
   const { validator } = options
   if (!validator) return 'Invalid validator'
 
