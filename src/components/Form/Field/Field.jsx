@@ -446,7 +446,9 @@ export default class Field extends ValidationElement {
   }
 
   render() {
-    const { optional, className, shrink } = this.props
+    const {
+      optional, className, shrink, dataFieldName
+    } = this.props
 
     const required = !optional
 
@@ -474,7 +476,7 @@ export default class Field extends ValidationElement {
         data-uuid={this.state.uuid}
         ref={(el) => { this.field = el }}
         aria-label={this.props.title}
-        data-fieldName={this.props.dataFieldName}
+        {...(dataFieldName && { dataFieldName })}
       >
         <a
           id={this.state.uuid}
