@@ -9,6 +9,8 @@ The automated test code in [`api/xml/xml_test.go`](../api/xml/xml_test.go) gener
 
 In addition to automated XSD and e-QIP service validation, the content of test cases 2,3,4,5,7,8,9 have been manually reviewed by an OPM user acceptance testing (UAT) team after submission to e-QIP (Fall 2018). For a description of each test scenario, see the comments for the corresponding unit tests in [`xml_test.go`](../api/xml/xml_test.go). It is recommended that the scope and intent of the manually reviewed test cases remain as-is. Data that tests additional aspects of the form are best addressed in a new test case, or in test case 6.
 
+Additional documentation is published on an [internal Wiki](https://docs.google.com/document/d/1q8uvcc4S9gql4cr8LEJt5wy36Db75e37qzpzJYyGi-w).
+
 
 ## Prerequisites
 
@@ -41,6 +43,15 @@ For any significant change to a known-good XML test fixture, it should also be r
 
 Currently, these revalidation steps must be done manually given the public nature of our GitHub repo and logistics of our use of CircleCI. See below.
 
+### Maintenance challenges
+
+#### Dates and the passing of time
+Test scenarios have **a lot** of dates and date ranges. e-QIP and the SF-86, SF-85, SF-85p have a lot of conditional rules surrounding dates. This causes a valid test scenrio to eventually become invalid simply through the passing of time. For example:
+
+1. An applicant can not be over 100 years old. A test scenario written in 2018 with a 99 year old applicant will become invalid sometime in 2019.
+1. Residences within 3 years must have a verifier. Additionally e-QIP will reject an application if it has verifier information for residences greater than 3 years in the past. A test scenario written in 2018, with a residence entry ending in 2016 will become invalid sometime in 2019 (e.g., `test9.json`).
+
+Currently, test scenarios are manually updated after a failure in regular validation testing.
 
 ## Validate XML against e-QIP XSDs
 
