@@ -63,6 +63,7 @@ const civilUnion = {
   },
   ForeignBornDocument: (value, attributes) => {
     if (attributes.BirthPlace
+      && attributes.BirthPlace.country
       && countryString(attributes.BirthPlace.country) !== 'United States') {
       return {
         presence: true,
