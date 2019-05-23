@@ -68,7 +68,7 @@ func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 		return txErr
 	}
 
-	app, loadErr := runLoadApplication(tx, s.serializer, accountID)
+	app, loadErr := runLoadApplication(tx, s.serializer, accountID, true)
 	if loadErr != nil {
 		s.logger.WarnError("Unable to load the application before saving", loadErr, api.LogFields{"accountID": accountID})
 		return loadErr
@@ -100,12 +100,20 @@ type applicationAccountRow struct {
 	api.Account
 }
 
-func runLoadApplication(conn simpleConnection, serializer api.Serializer, accountID int) (api.Application, error) {
+func runLoadApplication(conn simpleConnection, serializer api.Serializer, accountID int, forUpdate bool) (api.Application, error) {
 
 	selectQuery := `SELECT applications.account_id, applications.body,
 					accounts.id, accounts.form_version, accounts.form_type
 				FROM applications, accounts
 				WHERE applications.account_id = accounts.id AND accounts.id = $1`
+
+	// Adding FOR UPDATE to a select query acquires a row lock for the rest of the transaction
+	// This row lock allows other selects to run *but* doesn't allow other SELECT FOR UPDATEs
+	// to run. This ensures that our SaveSection calls continue to be atomic without blocking
+	// concurrent LoadApplication calls.
+	if forUpdate {
+		selectQuery = selectQuery + " FOR UPDATE"
+	}
 
 	row := applicationAccountRow{}
 	selectErr := conn.Get(&row, selectQuery, accountID)
@@ -126,7 +134,7 @@ func runLoadApplication(conn simpleConnection, serializer api.Serializer, accoun
 
 // LoadApplication loads an application from the DB, it will return a NotFound error if it does not exist.
 func (s SimpleStore) LoadApplication(accountID int) (api.Application, error) {
-	return runLoadApplication(s.db, s.serializer, accountID)
+	return runLoadApplication(s.db, s.serializer, accountID, false)
 }
 
 // DeleteApplication deletes an application from the database
