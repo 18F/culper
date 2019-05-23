@@ -869,7 +869,7 @@ Location.defaultProps = {
   addressBooks: {},
   addressBook: '',
   isPoBoxAllowed: true,
-  showPostOffice: true,
+  showPostOffice: false,
   onUpdate: queue => {},
   dispatch: action => {},
   onError: (value, arr) => {
