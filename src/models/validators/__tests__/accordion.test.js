@@ -2,7 +2,7 @@ import accordion from '../accordion'
 
 describe('The accordion validator', () => {
   it('fails if items is undefined', () => {
-    const testData = {}
+    const testData = { items: undefined }
     expect(accordion(testData)).toBeTruthy()
   })
 
