@@ -37,12 +37,7 @@ func TestStatus(t *testing.T) {
 		}
 	}
 
-	req := httptest.NewRequest("GET", "/me/status/", nil)
-
-	authCtx := http.SetAccountIDInRequestContext(req, account.ID)
-	req = req.WithContext(authCtx)
-
-	w := httptest.NewRecorder()
+	w, req := standardResponseAndRequest("GET", "/me/status", nil, account.ID)
 
 	statusHandler := http.StatusHandler{
 		Env:      services.env,
@@ -132,12 +127,7 @@ func TestLockedStatus(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createLockedTestAccount(t, services.db)
 
-	req := httptest.NewRequest("GET", "/me/status/", nil)
-
-	authCtx := http.SetAccountIDInRequestContext(req, account.ID)
-	req = req.WithContext(authCtx)
-
-	w := httptest.NewRecorder()
+	w, req := standardResponseAndRequest("GET", "/me/status", nil, account.ID)
 
 	statusHandler := http.StatusHandler{
 		Env:      services.env,

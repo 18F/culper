@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http/httptest"
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api/http"
@@ -15,13 +14,7 @@ func TestFormVersionReturned(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
-	// create request/response
-	r := httptest.NewRequest("GET", "/me/form", nil)
-	// authenticate user.
-	authCtx := http.SetAccountIDInRequestContext(r, account.ID)
-	r = r.WithContext(authCtx)
-
-	w := httptest.NewRecorder()
+	w, r := standardResponseAndRequest("GET", "/me/form", nil, account.ID)
 
 	formHandler := http.FormHandler{
 		Env:      services.env,

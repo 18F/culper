@@ -6,15 +6,18 @@ import (
 	"path/filepath"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/admin"
 	"github.com/18F/e-QIP-prototype/api/cloudfoundry"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/log"
+	"github.com/18F/e-QIP-prototype/api/pdf"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/saml"
 	"github.com/18F/e-QIP-prototype/api/simplestore"
 	"github.com/18F/e-QIP-prototype/api/usps"
+	"github.com/18F/e-QIP-prototype/api/xml"
 	"github.com/gorilla/mux"
 )
 
@@ -43,6 +46,10 @@ func main() {
 		logger.WarnError("Error configuring Simple Store", storeErr, api.LogFields{})
 		return
 	}
+
+	xmlsvc := xml.NewXMLService()
+	pdfsvc := pdf.NewPDFService()
+	submitter := admin.NewSubmitter(database, store, xmlsvc, pdfsvc)
 
 	token := jwt.Service{Env: settings}
 	samlsvc := &saml.Service{Log: logger, Env: settings}
@@ -89,6 +96,7 @@ func main() {
 	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("POST", "PUT")
 	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
 	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
+	a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Database: database, Store: store, Submitter: submitter})).Methods("POST")
 	a.Handle("/attachment", sec.Middleware(http.AttachmentListHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
 	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
 	if settings.True(api.AttachmentsEnabled) {
