@@ -330,6 +330,7 @@ describe('The divorce model', () => {
         const testData = {
           Status: { value: 'Divorced' },
           Deceased: { value: 'No' },
+          DeceasedAddress: 'invalid address',
         }
         const expectedErrors = ['DeceasedAddress.location']
 
