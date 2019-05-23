@@ -1,54 +1,54 @@
 import CivilUnionValidator from './civilunion'
 import Location from '../components/Form/Location'
 
-describe('CivilUnion validation', function() {
+describe('CivilUnion validation', () => {
   it('validates separated', () => {
     const tests = [
       {
         data: {
-          Separated: { value: 'No' }
+          Separated: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Separated: { value: 'Nope' }
+          Separated: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Separated: { value: 'Yes' },
-          AddressSeparatedNotApplicable: true,
+          AddressSeparatedNotApplicable: { applicable: false },
           DateSeparated: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Separated: { value: 'Yes' },
-          AddressSeparatedNotApplicable: false,
+          AddressSeparatedNotApplicable: { applicable: true },
           AddressSeparated: {
             country: { value: 'United States' },
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY,
           },
           DateSeparated: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CivilUnionValidator(test.data).validSeparated()).toBe(
         test.expected
       )
@@ -60,10 +60,10 @@ describe('CivilUnion validation', function() {
       {
         data: {
           OtherNames: {
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -72,42 +72,42 @@ describe('CivilUnion validation', function() {
               {
                 Item: {
                   Has: { value: 'Yes' },
-                  Othername: {
+                  Name: {
                     first: 'Foo',
                     firstInitialOnly: false,
                     middle: 'J',
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   MaidenName: {
-                    value: 'No'
+                    value: 'No',
                   },
                   DatesUsed: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2016'
+                      year: '2016',
                     },
-                    present: false
-                  }
-                }
+                    present: false,
+                  },
+                },
               },
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -115,13 +115,13 @@ describe('CivilUnion validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'Nope' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'Nope' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -129,16 +129,16 @@ describe('CivilUnion validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CivilUnionValidator(test.data).validOtherName()).toBe(
         test.expected
       )
@@ -149,28 +149,28 @@ describe('CivilUnion validation', function() {
     const tests = [
       {
         data: {
-          Citizenship: {}
+          Citizenship: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Citizenship: {
-            value: []
-          }
+            value: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Citizenship: {
-            value: ['Germany', 'United States']
-          }
+            value: ['Germany', 'United States'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CivilUnionValidator(test.data).validCitizenship()).toBe(
         test.expected
       )
@@ -187,10 +187,10 @@ describe('CivilUnion validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -200,19 +200,19 @@ describe('CivilUnion validation', function() {
             city: '',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Address: {}
+          Address: {},
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CivilUnionValidator(test.data).validAddress()).toBe(
         test.expected
       )
@@ -230,19 +230,19 @@ describe('CivilUnion validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016'
+            year: '2016',
           },
           BirthPlace: {
             country: { value: 'United States' },
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA',
-            layout: Location.BIRTHPLACE
+            layout: Location.BIRTHPLACE,
           },
           Location: {
             country: { value: 'United States' },
@@ -250,7 +250,7 @@ describe('CivilUnion validation', function() {
             state: 'VA',
             county: 'Arlington',
             zipcode: '22202',
-            layout: Location.BIRTHPLACE
+            layout: Location.BIRTHPLACE,
           },
           Address: {
             country: { value: 'United States' },
@@ -258,7 +258,7 @@ describe('CivilUnion validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Telephone: {
             noNumber: '',
@@ -266,54 +266,64 @@ describe('CivilUnion validation', function() {
             numberType: 'Home',
             type: 'Domestic',
             timeOfDay: 'Both',
-            extension: ''
+            extension: '',
           },
           SSN: {
             first: '111',
             middle: '11',
             last: '1111',
-            applicable: true
+            applicable: true,
           },
           Divorced: { value: 'No' },
           Separated: { value: 'No' },
-          OtherNameNotApplicable: false,
-          OtherName: {
-            first: 'Foo',
-            firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
-            noMiddleName: false,
-            last: 'Bar',
-            suffix: 'Jr'
-          },
-          DatesUsed: {
-            from: {
-              month: '1',
-              day: '1',
-              year: '2010'
-            },
-            to: {
-              month: '1',
-              day: '1',
-              year: '2016'
-            },
-            present: false
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    suffix: 'Jr',
+                  },
+                  MaidenName: { value: 'No' },
+                  DatesUsed: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016',
+                    },
+                    present: false,
+                  },
+                },
+              },
+              { Item: { Has: { value: 'No' } } },
+            ],
           },
           Citizenship: {
-            value: ['Germany', 'United States']
+            value: ['Germany', 'United States'],
           },
           ForeignBornDocument: {
             DocumentType: { value: 'FS240' },
             DocumentExpirationNotApplicable: { applicable: true },
             DocumentNumber: {
-              value: 'A1234'
-            }
-          }
+              value: 'A1234',
+            },
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CivilUnionValidator(test.data).isValid()).toBe(test.expected)
     })
   })
@@ -326,26 +336,26 @@ describe('CivilUnion validation', function() {
             domestic: 'No',
             country: { value: 'Germany' },
             city: 'Munich',
-            layout: Location.BIRTHPLACE
+            layout: Location.BIRTHPLACE,
           },
           ForeignBornDocument: {
             DocumentType: { value: 'FS240' },
-            DocumentExpirationNotApplicable: { applicable: true },
+            DocumentExpirationNotApplicable: { applicable: false },
             DocumentNumber: {
-              value: 'A1234'
-            }
-          }
+              value: 'A1234',
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          BirthPlace: {}
+          BirthPlace: {},
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new CivilUnionValidator(test.data).validForeignBornDocument()
       ).toBe(test.expected)

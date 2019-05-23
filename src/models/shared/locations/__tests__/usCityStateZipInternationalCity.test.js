@@ -1,12 +1,12 @@
 import { validateModel } from 'models/validate'
-import birthplace from '../birthplace'
+import usCityStateZipInternationalCity from '../usCityStateZipInternationalCity'
 
-describe('The location/birthplace model', () => {
+describe('The location/usCityStateZipInternationalCity model', () => {
   it('city is required', () => {
     const testData = { city: '' }
     const expectedErrors = ['city.required']
 
-    expect(validateModel(testData, birthplace))
+    expect(validateModel(testData, usCityStateZipInternationalCity))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -14,7 +14,7 @@ describe('The location/birthplace model', () => {
     const testData = { country: '' }
     const expectedErrors = ['country.required']
 
-    expect(validateModel(testData, birthplace))
+    expect(validateModel(testData, usCityStateZipInternationalCity))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -23,15 +23,23 @@ describe('The location/birthplace model', () => {
       const testData = { state: 'XY', country: 'United States' }
       const expectedErrors = ['state.inclusion']
 
-      expect(validateModel(testData, birthplace))
+      expect(validateModel(testData, usCityStateZipInternationalCity))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('county is required', () => {
+    it('zipcode is required', () => {
       const testData = { state: 'NY', country: 'United States' }
-      const expectedErrors = ['county.required']
+      const expectedErrors = ['zipcode.required']
 
-      expect(validateModel(testData, birthplace))
+      expect(validateModel(testData, usCityStateZipInternationalCity))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('zipcode must match the state', () => {
+      const testData = { state: 'NY', country: 'United States', zipcode: '99999' }
+      const expectedErrors = ['zipcode.zipcode']
+
+      expect(validateModel(testData, usCityStateZipInternationalCity))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -39,11 +47,11 @@ describe('The location/birthplace model', () => {
       const testData = {
         city: 'New York',
         state: 'NY',
+        zipcode: '10002',
         country: 'United States',
-        county: 'Manhattan',
       }
 
-      expect(validateModel(testData, birthplace)).toEqual(true)
+      expect(validateModel(testData, usCityStateZipInternationalCity)).toEqual(true)
     })
   })
 
@@ -52,7 +60,7 @@ describe('The location/birthplace model', () => {
       const testData = { state: 'MA', country: 'Canada' }
       const expectedErrors = ['state.requireEmpty']
 
-      expect(validateModel(testData, birthplace))
+      expect(validateModel(testData, usCityStateZipInternationalCity))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -62,7 +70,7 @@ describe('The location/birthplace model', () => {
         country: 'Canada',
       }
 
-      expect(validateModel(testData, birthplace)).toEqual(true)
+      expect(validateModel(testData, usCityStateZipInternationalCity)).toEqual(true)
     })
   })
 })
