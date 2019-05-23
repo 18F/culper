@@ -252,6 +252,7 @@ export default class EmploymentItem extends ValidationElement {
 
   render() {
     const { recordYears } = this.props
+    const activity = (this.props.EmploymentActivity || {}).value
     const prefix = `history.employment.${this.localizeByActivity()}`.trim()
 
     const hasDifferentPhysicalAddress = this.props.PhysicalAddress
@@ -368,6 +369,7 @@ export default class EmploymentItem extends ValidationElement {
             help={`${prefix}.address.help`}
             adjustFor="address"
             shrink
+            dataFieldName="employmentAddress"
             scrollIntoView={this.props.scrollIntoView}
           >
             <Location
@@ -377,7 +379,7 @@ export default class EmploymentItem extends ValidationElement {
               geocode
               addressBooks={this.props.addressBooks}
               addressBook="Employment"
-              showPostOffice
+              showPostOffice={activity !== 'SelfEmployment'}
               dispatch={this.props.dispatch}
               onUpdate={this.updateAddress}
               onError={this.props.onError}

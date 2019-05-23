@@ -474,6 +474,7 @@ export default class Field extends ValidationElement {
         data-uuid={this.state.uuid}
         ref={(el) => { this.field = el }}
         aria-label={this.props.title}
+        data-fieldName={this.props.dataFieldName}
       >
         <a
           id={this.state.uuid}
@@ -538,6 +539,7 @@ Field.defaultProps = {
   validate: true,
   shrink: false,
   scrollIntoView: true,
+  dataFieldName: '',
   filterErrors: errors => errors,
   onUpdate: () => {},
 }

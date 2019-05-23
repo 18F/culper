@@ -629,6 +629,7 @@ export default class Location extends ValidationElement {
             isEnabled={this.props.isEnabled}
             isPoBoxAllowed={this.props.isPoBoxAllowed}
             disableToggle={this.props.layout === Location.US_ADDRESS}
+            showPostOffice={this.props.showPostOffice}
             onBlur={this.handleBlur}
             onUpdate={this.updateAddress}
             onError={this.handleError}
@@ -868,6 +869,7 @@ Location.defaultProps = {
   addressBooks: {},
   addressBook: '',
   isPoBoxAllowed: true,
+  showPostOffice: true,
   onUpdate: queue => {},
   dispatch: action => {},
   onError: (value, arr) => {

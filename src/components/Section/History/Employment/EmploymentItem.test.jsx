@@ -222,4 +222,14 @@ describe('The employment component', () => {
     expect(EmploymentItem.defaultProps.onUpdate()).toEqual(undefined)
     expect(EmploymentItem.defaultProps.onError(null, [])).toEqual([])
   })
+
+  it('hides APO for address of employment if self employed', () => {
+    const props = {
+      EmploymentActivity: { value: 'SelfEmployment' },
+    }
+
+    const component = createComponent(props)
+    const employmentAddressParent = component.find("[data-fieldName='employmentAddress']")
+    expect(employmentAddressParent.find('.apofpo').length).toBe(0)
+  })
 })
