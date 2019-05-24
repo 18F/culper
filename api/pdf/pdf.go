@@ -17,13 +17,18 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+const DocumentTypeCertification = "CER"
+const DocumentTypeCreditRelease = "FCR"
+const DocumentTypeMedicalRelease = "MEL"
+const DocumentTypeInformationRelease = "REL"
+
 var (
-	// DocumentTypes lists the supported archival PDFs.
-	DocumentTypes = []api.ArchivalPdf{
-		{"signature-form", "certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"},
-		{"release-credit", "credit-SF86-November2016.template.pdf", "Credit", "FCR"},
-		{"release-medical", "medical-SF86-November2016.template.pdf", "Medical", "MEL"},
-		{"release-information", "general-SF86-November2016.template.pdf", "General", "REL"},
+	// ReleasePDFs lists the supported archival PDFs.
+	ReleasePDFs = []api.ArchivalPdf{
+		{"signature-form", "certification-SF86-November2016.template.pdf", "AdditionalComments", DocumentTypeCertification},
+		{"release-credit", "credit-SF86-November2016.template.pdf", "Credit", DocumentTypeCreditRelease},
+		{"release-medical", "medical-SF86-November2016.template.pdf", "Medical", DocumentTypeMedicalRelease},
+		{"release-information", "general-SF86-November2016.template.pdf", "General", DocumentTypeInformationRelease},
 	}
 )
 
@@ -68,7 +73,7 @@ func (service Service) GenerateReleases(account api.Account, app api.Application
 
 	attachments := []api.Attachment{}
 
-	for _, docInfo := range DocumentTypes {
+	for _, docInfo := range ReleasePDFs {
 
 		docBytes, createErr := service.CreatePdf(appData, docInfo, hash)
 		if createErr != nil {
