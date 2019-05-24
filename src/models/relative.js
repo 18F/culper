@@ -29,7 +29,10 @@ export const requireCitizenshipDocumentation = (attributes) => {
     && attributes.Birthplace.country
     && countryString(attributes.Birthplace.country) === 'United States'
 
-  return isCitizen(attributes) && !bornInUS
+  return !!(isCitizen(attributes)
+    && attributes.Birthplace
+    && attributes.Birthplace.country
+    && !bornInUS)
 }
 
 export const isLivingNonCitizen = attributes => (
@@ -86,30 +89,19 @@ const relative = {
 
     return {}
   },
-  MaidenSameAsListed: (value, attributes) => {
-    if (attributes.Relation
-      && attributes.Relation.value === MOTHER) {
-      return {
-        presence: true,
-        hasValue: { validator: hasYesOrNo },
-      }
-    }
-
-    return {}
-  },
   Aliases: (value, attributes) => {
     if (attributes.Relation
-      && immedateFamilyOptions.includes(attributes.Relation.value)) {
-      return {
-        presence: true,
-        branchCollection: {
-          validator: alias,
-          hideMaiden: attributes.Relation.value === MOTHER,
-        },
-      }
+      && !immedateFamilyOptions.includes(attributes.Relation.value)) {
+      return {}
     }
 
-    return {}
+    return {
+      presence: true,
+      branchCollection: {
+        validator: alias,
+        hideMaiden: attributes.Relation && attributes.Relation.value === MOTHER,
+      },
+    }
   },
   Address: (value, attributes) => {
     if (attributes.IsDeceased

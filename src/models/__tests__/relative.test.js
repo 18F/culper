@@ -225,29 +225,6 @@ describe('The relative model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('MaidenSameAsListed is required', () => {
-      const testData = {
-        Relation: { value: 'Mother' },
-      }
-
-      const expectedErrors = ['MaidenSameAsListed.required']
-
-      expect(validateModel(testData, relative))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('MaidenSameAsListed must have a valid value', () => {
-      const testData = {
-        Relation: { value: 'Mother' },
-        MaidenSameAsListed: { value: null },
-      }
-
-      const expectedErrors = ['MaidenSameAsListed.hasValue']
-
-      expect(validateModel(testData, relative))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
     it('MaidenName can be same as listed', () => {
       const testData = {
         Relation: { value: 'Mother' },

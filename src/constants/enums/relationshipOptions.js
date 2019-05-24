@@ -1,14 +1,14 @@
 // Marital Statuses
 const NEVER_MARRIED = 'NeverMarried'
-const MARRIED = 'Married'
-const SEPARATED = 'Separated'
+export const MARRIED = 'Married'
+export const SEPARATED = 'Separated'
 const ANNULLED = 'Annulled'
 const DIVORCED = 'Divorced'
 const WIDOWED = 'Widowed'
 
 // Relatives
 export const MOTHER = 'Mother'
-const FATHER = 'Father'
+export const FATHER = 'Father'
 const STEPMOTHER = 'Stepmother'
 const STEPFATHER = 'Stepfather'
 const FOSTER_PARENT = 'Fosterparent'
@@ -20,8 +20,8 @@ const STEPBROTHER = 'Stepbrother'
 const STEPSISTER = 'Stepsister'
 const HALF_BROTHER = 'Half-brother'
 const HALF_SISTER = 'Half-sister'
-const FATHER_IN_LAW = 'Father-in-law'
-const MOTHER_IN_LAW = 'Mother-in-law'
+export const FATHER_IN_LAW = 'Father-in-law'
+export const MOTHER_IN_LAW = 'Mother-in-law'
 const GUARDIAN = 'Guardian'
 
 export const marriedOptions = [
