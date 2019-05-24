@@ -9416,7 +9416,7 @@
         "HomeEmail": {
           "type": "email",
           "props": {
-            "value": ""
+            "value": "test@test.com"
           }
         },
         "WorkEmail": {
