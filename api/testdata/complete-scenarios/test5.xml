@@ -4629,10 +4629,6 @@
                         <County>Alameda</County>
                       </Place>
                     </Location>
-                    <NotConvicted>
-        
-        
-      </NotConvicted>
                     <OffenseDescription>Violet act 1</OffenseDescription>
                     <OffenseType Domestic="True" Firearms="True" Alcohol="True"/>
                   </Offense>

@@ -6,6 +6,8 @@
     {{with $Item := $item.Item}}
     <Offense ID="{{inc $index}}">
       <AppearedInCourt>
+        <!-- XXX This is the correct code but it is going to break test case 10 until EN-3786 is resolved and test case 10 is updated -->
+        <!-- XXX WasCharged isn't being prompted for/required when it should be -->
         <Answer>{{branch $Item.WasCharged}}</Answer>
         <AnswerComment></AnswerComment>
         {{if branch $Item.WasCharged | eq "Yes"}}
@@ -90,6 +92,7 @@
       <Arrested>
         <Answer>{{branch $Item.WasCited}}</Answer>
       </Arrested>
+      {{if branch $Item.WasCited | eq "Yes"}}
       <ArrestingAgency>
         <Comment></Comment>
         <Location>
@@ -99,6 +102,7 @@
         </Location>
         <Name>{{text $Item.CitedBy}}</Name>
       </ArrestingAgency>
+      {{end}}
       {{if and (branch $Item.WasCharged | eq "Yes") (branch $Item.WasSentenced | ne "Yes")}}
       <AwaitingTrial>
         <Answer>{{branch $Item.AwaitingTrial}}</Answer>
@@ -117,10 +121,14 @@
           {{location $Item.Address }}
         </Place>
       </Location>
+      <!-- XXX This is the correct code but it is going to break test case 10 until EN-3786 is resolved and test case 10 is updated -->
+      <!-- XXX WasCharged and Explanation aren't being prompted for/required when they should be -->
+      {{if branch $Item.WasCharged | eq "No"}}
       <NotConvicted>
         <Comment></Comment>
         <Explanation>{{text $Item.Explanation}}</Explanation>
       </NotConvicted>
+      {{end}}
       <OffenseComment></OffenseComment>
       <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
       <OffenseType

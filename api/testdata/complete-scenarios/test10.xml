@@ -1422,17 +1422,12 @@
         
         
         
+        
+        
       </AppearedInCourt>
                     <Arrested>
                       <Answer>No</Answer>
                     </Arrested>
-                    <ArrestingAgency>
-                      <Location>
-                        <Place>
-                          <Street> </Street>
-                        </Place>
-                      </Location>
-                    </ArrestingAgency>
                     <Date Type="Estimated">
                       <Month>03</Month>
                       <Year>2019</Year>
@@ -1446,10 +1441,6 @@
                         <Country>Canada</Country>
                       </Place>
                     </Location>
-                    <NotConvicted>
-        
-        
-      </NotConvicted>
                     <OffenseDescription>Removal of seashell from protected marine sanctuary.</OffenseDescription>
                     <OffenseType/>
                   </Offense>
