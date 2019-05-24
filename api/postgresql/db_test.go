@@ -48,6 +48,14 @@ func TestAccountPersistence(t *testing.T) {
 		}
 	}
 
+	// modify and save again to trigger the Update behavior
+	account.Email = "buzz2@example.com"
+
+	_, saveAgainErr := account.Save(service, -1)
+	if saveAgainErr != nil {
+		t.Fatal(saveAgainErr)
+	}
+
 	fetchedAccount := api.Account{
 		ID: account.ID,
 	}

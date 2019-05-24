@@ -168,7 +168,7 @@ func (service *Service) Save(query ...interface{}) error {
 		err := service.Insert(q)
 		if err != nil {
 			// oh dear god, only try and update if it fails because of a duplicated primary key.
-			if strings.HasSuffix(err.Error(), `_pkey"`) {
+			if strings.HasPrefix(err.Error(), "ERROR #23505 duplicate key value violates unique constraint") && strings.HasSuffix(err.Error(), `_pkey"`) {
 				err = service.Update(q)
 			}
 		}
