@@ -12,14 +12,7 @@ import {
 
 import { countryString } from 'validators/location'
 
-// TODO
-/**
- * Relative UI shows not applicable fields for employer but not taken into
- * account in validations
- */
-
-
-/** Helpers */
+/** Helper functions */
 export const isCitizen = attributes => !!(
   attributes.Citizenship
     && attributes.Citizenship.value
@@ -294,6 +287,9 @@ const relative = {
     return {}
   },
   Employer: (value, attributes) => {
+    if (attributes.EmployerNotApplicable
+      && attributes.EmployerNotApplicable.applicable === false) return {}
+
     if (isLivingNonCitizen(attributes) && !livesInUS(attributes)) {
       return {
         presence: true,
@@ -304,6 +300,9 @@ const relative = {
     return {}
   },
   EmployerAddress: (value, attributes) => {
+    if (attributes.EmployerAddressNotApplicable
+      && attributes.EmployerAddressNotApplicable.applicable === false) return {}
+
     if (isLivingNonCitizen(attributes) && !livesInUS(attributes)) {
       return {
         presence: true,
@@ -314,6 +313,9 @@ const relative = {
     return {}
   },
   HasAffiliation: (value, attributes) => {
+    if (attributes.EmployerRelationshipNotApplicable
+      && attributes.EmployerRelationshipNotApplicable.applicable === false) return {}
+
     if (isLivingNonCitizen(attributes) && !livesInUS(attributes)) {
       return {
         presence: true,

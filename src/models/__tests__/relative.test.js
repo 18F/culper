@@ -418,6 +418,30 @@ describe('The relative model', () => {
       expect(validateModel(testData, relative))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
+
+    it('passes a valid relative', () => {
+      const testData = {
+        Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+        Relation: { value: 'Father-in-law' },
+        Birthdate: { year: 1960, month: 2, day: 10 },
+        Citizenship: { value: ['Canada', 'United States'] },
+        Birthplace: {
+          city: 'New York',
+          state: 'NY',
+          country: 'United States',
+        },
+        Address: {
+          street: '123 Street',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10001',
+          country: 'United States',
+        },
+        IsDeceased: { value: 'No' },
+      }
+
+      expect(validateModel(testData, relative)).toEqual(true)
+    })
   })
 
   describe('if deceased', () => {
@@ -429,6 +453,24 @@ describe('The relative model', () => {
 
       expect(validateModel(testData, relative))
         .not.toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid relative', () => {
+      const testData = {
+        Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+        Relation: { value: 'Father' },
+        Birthdate: { year: 1960, month: 2, day: 10 },
+        Citizenship: { value: ['Canada', 'United States'] },
+        Birthplace: {
+          city: 'New York',
+          state: 'NY',
+          country: 'United States',
+        },
+        Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+        IsDeceased: { value: 'Yes' },
+      }
+
+      expect(validateModel(testData, relative)).toEqual(true)
     })
   })
 
@@ -452,6 +494,31 @@ describe('The relative model', () => {
 
       expect(validateModel(testData, relative))
         .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid relative', () => {
+      const testData = {
+        Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+        Relation: { value: 'Father' },
+        Birthdate: { year: 1960, month: 2, day: 10 },
+        Citizenship: { value: ['Canada', 'United States'] },
+        Birthplace: {
+          city: 'New York',
+          state: 'NY',
+          country: 'United States',
+        },
+        Address: {
+          street: '123 Street',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10001',
+          country: 'United States',
+        },
+        Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+        IsDeceased: { value: 'No' },
+      }
+
+      expect(validateModel(testData, relative)).toEqual(true)
     })
   })
 
@@ -499,6 +566,31 @@ describe('The relative model', () => {
 
         expect(validateModel(testData, relative))
           .not.toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid relative', () => {
+        const testData = {
+          Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+          Relation: { value: 'Father' },
+          Birthdate: { year: 1960, month: 2, day: 10 },
+          Citizenship: { value: ['Canada', 'United States'] },
+          Birthplace: {
+            city: 'New York',
+            state: 'NY',
+            country: 'United States',
+          },
+          Address: {
+            street: '123 Street',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+          IsDeceased: { value: 'No' },
+        }
+
+        expect(validateModel(testData, relative)).toEqual(true)
       })
     })
 
@@ -550,6 +642,38 @@ describe('The relative model', () => {
 
           expect(validateModel(testData, relative))
             .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid relative', () => {
+          const testData = {
+            Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+            Relation: { value: 'Father' },
+            Birthdate: { year: 1960, month: 2, day: 10 },
+            Citizenship: { value: ['Canada', 'United States'] },
+            Birthplace: { city: 'Toronto', country: 'Canada' },
+            Address: {
+              street: '123 Street',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+            IsDeceased: { value: 'No' },
+            CitizenshipDocumentation: { value: 'Other' },
+            OtherCitizenshipDocumentation: { value: 'Some explanation' },
+            DocumentNumber: { value: 'abc123' },
+            CourtName: { value: 'Test Court' },
+            CourtAddress: {
+              street: '123 Court St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10002',
+              country: 'United States',
+            },
+          }
+
+          expect(validateModel(testData, relative)).toEqual(true)
         })
       })
 
@@ -624,6 +748,37 @@ describe('The relative model', () => {
 
         expect(validateModel(testData, relative))
           .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid relative', () => {
+        const testData = {
+          Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+          Relation: { value: 'Father' },
+          Birthdate: { year: 1960, month: 2, day: 10 },
+          Citizenship: { value: ['Canada', 'United States'] },
+          Birthplace: { city: 'Toronto', country: 'Canada' },
+          Address: {
+            street: '123 Street',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+          IsDeceased: { value: 'No' },
+          CitizenshipDocumentation: { value: 'NaturalizedAlien' },
+          DocumentNumber: { value: 'abc123' },
+          CourtName: { value: 'Test Court' },
+          CourtAddress: {
+            street: '123 Court St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10002',
+            country: 'United States',
+          },
+        }
+
+        expect(validateModel(testData, relative)).toEqual(true)
       })
     })
   })
@@ -718,16 +873,18 @@ describe('The relative model', () => {
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
-      it('Employer is required', () => {
+      it('passes a valid relative', () => {
+        const testData = {
+          Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+          Relation: { value: 'Father' },
+          Birthdate: { year: 1960, month: 2, day: 10 },
+          Citizenship: { value: ['Canada'] },
+          Birthplace: { city: 'Toronto', country: 'Canada' },
+          Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+          IsDeceased: { value: 'Yes' },
+        }
 
-      })
-
-      it('EmployerAddress is required', () => {
-
-      })
-
-      it('EmployerRelationship is required', () => {
-
+        expect(validateModel(testData, relative)).toEqual(true)
       })
     })
 
@@ -826,6 +983,38 @@ describe('The relative model', () => {
           expect(validateModel(testData, relative))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
+
+        it('passes a valid relative', () => {
+          const testData = {
+            Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+            Relation: { value: 'Father' },
+            Birthdate: { year: 1960, month: 2, day: 10 },
+            Citizenship: { value: ['Canada'] },
+            Birthplace: { city: 'Toronto', country: 'Canada' },
+            Address: {
+              street: '123 Street',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+            IsDeceased: { value: 'No' },
+            Document: { value: 'Permanent' },
+            ResidenceDocumentNumber: { value: 'abc' },
+            Expiration: { year: 2015, month: 8, day: 2 },
+            Employer: { value: 'Boss' },
+            EmployerAddressNotApplicable: { applicable: false },
+            HasAffiliation: { value: 'No' },
+            FirstContact: { year: 1980, month: 1, day: 1 },
+            LastContact: { year: 2019, month: 2, day: 10 },
+            Methods: { values: ['Other'] },
+            MethodsComments: { value: 'Internet' },
+            Frequency: { value: 'Daily' },
+          }
+
+          expect(validateModel(testData, relative)).toEqual(true)
+        })
       })
 
       it('Frequency is required', () => {
@@ -849,6 +1038,37 @@ describe('The relative model', () => {
 
         expect(validateModel(testData, relative))
           .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid relative', () => {
+        const testData = {
+          Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+          Relation: { value: 'Father' },
+          Birthdate: { year: 1960, month: 2, day: 10 },
+          Citizenship: { value: ['Canada'] },
+          Birthplace: { city: 'Toronto', country: 'Canada' },
+          Address: {
+            street: '123 Street',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+          IsDeceased: { value: 'No' },
+          Document: { value: 'Permanent' },
+          ResidenceDocumentNumber: { value: 'abc' },
+          Expiration: { year: 2015, month: 8, day: 2 },
+          Employer: { value: 'Boss' },
+          EmployerAddressNotApplicable: { applicable: false },
+          HasAffiliation: { value: 'No' },
+          FirstContact: { year: 1980, month: 1, day: 1 },
+          LastContact: { year: 2019, month: 2, day: 10 },
+          Methods: { values: ['Telephone'] },
+          Frequency: { value: 'Daily' },
+        }
+
+        expect(validateModel(testData, relative)).toEqual(true)
       })
 
       describe('if Frequency is "Other"', () => {
@@ -875,6 +1095,38 @@ describe('The relative model', () => {
 
           expect(validateModel(testData, relative))
             .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid relative', () => {
+          const testData = {
+            Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+            Relation: { value: 'Father' },
+            Birthdate: { year: 1960, month: 2, day: 10 },
+            Citizenship: { value: ['Canada'] },
+            Birthplace: { city: 'Toronto', country: 'Canada' },
+            Address: {
+              street: '123 Street',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+            IsDeceased: { value: 'No' },
+            Document: { value: 'Permanent' },
+            ResidenceDocumentNumber: { value: 'abc' },
+            Expiration: { year: 2015, month: 8, day: 2 },
+            Employer: { value: 'Boss' },
+            EmployerAddressNotApplicable: { applicable: false },
+            HasAffiliation: { value: 'No' },
+            FirstContact: { year: 1980, month: 1, day: 1 },
+            LastContact: { year: 2019, month: 2, day: 10 },
+            Methods: { values: ['Telephone'] },
+            Frequency: { value: 'Other' },
+            FrequencyComments: { value: 'Sometimes' },
+          }
+
+          expect(validateModel(testData, relative)).toEqual(true)
         })
       })
     })
@@ -927,6 +1179,20 @@ describe('The relative model', () => {
           expect(validateModel(testData, relative))
             .not.toEqual(expect.arrayContaining(expectedErrors))
         })
+
+        it('passes a valid relative', () => {
+          const testData = {
+            Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+            Relation: { value: 'Father' },
+            Birthdate: { year: 1960, month: 2, day: 10 },
+            Citizenship: { value: ['Canada'] },
+            Birthplace: { city: 'Toronto', country: 'Canada' },
+            Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+            IsDeceased: { value: 'Yes' },
+          }
+
+          expect(validateModel(testData, relative)).toEqual(true)
+        })
       })
 
       describe('if not deceased', () => {
@@ -955,6 +1221,47 @@ describe('The relative model', () => {
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
+        describe('if Employer is not applicable', () => {
+          it('Employer is not required', () => {
+            const testData = {
+              Citizenship: { value: ['Canada'] },
+              Address: { country: 'Canada' },
+              IsDeceased: { value: 'No' },
+              EmployerNotApplicable: { applicable: false },
+            }
+            const expectedErrors = ['Employer.required']
+
+            expect(validateModel(testData, relative))
+              .not.toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('passes a valid relative', () => {
+            const testData = {
+              Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+              Relation: { value: 'Father' },
+              Birthdate: { year: 1960, month: 2, day: 10 },
+              Citizenship: { value: ['Canada'] },
+              Birthplace: { city: 'Toronto', country: 'Canada' },
+              Address: {
+                street: '123 Street',
+                city: 'Toronto',
+                country: 'Canada',
+              },
+              Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+              IsDeceased: { value: 'No' },
+              EmployerNotApplicable: { applicable: false },
+              EmployerAddressNotApplicable: { applicable: false },
+              HasAffiliation: { value: 'No' },
+              FirstContact: { year: 1980, month: 1, day: 1 },
+              LastContact: { year: 2019, month: 2, day: 10 },
+              Methods: { values: ['Telephone'] },
+              Frequency: { value: 'Daily' },
+            }
+
+            expect(validateModel(testData, relative)).toEqual(true)
+          })
+        })
+
         it('EmployerAddress is required', () => {
           const testData = {
             Citizenship: { value: ['Canada'] },
@@ -980,6 +1287,47 @@ describe('The relative model', () => {
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
+        describe('if EmployerAddress is not applicable', () => {
+          it('EmployerAddress is not required', () => {
+            const testData = {
+              Citizenship: { value: ['Canada'] },
+              Address: { country: 'Canada' },
+              IsDeceased: { value: 'No' },
+              EmployerAddressNotApplicable: { applicable: false },
+            }
+            const expectedErrors = ['EmployerAddress.required']
+
+            expect(validateModel(testData, relative))
+              .not.toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('passes a valid relative', () => {
+            const testData = {
+              Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+              Relation: { value: 'Father' },
+              Birthdate: { year: 1960, month: 2, day: 10 },
+              Citizenship: { value: ['Canada'] },
+              Birthplace: { city: 'Toronto', country: 'Canada' },
+              Address: {
+                street: '123 Street',
+                city: 'Toronto',
+                country: 'Canada',
+              },
+              Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+              IsDeceased: { value: 'No' },
+              Employer: { value: 'Boss' },
+              EmployerAddressNotApplicable: { applicable: false },
+              HasAffiliation: { value: 'No' },
+              FirstContact: { year: 1980, month: 1, day: 1 },
+              LastContact: { year: 2019, month: 2, day: 10 },
+              Methods: { values: ['Telephone'] },
+              Frequency: { value: 'Daily' },
+            }
+
+            expect(validateModel(testData, relative)).toEqual(true)
+          })
+        })
+
         it('HasAffiliation is required', () => {
           const testData = {
             Citizenship: { value: ['Canada'] },
@@ -1003,6 +1351,47 @@ describe('The relative model', () => {
 
           expect(validateModel(testData, relative))
             .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        describe('if EmployerRelationship is not applicable', () => {
+          it('HasAffiliation is not required', () => {
+            const testData = {
+              Citizenship: { value: ['Canada'] },
+              Address: { country: 'Canada' },
+              IsDeceased: { value: 'No' },
+              EmployerRelationshipNotApplicable: { applicable: false },
+            }
+            const expectedErrors = ['HasAffiliation.required']
+
+            expect(validateModel(testData, relative))
+              .not.toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('passes a valid relative', () => {
+            const testData = {
+              Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+              Relation: { value: 'Father' },
+              Birthdate: { year: 1960, month: 2, day: 10 },
+              Citizenship: { value: ['Canada'] },
+              Birthplace: { city: 'Toronto', country: 'Canada' },
+              Address: {
+                street: '123 Street',
+                city: 'Toronto',
+                country: 'Canada',
+              },
+              Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+              IsDeceased: { value: 'No' },
+              Employer: { value: 'Boss' },
+              EmployerAddressNotApplicable: { applicable: false },
+              EmployerRelationshipNotApplicable: { applicable: false },
+              FirstContact: { year: 1980, month: 1, day: 1 },
+              LastContact: { year: 2019, month: 2, day: 10 },
+              Methods: { values: ['Telephone'] },
+              Frequency: { value: 'Daily' },
+            }
+
+            expect(validateModel(testData, relative)).toEqual(true)
+          })
         })
 
         describe('if HasAffiliation is "Yes"', () => {
@@ -1032,6 +1421,33 @@ describe('The relative model', () => {
             expect(validateModel(testData, relative))
               .toEqual(expect.arrayContaining(expectedErrors))
           })
+
+          it('passes a valid relative', () => {
+            const testData = {
+              Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+              Relation: { value: 'Father' },
+              Birthdate: { year: 1960, month: 2, day: 10 },
+              Citizenship: { value: ['Canada'] },
+              Birthplace: { city: 'Toronto', country: 'Canada' },
+              Address: {
+                street: '123 Street',
+                city: 'Toronto',
+                country: 'Canada',
+              },
+              Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+              IsDeceased: { value: 'No' },
+              Employer: { value: 'Boss' },
+              EmployerAddressNotApplicable: { applicable: false },
+              HasAffiliation: { value: 'Yes' },
+              EmployerRelationship: { value: 'Test' },
+              FirstContact: { year: 1980, month: 1, day: 1 },
+              LastContact: { year: 2019, month: 2, day: 10 },
+              Methods: { values: ['Telephone'] },
+              Frequency: { value: 'Daily' },
+            }
+
+            expect(validateModel(testData, relative)).toEqual(true)
+          })
         })
 
         describe('if HasAffiliation is "No"', () => {
@@ -1046,6 +1462,36 @@ describe('The relative model', () => {
 
             expect(validateModel(testData, relative))
               .not.toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('passes a valid relative', () => {
+            const testData = {
+              Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+              Relation: { value: 'Father' },
+              Birthdate: { year: 1960, month: 2, day: 10 },
+              Citizenship: { value: ['Canada'] },
+              Birthplace: { city: 'Toronto', country: 'Canada' },
+              Address: {
+                street: '123 Street',
+                city: 'Toronto',
+                country: 'Canada',
+              },
+              Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+              IsDeceased: { value: 'No' },
+              Employer: { value: 'Boss' },
+              EmployerAddress: {
+                street: '123 Work Street',
+                city: 'Toronto',
+                country: 'Canada',
+              },
+              HasAffiliation: { value: 'No' },
+              FirstContact: { year: 1980, month: 1, day: 1 },
+              LastContact: { year: 2019, month: 2, day: 10 },
+              Methods: { values: ['Telephone'] },
+              Frequency: { value: 'Daily' },
+            }
+
+            expect(validateModel(testData, relative)).toEqual(true)
           })
         })
       })
@@ -1064,6 +1510,20 @@ describe('The relative model', () => {
 
           expect(validateModel(testData, relative))
             .not.toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid relative', () => {
+          const testData = {
+            Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+            Relation: { value: 'Father' },
+            Birthdate: { year: 1960, month: 2, day: 10 },
+            Citizenship: { value: ['Canada'] },
+            Birthplace: { city: 'Toronto', country: 'Canada' },
+            Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+            IsDeceased: { value: 'Yes' },
+          }
+
+          expect(validateModel(testData, relative)).toEqual(true)
         })
       })
 
@@ -1178,6 +1638,34 @@ describe('The relative model', () => {
 
           expect(validateModel(testData, relative))
             .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid relative', () => {
+          const testData = {
+            Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
+            Relation: { value: 'Father' },
+            Birthdate: { year: 1960, month: 2, day: 10 },
+            Citizenship: { value: ['Canada'] },
+            Birthplace: { city: 'Toronto', country: 'Canada' },
+            Address: {
+              street: '123 Street',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10002',
+              country: 'United States',
+            },
+            Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
+            IsDeceased: { value: 'No' },
+            Document: { value: 'Permanent' },
+            ResidenceDocumentNumber: { value: 'abc' },
+            Expiration: { year: 2015, month: 8, day: 2 },
+            FirstContact: { year: 1980, month: 1, day: 1 },
+            LastContact: { year: 2019, month: 2, day: 10 },
+            Methods: { values: ['Telephone'] },
+            Frequency: { value: 'Daily' },
+          }
+
+          expect(validateModel(testData, relative)).toEqual(true)
         })
       })
     })
