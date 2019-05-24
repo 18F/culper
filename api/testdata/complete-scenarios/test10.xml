@@ -1415,10 +1415,47 @@
             </IllegalDrugUse>
             <PoliceRecord Version="1" Type="Pooled">
               <Past7Years>
-                <Answer>No</Answer>
+                <Answer>Yes</Answer>
                 <Offenses>
-    
-  </Offenses>
+                  <Offense ID="1">
+                    <AppearedInCourt>
+        
+        
+        
+        
+      </AppearedInCourt>
+                    <Arrested>
+                      <Answer>No</Answer>
+                    </Arrested>
+                    <ArrestingAgency>
+                      <Location>
+                        <Place>
+                          <Street> </Street>
+                        </Place>
+                      </Location>
+                    </ArrestingAgency>
+                    <Date Type="Estimated">
+                      <Month>03</Month>
+                      <Year>2019</Year>
+                    </Date>
+                    <InvolveFollowingOffenses>
+                      <Answer>No</Answer>
+                    </InvolveFollowingOffenses>
+                    <Location>
+                      <Place>
+                        <City>Victoria</City>
+                        <Country>Canada</Country>
+                      </Place>
+                    </Location>
+                    <NotConvicted>
+        
+        
+      </NotConvicted>
+                    <OffenseDescription>Removal of seashell from protected marine sanctuary.</OffenseDescription>
+                    <OffenseType/>
+                  </Offense>
+                </Offenses>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </Past7Years>
               <Ever>
                 <Offenses>

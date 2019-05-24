@@ -39,7 +39,6 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"agencyType":             agencyType,
 		"apoFpo":                 apoFpo,
 		"branch":                 branch,
-		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
 		"branchcollectionHas":    branchcollectionHas,
 		"branchAny":              branchAny,
@@ -741,17 +740,6 @@ func branchToBool(data map[string]interface{}) string {
 		}
 	}
 	return "False"
-}
-
-func branchToAnswer(data map[string]interface{}) string {
-	props, ok := data["props"]
-	if ok {
-		val, ok := (props.(map[string]interface{}))["value"]
-		if ok && val == "Yes" {
-			return "Yes"
-		}
-	}
-	return "No"
 }
 
 func countryComments(data map[string]interface{}) string {
