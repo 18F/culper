@@ -27,6 +27,8 @@ var (
 	}
 )
 
+var errSignatureNotAvailable = errors.New("This application has not been signed")
+
 // field represents the fixed-width placeholder in an ArchivalPdf template.
 type field struct {
 	name     string // field identifier as it appears in the template
@@ -70,6 +72,9 @@ func (service Service) GenerateReleases(account api.Account, app api.Application
 
 		docBytes, createErr := service.CreatePdf(appData, docInfo, hash)
 		if createErr != nil {
+			if createErr == errSignatureNotAvailable {
+				continue
+			}
 			return []api.Attachment{}, errors.Wrap(createErr, "Unable to create document")
 		}
 
@@ -107,6 +112,10 @@ func templatesDir() string {
 func (service Service) CreatePdf(application map[string]interface{}, pdfType api.ArchivalPdf, hash string) ([]byte, error) {
 	// Get application data into easily queryable form
 	json, _ := gabs.Consume(application)
+
+	if !hasSignedOn(json, pdfType.Section) {
+		return []byte{}, errSignatureNotAvailable
+	}
 
 	signedOn := func(json *gabs.Container) string {
 		return getSignedOn(json, pdfType.Section)
@@ -149,6 +158,16 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 	}
 
 	return []byte(str), nil
+}
+
+func hasSignedOn(json *gabs.Container, docSubsection string) bool {
+	d := getSignedOnParts(json, docSubsection)
+
+	// Ensure all date parts are non-empty
+	if !(len(d) == 3 && d[0] != "" && d[1] != "" && d[2] != "") {
+		return false
+	}
+	return true
 }
 
 // SignatureAvailable returns the date the eApp section corresponding to the PDF type was signed.

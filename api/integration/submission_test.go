@@ -109,7 +109,7 @@ func TestSubmitter(t *testing.T) {
 	form := readTestData(t, "../testdata/complete-scenarios/test1.json")
 	saveFormJSON(t, services, form, account.ID)
 	// in addition to the base form data, we need submission data to get the date signed
-	submissionJSON := readTestData(t, "../testdata/submission.json")
+	submissionJSON := readTestData(t, "../testdata/submission-test1.json")
 	resp := saveJSON(services, submissionJSON, account.ID)
 	if resp.StatusCode != 200 {
 		t.Fatal("Didn't save the submission section")
@@ -168,7 +168,7 @@ func TestSubmitter(t *testing.T) {
 		t.Fatal(jsonErr)
 	}
 
-	if len(retrievedAttachments) != 4 {
+	if len(retrievedAttachments) != 3 {
 		t.Log("didn't get back the expected number of attachments!")
 		t.Fail()
 	}
