@@ -28,7 +28,7 @@ func TestPackage(t *testing.T) {
 	service := NewPDFService()
 	var fauxHash [sha256.Size]byte
 
-	for _, p := range DocumentTypes {
+	for _, p := range ReleasePDFs {
 		_, ok := service.SignatureAvailable(application, p)
 		if !ok {
 			continue

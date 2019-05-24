@@ -159,8 +159,6 @@ func TestSubmitter(t *testing.T) {
 		t.Fatal(readErr)
 	}
 
-	fmt.Println(string(body))
-
 	retrievedAttachments := []api.Attachment{}
 
 	jsonErr := json.Unmarshal(body, &retrievedAttachments)
@@ -174,7 +172,7 @@ func TestSubmitter(t *testing.T) {
 	}
 
 	for _, attachment := range retrievedAttachments {
-		if attachment.DocType == "REL" {
+		if attachment.DocType == pdf.DocumentTypeInformationRelease {
 
 			w, req := standardResponseAndRequest("GET", "/attachements/id", nil, account.ID)
 			req = mux.SetURLVars(req, map[string]string{
@@ -211,5 +209,4 @@ func TestSubmitter(t *testing.T) {
 			checkInfoRelease(t, attachment)
 		}
 	}
-
 }
