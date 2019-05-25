@@ -7796,7 +7796,7 @@
                     "props": {
                       "first": "UNEMPL REFEXXXXXXXXOO",
                       "firstInitialOnly": false,
-                      "middle": "UNEMPL REFE MIDDLEXXXXXXXXOO",
+                      "middle": "",
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "UNEMPL REFE LASTXXXXXXXXOO",
@@ -8148,7 +8148,7 @@
                     "props": {
                       "first": "SELF EMPL VERI FIRSTXXXXXXXXOO",
                       "firstInitialOnly": false,
-                      "middle": "SELF EMPL VERY MIDDLEXXXXXXXXOO",
+                      "middle": "",
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "SELF EMPL VERI LASTXXXXXXXXOO",
