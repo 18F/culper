@@ -90,7 +90,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>119 Center St </Street>
+                    <Street>119 Center St</Street>
                     <City>Galesburg</City>
                     <State>KS</State>
                     <ZipCode>66740</ZipCode>
@@ -130,7 +130,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>119 Center St </Street>
+                    <Street>119 Center St</Street>
                     <City>Galesburg</City>
                     <State>KS</State>
                     <ZipCode>66740</ZipCode>
@@ -169,7 +169,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>119 Center St </Street>
+                    <Street>119 Center St</Street>
                     <City>Galesburg</City>
                     <State>KS</State>
                     <ZipCode>66740</ZipCode>
@@ -406,7 +406,7 @@
               <Residencies>
                 <Residency ID="1">
                   <Address>
-                    <Street>418 English Ave. </Street>
+                    <Street>418 English Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -425,7 +425,7 @@
                   <ResidenceType>Own</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>416 English Ave. </Street>
+                      <Street>416 English Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -478,7 +478,7 @@
                   <APOFPO>
                     <PhysicalLocation>
                       <Address>
-                        <StreetUnitDutyLocation>Self Employment Physical Different APO Then Physical </StreetUnitDutyLocation>
+                        <StreetUnitDutyLocation>Self Employment Physical Different APO Then Physical</StreetUnitDutyLocation>
                         <CityPostName>Berlin</CityPostName>
                         <Country>Germany</Country>
                       </Address>
@@ -489,7 +489,7 @@
                     <Business>
                       <Name>Typewriter Repair</Name>
                       <Address>
-                        <Street>Self Employment APO </Street>
+                        <Street>Self Employment APO</Street>
                         <City>Winnipeg</City>
                         <Country>Canada</Country>
                       </Address>
@@ -505,7 +505,7 @@
                   <JobLocation>
                     <Answer>Yes</Answer>
                     <Address>
-                      <Street>Self Employment APO Physical Different Yes </Street>
+                      <Street>Self Employment APO Physical Different Yes</Street>
                       <City>APO</City>
                       <State>AA</State>
                       <ZipCode>34038</ZipCode>
@@ -522,7 +522,7 @@
                       <First Type="IO">Q</First>
                     </LegalName>
                     <Address>
-                      <Street>Verifier for Q </Street>
+                      <Street>Verifier for Q</Street>
                       <City>Tinian</City>
                       <State>MP</State>
                       <ZipCode>96952</ZipCode>
@@ -550,7 +550,7 @@
                   <APOFPO>
                     <PhysicalLocation>
                       <Address>
-                        <StreetUnitDutyLocation>Foreign EDS address </StreetUnitDutyLocation>
+                        <StreetUnitDutyLocation>Foreign EDS address</StreetUnitDutyLocation>
                         <CityPostName>Avonlea</CityPostName>
                         <Country>Canada</Country>
                       </Address>
@@ -561,7 +561,7 @@
                     <PositionTitle>Comptroller</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>EDS APO </Street>
+                        <Street>EDS APO</Street>
                         <City>APO</City>
                         <State>AA</State>
                         <ZipCode>34038</ZipCode>
@@ -583,7 +583,7 @@
                     <Name>Bran the Builder</Name>
                     <Title>King of the North</Title>
                     <Address>
-                      <Street>43 Wall St. </Street>
+                      <Street>43 Wall St.</Street>
                       <City>Westeros</City>
                       <State>CA</State>
                       <ZipCode>93950</ZipCode>
@@ -612,7 +612,7 @@
                   <APOFPO>
                     <PhysicalLocation>
                       <Address>
-                        <StreetUnitDutyLocation>Physical Different Physical Address for APO </StreetUnitDutyLocation>
+                        <StreetUnitDutyLocation>Physical Different Physical Address for APO</StreetUnitDutyLocation>
                         <CityPostName>Del Rey Oaks</CityPostName>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -624,7 +624,7 @@
                     <PositionTitle>Rewind clerk</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>Blockbuster address Rd. </Street>
+                        <Street>Blockbuster address Rd.</Street>
                         <City>Toronto</City>
                         <Country>Canada</Country>
                       </Address>
@@ -641,7 +641,7 @@
                   <JobLocation>
                     <Answer>Yes</Answer>
                     <Address>
-                      <Street>Blockbuster APO Physical different </Street>
+                      <Street>Blockbuster APO Physical different</Street>
                       <City>APO</City>
                       <State>AA</State>
                       <ZipCode>34038</ZipCode>
@@ -655,7 +655,7 @@
                     <Name>Roberta Fuad</Name>
                     <Title>Store Manager</Title>
                     <Address>
-                      <Street>674 Supervisor Lane </Street>
+                      <Street>674 Supervisor Lane</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -698,7 +698,7 @@
                     <PositionTitle>Cashier</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>Employment APO </Street>
+                        <Street>Employment APO</Street>
                         <City>APO</City>
                         <State>AA</State>
                         <ZipCode>34038</ZipCode>
@@ -719,7 +719,7 @@
                   <JobLocation>
                     <Answer>Yes</Answer>
                     <Address>
-                      <Street>Thrifty Physical Different </Street>
+                      <Street>Thrifty Physical Different</Street>
                       <City>Sooke</City>
                       <Country>Canada</Country>
                     </Address>
@@ -735,7 +735,7 @@
                     <Name>Maria Villagomez</Name>
                     <Title>Product Manager</Title>
                     <Address>
-                      <Street>350 Supervisor Rd. </Street>
+                      <Street>350 Supervisor Rd.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -778,7 +778,7 @@
                     <PositionTitle>Innkeeper</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>Foreign Oak Bay Lodge </Street>
+                        <Street>Foreign Oak Bay Lodge</Street>
                         <City>Nanaimo</City>
                         <Country>Canada</Country>
                       </Address>
@@ -805,7 +805,7 @@
                     <Name>Susan Ross</Name>
                     <Title>Manager</Title>
                     <Address>
-                      <Street>Supervisor for OakBay Rd. </Street>
+                      <Street>Supervisor for OakBay Rd.</Street>
                       <City>Nanaimo</City>
                       <Country>Canada</Country>
                     </Address>
@@ -850,7 +850,7 @@
                     <PositionTitle>Production Assistant</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>APO Address </Street>
+                        <Street>APO Address</Street>
                         <City>APO</City>
                         <State>AA</State>
                         <ZipCode>34050</ZipCode>
@@ -871,7 +871,7 @@
                   <JobLocation>
                     <Answer>Yes</Answer>
                     <Address>
-                      <Street>Foreign Address Physical Address is different </Street>
+                      <Street>Foreign Address Physical Address is different</Street>
                       <City>Kamloops</City>
                       <Country>Canada</Country>
                     </Address>
@@ -887,7 +887,7 @@
                     <Name>Joan Rivers</Name>
                     <Title>Chief of Production</Title>
                     <Address>
-                      <Street>Kamloops Supervisor </Street>
+                      <Street>Kamloops Supervisor</Street>
                       <City>Kamloops</City>
                       <Country>Canada</Country>
                     </Address>
@@ -921,7 +921,7 @@
                   <APOFPO>
                     <PhysicalLocation>
                       <Address>
-                        <StreetUnitDutyLocation>Physical location for Physical Work address Not Different </StreetUnitDutyLocation>
+                        <StreetUnitDutyLocation>Physical location for Physical Work address Not Different</StreetUnitDutyLocation>
                         <CityPostName>Monterey</CityPostName>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -933,7 +933,7 @@
                     <PositionTitle>Compact Disc assessor</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>Employment address APO </Street>
+                        <Street>Employment address APO</Street>
                         <City>APO</City>
                         <State>AA</State>
                         <ZipCode>34050</ZipCode>
@@ -961,7 +961,7 @@
                     <Name>Joseph Carpenter</Name>
                     <Title>Senior Manager</Title>
                     <Address>
-                      <Street>CompuServe Address for Supervisor </Street>
+                      <Street>CompuServe Address for Supervisor</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1003,7 +1003,7 @@
                     <DutyStation>
                       <DutyLocation>DLIFLC</DutyLocation>
                       <Address>
-                        <Street>Foreign Address Duty Station </Street>
+                        <Street>Foreign Address Duty Station</Street>
                         <City>Victoria</City>
                         <Country>Canada</Country>
                       </Address>
@@ -1027,7 +1027,7 @@
                     <Name>Mark Marcus</Name>
                     <Title>ADM</Title>
                     <Address>
-                      <Street>Another supervisor address </Street>
+                      <Street>Another supervisor address</Street>
                       <City>Pacific Grove</City>
                       <State>CA</State>
                       <ZipCode>93950</ZipCode>
@@ -1059,7 +1059,7 @@
                   <APOFPO>
                     <PhysicalLocation>
                       <Address>
-                        <StreetUnitDutyLocation>Physical location for Duty Station APO address </StreetUnitDutyLocation>
+                        <StreetUnitDutyLocation>Physical location for Duty Station APO address</StreetUnitDutyLocation>
                         <CityPostName>Monterey</CityPostName>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1070,7 +1070,7 @@
                     <DutyStation>
                       <DutyLocation>FLENUMMETOCCEN</DutyLocation>
                       <Address>
-                        <Street>APO address For Duty Station </Street>
+                        <Street>APO address For Duty Station</Street>
                         <City>APO</City>
                         <State>AA</State>
                         <ZipCode>34038</ZipCode>
@@ -1095,7 +1095,7 @@
                     <Name>Bob Supervisor</Name>
                     <Title>CAP</Title>
                     <Address>
-                      <Street>Supervisor Address </Street>
+                      <Street>Supervisor Address</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1126,7 +1126,7 @@
                     <PositionTitle>Cashier</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>331 Canyon Del Rey Ave. </Street>
+                        <Street>331 Canyon Del Rey Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1148,7 +1148,7 @@
                     <Name>Chong Doorer</Name>
                     <Title>Head Cashier</Title>
                     <Address>
-                      <Street>331 Canyon Del Rey Ave. </Street>
+                      <Street>331 Canyon Del Rey Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>

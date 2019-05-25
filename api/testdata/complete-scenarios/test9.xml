@@ -90,7 +90,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>154 2nd Ave. </Street>
+                    <Street>154 2nd Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -129,7 +129,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>893 4th St. </Street>
+                    <Street>893 4th St.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -168,7 +168,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>932 5th Ave. </Street>
+                    <Street>932 5th Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -213,7 +213,7 @@
               <Relatives>
                 <Relative ID="1">
                   <Address>
-                    <Street>Mother Residence Outside of the US </Street>
+                    <Street>Mother Residence Outside of the US</Street>
                     <City>Rome</City>
                     <Country>Italy</Country>
                   </Address>
@@ -263,7 +263,7 @@
                 </Relative>
                 <Relative ID="2">
                   <Address>
-                    <Street>Father Residence Outside of the US </Street>
+                    <Street>Father Residence Outside of the US</Street>
                     <City>Barcelona</City>
                     <Country>Spain</Country>
                   </Address>
@@ -369,7 +369,7 @@
               <PresentMarriage>
                 <CurrentSpouse ID="1">
                   <Address>
-                    <Street>Spouse Address Outside of Us </Street>
+                    <Street>Spouse Address Outside of Us</Street>
                     <City>Montreal</City>
                     <Country>Canada</Country>
                   </Address>
@@ -441,7 +441,7 @@
               <Residencies>
                 <Residency ID="1">
                   <Address>
-                    <Street>Residence 3 Rd. </Street>
+                    <Street>Residence 3 Rd.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -463,7 +463,7 @@
                   <ResidenceType>Own</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>Verifier 2 Outside of US </Street>
+                      <Street>Verifier 2 Outside of US</Street>
                       <City>Sooke</City>
                       <Country>Canada</Country>
                     </Address>
@@ -504,7 +504,7 @@
                 </Residency>
                 <Residency ID="2">
                   <Address>
-                    <Street>Residence 1 APO USS Abraham Lincoln CVN 72 </Street>
+                    <Street>Residence 1 APO USS Abraham Lincoln CVN 72</Street>
                     <City>FPO</City>
                     <State>AE</State>
                     <ZipCode>09520</ZipCode>
@@ -512,7 +512,7 @@
                   <APOFPO>
                     <PhysicalLocation>
                       <Address>
-                        <StreetUnitDutyLocation>Residence 1 Secondary Physical outside US </StreetUnitDutyLocation>
+                        <StreetUnitDutyLocation>Residence 1 Secondary Physical outside US</StreetUnitDutyLocation>
                         <CityPostName>Barcelona</CityPostName>
                         <Country>Spain</Country>
                       </Address>
@@ -536,7 +536,7 @@
                 </Residency>
                 <Residency ID="3">
                   <Address>
-                    <Street>Residence 2 Outside US </Street>
+                    <Street>Residence 2 Outside US</Street>
                     <City>Victoria</City>
                     <Country>Canada</Country>
                   </Address>
@@ -563,7 +563,7 @@
                   <ResidenceType>MilitaryHousing</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>Verifier 1 APO </Street>
+                      <Street>Verifier 1 APO</Street>
                       <City>APO</City>
                       <State>AE</State>
                       <ZipCode>09009</ZipCode>
@@ -571,7 +571,7 @@
                     <APOFPO>
                       <PhysicalLocation>
                         <Address>
-                          <StreetUnitDutyLocation>Verifier 1 Secondary Outside US </StreetUnitDutyLocation>
+                          <StreetUnitDutyLocation>Verifier 1 Secondary Outside US</StreetUnitDutyLocation>
                           <CityPostName>Nanaimo</CityPostName>
                           <Country>Canada</Country>
                         </Address>
@@ -630,7 +630,7 @@
                     <PositionTitle>Supervisor</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>employer 1 In the US </Street>
+                        <Street>employer 1 In the US</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -652,7 +652,7 @@
                     <Name>Employer 1 Supervisor</Name>
                     <Title>Senior Overseer</Title>
                     <Address>
-                      <Street>Supervisor 1 APO </Street>
+                      <Street>Supervisor 1 APO</Street>
                       <City>APO</City>
                       <State>AE</State>
                       <ZipCode>09011</ZipCode>
@@ -660,7 +660,7 @@
                     <APOFPO>
                       <PhysicalLocation>
                         <Address>
-                          <StreetUnitDutyLocation>Supervisor 1 Secondary Outside Of US </StreetUnitDutyLocation>
+                          <StreetUnitDutyLocation>Supervisor 1 Secondary Outside Of US</StreetUnitDutyLocation>
                           <CityPostName>Rota</CityPostName>
                           <Country>Spain</Country>
                         </Address>
@@ -695,7 +695,7 @@
                     <PositionTitle>Associate</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>Employer 2 Rd. </Street>
+                        <Street>Employer 2 Rd.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -723,7 +723,7 @@
                     <Name>Supervisor 2</Name>
                     <Title>Head Supervisor</Title>
                     <Address>
-                      <Street>Supervisor 2 Outside of the US </Street>
+                      <Street>Supervisor 2 Outside of the US</Street>
                       <City>Glasgow</City>
                       <Country>United Kingdom</Country>
                     </Address>
@@ -765,7 +765,7 @@
                       <First>Sue</First>
                     </LegalName>
                     <Address>
-                      <Street>Unemployment Verifier 1 APO </Street>
+                      <Street>Unemployment Verifier 1 APO</Street>
                       <City>APO</City>
                       <State>AE</State>
                       <ZipCode>09011</ZipCode>
@@ -773,7 +773,7 @@
                     <APOFPO>
                       <PhysicalLocation>
                         <Address>
-                          <StreetUnitDutyLocation>Unemployment Verifier 1 Secondary </StreetUnitDutyLocation>
+                          <StreetUnitDutyLocation>Unemployment Verifier 1 Secondary</StreetUnitDutyLocation>
                           <CityPostName>Monterey</CityPostName>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
@@ -805,7 +805,7 @@
                     <Business>
                       <Name>SelfEmployment Co</Name>
                       <Address>
-                        <Street>189 1st st. </Street>
+                        <Street>189 1st st.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -828,7 +828,7 @@
                       <First>Reed</First>
                     </LegalName>
                     <Address>
-                      <Street>SelfEmployment Verifier </Street>
+                      <Street>SelfEmployment Verifier</Street>
                       <City>Ottawa</City>
                       <Country>Canada</Country>
                     </Address>
@@ -969,7 +969,7 @@
               <Contacts>
                 <Contact ID="1">
                   <Address>
-                    <Street>Foreign Contact 1 Residence </Street>
+                    <Street>Foreign Contact 1 Residence</Street>
                     <City>Belfast</City>
                     <Country>United Kingdom</Country>
                   </Address>
