@@ -2,14 +2,48 @@ import ssn from '../ssn'
 
 describe('The ssn validator', () => {
   it('fails an SSN with the value of 999-99-9999', () => {
-    expect(ssn('999-99-9999')).toBeTruthy()
+    const testData = {
+      first: '999',
+      middle: '99',
+      last: '9999',
+    }
+
+    expect(ssn(testData)).toBeTruthy()
   })
 
   it('fails an SSN with the value of 123-45-6789', () => {
-    expect(ssn('123-45-6789')).toBeTruthy()
+    const testData = {
+      first: '123',
+      middle: '45',
+      last: '6789',
+    }
+
+    expect(ssn(testData)).toBeTruthy()
+  })
+
+  it('fails if any SSN attributes are missing', () => {
+    const testData = {
+      first: '123',
+    }
+
+    expect(ssn(testData)).toBeTruthy()
+  })
+
+  it('passes if the ssn is not applicable', () => {
+    const testData = {
+      notApplicable: true,
+    }
+
+    expect(ssn(testData)).toBeNull()
   })
 
   it('passes a valid SSN', () => {
-    expect(ssn('301-24-5391')).toBe(null)
+    const testData = {
+      first: '301',
+      middle: '24',
+      last: '5391',
+    }
+
+    expect(ssn(testData)).toBeNull()
   })
 })

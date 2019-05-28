@@ -1,29 +1,32 @@
 import MaritalValidator from './marital'
 import Location from '../components/Form/Location'
 
-describe('Marital validation', function() {
+describe('Marital validation', () => {
   it('validates divorce', () => {
     const tests = [
       {
         state: {
+          Status: { value: 'Divorced' },
           DivorcedList: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
+          Status: { value: 'Annulled' },
           DivorcedList: {
             branch: { value: 'No' },
-            items: [{ Item: {} }]
-          }
+            items: [{ Item: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
+          Status: { value: 'Widowed' },
           DivorcedList: {
             branch: { value: 'No' },
             items: [
@@ -37,27 +40,27 @@ describe('Marital validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   DateDivorced: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   BirthPlace: {
                     country: { value: 'United States' },
                     city: 'Arlington',
                     county: 'Arlington',
                     state: 'VA',
-                    layout: Location.BIRTHPLACE
+                    layout: Location.BIRTHPLACE,
                   },
                   Citizenship: {
-                    value: ['Germany']
+                    value: ['Germany'],
                   },
                   Telephone: {
                     noNumber: '',
@@ -65,12 +68,12 @@ describe('Marital validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
+                    extension: '',
                   },
                   Recognized: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Address: {
                     country: { value: 'United States' },
@@ -78,17 +81,17 @@ describe('Marital validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
-                  }
-                }
-              }
-            ]
-          }
+                    layout: Location.ADDRESS,
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new MaritalValidator(test.state, null).validDivorce()).toBe(
         test.expected
       )
@@ -99,21 +102,21 @@ describe('Marital validation', function() {
       {
         state: {
           Status: {
-            value: 'NeverMarried'
-          }
+            value: 'NeverMarried',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Status: {
-            value: 'Nope'
-          }
+            value: 'Nope',
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new MaritalValidator(test.state, null).validStatus()).toBe(
         test.expected
       )
@@ -125,45 +128,45 @@ describe('Marital validation', function() {
       {
         state: {
           Status: {
-            value: 'Nope'
-          }
+            value: 'Nope',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Status: {
-            value: 'NeverMarried'
-          }
+            value: 'NeverMarried',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Status: {
-            value: 'Married'
-          }
+            value: 'Married',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Status: {
-            value: 'Annulled'
+            value: 'Annulled',
           },
           DivorcedList: {
             branch: { value: '' },
-            items: [{ Item: {} }]
-          }
+            items: [{ Item: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Status: { value: 'Married' },
           DivorcedList: {
             branch: { value: '' },
-            items: [{ Item: {} }]
+            items: [{ Item: {} }],
           },
           CivilUnion: {
             Name: {
@@ -173,19 +176,19 @@ describe('Marital validation', function() {
               middleInitialOnly: true,
               noMiddleName: false,
               last: 'Bar',
-              suffix: 'Jr'
+              suffix: 'Jr',
             },
             Birthdate: {
               day: '1',
               month: '1',
-              year: '2016'
+              year: '2016',
             },
             BirthPlace: {
               country: { value: 'United States' },
               city: 'Arlington',
               county: 'Arlington',
               state: 'VA',
-              layout: Location.BIRTHPLACE
+              layout: Location.BIRTHPLACE,
             },
             Address: {
               country: { value: 'United States' },
@@ -193,7 +196,7 @@ describe('Marital validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Telephone: {
               noNumber: '',
@@ -201,13 +204,13 @@ describe('Marital validation', function() {
               numberType: 'Home',
               type: 'Domestic',
               timeOfDay: 'Both',
-              extension: ''
+              extension: '',
             },
             SSN: {
               first: '111',
               middle: '11',
               last: '1111',
-              applicable: true
+              applicable: true,
             },
             Divorced: { value: 'Yes' },
             Separated: { value: 'No' },
@@ -219,37 +222,200 @@ describe('Marital validation', function() {
               middleInitialOnly: true,
               noMiddleName: false,
               last: 'Bar',
-              suffix: 'Jr'
+              suffix: 'Jr',
             },
             DatesUsed: {
               from: {
                 month: '1',
                 day: '1',
-                year: '2010'
+                year: '2010',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2016'
+                year: '2016',
               },
-              present: false
+              present: false,
             },
             Citizenship: {
-              value: ['Germany', 'United States']
+              value: ['Germany', 'United States'],
             },
             ForeignBornDocument: {
               DocumentType: 'FS240',
               DocumentExpirationNotApplicable: true,
               DocumentNumber: {
-                value: 'A1234'
-              }
-            }
-          }
+                value: 'A1234',
+              },
+            },
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Status: { value: 'Married' },
+          DivorcedList: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Status: { value: 'Widowed' },
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    suffix: 'Jr',
+                  },
+                  DateDivorced: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                  },
+                  Birthdate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                  },
+                  BirthPlace: {
+                    country: { value: 'United States' },
+                    city: 'Arlington',
+                    county: 'Arlington',
+                    state: 'VA',
+                    layout: Location.BIRTHPLACE,
+                  },
+                  Citizenship: {
+                    value: ['Germany'],
+                  },
+                  Telephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: '',
+                  },
+                  Recognized: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS,
+                  },
+                },
+              },
+            ],
+          },
+          CivilUnion: {
+            Name: {
+              first: 'Foo',
+              firstInitialOnly: false,
+              middle: 'J',
+              middleInitialOnly: true,
+              noMiddleName: false,
+              last: 'Bar',
+              suffix: 'Jr',
+            },
+            Birthdate: {
+              day: '1',
+              month: '1',
+              year: '2016',
+            },
+            Location: {
+              country: { value: 'United States' },
+              city: 'Arlington',
+              county: 'Arlington',
+              state: 'VA',
+              layout: Location.BIRTHPLACE,
+            },
+            BirthPlace: {
+              country: { value: 'United States' },
+              city: 'Arlington',
+              county: 'Arlington',
+              state: 'VA',
+              layout: Location.BIRTHPLACE,
+            },
+            Address: {
+              country: { value: 'United States' },
+              street: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'VA',
+              zipcode: '22202',
+              layout: Location.ADDRESS,
+            },
+            Telephone: {
+              noNumber: '',
+              number: '7031112222',
+              numberType: 'Home',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+              extension: '',
+            },
+            SSN: {
+              first: '111',
+              middle: '11',
+              last: '1111',
+              applicable: true,
+            },
+            Divorced: { value: 'Yes' },
+            Separated: { value: 'No' },
+            OtherNames: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Name: {
+                      first: 'Foo',
+                      firstInitialOnly: false,
+                      middle: 'J',
+                      middleInitialOnly: true,
+                      noMiddleName: false,
+                      last: 'Bar',
+                      suffix: 'Jr',
+                    },
+                    MaidenName: { value: 'Yes' },
+                    DatesUsed: {
+                      from: {
+                        month: '1',
+                        day: '1',
+                        year: '2010',
+                      },
+                      to: {
+                        month: '1',
+                        day: '1',
+                        year: '2016',
+                      },
+                      present: false,
+                    },
+                  },
+                },
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+            Citizenship: {
+              value: ['Germany', 'United States'],
+            },
+            ForeignBornDocument: {
+              DocumentType: 'FS240',
+              DocumentExpirationNotApplicable: { applicable: false },
+              DocumentNumber: {
+                value: 'A1234',
+              },
+            },
+          },
+        },
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new MaritalValidator(test.state, null).isValid()).toBe(
         test.expected
       )

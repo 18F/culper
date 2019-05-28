@@ -12,6 +12,8 @@ import daterange from 'models/validators/daterange'
 import location from 'models/validators/location'
 import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
+import durationCoverage from 'models/validators/durationCoverage'
+import containsRequiredItems from 'models/validators/containsRequiredItems'
 
 import {
   isDateTime, cleanDateObject, createDateFromObject, createDateFromTimestamp,
@@ -75,6 +77,8 @@ validate.validators.daterange = daterange
 validate.validators.location = location
 validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
+validate.validators.durationCoverage = durationCoverage
+validate.validators.containsRequiredItems = containsRequiredItems
 
 export const validateModel = (data, model, options) => {
   const errors = options

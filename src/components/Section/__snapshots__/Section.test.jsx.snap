@@ -33843,7 +33843,7 @@ exports[`The section component renders RELATIONSHIPS_RELATIVES 1`] = `
         </div>
         <div
           aria-label=""
-          className="field required hidden"
+          className="field required"
           data-uuid="field-MOCK-GUID"
         >
           <a
@@ -33870,7 +33870,35 @@ exports[`The section component renders RELATIONSHIPS_RELATIVES 1`] = `
               aria-live="polite"
               className="messages error-messages"
               role="alert"
-            />
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.validRelation"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Mother and father must be provided
+                    </h5>
+                    <span>
+                      <div>
+                        <p>
+                          If you do not know your mother or father, please enter "I don't know" and provide a comment explaining your relationship.
+                        </p>
+                      </div>
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
           </div>
           <div
             className="table"
@@ -33886,7 +33914,7 @@ exports[`The section component renders RELATIONSHIPS_RELATIVES 1`] = `
         </div>
         <div
           aria-label=""
-          className="field required hidden"
+          className="field required"
           data-uuid="field-MOCK-GUID"
         >
           <a
@@ -33913,7 +33941,35 @@ exports[`The section component renders RELATIONSHIPS_RELATIVES 1`] = `
               aria-live="polite"
               className="messages error-messages"
               role="alert"
-            />
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.validMaritalRelation"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Mother-in-law and father-in-law must be provided
+                    </h5>
+                    <span>
+                      <div>
+                        <p>
+                          You indicated that you are married or separated, please provide entries for mother-in-law and father-in-law.
+                        </p>
+                      </div>
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
           </div>
           <div
             className="table"
@@ -34941,7 +34997,7 @@ exports[`The section component renders RELATIONSHIPS_REVIEW 1`] = `
           </div>
           <div
             aria-label=""
-            className="field required hidden"
+            className="field required"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -34968,7 +35024,35 @@ exports[`The section component renders RELATIONSHIPS_REVIEW 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              />
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.validRelation"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Mother and father must be provided
+                      </h5>
+                      <span>
+                        <div>
+                          <p>
+                            If you do not know your mother or father, please enter "I don't know" and provide a comment explaining your relationship.
+                          </p>
+                        </div>
+                      </span>
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
             </div>
             <div
               className="table"
@@ -34984,7 +35068,7 @@ exports[`The section component renders RELATIONSHIPS_REVIEW 1`] = `
           </div>
           <div
             aria-label=""
-            className="field required hidden"
+            className="field required"
             data-uuid="field-MOCK-GUID"
           >
             <a
@@ -35011,7 +35095,35 @@ exports[`The section component renders RELATIONSHIPS_REVIEW 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              />
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.validMaritalRelation"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Mother-in-law and father-in-law must be provided
+                      </h5>
+                      <span>
+                        <div>
+                          <p>
+                            You indicated that you are married or separated, please provide entries for mother-in-law and father-in-law.
+                          </p>
+                        </div>
+                      </span>
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
             </div>
             <div
               className="table"

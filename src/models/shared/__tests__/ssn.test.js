@@ -2,26 +2,6 @@ import { validateModel } from 'models/validate'
 import ssn from '../ssn'
 
 describe('The ssn model', () => {
-  it('ssn is required', () => {
-    const testData = {}
-
-    const expectedErrors = ['ssn.required']
-
-    expect(validateModel(testData, ssn))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('validates against specific invalid SSNs', () => {
-    const testData = {
-      ssn: '999-99-9999',
-    }
-
-    const expectedErrors = ['ssn.ssn']
-
-    expect(validateModel(testData, ssn))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
   it('ssn first, middle, and last are required', () => {
     const testData = {
       ssn: '',
@@ -68,7 +48,6 @@ describe('The ssn model', () => {
 
   it('passes a valid ssn', () => {
     const testData = {
-      ssn: '123-12-1234',
       first: '123',
       middle: '12',
       last: '1234',

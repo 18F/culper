@@ -1,549 +1,251 @@
-import store from '../services/store'
-import NameValidator from './name'
-import LocationValidator, { isInternational, countryString } from './location'
-import { extractMaritalStatus } from '../components/Section/extractors'
-import DateRangeValidator from './daterange'
+import { validateModel } from 'models/validate'
+import relative, { isCitizen, requireCitizenshipDocumentation } from 'models/relative'
+import alias from 'models/shared/alias'
+
 import {
-  validAccordion,
-  validDateField,
-  validGenericTextfield
-} from './helpers'
+  MARRIED, SEPARATED, MOTHER, FATHER, FATHER_IN_LAW, MOTHER_IN_LAW,
+} from 'constants/enums/relationshipOptions'
 
-export const getContext = () => {
+import store from 'services/store'
+import { selectMaritalStatus } from 'selectors/data'
+
+export const validateRelative = data => validateModel(data, relative) === true
+
+export const validateAlias = data => validateModel(data, alias) === true
+
+export const getMaritalStatus = () => {
   const state = store.getState()
-  const app = state.application || {}
+  return selectMaritalStatus(state)
+}
 
-  return extractMaritalStatus(app)
+export const validateRelatives = (data) => {
+  const maritalStatus = getMaritalStatus()
+
+  const requiredRelations = [
+    i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER,
+    i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER,
+  ]
+
+  if ([MARRIED, SEPARATED].includes(maritalStatus)) {
+    requiredRelations.push(
+      i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER_IN_LAW,
+    )
+    requiredRelations.push(
+      i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER_IN_LAW,
+    )
+  }
+
+  const relativesModel = {
+    List: {
+      presence: true,
+      accordion: { validator: relative },
+      containsRequiredItems: {
+        requirements: requiredRelations,
+      },
+    },
+  }
+
+  return validateModel(data, relativesModel) === true
 }
 
 export default class RelativesValidator {
   constructor(data = {}) {
-    this.list = data.List || {}
-  }
-
-  validItems() {
-    return validAccordion(this.list, item => {
-      return new RelativeValidator(item).isValid()
-    })
+    this.data = data
   }
 
   validMaritalRelations(context = null) {
-    const maritalStatuses = ['Married', 'Separated']
-    const requiredRelations = ['Father-in-law', 'Mother-in-law']
-    const maritalStatus = context || getContext()
+    const maritalStatus = context || getMaritalStatus()
+    const requiredRelations = []
 
-    if (!maritalStatus || !maritalStatuses.includes(maritalStatus)) {
-      return true
+    if ([MARRIED, SEPARATED].includes(maritalStatus)) {
+      requiredRelations.push(
+        i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER_IN_LAW,
+      )
+      requiredRelations.push(
+        i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER_IN_LAW,
+      )
     }
 
-    if ((this.list.branch || {}).value === 'No') {
-      if ((this.list.items || {}).length > 0) {
-        let relations = []
-        for (const item of this.list.items) {
-          if (!item || !item.Item || !item.Item.Relation) {
-            continue
-          }
-          relations.push(item.Item.Relation.value)
-        }
-        if (relations.length > 0) {
-          return requiredRelations.every(r => relations.includes(r))
-        }
-      }
-      return false
+    const maritalRelationsModel = {
+      List: {
+        presence: true,
+        containsRequiredItems: {
+          requirements: requiredRelations,
+        },
+      },
     }
-    return true
+
+    return validateModel(this.data, maritalRelationsModel) === true
   }
 
   validMinimumRelations() {
-    const requiredRelations = ['Father', 'Mother']
+    const requiredRelations = [
+      i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER,
+      i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER,
+    ]
 
-    if ((this.list.branch || {}).value === 'No') {
-      if ((this.list.items || {}).length > 0) {
-        let relations = []
-        for (const item of this.list.items) {
-          if (!item || !item.Item || !item.Item.Relation) {
-            continue
-          }
-          relations.push(item.Item.Relation.value)
-        }
-        if (relations.length > 0) {
-          return requiredRelations.every(r => relations.includes(r))
-        }
-      }
-      return false
+    const minimumRelationsModel = {
+      List: {
+        presence: true,
+        containsRequiredItems: {
+          requirements: requiredRelations,
+        },
+      },
     }
-    return true
+
+    return validateModel(this.data, minimumRelationsModel) === true
   }
 
   isValid() {
-    return (
-      this.validItems() &&
-      this.validMaritalRelations() &&
-      this.validMinimumRelations()
-    )
+    return validateRelatives(this.data)
   }
 }
 
 export class RelativeValidator {
   constructor(data = {}) {
-    this.relation = (data.Relation || {}).value
-    this.name = data.Name
-    this.birthdate = data.Birthdate
-    this.birthplace = data.Birthplace
-    this.citizenship = (data.Citizenship || {}).value || []
-    this.maidenSameAsListed = (data.MaidenSameAsListed || {}).value
-    this.maidenName = data.MaidenName || {}
-    this.aliases = data.Aliases || {}
-    this.isDeceased = (data.IsDeceased || {}).value
-    this.address = data.Address
-    this.citizenshipDocumentation = (data.CitizenshipDocumentation || {}).value
-    this.otherCitizenshipDocumentation = data.OtherCitizenshipDocumentation
-    this.documentNumber = data.DocumentNumber
-    this.courtName = data.CourtName
-    this.courtAddress = data.CourtAddress
-    this.document = (data.Document || {}).value
-    this.documentComments = data.DocumentComments
-    this.residenceDocumentNumber = data.ResidenceDocumentNumber
-    this.expiration = data.Expiration
-    this.firstContact = data.FirstContact
-    this.lastContact = data.LastContact
-    this.methods = (data.Methods || {}).values || []
-    this.methodsComments = (data.MethodsComments || {}).value
-    this.frequency = (data.Frequency || {}).value
-    this.frequencyComments = data.FrequencyComments
-    this.employer = data.Employer
-    this.employerAddress = data.EmployerAddress
-    this.hasAffiliation = (data.HasAffiliation || {}).value
-    this.employerRelationship = data.EmployerRelationship
+    this.data = data
   }
 
   citizen() {
-    return (
-      !!this.citizenship
-      && !!this.citizenship.length
-      && this.citizenship.indexOf('United States') > -1
-    )
-  }
-
-  currentResident() {
-    return countryString((this.address || {}).country || {}) === 'United States'
+    return isCitizen(this.data)
   }
 
   requiresCitizenshipDocumentation() {
-    const relations = [
-      'Father',
-      'Mother',
-      'Child',
-      'Stepchild',
-      'Brother',
-      'Sister',
-      'Half-brother',
-      'Half-sister',
-      'Stepbrother',
-      'Stepsister',
-      'Stepmother',
-      'Stepfather'
-    ]
-    const citizen = this.citizen()
-    const international =
-      countryString((this.birthplace || {}).country || {}) !== 'United States'
-    const mailingCountry = countryString((this.address || {}).country || {})
-
-    // If no citizenship information has been given we don't know if documentation
-    // is required.
-    if ((this.citizenship || []).length === 0) {
-      return false
-    }
-
-    if (
-      this.relation &&
-      relations.includes(this.relation) &&
-      citizen &&
-      international &&
-      this.isDeceased === 'Yes'
-    ) {
-      return true
-    }
-
-    if (
-      this.address &&
-      mailingCountry === 'United States' &&
-      international &&
-      citizen
-    ) {
-      return true
-    }
-
-    if (
-      this.address &&
-      mailingCountry === 'POSTOFFICE' &&
-      international &&
-      citizen
-    ) {
-      return true
-    }
-
-    if (this.birthplace && international && citizen) {
-      return true
-    }
-
-    return false
+    return requireCitizenshipDocumentation(this.data)
   }
 
   validRelation() {
-    return !!this.relation && this.relation.length > 0
+    return validateModel(this.data, { Relation: relative.Relation }) === true
   }
 
   validName() {
-    return !!this.name && new NameValidator(this.name).isValid()
+    return validateModel(this.data, { Name: relative.Name }) === true
   }
 
   validBirthdate() {
-    return !!this.birthdate && validDateField(this.birthdate)
+    return validateModel(this.data, { Birthdate: relative.Birthdate }) === true
   }
 
   validBirthplace() {
-    return !!this.birthplace && new LocationValidator(this.birthplace).isValid()
+    return validateModel(this.data, { Birthplace: relative.Birthplace }) === true
   }
 
   validCitizenship() {
-    return !!this.citizenship && this.citizenship.length > 0
+    return validateModel(this.data, { Citizenship: relative.Citizenship }) === true
   }
 
   validMaidenName() {
-    if (this.relation !== 'Mother') {
-      return true
-    }
-
-    if (!!this.maidenSameAsListed && this.maidenSameAsListed === 'Yes') {
-      return true
-    }
-
-    return !!this.maidenName && new NameValidator(this.maidenName).isValid()
+    return validateModel(this.data, {
+      MaidenName: relative.MaidenName,
+    }) === true
   }
 
   validAliases() {
-    const items = this.aliases.items || []
-    const nonImmediateFamily = [
-      'Fosterparent',
-      'Father-in-law',
-      'Mother-in-law',
-      'Guardian'
-    ]
-
-    if (nonImmediateFamily.includes(this.relation)) {
-      return true
-    }
-
-    if (items.length === 0) {
-      return false
-    }
-
-    for (const alias of items) {
-      const item = alias.Item || {}
-      const has =
-        !!item.Has && (item.Has.value === 'No' || item.Has.value === 'Yes')
-      if (has && item.Has.value === 'No') {
-        continue
-      }
-
-      const data = { hideMaiden: this.relation === 'Mother', ...item }
-      if (has && new AliasValidator(data).isValid() === false) {
-        return false
-      }
-    }
-
-    return true
+    return validateModel(this.data, { Aliases: relative.Aliases }) === true
   }
 
   validIsDeceased() {
-    return (
-      !!this.isDeceased &&
-      (this.isDeceased === 'No' || this.isDeceased === 'Yes')
-    )
+    return validateModel(this.data, { IsDeceased: relative.IsDeceased }) === true
   }
 
   validAddress() {
-    if (!this.isDeceased) {
-      return false
-    }
-
-    if (this.isDeceased === 'Yes') {
-      return true
-    }
-
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, { Address: relative.Address }) === true
   }
 
   validCitizenshipDocumentation() {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
-    }
-
-    switch (this.citizenshipDocumentation) {
-      case 'Other':
-        return validGenericTextfield(this.otherCitizenshipDocumentation)
-      case 'FS':
-      case 'DS':
-      case 'NaturalizedAlien':
-      case 'NaturalizedPermanent':
-      case 'NaturalizedCertificate':
-      case 'DerivedAlien':
-      case 'DerivedPermanent':
-      case 'DerivedCertificate':
-        return true
-      default:
-        return false
-    }
+    return validateModel(this.data, {
+      CitizenshipDocumentation: relative.CitizenshipDocumentation,
+      OtherCitizenshipDocumentation: relative.OtherCitizenshipDocumentation,
+    }) === true
   }
 
   validDocumentNumber() {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
-    }
-
-    return validGenericTextfield(this.documentNumber)
+    return validateModel(this.data, { DocumentNumber: relative.DocumentNumber }) === true
   }
 
   validCourtName() {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
-    }
-
-    return validGenericTextfield(this.courtName)
+    return validateModel(this.data, { CourtName: relative.CourtName }) === true
   }
 
   validCourtAddress() {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
-    }
-
-    return new LocationValidator(this.courtAddress).isValid()
+    return validateModel(this.data, { CourtAddress: relative.CourtAddress }) === true
   }
 
   validDocument() {
-    if (
-      this.citizen() ||
-      !this.currentResident() ||
-      this.isDeceased === 'Yes'
-    ) {
-      return true
-    }
-
-    switch (this.document) {
-      case 'Other':
-        return validGenericTextfield(this.documentComments)
-      case 'Permanent':
-      case 'Employment':
-      case 'Arrival':
-      case 'Visa':
-      case 'F1':
-      case 'J1':
-        return true
-      default:
-        return false
-    }
+    return validateModel(this.data, {
+      Document: relative.Document,
+      DocumentComments: relative.DocumentComments,
+    }) === true
   }
 
   validResidenceDocumentNumber() {
-    if (
-      this.citizen() ||
-      !this.currentResident() ||
-      this.isDeceased === 'Yes'
-    ) {
-      return true
-    }
-
-    return (
-      !!this.residenceDocumentNumber &&
-      validGenericTextfield(this.residenceDocumentNumber)
-    )
+    return validateModel(this.data, {
+      ResidenceDocumentNumber: relative.ResidenceDocumentNumber,
+    }) === true
   }
 
   validExpiration() {
-    if (
-      this.citizen() ||
-      !this.currentResident() ||
-      this.isDeceased === 'Yes'
-    ) {
-      return true
-    }
-
-    return !!this.expiration && validDateField(this.expiration)
+    return validateModel(this.data, {
+      Expiration: relative.Expiration,
+    }) === true
   }
 
   validFirstContact() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
-      return true
-    }
-
-    return (
-      !!this.firstContact &&
-      validDateField(this.firstContact) &&
-      this.validAddress(this.address)
-    )
+    return validateModel(this.data, {
+      FirstContact: relative.FirstContact,
+    }) === true
   }
 
   validLastContact() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
-      return true
-    }
-
-    return (
-      !!this.lastContact &&
-      validDateField(this.lastContact) &&
-      this.validAddress(this.address)
-    )
+    return validateModel(this.data, {
+      LastContact: relative.LastContact,
+    }) === true
   }
 
   validMethods() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
-      return true
-    }
-
-    return (
-      this.methods.length > 0 &&
-      ((this.methods.some(x => x === 'Other') &&
-        !!this.methodsComments &&
-        this.methodsComments.length > 0 &&
-        this.validAddress(this.address)) ||
-        this.methods.every(x => x !== 'Other'))
-    )
+    return validateModel(this.data, {
+      Methods: relative.Methods,
+      MethodsComments: relative.MethodsComments,
+    }) === true
   }
 
   validFrequency() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
-      return true
-    }
-
-    return (
-      !!this.frequency &&
-      this.frequency.length > 0 &&
-      ((this.frequency === 'Other' &&
-        !!this.frequencyComments &&
-        this.frequencyComments.value.length > 0 &&
-        this.validAddress(this.address)) ||
-        this.frequency !== 'Other')
-    )
+    return validateModel(this.data, {
+      Frequency: relative.Frequency,
+      FrequencyComments: relative.FrequencyComments,
+    }) === true
   }
 
   validEmployer() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
-      return true
-    }
-
-    if (this.address && !isInternational(this.address)) {
-      return true
-    }
-
-    return !!this.employer && validGenericTextfield(this.employer)
+    return validateModel(this.data, {
+      Employer: relative.Employer,
+    }) === true
   }
 
   validEmployerAddress() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
-      return true
-    }
-
-    if (this.address && !isInternational(this.address)) {
-      return true
-    }
-
-    return (
-      !!this.employerAddress &&
-      new LocationValidator(this.employerAddress).isValid()
-    )
+    return validateModel(this.data, {
+      EmployerAddress: relative.EmployerAddress,
+    }) === true
   }
 
   validEmployerRelationship() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
-      return true
-    }
-
-    if (this.address && !isInternational(this.address)) {
-      return true
-    }
-
-    if (!this.hasAffiliation) {
-      return false
-    }
-
-    if (this.hasAffiliation === 'No') {
-      return true
-    }
-
-    return (
-      !!this.employerRelationship &&
-      validGenericTextfield(this.employerRelationship)
-    )
+    return validateModel(this.data, {
+      HasAffiliation: relative.HasAffiliation,
+      EmployerRelationship: relative.EmployerRelationship,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validRelation() &&
-      this.validName() &&
-      this.validBirthdate() &&
-      this.validBirthplace() &&
-      this.validCitizenship() &&
-      this.validMaidenName() &&
-      this.validAliases() &&
-      this.validIsDeceased() &&
-      this.validAddress() &&
-      this.validCitizenshipDocumentation() &&
-      this.validDocumentNumber() &&
-      this.validCourtName() &&
-      this.validCourtAddress() &&
-      this.validDocument() &&
-      this.validResidenceDocumentNumber() &&
-      this.validExpiration() &&
-      this.validFirstContact() &&
-      this.validLastContact() &&
-      this.validMethods() &&
-      this.validFrequency() &&
-      this.validEmployer() &&
-      this.validEmployerAddress() &&
-      this.validEmployerRelationship()
-    )
+    return validateRelative(this.data)
   }
 }
 
 export class AliasValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.maidenName = (data.MaidenName || {}).value
-    this.dates = data.Dates
-    this.reason = data.Reason
-    this.hideMaiden = data.hideMaiden
-  }
-
-  validName() {
-    return !!this.name && new NameValidator(this.name).isValid()
-  }
-
-  validMaidenName() {
-    if (this.hideMaiden) {
-      return true
-    }
-
-    return (
-      !!this.maidenName &&
-      (this.maidenName === 'No' || this.maidenName === 'Yes')
-    )
-  }
-
-  validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates).isValid()
-  }
-
-  validReason() {
-    return !!this.reason && validGenericTextfield(this.reason)
+    this.data = data
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validMaidenName() &&
-      this.validDates() &&
-      this.validReason()
-    )
+    return validateAlias(this.data)
   }
 }

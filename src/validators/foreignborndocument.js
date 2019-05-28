@@ -1,56 +1,34 @@
-import { validGenericTextfield, validDateField } from './helpers'
+import { validateModel } from 'models/validate'
+import foreignBornDocument from 'models/foreignBornDocument'
 
-const documentTypes = [
-  'FS240',
-  'DS1350',
-  'AlienRegistration',
-  'PermanentResident',
-  'CertificateOfNaturalization',
-  'DerivedAlienRegistration',
-  'DerivedPermanentResident',
-  'DerivedCertificateOfNaturalization',
-  'I-551',
-  'I-766',
-  'I-94',
-  'Visa',
-  'NonImmigrantStudent',
-  'ExchangeVisitor',
-  'Other'
-]
+export const validateForeignBornDocument = data => (
+  validateModel(data, foreignBornDocument) === true
+)
 
 export default class ForeignBornDocumentValidator {
   constructor(data = {}) {
-    this.documentType = (data.DocumentType || {}).value
-    this.documentExpiration = data.DocumentExpiration
-    this.documentExpirationNotApplicable = data.DocumentExpirationNotApplicable
-    this.otherExplanation = data.OtherExplanation
-    this.documentNumber = data.DocumentNumber
+    this.data = data
   }
 
   validDocumentType() {
-    return documentTypes.includes(this.documentType)
+    return validateModel(this.data, {
+      DocumentType: foreignBornDocument.DocumentType,
+    }) === true
   }
 
   validDocumentExplanation() {
-    if (this.documentType !== 'Other') {
-      return true
-    }
-    return validGenericTextfield(this.otherExplanation)
+    return validateModel(this.data, {
+      OtherExplanation: foreignBornDocument.OtherExplanation,
+    }) === true
   }
 
   validDocumentExpiration() {
-    if (this.documentExpirationNotApplicable) {
-      return true
-    }
-    return validDateField(this.documentExpiration)
+    return validateModel(this.data, {
+      DocumentExpiration: foreignBornDocument.DocumentExpiration,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validDocumentType() &&
-      this.validDocumentExpiration() &&
-      this.validDocumentExplanation() &&
-      validGenericTextfield(this.documentNumber)
-    )
+    return validateForeignBornDocument(this.data)
   }
 }

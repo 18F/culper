@@ -2,7 +2,7 @@ import date from '../date'
 
 describe.only('The date validator', () => {
   it('fails if the value is not an object', () => {
-    const testData = ''
+    const testData = 'date'
     expect(date(testData)).toBeTruthy()
   })
 
