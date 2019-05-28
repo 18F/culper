@@ -39,9 +39,21 @@
           {{end}}
           />
         <Telephone>
-          <Day DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneDay}}">{{telephoneNoTimeOfDay $Item.ReferencePhoneDay}}</Day>
-          <Evening DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneEvening}}">{{telephoneNoTimeOfDay $Item.ReferencePhoneEvening}}</Evening>
-          <Mobile DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneMobile}}">{{telephoneNoTimeOfDay $Item.ReferencePhoneMobile}}</Mobile>
+          {{if telephoneNoNumber $Item.ReferencePhoneDay | eq "True"}}
+          <Day DoNotKnow="True"></Day>
+          {{else}}
+          <Day>{{telephoneNoTimeOfDay $Item.ReferencePhoneDay}}</Day>
+          {{end}}
+          {{if telephoneNoNumber $Item.ReferencePhoneEvening | eq "True"}}
+          <Evening DoNotKnow="True"></Evening>
+          {{else}}
+          <Evening>{{telephoneNoTimeOfDay $Item.ReferencePhoneEvening}}</Evening>
+          {{end}}
+          {{if telephoneNoNumber $Item.ReferencePhoneMobile | eq "True"}}
+          <Mobile DoNotKnow="True"></Mobile>
+          {{else}}
+          <Mobile>{{telephoneNoTimeOfDay $Item.ReferencePhoneMobile}}</Mobile>
+          {{end}}
         </Telephone>
       </Verifier>
       {{end}}

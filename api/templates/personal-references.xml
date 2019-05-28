@@ -33,12 +33,16 @@
         />
         <RelationshipTypeOtherExplanation>{{text $Item.RelationshipOther}}</RelationshipTypeOtherExplanation>
         <Telephone>
-          <Home DoNotKnow="{{telephoneNoNumber $Item.OtherTelephone}}">
-            {{telephone $Item.OtherTelephone}}
-          </Home>
-          <Mobile DoNotKnow="{{telephoneNoNumber $Item.MobileTelephone}}">
-            {{telephone $Item.MobileTelephone}}
-          </Mobile>
+          {{if telephoneNoNumber $Item.OtherTelephone | eq "True"}}
+          <Home DoNotKnow="True"></Home>
+          {{else}}
+          <Home>{{telephone $Item.OtherTelephone}}</Home>
+          {{end}}
+          {{if telephoneNoNumber $Item.MobileTelephone | eq "True"}}
+          <Mobile DoNotKnow="True"></Mobile>
+          {{else}}
+          <Mobile>{{telephone $Item.MobileTelephone}}</Mobile>
+          {{end}}
         </Telephone>
         {{if notApplicable $Item.RankNotApplicable | eq "True"}}
         <Title NotApplicable="True"></Title>

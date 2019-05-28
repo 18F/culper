@@ -114,12 +114,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>3331119999</Number>
                       <Time>Both</Time>
@@ -153,12 +148,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>1113331121</Number>
                       <Time>Both</Time>
@@ -192,12 +182,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>3338889999</Number>
                       <Time>Both</Time>
@@ -983,9 +968,7 @@
                     </Address>
                   </APOFPO>
                   <Birth>
-                    <Date DoNotKnow="True">
-  
-</Date>
+                    <Date DoNotKnow="True"/>
                     <Place>
                       <City>Belfast</City>
                       <Country>United Kingdom</Country>
@@ -1016,9 +999,7 @@
                     </To>
                   </DateRange>
                   <Employer>
-                    <Address DoNotKnow="True">
-  
-</Address>
+                    <Address DoNotKnow="True"/>
                     <Name DoNotKnow="True"/>
                   </Employer>
                   <ForeignAffiliation>

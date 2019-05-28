@@ -108,12 +108,7 @@
                   </LegalName>
                   <RelationshipType Schoolmate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>5027893456</Number>
                       <Time>Both</Time>
@@ -147,12 +142,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>3334442233</Number>
                       <Time>Both</Time>
@@ -186,12 +176,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>4442342567</Number>
                       <Time>Both</Time>
@@ -334,9 +319,7 @@
                       <Evening>
                         <Number>5677554321</Number>
                       </Evening>
-                      <Mobile DoNotKnow="True">
-
-</Mobile>
+                      <Mobile DoNotKnow="True"/>
                     </Telephone>
                   </Verifier>
                 </Residency>

@@ -368,9 +368,7 @@ are now called - nay!</Reason>
                         <State>CA</State>
                         <ZipCode>93955</ZipCode>
                       </Address>
-                      <Name>
-            I WAS born in the year 1632, in the city of York, of a good family,  though not of that country, my father being a foreigner of Bremen,  who settled first at Hull. He got a good estate by merchandise,  and leaving off his trade, lived afterwards at York,
-          </Name>
+                      <Name>I WAS born in the year 1632, in the city of York, of a good family,  though not of that country, my father being a foreigner of Bremen,  who settled first at Hull. He got a good estate by merchandise,  and leaving off his trade, lived afterwards at York,</Name>
                     </Employer>
                     <FirstContactDate Type="Estimated">
                       <Month>01</Month>
@@ -601,9 +599,7 @@ in the case. What has occurred in this case!</ReasonForChange>
                         <State>GA</State>
                         <ZipCode>30533</ZipCode>
                       </Address>
-                      <Name>
-            FIL EMPLXXXXXXXXOO
-          </Name>
+                      <Name>FIL EMPLXXXXXXXXOO</Name>
                     </Employer>
                     <FirstContactDate>
                       <Month>01</Month>

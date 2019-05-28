@@ -49,11 +49,10 @@
       {{if $Item.ReferenceName}}
       {{if $Item.ReferenceName.props.first}}
       <Verifier>
-        {{$doNotKnowPerson := notApplicable $Item.ReferenceNameNotApplicable}}
-        {{if $doNotKnowPerson | eq "True"}}
+        {{if notApplicable $Item.ReferenceNameNotApplicable | eq "True"}}
         <LegalName DoNotKnow="True"></LegalName>
         {{else}}
-        <LegalName DoNotKnow="False">{{nameLastFirst $Item.ReferenceName}}</LegalName>
+        <LegalName>{{nameLastFirst $Item.ReferenceName}}</LegalName>
         {{end}}
 
         {{emailOptional $Item.ReferenceEmail $Item.ReferenceEmailNotApplicable}}

@@ -166,12 +166,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>8311231291</Number>
                       <Time>Both</Time>
@@ -205,12 +200,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>1248889312</Number>
                       <Time>Both</Time>
@@ -244,12 +234,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>1341214444</Number>
                       <Time>Both</Time>
@@ -343,9 +328,7 @@
                         <City>London</City>
                         <Country>United Kingdom</Country>
                       </Address>
-                      <Name>
-            Brown's meat market
-          </Name>
+                      <Name>Brown's meat market</Name>
                     </Employer>
                     <FirstContactDate>
                       <Month>01</Month>
@@ -2578,16 +2561,10 @@
               </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
               <Contacts>
                 <Contact ID="1">
-                  <Address DoNotKnow="True">
-  
-</Address>
+                  <Address DoNotKnow="True"/>
                   <Birth>
-                    <Date DoNotKnow="True">
-  
-</Date>
-                    <Place DoNotKnow="True">
-          
-        </Place>
+                    <Date DoNotKnow="True"/>
+                    <Place DoNotKnow="True"/>
                   </Birth>
                   <Citizenships>
                     <Citizenship ID="1">

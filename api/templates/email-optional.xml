@@ -1,6 +1,5 @@
-{{$dnk := notApplicable .DoNotKnow}}
-{{if $dnk | ne "True"}}
-<Email>{{email .Email}}</Email>
+{{if notApplicable .DoNotKnow | eq "True"}}
+<Email DoNotKnow="True"></Email>
 {{else}}
-<Email DoNotKnow="{{$dnk}}"></Email>
+<Email>{{email .Email}}</Email>
 {{end}}
