@@ -229,7 +229,7 @@ describe('The employment component', () => {
     }
 
     const component = createComponent(props)
-    const employmentAddressParent = component.find("[data-fieldName='employmentAddress']")
+    const employmentAddressParent = component.find("[data-test-id='employmentAddress']")
     expect(employmentAddressParent.find('.apofpo').length).toBe(0)
   })
 })

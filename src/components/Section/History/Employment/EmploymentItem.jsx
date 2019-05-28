@@ -369,7 +369,7 @@ export default class EmploymentItem extends ValidationElement {
             help={`${prefix}.address.help`}
             adjustFor="address"
             shrink
-            dataFieldName="employmentAddress"
+            dataTestId="employmentAddress"
             scrollIntoView={this.props.scrollIntoView}
           >
             <Location
