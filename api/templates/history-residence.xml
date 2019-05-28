@@ -15,11 +15,7 @@
         <Address>{{location $Item.ReferenceAddress}}</Address>
         {{apoFpo $Item.ReferenceAddress $Item.ReferenceAlternateAddress}}
         <Comment>{{textarea $Item.ReferenceComments}}</Comment>
-        {{- if notApplicable $Item.ReferenceEmailNotApplicable | eq "True"}}
-        <Email DoNotKnow="True"></Email>
-        {{else}}
-        <Email>{{email $Item.ReferenceEmail}}</Email>
-        {{end}}
+        {{emailOptional $Item.ReferenceEmail $Item.ReferenceEmailNotApplicable}}
         <LastContact>
           <Date Type="{{dateEstimated $Item.ReferenceLastContact}}">{{monthYear $Item.ReferenceLastContact}}</Date>
         </LastContact>

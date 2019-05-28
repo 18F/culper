@@ -9,7 +9,7 @@
         {{location $Item.Address}}
       </Address>
       {{monthYearDaterange $Item.Dates}}
-      <Email DoNotKnow="{{notApplicable $Item.EmailNotApplicable}}">{{text $Item.Email}}</Email>
+      {{emailOptional $Item.Email $Item.EmailNotApplicable}}
       <EntryComment></EntryComment>
       <LegalName>
         {{name $Item.Name}}

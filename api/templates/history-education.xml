@@ -56,13 +56,7 @@
         <LegalName DoNotKnow="False">{{nameLastFirst $Item.ReferenceName}}</LegalName>
         {{end}}
 
-        {{$doNotKnowEmail := notApplicable $Item.ReferenceEmailNotApplicable}}
-        {{if $doNotKnowEmail | eq "True"}}
-        <Email DoNotKnow="True"></Email>
-        {{else}}
-        <Email DoNotKnow="False">{{email $Item.ReferenceEmail}}</Email>
-        {{end}}
-
+        {{emailOptional $Item.ReferenceEmail $Item.ReferenceEmailNotApplicable}}
         <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>
         <Address>{{location $Item.ReferenceAddress}}</Address>
         <Comment></Comment>
