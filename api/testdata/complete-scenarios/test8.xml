@@ -69,6 +69,9 @@
               </Weight>
             </IdentifyingInformation>
             <ContactInformation Version="1" Type="Pooled">
+              <WorkEmail>
+                <Email>test@test.com</Email>
+              </WorkEmail>
               <MobileTelephone>
                 <Telephone>
                   <Number>8312131212</Number>
