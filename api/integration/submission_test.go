@@ -94,7 +94,7 @@ func TestSubmitter(t *testing.T) {
 	mockClock.Add(base * time.Second)
 
 	xmlService := xml.NewXMLServiceWithMockClock(mockClock)
-	pdfService := pdf.NewPDFService()
+	pdfService := pdf.NewPDFService("../pdf/templates/")
 	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
 
 	submitHandler := http.SubmitHandler{

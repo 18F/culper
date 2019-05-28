@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"path"
 	"regexp"
-	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -43,11 +42,14 @@ type field struct {
 
 // Service implements operations to create and query archival PDFs
 type Service struct {
+	templatePath string
 }
 
 // NewPDFService returns a new PDF service
-func NewPDFService() Service {
-	return Service{}
+func NewPDFService(templatePath string) Service {
+	return Service{
+		templatePath,
+	}
 }
 
 // GenerateReleases generates the four signed pdfs for a given Application
@@ -97,17 +99,6 @@ func (service Service) GenerateReleases(account api.Account, app api.Application
 	return attachments, nil
 }
 
-func templatesDir() string {
-	// Find the path to the template directory
-	_, fileDir, _, ok := runtime.Caller(0) // This is the path to the current file
-	if !ok {
-		return "BAD_DIRECTORY"
-	}
-	pdfDir := path.Dir(fileDir)
-	dir := path.Join(pdfDir, "templates")
-	return dir
-}
-
 // CreatePdf creates an in-memory PDF from a template, populated with values from the application,
 // using basic text subsitution. Field names (e.g., SSN) are replaced with application values,
 // space padded to a fixed length to ensure that PDF object/xref byte offsets do not need to be
@@ -146,7 +137,7 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 		{"APPLICATION_SHA256_HASH", 64, hexHash},
 	}
 
-	dat, err := ioutil.ReadFile(path.Join(templatesDir(), pdfType.Template))
+	dat, err := ioutil.ReadFile(path.Join(service.templatePath, pdfType.Template))
 	if err != nil {
 		return nil, err
 	}
