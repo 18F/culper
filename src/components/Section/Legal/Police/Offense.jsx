@@ -334,19 +334,23 @@ export default class Offense extends ValidationElement {
                 required={this.props.required}
               />
             </Field>
-
-            <Branch
-              name="was_charged"
-              label={i18n.t('legal.police.heading.charged')}
-              labelSize="h4"
-              className="offense-charged"
-              {...this.props.WasCharged}
-              onUpdate={this.updateWasCharged}
-              required={this.props.required}
-              onError={this.props.onError}
-              scrollIntoView={this.props.scrollIntoView}
-            />
           </div>
+        </Show>
+
+        <Show when={(this.props.WasCited || {}).value === 'No'
+          || (this.props.WasCited || {}).value === 'Yes'}
+        >
+          <Branch
+            name="was_charged"
+            label={i18n.t('legal.police.heading.charged')}
+            labelSize="h4"
+            className="offense-charged"
+            {...this.props.WasCharged}
+            onUpdate={this.updateWasCharged}
+            required={this.props.required}
+            onError={this.props.onError}
+            scrollIntoView={this.props.scrollIntoView}
+          />
         </Show>
 
         <Show when={(this.props.WasCharged || {}).value === 'No'}>
