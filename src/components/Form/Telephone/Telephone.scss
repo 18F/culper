@@ -5,6 +5,11 @@
     display: table-row;
   }
 
+  .telephone-number-fields-main,
+  .telephone-number-fields-extension {
+    display: inline-block;
+  }
+
   .numbers {
     > label {
       font-weight: bold;
@@ -90,5 +95,33 @@
   .phonetype-option.block label {
     height: auto !important;
     width: 8.7rem !important;
+  }
+}
+
+@media only screen and (max-width: 1412px) {
+  .teleohone .telephone-number-fields-main,
+  .telephone .telephone-number-fields-extension {
+    display: block;
+  }
+
+  .telephone-number-fields-main {
+    margin-bottom: 3rem;
+  }
+
+  .telephone-number-fields-extension {
+    margin-bottom: 2rem;
+  }
+
+  .telephone-number-fields-extension .separator.pound {
+    padding-left: 0;
+  }
+
+  .telephone .timeofday .time {
+    display: block;
+    margin-right: 0;
+  }
+
+  .phonetype .phonetype-option {
+    display: block;
   }
 }

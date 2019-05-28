@@ -249,7 +249,7 @@ export default class Telephone extends ValidationElement {
     }))
 
     // Replace errors with new values
-    for (let err of localErr) {
+    for (const err of localErr) {
       const idx = this.errors.findIndex(x => x.code === err.code)
       if (idx > -1) {
         this.errors[idx] = err
@@ -315,79 +315,183 @@ export default class Telephone extends ValidationElement {
           {i18n.t('telephone.domestic.label')}
         </label>
         <div className="telephone-number-fields">
-          <span className="separator">(</span>
+          <div className="telephone-number-fields-main">
+            <span className="separator">(</span>
+            <Text
+              name="domestic_first"
+              ref="domestic_first"
+              className="number three"
+              label=""
+              ariaLabel={i18n.t('telephone.aria.domesticAreaCode')}
+              disabled={this.props.noNumber}
+              maxlength="3"
+              pattern="\d{3}"
+              prefilter={digitsOnly}
+              readonly={this.props.readonly}
+              required={this.required('Domestic')}
+              value={trimleading(this.state.domestic.first)}
+              onUpdate={this.updateDomesticNumber}
+              onError={this.handleErrorDomesticFirst}
+              tabNext={() => {
+                this.props.tab(this.refs.domestic_second.refs.text.refs.input)
+              }}
+            />
+            <span className="separator">)</span>
+            <Text
+              name="domestic_second"
+              ref="domestic_second"
+              className="number three"
+              label=""
+              ariaLabel={i18n.t('telephone.aria.domesticThree')}
+              disabled={this.props.noNumber}
+              maxlength="3"
+              pattern="\d{3}"
+              prefilter={digitsOnly}
+              readonly={this.props.readonly}
+              required={this.required('Domestic')}
+              value={trimleading(this.state.domestic.second)}
+              onUpdate={this.updateDomesticNumber}
+              onError={this.handleErrorDomesticSecond}
+              tabBack={() => {
+                this.props.tab(this.refs.domestic_first.refs.text.refs.input)
+              }}
+              tabNext={() => {
+                this.props.tab(this.refs.domestic_third.refs.text.refs.input)
+              }}
+            />
+            <span className="separator">-</span>
+            <Text
+              name="domestic_third"
+              ref="domestic_third"
+              className="number four"
+              label=""
+              ariaLabel={i18n.t('telephone.aria.domesticFour')}
+              disabled={this.props.noNumber}
+              minlengh="4"
+              maxlength="4"
+              pattern="\d{4}"
+              prefilter={digitsOnly}
+              readonly={this.props.readonly}
+              required={this.required('Domestic')}
+              value={trimleading(this.state.domestic.third)}
+              onUpdate={this.updateDomesticNumber}
+              onError={this.handleErrorDomesticThird}
+              tabBack={() => {
+                this.props.tab(this.refs.domestic_second.refs.text.refs.input)
+              }}
+              tabNext={() => {
+                this.props.tab(this.refs.domestic_extension.refs.text.refs.input)
+              }}
+            />
+          </div>
+          <div className="telephone-number-fields-extension">
+            <span className="separator pound">#</span>
+            <Text
+              name="domestic_extension"
+              ref="domestic_extension"
+              className="number six"
+              label={i18n.t('telephone.domestic.extension.label')}
+              ariaLabel={i18n.t('telephone.aria.extension')}
+              disabled={this.props.noNumber}
+              maxlength="10"
+              pattern="^\d{0,10}$"
+              prefilter={digitsOnly}
+              readonly={this.props.readonly}
+              required={false}
+              value={this.props.extension}
+              onUpdate={this.updateExtension}
+              onError={this.handleErrorDomesticExtension}
+              tabBack={() => {
+                this.props.tab(this.refs.domestic_third.refs.text.refs.input)
+              }}
+            />
+          </div>
+          <div className="telephone-number-fields-na">
+            <span
+              className={
+                this.props.allowNotApplicable ? 'separator extension' : 'hidden'
+              }
+            >
+              or
+            </span>
+            <Checkbox
+              name="nonumber"
+              className={this.props.allowNotApplicable ? 'nonumber' : 'hidden'}
+              label={i18n.t('telephone.noNumber.label')}
+              value="NA"
+              checked={this.props.noNumber}
+              onUpdate={this.updateNoNumber}
+              onError={this.handleErrorNoNumber}
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  international() {
+    return (
+      <div className="international numbers">
+        <label
+          className={[
+            `${this.props.typeClass || ''}`,
+            `${this.props.noNumber ? 'disabled' : ''}`,
+          ].join(' ').trim()}
+        >
+          {i18n.t('telephone.international.label')}
+        </label>
+        <div className="telephone-number-fields-main">
+          <span className="separator">+</span>
           <Text
-            name="domestic_first"
-            ref="domestic_first"
+            name="int_first"
+            ref="int_first"
             className="number three"
             label=""
-            ariaLabel={i18n.t('telephone.aria.domesticAreaCode')}
+            ariaLabel={i18n.t('telephone.aria.countryCode')}
             disabled={this.props.noNumber}
             maxlength="3"
-            pattern="\d{3}"
+            pattern="\d{1,3}"
             prefilter={digitsOnly}
             readonly={this.props.readonly}
-            required={this.required('Domestic')}
-            value={trimleading(this.state.domestic.first)}
-            onUpdate={this.updateDomesticNumber}
-            onError={this.handleErrorDomesticFirst}
+            required={this.required('International')}
+            value={trimleading(this.state.international.first)}
+            onUpdate={this.updateInternationalNumber}
+            onError={this.handleErrorInternationalFirst}
             tabNext={() => {
-              this.props.tab(this.refs.domestic_second.refs.text.refs.input)
-            }}
-          />
-          <span className="separator">)</span>
-          <Text
-            name="domestic_second"
-            ref="domestic_second"
-            className="number three"
-            label=""
-            ariaLabel={i18n.t('telephone.aria.domesticThree')}
-            disabled={this.props.noNumber}
-            maxlength="3"
-            pattern="\d{3}"
-            prefilter={digitsOnly}
-            readonly={this.props.readonly}
-            required={this.required('Domestic')}
-            value={trimleading(this.state.domestic.second)}
-            onUpdate={this.updateDomesticNumber}
-            onError={this.handleErrorDomesticSecond}
-            tabBack={() => {
-              this.props.tab(this.refs.domestic_first.refs.text.refs.input)
-            }}
-            tabNext={() => {
-              this.props.tab(this.refs.domestic_third.refs.text.refs.input)
+              this.props.tab(this.refs.int_second.refs.text.refs.input)
             }}
           />
           <span className="separator">-</span>
           <Text
-            name="domestic_third"
-            ref="domestic_third"
-            className="number four"
+            name="int_second"
+            ref="int_second"
+            className="number ten"
             label=""
-            ariaLabel={i18n.t('telephone.aria.domesticFour')}
+            ariaLabel={i18n.t('telephone.aria.phoneNumber')}
             disabled={this.props.noNumber}
-            minlengh="4"
-            maxlength="4"
-            pattern="\d{4}"
+            maxlength="10"
+            pattern="\d{10}"
             prefilter={digitsOnly}
             readonly={this.props.readonly}
-            required={this.required('Domestic')}
-            value={trimleading(this.state.domestic.third)}
-            onUpdate={this.updateDomesticNumber}
-            onError={this.handleErrorDomesticThird}
+            required={this.required('International')}
+            value={trimleading(this.state.international.second)}
+            onUpdate={this.updateInternationalNumber}
+            onError={this.handleErrorInternationalSecond}
             tabBack={() => {
-              this.props.tab(this.refs.domestic_second.refs.text.refs.input)
+              this.props.tab(this.refs.int_first.refs.text.refs.input)
             }}
             tabNext={() => {
-              this.props.tab(this.refs.domestic_extension.refs.text.refs.input)
+              this.props.tab(this.refs.int_extension.refs.text.refs.input)
             }}
           />
+        </div>
+        <div className="telephone-number-fields-extension">
           <span className="separator pound">#</span>
           <Text
-            name="domestic_extension"
-            ref="domestic_extension"
+            name="int_extension"
+            ref="int_extension"
             className="number six"
-            label={i18n.t('telephone.domestic.extension.label')}
+            label={i18n.t('telephone.international.extension.label')}
             ariaLabel={i18n.t('telephone.aria.extension')}
             disabled={this.props.noNumber}
             maxlength="10"
@@ -397,11 +501,13 @@ export default class Telephone extends ValidationElement {
             required={false}
             value={this.props.extension}
             onUpdate={this.updateExtension}
-            onError={this.handleErrorDomesticExtension}
+            onError={this.handleErrorInternationalExtension}
             tabBack={() => {
-              this.props.tab(this.refs.domestic_third.refs.text.refs.input)
+              this.props.tab(this.refs.int_second.refs.text.refs.input)
             }}
           />
+        </div>
+        <div className="telephone-number-fields-na">
           <span
             className={
               this.props.allowNotApplicable ? 'separator extension' : 'hidden'
@@ -419,100 +525,6 @@ export default class Telephone extends ValidationElement {
             onError={this.handleErrorNoNumber}
           />
         </div>
-      </div>
-    )
-  }
-
-  international() {
-    return (
-      <div className="international numbers">
-        <label
-          className={[
-            `${this.props.typeClass || ''}`,
-            `${this.props.noNumber ? 'disabled' : ''}`,
-          ].join(' ').trim()}
-        >
-          {i18n.t('telephone.international.label')}
-        </label>
-        <span className="separator">+</span>
-        <Text
-          name="int_first"
-          ref="int_first"
-          className="number three"
-          label=""
-          ariaLabel={i18n.t('telephone.aria.countryCode')}
-          disabled={this.props.noNumber}
-          maxlength="3"
-          pattern="\d{1,3}"
-          prefilter={digitsOnly}
-          readonly={this.props.readonly}
-          required={this.required('International')}
-          value={trimleading(this.state.international.first)}
-          onUpdate={this.updateInternationalNumber}
-          onError={this.handleErrorInternationalFirst}
-          tabNext={() => {
-            this.props.tab(this.refs.int_second.refs.text.refs.input)
-          }}
-        />
-        <span className="separator">-</span>
-        <Text
-          name="int_second"
-          ref="int_second"
-          className="number ten"
-          label=""
-          ariaLabel={i18n.t('telephone.aria.phoneNumber')}
-          disabled={this.props.noNumber}
-          maxlength="10"
-          pattern="\d{10}"
-          prefilter={digitsOnly}
-          readonly={this.props.readonly}
-          required={this.required('International')}
-          value={trimleading(this.state.international.second)}
-          onUpdate={this.updateInternationalNumber}
-          onError={this.handleErrorInternationalSecond}
-          tabBack={() => {
-            this.props.tab(this.refs.int_first.refs.text.refs.input)
-          }}
-          tabNext={() => {
-            this.props.tab(this.refs.int_extension.refs.text.refs.input)
-          }}
-        />
-        <span className="separator pound">#</span>
-        <Text
-          name="int_extension"
-          ref="int_extension"
-          className="number six"
-          label={i18n.t('telephone.international.extension.label')}
-          ariaLabel={i18n.t('telephone.aria.extension')}
-          disabled={this.props.noNumber}
-          maxlength="10"
-          pattern="^\d{0,10}$"
-          prefilter={digitsOnly}
-          readonly={this.props.readonly}
-          required={false}
-          value={this.props.extension}
-          onUpdate={this.updateExtension}
-          onError={this.handleErrorInternationalExtension}
-          tabBack={() => {
-            this.props.tab(this.refs.int_second.refs.text.refs.input)
-          }}
-        />
-        <span
-          className={
-            this.props.allowNotApplicable ? 'separator extension' : 'hidden'
-          }
-        >
-          or
-        </span>
-        <Checkbox
-          name="nonumber"
-          className={this.props.allowNotApplicable ? 'nonumber' : 'hidden'}
-          label={i18n.t('telephone.noNumber.label')}
-          value="NA"
-          checked={this.props.noNumber}
-          onUpdate={this.updateNoNumber}
-          onError={this.handleErrorNoNumber}
-        />
       </div>
     )
   }
