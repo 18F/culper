@@ -346,6 +346,22 @@ export default class Location extends ValidationElement {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    const { showPostOffice } = this.props
+    if (
+      prevProps.showPostOffice !== showPostOffice
+      && showPostOffice === false
+      && prevProps.country.value === 'POSTOFFICE'
+    ) {
+      this.update({
+        country: 'United States',
+        city: '',
+        state: '',
+        zipcode: '',
+      })
+    }
+  }
+
   componentWillUnmount() {
     this.geocodeCancel = true
   }
