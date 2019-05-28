@@ -20,7 +20,7 @@ const branchCollectionValidator = (value, options = {}) => {
     if (Item && Item.Has && Item.Has.value === 'No') {
       // Skip it
     } else {
-      const itemErrors = validateModel(Item, validator)
+      const itemErrors = validateModel(Item, validator, options)
       if (itemErrors !== true) return itemErrors
     }
   }
