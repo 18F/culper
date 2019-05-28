@@ -6,8 +6,6 @@
     {{with $Item := $item.Item}}
     <Offense ID="{{inc $index}}">
       <AppearedInCourt>
-        <!-- XXX This is the correct code but it is going to break test case 10 until EN-3786 is resolved and test case 10 is updated -->
-        <!-- XXX WasCharged isn't being prompted for/required when it should be -->
         <Answer>{{branch $Item.WasCharged}}</Answer>
         <AnswerComment></AnswerComment>
         {{if branch $Item.WasCharged | eq "Yes"}}
@@ -121,8 +119,6 @@
           {{location $Item.Address }}
         </Place>
       </Location>
-      <!-- XXX This is the correct code but it is going to break test case 10 until EN-3786 is resolved and test case 10 is updated -->
-      <!-- XXX WasCharged and Explanation aren't being prompted for/required when they should be -->
       {{if branch $Item.WasCharged | eq "No"}}
       <NotConvicted>
         <Comment></Comment>

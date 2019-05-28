@@ -5765,7 +5765,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5785,7 +5788,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5805,7 +5811,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5825,7 +5834,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5845,7 +5857,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5865,7 +5880,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5885,7 +5903,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5905,7 +5926,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5925,7 +5949,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6067,7 +6094,7 @@
                   "Explanation": {
                     "type": "textarea",
                     "props": {
-                      "value": ""
+                      "value": "I just returned the seashell and all was forgiven."
                     }
                   },
                   "InvolvedFirearms": {
@@ -6174,7 +6201,7 @@
                   "WasCharged": {
                     "type": "branch",
                     "props": {
-                      "value": ""
+                      "value": "No"
                     }
                   },
                   "WasCited": {
@@ -6209,7 +6236,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6229,7 +6259,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6266,7 +6299,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6286,7 +6322,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6306,7 +6345,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }

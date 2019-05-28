@@ -1419,12 +1419,8 @@
                 <Offenses>
                   <Offense ID="1">
                     <AppearedInCourt>
-        
-        
-        
-        
-        
-      </AppearedInCourt>
+                      <Answer>No</Answer>
+                    </AppearedInCourt>
                     <Arrested>
                       <Answer>No</Answer>
                     </Arrested>
@@ -1441,6 +1437,9 @@
                         <Country>Canada</Country>
                       </Place>
                     </Location>
+                    <NotConvicted>
+                      <Explanation>I just returned the seashell and all was forgiven.</Explanation>
+                    </NotConvicted>
                     <OffenseDescription>Removal of seashell from protected marine sanctuary.</OffenseDescription>
                     <OffenseType/>
                   </Offense>
