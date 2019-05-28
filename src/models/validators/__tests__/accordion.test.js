@@ -42,4 +42,33 @@ describe('The accordion validator', () => {
     const validator = { value: { email: true } }
     expect(accordion(testData, { validator })).toBeNull()
   })
+
+  describe('with a length option', () => {
+    it('fails if there are not enough items to pass the length validator', () => {
+      const testData = {
+        items: [
+          { Item: { value: 'myemail@yahoo.com' } },
+          { Item: { value: 'email@gmail.com' } },
+        ],
+        branch: { value: 'No' },
+      }
+
+      const validator = { value: { email: true } }
+      expect(accordion(testData, { validator, length: { minimum: 3 } })).toBeTruthy()
+    })
+
+    it('passes if there are enough items to pass the length validator', () => {
+      const testData = {
+        items: [
+          { Item: { value: 'myemail@yahoo.com' } },
+          { Item: { value: 'email@gmail.com' } },
+          { Item: { value: 'another@email.org' } },
+        ],
+        branch: { value: 'No' },
+      }
+
+      const validator = { value: { email: true } }
+      expect(accordion(testData, { validator, length: { minimum: 3 } })).toBeNull()
+    })
+  })
 })

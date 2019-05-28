@@ -57,3 +57,57 @@ export const dateWithinRange = (date, range) => {
 
   return boundary <= createDateFromObject(date)
 }
+
+/** Convert date objects to luxon objects and sort by from date */
+export const sortDateRanges = (ranges) => {
+  const sortFn = (a, b) => {
+    if (a.from < b.from) return -1
+    if (a.from > b.from) return 1
+    return 0
+  }
+
+  return [...ranges].map(r => ({
+    from: createDateFromObject(cleanDateObject(r.from)),
+    to: r.present ? today : createDateFromObject(cleanDateObject(r.to)),
+  }))
+    .sort(sortFn)
+}
+
+/**
+ * All dates being operated on are luxon date objects
+ * @param {*} coverage - duration object that needs to be covered
+ * @param {*} ranges - ranges to check against coverage duration
+ */
+export const findTimelineGaps = (coverage, ranges) => {
+  const coverageDuration = Duration.fromObject(coverage)
+  const requiredRange = {
+    from: today.minus(coverageDuration),
+    to: today,
+  }
+
+  // prepare & sort ranges
+  const sortedRanges = sortDateRanges(ranges)
+
+  // the return value
+  const gaps = []
+
+  // Point on the timeline we are comparing against (this will change)
+  let rightBoundary = requiredRange.from
+
+  sortedRanges.forEach((range) => {
+    const { from, to } = range
+    if (from <= rightBoundary && to <= rightBoundary) {
+      // range outside boundary, no op
+    } else if (from <= rightBoundary) {
+      // range contains boundary; no gap. update right boundary
+      rightBoundary = to
+    } else {
+      // range does not contain boundary, we have a gap
+      const gap = { from: rightBoundary, to: from }
+      gaps.push(gap)
+      rightBoundary = to
+    }
+  })
+
+  return gaps
+}

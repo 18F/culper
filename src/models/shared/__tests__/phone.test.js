@@ -48,6 +48,31 @@ describe('The phone model', () => {
     })
   })
 
+  describe('if options.requireNumber is true', () => {
+    it('noNumber must be false', () => {
+      const testData = {
+        noNumber: true,
+      }
+
+      const expectedErrors = ['noNumber.inclusion']
+
+      expect(validateModel(testData, phone, { requireNumber: true }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('number is required', () => {
+      const testData = {
+        noNumber: true,
+        type: 'Domestic',
+      }
+
+      const expectedErrors = ['number.required']
+
+      expect(validateModel(testData, phone, { requireNumber: true }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
   describe('if options.requireNumberType is true', () => {
     it('numberType is required', () => {
       const testData = {
