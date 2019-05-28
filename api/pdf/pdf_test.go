@@ -6,26 +6,19 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"io/ioutil"
-	"os"
 	"path"
 	"testing"
 )
 
 const (
-	packageDir    = "pdf"
-	testdataDir   = packageDir + "/testdata"
+	testdataDir   = "./testdata"
 	fileExtension = ".pdf"
 )
 
 func TestPackage(t *testing.T) {
-	// Change working dir to parent so code under test is
-	// executed in same working directory as in production.
-	os.Chdir("..")
-	// Restore working dir
-	defer os.Chdir(packageDir)
 
 	application := applicationData(t)
-	service := NewPDFService()
+	service := NewPDFService("./templates/")
 	var fauxHash [sha256.Size]byte
 
 	for _, p := range ReleasePDFs {

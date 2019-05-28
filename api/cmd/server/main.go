@@ -48,7 +48,8 @@ func main() {
 	}
 
 	xmlsvc := xml.NewXMLService()
-	pdfsvc := pdf.NewPDFService()
+	pdfTemplatePath := "./pdf/templates/"
+	pdfsvc := pdf.NewPDFService(pdfTemplatePath)
 	submitter := admin.NewSubmitter(database, store, xmlsvc, pdfsvc)
 
 	token := jwt.Service{Env: settings}
