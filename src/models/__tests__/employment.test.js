@@ -1077,7 +1077,6 @@ describe('The employment model', () => {
         }
 
         const expectedErrors = ['Additional.branchCollection']
-        console.log('helo, there!')
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
