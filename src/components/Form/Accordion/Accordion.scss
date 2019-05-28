@@ -345,7 +345,8 @@ button.usa-button-outline {
   .accordion .summary .summary-item-content .dates {
     display: block;
     margin-left: 0;
-    float: none;
+    float: none !important;
+    text-align: left !important;
   }
 }
 
