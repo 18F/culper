@@ -13,6 +13,13 @@
     width: 5rem;
     text-align: center;
     padding-top: 7rem;
+
+    &:before {
+      content: '\f30b';
+      font-family: 'Font Awesome 5 free';
+      font-weight: 900;
+      font-size: 3rem;
+    }
   }
 
   .or-present {
@@ -40,7 +47,12 @@
     flex-flow: wrap;
 
     .arrow {
-      display: none;
+      width: 100%;
+      padding-top: 0;
+    }
+
+    .arrow:before {
+      content: '\f309';
     }
   }
 }

@@ -10,17 +10,16 @@ import DateRangeValidator from '../../../validators/daterange'
 export default class DateRange extends ValidationElement {
   constructor(props) {
     super(props)
-    const touched =
-      this.isTouched(props.to.year, props.to.month, props.to.day) ||
-      this.isTouched(props.from.year, props.from.month, props.from.day)
+    const touched = this.isTouched(props.to.year, props.to.month, props.to.day)
+      || this.isTouched(props.from.year, props.from.month, props.from.day)
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
-      from: { ...props.from, touched: touched },
-      to: { ...props.to, touched: touched },
+      from: { ...props.from, touched },
+      to: { ...props.to, touched },
       present: props.present,
       presentClicked: false,
       title: props.title || 'Date Range',
-      error: false
+      error: false,
     }
 
     this.storeErrors = this.storeErrors.bind(this)
@@ -38,12 +37,12 @@ export default class DateRange extends ValidationElement {
 
   isTouched(year, month, day) {
     return (
-      year != '' &&
-      month != '' &&
-      day != '' &&
-      month >= 1 &&
-      day >= 1 &&
-      year >= 1
+      year != ''
+      && month != ''
+      && day != ''
+      && month >= 1
+      && day >= 1
+      && year >= 1
     )
   }
 
@@ -57,13 +56,11 @@ export default class DateRange extends ValidationElement {
   handleDisable(nextProps) {
     let errors = [...this.errors] || []
     if (nextProps.disabled) {
-      errors = errors.map(err => {
-        return {
-          code: err.code,
-          valid: null,
-          uid: err.uid
-        }
-      })
+      errors = errors.map(err => ({
+        code: err.code,
+        valid: null,
+        uid: err.uid,
+      }))
     }
     this.props.onError('', errors)
     this.setState()
@@ -75,7 +72,7 @@ export default class DateRange extends ValidationElement {
       from: { ...this.state.from, touched: true },
       to: { ...this.state.to, touched: true },
       present: this.state.present,
-      ...queue
+      ...queue,
     })
   }
 
@@ -94,10 +91,10 @@ export default class DateRange extends ValidationElement {
   updatePresent(values) {
     // Get a handle to current state values as well as set the value for the current
     // element that triggered a change
-    let futureState = {
+    const futureState = {
       ...this.state,
       present: !this.state.present,
-      presentClicked: true
+      presentClicked: true,
     }
 
     // If present is true then make the "to" date equal to today
@@ -106,17 +103,17 @@ export default class DateRange extends ValidationElement {
         year: `${now.getFullYear()}`,
         month: `${now.getMonth() + 1}`,
         day: `${now.getDate()}`,
-        estimated: false
+        estimated: false,
       }
     } else if (this.state.present && !futureState.present) {
       futureState.to = {
         year: '',
         month: '',
         day: '',
-        estimated: false
+        estimated: false,
       }
     }
-    const errors = this.errors.map(err => {
+    const errors = this.errors.map((err) => {
       if (err.code.indexOf('daterange.to') === -1) {
         return err
       }
@@ -124,7 +121,7 @@ export default class DateRange extends ValidationElement {
       return {
         code: err.code,
         valid: null,
-        uid: err.uid
+        uid: err.uid,
       }
     })
     this.errors = errors
@@ -135,7 +132,7 @@ export default class DateRange extends ValidationElement {
   }
 
   storeErrors(arr = [], callback) {
-    let errors = [...this.errors]
+    const errors = [...this.errors]
     for (const e of arr) {
       const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
       if (idx !== -1) {
@@ -161,26 +158,24 @@ export default class DateRange extends ValidationElement {
   }
 
   handleError(code, value, arr) {
-    arr = arr.map(err => {
-      return {
-        code: `${
-          this.props.dateRangePrefix ? this.props.dateRangePrefix : 'daterange'
-        }.${code}.${err.code.replace('date.', '')}`,
-        valid: err.valid,
-        uid: err.uid
-      }
-    })
+    arr = arr.map(err => ({
+      code: `${
+        this.props.dateRangePrefix ? this.props.dateRangePrefix : 'daterange'
+      }.${code}.${err.code.replace('date.', '')}`,
+      valid: err.valid,
+      uid: err.uid,
+    }))
 
     // Handle required
     arr = arr.concat(
       this.constructor.errors
         .filter(err => err.code === 'required')
-        .map(err => {
+        .map((err) => {
           const value = { ...this.state }
           return {
             code: `daterange.${err.code}`,
             valid: err.func(value, this.props),
-            uid: this.state.uid
+            uid: this.state.uid,
           }
         })
     )
@@ -198,24 +193,20 @@ export default class DateRange extends ValidationElement {
         // Prepare some properties for the error testing
         const props = {
           from: this.state.from,
-          to: this.state.to
+          to: this.state.to,
         }
 
-        local = noneRequiredErrors.map(err => {
-          return {
-            code: err.code,
-            valid: err.func(null, props),
-            uid: this.state.uid
-          }
-        })
+        local = noneRequiredErrors.map(err => ({
+          code: err.code,
+          valid: err.func(null, props),
+          uid: this.state.uid,
+        }))
       } else {
-        local = noneRequiredErrors.map(err => {
-          return {
-            code: err.code,
-            valid: null,
-            uid: this.state.uid
-          }
-        })
+        local = noneRequiredErrors.map(err => ({
+          code: err.code,
+          valid: null,
+          uid: this.state.uid,
+        }))
       }
 
       this.setState({ error: local.some(x => x.valid === false) }, () => {
@@ -250,9 +241,7 @@ export default class DateRange extends ValidationElement {
             required={this.props.required}
           />
         </div>
-        <div className="arrow">
-          <i className="fa fa-long-arrow-right fa-2x" />
-        </div>
+        <div className="arrow" />
         <div className="to-grid">
           <div className="from-label">To date</div>
           <DateControl
@@ -301,10 +290,10 @@ export default class DateRange extends ValidationElement {
 
 DateRange.defaultProps = {
   from: {
-    touched: false
+    touched: false,
   },
   to: {
-    touched: false
+    touched: false,
   },
   present: false,
   prefix: '',
@@ -315,10 +304,8 @@ DateRange.defaultProps = {
   maxDateEqualTo: false,
   relationship: '',
   allowPresent: true,
-  onError: (value, arr) => {
-    return arr
-  },
-  disabled: false
+  onError: (value, arr) => arr,
+  disabled: false,
 }
 
 DateRange.errors = [
@@ -329,7 +316,7 @@ DateRange.errors = [
         return validDate(value.from) && validDate(value.to)
       }
       return true
-    }
+    },
   },
   {
     code: 'daterange.order',
@@ -338,6 +325,6 @@ DateRange.errors = [
         return null
       }
       return new DateRangeValidator(props).isValid()
-    }
-  }
+    },
+  },
 ]
