@@ -340,6 +340,15 @@ button.usa-button-outline {
   margin: 1rem 0;
 }
 
+@media screen and (max-width: 1000px) {
+  .accordion .summary .summary-item-content .context,
+  .accordion .summary .summary-item-content .dates {
+    display: block;
+    margin-left: 0;
+    float: none;
+  }
+}
+
 @media screen and (min-width: 1000px) {
   .accordion > .items > .item.sticky-accordion {
     .summary-container {
