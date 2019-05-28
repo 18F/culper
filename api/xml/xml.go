@@ -136,13 +136,7 @@ func applyBulkFixes(xml string) string {
 }
 
 func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
-	path := path.Join("templates", name)
-	tmpl := template.Must(template.New(name).ParseFiles(path))
-	var output bytes.Buffer
-	if err := tmpl.Execute(&output, data); err != nil {
-		return template.HTML(""), err
-	}
-	return template.HTML(applyBulkFixes(output.String())), nil
+	return xmlTemplateWithFuncs(name, data, template.FuncMap{})
 }
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
