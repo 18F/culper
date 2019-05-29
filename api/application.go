@@ -156,7 +156,7 @@ func (a *Application) ClearNoBranches() error {
 		if ok {
 			clearErr := clearable.ClearNos()
 			if clearErr != nil {
-				return errors.Wrap(clearErr, fmt.Sprintf("Error clearing nos from %s", sectionName))
+				return errors.Wrap(clearErr, fmt.Sprintf("Error clearing the 'No' responses from %s", sectionName))
 			}
 		}
 
