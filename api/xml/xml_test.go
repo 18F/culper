@@ -334,6 +334,7 @@ func TestScenario9(t *testing.T) {
 // `test10` is derived from test1 for:
 // * a current spouse with "I don't know" as email response
 // * secondary (alternate) address workflows for employment entries
+// * offense where applicant was not arrested, summoned, cited and also not charged
 func TestScenario10(t *testing.T) {
 	executeScenario(t, "test10")
 }

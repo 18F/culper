@@ -90,7 +90,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>123 1st St. </Street>
+                    <Street>123 1st St.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -124,7 +124,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>89 9th St. </Street>
+                    <Street>89 9th St.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -158,7 +158,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>78 32nd St. </Street>
+                    <Street>78 32nd St.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -275,7 +275,7 @@
               <Residencies>
                 <Residency ID="1">
                   <Address>
-                    <Street>418 English Ave. </Street>
+                    <Street>418 English Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -294,7 +294,7 @@
                   <ResidenceType>Own</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>416 English Ave. </Street>
+                      <Street>416 English Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -349,7 +349,7 @@
                     <PositionTitle>Cashier</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>331 Canyon Del Rey Ave. </Street>
+                        <Street>331 Canyon Del Rey Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -371,7 +371,7 @@
                     <Name>Chong Doorer</Name>
                     <Title>Head Cashier</Title>
                     <Address>
-                      <Street>331 Canyon Del Rey Ave. </Street>
+                      <Street>331 Canyon Del Rey Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>

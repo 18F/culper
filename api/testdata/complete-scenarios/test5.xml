@@ -142,7 +142,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>7 Grace Hopper Ave. </Street>
+                    <Street>7 Grace Hopper Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93943</ZipCode>
@@ -176,7 +176,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>3333 ocean Ave. </Street>
+                    <Street>3333 ocean Ave.</Street>
                     <City>Carmel</City>
                     <State>CA</State>
                     <ZipCode>93923</ZipCode>
@@ -210,7 +210,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>418 Monticito Ave. </Street>
+                    <Street>418 Monticito Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -250,7 +250,7 @@
               <Relatives>
                 <Relative ID="1">
                   <Address>
-                    <Street>255 Lerwick Ave. </Street>
+                    <Street>255 Lerwick Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -292,7 +292,7 @@
                 </Relative>
                 <Relative ID="2">
                   <Address>
-                    <Street>3432 Picadily Lane </Street>
+                    <Street>3432 Picadily Lane</Street>
                     <City>London</City>
                     <Country>United Kingdom</Country>
                   </Address>
@@ -324,7 +324,7 @@
                     </AffiliatedWithForeignGovernment>
                     <Employer>
                       <Address>
-                        <Street>23 Baker St. </Street>
+                        <Street>23 Baker St.</Street>
                         <City>London</City>
                         <Country>United Kingdom</Country>
                       </Address>
@@ -353,7 +353,7 @@
                 </Relative>
                 <Relative ID="3">
                   <Address>
-                    <Street>134 2nd Ave. </Street>
+                    <Street>134 2nd Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -375,7 +375,7 @@
                       <NaturalizationCertificate>
                         <Court>
                           <Address>
-                            <Street>7 Grace Hopper Ave. </Street>
+                            <Street>7 Grace Hopper Ave.</Street>
                             <City>Monterey</City>
                             <State>CA</State>
                             <ZipCode>93940</ZipCode>
@@ -409,7 +409,7 @@
                 </Relative>
                 <Relative ID="4">
                   <Address>
-                    <Street>3432 Main St. </Street>
+                    <Street>3432 Main St.</Street>
                     <City>Los Angeles</City>
                     <State>CA</State>
                     <ZipCode>90001</ZipCode>
@@ -443,7 +443,7 @@
                 </Relative>
                 <Relative ID="5">
                   <Address>
-                    <Street>431 English Ave. </Street>
+                    <Street>431 English Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -827,7 +827,7 @@
               <Residencies>
                 <Residency ID="1">
                   <Address>
-                    <Street>424 Montecito Ave </Street>
+                    <Street>424 Montecito Ave</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -850,7 +850,7 @@
                 </Residency>
                 <Residency ID="2">
                   <Address>
-                    <Street>370 Ocean Ave </Street>
+                    <Street>370 Ocean Ave</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -874,7 +874,7 @@
                 </Residency>
                 <Residency ID="3">
                   <Address>
-                    <Street>1280 1st St </Street>
+                    <Street>1280 1st St</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -898,7 +898,7 @@
                 </Residency>
                 <Residency ID="4">
                   <Address>
-                    <Street>132 Via Gayuba </Street>
+                    <Street>132 Via Gayuba</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -917,7 +917,7 @@
                   <ResidenceType>Rent</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>130 Via Gayuba </Street>
+                      <Street>130 Via Gayuba</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -975,7 +975,7 @@
                     <PositionTitle>Tax Auditor</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>950 E Blanco Rd #202 </Street>
+                        <Street>950 E Blanco Rd #202</Street>
                         <City>salinas</City>
                         <State>CA</State>
                         <ZipCode>93901</ZipCode>
@@ -1003,7 +1003,7 @@
                     <Name>Wendy Cho</Name>
                     <Title>Tax Specialist</Title>
                     <Address>
-                      <Street>580 Pacific St </Street>
+                      <Street>580 Pacific St</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1037,7 +1037,7 @@
                     <PositionTitle>Innovation Specialist</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>1410 Del Monte Center </Street>
+                        <Street>1410 Del Monte Center</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1065,7 +1065,7 @@
                     <Name>Allain Estair</Name>
                     <Title>IT Specialist</Title>
                     <Address>
-                      <Street>580 Pacific St </Street>
+                      <Street>580 Pacific St</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1098,7 +1098,7 @@
                     <DutyStation>
                       <DutyLocation>Community Hospital of the Monterey Penninsula</DutyLocation>
                       <Address>
-                        <Street>23625 Holman Hwy </Street>
+                        <Street>23625 Holman Hwy</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1123,7 +1123,7 @@
                     <Name>Gregor Legain</Name>
                     <Title>Manager</Title>
                     <Address>
-                      <Street>580 Pacific St </Street>
+                      <Street>580 Pacific St</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1156,7 +1156,7 @@
                     <DutyStation>
                       <DutyLocation>NPS</DutyLocation>
                       <Address>
-                        <Street>1 University Circle </Street>
+                        <Street>1 University Circle</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93943</ZipCode>
@@ -1181,7 +1181,7 @@
                     <Name>Warren Chrisoff</Name>
                     <Title>Chief Learning Officer</Title>
                     <Address>
-                      <Street>580 Pacific St </Street>
+                      <Street>580 Pacific St</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1214,7 +1214,7 @@
                     <DutyStation>
                       <DutyLocation>FLENUMMETOCCEN</DutyLocation>
                       <Address>
-                        <Street>7 Grace Hopper Ave. </Street>
+                        <Street>7 Grace Hopper Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93943</ZipCode>
@@ -1239,7 +1239,7 @@
                     <Name>Grace Hopper</Name>
                     <Title>Chief Computer Scientist</Title>
                     <Address>
-                      <Street>580 Pacific St </Street>
+                      <Street>580 Pacific St</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1273,7 +1273,7 @@
                     <PositionTitle>IT Specialist</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>7 Grace Hopper Ave. </Street>
+                        <Street>7 Grace Hopper Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1301,7 +1301,7 @@
                     <Name>Jay Sprocket</Name>
                     <Title>Senior Manager</Title>
                     <Address>
-                      <Street>580 Pacific St </Street>
+                      <Street>580 Pacific St</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1335,7 +1335,7 @@
                     <PositionTitle>Cashier</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>815 Canyon Del Rey Blvd </Street>
+                        <Street>815 Canyon Del Rey Blvd</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1432,7 +1432,7 @@
                     <Name>Chong Smith</Name>
                     <Title>Head Cashier</Title>
                     <Address>
-                      <Street>580 Pacific St </Street>
+                      <Street>580 Pacific St</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1464,7 +1464,7 @@
                     <PositionTitle>Groundskeeper</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>580 Pacific St </Street>
+                        <Street>580 Pacific St</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1486,7 +1486,7 @@
                     <Name>Dan WhatsUp Morgan</Name>
                     <Title>Mayor</Title>
                     <Address>
-                      <Street>580 Pacific St </Street>
+                      <Street>580 Pacific St</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1520,7 +1520,7 @@
                     <Business>
                       <Name>Kirk's Painting</Name>
                       <Address>
-                        <Street>132 Via Gayuba </Street>
+                        <Street>132 Via Gayuba</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1550,7 +1550,7 @@
                       <First>Dennis</First>
                     </LegalName>
                     <Address>
-                      <Street>128 Via Gayuba </Street>
+                      <Street>128 Via Gayuba</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1584,7 +1584,7 @@
                       <First>Cliff</First>
                     </LegalName>
                     <Address>
-                      <Street>422 English Ave. </Street>
+                      <Street>422 English Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1631,7 +1631,7 @@
                   <Type>HighSchool</Type>
                   <Name>Monterey High School</Name>
                   <Address>
-                    <Street>101 Herrmann Dr </Street>
+                    <Street>101 Herrmann Dr</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -1669,7 +1669,7 @@
                   <Type>College</Type>
                   <Name>Monterey Peninsula College</Name>
                   <Address>
-                    <Street>980 Fremont St </Street>
+                    <Street>980 Fremont St</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -1707,7 +1707,7 @@
                   <Type>Vocational</Type>
                   <Name>Monterey Flyers</Name>
                   <Address>
-                    <Street>200 Fred Kane Dr </Street>
+                    <Street>200 Fred Kane Dr</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -1734,7 +1734,7 @@
                   <Type>Correspondence</Type>
                   <Name>Iowa State University</Name>
                   <Address>
-                    <Street>Iowa State University </Street>
+                    <Street>Iowa State University</Street>
                     <City>Ames</City>
                     <State>IA</State>
                     <ZipCode>50011</ZipCode>
@@ -1764,7 +1764,7 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>200 Hawkins Drive </Street>
+                      <Street>200 Hawkins Drive</Street>
                       <City>Iowa City</City>
                       <State>IA</State>
                       <ZipCode>52242</ZipCode>
@@ -1782,7 +1782,7 @@
                   <Agency>
                     <Location>
                       <Place>
-                        <Street>7 Grace Hopper Ave. </Street>
+                        <Street>7 Grace Hopper Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93943</ZipCode>
@@ -1810,7 +1810,7 @@
                   <Agency>
                     <Location>
                       <Place>
-                        <Street>400 Gigling Rd </Street>
+                        <Street>400 Gigling Rd</Street>
                         <City>Seaside</City>
                         <State>CA</State>
                         <ZipCode>93955</ZipCode>
@@ -1990,7 +1990,7 @@
                     <Answer>Yes</Answer>
                     <Contact ID="1">
                       <Address>
-                        <Street>123 Medanna St. </Street>
+                        <Street>123 Medanna St.</Street>
                         <City>Victoria</City>
                         <Country>Canada</Country>
                       </Address>
@@ -2015,7 +2015,7 @@
                     </Contact>
                     <Contact ID="2">
                       <Address>
-                        <Street>123 1st. </Street>
+                        <Street>123 1st.</Street>
                         <City>Ottawa</City>
                         <Country>Canada</Country>
                       </Address>
@@ -2070,7 +2070,7 @@
                     <Answer>Yes</Answer>
                     <Contact ID="1">
                       <Address>
-                        <Street>452 Wilson St. </Street>
+                        <Street>452 Wilson St.</Street>
                         <City>Victoria</City>
                         <Country>Canada</Country>
                       </Address>
@@ -2098,7 +2098,7 @@
                     </Contact>
                     <Contact ID="2">
                       <Address>
-                        <Street>331 Wilson St. </Street>
+                        <Street>331 Wilson St.</Street>
                         <City>Victoria</City>
                         <Country>Canada</Country>
                       </Address>
@@ -2213,7 +2213,7 @@
                     <Amount>9031</Amount>
                     <Authority>
                       <Address>
-                        <Street>313 Judge St. </Street>
+                        <Street>313 Judge St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -2246,7 +2246,7 @@
                     <Amount>1000</Amount>
                     <Authority>
                       <Address>
-                        <Street>313 Judge Circle </Street>
+                        <Street>313 Judge Circle</Street>
                         <City>Salinas</City>
                         <State>CA</State>
                         <ZipCode>93901</ZipCode>
@@ -2285,7 +2285,7 @@
                     <Actions>Tried harder</Actions>
                     <Agency>
                       <Address>
-                        <Street>1800 F Street </Street>
+                        <Street>1800 F Street</Street>
                         <City>Washington</City>
                         <State>DC</State>
                         <ZipCode>20405</ZipCode>
@@ -2303,7 +2303,7 @@
                     <Actions>I really tried harder</Actions>
                     <Agency>
                       <Address>
-                        <Street>313 Canyon Del Rey </Street>
+                        <Street>313 Canyon Del Rey</Street>
                         <City>Del Rey Oaks</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -2367,7 +2367,7 @@
                     <Amount>55</Amount>
                     <Court>
                       <Address>
-                        <Street>323 7th St. </Street>
+                        <Street>323 7th St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -2399,7 +2399,7 @@
                     <Amount>9999</Amount>
                     <Court>
                       <Address>
-                        <Street>389 5th Ave. </Street>
+                        <Street>389 5th Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -2592,7 +2592,7 @@
                   </DateRange>
                   <Employer>
                     <Address>
-                      <Street>13 Freemont St. </Street>
+                      <Street>13 Freemont St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -2612,7 +2612,7 @@
                 </Contact>
                 <Contact ID="2">
                   <Address>
-                    <Street>13432 blanc Ave </Street>
+                    <Street>13432 blanc Ave</Street>
                     <City>Paris</City>
                     <Country>France</Country>
                   </Address>
@@ -2656,7 +2656,7 @@
                   </DateRange>
                   <Employer>
                     <Address>
-                      <Street>32342 Croissant Ave </Street>
+                      <Street>32342 Croissant Ave</Street>
                       <City>Paris</City>
                       <Country>France</Country>
                     </Address>
@@ -2685,7 +2685,7 @@
                     <Answer>Yes</Answer>
                     <Coowner ID="1">
                       <Address>
-                        <Street>89 1st St. </Street>
+                        <Street>89 1st St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -2704,7 +2704,7 @@
                     </Coowner>
                     <Coowner ID="2">
                       <Address>
-                        <Street>903 4th St. </Street>
+                        <Street>903 4th St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -2765,7 +2765,7 @@
                     <Answer>Yes</Answer>
                     <Coowner ID="1">
                       <Address>
-                        <Street>3322 baker St. </Street>
+                        <Street>3322 baker St.</Street>
                         <City>London</City>
                         <Country>United Kingdom</Country>
                       </Address>
@@ -2783,7 +2783,7 @@
                     </Coowner>
                     <Coowner ID="2">
                       <Address>
-                        <Street>123 3rd Circle </Street>
+                        <Street>123 3rd Circle</Street>
                         <City>London</City>
                         <Country>United Kingdom</Country>
                       </Address>
@@ -2848,7 +2848,7 @@
                     <Answer>Yes</Answer>
                     <Coowner ID="1">
                       <Address>
-                        <Street>31 Johnson St. </Street>
+                        <Street>31 Johnson St.</Street>
                         <City>Victoria</City>
                         <Country>Canada</Country>
                       </Address>
@@ -2866,7 +2866,7 @@
                     </Coowner>
                     <Coowner ID="2">
                       <Address>
-                        <Street>381 Central Ave. </Street>
+                        <Street>381 Central Ave.</Street>
                         <City>Victoria</City>
                         <Country>Canada</Country>
                       </Address>
@@ -2898,7 +2898,7 @@
                   <HowAcquired>Purchase</HowAcquired>
                   <Location>
                     <Address>
-                      <Street>3431 Fort St. </Street>
+                      <Street>3431 Fort St.</Street>
                       <City>Victoria</City>
                       <Country>Canada</Country>
                     </Address>
@@ -2926,7 +2926,7 @@
                   <HowAcquired>Purchase</HowAcquired>
                   <Location>
                     <Address>
-                      <Street>9831 Wilson St. </Street>
+                      <Street>9831 Wilson St.</Street>
                       <City>Victoria</City>
                       <Country>Canada</Country>
                     </Address>
@@ -2978,7 +2978,7 @@
                 <Answer>Yes</Answer>
                 <ForeignNationalSupported ID="1">
                   <Address>
-                    <Street>314 9th St. </Street>
+                    <Street>314 9th St.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -2999,7 +2999,7 @@
                 </ForeignNationalSupported>
                 <ForeignNationalSupported ID="2">
                   <Address>
-                    <Street>3423 11th St. </Street>
+                    <Street>3423 11th St.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -3330,7 +3330,7 @@
                   <NatureOfAssociation>A good nature</NatureOfAssociation>
                   <Partner>
                     <Address>
-                      <Street>9031 Ocean Ave. </Street>
+                      <Street>9031 Ocean Ave.</Street>
                       <City>Victoria</City>
                       <Country>Canada</Country>
                     </Address>
@@ -3370,7 +3370,7 @@
                   <NatureOfAssociation>Not  bad nature.</NatureOfAssociation>
                   <Partner>
                     <Address>
-                      <Street>2121 Abott Dr. </Street>
+                      <Street>2121 Abott Dr.</Street>
                       <City>Glasgow</City>
                       <Country>United Kingdom</Country>
                     </Address>
@@ -3542,7 +3542,7 @@
                 <SponsoredVisit ID="1">
                   <AddressWhileInUS>
                     <Address>
-                      <Street>90 Monticito St. </Street>
+                      <Street>90 Monticito St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -3565,7 +3565,7 @@
                   </CountriesOfCitizenship>
                   <CurrentAddress>
                     <Address>
-                      <Street>32 3rd St. </Street>
+                      <Street>32 3rd St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -3592,7 +3592,7 @@
                   </Name>
                   <Organization>
                     <Address>
-                      <Street>32 5th St. </Street>
+                      <Street>32 5th St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -3605,7 +3605,7 @@
                 <SponsoredVisit ID="2">
                   <AddressWhileInUS>
                     <Address>
-                      <Street>390 1st St. </Street>
+                      <Street>390 1st St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -3654,7 +3654,7 @@
                   </Name>
                   <Organization>
                     <Address>
-                      <Street>332 Fremont st. </Street>
+                      <Street>332 Fremont st.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -3857,7 +3857,7 @@
                     </CompletedTreatmentProgram>
                     <Doctor>
                       <Address>
-                        <Street>9031 3rd Ave. </Street>
+                        <Street>9031 3rd Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -3873,7 +3873,7 @@
                   <Consultation ID="2">
                     <Agency>
                       <Address>
-                        <Street>389 Agency Ave. </Street>
+                        <Street>389 Agency Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -3889,7 +3889,7 @@
                     </CompletedTreatmentProgram>
                     <Doctor>
                       <Address>
-                        <Street>903 4th St. </Street>
+                        <Street>903 4th St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -3985,7 +3985,7 @@
                     <Doctor>
                       <Name>Barren, Trent</Name>
                       <Address>
-                        <Street>98 9th St. </Street>
+                        <Street>98 9th St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -4034,7 +4034,7 @@
                     <Doctor>
                       <Name>Ross, Bob</Name>
                       <Address>
-                        <Street>90 Main St. </Street>
+                        <Street>90 Main St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -4066,7 +4066,7 @@
                     <Doctor>
                       <Name>Sandler, Adam</Name>
                       <Address>
-                        <Street>90 321st St. </Street>
+                        <Street>90 321st St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -4206,7 +4206,7 @@
                         <First>Joseph</First>
                       </Name>
                       <Address>
-                        <Street>89 39th St. </Street>
+                        <Street>89 39th St.</Street>
                         <City>Pacific Grove</City>
                         <State>CA</State>
                         <ZipCode>93950</ZipCode>
@@ -4424,7 +4424,7 @@
                         <First>Susie</First>
                       </Name>
                       <Address>
-                        <Street>99 99th St. </Street>
+                        <Street>99 99th St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -4466,7 +4466,7 @@
                         <First>Fraiser</First>
                       </Name>
                       <Address>
-                        <Street>32 10th Ave. </Street>
+                        <Street>32 10th Ave.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -4606,10 +4606,6 @@
                         <County>Alameda</County>
                       </Place>
                     </Location>
-                    <NotConvicted>
-        
-        
-      </NotConvicted>
                     <OffenseDescription>Violet act 1</OffenseDescription>
                     <OffenseType Domestic="True" Firearms="True" Alcohol="True"/>
                   </Offense>
@@ -4750,7 +4746,7 @@
                 <CourtAction ID="1">
                   <Court>
                     <Address>
-                      <Street>313 Judy Lane </Street>
+                      <Street>313 Judy Lane</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -4768,7 +4764,7 @@
                 <CourtAction ID="2">
                   <Court>
                     <Address>
-                      <Street>77 Wapner Ave. </Street>
+                      <Street>77 Wapner Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -4793,7 +4789,7 @@
                   <Incident ID="1">
                     <Action>No action. </Action>
                     <Address>
-                      <Street>3213 Target Ave. </Street>
+                      <Street>3213 Target Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -4807,7 +4803,7 @@
                   <Incident ID="2">
                     <Action>No action 2</Action>
                     <Address>
-                      <Street>392 45th St. </Street>
+                      <Street>392 45th St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -4827,7 +4823,7 @@
                   <Incident ID="1">
                     <Action>No action for skimmer</Action>
                     <Address>
-                      <Street>893 Alvarado Ave. </Street>
+                      <Street>893 Alvarado Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -4841,7 +4837,7 @@
                   <Incident ID="2">
                     <Action>Administrative action</Action>
                     <Address>
-                      <Street>7 Grace Hopper Ave. </Street>
+                      <Street>7 Grace Hopper Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93943</ZipCode>
@@ -4861,7 +4857,7 @@
                   <Incident ID="1">
                     <Action>No Action 1</Action>
                     <Address>
-                      <Street>3792 3rd Ave. </Street>
+                      <Street>3792 3rd Ave.</Street>
                       <City>London</City>
                       <Country>United Kingdom</Country>
                     </Address>
@@ -4874,7 +4870,7 @@
                   <Incident ID="2">
                     <Action>Action 2</Action>
                     <Address>
-                      <Street>98 Munras Ave. </Street>
+                      <Street>98 Munras Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -4975,7 +4971,7 @@
                 <Organizations>
                   <Organization ID="1">
                     <Address>
-                      <Street>90 Bad Lane </Street>
+                      <Street>90 Bad Lane</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5001,7 +4997,7 @@
                   </Organization>
                   <Organization ID="2">
                     <Address>
-                      <Street>903 223rd Ave. </Street>
+                      <Street>903 223rd Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5033,7 +5029,7 @@
                 <Organizations>
                   <Organization ID="1">
                     <Address>
-                      <Street>389 Kaos Ave. </Street>
+                      <Street>389 Kaos Ave.</Street>
                       <City>Madrid</City>
                       <Country>Spain</Country>
                     </Address>
@@ -5057,7 +5053,7 @@
                   </Organization>
                   <Organization ID="2">
                     <Address>
-                      <Street>392 Signora Ave. </Street>
+                      <Street>392 Signora Ave.</Street>
                       <City>Rome</City>
                       <Country>Italy</Country>
                     </Address>
@@ -5132,7 +5128,7 @@
                 <Organizations>
                   <Organization ID="1">
                     <Address>
-                      <Street>89 Roma Ave. </Street>
+                      <Street>89 Roma Ave.</Street>
                       <City>Berlin</City>
                       <Country>Germany</Country>
                     </Address>
@@ -5159,7 +5155,7 @@
                   </Organization>
                   <Organization ID="2">
                     <Address>
-                      <Street>903 Arctic Lane </Street>
+                      <Street>903 Arctic Lane</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5289,7 +5285,7 @@
                   <Court>
                     <Name>Health Court</Name>
                     <Address>
-                      <Street>391 Court Ave. </Street>
+                      <Street>391 Court Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5305,7 +5301,7 @@
                       <Court>
                         <Name>Appeal Mental Court</Name>
                         <Address>
-                          <Street>903 12th St. </Street>
+                          <Street>903 12th St.</Street>
                           <City>Monterey</City>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
@@ -5317,7 +5313,7 @@
                       <Court>
                         <Name>Super Appeal Court</Name>
                         <Address>
-                          <Street>999 123rd Ave. </Street>
+                          <Street>999 123rd Ave.</Street>
                           <City>Monterey</City>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
@@ -5329,7 +5325,7 @@
                       <Court>
                         <Name>Super Squared Appeal Court</Name>
                         <Address>
-                          <Street>7371 3rd Ave. </Street>
+                          <Street>7371 3rd Ave.</Street>
                           <City>Monterey</City>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
@@ -5344,7 +5340,7 @@
                   <Court>
                     <Name>Admin Agency</Name>
                     <Address>
-                      <Street>121 Lexington Ave. </Street>
+                      <Street>121 Lexington Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5366,7 +5362,7 @@
                   <Court>
                     <Name>Admin Agency Too</Name>
                     <Address>
-                      <Street>391 Main St. </Street>
+                      <Street>391 Main St.</Street>
                       <City>Salinas</City>
                       <State>CA</State>
                       <ZipCode>93901</ZipCode>
@@ -5383,7 +5379,7 @@
                       <Court>
                         <Name>Appeal Court</Name>
                         <Address>
-                          <Street>9931 3rd Ave. </Street>
+                          <Street>9931 3rd Ave.</Street>
                           <City>Salinas</City>
                           <State>CA</State>
                           <ZipCode>93902</ZipCode>
@@ -5395,7 +5391,7 @@
                       <Court>
                         <Name>Appeal Squared Agency</Name>
                         <Address>
-                          <Street>111 Florence Rd. </Street>
+                          <Street>111 Florence Rd.</Street>
                           <City>Salinas</City>
                           <State>CA</State>
                           <ZipCode>93901</ZipCode>
@@ -5429,7 +5425,7 @@
                   <Facility>
                     <Name>Community Hospital</Name>
                     <Address>
-                      <Street>2342 Garden Rd. </Street>
+                      <Street>2342 Garden Rd.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5456,7 +5452,7 @@
                   <Facility>
                     <Name>Natividad</Name>
                     <Address>
-                      <Street>333 45th St. </Street>
+                      <Street>333 45th St.</Street>
                       <City>Salinas</City>
                       <State>CA</State>
                       <ZipCode>93901</ZipCode>
@@ -5491,7 +5487,7 @@
                       <Time>Day</Time>
                     </Telephone>
                     <Address>
-                      <Street>9830 Simon St. </Street>
+                      <Street>9830 Simon St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5504,7 +5500,7 @@
                       <Time>Day</Time>
                     </Telephone>
                     <Address>
-                      <Street>9830 Simon St. </Street>
+                      <Street>9830 Simon St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5537,7 +5533,7 @@
                       <Time>Day</Time>
                     </Telephone>
                     <Address>
-                      <Street>7382 Rosa St. </Street>
+                      <Street>7382 Rosa St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5550,7 +5546,7 @@
                       <Time>Day</Time>
                     </Telephone>
                     <Address>
-                      <Street>45 Canoli Ave. </Street>
+                      <Street>45 Canoli Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5573,7 +5569,7 @@
                       <Time>Day</Time>
                     </Telephone>
                     <Address>
-                      <Street>939 Hermosa Ave. </Street>
+                      <Street>939 Hermosa Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -5588,7 +5584,7 @@
                       <Time>Day</Time>
                     </Telephone>
                     <Address>
-                      <Street>83 Alvin Ave. </Street>
+                      <Street>83 Alvin Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>

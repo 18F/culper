@@ -84,7 +84,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>503 Rockerfeller Dr. </Street>
+                    <Street>503 Rockerfeller Dr.</Street>
                     <City>Portland</City>
                     <State>OR</State>
                     <ZipCode>97209</ZipCode>
@@ -118,7 +118,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>241 Medanna Ct. </Street>
+                    <Street>241 Medanna Ct.</Street>
                     <City>Victoria</City>
                     <Country>Canada</Country>
                   </Address>
@@ -151,7 +151,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>342 1st Ave. </Street>
+                    <Street>342 1st Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -268,7 +268,7 @@
               <Residencies>
                 <Residency ID="1">
                   <Address>
-                    <Street>5325 SE 87th St. </Street>
+                    <Street>5325 SE 87th St.</Street>
                     <City>Portland</City>
                     <State>OR</State>
                     <ZipCode>97201</ZipCode>
@@ -287,7 +287,7 @@
                   <ResidenceType>Own</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>5325 87th st. </Street>
+                      <Street>5325 87th st.</Street>
                       <City>Portland</City>
                       <State>OR</State>
                       <ZipCode>97201</ZipCode>
@@ -338,7 +338,7 @@
                     <PositionTitle>Cashier</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>888 Powell St. </Street>
+                        <Street>888 Powell St.</Street>
                         <City>Gresham</City>
                         <State>OR</State>
                         <ZipCode>97203</ZipCode>
@@ -360,7 +360,7 @@
                     <Name>Charles Incharge</Name>
                     <Title>Head Cashier</Title>
                     <Address>
-                      <Street>888 Powell St. </Street>
+                      <Street>888 Powell St.</Street>
                       <City>Gresham</City>
                       <State>OR</State>
                       <ZipCode>97203</ZipCode>
@@ -807,7 +807,7 @@
                         <Time>Day</Time>
                       </Telephone>
                       <Address>
-                        <Street>8973 Ocean Blvd. </Street>
+                        <Street>8973 Ocean Blvd.</Street>
                         <City>Pacific Grove</City>
                         <State>CA</State>
                         <ZipCode>93950</ZipCode>
@@ -820,7 +820,7 @@
                         <Time>Day</Time>
                       </Telephone>
                       <Address>
-                        <Street>8973 Ocean Blvd. </Street>
+                        <Street>8973 Ocean Blvd.</Street>
                         <City>Pacific Grove</City>
                         <State>CA</State>
                         <ZipCode>93950</ZipCode>
@@ -849,7 +849,7 @@
                         <Time>Day</Time>
                       </Telephone>
                       <Address>
-                        <Street>341 89th Ave. </Street>
+                        <Street>341 89th Ave.</Street>
                         <City>Portland</City>
                         <State>OR</State>
                         <ZipCode>97203</ZipCode>
@@ -862,7 +862,7 @@
                         <Time>Day</Time>
                       </Telephone>
                       <Address>
-                        <Street>341 89th Ave. </Street>
+                        <Street>341 89th Ave.</Street>
                         <City>Portland</City>
                         <State>OR</State>
                         <ZipCode>97203</ZipCode>

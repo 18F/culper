@@ -88,7 +88,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>90 West St </Street>
+                    <Street>90 West St</Street>
                     <City>New York</City>
                     <State>NY</State>
                     <ZipCode>11201</ZipCode>
@@ -122,7 +122,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>9019 Main St </Street>
+                    <Street>9019 Main St</Street>
                     <City>St. Louis</City>
                     <State>MO</State>
                     <ZipCode>63101</ZipCode>
@@ -156,7 +156,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>9013 Park Avenue </Street>
+                    <Street>9013 Park Avenue</Street>
                     <City>New York</City>
                     <State>NY</State>
                     <ZipCode>11201</ZipCode>
@@ -346,7 +346,7 @@
                     <Business>
                       <Name>McCallum Bridge Company</Name>
                       <Address>
-                        <Street>110 West Side Highway </Street>
+                        <Street>110 West Side Highway</Street>
                         <City>New York</City>
                         <State>NY</State>
                         <ZipCode>10017</ZipCode>
@@ -369,7 +369,7 @@
                       <First>Simeon</First>
                     </LegalName>
                     <Address>
-                      <Street>12 Main st </Street>
+                      <Street>12 Main st</Street>
                       <City>Rochester</City>
                       <State>NY</State>
                       <ZipCode>11201</ZipCode>
@@ -415,7 +415,7 @@
                   <Type>College</Type>
                   <Name>People's College</Name>
                   <Address>
-                    <Street>124 Main St </Street>
+                    <Street>124 Main St</Street>
                     <City>Havanna</City>
                     <State>NY</State>
                     <ZipCode>11201</ZipCode>
@@ -476,7 +476,7 @@
                     <Authority>
                       <Court>Ellis Island</Court>
                       <Place>
-                        <Street>9019 Ellis Island </Street>
+                        <Street>9019 Ellis Island</Street>
                         <City>New York</City>
                         <State>NY</State>
                         <ZipCode>11201</ZipCode>
@@ -646,7 +646,7 @@ Cuba</Authority>
                     <Answer>Yes</Answer>
                     <Contact ID="1">
                       <Address>
-                        <Street>123 Main St </Street>
+                        <Street>123 Main St</Street>
                         <City>Beijing</City>
                         <Country>China</Country>
                       </Address>
@@ -1132,7 +1132,7 @@ Cuba</Authority>
                   <Incident ID="1">
                     <Action>No one caught me!!!! AHHHH HAHAHAHAHA</Action>
                     <Address>
-                      <Street>20 20th St </Street>
+                      <Street>20 20th St</Street>
                       <City>New York</City>
                       <State>NY</State>
                       <ZipCode>10001</ZipCode>
@@ -1146,7 +1146,7 @@ Cuba</Authority>
                   <Incident ID="2">
                     <Action>Welllll so the catfisher figured out my phishing technique and called the local sheriff who found me hiding in the bathroom of an internet cafe.</Action>
                     <Address>
-                      <Street>124 Creepwalk </Street>
+                      <Street>124 Creepwalk</Street>
                       <City>Yolo</City>
                       <State>TX</State>
                       <ZipCode>73301</ZipCode>
@@ -1166,7 +1166,7 @@ Cuba</Authority>
                   <Incident ID="1">
                     <Action>Look it was a program that went wild. We were trying to get more votes for Boaty McBoatface to help support our friends in the UK.</Action>
                     <Address>
-                      <Street>7 Grace Hopper Ave. </Street>
+                      <Street>7 Grace Hopper Ave.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93943</ZipCode>
@@ -1180,7 +1180,7 @@ Cuba</Authority>
                   <Incident ID="2">
                     <Action>DOD was like, hey we wont' charge you, you're on our team now buddy.</Action>
                     <Address>
-                      <Street>2901 Ridge St </Street>
+                      <Street>2901 Ridge St</Street>
                       <City>Winnetka</City>
                       <State>IL</State>
                       <ZipCode>60415</ZipCode>
@@ -1200,7 +1200,7 @@ Cuba</Authority>
                   <Incident ID="1">
                     <Action>The hotel manager took pity on me because it was, in fact, our honey moon, and didn't call the cops.</Action>
                     <Address>
-                      <Street>91 Beach St </Street>
+                      <Street>91 Beach St</Street>
                       <City>Port Au Prince</City>
                       <Country>Haiti</Country>
                     </Address>
@@ -1213,7 +1213,7 @@ Cuba</Authority>
                   <Incident ID="2">
                     <Action>The catfisher came back this time and I was fed up with it. So I went to their house and accessed their computer without their knowledge and proceeded to delete their OS so they could stop tricking me into talking to them.</Action>
                     <Address>
-                      <Street>145 Main St </Street>
+                      <Street>145 Main St</Street>
                       <City>Traverse City</City>
                       <State>MI</State>
                       <ZipCode>48002</ZipCode>

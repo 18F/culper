@@ -6,9 +6,9 @@
     {{with $Item := $item.Item}}
     <Offense ID="{{inc $index}}">
       <AppearedInCourt>
-        <Answer>{{branchToAnswer $Item.WasCharged}}</Answer>
+        <Answer>{{branch $Item.WasCharged}}</Answer>
         <AnswerComment></AnswerComment>
-        {{if branchToAnswer $Item.WasCharged | eq "Yes"}}
+        {{if branch $Item.WasCharged | eq "Yes"}}
         <Charges>
           <!-- XXX We don't collect more than one -->
           <!-- See https://github.com/18F/e-QIP-prototype/issues/782 -->
@@ -58,11 +58,11 @@
           </Imprisonment>
           <Incarcerated>
             <YearOrMore>
-              <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>
+              <Answer>{{branch $sentence.Incarcerated}}</Answer>
             </YearOrMore>
           </Incarcerated>
           <MoreThanYear>
-            <Answer>{{branchToAnswer $sentence.ExceedsYear}}</Answer>
+            <Answer>{{branch $sentence.ExceedsYear}}</Answer>
           </MoreThanYear>
           <Probation>
             {{if notApplicable $sentence.ProbationDatesNA | eq "True"}}
@@ -90,6 +90,7 @@
       <Arrested>
         <Answer>{{branch $Item.WasCited}}</Answer>
       </Arrested>
+      {{if branch $Item.WasCited | eq "Yes"}}
       <ArrestingAgency>
         <Comment></Comment>
         <Location>
@@ -99,9 +100,10 @@
         </Location>
         <Name>{{text $Item.CitedBy}}</Name>
       </ArrestingAgency>
-      {{if and (branchToAnswer $Item.WasCharged | eq "Yes") (branch $Item.WasSentenced | ne "Yes")}}
+      {{end}}
+      {{if and (branch $Item.WasCharged | eq "Yes") (branch $Item.WasSentenced | ne "Yes")}}
       <AwaitingTrial>
-        <Answer>{{branchToAnswer $Item.AwaitingTrial}}</Answer>
+        <Answer>{{branch $Item.AwaitingTrial}}</Answer>
         <AnswerComment></AnswerComment>
         <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
       </AwaitingTrial>
@@ -117,10 +119,12 @@
           {{location $Item.Address }}
         </Place>
       </Location>
+      {{if branch $Item.WasCharged | eq "No"}}
       <NotConvicted>
         <Comment></Comment>
         <Explanation>{{text $Item.Explanation}}</Explanation>
       </NotConvicted>
+      {{end}}
       <OffenseComment></OffenseComment>
       <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
       <OffenseType
