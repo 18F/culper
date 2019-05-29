@@ -16,6 +16,8 @@ func TestSaveHandler(t *testing.T) {
         return nil
     }
 
+    var mockStore mock.StorageService
+
     var mockLog mock.LogService
 
     handler := SaveHandler{
@@ -23,6 +25,7 @@ func TestSaveHandler(t *testing.T) {
         Log:      &mockLog,
         Token:    nil,
         Database: &mockDB,
+        Store:    &mockStore,
     }
 
     requestJSON := `

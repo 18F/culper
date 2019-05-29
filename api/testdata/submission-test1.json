@@ -1,0 +1,104 @@
+{
+    "props": {
+        "AdditionalComments": {
+            "props": {
+                "Signature": {
+                    "props": {
+                        "Date": {
+                            "props": {
+                              "month": "7",
+                              "day": "25",
+                              "year": "2017"
+                            },
+                            "type": "datecontrol"
+                        },
+                        "Name": {
+                            "props": {
+                                "value": "Heinrich Ernest Mendosa"
+                            },
+                            "type": "text"
+                        }
+                    },
+                    "type": "signature"
+                }
+            },
+            "type": "submission.additionalcomments"
+        },
+        "Attachments": {
+            "props": {
+                "Method": {
+                    "props": {},
+                    "type": "text"
+                }
+            },
+            "type": "submission.attachments"
+        },
+        "Credit": {
+            "props": {
+                "Signature": {
+                    "props": {
+                        "Date": {
+                            "props": {
+                              "month": "7",
+                              "day": "25",
+                              "year": "2017"
+                            },
+                            "type": "datecontrol"
+                        },
+                        "Name": {
+                            "props": {
+                                "value": "Heinrich Ernest Mendosa"
+                            },
+                            "type": "text"
+                        }
+                    },
+                    "type": "signature"
+                }
+            },
+            "type": "submission.credit"
+        },
+        "General": {
+            "props": {
+                "Signature": {
+                    "props": {
+                        "Date": {
+                            "props": {
+                              "month": "7",
+                              "day": "25",
+                              "year": "2017"
+                            },
+                            "type": "datecontrol"
+                        },
+                        "Name": {
+                            "props": {
+                                "value": "Heinrich Ernest Mendosa"
+                            },
+                            "type": "text"
+                        }
+                    },
+                    "type": "signature"
+                }
+            },
+            "type": "submission.general"
+        },
+        "Medical": {
+            "props": {
+                "Signature": {
+                    "props": {
+                        "Date": {
+                            "props": {},
+                            "type": "datecontrol"
+                        },
+                        "Name": {
+                            "props": {},
+                            "type": "text"
+                        }
+                    },
+                    "type": "signature"
+                }
+            },
+            "type": "submission.medical"
+        }
+    },
+    "type": "package.submit"
+}
