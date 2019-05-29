@@ -29,6 +29,7 @@ const DocumentTypeMedicalRelease = "MEL"
 const DocumentTypeInformationRelease = "REL"
 
 var (
+	// ReleasePDFs lists the supported archival PDFs.
 	ReleasePDFs = []api.ArchivalPdf{
 		{"signature-form", "certification-SF86-July2017.template.pdf", "AdditionalComments", DocumentTypeCertification},
 		{"release-credit", "credit-SF86-July2017.template.pdf", "Credit", DocumentTypeCreditRelease},
