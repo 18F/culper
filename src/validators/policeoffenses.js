@@ -1,6 +1,8 @@
 import { validateModel, hasYesOrNo, checkValue } from 'models/validate'
 import offense from 'models/offense'
 
+// TODO replace accordion with branch collection
+
 export const validatePoliceOffenses = (data) => {
   const policeOffensesModel = {
     HasOffenses: { presence: true, hasValue: { validator: hasYesOrNo } },

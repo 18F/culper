@@ -25449,163 +25449,169 @@ exports[`The section component renders LEGAL_POLICE_OFFENSES 1`] = `
           Offenses
         </h1>
         <div
-          aria-label="Have any of the following happened?"
-          className="field required branch has-offenses"
-          data-uuid="field-MOCK-GUID"
+          className="has-offenses"
         >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Have any of the following happened?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
+          <div>
+            <div
+              aria-label="Have any of the following happened?"
+              className="field required branch"
+              data-uuid="field-MOCK-GUID"
             >
-              <span
-                className="component shrink"
+              <a
+                aria-hidden="true"
+                className="anchor"
+                id="field-MOCK-GUID"
+                name="field-MOCK-GUID"
+              />
+              <h4
+                className="title h4"
               >
-                <div
+                Have any of the following happened?
+              </h4>
+              <span
+                className="icon"
+              />
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages help-messages"
+                />
+              </div>
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages error-messages"
+                  role="alert"
+                />
+              </div>
+              <div
+                className="table"
+              >
+                <span
                   className="content"
                 >
-                  <ul>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            In the last seven (7) years
-                          </strong>
-                           have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            In the last seven (7) years
-                          </strong>
-                           have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            In the last seven (7) years
-                          </strong>
-                           have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            In the last seven (7) years
-                          </strong>
-                           have you been or are you currently on probation or parole?
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          Are you currently on trial or awaiting a trial on criminal charges?
-                        </p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-                    className="yes block"
+                  <span
+                    className="component shrink"
                   >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_offenses-MOCK-GUID"
-                      name="has_offenses-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_offenses-MOCK-GUID"
+                    <div
+                      className="content"
                     >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_offenses-MOCK-GUID"
-                      name="has_offenses-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_offenses-MOCK-GUID"
+                      <ul>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                In the last seven (7) years
+                              </strong>
+                               have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                In the last seven (7) years
+                              </strong>
+                               have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                In the last seven (7) years
+                              </strong>
+                               have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                In the last seven (7) years
+                              </strong>
+                               have you been or are you currently on probation or parole?
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <p>
+                              Are you currently on trial or awaiting a trial on criminal charges?
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      className="blocks option-list branch"
                     >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
+                      <div
+                        className="yes block"
+                      >
+                        <input
+                          aria-label="Yes for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="has_offenses-MOCK-GUID"
+                          name="has_offenses-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="Yes"
+                        />
+                        <label
+                          className=""
+                          htmlFor="has_offenses-MOCK-GUID"
+                        >
+                          <span>
+                            Yes
+                          </span>
+                        </label>
+                      </div>
+                      <div
+                        className="no block"
+                      >
+                        <input
+                          aria-label="No for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="has_offenses-MOCK-GUID"
+                          name="has_offenses-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="No"
+                        />
+                        <label
+                          className=""
+                          htmlFor="has_offenses-MOCK-GUID"
+                        >
+                          <span>
+                            No
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -25732,185 +25738,191 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
             Offenses
           </h1>
           <div
-            aria-label="Have any of the following happened?"
-            className="field required branch has-offenses"
-            data-uuid="field-MOCK-GUID"
+            className="has-offenses"
           >
-            <a
-              aria-hidden="true"
-              className="anchor"
-              id="field-MOCK-GUID"
-              name="field-MOCK-GUID"
-            />
-            <h4
-              className="title h4"
-            >
-              Have any of the following happened?
-            </h4>
-            <span
-              className="icon"
-            />
-            <div
-              className="table expand"
-            >
-              <span
-                aria-live="polite"
-                className="messages help-messages"
-              />
-            </div>
-            <div
-              className="table expand"
-            >
-              <span
-                aria-live="polite"
-                className="messages error-messages"
-                role="alert"
+            <div>
+              <div
+                aria-label="Have any of the following happened?"
+                className="field required branch"
+                data-uuid="field-MOCK-GUID"
               >
-                <div
-                  aria-live="polite"
-                  className="message error usa-alert usa-alert-error"
-                  role="alert"
+                <a
+                  aria-hidden="true"
+                  className="anchor"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
+                />
+                <h4
+                  className="title h4"
                 >
-                  <div
-                    className="usa-alert-body"
+                  Have any of the following happened?
+                </h4>
+                <span
+                  className="icon"
+                />
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
                   >
                     <div
-                      data-i18n="error.required"
+                      aria-live="polite"
+                      className="message error usa-alert usa-alert-error"
+                      role="alert"
                     >
-                      <h5
-                        className="usa-alert-heading"
+                      <div
+                        className="usa-alert-body"
                       >
-                        Your response is required
-                      </h5>
-                      
-                      
+                        <div
+                          data-i18n="error.required"
+                        >
+                          <h5
+                            className="usa-alert-heading"
+                          >
+                            Your response is required
+                          </h5>
+                          
+                          
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </span>
                 </div>
-              </span>
-            </div>
-            <div
-              className="table"
-            >
-              <span
-                className="content"
-              >
-                <span
-                  className="component shrink"
+                <div
+                  className="table"
                 >
-                  <div
+                  <span
                     className="content"
                   >
-                    <ul>
-                      <li>
-                        <div>
-                          <p>
-                            <strong>
-                              In the last seven (7) years
-                            </strong>
-                             have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <p>
-                            <strong>
-                              In the last seven (7) years
-                            </strong>
-                             have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <p>
-                            <strong>
-                              In the last seven (7) years
-                            </strong>
-                             have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <p>
-                            <strong>
-                              In the last seven (7) years
-                            </strong>
-                             have you been or are you currently on probation or parole?
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <p>
-                            Are you currently on trial or awaiting a trial on criminal charges?
-                          </p>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div
-                    className="blocks option-list branch usa-input-error"
-                  >
-                    <div
-                      className="yes block"
+                    <span
+                      className="component shrink"
                     >
-                      <input
-                        aria-label="Yes for null"
-                        checked={false}
-                        className="usa-input-success"
-                        disabled={false}
-                        id="has_offenses-MOCK-GUID"
-                        name="has_offenses-MOCK-GUID"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        type="radio"
-                        value="Yes"
-                      />
-                      <label
-                        className=""
-                        htmlFor="has_offenses-MOCK-GUID"
+                      <div
+                        className="content"
                       >
-                        <span>
-                          Yes
-                        </span>
-                      </label>
-                    </div>
-                    <div
-                      className="no block"
-                    >
-                      <input
-                        aria-label="No for null"
-                        checked={false}
-                        className="usa-input-success"
-                        disabled={false}
-                        id="has_offenses-MOCK-GUID"
-                        name="has_offenses-MOCK-GUID"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        type="radio"
-                        value="No"
-                      />
-                      <label
-                        className=""
-                        htmlFor="has_offenses-MOCK-GUID"
+                        <ul>
+                          <li>
+                            <div>
+                              <p>
+                                <strong>
+                                  In the last seven (7) years
+                                </strong>
+                                 have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.
+                              </p>
+                            </div>
+                          </li>
+                          <li>
+                            <div>
+                              <p>
+                                <strong>
+                                  In the last seven (7) years
+                                </strong>
+                                 have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?
+                              </p>
+                            </div>
+                          </li>
+                          <li>
+                            <div>
+                              <p>
+                                <strong>
+                                  In the last seven (7) years
+                                </strong>
+                                 have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.
+                              </p>
+                            </div>
+                          </li>
+                          <li>
+                            <div>
+                              <p>
+                                <strong>
+                                  In the last seven (7) years
+                                </strong>
+                                 have you been or are you currently on probation or parole?
+                              </p>
+                            </div>
+                          </li>
+                          <li>
+                            <div>
+                              <p>
+                                Are you currently on trial or awaiting a trial on criminal charges?
+                              </p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="blocks option-list branch usa-input-error"
                       >
-                        <span>
-                          No
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                </span>
-              </span>
+                        <div
+                          className="yes block"
+                        >
+                          <input
+                            aria-label="Yes for null"
+                            checked={false}
+                            className="usa-input-success"
+                            disabled={false}
+                            id="has_offenses-MOCK-GUID"
+                            name="has_offenses-MOCK-GUID"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            type="radio"
+                            value="Yes"
+                          />
+                          <label
+                            className=""
+                            htmlFor="has_offenses-MOCK-GUID"
+                          >
+                            <span>
+                              Yes
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="no block"
+                        >
+                          <input
+                            aria-label="No for null"
+                            checked={false}
+                            className="usa-input-success"
+                            disabled={false}
+                            id="has_offenses-MOCK-GUID"
+                            name="has_offenses-MOCK-GUID"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            type="radio"
+                            value="No"
+                          />
+                          <label
+                            className=""
+                            htmlFor="has_offenses-MOCK-GUID"
+                          >
+                            <span>
+                              No
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </span>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

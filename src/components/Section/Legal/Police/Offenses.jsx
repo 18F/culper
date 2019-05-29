@@ -2,8 +2,8 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 import schema from 'schema'
-import validate, { OffenseValidator } from 'validators'
-import { Branch, Show, Accordion } from 'components/Form'
+import validate from 'validators'
+import { Accordion, BranchCollection } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 
 import {
@@ -57,6 +57,16 @@ export class Offenses extends Subsection {
     })
   }
 
+  updateBranch = (values) => {
+    const HasOffenses = values && values.items
+      && values.items.some(i => i && i.Item && i.Item.Has && i.Item.Has.value === 'Yes')
+
+    this.update({
+      HasOffenses: { value: HasOffenses ? 'Yes' : 'No' },
+      List: values,
+    })
+  }
+
   /**
    * Assists in rendering the summary section.
    */
@@ -95,57 +105,44 @@ export class Offenses extends Subsection {
         data-subsection={LEGAL_POLICE_OFFENSES.key}
       >
         <h1 className="section-header">{i18n.t('legal.subsection.police.offenses')}</h1>
-        <Branch
-          name="has_offenses"
+
+        <BranchCollection
+          {...this.props.List}
+          branchName="has_offenses"
           label={i18n.t('legal.police.heading.questions')}
           labelSize="h4"
           className="has-offenses"
-          {...this.props.HasOffenses}
           warning
-          onUpdate={this.updateHasOffenses}
+          appendLabel={i18n.t('legal.police.collection.appendTitle')}
+          appendSize="h4"
+          appendContent={i18n.m('legal.police.collection.appendMessage', { numberOfYearsString })}
+          onUpdate={this.updateBranch}
+          scrollToBottom={this.props.scrollToBottom}
           required={this.props.required}
           onError={this.handleError}
           scrollIntoView={this.props.scrollIntoView}
+          content={(
+            <ul>
+              <li>{i18n.m('legal.police.label.summons', { numberOfYearsString })}</li>
+              <li>{i18n.m('legal.police.label.arrests', { numberOfYearsString })}</li>
+              <li>{i18n.m('legal.police.label.charges', { numberOfYearsString })}</li>
+              <li>{i18n.m('legal.police.label.probation', { numberOfYearsString })}</li>
+              <li>{i18n.m('legal.police.label.trial')}</li>
+            </ul>
+          )}
         >
-          <ul>
-            <li>{i18n.m('legal.police.label.summons', { numberOfYearsString })}</li>
-            <li>{i18n.m('legal.police.label.arrests', { numberOfYearsString })}</li>
-            <li>{i18n.m('legal.police.label.charges', { numberOfYearsString })}</li>
-            <li>{i18n.m('legal.police.label.probation', { numberOfYearsString })}</li>
-            <li>{i18n.m('legal.police.label.trial')}</li>
-          </ul>
-        </Branch>
-        <Show when={this.props.HasOffenses.value === 'Yes'}>
-          <div>
-            <Accordion
-              {...this.props.List}
-              defaultState={this.props.defaultState}
-              scrollToBottom={this.props.scrollToBottom}
-              onUpdate={this.updateList}
-              onError={this.handleError}
-              validator={OffenseValidator}
-              summary={this.summary}
-              description={i18n.t('legal.police.collection.summary.title')}
-              appendTitle={i18n.t('legal.police.collection.appendTitle')}
-              appendMessage={i18n.m('legal.police.collection.appendMessage', { numberOfYearsString })}
-              appendLabel={i18n.t('legal.police.collection.append')}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <Offense
-                name="Item"
-                addressBooks={this.props.addressBooks}
-                dispatch={this.props.dispatch}
-                bind
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                requireLegalOffenseInvolvements={requireLegalOffenseInvolvements}
-                requireLegalOffenseSentenced={requireLegalOffenseSentenced}
-                requireLegalOffenseIncarcerated={requireLegalOffenseIncarcerated}
-              />
-            </Accordion>
-          </div>
-        </Show>
+          <Offense
+            name="Item"
+            addressBooks={this.props.addressBooks}
+            dispatch={this.props.dispatch}
+            bind
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+            requireLegalOffenseInvolvements={requireLegalOffenseInvolvements}
+            requireLegalOffenseSentenced={requireLegalOffenseSentenced}
+            requireLegalOffenseIncarcerated={requireLegalOffenseIncarcerated}
+          />
+        </BranchCollection>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Branch } from '../../Form'
+import { Branch } from '../index'
 import { newGuid } from '../ValidationElement'
-import { scrollToBottom } from '../Accordion/Accordion'
+import { scrollToBottom as scrollToBottomFn } from '../Accordion/Accordion'
 
 export default class BranchCollection extends React.Component {
   constructor(props) {
@@ -13,97 +13,111 @@ export default class BranchCollection extends React.Component {
    * Updates existing selected branch values
    */
   onBranchClick(item, index, values) {
-    let items = [...this.props.items]
+    const {
+      items, valueKey, removable, onUpdate,
+    } = this.props
+
+    const newItems = [...items]
     switch (values.value) {
       case 'Yes':
-        if (!items[index].Item) {
-          items[index].Item = {}
+        if (!newItems[index].Item) {
+          newItems[index].Item = {}
         }
-        items[index].Item = {
-          ...items[index].Item,
-          [this.props.valueKey]: values
+        newItems[index].Item = {
+          ...newItems[index].Item,
+          [valueKey]: values,
         }
         break
       default: {
-        const isLastItem = index + 1 >= this.props.items.length
-        if (!isLastItem && this.props.removable) {
+        const isLastItem = index + 1 >= newItems.length
+        if (!isLastItem && removable) {
           // If it's not the last item being marked as No, then remove it. This addresses the issue
           // where the user must click No twice on the last item.
-          items.splice(index, 1)
-        } else if (index === 0 && items.length === 1) {
+          newItems.splice(index, 1)
+        } else if (index === 0 && newItems.length === 1) {
           // If this is the first and last item, and "no" has been selected, then clear out
           // any persisted data **except** the branch value.
-          items[index] = {
+          newItems[index] = {
             Item: {
-              [this.props.valueKey]: values
+              [valueKey]: values,
             },
-            index: item.index
+            index: newItems.index,
           }
         } else {
           // If this is the last item then we still need to remove it.
-          items.splice(index, 1)
+          newItems.splice(index, 1)
         }
       }
     }
 
-    this.props.onUpdate({ items: items })
+    onUpdate({ items: newItems })
   }
 
   /**
    * Used when populating branch values for the first time
    */
   onDefaultBranchClick(values) {
-    let item = {
+    const { valueKey, onUpdate } = this.props
+
+    const item = {
       Item: {
-        [this.props.valueKey]: values
+        [valueKey]: values,
       },
-      index: newGuid()
+      index: newGuid(),
     }
-    let items = [item]
-    this.props.onUpdate({ items: items })
+    const items = [item]
+    onUpdate({ items })
   }
 
   /**
-   * Used when a user decides to add new information. This refers to the last displayed yes/no branch
+   * Used when a user decides to add new information. This refers to the last
+   * displayed yes/no branch
    */
   onLastBranchClick(values) {
-    let item = {
+    const {
+      valueKey, items, scrollToBottom, onUpdate,
+    } = this.props
+
+    const item = {
       Item: {
-        [this.props.valueKey]: values
+        [valueKey]: values,
       },
-      index: newGuid()
+      index: newGuid(),
     }
     if (values.value === 'Yes') {
-      let items = [...this.props.items]
-      items.push(item)
-      this.props.onUpdate({ items: items })
+      const newItems = [...items]
+      newItems.push(item)
+      onUpdate({ newItems })
     } else {
-      let items = [...this.props.items]
-      items.push(item)
-      if (this.props.scrollToBottom) {
-        scrollToBottom(this.props.scrollToBottom)
+      const newItems = [...items]
+      newItems.push(item)
+      if (scrollToBottom) {
+        scrollToBottomFn(scrollToBottom)
       }
-      this.props.onUpdate({ items: items })
+      onUpdate({ items })
     }
   }
 
   recursiveCloneChildren(children, item, index) {
-    return React.Children.map(children, child => {
-      var childProps = {}
+    return React.Children.map(children, (child) => {
+      let childProps = {}
       if (React.isValidElement(child)) {
         if (child.props.bind) {
-          let field = item[child.props.name]
+          const { onError } = this.props
+          const field = item[child.props.name]
           childProps = { ...field }
-          childProps.onUpdate = value => {
-            let items = [...this.props.items]
-            const item = items[index][child.props.name]
-            items[index][child.props.name] = {
-              ...item,
-              ...value
+          childProps.onUpdate = (value) => {
+            const { items, onUpdate } = this.props
+            const newItems = [...items]
+
+            const newItem = newItems[index][child.props.name]
+            newItems[index][child.props.name] = {
+              ...newItem,
+              ...value,
             }
-            this.props.onUpdate({ items: items })
+            onUpdate({ items: newItems })
           }
-          childProps.onError = this.props.onError
+          childProps.onError = onError
         }
       }
 
@@ -111,8 +125,8 @@ export default class BranchCollection extends React.Component {
         child.props.children
       )
       if (
-        child.props.children &&
-        ['[object Object]', '[object Array]'].includes(typeOfChildren)
+        child.props.children
+          && ['[object Object]', '[object Array]'].includes(typeOfChildren)
       ) {
         childProps.children = this.recursiveCloneChildren(
           child.props.children,
@@ -129,6 +143,8 @@ export default class BranchCollection extends React.Component {
    * Helper that renders branch information. Allows props to be overriden
    */
   branch(props) {
+    const { required, scrollIntoView } = this.props
+
     return (
       <Branch
         name={props.name}
@@ -139,39 +155,49 @@ export default class BranchCollection extends React.Component {
         {...props.value || {}}
         warning={props.warning}
         onUpdate={props.onUpdate}
-        required={this.props.required}
+        required={required}
         onError={props.onError}
-        scrollIntoView={this.props.scrollIntoView}>
+        scrollIntoView={scrollIntoView}
+      >
         {props.children}
       </Branch>
     )
   }
 
   content() {
-    let items = (this.props.items || []).map(item => {
+    const {
+      items, valueKey, branchName, label, labelSize, help, content, onError,
+      branchClassName, appendLabel, appendSize, appendContent, children,
+    } = this.props
+
+    const newItems = (items || []).map((item) => {
       if (!item.index) {
-        item.index = newGuid()
+        return {
+          ...item,
+          index: newGuid(),
+        }
       }
       return item
     })
-    let hasNo = !!items.find(
-      item => ((item.Item || {})[this.props.valueKey] || {}).value !== 'Yes'
+
+    const hasNo = !!newItems.find(
+      item => ((item.Item || {})[valueKey] || {}).value !== 'Yes'
     )
 
     // When no items are present, render default branch yes/no
-    if (items.length === 0) {
+    if (newItems.length === 0) {
       return (
         <div>
           {this.branch({
-            name: this.props.branchName,
-            label: this.props.label,
-            labelSize: this.props.labelSize,
-            help: this.props.help,
+            name: branchName,
+            label,
+            labelSize,
+            help,
             value: {},
             warning: false,
-            children: this.props.content,
+            children: content,
             onUpdate: this.onDefaultBranchClick.bind(this),
-            onError: this.props.onError
+            onError,
           })}
         </div>
       )
@@ -180,59 +206,58 @@ export default class BranchCollection extends React.Component {
     // If a branch has been selected but it has a `No` value, rather than deleting, we'll update
     // its value
     if (
-      items.length === 1 &&
-      ((items[0].Item || {})[this.props.valueKey] || {}).value === 'No'
+      newItems.length === 1
+        && ((newItems[0].Item || {})[valueKey] || {}).value === 'No'
     ) {
-      var item = this.props.items[0]
+      const [item] = items
       return (
         <div key={item.index}>
           {this.branch({
-            name: this.props.branchName,
-            label: this.props.label,
-            labelSize: this.props.labelSize,
-            help: this.props.help,
+            name: branchName,
+            label,
+            labelSize,
+            help,
             value: { value: 'No' },
             warning: false,
-            children: this.props.content,
+            children: content,
             onUpdate: this.onBranchClick.bind(this, item, 0),
-            onError: this.props.onError
+            onError,
           })}
         </div>
       )
     }
 
     // When more than 1 item is in
-    const top = (index, item, arr) => {
-      const className =
-        ((item.Item || {})[this.props.valueKey] || {}).value === 'Yes'
-          ? this.props.branchClassName
-          : null
+    const top = (index, item) => {
+      const className = ((item.Item || {})[valueKey] || {}).value === 'Yes'
+        ? branchClassName
+        : null
       if (index === 0) {
         return this.branch({
-          name: this.props.branchName,
-          label: this.props.label,
-          labelSize: this.props.labelSize,
-          className: className,
-          value: (item.Item || {})[this.props.valueKey],
+          name: branchName,
+          label,
+          labelSize,
+          className,
+          value: (item.Item || {})[valueKey],
           warning: true,
-          help: this.props.help,
-          children: this.props.content,
+          help,
+          children: content,
           onUpdate: this.onBranchClick.bind(this, item, index),
-          onError: this.props.onError
+          onError,
         })
       }
 
       return this.branch({
-        name: this.props.branchName,
-        label: this.props.appendLabel,
-        labelSize: this.props.appendSize,
-        className: className,
-        help: this.props.help,
-        value: (item.Item || {})[this.props.valueKey],
+        name: branchName,
+        label: appendLabel,
+        labelSize: appendSize,
+        className,
+        help,
+        value: (item.Item || {})[valueKey],
         warning: true,
-        children: this.props.appendContent,
+        children: appendContent,
         onUpdate: this.onBranchClick.bind(this, item, index),
-        onError: this.props.onError
+        onError,
       })
     }
 
@@ -243,40 +268,39 @@ export default class BranchCollection extends React.Component {
       }
 
       return this.branch({
-        name: this.props.branchName,
+        name: branchName,
         className: 'last-branch',
-        label: this.props.appendLabel,
-        labelSize: this.props.appendSize,
-        help: this.props.help,
+        label: appendLabel,
+        labelSize: appendSize,
+        help,
         onUpdate: this.onLastBranchClick.bind(this),
-        children: this.appendContent,
+        children: appendContent,
         value: {},
-        warning: false
+        warning: false,
       })
     }
 
     const kiddos = (index, item) => {
-      const key = (item.Item || {})[this.props.valueKey] || {}
+      const key = (item.Item || {})[valueKey] || {}
       return key.value === 'Yes'
-        ? this.recursiveCloneChildren(this.props.children, item, index)
+        ? this.recursiveCloneChildren(children, item, index)
         : null
     }
 
-    const rows = items.map((item, index, arr) => {
-      return (
-        <div key={item.index}>
-          {top(index, item, arr)}
-          <div>{kiddos(index, item)}</div>
-          {bottom(index, item, arr)}
-        </div>
-      )
-    })
+    const rows = items.map((item, index, arr) => (
+      <div key={item.index}>
+        {top(index, item, arr)}
+        <div>{kiddos(index, item)}</div>
+        {bottom(index, item, arr)}
+      </div>
+    ))
 
     return <div>{rows}</div>
   }
 
   render() {
-    return <div className={this.props.className}>{this.content()}</div>
+    const { className } = this.props
+    return <div className={className}>{this.content()}</div>
   }
 }
 
@@ -309,7 +333,7 @@ BranchCollection.defaultProps = {
     )
   },
   scrollToBottom: '',
-  branchClassName: ''
+  branchClassName: '',
 }
 
 BranchCollection.errors = []
