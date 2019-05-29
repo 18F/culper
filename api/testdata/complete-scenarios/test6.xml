@@ -979,14 +979,10 @@
                   <Agency>Unknown</Agency>
                   <ClearanceLevel>Unknown</ClearanceLevel>
                   <GrantedDate>
-                    <Date DoNotKnow="True">
-  
-</Date>
+                    <Date DoNotKnow="True"/>
                   </GrantedDate>
                   <InvestigationDate>
-                    <Date DoNotKnow="True">
-  
-</Date>
+                    <Date DoNotKnow="True"/>
                   </InvestigationDate>
                   <IssuingAgency>
       
