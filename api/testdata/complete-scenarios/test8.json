@@ -1542,7 +1542,7 @@
         "WorkEmail": {
           "type": "email",
           "props": {
-            "value": ""
+            "value": "test@test.com"
           }
         },
         "PhoneNumbers": {

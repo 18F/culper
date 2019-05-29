@@ -701,7 +701,7 @@ describe('Employment component validation', () => {
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed',
+            value: 'StateGovernment',
           },
           Additional: null,
         },
@@ -710,7 +710,7 @@ describe('Employment component validation', () => {
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed',
+            value: 'StateGovernment',
           },
           Additional: { items: [{ Item: { Has: { value: 'Yes' } } }] },
         },
@@ -719,7 +719,7 @@ describe('Employment component validation', () => {
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed',
+            value: 'StateGovernment',
           },
           Additional: {
             items: [
@@ -758,7 +758,7 @@ describe('Employment component validation', () => {
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed',
+            value: 'StateGovernment',
           },
           Additional: {
             items: [
@@ -794,7 +794,7 @@ describe('Employment component validation', () => {
       {
         data: {
           EmploymentActivity: {
-            value: 'SelfEmployed',
+            value: 'StateGovernment',
           },
           Additional: {
             items: [

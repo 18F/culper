@@ -163,6 +163,9 @@ are now called - nay!</Reason>
               </Weight>
             </IdentifyingInformation>
             <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>test@test.com</Email>
+              </HomeEmail>
               <WorkTelephone>
                 <Telephone>
                   <Number>5555555555</Number>
