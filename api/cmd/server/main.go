@@ -47,7 +47,8 @@ func main() {
 		return
 	}
 
-	xmlsvc := xml.NewXMLService()
+	xmlTemplatePath := "./templates/"
+	xmlsvc := xml.NewXMLService(xmlTemplatePath)
 	pdfTemplatePath := "./pdf/templates/"
 	pdfsvc := pdf.NewPDFService(pdfTemplatePath)
 	submitter := admin.NewSubmitter(database, store, xmlsvc, pdfsvc)

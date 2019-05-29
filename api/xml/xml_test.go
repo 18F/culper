@@ -125,7 +125,7 @@ func TestPackage(t *testing.T) {
 		{Schema: "psychological-hospitalizations.xml", Data: r("psychological-hospitalizations.json")},
 	}
 
-	service := NewXMLServiceWithMockClock(mockedClock())
+	service := NewXMLServiceWithMockClock("../templates", mockedClock())
 
 	re := regexp.MustCompile("map\\[")
 	for _, test := range tests {
@@ -500,7 +500,7 @@ func loadFormData(t *testing.T, form map[string]interface{}, filepath string) {
 
 // applyForm generates an XML snippet given the path to an XML template and form data.
 func applyForm(t *testing.T, template string, data map[string]interface{}) string {
-	service := NewXMLServiceWithMockClock(mockedClock())
+	service := NewXMLServiceWithMockClock("../templates/", mockedClock())
 
 	snippet, err := service.DefaultTemplate(template, data)
 	if err != nil {
@@ -529,7 +529,7 @@ func xmlDoc(t *testing.T, snippet string) *xmlquery.Node {
 
 // templateContext returns the JSON path that a parent XML template file calls with a child template.
 func templateContext(t *testing.T, parent string, template string) string {
-	file, err := os.Open(path.Join(templatesDir(), parent))
+	file, err := os.Open(path.Join("../templates/", parent))
 	if err != nil {
 		t.Fatal(err)
 	}

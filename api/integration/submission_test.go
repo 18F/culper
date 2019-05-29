@@ -50,7 +50,7 @@ func checkXML(t *testing.T, testXML []byte, referencePath string) {
 	if diffErr != nil {
 		_, badExit := diffErr.(*exec.ExitError)
 		if badExit {
-			fmt.Println("Does not match", referencePath)
+			fmt.Println("Does not match", referencePath, testXMLFile.Name())
 			fmt.Println(string(diffOut.Bytes()))
 		}
 		t.Fatal(diffErr)
@@ -93,7 +93,7 @@ func TestSubmitter(t *testing.T) {
 	const base = 1536570831 // Epoch seconds for September 10, 2018 PDT
 	mockClock.Add(base * time.Second)
 
-	xmlService := xml.NewXMLServiceWithMockClock(mockClock)
+	xmlService := xml.NewXMLServiceWithMockClock("../templates/", mockClock)
 	pdfService := pdf.NewPDFService("../pdf/templates/")
 	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
 
