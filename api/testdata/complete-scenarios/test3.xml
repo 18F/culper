@@ -186,12 +186,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>5036563231</Number>
                       <Time>Both</Time>
@@ -778,9 +773,7 @@
                     <ZipCode>02130</ZipCode>
                   </Address>
                   <Birth>
-                    <Date DoNotKnow="True">
-  
-</Date>
+                    <Date DoNotKnow="True"/>
                     <Place>
                       <City>New York</City>
                       <Country>France</Country>
@@ -903,16 +896,10 @@
                   </OtherNamesUsed>
                 </Contact>
                 <Contact ID="3">
-                  <Address DoNotKnow="True">
-  
-</Address>
+                  <Address DoNotKnow="True"/>
                   <Birth>
-                    <Date DoNotKnow="True">
-  
-</Date>
-                    <Place DoNotKnow="True">
-          
-        </Place>
+                    <Date DoNotKnow="True"/>
+                    <Place DoNotKnow="True"/>
                   </Birth>
                   <Citizenships>
                     <Citizenship ID="1">
@@ -939,9 +926,7 @@
                     </To>
                   </DateRange>
                   <Employer>
-                    <Address DoNotKnow="True">
-  
-</Address>
+                    <Address DoNotKnow="True"/>
                     <Name DoNotKnow="True"/>
                   </Employer>
                   <ForeignAffiliation>

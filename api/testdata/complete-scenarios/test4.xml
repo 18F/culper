@@ -116,12 +116,7 @@
                       <Number>9999999991</Number>
                       <Time>Both</Time>
                     </Home>
-                    <Mobile DoNotKnow="True">
-            
-
-
-
-          </Mobile>
+                    <Mobile DoNotKnow="True"/>
                   </Telephone>
                   <Title>Brevet Colonel</Title>
                 </Reference>
@@ -151,12 +146,7 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>2341222211</Number>
                       <Time>Both</Time>
@@ -190,12 +180,7 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>8281881291</Number>
                       <Time>Both</Time>
@@ -329,15 +314,11 @@
                     <RelationshipOtherExplanation>Brother in law</RelationshipOtherExplanation>
                     <RelationshipTypes Neighbor="True" Other="True"/>
                     <Telephone>
-                      <Day DoNotKnow="True">
-
-</Day>
+                      <Day DoNotKnow="True"/>
                       <Evening>
                         <Number>9822843881</Number>
                       </Evening>
-                      <Mobile DoNotKnow="True">
-
-</Mobile>
+                      <Mobile DoNotKnow="True"/>
                     </Telephone>
                   </Verifier>
                 </Residency>

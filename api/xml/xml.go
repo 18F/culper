@@ -69,6 +69,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"foreignAffiliation":     foreignAffiliation,
 		"frequencyType":          frequencyType,
 		"email":                  email,
+		"emailOptional":          emailOptional,
 		"employmentType":         employmentType,
 		"hairType":               hairType,
 		"hasRelativeType":        hasRelativeType,
@@ -317,6 +318,19 @@ func branchcollectionHas(data map[string]interface{}) string {
 
 func email(data map[string]interface{}) string {
 	return simpleValue(data)
+}
+
+func emailOptional(e, dnk map[string]interface{}) (template.HTML, error) {
+	view := make(map[string]interface{})
+	view["Email"] = e
+	view["DoNotKnow"] = dnk
+
+	fmap := template.FuncMap{
+		"notApplicable": notApplicable,
+		"email":         email,
+	}
+
+	return xmlTemplateWithFuncs("email-optional.xml", view, fmap)
 }
 
 func text(data map[string]interface{}) string {

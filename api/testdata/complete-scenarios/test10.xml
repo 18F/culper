@@ -114,12 +114,7 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>1115556633</Number>
                       <Extension>4</Extension>
@@ -154,12 +149,7 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>1115556789</Number>
                       <Time>Day</Time>
@@ -196,12 +186,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>4325551234</Number>
                       <Time>Both</Time>
