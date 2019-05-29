@@ -278,6 +278,14 @@
   }
 
   // Main content
+  .eapp-structure-wrap {
+    display: block;
+
+    .eapp-structure-row {
+      display: block;
+    }
+  }
+
   .eapp-structure-wrap > .eapp-structure-row > .eapp-core {
     display: block;
     padding: 1rem !important;
