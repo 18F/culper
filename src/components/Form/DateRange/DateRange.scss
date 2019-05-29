@@ -42,9 +42,9 @@
   }
 }
 
-@media all and (max-width: 980px) {
+@media all and (max-width: 1200px) {
   .daterange {
-    flex-flow: wrap;
+    flex-direction: column;
 
     .arrow {
       width: 100%;
