@@ -10,6 +10,10 @@ export const hideSelectiveService = (store = {}) => {
   return extractDate(birthdate) <= selectiveServiceDate
 }
 
+export const validateSelectiveService = data => (
+  validateModel(data, selectiveService) === true
+)
+
 export default class SelectiveServiceValidator {
   constructor(data = {}) {
     this.data = data
@@ -32,6 +36,6 @@ export default class SelectiveServiceValidator {
   }
 
   isValid() {
-    return validateModel(this.data, selectiveService) === true
+    return validateSelectiveService(this.data)
   }
 }
