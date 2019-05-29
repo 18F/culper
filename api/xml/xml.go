@@ -77,7 +77,6 @@ func (service Service) templateFMap() template.FuncMap {
 		"agencyType":             agencyType,
 		"apoFpo":                 service.apoFpo,
 		"branch":                 branch,
-		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
 		"branchcollectionHas":    branchcollectionHas,
 		"branchAny":              branchAny,
@@ -107,6 +106,7 @@ func (service Service) templateFMap() template.FuncMap {
 		"foreignAffiliation":     foreignAffiliation,
 		"frequencyType":          frequencyType,
 		"email":                  email,
+		"emailOptional":          service.emailOptional,
 		"employmentType":         employmentType,
 		"hairType":               hairType,
 		"hasRelativeType":        hasRelativeType,
@@ -133,6 +133,7 @@ func (service Service) templateFMap() template.FuncMap {
 		"selfAbroadDocType":      selfAbroadDocType,
 		"selfForeignDocType":     selfForeignDocType,
 		"severanceType":          severanceType,
+		"street":                 street,
 		"suffixType":             suffixType,
 		"relationshipType":       relationshipType,
 		"relativeForeignDocType": relativeForeignDocType,
@@ -174,13 +175,7 @@ func applyBulkFixes(xml string) string {
 }
 
 func (service Service) xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
-	path := path.Join(service.templatePath, name)
-	tmpl := template.Must(template.New(name).ParseFiles(path))
-	var output bytes.Buffer
-	if err := tmpl.Execute(&output, data); err != nil {
-		return template.HTML(""), err
-	}
-	return template.HTML(applyBulkFixes(output.String())), nil
+	return service.xmlTemplateWithFuncs(name, data, template.FuncMap{})
 }
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
@@ -353,6 +348,19 @@ func branchcollectionHas(data map[string]interface{}) string {
 
 func email(data map[string]interface{}) string {
 	return simpleValue(data)
+}
+
+func (service Service) emailOptional(e, dnk map[string]interface{}) (template.HTML, error) {
+	view := make(map[string]interface{})
+	view["Email"] = e
+	view["DoNotKnow"] = dnk
+
+	fmap := template.FuncMap{
+		"notApplicable": notApplicable,
+		"email":         email,
+	}
+
+	return service.xmlTemplateWithFuncs("email-optional.xml", view, fmap)
 }
 
 func text(data map[string]interface{}) string {
@@ -779,17 +787,6 @@ func branchToBool(data map[string]interface{}) string {
 	return "False"
 }
 
-func branchToAnswer(data map[string]interface{}) string {
-	props, ok := data["props"]
-	if ok {
-		val, ok := (props.(map[string]interface{}))["value"]
-		if ok && val == "Yes" {
-			return "Yes"
-		}
-	}
-	return "No"
-}
-
 func countryComments(data map[string]interface{}) string {
 	props, ok := data["props"]
 	if ok {
@@ -863,6 +860,15 @@ func (service Service) location(data map[string]interface{}) (template.HTML, err
 	return service.locationOverrideLayout(data, "")
 }
 
+func street(data map[string]interface{}) string {
+	s1, _ := data["street"].(string)
+	s2, _ := data["street2"].(string)
+	if s2 != "" {
+		return s1 + " " + s2
+	}
+	return s1
+}
+
 func (service Service) militaryAddress(data map[string]interface{}) (template.HTML, error) {
 	return service.locationOverrideLayout(data, api.LayoutMilitaryAddress)
 }
@@ -907,53 +913,53 @@ func (service Service) locationOverrideLayout(data map[string]interface{}, overr
 		if domestic {
 			return service.xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
 		}
-		return service.xmlTemplate("location-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlaceNoUS:
 		if domestic {
 			return service.xmlTemplateWithFuncs("location-city-state-county-no-country.xml", data, fmap)
 		}
-		return service.xmlTemplate("location-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
 			return service.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
-		return service.xmlTemplate("location-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlaceWithoutCountyNoUS:
 		if domestic {
 			return service.xmlTemplateWithFuncs("location-city-state-no-country.xml", data, fmap)
 		}
-		return service.xmlTemplate("location-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutCountry:
-		return service.xmlTemplate("location-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-country.xml", data, fmap)
 	case api.LayoutUSCityStateInternationalCity:
 		if domestic {
 			return service.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
-		return service.xmlTemplate("location-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutUSCityStateInternationalCityCountry:
 		if domestic {
 			return service.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
-		return service.xmlTemplate("location-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutState:
 		return service.xmlTemplateWithFuncs("location-state.xml", data, fmap)
 	case api.LayoutCityState:
 		return service.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 	case api.LayoutStreetCityCountry:
-		return service.xmlTemplate("location-street-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-street-city-country.xml", data, fmap)
 	case api.LayoutCityCountry:
-		return service.xmlTemplate("location-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutUSCityStateZipcodeInternationalCity:
 		if domestic {
 			return service.xmlTemplateWithFuncs("location-city-state-zipcode.xml", data, fmap)
 		}
-		return service.xmlTemplate("location-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutCityStateCountry:
 		return service.xmlTemplateWithFuncs("location-city-state-country.xml", data, fmap)
 	case api.LayoutUSAddress:
 		return service.xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 	case api.LayoutStreetCity:
-		return service.xmlTemplate("location-street-city.xml", data)
+		return service.xmlTemplateWithFuncs("location-street-city.xml", data, fmap)
 	case api.LayoutMilitaryAddress:
 		return service.xmlTemplateWithFuncs("location-address-apofpo-state-zipcode.xml", data, fmap)
 	case api.LayoutPhysicalDomestic:
@@ -964,7 +970,7 @@ func (service Service) locationOverrideLayout(data map[string]interface{}, overr
 		if domestic || postoffice {
 			return service.xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 		}
-		return service.xmlTemplate("location-street-city-country.xml", data)
+		return service.xmlTemplateWithFuncs("location-street-city-country.xml", data, fmap)
 	}
 }
 

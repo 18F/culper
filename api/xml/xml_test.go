@@ -150,9 +150,9 @@ func TestPackage(t *testing.T) {
 }
 
 func mockedClock() clock.Clock {
-	// Epoch seconds for September 10, 2018 UTC;
+	// Epoch seconds for September 10, 2018 PST;
 	// It is not a special date, just used in test fixtures.
-	const base = 1536540831
+	const base = 1536570831
 
 	c := clock.NewMock()
 	c.Add(base * time.Second)
@@ -332,6 +332,7 @@ func TestScenario9(t *testing.T) {
 // `test10` is derived from test1 for:
 // * a current spouse with "I don't know" as email response
 // * secondary (alternate) address workflows for employment entries
+// * offense where applicant was not arrested, summoned, cited and also not charged
 func TestScenario10(t *testing.T) {
 	executeScenario(t, "test10")
 }

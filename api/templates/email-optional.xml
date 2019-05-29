@@ -1,0 +1,5 @@
+{{if notApplicable .DoNotKnow | eq "True"}}
+<Email DoNotKnow="True"></Email>
+{{else}}
+<Email>{{email .Email}}</Email>
+{{end}}

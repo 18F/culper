@@ -243,10 +243,15 @@ const employment = {
   },
 
   // Applies to other employment
-  Additional: {
-    branchCollection: {
-      validator: additional,
-    },
+  Additional: (value, attributes = {}) => {
+    if (matchEmploymentActivity(attributes, otherEmploymentOptions)) {
+      return {
+        branchCollection: {
+          validator: additional,
+        },
+      }
+    }
+    return {}
   },
 }
 

@@ -1068,6 +1068,7 @@ describe('The employment model', () => {
     describe('if additional activities are included', () => {
       it('additional activities must be valid', () => {
         const testData = {
+          EmploymentActivity: { value: 'StateGovernment' },
           Additional: {
             items: [
               { test: 'invalid' },
@@ -1076,7 +1077,6 @@ describe('The employment model', () => {
         }
 
         const expectedErrors = ['Additional.branchCollection']
-
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
       })

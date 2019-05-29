@@ -128,7 +128,6 @@ export class Physical extends Subsection {
         <Field
           title={i18n.t('identification.traits.heading.sex')}
           titleSize="h4"
-          help="identification.traits.help.sex"
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}
           shrink

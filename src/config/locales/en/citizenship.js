@@ -51,11 +51,6 @@ export const citizenship = {
     number: 'Provide your U.S. passport number',
     issued: 'Provide the issue date of the passport',
     expiration: 'Provide the expiration date of the passport',
-    comment: {
-      title: 'Add optional comment',
-      label:
-        'If you need to provide any additional comments about this information enter them below',
-    },
     help: {
       number: {
         title: 'Passport',
