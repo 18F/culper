@@ -32,7 +32,6 @@ export const reference = {
       business: 'Business associate',
       other: 'Other',
       explanation: 'Please provide an explanation',
-      comments: 'Add a comment to this question'
     },
     email: 'Provide email address for this person',
     idk: "I don't know",
