@@ -1,9 +1,10 @@
+import { validate } from 'validate.js'
 import { validateModel } from 'models/validate'
 
 const accordionValidator = (value, options = {}) => {
-  if (!value) return null // Only validate if there's a value
+  if (validate.isEmpty(value)) return null // Don't validate if there is no value
 
-  const { validator } = options
+  const { validator, length } = options
   if (!validator) return 'Invalid validator'
 
   const { items, branch } = value
@@ -12,6 +13,11 @@ const accordionValidator = (value, options = {}) => {
   }
 
   if (!items || (items && items.length < 1)) return 'No items'
+
+  if (length) {
+    const lengthErrors = validateModel({ items }, { items: { length } })
+    if (lengthErrors !== true) return lengthErrors
+  }
 
   let itemErrors
   for (let i = 0; i < items.length; i += 1) {
