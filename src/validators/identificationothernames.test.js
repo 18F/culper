@@ -1,37 +1,37 @@
 import IdentificationOtherNamesValidator, {
-  OtherNameValidator
+  OtherNameValidator,
 } from './identificationothernames'
 
-describe('OtherNames validation', function() {
-  it('should validate has other names', function() {
+describe('OtherNames validation', () => {
+  it('should validate has other names', () => {
     const tests = [
       {
         state: {
-          HasOtherNames: { value: 'Yes' }
+          HasOtherNames: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasOtherNames: { value: 'No' }
+          HasOtherNames: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasOtherNames: { value: 'Blah' }
+          HasOtherNames: { value: 'Blah' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasOtherNames: { value: 'foo' }
+          HasOtherNames: { value: 'foo' },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new IdentificationOtherNamesValidator(
           test.state,
@@ -41,8 +41,15 @@ describe('OtherNames validation', function() {
     })
   })
 
-  it('should validate list of other names', function() {
+  it('should validate list of other names', () => {
     const tests = [
+      {
+        state: {
+          HasOtherNames: { value: 'Yes' },
+          List: null,
+        },
+        expected: false,
+      },
       {
         state: {
           HasOtherNames: { value: 'Yes' },
@@ -58,32 +65,32 @@ describe('OtherNames validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   MaidenName: {
-                    value: 'Foo'
+                    value: 'Foo',
                   },
                   DatesUsed: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
-                    }
+                      year: '2012',
+                    },
                   },
                   Reason: {
-                    value: 'Testing'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Testing',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -100,54 +107,54 @@ describe('OtherNames validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   MaidenName: {
-                    value: 'Foo'
+                    value: 'Foo',
                   },
                   DatesUsed: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Reason: {
-                    value: 'Testing'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Testing',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasOtherNames: { value: 'Foo' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new IdentificationOtherNamesValidator(test.state, null).isValid()
       ).toBe(test.expected)
     })
   })
 
-  it('should validate name', function() {
+  it('should validate name', () => {
     const tests = [
       {
         state: {
@@ -158,54 +165,54 @@ describe('OtherNames validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
-          }
+            suffix: 'Jr',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OtherNameValidator(test.state, null).validName()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate maiden name', function() {
+  it('should validate maiden name', () => {
     const tests = [
       {
         state: {
           MaidenName: {
-            value: 'Foo'
-          }
+            value: 'Foo',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           MaidenName: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          MaidenName: null
+          MaidenName: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OtherNameValidator(test.state, null).validMaidenName()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate dates used', function() {
+  it('should validate dates used', () => {
     const tests = [
       {
         state: {
@@ -213,23 +220,23 @@ describe('OtherNames validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          DatesUsed: {}
+          DatesUsed: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -238,11 +245,11 @@ describe('OtherNames validation', function() {
             to: {
               month: '1',
               day: '1',
-              year: '2012'
-            }
-          }
+              year: '2012',
+            },
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -250,23 +257,23 @@ describe('OtherNames validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
-            to: {}
-          }
+            to: {},
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OtherNameValidator(test.state, null).validDatesUsed()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate a full other name', function() {
+  it('should validate a full other name', () => {
     const tests = [
       {
         state: {
@@ -277,33 +284,33 @@ describe('OtherNames validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           MaidenName: {
-            value: 'Foo'
+            value: 'Foo',
           },
           DatesUsed: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
+            present: false,
           },
           Reason: {
-            value: 'Testing'
-          }
+            value: 'Testing',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OtherNameValidator(test.state, null).isValid()).toBe(
         test.expected
       )
