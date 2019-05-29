@@ -16,9 +16,16 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// DocumentTypeCertification is the document type for the certification/signature-form
 const DocumentTypeCertification = "CER"
+
+// DocumentTypeCreditRelease is the document type for the credit release
 const DocumentTypeCreditRelease = "FCR"
+
+// DocumentTypeMedicalRelease is the document type for the medical release
 const DocumentTypeMedicalRelease = "MEL"
+
+// DocumentTypeInformationRelease is the document type for the infomation release
 const DocumentTypeInformationRelease = "REL"
 
 var (
