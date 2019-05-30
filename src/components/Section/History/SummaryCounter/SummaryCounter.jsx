@@ -50,12 +50,12 @@ export default class SummaryCounter extends React.Component {
           <span className="title">{this.props.title}</span>
         </div>
         <div className="summary-counter-schools">
-          <span className="total">{totalSchools}</span>
-          <span className="unit">{this.props.schoolsLabel}</span>
+          <span className="schools total">{totalSchools}</span>
+          <span className="schools unit">{this.props.schoolsLabel}</span>
         </div>
         <div className="summary-counter-diplomas">
-          <span className="total">{totalDiplomas}</span>
-          <span className="unit">{this.props.diplomasLabel}</span>
+          <span className="diplomas total">{totalDiplomas}</span>
+          <span className="diplomas unit">{this.props.diplomasLabel}</span>
         </div>
       </div>
     )
