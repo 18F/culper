@@ -73,7 +73,7 @@ func TestFormVersionSave(t *testing.T) {
 {
 	"type": "metadata",
 	"form_type": "SF86",
-	"form_version": "2016-11"
+	"form_version": "2017-07"
 }`
 
 	resp := saveJSON(services, []byte(metadataBody), account.ID)

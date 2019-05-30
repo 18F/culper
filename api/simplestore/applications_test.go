@@ -95,7 +95,7 @@ func createAccount(t *testing.T, store SimpleStore) api.Account {
 
 	externalID := uuid.New().String()
 
-	createErr := store.db.Get(&result, createQuery, email, "SF86", "2016-11", externalID)
+	createErr := store.db.Get(&result, createQuery, email, "SF86", "2017-07", externalID)
 	if createErr != nil {
 		t.Log("Failed to create Account", createErr)
 		t.Fatal()

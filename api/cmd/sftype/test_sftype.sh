@@ -15,9 +15,9 @@ original_type=$(./sftype test07 || echo "FAIL: Print Form Type")
 # try an invalid form type
 ./sftype test07 SF85 2001-03 && echo "FAIL: invalid form type worked"
 
-./sftype test07 SF85 2017-12_draft7 || echo "FAIL: exit non-zero"
+./sftype test07 SF85 2017-12-draft7 || echo "FAIL: exit non-zero"
 
-expected_type="test07 SF85 2017-12_draft7"
+expected_type="test07 SF85 2017-12-draft7"
 
 set_type=$(./sftype test07)
 
