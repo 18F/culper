@@ -21,6 +21,7 @@ import Verify from '../Verify'
 import General from '../General'
 import Medical from '../Medical'
 import Credit from '../Credit'
+import SubmitConfirmationModal from '../SubmitConfirmationModal'
 
 import connectPackageSection from '../PackageConnector'
 
@@ -31,6 +32,7 @@ export class PackageSubmit extends React.Component {
     super(props)
 
     this.state = {
+      isConfirmingSubmission: false,
       isSubmitting: false,
       submissionError: false,
       showAdditionalComments: true,
@@ -40,43 +42,53 @@ export class PackageSubmit extends React.Component {
     }
   }
 
+  handleConfirmSubmission = () => {
+    this.setState({
+      isConfirmingSubmission: true,
+    })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      isConfirmingSubmission: false,
+    })
+  }
+
   handleSubmit = () => {
-    if (window.confirm('Are you sure you want to submit this application?')) {
-      const { updateApplication, history } = this.props
-      const { signatures } = this.state
+    const { updateApplication, history } = this.props
+    const { signatures } = this.state
 
-      const data = { ...signatures }
-      const payload = schema('package.submit', data, false)
+    const data = { ...signatures }
+    const payload = schema('package.submit', data, false)
 
-      this.setState({
-        isSubmitting: true,
+    this.setState({
+      isSubmitting: true,
+    })
+
+    // Make API call
+    axios
+      .all([api.save(payload)])
+      .then(() => api.submit())
+      .then(() => api.status())
+      .then((response = {}) => {
+        const statusData = (response).data || {
+          Locked: false,
+          Hash: false,
+        }
+
+        updateApplication('Settings', 'locked', statusData.Locked)
+        updateApplication('Settings', 'hash', statusData.Hash)
+
+        history.push('/form/package/print')
       })
+      .catch(() => {
+        console.warn('Failed to form package')
 
-      // Make API call
-      axios
-        .all([api.save(payload)])
-        .then(() => api.submit())
-        .then(() => api.status())
-        .then((response = {}) => {
-          const statusData = (response).data || {
-            Locked: false,
-            Hash: false,
-          }
-
-          updateApplication('Settings', 'locked', statusData.Locked)
-          updateApplication('Settings', 'hash', statusData.Hash)
-
-          history.push('/form/package/print')
+        this.setState({
+          isSubmitting: false,
+          submissionError: true,
         })
-        .catch(() => {
-          console.warn('Failed to form package')
-
-          this.setState({
-            isSubmitting: false,
-            submissionError: true,
-          })
-        })
-    }
+      })
   }
 
   update = (values) => {
@@ -253,7 +265,9 @@ export class PackageSubmit extends React.Component {
 
   render() {
     const { Application = {}, Settings = {} } = this.props
-    const { signatures, isSubmitting, submissionError } = this.state
+    const {
+      signatures, isSubmitting, isConfirmingSubmission, submissionError,
+    } = this.state
     const { formType } = Settings
     const formName = formType
       && formConfig[formType]
@@ -288,7 +302,7 @@ export class PackageSubmit extends React.Component {
           <div className="text-right">
             <button
               type="button"
-              onClick={this.handleSubmit}
+              onClick={this.handleConfirmSubmission}
               className="submit usa-button"
               disabled={isSubmitting || !isSigned}
             >
@@ -310,6 +324,14 @@ export class PackageSubmit extends React.Component {
               </div>
             </div>
           </div>
+        )}
+
+        {isConfirmingSubmission && (
+          <SubmitConfirmationModal
+            formName={formName}
+            handleCancel={this.handleCancel}
+            handleSubmit={this.handleSubmit}
+          />
         )}
       </div>
     )
