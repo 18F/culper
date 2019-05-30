@@ -1,113 +1,121 @@
 import PoliceOffensesValidator from './policeoffenses'
 import Location from '../components/Form/Location'
 
-describe('Police record validation', function() {
+describe('Police record validation', () => {
   it('validates offenses', () => {
     const tests = [
       {
         state: {
-          HasOffenses: { value: 'No' },
-          List: {
-            branch: { value: 'No' },
-            items: []
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          HasOffenses: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
             items: [
               {
                 Item: {
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
+        },
+        expected: true,
+      },
+      {
+        state: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
                   Date: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Description: {
-                    value: 'Some description'
+                    value: 'Some description',
                   },
                   InvolvedViolence: { value: 'No' },
                   InvolvedFirearms: { value: 'No' },
                   InvolvedSubstances: { value: 'No' },
                   Address: {
                     country: { value: 'United States' },
-                    street: '1234 Some Rd',
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.OFFENSE,
                   },
                   WasCited: { value: 'Yes' },
                   CitedBy: {
-                    value: 'Somebody'
+                    value: 'Somebody',
                   },
                   WasCharged: { value: 'No' },
                   Explanation: {
-                    value: 'Some explanation'
+                    value: 'Some explanation',
                   },
                   AgencyAddress: {
                     country: { value: 'United States' },
-                    street: '1234 Some Rd',
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.OFFENSE,
                   },
                   WasSentenced: { value: 'No' },
                   AwaitingTrial: { value: 'Yes' },
                   AwaitingTrialExplanation: {
-                    value: 'Yessss'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Yessss',
+                  },
+                },
+              },
+              {
+                Item: {
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasOffenses: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: [{ Item: {} }]
-          }
+            items: [{ Item: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasOffenses: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasOffenses: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{ Item: {} }]
-          }
+            items: [{ Item: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasOffenses: { value: 'No' }
+          List: {
+            branch: { value: 'No' },
+            items: [{ Item: { Has: { value: 'No' } } }],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new PoliceOffensesValidator(test.state, null).isValid()).toBe(
         test.expected
       )
