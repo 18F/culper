@@ -1,8 +1,7 @@
-import { hasYesOrNo } from 'models/validate'
+import { hasYesOrNo, checkValue } from 'models/validate'
 import offenseAddress from 'models/shared/locations/offense'
 import sentence from 'models/shared/sentence'
-
-const offenseChargeTypes = ['Felony', 'Misdemeanor', 'Other']
+import { offenseChargeTypes } from 'constants/enums/legalOptions'
 
 const offense = {
   Date: { presence: true, date: true },
@@ -27,140 +26,81 @@ const offense = {
     presence: true,
     hasValue: { validator: hasYesOrNo },
   },
-  CitedBy: (value, attributes) => {
-    if (attributes.WasCited && attributes.WasCited.value === 'Yes') {
-      return {
-        presence: true,
-        hasValue: true,
-      }
-    }
-
-    return {}
-  },
-  AgencyAddress: (value, attributes) => {
-    if (attributes.WasCited && attributes.WasCited.value === 'Yes') {
-      return {
+  CitedBy: (value, attributes) => (
+    checkValue(attributes.WasCited, 'Yes')
+      ? { presence: true, hasValue: true }
+      : {}
+  ),
+  AgencyAddress: (value, attributes) => (
+    checkValue(attributes.WasCited, 'Yes')
+      ? {
         presence: true,
         location: { validator: offenseAddress },
-      }
-    }
-
-    return {}
-  },
+      } : {}
+  ),
   WasCharged: {
     presence: true,
     hasValue: { validator: hasYesOrNo },
   },
-  Explanation: (value, attributes) => {
-    if (attributes.WasCharged && attributes.WasCharged.value === 'No') {
-      return {
-        presence: true,
-        hasValue: true,
-      }
-    }
-
-    return {}
-  },
-  CourtName: (value, attributes) => {
-    if (attributes.WasCharged && attributes.WasCharged.value === 'Yes') {
-      return {
-        presence: true,
-        hasValue: true,
-      }
-    }
-
-    return {}
-  },
-  CourtAddress: (value, attributes) => {
-    if (attributes.WasCharged && attributes.WasCharged.value === 'Yes') {
-      return {
+  Explanation: (value, attributes) => (
+    checkValue(attributes.WasCharged, 'No')
+      ? { presence: true, hasValue: true }
+      : {}
+  ),
+  CourtName: (value, attributes) => (
+    checkValue(attributes.WasCharged, 'Yes')
+      ? { presence: true, hasValue: true }
+      : {}
+  ),
+  CourtAddress: (value, attributes) => (
+    checkValue(attributes.WasCharged, 'Yes')
+      ? {
         presence: true,
         location: { validator: offenseAddress },
-      }
-    }
-
-    return {}
-  },
-  ChargeType: (value, attributes) => {
-    if (attributes.WasCharged && attributes.WasCharged.value === 'Yes') {
-      return {
+      } : {}
+  ),
+  ChargeType: (value, attributes) => (
+    checkValue(attributes.WasCharged, 'Yes')
+      ? {
         presence: true,
         hasValue: { validator: { inclusion: offenseChargeTypes } },
-      }
-    }
-
-    return {}
-  },
-  CourtCharge: (value, attributes) => {
-    if (attributes.WasCharged && attributes.WasCharged.value === 'Yes') {
-      return {
-        presence: true,
-        hasValue: true,
-      }
-    }
-
-    return {}
-  },
-  CourtOutcome: (value, attributes) => {
-    if (attributes.WasCharged && attributes.WasCharged.value === 'Yes') {
-      return {
-        presence: true,
-        hasValue: true,
-      }
-    }
-
-    return {}
-  },
-  CourtDate: (value, attributes) => {
-    if (attributes.WasCharged && attributes.WasCharged.value === 'Yes') {
-      return {
-        presence: true,
-        date: true,
-      }
-    }
-
-    return {}
-  },
-  WasSentenced: (value, attributes) => {
-    if (attributes.WasCharged && attributes.WasCharged.value === 'Yes') {
-      return {
-        presence: true,
-        hasValue: { validator: hasYesOrNo },
-      }
-    }
-
-    return {}
-  },
-  AwaitingTrial: (value, attributes) => {
-    if (attributes.WasSentenced && attributes.WasSentenced.value === 'No') {
-      return {
-        presence: true,
-        hasValue: { validator: hasYesOrNo },
-      }
-    }
-
-    return {}
-  },
-  AwaitingTrialExplanation: (value, attributes) => {
-    if (attributes.WasSentenced && attributes.WasSentenced.value === 'No') {
-      return {
-        presence: true,
-        hasValue: true,
-      }
-    }
-
-    return {}
-  },
-  Sentence: (value, attributes) => {
-    if (attributes.WasSentenced && attributes.WasSentenced.value === 'Yes') {
-      return {
-        presence: true,
-        model: { validator: sentence },
-      }
-    }
-
-    return {}
-  },
+      } : {}
+  ),
+  CourtCharge: (value, attributes) => (
+    checkValue(attributes.WasCharged, 'Yes')
+      ? { presence: true, hasValue: true }
+      : {}
+  ),
+  CourtOutcome: (value, attributes) => (
+    checkValue(attributes.WasCharged, 'Yes')
+      ? { presence: true, hasValue: true }
+      : {}
+  ),
+  CourtDate: (value, attributes) => (
+    checkValue(attributes.WasCharged, 'Yes')
+      ? { presence: true, date: true }
+      : {}
+  ),
+  WasSentenced: (value, attributes) => (
+    checkValue(attributes.WasCharged, 'Yes')
+      ? { presence: true, hasValue: { validator: hasYesOrNo } }
+      : {}
+  ),
+  AwaitingTrial: (value, attributes) => (
+    checkValue(attributes.WasSentenced, 'No')
+      ? { presence: true, hasValue: { validator: hasYesOrNo } }
+      : {}
+  ),
+  AwaitingTrialExplanation: (value, attributes) => (
+    checkValue(attributes.WasSentenced, 'No')
+      ? { presence: true, hasValue: true }
+      : {}
+  ),
+  Sentence: (value, attributes) => (
+    checkValue(attributes.WasSentenced, 'Yes')
+      ? { presence: true, model: { validator: sentence } }
+      : {}
+  ),
 }
 
 export default offense
