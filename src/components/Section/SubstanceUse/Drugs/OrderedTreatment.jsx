@@ -57,27 +57,34 @@ export default class OrderedTreatment extends ValidationElement {
         TreatmentDates: this.props.TreatmentDates,
         TreatmentCompleted: this.props.TreatmentCompleted,
         NoTreatmentExplanation: this.props.NoTreatmentExplanation,
-        ...updateValues
+        ...updateValues,
       })
     }
   }
 
-  updateOrderedBy(cb) {
-    let selected = cb.value
+  /**
+   * This is the list of people that ordered counseling or treatment
+   */
+  getPeopleWhoOrderedCounseling = (cb) => {
+    const selected = cb.value
     let list = [...((this.props.OrderedBy || {}).values || [])]
 
-      if (list.includes(selected)) {
-        list.splice(list.indexOf(selected), 1)
-      } else {
-        if (selected !== "None" && list.includes("None") || selected === "None") {
-            list = [selected]
-        }
-        else {
-          list.push(selected)
-        }
-      }
+    if (list.includes(selected)) {
+      list.splice(list.indexOf(selected), 1)
+    } else if (selected === 'None' || list.includes('None')) {
+      list = [selected]
+    } else {
+      list.push(selected)
+    }
+    return list
+  }
 
-    this.update({ OrderedBy: { values: list } })
+  updateOrderedBy(cb) {
+    this.update({
+      OrderedBy: {
+        values: this.getPeopleWhoOrderedCounseling(cb),
+      },
+    })
   }
 
   updateExplanation(values) {
