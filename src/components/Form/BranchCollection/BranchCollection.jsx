@@ -29,7 +29,7 @@ export default class BranchCollection extends React.Component {
         }
         break
       default: {
-        const isLastItem = index + 1 >= newItems.length
+        const isLastItem = index + 1 >= items.length
         if (!isLastItem && removable) {
           // If it's not the last item being marked as No, then remove it. This addresses the issue
           // where the user must click No twice on the last item.
@@ -41,7 +41,7 @@ export default class BranchCollection extends React.Component {
             Item: {
               [valueKey]: values,
             },
-            index: newItems.index,
+            index: item.index,
           }
         } else {
           // If this is the last item then we still need to remove it.
@@ -60,9 +60,7 @@ export default class BranchCollection extends React.Component {
     const { valueKey, onUpdate } = this.props
 
     const item = {
-      Item: {
-        [valueKey]: values,
-      },
+      Item: { [valueKey]: values },
       index: newGuid(),
     }
     const items = [item]
@@ -75,26 +73,25 @@ export default class BranchCollection extends React.Component {
    */
   onLastBranchClick(values) {
     const {
-      valueKey, items, scrollToBottom, onUpdate,
+      items, valueKey, scrollToBottom, onUpdate,
     } = this.props
 
     const item = {
-      Item: {
-        [valueKey]: values,
-      },
+      Item: { [valueKey]: values },
       index: newGuid(),
     }
+
     if (values.value === 'Yes') {
       const newItems = [...items]
       newItems.push(item)
-      onUpdate({ newItems })
+      onUpdate({ items: newItems })
     } else {
       const newItems = [...items]
       newItems.push(item)
       if (scrollToBottom) {
         scrollToBottomFn(scrollToBottom)
       }
-      onUpdate({ items })
+      onUpdate({ items: newItems })
     }
   }
 
@@ -103,13 +100,11 @@ export default class BranchCollection extends React.Component {
       let childProps = {}
       if (React.isValidElement(child)) {
         if (child.props.bind) {
-          const { onError } = this.props
+          const { items, onUpdate, onError } = this.props
           const field = item[child.props.name]
           childProps = { ...field }
           childProps.onUpdate = (value) => {
-            const { items, onUpdate } = this.props
             const newItems = [...items]
-
             const newItem = newItems[index][child.props.name]
             newItems[index][child.props.name] = {
               ...newItem,
@@ -124,9 +119,8 @@ export default class BranchCollection extends React.Component {
       const typeOfChildren = Object.prototype.toString.call(
         child.props.children
       )
-      if (
-        child.props.children
-          && ['[object Object]', '[object Array]'].includes(typeOfChildren)
+      if (child.props.children
+        && ['[object Object]', '[object Array]'].includes(typeOfChildren)
       ) {
         childProps.children = this.recursiveCloneChildren(
           child.props.children,
@@ -170,22 +164,17 @@ export default class BranchCollection extends React.Component {
       branchClassName, appendLabel, appendSize, appendContent, children,
     } = this.props
 
-    const newItems = (items || []).map((item) => {
+    const renderItems = (items || []).map((item) => {
       if (!item.index) {
-        return {
-          ...item,
-          index: newGuid(),
-        }
+        item.index = newGuid() // eslint-disable-line
       }
       return item
     })
 
-    const hasNo = !!newItems.find(
-      item => ((item.Item || {})[valueKey] || {}).value !== 'Yes'
-    )
+    const hasNo = !!renderItems.find(item => ((item.Item || {})[valueKey] || {}).value !== 'Yes')
 
     // When no items are present, render default branch yes/no
-    if (newItems.length === 0) {
+    if (renderItems.length === 0) {
       return (
         <div>
           {this.branch({
@@ -205,9 +194,8 @@ export default class BranchCollection extends React.Component {
 
     // If a branch has been selected but it has a `No` value, rather than deleting, we'll update
     // its value
-    if (
-      newItems.length === 1
-        && ((newItems[0].Item || {})[valueKey] || {}).value === 'No'
+    if (renderItems.length === 1
+      && ((renderItems[0].Item || {})[valueKey] || {}).value === 'No'
     ) {
       const [item] = items
       return (
@@ -232,6 +220,7 @@ export default class BranchCollection extends React.Component {
       const className = ((item.Item || {})[valueKey] || {}).value === 'Yes'
         ? branchClassName
         : null
+
       if (index === 0) {
         return this.branch({
           name: branchName,
@@ -287,7 +276,7 @@ export default class BranchCollection extends React.Component {
         : null
     }
 
-    const rows = items.map((item, index, arr) => (
+    const rows = renderItems.map((item, index, arr) => (
       <div key={item.index}>
         {top(index, item, arr)}
         <div>{kiddos(index, item)}</div>
