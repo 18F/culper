@@ -6,32 +6,22 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"io/ioutil"
-	"os"
 	"path"
 	"testing"
-
-	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
 const (
-	packageDir    = "pdf"
-	testdataDir   = packageDir + "/testdata"
+	testdataDir   = "./testdata"
 	fileExtension = ".pdf"
 )
 
 func TestPackage(t *testing.T) {
-	// Change working dir to parent so code under test is
-	// executed in same working directory as in production.
-	os.Chdir("..")
-	// Restore working dir
-	defer os.Chdir(packageDir)
 
 	application := applicationData(t)
-	logger := &mock.LogService{}
-	service := Service{Log: logger}
+	service := NewPDFService("./templates/")
 	var fauxHash [sha256.Size]byte
 
-	for _, p := range DocumentTypes {
+	for _, p := range ReleasePDFs {
 		_, ok := service.SignatureAvailable(application, p)
 		if !ok {
 			continue
@@ -42,7 +32,7 @@ func TestPackage(t *testing.T) {
 			t.Fatalf("Error creating PDF from %s: %s", p.Template, err.Error())
 		}
 
-		rpath := path.Join(testdataDir, p.Name+fileExtension)
+		rpath := path.Join(testdataDir, "attachments", p.Name+fileExtension)
 		reference, err := ioutil.ReadFile(rpath)
 		if err != nil {
 			t.Fatalf("Error reading reference PDF: %s", err.Error())

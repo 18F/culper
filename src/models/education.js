@@ -60,7 +60,10 @@ const education = {
 
     return {
       presence: true,
-      model: { validator: name },
+      model: {
+        validator: name,
+        hideMiddleName: true,
+      },
     }
   },
   ReferenceNameNotApplicable: {},

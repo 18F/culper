@@ -84,7 +84,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>320 Washington Ave </Street>
+                    <Street>320 Washington Ave</Street>
                     <City>Wheeling</City>
                     <State>WV</State>
                     <ZipCode>26003</ZipCode>
@@ -108,12 +108,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True" Friend="True" Schoolmate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>7245555553</Number>
                       <Time>Both</Time>
@@ -123,7 +118,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>317 WASHINGTON AVE </Street>
+                    <Street>317 WASHINGTON AVE</Street>
                     <City>WHEELING</City>
                     <State>WV</State>
                     <ZipCode>26003</ZipCode>
@@ -147,12 +142,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True" Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>7245555554</Number>
                       <Time>Both</Time>
@@ -162,7 +152,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>320 Washington Ave </Street>
+                    <Street>320 Washington Ave</Street>
                     <City>Wheeling</City>
                     <State>WV</State>
                     <ZipCode>26003</ZipCode>
@@ -187,12 +177,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>7245555555</Number>
                       <Time>Both</Time>
@@ -345,7 +330,7 @@
               <Residencies>
                 <Residency ID="1">
                   <Address>
-                    <Street>316 Washington Ave </Street>
+                    <Street>316 Washington Ave</Street>
                     <City>Wheeling</City>
                     <State>WV</State>
                     <ZipCode>26003</ZipCode>
@@ -364,7 +349,7 @@
                   <ResidenceType>Own</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>317 WASHINGTON AVE </Street>
+                      <Street>317 WASHINGTON AVE</Street>
                       <City>WHEELING</City>
                       <State>WV</State>
                       <ZipCode>26003</ZipCode>
@@ -419,7 +404,7 @@
                     <PositionTitle>Analyst</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>345 NATIONAL RD </Street>
+                        <Street>345 NATIONAL RD</Street>
                         <City>WHEELING</City>
                         <State>WV</State>
                         <ZipCode>26003</ZipCode>
@@ -441,7 +426,7 @@
                     <Name>Gail Shannon</Name>
                     <Title>Lead Analyst</Title>
                     <Address>
-                      <Street>345 NATIONAL RD </Street>
+                      <Street>345 NATIONAL RD</Street>
                       <City>WHEELING</City>
                       <State>WV</State>
                       <ZipCode>26003</ZipCode>
@@ -489,7 +474,7 @@
                   <Type>College</Type>
                   <Name>Wheeling College</Name>
                   <Address>
-                    <Street>318 Washington Ave </Street>
+                    <Street>318 Washington Ave</Street>
                     <City>Wheeling</City>
                     <State>WV</State>
                     <ZipCode>26003</ZipCode>
@@ -527,7 +512,7 @@
                   <Type>HighSchool</Type>
                   <Name>Wheeling Central Catholic</Name>
                   <Address>
-                    <Street>319 Washington Ave </Street>
+                    <Street>319 Washington Ave</Street>
                     <City>Wheeling</City>
                     <State>WV</State>
                     <ZipCode>26003</ZipCode>
@@ -994,14 +979,10 @@
                   <Agency>Unknown</Agency>
                   <ClearanceLevel>Unknown</ClearanceLevel>
                   <GrantedDate>
-                    <Date DoNotKnow="True">
-  
-</Date>
+                    <Date DoNotKnow="True"/>
                   </GrantedDate>
                   <InvestigationDate>
-                    <Date DoNotKnow="True">
-  
-</Date>
+                    <Date DoNotKnow="True"/>
                   </InvestigationDate>
                   <IssuingAgency>
       

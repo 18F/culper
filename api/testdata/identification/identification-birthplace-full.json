@@ -1,0 +1,19 @@
+{
+  "type": "identification.birthplace",
+  "props": {
+    "Location": {
+      "type": "location",
+      "props": {
+        "layout": "Address",
+        "street": "123 Some Rd",
+        "street2": "po box tho",
+        "city": "Arlington",
+        "state": "VA",
+        "zipcode": "22202",
+        "county": "Davidson",
+        "country": "United States",
+        "validated": true
+      }
+    }
+  }
+}

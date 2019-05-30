@@ -125,9 +125,11 @@
         <Employer>
           {{address $Item.EmployerAddress $Item.EmployerAddressNotApplicable}}
           <Comment></Comment>
-          <Name DoNotKnow="{{notApplicable $Item.EmployerNotApplicable}}">
-            {{text $Item.Employer}}
-          </Name>
+          {{if notApplicable $Item.EmployerNotApplicable | eq "True"}}
+          <Name DoNotKnow="True"></Name>
+          {{else}}
+          <Name>{{text $Item.Employer}}</Name>
+          {{end}}
         </Employer>
         <FirstContactDate Type="{{dateEstimated $Item.FirstContact}}">
           {{monthYear $Item.FirstContact}}

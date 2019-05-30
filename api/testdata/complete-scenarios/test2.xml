@@ -84,7 +84,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>100 E MAIN ST </Street>
+                    <Street>100 E MAIN ST</Street>
                     <City>LOUISVILLE</City>
                     <State>KY</State>
                     <ZipCode>40202</ZipCode>
@@ -108,12 +108,7 @@
                   </LegalName>
                   <RelationshipType Schoolmate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>5027893456</Number>
                       <Time>Both</Time>
@@ -123,7 +118,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>567 E BURNETT AVE </Street>
+                    <Street>567 E BURNETT AVE</Street>
                     <City>LOUISVILLE</City>
                     <State>KY</State>
                     <ZipCode>40217</ZipCode>
@@ -147,12 +142,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>3334442233</Number>
                       <Time>Both</Time>
@@ -162,7 +152,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>33 S MAIN ST </Street>
+                    <Street>33 S MAIN ST</Street>
                     <City>MEMPHIS</City>
                     <State>TN</State>
                     <ZipCode>37010</ZipCode>
@@ -186,12 +176,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>4442342567</Number>
                       <Time>Both</Time>
@@ -207,7 +192,7 @@
               <Relatives>
                 <Relative ID="1">
                   <Address>
-                    <Street>33 Salem st </Street>
+                    <Street>33 Salem st</Street>
                     <City>Salem</City>
                     <State>OR</State>
                     <ZipCode>97005</ZipCode>
@@ -290,7 +275,7 @@
               <Residencies>
                 <Residency ID="1">
                   <Address>
-                    <Street>22 elm st </Street>
+                    <Street>22 elm st</Street>
                     <City>Memphis</City>
                     <State>TN</State>
                     <ZipCode>37010</ZipCode>
@@ -309,7 +294,7 @@
                   <ResidenceType>Own</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>28 Elm st </Street>
+                      <Street>28 Elm st</Street>
                       <City>Memphis</City>
                       <State>TN</State>
                       <ZipCode>37010</ZipCode>
@@ -334,9 +319,7 @@
                       <Evening>
                         <Number>5677554321</Number>
                       </Evening>
-                      <Mobile DoNotKnow="True">
-
-</Mobile>
+                      <Mobile DoNotKnow="True"/>
                     </Telephone>
                   </Verifier>
                 </Residency>
@@ -364,7 +347,7 @@
                     <PositionTitle>Manager</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>1227 E BURNETT AVE </Street>
+                        <Street>1227 E BURNETT AVE</Street>
                         <City>LOUISVILLE</City>
                         <State>KY</State>
                         <ZipCode>40217</ZipCode>
@@ -386,7 +369,7 @@
                     <Name>Willow</Name>
                     <Title>Boss</Title>
                     <Address>
-                      <Street>1228 E Burnett Ave </Street>
+                      <Street>1228 E Burnett Ave</Street>
                       <City>Louisville</City>
                       <State>KY</State>
                       <ZipCode>40217</ZipCode>
@@ -477,7 +460,7 @@
                     <Amount>500000</Amount>
                     <Authority>
                       <Address>
-                        <Street>66 street st </Street>
+                        <Street>66 street st</Street>
                         <City>Memphis</City>
                         <State>CO</State>
                         <ZipCode>80011</ZipCode>
@@ -510,7 +493,7 @@
                     <Amount>42257</Amount>
                     <Authority>
                       <Address>
-                        <Street>67 W St </Street>
+                        <Street>67 W St</Street>
                         <City>Topeka</City>
                         <State>KS</State>
                         <ZipCode>67428</ZipCode>
@@ -549,7 +532,7 @@
                     <Actions>getting help</Actions>
                     <Agency>
                       <Address>
-                        <Street>66 street st </Street>
+                        <Street>66 street st</Street>
                         <City>Salem</City>
                         <State>PR</State>
                         <ZipCode>00979</ZipCode>
@@ -567,7 +550,7 @@
                     <Actions>getting more help</Actions>
                     <Agency>
                       <Address>
-                        <Street>22 elm st </Street>
+                        <Street>22 elm st</Street>
                         <City>Pacific Grove</City>
                         <State>CA</State>
                         <ZipCode>93950</ZipCode>
@@ -631,7 +614,7 @@
                     <Amount>23424</Amount>
                     <Court>
                       <Address>
-                        <Street>110 Main ST. </Street>
+                        <Street>110 Main ST.</Street>
                         <City>Salem</City>
                         <State>TN</State>
                         <ZipCode>37010</ZipCode>
@@ -663,7 +646,7 @@
                     <Amount>333</Amount>
                     <Court>
                       <Address>
-                        <Street>222 elm street </Street>
+                        <Street>222 elm street</Street>
                         <City>LOUISVILLE</City>
                         <State>FL</State>
                         <ZipCode>32803</ZipCode>
@@ -910,7 +893,7 @@
                     </CompletedTreatmentProgram>
                     <Doctor>
                       <Address>
-                        <Street>66 street st </Street>
+                        <Street>66 street st</Street>
                         <City>Cleveland</City>
                         <State>OH</State>
                         <ZipCode>45777</ZipCode>
@@ -926,7 +909,7 @@
                   <Consultation ID="2">
                     <Agency>
                       <Address>
-                        <Street>583 South Rd. </Street>
+                        <Street>583 South Rd.</Street>
                         <City>Salem</City>
                         <State>FL</State>
                         <ZipCode>32803</ZipCode>
@@ -942,7 +925,7 @@
                     </CompletedTreatmentProgram>
                     <Doctor>
                       <Address>
-                        <Street>222 elm street </Street>
+                        <Street>222 elm street</Street>
                         <City>Anytown</City>
                         <State>TN</State>
                         <ZipCode>37010</ZipCode>
@@ -1038,7 +1021,7 @@
                     <Doctor>
                       <Name>James Smith</Name>
                       <Address>
-                        <Street>222 elm street </Street>
+                        <Street>222 elm street</Street>
                         <City>Anytown</City>
                         <State>CO</State>
                         <ZipCode>80011</ZipCode>
@@ -1076,7 +1059,7 @@
                     <Doctor>
                       <Name>Dr Jim</Name>
                       <Address>
-                        <Street>110 Main ST. </Street>
+                        <Street>110 Main ST.</Street>
                         <City>Anytown</City>
                         <State>GA</State>
                         <ZipCode>30002</ZipCode>
@@ -1111,7 +1094,7 @@
                     <Doctor>
                       <Name>James Smith</Name>
                       <Address>
-                        <Street>22 elm st </Street>
+                        <Street>22 elm st</Street>
                         <City>Anytown</City>
                         <State>OR</State>
                         <ZipCode>97005</ZipCode>
@@ -1143,7 +1126,7 @@
                     <Doctor>
                       <Name>James Smith</Name>
                       <Address>
-                        <Street>66 street st </Street>
+                        <Street>66 street st</Street>
                         <City>Memphis</City>
                         <State>OH</State>
                         <ZipCode>45777</ZipCode>
@@ -1282,7 +1265,7 @@
                         <First>Jim</First>
                       </Name>
                       <Address>
-                        <Street>389 5th Ave. </Street>
+                        <Street>389 5th Ave.</Street>
                         <City>Memphis</City>
                         <State>CO</State>
                         <ZipCode>80011</ZipCode>
@@ -1334,7 +1317,7 @@
                         <First>Rachel</First>
                       </Name>
                       <Address>
-                        <Street>222 elm street </Street>
+                        <Street>222 elm street</Street>
                         <City>Portland</City>
                         <State>WA</State>
                         <ZipCode>98001</ZipCode>
@@ -1534,7 +1517,7 @@
                         <First>Ace</First>
                       </Name>
                       <Address>
-                        <Street>2222 elm street </Street>
+                        <Street>2222 elm street</Street>
                         <City>Anytown</City>
                         <State>SC</State>
                         <ZipCode>29401</ZipCode>
@@ -1576,7 +1559,7 @@
                         <First>Jim</First>
                       </Name>
                       <Address>
-                        <Street>127 E BURNETT AVE </Street>
+                        <Street>127 E BURNETT AVE</Street>
                         <City>Memphis</City>
                         <State>GA</State>
                         <ZipCode>30002</ZipCode>
@@ -1715,7 +1698,7 @@
                   <Court>
                     <Name>Place 1</Name>
                     <Address>
-                      <Street>555 State st </Street>
+                      <Street>555 State st</Street>
                       <City>Emotional town</City>
                       <State>CO</State>
                       <ZipCode>80011</ZipCode>
@@ -1731,7 +1714,7 @@
                       <Court>
                         <Name>Super court</Name>
                         <Address>
-                          <Street>667 Main St </Street>
+                          <Street>667 Main St</Street>
                           <City>Asheville</City>
                           <State>NC</State>
                           <ZipCode>27007</ZipCode>
@@ -1743,7 +1726,7 @@
                       <Court>
                         <Name>mega court</Name>
                         <Address>
-                          <Street>111 main st </Street>
+                          <Street>111 main st</Street>
                           <City>Akron</City>
                           <State>OH</State>
                           <ZipCode>45777</ZipCode>
@@ -1758,7 +1741,7 @@
                   <Court>
                     <Name>dfa</Name>
                     <Address>
-                      <Street>5646 E St </Street>
+                      <Street>5646 E St</Street>
                       <City>Anytown</City>
                       <State>TX</State>
                       <ZipCode>73301</ZipCode>
@@ -1780,7 +1763,7 @@
                   <Court>
                     <Name>name</Name>
                     <Address>
-                      <Street>55 W St </Street>
+                      <Street>55 W St</Street>
                       <City>Detroit</City>
                       <State>MI</State>
                       <ZipCode>48823</ZipCode>
@@ -1797,7 +1780,7 @@
                       <Court>
                         <Name>Place 1</Name>
                         <Address>
-                          <Street>546 t st </Street>
+                          <Street>546 t st</Street>
                           <City>Anytown</City>
                           <State>CA</State>
                           <ZipCode>90001</ZipCode>
@@ -1809,7 +1792,7 @@
                       <Court>
                         <Name>court 2</Name>
                         <Address>
-                          <Street>142 Song St. </Street>
+                          <Street>142 Song St.</Street>
                           <City>Memphis</City>
                           <State>TN</State>
                           <ZipCode>37010</ZipCode>
@@ -1821,7 +1804,7 @@
                       <Court>
                         <Name>admin agency 1</Name>
                         <Address>
-                          <Street>222 elm street </Street>
+                          <Street>222 elm street</Street>
                           <City>Portland</City>
                           <State>OR</State>
                           <ZipCode>97005</ZipCode>
@@ -1836,7 +1819,7 @@
                   <Court>
                     <Name>Place 2</Name>
                     <Address>
-                      <Street>22 elm st </Street>
+                      <Street>22 elm st</Street>
                       <City>Memphis</City>
                       <State>TN</State>
                       <ZipCode>37010</ZipCode>
@@ -1874,7 +1857,7 @@
                   <Facility>
                     <Name>facility 9</Name>
                     <Address>
-                      <Street>44454 Y St </Street>
+                      <Street>44454 Y St</Street>
                       <City>sunny</City>
                       <State>CA</State>
                       <ZipCode>90001</ZipCode>
@@ -1901,7 +1884,7 @@
                   <Facility>
                     <Name>The best facility </Name>
                     <Address>
-                      <Street>4535 O St </Street>
+                      <Street>4535 O St</Street>
                       <City>Omaha</City>
                       <State>MI</State>
                       <ZipCode>48823</ZipCode>
@@ -1936,7 +1919,7 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>908 Western Blvd. </Street>
+                      <Street>908 Western Blvd.</Street>
                       <City>Los Angeles</City>
                       <State>CA</State>
                       <ZipCode>90001</ZipCode>
@@ -1949,7 +1932,7 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>12 Brown Ave. </Street>
+                      <Street>12 Brown Ave.</Street>
                       <City>Los Angeles</City>
                       <State>CA</State>
                       <ZipCode>90001</ZipCode>
@@ -1982,7 +1965,7 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>68678 M St </Street>
+                      <Street>68678 M St</Street>
                       <City>Anytown</City>
                       <State>FL</State>
                       <ZipCode>32803</ZipCode>
@@ -1995,7 +1978,7 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>444 A st </Street>
+                      <Street>444 A st</Street>
                       <City>Anytown</City>
                       <State>OH</State>
                       <ZipCode>45777</ZipCode>
@@ -2017,7 +2000,7 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>110 Main ST. </Street>
+                      <Street>110 Main ST.</Street>
                       <City>Any</City>
                       <State>MA</State>
                       <ZipCode>01254</ZipCode>
@@ -2032,7 +2015,7 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>66 street st </Street>
+                      <Street>66 street st</Street>
                       <City>Memphis</City>
                       <State>SC</State>
                       <ZipCode>29401</ZipCode>

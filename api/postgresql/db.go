@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/url"
+	"strings"
 	"time"
 
 	"github.com/go-pg/pg"
@@ -166,7 +167,10 @@ func (service *Service) Save(query ...interface{}) error {
 	for _, q := range query {
 		err := service.Insert(q)
 		if err != nil {
-			err = service.Update(q)
+			// oh dear god, only try and update if it fails because of a duplicated primary key.
+			if strings.HasPrefix(err.Error(), "ERROR #23505 duplicate key value violates unique constraint") && strings.HasSuffix(err.Error(), `_pkey"`) {
+				err = service.Update(q)
+			}
 		}
 
 		// If there were no rows found we already handle this.
