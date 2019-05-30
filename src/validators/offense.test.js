@@ -1,7 +1,7 @@
 import OffenseValidator from './offense'
 import Location from '../components/Form/Location'
 
-describe('Offense validation', function() {
+describe('Offense validation', () => {
   it('validates date', () => {
     const tests = [
       {
@@ -9,20 +9,20 @@ describe('Offense validation', function() {
           Date: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          Date: null
+          Date: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validDate()).toBe(
         test.expected
       )
@@ -34,22 +34,22 @@ describe('Offense validation', function() {
       {
         state: {
           Description: {
-            value: 'Some description'
-          }
+            value: 'Some description',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Description: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validDescription()).toBe(
         test.expected
       )
@@ -60,25 +60,25 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          InvolvedViolence: { value: 'No' }
+          InvolvedViolence: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          InvolvedViolence: { value: 'Yes' }
+          InvolvedViolence: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          InvolvedViolence: null
+          InvolvedViolence: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validViolence()).toBe(
         test.expected
       )
@@ -89,25 +89,25 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          InvolvedFirearms: { value: 'No' }
+          InvolvedFirearms: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          InvolvedFirearms: { value: 'Yes' }
+          InvolvedFirearms: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          InvolvedFirearms: null
+          InvolvedFirearms: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validFirearms()).toBe(
         test.expected
       )
@@ -118,25 +118,25 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          InvolvedSubstances: { value: 'No' }
+          InvolvedSubstances: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          InvolvedSubstances: { value: 'Yes' }
+          InvolvedSubstances: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          InvolvedSubstances: null
+          InvolvedSubstances: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validSubstances()).toBe(
         test.expected
       )
@@ -153,20 +153,20 @@ describe('Offense validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          Address: null
+          Address: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validAddress()).toBe(
         test.expected
       )
@@ -177,25 +177,25 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          WasCited: { value: 'No' }
+          WasCited: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          WasCited: { value: 'Yes' }
+          WasCited: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          WasCited: null
+          WasCited: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validCited()).toBe(
         test.expected
       )
@@ -206,31 +206,31 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          WasCited: { value: 'No' }
+          WasCited: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           CitedBy: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           CitedBy: {
-            value: 'Somebody'
-          }
+            value: 'Somebody',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validCitedBy()).toBe(
         test.expected
       )
@@ -241,16 +241,16 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          WasCited: { value: 'No' }
+          WasCited: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          AgencyAddress: null
+          AgencyAddress: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -261,14 +261,14 @@ describe('Offense validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validAgencyAddress()).toBe(
         test.expected
       )
@@ -279,33 +279,33 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          WasCited: { value: 'No' }
+          WasCited: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          WasCited: { value: 'Yes' }
-        },
-        expected: false
+        expected: false,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'No' }
         },
-        expected: true
+        expected: false,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'Yes' }
+          WasCharged: { value: 'No' },
         },
-        expected: true
-      }
+        expected: true,
+      },
+      {
+        state: {
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
+        },
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validCharged()).toBe(
         test.expected
       )
@@ -316,51 +316,51 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          WasCited: { value: 'No' }
+          WasCited: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          WasCited: { value: 'Yes' }
-        },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'Yes' }
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'No' }
+          WasCharged: { value: 'Yes' },
         },
-        expected: false
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'No' },
-          Explanation: null
         },
-        expected: false
+        expected: false,
+      },
+      {
+        state: {
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' },
+          Explanation: null,
+        },
+        expected: false,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'No' },
           Explanation: {
-            value: 'Some explanation'
-          }
+            value: 'Some explanation',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validExplanation()).toBe(
         test.expected
       )
@@ -372,30 +372,30 @@ describe('Offense validation', function() {
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'No' }
+          WasCharged: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'Yes' }
+          WasCharged: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'Yes' },
           CourtName: {
-            value: 'court name'
-          }
+            value: 'court name',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validCourtName()).toBe(
         test.expected
       )
@@ -407,16 +407,16 @@ describe('Offense validation', function() {
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'No' }
+          WasCharged: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'Yes' }
+          WasCharged: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -428,14 +428,14 @@ describe('Offense validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validCourtAddress()).toBe(
         test.expected
       )
@@ -447,36 +447,36 @@ describe('Offense validation', function() {
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'No' }
+          WasCharged: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          WasCited: { value: 'Yes' },
-          WasCharged: { value: 'Yes' }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'Yes' },
-          ChargeType: 'Does not exit'
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'Yes' },
-          ChargeType: { value: 'Felony' }
+          ChargeType: 'Does not exit',
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
+          ChargeType: { value: 'Felony' },
+        },
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validChargeType()).toBe(
         test.expected
       )
@@ -488,30 +488,30 @@ describe('Offense validation', function() {
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'No' }
+          WasCharged: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'Yes' }
+          WasCharged: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'Yes' },
           CourtCharge: {
-            value: 'Some charge'
-          }
+            value: 'Some charge',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validCourtCharge()).toBe(
         test.expected
       )
@@ -523,30 +523,30 @@ describe('Offense validation', function() {
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'No' }
+          WasCharged: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'Yes' }
+          WasCharged: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'Yes' },
           CourtOutcome: {
-            value: 'Some outcome'
-          }
+            value: 'Some outcome',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validCourtOutcome()).toBe(
         test.expected
       )
@@ -558,16 +558,16 @@ describe('Offense validation', function() {
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'No' }
+          WasCharged: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
-          WasCharged: { value: 'Yes' }
+          WasCharged: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -576,14 +576,14 @@ describe('Offense validation', function() {
           CourtDate: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validCourtDate()).toBe(
         test.expected
       )
@@ -605,34 +605,34 @@ describe('Offense validation', function() {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000'
+                year: '2000',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004'
+                year: '2004',
               },
-              present: false
+              present: false,
             },
             ProbationDates: {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000'
+                year: '2000',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004'
+                year: '2004',
               },
-              present: false
+              present: false,
             },
             Description: {
-              value: 'Foo'
-            }
-          }
+              value: 'Foo',
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -648,34 +648,34 @@ describe('Offense validation', function() {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000'
+                year: '2000',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004'
+                year: '2004',
               },
-              present: false
+              present: false,
             },
             ProbationDates: {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000'
+                year: '2000',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004'
+                year: '2004',
               },
-              present: false
+              present: false,
             },
             Description: {
-              value: 'Foo'
-            }
-          }
+              value: 'Foo',
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -691,54 +691,54 @@ describe('Offense validation', function() {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000'
+                year: '2000',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004'
+                year: '2004',
               },
-              present: false
+              present: false,
             },
             ProbationDates: {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000'
+                year: '2000',
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004'
+                year: '2004',
               },
-              present: false
+              present: false,
             },
             Description: {
-              value: 'Foo'
-            }
-          }
+              value: 'Foo',
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'Yes' },
-          WasSentenced: { value: 'No' }
+          WasSentenced: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'Yes' },
-          WasSentenced: { value: 'Nope' }
+          WasSentenced: { value: 'Nope' },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validSentenced()).toBe(
         test.expected
       )
@@ -752,10 +752,10 @@ describe('Offense validation', function() {
           Date: {
             day: '1',
             month: '1',
-            year: '2016'
+            year: '2016',
           },
           Description: {
-            value: 'Some description'
+            value: 'Some description',
           },
           InvolvedViolence: { value: 'No' },
           InvolvedFirearms: { value: 'Yes' },
@@ -766,15 +766,15 @@ describe('Offense validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          WasCited: { value: 'No' }
+          WasCited: { value: 'No' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validAddress()).toBe(
         test.expected
       )
@@ -785,15 +785,15 @@ describe('Offense validation', function() {
     const tests = [
       {
         state: {
-          WasSentenced: { value: 'No' }
+          WasSentenced: { value: 'No' },
         },
-        expected: true
+        expected: false,
       },
       {
         state: {
-          WasSentenced: { value: 'Yes' }
+          WasSentenced: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -802,14 +802,14 @@ describe('Offense validation', function() {
           WasCharged: { value: 'Yes' },
           AwaitingTrial: { value: 'Yes' },
           AwaitingTrialExplanation: {
-            value: 'Trial explanation'
-          }
+            value: 'Trial explanation',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validAwaitingTrial()).toBe(
         test.expected
       )
@@ -823,10 +823,10 @@ describe('Offense validation', function() {
           Date: {
             day: '1',
             month: '1',
-            year: '2016'
+            year: '2016',
           },
           Description: {
-            value: 'Some description'
+            value: 'Some description',
           },
           InvolvedViolence: { value: 'No' },
           InvolvedFirearms: { value: 'No' },
@@ -837,15 +837,15 @@ describe('Offense validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           WasCited: { value: 'Yes' },
           CitedBy: {
-            value: 'Somebody'
+            value: 'Somebody',
           },
           WasCharged: { value: 'No' },
           Explanation: {
-            value: 'Some explanation'
+            value: 'Some explanation',
           },
           AgencyAddress: {
             country: { value: 'United States' },
@@ -853,33 +853,33 @@ describe('Offense validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           WasSentenced: { value: 'No' },
           AwaitingTrial: { value: 'Yes' },
           AwaitingTrialExplanation: {
-            value: 'Yessss'
-          }
+            value: 'Yessss',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          WasSentenced: { value: 'Yes' }
+          WasSentenced: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           WasSentenced: { value: 'No' },
           AwaitingTrial: { value: 'Yes' },
-          AwaitingTrialExplanation: null
+          AwaitingTrialExplanation: null,
         },
-        expected: true
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OffenseValidator(test.state, null).validAwaitingTrial()).toBe(
         test.expected
       )

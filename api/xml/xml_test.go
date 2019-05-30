@@ -14,7 +14,6 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/cmd"
-	"github.com/18F/e-QIP-prototype/api/mock"
 	"github.com/Jeffail/gabs"
 	"github.com/antchfx/xmlquery"
 	"github.com/benbjohnson/clock"
@@ -126,8 +125,7 @@ func TestPackage(t *testing.T) {
 		{Schema: "psychological-hospitalizations.xml", Data: r("psychological-hospitalizations.json")},
 	}
 
-	logger := &mock.LogService{}
-	service := Service{Log: logger, Clock: mockedClock()}
+	service := NewXMLServiceWithMockClock("../templates", mockedClock())
 
 	re := regexp.MustCompile("map\\[")
 	for _, test := range tests {
@@ -152,9 +150,9 @@ func TestPackage(t *testing.T) {
 }
 
 func mockedClock() clock.Clock {
-	// Epoch seconds for September 10, 2018 UTC;
+	// Epoch seconds for September 10, 2018 PST;
 	// It is not a special date, just used in test fixtures.
-	const base = 1536540831
+	const base = 1536570831
 
 	c := clock.NewMock()
 	c.Add(base * time.Second)
@@ -503,8 +501,7 @@ func loadFormData(t *testing.T, form map[string]interface{}, filepath string) {
 
 // applyForm generates an XML snippet given the path to an XML template and form data.
 func applyForm(t *testing.T, template string, data map[string]interface{}) string {
-	logger := &mock.LogService{}
-	service := Service{Log: logger, Clock: mockedClock()}
+	service := NewXMLServiceWithMockClock("../templates/", mockedClock())
 
 	snippet, err := service.DefaultTemplate(template, data)
 	if err != nil {
@@ -533,7 +530,7 @@ func xmlDoc(t *testing.T, snippet string) *xmlquery.Node {
 
 // templateContext returns the JSON path that a parent XML template file calls with a child template.
 func templateContext(t *testing.T, parent string, template string) string {
-	file, err := os.Open(path.Join("templates", parent))
+	file, err := os.Open(path.Join("../templates/", parent))
 	if err != nil {
 		t.Fatal(err)
 	}

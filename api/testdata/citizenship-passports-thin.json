@@ -1,0 +1,14 @@
+{
+  "props": {
+    "Passports": {
+      "props": {
+        "branch": {
+          "type": ""
+        },
+        "items": []
+      },
+      "type": "collection"
+    }
+  },
+  "type": "citizenship.passports"
+}

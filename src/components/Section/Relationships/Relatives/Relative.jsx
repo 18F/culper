@@ -692,7 +692,7 @@ export default class Relative extends ValidationElement {
                 geocode
                 className="relative-courtaddress"
                 onError={this.props.onError}
-                onUpdate={(value) => { this.updateField('Courtaddress', value) }}
+                onUpdate={(value) => { this.updateField('CourtAddress', value) }}
                 required={this.props.required}
               />
             </Field>

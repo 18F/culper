@@ -25,6 +25,7 @@ type LogService interface {
 const (
 	AccountLocked                              = "The account is currently locked"
 	AccountUpdateError                         = "Not able to update account information"
+	StatusError                                = "Unable to determine the status of the application"
 	BasicAuthNotImplemented                    = "Basic authentication is not implemented"
 	BasicAuthAttemptDenied                     = "An attempt for basic authentication was denied"
 	BasicAuthError                             = "Failed to decode JSON for basic authentication"

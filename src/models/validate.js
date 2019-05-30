@@ -94,7 +94,14 @@ export const validateModel = (data, model, options) => {
 
 export default validateModel
 
+// Misc helpers (might be moved later)
+
 /** require Yes or No */
 export const hasYesOrNo = {
   inclusion: ['Yes', 'No'],
 }
+
+/** check the value of an attribute.value */
+export const checkValue = (attribute, expected) => attribute
+  && attribute.value
+  && attribute.value === expected

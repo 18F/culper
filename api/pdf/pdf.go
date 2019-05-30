@@ -1,7 +1,7 @@
 package pdf
 
 import (
-	"errors"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"path"
@@ -10,19 +10,35 @@ import (
 	"strings"
 	"time"
 
-	"github.com/18F/e-QIP-prototype/api"
 	"github.com/Jeffail/gabs"
+	"github.com/pkg/errors"
+
+	"github.com/18F/e-QIP-prototype/api"
 )
 
+// DocumentTypeCertification is the document type for the certification/signature-form
+const DocumentTypeCertification = "CER"
+
+// DocumentTypeCreditRelease is the document type for the credit release
+const DocumentTypeCreditRelease = "FCR"
+
+// DocumentTypeMedicalRelease is the document type for the medical release
+const DocumentTypeMedicalRelease = "MEL"
+
+// DocumentTypeInformationRelease is the document type for the infomation release
+const DocumentTypeInformationRelease = "REL"
+
 var (
-	// DocumentTypes lists the supported archival PDFs.
-	DocumentTypes = []api.ArchivalPdf{
-		{"Certification", "certification-SF86-July2017.template.pdf", "AdditionalComments", "CER"},
-		{"Fair Credit Reporting", "credit-SF86-July2017.template.pdf", "Credit", "FCR"},
-		{"Medical Release", "medical-SF86-July2017.template.pdf", "Medical", "MEL"},
-		{"General Release", "general-SF86-July2017.template.pdf", "General", "REL"},
+	// ReleasePDFs lists the supported archival PDFs.
+	ReleasePDFs = []api.ArchivalPdf{
+		{"signature-form", "certification-SF86-July2017.template.pdf", "AdditionalComments", DocumentTypeCertification},
+		{"release-credit", "credit-SF86-July2017.template.pdf", "Credit", DocumentTypeCreditRelease},
+		{"release-medical", "medical-SF86-July2017.template.pdf", "Medical", DocumentTypeMedicalRelease},
+		{"release-information", "general-SF86-July2017.template.pdf", "General", DocumentTypeInformationRelease},
 	}
 )
+
+var errSignatureNotAvailable = errors.New("This application has not been signed")
 
 // field represents the fixed-width placeholder in an ArchivalPdf template.
 type field struct {
@@ -33,8 +49,61 @@ type field struct {
 
 // Service implements operations to create and query archival PDFs
 type Service struct {
-	Env api.Settings
-	Log api.LogService
+	templatePath string
+}
+
+// NewPDFService returns a new PDF service
+func NewPDFService(templatePath string) Service {
+	return Service{
+		templatePath,
+	}
+}
+
+// GenerateReleases generates the four signed pdfs for a given Application
+func (service Service) GenerateReleases(account api.Account, app api.Application) ([]api.Attachment, error) {
+
+	// Same as for XML, we convert the applicaiton to a raw JSON form for templating
+	// This can be cleaned up in the future, these functions should all work on the model objects instead of JSON
+	jsonBytes, jsonErr := json.Marshal(app)
+	if jsonErr != nil {
+		return []api.Attachment{}, errors.Wrap(jsonErr, "Unable to marshal application")
+	}
+
+	var appData map[string]interface{}
+	unmarhalErr := json.Unmarshal(jsonBytes, &appData)
+	if unmarhalErr != nil {
+		return []api.Attachment{}, errors.Wrap(unmarhalErr, "Unable to re-un-marshal application")
+	}
+
+	hash, hashErr := app.Hash()
+	if hashErr != nil {
+		return []api.Attachment{}, errors.Wrap(hashErr, "Unable to hash application")
+	}
+
+	attachments := []api.Attachment{}
+
+	for _, docInfo := range ReleasePDFs {
+
+		docBytes, createErr := service.CreatePdf(appData, docInfo, hash)
+		if createErr != nil {
+			if createErr == errSignatureNotAvailable {
+				continue
+			}
+			return []api.Attachment{}, errors.Wrap(createErr, "Unable to create document")
+		}
+
+		attachment := api.Attachment{
+			AccountID: account.ID,
+			Filename:  fmt.Sprintf("%s.%s.pdf", docInfo.Name, account.ExternalID),
+			Size:      int64(len(docBytes)),
+			Raw:       docBytes,
+			DocType:   docInfo.DocType,
+		}
+
+		attachments = append(attachments, attachment)
+	}
+
+	return attachments, nil
 }
 
 // CreatePdf creates an in-memory PDF from a template, populated with values from the application,
@@ -46,6 +115,10 @@ type Service struct {
 func (service Service) CreatePdf(application map[string]interface{}, pdfType api.ArchivalPdf, hash string) ([]byte, error) {
 	// Get application data into easily queryable form
 	json, _ := gabs.Consume(application)
+
+	if !hasSignedOn(json, pdfType.Section) {
+		return []byte{}, errSignatureNotAvailable
+	}
 
 	signedOn := func(json *gabs.Container) string {
 		return getSignedOn(json, pdfType.Section)
@@ -71,7 +144,7 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 		{"APPLICATION_SHA256_HASH", 64, hexHash},
 	}
 
-	dat, err := ioutil.ReadFile(path.Join("pdf/templates", pdfType.Template))
+	dat, err := ioutil.ReadFile(path.Join(service.templatePath, pdfType.Template))
 	if err != nil {
 		return nil, err
 	}
@@ -88,6 +161,16 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 	}
 
 	return []byte(str), nil
+}
+
+func hasSignedOn(json *gabs.Container, docSubsection string) bool {
+	d := getSignedOnParts(json, docSubsection)
+
+	// Ensure all date parts are non-empty
+	if !(len(d) == 3 && d[0] != "" && d[1] != "" && d[2] != "") {
+		return false
+	}
+	return true
 }
 
 // SignatureAvailable returns the date the eApp section corresponding to the PDF type was signed.

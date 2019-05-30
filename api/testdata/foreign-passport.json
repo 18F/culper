@@ -32,8 +32,7 @@
         "month": "7",
         "day": "25",
         "year": "2017",
-        "estimated": false,
-        "date": "2017-07-25T00:00:00Z"
+        "estimated": false
       }
     },
     "Expiration": {
@@ -42,8 +41,7 @@
         "month": "7",
         "day": "25",
         "year": "2017",
-        "estimated": false,
-        "date": "2017-07-25T00:00:00Z"
+        "estimated": false
       }
     },
     "Comments": {

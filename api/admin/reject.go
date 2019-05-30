@@ -6,15 +6,25 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
-// Rejector is used to reject/kickback an application
-type Rejector struct {
-	DB  api.DatabaseService
-	PDF api.PdfService
+// Rejecter is used to reject/kickback an application
+type Rejecter struct {
+	db    api.DatabaseService
+	store api.StorageService
+	pdf   api.PdfService
+}
+
+// NewRejecter returns a configured Rejecter
+func NewRejecter(db api.DatabaseService, store api.StorageService, pdf api.PdfService) Rejecter {
+	return Rejecter{
+		db,
+		store,
+		pdf,
+	}
 }
 
 // Reject rejects the application for a given account
-func (r Rejector) Reject(account api.Account) error {
-	err := account.Unlock(r.DB)
+func (r Rejecter) Reject(account api.Account) error {
+	err := account.Unlock(r.db)
 	if err != nil {
 		return errors.Wrap(err, "Reject failed to unlock account")
 	}
@@ -25,9 +35,22 @@ func (r Rejector) Reject(account api.Account) error {
 	// 	return errors.Wrap(err, "Reject failed to remove PDFs")
 	// }
 
-	err = account.ClearNoBranches(r.DB)
-	if err != nil {
-		return errors.Wrap(err, "Reject failed to clear the no branches")
+	app, loadErr := r.store.LoadApplication(account.ID)
+	if loadErr != nil {
+		if loadErr == api.ErrApplicationDoesNotExist {
+			return nil
+		}
+		return errors.Wrap(loadErr, "Unable to load application to reject it")
+	}
+
+	clearErr := app.ClearNoBranches()
+	if clearErr != nil {
+		return clearErr
+	}
+
+	saveErr := r.store.UpdateApplication(app)
+	if saveErr != nil {
+		return errors.Wrap(saveErr, "Unable to save application after rejecting it")
 	}
 
 	return nil

@@ -30,22 +30,17 @@
             "month": "7",
             "day": "25",
             "year": "2017",
-            "estimated": false,
-            "date": "2017-07-25T00:00:00Z"
+            "estimated": false
           }
         },
         "BirthPlace": {
           "type": "location",
           "props": {
             "layout": "Birthplace",
-            "street": "",
-            "street2": "",
             "city": "Arlington",
             "state": "VA",
-            "zipcode": "",
             "county": "Maricopa",
-            "country": "United States",
-            "validated": false
+            "country": "United States"
           }
         },
         "ForeignBornDocument": {
@@ -76,9 +71,7 @@
                 "month": "7",
                 "day": "25",
                 "year": "2017",
-                "estimated": false,
-                "date": "2017-07-25T00:00:00Z"
-              }
+                "estimated": false              }
             },
             "DocumentExpirationNotApplicable": {
               "type": "notapplicable",
@@ -143,8 +136,7 @@
                           "month": "7",
                           "day": "1",
                           "year": "2017",
-                          "estimated": false,
-                          "date": "2017-07-01T00:00:00Z"
+                          "estimated": false
                         }
                       },
                       "to": {
@@ -153,9 +145,7 @@
                           "month": "7",
                           "day": "25",
                           "year": "2017",
-                          "estimated": false,
-                          "date": "2017-07-25T00:00:00Z"
-                        }
+                          "estimated": false                        }
                       },
                       "present": false
                     }
@@ -187,22 +177,16 @@
             "month": "7",
             "day": "25",
             "year": "2017",
-            "estimated": false,
-            "date": "2017-07-25T00:00:00Z"
-          }
+            "estimated": false          }
         },
         "Location": {
           "type": "location",
           "props": {
             "layout": "Birthplace",
-            "street": "",
-            "street2": "",
             "city": "Arlington",
             "state": "VA",
-            "zipcode": "",
             "county": "Maricopa",
-            "country": "United States",
-            "validated": false
+            "country": "United States"
           }
         },
         "Address": {
@@ -210,13 +194,10 @@
           "props": {
             "layout": "Address",
             "street": "123 Some Rd",
-            "street2": "",
             "city": "Arlington",
             "state": "VA",
             "zipcode": "22202",
-            "county": "",
-            "country": "United States",
-            "validated": false
+            "country": "United States"
           }
         },
         "AlternateAddress": {
@@ -233,13 +214,10 @@
               "props": {
                 "layout": "Address",
                 "street": "123 Some Rd",
-                "street2": "",
                 "city": "Arlington",
                 "state": "VA",
                 "zipcode": "22202",
-                "county": "",
-                "country": "United States",
-                "validated": false
+                "country": "United States"
               }
             },
             "Telephone": {
@@ -290,22 +268,15 @@
             "month": "7",
             "day": "25",
             "year": "2017",
-            "estimated": false,
-            "date": "2017-07-25T00:00:00Z"
-          }
+            "estimated": false          }
         },
         "AddressSeparated": {
           "type": "location",
           "props": {
             "layout": "US City, State, International city",
-            "street": "",
-            "street2": "",
             "city": "Arlington",
             "state": "VA",
-            "zipcode": "",
-            "county": "",
-            "country": "United States",
-            "validated": false
+            "country": "United States"
           }
         },
         "AddressSeparatedNotApplicable": {
@@ -359,23 +330,16 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
+                  "estimated": false                }
               },
               "BirthPlace": {
                 "type": "location",
                 "props": {
                   "layout": "Birthplace",
-                  "street": "",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
-                  "zipcode": "",
                   "county": "Maricopa",
-                  "country": "United States",
-                  "validated": false
-                }
+                  "country": "United States"                }
               },
               "Telephone": {
                 "type": "telephone",
@@ -394,22 +358,17 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
+                  "estimated": false                }
               },
               "Address": {
                 "type": "location",
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
                 }
               },
               "DateDivorced": {
@@ -418,22 +377,16 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
+                  "estimated": false                }
               },
               "DivorceLocation": {
                 "type": "location",
                 "props": {
                   "layout": "US City, State, Zipcode International city",
-                  "street": "",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
                 }
               },
               "Status": {
@@ -455,13 +408,10 @@
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
                 }
               },
               "DeceasedAddressNotApplicable": {
