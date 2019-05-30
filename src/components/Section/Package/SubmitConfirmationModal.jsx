@@ -6,8 +6,8 @@ const SubmitConfirmationModal = ({ formName, handleCancel, handleSubmit }) => (
   <div className="submit-confirmation__blackout">
     <div className="submit-confirmation__modal">
       <h3>{i18n.t('application.validForm.submit', { formName })}</h3>
-      <p>{i18n.m('application.submissionConfirmation.para', { formName })}</p>
 
+      {i18n.m('application.submissionConfirmation.para', { formName })}
 
       <div className="text-right">
         <button

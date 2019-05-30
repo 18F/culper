@@ -68,7 +68,10 @@ export class PackageSubmit extends React.Component {
     // Make API call
     axios
       .all([api.save(payload)])
-      .then(() => api.submit())
+      .then(() => {
+        history.push('/loading')
+        return api.submit()
+      })
       .then(() => api.status())
       .then((response = {}) => {
         const statusData = (response).data || {
