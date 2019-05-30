@@ -11,7 +11,7 @@ import {
   Textarea,
   DateRange,
   Telephone,
-  Show
+  Show,
 } from '../../../Form'
 import DrugType from './DrugType'
 
@@ -304,7 +304,7 @@ export default class OrderedTreatment extends ValidationElement {
               <DateRange
                 name="TreatmentDates"
                 className="treatment-dates"
-                {...this.props.TreatmentDates}                
+                {...this.props.TreatmentDates}
                 minDateEqualTo={true}
                 onUpdate={this.updateTreatmentDates}
                 onError={this.props.onError}
@@ -353,10 +353,8 @@ export default class OrderedTreatment extends ValidationElement {
 OrderedTreatment.defaultProps = {
   ActionTaken: {},
   TreatmentCompleted: {},
-  OrderedBy: [],
+  OrderedBy: { values: [] },
   addressBooks: {},
-  dispatch: action => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onError: (value, arr) => arr,
 }
