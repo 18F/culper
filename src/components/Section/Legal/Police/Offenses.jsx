@@ -3,13 +3,9 @@ import React from 'react'
 import i18n from 'util/i18n'
 import schema from 'schema'
 import validate from 'validators'
-import { Accordion, BranchCollection } from 'components/Form'
-import { Summary, DateSummary } from 'components/Summary'
+import { BranchCollection } from 'components/Form'
 
-import {
-  LEGAL,
-  LEGAL_POLICE_OFFENSES,
-} from 'config/formSections/legal'
+import { LEGAL, LEGAL_POLICE_OFFENSES } from 'config/formSections/legal'
 import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 
@@ -23,9 +19,11 @@ const sectionConfig = {
   subsection: LEGAL_POLICE_OFFENSES.name,
   storeKey: LEGAL_POLICE_OFFENSES.storeKey,
 }
+
 export class Offenses extends Subsection {
   constructor(props) {
     super(props)
+
     const {
       section, subsection, store, storeKey,
     } = sectionConfig
@@ -36,54 +34,8 @@ export class Offenses extends Subsection {
     this.storeKey = storeKey
   }
 
-  update = (queue) => {
-    this.props.onUpdate(this.storeKey, {
-      List: this.props.List,
-      HasOffenses: this.props.HasOffenses,
-      ...queue,
-    })
-  }
-
-  updateHasOffenses = (values) => {
-    this.update({
-      HasOffenses: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-    })
-  }
-
-  updateList = (values) => {
-    this.update({
-      List: values,
-    })
-  }
-
-  updateBranch = (values) => {
-    const HasOffenses = values && values.items
-      && values.items.some(i => i && i.Item && i.Item.Has && i.Item.Has.value === 'Yes')
-
-    this.update({
-      HasOffenses: { value: HasOffenses ? 'Yes' : 'No' },
-      List: values,
-    })
-  }
-
-  /**
-   * Assists in rendering the summary section.
-   */
-  summary = (item, index) => {
-    const o = (item || {}).Item || {}
-    const dates = DateSummary(o.Date)
-    const description = o.Description && o.Description.value
-      ? o.Description.value
-      : ''
-
-    return Summary({
-      type: i18n.t('legal.police.collection.summary.item'),
-      index,
-      left: description,
-      right: dates,
-      placeholder: i18n.t('legal.police.collection.summary.unknown'),
-    })
+  updateList = (collection) => {
+    this.props.onUpdate(this.storeKey, { List: collection })
   }
 
   render() {
@@ -116,7 +68,7 @@ export class Offenses extends Subsection {
           appendLabel={i18n.t('legal.police.collection.appendTitle')}
           appendSize="h4"
           appendContent={i18n.m('legal.police.collection.appendMessage', { numberOfYearsString })}
-          onUpdate={this.updateBranch}
+          onUpdate={this.updateList}
           scrollToBottom={this.props.scrollToBottom}
           required={this.props.required}
           onError={this.handleError}
@@ -133,9 +85,11 @@ export class Offenses extends Subsection {
         >
           <Offense
             name="Item"
+            bind
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
-            bind
+            defaultState={this.props.defaultState}
+            onError={this.handleError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
             requireLegalOffenseInvolvements={requireLegalOffenseInvolvements}
@@ -149,12 +103,8 @@ export class Offenses extends Subsection {
 }
 
 Offenses.defaultProps = {
-  List: Accordion.defaultList,
-  HasOffenses: {},
   onUpdate: () => {},
   onError: (value, arr) => arr,
-  section: 'legal',
-  subsection: 'police/offenses',
   addressBooks: {},
   dispatch: () => {},
   validator: data => validate(schema('legal.police.offenses', data)),

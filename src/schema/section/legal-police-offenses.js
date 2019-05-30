@@ -1,10 +1,13 @@
+/* eslint import/prefer-default-export: 0 */
+
 import * as form from '../form'
 
 export const legalPoliceOffenses = (data = {}) => {
-  const items = ((data.List || {}).items || []).map(x => {
+  const items = ((data.List || {}).items || []).map((x) => {
     const xitem = x.Item || {}
     return {
       Item: {
+        Has: form.branch(xitem.Has),
         Date: form.datecontrol(xitem.Date),
         Description: form.textarea(xitem.Description),
         InvolvedViolence: form.branch(xitem.InvolvedViolence),
@@ -25,12 +28,11 @@ export const legalPoliceOffenses = (data = {}) => {
         WasSentenced: form.branch(xitem.WasSentenced),
         Sentence: form.sentence(xitem.Sentence),
         AwaitingTrial: form.branch(xitem.AwaitingTrial),
-        AwaitingTrialExplanation: form.textarea(xitem.AwaitingTrialExplanation)
-      }
+        AwaitingTrialExplanation: form.textarea(xitem.AwaitingTrialExplanation),
+      },
     }
   })
   return {
-    HasOffenses: form.branch(data.HasOffenses),
-    List: form.collection(items, (data.List || {}).branch)
+    List: form.collection(items, (data.List || {}).branch),
   }
 }
