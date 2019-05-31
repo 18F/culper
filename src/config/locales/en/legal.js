@@ -364,9 +364,9 @@ export const legal = {
     },
     collection: {
       summary: {
-        title: 'Summary of offenses',
-        item: 'Offense',
-        unknown: 'Provide offense below',
+        title: 'Summary of charges',
+        item: 'Charge',
+        unknown: 'Provide charge details below',
       },
       appendTitle:
         'Do you have any other offenses where any of the following has happened to you?',

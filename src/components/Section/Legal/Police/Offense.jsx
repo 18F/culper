@@ -1,20 +1,21 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-
+import ChargeValidator from 'validators/charge'
 import {
   ValidationElement,
   Branch,
   Show,
+  Accordion,
   Location,
   DateControl,
   Textarea,
   Text,
-  RadioGroup,
-  Radio,
   Field,
 } from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
 
+import Charge from './Charge'
 import Sentence from './Sentence'
 
 export default class Offense extends ValidationElement {
@@ -33,10 +34,7 @@ export default class Offense extends ValidationElement {
       Explanation: this.props.Explanation,
       CourtName: this.props.CourtName,
       CourtAddress: this.props.CourtAddress,
-      CourtCharge: this.props.CourtCharge,
-      CourtOutcome: this.props.CourtOutcome,
-      CourtDate: this.props.CourtDate,
-      ChargeType: this.props.ChargeType,
+      Charges: this.props.Charges,
       WasSentenced: this.props.WasSentenced,
       Sentence: this.props.Sentence,
       AwaitingTrial: this.props.AwaitingTrial,
@@ -123,27 +121,9 @@ export default class Offense extends ValidationElement {
     })
   }
 
-  updateChargeType = (value) => {
+  updateCharges = (values) => {
     this.update({
-      ChargeType: value,
-    })
-  }
-
-  updateCourtCharge = (value) => {
-    this.update({
-      CourtCharge: value,
-    })
-  }
-
-  updateCourtOutcome = (value) => {
-    this.update({
-      CourtOutcome: value,
-    })
-  }
-
-  updateCourtDate = (value) => {
-    this.update({
-      CourtDate: value,
+      Charges: values,
     })
   }
 
@@ -168,6 +148,21 @@ export default class Offense extends ValidationElement {
   updateAwaitingTrialExplanation = (values) => {
     this.update({
       AwaitingTrialExplanation: values,
+    })
+  }
+
+  summary = (item, index) => {
+    const itemProperties = (item || {}).Item || {}
+    const charge = itemProperties.CourtCharge
+      && itemProperties.CourtCharge.value
+    const date = DateSummary(itemProperties.CourtDate)
+
+    return Summary({
+      type: i18n.t('legal.police.collection.summary.item'),
+      index,
+      left: charge,
+      right: date,
+      placeholder: i18n.t('legal.police.collection.summary.unknown'),
     })
   }
 
@@ -411,92 +406,36 @@ export default class Offense extends ValidationElement {
               />
             </Field>
 
-            <Field
-              title={i18n.t('legal.police.heading.chargedetails')}
-              titleSize="h4"
-              optional
-              className="no-margin-bottom"
-            >
-              {i18n.m('legal.police.para.chargedetails')}
-            </Field>
-
-            <Field
-              title={i18n.t('legal.police.heading.chargeType')}
-              titleSize="label"
-              adjustFor="buttons"
-              shrink
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <RadioGroup
-                className="offense-chargetype option-list"
-                onError={this.props.onError}
-                required={this.props.required}
-                selectedValue={(this.props.ChargeType || {}).value}
+            <div style={{ marginBottom: '8rem' }}>
+              <Field
+                title={i18n.t('legal.police.heading.chargedetails')}
+                titleSize="h3"
+                optional
+                className="no-margin-bottom"
               >
-                <Radio
-                  name="charge-felony"
-                  className="charge-felony"
-                  label={i18n.t('legal.police.label.felony')}
-                  value="Felony"
-                  onUpdate={this.updateChargeType}
-                  onError={this.props.onError}
-                />
-                <Radio
-                  name="charge-misdemeanor"
-                  className="charge-misdemeanor"
-                  label={i18n.t('legal.police.label.misdemeanor')}
-                  value="Misdemeanor"
-                  onUpdate={this.updateChargeType}
-                  onError={this.props.onError}
-                />
-                <Radio
-                  name="charge-other"
-                  className="charge-other"
-                  label={i18n.t('legal.police.label.other')}
-                  value="Other"
-                  onUpdate={this.updateChargeType}
-                  onError={this.props.onError}
-                />
-              </RadioGroup>
+                {i18n.m('legal.police.para.chargedetails')}
+              </Field>
 
-              <Text
-                name="CourtCharge"
-                {...this.props.CourtCharge}
-                label={i18n.t('legal.police.label.courtcharge')}
-                className="offense-courtcharge"
-                onUpdate={this.updateCourtCharge}
+              <Accordion
+                {...this.props.Charges}
+                defaultState={this.props.defaultState}
+                onUpdate={this.updateCharges}
                 onError={this.props.onError}
+                validator={ChargeValidator}
+                summary={this.summary}
+                description={i18n.t('legal.police.collection.summary.title')}
                 required={this.props.required}
-              />
-              <Text
-                name="CourtOutcome"
-                {...this.props.CourtOutcome}
-                label={i18n.t('legal.police.label.courtoutcome')}
-                className="offense-courtoutcome"
-                onUpdate={this.updateCourtOutcome}
-                onError={this.props.onError}
-                required={this.props.required}
-              />
-            </Field>
-
-            <Field
-              title={i18n.t('legal.police.heading.courtdate')}
-              help="legal.police.help.courtdate"
-              adjustFor="labels"
-              shrink
-              scrollIntoView={this.props.scrollIntoView}
-            >
-              <DateControl
-                name="CourtDate"
-                {...this.props.CourtDate}
-                hideDay
-                className="offense-courtdate"
-                minDateEqualTo
-                onUpdate={this.updateCourtDate}
-                onError={this.props.onError}
-                required={this.props.required}
-              />
-            </Field>
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Charge
+                  name="Item"
+                  bind
+                  dispatch={this.props.dispatch}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                />
+              </Accordion>
+            </div>
 
             <Branch
               name="was_sentenced"
@@ -577,10 +516,7 @@ Offense.defaultProps = {
   Explanation: {},
   CourtName: {},
   CourtAddress: {},
-  ChargeType: '',
-  CourtCharge: {},
-  CourtOutcome: {},
-  CourtDate: {},
+  Charges: { items: [] },
   WasSentenced: {},
   Sentence: {},
   AwaitingTrial: {},
