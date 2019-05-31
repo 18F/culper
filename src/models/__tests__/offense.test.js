@@ -260,85 +260,22 @@ describe('The offense model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('the ChargeType field is required', () => {
+    it('the Charges field is required', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['ChargeType.required']
+      const expectedErrors = ['Charges.required']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('the ChargeType field must have a valid value', () => {
+    it('the Charges field must have at least one item', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
-        ChargeType: { value: 'Test' },
+        Charges: { items: [] },
       }
-      const expectedErrors = ['ChargeType.hasValue']
-
-      expect(validateModel(testData, offense))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('the CourtCharge field is required', () => {
-      const testData = {
-        WasCharged: { value: 'Yes' },
-      }
-      const expectedErrors = ['CourtCharge.required']
-
-      expect(validateModel(testData, offense))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('the CourtCharge field must have a value', () => {
-      const testData = {
-        WasCharged: { value: 'Yes' },
-        CourtCharge: 'invalid',
-      }
-      const expectedErrors = ['CourtCharge.hasValue']
-
-      expect(validateModel(testData, offense))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('the CourtOutcome field is required', () => {
-      const testData = {
-        WasCharged: { value: 'Yes' },
-      }
-      const expectedErrors = ['CourtOutcome.required']
-
-      expect(validateModel(testData, offense))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('the CourtOutcome field must have a value', () => {
-      const testData = {
-        WasCharged: { value: 'Yes' },
-        CourtOutcome: [],
-      }
-      const expectedErrors = ['CourtOutcome.hasValue']
-
-      expect(validateModel(testData, offense))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('the CourtDate field is required', () => {
-      const testData = {
-        WasCharged: { value: 'Yes' },
-      }
-      const expectedErrors = ['CourtDate.required']
-
-      expect(validateModel(testData, offense))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('the CourtDate field must be a valid date', () => {
-      const testData = {
-        WasCharged: { value: 'Yes' },
-        CourtDate: { year: 3000, month: 13, day: 2 },
-      }
-      const expectedErrors = ['CourtDate.date']
+      const expectedErrors = ['Charges.accordion']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -448,10 +385,18 @@ describe('The offense model', () => {
             zipcode: '10022',
             country: { value: 'United States' },
           },
-          ChargeType: { value: 'Felony' },
-          CourtCharge: { value: 'My charges' },
-          CourtOutcome: { value: 'The outcome' },
-          CourtDate: { year: 2017, day: 3, month: 12 },
+          Charges: {
+            items: [
+              {
+                Item: {
+                  ChargeType: { value: 'Felony' },
+                  CourtCharge: { value: 'My charges' },
+                  CourtOutcome: { value: 'The outcome' },
+                  CourtDate: { year: 2017, month: 12 },
+                },
+              },
+            ],
+          },
           WasSentenced: { value: 'Yes' },
           Sentence: {
             Description: { value: 'Something' },
@@ -560,10 +505,18 @@ describe('The offense model', () => {
             zipcode: '10022',
             country: { value: 'United States' },
           },
-          ChargeType: { value: 'Felony' },
-          CourtCharge: { value: 'My charges' },
-          CourtOutcome: { value: 'The outcome' },
-          CourtDate: { year: 2017, day: 3, month: 12 },
+          Charges: {
+            items: [
+              {
+                Item: {
+                  ChargeType: { value: 'Felony' },
+                  CourtCharge: { value: 'My charges' },
+                  CourtOutcome: { value: 'The outcome' },
+                  CourtDate: { year: 2017, month: 12 },
+                },
+              },
+            ],
+          },
           WasSentenced: { value: 'No' },
           AwaitingTrial: { value: 'Yes' },
           AwaitingTrialExplanation: { value: 'Something' },
@@ -616,11 +569,11 @@ describe('The offense model', () => {
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('the ChargeType field is not required', () => {
+    it('the Charges field is not required', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['ChargeType.required']
+      const expectedErrors = ['Charges.required']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))

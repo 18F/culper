@@ -1,7 +1,7 @@
 import { hasYesOrNo, checkValue } from 'models/validate'
 import offenseAddress from 'models/shared/locations/offense'
+import charge from 'models/shared/charge'
 import sentence from 'models/shared/sentence'
-import { offenseChargeTypes } from 'constants/enums/legalOptions'
 
 const offense = {
   Date: { presence: true, date: true },
@@ -59,27 +59,12 @@ const offense = {
         location: { validator: offenseAddress },
       } : {}
   ),
-  ChargeType: (value, attributes) => (
+  Charges: (value, attributes) => (
     checkValue(attributes.WasCharged, 'Yes')
       ? {
         presence: true,
-        hasValue: { validator: { inclusion: offenseChargeTypes } },
+        accordion: { validator: charge, ignoreBranch: true },
       } : {}
-  ),
-  CourtCharge: (value, attributes) => (
-    checkValue(attributes.WasCharged, 'Yes')
-      ? { presence: true, hasValue: true }
-      : {}
-  ),
-  CourtOutcome: (value, attributes) => (
-    checkValue(attributes.WasCharged, 'Yes')
-      ? { presence: true, hasValue: true }
-      : {}
-  ),
-  CourtDate: (value, attributes) => (
-    checkValue(attributes.WasCharged, 'Yes')
-      ? { presence: true, date: true }
-      : {}
   ),
   WasSentenced: (value, attributes) => (
     checkValue(attributes.WasCharged, 'Yes')

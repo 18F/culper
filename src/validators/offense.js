@@ -86,30 +86,6 @@ export default class OffenseValidator {
     }) === true
   }
 
-  validChargeType() {
-    return validateModel(this.data, {
-      ChargeType: offense.ChargeType,
-    }) === true
-  }
-
-  validCourtCharge() {
-    return validateModel(this.data, {
-      CourtCharge: offense.CourtCharge,
-    }) === true
-  }
-
-  validCourtOutcome() {
-    return validateModel(this.data, {
-      CourtOutcome: offense.CourtOutcome,
-    }) === true
-  }
-
-  validCourtDate() {
-    return validateModel(this.data, {
-      CourtDate: offense.CourtDate,
-    }) === true
-  }
-
   validSentenced() {
     return validateModel(this.data, {
       WasSentenced: offense.WasSentenced,
