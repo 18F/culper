@@ -4,12 +4,12 @@ import { legalPoliceAdditionalOffenses } from './legal-police-additionaloffenses
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
     const data = {
-      HasOtherOffenses: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
         items: [
           {
             Item: {
+              Has: { value: 'Yes' },
               Date: {},
               Description: {},
               InvolvedViolence: {},
@@ -17,7 +17,7 @@ describe('Schema for financial taxes', () => {
               InvolvedSubstances: {},
               CourtName: {},
               CourtAddress: {
-                country: null
+                country: null,
               },
               CourtCharge: {},
               CourtOutcome: {},
@@ -31,22 +31,22 @@ describe('Schema for financial taxes', () => {
                 IncarcerationDates: {
                   from: {},
                   to: {},
-                  present: null
+                  present: null,
                 },
                 IncarcerationDatesNA: {},
                 ProbationDates: {
                   from: {},
                   to: {},
-                  present: null
+                  present: null,
                 },
-                ProbationDatesNA: {}
+                ProbationDatesNA: {},
               },
               AwaitingTrial: {},
-              AwaitingTrialExplanation: {}
-            }
-          }
-        ]
-      }
+              AwaitingTrialExplanation: {},
+            },
+          },
+        ],
+      },
     }
 
     expect(unschema(legalPoliceAdditionalOffenses(data))).toEqual(data)

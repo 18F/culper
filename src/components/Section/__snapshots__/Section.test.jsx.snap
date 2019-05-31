@@ -24792,166 +24792,172 @@ exports[`The section component renders LEGAL_POLICE_ADDITIONAL_OFFENSES 1`] = `
           Additional offenses
         </h1>
         <div
-          aria-label="Other than those offenses already listed, have you EVER had the following happen to you?"
-          className="field required branch has-otheroffenses"
-          data-uuid="field-MOCK-GUID"
+          className="has-otheroffenses"
         >
-          <a
-            aria-hidden="true"
-            className="anchor"
-            id="field-MOCK-GUID"
-            name="field-MOCK-GUID"
-          />
-          <h4
-            className="title h4"
-          >
-            Other than those offenses already listed, have you EVER had the following happen to you?
-          </h4>
-          <span
-            className="icon"
-          />
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages help-messages"
-            />
-          </div>
-          <div
-            className="table expand"
-          >
-            <span
-              aria-live="polite"
-              className="messages error-messages"
-              role="alert"
-            />
-          </div>
-          <div
-            className="table"
-          >
-            <span
-              className="content"
+          <div>
+            <div
+              aria-label="Other than those offenses already listed, have you EVER had the following happen to you?"
+              className="field required branch"
+              data-uuid="field-MOCK-GUID"
             >
-              <span
-                className="component shrink"
+              <a
+                aria-hidden="true"
+                className="anchor"
+                id="field-MOCK-GUID"
+                name="field-MOCK-GUID"
+              />
+              <h4
+                className="title h4"
               >
-                <div
+                Other than those offenses already listed, have you EVER had the following happen to you?
+              </h4>
+              <span
+                className="icon"
+              />
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages help-messages"
+                />
+              </div>
+              <div
+                className="table expand"
+              >
+                <span
+                  aria-live="polite"
+                  className="messages error-messages"
+                  role="alert"
+                />
+              </div>
+              <div
+                className="table"
+              >
+                <span
                   className="content"
                 >
-                  <ul>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            Have you EVER been convicted
-                          </strong>
-                           in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            Have you EVER been charged
-                          </strong>
-                           with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            Have you EVER been convicted
-                          </strong>
-                           of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            Have you EVER been charged
-                          </strong>
-                           with an offense involving firearms or explosives?
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <p>
-                          <strong>
-                            Have you EVER been charged
-                          </strong>
-                           with an offense involving alcohol or drugs?
-                        </p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div
-                  className="blocks option-list branch"
-                >
-                  <div
-                    className="yes block"
+                  <span
+                    className="component shrink"
                   >
-                    <input
-                      aria-label="Yes for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_otheroffenses-MOCK-GUID"
-                      name="has_otheroffenses-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="Yes"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_otheroffenses-MOCK-GUID"
+                    <div
+                      className="content"
                     >
-                      <span>
-                        Yes
-                      </span>
-                    </label>
-                  </div>
-                  <div
-                    className="no block"
-                  >
-                    <input
-                      aria-label="No for null"
-                      checked={false}
-                      className="usa-input-success"
-                      disabled={false}
-                      id="has_otheroffenses-MOCK-GUID"
-                      name="has_otheroffenses-MOCK-GUID"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      type="radio"
-                      value="No"
-                    />
-                    <label
-                      className=""
-                      htmlFor="has_otheroffenses-MOCK-GUID"
+                      <ul>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                Have you EVER been convicted
+                              </strong>
+                               in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                Have you EVER been charged
+                              </strong>
+                               with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                Have you EVER been convicted
+                              </strong>
+                               of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                Have you EVER been charged
+                              </strong>
+                               with an offense involving firearms or explosives?
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <p>
+                              <strong>
+                                Have you EVER been charged
+                              </strong>
+                               with an offense involving alcohol or drugs?
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      className="blocks option-list branch"
                     >
-                      <span>
-                        No
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </span>
-            </span>
+                      <div
+                        className="yes block"
+                      >
+                        <input
+                          aria-label="Yes for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="has_otheroffenses-MOCK-GUID"
+                          name="has_otheroffenses-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="Yes"
+                        />
+                        <label
+                          className=""
+                          htmlFor="has_otheroffenses-MOCK-GUID"
+                        >
+                          <span>
+                            Yes
+                          </span>
+                        </label>
+                      </div>
+                      <div
+                        className="no block"
+                      >
+                        <input
+                          aria-label="No for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="has_otheroffenses-MOCK-GUID"
+                          name="has_otheroffenses-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="No"
+                        />
+                        <label
+                          className=""
+                          htmlFor="has_otheroffenses-MOCK-GUID"
+                        >
+                          <span>
+                            No
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -25941,188 +25947,194 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
               Additional offenses
             </h1>
             <div
-              aria-label="Other than those offenses already listed, have you EVER had the following happen to you?"
-              className="field required branch has-otheroffenses"
-              data-uuid="field-MOCK-GUID"
+              className="has-otheroffenses"
             >
-              <a
-                aria-hidden="true"
-                className="anchor"
-                id="field-MOCK-GUID"
-                name="field-MOCK-GUID"
-              />
-              <h4
-                className="title h4"
-              >
-                Other than those offenses already listed, have you EVER had the following happen to you?
-              </h4>
-              <span
-                className="icon"
-              />
-              <div
-                className="table expand"
-              >
-                <span
-                  aria-live="polite"
-                  className="messages help-messages"
-                />
-              </div>
-              <div
-                className="table expand"
-              >
-                <span
-                  aria-live="polite"
-                  className="messages error-messages"
-                  role="alert"
+              <div>
+                <div
+                  aria-label="Other than those offenses already listed, have you EVER had the following happen to you?"
+                  className="field required branch"
+                  data-uuid="field-MOCK-GUID"
                 >
-                  <div
-                    aria-live="polite"
-                    className="message error usa-alert usa-alert-error"
-                    role="alert"
+                  <a
+                    aria-hidden="true"
+                    className="anchor"
+                    id="field-MOCK-GUID"
+                    name="field-MOCK-GUID"
+                  />
+                  <h4
+                    className="title h4"
                   >
-                    <div
-                      className="usa-alert-body"
+                    Other than those offenses already listed, have you EVER had the following happen to you?
+                  </h4>
+                  <span
+                    className="icon"
+                  />
+                  <div
+                    className="table expand"
+                  >
+                    <span
+                      aria-live="polite"
+                      className="messages help-messages"
+                    />
+                  </div>
+                  <div
+                    className="table expand"
+                  >
+                    <span
+                      aria-live="polite"
+                      className="messages error-messages"
+                      role="alert"
                     >
                       <div
-                        data-i18n="error.required"
+                        aria-live="polite"
+                        className="message error usa-alert usa-alert-error"
+                        role="alert"
                       >
-                        <h5
-                          className="usa-alert-heading"
+                        <div
+                          className="usa-alert-body"
                         >
-                          Your response is required
-                        </h5>
-                        
-                        
+                          <div
+                            data-i18n="error.required"
+                          >
+                            <h5
+                              className="usa-alert-heading"
+                            >
+                              Your response is required
+                            </h5>
+                            
+                            
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    </span>
                   </div>
-                </span>
-              </div>
-              <div
-                className="table"
-              >
-                <span
-                  className="content"
-                >
-                  <span
-                    className="component shrink"
+                  <div
+                    className="table"
                   >
-                    <div
+                    <span
                       className="content"
                     >
-                      <ul>
-                        <li>
-                          <div>
-                            <p>
-                              <strong>
-                                Have you EVER been convicted
-                              </strong>
-                               in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <p>
-                              <strong>
-                                Have you EVER been charged
-                              </strong>
-                               with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <p>
-                              <strong>
-                                Have you EVER been convicted
-                              </strong>
-                               of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <p>
-                              <strong>
-                                Have you EVER been charged
-                              </strong>
-                               with an offense involving firearms or explosives?
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <div>
-                            <p>
-                              <strong>
-                                Have you EVER been charged
-                              </strong>
-                               with an offense involving alcohol or drugs?
-                            </p>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div
-                      className="blocks option-list branch usa-input-error"
-                    >
-                      <div
-                        className="yes block"
+                      <span
+                        className="component shrink"
                       >
-                        <input
-                          aria-label="Yes for null"
-                          checked={false}
-                          className="usa-input-success"
-                          disabled={false}
-                          id="has_otheroffenses-MOCK-GUID"
-                          name="has_otheroffenses-MOCK-GUID"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          onKeyDown={[Function]}
-                          type="radio"
-                          value="Yes"
-                        />
-                        <label
-                          className=""
-                          htmlFor="has_otheroffenses-MOCK-GUID"
+                        <div
+                          className="content"
                         >
-                          <span>
-                            Yes
-                          </span>
-                        </label>
-                      </div>
-                      <div
-                        className="no block"
-                      >
-                        <input
-                          aria-label="No for null"
-                          checked={false}
-                          className="usa-input-success"
-                          disabled={false}
-                          id="has_otheroffenses-MOCK-GUID"
-                          name="has_otheroffenses-MOCK-GUID"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          onKeyDown={[Function]}
-                          type="radio"
-                          value="No"
-                        />
-                        <label
-                          className=""
-                          htmlFor="has_otheroffenses-MOCK-GUID"
+                          <ul>
+                            <li>
+                              <div>
+                                <p>
+                                  <strong>
+                                    Have you EVER been convicted
+                                  </strong>
+                                   in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form
+                                </p>
+                              </div>
+                            </li>
+                            <li>
+                              <div>
+                                <p>
+                                  <strong>
+                                    Have you EVER been charged
+                                  </strong>
+                                   with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses
+                                </p>
+                              </div>
+                            </li>
+                            <li>
+                              <div>
+                                <p>
+                                  <strong>
+                                    Have you EVER been convicted
+                                  </strong>
+                                   of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?
+                                </p>
+                              </div>
+                            </li>
+                            <li>
+                              <div>
+                                <p>
+                                  <strong>
+                                    Have you EVER been charged
+                                  </strong>
+                                   with an offense involving firearms or explosives?
+                                </p>
+                              </div>
+                            </li>
+                            <li>
+                              <div>
+                                <p>
+                                  <strong>
+                                    Have you EVER been charged
+                                  </strong>
+                                   with an offense involving alcohol or drugs?
+                                </p>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          className="blocks option-list branch usa-input-error"
                         >
-                          <span>
-                            No
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                  </span>
-                </span>
+                          <div
+                            className="yes block"
+                          >
+                            <input
+                              aria-label="Yes for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="has_otheroffenses-MOCK-GUID"
+                              name="has_otheroffenses-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="Yes"
+                            />
+                            <label
+                              className=""
+                              htmlFor="has_otheroffenses-MOCK-GUID"
+                            >
+                              <span>
+                                Yes
+                              </span>
+                            </label>
+                          </div>
+                          <div
+                            className="no block"
+                          >
+                            <input
+                              aria-label="No for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="has_otheroffenses-MOCK-GUID"
+                              name="has_otheroffenses-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="No"
+                            />
+                            <label
+                              className=""
+                              htmlFor="has_otheroffenses-MOCK-GUID"
+                            >
+                              <span>
+                                No
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </span>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

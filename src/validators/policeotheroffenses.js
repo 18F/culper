@@ -1,16 +1,12 @@
-import { validateModel, hasYesOrNo, checkValue } from 'models/validate'
+import { validateModel } from 'models/validate'
 import otherOffense from 'models/otherOffense'
 
 export const validatePoliceOtherOffenses = (data) => {
   const policeOtherOffensesModel = {
-    HasOtherOffenses: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => (
-      checkValue(attributes.HasOtherOffenses, 'Yes')
-        ? {
-          presence: true,
-          accordion: { validator: otherOffense },
-        } : {}
-    ),
+    List: {
+      presence: true,
+      branchCollection: { validator: otherOffense },
+    },
   }
 
   return validateModel(data, policeOtherOffensesModel) === true

@@ -1,64 +1,67 @@
 import PoliceOtherOffensesValidator from './policeotheroffenses'
 import Location from '../components/Form/Location'
 
-describe('Police record validation', function() {
+describe('Police record validation', () => {
   it('validates offenses', () => {
     const tests = [
       {
         state: {
-          HasOtherOffenses: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
+      },
+      {
+        state: {
+          List: {
+            branch: { value: 'No' },
+            items: [{ Item: { Has: { value: 'Yes' } } }],
+          },
+        },
+        expected: false,
+      },
+      {
+        state: {
+          List: {
+            branch: { value: '' },
+            items: [{ Item: { Has: { value: 'No' } } }],
+          },
+        },
+        expected: true,
       },
       {
         state: {
           HasOtherOffenses: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{ Item: {} }]
-          }
+            items: [{ Item: { Has: { value: 'Yes' } } }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasOtherOffenses: { value: 'No' },
-          List: {
-            branch: { value: '' },
-            items: []
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          HasOtherOffenses: { value: 'Yes' },
-          List: {
-            branch: { value: 'No' },
-            items: []
-          }
-        },
-        expected: false
-      },
-      {
-        state: {
-          HasOtherOffenses: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
             items: [
               {
                 Item: {
+                  Has: { value: 'Yes' },
                   Date: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Description: {
-                    value: 'Some description'
+                    value: 'Some description',
                   },
                   InvolvedViolence: { value: 'No' },
                   InvolvedFirearms: { value: 'Yes' },
@@ -66,25 +69,23 @@ describe('Police record validation', function() {
                   ChargeType: { value: 'Felony' },
                   CourtAddress: {
                     country: { value: 'United States' },
-                    street: '1234 Some Rd',
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.OFFENSE,
                   },
                   CourtDate: {
-                    day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   CourtName: {
-                    value: 'court name'
+                    value: 'court name',
                   },
                   CourtCharge: {
-                    value: 'Some charge'
+                    value: 'Some charge',
                   },
                   CourtOutcome: {
-                    value: 'Some outcome'
+                    value: 'Some outcome',
                   },
                   WasSentenced: { value: 'Yes' },
                   Sentence: {
@@ -96,42 +97,42 @@ describe('Police record validation', function() {
                       from: {
                         month: '1',
                         day: '1',
-                        year: '2000'
+                        year: '2000',
                       },
                       to: {
                         month: '1',
                         day: '1',
-                        year: '2004'
+                        year: '2004',
                       },
-                      present: false
+                      present: false,
                     },
                     ProbationDates: {
                       from: {
                         month: '1',
                         day: '1',
-                        year: '2000'
+                        year: '2000',
                       },
                       to: {
                         month: '1',
                         day: '1',
-                        year: '2004'
+                        year: '2004',
                       },
-                      present: false
+                      present: false,
                     },
                     Description: {
-                      value: 'Foo'
-                    }
-                  }
-                }
-              }
-            ]
-          }
+                      value: 'Foo',
+                    },
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new PoliceOtherOffensesValidator(test.state, null).isValid()).toBe(
         test.expected
       )
