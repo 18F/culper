@@ -13,6 +13,7 @@ import { SignatureValidator } from 'validators'
 import { formIsSigned, hideHippa } from 'validators/releases'
 
 import { Show } from 'components/Form'
+import { SpinnerAction } from 'components/Form/Spinner'
 
 import FormStatus from '../FormStatus'
 import BasicAccordion from '../BasicAccordion'
@@ -39,6 +40,7 @@ export class PackageSubmit extends React.Component {
       showGeneralItem: false,
       showCreditItem: false,
       signatures: {},
+      spinnerAction: SpinnerAction.Spin,
     }
   }
 
@@ -68,10 +70,7 @@ export class PackageSubmit extends React.Component {
     // Make API call
     axios
       .all([api.save(payload)])
-      .then(() => {
-        history.push('/loading')
-        return api.submit()
-      })
+      .then(() => api.submit())
       .then(() => api.status())
       .then((response = {}) => {
         const statusData = (response).data || {
@@ -81,6 +80,18 @@ export class PackageSubmit extends React.Component {
 
         updateApplication('Settings', 'locked', statusData.Locked)
         updateApplication('Settings', 'hash', statusData.Hash)
+
+        setTimeout(() => {
+          this.setState({
+            spinnerAction: SpinnerAction.Shrink,
+          })
+
+          setTimeout(() => {
+            this.setState({
+              spinnerAction: SpinnerAction.Grow,
+            })
+          })
+        }, 1000)
 
         history.push('/form/package/print')
       })
@@ -269,7 +280,7 @@ export class PackageSubmit extends React.Component {
   render() {
     const { Application = {}, Settings = {} } = this.props
     const {
-      signatures, isSubmitting, isConfirmingSubmission, submissionError,
+      signatures, isSubmitting, isConfirmingSubmission, submissionError, spinnerAction,
     } = this.state
     const { formType } = Settings
     const formName = formType
@@ -277,6 +288,7 @@ export class PackageSubmit extends React.Component {
       && formConfig[formType].FORM_LABEL
 
     const classes = classnames(
+      'eapp-submit',
       'submission-status',
       'valid'
     )
@@ -335,6 +347,32 @@ export class PackageSubmit extends React.Component {
             handleCancel={this.handleCancel}
             handleSubmit={this.handleSubmit}
           />
+        )}
+
+        {isSubmitting && (
+          <div className="spinner eapp-submit__spinner-bg">
+            <div className="eapp-submit__spinner-container">
+              <div
+                className={
+                  classnames(
+                    'spinner-icon',
+                    spinnerAction === SpinnerAction.Grow ? 'hidden' : spinnerAction,
+                  )
+                }
+              />
+              <i
+                className={
+                  classnames(
+                    'fa',
+                    'fa-check-circle',
+                    spinnerAction === SpinnerAction.Grow ? 'grow' : 'hidden',
+                  )
+                }
+                aria-hidden="false"
+              />
+              <span className="spinner-label">{i18n.t('application.submissionConfirmation.spinnerText', { formName })}</span>
+            </div>
+          </div>
         )}
       </div>
     )

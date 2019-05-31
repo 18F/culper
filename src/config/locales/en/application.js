@@ -34,6 +34,7 @@ export const application = {
     ],
     back: 'Back to review',
     submit: 'Submit',
+    spinnerText: 'Your {{formName}} is being submitted',
   },
   submissionStatus: {
     validating: [
