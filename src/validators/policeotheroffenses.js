@@ -1,23 +1,27 @@
-import OtherOffenseValidator from './otheroffense'
-import { validAccordion, validBranch } from './helpers'
+import { validateModel, hasYesOrNo, checkValue } from 'models/validate'
+import otherOffense from 'models/otherOffense'
+
+export const validatePoliceOtherOffenses = (data) => {
+  const policeOtherOffensesModel = {
+    HasOtherOffenses: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => (
+      checkValue(attributes.HasOtherOffenses, 'Yes')
+        ? {
+          presence: true,
+          accordion: { validator: otherOffense },
+        } : {}
+    ),
+  }
+
+  return validateModel(data, policeOtherOffensesModel) === true
+}
 
 export default class PoliceOtherOffensesValidator {
   constructor(data = {}) {
-    this.list = data.List || {}
-    this.hasOtherOffenses = (data.HasOtherOffenses || {}).value
-  }
-
-  validItems() {
-    if (this.hasOtherOffenses === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new OtherOffenseValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return validBranch(this.hasOtherOffenses) && this.validItems()
+    return validatePoliceOtherOffenses(this.data)
   }
 }

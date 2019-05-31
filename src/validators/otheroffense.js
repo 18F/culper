@@ -1,113 +1,94 @@
-import LocationValidator from './location'
-import SentenceValidator from './sentence'
-import { validGenericTextfield, validDateField, validBranch } from './helpers'
+import { validateModel } from 'models/validate'
+import otherOffense from 'models/otherOffense'
+
+export const validateOtherOffense = data => validateModel(data, otherOffense) === true
 
 export default class OtherOffenseValidator {
   constructor(data = {}) {
-    this.date = data.Date
-    this.description = data.Description
-    this.involvedViolence = (data.InvolvedViolence || {}).value
-    this.involvedFirearms = (data.InvolvedFirearms || {}).value
-    this.involvedSubstances = (data.InvolvedSubstances || {}).value
-    this.agencyAddress = data.AgencyAddress
-    this.explanation = data.Explanation
-    this.courtName = data.CourtName
-    this.courtAddress = data.CourtAddress
-    this.chargeType = (data.ChargeType || {}).value
-    this.courtCharge = data.CourtCharge
-    this.courtOutcome = data.CourtOutcome
-    this.courtDate = data.CourtDate
-    this.sentence = data.Sentence
-    this.wasSentenced = (data.WasSentenced || {}).value
-    this.awaitingTrial = (data.AwaitingTrial || {}).value
-    this.awaitingTrialExplanation = data.AwaitingTrialExplanation
+    this.data = data
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, {
+      Date: otherOffense.Date,
+    }) === true
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, {
+      Description: otherOffense.Description,
+    }) === true
   }
 
   validViolence() {
-    return this.involvedViolence === 'Yes' || this.involvedViolence === 'No'
+    return validateModel(this.data, {
+      InvolvedViolence: otherOffense.InvolvedViolence,
+    }) === true
   }
 
   validFirearms() {
-    return this.involvedFirearms === 'Yes' || this.involvedFirearms === 'No'
+    return validateModel(this.data, {
+      InvolvedFirearms: otherOffense.InvolvedFirearms,
+    }) === true
   }
 
   validSubstances() {
-    return this.involvedSubstances === 'Yes' || this.involvedSubstances === 'No'
+    return validateModel(this.data, {
+      InvolvedSubstances: otherOffense.InvolvedSubstances,
+    }) === true
   }
 
   validCourtName() {
-    return !!this.courtName && validGenericTextfield(this.courtName)
+    return validateModel(this.data, {
+      CourtName: otherOffense.CourtName,
+    }) === true
   }
 
   validCourtAddress() {
-    return (
-      !!this.courtAddress && new LocationValidator(this.courtAddress).isValid()
-    )
+    return validateModel(this.data, {
+      CourtAddress: otherOffense.CourtAddress,
+    }) === true
   }
 
   validChargeType() {
-    return (
-      !!this.chargeType &&
-      ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType)
-    )
+    return validateModel(this.data, {
+      ChargeType: otherOffense.ChargeType,
+    }) === true
   }
 
   validCourtCharge() {
-    return !!this.courtCharge && validGenericTextfield(this.courtCharge)
+    return validateModel(this.data, {
+      CourtCharge: otherOffense.CourtCharge,
+    }) === true
   }
 
   validCourtOutcome() {
-    return !!this.courtOutcome && validGenericTextfield(this.courtOutcome)
+    return validateModel(this.data, {
+      CourtOutcome: otherOffense.CourtOutcome,
+    }) === true
   }
 
   validCourtDate() {
-    return !!this.courtDate && validDateField(this.courtDate)
+    return validateModel(this.data, {
+      CourtDate: otherOffense.CourtDate,
+    }) === true
   }
 
   validSentenced() {
-    if (this.wasSentenced === 'No') {
-      return true
-    }
-
-    if (this.wasSentenced === 'Yes') {
-      return new SentenceValidator(this.sentence).isValid()
-    }
-
-    return false
+    return validateModel(this.data, {
+      WasSentenced: otherOffense.WasSentenced,
+      Sentence: otherOffense.Sentence,
+    }) === true
   }
 
   validAwaitingTrial() {
-    if (this.wasSentenced === 'No') {
-      return (
-        validBranch(this.awaitingTrial) &&
-        validGenericTextfield(this.awaitingTrialExplanation)
-      )
-    }
-    return true
+    return validateModel(this.data, {
+      AwaitingTrial: otherOffense.AwaitingTrial,
+      AwaitingTrialExplanation: otherOffense.AwaitingTrialExplanation,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validDate() &&
-      this.validDescription() &&
-      this.validViolence() &&
-      this.validFirearms() &&
-      this.validSubstances() &&
-      this.validCourtName() &&
-      this.validChargeType() &&
-      this.validCourtCharge() &&
-      this.validCourtOutcome() &&
-      this.validCourtDate() &&
-      this.validSentenced() &&
-      this.validAwaitingTrial()
-    )
+    return validateOtherOffense(this.data)
   }
 }
