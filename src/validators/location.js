@@ -106,16 +106,18 @@ export class Geocoder {
 
 export default class LocationValidator {
   constructor(data = {}) {
-    this.layout = data.layout
+    if (data) {
+      this.layout = data.layout
 
-    // Data
-    this.street = data.street
-    this.street2 = data.street2
-    this.city = data.city
-    this.state = data.state
-    this.zipcode = data.zipcode
-    this.county = data.county
-    this.country = countryString(data.country)
+      // Data
+      this.street = data.street
+      this.street2 = data.street2
+      this.city = data.city
+      this.state = data.state
+      this.zipcode = data.zipcode
+      this.county = data.county
+      this.country = countryString(data.country)
+    }
   }
 
   canGeocode() {
