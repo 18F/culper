@@ -69,10 +69,7 @@ describe('The offense component', () => {
     const component = createComponent(expected)
     expect(component.find('.offense-courtname').length).toEqual(1)
     expect(component.find('.offense-courtaddress').length).toEqual(1)
-    expect(component.find('.offense-chargetype').length).toEqual(1)
-    expect(component.find('.offense-courtcharge').length).toEqual(1)
-    expect(component.find('.offense-courtoutcome').length).toEqual(1)
-    expect(component.find('.offense-courtdate').length).toEqual(1)
+    expect(component.find('.offense-charges').length).toEqual(1)
     expect(component.find('.offense-sentenced').length).toEqual(1)
   })
 
@@ -122,21 +119,7 @@ describe('The offense component', () => {
     component
       .find('.offense-courtaddress .city input')
       .simulate('change', { target: { value: 'The city' } })
-    component
-      .find('.offense-chargetype .charge-felony input')
-      .simulate('change')
-    component
-      .find('.offense-courtcharge input')
-      .simulate('change', { target: { value: 'charge' } })
-    component
-      .find('.offense-courtoutcome input')
-      .simulate('change', { target: { value: 'outcome' } })
-    component
-      .find('.offense-courtdate .month input')
-      .simulate('change', { target: { name: 'month', value: '1' } })
-    component
-      .find('.offense-courtdate .year input')
-      .simulate('change', { target: { name: 'year', value: '2005' } })
+
     component.find('.offense-sentenced .yes input').simulate('change')
     component.find('.offense-sentenced .yes input').simulate('change')
     component
@@ -192,21 +175,7 @@ describe('The offense component', () => {
     component
       .find('.offense-courtaddress .city input')
       .simulate('change', { target: { value: 'The city' } })
-    component
-      .find('.offense-chargetype .charge-felony input')
-      .simulate('change')
-    component
-      .find('.offense-courtcharge input')
-      .simulate('change', { target: { value: 'charge' } })
-    component
-      .find('.offense-courtoutcome input')
-      .simulate('change', { target: { value: 'outcome' } })
-    component
-      .find('.offense-courtdate .month input')
-      .simulate('change', { target: { name: 'month', value: '1' } })
-    component
-      .find('.offense-courtdate .year input')
-      .simulate('change', { target: { name: 'year', value: '2005' } })
+
     component.find('.offense-sentenced .no input').simulate('change')
     component.find('.awaiting-trial .yes input').simulate('change')
     component.find('.awaiting-trial-explanation textarea').simulate('change')

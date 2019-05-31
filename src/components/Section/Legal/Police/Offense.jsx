@@ -417,6 +417,7 @@ export default class Offense extends ValidationElement {
               </Field>
 
               <Accordion
+                className="offense-charges"
                 {...this.props.Charges}
                 defaultState={this.props.defaultState}
                 onUpdate={this.updateCharges}
