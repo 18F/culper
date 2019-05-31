@@ -35,7 +35,7 @@ const (
 	CORSDenied                                 = "CORS request denied"
 	CookieDomainNotSet                         = "Cookie Domain is not set"
 	EntityError                                = "Error getting entity data"
-	EntitySaveError                            = "Error getting entity data"
+	EntitySaveError                            = "Error saving entity data"
 	FormDecodingError                          = "Error serializing form"
 	HashingFailure                             = "Error calculating hash"
 	InvalidJWT                                 = "Invalid JSON web token"

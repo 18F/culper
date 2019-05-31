@@ -78,7 +78,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 			createErr := service.Store.CreateApplication(newApplication)
 			if createErr != nil {
-				service.Log.WarnError(api.EntitySaveError, saveErr, api.LogFields{})
+				service.Log.WarnError(api.EntitySaveError, createErr, api.LogFields{})
 				RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
 				return
 			}
