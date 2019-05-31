@@ -81,19 +81,19 @@ export class PackageSubmit extends React.Component {
         updateApplication('Settings', 'locked', statusData.Locked)
         updateApplication('Settings', 'hash', statusData.Hash)
 
-        setTimeout(() => {
-          this.setState({
-            spinnerAction: SpinnerAction.Shrink,
-          })
-
+        this.setState({
+          spinnerAction: SpinnerAction.Shrink,
+        }, () => {
           setTimeout(() => {
             this.setState({
               spinnerAction: SpinnerAction.Grow,
+            }, () => {
+              setTimeout(() => {
+                history.push('/form/package/print')
+              }, 1000)
             })
-          })
-        }, 1000)
-
-        history.push('/form/package/print')
+          }, 1000)
+        })
       })
       .catch(() => {
         console.warn('Failed to form package')
