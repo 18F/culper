@@ -241,7 +241,9 @@ export default class DateRange extends ValidationElement {
             required={this.props.required}
           />
         </div>
-        <div className="arrow" />
+        <div className="arrow">
+          <i className="fa fa-arrow-right" />
+        </div>
         <div className="to-grid">
           <div className="from-label">To date</div>
           <DateControl
