@@ -1,7 +1,7 @@
 import { unschema } from '../schema'
 import { legalPoliceOffenses } from './legal-police-offenses'
 
-describe('Schema for financial taxes', () => {
+describe('Schema for police offenses', () => {
   it('can wrap in schema', () => {
     const data = {
       List: {
@@ -29,10 +29,18 @@ describe('Schema for financial taxes', () => {
               CourtAddress: {
                 country: null,
               },
-              CourtCharge: {},
-              CourtOutcome: {},
-              CourtDate: {},
-              ChargeType: {},
+              Charges: {
+                items: [
+                  {
+                    Item: {
+                      ChargeType: {},
+                      CourtCharge: {},
+                      CourtOutcome: {},
+                      CourtDate: {},
+                    },
+                  },
+                ],
+              },
               WasSentenced: {},
               Sentence: {
                 Description: {},
