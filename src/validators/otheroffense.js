@@ -50,30 +50,6 @@ export default class OtherOffenseValidator {
     }) === true
   }
 
-  validChargeType() {
-    return validateModel(this.data, {
-      ChargeType: otherOffense.ChargeType,
-    }) === true
-  }
-
-  validCourtCharge() {
-    return validateModel(this.data, {
-      CourtCharge: otherOffense.CourtCharge,
-    }) === true
-  }
-
-  validCourtOutcome() {
-    return validateModel(this.data, {
-      CourtOutcome: otherOffense.CourtOutcome,
-    }) === true
-  }
-
-  validCourtDate() {
-    return validateModel(this.data, {
-      CourtDate: otherOffense.CourtDate,
-    }) === true
-  }
-
   validSentenced() {
     return validateModel(this.data, {
       WasSentenced: otherOffense.WasSentenced,

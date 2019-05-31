@@ -66,7 +66,25 @@ describe('Police record validation', () => {
                   InvolvedViolence: { value: 'No' },
                   InvolvedFirearms: { value: 'Yes' },
                   InvolvedSubstances: { value: 'No' },
-                  ChargeType: { value: 'Felony' },
+                  Charges: {
+                    items: [
+                      {
+                        Item: {
+                          ChargeType: { value: 'Felony' },
+                          CourtDate: {
+                            month: '1',
+                            year: '2016',
+                          },
+                          CourtCharge: {
+                            value: 'Some charge',
+                          },
+                          CourtOutcome: {
+                            value: 'Some outcome',
+                          },
+                        },
+                      },
+                    ],
+                  },
                   CourtAddress: {
                     country: { value: 'United States' },
                     city: 'Arlington',
@@ -74,23 +92,11 @@ describe('Police record validation', () => {
                     zipcode: '22202',
                     layout: Location.OFFENSE,
                   },
-                  CourtDate: {
-                    month: '1',
-                    year: '2016',
-                  },
                   CourtName: {
                     value: 'court name',
                   },
-                  CourtCharge: {
-                    value: 'Some charge',
-                  },
-                  CourtOutcome: {
-                    value: 'Some outcome',
-                  },
                   WasSentenced: { value: 'Yes' },
                   Sentence: {
-                    AwaitingTrial: { value: 'Yes' },
-                    AwaitingTrialExplanation: 'Yes',
                     ExceedsYear: { value: 'Yes' },
                     Incarcerated: { value: 'Yes' },
                     IncarcerationDates: {
@@ -122,6 +128,13 @@ describe('Police record validation', () => {
                     Description: {
                       value: 'Foo',
                     },
+                  },
+                },
+              },
+              {
+                Item: {
+                  Has: {
+                    value: 'No',
                   },
                 },
               },
