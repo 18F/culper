@@ -6,25 +6,17 @@ import militaryStatesEnum from 'constants/enums/militaryStates'
 import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
 import { isZipcodeState, zipcodes } from '../config'
-import { isDefined } from './helpers'
 
 export const countryString = (country) => {
   if (validate.isHash(country)) {
-    if (isDefined(country.value)) {
-      if (Array.isArray(country.value)) {
-        return country.value[0]
-      }
+    if (country.value === null) return null
+    if (country.value === undefined) return undefined
 
-      return country.value
+    if (Array.isArray(country.value)) {
+      return country.value[0]
     }
 
-    if (country.value === null) {
-      return null
-    }
-
-    if (country.value === undefined) {
-      return undefined
-    }
+    return country.value
   }
 
   return country
