@@ -14,6 +14,7 @@ import { formIsSigned, hideHippa } from 'validators/releases'
 
 import { Show } from 'components/Form'
 import { SpinnerAction } from 'components/Form/Spinner'
+import wait from 'util/wait'
 
 import FormStatus from '../FormStatus'
 import BasicAccordion from '../BasicAccordion'
@@ -27,6 +28,7 @@ import SubmitConfirmationModal from '../SubmitConfirmationModal'
 import connectPackageSection from '../PackageConnector'
 
 const signatureValid = data => new SignatureValidator(data).isValid()
+
 
 export class PackageSubmit extends React.Component {
   constructor(props) {
@@ -83,17 +85,17 @@ export class PackageSubmit extends React.Component {
 
         this.setState({
           spinnerAction: SpinnerAction.Shrink,
-        }, () => {
-          setTimeout(() => {
-            this.setState({
-              spinnerAction: SpinnerAction.Grow,
-            }, () => {
-              setTimeout(() => {
-                history.push('/form/package/print')
-              }, 1000)
-            })
-          }, 1000)
         })
+      })
+      .then(wait(1000))
+      .then(() => {
+        this.setState({
+          spinnerAction: SpinnerAction.Grow,
+        })
+      })
+      .then(wait(1000))
+      .then(() => {
+        history.push('/form/package/print')
       })
       .catch(() => {
         console.warn('Failed to form package')
