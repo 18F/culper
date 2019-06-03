@@ -19,10 +19,19 @@ describe('Schema for financial taxes', () => {
               CourtAddress: {
                 country: null,
               },
-              CourtCharge: {},
-              CourtOutcome: {},
-              CourtDate: {},
-              ChargeType: {},
+              Charges: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      CourtCharge: {},
+                      CourtOutcome: {},
+                      CourtDate: {},
+                      ChargeType: {},
+                    },
+                  },
+                ],
+              },
               WasSentenced: {},
               Sentence: {
                 Description: {},

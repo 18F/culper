@@ -7,7 +7,7 @@ export const legalPoliceOffenses = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
-        Has: form.branch(xitem.Has), // TODO - add this
+        Has: form.branch(xitem.Has),
         Date: form.datecontrol(xitem.Date),
         Description: form.textarea(xitem.Description),
         InvolvedViolence: form.branch(xitem.InvolvedViolence),
@@ -21,8 +21,6 @@ export const legalPoliceOffenses = (data = {}) => {
         Explanation: form.textarea(xitem.Explanation),
         CourtName: form.text(xitem.CourtName),
         CourtAddress: form.location(xitem.CourtAddress),
-
-        // TODO - add this
         Charges: form.collection(
           ((xitem.Charges || {}).items || []).map((y) => {
             const yItem = y.Item || {}
@@ -36,14 +34,6 @@ export const legalPoliceOffenses = (data = {}) => {
             }
           })
         ),
-
-        /** TODO - remove these  */
-        CourtCharge: form.text(xitem.CourtCharge),
-        CourtOutcome: form.text(xitem.CourtOutcome),
-        CourtDate: form.datecontrol(xitem.CourtDate),
-        ChargeType: form.radio(xitem.ChargeType),
-        /** */
-
         WasSentenced: form.branch(xitem.WasSentenced),
         Sentence: form.sentence(xitem.Sentence),
         AwaitingTrial: form.branch(xitem.AwaitingTrial),
@@ -52,7 +42,6 @@ export const legalPoliceOffenses = (data = {}) => {
     }
   })
   return {
-    HasOffenses: form.branch(data.HasOffenses), // TODO - remove this
     List: form.collection(items, (data.List || {}).branch),
   }
 }

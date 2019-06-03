@@ -30,6 +30,7 @@ describe('Schema for police offenses', () => {
                 country: null,
               },
               Charges: {
+                branch: null,
                 items: [
                   {
                     Item: {
