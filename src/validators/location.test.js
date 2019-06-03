@@ -1,21 +1,23 @@
+import MockAdapter from 'axios-mock-adapter'
+
 import LocationValidator, { Geocoder, countryString } from './location'
 import Location from '../components/Form/Location'
 import { api } from '../services/api'
-import MockAdapter from 'axios-mock-adapter'
 
-describe('the location validator', function() {
+describe('the location validator', () => {
   describe('.countryString', () => {
     it('properly extracts the country string from the supplied value', () => {
-      const noOpValues = ['', false, true, {}, 'United States', 0]
+      const noOpValues = ['', false, true, 'United States', 0]
       noOpValues.forEach(v => expect(countryString(v)).toEqual(v))
 
+      expect(countryString({})).toEqual(undefined)
       expect(countryString({ value: '' })).toEqual('')
       expect(countryString({ value: 'Portugal' })).toEqual('Portugal')
-      expect(countryString({ value: [ 'Portugal' ]})).toEqual('Portugal')
+      expect(countryString({ value: ['Portugal'] })).toEqual('Portugal')
     })
   })
 
-  it('should validate locations', function() {
+  it('should validate locations', () => {
     const tests = [
       {
         data: {
@@ -23,34 +25,34 @@ describe('the location validator', function() {
           state: 'VA',
           county: 'Arlington',
           country: { value: 'United States' },
-          layout: Location.BIRTHPLACE
+          layout: Location.BIRTHPLACE,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'Munich',
           country: { value: 'Germany' },
-          layout: Location.BIRTHPLACE
+          layout: Location.BIRTHPLACE,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'A-Town',
           state: 'VA',
           country: { value: 'United States' },
-          layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+          layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'Munich',
           country: { value: 'Germany States' },
-          layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+          layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -58,144 +60,144 @@ describe('the location validator', function() {
           state: 'VA',
           zipcode: '22202',
           country: { value: 'United States' },
-          layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+          layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           state: 'AZ',
-          layout: Location.STATE
+          layout: Location.STATE,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'Arlington',
           state: 'VA',
-          layout: Location.CITY_STATE
+          layout: Location.CITY_STATE,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           street: '123 Some rd',
           city: 'Arlington',
           country: { value: 'Germany' },
-          layout: Location.STREET_CITY_COUNTRY
+          layout: Location.STREET_CITY_COUNTRY,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'Munich',
           country: { value: 'Germany' },
-          layout: Location.CITY_COUNTRY
+          layout: Location.CITY_COUNTRY,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'Arlington',
           state: 'VA',
           country: { value: 'United States' },
-          layout: Location.CITY_STATE_COUNTRY
+          layout: Location.CITY_STATE_COUNTRY,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'Munich',
           state: '',
           country: { value: 'Germany' },
-          layout: Location.CITY_STATE_COUNTRY
+          layout: Location.CITY_STATE_COUNTRY,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'Munich',
           country: { value: 'Germany' },
-          layout: ''
+          layout: '',
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new LocationValidator(test.data).isValid(test.fields)).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate fields', function() {
+  it('should validate fields', () => {
     const tests = [
       {
         data: {
-          city: 'Arlington'
+          city: 'Arlington',
         },
         fields: ['city'],
-        expected: true
+        expected: true,
       },
       {
         data: {
           city: 'Arlington',
           state: 'VA',
           county: 'Thecountry',
-          country: { value: 'United States' }
+          country: { value: 'United States' },
         },
         fields: ['city', 'state', 'county', 'country'],
-        expected: true
+        expected: true,
       },
       {
         data: {},
         fields: [],
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new LocationValidator(test.data).validFields(test.fields)).toBe(
         test.expected
       )
     })
   })
 
-  it('should check if international', function() {
+  it('should check if international', () => {
     const tests = [
       {
         data: {
-          country: { value: 'United States' }
+          country: { value: 'United States' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          country: { value: 'POSTOFFICE' }
+          country: { value: 'POSTOFFICE' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          country: { value: 'Germany' }
+          country: { value: 'Germany' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {},
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new LocationValidator(test.data).isInternational()).toBe(
         test.expected
       )
     })
   })
 
-  it('should check if it can geocode', function() {
+  it('should check if it can geocode', () => {
     const tests = [
       {
         data: {
@@ -205,9 +207,9 @@ describe('the location validator', function() {
           zipcode: '22202',
           county: 'Thecountry',
           country: { value: 'United States' },
-          layout: Location.ADDRESS
+          layout: Location.ADDRESS,
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -217,65 +219,65 @@ describe('the location validator', function() {
           zipcode: '22202',
           county: 'Thecounty',
           country: { value: 'United States' },
-          layout: Location.US_ADDRESS
+          layout: Location.US_ADDRESS,
         },
-        expected: true
-      },
-      {
-        data: {
-          street: '123 Some Rd',
-          city: 'Arlington',
-          country: { value: 'United States' }
-        },
-        expected: false
+        expected: true,
       },
       {
         data: {
           street: '123 Some Rd',
           city: 'Arlington',
           country: { value: 'United States' },
-          layout: Location.CITY_STATE_COUNTRY
         },
-        expected: false
-      }
+        expected: false,
+      },
+      {
+        data: {
+          street: '123 Some Rd',
+          city: 'Arlington',
+          country: { value: 'United States' },
+          layout: Location.CITY_STATE_COUNTRY,
+        },
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new LocationValidator(test.data).canGeocode()).toBe(test.expected)
     })
   })
 
-  it('should handle geocode errors', function() {
+  it('should handle geocode errors', () => {
     const tests = [
       {
         data: {
           Errors: [
             {
-              Error: 'error.geocode.system'
-            }
-          ]
+              Error: 'error.geocode.system',
+            },
+          ],
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Errors: []
+          Errors: [],
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Errors: [
             {
-              Error: 'error.geocode.city'
-            }
-          ]
+              Error: 'error.geocode.city',
+            },
+          ],
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new Geocoder(test.data).isSystemError(test.data)).toBe(
         test.expected
       )
@@ -289,15 +291,15 @@ describe('the location validator', function() {
         address: '1234 Some Rd',
         city: 'Arlington',
         state: 'VA',
-        zipcode: '22202'
+        zipcode: '22202',
       },
       expected: {
         Errors: [
           {
-            Error: 'error.geocode.system'
-          }
-        ]
-      }
+            Error: 'error.geocode.system',
+          },
+        ],
+      },
     }
 
     api.setToken('my-token')
@@ -305,14 +307,14 @@ describe('the location validator', function() {
     mock.onPost('/me/validate').reply(200, {
       Errors: [
         {
-          Error: 'error.geocode.system'
-        }
-      ]
+          Error: 'error.geocode.system',
+        },
+      ],
     })
     return new LocationValidator(test.state, null)
       .geocode()
-      .then(r => {})
-      .catch(r => {
+      .then(() => {})
+      .catch((r) => {
         expect(r).toEqual(test.expected)
       })
   })
@@ -324,15 +326,15 @@ describe('the location validator', function() {
         street: '1234 Some Rd',
         city: 'Arlington',
         state: 'VA',
-        zipcode: '22202'
+        zipcode: '22202',
       },
       expected: {
         Errors: [
           {
-            Error: 'error.geocode.partial'
-          }
-        ]
-      }
+            Error: 'error.geocode.partial',
+          },
+        ],
+      },
     }
 
     api.setToken('my-token')
@@ -340,14 +342,14 @@ describe('the location validator', function() {
     mock.onPost('/me/validate').reply(200, {
       Errors: [
         {
-          Error: 'error.geocode.partial'
-        }
-      ]
+          Error: 'error.geocode.partial',
+        },
+      ],
     })
     return new LocationValidator(test.state, null)
       .geocode()
-      .then(r => {})
-      .catch(r => {
+      .then(() => {})
+      .catch((r) => {
         expect(r).toEqual(test.expected)
       })
   })
@@ -359,27 +361,27 @@ describe('the location validator', function() {
         street: '1234 Some Rd',
         city: 'Arlington',
         state: 'VA',
-        zipcode: '22202'
+        zipcode: '22202',
       },
       expected: {
-        Errors: []
-      }
+        Errors: [],
+      },
     }
 
     api.setToken('my-token')
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/me/validate').reply(200, {
-      Errors: []
+      Errors: [],
     })
     return new LocationValidator(test.state, null)
       .geocode()
-      .then(r => {})
-      .catch(r => {
+      .then(() => {})
+      .catch((r) => {
         expect(r).toEqual(test.expected)
       })
   })
 
-  it('should validate zipcode', function() {
+  it('should validate zipcode', () => {
     const tests = [
       {
         state: {
@@ -387,9 +389,9 @@ describe('the location validator', function() {
           street: '1234 Some Rd',
           city: 'Arlington',
           state: 'VA',
-          zipcode: '2'
+          zipcode: '2',
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -397,20 +399,20 @@ describe('the location validator', function() {
           street: '1234 Some Rd',
           city: 'Arlington',
           state: 'VA',
-          zipcode: null
+          zipcode: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new LocationValidator(test.state, null).validZipcode()).toEqual(
         test.expected
       )
     })
   })
 
-  it('should validate zipcode is in correct state if in US', function() {
+  it('should validate zipcode is in correct state if in US', () => {
     const tests = [
       {
         state: {
@@ -418,9 +420,9 @@ describe('the location validator', function() {
           street: '1 Great Teen Drama Dr.',
           city: 'Beverly Hills',
           state: 'CA',
-          zipcode: '90210'
+          zipcode: '90210',
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -428,9 +430,9 @@ describe('the location validator', function() {
           street: '1 Great Teen Drama Dr.',
           city: 'Beverly Hills',
           state: 'ca',
-          zipcode: '90210'
+          zipcode: '90210',
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -438,9 +440,9 @@ describe('the location validator', function() {
           street: '1234 Some Rd',
           city: 'Arlington',
           state: 'VA',
-          zipcode: '90210'
+          zipcode: '90210',
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -448,13 +450,13 @@ describe('the location validator', function() {
           street: '1234 Some Rd',
           city: 'City',
           state: 'DQ',
-          zipcode: '12321'
+          zipcode: '12321',
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new LocationValidator(test.state, null).validZipcodeState()
       ).toEqual(test.expected)
