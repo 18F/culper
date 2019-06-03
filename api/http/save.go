@@ -70,7 +70,8 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Save to storage and report any errors
-	if saveErr := service.Store.SaveSection(section, id); saveErr != nil {
+	saveErr := service.Store.SaveSection(section, id)
+	if saveErr != nil {
 		if saveErr == api.ErrApplicationDoesNotExist {
 			// if the application doesn't exist, we need to create it.
 			newApplication := api.BlankApplication(account.ID, account.FormType, account.FormVersion)
@@ -78,9 +79,23 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 			createErr := service.Store.CreateApplication(newApplication)
 			if createErr != nil {
-				service.Log.WarnError(api.EntitySaveError, createErr, api.LogFields{})
-				RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
-				return
+				// This should happen but rarely, but there is a race condition here where multiple /save calls
+				// get ApplicationDoesNotExist above. In that case, some of them will get ApplicationExists here,
+				// but it's safe for them to just try again.
+				if createErr == api.ErrApplicationAlreadyExists {
+					service.Log.Debug("Having to double save due to /save race", api.LogFields{})
+					saveAgainErr := service.Store.SaveSection(section, id)
+					if saveAgainErr != nil {
+						// this time, nothing will save you.
+						service.Log.WarnError(api.EntitySaveError, saveAgainErr, api.LogFields{})
+						RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+						return
+					}
+				} else {
+					service.Log.WarnError(api.EntitySaveError, createErr, api.LogFields{})
+					RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+					return
+				}
 			}
 		} else {
 			service.Log.WarnError(api.EntitySaveError, saveErr, api.LogFields{})

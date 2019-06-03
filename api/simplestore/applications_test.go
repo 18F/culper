@@ -140,6 +140,11 @@ func TestSaveSection(t *testing.T) {
 		t.Fatal(createErr)
 	}
 
+	createAgainErr := store.CreateApplication(newApplication)
+	if createAgainErr != api.ErrApplicationAlreadyExists {
+		t.Fatal("Should have gotten an already exists error", createAgainErr)
+	}
+
 	app, loadErr := store.LoadApplication(accountID)
 	if loadErr != nil {
 		t.Fatal(loadErr)
