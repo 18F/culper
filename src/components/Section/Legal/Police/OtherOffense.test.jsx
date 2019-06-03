@@ -10,17 +10,16 @@ describe('The offense component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <OtherOffense {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <OtherOffense {...expected} />
+      </Provider>
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'offense'
+      name: 'offense',
     }
     const component = createComponent(expected)
     expect(component.find('.offense-date').length).toEqual(1)
@@ -30,7 +29,7 @@ describe('The offense component', () => {
     expect(component.find('.offense-substances').length).toEqual(1)
     expect(component.find('.offense-courtname').length).toEqual(1)
     expect(component.find('.offense-courtaddress').length).toEqual(1)
-    expect(component.find('.offense-chargetype').length).toEqual(1)
+    expect(component.find('.offense-charges').length).toEqual(1)
     expect(component.find('.offense-sentenced').length).toEqual(1)
   })
 
@@ -40,8 +39,8 @@ describe('The offense component', () => {
       name: 'offense',
       WasSentenced: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -65,22 +64,6 @@ describe('The offense component', () => {
     component
       .find('.offense-courtaddress .city input')
       .simulate('change', { target: { value: 'The city' } })
-    component
-      .find('.offense-chargetype .charge-felony input')
-      .simulate('change')
-    component
-      .find('.offense-courtcharge input')
-      .simulate('change', { target: { value: 'charge' } })
-    component
-      .find('.offense-courtoutcome input')
-      .simulate('change', { target: { value: 'outcome' } })
-    component
-      .find('.offense-courtdate .month input')
-      .simulate('change', { target: { name: 'month', value: '1' } })
-    component
-      .find('.offense-courtdate .year input')
-      .simulate('change', { target: { name: 'year', value: '2005' } })
-    component.find('.offense-sentenced .yes input').simulate('change')
     component
       .find('.offense-description textarea')
       .simulate('change', { target: { value: 'Test' } })
@@ -94,8 +77,8 @@ describe('The offense component', () => {
       WasSentenced: { value: 'No' },
       AwaitingTrial: { value: 'Yes' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -119,21 +102,6 @@ describe('The offense component', () => {
     component
       .find('.offense-courtaddress .city input')
       .simulate('change', { target: { value: 'The city' } })
-    component
-      .find('.offense-chargetype .charge-felony input')
-      .simulate('change')
-    component
-      .find('.offense-courtcharge input')
-      .simulate('change', { target: { value: 'charge' } })
-    component
-      .find('.offense-courtoutcome input')
-      .simulate('change', { target: { value: 'outcome' } })
-    component
-      .find('.offense-courtdate .month input')
-      .simulate('change', { target: { name: 'month', value: '1' } })
-    component
-      .find('.offense-courtdate .year input')
-      .simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.offense-sentenced .no input').simulate('change')
     component.find('.awaiting-trial .yes input').simulate('change')
     component.find('.awaiting-trial-explanation textarea').simulate('change')
