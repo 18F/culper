@@ -19,6 +19,9 @@ func runCreateApplication(conn simpleConnection, serializer api.Serializer, app 
 
 	_, saveErr := conn.Exec(saveQuery, app.AccountID, serializedApp)
 	if saveErr != nil {
+		if saveErr.Error() == "pq: duplicate key value violates unique constraint \"applications_pkey\"" {
+			return api.ErrApplicationAlreadyExists
+		}
 		return errors.Wrap(saveErr, "Failed to create Application")
 	}
 
