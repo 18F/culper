@@ -83,7 +83,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				// get ApplicationDoesNotExist above. In that case, some of them will get ApplicationExists here,
 				// but it's safe for them to just try again.
 				if createErr == api.ErrApplicationAlreadyExists {
-					service.Log.Info("Having to double save due to /save race", api.LogFields{})
+					service.Log.Debug("Having to double save due to /save race", api.LogFields{})
 					saveAgainErr := service.Store.SaveSection(section, id)
 					if saveAgainErr != nil {
 						// this time, nothing will save you.
