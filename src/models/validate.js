@@ -105,3 +105,7 @@ export const hasYesOrNo = {
 export const checkValue = (attribute, expected) => attribute
   && attribute.value
   && attribute.value === expected
+
+export const checkValueIncluded = (attribute, expected) => attribute
+  && attribute.value
+  && expected.includes(attribute.value)
