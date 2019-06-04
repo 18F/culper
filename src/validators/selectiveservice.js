@@ -1,68 +1,41 @@
-import { validGenericTextfield } from './helpers'
+import selectiveService from 'models/selectiveService'
+import { validateModel } from 'models/validate'
 import { extractDate } from '../components/Section/History/dateranges'
 
 export const hideSelectiveService = (store = {}) => {
-  const selectiveService = new Date(1959, 11, 31)
-  const birthdate =
-    ((store.Identification || {}).ApplicantBirthDate || {}).Date || {}
+  const selectiveServiceDate = new Date(1959, 11, 31)
+  const birthdate = ((store.Identification || {}).ApplicantBirthDate || {}).Date || {}
 
   // Check the limits
-  return extractDate(birthdate) <= selectiveService
+  return extractDate(birthdate) <= selectiveServiceDate
 }
+
+export const validateSelectiveService = data => (
+  validateModel(data, selectiveService) === true
+)
 
 export default class SelectiveServiceValidator {
   constructor(data = {}) {
-    this.wasBornAfter = (data.WasBornAfter || {}).value
-    this.hasRegistered = (data.HasRegistered || {}).value
-    this.hasRegisteredNotApplicable = data.HasRegisteredNotApplicable
-    this.registrationNumber = data.RegistrationNumber
-    this.explanation = data.Explanation
+    this.data = data
   }
 
   validBornAfter() {
-    return this.wasBornAfter === 'Yes' || this.wasBornAfter === 'No'
+    return validateModel(this.data, { WasBornAfter: selectiveService.WasBornAfter }) === true
   }
 
   validRegistered() {
-    return (
-      this.wasBornAfter === 'No' ||
-      (this.wasBornAfter === 'Yes' &&
-        (this.hasRegistered === 'Yes' ||
-          this.hasRegistered === 'No' ||
-          !this.hasRegisteredNotApplicable.applicable))
-    )
+    return validateModel(this.data, { HasRegistered: selectiveService.HasRegistered }) === true
   }
 
   validRegistrationNumber() {
-    if (this.wasBornAfter === 'Yes' && this.hasRegistered === 'Yes') {
-      return !!(
-        this.registrationNumber &&
-        this.registrationNumber.value &&
-        /^\d*$/g.test(this.registrationNumber.value)
-      )
-    }
-
-    return true
+    return validateModel(this.data, { RegistrationNumber: selectiveService.RegistrationNumber }) === true
   }
 
   validExplanation() {
-    if (
-      this.wasBornAfter === 'Yes' &&
-      (this.hasRegistered === 'No' ||
-        !this.hasRegisteredNotApplicable.applicable)
-    ) {
-      return validGenericTextfield(this.explanation)
-    }
-
-    return true
+    return validateModel(this.data, { Explanation: selectiveService.Explanation }) === true
   }
 
   isValid() {
-    return (
-      this.validBornAfter() &&
-      this.validRegistered() &&
-      this.validRegistrationNumber() &&
-      this.validExplanation()
-    )
+    return validateSelectiveService(this.data)
   }
 }
