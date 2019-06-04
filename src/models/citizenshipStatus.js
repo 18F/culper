@@ -1,5 +1,7 @@
-import { validate } from 'validate.js'
-import { hasYesOrNo, checkValue, checkValueIncluded } from 'models/validate'
+import {
+  hasYesOrNo, checkValue, checkValueIncluded, valueIsEmpty, nameIsEmpty,
+  dateIsEmpty, locationIsEmpty,
+} from 'models/validate'
 import name from 'models/shared/name'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import cityState from 'models/shared/locations/cityState'
@@ -15,34 +17,7 @@ import {
   notCitizenDocumentTypes,
 } from 'constants/enums/citizenshipOptions'
 
-const valueIsEmpty = (data = {}) => !data.value || validate.isEmpty(data.value)
-
-const nameIsEmpty = (data = {}) => {
-  const {
-    first, firstInitialOnly, middle, middleInitialOnly, last, suffix,
-  } = data
-
-  const fields = [
-    first, firstInitialOnly, middle, middleInitialOnly, last, suffix,
-  ]
-
-  return fields.every(i => i === false || validate.isEmpty(i))
-}
-
-const dateIsEmpty = (data = {}) => {
-  const { day, month, year } = data
-  const fields = [day, month, year]
-  return fields.every(i => validate.isEmpty(i))
-}
-
-const locationIsEmpty = (data = {}) => {
-  const { country, city, state } = data
-
-  return (validate.isEmpty(country) || valueIsEmpty(country))
-    && validate.isEmpty(city)
-    && validate.isEmpty(state)
-}
-
+/** Helper functions */
 export const certificateIsEmpty = (attributes) => {
   const { CertificateNumber, CertificateIssued, CertificateName } = attributes
 
@@ -81,23 +56,18 @@ const citizenshipStatus = {
     presence: true,
     hasValue: { validator: { inclusion: citizenshipStatusOptions } },
   },
-  BornOnMilitaryInstallation: (value, attributes) => {
-    if (checkValue(attributes.CitizenshipStatus, FOREIGN_BORN)) {
-      return {
+  BornOnMilitaryInstallation: (value, attributes) => (
+    checkValue(attributes.CitizenshipStatus, FOREIGN_BORN)
+      ? {
         presence: true,
         hasValue: { validator: hasYesOrNo },
-      }
-    }
-
-    return {}
-  },
-  MilitaryBase: (value, attributes) => {
-    if (checkValue(attributes.BornOnMilitaryInstallation, 'Yes')) {
-      return { presence: true, hasValue: true }
-    }
-
-    return {}
-  },
+      } : {}
+  ),
+  MilitaryBase: (value, attributes) => (
+    checkValue(attributes.BornOnMilitaryInstallation, 'Yes')
+      ? { presence: true, hasValue: true }
+      : {}
+  ),
   AbroadDocumentation: (value, attributes) => (
     requireDocumentationFields(attributes)
       ? {
@@ -170,54 +140,42 @@ const citizenshipStatus = {
       ? { presence: true, model: { validator: name } }
       : {}
   ),
-  EntryDate: (value, attributes) => {
-    if (checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])) {
-      return { presence: true, date: true }
-    }
-
-    return {}
-  },
-  EntryLocation: (value, attributes) => {
-    if (checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])) {
-      return { presence: true, location: { validator: cityState } }
-    }
-
-    return {}
-  },
-  PriorCitizenship: (value, attributes) => {
-    if (checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])) {
-      return {
+  EntryDate: (value, attributes) => (
+    checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])
+      ? { presence: true, date: true }
+      : {}
+  ),
+  EntryLocation: (value, attributes) => (
+    checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])
+      ? { presence: true, location: { validator: cityState } }
+      : {}
+  ),
+  PriorCitizenship: (value, attributes) => (
+    checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])
+      ? {
         presence: true,
         hasValue: { validator: { length: { minimum: 1 } } },
       }
-    }
-
-    return {}
-  },
-  HasAlienRegistration: (value, attributes) => {
-    if (checkValue(attributes.CitizenshipStatus, NATURALIZED)) {
-      return {
+      : {}
+  ),
+  HasAlienRegistration: (value, attributes) => (
+    checkValue(attributes.CitizenshipStatus, NATURALIZED)
+      ? {
         presence: true,
         hasValue: { validator: hasYesOrNo },
-      }
-    }
-
-    return {}
-  },
-  AlienRegistrationNumber: (value, attributes) => {
-    if (checkValue(attributes.HasAlienRegistration, 'Yes')
+      } : {}
+  ),
+  AlienRegistrationNumber: (value, attributes) => (
+    checkValue(attributes.HasAlienRegistration, 'Yes')
       || (checkValue(attributes.CitizenshipStatus, DERIVED)
       && !(attributes.PermanentResidentCardNumber && attributes.PermanentResidentCardNumber.value)
       && !(attributes.CertificateNumber && attributes.CertificateNumber.value))
-      || checkValue(attributes.CitizenshipStatus, NOT_CITIZEN)) {
-      return {
+      || checkValue(attributes.CitizenshipStatus, NOT_CITIZEN)
+      ? {
         presence: true,
         hasValue: true,
-      }
-    }
-
-    return {}
-  },
+      } : {}
+  ),
   AlienRegistrationExpiration: (value, attributes) => (
     checkValue(attributes.CitizenshipStatus, NOT_CITIZEN)
       ? { presence: true, date: true }
