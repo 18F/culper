@@ -346,6 +346,22 @@ export default class Location extends ValidationElement {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    const { showPostOffice } = this.props
+    if (
+      prevProps.showPostOffice !== showPostOffice
+      && showPostOffice === false
+      && prevProps.country.value === 'POSTOFFICE'
+    ) {
+      this.update({
+        country: 'United States',
+        city: '',
+        state: '',
+        zipcode: '',
+      })
+    }
+  }
+
   componentWillUnmount() {
     this.geocodeCancel = true
   }
@@ -629,6 +645,7 @@ export default class Location extends ValidationElement {
             isEnabled={this.props.isEnabled}
             isPoBoxAllowed={this.props.isPoBoxAllowed}
             disableToggle={this.props.layout === Location.US_ADDRESS}
+            showPostOffice={this.props.showPostOffice}
             onBlur={this.handleBlur}
             onUpdate={this.updateAddress}
             onError={this.handleError}
@@ -868,6 +885,7 @@ Location.defaultProps = {
   addressBooks: {},
   addressBook: '',
   isPoBoxAllowed: true,
+  showPostOffice: false,
   onUpdate: queue => {},
   dispatch: action => {},
   onError: (value, arr) => {
