@@ -45,30 +45,30 @@ p {
 
 /* set up structure to go from a table-style to floated block style */
 .eapp-structure-wrap {
-  display: table;
+  display: block;
   width: 100%;
 
   .eapp-structure-row {
-    display: table-row;
+    display: flex;
 
     .eapp-structure-left,
     .eapp-structure-right {
-      display: table-cell;
       vertical-align: top;
     }
 
     .eapp-structure-left {
-      width: 21%;
-      height: 100vh;
+      width: 20%;
       min-width: 32rem;
 
       &.eapp-navigation {
         background: $color-gray-extra-lightest;
         border-right: 1px solid $color-gray-lightest;
+        min-height: 100vh;
       }
     }
 
     .eapp-structure-right {
+      width: 80%;
       padding: 1rem 1rem 1rem 5rem;
 
       &.eapp-title {
