@@ -167,6 +167,34 @@ func (ci *CollectionItem) SetItemValue(key string, value Entity) error {
 
 }
 
+func (entity *Collection) ClearBranchItemsNo(key string) error {
+	if entity != nil {
+		for _, item := range entity.Items {
+
+			value, itemErr := item.GetItemValue(key)
+			if itemErr != nil {
+				return errors.Wrap(itemErr, fmt.Sprintf("Failed to pull out a %s", key))
+			}
+
+			branch := value.(*Branch)
+			if branch.Value == "No" {
+				branch.Value = ""
+				setErr := item.SetItemValue(key, branch)
+				if setErr != nil {
+					return errors.Wrap(setErr, fmt.Sprintf("Failed to set a %s", key))
+				}
+			}
+		}
+	}
+	return nil
+}
+
+func (entity *Collection) ClearBranchNo() {
+	if entity != nil {
+		entity.Branch.ClearNo()
+	}
+}
+
 // getItemEntity marshals a raw JSON format to a entity
 func getItemEntity(raw json.RawMessage) (string, Entity, error) {
 	// Decode JSON to a payload

@@ -95,16 +95,9 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *RelationshipsMarital) ClearNos() error {
 
-	if entity.CivilUnion != nil && entity.CivilUnion.Separated != nil && entity.CivilUnion.Separated.Value == "No" {
-		entity.CivilUnion.Separated.Value = ""
-	}
-
-	if entity.CivilUnion != nil && entity.CivilUnion.Divorced != nil && entity.CivilUnion.Divorced.Value == "No" {
-		entity.CivilUnion.Divorced.Value = ""
-	}
-
-	if entity.DivorcedList != nil && entity.DivorcedList.Branch != nil && entity.DivorcedList.Branch.Value == "No" {
-		entity.DivorcedList.Branch.Value = ""
+	if entity.CivilUnion != nil {
+		entity.CivilUnion.Separated.ClearNo()
+		entity.CivilUnion.Divorced.ClearNo()
 	}
 
 	if entity.DivorcedList != nil {
@@ -124,9 +117,10 @@ func (entity *RelationshipsMarital) ClearNos() error {
 			if setErr != nil {
 				return errors.Wrap(setErr, "Failed to set deceased for a divorcee")
 			}
-
 		}
 	}
+
+	entity.DivorcedList.ClearBranchNo()
 
 	return nil
 }
@@ -191,13 +185,9 @@ func (entity *RelationshipsCohabitants) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *RelationshipsCohabitants) ClearNos() error {
 
-	if entity.HasCohabitant != nil && entity.HasCohabitant.Value == "No" {
-		entity.HasCohabitant.Value = ""
-	}
+	entity.HasCohabitant.ClearNo()
 
-	if entity.CohabitantList != nil && entity.CohabitantList.Branch != nil && entity.CohabitantList.Branch.Value == "No" {
-		entity.CohabitantList.Branch.Value = ""
-	}
+	entity.CohabitantList.ClearBranchNo()
 
 	return nil
 
@@ -247,9 +237,7 @@ func (entity *RelationshipsPeople) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *RelationshipsPeople) ClearNos() error {
 
-	if entity.List != nil && entity.List.Branch != nil && entity.List.Branch.Value == "No" {
-		entity.List.Branch.Value = ""
-	}
+	entity.List.ClearBranchNo()
 
 	return nil
 }
@@ -298,30 +286,12 @@ func (entity *RelationshipsRelatives) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *RelationshipsRelatives) ClearNos() error {
 
-	if entity.List != nil {
-		for _, divorcedItem := range entity.List.Items {
-
-			deceased, itemErr := divorcedItem.GetItemValue("IsDeceased")
-			if itemErr != nil {
-				return errors.Wrap(itemErr, "Failed to pull deceased from a divorcee")
-			}
-			deceasedBranch := deceased.(*Branch)
-
-			if deceasedBranch.Value == "No" {
-				deceasedBranch.Value = ""
-			}
-
-			setErr := divorcedItem.SetItemValue("IsDeceased", deceasedBranch)
-			if setErr != nil {
-				return errors.Wrap(setErr, "Failed to set deceased for a divorcee")
-			}
-
-		}
+	deceasedErr := entity.List.ClearBranchItemsNo("IsDeceased")
+	if deceasedErr != nil {
+		return errors.Wrap(deceasedErr, "Couldn't clear deceased from relative")
 	}
 
-	if entity.List != nil && entity.List.Branch != nil && entity.List.Branch.Value == "No" {
-		entity.List.Branch.Value = ""
-	}
+	entity.List.ClearBranchNo()
 
 	return nil
 }

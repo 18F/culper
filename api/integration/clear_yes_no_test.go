@@ -449,6 +449,83 @@ func TestClearSectionNos(t *testing.T) {
 				t.Fail()
 			}
 		}},
+
+		// ---
+		// --- Foreign ---
+		// ---
+
+		{"../testdata/foreign/foreign-passport.json", "foreign.passport", func(t *testing.T, section api.Section) {
+			passport := section.(*api.ForeignPassport)
+
+			if passport.HasPassports.Value != "Yes" {
+				t.Log("Should not have cleared the has passport")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/foreign/foreign-passport-no.json", "foreign.passport", func(t *testing.T, section api.Section) {
+			passport := section.(*api.ForeignPassport)
+
+			if passport.HasPassports.Value != "" {
+				t.Log("Should have cleared the has passport")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/foreign/foreign-contacts-no.json", "foreign.contacts", func(t *testing.T, section api.Section) {
+			contacts := section.(*api.ForeignContacts)
+
+			if contacts.HasForeignContacts.Value != "" {
+				t.Log("Should have cleared the contact yes")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/foreign/foreign-contacts.json", "foreign.contacts", func(t *testing.T, section api.Section) {
+			contacts := section.(*api.ForeignContacts)
+
+			if contacts.HasForeignContacts.Value != "Yes" {
+				t.Log("Should not have cleared the contact yes")
+				t.Fail()
+			}
+
+			for _, contactItem := range contacts.List.Items {
+
+				hasAffiliations := getBranchItemValue(t, contactItem, "HasAffiliations")
+				if hasAffiliations.Value != "Yes" {
+					t.Log("Should not have cleared the affiliation")
+					t.Fail()
+				}
+			}
+
+			if contacts.List.Branch.Value != "" {
+				t.Log("Should have cleared the last branch")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/foreign/foreign-contacts-no-affiliation.json", "foreign.contacts", func(t *testing.T, section api.Section) {
+			contacts := section.(*api.ForeignContacts)
+
+			if contacts.HasForeignContacts.Value != "Yes" {
+				t.Log("Should not have cleared the contact yes")
+				t.Fail()
+			}
+
+			for _, contactItem := range contacts.List.Items {
+
+				hasAffiliations := getBranchItemValue(t, contactItem, "HasAffiliations")
+				if hasAffiliations.Value != "" {
+					t.Log("Should have cleared the affiliation")
+					t.Fail()
+				}
+			}
+
+			if contacts.List.Branch.Value != "" {
+				t.Log("Should have cleared the last branch")
+				t.Fail()
+			}
+		}},
 	}
 
 	for _, clearTest := range tests {

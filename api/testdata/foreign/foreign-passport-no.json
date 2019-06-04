@@ -1,0 +1,45 @@
+{
+    "props": {
+        "Card": {
+            "props": {
+                "value": "Book"
+            },
+            "type": "radio"
+        },
+        "Comments": {
+            "props": {
+                "value": ""
+            },
+            "type": "textarea"
+        },
+        "Expiration": {
+            "props": {
+                "day": "",
+                "estimated": false,
+                "month": "",
+                "year": ""
+            },
+            "type": "datecontrol"
+        },
+        "HasPassports": {
+            "props": {
+                "name": "has_passport",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "Issued": {
+            "props": {},
+            "type": "datecontrol"
+        },
+        "Name": {
+            "props": {},
+            "type": "name"
+        },
+        "Number": {
+            "props": {},
+            "type": "text"
+        }
+    },
+    "type": "foreign.passport"
+}

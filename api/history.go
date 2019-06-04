@@ -49,11 +49,8 @@ func (entity *HistoryResidence) Valid() (bool, error) {
 
 // ClearNos clears any questions answered nos on a kickback
 func (entity *HistoryResidence) ClearNos() error {
-	if entity.List != nil && entity.List.Branch != nil {
-		if entity.List.Branch.Value == "No" {
-			entity.List.Branch.Value = ""
-		}
-	}
+	entity.List.ClearBranchNo()
+
 	return nil
 }
 
@@ -118,17 +115,7 @@ func (entity *HistoryEmployment) Valid() (bool, error) {
 
 // ClearNos clears any questions answered nos on a kickback
 func (entity *HistoryEmployment) ClearNos() error {
-	if entity.List != nil && entity.List.Branch != nil {
-		if entity.List.Branch.Value == "No" {
-			entity.List.Branch.Value = ""
-		}
-	}
-
-	if entity.EmploymentRecord != nil {
-		if entity.EmploymentRecord.Value == "No" {
-			entity.EmploymentRecord.Value = ""
-		}
-	}
+	entity.EmploymentRecord.ClearNo()
 
 	// loop through all the records of employment.
 	if entity.List != nil {
@@ -141,12 +128,12 @@ func (entity *HistoryEmployment) ClearNos() error {
 
 			reprimands := reprimandsEntity.(*Collection)
 			for _, reprimand := range reprimands.Items {
-				HasAdditionalEntity, hasAddErr := reprimand.GetItemValue("Has")
+				hasAdditionalEntity, hasAddErr := reprimand.GetItemValue("Has")
 				if hasAddErr != nil {
 					return errors.Wrap(hasAddErr, "Failed to pull Has from a reprimand")
 				}
 
-				hasAdditional := HasAdditionalEntity.(*Branch)
+				hasAdditional := hasAdditionalEntity.(*Branch)
 				if hasAdditional.Value == "No" {
 					hasAdditional.Value = ""
 					setErr := reprimand.SetItemValue("Has", hasAdditional)
@@ -165,6 +152,8 @@ func (entity *HistoryEmployment) ClearNos() error {
 			}
 		}
 	}
+
+	entity.List.ClearBranchNo()
 
 	return nil
 }
@@ -241,19 +230,9 @@ func (entity *HistoryEducation) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *HistoryEducation) ClearNos() error {
 
-	if entity.List != nil && entity.List.Branch != nil {
-		if entity.List.Branch.Value == "No" {
-			entity.List.Branch.Value = ""
-		}
-	}
-
-	if entity.HasAttended != nil && entity.HasAttended.Value == "No" {
-		entity.HasAttended.Value = ""
-	}
-
-	if entity.HasDegree10 != nil && entity.HasDegree10.Value == "No" {
-		entity.HasDegree10.Value = ""
-	}
+	entity.HasAttended.ClearNo()
+	entity.HasDegree10.ClearNo()
+	entity.List.ClearBranchNo()
 
 	return nil
 
@@ -319,15 +298,8 @@ func (entity *HistoryFederal) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *HistoryFederal) ClearNos() error {
 
-	if entity.HasFederalService != nil && entity.HasFederalService.Value == "No" {
-		entity.HasFederalService.Value = ""
-	}
-
-	if entity.List != nil && entity.List.Branch != nil {
-		if entity.List.Branch.Value == "No" {
-			entity.List.Branch.Value = ""
-		}
-	}
+	entity.HasFederalService.ClearNo()
+	entity.List.ClearBranchNo()
 
 	return nil
 

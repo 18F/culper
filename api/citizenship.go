@@ -446,9 +446,8 @@ func (entity *CitizenshipStatus) ClearNos() error {
 		entity.CitizenshipStatus.Value = ""
 	}
 
-	if entity.HasAlienRegistration != nil && entity.HasAlienRegistration.Value == "No" {
-		entity.HasAlienRegistration.Value = ""
-	}
+	entity.HasAlienRegistration.ClearNo()
+
 	return nil
 }
 
@@ -520,33 +519,14 @@ func (entity *CitizenshipMultiple) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *CitizenshipMultiple) ClearNos() error {
 
-	if entity.HasMultiple != nil && entity.HasMultiple.Value == "No" {
-		entity.HasMultiple.Value = ""
+	entity.HasMultiple.ClearNo()
+
+	renouncedErr := entity.List.ClearBranchItemsNo("Renounced")
+	if renouncedErr != nil {
+		return errors.Wrap(renouncedErr, "Couldn't clear renounced")
 	}
 
-	if entity.List != nil && entity.List.Branch != nil && entity.List.Branch.Value == "No" {
-		entity.List.Branch.Value = ""
-	}
-
-	if entity.List != nil {
-		for _, foreignItem := range entity.List.Items {
-
-			renounced, itemErr := foreignItem.GetItemValue("Renounced")
-			if itemErr != nil {
-				return errors.Wrap(itemErr, "Failed to pull renounced from a foriegn cit")
-			}
-			renouncedBranch := renounced.(*Branch)
-
-			if renouncedBranch.Value == "No" {
-				renouncedBranch.Value = ""
-			}
-
-			setErr := foreignItem.SetItemValue("Renounced", renouncedBranch)
-			if setErr != nil {
-				return errors.Wrap(setErr, "Failed to set renounced for a foreign cit")
-			}
-		}
-	}
+	entity.List.ClearBranchNo()
 
 	return nil
 }
@@ -601,38 +581,14 @@ func (entity *CitizenshipPassports) ClearNos() error {
 	// 	entity.List.Branch.Value = ""
 	// }
 
-	if entity.Passports != nil {
-		for _, passportItem := range entity.Passports.Items {
+	hasErr := entity.Passports.ClearBranchItemsNo("Has")
+	if hasErr != nil {
+		return errors.Wrap(hasErr, "Couldn't clear the weird passport has")
+	}
 
-			has, itemErr := passportItem.GetItemValue("Has")
-			if itemErr != nil {
-				return errors.Wrap(itemErr, "Failed to pull has from a foriegn passport")
-			}
-			hasBranch := has.(*Branch)
-
-			if hasBranch.Value == "No" {
-				hasBranch.Value = ""
-				setErr := passportItem.SetItemValue("Has", hasBranch)
-				if setErr != nil {
-					return errors.Wrap(setErr, "Failed to set has for a foreign passport")
-				}
-			}
-
-			used, usedErr := passportItem.GetItemValue("Used")
-			if usedErr != nil {
-				return errors.Wrap(usedErr, "Failed to pull used from a foriegn passport")
-			}
-			usedBranch := used.(*Branch)
-
-			if usedBranch.Value == "No" {
-				usedBranch.Value = ""
-				setErr := passportItem.SetItemValue("Used", usedBranch)
-				if setErr != nil {
-					return errors.Wrap(setErr, "Failed to set used for a foreign passport")
-				}
-			}
-
-		}
+	usedErr := entity.Passports.ClearBranchItemsNo("Used")
+	if usedErr != nil {
+		return errors.Wrap(usedErr, "Couldn't clear the used passports section")
 	}
 
 	return nil

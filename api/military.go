@@ -126,9 +126,8 @@ func (entity *MilitarySelective) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *MilitarySelective) ClearNos() error {
 
-	if entity.HasRegistered != nil && entity.HasRegistered.Value == "No" {
-		entity.HasRegistered.Value = ""
-	}
+	entity.HasRegistered.ClearNo()
+
 	return nil
 }
 
@@ -200,33 +199,15 @@ func (entity *MilitaryHistory) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *MilitaryHistory) ClearNos() error {
 
-	if entity.HasServed != nil && entity.HasServed.Value == "No" {
-		entity.HasServed.Value = ""
+	entity.HasServed.ClearNo()
+
+	itemsErr := entity.List.ClearBranchItemsNo("HasBeenDischarged")
+	if itemsErr != nil {
+		errors.Wrap(itemsErr, "Couldn't clear discharge from military")
 	}
 
-	if entity.List != nil {
-		for _, militaryItem := range entity.List.Items {
+	entity.List.ClearBranchNo()
 
-			service, itemErr := militaryItem.GetItemValue("HasBeenDischarged")
-			if itemErr != nil {
-				return errors.Wrap(itemErr, "Got an error getting discharged from service")
-			}
-			serviceBranch := service.(*Branch)
-
-			if serviceBranch.Value == "No" {
-				serviceBranch.Value = ""
-
-				saveErr := militaryItem.SetItemValue("HasBeenDischarged", serviceBranch)
-				if saveErr != nil {
-					return errors.Wrap(itemErr, "Got an error saving discharged for service")
-				}
-			}
-		}
-	}
-
-	if entity.List != nil && entity.List.Branch != nil && entity.List.Branch.Value == "No" {
-		entity.List.Branch.Value = ""
-	}
 	return nil
 }
 
@@ -298,13 +279,10 @@ func (entity *MilitaryDisciplinary) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *MilitaryDisciplinary) ClearNos() error {
 
-	if entity.HasDisciplinary != nil && entity.HasDisciplinary.Value == "No" {
-		entity.HasDisciplinary.Value = ""
-	}
+	entity.HasDisciplinary.ClearNo()
 
-	if entity.List != nil && entity.List.Branch != nil && entity.List.Branch.Value == "No" {
-		entity.List.Branch.Value = ""
-	}
+	entity.List.ClearBranchNo()
+
 	return nil
 }
 
@@ -358,37 +336,15 @@ func (entity *MilitaryForeign) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *MilitaryForeign) ClearNos() error {
 
-	if entity.List != nil {
-		for _, foreignItem := range entity.List.Items {
-
-			has, itemErr := foreignItem.GetItemValue("Has")
-			if itemErr != nil {
-				return errors.Wrap(itemErr, "Failed to pull has from a foriegn service")
-			}
-			hasBranch := has.(*Branch)
-
-			if hasBranch.Value == "No" {
-				hasBranch.Value = ""
-				setErr := foreignItem.SetItemValue("Has", hasBranch)
-				if setErr != nil {
-					return errors.Wrap(setErr, "Failed to set has for a foreign service")
-				}
-			}
-
-			contact, contactErr := foreignItem.GetItemValue("MaintainsContact")
-			if contactErr != nil {
-				return errors.Wrap(contactErr, "Failed to pull used from a foriegn service")
-			}
-			contactBranch := contact.(*Branch)
-
-			if contactBranch.Value == "No" {
-				contactBranch.Value = ""
-				setErr := foreignItem.SetItemValue("MaintainsContact", contactBranch)
-				if setErr != nil {
-					return errors.Wrap(setErr, "Failed to set contact for a foreign passport")
-				}
-			}
-		}
+	hasErr := entity.List.ClearBranchItemsNo("Has")
+	if hasErr != nil {
+		return errors.Wrap(hasErr, "couldn't clear the military has")
 	}
+
+	contactErr := entity.List.ClearBranchItemsNo("MaintainsContact")
+	if contactErr != nil {
+		return errors.Wrap(contactErr, "Couldn't clear the foreign contacts")
+	}
+
 	return nil
 }

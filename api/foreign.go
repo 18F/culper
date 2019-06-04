@@ -2,8 +2,9 @@ package api
 
 import (
 	"encoding/json"
-	"errors"
 	"regexp"
+
+	"github.com/pkg/errors"
 )
 
 var (
@@ -150,6 +151,12 @@ func (entity *ForeignPassport) Valid() (bool, error) {
 	return true, nil
 }
 
+func (entity *ForeignPassport) ClearNos() error {
+	entity.HasPassports.ClearNo()
+
+	return nil
+}
+
 // ForeignContacts represents the payload for the foreign contacts section.
 type ForeignContacts struct {
 	PayloadHasForeignContacts Payload `json:"HasForeignContacts" sql:"-"`
@@ -205,6 +212,19 @@ func (entity *ForeignContacts) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+func (entity *ForeignContacts) ClearNos() error {
+	entity.HasForeignContacts.ClearNo()
+
+	itemErr := entity.List.ClearBranchItemsNo("HasAffiliations")
+	if itemErr != nil {
+		return errors.Wrap(itemErr, "Couldn't clear the collection list")
+	}
+
+	entity.List.ClearBranchNo()
+
+	return nil
 }
 
 // ForeignTravel represents the payload for the foreign travel section.

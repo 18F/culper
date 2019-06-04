@@ -36,3 +36,11 @@ func (entity *Branch) Valid() (bool, error) {
 
 	return !stack.HasErrors(), stack
 }
+
+func (entity *Branch) ClearNo() {
+	if entity != nil {
+		if entity.Value == "No" {
+			entity.Value = ""
+		}
+	}
+}

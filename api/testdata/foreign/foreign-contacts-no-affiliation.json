@@ -1,0 +1,241 @@
+{
+    "props": {
+        "HasForeignContacts": {
+            "props": {
+                "name": "has_foreign_contacts",
+                "value": "Yes"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "items": [
+                    {
+                        "Item": {
+                            "Address": {
+                                "props": {},
+                                "type": "location"
+                            },
+                            "AddressNotApplicable": {
+                                "props": {
+                                    "applicable": false,
+                                    "name": "AddressNotApplicable"
+                                },
+                                "type": "notapplicable"
+                            },
+                            "Affiliations": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "Aliases": {
+                                "props": {
+                                    "branch": null,
+                                    "items": [
+                                        {
+                                            "Item": {
+                                                "Alias": {
+                                                    "props": {},
+                                                    "type": "name"
+                                                },
+                                                "Has": {
+                                                    "props": {
+                                                        "name": "branchcollection",
+                                                        "value": "No"
+                                                    },
+                                                    "type": "branch"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "collection"
+                            },
+                            "AlternateAddress": {
+                                "props": {
+                                    "Address": {
+                                        "props": {},
+                                        "type": "location"
+                                    },
+                                    "HasDifferentAddress": {
+                                        "props": {},
+                                        "type": "branch"
+                                    },
+                                    "Telephone": {
+                                        "props": {},
+                                        "type": "telephone"
+                                    }
+                                },
+                                "type": "physicaladdress"
+                            },
+                            "Birthdate": {
+                                "props": {
+                                    "day": "3",
+                                    "estimated": true,
+                                    "month": "4",
+                                    "name": "Birthdate",
+                                    "touched": true,
+                                    "year": "1999"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "BirthdateNotApplicable": {
+                                "props": {
+                                    "applicable": true
+                                },
+                                "type": "notapplicable"
+                            },
+                            "Birthplace": {
+                                "props": {
+                                    "city": "Essex",
+                                    "country": "United Kingdom",
+                                    "layout": "City, Country",
+                                    "uid": "Birthplace-96cf371c-fc9a-5636-e076-912482394a7a",
+                                    "validated": false
+                                },
+                                "type": "location"
+                            },
+                            "BirthplaceNotApplicable": {
+                                "props": {
+                                    "applicable": true
+                                },
+                                "type": "notapplicable"
+                            },
+                            "Citizenship": {
+                                "props": {
+                                    "name": "Citizenship",
+                                    "showComments": false,
+                                    "value": [
+                                        "United States",
+                                        "United Kingdom"
+                                    ]
+                                },
+                                "type": "country"
+                            },
+                            "Employer": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "EmployerAddress": {
+                                "props": {},
+                                "type": "location"
+                            },
+                            "EmployerAddressNotApplicable": {
+                                "props": {
+                                    "applicable": false,
+                                    "name": "EmployerAddressNotApplicable"
+                                },
+                                "type": "notapplicable"
+                            },
+                            "EmployerNotApplicable": {
+                                "props": {
+                                    "applicable": false,
+                                    "name": "EmployerNotApplicable"
+                                },
+                                "type": "notapplicable"
+                            },
+                            "FirstContact": {
+                                "props": {
+                                    "day": "12",
+                                    "estimated": false,
+                                    "month": "1",
+                                    "name": "FirstContact",
+                                    "touched": true,
+                                    "year": "2001"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "Frequency": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "frequency-quarterly",
+                                    "value": "Quarterly"
+                                },
+                                "type": "radio"
+                            },
+                            "FrequencyExplanation": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "HasAffiliations": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "affiliation_no",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "LastContact": {
+                                "props": {
+                                    "day": "30",
+                                    "estimated": false,
+                                    "month": "3",
+                                    "name": "LastContact",
+                                    "touched": true,
+                                    "year": "2011"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "Methods": {
+                                "props": {
+                                    "values": [
+                                        "In person",
+                                        "Telephone"
+                                    ]
+                                },
+                                "type": "checkboxgroup"
+                            },
+                            "MethodsExplanation": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "Name": {
+                                "props": {
+                                    "first": "James",
+                                    "firstInitialOnly": false,
+                                    "hideMiddleName": false,
+                                    "last": "Dempestoy",
+                                    "middle": "Tangerne",
+                                    "middleInitialOnly": false,
+                                    "noMiddleName": false,
+                                    "suffix": "II",
+                                    "suffixOther": ""
+                                },
+                                "type": "name"
+                            },
+                            "NameExplanation": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "NameNotApplicable": {
+                                "props": {
+                                    "applicable": true
+                                },
+                                "type": "notapplicable"
+                            },
+                            "Relationship": {
+                                "props": {
+                                    "values": [
+                                        "Professional"
+                                    ]
+                                },
+                                "type": "checkboxgroup"
+                            },
+                            "RelationshipExplanation": {
+                                "props": {},
+                                "type": "textarea"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        }
+    },
+    "type": "foreign.contacts"
+}

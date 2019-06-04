@@ -1,0 +1,19 @@
+{
+    "props": {
+        "HasForeignContacts": {
+            "props": {
+                "name": "has_foreign_contacts",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": null,
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "foreign.contacts"
+}
