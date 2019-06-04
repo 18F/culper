@@ -1,6 +1,6 @@
 .datecontrol {
-  display: inline-block !important;
-  width: 100% !important;
+  display: inline-block;
+  width: auto;
 
   .month,
   .day,
@@ -33,6 +33,8 @@
     display: flex;
   }
   .datecontrol {
+    width: 100%;
+    
     .month,
     .day,
     .year {
