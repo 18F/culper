@@ -7,10 +7,18 @@ import i18n from 'util/i18n'
 
 import { totalSections, completedSections } from 'helpers/navigation'
 
+import styles from './ScoreCard.module.scss'
+
 export const ScoreCard = ({ total, completed }) => {
   const scoreCardClasses = classnames(
+    styles.ScoreCard,
     'score-card',
-    { completed: completed >= total }
+    { [`${styles.completed}`]: completed >= total }
+  )
+
+  const textClasses = classnames(
+    styles.text,
+    'score-card-text',
   )
 
   return (
@@ -18,7 +26,7 @@ export const ScoreCard = ({ total, completed }) => {
       <span className="score-card-done">{completed}</span>
       /
       <span className="score-card-total">{total}</span>
-      <span className="score-card-text">{i18n.t('scorecard.complete')}</span>
+      <span className={textClasses}>{i18n.t('scorecard.complete')}</span>
     </div>
   )
 }
