@@ -12,7 +12,6 @@ import {
   RadioGroup,
   Radio,
   Field,
-  Svg
 } from '../../../Form'
 
 export default class OtherOffense extends ValidationElement {
@@ -56,97 +55,97 @@ export default class OtherOffense extends ValidationElement {
       Sentence: this.props.Sentence,
       AwaitingTrial: this.props.AwaitingTrial,
       AwaitingTrialExplanation: this.props.AwaitingTrialExplanation,
-      ...queue
+      ...queue,
     })
   }
 
   updateDate(values) {
     this.update({
-      Date: values
+      Date: values,
     })
   }
 
   updateDescription(values) {
     this.update({
-      Description: values
+      Description: values,
     })
   }
 
   updateInvolvedViolence(values) {
     this.update({
-      InvolvedViolence: values
+      InvolvedViolence: values,
     })
   }
 
   updateInvolvedFirearms(values) {
     this.update({
-      InvolvedFirearms: values
+      InvolvedFirearms: values,
     })
   }
 
   updateInvolvedSubstances(values) {
     this.update({
-      InvolvedSubstances: values
+      InvolvedSubstances: values,
     })
   }
 
   updateCourtName(value) {
     this.update({
-      CourtName: value
+      CourtName: value,
     })
   }
 
   updateCourtAddress(value) {
     this.update({
-      CourtAddress: value
+      CourtAddress: value,
     })
   }
 
   updateChargeType(values) {
     this.update({
-      ChargeType: values
+      ChargeType: values,
     })
   }
 
   updateCourtCharge(value) {
     this.update({
-      CourtCharge: value
+      CourtCharge: value,
     })
   }
 
   updateCourtOutcome(value) {
     this.update({
-      CourtOutcome: value
+      CourtOutcome: value,
     })
   }
 
   updateCourtDate(value) {
     this.update({
-      CourtDate: value
+      CourtDate: value,
     })
   }
 
   updateWasSentenced(values) {
     this.update({
-      WasSentenced: values
+      WasSentenced: values,
     })
   }
 
   updateSentence(values) {
     this.update({
-      Sentence: values
+      Sentence: values,
     })
   }
 
   updateAwaitingTrial(values) {
     this.update({
-      AwaitingTrial: values
+      AwaitingTrial: values,
     })
   }
 
   updateAwaitingTrialExplanation(values) {
     this.update({
-      AwaitingTrialExplanation: values
+      AwaitingTrialExplanation: values,
     })
   }
 
@@ -157,13 +156,14 @@ export default class OtherOffense extends ValidationElement {
           title={i18n.t('legal.police.heading.date')}
           help="legal.police.help.date"
           adjustFor="labels"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
             name="Date"
             {...this.props.Date}
             className="offense-date"
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDate}
             onError={this.props.onError}
             required={this.props.required}
@@ -173,7 +173,8 @@ export default class OtherOffense extends ValidationElement {
         <Field
           title={i18n.t('legal.police.heading.description')}
           help="legal.police.help.description"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="Description"
             {...this.props.Description}
@@ -193,7 +194,8 @@ export default class OtherOffense extends ValidationElement {
           onUpdate={this.updateInvolvedViolence}
           required={this.props.required}
           onError={this.props.onError}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('legal.police.label.violence')}
         </Branch>
 
@@ -204,7 +206,8 @@ export default class OtherOffense extends ValidationElement {
           onUpdate={this.updateInvolvedFirearms}
           required={this.props.required}
           onError={this.props.onError}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('legal.police.label.firearms')}
         </Branch>
 
@@ -215,14 +218,16 @@ export default class OtherOffense extends ValidationElement {
           onUpdate={this.updateInvolvedSubstances}
           required={this.props.required}
           onError={this.props.onError}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('legal.police.label.substances')}
         </Branch>
 
         <Field
           title={i18n.t('legal.police.heading.courtname')}
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="CourtName"
             {...this.props.CourtName}
@@ -236,18 +241,19 @@ export default class OtherOffense extends ValidationElement {
 
         <Field
           title={i18n.t('legal.police.heading.courtaddress')}
-          optional={true}
+          optional
           help="legal.police.help.courtaddress"
           adjustFor="address"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="CourtAddress"
             {...this.props.CourtAddress}
             label={i18n.t('legal.police.label.address')}
             className="offense-courtaddress"
             layout={Location.OFFENSE}
-            geocode={true}
+            geocode
             addressBooks={this.props.addressBooks}
             addressBook="Court"
             dispatch={this.props.dispatch}
@@ -260,7 +266,8 @@ export default class OtherOffense extends ValidationElement {
         <Field
           title={i18n.t('legal.police.heading.chargedetails')}
           titleSize="h4"
-          className="no-margin-bottom">
+          className="no-margin-bottom"
+        >
           {i18n.m('legal.police.para.chargedetails')}
         </Field>
 
@@ -268,12 +275,14 @@ export default class OtherOffense extends ValidationElement {
           title={i18n.t('legal.police.heading.chargeType')}
           titleSize="label"
           adjustFor="buttons"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <RadioGroup
             className="offense-chargetype option-list"
             onError={this.props.onErro}
             required={this.props.required}
-            selectedValue={(this.props.ChargeType || {}).value}>
+            selectedValue={(this.props.ChargeType || {}).value}
+          >
             <Radio
               name="charge-felony"
               className="charge-felony"
@@ -325,13 +334,14 @@ export default class OtherOffense extends ValidationElement {
           titleSize="h4"
           help="legal.police.help.courtdate"
           adjustFor="labels"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
             name="CourtDate"
             {...this.props.CourtDate}
-            hideDay={true}
-            minDateEqualTo={true}
+            hideDay
+            minDateEqualTo
             className="offense-courtdate"
             onUpdate={this.updateCourtDate}
             onError={this.props.onError}
@@ -360,6 +370,8 @@ export default class OtherOffense extends ValidationElement {
               required={this.props.required}
               onUpdate={this.updateSentence}
               scrollIntoView={this.props.scrollIntoView}
+              requireLegalOffenseSentenced
+              requireLegalOffenseIncarcerated
             />
           </div>
         </Show>
@@ -379,7 +391,8 @@ export default class OtherOffense extends ValidationElement {
             <Field
               title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
               titleSize="label"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Textarea
                 className="awaiting-trial-explanation"
                 {...this.props.AwaitingTrialExplanation}
@@ -402,9 +415,7 @@ OtherOffense.defaultProps = {
   InvolvedSubstances: {},
   WasSentenced: {},
   addressBooks: {},
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

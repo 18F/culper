@@ -32,7 +32,7 @@ func TestAccountPersistence(t *testing.T) {
 		Username:    "buzz1@example.com",
 		Email:       "buzz1@example.com",
 		FormType:    "SF86",
-		FormVersion: "2016-11",
+		FormVersion: "2017-07",
 		ExternalID:  uuid.New().String(),
 	}
 

@@ -15,7 +15,7 @@ func TestBasicAuthentication(t *testing.T) {
 		Firstname:   "Admin",
 		Lastname:    "Last",
 		FormType:    "SF86",
-		FormVersion: "2016-11",
+		FormVersion: "2017-07",
 	}
 
 	membership := &BasicAuthMembership{
@@ -39,7 +39,7 @@ func TestValidFormType(t *testing.T) {
 		Username:    "glarbal@example.com",
 		Email:       "glarbal@example.com",
 		FormType:    "SF86",
-		FormVersion: "2016-11",
+		FormVersion: "2017-07",
 	}
 
 	type testCase struct {
@@ -49,12 +49,12 @@ func TestValidFormType(t *testing.T) {
 	}
 
 	testCases := []testCase{
-		testCase{"SF86", "2016-11", true},
-		testCase{"SF 86", "2016-11", false},
+		testCase{"SF86", "2017-07", true},
+		testCase{"SF 86", "2017-07", false},
 		testCase{"SF86", "2036-11", false},
 
-		testCase{"SF85", "2017-12_draft7", true},
-		testCase{"SF85", "2016-11", false},
+		testCase{"SF85", "2017-12-draft7", true},
+		testCase{"SF85", "2017-07", false},
 	}
 
 	for _, tCase := range testCases {

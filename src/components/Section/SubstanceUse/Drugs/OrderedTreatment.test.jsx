@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import OrderedTreatment from './OrderedTreatment'
@@ -10,12 +10,13 @@ describe('The OrderedTreatment component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <OrderedTreatment {...expected} />
         </Provider>
       )
+    )
   })
 
   it('Renders without errors', () => {
@@ -25,13 +26,11 @@ describe('The OrderedTreatment component', () => {
 
   it('Performs update of basic fields', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
-    }
+
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.drug-ordered-treatment').length).toBe(1)
@@ -46,11 +45,11 @@ describe('The OrderedTreatment component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       ActionTaken: {
-        value: 'Yes'
-      }
+        value: 'Yes',
+      },
     }
     const component = createComponent(expected)
 
@@ -70,14 +69,14 @@ describe('The OrderedTreatment component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       ActionTaken: {
-        value: 'Yes'
+        value: 'Yes',
       },
       TreatmentCompleted: {
-        value: 'No'
-      }
+        value: 'No',
+      },
     }
     const component = createComponent(expected)
 
@@ -89,11 +88,11 @@ describe('The OrderedTreatment component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       ActionTaken: {
-        value: 'No'
-      }
+        value: 'No',
+      },
     }
     const component = createComponent(expected)
 
@@ -101,36 +100,80 @@ describe('The OrderedTreatment component', () => {
     expect(updates).toBe(1)
   })
 
-  it('Deselect ordered by', () => {
-    let updates = 0
-    const expected = {
-      onUpdate: () => {
-        updates++
-      },
-      ActionTaken: {
-        value: 'No'
-      },
-      OrderedBy: ['Employer']
+  it('returns the correct people that ordered counseling', () => {
+    const props = {
+      OrderedBy: { values: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional'] },
     }
-    const component = createComponent(expected)
 
-    component.find('.ordered-by .employer input').simulate('change')
-    expect(updates).toBe(1)
+    const component = shallow(
+      <OrderedTreatment {...props} />
+    )
+    expect(component.instance().getPeopleWhoOrderedCounseling({ value: 'Judge' }))
+      .toEqual(expect.arrayContaining([
+        'Employer',
+        'MedicalProfessional',
+        'MentalHealthProfessional',
+        'Judge',
+      ]))
   })
 
-  it('Select none', () => {
-    let none = []
-    const expected = {
-      onUpdate: selected => {
-        none = selected.OrderedBy
-      },
-      ActionTaken: {
-        value: 'No'
-      },
-      OrderedBy: ['Employer', 'Judge']
+  it('unselects a person that ordered counseling', () => {
+    const props = {
+      OrderedBy: { values: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'Judge'] },
     }
-    const component = createComponent(expected)
-    component.find('.ordered-by .none input').simulate('change')
-    expect(none).toEqual({ values: ['None'] })
+
+    // const component = createComponent(props)
+    const component = shallow(
+      <OrderedTreatment {...props} />
+    )
+    expect(component.instance().getPeopleWhoOrderedCounseling({ value: 'Judge' }))
+      .toEqual(expect.arrayContaining([
+        'Employer',
+        'MedicalProfessional',
+        'MentalHealthProfessional',
+      ]))
+  })
+
+  it('unselects a person that ordered counseling', () => {
+    const props = {
+      OrderedBy: { values: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'Judge'] },
+    }
+
+    // const component = createComponent(props)
+    const component = shallow(
+      <OrderedTreatment {...props} />
+    )
+    expect(component.instance().getPeopleWhoOrderedCounseling({ value: 'Judge' }))
+      .toEqual(expect.arrayContaining([
+        'Employer',
+        'MedicalProfessional',
+        'MentalHealthProfessional',
+      ]))
+  })
+
+  it('unselects all people if None is selected', () => {
+    const props = {
+      OrderedBy: { values: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'Judge'] },
+    }
+
+    // const component = createComponent(props)
+    const component = shallow(
+      <OrderedTreatment {...props} />
+    )
+    expect(component.instance().getPeopleWhoOrderedCounseling({ value: 'None' }))
+      .toEqual(expect.arrayContaining(['None']))
+  })
+
+  it('unselects None if a person who ordered counseling is selected', () => {
+    const props = {
+      OrderedBy: { values: ['None'] },
+    }
+
+    // const component = createComponent(props)
+    const component = shallow(
+      <OrderedTreatment {...props} />
+    )
+    expect(component.instance().getPeopleWhoOrderedCounseling({ value: 'Judge' }))
+      .toEqual(expect.arrayContaining(['Judge']))
   })
 })

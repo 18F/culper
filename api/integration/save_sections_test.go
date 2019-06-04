@@ -241,7 +241,7 @@ func TestDeleteApplication(t *testing.T) {
 	}
 	body := readBody(t, formResp)
 
-	if string(body) != `{"Metadata":{"form_type":"SF86","form_version":"2016-11","type":"metadata"}}` {
+	if string(body) != `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}` {
 		t.Fatal("Should have just got back the metadata")
 	}
 

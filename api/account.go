@@ -21,11 +21,11 @@ var (
 var knownFormVersions = map[string][]string{
 
 	"SF86": []string{
-		"2016-11",
+		"2017-07",
 	},
 
 	"SF85": []string{
-		"2017-12_draft7",
+		"2017-12-draft7",
 	},
 }
 
