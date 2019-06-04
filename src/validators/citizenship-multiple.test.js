@@ -79,7 +79,7 @@ describe('validateCitizenshipMultiple function', () => {
             {
               Item: {
                 Country: {
-                  value: 'United States',
+                  value: ['United States'],
                 },
                 Dates: {
                   from: {

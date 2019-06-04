@@ -70,29 +70,27 @@ describe('The citizenship model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    describe('if Current is "Yes"', () => {
-      it('CurrentExplanation is required', () => {
-        const testData = {
-          Dates: { present: false },
-          Current: { value: 'Yes' },
-        }
-        const expectedErrors = ['CurrentExplanation.required']
+    it('CurrentExplanation is required', () => {
+      const testData = {
+        Dates: { present: false },
+        Current: { value: 'No' },
+      }
+      const expectedErrors = ['CurrentExplanation.required']
 
-        expect(validateModel(testData, citizenship))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
+      expect(validateModel(testData, citizenship))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
 
-      it('CurrentExplanation must have a value', () => {
-        const testData = {
-          Dates: { present: false },
-          Current: { value: 'Yes' },
-          CurrentExplanation: { value: '' },
-        }
-        const expectedErrors = ['CurrentExplanation.hasValue']
+    it('CurrentExplanation must have a value', () => {
+      const testData = {
+        Dates: { present: false },
+        Current: { value: 'Yes' },
+        CurrentExplanation: { value: '' },
+      }
+      const expectedErrors = ['CurrentExplanation.hasValue']
 
-        expect(validateModel(testData, citizenship))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
+      expect(validateModel(testData, citizenship))
+        .toEqual(expect.arrayContaining(expectedErrors))
     })
   })
 
@@ -150,21 +148,6 @@ describe('The citizenship model', () => {
 
       expect(validateModel(testData, citizenship))
         .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('passes a valid citizenship', () => {
-      const testData = {
-        Country: { value: 'Canada' },
-        Dates: {
-          from: { year: 2000, day: 2, month: 4 },
-          to: { year: 2005, day: 2, month: 10 },
-        },
-        How: { value: 'Because!' },
-        Current: { value: 'Yes' },
-        CurrentExplanation: { value: 'Because!' },
-      }
-
-      expect(validateModel(testData, citizenship)).toEqual(true)
     })
 
     describe('if CitizenshipRenounced is required', () => {
@@ -230,7 +213,7 @@ describe('The citizenship model', () => {
     })
 
     describe('if CitizenshipRenounced is not required', () => {
-      it('Renounced is required', () => {
+      it('Renounced is not required', () => {
         const testData = {
           Country: { value: 'Canada' },
         }
@@ -248,6 +231,8 @@ describe('The citizenship model', () => {
             present: true,
           },
           How: { value: 'Some reason' },
+          Current: { value: 'Yes' },
+          CurrentExplanation: { value: 'Because!' },
         }
 
         expect(validateModel(testData, citizenship, { requireCitizenshipRenounced: false }))

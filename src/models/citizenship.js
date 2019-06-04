@@ -1,33 +1,28 @@
-import { hasYesOrNo, checkValue } from 'models/validate'
+import { hasYesOrNo } from 'models/validate'
+
+// This is an array for some reason.
+const isUnitedStates = value => value && value.includes('United States')
 
 const citizenship = {
   Country: { presence: true, hasValue: true },
   Dates: { presence: true, daterange: true },
-  Current: (value, attributes) => {
-    const { Dates } = attributes
-    if (Dates && !Dates.present) {
-      return {
-        presence: true,
-        hasValue: { validator: hasYesOrNo },
-      }
-    }
-
-    return {}
-  },
+  Current: (value, attributes) => (
+    (attributes.Dates && !attributes.Dates.present)
+      ? { presence: true, hasValue: { validator: hasYesOrNo } }
+      : {}
+  ),
   CurrentExplanation: (value, attributes) => (
-    (attributes.Dates
-      && !attributes.Dates.present
-      && checkValue(attributes.Current, 'Yes'))
+    (attributes.Dates && !attributes.Dates.present)
       ? { presence: true, hasValue: true }
       : {}
   ),
   How: (value, attributes) => (
-    checkValue(attributes.Country, 'United States')
+    (!attributes.Country || isUnitedStates(attributes.Country.value))
       ? {}
       : { presence: true, hasValue: true }
   ),
   Renounced: (value, attributes, attributeName, options) => (
-    (checkValue(attributes.Country, 'United States')
+    ((!attributes.Country || isUnitedStates(attributes.Country.value))
       || !options.requireCitizenshipRenounced)
       ? {}
       : {
@@ -36,7 +31,7 @@ const citizenship = {
       }
   ),
   RenouncedExplanation: (value, attributes, attributeName, options) => (
-    (checkValue(attributes.Country, 'United States')
+    ((!attributes.Country || isUnitedStates(attributes.Country.value))
       || !options.requireCitizenshipRenounced)
       ? {}
       : { presence: true, hasValue: true }
