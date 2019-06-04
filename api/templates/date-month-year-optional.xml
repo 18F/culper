@@ -1,6 +1,7 @@
-{{$dnk := notApplicable .DoNotKnow}}
-<Date Type="{{dateEstimated .Date}}" DoNotKnow="{{$dnk}}">
-  {{if $dnk | ne "True"}}
-    <Month>{{padDigits .Date.props.month}}</Month><Year>{{.Date.props.year}}</Year>
-  {{end}}
+{{if notApplicable .DoNotKnow | eq "True"}}
+<Date Type="{{dateEstimated .Date}}" DoNotKnow="True"></Date>
+{{else}}
+<Date Type="{{dateEstimated .Date}}">
+  <Month>{{padDigits .Date.props.month}}</Month><Year>{{.Date.props.year}}</Year>
 </Date>
+{{end}}

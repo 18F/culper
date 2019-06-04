@@ -1,8 +1,4 @@
 const ssn = {
-  ssn: {
-    presence: true,
-    ssn: true, // custom SSN validator
-  },
   first: {
     presence: true,
     format: { pattern: /^\d{3}$/ },

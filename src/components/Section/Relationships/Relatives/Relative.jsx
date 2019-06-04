@@ -692,7 +692,7 @@ export default class Relative extends ValidationElement {
                 geocode
                 className="relative-courtaddress"
                 onError={this.props.onError}
-                onUpdate={(value) => { this.updateField('Courtaddress', value) }}
+                onUpdate={(value) => { this.updateField('CourtAddress', value) }}
                 required={this.props.required}
               />
             </Field>
@@ -844,6 +844,12 @@ export default class Relative extends ValidationElement {
 
             <Field
               title={i18n.t('relationships.relatives.heading.address.methods')}
+              comments={otherMethods}
+              commentsName="MethodsComments"
+              commentsValue={this.props.MethodsComments}
+              commentsActive={otherMethods}
+              commentsRequired={otherMethods}
+              onUpdate={(value) => { this.updateField('MethodsComments', value) }}
               onError={this.props.onError}
               adjustFor="big-buttons"
               scrollIntoView={this.props.scrollIntoView}
@@ -914,6 +920,12 @@ export default class Relative extends ValidationElement {
               title={i18n.t(
                 'relationships.relatives.heading.address.frequency'
               )}
+              comments={otherFrequency}
+              commentsName="FrequencyComments"
+              commentsValue={this.props.FrequencyComments}
+              commentsActive={otherFrequency}
+              commentsRequired={otherFrequency}
+              onUpdate={(value) => { this.updateField('FrequencyComments', value) }}
               onError={this.props.onError}
               scrollIntoView={this.props.scrollIntoView}
               adjustFor="big-buttons"

@@ -27,6 +27,14 @@ describe('The location/birthplace model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('county is required', () => {
+      const testData = { state: 'NY', country: 'United States' }
+      const expectedErrors = ['county.required']
+
+      expect(validateModel(testData, birthplace))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('passes a valid domestic address', () => {
       const testData = {
         city: 'New York',

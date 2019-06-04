@@ -16,18 +16,25 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// DocumentTypeCertification is the document type for the certification/signature-form
 const DocumentTypeCertification = "CER"
+
+// DocumentTypeCreditRelease is the document type for the credit release
 const DocumentTypeCreditRelease = "FCR"
+
+// DocumentTypeMedicalRelease is the document type for the medical release
 const DocumentTypeMedicalRelease = "MEL"
+
+// DocumentTypeInformationRelease is the document type for the infomation release
 const DocumentTypeInformationRelease = "REL"
 
 var (
 	// ReleasePDFs lists the supported archival PDFs.
 	ReleasePDFs = []api.ArchivalPdf{
-		{"signature-form", "certification-SF86-November2016.template.pdf", "AdditionalComments", DocumentTypeCertification},
-		{"release-credit", "credit-SF86-November2016.template.pdf", "Credit", DocumentTypeCreditRelease},
-		{"release-medical", "medical-SF86-November2016.template.pdf", "Medical", DocumentTypeMedicalRelease},
-		{"release-information", "general-SF86-November2016.template.pdf", "General", DocumentTypeInformationRelease},
+		{"signature-form", "certification-SF86-July2017.template.pdf", "AdditionalComments", DocumentTypeCertification},
+		{"release-credit", "credit-SF86-July2017.template.pdf", "Credit", DocumentTypeCreditRelease},
+		{"release-medical", "medical-SF86-July2017.template.pdf", "Medical", DocumentTypeMedicalRelease},
+		{"release-information", "general-SF86-July2017.template.pdf", "General", DocumentTypeInformationRelease},
 	}
 )
 

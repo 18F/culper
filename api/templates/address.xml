@@ -1,6 +1,7 @@
-{{$dnk := notApplicable .DoNotKnow}}
-<Address DoNotKnow="{{$dnk}}">
-  {{if $dnk | ne "True"}}
-    {{location .Location}}
-  {{end}}
+{{if notApplicable .DoNotKnow | eq "True"}}
+<Address DoNotKnow="True"></Address>
+{{else}}
+<Address>
+  {{location .Location}}
 </Address>
+{{end}}

@@ -19,6 +19,9 @@ func runCreateApplication(conn simpleConnection, serializer api.Serializer, app 
 
 	_, saveErr := conn.Exec(saveQuery, app.AccountID, serializedApp)
 	if saveErr != nil {
+		if saveErr.Error() == "pq: duplicate key value violates unique constraint \"applications_pkey\"" {
+			return api.ErrApplicationAlreadyExists
+		}
 		return errors.Wrap(saveErr, "Failed to create Application")
 	}
 
@@ -71,6 +74,10 @@ func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 	app, loadErr := runLoadApplication(tx, s.serializer, accountID, true)
 	if loadErr != nil {
 		s.logger.WarnError("Unable to load the application before saving", loadErr, api.LogFields{"accountID": accountID})
+		rollErr := tx.Rollback()
+		if rollErr != nil {
+			s.logger.WarnError("DB error trying to roll back the transaction", rollErr, api.LogFields{"accountID": accountID})
+		}
 		return loadErr
 	}
 
@@ -78,6 +85,10 @@ func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 
 	updateErr := runUpdateApplication(tx, s.serializer, app)
 	if updateErr != nil {
+		rollErr := tx.Rollback()
+		if rollErr != nil {
+			s.logger.WarnError("DB error trying to roll back the transaction", rollErr, api.LogFields{"accountID": accountID})
+		}
 		return updateErr
 	}
 

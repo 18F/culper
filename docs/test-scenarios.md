@@ -5,9 +5,11 @@ Multiple test scenarios in JSON format are archived under:
 
 The `test*.json` files contain the same JSON structures that the user interface generates and saves to the database. Each file represents a complete, valid SF-86 form that can be loaded into eApp and submitted to e-QIP, or other downstream investigation systems.
 
-The automated test code in [`api/xml/xml_test.go`](../api/xml/xml_test.go) generates SF-86 XML from the JSON files and compares the output with corresponding, known-good `test*.xml` files. All of these XML test fixtures have been validated against the e-QIP XML Schema Definition (XSD) files and have been successfully submitted to e-QIP. 
+The automated test code in [`api/xml/xml_test.go`](../api/xml/xml_test.go) generates SF-86 XML from the JSON files and compares the output with corresponding, known-good `test*.xml` files. All of these XML test fixtures have been validated against the e-QIP XML Schema Definition (XSD) files and have been successfully submitted to e-QIP.
 
 In addition to automated XSD and e-QIP service validation, the content of test cases 2,3,4,5,7,8,9 have been manually reviewed by an OPM user acceptance testing (UAT) team after submission to e-QIP (Fall 2018). For a description of each test scenario, see the comments for the corresponding unit tests in [`xml_test.go`](../api/xml/xml_test.go). It is recommended that the scope and intent of the manually reviewed test cases remain as-is. Data that tests additional aspects of the form are best addressed in a new test case, or in test case 6.
+
+Additional documentation is published on an [internal wiki](https://docs.google.com/document/d/1q8uvcc4S9gql4cr8LEJt5wy36Db75e37qzpzJYyGi-w).
 
 
 ## Prerequisites
@@ -36,11 +38,24 @@ $ mv test1.xml.713758700 test1.xml
 ```
 
 For any significant change to a known-good XML test fixture, it should also be revalidated against:
-1. the e-QIP XSDs, and 
+1. the e-QIP XSDs, and
 1. the e-QIP direct test instance
 
 Currently, these revalidation steps must be done manually given the public nature of our GitHub repo and logistics of our use of CircleCI. See below.
 
+### Golden Files
+
+The integration tests treat the JSON testdata files as "golden files". For example, the series of tests in the save_section_test.go file go through each of the individual section json files, save it, and then confirm that what was received back is the same as what was originally sent. To make updating these files easier in the future, there is a `-update-golden` flag that can be passed into a `go test` invocation. When passed, instead of checking that the response is the same as what was sent, it will instead write the response to the file instead. The next run of the tests should then pass since the "golden" file will have been updated. This is intended to make it easier to make changes to the JSON format and quickly update all the tests to match.
+
+### Maintenance challenges
+
+#### Dates and the passing of time
+Test scenarios have **a lot** of dates and date ranges. e-QIP and the SF-86, SF-85, SF-85p have a lot of conditional rules surrounding dates. This causes a valid test scenario to eventually become invalid simply through the passing of time. For example:
+
+1. An applicant cannot be over 100 years old. A test scenario written in 2018 with a 99-year-old applicant will become invalid sometime in 2019.
+1. Residences within 3 years must have a verifier. Additionally, e-QIP will reject an application if it has verifier information for residences greater than 3 years in the past. A test scenario written in 2018, with a residence entry ending in 2016 will become invalid sometime in 2019 (e.g., `test9.json`).
+
+Currently, test scenarios are manually updated after a failure in regular validation testing.
 
 ## Validate XML against e-QIP XSDs
 
@@ -58,7 +73,7 @@ PATH-TO-TEST-SCENARIOS/test1.xml validates
 ```
 
 The e-QIP XSDs are very permissive – the `minOccurs=0` attribute is on almost every element. Validation against it is necessary, but not sufficient to determine if the XML file is valid (i.e., will be accepted by e-QIP).
- 
+
 
 ## Validate XML against e-QIP
 
@@ -121,7 +136,7 @@ Finally, it should be noted that the `submit` tool does not currently generate n
 
 ## Generating new test JSON files
 
-1. Sign into eApp with one of the test accounts (e.g., `test01`). 
+1. Sign into eApp with one of the test accounts (e.g., `test01`).
 1. Populate the form with a scenario, ensuring that it passes eApp validation.
 1. Export the application data using `form`, specifying the same account and replacing `CONTAINERID` with the container id for the API backend. When prompted for a URL, specify `http://localhost:3000` or `https://localhost:3000`, depending if you have configured HTTPS.
 ```

@@ -68,14 +68,12 @@ export const financial = {
         'Provide a description of your financial problems due to gambling',
       actions:
         'If you have taken any action(s) to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
-      comments: 'Add optional comment',
     },
     label: {
       dates: 'Dates of debt',
       losses: 'Losses',
       description: 'Description',
       actions: 'Action(s) taken or explanation',
-      comments: 'Add optional comment',
     },
     help: {
       dates: {
@@ -132,7 +130,6 @@ export const financial = {
       nameDebt: 'Provide the name debt is recorded under',
       courtInvolved: 'Provide the name of the court involved',
       courtAddress: 'Provide the address of the court involved',
-      comments: 'Add optional comments',
       dischargeExplanation:
         'Were you discharged of all debts claimed in the bankruptcy?',
     },
@@ -223,9 +220,6 @@ export const financial = {
           note: '',
         },
       },
-    },
-    comments: {
-      label: 'Add comment',
     },
     courtAddress: {
       label: 'This address is',

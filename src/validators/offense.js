@@ -1,199 +1,130 @@
-import LocationValidator from './location'
-import SentenceValidator from './sentence'
-import { validGenericTextfield, validDateField, validBranch } from './helpers'
+import { validateModel } from 'models/validate'
+import offense from 'models/offense'
+
+export const validateOffense = data => validateModel(data, offense) === true
 
 export default class OffenseValidator {
   constructor(data = {}) {
-    this.date = data.Date
-    this.description = data.Description
-    this.involvedViolence = (data.InvolvedViolence || {}).value
-    this.involvedFirearms = (data.InvolvedFirearms || {}).value
-    this.involvedSubstances = (data.InvolvedSubstances || {}).value
-    this.address = data.Address
-    this.wasCited = (data.WasCited || {}).value
-    this.citedBy = data.CitedBy
-    this.agencyAddress = data.AgencyAddress
-    this.wasCharged = (data.WasCharged || {}).value
-    this.explanation = data.Explanation
-    this.courtName = data.CourtName
-    this.courtAddress = data.CourtAddress
-    this.chargeType = data.ChargeType
-    this.courtCharge = data.CourtCharge
-    this.courtOutcome = data.CourtOutcome
-    this.courtDate = data.CourtDate
-    this.sentence = data.Sentence
-    this.wasSentenced = (data.WasSentenced || {}).value
-    this.awaitingTrial = (data.AwaitingTrial || {}).value
-    this.awaitingTrialExplanation = data.AwaitingTrialExplanation
+    this.data = data
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, {
+      Date: offense.Date,
+    }) === true
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, {
+      Description: offense.Description,
+    }) === true
   }
 
   validViolence() {
-    return this.involvedViolence === 'Yes' || this.involvedViolence === 'No'
+    return validateModel(this.data, {
+      InvolvedViolence: offense.InvolvedViolence,
+    }) === true
   }
 
   validFirearms() {
-    return this.involvedFirearms === 'Yes' || this.involvedFirearms === 'No'
+    return validateModel(this.data, {
+      InvolvedFirearms: offense.InvolvedFirearms,
+    }) === true
   }
 
   validSubstances() {
-    return this.involvedSubstances === 'Yes' || this.involvedSubstances === 'No'
+    return validateModel(this.data, {
+      InvolvedSubstances: offense.InvolvedSubstances,
+    }) === true
   }
 
   validAddress() {
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, {
+      Address: offense.Address,
+    }) === true
   }
 
   validCited() {
-    return this.wasCited === 'Yes' || this.wasCited === 'No'
+    return validateModel(this.data, {
+      WasCited: offense.WasCited,
+    }) === true
   }
 
   validCitedBy() {
-    if (this.wasCited === 'No') {
-      return true
-    }
-
-    return !!this.citedBy && validGenericTextfield(this.citedBy)
+    return validateModel(this.data, {
+      CitedBy: offense.CitedBy,
+    }) === true
   }
 
   validAgencyAddress() {
-    if (this.wasCited === 'No') {
-      return true
-    }
-
-    return (
-      !!this.agencyAddress &&
-      new LocationValidator(this.agencyAddress).isValid()
-    )
+    return validateModel(this.data, {
+      AgencyAddress: offense.AgencyAddress,
+    }) === true
   }
 
   validCharged() {
-    if (this.wasCited === 'No') {
-      return true
-    }
-
-    return this.wasCharged === 'Yes' || this.wasCharged === 'No'
+    return validateModel(this.data, {
+      WasCharged: offense.WasCharged,
+    }) === true
   }
 
   validExplanation() {
-    if (this.wasCited === 'No' || this.wasCharged !== 'No') {
-      return true
-    }
-
-    return !!this.explanation && validGenericTextfield(this.explanation)
+    return validateModel(this.data, {
+      Explanation: offense.Explanation,
+    }) === true
   }
 
   validCourtName() {
-    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
-      return true
-    }
-
-    return !!this.courtName && validGenericTextfield(this.courtName)
+    return validateModel(this.data, {
+      CourtName: offense.CourtName,
+    }) === true
   }
 
   validCourtAddress() {
-    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
-      return true
-    }
-
-    return (
-      !!this.courtAddress && new LocationValidator(this.courtAddress).isValid()
-    )
+    return validateModel(this.data, {
+      CourtAddress: offense.CourtAddress,
+    }) === true
   }
 
   validChargeType() {
-    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
-      return true
-    }
-
-    return (
-      !!this.chargeType &&
-      ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType.value)
-    )
+    return validateModel(this.data, {
+      ChargeType: offense.ChargeType,
+    }) === true
   }
 
   validCourtCharge() {
-    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
-      return true
-    }
-
-    return !!this.courtCharge && validGenericTextfield(this.courtCharge)
+    return validateModel(this.data, {
+      CourtCharge: offense.CourtCharge,
+    }) === true
   }
 
   validCourtOutcome() {
-    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
-      return true
-    }
-
-    return !!this.courtOutcome && validGenericTextfield(this.courtOutcome)
+    return validateModel(this.data, {
+      CourtOutcome: offense.CourtOutcome,
+    }) === true
   }
 
   validCourtDate() {
-    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
-      return true
-    }
-
-    return !!this.courtDate && validDateField(this.courtDate)
+    return validateModel(this.data, {
+      CourtDate: offense.CourtDate,
+    }) === true
   }
 
   validSentenced() {
-    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
-      return true
-    }
-
-    if (this.wasSentenced === 'No') {
-      return true
-    }
-
-    if (this.wasSentenced === 'Yes') {
-      return new SentenceValidator(this.sentence).isValid()
-    }
-
-    return false
+    return validateModel(this.data, {
+      WasSentenced: offense.WasSentenced,
+      Sentence: offense.Sentence,
+    }) === true
   }
 
   validAwaitingTrial() {
-    if (
-      this.wasCharged === 'Yes' &&
-      this.wasCited === 'Yes' &&
-      this.wasSentenced === 'No'
-    ) {
-      return (
-        validBranch(this.awaitingTrial) &&
-        validGenericTextfield(this.awaitingTrialExplanation)
-      )
-    }
-    return true
+    return validateModel(this.data, {
+      AwaitingTrial: offense.AwaitingTrial,
+      AwaitingTrialExplanation: offense.AwaitingTrialExplanation,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validDate() &&
-      this.validDescription() &&
-      this.validViolence() &&
-      this.validFirearms() &&
-      this.validSubstances() &&
-      this.validAddress() &&
-      this.validCited() &&
-      this.validCitedBy() &&
-      this.validAgencyAddress() &&
-      this.validCharged() &&
-      this.validExplanation() &&
-      this.validCourtName() &&
-      this.validCourtAddress() &&
-      this.validChargeType() &&
-      this.validCourtCharge() &&
-      this.validCourtOutcome() &&
-      this.validCourtDate() &&
-      this.validSentenced() &&
-      this.validAwaitingTrial()
-    )
+    return validateOffense(this.data)
   }
 }

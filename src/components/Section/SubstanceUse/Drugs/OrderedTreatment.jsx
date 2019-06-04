@@ -11,7 +11,7 @@ import {
   Textarea,
   DateRange,
   Telephone,
-  Show
+  Show,
 } from '../../../Form'
 import DrugType from './DrugType'
 
@@ -57,27 +57,34 @@ export default class OrderedTreatment extends ValidationElement {
         TreatmentDates: this.props.TreatmentDates,
         TreatmentCompleted: this.props.TreatmentCompleted,
         NoTreatmentExplanation: this.props.NoTreatmentExplanation,
-        ...updateValues
+        ...updateValues,
       })
     }
   }
 
-  updateOrderedBy(cb) {
-    let selected = cb.value
+  /**
+   * This is the list of people that ordered counseling or treatment
+   */
+  getPeopleWhoOrderedCounseling = (cb) => {
+    const selected = cb.value
     let list = [...((this.props.OrderedBy || {}).values || [])]
 
-      if (list.includes(selected)) {
-        list.splice(list.indexOf(selected), 1)
-      } else {
-        if (selected !== "None" && list.includes("None") || selected === "None") {
-            list = [selected]
-        }
-        else {
-          list.push(selected)
-        }
-      }
+    if (list.includes(selected)) {
+      list.splice(list.indexOf(selected), 1)
+    } else if (selected === 'None' || list.includes('None')) {
+      list = [selected]
+    } else {
+      list.push(selected)
+    }
+    return list
+  }
 
-    this.update({ OrderedBy: { values: list } })
+  updateOrderedBy(cb) {
+    this.update({
+      OrderedBy: {
+        values: this.getPeopleWhoOrderedCounseling(cb),
+      },
+    })
   }
 
   updateExplanation(values) {
@@ -304,7 +311,7 @@ export default class OrderedTreatment extends ValidationElement {
               <DateRange
                 name="TreatmentDates"
                 className="treatment-dates"
-                {...this.props.TreatmentDates}                
+                {...this.props.TreatmentDates}
                 minDateEqualTo={true}
                 onUpdate={this.updateTreatmentDates}
                 onError={this.props.onError}
@@ -353,10 +360,8 @@ export default class OrderedTreatment extends ValidationElement {
 OrderedTreatment.defaultProps = {
   ActionTaken: {},
   TreatmentCompleted: {},
-  OrderedBy: [],
+  OrderedBy: { values: [] },
   addressBooks: {},
-  dispatch: action => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onError: (value, arr) => arr,
 }

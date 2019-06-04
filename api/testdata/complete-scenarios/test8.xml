@@ -69,6 +69,9 @@
               </Weight>
             </IdentifyingInformation>
             <ContactInformation Version="1" Type="Pooled">
+              <WorkEmail>
+                <Email>test@test.com</Email>
+              </WorkEmail>
               <MobileTelephone>
                 <Telephone>
                   <Number>8312131212</Number>
@@ -81,7 +84,7 @@
               <References>
                 <Reference ID="1">
                   <Address>
-                    <Street>503 Rockerfeller Dr. </Street>
+                    <Street>503 Rockerfeller Dr.</Street>
                     <City>Portland</City>
                     <State>OR</State>
                     <ZipCode>97209</ZipCode>
@@ -105,12 +108,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>3332123331</Number>
                       <Time>Both</Time>
@@ -120,7 +118,7 @@
                 </Reference>
                 <Reference ID="2">
                   <Address>
-                    <Street>241 Medanna Ct. </Street>
+                    <Street>241 Medanna Ct.</Street>
                     <City>Victoria</City>
                     <Country>Canada</Country>
                   </Address>
@@ -143,12 +141,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>7773222133</Number>
                       <Time>Both</Time>
@@ -158,7 +151,7 @@
                 </Reference>
                 <Reference ID="3">
                   <Address>
-                    <Street>342 1st Ave. </Street>
+                    <Street>342 1st Ave.</Street>
                     <City>Monterey</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -182,12 +175,7 @@
                   </LegalName>
                   <RelationshipType Schoolmate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="True">
-            
-
-
-
-          </Home>
+                    <Home DoNotKnow="True"/>
                     <Mobile>
                       <Number>3335123132</Number>
                       <Time>Both</Time>
@@ -280,7 +268,7 @@
               <Residencies>
                 <Residency ID="1">
                   <Address>
-                    <Street>5325 SE 87th St. </Street>
+                    <Street>5325 SE 87th St.</Street>
                     <City>Portland</City>
                     <State>OR</State>
                     <ZipCode>97201</ZipCode>
@@ -299,7 +287,7 @@
                   <ResidenceType>Own</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>5325 87th st. </Street>
+                      <Street>5325 87th st.</Street>
                       <City>Portland</City>
                       <State>OR</State>
                       <ZipCode>97201</ZipCode>
@@ -318,15 +306,11 @@
                     </LegalName>
                     <RelationshipTypes Neighbor="True"/>
                     <Telephone>
-                      <Day DoNotKnow="True">
-
-</Day>
+                      <Day DoNotKnow="True"/>
                       <Evening>
                         <Number>5033323103</Number>
                       </Evening>
-                      <Mobile DoNotKnow="True">
-
-</Mobile>
+                      <Mobile DoNotKnow="True"/>
                     </Telephone>
                   </Verifier>
                 </Residency>
@@ -354,7 +338,7 @@
                     <PositionTitle>Cashier</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>888 Powell St. </Street>
+                        <Street>888 Powell St.</Street>
                         <City>Gresham</City>
                         <State>OR</State>
                         <ZipCode>97203</ZipCode>
@@ -376,7 +360,7 @@
                     <Name>Charles Incharge</Name>
                     <Title>Head Cashier</Title>
                     <Address>
-                      <Street>888 Powell St. </Street>
+                      <Street>888 Powell St.</Street>
                       <City>Gresham</City>
                       <State>OR</State>
                       <ZipCode>97203</ZipCode>
@@ -823,7 +807,7 @@
                         <Time>Day</Time>
                       </Telephone>
                       <Address>
-                        <Street>8973 Ocean Blvd. </Street>
+                        <Street>8973 Ocean Blvd.</Street>
                         <City>Pacific Grove</City>
                         <State>CA</State>
                         <ZipCode>93950</ZipCode>
@@ -836,7 +820,7 @@
                         <Time>Day</Time>
                       </Telephone>
                       <Address>
-                        <Street>8973 Ocean Blvd. </Street>
+                        <Street>8973 Ocean Blvd.</Street>
                         <City>Pacific Grove</City>
                         <State>CA</State>
                         <ZipCode>93950</ZipCode>
@@ -865,7 +849,7 @@
                         <Time>Day</Time>
                       </Telephone>
                       <Address>
-                        <Street>341 89th Ave. </Street>
+                        <Street>341 89th Ave.</Street>
                         <City>Portland</City>
                         <State>OR</State>
                         <ZipCode>97203</ZipCode>
@@ -878,7 +862,7 @@
                         <Time>Day</Time>
                       </Telephone>
                       <Address>
-                        <Street>341 89th Ave. </Street>
+                        <Street>341 89th Ave.</Street>
                         <City>Portland</City>
                         <State>OR</State>
                         <ZipCode>97203</ZipCode>

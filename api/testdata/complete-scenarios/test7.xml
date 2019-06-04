@@ -163,6 +163,9 @@ are now called - nay!</Reason>
               </Weight>
             </IdentifyingInformation>
             <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>test@test.com</Email>
+              </HomeEmail>
               <WorkTelephone>
                 <Telephone>
                   <Number>5555555555</Number>
@@ -368,9 +371,7 @@ are now called - nay!</Reason>
                         <State>CA</State>
                         <ZipCode>93955</ZipCode>
                       </Address>
-                      <Name>
-            I WAS born in the year 1632, in the city of York, of a good family,  though not of that country, my father being a foreigner of Bremen,  who settled first at Hull. He got a good estate by merchandise,  and leaving off his trade, lived afterwards at York,
-          </Name>
+                      <Name>I WAS born in the year 1632, in the city of York, of a good family,  though not of that country, my father being a foreigner of Bremen,  who settled first at Hull. He got a good estate by merchandise,  and leaving off his trade, lived afterwards at York,</Name>
                     </Employer>
                     <FirstContactDate Type="Estimated">
                       <Month>01</Month>
@@ -601,9 +602,7 @@ in the case. What has occurred in this case!</ReasonForChange>
                         <State>GA</State>
                         <ZipCode>30533</ZipCode>
                       </Address>
-                      <Name>
-            FIL EMPLXXXXXXXXOO
-          </Name>
+                      <Name>FIL EMPLXXXXXXXXOO</Name>
                     </Employer>
                     <FirstContactDate>
                       <Month>01</Month>
@@ -883,7 +882,7 @@ in the case. What has occurred in this case!</Relationship>
                 </Residency>
                 <Residency ID="2">
                   <Address>
-                    <Street>RESI 2XXXXXXXXOO </Street>
+                    <Street>RESI 2XXXXXXXXOO</Street>
                     <City>Seaside</City>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
@@ -987,7 +986,7 @@ in the case. What has occurred in this case!</Relationship>
                     <PositionTitle>Cashier</PositionTitle>
                     <EmployersLocation>
                       <Address>
-                        <Street>123 1st St. </Street>
+                        <Street>123 1st St.</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1009,7 +1008,7 @@ in the case. What has occurred in this case!</Relationship>
                     <Name>Joe Clark</Name>
                     <Title>Head Cashier</Title>
                     <Address>
-                      <Street>123 1st St. </Street>
+                      <Street>123 1st St.</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1212,7 +1211,7 @@ thou</Reason>
                       <First>SELF EMPL VERI FIRSTXXXXXXXXOO</First>
                     </LegalName>
                     <Address>
-                      <Street>SELF VERI ADDRESSXXXXXXXXOO </Street>
+                      <Street>SELF VERI ADDRESSXXXXXXXXOO</Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
@@ -1887,7 +1886,7 @@ form a just estimate of his public conduct, should!</Explanation>
                     <Amount>1</Amount>
                     <Authority>
                       <Address>
-                        <Street>No American can study the character andX </Street>
+                        <Street>No American can study the character andX</Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -1973,7 +1972,7 @@ endeavoring to draw a lifelike portraiture of his being, and to
 form a just estimate of his public conduct, should!</Actions>
                     <Agency>
                       <Address>
-                        <Street>No American can study the character andX </Street>
+                        <Street>No American can study the character andX</Street>
                         <City>Pacific Grove</City>
                         <State>CA</State>
                         <ZipCode>93950</ZipCode>
@@ -2952,7 +2951,7 @@ form a just estimate of his public conduct, should!</Relationship>
                     </Coowner>
                     <Coowner ID="2">
                       <Address>
-                        <Street>No American can study the character andX </Street>
+                        <Street>No American can study the character andX</Street>
                         <City>APO</City>
                         <State>AA</State>
                         <ZipCode>34033</ZipCode>
@@ -3000,7 +2999,7 @@ endeavoring to draw a lifelike portraiture of his being, and to
 form a just estimate of his public conduct, should!</HowAcquired>
                   <Location>
                     <Address>
-                      <Street>No American can study the character andX </Street>
+                      <Street>No American can study the character andX</Street>
                       <City>No American can study the character andX</City>
                       <Country>Falkland Islands Islas Malvinas</Country>
                     </Address>
@@ -3035,7 +3034,7 @@ endeavoring to draw a lifelike portraiture of his being, and to
 form a just estimate of his public conduct, should!</HowAcquired>
                   <Location>
                     <Address>
-                      <Street>No American can study the character andX </Street>
+                      <Street>No American can study the character andX</Street>
                       <City>No American can study the character andX</City>
                       <Country>Denmark</Country>
                     </Address>
@@ -3174,7 +3173,7 @@ form a just estimate of his public conduct, should!</Relationship>
                 </ForeignNationalSupported>
                 <ForeignNationalSupported ID="3">
                   <Address>
-                    <Street>No American can study the character andX </Street>
+                    <Street>No American can study the character andX</Street>
                     <City>APO</City>
                     <State>AA</State>
                     <ZipCode>34033</ZipCode>
@@ -3656,7 +3655,7 @@ endeavoring to draw a lifelike portraiture of his being, and to
 form a just estimate of his public conduct, should!</NatureOfAssociation>
                   <Partner>
                     <Address>
-                      <Street>No American can study the character andX </Street>
+                      <Street>No American can study the character andX</Street>
                       <City>APO</City>
                       <State>AA</State>
                       <ZipCode>34033</ZipCode>
@@ -4114,7 +4113,7 @@ form a just estimate of his public conduct, should!</Purpose>
                   </CountriesOfCitizenship>
                   <CurrentAddress>
                     <Address>
-                      <Street>No American can study the character andX </Street>
+                      <Street>No American can study the character andX</Street>
                       <City>APO</City>
                       <State>AA</State>
                       <ZipCode>34003</ZipCode>
@@ -4251,7 +4250,7 @@ form a just estimate of his public conduct, should!</SponsorshipPurpose>
                 <SponsoredVisit ID="3">
                   <AddressWhileInUS>
                     <Address>
-                      <Street>No American can study the character andX </Street>
+                      <Street>No American can study the character andX</Street>
                       <City>No American can study the character andX</City>
                       <State>PR</State>
                       <ZipCode>00688</ZipCode>
@@ -4282,7 +4281,7 @@ form a just estimate of his public conduct, should!</SponsorshipPurpose>
                   </CountriesOfCitizenship>
                   <CurrentAddress>
                     <Address>
-                      <Street>No American can study the character andX </Street>
+                      <Street>No American can study the character andX</Street>
                       <City>No American can study the character andX</City>
                       <State>DE</State>
                       <ZipCode>19988</ZipCode>
@@ -4306,7 +4305,7 @@ form a just estimate of his public conduct, should!</SponsorshipPurpose>
                   </Name>
                   <Organization>
                     <Address>
-                      <Street>No American can study the character andX </Street>
+                      <Street>No American can study the character andX</Street>
                       <City>No American can study the character andX</City>
                       <State>AK</State>
                       <ZipCode>99677</ZipCode>
@@ -5509,7 +5508,7 @@ form a just estimate of his public conduct, should!</Explanation>
                         <First>--a state of mind very unfavorable to the exercise of sober critical judgment. It i</First>
                       </Name>
                       <Address>
-                        <Street>No American can study the character andX </Street>
+                        <Street>No American can study the character andX</Street>
                         <City>APO</City>
                         <State>AA</State>
                         <ZipCode>34011</ZipCode>
@@ -5660,10 +5659,6 @@ form a just estimate of his public conduct, should!</Description>
                         <County>Santa Clara</County>
                       </Place>
                     </Location>
-                    <NotConvicted>
-        
-        
-      </NotConvicted>
                     <OffenseDescription>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
@@ -5780,10 +5775,6 @@ form a just estimate of his public conduct, should!</Description>
                         <Country>Djibouti</Country>
                       </Place>
                     </Location>
-                    <NotConvicted>
-        
-        
-      </NotConvicted>
                     <OffenseDescription>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
@@ -6082,7 +6073,7 @@ rebellion, added not a little to the strain.... The strife of
 the election is but human nature practically applied to the facts
 in the case. What has occurred in this case!</Action>
                     <Address>
-                      <Street>It has long been a grave question! </Street>
+                      <Street>It has long been a grave question!</Street>
                       <City>APO</City>
                       <State>AE</State>
                       <ZipCode>09011</ZipCode>
@@ -6144,7 +6135,7 @@ rebellion, added not a little to the strain.... The strife of
 the election is but human nature practically applied to the facts
 in the case. What has occurred in this case!</Action>
                     <Address>
-                      <Street>It has long been a grave question! </Street>
+                      <Street>It has long been a grave question!</Street>
                       <City>APO</City>
                       <State>AE</State>
                       <ZipCode>09011</ZipCode>
@@ -6206,7 +6197,7 @@ rebellion, added not a little to the strain.... The strife of
 the election is but human nature practically applied to the facts
 in the case. What has occurred in this case!</Action>
                     <Address>
-                      <Street>It has long been a grave question! </Street>
+                      <Street>It has long been a grave question!</Street>
                       <City>APO</City>
                       <State>AE</State>
                       <ZipCode>09132</ZipCode>

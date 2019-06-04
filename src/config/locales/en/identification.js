@@ -198,7 +198,6 @@ export const identification = {
       emailHome: 'Home email address',
       emailWork: 'Work email address',
       phoneNumber: 'Your phone numbers',
-      comments: 'Add optional comments',
     },
     para: {
       email:
@@ -241,7 +240,6 @@ export const identification = {
       height: 'Height',
       weight: 'Weight',
       sex: 'Sex',
-      comments: 'Add your comment about sex',
     },
     help: {
       feet: {
@@ -277,19 +275,12 @@ export const identification = {
           'Choose the hair color that most closely represents your hair today.',
         note: '',
       },
-      sex: {
-        title: 'Provide more information',
-        message:
-          'To add more information regarding your gender, select “Add a comment” below.',
-        note: '',
-      },
     },
     label: {
       sex: 'Select your sex at the time of birth',
       feet: 'Feet',
       inches: 'Inches',
       pounds: 'Pounds',
-      comments: 'Add a comment about sex',
     },
     hair: {
       bald: 'Bald',
