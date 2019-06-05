@@ -63,7 +63,7 @@ export const dateWithinRange = (date, range) => {
   const duration = Duration.fromObject(range)
   const boundary = today.minus(duration)
 
-  return boundary <= createDateFromObject(date)
+  return boundary <= createDateFromObject(cleanDateObject(date))
 }
 
 /** Convert date objects to luxon objects and sort by from date */

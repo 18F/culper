@@ -1,5 +1,42 @@
 import { validateModel } from 'models/validate'
-import education from 'models/education'
+import education, { educationRequiresReference } from 'models/education'
+
+describe('The educationRequiresReference function', () => {
+  it('returns false if the data is invalid', () => {
+    const testData = {
+      from: null,
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(false)
+  })
+
+  it('returns false if the date range is not within 3 years', () => {
+    const testData = {
+      from: { year: 2000, month: 2, day: 10 },
+      to: { year: 2001, month: 5, day: 2 },
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(false)
+  })
+
+  it('returns true if the date range is within 3 years', () => {
+    const testData = {
+      from: { year: 2018, month: 2, day: 10 },
+      to: { year: 20019, month: 5, day: 2 },
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(true)
+  })
+
+  it('returns true if present is true', () => {
+    const testData = {
+      from: { year: 2010, month: 2, day: 10 },
+      present: true,
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(true)
+  })
+})
 
 describe('The education model', () => {
   it('the Dates field is required', () => {
