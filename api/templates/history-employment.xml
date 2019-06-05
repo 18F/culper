@@ -170,7 +170,7 @@
         <Address>{{location $supervisor.Address}}</Address>
         {{apoFpo $supervisor.Address $Item.SupervisorAlternateAddress}}
         <Comment></Comment>
-        <Email DoNotKnow="{{notApplicable $supervisor.EmailNotApplicable}}">{{email $supervisor.Email}}</Email>
+        {{emailOptional $supervisor.Email $supervisor.EmailNotApplicable}}
         <Telephone>{{telephone $supervisor.Telephone}}</Telephone>
       </Supervisor>
       {{end}}

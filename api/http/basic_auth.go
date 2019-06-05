@@ -12,6 +12,7 @@ type BasicAuthHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP processes a users request to login with a Username and Password
@@ -74,7 +75,10 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	// If we need to flush the storage first then do so now.
 	if service.Env.True(api.FlushStorage) {
 		service.Log.Info(api.PurgeAccountData, api.LogFields{"account": account.ID})
-		api.PurgeAccountStorage(service.Database, account.ID)
+		delErr := service.Store.DeleteApplication(account.ID)
+		if delErr != nil {
+			service.Log.Warn("Unable to purge the application data on login", api.LogFields{"account": account.ID})
+		}
 	}
 
 	service.Log.Info(api.BasicAuthValid, api.LogFields{"account": account.ID})

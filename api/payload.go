@@ -101,19 +101,4 @@ func (payload Payload) Valid() (bool, error) {
 
 // PayloadProperties is a structure of JSON where it is an object
 // of named properties which each value being that of a Payload.
-type PayloadProperties map[string]Payload
-
-// Save the entity to data storage.
-func (entity *PayloadProperties) Save(context DatabaseService, account int) (int, error) {
-	return 0, nil
-}
-
-// Delete the entity from data storage.
-func (entity *PayloadProperties) Delete(context DatabaseService, account int) (int, error) {
-	return 0, nil
-}
-
-// Get the entity from data storage.
-func (entity *PayloadProperties) Get(context DatabaseService, account int) (int, error) {
-	return 0, nil
-}
+// type PayloadProperties map[string]Payload

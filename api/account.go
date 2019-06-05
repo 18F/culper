@@ -10,8 +10,8 @@ var (
 	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")
 
-	// ErrAccoundDoesNotExist is an error when a users account does not exist
-	ErrAccoundDoesNotExist = errors.New("Account does not exist")
+	// ErrAccountDoesNotExist is an error when a users account does not exist
+	ErrAccountDoesNotExist = errors.New("Account does not exist")
 
 	// ErrDatastoreConnection is an error when a database connection cannot be made
 	ErrDatastoreConnection = errors.New("Unable to connect to datastore")
@@ -21,11 +21,11 @@ var (
 var knownFormVersions = map[string][]string{
 
 	"SF86": []string{
-		"2016-11",
+		"2017-07",
 	},
 
 	"SF85": []string{
-		"2017-12_draft7",
+		"2017-12-draft7",
 	},
 }
 
@@ -41,6 +41,7 @@ type Account struct {
 	Locked      bool
 	FormType    string `db:"form_type"`
 	FormVersion string `db:"form_version"`
+	ExternalID  string `db:"external_id"` // ExternalID is an identifier used by external systems to id applications
 }
 
 // validate returns nil if the account is valid or an error describing what's wrong otherwise.
@@ -117,10 +118,23 @@ func (entity *Account) SetID(id int) {
 
 // Find will search for account by `username` if no identifier is present or by ID if it is.
 func (entity *Account) Find(context DatabaseService) error {
+	if entity.ExternalID != "" {
+		return entity.FindByExternalID(context)
+	}
+
 	if entity.ID == 0 {
 		return context.Where(entity, "Account.username = ?", entity.Username)
 	}
 	return context.Select(entity)
+}
+
+// FindByExternalID will search for account by `request id`
+func (entity *Account) FindByExternalID(context DatabaseService) error {
+	if entity.ExternalID == "" {
+		return fmt.Errorf("No request id was given")
+	}
+
+	return context.Where(entity, "Account.external_id = ?", entity.ExternalID)
 }
 
 // Lock will mark the account in a `locked` status.
@@ -148,6 +162,17 @@ func (entity *Account) FormTypeIsKnown() bool {
 	return false
 }
 
+// DefaultFormVersion returns the most recent form version for the
+// given formType
+func DefaultFormVersion(formType string) (string, error) {
+	versions := knownFormVersions[formType]
+	if versions == nil {
+		return "", errors.New(fmt.Sprintf("No known form version for type: %s", formType))
+	}
+
+	return versions[0], nil
+}
+
 // BasicAuthentication checks if the username and password are valid and returns the users account
 func (entity *Account) BasicAuthentication(context DatabaseService, password string) error {
 	var basicMembership BasicAuthMembership
@@ -156,7 +181,7 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 	err := context.ColumnsWhere(&basicMembership, []string{"basic_auth_membership.*", "Account"}, "Account.username = ?", entity.Username)
 	if err != nil {
 		fmt.Printf("Basic Authentication Error: [%v]\n", err)
-		return ErrAccoundDoesNotExist
+		return ErrAccountDoesNotExist
 	}
 
 	// Check if plaintext password matches hashed password
@@ -176,26 +201,5 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 		entity.FormType = basicMembership.Account.FormType
 		entity.FormVersion = basicMembership.Account.FormVersion
 	}
-	return nil
-}
-
-// ClearNoBranches clears all the branches answered "No" that must be
-// re answered after rejection
-func (entity *Account) ClearNoBranches(context DatabaseService) error {
-
-	// Identification.OtherNames
-	if err := ClearIdentificationOtherNamesNos(context, entity.ID); err != nil {
-		return err
-	}
-
-	// Your History
-	if err := ClearHistoryResidenceNos(context, entity.ID); err != nil {
-		return err
-	}
-
-	if err := ClearHistoryEmploymentNos(context, entity.ID); err != nil {
-		return err
-	}
-
 	return nil
 }

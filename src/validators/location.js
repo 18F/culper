@@ -1,43 +1,115 @@
+import { validate } from 'validate.js'
+import usStates from 'constants/enums/usStates'
+import usTerritories from 'constants/enums/usTerritories'
+import militaryStatesEnum from 'constants/enums/militaryStates'
+
 import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
 import { isZipcodeState, zipcodes } from '../config'
-import { isDefined } from './helpers'
 
-export const isInternational = location => {
-  return !['United States', 'POSTOFFICE'].includes(
-    countryString(location.country || {})
-  )
-}
+export const countryString = (country) => {
+  if (validate.isHash(country)) {
+    if (country.value === null) return null
+    if (country.value === undefined) return undefined
 
-export const countryString = country => {
-  if (country) {
-    if (isDefined(country.value)) {
-      if (Array.isArray(country.value)) {
-        return country.value[0]
-      }
-
-      return country.value
-    } else if (country.value === null) {
-      return null
+    if (Array.isArray(country.value)) {
+      return country.value[0]
     }
+
+    return country.value
   }
 
   return country
 }
 
+export const isInternational = location => (
+  !['United States', 'POSTOFFICE'].includes(
+    countryString(location.country || {})
+  )
+)
+
+export const unitedStates = usStates
+export const otherUsTerritories = usTerritories
+export const militaryStates = militaryStatesEnum
+
+/**
+ * Take a potential state name and convert it to its state code.
+ * @param {Type of state} state - The state name.
+ * @returns {Return Type} State code.
+ */
+const toCode = (state) => {
+  const allUsStates = [
+    ...unitedStates,
+    ...otherUsTerritories,
+    ...militaryStates,
+  ]
+
+  const selectedState = allUsStates
+    .find(stateObj => stateObj.name.toLowerCase() === state.toLowerCase())
+
+  if (selectedState) {
+    return selectedState.postalCode
+  }
+
+  return state
+}
+
+export class Geocoder {
+  isSystemError = (data) => {
+    if (!data || !data.Errors || !data.Errors.length) {
+      return false
+    }
+
+    for (let i = 0; i < data.Errors.length; i += 1) {
+      const e = data.Errors[i]
+      if (e.Error.indexOf('error.geocode.system') !== -1) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  geocode(location) {
+    return new Promise((resolve, reject) => {
+      api
+        .validate({
+          type: 'location',
+          props: location,
+        })
+        .then((r) => {
+          const { data } = r
+          if (this.isSystemError(data)) {
+            return reject(data)
+          }
+
+          if (!r.data.Errors || !r.data.Errors.length) {
+            return resolve({})
+          }
+
+          return resolve(r.data.Errors[0])
+        })
+        .catch(() => {
+          reject(new Error('Failed to validate address'))
+        })
+    })
+  }
+}
+
 export default class LocationValidator {
   constructor(data = {}) {
-    data = data || {}
-    this.layout = data.layout
+    if (data) {
+      this.layout = data.layout
 
-    // Data
-    this.street = data.street
-    this.street2 = data.street2
-    this.city = data.city
-    this.state = data.state
-    this.zipcode = data.zipcode
-    this.county = data.county
-    this.country = countryString(data.country)
+      // Data
+      this.street = data.street
+      this.street2 = data.street2
+      this.city = data.city
+      this.state = data.state
+      this.zipcode = data.zipcode
+      this.county = data.county
+      this.country = countryString(data.country)
+    }
   }
 
   canGeocode() {
@@ -63,7 +135,7 @@ export default class LocationValidator {
       zipcode: this.zipcode,
       county: this.county,
       country: countryString(this.country) || '',
-      validated: false
+      validated: false,
     })
   }
 
@@ -128,7 +200,8 @@ export default class LocationValidator {
     return this.country === 'POSTOFFICE'
   }
 
-  // TODO: this function doesn't quite work as an empty value for country should not necessarily preclude a valid international address
+  // TODO: this function doesn't quite work as an empty value for country
+  // should not necessarily preclude a valid international address
   // for example, if the address is pristine and hasnt been modified
   isInternational() {
     return this.validCountry() && !this.isDomestic() && !this.isPostOffice()
@@ -171,7 +244,7 @@ export default class LocationValidator {
           'city',
           'state',
           'zipcode',
-          'stateZipcode'
+          'stateZipcode',
         ])
       case Layouts.STREET_CITY:
         return this.validFields(['street', 'city'])
@@ -182,7 +255,7 @@ export default class LocationValidator {
             'city',
             'state',
             'zipcode',
-            'stateZipcode'
+            'stateZipcode',
           ])
         }
         return this.validFields(['street', 'city', 'country'])
@@ -200,8 +273,10 @@ export default class LocationValidator {
     if (!fields || !fields.length) {
       return false
     }
+
     let valid = true
-    for (let field of fields) {
+    for (let i = 0; i < fields.length; i += 1) {
+      const field = fields[i]
       switch (field) {
         case 'street':
           valid = valid && this.validStreet()
@@ -224,8 +299,10 @@ export default class LocationValidator {
         case 'country':
           valid = valid && this.validCountry()
           break
+        default:
       }
     }
+
     return valid
   }
 
@@ -233,141 +310,3 @@ export default class LocationValidator {
     return this.validLocation()
   }
 }
-
-export class Geocoder {
-  isSystemError(data) {
-    if (!data || !data.Errors || !data.Errors.length) {
-      return false
-    }
-    for (let e of data.Errors) {
-      if (e.Error.indexOf('error.geocode.system') !== -1) {
-        return true
-      }
-    }
-    return false
-  }
-
-  geocode(location) {
-    return new Promise((resolve, reject) => {
-      api
-        .validate({
-          type: 'location',
-          props: location
-        })
-        .then(r => {
-          const data = r.data
-          if (this.isSystemError(data)) {
-            return reject(data)
-          }
-          if (!r.data.Errors || !r.data.Errors.length) {
-            resolve({})
-          }
-          resolve(r.data.Errors[0])
-        })
-        .catch(() => {
-          reject(new Error('Failed to validate address'))
-        })
-    })
-  }
-}
-
-/**
- * Take a potential state name and convert it to its state code.
- * @param {Type of state} state - The state name.
- * @returns {Return Type} State code.
- */
-const toCode = state => {
-  const allUsStates = [
-    ...unitedStates,
-    ...otherUsTerritories,
-    ...militaryStates
-  ]
-  const selectedState = allUsStates.find(stateObj => {
-    return stateObj.name.toLowerCase() === state.toLowerCase()
-  })
-
-  if (selectedState) {
-    return selectedState.postalCode
-  }
-  return state
-}
-
-export const unitedStates = [
-  { name: 'Alabama', postalCode: 'AL' },
-  { name: 'Alaska', postalCode: 'AK' },
-  { name: 'Arizona', postalCode: 'AZ' },
-  { name: 'Arkansas', postalCode: 'AR' },
-  { name: 'California', postalCode: 'CA' },
-  { name: 'Colorado', postalCode: 'CO' },
-  { name: 'Connecticut', postalCode: 'CT' },
-  { name: 'Delaware', postalCode: 'DE' },
-  { name: 'Washington D.C.', postalCode: 'DC' },
-  { name: 'Florida', postalCode: 'FL' },
-  { name: 'Georgia', postalCode: 'GA' },
-  { name: 'Hawaii', postalCode: 'HI' },
-  { name: 'Idaho', postalCode: 'ID' },
-  { name: 'Illinois', postalCode: 'IL' },
-  { name: 'Indiana', postalCode: 'IN' },
-  { name: 'Iowa', postalCode: 'IA' },
-  { name: 'Kansas', postalCode: 'KS' },
-  { name: 'Kentucky', postalCode: 'KY' },
-  { name: 'Louisiana', postalCode: 'LA' },
-  { name: 'Maine', postalCode: 'ME' },
-  { name: 'Maryland', postalCode: 'MD' },
-  { name: 'Massachusetts', postalCode: 'MA' },
-  { name: 'Michigan', postalCode: 'MI' },
-  { name: 'Minnesota', postalCode: 'MN' },
-  { name: 'Mississippi', postalCode: 'MS' },
-  { name: 'Missouri', postalCode: 'MO' },
-  { name: 'Montana', postalCode: 'MT' },
-  { name: 'Nebraska', postalCode: 'NE' },
-  { name: 'Nevada', postalCode: 'NV' },
-  { name: 'New Hampshire', postalCode: 'NH' },
-  { name: 'New Jersey', postalCode: 'NJ' },
-  { name: 'New Mexico', postalCode: 'NM' },
-  { name: 'New York', postalCode: 'NY' },
-  { name: 'North Carolina', postalCode: 'NC' },
-  { name: 'North Dakota', postalCode: 'ND' },
-  { name: 'Ohio', postalCode: 'OH' },
-  { name: 'Oklahoma', postalCode: 'OK' },
-  { name: 'Oregon', postalCode: 'OR' },
-  { name: 'Pennsylvania', postalCode: 'PA' },
-  { name: 'Rhode Island', postalCode: 'RI' },
-  { name: 'South Carolina', postalCode: 'SC' },
-  { name: 'South Dakota', postalCode: 'SD' },
-  { name: 'Tennessee', postalCode: 'TN' },
-  { name: 'Texas', postalCode: 'TX' },
-  { name: 'Utah', postalCode: 'UT' },
-  { name: 'Vermont', postalCode: 'VT' },
-  { name: 'Virginia', postalCode: 'VA' },
-  { name: 'Washington', postalCode: 'WA' },
-  { name: 'West Virginia', postalCode: 'WV' },
-  { name: 'Wisconsin', postalCode: 'WI' },
-  { name: 'Wyoming', postalCode: 'WY' }
-]
-
-export const otherUsTerritories = [
-  { name: 'American Samoa', postalCode: 'AS' },
-  { name: 'FQ', postalCode: 'FQ' },
-  { name: 'Guam', postalCode: 'GU' },
-  { name: 'HQ', postalCode: 'HQ' },
-  { name: 'DQ', postalCode: 'DQ' },
-  { name: 'JQ', postalCode: 'JQ' },
-  { name: 'KQ', postalCode: 'KQ' },
-  { name: 'Marshall Islands', postalCode: 'MH' },
-  { name: 'Micronesia', postalCode: 'FM' },
-  { name: 'MQ', postalCode: 'MQ' },
-  { name: 'BQ', postalCode: 'BQ' },
-  { name: 'Northern Mariana Islands', postalCode: 'MP' },
-  { name: 'Palau', postalCode: 'PW' },
-  { name: 'LQ', postalCode: 'LQ' },
-  { name: 'Puerto Rico', postalCode: 'PR' },
-  { name: 'Virgin Islands', postalCode: 'VI' },
-  { name: 'WQ', postalCode: 'WQ' }
-]
-
-export const militaryStates = [
-  { name: 'U.S. Armed Forces - Americas', postalCode: 'AA' },
-  { name: 'U.S. Armed Forces - Europe', postalCode: 'AE' },
-  { name: 'U.S. Armed Forces - Pacific', postalCode: 'AP' }
-]

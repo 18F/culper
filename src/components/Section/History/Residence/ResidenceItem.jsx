@@ -191,7 +191,6 @@ export default class ResidenceItem extends ValidationElement {
           titleSize="h4"
           optional
           help="history.residence.help.address"
-          commentsAdd="history.residence.label.comments"
           onError={this.props.onError}
           adjustFor="address"
           shrink

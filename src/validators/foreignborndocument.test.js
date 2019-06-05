@@ -1,107 +1,107 @@
 import ForeignBornDocumentValidator from './foreignborndocument'
 
-describe('Foreign Born Document Validator', function() {
-  it('should validate document types', function() {
+describe('Foreign Born Document Validator', () => {
+  it('should validate document types', () => {
     const tests = [
       {
         data: {
-          DocumentType: { value: 'FS240' }
+          DocumentType: { value: 'FS240' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          DocumentType: { value: 'What' }
+          DocumentType: { value: 'What' },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new ForeignBornDocumentValidator(test.data).validDocumentType()
       ).toBe(test.expected)
     })
   })
 
-  it('should validate document explanation', function() {
+  it('should validate document explanation', () => {
     const tests = [
       {
         data: {
-          DocumentType: { value: 'FS240' }
+          DocumentType: { value: 'FS240' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           DocumentType: { value: 'Other' },
           OtherExplanation: {
-            value: 'Cool'
-          }
+            value: 'Cool',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           DocumentType: { value: 'Other' },
           OtherExplanation: {
-            value: null
-          }
+            value: null,
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new ForeignBornDocumentValidator(test.data).validDocumentExplanation()
       ).toBe(test.expected)
     })
   })
 
-  it('should validate document expiration', function() {
+  it('should validate document expiration', () => {
     const tests = [
       {
         data: {
-          DocumentExpirationNotApplicable: { applicable: true }
+          DocumentExpirationNotApplicable: { applicable: false },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          DocumentExpirationNotApplicable: { applicable: false },
+          DocumentExpirationNotApplicable: { applicable: true },
           DocumentExpiration: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new ForeignBornDocumentValidator(test.data).validDocumentExpiration()
       ).toBe(test.expected)
     })
   })
 
-  it('should validate entire document', function() {
+  it('should validate entire document', () => {
     const tests = [
       {
         data: {
           DocumentType: { value: 'FS240' },
-          DocumentExpirationNotApplicable: { applicable: true },
+          DocumentExpirationNotApplicable: { applicable: false },
           DocumentNumber: {
-            value: 'A1234'
-          }
+            value: 'A1234',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new ForeignBornDocumentValidator(test.data).isValid()).toBe(
         test.expected
       )

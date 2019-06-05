@@ -12,6 +12,8 @@ import daterange from 'models/validators/daterange'
 import location from 'models/validators/location'
 import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
+import durationCoverage from 'models/validators/durationCoverage'
+import containsRequiredItems from 'models/validators/containsRequiredItems'
 
 import {
   isDateTime, cleanDateObject, createDateFromObject, createDateFromTimestamp,
@@ -75,6 +77,8 @@ validate.validators.daterange = daterange
 validate.validators.location = location
 validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
+validate.validators.durationCoverage = durationCoverage
+validate.validators.containsRequiredItems = containsRequiredItems
 
 export const validateModel = (data, model, options) => {
   const errors = options
@@ -90,7 +94,46 @@ export const validateModel = (data, model, options) => {
 
 export default validateModel
 
+// Misc helpers (might be moved later)
+
 /** require Yes or No */
 export const hasYesOrNo = {
   inclusion: ['Yes', 'No'],
+}
+
+/** check the value of an attribute.value */
+export const checkValue = (attribute, expected) => attribute
+  && attribute.value
+  && attribute.value === expected
+
+export const checkValueIncluded = (attribute, expected) => attribute
+  && attribute.value
+  && expected.includes(attribute.value)
+
+export const valueIsEmpty = (data = {}) => !data.value || validate.isEmpty(data.value)
+
+export const nameIsEmpty = (data = {}) => {
+  const {
+    first, firstInitialOnly, middle, middleInitialOnly, last, suffix,
+  } = data
+
+  const fields = [
+    first, firstInitialOnly, middle, middleInitialOnly, last, suffix,
+  ]
+
+  return fields.every(i => i === false || validate.isEmpty(i))
+}
+
+export const dateIsEmpty = (data = {}) => {
+  const { day, month, year } = data
+  const fields = [day, month, year]
+  return fields.every(i => validate.isEmpty(i))
+}
+
+export const locationIsEmpty = (data = {}) => {
+  const { country, city, state } = data
+
+  return (validate.isEmpty(country) || valueIsEmpty(country))
+    && validate.isEmpty(city)
+    && validate.isEmpty(state)
 }

@@ -96,7 +96,6 @@ export const history = {
       dates:
         'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       address: 'This address is',
-      comments: 'Add optional comment',
       role: {
         owned: 'Owned by you',
         rented: 'Rented or leased by you',
@@ -1631,7 +1630,6 @@ export const history = {
       name: 'School name',
       address: 'This address is',
       addressLink: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained. For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
-      comments: 'Add optional comment',
       type: {
         highschool: 'High school',
         college: 'College, university, or military college',

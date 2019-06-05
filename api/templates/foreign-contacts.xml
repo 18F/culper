@@ -15,11 +15,13 @@
       {{end}}
       <Birth>
         {{dateOptional $Item.Birthdate $Item.BirthdateNotApplicable}}
-        <Place DoNotKnow="{{notApplicable $Item.BirthplaceNotApplicable}}">
-          {{if notApplicable $Item.BirthplaceNotApplicable | ne "True"}}
-            {{location $Item.Birthplace}}
-          {{end}}
+        {{if notApplicable $Item.BirthplaceNotApplicable | eq "True"}}
+        <Place DoNotKnow="True"></Place>
+        {{else}}
+        <Place>
+          {{location $Item.Birthplace}}
         </Place>
+        {{end}}
       </Birth>
       <Citizenships>
         {{range $index, $country := $Item.Citizenship.props.value}}
@@ -81,7 +83,11 @@
       <Employer>
         {{address $Item.EmployerAddress $Item.EmployerAddressNotApplicable}}
         <Comment></Comment>
-        <Name DoNotKnow="{{notApplicable $Item.EmployerNotApplicable}}">{{text $Item.Employer}}</Name>
+        {{if notApplicable $Item.EmployerNotApplicable | eq "True"}}
+        <Name DoNotKnow="True"></Name>
+        {{else}}
+        <Name>{{text $Item.Employer}}</Name>
+        {{end}}
       </Employer>
       <EntryComment></EntryComment>
       <ForeignAffiliation>
@@ -91,9 +97,11 @@
         <Relationship>{{text $Item.Affiliations}}</Relationship>
       </ForeignAffiliation>
       <FullName>
-        <LegalName DoNotKnow="{{notApplicable $Item.NameNotApplicable}}">
-          {{name $Item.Name}}
-        </LegalName>
+        {{if notApplicable $Item.NameNotApplicable | eq "True"}}
+        <LegalName DoNotKnow="True"></LegalName>
+        {{else}}
+        <LegalName>{{name $Item.Name}}</LegalName>
+        {{end}}
       </FullName>
       {{if branchcollectionHas $Item.Aliases | eq "Yes"}}
       <OtherNamesUsed>

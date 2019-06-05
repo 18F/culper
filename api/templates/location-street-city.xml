@@ -1,2 +1,2 @@
-<Street>{{.props.street}} {{.props.street2}}</Street>
+<Street>{{street .props}}</Street>
 <City>{{.props.city}}</City>

@@ -1,45 +1,43 @@
-import NameValidator from './name'
-import LocationValidator, { countryString } from './location'
-import DateRangeValidator from './daterange'
-import ForeignBornDocument from './foreignborndocument'
-import {
-  validAccordion,
-  validSSN,
-  validDateField,
-  validBranch,
-  BranchCollection
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import cohabitant from 'models/cohabitant'
+
+export const validateCohabitant = data => validateModel(data, cohabitant) === true
+
+export const validateCohabitants = (data) => {
+  const cohabitantsModel = {
+    HasCohabitant: {
+      presence: true,
+      hasValue: { validator: hasYesOrNo },
+    },
+    CohabitantList: (value, attributes) => {
+      if (attributes.HasCohabitant && attributes.HasCohabitant.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: cohabitant },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, cohabitantsModel) === true
+}
 
 export default class CohabitantsValidator {
   constructor(data = {}) {
-    this.hasCohabitant = (data.HasCohabitant || {}).value
-    this.list = data.CohabitantList || {}
+    this.data = data
   }
 
   isValid() {
-    if (!validBranch(this.hasCohabitant)) {
-      return false
-    }
-
-    if (this.hasCohabitant === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new CohabitantValidator(item).isValid()
-    })
+    return validateCohabitants(this.data) === true
   }
 }
 
 export class CohabitantValidator {
   constructor(data = {}) {
+    this.data = data
     this.name = data.Name
-    this.birthdate = data.Birthdate
-    this.birthPlace = data.BirthPlace || {}
-    this.foreignBornDocument = data.ForeignBornDocument
-    this.ssn = data.SSN
-    this.otherNames = data.OtherNames
-    this.citizenship = data.Citizenship
   }
 
   similarSpouse(spouse) {
@@ -48,9 +46,9 @@ export class CohabitantValidator {
     }
 
     if (
-      this.name.first === spouse.first &&
-      this.name.last === spouse.last &&
-      this.name.middle === spouse.middle
+      this.name.first === spouse.first
+      && this.name.last === spouse.last
+      && this.name.middle === spouse.middle
     ) {
       return true
     }
@@ -59,52 +57,24 @@ export class CohabitantValidator {
   }
 
   validForeignBornDocument() {
-    const country = countryString(this.birthPlace.country)
-    if (
-      new LocationValidator(this.birthPlace).isValid() &&
-      country !== 'United States'
-    ) {
-      return new ForeignBornDocument(this.foreignBornDocument).isValid()
-    }
-    return true
+    return validateModel(this.data, {
+      ForeignBornDocument: cohabitant.ForeignBornDocument,
+    }) === true
   }
 
   validOtherNames() {
-    const branchValidator = new BranchCollection(this.otherNames)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
-
-    if (!branchValidator.hasNo()) {
-      return false
-    }
-
-    return branchValidator.each(item => {
-      return (
-        new NameValidator(item.OtherName).isValid() &&
-        new DateRangeValidator(item.DatesUsed) &&
-        validBranch((item.MaidenName || {}).value)
-      )
-    })
+    return validateModel(this.data, {
+      OtherNames: cohabitant.OtherNames,
+    }) === true
   }
 
   validCitizenship() {
-    return (
-      !!this.citizenship &&
-      !!this.citizenship.value &&
-      this.citizenship.value.length > 0
-    )
+    return validateModel(this.data, {
+      Citizenship: cohabitant.Citizenship,
+    }) === true
   }
 
   isValid() {
-    return (
-      new NameValidator(this.name).isValid() &&
-      validDateField(this.birthdate) &&
-      new LocationValidator(this.birthPlace).isValid() &&
-      this.validForeignBornDocument() &&
-      validSSN(this.ssn) &&
-      this.validCitizenship() &&
-      this.validOtherNames()
-    )
+    return validateCohabitant(this.data)
   }
 }

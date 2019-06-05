@@ -3,14 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
+
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/eqip"
 	"github.com/18F/e-QIP-prototype/api/log"
 	"github.com/18F/e-QIP-prototype/api/xml"
-	"github.com/benbjohnson/clock"
-	"io/ioutil"
-	"os"
 )
 
 // Generates and submits an SF-86 XML to e-QIP from eApp application form data.
@@ -24,8 +24,8 @@ func main() {
 	settings := &env.Native{}
 	settings.Configure()
 	logger := &log.Service{Log: log.NewLogger()}
-	localClock := clock.New()
-	xmlsvc := xml.Service{Log: logger, Clock: localClock}
+	xmlTemplatePath := "./templates/"
+	xmlsvc := xml.NewXMLService(xmlTemplatePath)
 
 	fatal := func(err error) {
 		if err != nil {

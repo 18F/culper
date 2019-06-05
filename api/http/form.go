@@ -1,6 +1,7 @@
 package http
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -13,6 +14,7 @@ type FormHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP will return a JSON object of all currently saved application
@@ -38,9 +40,21 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	jsonBytes, err := api.Application(service.Database, account.ID, false)
-	if err != nil {
-		service.Log.WarnError(api.FormDecodingError, err, api.LogFields{})
+	app, loadErr := service.Store.LoadApplication(account.ID)
+	if loadErr != nil {
+		if loadErr == api.ErrApplicationDoesNotExist {
+			// They've never saved anything, so just return an in-memory one.
+			app = api.BlankApplication(account.ID, account.FormType, account.FormVersion)
+		} else {
+			service.Log.WarnError(api.FormDecodingError, loadErr, api.LogFields{})
+			RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
+			return
+		}
+	}
+
+	jsonBytes, jsonErr := json.Marshal(app)
+	if jsonErr != nil {
+		service.Log.WarnError(api.FormDecodingError, jsonErr, api.LogFields{})
 		RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
 		return
 	}

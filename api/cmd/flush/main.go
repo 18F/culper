@@ -8,8 +8,11 @@ import (
 
 func main() {
 	logger := &log.Service{Log: log.NewLogger()}
-	cmd.Command(logger, func(context api.DatabaseService, account *api.Account) {
-		api.PurgeAccountStorage(context, account.ID)
+	cmd.Command(logger, func(context api.DatabaseService, store api.StorageService, account *api.Account) {
+		delErr := store.DeleteApplication(account.ID)
+		if delErr != nil {
+			logger.Warn("Failed to purge account information", api.LogFields{"account": account.Username})
+		}
 		logger.Info("Account information purged", api.LogFields{"account": account.Username})
 	})
 }

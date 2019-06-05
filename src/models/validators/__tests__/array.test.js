@@ -2,7 +2,7 @@ import array from '../array'
 
 describe('The array validator', () => {
   it('fails if there are no values', () => {
-    const testData = {}
+    const testData = { test: 'thing' }
     expect(array(testData)).toBeTruthy()
   })
 

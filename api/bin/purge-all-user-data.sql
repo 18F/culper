@@ -129,4 +129,5 @@ DELETE FROM texts;
 DELETE FROM attachments;
 DELETE FROM date_ranges;
 DELETE FROM date_controls;
+DELETE FROM applications;
 COMMIT;

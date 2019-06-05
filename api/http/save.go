@@ -13,6 +13,7 @@ type SaveHandler struct {
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
+	Store    api.StorageService
 }
 
 // ServeHTTP saves a payload of information for the provided account.
@@ -60,11 +61,47 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Save to storage and report any errors
-	if _, err = entity.Save(service.Database, account.ID); err != nil {
-		service.Log.WarnError(api.EntitySaveError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+	// TODO: Figure out how to make this cleaner.
+	section, ok := entity.(api.Section)
+	if !ok {
+		service.Log.WarnError(api.PayloadEntityError, err, api.LogFields{})
+		RespondWithStructuredError(w, api.PayloadEntityError, http.StatusBadRequest)
 		return
+	}
+
+	// Save to storage and report any errors
+	saveErr := service.Store.SaveSection(section, id)
+	if saveErr != nil {
+		if saveErr == api.ErrApplicationDoesNotExist {
+			// if the application doesn't exist, we need to create it.
+			newApplication := api.BlankApplication(account.ID, account.FormType, account.FormVersion)
+			newApplication.SetSection(section)
+
+			createErr := service.Store.CreateApplication(newApplication)
+			if createErr != nil {
+				// This should happen but rarely, but there is a race condition here where multiple /save calls
+				// get ApplicationDoesNotExist above. In that case, some of them will get ApplicationExists here,
+				// but it's safe for them to just try again.
+				if createErr == api.ErrApplicationAlreadyExists {
+					service.Log.Debug("Having to double save due to /save race", api.LogFields{})
+					saveAgainErr := service.Store.SaveSection(section, id)
+					if saveAgainErr != nil {
+						// this time, nothing will save you.
+						service.Log.WarnError(api.EntitySaveError, saveAgainErr, api.LogFields{})
+						RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+						return
+					}
+				} else {
+					service.Log.WarnError(api.EntitySaveError, createErr, api.LogFields{})
+					RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+					return
+				}
+			}
+		} else {
+			service.Log.WarnError(api.EntitySaveError, saveErr, api.LogFields{})
+			RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+			return
+		}
 	}
 
 }

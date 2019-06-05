@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http/httptest"
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api/http"
@@ -12,25 +11,16 @@ import (
 
 func TestFormVersionReturned(t *testing.T) {
 
-	services := cleanTestServices()
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
 
-	account, err := createTestAccount(services.db)
-	if err != nil {
-		t.Fatal("bad account", err)
-	}
-
-	// create request/response
-	r := httptest.NewRequest("GET", "/me/form", nil)
-	// authenticate user.
-	authCtx := http.SetAccountIDInRequestContext(r, account.ID)
-	r = r.WithContext(authCtx)
-
-	w := httptest.NewRecorder()
+	w, r := standardResponseAndRequest("GET", "/me/form", nil, account.ID)
 
 	formHandler := http.FormHandler{
 		Env:      services.env,
 		Log:      services.log,
 		Database: services.db,
+		Store:    services.store,
 	}
 
 	formHandler.ServeHTTP(w, r)
@@ -74,12 +64,8 @@ func TestFormVersionReturned(t *testing.T) {
 func TestFormVersionSave(t *testing.T) {
 	// The client cannot set the form version via the API, this test confirms it's an error.
 
-	services := cleanTestServices()
-
-	account, err := createTestAccount(services.db)
-	if err != nil {
-		t.Fatal("bad account", err)
-	}
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
 
 	fmt.Println("Account ID", account.ID)
 
@@ -87,10 +73,10 @@ func TestFormVersionSave(t *testing.T) {
 {
 	"type": "metadata",
 	"form_type": "SF86",
-	"form_version": "2016-11"
+	"form_version": "2017-07"
 }`
 
-	resp := saveJSON(services, metadataBody, account.ID)
+	resp := saveJSON(services, []byte(metadataBody), account.ID)
 
 	if resp.StatusCode != 400 {
 		t.Log(fmt.Sprintf("Status should have been 400: %d", resp.StatusCode))

@@ -6,13 +6,10 @@
       "props": {
         "layout": "Address",
         "street": "123 Some Rd",
-        "street2": "",
         "city": "Arlington",
         "state": "VA",
         "zipcode": "22202",
-        "county": "",
-        "country": "United States",
-        "validated": false
+        "country": "United States"
       }
     }
   }

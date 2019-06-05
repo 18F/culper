@@ -1,28 +1,28 @@
 import RelativesValidator, { RelativeValidator } from './relatives'
 import Location from '../components/Form/Location'
 
-describe('Relatives validation', function() {
+describe('Relatives validation', () => {
   it('validate relative relationship', () => {
     const tests = [
       {
         data: {
           Relation: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Mother'
-          }
+            value: 'Mother',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validRelation()).toBe(
         test.expected
       )
@@ -33,13 +33,13 @@ describe('Relatives validation', function() {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Name: {}
+          Name: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -50,14 +50,14 @@ describe('Relatives validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
-          }
+            suffix: 'Jr',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validName()).toBe(test.expected)
     })
   })
@@ -68,26 +68,26 @@ describe('Relatives validation', function() {
         data: {
           IsDeceased: { value: 'No' },
           Document: {
-            value: 'Permanent'
-          }
+            value: 'Permanent',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           IsDeceased: { value: 'No' },
           Document: {
-            value: 'Other'
+            value: 'Other',
           },
           DocumentComments: {
-            value: 'Other stuff'
-          }
+            value: 'Other stuff',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validDocument()).toBe(
         test.expected
       )
@@ -98,27 +98,27 @@ describe('Relatives validation', function() {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Birthdate: {}
+          Birthdate: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validBirthdate()).toBe(
         test.expected
       )
@@ -129,13 +129,13 @@ describe('Relatives validation', function() {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Birthplace: {}
+          Birthplace: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -143,14 +143,14 @@ describe('Relatives validation', function() {
             country: { value: 'United States' },
             city: 'Arlington',
             state: 'VA',
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
-          }
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validBirthplace()).toBe(
         test.expected
       )
@@ -161,33 +161,33 @@ describe('Relatives validation', function() {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Citizenship: {}
+          Citizenship: {},
         },
-        expected: false
-      },
-      {
-        data: {
-          Citizenship: {
-            value: ['United States']
-          }
-        },
-        expected: true
+        expected: false,
       },
       {
         data: {
           Citizenship: {
-            value: ['United States', 'Germany']
-          }
+            value: ['United States'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
+      {
+        data: {
+          Citizenship: {
+            value: ['United States', 'Germany'],
+          },
+        },
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validCitizenship()).toBe(
         test.expected
       )
@@ -199,31 +199,31 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Mother'
-          }
+            value: 'Mother',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Mother'
+            value: 'Mother',
           },
-          MaidenName: {}
+          MaidenName: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           MaidenSameAsListed: { value: 'Yes' },
-          MaidenName: {}
+          MaidenName: {},
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Mother'
+            value: 'Mother',
           },
           MaidenName: {
             first: 'Foo',
@@ -232,14 +232,14 @@ describe('Relatives validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
-          }
+            suffix: 'Jr',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validMaidenName()).toBe(
         test.expected
       )
@@ -250,29 +250,29 @@ describe('Relatives validation', function() {
     const tests = [
       {
         data: {
-          hideMaiden: false
+          hideMaiden: false,
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           hideMaiden: false,
           Aliases: {
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Guardian'
+            value: 'Guardian',
           },
           Aliases: {
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -282,14 +282,14 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Has: {
-                    value: 'No'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'No',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -299,14 +299,14 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Has: {
-                    value: 'Yes'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Yes',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -316,7 +316,7 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Has: {
-                    value: 'Yes'
+                    value: 'Yes',
                   },
                   Name: {
                     first: 'Foo',
@@ -325,35 +325,38 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   MaidenName: { value: 'No' },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Reason: {
-                    value: 'The reason'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'The reason',
+                  },
+                },
+              },
+              {
+                Item: { Has: { value: 'No' } },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validAliases()).toBe(
         test.expected
       )
@@ -364,29 +367,29 @@ describe('Relatives validation', function() {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          IsDeceased: { value: '' }
+          IsDeceased: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          IsDeceased: { value: 'No' }
+          IsDeceased: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validIsDeceased()).toBe(
         test.expected
       )
@@ -397,20 +400,20 @@ describe('Relatives validation', function() {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           IsDeceased: { value: 'No' },
-          Address: {}
+          Address: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -421,14 +424,14 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validAddress()).toBe(
         test.expected
       )
@@ -440,29 +443,29 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           IsDeceased: { value: 'Yes' },
           Birthplace: {
             country: { value: 'Germany' },
             city: 'Munich',
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
-          }
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             country: { value: 'Germany' },
             city: 'Munich',
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           Address: {
             country: { value: 'United States' },
@@ -470,20 +473,20 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             country: { value: 'Germany' },
             city: 'Munich',
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           Address: {
             country: { value: 'POSTOFFICE' },
@@ -491,35 +494,35 @@ describe('Relatives validation', function() {
             state: 'APO',
             city: 'APO',
             zipcode: '00000',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             country: { value: 'Germany' },
             city: 'Munich',
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
-          }
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Citizenship: {
-            value: ['United States']
-          }
+            value: ['United States'],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new RelativeValidator(test.data).requiresCitizenshipDocumentation()
       ).toBe(test.expected)
@@ -531,34 +534,34 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'No' }
+          IsDeceased: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             country: { value: 'United States' },
             city: 'Arlington',
             state: 'VA',
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -567,107 +570,107 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           CitizenshipDocumentation: {
-            value: 'DerivedAlien'
-          }
+            value: 'DerivedAlien',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Abroad: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           CitizenshipDocumentation: {
-            value: 'Other'
+            value: 'Other',
           },
           OtherCitizenshipDocumentation: {
-            value: 'Other docs'
+            value: 'Other docs',
           },
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Abroad: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           CitizenshipDocumentation: {
-            value: 'FS'
+            value: 'FS',
           },
           OtherCitizenshipDocumentation: {
-            value: 'Other docs'
+            value: 'Other docs',
           },
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Abroad: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new RelativeValidator(test.data).validCitizenshipDocumentation()
       ).toBe(test.expected)
@@ -679,34 +682,34 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'No' }
+          IsDeceased: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Arlington',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -715,64 +718,64 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          DocumentNumber: {}
+          DocumentNumber: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           DocumentNumber: {
-            value: '0000000000000'
-          }
+            value: '0000000000000',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validDocumentNumber()).toBe(
         test.expected
       )
@@ -784,35 +787,35 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'No' }
+          IsDeceased: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           IsDeceased: { value: 'No' },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Arlington',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           Address: {
             country: { value: 'United States' },
@@ -820,64 +823,64 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          CourtName: {}
+          CourtName: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           CourtName: {
-            value: 'Court name'
-          }
+            value: 'Court name',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validCourtName()).toBe(
         test.expected
       )
@@ -889,34 +892,34 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'No' }
+          IsDeceased: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Arlington',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -925,47 +928,47 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          CourtAddress: {}
+          CourtAddress: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -973,7 +976,7 @@ describe('Relatives validation', function() {
             city: 'Munich',
             zipcode: '22202',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           CourtAddress: {
             street: '1234 Some Rd',
@@ -981,14 +984,14 @@ describe('Relatives validation', function() {
             zipcode: '22202',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.US_ADDRESS
-          }
+            layout: Location.US_ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validCourtAddress()).toBe(
         test.expected
       )
@@ -1000,31 +1003,31 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
-          IsDeceased: { value: 'No' }
+          IsDeceased: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1033,21 +1036,21 @@ describe('Relatives validation', function() {
             zipcode: '22202',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.US_ADDRESS
+            layout: Location.US_ADDRESS,
           },
           Document: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1056,21 +1059,21 @@ describe('Relatives validation', function() {
             zipcode: '22202',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.US_ADDRESS
+            layout: Location.US_ADDRESS,
           },
           Document: {
-            value: 'Employment'
-          }
+            value: 'Employment',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1078,15 +1081,15 @@ describe('Relatives validation', function() {
             city: 'Munich',
             zipcode: '22202',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          Document: {}
+          Document: {},
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validDocument()).toBe(
         test.expected
       )
@@ -1098,31 +1101,31 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
-          IsDeceased: { value: 'No' }
+          IsDeceased: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1131,19 +1134,19 @@ describe('Relatives validation', function() {
             zipcode: '22202',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.US_ADDRESS
+            layout: Location.US_ADDRESS,
           },
-          ResidenceDocumentNumber: {}
+          ResidenceDocumentNumber: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1152,21 +1155,21 @@ describe('Relatives validation', function() {
             zipcode: '22202',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.US_ADDRESS
+            layout: Location.US_ADDRESS,
           },
           ResidenceDocumentNumber: {
-            value: '000000000'
-          }
+            value: '000000000',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1174,15 +1177,15 @@ describe('Relatives validation', function() {
             city: 'Munich',
             zipcode: '22202',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          ResidenceDocumentNumber: {}
+          ResidenceDocumentNumber: {},
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new RelativeValidator(test.data).validResidenceDocumentNumber()
       ).toBe(test.expected)
@@ -1194,31 +1197,31 @@ describe('Relatives validation', function() {
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
-          IsDeceased: { value: 'Yes' }
+          IsDeceased: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['United States']
+            value: ['United States'],
           },
-          IsDeceased: { value: 'No' }
+          IsDeceased: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1227,19 +1230,19 @@ describe('Relatives validation', function() {
             zipcode: '22202',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.US_ADDRESS
+            layout: Location.US_ADDRESS,
           },
-          Expiration: {}
+          Expiration: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1248,23 +1251,23 @@ describe('Relatives validation', function() {
             zipcode: '22202',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.US_ADDRESS
+            layout: Location.US_ADDRESS,
           },
           Expiration: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relation: {
-            value: 'Father'
+            value: 'Father',
           },
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1272,15 +1275,15 @@ describe('Relatives validation', function() {
             city: 'Munich',
             zipcode: '22202',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          Expiration: {}
+          Expiration: {},
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validExpiration()).toBe(
         test.expected
       )
@@ -1298,15 +1301,15 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           FirstContact: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -1317,23 +1320,10 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          IsDeceased: { value: 'No' },
-          Address: {
-            street: '1234 Some Rd',
-            city: 'Munich',
-            country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          FirstContact: {}
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1342,19 +1332,32 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
+          },
+          FirstContact: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS,
           },
           FirstContact: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validFirstContact()).toBe(
         test.expected
       )
@@ -1372,15 +1375,15 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           LastContact: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -1391,23 +1394,10 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          IsDeceased: { value: 'No' },
-          Address: {
-            street: '1234 Some Rd',
-            city: 'Munich',
-            country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          LastContact: {}
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1416,19 +1406,32 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
+          },
+          LastContact: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS,
           },
           LastContact: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validLastContact()).toBe(
         test.expected
       )
@@ -1446,10 +1449,10 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1460,13 +1463,13 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Methods: {
-            values: ['In person', 'Electronic']
-          }
+            values: ['In person', 'Electronic'],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -1475,13 +1478,13 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Methods: {
-            values: []
-          }
+            values: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1490,17 +1493,17 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Methods: {
-            values: ['In person', 'Electronic']
-          }
+            values: ['In person', 'Electronic'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validMethods()).toBe(
         test.expected
       )
@@ -1518,10 +1521,10 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1532,13 +1535,13 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Frequency: {
-            value: 'Daily'
-          }
+            value: 'Daily',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -1547,11 +1550,11 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          Frequency: ''
+          Frequency: '',
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1560,13 +1563,13 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Frequency: {
-            value: 'Daily'
-          }
+            value: 'Daily',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -1575,16 +1578,16 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Frequency: {
-            value: 'Other'
+            value: 'Other',
           },
           FrequencyComments: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1593,20 +1596,20 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Frequency: {
-            value: 'Other'
+            value: 'Other',
           },
           FrequencyComments: {
-            value: 'foo'
-          }
+            value: 'foo',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validFrequency()).toBe(
         test.expected
       )
@@ -1624,23 +1627,10 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          IsDeceased: { value: 'No' },
-          Address: {
-            street: '1234 Some Rd',
-            city: 'Munich',
-            country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          Employer: {}
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
@@ -1649,17 +1639,30 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
+          },
+          Employer: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS,
           },
           Employer: {
-            value: 'ACME'
-          }
+            value: 'ACME',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validEmployer()).toBe(
         test.expected
       )
@@ -1677,23 +1680,10 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          IsDeceased: { value: 'No' },
-          Address: {
-            street: '1234 Some Rd',
-            city: 'Munich',
-            country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          EmployerAddress: {}
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
@@ -1702,7 +1692,20 @@ describe('Relatives validation', function() {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
+          },
+          EmployerAddress: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS,
           },
           EmployerAddress: {
             country: { value: 'United States' },
@@ -1710,14 +1713,14 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validEmployerAddress()).toBe(
         test.expected
       )
@@ -1729,7 +1732,7 @@ describe('Relatives validation', function() {
       {
         data: {
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1738,82 +1741,82 @@ describe('Relatives validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          HasAffiliation: { value: '' }
+          HasAffiliation: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
-          HasAffiliation: { value: 'No' }
+          HasAffiliation: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           HasAffiliation: { value: 'Yes' },
-          EmployerRelationship: {}
+          EmployerRelationship: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Citizenship: {
-            value: ['Germany']
+            value: ['Germany'],
           },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
             country: { value: 'Germany' },
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           HasAffiliation: { value: 'Yes' },
           EmployerRelationship: {
-            value: 'Associate'
-          }
+            value: 'Associate',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativeValidator(test.data).validEmployerRelationship()).toBe(
         test.expected
       )
@@ -1830,14 +1833,14 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Mother'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Mother',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -1847,7 +1850,7 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Mother'
+                    value: 'Mother',
                   },
                   Name: {
                     first: 'Foo',
@@ -1856,21 +1859,21 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Birthplace: {
                     city: 'Arlington',
                     state: 'VA',
                     country: { value: ['United States'] },
-                    layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+                    layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
                   },
                   Citizenship: {
-                    value: ['United States']
+                    value: ['United States'],
                   },
                   MaidenName: {
                     first: 'Foo',
@@ -1879,14 +1882,14 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Aliases: {
                     items: [
                       {
                         Item: {
                           Has: {
-                            value: 'Yes'
+                            value: 'Yes',
                           },
                           Name: {
                             first: 'Foo',
@@ -1895,28 +1898,29 @@ describe('Relatives validation', function() {
                             middleInitialOnly: true,
                             noMiddleName: false,
                             last: 'Bar',
-                            suffix: 'Jr'
+                            suffix: 'Jr',
                           },
                           MaidenName: { value: 'No' },
                           Dates: {
                             from: {
                               month: '1',
                               day: '1',
-                              year: '2010'
+                              year: '2010',
                             },
                             to: {
                               month: '1',
                               day: '1',
-                              year: '2012'
+                              year: '2012',
                             },
-                            present: false
+                            present: false,
                           },
                           Reason: {
-                            value: 'The reason'
-                          }
-                        }
-                      }
-                    ]
+                            value: 'The reason',
+                          },
+                        },
+                      },
+                      { Item: { Has: { value: 'No' } } },
+                    ],
                   },
                   IsDeceased: { value: 'No' },
                   Address: {
@@ -1925,14 +1929,14 @@ describe('Relatives validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
-                  }
-                }
+                    layout: Location.ADDRESS,
+                  },
+                },
               },
               {
                 Item: {
                   Relation: {
-                    value: 'Father'
+                    value: 'Father',
                   },
                   Name: {
                     first: 'Foo',
@@ -1941,21 +1945,21 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Birthplace: {
                     city: 'Arlington',
                     state: 'VA',
                     country: { value: ['United States'] },
-                    layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+                    layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
                   },
                   Citizenship: {
-                    value: ['United States']
+                    value: ['United States'],
                   },
                   MaidenName: {
                     first: 'Foo',
@@ -1964,14 +1968,14 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Aliases: {
                     items: [
                       {
                         Item: {
                           Has: {
-                            value: 'Yes'
+                            value: 'Yes',
                           },
                           Name: {
                             first: 'Foo',
@@ -1980,28 +1984,29 @@ describe('Relatives validation', function() {
                             middleInitialOnly: true,
                             noMiddleName: false,
                             last: 'Bar',
-                            suffix: 'Jr'
+                            suffix: 'Jr',
                           },
                           MaidenName: { value: 'No' },
                           Dates: {
                             from: {
                               month: '1',
                               day: '1',
-                              year: '2010'
+                              year: '2010',
                             },
                             to: {
                               month: '1',
                               day: '1',
-                              year: '2012'
+                              year: '2012',
                             },
-                            present: false
+                            present: false,
                           },
                           Reason: {
-                            value: 'The reason'
-                          }
-                        }
-                      }
-                    ]
+                            value: 'The reason',
+                          },
+                        },
+                      },
+                      { Item: { Has: { value: 'No' } } },
+                    ],
                   },
                   IsDeceased: { value: 'No' },
                   Address: {
@@ -2010,18 +2015,18 @@ describe('Relatives validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
-                  }
-                }
-              }
-            ]
-          }
+                    layout: Location.ADDRESS,
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativesValidator(test.data).isValid()).toBe(test.expected)
     })
   })
@@ -2036,14 +2041,14 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Mother'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Mother',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -2053,14 +2058,14 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Father'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Father',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -2070,25 +2075,25 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Mother'
-                  }
-                }
+                    value: 'Mother',
+                  },
+                },
               },
               {
                 Item: {
                   Relation: {
-                    value: 'Father'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Father',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new RelativesValidator(test.data).validMinimumRelations()).toBe(
         test.expected
       )
@@ -2105,22 +2110,22 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Mother-in-law'
-                  }
-                }
+                    value: 'Mother-in-law',
+                  },
+                },
               },
               {
                 Item: {
                   Relation: {
-                    value: 'Father-in-law'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Father-in-law',
+                  },
+                },
+              },
+            ],
+          },
         },
         context: 'Married',
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -2130,22 +2135,22 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Mother-in-law'
-                  }
-                }
+                    value: 'Mother-in-law',
+                  },
+                },
               },
               {
                 Item: {
                   Relation: {
-                    value: 'Father-in-law'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Father-in-law',
+                  },
+                },
+              },
+            ],
+          },
         },
         context: 'Separated',
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -2155,15 +2160,15 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Mother-in-law'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Mother-in-law',
+                  },
+                },
+              },
+            ],
+          },
         },
         context: 'Married',
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -2173,19 +2178,19 @@ describe('Relatives validation', function() {
               {
                 Item: {
                   Relation: {
-                    value: 'Father-in-law'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Father-in-law',
+                  },
+                },
+              },
+            ],
+          },
         },
         context: 'Separated',
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new RelativesValidator(test.data).validMaritalRelations(test.context)
       ).toBe(test.expected)

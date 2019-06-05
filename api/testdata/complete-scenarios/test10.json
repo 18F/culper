@@ -5765,7 +5765,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5785,7 +5788,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5805,7 +5811,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5825,7 +5834,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5845,7 +5857,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5865,7 +5880,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5885,7 +5903,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5905,7 +5926,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5925,7 +5949,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -5961,16 +5988,237 @@
         "HasOffenses": {
           "type": "branch",
           "props": {
-            "value": "No"
+            "value": "Yes"
           }
         },
         "List": {
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
             },
-            "items": []
+            "items": [
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Offense",
+                      "city": "Victoria",
+                      "country": "Canada"
+                    }
+                  },
+                  "AgencyAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "AwaitingTrial": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "AwaitingTrialExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "ChargeType": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CitedBy": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "",
+                      "country": ""
+                    }
+                  },
+                  "CourtCharge": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtDate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtOutcome": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Date": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "03",
+                      "day": "02",
+                      "year": "2019",
+                      "estimated": true
+                    }
+                  },
+                  "Description": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "Removal of seashell from protected marine sanctuary."
+                    }
+                  },
+                  "Explanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "I just returned the seashell and all was forgiven."
+                    }
+                  },
+                  "InvolvedFirearms": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "InvolvedSubstances": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "InvolvedViolence": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "Sentence": {
+                    "type": "sentence",
+                    "props": {
+                      "Description": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "ExceedsYear": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Incarcerated": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "IncarcerationDates": {
+                        "type": "daterange",
+                        "props": {
+                          "from": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "to": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "present": false
+                        }
+                      },
+                      "IncarcerationDatesNA": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "ProbationDates": {
+                        "type": "daterange",
+                        "props": {
+                          "from": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "to": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "present": false
+                        }
+                      },
+                      "ProbationDatesNA": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      }
+                    }
+                  },
+                  "WasCharged": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "WasCited": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "WasSentenced": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       }
@@ -5988,7 +6236,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6008,7 +6259,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6045,7 +6299,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6065,7 +6322,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6085,7 +6345,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -6095,7 +6358,7 @@
   },
   "Metadata": {
     "form_type": "SF86",
-    "form_version": "2016-11",
+    "form_version": "2017-07",
     "type": "metadata"
   },
   "Military": {

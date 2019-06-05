@@ -1,4 +1,6 @@
-import { today, dateWithinRange } from './date'
+import {
+  today, dateWithinRange, sortDateRanges, findTimelineGaps,
+} from './date'
 
 describe('The dateWithinRange helper function', () => {
   it('returns true if the date is within the range', () => {
@@ -21,4 +23,75 @@ describe('The dateWithinRange helper function', () => {
 
     expect(dateWithinRange(testDate, testDuration)).toBe(true)
   })
+})
+
+describe('The sortDateRanges function', () => {
+  it('sorts a list of date ranges', () => {
+    const testData = [
+      {
+        from: today.minus({ years: 5 }).toObject(),
+        to: today.minus({ years: 1 }).toObject(),
+      },
+      {
+        from: today.minus({ years: 4, months: 11 }).toObject(),
+        present: true,
+      },
+      {
+        from: today.minus({ years: 10 }).toObject(),
+        to: today.minus({ years: 3 }).toObject(),
+      },
+    ]
+
+    const expected = [
+      {
+        from: today.minus({ years: 10 }),
+        to: today.minus({ years: 3 }),
+      },
+      {
+        from: today.minus({ years: 5 }),
+        to: today.minus({ years: 1 }),
+      },
+      {
+        from: today.minus({ years: 4, months: 11 }),
+        to: today,
+      },
+    ]
+
+    expect(sortDateRanges(testData)).toEqual(expected)
+  })
+})
+
+describe('The findTimelineGaps function', () => {
+  const testDuration = { years: 3 }
+  const testRanges = [
+    {
+      from: today.minus({ years: 8 }).toObject(),
+      to: today.minus({ years: 6 }).toObject(),
+    },
+    {
+      from: today.minus({ years: 5, months: 8 }).toObject(),
+      to: today.minus({ years: 2, months: 10 }).toObject(),
+    },
+    {
+      from: today.minus({ years: 2, months: 4 }).toObject(),
+      to: today.minus({ years: 1, months: 11 }).toObject(),
+    },
+    {
+      from: today.minus({ months: 6 }).toObject(),
+      present: true,
+    },
+  ]
+
+  const expectedGaps = [
+    {
+      from: today.minus({ years: 2, months: 10 }),
+      to: today.minus({ years: 2, months: 4 }),
+    },
+    {
+      from: today.minus({ years: 1, months: 11 }),
+      to: today.minus({ months: 6 }),
+    },
+  ]
+
+  expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
 })

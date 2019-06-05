@@ -1,11 +1,15 @@
 package mock
 
-import "html/template"
+import (
+	"html/template"
+
+	"github.com/18F/e-QIP-prototype/api"
+)
 
 // XMLService is a mock implementation of handling XML.
 type XMLService struct{}
 
-// DefaultTemplate returns a template given data.
-func (service *XMLService) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
-	return template.HTML("<span>test</span>")
+// PackageXML returns a template given data.
+func (service *XMLService) PackageXML(app api.Application) (template.HTML, error) {
+	return template.HTML("<span>test</span>"), nil
 }

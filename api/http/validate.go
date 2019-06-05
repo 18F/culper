@@ -9,10 +9,7 @@ import (
 
 // ValidateHandler is the handler for validating a payload.
 type ValidateHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Token    api.TokenService
-	Database api.DatabaseService
+	Log api.LogService
 }
 
 // ServeHTTP validates if the payload pass validation procedures.
