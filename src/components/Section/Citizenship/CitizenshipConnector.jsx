@@ -76,7 +76,6 @@ const connectCitizenshipSection = (Component, {
         return {
           ...citizenship.Status,
           ...selectValidUSPassport(state),
-          usPassport: foreign.Passport,
         }
 
       case 'Multiple':
