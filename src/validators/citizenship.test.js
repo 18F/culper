@@ -259,9 +259,6 @@ describe('citizenship component validation', () => {
           Explanation: {
             value: 'Explanation',
           },
-          Passport: {
-            HasPassports: { value: 'No' },
-          },
         },
         expected: true,
       },
