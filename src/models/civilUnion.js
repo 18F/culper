@@ -47,7 +47,7 @@ const civilUnion = {
     if (attributes.UseCurrentAddress
       && attributes.UseCurrentAddress.applicable === true) return {}
 
-    return { location: { validator: address } }
+    return { presence: true, location: { validator: address } }
   },
   Location: {
     presence: true,
