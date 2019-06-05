@@ -42,7 +42,13 @@ const civilUnion = {
     presence: true,
     hasValue: { validator: hasYesOrNo },
   },
-  Address: { location: { validator: address } },
+  Address: (value, attributes) => {
+    // UseCurrentAddress applicable is the opposite of all other NotApplicable patterns
+    if (attributes.UseCurrentAddress
+      && attributes.UseCurrentAddress.applicable === true) return {}
+
+    return { location: { validator: address } }
+  },
   Location: {
     presence: true,
     location: { validator: birthplace },
