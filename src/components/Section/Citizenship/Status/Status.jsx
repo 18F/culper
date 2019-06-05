@@ -4,7 +4,7 @@ import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
 import schema from 'schema'
 import validate from 'validators'
 import { isDocumentRequired, isCertificateRequired } from 'validators/citizenship'
-import { validateHasPassport, validatePassport } from 'validators/passport'
+import { hasUsPassport, validateUsPassport } from 'validators/passport'
 import {
   Branch,
   Show,
@@ -138,8 +138,8 @@ export class Status extends Subsection {
     } = this.props
 
     const hasValidUnitedStatesPassport = (
-      validateHasPassport((usPassport.HasPassports || {}).value)
-      && validatePassport(usPassport)
+      hasUsPassport((usPassport.HasPassports || {}).value)
+      && validateUsPassport(usPassport)
     )
 
     const data = {
@@ -168,6 +168,8 @@ export class Status extends Subsection {
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}
         >
+          {/* eslint jsx-a11y/label-has-associated-control: 0 */}
+          {/* eslint jsx-a11y/label-has-for: 0 */}
           <label>
             {i18n.t('citizenship.status.heading.citizenshipstatusLabel')}
           </label>

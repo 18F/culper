@@ -1,14 +1,27 @@
+import store from 'services/store'
+import { hasValidUSPassport } from 'validators/passport'
+
 import { validateModel } from 'models/validate'
 import citizenshipStatus, {
   requireCertificateFields,
   requireDocumentationFields,
 } from 'models/citizenshipStatus'
 
-export const validateCitizenshipStatus = data => validateModel(data, citizenshipStatus) === true
+export const validateCitizenshipStatus = data => (
+  validateModel(data, citizenshipStatus, {
+    requireForeignBornDocumentation: hasValidUSPassport(store.getState()),
+  }) === true
+)
 
-export const isCertificateRequired = data => requireCertificateFields(data)
+export const isCertificateRequired = (data) => {
+  const requireForeignBornDocumentation = hasValidUSPassport(store.getState())
+  return requireCertificateFields(data, { requireForeignBornDocumentation })
+}
 
-export const isDocumentRequired = data => requireDocumentationFields(data)
+export const isDocumentRequired = (data) => {
+  const requireForeignBornDocumentation = hasValidUSPassport(store.getState())
+  return requireDocumentationFields(data, { requireForeignBornDocumentation })
+}
 
 export default class CitizenshipValidator {
   constructor(data = {}) {
