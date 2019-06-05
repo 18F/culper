@@ -102,9 +102,9 @@ export const hasYesOrNo = {
 }
 
 /** check the value of an attribute.value */
-export const checkValue = (attribute, expected) => attribute
+export const checkValue = (attribute, expected) => !!(attribute
   && attribute.value
-  && attribute.value === expected
+  && attribute.value === expected)
 
 export const checkValueIncluded = (attribute, expected) => attribute
   && attribute.value

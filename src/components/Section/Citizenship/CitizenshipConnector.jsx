@@ -13,6 +13,7 @@ import {
   selectMultipleCitizenshipRenounced,
   selectCitizenshipForeignPassportsSection,
 } from 'selectors/branches'
+import { selectValidUSPassport } from 'selectors/misc'
 
 const connectCitizenshipSection = (Component, {
   section, subsection, store, storeKey,
@@ -74,6 +75,7 @@ const connectCitizenshipSection = (Component, {
       case 'Status':
         return {
           ...citizenship.Status,
+          ...selectValidUSPassport(state),
           usPassport: foreign.Passport,
         }
 

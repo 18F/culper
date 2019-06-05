@@ -4,7 +4,6 @@ import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
 import schema from 'schema'
 import validate from 'validators'
 import { isDocumentRequired, isCertificateRequired } from 'validators/citizenship'
-import { hasUsPassport, validateUsPassport } from 'validators/passport'
 import {
   Branch,
   Show,
@@ -134,13 +133,8 @@ export class Status extends Subsection {
       CertificateNumber,
       CertificateIssued,
       CertificateName,
-      usPassport,
+      hasValidUSPassport,
     } = this.props
-
-    const hasValidUnitedStatesPassport = (
-      hasUsPassport((usPassport.HasPassports || {}).value)
-      && validateUsPassport(usPassport)
-    )
 
     const data = {
       citizenshipstatus: (CitizenshipStatus || {}).value,
@@ -154,8 +148,10 @@ export class Status extends Subsection {
       certificateIssued: CertificateIssued,
       certificateName: CertificateName,
     }
-    const resultIsCertificateRequired = isCertificateRequired(data)
-    const resultIsDocumentRequired = isDocumentRequired(data)
+
+    const resultIsCertificateRequired = isCertificateRequired(data, !hasValidUSPassport)
+    const resultIsDocumentRequired = isDocumentRequired(data, !hasValidUSPassport)
+
     return (
       <div
         className="section-content status"
@@ -226,7 +222,7 @@ export class Status extends Subsection {
           when={(this.props.CitizenshipStatus || {}).value === 'ForeignBorn'}
         >
           <div>
-            {!hasValidUnitedStatesPassport && (
+            {!hasValidUSPassport && (
               <div>
                 <Field
                   title={i18n.t('citizenship.status.heading.abroad')}
@@ -1113,7 +1109,7 @@ Status.defaultProps = {
   ResidenceStatus: {},
   DocumentType: {},
   DocumentExpiration: {},
-  usPassport: {},
+  hasValidUSPassport: false,
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
