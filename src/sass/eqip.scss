@@ -63,6 +63,7 @@ p {
       &.eapp-navigation {
         background: $color-gray-extra-lightest;
         border-right: 1px solid $color-gray-lightest;
+        min-height: 100vh;
       }
     }
 
