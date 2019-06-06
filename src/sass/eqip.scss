@@ -430,6 +430,11 @@ p {
   }
 }
 
+// eApp section focus
+a.eapp-section-focus:focus {
+  outline: none;
+}
+
 // List styles
 
 .usa-list-inline {
