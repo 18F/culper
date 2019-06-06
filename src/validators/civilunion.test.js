@@ -208,6 +208,7 @@ describe('CivilUnion validation', () => {
       {
         data: {
           Address: {},
+          UseCurrentAddress: { applicable: true },
         },
         expected: true,
       },
