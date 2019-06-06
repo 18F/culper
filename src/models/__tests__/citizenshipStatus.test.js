@@ -155,8 +155,8 @@ describe('The citizenshipStatus model', () => {
       })
     })
 
-    describe('if there is no partial data', () => {
-      it('all documentation fields and certificate fields are required', () => {
+    describe('if documentation is not required', () => {
+      it('no documentation fields and certificate fields are required', () => {
         const testData = {
           CitizenshipStatus: { value: 'ForeignBorn' },
         }
@@ -171,282 +171,401 @@ describe('The citizenshipStatus model', () => {
           'CertificateName.required',
         ]
 
-        expect(validateModel(testData, citizenshipStatus))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
-    })
-
-    describe('if there is only certificate data', () => {
-      it('certificate fields are required', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          CertificateNumber: { value: '123' },
-        }
-        const expectedErrors = [
-          'CertificateIssued.required',
-          'CertificateName.required',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
-
-      it('documentation fields are not required', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          CertificateNumber: { value: '123' },
-        }
-        const expectedErrors = [
-          'AbroadDocumentation.required',
-          'DocumentNumber.required',
-          'DocumentIssued.required',
-          'PlaceIssued.required',
-          'DocumentName.required',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
+        expect(validateModel(testData, citizenshipStatus, {
+          requireForeignBornDocumentation: false,
+        }))
           .not.toEqual(expect.arrayContaining(expectedErrors))
-      })
-
-      it('CertificateNumber must have a valid value', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          CertificateNumber: '123',
-        }
-        const expectedErrors = [
-          'CertificateNumber.hasValue',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
-
-      it('CertificateIssued must be a valid date', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          CertificateIssued: 'january',
-        }
-        const expectedErrors = [
-          'CertificateIssued.date',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
-
-      it('CertificateName must be a valid name', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          CertificateName: '123',
-        }
-        const expectedErrors = [
-          'CertificateName.model',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
-          .toEqual(expect.arrayContaining(expectedErrors))
       })
 
       it('passes a valid citizenship status', () => {
         const testData = {
           CitizenshipStatus: { value: 'ForeignBorn' },
-          BornOnMilitaryInstallation: { value: 'Yes' },
-          MilitaryBase: { value: 'Some Base' },
-          CertificateNumber: { value: '123' },
-          CertificateIssued: { year: 2005, month: 1, day: 1 },
-          CertificateName: {
-            first: 'My',
-            noMiddleName: true,
-            last: 'Name',
-          },
+          BornOnMilitaryInstallation: { value: 'No' },
         }
 
-        expect(validateModel(testData, citizenshipStatus)).toEqual(true)
+        expect(validateModel(testData, citizenshipStatus, {
+          requireForeignBornDocumentation: false,
+        })).toEqual(true)
       })
     })
 
-    describe('if there is only documentation data', () => {
-      it('certificate fields are not required', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          DocumentNumber: { value: '123' },
-        }
-        const expectedErrors = [
-          'CertificateNumber.required',
-          'CertificateIssued.required',
-          'CertificateName.required',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
-          .not.toEqual(expect.arrayContaining(expectedErrors))
-      })
-
-      it('AbroadDocumentation is required', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-        }
-        const expectedErrors = [
-          'AbroadDocumentation.required',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
-
-      it('AbroadDocumentation must have a valid value', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          AbroadDocumentation: { value: 'blah' },
-        }
-        const expectedErrors = [
-          'AbroadDocumentation.hasValue',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
-
-      describe('if AbroadDocumentation is "Other"', () => {
-        it('Explanation is required', () => {
+    describe('if documentation is required', () => {
+      describe('if there is no partial data', () => {
+        it('all documentation fields and certificate fields are required', () => {
           const testData = {
             CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'Other' },
           }
           const expectedErrors = [
-            'Explanation.required',
+            'AbroadDocumentation.required',
+            'DocumentNumber.required',
+            'DocumentIssued.required',
+            'PlaceIssued.required',
+            'DocumentName.required',
+            'CertificateNumber.required',
+            'CertificateIssued.required',
+            'CertificateName.required',
           ]
 
-          expect(validateModel(testData, citizenshipStatus))
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+      })
+
+      describe('if there is only certificate data', () => {
+        it('certificate fields are required', () => {
+          const testData = {
+            CitizenshipStatus: { value: 'ForeignBorn' },
+            CertificateNumber: { value: '123' },
+          }
+          const expectedErrors = [
+            'CertificateIssued.required',
+            'CertificateName.required',
+          ]
+
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
-        it('other documentation fields are not required', () => {
+        it('documentation fields are not required', () => {
           const testData = {
             CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'Other' },
+            CertificateNumber: { value: '123' },
           }
           const expectedErrors = [
+            'AbroadDocumentation.required',
             'DocumentNumber.required',
             'DocumentIssued.required',
             'PlaceIssued.required',
             'DocumentName.required',
           ]
 
-          expect(validateModel(testData, citizenshipStatus))
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
             .not.toEqual(expect.arrayContaining(expectedErrors))
         })
 
-        it('Explanation must be a valid value', () => {
+        it('CertificateNumber must have a valid value', () => {
           const testData = {
             CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'Other' },
-            Explanation: 'test',
+            CertificateNumber: '123',
           }
           const expectedErrors = [
-            'Explanation.hasValue',
+            'CertificateNumber.hasValue',
           ]
 
-          expect(validateModel(testData, citizenshipStatus))
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('CertificateIssued must be a valid date', () => {
+          const testData = {
+            CitizenshipStatus: { value: 'ForeignBorn' },
+            CertificateIssued: 'january',
+          }
+          const expectedErrors = [
+            'CertificateIssued.date',
+          ]
+
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('CertificateName must be a valid name', () => {
+          const testData = {
+            CitizenshipStatus: { value: 'ForeignBorn' },
+            CertificateName: '123',
+          }
+          const expectedErrors = [
+            'CertificateName.model',
+          ]
+
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
         it('passes a valid citizenship status', () => {
           const testData = {
             CitizenshipStatus: { value: 'ForeignBorn' },
-            BornOnMilitaryInstallation: { value: 'No' },
-            AbroadDocumentation: { value: 'Other' },
-            Explanation: { value: 'My explanation is here' },
+            BornOnMilitaryInstallation: { value: 'Yes' },
+            MilitaryBase: { value: 'Some Base' },
+            CertificateNumber: { value: '123' },
+            CertificateIssued: { year: 2005, month: 1, day: 1 },
+            CertificateName: {
+              first: 'My',
+              noMiddleName: true,
+              last: 'Name',
+            },
           }
 
-          expect(validateModel(testData, citizenshipStatus)).toEqual(true)
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          })).toEqual(true)
         })
       })
 
-      describe('if AbroadDocumentation is not "Other"', () => {
-        it('Explanation is not required', () => {
+      describe('if there is only documentation data', () => {
+        it('certificate fields are not required', () => {
           const testData = {
             CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'FS-240' },
+            DocumentNumber: { value: '123' },
           }
           const expectedErrors = [
-            'Explanation.required',
+            'CertificateNumber.required',
+            'CertificateIssued.required',
+            'CertificateName.required',
           ]
 
-          expect(validateModel(testData, citizenshipStatus))
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
             .not.toEqual(expect.arrayContaining(expectedErrors))
         })
 
-        it('other documentation fields are required', () => {
+        it('AbroadDocumentation is required', () => {
           const testData = {
             CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'FS-240' },
           }
           const expectedErrors = [
-            'DocumentNumber.required',
+            'AbroadDocumentation.required',
+          ]
+
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('AbroadDocumentation must have a valid value', () => {
+          const testData = {
+            CitizenshipStatus: { value: 'ForeignBorn' },
+            AbroadDocumentation: { value: 'blah' },
+          }
+          const expectedErrors = [
+            'AbroadDocumentation.hasValue',
+          ]
+
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        describe('if AbroadDocumentation is "Other"', () => {
+          it('Explanation is required', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'Other' },
+            }
+            const expectedErrors = [
+              'Explanation.required',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('other documentation fields are not required', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'Other' },
+            }
+            const expectedErrors = [
+              'DocumentNumber.required',
+              'DocumentIssued.required',
+              'PlaceIssued.required',
+              'DocumentName.required',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .not.toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('Explanation must be a valid value', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'Other' },
+              Explanation: 'test',
+            }
+            const expectedErrors = [
+              'Explanation.hasValue',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('passes a valid citizenship status', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              BornOnMilitaryInstallation: { value: 'No' },
+              AbroadDocumentation: { value: 'Other' },
+              Explanation: { value: 'My explanation is here' },
+            }
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            })).toEqual(true)
+          })
+        })
+
+        describe('if AbroadDocumentation is not "Other"', () => {
+          it('Explanation is not required', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'FS-240' },
+            }
+            const expectedErrors = [
+              'Explanation.required',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .not.toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('other documentation fields are required', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'FS-240' },
+            }
+            const expectedErrors = [
+              'DocumentNumber.required',
+              'DocumentIssued.required',
+              'PlaceIssued.required',
+              'DocumentName.required',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('DocumentNumber must be a valid value', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'FS-240' },
+              DocumentNumber: { value: '' },
+            }
+            const expectedErrors = [
+              'DocumentNumber.hasValue',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('DocumentIssued must be a valid date', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'FS-240' },
+              DocumentIssued: { year: '200' },
+            }
+            const expectedErrors = [
+              'DocumentIssued.date',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('PlaceIssued must be a valid location', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'FS-240' },
+              PlaceIssued: {
+                country: 'testing',
+              },
+            }
+            const expectedErrors = [
+              'PlaceIssued.location',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('DocumentName must be a valid name', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'FS-240' },
+              DocumentName: 'My Name',
+            }
+            const expectedErrors = [
+              'DocumentName.model',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('passes a valid citizenship status', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              BornOnMilitaryInstallation: { value: 'No' },
+              AbroadDocumentation: { value: 'FS-240' },
+              DocumentNumber: { value: 'abc123' },
+              DocumentIssued: { year: 2000, month: 9, day: 2 },
+              PlaceIssued: { country: 'United States', city: 'New York', state: 'NY' },
+              DocumentName: {
+                first: 'My',
+                noMiddleName: true,
+                last: 'Name',
+              },
+            }
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            })).toEqual(true)
+          })
+        })
+      })
+
+      describe('if there is both documentation and certificate data', () => {
+        it('all documentation fields and certificate fields are required', () => {
+          const testData = {
+            CitizenshipStatus: { value: 'ForeignBorn' },
+            CertificateNumber: { value: '123' },
+            DocumentNumber: { value: '123' },
+          }
+          const expectedErrors = [
+            'AbroadDocumentation.required',
             'DocumentIssued.required',
             'PlaceIssued.required',
             'DocumentName.required',
+            'CertificateIssued.required',
+            'CertificateName.required',
           ]
 
-          expect(validateModel(testData, citizenshipStatus))
-            .toEqual(expect.arrayContaining(expectedErrors))
-        })
-
-        it('DocumentNumber must be a valid value', () => {
-          const testData = {
-            CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'FS-240' },
-            DocumentNumber: { value: '' },
-          }
-          const expectedErrors = [
-            'DocumentNumber.hasValue',
-          ]
-
-          expect(validateModel(testData, citizenshipStatus))
-            .toEqual(expect.arrayContaining(expectedErrors))
-        })
-
-        it('DocumentIssued must be a valid date', () => {
-          const testData = {
-            CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'FS-240' },
-            DocumentIssued: { year: '200' },
-          }
-          const expectedErrors = [
-            'DocumentIssued.date',
-          ]
-
-          expect(validateModel(testData, citizenshipStatus))
-            .toEqual(expect.arrayContaining(expectedErrors))
-        })
-
-        it('PlaceIssued must be a valid location', () => {
-          const testData = {
-            CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'FS-240' },
-            PlaceIssued: {
-              country: 'testing',
-            },
-          }
-          const expectedErrors = [
-            'PlaceIssued.location',
-          ]
-
-          expect(validateModel(testData, citizenshipStatus))
-            .toEqual(expect.arrayContaining(expectedErrors))
-        })
-
-        it('DocumentName must be a valid name', () => {
-          const testData = {
-            CitizenshipStatus: { value: 'ForeignBorn' },
-            AbroadDocumentation: { value: 'FS-240' },
-            DocumentName: 'My Name',
-          }
-          const expectedErrors = [
-            'DocumentName.model',
-          ]
-
-          expect(validateModel(testData, citizenshipStatus))
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          }))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -463,56 +582,19 @@ describe('The citizenshipStatus model', () => {
               noMiddleName: true,
               last: 'Name',
             },
+            CertificateNumber: { value: '123' },
+            CertificateIssued: { year: 2005, month: 1, day: 1 },
+            CertificateName: {
+              first: 'My',
+              noMiddleName: true,
+              last: 'Name',
+            },
           }
 
-          expect(validateModel(testData, citizenshipStatus)).toEqual(true)
+          expect(validateModel(testData, citizenshipStatus, {
+            requireForeignBornDocumentation: true,
+          })).toEqual(true)
         })
-      })
-    })
-
-    describe('if there is both documentation and certificate data', () => {
-      it('all documentation fields and certificate fields are required', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          CertificateNumber: { value: '123' },
-          DocumentNumber: { value: '123' },
-        }
-        const expectedErrors = [
-          'AbroadDocumentation.required',
-          'DocumentIssued.required',
-          'PlaceIssued.required',
-          'DocumentName.required',
-          'CertificateIssued.required',
-          'CertificateName.required',
-        ]
-
-        expect(validateModel(testData, citizenshipStatus))
-          .toEqual(expect.arrayContaining(expectedErrors))
-      })
-
-      it('passes a valid citizenship status', () => {
-        const testData = {
-          CitizenshipStatus: { value: 'ForeignBorn' },
-          BornOnMilitaryInstallation: { value: 'No' },
-          AbroadDocumentation: { value: 'FS-240' },
-          DocumentNumber: { value: 'abc123' },
-          DocumentIssued: { year: 2000, month: 9, day: 2 },
-          PlaceIssued: { country: 'United States', city: 'New York', state: 'NY' },
-          DocumentName: {
-            first: 'My',
-            noMiddleName: true,
-            last: 'Name',
-          },
-          CertificateNumber: { value: '123' },
-          CertificateIssued: { year: 2005, month: 1, day: 1 },
-          CertificateName: {
-            first: 'My',
-            noMiddleName: true,
-            last: 'Name',
-          },
-        }
-
-        expect(validateModel(testData, citizenshipStatus)).toEqual(true)
       })
     })
   })

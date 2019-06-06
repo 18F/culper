@@ -1,4 +1,4 @@
-import { validateModel } from 'models/validate'
+import { validateModel, checkValue } from 'models/validate'
 import usPassport from 'models/usPassport'
 
 export const validateUsPassport = (data) => {
@@ -12,6 +12,11 @@ export const validateUsPassport = (data) => {
     ...data,
     Dates,
   }, usPassport) === true
+}
+
+export const hasValidUSPassport = (data = {}) => {
+  const { HasPassports = {} } = data
+  return checkValue(HasPassports, 'Yes') && validateUsPassport(data)
 }
 
 /**

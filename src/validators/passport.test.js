@@ -1,232 +1,65 @@
-import PassportValidator from './passport'
+import PassportValidator, {
+  hasValidUSPassport,
+} from './passport'
 
-describe('Passport component validation', function() {
-  it('should validate has passport branch', function() {
-    const tests = [
-      {
-        data: {
-          HasPassports: { value: 'Yes' }
-        },
-        expected: true
-      },
-      {
-        data: {
-          HasPassports: { value: 'No' }
-        },
-        expected: true
-      },
-      {
-        data: {
-          HasPassports: { value: '' }
-        },
-        expected: false
-      },
-      {
-        data: {
-          HasPassports: { value: 'Nope' }
-        },
-        expected: false
+describe('Passport component validation', () => {
+  describe('hasValidUSPassport function', () => {
+    it('should fail if the applicant does not have a passport', () => {
+      const testData = {
+        HasPassports: { value: 'No' },
       }
-    ]
 
-    tests.forEach(test => {
-      expect(new PassportValidator(test.data, null).validHasPassports()).toBe(
-        test.expected
-      )
+      expect(hasValidUSPassport(testData)).toBe(false)
+    })
+
+    it('should fail if the data is invalid', () => {
+      const testData = {}
+
+      expect(hasValidUSPassport(testData)).toBe(false)
+    })
+
+    it('should fail if the passport is invalid', () => {
+      const testData = {
+        HasPassports: { value: 'No' },
+      }
+
+      expect(hasValidUSPassport(testData)).toBe(false)
+    })
+
+    it('should pass if the applicant has a valid passport', () => {
+      const testData = {
+        HasPassports: { value: 'Yes' },
+        Name: {
+          first: 'Foo',
+          firstInitialOnly: false,
+          middle: 'J',
+          middleInitialOnly: true,
+          noMiddleName: false,
+          last: 'Bar',
+          suffix: 'Jr',
+        },
+        Number: {
+          value: '123456789',
+        },
+        Issued: {
+          day: '1',
+          month: '1',
+          year: '2015',
+          estimated: false,
+        },
+        Expiration: {
+          day: '1',
+          month: '1',
+          year: '2016',
+          estimated: false,
+        },
+      }
+
+      expect(hasValidUSPassport(testData)).toBe(true)
     })
   })
 
-  it('should validate passport number', function() {
-    const tests = [
-      {
-        data: {
-          Number: '',
-          Card: 'Book'
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '2015',
-            estimated: false
-          },
-          Number: '',
-          Card: 'Book'
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '1989',
-            estimated: false
-          },
-          Number: '',
-          Card: 'Book'
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '2015',
-            estimated: false
-          },
-          Number: {
-            value: '123456789abcdefg'
-          },
-          Card: 'Book'
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '2015',
-            estimated: false
-          },
-          Number: {
-            value: '123456789'
-          },
-          Card: 'Book'
-        },
-        expected: true
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '1989',
-            estimated: false
-          },
-          Number: {
-            value: '123456789abcdefg'
-          },
-          Card: 'Book'
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(new PassportValidator(test.data, null).validPassportNumber()).toBe(
-        test.expected
-      )
-    })
-  })
-
-  it('should validate passport issue and expiration dates', function() {
-    const tests = [
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '2015',
-            estimated: false
-          },
-          Expiration: {
-            day: '1',
-            month: '1',
-            year: '2016',
-            estimated: false
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '2015',
-            estimated: false
-          },
-          Expiration: {
-            day: '32',
-            month: '1',
-            year: '2016',
-            estimated: false
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '-1',
-            year: '2015',
-            estimated: false
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {}
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '2015',
-            estimated: false
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '0',
-            estimated: false
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          Issued: {
-            day: '1',
-            month: '1',
-            year: '2015',
-            estimated: false
-          },
-          Expiration: {
-            day: '1',
-            month: '1',
-            year: '2016',
-            estimated: false
-          }
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(new PassportValidator(test.data, null).validDates()).toBe(
-        test.expected
-      )
-    })
-  })
-
-  it('should validate full passport information', function() {
+  it('should validate full passport information', () => {
     const tests = [
       {
         data: {
@@ -237,31 +70,31 @@ describe('Passport component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           HasPassports: { value: 'Yes' },
           Number: {
-            value: '123456789'
+            value: '123456789',
           },
           Card: 'Book',
           Issued: {
             day: '1',
             month: '1',
             year: '2015',
-            estimated: false
+            estimated: false,
           },
           Expiration: {
             day: '1',
             month: '1',
             year: '2016',
-            estimated: false
-          }
+            estimated: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new PassportValidator(test.data, null).isValid()).toBe(
         test.expected
       )

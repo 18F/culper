@@ -87,14 +87,16 @@ describe('citizenship component validation', () => {
           country: 'Italy',
         },
       }
-      expect(isDocumentRequired(expected)).toBe(true)
+      expect(isDocumentRequired(expected, true)).toBe(true)
     })
+
     it('returns true if document not provided', () => {
       const expected = {
         CitizenshipStatus: { value: 'ForeignBorn' },
       }
-      expect(isDocumentRequired(expected)).toBe(true)
+      expect(isDocumentRequired(expected, true)).toBe(true)
     })
+
     it('returns true if document is partial and certificate provided', () => {
       const expected = {
         CitizenshipStatus: { value: 'ForeignBorn' },
@@ -137,7 +139,7 @@ describe('citizenship component validation', () => {
           suffixOther: '',
         },
       }
-      expect(isDocumentRequired(expected)).toBe(true)
+      expect(isDocumentRequired(expected, true)).toBe(true)
     })
     it('returns false if certificate is provided', () => {
       const expected = {
@@ -157,7 +159,7 @@ describe('citizenship component validation', () => {
           suffixOther: '',
         },
       }
-      expect(isDocumentRequired(expected)).toBe(false)
+      expect(isDocumentRequired(expected, true)).toBe(false)
     })
   })
   describe('isCertificateRequired', () => {
@@ -179,13 +181,13 @@ describe('citizenship component validation', () => {
           suffixOther: '',
         },
       }
-      expect(isCertificateRequired(expected)).toBe(true)
+      expect(isCertificateRequired(expected, true)).toBe(true)
     })
     it('returns true if certificate not provided', () => {
       const expected = {
         CitizenshipStatus: { value: 'ForeignBorn' },
       }
-      expect(isCertificateRequired(expected)).toBe(true)
+      expect(isCertificateRequired(expected, true)).toBe(true)
     })
     it('returns true if certificate is partial and document provided', () => {
       const expected = {
@@ -207,7 +209,7 @@ describe('citizenship component validation', () => {
           suffixOther: '',
         },
       }
-      expect(isCertificateRequired(expected)).toBe(true)
+      expect(isCertificateRequired(expected, true)).toBe(true)
     })
     it('returns false if document is provided', () => {
       const expected = {
@@ -215,7 +217,7 @@ describe('citizenship component validation', () => {
         AbroadDocumentation: { value: 'Other' },
         Explanation: { value: 'I have a different document' },
       }
-      expect(isCertificateRequired(expected)).toBe(false)
+      expect(isCertificateRequired(expected, true)).toBe(false)
     })
   })
 
