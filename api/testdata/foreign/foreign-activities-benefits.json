@@ -196,14 +196,12 @@
                   "Obligated": {
                     "type": "branch",
                     "props": {
-                      "value": "Yes"
+                      "value": "No"
                     }
                   },
                   "ObligatedExplanation": {
                     "type": "textarea",
-                    "props": {
-                      "value": "my explanation to the obligation"
-                    }
+                    "props": {}
                   }
                 }
               },

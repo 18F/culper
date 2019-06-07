@@ -120,35 +120,21 @@ func (entity *HistoryEmployment) ClearNos() error {
 	// loop through all the records of employment.
 	if entity.List != nil {
 		for _, employmentInstance := range entity.List.Items {
-			reprimandUpdated := false
 			reprimandsEntity, repErr := employmentInstance.GetItemValue("Reprimand")
 			if repErr != nil {
 				return errors.Wrap(repErr, "Failed to pull a reprimand from an employment instance")
 			}
 
 			reprimands := reprimandsEntity.(*Collection)
-			for _, reprimand := range reprimands.Items {
-				hasAdditionalEntity, hasAddErr := reprimand.GetItemValue("Has")
-				if hasAddErr != nil {
-					return errors.Wrap(hasAddErr, "Failed to pull Has from a reprimand")
-				}
 
-				hasAdditional := hasAdditionalEntity.(*Branch)
-				if hasAdditional.Value == "No" {
-					hasAdditional.Value = ""
-					setErr := reprimand.SetItemValue("Has", hasAdditional)
-					if setErr != nil {
-						return setErr
-					}
-					reprimandUpdated = true
-				}
+			clearErr := reprimands.ClearBranchItemsNo("Has")
+			if clearErr != nil {
+				return clearErr
 			}
 
-			if reprimandUpdated {
-				setErr := employmentInstance.SetItemValue("Reprimand", reprimands)
-				if setErr != nil {
-					return setErr
-				}
+			setErr := employmentInstance.SetItemValue("Reprimand", reprimands)
+			if setErr != nil {
+				return setErr
 			}
 		}
 	}

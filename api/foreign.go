@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"regexp"
 
 	"github.com/pkg/errors"
@@ -357,6 +358,40 @@ func (entity *ForeignActivitiesBenefits) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+func (entity *ForeignActivitiesBenefits) ClearNos() error {
+
+	entity.HasBenefits.ClearNo()
+
+	for _, benefitSetItem := range entity.List.Items {
+		benefitNames := []string{"ContinuingBenefit", "FutureBenefit", "OneTimeBenefit", "OtherBenefit"}
+
+		for _, benefitName := range benefitNames {
+
+			benefitItem, benefitErr := benefitSetItem.GetItemValue(benefitName)
+			if benefitErr != nil {
+				return errors.Wrap(benefitErr, fmt.Sprintf("error fetching benefit named %s from foreign activities", benefitName))
+			}
+
+			// Sometimes, OtherBenefit if it hasn't been selected seems to be sent as a textarea, but in that case we can't clear it
+			benefit, ok := benefitItem.(*Benefit)
+			if ok {
+				if benefit.Obligated.Value == "No" {
+					benefit.Obligated.Value = ""
+
+					setErr := benefitSetItem.SetItemValue(benefitName, benefit)
+					if setErr != nil {
+						return errors.Wrap(setErr, fmt.Sprintf("Failed to set the %s benefit back to the foreign activities", benefitName))
+					}
+				}
+			}
+		}
+	}
+
+	entity.List.ClearBranchNo()
+
+	return nil
+}
+
 // ForeignActivitiesDirect represents the payload for the foreign activities direct section.
 type ForeignActivitiesDirect struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
@@ -412,6 +447,35 @@ func (entity *ForeignActivitiesDirect) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+func (entity *ForeignActivitiesDirect) ClearNos() error {
+
+	entity.HasInterests.ClearNo()
+
+	for _, activityItem := range entity.List.Items {
+
+		coownersList, listErr := activityItem.GetItemValue("CoOwners")
+		if listErr != nil {
+			return errors.Wrap(listErr, "Couldn't get CoOwners from DirectActivity")
+		}
+		coowners := coownersList.(*CoOwners)
+
+		clearErr := coowners.List.ClearBranchItemsNo("Has")
+		if clearErr != nil {
+			return clearErr
+		}
+
+		setContactsErr := activityItem.SetItemValue("CoOwners", coowners)
+		if setContactsErr != nil {
+			return setContactsErr
+		}
+	}
+
+	entity.List.ClearBranchNo()
+
+	return nil
+
 }
 
 // ForeignActivitiesIndirect represents the payload for the foreign activities indirect section.
@@ -471,6 +535,16 @@ func (entity *ForeignActivitiesIndirect) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+func (entity *ForeignActivitiesIndirect) ClearNos() error {
+
+	entity.HasInterests.ClearNo()
+
+	entity.List.ClearBranchNo()
+
+	return nil
+
+}
+
 // ForeignActivitiesRealEstate represents the payload for the foreign activities real estate section.
 type ForeignActivitiesRealEstate struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
@@ -526,6 +600,16 @@ func (entity *ForeignActivitiesRealEstate) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+func (entity *ForeignActivitiesRealEstate) ClearNos() error {
+
+	entity.HasInterests.ClearNo()
+
+	entity.List.ClearBranchNo()
+
+	return nil
+
 }
 
 // ForeignActivitiesSupport represents the payload for the foreign activities support section.
@@ -585,6 +669,16 @@ func (entity *ForeignActivitiesSupport) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+func (entity *ForeignActivitiesSupport) ClearNos() error {
+
+	entity.HasForeignSupport.ClearNo()
+
+	entity.List.ClearBranchNo()
+
+	return nil
+
+}
+
 // ForeignBusinessAdvice represents the payload for the foreign business advice section.
 type ForeignBusinessAdvice struct {
 	PayloadHasForeignAdvice Payload `json:"HasForeignAdvice" sql:"-"`
@@ -640,6 +734,12 @@ func (entity *ForeignBusinessAdvice) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+func (entity *ForeignBusinessAdvice) ClearNos() error {
+	entity.HasForeignAdvice.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // ForeignBusinessConferences represents the payload for the foreign business conferences section.
@@ -699,6 +799,32 @@ func (entity *ForeignBusinessConferences) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *ForeignBusinessConferences) ClearNos() error {
+	entity.HasForeignConferences.ClearNo()
+
+	for _, eventItem := range entity.List.Items {
+		contactsItem, getErr := eventItem.GetItemValue("Contacts")
+		if getErr != nil {
+			return getErr
+		}
+		contacts := contactsItem.(*Contacts)
+
+		clearErr := contacts.List.ClearBranchItemsNo("Has")
+		if clearErr != nil {
+			return clearErr
+		}
+
+		setContactsErr := eventItem.SetItemValue("Contacts", contacts)
+		if setContactsErr != nil {
+			return setContactsErr
+		}
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // ForeignBusinessContact represents the payload for the foreign business contact section.
 type ForeignBusinessContact struct {
 	PayloadHasForeignContact Payload `json:"HasForeignContact" sql:"-"`
@@ -754,6 +880,32 @@ func (entity *ForeignBusinessContact) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *ForeignBusinessContact) ClearNos() error {
+	entity.HasForeignContact.ClearNo()
+
+	for _, subsequentItem := range entity.List.Items {
+		contactsItem, getErr := subsequentItem.GetItemValue("SubsequentContacts")
+		if getErr != nil {
+			return getErr
+		}
+		contacts := contactsItem.(*Contacts)
+
+		clearErr := contacts.List.ClearBranchItemsNo("Has")
+		if clearErr != nil {
+			return clearErr
+		}
+
+		setContactsErr := subsequentItem.SetItemValue("SubsequentContacts", contacts)
+		if setContactsErr != nil {
+			return setContactsErr
+		}
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // ForeignBusinessEmployment represents the payload for the foreign business employment section.
@@ -813,6 +965,13 @@ func (entity *ForeignBusinessEmployment) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *ForeignBusinessEmployment) ClearNos() error {
+	entity.HasForeignEmployment.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // ForeignBusinessFamily represents the payload for the foreign business family section.
 type ForeignBusinessFamily struct {
 	PayloadHasForeignFamily Payload `json:"HasForeignFamily" sql:"-"`
@@ -868,6 +1027,13 @@ func (entity *ForeignBusinessFamily) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *ForeignBusinessFamily) ClearNos() error {
+	entity.HasForeignFamily.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // ForeignBusinessPolitical represents the payload for the foreign business political section.
@@ -927,6 +1093,13 @@ func (entity *ForeignBusinessPolitical) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *ForeignBusinessPolitical) ClearNos() error {
+	entity.HasForeignPolitical.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // ForeignBusinessSponsorship represents the payload for the foreign business sponsorship section.
 type ForeignBusinessSponsorship struct {
 	PayloadHasForeignSponsorship Payload `json:"HasForeignSponsorship" sql:"-"`
@@ -982,6 +1155,13 @@ func (entity *ForeignBusinessSponsorship) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *ForeignBusinessSponsorship) ClearNos() error {
+	entity.HasForeignSponsorship.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // ForeignBusinessVentures represents the payload for the foreign business ventures section.
@@ -1041,6 +1221,13 @@ func (entity *ForeignBusinessVentures) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *ForeignBusinessVentures) ClearNos() error {
+	entity.HasForeignVentures.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // ForeignBusinessVoting represents the payload for the foreign business voting section.
 type ForeignBusinessVoting struct {
 	PayloadHasForeignVoting Payload `json:"HasForeignVoting" sql:"-"`
@@ -1096,4 +1283,11 @@ func (entity *ForeignBusinessVoting) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *ForeignBusinessVoting) ClearNos() error {
+	entity.HasForeignVoting.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }

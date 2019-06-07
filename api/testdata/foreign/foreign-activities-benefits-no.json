@@ -1,0 +1,23 @@
+{
+    "props": {
+        "HasBenefits": {
+            "props": {
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": ""
+                    },
+                    "type": "branch"
+                },
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "foreign.activities.benefits"
+}

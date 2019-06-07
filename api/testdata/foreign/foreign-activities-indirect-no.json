@@ -1,0 +1,19 @@
+{
+    "props": {
+        "HasInterests": {
+            "props": {
+                "name": "has_interests",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": null,
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "foreign.activities.indirect"
+}
