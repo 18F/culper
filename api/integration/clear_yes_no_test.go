@@ -38,23 +38,6 @@ func TestClearSectionNos(t *testing.T) {
 		// --- Identification ---
 		// ---
 
-		{"../testdata/identification/identification-othernames-no.json", "identification.othernames", func(t *testing.T, section api.Section) {
-			otherNames := section.(*api.IdentificationOtherNames)
-
-			if otherNames.HasOtherNames.Value != "" {
-				t.Fatal("OtherNames was not reset")
-			}
-		}},
-		{"../testdata/identification/identification-othernames.json", "identification.othernames", func(t *testing.T, section api.Section) {
-			otherNames := section.(*api.IdentificationOtherNames)
-
-			if otherNames.HasOtherNames.Value != "Yes" {
-				t.Fatal("topLevel Yes was changed")
-			}
-			if otherNames.List.Branch.Value != "" {
-				t.Fatal("List branch was not cleared")
-			}
-		}},
 		{"../testdata/identification/identification-othernames-unfinished.json", "identification.othernames", func(t *testing.T, section api.Section) {
 			otherNames := section.(*api.IdentificationOtherNames)
 
@@ -128,23 +111,16 @@ func TestClearSectionNos(t *testing.T) {
 				t.Fail()
 			}
 		}},
-		{"../testdata/history/history-federal.json", "history.federal", func(t *testing.T, section api.Section) {
-			federal := section.(*api.HistoryFederal)
 
-			if federal.List.Branch.Value != "" {
-				t.Log("federal list was not reset")
+		{"../testdata/history/history-education-no.json", "history.education", func(t *testing.T, section api.Section) {
+			education := section.(*api.HistoryEducation)
+
+			if education.HasAttended.Value != "" {
+				t.Log("education has attended was not reset")
 				t.Fail()
 			}
-			if federal.HasFederalService.Value != "Yes" {
-				t.Log("federal has service was changed")
-				t.Fail()
-			}
-		}},
-		{"../testdata/history/history-federal-no.json", "history.federal", func(t *testing.T, section api.Section) {
-			federal := section.(*api.HistoryFederal)
-
-			if federal.HasFederalService.Value != "" {
-				t.Log("federal has service was not reset")
+			if education.HasDegree10.Value != "" {
+				t.Log("education has degree was changed")
 				t.Fail()
 			}
 		}},
@@ -258,25 +234,9 @@ func TestClearSectionNos(t *testing.T) {
 				t.Fail()
 			}
 		}},
-		{"../testdata/citizenship/citizenship-no-multiple.json", "citizenship.multiple", func(t *testing.T, section api.Section) {
-			multiple := section.(*api.CitizenshipMultiple)
-
-			if multiple.HasMultiple.Value != "" {
-				t.Log("Should have cleared the citizenship status")
-				t.Fail()
-			}
-		}},
 		{"../testdata/citizenship/citizenship-multiple-renounced.json", "citizenship.multiple", func(t *testing.T, section api.Section) {
 			multiple := section.(*api.CitizenshipMultiple)
 
-			if multiple.HasMultiple.Value != "Yes" {
-				t.Log("Should not have cleared the initial multiple")
-				t.Fail()
-			}
-			if multiple.List.Branch.Value != "" {
-				t.Log("Should have cleared final multiple")
-				t.Fail()
-			}
 			for _, foreignItem := range multiple.List.Items {
 
 				renouncedBranch := getBranchItemValue(t, foreignItem, "Renounced")
@@ -352,38 +312,15 @@ func TestClearSectionNos(t *testing.T) {
 		{"../testdata/military/military-history.json", "military.history", func(t *testing.T, section api.Section) {
 			history := section.(*api.MilitaryHistory)
 
-			if history.HasServed.Value != "Yes" {
-				t.Log("Should not have cleared has served")
-				t.Fail()
-			}
-
 			discharged := getBranchItemValue(t, history.List.Items[0], "HasBeenDischarged")
 
 			if discharged.Value != "Yes" {
 				t.Log("Should not have cleared discharged")
 				t.Fail()
 			}
-
-			if history.List.Branch.Value != "" {
-				t.Log("Should have cleared the list")
-				t.Fail()
-			}
-		}},
-		{"../testdata/military/military-history-no.json", "military.history", func(t *testing.T, section api.Section) {
-			history := section.(*api.MilitaryHistory)
-
-			if history.HasServed.Value != "" {
-				t.Log("Should have cleared has served")
-				t.Fail()
-			}
 		}},
 		{"../testdata/military/military-history-no-discharge.json", "military.history", func(t *testing.T, section api.Section) {
 			history := section.(*api.MilitaryHistory)
-
-			if history.HasServed.Value != "Yes" {
-				t.Log("Should not have cleared has served")
-				t.Fail()
-			}
 
 			discharged := getBranchItemValue(t, history.List.Items[0], "HasBeenDischarged")
 
@@ -391,33 +328,8 @@ func TestClearSectionNos(t *testing.T) {
 				t.Log("Should have cleared discharged")
 				t.Fail()
 			}
-
-			if history.List.Branch.Value != "" {
-				t.Log("Should have cleared the list")
-				t.Fail()
-			}
 		}},
-		{"../testdata/military/military-disciplinary.json", "military.disciplinary", func(t *testing.T, section api.Section) {
-			dicipline := section.(*api.MilitaryDisciplinary)
 
-			if dicipline.HasDisciplinary.Value != "Yes" {
-				t.Log("Should not have cleared has dicipline")
-				t.Fail()
-			}
-
-			if dicipline.List.Branch.Value != "" {
-				t.Log("Should have cleared the list")
-				t.Fail()
-			}
-		}},
-		{"../testdata/military/military-disciplinary-no.json", "military.disciplinary", func(t *testing.T, section api.Section) {
-			dicipline := section.(*api.MilitaryDisciplinary)
-
-			if dicipline.HasDisciplinary.Value != "" {
-				t.Log("Should have cleared has dicipline")
-				t.Fail()
-			}
-		}},
 		{"../testdata/military/military-foreign-two.json", "military.foreign", func(t *testing.T, section api.Section) {
 			foreign := section.(*api.MilitaryForeign)
 
@@ -475,22 +387,8 @@ func TestClearSectionNos(t *testing.T) {
 			}
 		}},
 
-		{"../testdata/foreign/foreign-contacts-no.json", "foreign.contacts", func(t *testing.T, section api.Section) {
-			contacts := section.(*api.ForeignContacts)
-
-			if contacts.HasForeignContacts.Value != "" {
-				t.Log("Should have cleared the contact yes")
-				t.Fail()
-			}
-		}},
-
 		{"../testdata/foreign/foreign-contacts.json", "foreign.contacts", func(t *testing.T, section api.Section) {
 			contacts := section.(*api.ForeignContacts)
-
-			if contacts.HasForeignContacts.Value != "Yes" {
-				t.Log("Should not have cleared the contact yes")
-				t.Fail()
-			}
 
 			for _, contactItem := range contacts.List.Items {
 
@@ -501,19 +399,10 @@ func TestClearSectionNos(t *testing.T) {
 				}
 			}
 
-			if contacts.List.Branch.Value != "" {
-				t.Log("Should have cleared the last branch")
-				t.Fail()
-			}
 		}},
 
 		{"../testdata/foreign/foreign-contacts-no-affiliation.json", "foreign.contacts", func(t *testing.T, section api.Section) {
 			contacts := section.(*api.ForeignContacts)
-
-			if contacts.HasForeignContacts.Value != "Yes" {
-				t.Log("Should not have cleared the contact yes")
-				t.Fail()
-			}
 
 			for _, contactItem := range contacts.List.Items {
 
@@ -524,19 +413,10 @@ func TestClearSectionNos(t *testing.T) {
 				}
 			}
 
-			if contacts.List.Branch.Value != "" {
-				t.Log("Should have cleared the last branch")
-				t.Fail()
-			}
 		}},
 
 		{"../testdata/foreign/foreign-activities-direct.json", "foreign.activities.direct", func(t *testing.T, section api.Section) {
 			directActivities := section.(*api.ForeignActivitiesDirect)
-
-			if directActivities.HasInterests.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
 
 			for _, activityItem := range directActivities.List.Items {
 
@@ -556,75 +436,10 @@ func TestClearSectionNos(t *testing.T) {
 					t.Fail()
 				}
 			}
-
-			if directActivities.List.Branch.Value != "" {
-				t.Log("Should have cleared the last branch")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-activities-direct-no.json", "foreign.activities.direct", func(t *testing.T, section api.Section) {
-			directActivities := section.(*api.ForeignActivitiesDirect)
-
-			if directActivities.HasInterests.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-activities-indirect.json", "foreign.activities.indirect", func(t *testing.T, section api.Section) {
-			indirectActivities := section.(*api.ForeignActivitiesIndirect)
-
-			if indirectActivities.HasInterests.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if indirectActivities.List.Branch.Value != "" {
-				t.Log("Should have reset the list item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-activities-indirect-no.json", "foreign.activities.indirect", func(t *testing.T, section api.Section) {
-			indirectActivities := section.(*api.ForeignActivitiesIndirect)
-
-			if indirectActivities.HasInterests.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-activities-realestate.json", "foreign.activities.realestate", func(t *testing.T, section api.Section) {
-			realEstate := section.(*api.ForeignActivitiesRealEstate)
-
-			if realEstate.HasInterests.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if realEstate.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-activities-realestate-no.json", "foreign.activities.realestate", func(t *testing.T, section api.Section) {
-			realEstate := section.(*api.ForeignActivitiesRealEstate)
-
-			if realEstate.HasInterests.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
 		}},
 
 		{"../testdata/foreign/foreign-activities-benefits.json", "foreign.activities.benefits", func(t *testing.T, section api.Section) {
 			benefits := section.(*api.ForeignActivitiesBenefits)
-
-			if benefits.HasBenefits.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
 
 			megaItem := benefits.List.Items[0]
 			futureBenefitItem, futureErr := megaItem.GetItemValue("FutureBenefit")
@@ -647,143 +462,10 @@ func TestClearSectionNos(t *testing.T) {
 				t.Log("Should have cleared the future benefit obligation")
 			}
 
-			if benefits.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-activities-benefits-no.json", "foreign.activities.benefits", func(t *testing.T, section api.Section) {
-			benefits := section.(*api.ForeignActivitiesBenefits)
-
-			if benefits.HasBenefits.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-activities-support.json", "foreign.activities.support", func(t *testing.T, section api.Section) {
-			support := section.(*api.ForeignActivitiesSupport)
-
-			if support.HasForeignSupport.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if support.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-activities-support-no.json", "foreign.activities.support", func(t *testing.T, section api.Section) {
-			support := section.(*api.ForeignActivitiesSupport)
-
-			if support.HasForeignSupport.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-advice.json", "foreign.business.advice", func(t *testing.T, section api.Section) {
-			advice := section.(*api.ForeignBusinessAdvice)
-
-			if advice.HasForeignAdvice.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if advice.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-advice-no.json", "foreign.business.advice", func(t *testing.T, section api.Section) {
-			advice := section.(*api.ForeignBusinessAdvice)
-
-			if advice.HasForeignAdvice.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-family.json", "foreign.business.family", func(t *testing.T, section api.Section) {
-			family := section.(*api.ForeignBusinessFamily)
-
-			if family.HasForeignFamily.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if family.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-family-no.json", "foreign.business.family", func(t *testing.T, section api.Section) {
-			family := section.(*api.ForeignBusinessFamily)
-
-			if family.HasForeignFamily.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-employment.json", "foreign.business.employment", func(t *testing.T, section api.Section) {
-			employment := section.(*api.ForeignBusinessEmployment)
-
-			if employment.HasForeignEmployment.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if employment.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-employment-no.json", "foreign.business.employment", func(t *testing.T, section api.Section) {
-			employment := section.(*api.ForeignBusinessEmployment)
-
-			if employment.HasForeignEmployment.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-ventures.json", "foreign.business.ventures", func(t *testing.T, section api.Section) {
-			ventures := section.(*api.ForeignBusinessVentures)
-
-			if ventures.HasForeignVentures.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if ventures.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-ventures-no.json", "foreign.business.ventures", func(t *testing.T, section api.Section) {
-			ventures := section.(*api.ForeignBusinessVentures)
-
-			if ventures.HasForeignVentures.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
 		}},
 
 		{"../testdata/foreign/foreign-business-conferences.json", "foreign.business.conferences", func(t *testing.T, section api.Section) {
 			conferences := section.(*api.ForeignBusinessConferences)
-
-			if conferences.HasForeignConferences.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
 
 			for _, eventItem := range conferences.List.Items {
 				contactsItem, getErr := eventItem.GetItemValue("Contacts")
@@ -800,28 +482,10 @@ func TestClearSectionNos(t *testing.T) {
 				}
 			}
 
-			if conferences.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-conferences-no.json", "foreign.business.conferences", func(t *testing.T, section api.Section) {
-			conferences := section.(*api.ForeignBusinessConferences)
-
-			if conferences.HasForeignConferences.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
 		}},
 
 		{"../testdata/foreign/foreign-business-contact.json", "foreign.business.contact", func(t *testing.T, section api.Section) {
 			contact := section.(*api.ForeignBusinessContact)
-
-			if contact.HasForeignContact.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
 
 			for _, subsequentItem := range contact.List.Items {
 				contactsItem, getErr := subsequentItem.GetItemValue("SubsequentContacts")
@@ -836,89 +500,6 @@ func TestClearSectionNos(t *testing.T) {
 						t.Fail()
 					}
 				}
-			}
-
-			if contact.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-contact-no.json", "foreign.business.contact", func(t *testing.T, section api.Section) {
-			contact := section.(*api.ForeignBusinessContact)
-
-			if contact.HasForeignContact.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-sponsorship.json", "foreign.business.sponsorship", func(t *testing.T, section api.Section) {
-			sponsorship := section.(*api.ForeignBusinessSponsorship)
-
-			if sponsorship.HasForeignSponsorship.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if sponsorship.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-sponsorship-no.json", "foreign.business.sponsorship", func(t *testing.T, section api.Section) {
-			sponsorship := section.(*api.ForeignBusinessSponsorship)
-
-			if sponsorship.HasForeignSponsorship.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-political.json", "foreign.business.political", func(t *testing.T, section api.Section) {
-			political := section.(*api.ForeignBusinessPolitical)
-
-			if political.HasForeignPolitical.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if political.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-political-no.json", "foreign.business.political", func(t *testing.T, section api.Section) {
-			political := section.(*api.ForeignBusinessPolitical)
-
-			if political.HasForeignPolitical.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-voting.json", "foreign.business.voting", func(t *testing.T, section api.Section) {
-			voting := section.(*api.ForeignBusinessVoting)
-
-			if voting.HasForeignVoting.Value != "Yes" {
-				t.Log("Should not have cleared the yes")
-				t.Fail()
-			}
-
-			if voting.List.Branch.Value != "" {
-				t.Log("Should have cleared the last item")
-				t.Fail()
-			}
-		}},
-
-		{"../testdata/foreign/foreign-business-voting-no.json", "foreign.business.voting", func(t *testing.T, section api.Section) {
-			voting := section.(*api.ForeignBusinessVoting)
-
-			if voting.HasForeignVoting.Value != "" {
-				t.Log("Should have cleared the yes")
-				t.Fail()
 			}
 		}},
 	}
@@ -1048,9 +629,31 @@ func TestClearBasicSectionNos(t *testing.T) {
 		path       string
 		name       string
 		branchName string
-		// test func(t *testing.T, section api.Section)
 	}{
 
+		{"../testdata/identification/identification-othernames.json", "identification.othernames", "HasOtherNames"},
+
+		{"../testdata/history/history-federal.json", "history.federal", "HasFederalService"},
+
+		{"../testdata/citizenship/citizenship-multiple-renounced.json", "citizenship.multiple", "HasMultiple"},
+
+		{"../testdata/military/military-history.json", "military.history", "HasServed"},
+		{"../testdata/military/military-disciplinary.json", "military.disciplinary", "HasDisciplinary"},
+
+		{"../testdata/foreign/foreign-contacts.json", "foreign.contacts", "HasForeignContacts"},
+		{"../testdata/foreign/foreign-activities-direct.json", "foreign.activities.direct", "HasInterests"},
+		{"../testdata/foreign/foreign-activities-indirect.json", "foreign.activities.indirect", "HasInterests"},
+		{"../testdata/foreign/foreign-activities-realestate.json", "foreign.activities.realestate", "HasInterests"},
+		{"../testdata/foreign/foreign-activities-benefits.json", "foreign.activities.benefits", "HasBenefits"},
+		{"../testdata/foreign/foreign-activities-support.json", "foreign.activities.support", "HasForeignSupport"},
+		{"../testdata/foreign/foreign-business-advice.json", "foreign.business.advice", "HasForeignAdvice"},
+		{"../testdata/foreign/foreign-business-family.json", "foreign.business.family", "HasForeignFamily"},
+		{"../testdata/foreign/foreign-business-employment.json", "foreign.business.employment", "HasForeignEmployment"},
+		{"../testdata/foreign/foreign-business-ventures.json", "foreign.business.ventures", "HasForeignVentures"},
+		{"../testdata/foreign/foreign-business-conferences.json", "foreign.business.conferences", "HasForeignConferences"},
+		{"../testdata/foreign/foreign-business-contact.json", "foreign.business.contact", "HasForeignContact"},
+		{"../testdata/foreign/foreign-business-sponsorship.json", "foreign.business.sponsorship", "HasForeignSponsorship"},
+		{"../testdata/foreign/foreign-business-political.json", "foreign.business.political", "HasForeignPolitical"},
 		{"../testdata/foreign/foreign-business-voting.json", "foreign.business.voting", "HasForeignVoting"},
 	}
 
@@ -1079,7 +682,6 @@ func TestClearBasicSectionNos(t *testing.T) {
 				Type:       basicTest.name,
 			}
 			noBytes := makeNoJSON(t, templateData)
-			fmt.Println(string(noBytes))
 
 			noSection := rejectSection(t, services, noBytes, basicTest.name)
 			noNoBranch, _ := getBasicBranches(noSection, basicTest.branchName)

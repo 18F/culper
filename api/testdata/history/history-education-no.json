@@ -1,7 +1,15 @@
 {
     "props": {
-        "HasForeignContact": {
+        "HasAttended": {
             "props": {
+                "name": "branch_school",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "HasDegree10": {
+            "props": {
+                "name": "branch_degree10",
                 "value": "No"
             },
             "type": "branch"
@@ -9,9 +17,7 @@
         "List": {
             "props": {
                 "branch": {
-                    "props": {
-                        "value": ""
-                    },
+                    "props": {},
                     "type": "branch"
                 },
                 "items": []
@@ -19,5 +25,5 @@
             "type": "collection"
         }
     },
-    "type": "foreign.business.contact"
+    "type": "history.education"
 }
