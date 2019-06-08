@@ -502,6 +502,69 @@ func TestClearSectionNos(t *testing.T) {
 				}
 			}
 		}},
+
+		{"../testdata/foreign/foreign-travel.json", "foreign.travel", func(t *testing.T, section api.Section) {
+			travel := section.(*api.ForeignTravel)
+
+			if travel.HasForeignTravelOutside.Value != "Yes" {
+				t.Log("Shouldn't have cleared this Yes")
+				t.Fail()
+			}
+
+			if travel.HasForeignTravelOfficial.Value != "No" {
+				t.Log("Shouldn't have cleard this No!!")
+				t.Fail()
+			}
+
+			travelItem := travel.List.Items[1]
+
+			questioned := getBranchItemValue(t, travelItem, "Questioned")
+			if questioned.Value != "" {
+				t.Log("questioned should have been reset")
+				t.Fail()
+			}
+
+			encounter := getBranchItemValue(t, travelItem, "Encounter")
+			if encounter.Value != "" {
+				t.Log("encounter should have been reset")
+				t.Fail()
+			}
+
+			contacted := getBranchItemValue(t, travelItem, "Contacted")
+			if contacted.Value != "" {
+				t.Log("contacted should have been reset")
+				t.Fail()
+			}
+
+			counter := getBranchItemValue(t, travelItem, "Counter")
+			if counter.Value != "" {
+				t.Log("counter should have been reset")
+				t.Fail()
+			}
+
+			interest := getBranchItemValue(t, travelItem, "Interest")
+			if interest.Value != "" {
+				t.Log("interest should have been reset")
+				t.Fail()
+			}
+
+			sensitive := getBranchItemValue(t, travelItem, "Sensitive")
+			if sensitive.Value != "" {
+				t.Log("sensitive should have been reset")
+				t.Fail()
+			}
+
+			threat := getBranchItemValue(t, travelItem, "Threatened")
+			if threat.Value != "" {
+				t.Log("threat should have been reset")
+				t.Fail()
+			}
+
+			if travel.List.Branch.Value != "" {
+				t.Log("Should have clared the list No")
+				t.Fail()
+			}
+		}},
 	}
 
 	for _, clearTest := range tests {

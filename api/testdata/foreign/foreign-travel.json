@@ -148,7 +148,125 @@
                 }
               }
             }
-          }
+          },
+          {
+            "Item": {
+                "Contacted": {
+                    "props": {
+                        "name": "has_foreign_travel_contacted",
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "ContactedExplanation": {
+                    "props": {},
+                    "type": "textarea"
+                },
+                "Counter": {
+                    "props": {
+                        "name": "has_foreign_travel_counter",
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "CounterExplanation": {
+                    "props": {},
+                    "type": "textarea"
+                },
+                "Country": {
+                    "props": {
+                        "name": "Country",
+                        "showComments": false,
+                        "value": [
+                            "Italy"
+                        ]
+                    },
+                    "type": "country"
+                },
+                "Dates": {
+                    "props": {
+                        "from": {
+                            "props": {},
+                            "type": "datecontrol"
+                        },
+                        "to": {
+                            "props": {},
+                            "type": "datecontrol"
+                        }
+                    },
+                    "type": "daterange"
+                },
+                "Days": {
+                    "props": {
+                        "value": "6-10"
+                    },
+                    "type": "radio"
+                },
+                "Encounter": {
+                    "props": {
+                        "name": "has_foreign_travel_encounter",
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "EncounterExplanation": {
+                    "props": {},
+                    "type": "textarea"
+                },
+                "Interest": {
+                    "props": {
+                        "name": "has_foreign_travel_interest",
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "InterestExplanation": {
+                    "props": {},
+                    "type": "textarea"
+                },
+                "Purpose": {
+                    "props": {
+                        "values": [
+                            "Tourism"
+                        ]
+                    },
+                    "type": "checkboxgroup"
+                },
+                "Questioned": {
+                    "props": {
+                        "name": "has_foreign_travel_questioned",
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "QuestionedExplanation": {
+                    "props": {},
+                    "type": "textarea"
+                },
+                "Sensitive": {
+                    "props": {
+                        "name": "has_foreign_travel_sensitive",
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "SensitiveExplanation": {
+                    "props": {},
+                    "type": "textarea"
+                },
+                "Threatened": {
+                    "props": {
+                        "name": "has_foreign_travel_threatened",
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "ThreatenedExplanation": {
+                    "props": {},
+                    "type": "textarea"
+                }
+            }
+        }
         ],
         "branch": {
           "type": "branch",
