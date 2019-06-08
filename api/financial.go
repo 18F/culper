@@ -69,6 +69,19 @@ func (entity *FinancialBankruptcy) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *FinancialBankruptcy) ClearNos() error {
+	entity.HasBankruptcy.ClearNo()
+
+	clearErr := entity.List.ClearBranchItemsNo("HasDischargeExplanation")
+	if clearErr != nil {
+		return clearErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // FinancialGambling represents the payload for the financial gambling section.
 type FinancialGambling struct {
 	PayloadHasGamblingDebt Payload `json:"HasGamblingDebt" sql:"-"`
@@ -132,6 +145,13 @@ func (entity *FinancialGambling) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *FinancialGambling) ClearNos() error {
+	entity.HasGamblingDebt.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // FinancialTaxes represents the payload for the financial taxes section.
@@ -199,6 +219,13 @@ func (entity *FinancialTaxes) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *FinancialTaxes) ClearNos() error {
+	entity.HasTaxes.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // FinancialCard represents the payload for the financial card section.
 type FinancialCard struct {
 	PayloadHasCardAbuse Payload `json:"HasCardAbuse" sql:"-"`
@@ -262,6 +289,13 @@ func (entity *FinancialCard) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *FinancialCard) ClearNos() error {
+	entity.HasCardAbuse.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // FinancialCredit represents the payload for the financial credit section.
@@ -329,6 +363,13 @@ func (entity *FinancialCredit) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *FinancialCredit) ClearNos() error {
+	entity.HasCreditCounseling.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // FinancialDelinquent represents the payload for the financial delinquent section.
 type FinancialDelinquent struct {
 	PayloadHasDelinquent Payload `json:"HasDelinquent" sql:"-"`
@@ -394,6 +435,13 @@ func (entity *FinancialDelinquent) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *FinancialDelinquent) ClearNos() error {
+	entity.HasDelinquent.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // FinancialNonpayment represents the payload for the financial nonpayment section.
 type FinancialNonpayment struct {
 	PayloadHasNonpayment Payload `json:"HasNonpayment" sql:"-"`
@@ -457,4 +505,11 @@ func (entity *FinancialNonpayment) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *FinancialNonpayment) ClearNos() error {
+	entity.HasNonpayment.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }

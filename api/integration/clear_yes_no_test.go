@@ -565,6 +565,18 @@ func TestClearSectionNos(t *testing.T) {
 				t.Fail()
 			}
 		}},
+
+		{"../testdata/financial/financial-bankruptcy-not-discharged.json", "financial.bankruptcy", func(t *testing.T, section api.Section) {
+			bankruptcy := section.(*api.FinancialBankruptcy)
+
+			for _, subsequentItem := range bankruptcy.List.Items {
+				wasDischarged := getBranchItemValue(t, subsequentItem, "HasDischargeExplanation")
+				if wasDischarged.Value != "" {
+					t.Log("Didn't clear the discharge")
+					t.Fail()
+				}
+			}
+		}},
 	}
 
 	for _, clearTest := range tests {
@@ -718,6 +730,14 @@ func TestClearBasicSectionNos(t *testing.T) {
 		{"../testdata/foreign/foreign-business-sponsorship.json", "foreign.business.sponsorship", "HasForeignSponsorship"},
 		{"../testdata/foreign/foreign-business-political.json", "foreign.business.political", "HasForeignPolitical"},
 		{"../testdata/foreign/foreign-business-voting.json", "foreign.business.voting", "HasForeignVoting"},
+
+		{"../testdata/financial/financial-bankruptcy.json", "financial.bankruptcy", "HasBankruptcy"},
+		{"../testdata/financial/financial-gambling.json", "financial.gambling", "HasGamblingDebt"},
+		{"../testdata/financial/financial-taxes.json", "financial.taxes", "HasTaxes"},
+		{"../testdata/financial/financial-card.json", "financial.card", "HasCardAbuse"},
+		{"../testdata/financial/financial-credit.json", "financial.credit", "HasCreditCounseling"},
+		{"../testdata/financial/financial-delinquent.json", "financial.delinquent", "HasDelinquent"},
+		{"../testdata/financial/financial-nonpayment.json", "financial.nonpayment", "HasNonpayment"},
 	}
 
 	for _, basicTest := range basicTests {
