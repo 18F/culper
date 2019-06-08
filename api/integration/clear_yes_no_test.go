@@ -1,9 +1,12 @@
 package integration
 
 import (
+	"bytes"
 	"fmt"
 	"path"
+	"reflect"
 	"testing"
+	"text/template"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/admin"
@@ -947,6 +950,144 @@ func TestClearSectionNos(t *testing.T) {
 			}
 
 			clearTest.test(t, section)
+
+		})
+	}
+}
+
+// Most sections have a Branch and a List, these helpers allow testing for those
+// to be simplified
+
+type basicNoData struct {
+	BranchName string
+	Type       string
+}
+
+const basicNoTemplate = `{
+    "props": {
+        "{{.BranchName}}": {
+            "props": {
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": ""
+                    },
+                    "type": "branch"
+                },
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "{{.Type}}"
+}
+`
+
+func makeNoJSON(t *testing.T, data basicNoData) []byte {
+	noTemplate, parseErr := template.New("no").Parse(basicNoTemplate)
+	if parseErr != nil {
+		t.Fatal(parseErr)
+	}
+
+	var noBytes bytes.Buffer
+	execErr := noTemplate.Execute(&noBytes, data)
+	if execErr != nil {
+		t.Fatal(execErr)
+	}
+
+	return noBytes.Bytes()
+}
+
+func getBasicBranches(section api.Section, branchName string) (*api.Branch, *api.Branch) {
+	// The section will have a Branch called BranchName on it. and a List called List on it.
+	sectionPointerValue := reflect.ValueOf(section)
+	sectionValue := sectionPointerValue.Elem()
+
+	noBranchPointer := sectionValue.FieldByName(branchName)
+	noBranch := noBranchPointer.Interface().(*api.Branch)
+
+	listPointer := sectionValue.FieldByName("List")
+	list := listPointer.Interface().(*api.Collection)
+
+	return noBranch, list.Branch
+}
+
+func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName string) api.Section {
+	account := createTestAccount(t, services.db)
+
+	resp := saveJSON(services, json, account.ID)
+	if resp.StatusCode != 200 {
+		t.Fatal("Failed to save JSON", resp.StatusCode)
+	}
+
+	rejector := admin.NewRejecter(services.db, services.store, nil)
+	err := rejector.Reject(account)
+	if err != nil {
+		t.Fatal("Failed to reject account: ", err)
+	}
+
+	resetApp := getApplication(t, services, account)
+
+	section := resetApp.Section(sectionName)
+	if section == nil {
+		t.Fatal(fmt.Sprintf("No %s  section in the app", sectionName))
+	}
+
+	return section
+}
+
+func TestClearBasicSectionNos(t *testing.T) {
+	services := cleanTestServices(t)
+
+	basicTests := []struct {
+		path       string
+		name       string
+		branchName string
+		// test func(t *testing.T, section api.Section)
+	}{
+
+		{"../testdata/foreign/foreign-business-voting.json", "foreign.business.voting", "HasForeignVoting"},
+	}
+
+	for _, basicTest := range basicTests {
+
+		t.Run(path.Base(basicTest.path), func(t *testing.T) {
+
+			sectionJSON := readTestData(t, basicTest.path)
+
+			section := rejectSection(t, services, sectionJSON, basicTest.name)
+			noBranch, listBranch := getBasicBranches(section, basicTest.branchName)
+
+			if noBranch.Value != "Yes" {
+				t.Log("We should not have unset the Yes")
+				t.Fail()
+			}
+
+			if listBranch.Value != "" {
+				t.Log("We should have unset the last No")
+				t.Fail()
+			}
+
+			// NEXT, check it again with the no template.
+			templateData := basicNoData{
+				BranchName: basicTest.branchName,
+				Type:       basicTest.name,
+			}
+			noBytes := makeNoJSON(t, templateData)
+			fmt.Println(string(noBytes))
+
+			noSection := rejectSection(t, services, noBytes, basicTest.name)
+			noNoBranch, _ := getBasicBranches(noSection, basicTest.branchName)
+
+			if noNoBranch.Value != "" {
+				t.Log("We should have unset the No")
+				t.Fail()
+			}
 
 		})
 	}
