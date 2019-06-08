@@ -167,6 +167,8 @@ func (ci *CollectionItem) SetItemValue(key string, value Entity) error {
 
 }
 
+// ClearBranchItemsNo goes through every item in the collection, pulls out a branch
+// with the given name and clears its no
 func (entity *Collection) ClearBranchItemsNo(key string) error {
 	if entity != nil {
 		for _, item := range entity.Items {
@@ -189,6 +191,8 @@ func (entity *Collection) ClearBranchItemsNo(key string) error {
 	return nil
 }
 
+// ClearBranchNo clears the no of the list's branch
+// This is a convience wrapper that checks nil first.
 func (entity *Collection) ClearBranchNo() {
 	if entity != nil {
 		entity.Branch.ClearNo()

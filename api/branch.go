@@ -37,6 +37,7 @@ func (entity *Branch) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNo resets a "no" answer to unset
 func (entity *Branch) ClearNo() {
 	if entity != nil {
 		if entity.Value == "No" {

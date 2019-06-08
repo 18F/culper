@@ -152,6 +152,7 @@ func (entity *ForeignPassport) Valid() (bool, error) {
 	return true, nil
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignPassport) ClearNos() error {
 	entity.HasPassports.ClearNo()
 
@@ -215,6 +216,7 @@ func (entity *ForeignContacts) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignContacts) ClearNos() error {
 	entity.HasForeignContacts.ClearNo()
 
@@ -301,6 +303,7 @@ func (entity *ForeignTravel) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignTravel) ClearNos() error {
 	entity.HasForeignTravelOutside.ClearNo()
 
@@ -406,6 +409,7 @@ func (entity *ForeignActivitiesBenefits) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignActivitiesBenefits) ClearNos() error {
 
 	entity.HasBenefits.ClearNo()
@@ -497,6 +501,7 @@ func (entity *ForeignActivitiesDirect) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignActivitiesDirect) ClearNos() error {
 
 	entity.HasInterests.ClearNo()
@@ -583,6 +588,7 @@ func (entity *ForeignActivitiesIndirect) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignActivitiesIndirect) ClearNos() error {
 
 	entity.HasInterests.ClearNo()
@@ -650,6 +656,7 @@ func (entity *ForeignActivitiesRealEstate) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignActivitiesRealEstate) ClearNos() error {
 
 	entity.HasInterests.ClearNo()
@@ -717,6 +724,7 @@ func (entity *ForeignActivitiesSupport) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignActivitiesSupport) ClearNos() error {
 
 	entity.HasForeignSupport.ClearNo()
@@ -784,6 +792,7 @@ func (entity *ForeignBusinessAdvice) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNos clears the "no" answers on application rejection
 func (entity *ForeignBusinessAdvice) ClearNos() error {
 	entity.HasForeignAdvice.ClearNo()
 	entity.List.ClearBranchNo()
