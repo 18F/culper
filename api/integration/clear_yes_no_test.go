@@ -12,6 +12,10 @@ import (
 	"github.com/18F/e-QIP-prototype/api/admin"
 )
 
+// Note: These tests are broken up into two table tests.
+// The "Basic" tests test the standard Branch/List.Branch that most of the
+// Sections have. For everything else, the tests are in the Complex test.
+
 func TestClearEmptyAccount(t *testing.T) {
 	// get a setup environment.
 	services := cleanTestServices(t)
@@ -25,7 +29,180 @@ func TestClearEmptyAccount(t *testing.T) {
 	}
 }
 
-func TestClearSectionNos(t *testing.T) {
+// Helpers for the Basic tests.
+
+type basicNoData struct {
+	BranchName string
+	Type       string
+}
+
+const basicNoTemplate = `{
+    "props": {
+        "{{.BranchName}}": {
+            "props": {
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": ""
+                    },
+                    "type": "branch"
+                },
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "{{.Type}}"
+}
+`
+
+func makeNoJSON(t *testing.T, data basicNoData) []byte {
+	noTemplate, parseErr := template.New("no").Parse(basicNoTemplate)
+	if parseErr != nil {
+		t.Fatal(parseErr)
+	}
+
+	var noBytes bytes.Buffer
+	execErr := noTemplate.Execute(&noBytes, data)
+	if execErr != nil {
+		t.Fatal(execErr)
+	}
+
+	return noBytes.Bytes()
+}
+
+func getBasicBranches(section api.Section, branchName string) (*api.Branch, *api.Branch) {
+	// The section will have a Branch called BranchName on it. and a List called List on it.
+	sectionPointerValue := reflect.ValueOf(section)
+	sectionValue := sectionPointerValue.Elem()
+
+	noBranchPointer := sectionValue.FieldByName(branchName)
+	noBranch := noBranchPointer.Interface().(*api.Branch)
+
+	listPointer := sectionValue.FieldByName("List")
+	list := listPointer.Interface().(*api.Collection)
+
+	return noBranch, list.Branch
+}
+
+func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName string) api.Section {
+	account := createTestAccount(t, services.db)
+
+	resp := saveJSON(services, json, account.ID)
+	if resp.StatusCode != 200 {
+		t.Fatal("Failed to save JSON", resp.StatusCode)
+	}
+
+	rejector := admin.NewRejecter(services.db, services.store, nil)
+	err := rejector.Reject(account)
+	if err != nil {
+		t.Fatal("Failed to reject account: ", err)
+	}
+
+	resetApp := getApplication(t, services, account)
+
+	section := resetApp.Section(sectionName)
+	if section == nil {
+		t.Fatal(fmt.Sprintf("No %s  section in the app", sectionName))
+	}
+
+	return section
+}
+
+func TestClearBasicSectionNos(t *testing.T) {
+	services := cleanTestServices(t)
+
+	basicTests := []struct {
+		path       string
+		name       string
+		branchName string
+	}{
+
+		{"../testdata/identification/identification-othernames.json", "identification.othernames", "HasOtherNames"},
+
+		{"../testdata/history/history-federal.json", "history.federal", "HasFederalService"},
+
+		{"../testdata/citizenship/citizenship-multiple-renounced.json", "citizenship.multiple", "HasMultiple"},
+
+		{"../testdata/military/military-history.json", "military.history", "HasServed"},
+		{"../testdata/military/military-disciplinary.json", "military.disciplinary", "HasDisciplinary"},
+
+		{"../testdata/foreign/foreign-contacts.json", "foreign.contacts", "HasForeignContacts"},
+		{"../testdata/foreign/foreign-activities-direct.json", "foreign.activities.direct", "HasInterests"},
+		{"../testdata/foreign/foreign-activities-indirect.json", "foreign.activities.indirect", "HasInterests"},
+		{"../testdata/foreign/foreign-activities-realestate.json", "foreign.activities.realestate", "HasInterests"},
+		{"../testdata/foreign/foreign-activities-benefits.json", "foreign.activities.benefits", "HasBenefits"},
+		{"../testdata/foreign/foreign-activities-support.json", "foreign.activities.support", "HasForeignSupport"},
+		{"../testdata/foreign/foreign-business-advice.json", "foreign.business.advice", "HasForeignAdvice"},
+		{"../testdata/foreign/foreign-business-family.json", "foreign.business.family", "HasForeignFamily"},
+		{"../testdata/foreign/foreign-business-employment.json", "foreign.business.employment", "HasForeignEmployment"},
+		{"../testdata/foreign/foreign-business-ventures.json", "foreign.business.ventures", "HasForeignVentures"},
+		{"../testdata/foreign/foreign-business-conferences.json", "foreign.business.conferences", "HasForeignConferences"},
+		{"../testdata/foreign/foreign-business-contact.json", "foreign.business.contact", "HasForeignContact"},
+		{"../testdata/foreign/foreign-business-sponsorship.json", "foreign.business.sponsorship", "HasForeignSponsorship"},
+		{"../testdata/foreign/foreign-business-political.json", "foreign.business.political", "HasForeignPolitical"},
+		{"../testdata/foreign/foreign-business-voting.json", "foreign.business.voting", "HasForeignVoting"},
+
+		{"../testdata/financial/financial-bankruptcy.json", "financial.bankruptcy", "HasBankruptcy"},
+		{"../testdata/financial/financial-gambling.json", "financial.gambling", "HasGamblingDebt"},
+		{"../testdata/financial/financial-taxes.json", "financial.taxes", "HasTaxes"},
+		{"../testdata/financial/financial-card.json", "financial.card", "HasCardAbuse"},
+		{"../testdata/financial/financial-credit.json", "financial.credit", "HasCreditCounseling"},
+		{"../testdata/financial/financial-delinquent.json", "financial.delinquent", "HasDelinquent"},
+		{"../testdata/financial/financial-nonpayment.json", "financial.nonpayment", "HasNonpayment"},
+
+		{"../testdata/substance/substance-drug-usage.json", "substance.drugs.usage", "UsedDrugs"},
+		{"../testdata/substance/substance-drug-purchase.json", "substance.drugs.purchase", "Involved"},
+		{"../testdata/substance/substance-drug-clearance.json", "substance.drugs.clearance", "UsedDrugs"},
+		{"../testdata/substance/substance-drug-publicsafety.json", "substance.drugs.publicsafety", "UsedDrugs"},
+		{"../testdata/substance/substance-drug-ordered.json", "substance.drugs.ordered", "TreatmentOrdered"},
+		{"../testdata/substance/substance-drug-voluntary.json", "substance.drugs.voluntary", "TreatmentVoluntary"},
+	}
+
+	for _, basicTest := range basicTests {
+
+		t.Run(path.Base(basicTest.path), func(t *testing.T) {
+
+			sectionJSON := readTestData(t, basicTest.path)
+
+			section := rejectSection(t, services, sectionJSON, basicTest.name)
+			noBranch, listBranch := getBasicBranches(section, basicTest.branchName)
+
+			if noBranch.Value != "Yes" {
+				t.Log("We should not have unset the Yes")
+				t.Fail()
+			}
+
+			if listBranch.Value != "" {
+				t.Log("We should have unset the last No")
+				t.Fail()
+			}
+
+			// NEXT, check it again with the no template.
+			templateData := basicNoData{
+				BranchName: basicTest.branchName,
+				Type:       basicTest.name,
+			}
+			noBytes := makeNoJSON(t, templateData)
+
+			noSection := rejectSection(t, services, noBytes, basicTest.name)
+			noNoBranch, _ := getBasicBranches(noSection, basicTest.branchName)
+
+			if noNoBranch.Value != "" {
+				t.Log("We should have unset the No")
+				t.Fail()
+			}
+
+		})
+	}
+}
+
+func TestClearComplexSectionNos(t *testing.T) {
 	services := cleanTestServices(t)
 
 	tests := []struct {
@@ -678,180 +855,6 @@ func TestClearSectionNos(t *testing.T) {
 			}
 
 			clearTest.test(t, section)
-
-		})
-	}
-}
-
-// Most sections have a Branch and a List, these helpers allow testing for those
-// to be simplified
-
-type basicNoData struct {
-	BranchName string
-	Type       string
-}
-
-const basicNoTemplate = `{
-    "props": {
-        "{{.BranchName}}": {
-            "props": {
-                "value": "No"
-            },
-            "type": "branch"
-        },
-        "List": {
-            "props": {
-                "branch": {
-                    "props": {
-                        "value": ""
-                    },
-                    "type": "branch"
-                },
-                "items": []
-            },
-            "type": "collection"
-        }
-    },
-    "type": "{{.Type}}"
-}
-`
-
-func makeNoJSON(t *testing.T, data basicNoData) []byte {
-	noTemplate, parseErr := template.New("no").Parse(basicNoTemplate)
-	if parseErr != nil {
-		t.Fatal(parseErr)
-	}
-
-	var noBytes bytes.Buffer
-	execErr := noTemplate.Execute(&noBytes, data)
-	if execErr != nil {
-		t.Fatal(execErr)
-	}
-
-	return noBytes.Bytes()
-}
-
-func getBasicBranches(section api.Section, branchName string) (*api.Branch, *api.Branch) {
-	// The section will have a Branch called BranchName on it. and a List called List on it.
-	sectionPointerValue := reflect.ValueOf(section)
-	sectionValue := sectionPointerValue.Elem()
-
-	noBranchPointer := sectionValue.FieldByName(branchName)
-	noBranch := noBranchPointer.Interface().(*api.Branch)
-
-	listPointer := sectionValue.FieldByName("List")
-	list := listPointer.Interface().(*api.Collection)
-
-	return noBranch, list.Branch
-}
-
-func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName string) api.Section {
-	account := createTestAccount(t, services.db)
-
-	resp := saveJSON(services, json, account.ID)
-	if resp.StatusCode != 200 {
-		t.Fatal("Failed to save JSON", resp.StatusCode)
-	}
-
-	rejector := admin.NewRejecter(services.db, services.store, nil)
-	err := rejector.Reject(account)
-	if err != nil {
-		t.Fatal("Failed to reject account: ", err)
-	}
-
-	resetApp := getApplication(t, services, account)
-
-	section := resetApp.Section(sectionName)
-	if section == nil {
-		t.Fatal(fmt.Sprintf("No %s  section in the app", sectionName))
-	}
-
-	return section
-}
-
-func TestClearBasicSectionNos(t *testing.T) {
-	services := cleanTestServices(t)
-
-	basicTests := []struct {
-		path       string
-		name       string
-		branchName string
-	}{
-
-		{"../testdata/identification/identification-othernames.json", "identification.othernames", "HasOtherNames"},
-
-		{"../testdata/history/history-federal.json", "history.federal", "HasFederalService"},
-
-		{"../testdata/citizenship/citizenship-multiple-renounced.json", "citizenship.multiple", "HasMultiple"},
-
-		{"../testdata/military/military-history.json", "military.history", "HasServed"},
-		{"../testdata/military/military-disciplinary.json", "military.disciplinary", "HasDisciplinary"},
-
-		{"../testdata/foreign/foreign-contacts.json", "foreign.contacts", "HasForeignContacts"},
-		{"../testdata/foreign/foreign-activities-direct.json", "foreign.activities.direct", "HasInterests"},
-		{"../testdata/foreign/foreign-activities-indirect.json", "foreign.activities.indirect", "HasInterests"},
-		{"../testdata/foreign/foreign-activities-realestate.json", "foreign.activities.realestate", "HasInterests"},
-		{"../testdata/foreign/foreign-activities-benefits.json", "foreign.activities.benefits", "HasBenefits"},
-		{"../testdata/foreign/foreign-activities-support.json", "foreign.activities.support", "HasForeignSupport"},
-		{"../testdata/foreign/foreign-business-advice.json", "foreign.business.advice", "HasForeignAdvice"},
-		{"../testdata/foreign/foreign-business-family.json", "foreign.business.family", "HasForeignFamily"},
-		{"../testdata/foreign/foreign-business-employment.json", "foreign.business.employment", "HasForeignEmployment"},
-		{"../testdata/foreign/foreign-business-ventures.json", "foreign.business.ventures", "HasForeignVentures"},
-		{"../testdata/foreign/foreign-business-conferences.json", "foreign.business.conferences", "HasForeignConferences"},
-		{"../testdata/foreign/foreign-business-contact.json", "foreign.business.contact", "HasForeignContact"},
-		{"../testdata/foreign/foreign-business-sponsorship.json", "foreign.business.sponsorship", "HasForeignSponsorship"},
-		{"../testdata/foreign/foreign-business-political.json", "foreign.business.political", "HasForeignPolitical"},
-		{"../testdata/foreign/foreign-business-voting.json", "foreign.business.voting", "HasForeignVoting"},
-
-		{"../testdata/financial/financial-bankruptcy.json", "financial.bankruptcy", "HasBankruptcy"},
-		{"../testdata/financial/financial-gambling.json", "financial.gambling", "HasGamblingDebt"},
-		{"../testdata/financial/financial-taxes.json", "financial.taxes", "HasTaxes"},
-		{"../testdata/financial/financial-card.json", "financial.card", "HasCardAbuse"},
-		{"../testdata/financial/financial-credit.json", "financial.credit", "HasCreditCounseling"},
-		{"../testdata/financial/financial-delinquent.json", "financial.delinquent", "HasDelinquent"},
-		{"../testdata/financial/financial-nonpayment.json", "financial.nonpayment", "HasNonpayment"},
-
-		{"../testdata/substance/substance-drug-usage.json", "substance.drugs.usage", "UsedDrugs"},
-		{"../testdata/substance/substance-drug-purchase.json", "substance.drugs.purchase", "Involved"},
-		{"../testdata/substance/substance-drug-clearance.json", "substance.drugs.clearance", "UsedDrugs"},
-		{"../testdata/substance/substance-drug-publicsafety.json", "substance.drugs.publicsafety", "UsedDrugs"},
-		{"../testdata/substance/substance-drug-ordered.json", "substance.drugs.ordered", "TreatmentOrdered"},
-		{"../testdata/substance/substance-drug-voluntary.json", "substance.drugs.voluntary", "TreatmentVoluntary"},
-	}
-
-	for _, basicTest := range basicTests {
-
-		t.Run(path.Base(basicTest.path), func(t *testing.T) {
-
-			sectionJSON := readTestData(t, basicTest.path)
-
-			section := rejectSection(t, services, sectionJSON, basicTest.name)
-			noBranch, listBranch := getBasicBranches(section, basicTest.branchName)
-
-			if noBranch.Value != "Yes" {
-				t.Log("We should not have unset the Yes")
-				t.Fail()
-			}
-
-			if listBranch.Value != "" {
-				t.Log("We should have unset the last No")
-				t.Fail()
-			}
-
-			// NEXT, check it again with the no template.
-			templateData := basicNoData{
-				BranchName: basicTest.branchName,
-				Type:       basicTest.name,
-			}
-			noBytes := makeNoJSON(t, templateData)
-
-			noSection := rejectSection(t, services, noBytes, basicTest.name)
-			noNoBranch, _ := getBasicBranches(noSection, basicTest.branchName)
-
-			if noNoBranch.Value != "" {
-				t.Log("We should have unset the No")
-				t.Fail()
-			}
 
 		})
 	}
