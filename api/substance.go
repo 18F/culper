@@ -67,6 +67,13 @@ func (entity *SubstanceDrugUsage) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceDrugUsage) ClearNos() error {
+	entity.UsedDrugs.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // SubstanceDrugPurchase represents the payload for the substance drug purchase section.
 type SubstanceDrugPurchase struct {
 	PayloadInvolved Payload `json:"Involved" sql:"-"`
@@ -130,6 +137,29 @@ func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceDrugPurchase) ClearNos() error {
+	entity.Involved.ClearNo()
+
+	clearEmployErr := entity.List.ClearBranchItemsNo("InvolvementWhileEmployed")
+	if clearEmployErr != nil {
+		return clearEmployErr
+	}
+
+	clearClearErr := entity.List.ClearBranchItemsNo("InvolvementWithClearance")
+	if clearClearErr != nil {
+		return clearClearErr
+	}
+
+	clearFutureErr := entity.List.ClearBranchItemsNo("InvolvementInFuture")
+	if clearFutureErr != nil {
+		return clearFutureErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // SubstanceDrugClearance represents the payload for the substance drug clearance section.
@@ -197,6 +227,13 @@ func (entity *SubstanceDrugClearance) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceDrugClearance) ClearNos() error {
+	entity.UsedDrugs.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // SubstanceDrugPublicSafety represents the payload for the substance drug public safety section.
 type SubstanceDrugPublicSafety struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
@@ -260,6 +297,13 @@ func (entity *SubstanceDrugPublicSafety) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceDrugPublicSafety) ClearNos() error {
+	entity.UsedDrugs.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // SubstanceDrugMisuse represents the payload for the substance drug misuse section.
@@ -327,14 +371,21 @@ func (entity *SubstanceDrugMisuse) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceDrugMisuse) ClearNos() error {
+	entity.UsedDrugs.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // SubstanceDrugOrdered represents the payload for the substance drug ordered section.
 type SubstanceDrugOrdered struct {
-	PayloadInvolved Payload `json:"TreatmentOrdered" sql:"-"`
-	PayloadList     Payload `json:"List" sql:"-"`
+	PayloadTreatmentOrdered Payload `json:"TreatmentOrdered" sql:"-"`
+	PayloadList             Payload `json:"List" sql:"-"`
 
 	// Validator specific fields
-	Involved *Branch     `json:"-"`
-	List     *Collection `json:"-"`
+	TreatmentOrdered *Branch     `json:"-"`
+	List             *Collection `json:"-"`
 
 	// Persister specific fields
 	ID         int `json:"-"`
@@ -349,11 +400,11 @@ func (entity *SubstanceDrugOrdered) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	involved, err := entity.PayloadInvolved.Entity()
+	ordered, err := entity.PayloadTreatmentOrdered.Entity()
 	if err != nil {
 		return err
 	}
-	entity.Involved = involved.(*Branch)
+	entity.TreatmentOrdered = ordered.(*Branch)
 
 	list, err := entity.PayloadList.Entity()
 	if err != nil {
@@ -366,8 +417,8 @@ func (entity *SubstanceDrugOrdered) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugOrdered) Marshal() Payload {
-	if entity.Involved != nil {
-		entity.PayloadInvolved = entity.Involved.Marshal()
+	if entity.TreatmentOrdered != nil {
+		entity.PayloadTreatmentOrdered = entity.TreatmentOrdered.Marshal()
 	}
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
@@ -379,11 +430,11 @@ func (entity *SubstanceDrugOrdered) Marshal() Payload {
 func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
 	var stack ErrorStack
 
-	if ok, err := entity.Involved.Valid(); !ok {
+	if ok, err := entity.TreatmentOrdered.Valid(); !ok {
 		stack.Append("DrugOrdered", err)
 	}
 
-	if entity.Involved.Value == "Yes" {
+	if entity.TreatmentOrdered.Value == "Yes" {
 		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("DrugOrdered", err)
 		}
@@ -392,14 +443,25 @@ func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceDrugOrdered) ClearNos() error {
+	entity.TreatmentOrdered.ClearNo()
+	clearErr := entity.List.ClearBranchItemsNo("ActionTaken")
+	if clearErr != nil {
+		return clearErr
+	}
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // SubstanceDrugVoluntary represents the payload for the substance drug voluntary section.
 type SubstanceDrugVoluntary struct {
-	PayloadInvolved Payload `json:"TreatmentVoluntary" sql:"-"`
-	PayloadList     Payload `json:"List" sql:"-"`
+	PayloadTreatmentVoluntary Payload `json:"TreatmentVoluntary" sql:"-"`
+	PayloadList               Payload `json:"List" sql:"-"`
 
 	// Validator specific fields
-	Involved *Branch     `json:"-"`
-	List     *Collection `json:"-"`
+	TreatmentVoluntary *Branch     `json:"-"`
+	List               *Collection `json:"-"`
 
 	// Persister specific fields
 	ID         int `json:"-"`
@@ -414,11 +476,11 @@ func (entity *SubstanceDrugVoluntary) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	involved, err := entity.PayloadInvolved.Entity()
+	treatmentVoluntary, err := entity.PayloadTreatmentVoluntary.Entity()
 	if err != nil {
 		return err
 	}
-	entity.Involved = involved.(*Branch)
+	entity.TreatmentVoluntary = treatmentVoluntary.(*Branch)
 
 	list, err := entity.PayloadList.Entity()
 	if err != nil {
@@ -431,8 +493,8 @@ func (entity *SubstanceDrugVoluntary) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugVoluntary) Marshal() Payload {
-	if entity.Involved != nil {
-		entity.PayloadInvolved = entity.Involved.Marshal()
+	if entity.TreatmentVoluntary != nil {
+		entity.PayloadTreatmentVoluntary = entity.TreatmentVoluntary.Marshal()
 	}
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
@@ -444,17 +506,28 @@ func (entity *SubstanceDrugVoluntary) Marshal() Payload {
 func (entity *SubstanceDrugVoluntary) Valid() (bool, error) {
 	var stack ErrorStack
 
-	if ok, err := entity.Involved.Valid(); !ok {
+	if ok, err := entity.TreatmentVoluntary.Valid(); !ok {
 		stack.Append("DrugVoluntary", err)
 	}
 
-	if entity.Involved.Value == "Yes" {
+	if entity.TreatmentVoluntary.Value == "Yes" {
 		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("DrugVoluntary", err)
 		}
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceDrugVoluntary) ClearNos() error {
+	entity.TreatmentVoluntary.ClearNo()
+	clearErr := entity.List.ClearBranchItemsNo("TreatmentCompleted")
+	if clearErr != nil {
+		return clearErr
+	}
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // SubstanceAlcoholNegative represents the payload for the substance alcohol negative section.

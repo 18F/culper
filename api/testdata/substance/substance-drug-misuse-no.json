@@ -1,0 +1,23 @@
+{
+    "props": {
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "type": ""
+                    },
+                    "type": "branch"
+                },
+                "items": []
+            },
+            "type": "collection"
+        },
+        "MisusedDrugs": {
+            "props": {
+                "value": "No"
+            },
+            "type": "branch"
+        }
+    },
+    "type": "substance.drugs.misuse"
+}

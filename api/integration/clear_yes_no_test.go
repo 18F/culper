@@ -577,6 +577,78 @@ func TestClearSectionNos(t *testing.T) {
 				}
 			}
 		}},
+
+		{"../testdata/substance/substance-drug-purchase.json", "substance.drugs.purchase", func(t *testing.T, section api.Section) {
+			purchase := section.(*api.SubstanceDrugPurchase)
+
+			for _, purchaseItem := range purchase.List.Items {
+				employed := getBranchItemValue(t, purchaseItem, "InvolvementWhileEmployed")
+				if employed.Value != "" {
+					t.Log("Didn't clear the employed")
+					t.Fail()
+				}
+
+				clearance := getBranchItemValue(t, purchaseItem, "InvolvementWithClearance")
+				if clearance.Value != "" {
+					t.Log("Didn't clear the clearance")
+					t.Fail()
+				}
+
+				future := getBranchItemValue(t, purchaseItem, "InvolvementInFuture")
+				if future.Value != "" {
+					t.Log("Didn't clear the future")
+					t.Fail()
+				}
+			}
+		}},
+		// Misuse uses a different name for the serialized key and the struct prop name so we can't use the standard
+		{"../testdata/substance/substance-drug-misuse.json", "substance.drugs.misuse", func(t *testing.T, section api.Section) {
+			misuse := section.(*api.SubstanceDrugMisuse)
+
+			if misuse.UsedDrugs.Value != "Yes" {
+				t.Log("We should not have unset the Yes")
+				t.Fail()
+			}
+
+			if misuse.List.Branch.Value != "" {
+				t.Log("We should have unset the last No")
+				t.Fail()
+			}
+
+		}},
+		{"../testdata/substance/substance-drug-misuse-no.json", "substance.drugs.misuse", func(t *testing.T, section api.Section) {
+			misuse := section.(*api.SubstanceDrugMisuse)
+
+			if misuse.UsedDrugs.Value != "" {
+				t.Log("We should have unset the No")
+				t.Fail()
+			}
+
+		}},
+
+		{"../testdata/substance/substance-drug-ordered.json", "substance.drugs.ordered", func(t *testing.T, section api.Section) {
+			ordered := section.(*api.SubstanceDrugOrdered)
+
+			for _, orderedItem := range ordered.List.Items {
+				wasDischarged := getBranchItemValue(t, orderedItem, "ActionTaken")
+				if wasDischarged.Value != "" {
+					t.Log("Didn't clear the order")
+					t.Fail()
+				}
+			}
+		}},
+
+		{"../testdata/substance/substance-drug-voluntary.json", "substance.drugs.voluntary", func(t *testing.T, section api.Section) {
+			voluntary := section.(*api.SubstanceDrugVoluntary)
+
+			for _, voluntaryItem := range voluntary.List.Items {
+				wasDischarged := getBranchItemValue(t, voluntaryItem, "TreatmentCompleted")
+				if wasDischarged.Value != "" {
+					t.Log("Didn't clear the competion")
+					t.Fail()
+				}
+			}
+		}},
 	}
 
 	for _, clearTest := range tests {
@@ -738,6 +810,13 @@ func TestClearBasicSectionNos(t *testing.T) {
 		{"../testdata/financial/financial-credit.json", "financial.credit", "HasCreditCounseling"},
 		{"../testdata/financial/financial-delinquent.json", "financial.delinquent", "HasDelinquent"},
 		{"../testdata/financial/financial-nonpayment.json", "financial.nonpayment", "HasNonpayment"},
+
+		{"../testdata/substance/substance-drug-usage.json", "substance.drugs.usage", "UsedDrugs"},
+		{"../testdata/substance/substance-drug-purchase.json", "substance.drugs.purchase", "Involved"},
+		{"../testdata/substance/substance-drug-clearance.json", "substance.drugs.clearance", "UsedDrugs"},
+		{"../testdata/substance/substance-drug-publicsafety.json", "substance.drugs.publicsafety", "UsedDrugs"},
+		{"../testdata/substance/substance-drug-ordered.json", "substance.drugs.ordered", "TreatmentOrdered"},
+		{"../testdata/substance/substance-drug-voluntary.json", "substance.drugs.voluntary", "TreatmentVoluntary"},
 	}
 
 	for _, basicTest := range basicTests {
