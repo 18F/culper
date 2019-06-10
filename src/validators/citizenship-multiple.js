@@ -1,95 +1,33 @@
-import store from 'services/store'
+import { validateModel, hasYesOrNo, checkValue } from 'models/validate'
+import citizenship from 'models/citizenship'
 
+import store from 'services/store'
 import * as formTypes from 'constants/formTypes'
 import { requireMultipleCitizenshipRenounced } from 'helpers/branches'
 
-import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield } from './helpers'
-
-/** Helper functions */
-const isUnitedStates = (country) => {
-  if (!country || !country.value) { return true }
-
-  return country.value.includes('United States')
+export const validateCitizenship = (data, formType = formTypes.SF86) => {
+  const requireCitizenshipRenounced = requireMultipleCitizenshipRenounced(formType)
+  return validateModel(data, citizenship, { requireCitizenshipRenounced }) === true
 }
 
-/** Attribute Validators */
-const validateCountry = country => validGenericTextfield(country)
-
-const validateDates = dates => !!dates && new DateRangeValidator(dates).isValid()
-
-const validateHow = how => !!how && validGenericTextfield(how)
-
-const validateRenounced = (renounced, renouncedExplanation) => (
-  !!renounced
-    && (renounced === 'No' || renounced === 'Yes')
-    && validGenericTextfield(renouncedExplanation)
-)
-
-const validateCurrent = (dates, current, currentExplanation) => {
-  if (!dates || dates.present) { return true }
-
-  return !!current
-    && (current === 'No' || current === 'Yes')
-    && validGenericTextfield(currentExplanation)
+const citizenshipMultipleModel = {
+  HasMultiple: { presence: true, hasValue: { validator: hasYesOrNo } },
+  List: (value, attributes, attributeName, options) => (
+    checkValue(attributes.HasMultiple, 'Yes')
+      ? {
+        presence: true,
+        accordion: {
+          validator: citizenship,
+          length: { minimum: 2 },
+          ...options,
+        },
+      } : {}
+  ),
 }
-
-const validateHasMultiple = hasMultiple => !!hasMultiple
-  && (hasMultiple === 'Yes' || hasMultiple === 'No')
-
-const validateMinimumCitizenships = (citizenships) => {
-  if (citizenships.items && citizenships.items.length < 2) {
-    return false
-  }
-
-  return true
-}
-
-/** Object Validators (as functions) */
-export const validateCitizenshipItem = (data = {}, formType = formTypes.SF86) => {
-  const country = data.Country
-  const dates = data.Dates
-  const how = data.How
-  const renounced = (data.Renounced || {}).value
-  const renouncedExplanation = data.RenouncedExplanation
-  const current = (data.Current || {}).value
-  const currentExplanation = data.CurrentExplanation
-
-  const validCountry = validateCountry(country)
-  const validDates = validateDates(dates)
-  const validCurrent = validateCurrent(dates, current, currentExplanation)
-
-  if (!isUnitedStates(country)) {
-    const validHow = validateHow(how)
-
-    const validRenounced = requireMultipleCitizenshipRenounced(formType)
-      ? validateRenounced(renounced, renouncedExplanation)
-      : true
-
-    return validCountry && validDates && validCurrent && validHow && validRenounced
-  }
-
-  return validCountry && validDates && validCurrent
-}
-
-const validateCitizenships = (citizenships, formType) => (
-  validAccordion(citizenships, i => validateCitizenshipItem(i, formType))
-)
 
 export const validateCitizenshipMultiple = (data = {}, formType = formTypes.SF86) => {
-  const hasMultiple = (data.HasMultiple || {}).value
-  const citizenships = data.List || {}
-
-  const validHasMultiple = validateHasMultiple(hasMultiple)
-
-  if (hasMultiple === 'Yes') {
-    const validMinimumCitizenships = validateMinimumCitizenships(citizenships)
-    const validCitizenships = validateCitizenships(citizenships, formType)
-
-    return validHasMultiple && validMinimumCitizenships && validCitizenships
-  }
-
-  return validHasMultiple
+  const requireCitizenshipRenounced = requireMultipleCitizenshipRenounced(formType)
+  return validateModel(data, citizenshipMultipleModel, { requireCitizenshipRenounced }) === true
 }
 
 /** Object Validators (as classes) - legacy */
@@ -97,32 +35,37 @@ export default class CitizenshipMultipleValidator {
   constructor(data = {}) {
     const state = store.getState()
     const { formType } = state.application.Settings
-
     this.data = data
     this.formType = formType
-
-    this.hasMultiple = (data.HasMultiple || {}).value
-    this.list = data.List || {}
   }
 
   validHasMultiple() {
-    return validateHasMultiple(this.hasMultiple)
+    return validateModel(this.data, {
+      HasMultiple: citizenshipMultipleModel.HasMultiple,
+    }) === true
   }
 
   validMinimumCitizenships() {
-    if (this.hasMultiple !== 'Yes') {
-      return true
-    }
-
-    return validateMinimumCitizenships(this.list)
+    return validateModel(this.data, {
+      HasMultiple: citizenshipMultipleModel.HasMultiple,
+      List: citizenshipMultipleModel.List,
+    }) === true
   }
 
   validCitizenships() {
-    if (this.hasMultiple !== 'Yes') {
-      return true
-    }
-
-    return validateCitizenships(this.list, this.formType)
+    return validateModel(this.data, {
+      HasMultiple: citizenshipMultipleModel.HasMultiple,
+      List: (value, attributes, options) => (
+        checkValue(attributes.HasMultiple, 'Yes')
+          ? {
+            presence: true,
+            accordion: {
+              validator: citizenship,
+              ...options,
+            },
+          } : {}
+      ),
+    }) === true
   }
 
   isValid() {
@@ -134,52 +77,43 @@ export class CitizenshipItemValidator {
   constructor(data = {}) {
     const state = store.getState()
     const { formType } = state.application.Settings
-
     this.data = data
     this.formType = formType
-
-    this.country = data.Country
-    this.dates = data.Dates
-    this.how = data.How
-    this.renounced = (data.Renounced || {}).value
-    this.renouncedExplanation = data.RenouncedExplanation
-    this.current = (data.Current || {}).value
-    this.currentExplanation = data.CurrentExplanation
-  }
-
-  isUnitedStates() {
-    return isUnitedStates(this.country)
   }
 
   validCountry() {
-    return validateCountry(this.country)
+    return validateModel(this.data, {
+      Country: citizenship.Country,
+    }) === true
   }
 
   validDates() {
-    return validateDates(this.dates)
+    return validateModel(this.data, {
+      Dates: citizenship.Dates,
+    }) === true
   }
 
   validHow() {
-    if (this.isUnitedStates()) {
-      return true
-    }
-
-    return validateHow(this.how)
+    return validateModel(this.data, {
+      How: citizenship.How,
+    }) === true
   }
 
   validRenounced() {
-    if (this.isUnitedStates()) {
-      return true
-    }
-
-    return validateRenounced(this.renounced, this.renouncedExplanation)
+    return validateModel(this.data, {
+      Renounced: citizenship.Renounced,
+      RenouncedExplanation: citizenship.RenouncedExplanation,
+    }, { requireCitizenshipRenounced: true }) === true
   }
 
   validCurrent() {
-    return validateCurrent(this.dates, this.current, this.currentExplanation)
+    return validateModel(this.data, {
+      Current: citizenship.Current,
+      CurrentExplanation: citizenship.CurrentExplanation,
+    }) === true
   }
 
   isValid() {
-    return validateCitizenshipItem(this.data, this.formType)
+    return validateCitizenship(this.data, this.formType)
   }
 }

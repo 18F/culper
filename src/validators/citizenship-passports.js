@@ -1,121 +1,113 @@
-import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import NameValidator from './name'
-import {
-  validAccordion,
-  validGenericTextfield,
-  validDateField,
-  BranchCollection
-} from './helpers'
+import { validateModel } from 'models/validate'
+import foreignPassport from 'models/foreignPassport'
+import foreignPassportTravel from 'models/foreignPassportTravel'
+
+export const validateForeignPassportTravel = data => (
+  validateModel(data, foreignPassportTravel) === true)
+
+export const validateForeignPassport = data => (
+  validateModel(data, foreignPassport) === true)
+
+export const validateCitizenshipPassports = (data) => {
+  const citizenshipPassportsModel = {
+    Passports: {
+      presence: true,
+      branchCollection: {
+        validator: foreignPassport,
+      },
+    },
+  }
+
+  return validateModel(data, citizenshipPassportsModel) === true
+}
 
 export default class CitizenshipPassportsValidator {
   constructor(data = {}) {
-    this.passports = data.Passports || []
-  }
-
-  validPassports() {
-    const bc = new BranchCollection(this.passports)
-    if (!bc.validKeyValues()) {
-      return false
-    }
-
-    if (bc.hasNo()) {
-      return true
-    }
-
-    return bc.each(item => {
-      return new PassportItemValidator(item.Item, null).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validPassports()
+    return validateCitizenshipPassports(this.data)
   }
 }
 
 export class PassportItemValidator {
   constructor(data = {}) {
-    this.country = data.Country
-    this.issued = data.Issued
-    this.location = data.Location
-    this.name = data.Name
-    this.number = data.Number
-    this.expiration = data.Expiration
-    this.used = (data.Used || {}).value
-    this.countries = data.Countries || {}
+    this.data = data
   }
 
   validCountry() {
-    return validGenericTextfield(this.country)
+    return validateModel(this.data, {
+      Country: foreignPassport.Country,
+    }) === true
   }
 
   validIssued() {
-    return !!this.issued && validDateField(this.issued)
+    return validateModel(this.data, {
+      Issued: foreignPassport.Issued,
+    }) === true
   }
 
   validLocation() {
-    return !!this.location && new LocationValidator(this.location).isValid()
+    return validateModel(this.data, {
+      Location: foreignPassport.Location,
+    }) === true
   }
 
   validName() {
-    return !!this.name && new NameValidator(this.name).isValid()
+    return validateModel(this.data, {
+      Name: foreignPassport.Name,
+    }) === true
   }
 
   validNumber() {
-    return !!this.number && validGenericTextfield(this.number)
+    return validateModel(this.data, {
+      Number: foreignPassport.Number,
+    }) === true
   }
 
   validExpiration() {
-    return !!this.expiration && validDateField(this.expiration)
+    return validateModel(this.data, {
+      Expiration: foreignPassport.Expiration,
+    }) === true
   }
 
   validUsed() {
-    return !!this.used && (this.used === 'Yes' || this.used === 'No')
+    return validateModel(this.data, {
+      Used: foreignPassport.Used,
+    }) === true
   }
 
   validCountries() {
-    if (this.used !== 'Yes') {
-      return true
-    }
-
-    return validAccordion(
-      this.countries,
-      item => {
-        return new TravelItemValidator(item).isValid()
-      },
-      true
-    )
+    return validateModel(this.data, {
+      Used: foreignPassport.Used,
+      Countries: foreignPassport.Countries,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validCountry() &&
-      this.validIssued() &&
-      this.validLocation() &&
-      this.validName() &&
-      this.validNumber() &&
-      this.validExpiration() &&
-      this.validUsed() &&
-      this.validCountries()
-    )
+    return validateForeignPassport(this.data)
   }
 }
 
 export class TravelItemValidator {
   constructor(data = {}) {
-    this.country = data.Country
-    this.dates = data.Dates
+    this.data = data
   }
 
   validCountry() {
-    return validGenericTextfield(this.country)
+    return validateModel(this.data, {
+      Country: foreignPassportTravel.Country,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: foreignPassportTravel.Dates,
+    }) === true
   }
 
   isValid() {
-    return this.validCountry() && this.validDates()
+    return validateForeignPassportTravel(this.data)
   }
 }

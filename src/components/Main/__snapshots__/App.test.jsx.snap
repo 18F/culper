@@ -881,7 +881,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -895,7 +895,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             7
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>
@@ -3044,7 +3044,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -3058,7 +3058,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             9
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>
@@ -5811,7 +5811,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -5825,7 +5825,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             10
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>

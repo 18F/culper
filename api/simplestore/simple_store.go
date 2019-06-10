@@ -3,8 +3,8 @@ package simplestore
 import (
 	"database/sql"
 
-	_ "github.com/go-pg/pg" // pg is required for the sqlx package to work
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq" // pg is required for the sqlx package to work
 	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
