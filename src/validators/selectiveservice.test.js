@@ -1,23 +1,23 @@
 import SelectiveServiceValidator, {
-  hideSelectiveService
+  hideSelectiveService,
 } from './selectiveservice'
 
-describe('Selective service validation', function() {
+describe('Selective service validation', () => {
   it('', () => {
     const tests = [
       {
         store: {},
-        expected: false
+        expected: false,
       },
       {
         store: {
           Identification: {
             ApplicantBirthDate: {
-              Date: {}
-            }
-          }
+              Date: {},
+            },
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         store: {
@@ -26,12 +26,12 @@ describe('Selective service validation', function() {
               Date: {
                 month: `${new Date().getMonth() + 1}`,
                 day: `${new Date().getDate()}`,
-                year: `${new Date().getFullYear()}`
-              }
-            }
-          }
+                year: `${new Date().getFullYear()}`,
+              },
+            },
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         store: {
@@ -40,12 +40,12 @@ describe('Selective service validation', function() {
               Date: {
                 month: '1',
                 day: '1',
-                year: '1940'
-              }
-            }
-          }
+                year: '1940',
+              },
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         store: {
@@ -54,16 +54,16 @@ describe('Selective service validation', function() {
               Date: {
                 month: '11',
                 day: '31',
-                year: '1959'
-              }
-            }
-          }
+                year: '1959',
+              },
+            },
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(hideSelectiveService(test.store)).toBe(test.expected)
     })
   })
@@ -72,25 +72,25 @@ describe('Selective service validation', function() {
     const tests = [
       {
         state: {
-          WasBornAfter: { value: '' }
+          WasBornAfter: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          WasBornAfter: { value: 'No' }
+          WasBornAfter: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          WasBornAfter: { value: 'Yes' }
+          WasBornAfter: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new SelectiveServiceValidator(test.state, null).validBornAfter()
       ).toBe(test.expected)
@@ -103,37 +103,35 @@ describe('Selective service validation', function() {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: '' },
-          HasRegisteredNotApplicable: { applicable: true }
+          HasRegisteredNotApplicable: { applicable: true },
         },
-        expected: false
-      },
-      {
-        state: {
-          WasBornAfter: { value: 'Yes' },
-          HasRegistered: { value: 'No' },
-          HasRegisteredNotApplicable: { applicable: true }
-        },
-        expected: true
-      },
-      {
-        state: {
-          WasBornAfter: { value: 'Yes' },
-          HasRegistered: { value: 'Yes' },
-          HasRegisteredNotApplicable: { applicable: true }
-        },
-        expected: true
+        expected: false,
       },
       {
         state: {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: '' },
-          HasRegisteredNotApplicable: { applicable: false }
+          HasRegisteredNotApplicable: { applicable: false },
         },
-        expected: true
-      }
+        expected: true,
+      },
+      {
+        state: {
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'No' },
+        },
+        expected: true,
+      },
+      {
+        state: {
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'Yes' },
+        },
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new SelectiveServiceValidator(test.state, null).validRegistered()
       ).toBe(test.expected)
@@ -147,9 +145,9 @@ describe('Selective service validation', function() {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'Yes' },
           HasRegisteredNotApplicable: { applicable: true },
-          RegistrationNumber: null
+          RegistrationNumber: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -157,10 +155,10 @@ describe('Selective service validation', function() {
           HasRegistered: { value: 'Yes' },
           HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -168,10 +166,10 @@ describe('Selective service validation', function() {
           HasRegistered: { value: 'Yes' },
           HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: {
-            value: '123abc7890'
-          }
+            value: '123abc7890',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -179,14 +177,14 @@ describe('Selective service validation', function() {
           HasRegistered: { value: 'Yes' },
           HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: {
-            value: '1234567890'
-          }
+            value: '1234567890',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new SelectiveServiceValidator(
           test.state,
@@ -203,9 +201,9 @@ describe('Selective service validation', function() {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'No' },
           HasRegisteredNotApplicable: { applicable: true },
-          Explanation: null
+          Explanation: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -213,10 +211,10 @@ describe('Selective service validation', function() {
           HasRegistered: { value: 'No' },
           HasRegisteredNotApplicable: { applicable: true },
           Explanation: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -224,10 +222,10 @@ describe('Selective service validation', function() {
           HasRegistered: { value: 'No' },
           HasRegisteredNotApplicable: { applicable: true },
           Explanation: {
-            value: 'Never knew about it'
-          }
+            value: 'Never knew about it',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -235,10 +233,10 @@ describe('Selective service validation', function() {
           HasRegistered: { value: '' },
           HasRegisteredNotApplicable: { applicable: false },
           Explanation: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -246,14 +244,14 @@ describe('Selective service validation', function() {
           HasRegistered: { value: '' },
           HasRegisteredNotApplicable: { applicable: false },
           Explanation: {
-            value: 'Never knew about it'
-          }
+            value: 'Never knew about it',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new SelectiveServiceValidator(test.state, null).validExplanation()
       ).toBe(test.expected)
@@ -268,10 +266,10 @@ describe('Selective service validation', function() {
           HasRegistered: { value: 'Yes' },
           HasRegisteredNotApplicable: { applicable: true },
           RegistrationNumber: {
-            value: '1234567890'
-          }
+            value: '1234567890',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -279,10 +277,10 @@ describe('Selective service validation', function() {
           HasRegistered: { value: 'No' },
           HasRegisteredNotApplicable: { applicable: true },
           Explanation: {
-            value: 'Never knew about it'
-          }
+            value: 'Never knew about it',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -290,14 +288,14 @@ describe('Selective service validation', function() {
           HasRegistered: { value: '' },
           HasRegisteredNotApplicable: { applicable: false },
           Explanation: {
-            value: 'Never knew about it'
-          }
+            value: 'Never knew about it',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new SelectiveServiceValidator(test.state, null).isValid()).toBe(
         test.expected
       )

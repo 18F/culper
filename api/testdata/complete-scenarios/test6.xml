@@ -548,6 +548,9 @@
                   <BornOnBase>
                     <Answer>Yes</Answer>
                   </BornOnBase>
+                  <MilitaryBase>
+                    <Name>All Your Base</Name>
+                  </MilitaryBase>
                   <CitizenshipCertificate>
                     <CertificateNumber>7312</CertificateNumber>
                     <DateIssued>
@@ -563,9 +566,6 @@
                       <Middle Type="NMN"/>
                     </IssuedName>
                   </CitizenshipCertificate>
-                  <MilitaryBase>
-                    <Name>All Your Base</Name>
-                  </MilitaryBase>
                   <StateDeptForm240>
                     <DatePrepared>
                       <Date>

@@ -28,7 +28,9 @@ import (
 
 var updateGolden = flag.Bool("update-golden", false, "update golden files")
 
-var serializerInitializer = simplestore.NewJSONSerializer
+var serializerInitializer = func() api.Serializer {
+	return simplestore.NewJSONSerializer()
+}
 
 type serviceSet struct {
 	env   api.Settings
@@ -100,7 +102,7 @@ func createLockedTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 		Username:    email,
 		Email:       email,
 		FormType:    "SF86",
-		FormVersion: "2016-11",
+		FormVersion: "2017-07",
 		Locked:      true,
 		ExternalID:  uuid.New().String(),
 	}
@@ -122,7 +124,7 @@ func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 		Username:    email,
 		Email:       email,
 		FormType:    "SF86",
-		FormVersion: "2016-11",
+		FormVersion: "2017-07",
 		ExternalID:  uuid.New().String(),
 	}
 

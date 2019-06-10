@@ -3,7 +3,6 @@ package simplestore
 import (
 	"database/sql"
 
-	_ "github.com/go-pg/pg" // pg is required for the sqlx package to work
 	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -19,6 +18,9 @@ func runCreateApplication(conn simpleConnection, serializer api.Serializer, app 
 
 	_, saveErr := conn.Exec(saveQuery, app.AccountID, serializedApp)
 	if saveErr != nil {
+		if saveErr.Error() == "pq: duplicate key value violates unique constraint \"applications_pkey\"" {
+			return api.ErrApplicationAlreadyExists
+		}
 		return errors.Wrap(saveErr, "Failed to create Application")
 	}
 

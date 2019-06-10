@@ -110,12 +110,12 @@ describe('The civilUnion model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('the Address field is not required', () => {
+  it('the Address field is required', () => {
     const testData = {}
     const expectedErrors = ['Address.required']
 
     expect(validateModel(testData, civilUnion))
-      .not.toEqual(expect.arrayContaining(expectedErrors))
+      .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('the Address field must be a valid location', () => {
@@ -129,6 +129,19 @@ describe('The civilUnion model', () => {
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  describe('if UseCurrentAddress is checked', () => {
+    it('the Address field is not required', () => {
+      const testData = {
+        UseCurrentAddress: { applicable: true },
+      }
+
+      const expectedErrors = ['Address.required']
+
+      expect(validateModel(testData, civilUnion))
+        .not.toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 
   it('the Location field is required', () => {
@@ -251,6 +264,7 @@ describe('The civilUnion model', () => {
         Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
         SSN: { first: '234', middle: '12', last: '3490' },
         Separated: { value: 'No' },
+        UseCurrentAddress: { applicable: true },
         Location: {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },
@@ -334,6 +348,14 @@ describe('The civilUnion model', () => {
         Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
         SSN: { first: '234', middle: '12', last: '3490' },
         Separated: { value: 'Yes' },
+        Address: {
+          street: '123 Test St',
+          city: 'Boston',
+          state: 'MA',
+          zipcode: '02421',
+          country: 'United States',
+          county: 'County',
+        },
         Location: {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },
@@ -379,6 +401,7 @@ describe('The civilUnion model', () => {
           Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
           SSN: { first: '234', middle: '12', last: '3490' },
           Separated: { value: 'Yes' },
+          UseCurrentAddress: { applicable: true },
           Location: {
             city: 'Boston', state: 'MA', country: 'United States', county: 'County',
           },
@@ -430,6 +453,7 @@ describe('The civilUnion model', () => {
         Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
         SSN: { first: '234', middle: '12', last: '3490' },
         Separated: { value: 'No' },
+        UseCurrentAddress: { applicable: true },
         Location: {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },

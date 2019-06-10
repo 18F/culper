@@ -21,11 +21,11 @@ var (
 var knownFormVersions = map[string][]string{
 
 	"SF86": []string{
-		"2016-11",
+		"2017-07",
 	},
 
 	"SF85": []string{
-		"2017-12_draft7",
+		"2017-12-draft7",
 	},
 }
 
@@ -118,10 +118,23 @@ func (entity *Account) SetID(id int) {
 
 // Find will search for account by `username` if no identifier is present or by ID if it is.
 func (entity *Account) Find(context DatabaseService) error {
+	if entity.ExternalID != "" {
+		return entity.FindByExternalID(context)
+	}
+
 	if entity.ID == 0 {
 		return context.Where(entity, "Account.username = ?", entity.Username)
 	}
 	return context.Select(entity)
+}
+
+// FindByExternalID will search for account by `request id`
+func (entity *Account) FindByExternalID(context DatabaseService) error {
+	if entity.ExternalID == "" {
+		return fmt.Errorf("No request id was given")
+	}
+
+	return context.Where(entity, "Account.external_id = ?", entity.ExternalID)
 }
 
 // Lock will mark the account in a `locked` status.
@@ -147,6 +160,17 @@ func (entity *Account) FormTypeIsKnown() bool {
 		}
 	}
 	return false
+}
+
+// DefaultFormVersion returns the most recent form version for the
+// given formType
+func DefaultFormVersion(formType string) (string, error) {
+	versions := knownFormVersions[formType]
+	if versions == nil {
+		return "", errors.New(fmt.Sprintf("No known form version for type: %s", formType))
+	}
+
+	return versions[0], nil
 }
 
 // BasicAuthentication checks if the username and password are valid and returns the users account

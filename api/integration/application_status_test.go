@@ -75,8 +75,8 @@ func TestStatus(t *testing.T) {
 		t.Fail()
 	}
 
-	if status.Hash != "eee1ded7714837bd7270a8b34455a1d2d7de792dfa1511b3fe4da6471d005b12" {
-		t.Log("The hash has changed.")
+	if status.Hash != "50b174251cce87a6d52f7049feb609034834b0084a8019974e2615a5e7ea9406" {
+		t.Log("The hash has changed to " + status.Hash)
 		t.Fail()
 	}
 
