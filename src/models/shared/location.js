@@ -59,7 +59,7 @@ const location = {
       }
     }
 
-    return { requireEmpty: true }
+    return {}
   },
   country: { presence: true },
   county: (value, attributes = {}) => {

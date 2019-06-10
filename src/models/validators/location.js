@@ -10,10 +10,11 @@ const locationValidator = (value, options = {}) => {
   const { validator } = options
   if (!validator) return 'Invalid validator'
 
-  const locationErrors = validateModel({
-    ...value,
-    country: countryString(value && value.country),
-  }, validator, options)
+  const locationValue = { ...value }
+  if (locationValue.country) locationValue.country = countryString(locationValue.country)
+  if (locationValue.state) locationValue.state = locationValue.state.toUpperCase()
+
+  const locationErrors = validateModel(locationValue, validator, options)
 
   if (locationErrors !== true) return locationErrors
 

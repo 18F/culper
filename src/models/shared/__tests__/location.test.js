@@ -163,22 +163,6 @@ describe('The location model', () => {
   })
 
   describe('for an international address', () => {
-    it('state must be empty', () => {
-      const testData = { state: 'MA', country: 'Canada' }
-      const expectedErrors = ['state.requireEmpty']
-
-      expect(validateModel(testData, location))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
-    it('zipcode must be empty', () => {
-      const testData = { zipcode: '10002', country: 'Canada' }
-      const expectedErrors = ['zipcode.requireEmpty']
-
-      expect(validateModel(testData, location))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
     it('passes a valid international address', () => {
       const testData = {
         street: '1 Main Street',
