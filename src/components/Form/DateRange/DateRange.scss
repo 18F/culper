@@ -13,6 +13,7 @@
     width: 5rem;
     text-align: center;
     padding-top: 7rem;
+    font-size: 2.5rem;
   }
 
   .or-present {
@@ -35,9 +36,9 @@
   }
 }
 
-@media all and (max-width: 980px) {
+@media all and (max-width: 1200px) {
   .daterange {
-    flex-flow: wrap;
+    flex-direction: column;
 
     .arrow {
       display: none;

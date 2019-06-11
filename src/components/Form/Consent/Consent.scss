@@ -49,3 +49,9 @@
     }
   }
 }
+
+@media all and (max-width: 1200px) {
+  .consent-modal .modal .consent-content {
+    min-width: auto;
+  }
+}

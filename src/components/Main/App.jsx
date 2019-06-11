@@ -276,13 +276,13 @@ class App extends React.Component {
               </button>
               &nbsp;
             </div>
-            <a
-              href="javascript:;;;"
-              className="eapp-section-focus"
-              title="Main content. Please press TAB to go to the next question"
-              ref={this.setSectionFocusEl}
-            />
             <div id="main-content" className={coreClasses}>
+              <a
+                href="javascript:;;;"
+                className="eapp-section-focus"
+                title="Main content. Please press TAB to go to the next question"
+                ref={this.setSectionFocusEl}
+              />
               {children}
               &nbsp;
             </div>

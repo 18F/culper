@@ -14183,7 +14183,9 @@ exports[`The section component renders IDENTIFICATION_BIRTH_DATE 1`] = `
               <div
                 className="datecontrol"
               >
-                <div>
+                <div
+                  className="datecontrol-container"
+                >
                   <div
                     className="usa-form-group month"
                   >
@@ -18792,7 +18794,9 @@ exports[`The section component renders IDENTIFICATION_REVIEW 1`] = `
                 <div
                   className="datecontrol"
                 >
-                  <div>
+                  <div
+                    className="datecontrol-container"
+                  >
                     <div
                       className="usa-form-group month"
                     >

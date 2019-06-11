@@ -2169,15 +2169,15 @@ exports[`App component for the SF85 renders the homepage 1`] = `
         </button>
          
       </div>
-      <a
-        className="eapp-section-focus"
-        href="javascript:;;;"
-        title="Main content. Please press TAB to go to the next question"
-      />
       <div
         className="eapp-structure-right eapp-core visible"
         id="main-content"
       >
+        <a
+          className="eapp-section-focus"
+          href="javascript:;;;"
+          title="Main content. Please press TAB to go to the next question"
+        />
          
       </div>
     </div>
@@ -4936,15 +4936,15 @@ exports[`App component for the SF85P renders the homepage 1`] = `
         </button>
          
       </div>
-      <a
-        className="eapp-section-focus"
-        href="javascript:;;;"
-        title="Main content. Please press TAB to go to the next question"
-      />
       <div
         className="eapp-structure-right eapp-core visible"
         id="main-content"
       >
+        <a
+          className="eapp-section-focus"
+          href="javascript:;;;"
+          title="Main content. Please press TAB to go to the next question"
+        />
          
       </div>
     </div>
@@ -8147,15 +8147,15 @@ exports[`App component for the SF86 renders the homepage 1`] = `
         </button>
          
       </div>
-      <a
-        className="eapp-section-focus"
-        href="javascript:;;;"
-        title="Main content. Please press TAB to go to the next question"
-      />
       <div
         className="eapp-structure-right eapp-core visible"
         id="main-content"
       >
+        <a
+          className="eapp-section-focus"
+          href="javascript:;;;"
+          title="Main content. Please press TAB to go to the next question"
+        />
          
       </div>
     </div>

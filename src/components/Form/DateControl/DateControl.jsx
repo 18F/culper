@@ -10,7 +10,7 @@ import {
   daysAgo,
   daysInMonth,
   extractDate,
-  validDate
+  validDate,
 } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
@@ -29,7 +29,7 @@ class DateControl extends ValidationElement {
       day: props.hideDay ? '1' : props.day,
       year: props.year,
       touched: this.isTouched(props.year, props.month, props.day),
-      errors: []
+      errors: [],
     }
 
     this.storeErrors = this.storeErrors.bind(this)
@@ -59,37 +59,37 @@ class DateControl extends ValidationElement {
 
   handleDisable(nextProps) {
     let updates = {}
-    let errors = [...this.errors] || []
+    const errors = [...this.errors] || []
     // If disabling component, set all errors to null
     if (nextProps.disabled) {
-      this.errors = errors.map(err => {
-        return {
-          code: err.code,
-          valid: null,
-          uid: err.uid
-        }
-      })
+      this.errors = errors.map(err => ({
+        code: err.code,
+        valid: null,
+        uid: err.uid,
+      }))
       updates = { month: '', day: '', year: '' }
     }
     this.props.onError('', this.errors)
     updates = {
       disabled: nextProps.disabled,
-      ...updates
+      ...updates,
     }
     this.setState(updates)
   }
 
   update(el, year, month, day, estimated, touched) {
     this.setState(
-      { month: month, day: day, year: year, estimated: estimated, touched: touched },
+      {
+        month, day, year, estimated, touched,
+      },
       () => {
         this.props.onUpdate({
           name: this.props.name,
           month: `${month}`,
           day: `${day}`,
           year: `${year}`,
-          estimated: estimated,
-          touched: touched || this.isTouched(year, month, day)
+          estimated,
+          touched: touched || this.isTouched(year, month, day),
         })
       }
     )
@@ -152,24 +152,22 @@ class DateControl extends ValidationElement {
   }
 
   handleError(code, value, arr) {
-    let original = arr.map(err => {
-      return {
-        code: `date.${code}.${err.code}`,
-        valid: err.valid,
-        uid: err.uid
-      }
-    })
+    const original = arr.map(err => ({
+      code: `date.${code}.${err.code}`,
+      valid: err.valid,
+      uid: err.uid,
+    }))
 
     // Handle required
     arr = original.concat(
       this.constructor.errors
         .filter(err => err.code === 'required')
-        .map(err => {
+        .map((err) => {
           const props = { ...this.props, ...this.state }
           return {
             code: `date.${err.code}`,
             valid: err.func(null, props),
-            uid: this.state.uid
+            uid: this.state.uid,
           }
         })
     )
@@ -189,7 +187,7 @@ class DateControl extends ValidationElement {
         props = {
           ...this.props,
           ...this.state,
-          validator: new DateControlValidator({ ...this.props, ...this.state })
+          validator: new DateControlValidator({ ...this.props, ...this.state }),
         }
       }
 
@@ -198,13 +196,11 @@ class DateControl extends ValidationElement {
       const noneRequiredErrors = this.constructor.errors.filter(
         err => err.code !== 'required'
       )
-      local = noneRequiredErrors.map(err => {
-        return {
-          code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
-          valid: props === null ? null : err.func(date, props),
-          uid: this.state.uid
-        }
-      })
+      local = noneRequiredErrors.map(err => ({
+        code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
+        valid: props === null ? null : err.func(date, props),
+        uid: this.state.uid,
+      }))
 
       this.setState({ error: local.some(x => x.valid === false) }, () => {
         // Pass any local and child errors to bound functions
@@ -242,7 +238,7 @@ class DateControl extends ValidationElement {
   }
 
   render() {
-    let klass = `${
+    const klass = `${
       this.props.hideMonth && this.props.hideDay ? '' : 'datecontrol'
     } ${
       this.state.error && !this.props.overrideError ? 'usa-input-error' : ''
@@ -251,11 +247,12 @@ class DateControl extends ValidationElement {
     } ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
     return (
       <div className={klass}>
-        <div>
+        <div className="datecontrol-container">
           <div
             className={`usa-form-group month ${
               this.props.hideMonth === true ? 'hidden' : ''
-            }`.trim()}>
+            }`.trim()}
+          >
             <Number
               id="month"
               name="month"
@@ -281,7 +278,8 @@ class DateControl extends ValidationElement {
           <div
             className={`usa-form-group day ${
               this.props.hideDay === true ? 'hidden' : ''
-            }`}>
+            }`}
+          >
             <Number
               id="day"
               name="day"
@@ -372,14 +370,12 @@ DateControl.defaultProps = {
   minDate: null,
   minDateEqualTo: false,
   relationship: '',
-  onUpdate: values => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  tab: el => {
+  onUpdate: (values) => {},
+  onError: (value, arr) => arr,
+  tab: (el) => {
     el.focus()
   },
-  notApplicable: false
+  notApplicable: false,
 }
 
 DateControl.errors = [
@@ -390,7 +386,7 @@ DateControl.errors = [
         return validDate(props)
       }
       return true
-    }
+    },
   },
   {
     code: 'max',
@@ -399,7 +395,7 @@ DateControl.errors = [
         return null
       }
       return value && props.validator.validMaxDate()
-    }
+    },
   },
   {
     code: 'min',
@@ -408,13 +404,11 @@ DateControl.errors = [
         return null
       }
       return value && props.validator.validMinDate()
-    }
-  }
+    },
+  },
 ]
 
-const mapStateToProps = (state, ownProps) => {
-  return state
-}
+const mapStateToProps = (state, ownProps) => state
 
 export { DateControl }
 export default connect(mapStateToProps)(DateControl)

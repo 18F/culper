@@ -5,7 +5,6 @@ import { i18n } from 'config'
 
 import SummaryCounter from 'components/Section/History/SummaryCounter'
 import { totalYears } from 'components/Section/History/helpers'
-import { Svg } from 'components/Form'
 
 import { EducationItemValidator } from 'validators'
 
@@ -67,14 +66,7 @@ const EducationSummaryProgress = (props) => {
       schoolsLabel={i18n.t('history.education.summary.schools')}
       diplomasLabel={i18n.t('history.education.summary.diplomas')}
       total={totalYears(Birthdate, years)}
-    >
-      <div className="summary-icon">
-        <Svg
-          src="/img/school-cap.svg"
-          alt={i18n.t('history.education.summary.svgAlt')}
-        />
-      </div>
-    </SummaryCounter>
+    />
   )
 }
 
