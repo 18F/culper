@@ -256,12 +256,12 @@ class App extends React.Component {
               <div id="scrollToProgress" />
               <div className="usa-overlay" />
               <ProgressBar />
-              {settings.status === 'KICKBACK' && (
-                <KickbackBanner />
-              )}
             </div>
           </div>
         </StickyHeader>
+        {settings.status === 'KICKBACK' && (
+          <KickbackBanner />
+        )}
         <main className={mainClasses}>
           <div className="eapp-structure-row">
             <div className={navigationClasses}>
