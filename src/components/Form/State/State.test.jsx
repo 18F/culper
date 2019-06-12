@@ -1,14 +1,17 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
+
+import usStates from 'constants/enums/usStates'
+import usTerritories from 'constants/enums/usTerritories'
+
 import State from './State'
-import { unitedStates, otherUsTerritories } from '../../../validators/location'
 
 describe('The State component', () => {
   it('renders', () => {
     const expected = {
       name: 'state',
       className: 'state',
-      value: ''
+      value: '',
     }
 
     shallow(<State {...expected} />)
@@ -20,13 +23,13 @@ describe('The State component', () => {
       className: 'state',
       value: 'Arizona',
       onBlur: () => {},
-      onFocus: () => {}
+      onFocus: () => {},
     }
     const component = mount(<State {...expected} />)
     component.find('.state input').simulate('change', {
       target: {
-        value: 'AZ'
-      }
+        value: 'AZ',
+      },
     })
     component.find('.state input').simulate('focus')
     expect(
@@ -42,13 +45,13 @@ describe('The State component', () => {
       value: 'Arizona',
       className: 'state',
       onBlur: () => {},
-      onFocus: () => {}
+      onFocus: () => {},
     }
     const component = mount(<State {...expected} />)
     component.find('.state input').simulate('change', {
       target: {
-        value: 'arizona'
-      }
+        value: 'arizona',
+      },
     })
     component.find('.state input').simulate('focus')
     expect(
@@ -64,7 +67,7 @@ describe('The State component', () => {
       value: 'gibberish',
       className: 'state',
       onBlur: () => {},
-      onFocus: () => {}
+      onFocus: () => {},
     }
     const component = shallow(<State {...expected} />)
     const instance = component.instance()
@@ -77,7 +80,7 @@ describe('The State component', () => {
       value: 'oregon',
       className: 'state',
       onBlur: () => {},
-      onFocus: () => {}
+      onFocus: () => {},
     }
 
     const component = shallow(<State {...props} />)
@@ -85,18 +88,18 @@ describe('The State component', () => {
     expect(instance.getStatePostalCode('oregon')).toEqual('OR')
   })
 
-  it('returns additional states renderd through props', () => {
+  it('returns additional states rendered through props', () => {
     const expected = {
       name: 'state',
       value: 'gibberish',
       className: 'state',
       onBlur: () => {},
       onFocus: () => {},
-      additionalStates: [{ name: 'Test State', postalCode: 'CH' }]
+      additionalStates: [{ name: 'Test State', postalCode: 'CH' }],
     }
     const component = mount(<State {...expected} />)
     const instance = component.instance()
-    expect(instance.states.length).toEqual(unitedStates.length + otherUsTerritories.length + 1)
+    expect(instance.states().length).toEqual(usStates.length + usTerritories.length + 1)
   })
 
   it('calls the onUpdate function with the correct arguments', () => {
@@ -106,7 +109,7 @@ describe('The State component', () => {
       className: 'state',
       onBlur: () => {},
       onFocus: () => {},
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
 
     const component = shallow(<State {...props} />)
