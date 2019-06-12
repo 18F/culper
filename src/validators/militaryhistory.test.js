@@ -295,7 +295,7 @@ describe('Military history validation', () => {
           },
         },
         expected: true,
-      }
+      },
     ]
 
     tests.forEach((test) => {
