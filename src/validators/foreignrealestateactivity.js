@@ -1,23 +1,30 @@
-import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
-import { validAccordion, validBranch } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignRealEstateInterest from 'models/foreignRealEstateInterest'
+
+export const validateForeignRealEstateActivity = (data) => {
+  const foreignRealEstateActivityModel = {
+    HasInterests: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasInterests && attributes.HasInterests.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignRealEstateInterest },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignRealEstateActivityModel) === true
+}
 
 export default class ForeignRealEstateActivityValidator {
   constructor(data = {}) {
-    this.hasInterests = (data.HasInterests || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   isValid() {
-    if (!validBranch(this.hasInterests)) {
-      return false
-    }
-
-    if (this.hasInterests === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ForeignRealEstateInterestValidator(item).isValid()
-    })
+    return validateForeignRealEstateActivity(this.data)
   }
 }
