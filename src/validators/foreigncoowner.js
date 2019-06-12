@@ -1,23 +1,19 @@
 import { validateModel } from 'models/validate'
 import foreignCoOwner from 'models/shared/foreignCoOwner'
 
-export const validateForeignCoOwner = data => validateModel(data, foreignCoOwner) === true
-
-export const validateForeignCoOwners = (data) => {
-  const foreignCoOwnersModel = {
-    List: {
-      presence: true,
-      branchCollection: { validator: foreignCoOwner },
-    },
-  }
-
-  return validateModel(data, foreignCoOwnersModel) === true
+export const foreignCoOwnersModel = {
+  List: {
+    presence: true,
+    branchCollection: { validator: foreignCoOwner },
+  },
 }
+
+export const validateForeignCoOwner = data => validateModel(data, foreignCoOwner) === true
+export const validateForeignCoOwners = data => validateModel(data, foreignCoOwnersModel) === true
 
 export default class ForeignCoOwnersValidator {
   constructor(data = {}) {
     this.data = data
-    this.list = data.List || []
   }
 
   isValid() {
