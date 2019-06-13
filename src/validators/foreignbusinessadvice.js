@@ -1,65 +1,72 @@
-import NameValidator from './name'
-import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignBusinessAdvice from 'models/foreignBusinessAdvice'
+
+export const validateAdvice = data => validateModel(data, foreignBusinessAdvice) === true
+
+export const validateForeignBusinessAdvice = (data) => {
+  const foreignBusinessAdviceModel = {
+    HasForeignAdvice: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasForeignAdvice && attributes.HasForeignAdvice.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignBusinessAdvice },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignBusinessAdviceModel) === true
+}
 
 export default class ForeignBusinessAdviceValidator {
   constructor(data = {}) {
-    this.hasForeignAdvice = (data.HasForeignAdvice || {}).value
-    this.list = data.List || []
-  }
-
-  validList() {
-    if (this.hasForeignAdvice === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new AdviceValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignBusinessAdvice(this.data)
   }
 }
 
 export class AdviceValidator {
   constructor(data = {}) {
-    this.description = data.Description
-    this.name = data.Name
-    this.organization = data.Organization
-    this.country = data.Country
-    this.dates = data.Dates
-    this.compensation = data.Compensation // optional
+    this.data = data
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, {
+      Description: foreignBusinessAdvice.Description,
+    }) === true
   }
 
   validName() {
-    return !!this.name && new NameValidator(this.name).isValid()
+    return validateModel(this.data, {
+      Name: foreignBusinessAdvice.Name,
+    }) === true
   }
 
   validOrganization() {
-    return !!this.organization && validGenericTextfield(this.organization)
+    return validateModel(this.data, {
+      Organization: foreignBusinessAdvice.Organization,
+    }) === true
   }
 
   validCountry() {
-    return !!this.country && validGenericTextfield(this.country)
+    return validateModel(this.data, {
+      Country: foreignBusinessAdvice.Country,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates).isValid()
+    return validateModel(this.data, {
+      Dates: foreignBusinessAdvice.Dates,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validDescription() &&
-      this.validName() &&
-      this.validOrganization() &&
-      this.validCountry() &&
-      this.validDates()
-    )
+    return validateAdvice(this.data)
   }
 }
