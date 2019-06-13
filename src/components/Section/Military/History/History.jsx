@@ -20,6 +20,9 @@ export const serviceNameDisplay = (service) => {
   let display = (service || {}).value
 
   switch (display) {
+    case 'Army':
+      display = 'Army'
+      break
     case 'AirForce':
       display = 'Air Force'
       break
