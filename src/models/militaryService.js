@@ -1,5 +1,9 @@
 import { hasYesOrNo, checkValue } from 'models/validate'
 import state from 'models/shared/locations/state'
+import militaryServiceOptions from 'constants/enums/militaryServiceOptions'
+import militaryStatusOptions from 'constants/enums/militaryStatusOptions'
+import militaryOfficerOptions from 'constants/enums/militaryOfficerOptions'
+import militaryDischargeOptions from 'constants/enums/militaryDischargeOptions'
 
 const isAirOrArmyNationalGuard = serviceType => (
   serviceType
@@ -12,7 +16,7 @@ const militaryService = {
     presence: true,
     hasValue: {
       validator: {
-        inclusion: ['Army', 'ArmyNationalGuard', 'Navy', 'AirForce', 'AirNationalGuard', 'MarineCorps', 'CoastGuard'],
+        inclusion: militaryServiceOptions,
       },
     },
   },
@@ -20,7 +24,7 @@ const militaryService = {
     presence: true,
     hasValue: {
       validator: {
-        inclusion: ['ActiveDuty', 'ActiveReserve', 'InactiveReserve'],
+        inclusion: militaryStatusOptions,
       },
     },
   },
@@ -28,7 +32,7 @@ const militaryService = {
     presence: true,
     hasValue: {
       validator: {
-        inclusion: ['Officer', 'Enlisted', 'NotApplicable'],
+        inclusion: militaryOfficerOptions,
       },
     },
   },
@@ -53,7 +57,7 @@ const militaryService = {
         presence: true,
         hasValue: {
           validator: {
-            inclusion: ['Honorable', 'Dishonorable', 'LessThan', 'General', 'BadConduct', 'Other'],
+            inclusion: militaryDischargeOptions,
           },
         },
       } : {}
