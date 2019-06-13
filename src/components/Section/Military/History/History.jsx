@@ -38,6 +38,9 @@ export const serviceNameDisplay = (service) => {
     case 'MarineCorps':
       display = 'Marine Corps'
       break
+    case 'Navy':
+      display = 'Navy'
+      break
     default:
       display = 'Unknown'
   }

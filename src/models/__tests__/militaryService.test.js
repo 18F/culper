@@ -93,72 +93,76 @@ describe('The military service model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('requires DischargeType if applicant was discharged', () => {
-    const testData = {
-      HasBeenDischarged: {
-        value: 'Yes',
-      },
-    }
-    const expectedErrors = ['DischargeType.required']
+  describe('if applicant was discharged', () => {
+    it('requires DischargeType', () => {
+      const testData = {
+        HasBeenDischarged: {
+          value: 'Yes',
+        },
+      }
+      const expectedErrors = ['DischargeType.required']
 
-    expect(validateModel(testData, militaryService))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
+      expect(validateModel(testData, militaryService))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
 
-  it('requires a valid DischargeType if applicant was discharged', () => {
-    const testData = {
-      HasBeenDischarged: {
-        value: 'Yes',
-      },
-      DischargeType: {
-        value: 'InvalidType',
-      },
-    }
-    const expectedErrors = ['DischargeType.hasValue']
+    it('requires a valid DischargeType', () => {
+      const testData = {
+        HasBeenDischarged: {
+          value: 'Yes',
+        },
+        DischargeType: {
+          value: 'InvalidType',
+        },
+      }
+      const expectedErrors = ['DischargeType.hasValue']
 
-    expect(validateModel(testData, militaryService))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
+      expect(validateModel(testData, militaryService))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
 
-  it('requires a DischargeReason for discharge types other than Honorable', () => {
-    const testData = {
-      HasBeenDischarged: {
-        value: 'Yes',
-      },
-      DischargeType: {
-        value: 'Dishonorable',
-      },
-    }
-    const expectedErrors = ['DischargeReason.required', 'DischargeReason.hasValue']
 
-    expect(validateModel(testData, militaryService))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
+    it('requires a DischargeReason for discharge types other than Honorable', () => {
+      const testData = {
+        HasBeenDischarged: {
+          value: 'Yes',
+        },
+        DischargeType: {
+          value: 'Dishonorable',
+        },
+      }
+      const expectedErrors = ['DischargeReason.required', 'DischargeReason.hasValue']
 
-  it('requires a DischargeTypeOther for DischargeType = Other', () => {
-    const testData = {
-      HasBeenDischarged: {
-        value: 'Yes',
-      },
-      DischargeType: {
-        value: 'Other',
-      },
-    }
-    const expectedErrors = ['DischargeTypeOther.required', 'DischargeTypeOther.hasValue']
+      expect(validateModel(testData, militaryService))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
 
-    expect(validateModel(testData, militaryService))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
+    it('requires a DischargeTypeOther for DischargeType = Other', () => {
+      const testData = {
+        HasBeenDischarged: {
+          value: 'Yes',
+        },
+        DischargeType: {
+          value: 'Other',
+        },
+      }
+      const expectedErrors = ['DischargeTypeOther.required', 'DischargeTypeOther.hasValue']
 
-  it('requires a DischargeDate if applicant has been discharged', () => {
-    const testData = {
-      HasBeenDischarged: {
-        value: 'Yes',
-      },
-    }
-    const expectedErrors = ['DischargeDate.required']
+      expect(validateModel(testData, militaryService))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
 
-    expect(validateModel(testData, militaryService))
-      .toEqual(expect.arrayContaining(expectedErrors))
+
+    it('requires a DischargeDate', () => {
+      const testData = {
+        HasBeenDischarged: {
+          value: 'Yes',
+        },
+      }
+      const expectedErrors = ['DischargeDate.required']
+
+      expect(validateModel(testData, militaryService))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 })
