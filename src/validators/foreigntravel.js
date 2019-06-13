@@ -1,171 +1,118 @@
-import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignTravel from 'models/foreignTravel'
+
+export const validateTravel = data => validateModel(data, foreignTravel) === true
+
+export const validateForeignTravel = (data) => {
+  const foreignTravelModel = {
+    HasForeignTravelOutside: { presence: true, hasValue: { validator: hasYesOrNo } },
+    HasForeignTravelOfficial: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      const { HasForeignTravelOutside, HasForeignTravelOfficial } = attributes
+      if ((HasForeignTravelOutside && HasForeignTravelOutside.value === 'Yes')
+        && (HasForeignTravelOfficial && HasForeignTravelOfficial.value === 'No')) {
+        return {
+          presence: true,
+          accordion: { validator: foreignTravel },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignTravelModel) === true
+}
 
 export default class ForeignTravelValidator {
   constructor(data = {}) {
-    this.hasForeignTravelOutside = (data.HasForeignTravelOutside || {}).value
-    this.hasForeignTravelOfficial = (data.HasForeignTravelOfficial || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasForeignTravelOutside === 'No') {
-      return true
-    }
-
-    if (this.hasForeignTravelOfficial === 'Yes') {
-      return true
-    }
-
-    if (this.hasForeignTravelOfficial === 'Yes') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new TravelValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignTravel(this.data)
   }
 }
 
 export class TravelValidator {
   constructor(data = {}) {
-    this.dates = data.Dates
-    this.country = data.Country
-    this.days = (data.Days || {}).value
-    this.purpose = (data.Purpose || {}).values || []
-    this.questioned = (data.Questioned || {}).value
-    this.questionedExplanation = data.QuestionedExplanation
-    this.encounter = (data.Encounter || {}).value
-    this.encounterExplanation = data.EncounterExplanation
-    this.contacted = (data.Contacted || {}).value
-    this.contactedExplanation = data.ContactedExplanation
-    this.counter = (data.Counter || {}).value
-    this.counterExplanation = data.CounterExplanation
-    this.interest = (data.Interest || {}).value
-    this.interestExplanation = data.InterestExplanation
-    this.sensitive = (data.Sensitive || {}).value
-    this.sensitiveExplanation = data.SensitiveExplanation
-    this.threatened = (data.Threatened || {}).value
-    this.threatenedExplanation = data.ThreatenedExplanation
+    this.data = data
   }
 
   validCountry() {
-    return !!this.country && !!this.country.value
+    return validateModel(this.data, {
+      Country: foreignTravel.Country,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: foreignTravel.Dates,
+    }) === true
   }
 
   validDays() {
-    const options = [
-      '1-5',
-      '6-10',
-      '11-20',
-      '21-30',
-      'More than 30',
-      'Many short trips'
-    ]
-    return !!this.days && this.days.length > 0 && options.includes(this.days)
+    return validateModel(this.data, {
+      Days: foreignTravel.Days,
+    }) === true
   }
 
   validPurpose() {
-    const options = [
-      'Business',
-      'Volunteer',
-      'Education',
-      'Tourism',
-      'Conference',
-      'Family',
-      'Other'
-    ]
-    return (
-      !!this.purpose &&
-      this.purpose.length > 0 &&
-      this.purpose.every(x => options.includes(x))
-    )
+    return validateModel(this.data, {
+      Purpose: foreignTravel.Purpose,
+    }) === true
   }
 
   validQuestioned() {
-    return (
-      !!this.questioned &&
-      ((this.questioned === 'Yes' &&
-        validGenericTextfield(this.questionedExplanation)) ||
-        this.questioned === 'No')
-    )
+    return validateModel(this.data, {
+      Questioned: foreignTravel.Questioned,
+      QuestionedExplanation: foreignTravel.QuestionedExplanation,
+    }) === true
   }
 
   validEncounter() {
-    return (
-      !!this.encounter &&
-      ((this.encounter === 'Yes' &&
-        validGenericTextfield(this.encounterExplanation)) ||
-        this.encounter === 'No')
-    )
+    return validateModel(this.data, {
+      Encounter: foreignTravel.Encounter,
+      EncounterExplanation: foreignTravel.EncounterExplanation,
+    }) === true
   }
 
   validContacted() {
-    return (
-      !!this.contacted &&
-      ((this.contacted === 'Yes' &&
-        validGenericTextfield(this.contactedExplanation)) ||
-        this.contacted === 'No')
-    )
+    return validateModel(this.data, {
+      Contacted: foreignTravel.Contacted,
+      ContactedExplanation: foreignTravel.ContactedExplanation,
+    }) === true
   }
 
   validCounter() {
-    return (
-      !!this.counter &&
-      ((this.counter === 'Yes' &&
-        validGenericTextfield(this.counterExplanation)) ||
-        this.counter === 'No')
-    )
+    return validateModel(this.data, {
+      Counter: foreignTravel.Counter,
+      CounterExplanation: foreignTravel.CounterExplanation,
+    }) === true
   }
 
   validInterest() {
-    return (
-      !!this.interest &&
-      ((this.interest === 'Yes' &&
-        validGenericTextfield(this.interestExplanation)) ||
-        this.interest === 'No')
-    )
+    return validateModel(this.data, {
+      Interest: foreignTravel.Interest,
+      InterestExplanation: foreignTravel.InterestExplanation,
+    }) === true
   }
 
   validSensitive() {
-    return (
-      !!this.sensitive &&
-      ((this.sensitive === 'Yes' &&
-        validGenericTextfield(this.sensitiveExplanation)) ||
-        this.sensitive === 'No')
-    )
+    return validateModel(this.data, {
+      Sensitive: foreignTravel.Sensitive,
+      SensitiveExplanation: foreignTravel.SensitiveExplanation,
+    }) === true
   }
 
   validThreatened() {
-    return (
-      !!this.threatened &&
-      ((this.threatened === 'Yes' &&
-        validGenericTextfield(this.threatenedExplanation)) ||
-        this.threatened === 'No')
-    )
+    return validateModel(this.data, {
+      Threatened: foreignTravel.Threatened,
+      ThreatenedExplanation: foreignTravel.ThreatenedExplanation,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validCountry() &&
-      this.validDates() &&
-      this.validDays() &&
-      this.validPurpose() &&
-      this.validQuestioned() &&
-      this.validEncounter() &&
-      this.validContacted() &&
-      this.validCounter() &&
-      this.validInterest() &&
-      this.validSensitive() &&
-      this.validThreatened()
-    )
+    return validateTravel(this.data)
   }
 }
