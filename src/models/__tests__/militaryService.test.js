@@ -31,13 +31,6 @@ describe('The military service model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('requires Status to have a value', () => {
-    const testData = {}
-    const expectedErrors = ['Status.required']
-
-    expect(validateModel(testData, militaryService))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
 
   it('requires Status to have a valid value', () => {
     const testData = {
@@ -46,14 +39,6 @@ describe('The military service model', () => {
       },
     }
     const expectedErrors = ['Status.hasValue']
-
-    expect(validateModel(testData, militaryService))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('requires Officer to have a value', () => {
-    const testData = {}
-    const expectedErrors = ['Officer.required']
 
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
