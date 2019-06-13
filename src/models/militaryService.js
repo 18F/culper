@@ -20,7 +20,6 @@ const militaryService = {
     presence: true,
     hasValue: {
       validator: {
-        // Double Check: (15.2.3) says `Active`, not `ActiveDuty`
         inclusion: ['ActiveDuty', 'ActiveReserve', 'InactiveReserve'],
       },
     },
@@ -57,7 +56,7 @@ const militaryService = {
         presence: true,
         hasValue: {
           validator: {
-            inclusion: ['Honorable', 'Dishonorable', 'OtherThanHonorable', 'General', 'BadConduct', 'Other']
+            inclusion: ['Honorable', 'Dishonorable', 'LessThan', 'General', 'BadConduct', 'Other'],
           },
         },
       } : {}
