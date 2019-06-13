@@ -33,10 +33,7 @@ const militaryService = {
     },
   },
   Dates: { presence: true, daterange: true },
-  ServiceNumber: {
-    presence: true,
-    hasValue: true,
-  },
+  ServiceNumber: { presence: true, hasValue: true },
   ServiceState: (value, attributes) => {
     if (isAirOrArmyNationalGuard(attributes.Service)) {
       return {
@@ -69,24 +66,17 @@ const militaryService = {
       return {}
     }
 
-    return {
-      presence: true,
-      hasValue: true,
-    }
+    return { presence: true, hasValue: true }
   },
   DischargeTypeOther: (value, attributes) => (
     checkValue(attributes.DischargeType, 'Other')
-      ? {
-        presence: true,
-        hasValue: true,
-      } : {}
+      ? { presence: true, hasValue: true }
+      : {}
   ),
   DischargeDate: (value, attributes) => (
     checkValue(attributes.HasBeenDischarged, 'Yes')
-      ? {
-        presence: true,
-        date: true,
-      } : {}
+      ? { presence: true, date: true }
+      : {}
   ),
 }
 
