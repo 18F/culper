@@ -1,110 +1,90 @@
-import NameValidator from './name'
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validGenericTextfield,
-  validDateField,
-  BranchCollection
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignBusinessContact from 'models/foreignBusinessContact'
+
+export const validateContact = data => validateModel(data, foreignBusinessContact) === true
+
+export const validateForeignBusinessContacts = (data) => {
+  const foreignBusinessContactsModel = {
+    HasForeignContact: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasForeignContact && attributes.HasForeignContact.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignBusinessContact },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignBusinessContactsModel) === true
+}
 
 export default class ForeignBusinessContactValidator {
   constructor(data = {}) {
-    this.hasForeignContact = (data.HasForeignContact || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasForeignContact === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ContactValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignBusinessContacts(this.data)
   }
 }
 
 export class ContactValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.location = data.Location
-    this.date = data.Date
-    this.governments = data.Governments
-    this.establishment = data.Establishment
-    this.representatives = data.Representatives
-    this.purpose = data.Purpose
-    this.subsequentContacts = data.SubsequentContacts
+    this.data = data
   }
 
   validName() {
-    return !!this.name && new NameValidator(this.name).isValid()
+    return validateModel(this.data, {
+      Name: foreignBusinessContact.Name,
+    }) === true
   }
 
   validLocation() {
-    return !!this.location && new LocationValidator(this.location).isValid()
+    return validateModel(this.data, {
+      Location: foreignBusinessContact.Location,
+    }) === true
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, {
+      Date: foreignBusinessContact.Date,
+    }) === true
   }
 
   validGovernments() {
-    return (
-      !!this.governments &&
-      !!this.governments.value &&
-      this.governments.value.length > 0
-    )
+    return validateModel(this.data, {
+      Governments: foreignBusinessContact.Governments,
+    }) === true
   }
 
   validEstablishment() {
-    return !!this.establishment && validGenericTextfield(this.establishment)
+    return validateModel(this.data, {
+      Establishment: foreignBusinessContact.Establishment,
+    }) === true
   }
 
   validRepresentatives() {
-    return !!this.representatives && validGenericTextfield(this.representatives)
+    return validateModel(this.data, {
+      Representatives: foreignBusinessContact.Representatives,
+    }) === true
   }
 
   validPurpose() {
-    return !!this.purpose && validGenericTextfield(this.purpose)
+    return validateModel(this.data, {
+      Purpose: foreignBusinessContact.Purpose,
+    }) === true
   }
 
   validSubsequentContacts() {
-    if (!this.subsequentContacts) {
-      return false
-    }
-
-    const branchValidator = new BranchCollection(this.subsequentContacts)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
-
-    if (branchValidator.hasNo()) {
-      return true
-    }
-
-    return branchValidator.each(item => {
-      return (
-        validGenericTextfield(item.Subsequent) &&
-        validDateField(item.Recent) &&
-        validGenericTextfield(item.Future)
-      )
-    })
+    return validateModel(this.data, {
+      SubsequentContacts: foreignBusinessContact.SubsequentContacts,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validLocation() &&
-      this.validDate() &&
-      this.validGovernments() &&
-      this.validEstablishment() &&
-      this.validRepresentatives() &&
-      this.validPurpose() &&
-      this.validSubsequentContacts()
-    )
+    return validateContact(this.data)
   }
 }
