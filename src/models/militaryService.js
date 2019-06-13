@@ -1,4 +1,4 @@
-import { hasYesOrNo, checkValue, hasLength } from 'models/validate'
+import { hasYesOrNo, checkValue } from 'models/validate'
 import state from 'models/shared/locations/state'
 
 const isAirOrArmyNationalGuard = serviceType => (
@@ -35,7 +35,7 @@ const militaryService = {
   Dates: { presence: true, daterange: true },
   ServiceNumber: {
     presence: true,
-    hasValue: { validator: hasLength },
+    hasValue: true,
   },
   ServiceState: (value, attributes) => {
     if (isAirOrArmyNationalGuard(attributes.Service)) {
@@ -71,14 +71,14 @@ const militaryService = {
 
     return {
       presence: true,
-      hasValue: { validator: hasLength },
+      hasValue: true,
     }
   },
   DischargeTypeOther: (value, attributes) => (
     checkValue(attributes.DischargeType, 'Other')
       ? {
         presence: true,
-        hasValue: { validator: hasLength },
+        hasValue: true,
       } : {}
   ),
   DischargeDate: (value, attributes) => (

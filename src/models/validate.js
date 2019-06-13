@@ -100,10 +100,6 @@ export default validateModel
 export const hasYesOrNo = {
   inclusion: ['Yes', 'No'],
 }
-/** checks whether a field a minimum of 1 character filled */
-export const hasLength = {
-  length: { minimum: 1 },
-}
 
 /** check the value of an attribute.value */
 export const checkValue = (attribute, expected) => !!(attribute
