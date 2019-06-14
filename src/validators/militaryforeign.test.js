@@ -1,9 +1,9 @@
 import MilitaryForeignValidator, {
-  ForeignServiceValidator
+  ForeignServiceValidator,
 } from './militaryforeign'
 import Location from '../components/Form/Location'
 
-describe('Military foreign validation', function() {
+describe('Military foreign validation', () => {
   it('handle whether subject has foreign military', () => {
     const tests = [
       {
@@ -12,13 +12,13 @@ describe('Military foreign validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: '' }
-                }
-              }
-            ]
-          }
+                  Has: { value: '' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
@@ -26,13 +26,13 @@ describe('Military foreign validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
@@ -40,24 +40,24 @@ describe('Military foreign validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new MilitaryForeignValidator(test.props).isValid()).toBe(
         test.expected
       )
     })
   })
 
-  it('handle overall validity', function() {
+  it('handle overall validity', () => {
     const tests = [
       {
         props: {
@@ -65,13 +65,13 @@ describe('Military foreign validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
@@ -82,35 +82,35 @@ describe('Military foreign validation', function() {
                   Has: { value: 'Yes' },
                   Organization: 'Military',
                   Name: {
-                    value: 'Army'
+                    value: 'Army',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Country: {
-                    value: 'Germany'
+                    value: 'Germany',
                   },
                   Rank: {
-                    value: 'Captain'
+                    value: 'Captain',
                   },
                   Division: {
-                    value: 'Luftwaffe'
+                    value: 'Luftwaffe',
                   },
                   Circumstances: {
-                    value: 'Mandatory service'
+                    value: 'Mandatory service',
                   },
                   ReasonLeft: {
-                    value: 'Moved'
+                    value: 'Moved',
                   },
                   MaintainsContact: { value: 'Yes' },
                   List: {
@@ -124,34 +124,34 @@ describe('Military foreign validation', function() {
                             middleInitialOnly: true,
                             noMiddleName: false,
                             last: 'Bar',
-                            suffix: 'Jr'
+                            suffix: 'Jr',
                           },
                           Address: {
                             street: '1234 Some Rd',
                             city: 'Munich',
                             country: { value: 'Germany' },
-                            layout: Location.ADDRESS
+                            layout: Location.ADDRESS,
                           },
                           Title: {
-                            value: 'Mr.'
+                            value: 'Mr.',
                           },
                           Dates: {
                             from: {
                               month: '1',
                               day: '1',
-                              year: '2010'
+                              year: '2010',
                             },
                             to: {
                               month: '1',
                               day: '1',
-                              year: '2012'
+                              year: '2012',
                             },
-                            present: false
+                            present: false,
                           },
                           Frequency: {
-                            value: 'Monthly'
-                          }
-                        }
+                            value: 'Monthly',
+                          },
+                        },
                       },
                       {
                         Item: {
@@ -162,47 +162,47 @@ describe('Military foreign validation', function() {
                             middleInitialOnly: true,
                             noMiddleName: false,
                             last: 'Bar',
-                            suffix: 'Jr'
+                            suffix: 'Jr',
                           },
                           Address: {
                             street: '1234 Some Rd',
                             city: 'Munich',
                             country: { value: 'Germany' },
-                            layout: Location.ADDRESS
+                            layout: Location.ADDRESS,
                           },
                           Title: {
-                            value: null
+                            value: null,
                           },
                           Dates: {
                             from: {
                               month: '1',
                               day: '1',
-                              year: '2010'
+                              year: '2010',
                             },
                             to: {
                               month: '1',
                               day: '1',
-                              year: '2012'
+                              year: '2012',
                             },
-                            present: false
+                            present: false,
                           },
                           Frequency: {
-                            value: 'Monthly'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            ]
-          }
+                            value: 'Monthly',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new MilitaryForeignValidator(test.props).isValid()).toBe(
         test.expected
       )
@@ -213,25 +213,25 @@ describe('Military foreign validation', function() {
     const tests = [
       {
         state: {
-          MaintainsContact: null
+          MaintainsContact: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          MaintainsContact: { value: 'No' }
+          MaintainsContact: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           MaintainsContact: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -248,43 +248,43 @@ describe('Military foreign validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Address: {
                     street: '1234 Some Rd',
                     city: 'Munich',
                     country: { value: 'Germany' },
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Title: {
-                    value: 'Test'
+                    value: 'Test',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Frequency: {
-                    value: 'Monthly'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Monthly',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new ForeignServiceValidator(test.state).validMaintainsContact()
       ).toBe(test.expected)
