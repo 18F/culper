@@ -1,5 +1,8 @@
 const militaryDiscipline = {
-  Date: { presence: true, date: true },
+  Date: {
+    presence: true,
+    date: { requireDay: false },
+  },
   Offenses: { presence: true, hasValue: true },
   Name: { presence: true, hasValue: true },
   Court: { presence: true, hasValue: true },
