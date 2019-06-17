@@ -52,19 +52,6 @@ export default class BankruptcyValidator {
 export class BankruptcyItemValidator {
   constructor(data = {}) {
     this.data = data
-    this.petitionType = data.PetitionType
-    this.courtAddress = data.CourtAddress
-    this.courtInvolved = data.CourtInvolved
-    this.courtNumber = data.CourtNumber
-    this.nameDebt = data.NameDebt
-    this.totalAmount = data.TotalAmount
-    this.dateFiled = data.DateFiled
-    this.dateDischarged = data.DateDischarged
-    this.dateDischargedNotApplicable = data.DateDischargedNotApplicable
-    this.hasDischargeExplanation = (data.HasDischargeExplanation || {}).value
-    this.dischargeExplanation = data.DischargeExplanation
-    this.trustee = data.Trustee
-    this.trusteeAddress = data.TrusteeAddress
   }
 
   validPetitionType() {
