@@ -1,51 +1,48 @@
-import NameValidator from './name'
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validGenericMonthYear,
-  validGenericTextfield,
-  validBranch
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import financialBankruptcy from 'models/financialBankruptcy'
+
+const financialBankruptcyModel = {
+  HasBankruptcy: { presence: true, hasValue: { validator: hasYesOrNo } },
+  List: (value, attributes) => {
+    const { HasBankruptcy } = attributes
+    if (HasBankruptcy && HasBankruptcy.value === 'Yes') {
+      return {
+        presence: true,
+        accordion: { validator: financialBankruptcy },
+      }
+    }
+    return {}
+  },
+}
+
+const validateFinancialBankruptcy = data => (
+  validateModel(data, financialBankruptcyModel) === true
+)
 
 /**
  * Validates an entire Bankruptcy section
  */
 export default class BankruptcyValidator {
   constructor(data = {}) {
-    this.hasBankruptcy = (data.HasBankruptcy || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   /**
    * Validates the yes/no branching for bankruptcy
    */
   validHasBankruptcy() {
-    if (!this.hasBankruptcy) {
-      return false
-    }
-
-    if (!(this.hasBankruptcy === 'Yes' || this.hasBankruptcy === 'No')) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, { HasBankruptcy: financialBankruptcyModel.HasBankruptcy }) === true
   }
 
   validBankruptcies() {
-    if (this.validHasBankruptcy() && this.hasBankruptcy === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new BankruptcyItemValidator(item).isValid()
-    })
+    return validateModel(this.data, { List: financialBankruptcyModel.List }) === true
   }
 
   /**
    * Validates all bankruptcy items
    */
   isValid() {
-    return this.validHasBankruptcy() && this.validBankruptcies()
+    return validateFinancialBankruptcy(this.data)
   }
 }
 
@@ -54,6 +51,7 @@ export default class BankruptcyValidator {
  */
 export class BankruptcyItemValidator {
   constructor(data = {}) {
+    this.data = data
     this.petitionType = data.PetitionType
     this.courtAddress = data.CourtAddress
     this.courtInvolved = data.CourtInvolved
@@ -70,73 +68,42 @@ export class BankruptcyItemValidator {
   }
 
   validPetitionType() {
-    switch ((this.petitionType || {}).value) {
-      case 'Chapter7':
-      case 'Chapter11':
-      case 'Chapter12':
-        return true
-      case 'Chapter13':
-        return (
-          validGenericTextfield(this.trustee) &&
-          new LocationValidator(this.trusteeAddress).isValid()
-        )
-      default:
-        return false
-    }
+    return validateModel(this.data, { PetitionType: financialBankruptcy.PetitionType }) === true
   }
 
   validCourtAddress() {
-    return new LocationValidator(this.courtAddress).isValid()
+    return validateModel(this.data, { CourtAddress: financialBankruptcy.CourtAddress }) === true
   }
 
   validCourtInvolved() {
-    return validGenericTextfield(this.courtInvolved)
+    return validateModel(this.data, { CourtInvolved: financialBankruptcy.CourtInvolved }) === true
   }
 
   validCourtNumber() {
-    return validGenericTextfield(this.courtNumber)
+    return validateModel(this.data, { CourtNumber: financialBankruptcy.CourtNumber }) === true
   }
 
   validTotalAmount() {
-    return validGenericTextfield(this.totalAmount)
+    return validateModel(this.data, { TotalAmount: financialBankruptcy.TotalAmount }) === true
   }
 
   validDateFiled() {
-    return validGenericMonthYear(this.dateFiled)
+    return validateModel(this.data, { DateFiled: financialBankruptcy.DateFiled }) === true
   }
 
   validDateDischarged() {
-    if (
-      this.dateDischargedNotApplicable &&
-      !this.dateDischargedNotApplicable.applicable
-    ) {
-      return true
-    }
-
-    return validGenericMonthYear(this.dateDischarged)
+    return validateModel(this.data, { DateDischarged: financialBankruptcy.DateDischarged }) === true
   }
 
   validName() {
-    return new NameValidator(this.nameDebt).isValid()
+    return validateModel(this.data, { NameDebt: financialBankruptcy.NameDebt }) === true
   }
 
   validDischargeExplanation() {
-    return (
-      validBranch(this.hasDischargeExplanation) &&
-      validGenericTextfield(this.dischargeExplanation)
-    )
+    return validateModel(this.data, { DischargeExplanation: financialBankruptcy.DischargeExplanation }) === true
   }
 
   isValid() {
-    return (
-      this.validCourtInvolved() &&
-      this.validCourtNumber() &&
-      this.validTotalAmount() &&
-      this.validDateFiled() &&
-      this.validDateDischarged() &&
-      this.validDischargeExplanation() &&
-      this.validName() &&
-      this.validPetitionType()
-    )
+    return validateModel(this.data, financialBankruptcy) === true
   }
 }
