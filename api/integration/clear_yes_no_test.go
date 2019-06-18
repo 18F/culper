@@ -162,6 +162,7 @@ func TestClearBasicSectionNos(t *testing.T) {
 		{"../testdata/substance/substance-drug-publicsafety.json", "substance.drugs.publicsafety", "UsedDrugs"},
 		{"../testdata/substance/substance-drug-ordered.json", "substance.drugs.ordered", "TreatmentOrdered"},
 		{"../testdata/substance/substance-drug-voluntary.json", "substance.drugs.voluntary", "TreatmentVoluntary"},
+		{"../testdata/substance/substance-alcohol-ordered.json", "substance.alcohol.ordered", "HasBeenOrdered"},
 	}
 
 	for _, basicTest := range basicTests {
@@ -824,6 +825,30 @@ func TestClearComplexSectionNos(t *testing.T) {
 					t.Log("Didn't clear the competion")
 					t.Fail()
 				}
+			}
+		}},
+
+		{"../testdata/substance/substance-alcohol-ordered.json", "substance.alcohol.ordered", func(t *testing.T, section api.Section) {
+			ordered := section.(*api.SubstanceAlcoholOrdered)
+
+			incompleteItem := ordered.List.Items[0]
+			actionTaken := getBranchItemValue(t, incompleteItem, "ActionTaken")
+			if actionTaken.Value != "Yes" {
+				t.Log("Should not have cleared the action taken")
+				t.Fail()
+			}
+
+			completedTreatment := getBranchItemValue(t, incompleteItem, "CompletedTreatment")
+			if completedTreatment.Value != "" {
+				t.Log("Didn't clear the completed treatment")
+				t.Fail()
+			}
+
+			actionNotTakenItem := ordered.List.Items[1]
+			actionTaken = getBranchItemValue(t, actionNotTakenItem, "ActionTaken")
+			if actionTaken.Value != "" {
+				t.Log("Didn't clear the action taken")
+				t.Fail()
 			}
 		}},
 	}
