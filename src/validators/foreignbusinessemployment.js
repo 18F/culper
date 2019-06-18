@@ -1,73 +1,75 @@
-import NameValidator from './name'
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validGenericTextfield,
-  validDateField
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignBusinessEmployment from 'models/foreignBusinessEmployment'
+
+export const validateForeignBusinessEmploymentItem = data => (
+  validateModel(data, foreignBusinessEmployment) === true
+)
+
+export const validateForeignBusinessEmployment = (data) => {
+  const foreignBusinessEmploymentModel = {
+    HasForeignEmployment: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasForeignEmployment && attributes.HasForeignEmployment.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignBusinessEmployment },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignBusinessEmploymentModel) === true
+}
 
 export default class ForeignBusinessEmploymentValidator {
   constructor(data = {}) {
-    this.hasForeignEmployment = (data.HasForeignEmployment || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasForeignEmployment === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ForeignBusinessEmploymentItemValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignBusinessEmployment(this.data)
   }
 }
 
 export class ForeignBusinessEmploymentItemValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.description = data.Description
-    this.date = data.Date
-    this.address = data.Address
-    this.accepted = (data.Accepted || {}).value
-    this.explanation = data.Explanation
+    this.data = data
   }
 
   validName() {
-    return !!this.name && new NameValidator(this.name).isValid()
+    return validateModel(this.data, {
+      Name: foreignBusinessEmployment.Name,
+    }) === true
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, {
+      Description: foreignBusinessEmployment.Description,
+    }) === true
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, {
+      Date: foreignBusinessEmployment.Date,
+    }) === true
   }
 
   validAddress() {
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, {
+      Address: foreignBusinessEmployment.Address,
+    }) === true
   }
 
   validAcceptance() {
-    if (this.accepted === 'Yes' || this.accepted === 'No') {
-      return !!this.explanation && validGenericTextfield(this.explanation)
-    }
-
-    return false
+    return validateModel(this.data, {
+      Accepted: foreignBusinessEmployment.Accepted,
+      Explanation: foreignBusinessEmployment.Explanation,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validDescription() &&
-      this.validDate() &&
-      this.validAddress() &&
-      this.validAcceptance()
-    )
+    return validateForeignBusinessEmploymentItem(this.data)
   }
 }
