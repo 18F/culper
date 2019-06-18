@@ -1,69 +1,56 @@
-import DateRangeValidator from './daterange'
-import { validAccordion } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import financialGambling from 'models/financialGambling'
+
+const financialGamblingModel = {
+  HasGamblingDebt: {
+    presence: true,
+    hasValue: { validator: hasYesOrNo },
+  },
+  List: (value, attributes) => {
+    const { HasGamblingDebt } = attributes
+    if (HasGamblingDebt && HasGamblingDebt.value === 'Yes') {
+      return {
+        presence: true,
+        accordion: { validator: financialGambling },
+      }
+    }
+    return {}
+  },
+}
 
 export default class GamblingValidator {
   constructor(data = {}) {
-    this.hasGamblingDebt = (data.HasGamblingDebt || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   validHasGamblingDebt() {
-    if (!this.hasGamblingDebt) {
-      return false
-    }
-
-    if (!(this.hasGamblingDebt === 'No' || this.hasGamblingDebt === 'Yes')) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, { HasGamblingDebt: financialGamblingModel.HasGamblingDebt }) === true
   }
 
   /**
    * Validates all fields for a collection of gambling debt
    */
   validGamblingDebt() {
-    if (this.validHasGamblingDebt() && this.hasGamblingDebt === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new GamblingItemValidator(item).isValid()
-    })
+    return validateModel(this.data, { List: financialGamblingModel.List }) === true
   }
 
   /**
    * Validates section of gambling debt
    */
   isValid() {
-    return this.validHasGamblingDebt() && this.validGamblingDebt()
+    return validateModel(this.data, financialGamblingModel) === true
   }
 }
 
+const validateFinancialGambling = data => (
+  validateModel(data, financialGambling) === true
+)
 export class GamblingItemValidator {
   constructor(data = {}) {
-    this.losses = data.Losses
-    this.description = data.Description
-    this.actions = data.Actions
-    this.dates = data.Dates
+    this.data = data
   }
 
   isValid() {
-    if (!this.losses || parseInt(this.losses.value) < 1) {
-      return false
-    }
-
-    if (!this.description || !this.description.value) {
-      return false
-    }
-
-    if (!this.actions || !this.actions.value) {
-      return false
-    }
-
-    if (!new DateRangeValidator(this.dates, null).isValid()) {
-      return false
-    }
-    return true
+    return validateFinancialGambling(this.data)
   }
 }
