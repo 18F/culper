@@ -1,80 +1,8 @@
-import LegalInvestigationsRevokedValidator, {
-  RevokedValidator
-} from './legalinvestigationsrevoked.js'
-import { battery } from './helpers'
+import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
 
 describe('Legal investigations revoked component validation', function() {
-  it('validate date completed', () => {
+  it('validate list', () => {
     const tests = [
-      {
-        state: {
-          Date: {}
-        },
-        expected: false
-      },
-      {
-        state: {
-          Date: {
-            day: '1',
-            month: '1',
-            year: '2010'
-          }
-        },
-        expected: true
-      }
-    ]
-
-    battery(tests, RevokedValidator, 'validDate')
-  })
-
-  it('validate agency information', () => {
-    const tests = [
-      {
-        state: {
-          Agency: {}
-        },
-        expected: false
-      },
-      {
-        state: {
-          Agency: {
-            value: 'U.S. Department of Defense'
-          }
-        },
-        expected: true
-      }
-    ]
-
-    battery(tests, RevokedValidator, 'validAgency')
-  })
-
-  it('validate explanation', () => {
-    const tests = [
-      {
-        state: {
-          Explanation: {}
-        },
-        expected: false
-      },
-      {
-        state: {
-          Explanation: {
-            value: 'this is an explanation'
-          }
-        },
-        expected: true
-      }
-    ]
-
-    battery(tests, RevokedValidator, 'validExplanation')
-  })
-
-  it('validate investigation revocations', () => {
-    const tests = [
-      {
-        state: {},
-        expected: false
-      },
       {
         state: {
           HasRevocations: { value: 'No' }
@@ -129,6 +57,10 @@ describe('Legal investigations revoked component validation', function() {
       }
     ]
 
-    battery(tests, LegalInvestigationsRevokedValidator, 'isValid')
+    tests.forEach(test => {
+      expect(new LegalInvestigationsRevokedValidator(test.state).isValid()).toBe(
+        test.expected
+      )
+    })
   })
 })
