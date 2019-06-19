@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 )
 
 // PsychologicalCompetence represents the payload for the psychological competence section.
@@ -69,6 +70,36 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *PsychologicalCompetence) ClearNos() error {
+	entity.IsIncompetent.ClearNo()
+
+	for _, incident := range entity.List.Items {
+		appealsItem, getErr := incident.GetItemValue("Appeals")
+		if getErr != nil {
+			return getErr
+		}
+
+		appeals, ok := appealsItem.(*Collection)
+		if !ok {
+			return errors.New("Unexpected type found trying to clear the competence appeals")
+		}
+
+		clearErr := appeals.ClearBranchItemsNo("Has")
+		if clearErr != nil {
+			return clearErr
+		}
+
+		setErr := incident.SetItemValue("Appeals", appealsItem)
+		if setErr != nil {
+			return setErr
+		}
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // PsychologicalConsultations represents the payload for the psychological consultations section.
 type PsychologicalConsultations struct {
 	PayloadConsulted Payload `json:"Consulted" sql:"-"`
@@ -132,6 +163,36 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *PsychologicalConsultations) ClearNos() error {
+	entity.Consulted.ClearNo()
+
+	for _, incident := range entity.List.Items {
+		appealsItem, getErr := incident.GetItemValue("Appeals")
+		if getErr != nil {
+			return getErr
+		}
+
+		appeals, ok := appealsItem.(*Collection)
+		if !ok {
+			return errors.New("Unexpected type found trying to clear the competence appeals")
+		}
+
+		clearErr := appeals.ClearBranchItemsNo("Has")
+		if clearErr != nil {
+			return clearErr
+		}
+
+		setErr := incident.SetItemValue("Appeals", appealsItem)
+		if setErr != nil {
+			return setErr
+		}
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // PsychologicalDiagnoses represents the payload for the psychological diagnosis section.
@@ -249,6 +310,16 @@ func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *PsychologicalDiagnoses) ClearNos() error {
+	entity.Diagnosed.ClearNo()
+	entity.DiagnosisList.ClearBranchNo()
+	entity.DidNotConsult.ClearNo()
+	entity.InTreatment.ClearNo()
+	entity.TreatmentList.ClearBranchNo()
+	return nil
+}
+
 // PsychologicalHospitalizations represents the payload for the psychological hospitalizations section.
 type PsychologicalHospitalizations struct {
 	PayloadHospitalized Payload `json:"Hospitalized" sql:"-"`
@@ -312,6 +383,13 @@ func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *PsychologicalHospitalizations) ClearNos() error {
+	entity.Hospitalized.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // PsychologicalExisting represents the payload for the psychological existing conditions section.

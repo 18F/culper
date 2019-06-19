@@ -193,6 +193,10 @@ func TestClearBasicSectionNos(t *testing.T) {
 		{"../testdata/legal/legal-associations-membership-overthrow.json", "legal.associations.membership-overthrow", "HasOverthrow"},
 		{"../testdata/legal/legal-associations-membership-violence-or-force.json", "legal.associations.membership-violence-or-force", "HasViolence"},
 		{"../testdata/legal/legal-associations-activities-to-overthrow.json", "legal.associations.activities-to-overthrow", "HasActivities"},
+
+		{"../testdata/psychological/psychological-competence.json", "psychological.competence", "IsIncompetent"},
+		{"../testdata/psychological/psychological-consultations.json", "psychological.consultations", "Consulted"},
+		{"../testdata/psychological/psychological-hospitalizations.json", "psychological.hospitalizations", "Hospitalized"},
 	}
 
 	for _, basicTest := range basicTests {
@@ -943,6 +947,77 @@ func TestClearComplexSectionNos(t *testing.T) {
 
 			if association.HasTerrorism.Value != "" {
 				t.Log("Should have cleared the lone no")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/psychological/psychological-competence.json", "psychological.competence", func(t *testing.T, section api.Section) {
+			competence := section.(*api.PsychologicalCompetence)
+
+			appealsItem, getErr := competence.List.Items[1].GetItemValue("Appeals")
+			if getErr != nil {
+				t.Fatal(getErr)
+			}
+			appeals := appealsItem.(*api.Collection)
+
+			hasItem := appeals.Items[0]
+			has := getBranchItemValue(t, hasItem, "Has")
+			if has.Value != "" {
+				t.Log("should clear the last Has")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/psychological/psychological-consultations.json", "psychological.consultations", func(t *testing.T, section api.Section) {
+			consultations := section.(*api.PsychologicalConsultations)
+
+			appealsItem, getErr := consultations.List.Items[0].GetItemValue("Appeals")
+			if getErr != nil {
+				t.Fatal(getErr)
+			}
+			appeals := appealsItem.(*api.Collection)
+
+			hasItem := appeals.Items[1]
+			has := getBranchItemValue(t, hasItem, "Has")
+			if has.Value != "" {
+				t.Log("should clear the last Has")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/psychological/psychological-diagnoses-no.json", "psychological.diagnoses", func(t *testing.T, section api.Section) {
+			diagnoses := section.(*api.PsychologicalDiagnoses)
+
+			if diagnoses.Diagnosed.Value != "" {
+				t.Log("Should have cleared the NO Diagnosis")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/psychological/psychological-diagnoses-no-treatment.json", "psychological.diagnoses", func(t *testing.T, section api.Section) {
+			diagnoses := section.(*api.PsychologicalDiagnoses)
+
+			if diagnoses.InTreatment.Value != "" {
+				t.Log("Should have cleared the NO Treatment")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/psychological/psychological-diagnoses.json", "psychological.diagnoses", func(t *testing.T, section api.Section) {
+			diagnoses := section.(*api.PsychologicalDiagnoses)
+
+			if diagnoses.DiagnosisList.Branch.Value != "" {
+				t.Log("Should have cleared the NO Diagnosis List")
+				t.Fail()
+			}
+
+			if diagnoses.DidNotConsult.Value != "" {
+				t.Log("Should have cleared DidNotConsult")
+				t.Fail()
+			}
+
+			if diagnoses.TreatmentList.Branch.Value != "" {
+				t.Log("Should have cleared the NO Treatment List")
 				t.Fail()
 			}
 		}},
