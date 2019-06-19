@@ -6,7 +6,13 @@ export const validateTravel = data => validateModel(data, foreignTravel) === tru
 export const validateForeignTravel = (data) => {
   const foreignTravelModel = {
     HasForeignTravelOutside: { presence: true, hasValue: { validator: hasYesOrNo } },
-    HasForeignTravelOfficial: { presence: true, hasValue: { validator: hasYesOrNo } },
+    HasForeignTravelOfficial: (value, attributes) => {
+      if (attributes.HasForeignTravelOutside
+        && attributes.HasForeignTravelOutside.value === 'Yes') {
+        return { presence: true, hasValue: { validator: hasYesOrNo } }
+      }
+      return {}
+    },
     List: (value, attributes) => {
       const { HasForeignTravelOutside, HasForeignTravelOfficial } = attributes
       if ((HasForeignTravelOutside && HasForeignTravelOutside.value === 'Yes')
