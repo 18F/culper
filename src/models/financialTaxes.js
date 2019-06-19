@@ -27,11 +27,13 @@ const financialTaxes = {
     presence: true,
     hasValue: {
       validator: {
-        numericality: true,
+        numericality: {
+          greaterThan: 0,
+        },
       },
     },
   },
-  Date: (value, attributes) => {
+  Date: (value, attributes = {}) => {
     const { DateNotApplicable } = attributes
     if (DateNotApplicable && DateNotApplicable.applicable) {
       return {
