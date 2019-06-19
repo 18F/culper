@@ -1,81 +1,70 @@
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validPhoneNumber,
-  validGenericTextfield
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import financialCreditCounseling from 'models/financialCreditCounseling'
+
+const creditCounselingModel = {
+  HasCreditCounseling: {
+    presence: true,
+    hasValue: { validator: hasYesOrNo },
+  },
+  List: (value, attributes) => {
+    const { HasCreditCounseling } = attributes
+    if (HasCreditCounseling && HasCreditCounseling.value === 'Yes') {
+      return {
+        presence: true,
+        accordion: { validator: financialCreditCounseling },
+      }
+    }
+    return {}
+  },
+}
 
 export default class CreditValidator {
   constructor(data = {}) {
-    this.hasCreditCounseling = (data.HasCreditCounseling || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   validHasCreditCounseling() {
-    if (!this.hasCreditCounseling) {
-      return false
-    }
-
-    if (
-      !(this.hasCreditCounseling === 'No' || this.hasCreditCounseling === 'Yes')
-    ) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, { HasCreditCounseling: creditCounselingModel.HasCreditCounseling }) === true
   }
 
   validList() {
-    if (this.validHasCreditCounseling() && this.hasCreditCounseling === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new CreditItemValidator(item).isValid()
-    })
+    return validateModel(this.data, { List: creditCounselingModel.List }) === true
   }
 
   isValid() {
-    return this.validHasCreditCounseling() && this.validList()
+    return validateModel(this.data, creditCounselingModel) === true
   }
 }
 
+const validateCreditCounselingItem = data => (
+  validateModel(data, financialCreditCounseling) === true
+)
 export class CreditItemValidator {
   constructor(data = {}) {
-    this.explanation = data.Explanation
-    this.name = data.Name
-    this.telephone = data.Telephone
-    this.location = data.Location
-    this.description = data.Description
+    this.data = data
   }
 
   validExplanation() {
-    return !!this.explanation && validGenericTextfield(this.explanation)
+    return validateModel(this.data, { Explanation: financialCreditCounseling.Explanation }) === true
   }
 
   validName() {
-    return !!this.name && validGenericTextfield(this.name)
+    return validateModel(this.data, { Name: financialCreditCounseling.Name }) === true
   }
 
   validTelephone() {
-    return !!this.telephone && validPhoneNumber(this.telephone)
+    return validateModel(this.data, { Telephone: financialCreditCounseling.Telephone }) === true
   }
 
   validLocation() {
-    return !!this.location && new LocationValidator(this.location).isValid()
+    return validateModel(this.data, { Location: financialCreditCounseling.Location }) === true
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, { Description: financialCreditCounseling.Description }) === true
   }
 
   isValid() {
-    return (
-      this.validExplanation() &&
-      this.validName() &&
-      this.validTelephone() &&
-      this.validLocation() &&
-      this.validDescription()
-    )
+    return validateCreditCounselingItem(this.data)
   }
 }
