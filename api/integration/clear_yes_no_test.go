@@ -76,15 +76,24 @@ func makeNoJSON(t *testing.T, data basicNoData) []byte {
 	return noBytes.Bytes()
 }
 
-func getBasicBranches(section api.Section, branchName string) (*api.Branch, *api.Branch) {
+func getBasicBranches(t *testing.T, section api.Section, branchName string) (*api.Branch, *api.Branch) {
+	t.Helper()
 	// The section will have a Branch called BranchName on it. and a List called List on it.
 	sectionPointerValue := reflect.ValueOf(section)
 	sectionValue := sectionPointerValue.Elem()
 
 	noBranchPointer := sectionValue.FieldByName(branchName)
+	if !noBranchPointer.IsValid() {
+		t.Fatal("TEST ERROR: Section does not have field", branchName)
+		return &api.Branch{}, &api.Branch{}
+	}
 	noBranch := noBranchPointer.Interface().(*api.Branch)
 
 	listPointer := sectionValue.FieldByName("List")
+	if !listPointer.IsValid() {
+		t.Fatal("TEST ERROR: Section does not have a List", section)
+		return &api.Branch{}, &api.Branch{}
+	}
 	list := listPointer.Interface().(*api.Collection)
 
 	return noBranch, list.Branch
@@ -166,6 +175,24 @@ func TestClearBasicSectionNos(t *testing.T) {
 		{"../testdata/substance/substance-alcohol-ordered.json", "substance.alcohol.ordered", "HasBeenOrdered"},
 		{"../testdata/substance/substance-alcohol-voluntary.json", "substance.alcohol.voluntary", "SoughtTreatment"},
 		{"../testdata/substance/substance-alcohol-additional.json", "substance.alcohol.additional", "ReceivedTreatment"},
+
+		{"../testdata/legal/legal-police-offenses.json", "legal.police.offenses", "HasOffenses"},
+		{"../testdata/legal/legal-police-additionaloffenses.json", "legal.police.additionaloffenses", "HasOtherOffenses"},
+		{"../testdata/legal/legal-police-domesticviolence.json", "legal.police.domesticviolence", "HasDomesticViolence"},
+		{"../testdata/legal/legal-police-domesticviolence.json", "legal.police.domesticviolence", "HasDomesticViolence"},
+		{"../testdata/legal/legal-investigations-history.json", "legal.investigations.history", "HasHistory"},
+		{"../testdata/legal/legal-investigations-revoked.json", "legal.investigations.revoked", "HasRevocations"},
+		{"../testdata/legal/legal-investigations-debarred.json", "legal.investigations.debarred", "HasDebarment"},
+		{"../testdata/legal/legal-court.json", "legal.court", "HasCourtActions"},
+		{"../testdata/legal/legal-technology-unauthorized.json", "legal.technology.unauthorized", "HasUnauthorized"},
+		{"../testdata/legal/legal-technology-manipulating.json", "legal.technology.manipulating", "HasManipulating"},
+		{"../testdata/legal/legal-technology-unlawful.json", "legal.technology.unlawful", "HasUnlawful"},
+		{"../testdata/legal/legal-associations-terrorist-organization.json", "legal.associations.terrorist-organization", "HasTerrorist"},
+		{"../testdata/legal/legal-associations-engaged-in-terrorism.json", "legal.associations.engaged-in-terrorism", "HasEngaged"},
+		{"../testdata/legal/legal-associations-advocating.json", "legal.associations.advocating", "HasAdvocated"},
+		{"../testdata/legal/legal-associations-membership-overthrow.json", "legal.associations.membership-overthrow", "HasOverthrow"},
+		{"../testdata/legal/legal-associations-membership-violence-or-force.json", "legal.associations.membership-violence-or-force", "HasViolence"},
+		{"../testdata/legal/legal-associations-activities-to-overthrow.json", "legal.associations.activities-to-overthrow", "HasActivities"},
 	}
 
 	for _, basicTest := range basicTests {
@@ -175,7 +202,7 @@ func TestClearBasicSectionNos(t *testing.T) {
 			sectionJSON := readTestData(t, basicTest.path)
 
 			section := rejectSection(t, services, sectionJSON, basicTest.name)
-			noBranch, listBranch := getBasicBranches(section, basicTest.branchName)
+			noBranch, listBranch := getBasicBranches(t, section, basicTest.branchName)
 
 			if noBranch.Value != "Yes" {
 				t.Log("We should not have unset the Yes")
@@ -195,7 +222,7 @@ func TestClearBasicSectionNos(t *testing.T) {
 			noBytes := makeNoJSON(t, templateData)
 
 			noSection := rejectSection(t, services, noBytes, basicTest.name)
-			noNoBranch, _ := getBasicBranches(noSection, basicTest.branchName)
+			noNoBranch, _ := getBasicBranches(t, noSection, basicTest.branchName)
 
 			if noNoBranch.Value != "" {
 				t.Log("We should have unset the No")
@@ -871,6 +898,51 @@ func TestClearComplexSectionNos(t *testing.T) {
 			completedTreatment := getBranchItemValue(t, additional.List.Items[0], "CompletedTreatment")
 			if completedTreatment.Value != "" {
 				t.Log("Didn't clear the completed treatment")
+				t.Fail()
+			}
+		}},
+
+		// ---
+		// --- Investigative and Criminal History ---
+		// ---
+
+		{"../testdata/legal/legal-police-offenses.json", "legal.police.offenses", func(t *testing.T, section api.Section) {
+			offenses := section.(*api.LegalPoliceOffenses)
+
+			wasCharged := getBranchItemValue(t, offenses.List.Items[0], "WasCharged")
+			if wasCharged.Value != "Yes" {
+				t.Log("shouldn't clear WasCharged")
+				t.Fail()
+			}
+
+			wasCharged = getBranchItemValue(t, offenses.List.Items[1], "WasCharged")
+			if wasCharged.Value != "" {
+				t.Log("should clear WasCharged")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/legal/legal-police-additionaloffenses.json", "legal.police.additionaloffenses", func(t *testing.T, section api.Section) {
+			offenses := section.(*api.LegalPoliceAdditionalOffenses)
+
+			wasCharged := getBranchItemValue(t, offenses.List.Items[0], "WasSentenced")
+			if wasCharged.Value != "Yes" {
+				t.Log("shouldn't clear WasSentenced")
+				t.Fail()
+			}
+
+			wasCharged = getBranchItemValue(t, offenses.List.Items[1], "WasSentenced")
+			if wasCharged.Value != "" {
+				t.Log("should clear WasSentenced")
+				t.Fail()
+			}
+		}},
+
+		{"../testdata/legal/legal-associations-terrorism-association-no.json", "legal.associations.terrorism-association", func(t *testing.T, section api.Section) {
+			association := section.(*api.LegalAssociationsTerrorismAssociation)
+
+			if association.HasTerrorism.Value != "" {
+				t.Log("Should have cleared the lone no")
 				t.Fail()
 			}
 		}},
