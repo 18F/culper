@@ -113,6 +113,38 @@
                 }
               }
             }
+          },
+          {
+            "Item": {
+              "Seekers": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": ["Other", "NotOrdered"]
+                }
+              },
+              "OtherSeeker": {
+                "type": "text",
+                "props": {
+                  "value": "something else"
+                }
+              },
+              "ActionTaken": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "NoActionTakenExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "no action taken explanation"
+                }
+              },
+              "CompletedTreatment": {
+                "type": "branch",
+                "props": {}
+              }
+            }
           }
         ]
       }

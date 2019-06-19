@@ -667,6 +667,24 @@ func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceAlcoholOrdered) ClearNos() error {
+	entity.HasBeenOrdered.ClearNo()
+
+	clearErr := entity.List.ClearBranchItemsNo("ActionTaken")
+	if clearErr != nil {
+		return clearErr
+	}
+
+	clearErr = entity.List.ClearBranchItemsNo("CompletedTreatment")
+	if clearErr != nil {
+		return clearErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // SubstanceAlcoholVoluntary represents the payload for the substance alcohol voluntary section.
 type SubstanceAlcoholVoluntary struct {
 	PayloadSoughtTreatment Payload `json:"SoughtTreatment" sql:"-"`
