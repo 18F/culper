@@ -595,6 +595,13 @@ func (entity *SubstanceAlcoholNegative) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceAlcoholNegative) ClearNos() error {
+	entity.HasImpacts.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // SubstanceAlcoholOrdered represents the payload for the substance alcholo ordered section.
 type SubstanceAlcoholOrdered struct {
 	PayloadHasBeenOrdered Payload `json:"HasBeenOrdered" sql:"-"`

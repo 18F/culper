@@ -162,6 +162,7 @@ func TestClearBasicSectionNos(t *testing.T) {
 		{"../testdata/substance/substance-drug-publicsafety.json", "substance.drugs.publicsafety", "UsedDrugs"},
 		{"../testdata/substance/substance-drug-ordered.json", "substance.drugs.ordered", "TreatmentOrdered"},
 		{"../testdata/substance/substance-drug-voluntary.json", "substance.drugs.voluntary", "TreatmentVoluntary"},
+		{"../testdata/substance/substance-alcohol-negative.json", "substance.alcohol.negative", "HasImpacts"},
 	}
 
 	for _, basicTest := range basicTests {
