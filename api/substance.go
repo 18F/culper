@@ -750,6 +750,19 @@ func (entity *SubstanceAlcoholVoluntary) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceAlcoholVoluntary) ClearNos() error {
+	entity.SoughtTreatment.ClearNo()
+
+	clearErr := entity.List.ClearBranchItemsNo("CompletedTreatment")
+	if clearErr != nil {
+		return clearErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // SubstanceAlcoholAdditional represents the payload for the substance alcohol additional section.
 type SubstanceAlcoholAdditional struct {
 	PayloadReceivedTreatment Payload `json:"ReceivedTreatment" sql:"-"`
@@ -813,4 +826,17 @@ func (entity *SubstanceAlcoholAdditional) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNos clears the "no" answers on application rejection
+func (entity *SubstanceAlcoholAdditional) ClearNos() error {
+	entity.ReceivedTreatment.ClearNo()
+
+	clearErr := entity.List.ClearBranchItemsNo("CompletedTreatment")
+	if clearErr != nil {
+		return clearErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
 }
