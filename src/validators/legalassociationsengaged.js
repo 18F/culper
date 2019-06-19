@@ -1,42 +1,56 @@
-import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import terrorismEngaged from 'models/terrorismEngaged'
+
+export const validateEngaged = data => (
+  validateModel(data, terrorismEngaged) === true
+)
+
+export const validateLegalAssociationEngaged = (data) => {
+  const legalAssociationEngagedModel = {
+    HasEngaged: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasEngaged && attributes.HasEngaged.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: terrorismEngaged },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, legalAssociationEngagedModel) === true
+}
 
 export default class LegalAssociationEngagedValidator {
   constructor(data = {}) {
-    this.hasEngaged = (data.HasEngaged || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasEngaged === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new EngagedValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalAssociationEngaged(this.data)
   }
 }
 
 export class EngagedValidator {
   constructor(data = {}) {
-    this.reasons = data.Reasons
-    this.dates = data.Dates
+    this.data = data
   }
 
   validReasons() {
-    return !!this.reasons && validGenericTextfield(this.reasons)
+    return validateModel(this.data, {
+      Reasons: terrorismEngaged.Reasons,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: terrorismEngaged.Dates,
+    }) === true
   }
 
   isValid() {
-    return this.validReasons() && this.validDates()
+    return validateEngaged(this.data)
   }
 }
