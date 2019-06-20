@@ -1,50 +1,38 @@
-import LocationValidator from './location'
-import NameValidator from './name'
-import { validGenericTextfield, BranchCollection } from './helpers'
+import { validateModel } from 'models/validate'
+import foreignCoOwner from 'models/shared/foreignCoOwner'
+
+export const foreignCoOwnersModel = {
+  List: {
+    presence: true,
+    branchCollection: { validator: foreignCoOwner },
+  },
+}
+
+export const validateForeignCoOwner = data => validateModel(data, foreignCoOwner) === true
+export const validateForeignCoOwners = data => validateModel(data, foreignCoOwnersModel) === true
 
 export default class ForeignCoOwnersValidator {
   constructor(data = {}) {
-    this.list = data.List || []
+    this.data = data
   }
 
   isValid() {
-    const validator = new BranchCollection(this.list)
-    if (!validator.validKeyValues()) {
-      return false
-    }
-
-    if (this.list.items.length === 1 && validator.hasNo()) {
-      return true
-    }
-
-    return validator.each(item => {
-      return new ForeignCoOwnerValidator(item).isValid()
-    })
+    return validateForeignCoOwners(this.data)
   }
 }
 
 export class ForeignCoOwnerValidator {
   constructor(data = {}) {
-    this.name = data.Name || {}
-    this.address = data.Address || {}
-    this.countries = data.Countries || {}
-    this.relationshipNature = data.RelationshipNature || {}
+    this.data = data
   }
 
   validCountries() {
-    return !!(
-      this.countries &&
-      this.countries.value &&
-      this.countries.value.length
-    )
+    return validateModel(this.data, {
+      Countries: foreignCoOwner.Countries,
+    }) === true
   }
 
   isValid() {
-    return (
-      new NameValidator(this.name).isValid() &&
-      new LocationValidator(this.address).isValid() &&
-      this.validCountries() &&
-      validGenericTextfield(this.relationshipNature)
-    )
+    return validateForeignCoOwner(this.data)
   }
 }

@@ -1,25 +1,25 @@
 import ForeignBusinessConferencesValidator, {
-  ConferencesValidator
+  ConferencesValidator,
 } from './foreignbusinessconferences'
 import { battery } from './helpers'
 
-describe('Foreign business conferences component validation', function() {
+describe('Foreign business conferences component validation', () => {
   it('validate foreign business conferences description', () => {
     const tests = [
       {
         state: {
-          Description: {}
+          Description: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Description: {
-            value: 'this is the description'
-          }
+            value: 'this is the description',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ConferencesValidator, 'validDescription')
@@ -29,18 +29,18 @@ describe('Foreign business conferences component validation', function() {
     const tests = [
       {
         state: {
-          Sponsor: {}
+          Sponsor: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Sponsor: {
-            value: 'this is the sponsor'
-          }
+            value: 'this is the sponsor',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ConferencesValidator, 'validSponsor')
@@ -50,18 +50,18 @@ describe('Foreign business conferences component validation', function() {
     const tests = [
       {
         state: {
-          City: {}
+          City: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           City: {
-            value: 'this is the city'
-          }
+            value: 'this is the city',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ConferencesValidator, 'validCity')
@@ -71,22 +71,22 @@ describe('Foreign business conferences component validation', function() {
     const tests = [
       {
         state: {},
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Country: {}
+          Country: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Country: {
-            value: 'Germany'
-          }
+            value: 'Germany',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ConferencesValidator, 'validCountry')
@@ -96,9 +96,9 @@ describe('Foreign business conferences component validation', function() {
     const tests = [
       {
         state: {
-          Dates: {}
+          Dates: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -106,18 +106,18 @@ describe('Foreign business conferences component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ConferencesValidator, 'validDates')
@@ -127,18 +127,18 @@ describe('Foreign business conferences component validation', function() {
     const tests = [
       {
         state: {
-          Purpose: {}
+          Purpose: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Purpose: {
-            value: 'this is the purpose'
-          }
+            value: 'this is the purpose',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ConferencesValidator, 'validPurpose')
@@ -148,31 +148,15 @@ describe('Foreign business conferences component validation', function() {
     const tests = [
       {
         state: {
-          Contacts: null
+          Contacts: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Contacts: {}
+          Contacts: {},
         },
-        expected: false
-      },
-      {
-        state: {
-          Contacts: {
-            List: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' }
-                  }
-                }
-              ]
-            }
-          }
-        },
-        expected: true
+        expected: false,
       },
       {
         state: {
@@ -181,14 +165,14 @@ describe('Foreign business conferences component validation', function() {
               items: [
                 {
                   Item: {
-                    Has: { value: 'Yes' }
-                  }
-                }
-              ]
-            }
-          }
+                    Has: { value: 'No' },
+                  },
+                },
+              ],
+            },
+          },
         },
-        expected: false
+        expected: true,
       },
       {
         state: {
@@ -198,14 +182,13 @@ describe('Foreign business conferences component validation', function() {
                 {
                   Item: {
                     Has: { value: 'Yes' },
-                    Explanation: {}
-                  }
-                }
-              ]
-            }
-          }
+                  },
+                },
+              ],
+            },
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -215,15 +198,35 @@ describe('Foreign business conferences component validation', function() {
                 {
                   Item: {
                     Has: { value: 'Yes' },
-                    Explanation: { value: 'This is the explanation' }
-                  }
-                }
-              ]
-            }
-          }
+                    Explanation: {},
+                  },
+                },
+              ],
+            },
+          },
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Contacts: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Explanation: { value: 'This is the explanation' },
+                  },
+                },
+                {
+                  Item: { Has: { value: 'No' } },
+                },
+              ],
+            },
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, ConferencesValidator, 'validContacts')
@@ -233,23 +236,23 @@ describe('Foreign business conferences component validation', function() {
     const tests = [
       {
         state: {},
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasForeignConferences: { value: 'No' }
+          HasForeignConferences: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           HasForeignConferences: { value: 'Yes' },
           List: {
             branch: {},
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -260,45 +263,45 @@ describe('Foreign business conferences component validation', function() {
               {
                 Item: {
                   Description: {
-                    value: 'this is the description'
+                    value: 'this is the description',
                   },
                   Sponsor: {
-                    value: 'this is the sponsor'
+                    value: 'this is the sponsor',
                   },
                   City: {
-                    value: 'this is the city'
+                    value: 'this is the city',
                   },
                   Country: {
-                    value: 'Germany'
+                    value: 'Germany',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Purpose: {
-                    value: 'this is the purpose'
+                    value: 'this is the purpose',
                   },
                   Contacts: {
                     List: {
-                      items: [{ Item: { Has: { value: 'No' } } }]
-                    }
-                  }
-                }
-              }
-            ]
-          }
+                      items: [{ Item: { Has: { value: 'No' } } }],
+                    },
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignBusinessConferencesValidator, 'isValid')
