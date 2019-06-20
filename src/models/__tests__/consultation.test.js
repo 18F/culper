@@ -1,58 +1,58 @@
 import { validateModel } from 'models/validate'
-import competence from 'models/competence'
+import consultation from 'models/consultation'
 
-describe('The competence model', () => {
+describe('The consultation model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'IsIncompetent.required',
+      'Consulted.required',
     ]
 
-    expect(validateModel(testData, competence))
+    expect(validateModel(testData, consultation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('IsIncompetent must be a valid value', () => {
+  it('Consulted must be a valid value', () => {
     const testData = {
-      IsIncompetent: { value: 'invalid' },
+      Consulted: { value: 'invalid' },
     }
     const expectedErrors = [
-      'IsIncompetent.hasValue',
+      'Consulted.hasValue',
     ]
 
-    expect(validateModel(testData, competence))
+    expect(validateModel(testData, consultation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  describe('if IsIncompetent is "Yes"', () => {
+  describe('if Consulted is "Yes"', () => {
     it('List is required', () => {
       const testData = {
-        IsIncompetent: { value: 'Yes' },
+        Consulted: { value: 'Yes' },
       }
       const expectedErrors = [
         'List.required',
       ]
 
-      expect(validateModel(testData, competence))
+      expect(validateModel(testData, consultation))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
     it('List must be a valid accordion', () => {
       const testData = {
-        IsIncompetent: { value: 'Yes' },
+        Consulted: { value: 'Yes' },
         List: { test: 'invalid' },
       }
       const expectedErrors = [
         'List.accordion',
       ]
 
-      expect(validateModel(testData, competence))
+      expect(validateModel(testData, consultation))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
     it('List items must be valid Orders', () => {
       const testData = {
-        IsIncompetent: { value: 'Yes' },
+        Consulted: { value: 'Yes' },
         List: {
           branch: { value: 'No' },
           items: [
@@ -68,13 +68,13 @@ describe('The competence model', () => {
         'List.accordion',
       ]
 
-      expect(validateModel(testData, competence))
+      expect(validateModel(testData, consultation))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('passes a valid competence', () => {
+    it('passes a valid consultation', () => {
       const testData = {
-        IsIncompetent: { value: 'Yes' },
+        Consulted: { value: 'Yes' },
         List: {
           branch: { value: 'No' },
           items: [
@@ -89,6 +89,7 @@ describe('The competence model', () => {
                   zipcode: '10002',
                   country: { value: 'United States' },
                 },
+                Disposition: { value: 'Test disposition' },
                 Occurred: { month: '09', year: '2012' },
                 Appeals: {
                   items: [
@@ -119,29 +120,29 @@ describe('The competence model', () => {
         },
       }
 
-      expect(validateModel(testData, competence)).toEqual(true)
+      expect(validateModel(testData, consultation)).toEqual(true)
     })
   })
 
-  describe('if IsIncompetent is "No"', () => {
+  describe('if Consulted is "No"', () => {
     it('List is not required', () => {
       const testData = {
-        IsIncompetent: { value: 'No' },
+        Consulted: { value: 'No' },
       }
       const expectedErrors = [
         'List.required',
       ]
 
-      expect(validateModel(testData, competence))
+      expect(validateModel(testData, consultation))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('passes a valid competence', () => {
+    it('passes a valid consultation', () => {
       const testData = {
-        IsIncompetent: { value: 'No' },
+        Consulted: { value: 'No' },
       }
 
-      expect(validateModel(testData, competence)).toEqual(true)
+      expect(validateModel(testData, consultation)).toEqual(true)
     })
   })
 })

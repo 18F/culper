@@ -1,35 +1,16 @@
-import { ConsultationOrderValidator } from './order'
-import { validAccordion } from './helpers'
+import { validateModel } from 'models/validate'
+import consultation from 'models/consultation'
+
+export const validateCompetence = data => (
+  validateModel(data, consultation) === true
+)
 
 export default class ConsultationValidator {
   constructor(data = {}) {
-    this.list = data.List || {}
-    this.consulted = (data.Consulted || {}).value
-  }
-
-  validConsulted() {
-    return this.consulted === 'Yes' || this.consulted === 'No'
-  }
-
-  validList() {
-    if (this.consulted === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ConsultationOrderValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    if (!this.validConsulted()) {
-      return false
-    }
-
-    if (this.consulted === 'No') {
-      return true
-    }
-
-    return this.validList()
+    return validateCompetence(this.data)
   }
 }
