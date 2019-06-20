@@ -43,6 +43,40 @@ describe('Competence validation', function() {
       },
       {
         data: {
+          IsIncompetent: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  CourtName: {
+                    value: 'Circuit Court'
+                  },
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Occurred: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Appeals: {
+                    items: [{ Item: { Has: { value: 'No' } } }]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      },
+      {
+        data: {
           List: {
             branch: { value: 'No' },
             items: []
