@@ -201,9 +201,9 @@ export const identification = {
     },
     para: {
       email:
-        'Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
+        'Email addresses may be used as contact method, and identify subject in records.',
       phoneNumber:
-        'Provide three contact numbers. **At least one number is required**. Additional numbers may assist in the completion of your background investigation.',
+        'Provide three contact numbers. **At least one telephone number is required**. Additional numbers may assist in the completion of your background investigation.',
     },
     label: {
       email: 'Email address',
