@@ -47,7 +47,7 @@ export const introduction = {
     'You will not receive prior notice of such disclosures under a routine use.',
     'In addition to those disclosures generally permitted under the Privacy Act, all or a portion of the records or information you provide on this form or during your investigation may be disclosed outside of OPM as a routine use as outlined below.',
     '---',
-    '## Common routine uses',
+    '## Office of Personnel Management (OPM) Routine Uses',
     'OPM has published the following Privacy Act routine uses for its system of records for background investigations:',
     '**a.** To designated officers and employees of agencies, offices, and other establishments in the executive, legislative, and judicial branches of the Federal Government or the Government of the District of Columbia having a need to investigate, evaluate, or make a determination regarding loyalty to the United States; qualifications, suitability, or fitness for Government employment or military service; eligibility for logical or physical access to federally-controlled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
     '**b.** To an element of the U.S. Intelligence Community as identified in E.O. 12333, as amended, for use in intelligence activities for the purpose of protecting United States national security interests.',
