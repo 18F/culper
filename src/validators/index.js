@@ -97,7 +97,7 @@ import LegalInvestigationsHistoryValidator, {
   HistoryValidator,
 } from './legalinvestigationshistory'
 import LegalInvestigationsRevokedValidator, {
-  RevokedValidator,
+  RevokedItemValidator,
 } from './legalinvestigationsrevoked'
 import LegalInvestigationsDebarredValidator, {
   DebarredValidator,
@@ -350,7 +350,7 @@ export {
   LegalInvestigationsHistoryValidator,
   HistoryValidator,
   LegalInvestigationsRevokedValidator,
-  RevokedValidator,
+  RevokedItemValidator,
   LegalInvestigationsDebarredValidator,
   DebarredValidator,
   LegalTechnologyUnauthorizedValidator,
