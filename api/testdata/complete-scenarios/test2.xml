@@ -998,12 +998,12 @@
                     <ActionToSeekCounselingTaken>
                       <Answer>Yes</Answer>
                     </ActionToSeekCounselingTaken>
-                    <CompletedTreatmentProgram>
-                      <Answer>Yes</Answer>
-                    </CompletedTreatmentProgram>
                     <CounselingOrderedBy>
                       <Answer Employer="True" Court="True"/>
                     </CounselingOrderedBy>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
                     <DateRange>
                       <From>
                         <Date>
@@ -1036,12 +1036,12 @@
                     <ActionToSeekCounselingTaken>
                       <Answer>Yes</Answer>
                     </ActionToSeekCounselingTaken>
-                    <CompletedTreatmentProgram>
-                      <Answer>Yes</Answer>
-                    </CompletedTreatmentProgram>
                     <CounselingOrderedBy>
                       <Answer MedicalProfessional="True"/>
                     </CounselingOrderedBy>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
                     <DateRange>
                       <From>
                         <Date>

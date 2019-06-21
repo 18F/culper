@@ -129,23 +129,26 @@ func TestPackage(t *testing.T) {
 
 	re := regexp.MustCompile("map\\[")
 	for _, test := range tests {
-		result, err := service.DefaultTemplate(test.Schema, test.Data)
-		if err != nil {
-			t.Fatal(err)
-		}
-		snippet := string(result)
+		t.Run(test.Schema, func(t *testing.T) {
 
-		if snippet == "" {
-			t.Fatalf("XML derived from `%s` should not be empty", test.Schema)
-		}
+			result, err := service.DefaultTemplate(test.Schema, test.Data)
+			if err != nil {
+				t.Fatal(err)
+			}
+			snippet := string(result)
 
-		// Literal Go maps in XML output point to a map being referenced directly
-		// in the template instead of correctly evaluted using a helper function.
-		match := re.FindStringSubmatch(snippet)
-		if match != nil {
-			t.Fatalf("XML derived from `%s` appears to contain a literal Go map: %s",
-				test.Schema, snippet)
-		}
+			if snippet == "" {
+				t.Fatalf("XML derived from `%s` should not be empty", test.Schema)
+			}
+
+			// Literal Go maps in XML output point to a map being referenced directly
+			// in the template instead of correctly evaluted using a helper function.
+			match := re.FindStringSubmatch(snippet)
+			if match != nil {
+				t.Fatalf("XML derived from `%s` appears to contain a literal Go map: %s",
+					test.Schema, snippet)
+			}
+		})
 	}
 }
 
