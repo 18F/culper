@@ -1,63 +1,72 @@
-import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignBusinessPolitical from 'models/foreignBusinessPolitical'
+
+export const validatePolitical = data => validateModel(data, foreignBusinessPolitical) === true
+
+export const validateForeignBusinessPolitical = (data) => {
+  const foreignBusinessPoliticalModel = {
+    HasForeignPolitical: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasForeignPolitical && attributes.HasForeignPolitical.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignBusinessPolitical },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignBusinessPoliticalModel) === true
+}
 
 export default class ForeignBusinessPoliticalValidator {
   constructor(data = {}) {
-    this.hasForeignPolitical = (data.HasForeignPolitical || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasForeignPolitical === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new PoliticalValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignBusinessPolitical(this.data)
   }
 }
 
 export class PoliticalValidator {
   constructor(data = {}) {
-    this.position = data.Position
-    this.dates = data.Dates
-    this.country = data.Country
-    this.reason = data.Reason
-    this.eligibility = data.Eligibility
+    this.data = data
   }
 
   validPosition() {
-    return !!this.position && validGenericTextfield(this.position)
+    return validateModel(this.data, {
+      Position: foreignBusinessPolitical.Position,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: foreignBusinessPolitical.Dates,
+    }) === true
   }
 
   validCountry() {
-    return validGenericTextfield(this.country)
+    return validateModel(this.data, {
+      Country: foreignBusinessPolitical.Country,
+    }) === true
   }
 
   validReason() {
-    return !!this.reason && validGenericTextfield(this.reason)
+    return validateModel(this.data, {
+      Reason: foreignBusinessPolitical.Reason,
+    }) === true
   }
 
   validEligibility() {
-    return !!this.eligibility && validGenericTextfield(this.eligibility)
+    return validateModel(this.data, {
+      Eligibility: foreignBusinessPolitical.Eligibility,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validPosition() &&
-      this.validDates() &&
-      this.validCountry() &&
-      this.validReason() &&
-      this.validEligibility()
-    )
+    return validatePolitical(this.data)
   }
 }
