@@ -50,7 +50,7 @@ export default class Supervisor extends ValidationElement {
   updateEmailNotApplicable(values) {
     this.update({
       EmailNotApplicable: values,
-      Email: {},
+      Email: values.applicable ? this.props.Email : {},
     })
   }
 
