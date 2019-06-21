@@ -59,6 +59,7 @@ export default class Person extends React.Component {
 
   updateRankNotApplicable = (values) => {
     this.update({
+      Rank: values.applicable ? this.props.Rank : {},
       RankNotApplicable: values,
     })
   }
