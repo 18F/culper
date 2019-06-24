@@ -11,36 +11,11 @@ import {
   Name,
   Location,
   DateRange,
-  NotApplicable
+  NotApplicable,
 } from '../../../Form'
 
 export default class SponsorshipItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-    this.update = this.update.bind(this)
-    this.updateName = this.updateName.bind(this)
-    this.updateBirthdateNotApplicable = this.updateBirthdateNotApplicable.bind(
-      this
-    )
-    this.updateBirthdate = this.updateBirthdate.bind(this)
-    this.updateBirthplace = this.updateBirthplace.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateCitizenship = this.updateCitizenship.bind(this)
-    this.updateOrganizationNotApplicable = this.updateOrganizationNotApplicable.bind(
-      this
-    )
-    this.updateOrganization = this.updateOrganization.bind(this)
-    this.updateOrganizationAddressNotApplicable = this.updateOrganizationAddressNotApplicable.bind(
-      this
-    )
-    this.updateOrganizationAddress = this.updateOrganizationAddress.bind(this)
-    this.updateDates = this.updateDates.bind(this)
-    this.updateResidence = this.updateResidence.bind(this)
-    this.updateStay = this.updateStay.bind(this)
-    this.updateSponsorship = this.updateSponsorship.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Name: this.props.Name,
       BirthdateNotApplicable: this.props.BirthdateNotApplicable,
@@ -57,106 +32,110 @@ export default class SponsorshipItem extends ValidationElement {
       OrganizationAddressNotApplicable: this.props
         .OrganizationAddressNotApplicable,
       OrganizationAddress: this.props.OrganizationAddress,
-      ...queue
+      ...queue,
     })
   }
 
-  updateName(values) {
+  updateName = (values) => {
     this.update({
-      Name: values
+      Name: values,
     })
   }
 
-  updateBirthdateNotApplicable(values) {
+  updateBirthdateNotApplicable = (values) => {
     this.update({
-      BirthdateNotApplicable: values
+      Birthdate: values.applicable ? this.props.Birthdate : {},
+      BirthdateNotApplicable: values,
     })
   }
 
-  updateBirthdate(values) {
+  updateBirthdate = (values) => {
     this.update({
-      Birthdate: values
+      Birthdate: values,
     })
   }
 
-  updateBirthplace(values) {
+  updateBirthplace = (values) => {
     this.update({
-      Birthplace: values
+      Birthplace: values,
     })
   }
 
-  updateAddress(values) {
+  updateAddress = (values) => {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
-  updateCitizenship(values) {
+  updateCitizenship = (values) => {
     this.update({
-      Citizenship: values
+      Citizenship: values,
     })
   }
 
-  updateOrganizationNotApplicable(values) {
+  updateOrganizationNotApplicable = (values) => {
     this.update({
-      OrganizationNotApplicable: values
+      Organization: values.applicable ? this.props.Organization : {},
+      OrganizationNotApplicable: values,
     })
   }
 
-  updateOrganization(values) {
+  updateOrganization = (values) => {
     this.update({
-      Organization: values
+      Organization: values,
     })
   }
 
-  updateDates(values) {
+  updateDates = (values) => {
     this.update({
-      Dates: values
+      Dates: values,
     })
   }
 
-  updateResidence(values) {
+  updateResidence = (values) => {
     this.update({
-      Residence: values
+      Residence: values,
     })
   }
 
-  updateStay(values) {
+  updateStay = (values) => {
     this.update({
-      Stay: values
+      Stay: values,
     })
   }
 
-  updateSponsorship(values) {
+  updateSponsorship = (values) => {
     this.update({
-      Sponsorship: values
+      Sponsorship: values,
     })
   }
 
-  updateOrganizationAddressNotApplicable(values) {
+  updateOrganizationAddressNotApplicable = (values) => {
     this.update({
-      OrganizationAddressNotApplicable: values
+      OrganizationAddress: values.applicable ? this.props.OrganizationAddress : {},
+      OrganizationAddressNotApplicable: values,
     })
   }
 
-  updateOrganizationAddress(values) {
+  updateOrganizationAddress = (values) => {
     this.update({
-      OrganizationAddress: values
+      OrganizationAddress: values,
     })
   }
 
   render() {
     const sponsorDOBMinDate = pickDate([
       this.props.applicantBirthdate,
-      this.props.Birthdate
+      this.props.Birthdate,
     ])
     return (
       <div className="sponsorship-item">
         <Field
           title={i18n.t('foreign.business.sponsorship.heading.name')}
-          optional={true}
+          optional
           filterErrors={Name.requiredErrorsOnly}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Name
             name="Name"
             {...this.props.Name}
@@ -172,7 +151,8 @@ export default class SponsorshipItem extends ValidationElement {
           title={i18n.t('foreign.business.sponsorship.heading.birthdate')}
           help="foreign.business.sponsorship.help.birthdate"
           adjustFor="datecontrol"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="BirthdateNotApplicable"
             label={i18n.t('foreign.business.sponsorship.label.idk')}
@@ -181,7 +161,8 @@ export default class SponsorshipItem extends ValidationElement {
             onUpdate={this.updateBirthdateNotApplicable}
             onError={this.props.onError}
             className="foreign-business-sponsorship-birthdate-na"
-            required={this.props.required}>
+            required={this.props.required}
+          >
             <DateControl
               name="Birthdate"
               {...this.props.Birthdate}
@@ -198,7 +179,8 @@ export default class SponsorshipItem extends ValidationElement {
           title={i18n.t('foreign.business.sponsorship.heading.birthplace')}
           adjustFor="birthplace"
           validate={false}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="Birthplace"
             {...this.props.Birthplace}
@@ -216,10 +198,11 @@ export default class SponsorshipItem extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.business.sponsorship.heading.address')}
-          optional={true}
+          optional
           help="foreign.business.sponsorship.help.address"
           adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="Address"
             {...this.props.Address}
@@ -227,8 +210,8 @@ export default class SponsorshipItem extends ValidationElement {
             onError={this.props.onError}
             className="foreign-business-sponsorship-address"
             layout={Location.ADDRESS}
-            geocode={true}
-            showPostOffice={true}
+            geocode
+            showPostOffice
             addressBooks={this.props.addressBooks}
             addressBook="ForeignNational"
             dispatch={this.props.dispatch}
@@ -240,14 +223,15 @@ export default class SponsorshipItem extends ValidationElement {
           title={i18n.t('foreign.business.sponsorship.heading.citizenship')}
           help="foreign.business.sponsorship.help.citizenship"
           adjustFor="country"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Country
             name="Citizenship"
             {...this.props.Citizenship}
             onUpdate={this.updateCitizenship}
             onError={this.props.onError}
             className="foreign-business-sponsorship-citizenship"
-            multiple={true}
+            multiple
             required={this.props.required}
           />
         </Field>
@@ -255,14 +239,16 @@ export default class SponsorshipItem extends ValidationElement {
         <Field
           title={i18n.t('foreign.business.sponsorship.heading.organization')}
           adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="OrganizationNotApplicable"
             {...this.props.OrganizationNotApplicable}
             onUpdate={this.updateOrganizationNotApplicable}
             onError={this.props.onError}
             or={i18n.m('foreign.business.sponsorship.para.or')}
-            required={this.props.required}>
+            required={this.props.required}
+          >
             <Text
               name="Organization"
               {...this.props.Organization}
@@ -278,17 +264,19 @@ export default class SponsorshipItem extends ValidationElement {
           title={i18n.t(
             'foreign.business.sponsorship.heading.organizationaddress'
           )}
-          optional={true}
+          optional
           help="foreign.business.sponsorship.help.organizationaddress"
           adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="OrganizationAddressNotApplicable"
             {...this.props.OrganizationAddressNotApplicable}
             onUpdate={this.updateOrganizationAddressNotApplicable}
             onError={this.props.onError}
             or={i18n.m('foreign.business.sponsorship.para.or')}
-            required={this.props.required}>
+            required={this.props.required}
+          >
             <Location
               name="OrganizationAddress"
               {...this.props.OrganizationAddress}
@@ -296,7 +284,7 @@ export default class SponsorshipItem extends ValidationElement {
               onError={this.props.onError}
               className="foreign-business-sponsorship-organizationaddress"
               layout={Location.ADDRESS}
-              geocode={true}
+              geocode
               addressBooks={this.props.addressBooks}
               addressBook="Organization"
               dispatch={this.props.dispatch}
@@ -309,13 +297,14 @@ export default class SponsorshipItem extends ValidationElement {
           title={i18n.t('foreign.business.sponsorship.heading.dates')}
           help="foreign.business.sponsorship.help.dates"
           adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="Dates"
             {...this.props.Dates}
             onUpdate={this.updateDates}
             minDate={sponsorDOBMinDate}
-            minDateEqualTo={true}
+            minDateEqualTo
             onError={this.props.onError}
             className="foreign-business-sponsorship-dates"
             required={this.props.required}
@@ -325,18 +314,19 @@ export default class SponsorshipItem extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.business.sponsorship.heading.residence')}
-          optional={true}
+          optional
           adjustFor="address no-buttons"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="Residence"
             {...this.props.Residence}
             onUpdate={this.updateResidence}
             onError={this.props.onError}
             className="foreign-business-sponsorship-residence"
-            disableToggle={true}
+            disableToggle
             layout={Location.ADDRESS}
-            geocode={true}
+            geocode
             addressBooks={this.props.addressBooks}
             addressBook="ForeignNational"
             dispatch={this.props.dispatch}
@@ -347,7 +337,8 @@ export default class SponsorshipItem extends ValidationElement {
         <Field
           title={i18n.t('foreign.business.sponsorship.heading.stay')}
           adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="Stay"
             {...this.props.Stay}
@@ -361,7 +352,8 @@ export default class SponsorshipItem extends ValidationElement {
         <Field
           title={i18n.t('foreign.business.sponsorship.heading.sponsorship')}
           adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="Sponsorship"
             {...this.props.Sponsorship}
@@ -380,8 +372,6 @@ SponsorshipItem.defaultProps = {
   BirthdateNotApplicable: { applicable: true },
   OrganizationNotApplicable: { applicable: true },
   OrganizationAddressNotApplicable: { applicable: true },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }
