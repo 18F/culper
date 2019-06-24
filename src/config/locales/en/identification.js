@@ -39,6 +39,7 @@ export const identification = {
   },
   name: {
     title: 'Provide your full name',
+    info: 'If you have only initials in your name, provide them and indicate “initial only”.  If you do not have a middle name, indicate “No Middle Name”.  If you are a “Jr”, “Sr”, etc. enter this under suffix.',
     last: {
       help: {
         title: 'Enter a valid last name.',
@@ -201,9 +202,9 @@ export const identification = {
     },
     para: {
       email:
-        'Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
+        'Email addresses may be used as contact method, and identify subject in records.',
       phoneNumber:
-        'Provide three contact numbers. **At least one number is required**. Additional numbers may assist in the completion of your background investigation.',
+        'Provide three contact numbers. **At least one telephone number is required**. Additional numbers may assist in the completion of your background investigation.',
     },
     label: {
       email: 'Email address',

@@ -259,6 +259,8 @@ export default class EmploymentItem extends ValidationElement {
       && this.props.PhysicalAddress.HasDifferentAddress
       && this.props.PhysicalAddress.HasDifferentAddress.value === 'Yes'
 
+    const showAdditionalActivity = this.showAdditionalActivity()
+
     return (
       <div>
         <EmploymentActivity
@@ -447,6 +449,7 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showSupervisor()}>
           <Supervisor
+            nonMilitary={showAdditionalActivity}
             name="Supervisor"
             {...this.props.Supervisor}
             addressBooks={this.props.addressBooks}
@@ -541,7 +544,7 @@ export default class EmploymentItem extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.showAdditionalActivity()}>
+        <Show when={showAdditionalActivity}>
           <Field
             title={i18n.t(`${prefix}.heading.additionalActivity`)}
             titleSize="h3"

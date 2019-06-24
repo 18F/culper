@@ -428,6 +428,7 @@ export const history = {
         heading: {
           name: 'Provide the name of your supervisor',
           title: 'Provide the rank/position title of your supervisor',
+          titleNonMilitary: 'Provide the position title of your supervisor',
           email: 'Provide the email address of your supervisor',
           address: 'Provide the physical work location of your supervisor',
           telephone: 'Provide the telephone number for this supervisor',
@@ -1589,7 +1590,7 @@ export const history = {
         },
         append: 'Add another school',
         appendTitle:
-          'Do you have additional education (include education within the last {{years}} years, as well as degrees or diplomas more than {{years}} years ago)?',
+          'Do you have additional education to enter (include education within the last {{years}} years, as well as degrees or diplomas more than {{years}} years ago)?',
       },
       diploma: {
         summary: {

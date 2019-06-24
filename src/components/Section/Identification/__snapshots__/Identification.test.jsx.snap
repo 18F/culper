@@ -79,6 +79,11 @@ exports[`The identification section renders the IdentificationSections component
           <span
             className="component"
           >
+            <label
+              className="name-label"
+            >
+              If you have only initials in your name, provide them and indicate “initial only”.  If you do not have a middle name, indicate “No Middle Name”.  If you are a “Jr”, “Sr”, etc. enter this under suffix.
+            </label>
             <div
               className="name "
             >
@@ -1017,7 +1022,7 @@ exports[`The identification section renders the IdentificationSections component
                   className="toggleable-location"
                 >
                   <div
-                    aria-label="Were you born in the United States?"
+                    aria-label=""
                     className="field required branch"
                     data-uuid="field-MOCK-GUID"
                   >
@@ -1027,11 +1032,6 @@ exports[`The identification section renders the IdentificationSections component
                       id="field-MOCK-GUID"
                       name="field-MOCK-GUID"
                     />
-                    <label
-                      className="title label"
-                    >
-                      Were you born in the United States?
-                    </label>
                     <span
                       className="icon"
                     />
@@ -1710,7 +1710,7 @@ exports[`The identification section renders the IdentificationSections component
           >
             <div>
               <p>
-                Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.
+                Email addresses may be used as contact method, and identify subject in records.
               </p>
             </div>
           </span>
@@ -1988,7 +1988,7 @@ exports[`The identification section renders the IdentificationSections component
               <p>
                 Provide three contact numbers. 
                 <strong>
-                  At least one number is required
+                  At least one telephone number is required
                 </strong>
                 . Additional numbers may assist in the completion of your background investigation.
               </p>
