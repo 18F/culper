@@ -1,54 +1,31 @@
-import DateRangeValidator from './daterange'
-import TreatmentValidator from './treatment'
-import { validGenericTextfield } from './helpers'
+import { validateModel } from 'models/validate'
+import diagnosis from 'models/diagnosis'
+
+export const validateDiagnosis = (data, existingCondition = false) => (
+  validateModel(data, diagnosis, { existingCondition })
+)
 
 export default class DiagnosisValidator {
   constructor(data = {}) {
-    this.condition = (data.Condition || {}).value
-    this.diagnosed = data.Diagnosed || {}
-    this.treatment = data.Treatment || {}
-    this.effective = (data.Effective || {}).value
-    this.treatmentFacility = data.TreatmentFacility || {}
-    this.explanation = data.Explanation || {}
+    this.data = data
     this.prefix = (data || {}).prefix
   }
 
   validCondition() {
-    if (this.prefix === 'existingConditions.diagnosis') {
-      return true
-    }
-
-    if (!this.condition) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, {
+      Condition: diagnosis.Condition,
+    }, { existingCondition: this.prefix === 'existingConditions.diagnosis' }) === true
   }
 
   validEffective() {
-    if (this.prefix === 'existingConditions.diagnosis') {
-      return true
-    }
-
-    if (this.effective !== 'Yes' && this.effective !== 'No') {
-      return false
-    }
-
-    if (this.effective === 'No' && !validGenericTextfield(this.explanation)) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, {
+      Effective: diagnosis.Effective,
+      Explanation: diagnosis.Explanation,
+    }, { existingCondition: this.prefix === 'existingConditions.diagnosis' }) === true
   }
 
   isValid() {
-    return (
-      this.validCondition() &&
-      new DateRangeValidator(this.diagnosed).isValid() &&
-      new TreatmentValidator(this.treatment).isValid() &&
-      new TreatmentValidator(this.treatmentFacility).isValid() &&
-      this.validEffective()
-    )
+    return validateDiagnosis(this.data, this.prefix === 'existingConditions.diagnosis')
   }
 }
 

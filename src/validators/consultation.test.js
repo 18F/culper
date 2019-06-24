@@ -1,7 +1,7 @@
 import ConsultationValidator from './consultation'
 import Location from '../components/Form/Location'
 
-describe('Consultation validation', function() {
+describe('Consultation validation', () => {
   it('validates competence', () => {
     const tests = [
       {
@@ -13,7 +13,7 @@ describe('Consultation validation', function() {
               {
                 Item: {
                   CourtName: {
-                    value: 'Circuit Court'
+                    value: 'Circuit Court',
                   },
                   CourtAddress: {
                     country: { value: 'United States' },
@@ -21,55 +21,89 @@ describe('Consultation validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Disposition: {
-                    value: 'Stuff'
+                    value: 'Stuff',
                   },
                   Occurred: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Appeals: {
-                    items: [{ Item: { Has: { value: 'No' } } }]
-                  }
-                }
-              }
-            ]
-          }
+                    items: [{ Item: { Has: { value: 'No' } } }],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Consulted: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [
+              {
+                Item: {
+                  CourtName: {
+                    value: 'Circuit Court',
+                  },
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS,
+                  },
+                  Occurred: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                  },
+                  Appeals: {
+                    items: [{ Item: { Has: { value: 'No' } } }],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
+      },
+      {
+        state: {
+          Consulted: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [],
+          },
+        },
+        expected: false,
       },
       {
         state: {
           Consulted: { value: 'No' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Consulted: { value: 'Nope' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -86,28 +120,28 @@ describe('Consultation validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Disposition: {
-                    value: 'Stuff'
+                    value: 'Stuff',
                   },
                   Occurred: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Appeals: {
-                    items: [{ Item: { Has: { value: 'No' } } }]
-                  }
-                }
-              }
-            ]
-          }
+                    items: [{ Item: { Has: { value: 'No' } } }],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new ConsultationValidator(test.state, null).isValid()).toBe(
         test.expected
       )
