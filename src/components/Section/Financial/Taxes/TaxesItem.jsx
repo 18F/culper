@@ -13,23 +13,7 @@ import {
 import FailureType from './FailureType'
 
 export default class TaxesItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-    this.update = this.update.bind(this)
-    this.updateFailure = this.updateFailure.bind(this)
-    this.updateYear = this.updateYear.bind(this)
-    this.updateReason = this.updateReason.bind(this)
-    this.updateAgency = this.updateAgency.bind(this)
-    this.updateTaxType = this.updateTaxType.bind(this)
-    this.updateAmount = this.updateAmount.bind(this)
-    this.updateAmountEstimated = this.updateAmountEstimated.bind(this)
-    this.updateDateNotApplicable = this.updateDateNotApplicable.bind(this)
-    this.updateDate = this.updateDate.bind(this)
-    this.updateDescription = this.updateDescription.bind(this)
-    this.updateYearEstimated = this.updateYearEstimated.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Failure: this.props.Failure,
       Year: this.props.Year,
@@ -46,68 +30,68 @@ export default class TaxesItem extends ValidationElement {
     })
   }
 
-  updateFailure(values) {
+  updateFailure = (values) => {
     this.update({
       Failure: values,
     })
   }
 
-  updateYear(values) {
+  updateYear = (values) => {
     this.update({
       Year: values,
     })
   }
 
-  updateReason(values) {
+  updateReason = (values) => {
     this.update({
       Reason: values,
     })
   }
 
-  updateAgency(values) {
+  updateAgency = (values) => {
     this.update({
       Agency: values,
     })
   }
 
-  updateTaxType(values) {
+  updateTaxType = (values) => {
     this.update({
       TaxType: values,
     })
   }
 
-  updateAmount(values) {
+  updateAmount = (values) => {
     this.update({
       Amount: values,
     })
   }
 
-  updateDateNotApplicable(values) {
+  updateDateNotApplicable = (values) => {
     this.update({
       Date: values.applicable ? this.props.Date : {},
       DateNotApplicable: values,
     })
   }
 
-  updateDate(values) {
+  updateDate = (values) => {
     this.update({
       Date: values,
     })
   }
 
-  updateDescription(values) {
+  updateDescription = (values) => {
     this.update({
       Description: values,
     })
   }
 
-  updateYearEstimated(values) {
+  updateYearEstimated = (values) => {
     this.update({
       YearEstimated: values,
     })
   }
 
-  updateAmountEstimated(values) {
+  updateAmountEstimated = (values) => {
     this.update({
       AmountEstimated: values,
     })

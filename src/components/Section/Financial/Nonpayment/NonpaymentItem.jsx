@@ -6,7 +6,6 @@ import {
   Currency,
   Field,
   NotApplicable,
-  Location,
   Checkbox,
   Text,
   Textarea,
@@ -14,24 +13,6 @@ import {
 import Infractions from './Infractions'
 
 export default class NonpaymentItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-    this.update = this.update.bind(this)
-    this.updateName = this.updateName.bind(this)
-    this.updateInfractions = this.updateInfractions.bind(this)
-    this.updateAccountNumber = this.updateAccountNumber.bind(this)
-    this.updatePropertyType = this.updatePropertyType.bind(this)
-    this.updateAmount = this.updateAmount.bind(this)
-    this.updateAmountEstimated = this.updateAmountEstimated.bind(this)
-    this.updateReason = this.updateReason.bind(this)
-    this.updateStatus = this.updateStatus.bind(this)
-    this.updateDate = this.updateDate.bind(this)
-    this.updateResolvedNotApplicable = this.updateResolvedNotApplicable.bind(
-      this
-    )
-    this.updateResolved = this.updateResolved.bind(this)
-    this.updateDescription = this.updateDescription.bind(this)
-  }
 
   update = (queue) => {
     this.props.onUpdate({
@@ -87,38 +68,38 @@ export default class NonpaymentItem extends ValidationElement {
     })
   }
 
-  updateReason(values) {
+  updateReason = (values) => {
     this.update({
       Reason: values,
     })
   }
 
-  updateStatus(values) {
+  updateStatus = (values) => {
     this.update({
       Status: values,
     })
   }
 
-  updateDate(values) {
+  updateDate = (values) => {
     this.update({
       Date: values,
     })
   }
 
-  updateResolved(values) {
+  updateResolved = (values) => {
     this.update({
       Resolved: values,
     })
   }
 
-  updateResolvedNotApplicable(values) {
+  updateResolvedNotApplicable = (values) => {
     this.update({
       Resolved: values.applicable ? this.props.Resolved : {},
       ResolvedNotApplicable: values,
     })
   }
 
-  updateDescription(values) {
+  updateDescription = (values) => {
     this.update({
       Description: values,
     })
