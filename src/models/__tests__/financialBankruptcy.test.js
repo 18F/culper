@@ -13,6 +13,7 @@ describe('The financial bankruptcy model', () => {
       'DateFiled.required',
       'NameDebt.required',
       'HasDischargeExplanation.required',
+      'DischargeExplanation.required',
     ]
 
     expect(validateModel(testData, financialBankruptcy))
@@ -40,19 +41,6 @@ describe('The financial bankruptcy model', () => {
     }
 
     const expectedErrors = ['DateDischarged.required']
-
-    expect(validateModel(testData, financialBankruptcy))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('requires a discharge explanation if discharged', () => {
-    const testData = {
-      HasDischargeExplanation: {
-        value: 'Yes',
-      },
-    }
-
-    const expectedErrors = ['DischargeExplanation.required']
 
     expect(validateModel(testData, financialBankruptcy))
       .toEqual(expect.arrayContaining(expectedErrors))

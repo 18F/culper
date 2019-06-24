@@ -44,4 +44,25 @@ describe('The financial delinquent payments model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
   })
+
+  describe('SF85', () => {
+    const options = {
+      requiredFinancialDelinquentName: false,
+      requiredFinancialDelinquentInfraction: false,
+    }
+    it('does not require a name nor infraction for the delinquent payment item', () => {
+      const testData = {
+        ResolvedNotApplicable: {
+          applicable: true,
+        },
+      }
+      const unexpectedError = [
+        'Name.required',
+        'Infractions.required',
+      ]
+
+      expect(validateModel(testData, financialDelinquentPayments, options))
+        .toEqual(expect.not.arrayContaining(unexpectedError))
+    })
+  })
 })

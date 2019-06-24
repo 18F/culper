@@ -48,17 +48,13 @@ const financialBankruptcy = {
     presence: true,
     model: { validator: name },
   },
+  // TODO: HasDischargeExplanation is poorly named
+  // It should be something along the lines of WasBankruptcyDebtsDischarged
   HasDischargeExplanation: {
     presence: true,
     hasValue: { validator: hasYesOrNo },
   },
-  DischargeExplanation: (value, attributes) => {
-    const { HasDischargeExplanation } = attributes
-    if (HasDischargeExplanation && HasDischargeExplanation.value === 'Yes') {
-      return { presence: true, hasValue: true }
-    }
-    return {}
-  },
+  DischargeExplanation: { presence: true, hasValue: true },
   Trustee: (value, attributes) => {
     const { PetitionType } = attributes
     if (PetitionType && PetitionType.value === 'Chapter13') {

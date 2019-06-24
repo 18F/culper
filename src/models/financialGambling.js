@@ -3,7 +3,11 @@ const financialGambling = {
   Losses: {
     presence: true,
     hasValue: {
-      validator: { numericality: true },
+      validator: {
+        numericality: {
+          greaterThan: 0,
+        },
+      },
     },
   },
   Description: { presence: true, hasValue: true },
