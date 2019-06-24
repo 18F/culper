@@ -5,16 +5,13 @@ import { action } from '@storybook/addon-actions'
 import Checkbox from './Checkbox'
 
 storiesOf('Checkbox', module)
-  .add('default (no label', () => (
-    <Checkbox />
-  ))
-  .add('with label', () => (
+  .add('default', () => (
     <Checkbox
       label="select me"
       onUpdate={action('onUpdate')}
     />
   ))
-  .add('with label (disabled)', () => (
+  .add('disabled', () => (
     <Checkbox
       label="select me"
       onUpdate={action('onUpdate')}
