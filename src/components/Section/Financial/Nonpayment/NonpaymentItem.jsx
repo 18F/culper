@@ -50,19 +50,19 @@ export default class NonpaymentItem extends ValidationElement {
     })
   }
 
-  updatePropertyType(values) {
+  updatePropertyType = (values) => {
     this.update({
       PropertyType: values,
     })
   }
 
-  updateAmount(values) {
+  updateAmount = (values) => {
     this.update({
       Amount: values,
     })
   }
 
-  updateAmountEstimated(values) {
+  updateAmountEstimated = (values) => {
     this.update({
       AmountEstimated: values,
     })
