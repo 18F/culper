@@ -38,6 +38,13 @@ export default class Bankruptcy extends ValidationElement {
     })
   }
 
+  updateDateDischargedNotApplicable = (values) => {
+    this.update({
+      DateDischarged: values.applicable ? this.props.DateDischarged : {},
+      DischargeDateNotApplicable: values,
+    })
+  }
+
   updateField = (field, values) => {
     this.update({
       [field]: values,
@@ -136,7 +143,7 @@ export default class Bankruptcy extends ValidationElement {
             name="DateDischargedNotApplicable"
             {...this.props.DateDischargedNotApplicable}
             onError={this.props.onError}
-            onUpdate={(value) => { this.updateField('DateDischargedNotApplicable', value) }}
+            onUpdate={this.updateDateDischargedNotApplicable}
           >
             <DateControl
               name="DateDischarged"
