@@ -1,80 +1,79 @@
-import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validGenericTextfield,
-  validNotApplicable
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import violence from 'models/violence'
+
+export const validateViolence = data => (
+  validateModel(data, violence) === true
+)
+
+export const validateLegalViolence = (data) => {
+  const legalViolenceModel = {
+    HasViolence: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasViolence && attributes.HasViolence.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: violence },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, legalViolenceModel) === true
+}
 
 export default class LegalAssociationViolenceValidator {
   constructor(data = {}) {
-    this.hasViolence = (data.HasViolence || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasViolence === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ViolenceValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalViolence(this.data)
   }
 }
 
 export class ViolenceValidator {
   constructor(data = {}) {
-    this.organization = data.Organization
-    this.address = data.Address
-    this.dates = data.Dates
-    this.positions = data.Positions
-    this.positionsNotApplicable = data.PositionsNotApplicable
-    this.contributions = data.Contributions
-    this.contributionsNotApplicable = data.ContributionsNotApplicable
-    this.reasons = data.Reasons
+    this.data = data
   }
 
   validOrganization() {
-    return !!this.organization && validGenericTextfield(this.organization)
+    return validateModel(this.data, {
+      Organization: violence.Organization,
+    }) === true
   }
 
   validAddress() {
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, {
+      Address: violence.Address,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: violence.Dates,
+    }) === true
   }
 
   validPositions() {
-    return validNotApplicable(this.positionsNotApplicable, () => {
-      return !!this.positions && validGenericTextfield(this.positions)
-    })
+    return validateModel(this.data, {
+      Positions: violence.Positions,
+    }) === true
   }
 
   validContributions() {
-    return validNotApplicable(this.contributionsNotApplicable, () => {
-      return !!this.contributions && validGenericTextfield(this.contributions)
-    })
+    return validateModel(this.data, {
+      Contributions: violence.Contributions,
+    }) === true
   }
 
   validReasons() {
-    return !!this.reasons && validGenericTextfield(this.reasons)
+    return validateModel(this.data, {
+      Reasons: violence.Reasons,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validOrganization() &&
-      this.validAddress() &&
-      this.validDates() &&
-      this.validPositions() &&
-      this.validContributions() &&
-      this.validReasons()
-    )
+    return validateViolence(this.data)
   }
 }

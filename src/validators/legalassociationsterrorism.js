@@ -1,20 +1,16 @@
-import { validGenericTextfield } from './helpers'
+import { validateModel } from 'models/validate'
+import terrorism from 'models/terrorism'
+
+export const validateLegalAssociationTerrorism = data => (
+  validateModel(data, terrorism) === true
+)
 
 export default class LegalAssociationTerrorismValidator {
   constructor(data = {}) {
-    this.hasTerrorism = (data.HasTerrorism || {}).value
-    this.explanation = data.Explanation
+    this.data = data
   }
 
   isValid() {
-    if (this.hasTerrorism === 'No') {
-      return true
-    }
-
-    if (this.hasTerrorism === 'Yes') {
-      return !!this.explanation && validGenericTextfield(this.explanation)
-    }
-
-    return false
+    return validateLegalAssociationTerrorism(this.data)
   }
 }

@@ -1,80 +1,79 @@
-import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validGenericTextfield,
-  validNotApplicable
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import overthrow from 'models/overthrow'
+
+export const validateOverthrow = data => (
+  validateModel(data, overthrow) === true
+)
+
+export const validateLegalOverthrow = (data) => {
+  const legalOverthrowModel = {
+    HasOverthrow: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasOverthrow && attributes.HasOverthrow.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: overthrow },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, legalOverthrowModel) === true
+}
 
 export default class LegalAssociationOverthrowValidator {
   constructor(data = {}) {
-    this.hasOverthrow = (data.HasOverthrow || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasOverthrow === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new OverthrowValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalOverthrow(this.data)
   }
 }
 
 export class OverthrowValidator {
   constructor(data = {}) {
-    this.organization = data.Organization
-    this.address = data.Address
-    this.dates = data.Dates
-    this.positions = data.Positions
-    this.positionsNotApplicable = data.PositionsNotApplicable
-    this.contributions = data.Contributions
-    this.contributionsNotApplicable = data.ContributionsNotApplicable
-    this.reasons = data.Reasons
+    this.data = data
   }
 
   validOrganization() {
-    return !!this.organization && validGenericTextfield(this.organization)
+    return validateModel(this.data, {
+      Organization: overthrow.Organization,
+    }) === true
   }
 
   validAddress() {
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, {
+      Address: overthrow.Address,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: overthrow.Dates,
+    }) === true
   }
 
   validPositions() {
-    return validNotApplicable(this.positionsNotApplicable, () => {
-      return !!this.positions && validGenericTextfield(this.positions)
-    })
+    return validateModel(this.data, {
+      Positions: overthrow.Positions,
+    }) === true
   }
 
   validContributions() {
-    return validNotApplicable(this.contributionsNotApplicable, () => {
-      return !!this.contributions && validGenericTextfield(this.contributions)
-    })
+    return validateModel(this.data, {
+      Contributions: overthrow.Contributions,
+    }) === true
   }
 
   validReasons() {
-    return !!this.reasons && validGenericTextfield(this.reasons)
+    return validateModel(this.data, {
+      Reasons: overthrow.Reasons,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validOrganization() &&
-      this.validAddress() &&
-      this.validDates() &&
-      this.validPositions() &&
-      this.validContributions() &&
-      this.validReasons()
-    )
+    return validateOverthrow(this.data)
   }
 }

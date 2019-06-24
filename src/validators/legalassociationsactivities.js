@@ -1,42 +1,56 @@
-import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import activitiesOverthrow from 'models/activitiesOverthrow'
+
+export const validateActivities = data => (
+  validateModel(data, activitiesOverthrow) === true
+)
+
+export const validateLegalAssociationActivities = (data) => {
+  const legalAssociationActivitiesModel = {
+    HasActivities: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasActivities && attributes.HasActivities.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: activitiesOverthrow },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, legalAssociationActivitiesModel) === true
+}
 
 export default class LegalAssociationActivitiesValidator {
   constructor(data = {}) {
-    this.hasActivities = (data.HasActivities || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasActivities === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ActivitiesValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalAssociationActivities(this.data)
   }
 }
 
 export class ActivitiesValidator {
   constructor(data = {}) {
-    this.reasons = data.Reasons
-    this.dates = data.Dates
+    this.data = data
   }
 
   validReasons() {
-    return !!this.reasons && validGenericTextfield(this.reasons)
+    return validateModel(this.data, {
+      Reasons: activitiesOverthrow.Reasons,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: activitiesOverthrow.Dates,
+    }) === true
   }
 
   isValid() {
-    return this.validReasons() && this.validDates()
+    return validateActivities(this.data)
   }
 }

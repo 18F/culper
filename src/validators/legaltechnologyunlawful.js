@@ -1,61 +1,67 @@
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validGenericTextfield,
-  validDateField
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import unlawfulTech from 'models/unlawfulTech'
+
+export const validateUnlawfulTech = data => (
+  validateModel(data, unlawfulTech) === true
+)
+
+export const validateLegalTechnologyUnlawful = (data) => {
+  const legalTechnologyUnlawfulModel = {
+    HasUnlawful: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasUnlawful && attributes.HasUnlawful.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: unlawfulTech },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, legalTechnologyUnlawfulModel) === true
+}
 
 export default class LegalTechnologyUnlawfulValidator {
   constructor(data = {}) {
-    this.hasUnlawful = (data.HasUnlawful || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasUnlawful === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new UnlawfulValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalTechnologyUnlawful(this.data)
   }
 }
 
 export class UnlawfulValidator {
   constructor(data = {}) {
-    this.date = data.Date
-    this.incident = data.Incident
-    this.location = data.Location
-    this.action = data.Action
+    this.data = data
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, {
+      Date: unlawfulTech.Date,
+    }) === true
   }
 
   validIncident() {
-    return !!this.incident && validGenericTextfield(this.incident)
+    return validateModel(this.data, {
+      Incident: unlawfulTech.Incident,
+    }) === true
   }
 
   validLocation() {
-    return !!this.location && new LocationValidator(this.location).isValid()
+    return validateModel(this.data, {
+      Location: unlawfulTech.Location,
+    }) === true
   }
 
   validAction() {
-    return !!this.action && validGenericTextfield(this.action)
+    return validateModel(this.data, {
+      Action: unlawfulTech.Action,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validDate() &&
-      this.validIncident() &&
-      this.validLocation() &&
-      this.validAction()
-    )
+    return validateUnlawfulTech(this.data)
   }
 }
