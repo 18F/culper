@@ -7,3 +7,4 @@ storiesOf('ForeignBornDocuments', module)
   .add('default', () => (
     <ForeignBornDocuments />
   ))
+// unable to render Foreign born documents because it is a controlled component. Needs controlled component wrapper.

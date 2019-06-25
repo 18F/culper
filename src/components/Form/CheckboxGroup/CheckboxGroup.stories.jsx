@@ -9,6 +9,30 @@ storiesOf('CheckboxGroup', module)
   .add('default', () => (
     <CheckboxGroup
       className="option-list option-list-vertical"
+    >
+      <Checkbox
+        name="checkbox-1"
+        label="Checkbox 1"
+        value="checkbox-1"
+        onUpdate={action('onUpdate')}
+      />
+      <Checkbox
+        name="checkbox-2"
+        label="Checkbox 2"
+        value="checkbox-2"
+        onUpdate={action('onUpdate')}
+      />
+      <Checkbox
+        name="checkbox-3"
+        label="Checkbox 3"
+        value="checkbox-3"
+        onUpdate={action('onUpdate')}
+      />
+    </CheckboxGroup>
+  ))
+  .add('default (with option selected)', () => (
+    <CheckboxGroup
+      className="option-list option-list-vertical"
       selectedValues={['checkbox-1']}
     >
       <Checkbox

@@ -15,3 +15,4 @@ storiesOf('EyeColor', module)
       className="usa-input-error"
     />
   ))
+  // Unable to show selected state. I would have expected selectedValue to work since it is built using a RadioGroup but it does not.

@@ -10,6 +10,7 @@ storiesOf('Country input', module)
     />
   ))
   .add('default (multi-select)', () => (
+    // Unable to get multi-select working
     <Country
       label="Selected multiple countries"
       name="countries"
