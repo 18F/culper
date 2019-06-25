@@ -204,12 +204,7 @@ Supervisor.defaultProps = {
   Telephone: {},
   addressBooks: {},
   addressBook: 'Employment',
-<<<<<<< HEAD
   dispatch: () => {},
   onUpdate: () => {},
-=======
-  dispatch: (action) => {},
-  onUpdate: (queue) => {},
->>>>>>> 829e465a4c93e7faadb1eb57a89044f796b4bae8
   onError: (value, arr) => arr,
 }
