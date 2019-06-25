@@ -5,7 +5,19 @@ import Modal from './Modal'
 
 storiesOf('Modal', module)
   .add('default', () => (
-    <Modal>
-      <p>thing</p>
+    <Modal
+      show
+    >
+      <h3>Modal title</h3>
+      <p>Content that shows within the modal body</p>
+    </Modal>
+  ))
+  .add('default (closable)', () => (
+    <Modal
+      show
+      closeable
+    >
+      <h3>Modal title</h3>
+      <p>Content that shows within the modal body</p>
     </Modal>
   ))
