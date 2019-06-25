@@ -2,8 +2,6 @@ import { hasYesOrNo } from 'models/validate'
 import name from 'models/shared/name'
 import address from 'models/shared/locations/address'
 
-import { requireForeignMilitaryMaintainsContact } from 'helpers/branches'
-
 const foreignOrganization = [
   'Military',
   'Intelligence',
@@ -51,8 +49,8 @@ const militaryForeign = {
   Circumstances: { presence: true, hasValue: true },
   ReasonLeft: { presence: true, hasValue: true },
   MaintainsContact: (value, attributes, attributeName, options) => {
-    const { formType } = options
-    if (requireForeignMilitaryMaintainsContact(formType)) {
+    const { requireForeignMilitaryMaintainsContact } = options
+    if (requireForeignMilitaryMaintainsContact) {
       return {
         presence: true,
         hasValue: { validator: hasYesOrNo },
