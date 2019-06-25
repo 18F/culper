@@ -11,6 +11,21 @@ describe.only('The date validator', () => {
     expect(date(testData)).toBeTruthy()
   })
 
+  it('fails if year is an invalid value', () => {
+    const testData = { year: 'abc' }
+    expect(date(testData, { requireDay: false, requireMonth: false })).toBeTruthy()
+  })
+
+  it('fails if year is too early', () => {
+    const testData = { year: '0' }
+    expect(date(testData, { requireDay: false, requireMonth: false })).toBeTruthy()
+  })
+
+  it('fails if year is too late', () => {
+    const testData = { year: '10001' }
+    expect(date(testData, { requireDay: false, requireMonth: false })).toBeTruthy()
+  })
+
   it('passes a valid date object', () => {
     const testData = { year: 2010, month: 5, day: 23 }
     expect(date(testData)).toBeNull()

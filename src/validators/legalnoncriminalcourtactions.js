@@ -1,54 +1,43 @@
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validBranch,
-  validDateField,
-  validGenericTextfield
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import nonCriminalCourtAction from 'models/nonCriminalCourtAction'
+
+export const validateNonCriminalCourtAction = data => (
+  validateModel(data, nonCriminalCourtAction) === true
+)
+
+export const validateLegalNonCriminalCourtActions = (data) => {
+  const legalNonCriminalCourtActionsModel = {
+    HasCourtActions: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasCourtActions && attributes.HasCourtActions.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: nonCriminalCourtAction },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, legalNonCriminalCourtActionsModel) === true
+}
 
 export default class NonCriminalCourtActionsValidator {
   constructor(data = {}) {
-    this.hasCourtActions = (data.HasCourtActions || {}).value
-    this.list = data.List || {}
-  }
-
-  validHasCourtActions() {
-    return validBranch(this.hasCourtActions)
-  }
-
-  validNonCriminalCourtActions() {
-    if (this.validHasCourtActions() && this.hasCourtActions === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new NonCriminalCourtActionValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validHasCourtActions() && this.validNonCriminalCourtActions()
+    return validateLegalNonCriminalCourtActions(this.data)
   }
 }
 
 export class NonCriminalCourtActionValidator {
   constructor(data = {}) {
-    this.civilActionDate = data.CivilActionDate
-    this.courtName = data.CourtName
-    this.courtAddress = data.CourtAddress
-    this.natureOfAction = data.NatureOfAction
-    this.resultsOfAction = data.ResultsOfAction
-    this.principalPartyNames = data.PrincipalPartyNames
+    this.data = data
   }
 
   isValid() {
-    return (
-      validDateField(this.civilActionDate) &&
-      validGenericTextfield(this.courtName) &&
-      new LocationValidator(this.courtAddress).isValid() &&
-      validGenericTextfield(this.natureOfAction) &&
-      validGenericTextfield(this.resultsOfAction) &&
-      validGenericTextfield(this.principalPartyNames)
-    )
+    return validateNonCriminalCourtAction(this.data)
   }
 }

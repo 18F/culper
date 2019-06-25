@@ -30,6 +30,19 @@ describe('The accordion validator', () => {
     expect(accordion(testData, { validator })).toEqual('Invalid branch')
   })
 
+  it('fails if any of the items are missing an Item', () => {
+    const testData = {
+      items: [
+        { Item: { value: 'email@gmail.com' } },
+        { value: 'invalid' },
+      ],
+      branch: { value: 'No' },
+    }
+
+    const validator = { value: { email: true } }
+    expect(accordion(testData, { validator })).toEqual('No item')
+  })
+
   it('fails if any of the items fail the validator', () => {
     const testData = {
       items: [

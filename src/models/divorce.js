@@ -70,6 +70,11 @@ const divorce = {
     }
   },
   DeceasedAddress: (value, attributes) => {
+    if (attributes.DeceasedAddressNotApplicable
+      && attributes.DeceasedAddressNotApplicable.applicable === false) {
+      return {}
+    }
+
     if (attributes.Status
       && attributes.Status.value === 'Widowed') return {}
 
