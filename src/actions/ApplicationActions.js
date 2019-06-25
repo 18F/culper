@@ -1,5 +1,6 @@
 import { env } from 'config'
 import { api } from 'services'
+import { STATUS_SUBMITTED } from 'constants/enums/applicationStatuses'
 
 import * as actionTypes from 'constants/actionTypes'
 
@@ -33,7 +34,7 @@ export function getApplicationState(done) {
         dispatch(updateApplication('Settings', 'status', statusData.Status))
         dispatch(updateApplication('Settings', 'hash', statusData.Hash))
 
-        if (statusData.Status == 'SUBMITTED') {
+        if (statusData.Status === STATUS_SUBMITTED) {
           locked = true
           env.History().push('/locked')
         }

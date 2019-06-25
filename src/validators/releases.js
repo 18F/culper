@@ -1,3 +1,4 @@
+import { STATUS_SUBMITTED } from 'constants/enums/applicationStatuses'
 import SignatureValidator from './signature'
 
 export const hideHippa = (store = {}) => {
@@ -31,5 +32,5 @@ export const formIsSigned = (signatures = {}, hideHippaSection) => {
 
 export const formIsLocked = (store = {}) => {
   const settings = store.Settings || {}
-  return settings.status === 'SUBMITTED'
+  return settings.status === STATUS_SUBMITTED
 }
