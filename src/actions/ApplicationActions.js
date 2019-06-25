@@ -51,7 +51,6 @@ export function getApplicationState(done) {
 
             dispatch(updateApplication('Settings', 'formType', formType))
             dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
-            dispatch(updateApplication('Settings', 'status', window.status))
             dispatch(setFormData(formData, done))
           })
       })
