@@ -5,13 +5,13 @@ import schema from 'schema'
 import validate from 'validators'
 import { Location, Field } from 'components/Form'
 
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
-
 import {
   IDENTIFICATION,
   IDENTIFICATION_BIRTH_PLACE,
 } from 'config/formSections/identification'
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
 
 const sectionConfig = {
   section: IDENTIFICATION.name,
@@ -24,7 +24,9 @@ export class ApplicantBirthPlace extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
@@ -38,13 +40,13 @@ export class ApplicantBirthPlace extends Subsection {
   update(queue) {
     this.props.onUpdate(this.storeKey, {
       Location: this.props.Location,
-      ...queue
+      ...queue,
     })
   }
 
   updateLocation(values) {
     this.update({
-      Location: values
+      Location: values,
     })
   }
 
@@ -61,12 +63,12 @@ export class ApplicantBirthPlace extends Subsection {
         <Field
           title={i18n.t('identification.birthplace.title')}
           titleSize="h4"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="birthplace"
             {...this.props.Location}
             layout={Location.BIRTHPLACE}
-            label={i18n.t('identification.birthplace.label.location')}
             stateLabel={i18n.t('identification.birthplace.label.state')}
             cityLabel={i18n.t('identification.birthplace.label.city')}
             countyLabel={i18n.t('identification.birthplace.label.county')}
@@ -83,14 +85,10 @@ export class ApplicantBirthPlace extends Subsection {
 
 ApplicantBirthPlace.defaultProps = {
   Location: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: (queue) => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('identification.birthplace', data))
-  }
+  validator: data => validate(schema('identification.birthplace', data)),
 }
 
 ApplicantBirthPlace.errors = []

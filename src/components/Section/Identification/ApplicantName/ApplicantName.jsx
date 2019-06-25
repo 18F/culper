@@ -5,13 +5,13 @@ import schema from 'schema'
 import validate from 'validators'
 import { Name, Field } from 'components/Form'
 
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
-
 import {
   IDENTIFICATION,
   IDENTIFICATION_NAME,
 } from 'config/formSections/identification'
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
 
 const sectionConfig = {
   section: IDENTIFICATION.name,
@@ -24,7 +24,9 @@ export class ApplicantName extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
@@ -38,19 +40,19 @@ export class ApplicantName extends Subsection {
   update(queue) {
     this.props.onUpdate(this.storeKey, {
       Name: this.props.Name,
-      ...queue
+      ...queue,
     })
   }
 
   updateName(values) {
     this.update({
-      Name: values
+      Name: values,
     })
   }
 
   render() {
-    const klass = `section-content applicant-name ${this.props.className ||
-      ''}`.trim()
+    const klass = `section-content applicant-name ${this.props.className
+      || ''}`.trim()
 
     return (
       <div
@@ -62,9 +64,12 @@ export class ApplicantName extends Subsection {
         <Field
           title={i18n.t('identification.name.title')}
           titleSize="h4"
-          optional={true}
+          optional
           filterErrors={Name.requiredErrorsOnly}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+          adjustFor="labels"
+        >
+          <label className="name-label">{i18n.t('identification.name.info')}</label>
           <Name
             name="name"
             {...this.props.Name}
@@ -81,15 +86,11 @@ export class ApplicantName extends Subsection {
 
 ApplicantName.defaultProps = {
   Name: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: (queue) => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
   required: false,
-  validator: data => {
-    return validate(schema('identification.name', data))
-  }
+  validator: data => validate(schema('identification.name', data)),
 }
 
 ApplicantName.errors = []

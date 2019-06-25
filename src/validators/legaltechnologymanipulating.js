@@ -1,61 +1,67 @@
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validGenericTextfield,
-  validDateField
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import manipulatingTech from 'models/manipulatingTech'
+
+export const validateManipulatingTech = data => (
+  validateModel(data, manipulatingTech) === true
+)
+
+export const validateLegalTechnologyManipulating = (data) => {
+  const legalTechnologyManipulatingModel = {
+    HasManipulating: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasManipulating && attributes.HasManipulating.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: manipulatingTech },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, legalTechnologyManipulatingModel) === true
+}
 
 export default class LegalTechnologyManipulatingValidator {
   constructor(data = {}) {
-    this.hasManipulating = (data.HasManipulating || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasManipulating === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ManipulatingValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalTechnologyManipulating(this.data)
   }
 }
 
 export class ManipulatingValidator {
   constructor(data = {}) {
-    this.date = data.Date
-    this.incident = data.Incident
-    this.location = data.Location
-    this.action = data.Action
+    this.data = data
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, {
+      Date: manipulatingTech.Date,
+    }) === true
   }
 
   validIncident() {
-    return !!this.incident && validGenericTextfield(this.incident)
+    return validateModel(this.data, {
+      Incident: manipulatingTech.Incident,
+    }) === true
   }
 
   validLocation() {
-    return !!this.location && new LocationValidator(this.location).isValid()
+    return validateModel(this.data, {
+      Location: manipulatingTech.Location,
+    }) === true
   }
 
   validAction() {
-    return !!this.action && validGenericTextfield(this.action)
+    return validateModel(this.data, {
+      Action: manipulatingTech.Action,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validDate() &&
-      this.validIncident() &&
-      this.validLocation() &&
-      this.validAction()
-    )
+    return validateManipulatingTech(this.data)
   }
 }

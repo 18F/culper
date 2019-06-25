@@ -73,6 +73,10 @@ export default class Supervisor extends ValidationElement {
   }
 
   render() {
+    const supervisorTitleLabel = this.props.nonMilitary
+      ? i18n.t('history.employment.default.supervisor.heading.titleNonMilitary')
+      : i18n.t('history.employment.default.supervisor.heading.title')
+
     return (
       <div className="supervisor">
         <Field
@@ -92,7 +96,7 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field
-          title={i18n.t('history.employment.default.supervisor.heading.title')}
+          title={supervisorTitleLabel}
           titleSize="h4"
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
@@ -200,7 +204,12 @@ Supervisor.defaultProps = {
   Telephone: {},
   addressBooks: {},
   addressBook: 'Employment',
+<<<<<<< HEAD
   dispatch: () => {},
   onUpdate: () => {},
+=======
+  dispatch: (action) => {},
+  onUpdate: (queue) => {},
+>>>>>>> 829e465a4c93e7faadb1eb57a89044f796b4bae8
   onError: (value, arr) => arr,
 }
