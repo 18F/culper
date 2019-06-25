@@ -1,137 +1,91 @@
-import {
-  validAccordion,
-  validNotApplicable,
-  validDateField,
-  validGenericTextfield
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import financialNonpayment from 'models/financialNonpayment'
+
+const nonpaymentModel = {
+  HasNonpayment: {
+    presence: true,
+    hasValue: { validator: hasYesOrNo },
+  },
+  List: (value, attributes) => {
+    const { HasNonpayment } = attributes
+    if (HasNonpayment && HasNonpayment.value === 'Yes') {
+      return {
+        presence: true,
+        accordion: { validator: financialNonpayment },
+      }
+    }
+    return {}
+  },
+}
 
 export default class NonpaymentValidator {
   constructor(data = {}) {
-    this.hasNonpayment = (data.HasNonpayment || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   validHasNonpayment() {
-    if (!this.hasNonpayment) {
-      return false
-    }
-
-    if (!(this.hasNonpayment === 'No' || this.hasNonpayment === 'Yes')) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, { HasNonpayment: nonpaymentModel.HasNonpayment }) === true
   }
 
   validList() {
-    if (this.validHasNonpayment() && this.hasNonpayment === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new NonpaymentItemValidator(item).isValid()
-    })
+    return validateModel(this.data, { List: nonpaymentModel.List }) === true
   }
 
   isValid() {
-    return this.validHasNonpayment() && this.validList()
+    return validateModel(this.data, nonpaymentModel) === true
   }
 }
 
+const validateNonpaymentItem = data => (
+  validateModel(data, financialNonpayment) === true
+)
+
 export class NonpaymentItemValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.infractions = data.Infractions || []
-    this.accountNumber = data.AccountNumber
-    this.propertyType = data.PropertyType
-    this.amount = data.Amount
-    this.amountEstimated = data.AmountEstimated
-    this.reason = data.Reason
-    this.status = data.Status
-    this.date = data.Date
-    this.resolved = data.Resolved
-    this.resolvedNotApplicable = data.ResolvedNotApplicable
-    this.description = data.Description
+    this.data = data
   }
 
   validName() {
-    return !!this.name && validGenericTextfield(this.name)
+    return validateModel(this.data, { Name: financialNonpayment.Name }) === true
   }
 
   validInfractions() {
-    const allowed = [
-      'Repossession',
-      'Defaulted',
-      'Collections',
-      'Cancelled',
-      'Evicted',
-      'Garnished',
-      'Delinquent',
-      'Any'
-    ]
-    return (
-      !!this.infractions &&
-      this.infractions.length > 0 &&
-      this.infractions.every(x => {
-        return allowed.includes(x)
-      })
-    )
+    return validateModel(this.data, { Infractions: financialNonpayment.Infractions }) === true
   }
 
   validAccountNumber() {
-    return !!this.accountNumber && validGenericTextfield(this.accountNumber)
+    return validateModel(this.data, { AccountNumber: financialNonpayment.AccountNumber }) === true
   }
 
   validPropertyType() {
-    // This is an optional value at the moment
-    return true
+    return validateModel(this.data, { PropertyType: financialNonpayment.PropertyType }) === true
   }
 
   validAmount() {
-    if (
-      !this.amount ||
-      isNaN(parseInt(this.amount.value)) ||
-      parseInt(this.amount.value) <= 0
-    ) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, { Amount: financialNonpayment.Amount }) === true
   }
 
   validReason() {
-    return !!this.reason && validGenericTextfield(this.reason)
+    return validateModel(this.data, { Reason: financialNonpayment.Reason }) === true
   }
 
   validStatus() {
-    return !!this.status && validGenericTextfield(this.status)
+    return validateModel(this.data, { Status: financialNonpayment.Status }) === true
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, { Date: financialNonpayment.Date }) === true
   }
 
   validResolved() {
-    return validNotApplicable(this.resolvedNotApplicable, () => {
-      return validDateField(this.resolved)
-    })
+    return validateModel(this.data, { Resolved: financialNonpayment.Resolved }) === true
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, { Description: financialNonpayment.Description }) === true
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validAccountNumber() &&
-      this.validPropertyType() &&
-      this.validAmount() &&
-      this.validReason() &&
-      this.validStatus() &&
-      this.validDate() &&
-      this.validResolved() &&
-      this.validDescription()
-    )
+    return validateNonpaymentItem(this.data)
   }
 }

@@ -62,6 +62,8 @@ validate.options = {
   requireDay: true,
   requireMonth: true,
   requireYear: true,
+  earliest: createDateFromObject({ day: 1, month: 1, year: 1000 }),
+  latest: createDateFromObject({ day: 1, month: 1, year: 10000 }),
 }
 
 // Implement custom validators

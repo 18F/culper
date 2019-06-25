@@ -1,63 +1,63 @@
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import Location from '../components/Form/Location'
 
-describe('Bankruptcy component validation', function() {
-  it('should validate has bankruptcy branch', function() {
+describe('Bankruptcy component validation', () => {
+  it('should validate has bankruptcy branch', () => {
     const tests = [
       {
         props: {
-          HasBankruptcy: { value: 'Yes' }
+          HasBankruptcy: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
-          HasBankruptcy: { value: 'No' }
+          HasBankruptcy: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
-          HasBankruptcy: { value: '' }
+          HasBankruptcy: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
-          HasBankruptcy: { value: 'Nope' }
+          HasBankruptcy: { value: 'Nope' },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyValidator(test.props).validHasBankruptcy()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate bankruptcy items', function() {
+  it('should validate bankruptcy items', () => {
     const tests = [
       {
         props: {
           HasBankruptcy: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
           HasBankruptcy: { value: 'No' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
@@ -68,7 +68,7 @@ describe('Bankruptcy component validation', function() {
               {
                 Item: {
                   PetitionType: {
-                    value: 'Chapter7'
+                    value: 'Chapter7',
                   },
                   CourtAddress: {
                     country: { value: 'United States' },
@@ -76,21 +76,21 @@ describe('Bankruptcy component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   CourtInvolved: {
-                    value: 'Some Court'
+                    value: 'Some Court',
                   },
                   CourtNumber: {
-                    value: 'C1234'
+                    value: 'C1234',
                   },
                   DateFiled: {
                     month: 1,
-                    year: 2010
+                    year: 2010,
                   },
                   DateDischarged: {
                     month: 1,
-                    year: 2012
+                    year: 2012,
                   },
                   NameDebt: {
                     first: 'Foo',
@@ -99,21 +99,21 @@ describe('Bankruptcy component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   TotalAmount: {
-                    value: 200
+                    value: 200,
                   },
                   HasDischargeExplanation: { value: 'Yes' },
                   DischargeExplanation: {
-                    value: 'Something'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Something',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
@@ -124,7 +124,7 @@ describe('Bankruptcy component validation', function() {
               {
                 Item: {
                   PetitionType: {
-                    value: 'Chapter7'
+                    value: 'Chapter7',
                   },
                   CourtAddress: {
                     country: { value: 'United States' },
@@ -132,20 +132,20 @@ describe('Bankruptcy component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   CourtInvolved: {
-                    value: 'Some Court'
+                    value: 'Some Court',
                   },
                   CourtNumber: {
-                    value: 'C1234'
+                    value: 'C1234',
                   },
                   DateFiled: {
                     month: 1,
-                    year: 2010
+                    year: 2010,
                   },
                   DateDischargedNotApplicable: {
-                    applicable: false
+                    applicable: false,
                   },
                   NameDebt: {
                     first: 'Foo',
@@ -154,21 +154,21 @@ describe('Bankruptcy component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   TotalAmount: {
-                    value: 200
+                    value: 200,
                   },
                   HasDischargeExplanation: { value: 'Yes' },
                   DischargeExplanation: {
-                    value: 'Something'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Something',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
@@ -179,58 +179,58 @@ describe('Bankruptcy component validation', function() {
               {
                 Item: {
                   PetitionType: {
-                    value: 'Hello'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Hello',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
-  it('should validate bankruptcy petition type', function() {
+  it('should validate bankruptcy petition type', () => {
     const tests = [
       {
         props: {
           PetitionType: {
-            value: 'Chapter7'
-          }
+            value: 'Chapter7',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
           PetitionType: {
-            value: null
-          }
+            value: null,
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
           PetitionType: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyItemValidator(test.props).validPetitionType()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate bankruptcy court address', function() {
+  it('should validate bankruptcy court address', () => {
     const tests = [
       {
         props: {
@@ -240,183 +240,189 @@ describe('Bankruptcy component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
-          CourtAddress: null
+          CourtAddress: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyItemValidator(test.props).validCourtAddress()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate bankruptcy court involved', function() {
+  it('should validate bankruptcy court involved', () => {
     const tests = [
       {
         props: {
           CourtInvolved: {
-            value: 'Some Court'
-          }
+            value: 'Some Court',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
-          CourtInvolved: null
+          CourtInvolved: null,
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
           CourtInvolved: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyItemValidator(test.props).validCourtInvolved()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate bankruptcy court number', function() {
+  it('should validate bankruptcy court number', () => {
     const tests = [
       {
         props: {
           CourtNumber: {
-            value: 'A12234'
-          }
+            value: 'A12234',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
-          CourtNumber: null
+          CourtNumber: null,
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
           CourtNumber: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyItemValidator(test.props).validCourtNumber()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate bankruptcy total amount number', function() {
+  it('should validate bankruptcy total amount number', () => {
     const tests = [
       {
         props: {
           TotalAmount: {
-            value: 100
-          }
+            value: 100,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
-          TotalAmount: null
+          TotalAmount: null,
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
           TotalAmount: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyItemValidator(test.props).validTotalAmount()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate bankruptcy date filed', function() {
+  it('should validate bankruptcy date filed', () => {
     const tests = [
       {
         props: {
           DateFiled: {
             month: '1',
-            year: '2010'
-          }
+            year: '2010',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
-          DateFiled: null
+          DateFiled: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyItemValidator(test.props).validDateFiled()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate bankruptcy date discharged', function() {
+  it('should validate bankruptcy date discharged', () => {
     const tests = [
       {
         props: {
+          DateDischargedNotApplicable: {
+            applicable: true,
+          },
           DateDischarged: {
             month: '1',
-            year: '2010'
-          }
+            year: '2010',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
-          DateDischarged: null
+          DateDischargedNotApplicable: {
+            applicable: true,
+          },
+          DateDischarged: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new BankruptcyItemValidator(test.props).validDateDischarged()
       ).toBe(test.expected)
     })
   })
 
-  it('should validate entire bankruptcy item', function() {
+  it('should validate entire bankruptcy item', () => {
     const tests = [
       {
         props: {
           PetitionType: {
-            value: 'Chapter7'
+            value: 'Chapter7',
           },
           CourtAddress: {
             country: { value: 'United States' },
@@ -424,7 +430,7 @@ describe('Bankruptcy component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           NameDebt: {
             first: 'Foo',
@@ -433,79 +439,79 @@ describe('Bankruptcy component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           CourtInvolved: {
-            value: 'Some Sourt'
+            value: 'Some Sourt',
           },
           CourtNumber: {
-            value: 'A12234'
+            value: 'A12234',
           },
           TotalAmount: {
-            value: 100
+            value: 100,
           },
           DateFiled: {
             month: '1',
-            year: '2010'
+            year: '2010',
           },
           DateDischarged: {
             month: '1',
-            year: '2010'
+            year: '2010',
           },
           HasDischargeExplanation: { value: 'Yes' },
           DischargeExplanation: {
-            value: 'Something'
-          }
+            value: 'Something',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyItemValidator(test.props).isValid()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate petition types', function() {
+  it('should validate petition types', () => {
     const tests = [
       {
         props: {
           PetitionType: {
-            value: 'Chapter7'
-          }
+            value: 'Chapter7',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
           PetitionType: {
-            value: 'Chapter11'
-          }
+            value: 'Chapter11',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
           PetitionType: {
-            value: 'Chapter12'
-          }
+            value: 'Chapter12',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         props: {
           PetitionType: {
-            value: 'Chapter100'
-          }
+            value: 'Chapter100',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         props: {
           PetitionType: {
-            value: 'Chapter13'
+            value: 'Chapter13',
           },
           TrusteeAddress: {
             country: { value: 'United States' },
@@ -513,17 +519,17 @@ describe('Bankruptcy component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Trustee: {
-            value: 'John Doe'
-          }
+            value: 'John Doe',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new BankruptcyItemValidator(test.props).validPetitionType()).toBe(
         test.expected
       )

@@ -1,27 +1,27 @@
 import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
 
-describe('nonpayment component validation', function() {
+describe('nonpayment component validation', () => {
   it('validate name', () => {
     const tests = [
       {
         state: {
           Name: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Name: {
-            value: 'The name'
-          }
+            value: 'The name',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new NonpaymentItemValidator(test.state, null).validName()).toBe(
         test.expected
       )
@@ -32,25 +32,31 @@ describe('nonpayment component validation', function() {
     const tests = [
       {
         state: {
-          Infractions: []
+          Infractions: {
+            values: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Infractions: ['DoesNotExist']
+          Infractions: {
+            values: ['DoesNotExist'],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Infractions: ['Repossession']
+          Infractions: {
+            values: ['Repossession'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new NonpaymentItemValidator(test.state, null).validInfractions()
       ).toBe(test.expected)
@@ -62,22 +68,22 @@ describe('nonpayment component validation', function() {
       {
         state: {
           AccountNumber: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           AccountNumber: {
-            value: 'ABC1234567890'
-          }
+            value: 'ABC1234567890',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new NonpaymentItemValidator(test.state, null).validAccountNumber()
       ).toBe(test.expected)
@@ -89,22 +95,22 @@ describe('nonpayment component validation', function() {
       {
         state: {
           PropertyType: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: true
+        expected: false,
       },
       {
         state: {
           PropertyType: {
-            value: 'ABC1234567890'
-          }
+            value: 'ABC1234567890',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new NonpaymentItemValidator(test.state, null).validPropertyType()
       ).toBe(test.expected)
@@ -116,38 +122,38 @@ describe('nonpayment component validation', function() {
       {
         state: {
           Amount: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: 'abc'
-          }
+            value: 'abc',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: '0'
-          }
+            value: '0',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: '20000'
-          }
+            value: '20000',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new NonpaymentItemValidator(test.state, null).validAmount()).toBe(
         test.expected
       )
@@ -159,22 +165,22 @@ describe('nonpayment component validation', function() {
       {
         state: {
           Reason: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Reason: {
-            value: 'Completely forgot'
-          }
+            value: 'Completely forgot',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new NonpaymentItemValidator(test.state, null).validReason()).toBe(
         test.expected
       )
@@ -186,22 +192,22 @@ describe('nonpayment component validation', function() {
       {
         state: {
           Status: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Status: {
-            value: 'Paid'
-          }
+            value: 'Paid',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new NonpaymentItemValidator(test.state, null).validStatus()).toBe(
         test.expected
       )
@@ -212,9 +218,9 @@ describe('nonpayment component validation', function() {
     const tests = [
       {
         state: {
-          Date: null
+          Date: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -222,14 +228,14 @@ describe('nonpayment component validation', function() {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new NonpaymentItemValidator(test.state, null).validDate()).toBe(
         test.expected
       )
@@ -241,55 +247,61 @@ describe('nonpayment component validation', function() {
       {
         state: {
           ResolvedNotApplicable: {
-            applicable: true
+            applicable: true,
           },
           Resolved: {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
+          ResolvedNotApplicable: {
+            applicable: true,
+          },
           Resolved: {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           ResolvedNotApplicable: {
-            applicable: false
+            applicable: false,
           },
-          Resolved: null
+          Resolved: null,
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           ResolvedNotApplicable: {
-            applicable: true
+            applicable: true,
           },
-          Resolved: null
+          Resolved: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Resolved: null
+          ResolvedNotApplicable: {
+            applicable: true,
+          },
+          Resolved: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new NonpaymentItemValidator(test.state, null).validResolved()
       ).toBe(test.expected)
@@ -301,22 +313,22 @@ describe('nonpayment component validation', function() {
       {
         state: {
           Description: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Description: {
-            value: 'The description'
-          }
+            value: 'The description',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new NonpaymentItemValidator(test.state, null).validDescription()
       ).toBe(test.expected)
@@ -327,31 +339,31 @@ describe('nonpayment component validation', function() {
     const tests = [
       {
         state: {
-          HasNonpayment: { value: '' }
+          HasNonpayment: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasNonpayment: { value: 'Unicorn' }
+          HasNonpayment: { value: 'Unicorn' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasNonpayment: { value: 'No' }
+          HasNonpayment: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasNonpayment: { value: 'Yes' }
+          HasNonpayment: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new NonpaymentValidator(test.state, null).validHasNonpayment()
       ).toBe(test.expected)
@@ -365,30 +377,38 @@ describe('nonpayment component validation', function() {
           HasNonpayment: { value: 'No' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           HasNonpayment: { value: 'Yes' },
           List: {
-            branch: { value: '' },
-            items: []
-          }
+            branch: { value: 'No' },
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasNonpayment: { value: 'Yes' },
           List: {
-            branch: { value: '' },
-            items: [{}]
-          }
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  ResolvedNotApplicable: {
+                    applicable: true,
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -399,52 +419,54 @@ describe('nonpayment component validation', function() {
               {
                 Item: {
                   Name: {
-                    value: 'The name'
+                    value: 'The name',
                   },
-                  Infractions: [],
+                  Infractions: {
+                    values: ['Evicted'],
+                  },
                   AccountNumber: {
-                    value: 'ABC1234567890'
+                    value: 'ABC1234567890',
                   },
                   PropertyType: {
-                    value: 'ABC1234567890'
+                    value: 'ABC1234567890',
                   },
                   Amount: {
-                    value: '20000'
+                    value: '20000',
                   },
                   Reason: {
-                    value: 'Completely forgot'
+                    value: 'Completely forgot',
                   },
                   Status: {
-                    value: 'Paid'
+                    value: 'Paid',
                   },
                   Date: {
                     day: '1',
                     month: '1',
                     year: '2016',
-                    present: false
+                    present: false,
                   },
                   ResolvedNotApplicable: {
-                    applicable: true
+                    applicable: true,
                   },
                   Resolved: {
                     day: '1',
                     month: '1',
                     year: '2016',
-                    present: false
+                    present: false,
                   },
                   Description: {
-                    value: 'The description'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'The description',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new NonpaymentValidator(test.state, null).isValid()).toBe(
         test.expected
       )

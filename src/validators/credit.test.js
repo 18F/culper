@@ -1,28 +1,28 @@
 import CreditValidator, { CreditItemValidator } from './credit'
 import Location from '../components/Form/Location'
 
-describe('credit component validation', function() {
+describe('credit component validation', () => {
   it('validate reason', () => {
     const tests = [
       {
         state: {
           Explanation: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Explanation: {
-            value: 'Completely forgot'
-          }
+            value: 'Completely forgot',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CreditItemValidator(test.state, null).validExplanation()).toBe(
         test.expected
       )
@@ -34,22 +34,22 @@ describe('credit component validation', function() {
       {
         state: {
           Name: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Name: {
-            value: 'The name'
-          }
+            value: 'The name',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CreditItemValidator(test.state, null).validName()).toBe(
         test.expected
       )
@@ -60,9 +60,9 @@ describe('credit component validation', function() {
     const tests = [
       {
         state: {
-          Telephone: {}
+          Telephone: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -72,14 +72,14 @@ describe('credit component validation', function() {
             numberType: 'Home',
             timeOfDay: 'Both',
             type: 'Domestic',
-            extension: ''
-          }
+            extension: '',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CreditItemValidator(test.state, null).validTelephone()).toBe(
         test.expected
       )
@@ -90,9 +90,9 @@ describe('credit component validation', function() {
     const tests = [
       {
         state: {
-          Location: {}
+          Location: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -100,14 +100,14 @@ describe('credit component validation', function() {
             city: 'Arlington',
             state: 'VA',
             country: { value: 'United States' },
-            layout: Location.CITY_STATE
-          }
+            layout: Location.CITY_STATE,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CreditItemValidator(test.state, null).validLocation()).toBe(
         test.expected
       )
@@ -119,22 +119,22 @@ describe('credit component validation', function() {
       {
         state: {
           Description: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Description: {
-            value: 'The description'
-          }
+            value: 'The description',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CreditItemValidator(test.state, null).validDescription()).toBe(
         test.expected
       )
@@ -145,31 +145,31 @@ describe('credit component validation', function() {
     const tests = [
       {
         state: {
-          HasCreditCounseling: { value: '' }
+          HasCreditCounseling: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasCreditCounseling: { value: 'Unicorn' }
+          HasCreditCounseling: { value: 'Unicorn' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasCreditCounseling: { value: 'No' }
+          HasCreditCounseling: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasCreditCounseling: { value: 'Yes' }
+          HasCreditCounseling: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new CreditValidator(test.state, null).validHasCreditCounseling()
       ).toBe(test.expected)
@@ -183,10 +183,10 @@ describe('credit component validation', function() {
           HasCreditCounseling: { value: 'No' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -196,33 +196,33 @@ describe('credit component validation', function() {
             items: [
               {
                 Explanation: {
-                  value: 'Completely forgot'
-                }
-              }
-            ]
-          }
+                  value: 'Completely forgot',
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasCreditCounseling: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasCreditCounseling: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -233,10 +233,10 @@ describe('credit component validation', function() {
               {
                 Item: {
                   Explanation: {
-                    value: 'Completely forgot'
+                    value: 'Completely forgot',
                   },
                   Name: {
-                    value: 'The name'
+                    value: 'The name',
                   },
                   Telephone: {
                     noNumber: '',
@@ -244,27 +244,27 @@ describe('credit component validation', function() {
                     numberType: 'Home',
                     timeOfDay: 'Both',
                     extension: '',
-                    type: 'Domestic'
+                    type: 'Domestic',
                   },
                   Location: {
                     city: 'Arlington',
                     state: 'VA',
                     country: { value: 'United States' },
-                    layout: Location.CITY_STATE
+                    layout: Location.CITY_STATE,
                   },
                   Description: {
-                    value: 'The description'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'The description',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CreditValidator(test.state, null).isValid()).toBe(
         test.expected
       )
