@@ -15,9 +15,6 @@ var (
 
 	// ErrDatastoreConnection is an error when a database connection cannot be made
 	ErrDatastoreConnection = errors.New("Unable to connect to datastore")
-
-	// ErrInvalidStatusTransition is an error when a database connection cannot be made
-	ErrInvalidStatusTransition = errors.New("Invalid Status Transition")
 )
 
 // knownFormVersions is a map of FormType -> slice of known versions sorted with most recent first.
