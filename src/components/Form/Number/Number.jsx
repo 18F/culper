@@ -36,22 +36,26 @@ export default class Number extends ValidationElement {
   }
 
   /**
+   * Prevent non-numerical values from being entered
+   */
+  sanitizedInput = (value) => {
+    if (!value.match(/^(\s*|\d+)$/)) {
+      return value.replace(/\D/g, '')
+    }
+    return value
+  }
+
+  /**
    * Handle the change event.
    */
   handleChange(event) {
     event.persist()
 
-    // Prevent non-numerical values from being entered
-    let { value } = event.target
-    if (!value.match(/^(\s*|\d+)$/)) {
-      value = value.replace(/\D/g, '')
-    }
-
     super.handleChange(event)
     if (this.props.onUpdate) {
       this.props.onUpdate({
         name: this.props.name,
-        value,
+        value: this.sanitizedInput(event.target.value),
       })
     }
   }
