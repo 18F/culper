@@ -50,6 +50,7 @@ export default class ForeignNational extends ValidationElement {
       EmployerAddressNotApplicable: this.props.EmployerAddressNotApplicable,
       HasAffiliations: this.props.HasAffiliations,
       Affiliations: this.props.Affiliations,
+      AlternateAddress: this.props.AlternateAddress,
       ...queue,
     })
   }
