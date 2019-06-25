@@ -13,7 +13,7 @@ storiesOf('Field', module)
   .add('default (with help)', () => (
     <Field
       titleSize="h4"
-      title="Field title"
+      title="Field title with help"
       help
       helpTitle="Help message title"
       helpMessage="This is a message that is mean to help the applicant."
