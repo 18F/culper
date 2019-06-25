@@ -6,34 +6,15 @@ import {
   Currency,
   Field,
   NotApplicable,
-  Location,
   Checkbox,
   Text,
-  Textarea
+  Textarea,
 } from '../../../Form'
 import Infractions from './Infractions'
 
 export default class NonpaymentItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-    this.update = this.update.bind(this)
-    this.updateName = this.updateName.bind(this)
-    this.updateInfractions = this.updateInfractions.bind(this)
-    this.updateAccountNumber = this.updateAccountNumber.bind(this)
-    this.updatePropertyType = this.updatePropertyType.bind(this)
-    this.updateAmount = this.updateAmount.bind(this)
-    this.updateAmountEstimated = this.updateAmountEstimated.bind(this)
-    this.updateReason = this.updateReason.bind(this)
-    this.updateStatus = this.updateStatus.bind(this)
-    this.updateDate = this.updateDate.bind(this)
-    this.updateResolvedNotApplicable = this.updateResolvedNotApplicable.bind(
-      this
-    )
-    this.updateResolved = this.updateResolved.bind(this)
-    this.updateDescription = this.updateDescription.bind(this)
-  }
 
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Name: this.props.Name,
       Infractions: this.props.Infractions,
@@ -47,79 +28,80 @@ export default class NonpaymentItem extends ValidationElement {
       ResolvedNotApplicable: this.props.ResolvedNotApplicable,
       Resolved: this.props.Resolved,
       Description: this.props.Description,
-      ...queue
+      ...queue,
     })
   }
 
-  updateName(values) {
+  updateName = (values) => {
     this.update({
-      Name: values
+      Name: values,
     })
   }
 
-  updateInfractions(values) {
+  updateInfractions = (values) => {
     this.update({
-      Infractions: values
+      Infractions: values,
     })
   }
 
-  updateAccountNumber(values) {
+  updateAccountNumber = (values) => {
     this.update({
-      AccountNumber: values
+      AccountNumber: values,
     })
   }
 
-  updatePropertyType(values) {
+  updatePropertyType = (values) => {
     this.update({
-      PropertyType: values
+      PropertyType: values,
     })
   }
 
-  updateAmount(values) {
+  updateAmount = (values) => {
     this.update({
-      Amount: values
+      Amount: values,
     })
   }
 
-  updateAmountEstimated(values) {
+  updateAmountEstimated = (values) => {
     this.update({
-      AmountEstimated: values
+      AmountEstimated: values,
     })
   }
 
-  updateReason(values) {
+  updateReason = (values) => {
     this.update({
-      Reason: values
+      Reason: values,
     })
   }
 
-  updateStatus(values) {
+  updateStatus = (values) => {
     this.update({
-      Status: values
+      Status: values,
     })
   }
 
-  updateDate(values) {
+  updateDate = (values) => {
     this.update({
-      Date: values
+      Date: values,
     })
   }
 
-  updateResolved(values) {
+  updateResolved = (values) => {
     this.update({
-      Resolved: values
+      Resolved: values,
     })
   }
 
-  updateResolvedNotApplicable(values) {
+  updateResolvedNotApplicable = (values) => {
     this.update({
-      ResolvedNotApplicable: values
+      Resolved: values.applicable ? this.props.Resolved : {},
+      ResolvedNotApplicable: values,
     })
   }
 
-  updateDescription(values) {
+  updateDescription = (values) => {
     this.update({
-      Description: values
+      Description: values,
     })
   }
 
@@ -128,7 +110,8 @@ export default class NonpaymentItem extends ValidationElement {
       <div className="nonpayment-item">
         <Field
           title={i18n.t('financial.nonpayment.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Name"
             {...this.props.Name}
@@ -141,7 +124,8 @@ export default class NonpaymentItem extends ValidationElement {
 
         <Field
           title={i18n.t('financial.nonpayment.heading.infractions')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Infractions
             name="Infractions"
             {...this.props.Infractions}
@@ -154,7 +138,8 @@ export default class NonpaymentItem extends ValidationElement {
 
         <Field
           title={i18n.t('financial.nonpayment.heading.accountnumber')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="AccountNumber"
             {...this.props.AccountNumber}
@@ -167,7 +152,8 @@ export default class NonpaymentItem extends ValidationElement {
 
         <Field
           title={i18n.t('financial.nonpayment.heading.propertytype')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="PropertyType"
             {...this.props.PropertyType}
@@ -181,7 +167,8 @@ export default class NonpaymentItem extends ValidationElement {
         <Field
           title={i18n.t('financial.nonpayment.heading.amount')}
           className="nonpayment-amount-notapplicable"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <div>
             <Currency
               name="Amount"
@@ -209,7 +196,8 @@ export default class NonpaymentItem extends ValidationElement {
         <Field
           title={i18n.t('financial.nonpayment.heading.reason')}
           scrollIntoView={this.props.scrollIntoView}
-          help="financial.nonpayment.help.reason">
+          help="financial.nonpayment.help.reason"
+        >
           <Textarea
             name="Reason"
             {...this.props.Reason}
@@ -222,7 +210,8 @@ export default class NonpaymentItem extends ValidationElement {
 
         <Field
           title={i18n.t('financial.nonpayment.heading.status')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Status"
             {...this.props.Status}
@@ -237,15 +226,16 @@ export default class NonpaymentItem extends ValidationElement {
           title={i18n.t('financial.nonpayment.heading.date')}
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
+          shrink
+        >
           <DateControl
             name="Date"
             {...this.props.Date}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDate}
             onError={this.props.onError}
             className="nonpayment-date"
-            hideDay={true}
+            hideDay
             required={this.props.required}
           />
         </Field>
@@ -254,24 +244,26 @@ export default class NonpaymentItem extends ValidationElement {
           title={i18n.t('financial.nonpayment.heading.resolved')}
           adjustFor="label"
           scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
+          shrink
+        >
           <NotApplicable
             name="ResolvedNotApplicable"
             label={i18n.t('financial.nonpayment.label.notresolved')}
             or={i18n.m('financial.nonpayment.para.or')}
             {...this.props.ResolvedNotApplicable}
             onUpdate={this.updateResolvedNotApplicable}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <DateControl
               name="Resolved"
               {...this.props.Resolved}
               minDate={this.props.Date}
-              minDateEqualTo={true}
+              minDateEqualTo
               prefix="nonPayment"
               onUpdate={this.updateResolved}
               onError={this.props.onError}
               className="nonpayment-resolved"
-              hideDay={true}
+              hideDay
               required={this.props.required}
             />
           </NotApplicable>
@@ -280,7 +272,8 @@ export default class NonpaymentItem extends ValidationElement {
         <Field
           title={i18n.t('financial.nonpayment.heading.description')}
           scrollIntoView={this.props.scrollIntoView}
-          help="financial.nonpayment.help.description">
+          help="financial.nonpayment.help.description"
+        >
           <Textarea
             name="Description"
             {...this.props.Description}
@@ -297,9 +290,7 @@ export default class NonpaymentItem extends ValidationElement {
 
 NonpaymentItem.defaultProps = {
   ResolvedNotApplicable: { applicable: true },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  required: false
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  required: false,
 }
