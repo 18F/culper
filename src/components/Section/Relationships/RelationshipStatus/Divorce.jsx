@@ -29,6 +29,7 @@ export default class Divorce extends React.Component {
       Status: this.props.Status,
       Deceased: this.props.Deceased,
       DeceasedAddress: this.props.DeceasedAddress,
+      DeceasedAddressNotApplicable: this.props.DeceasedAddressNotApplicable,
       ...queue,
     })
   }
