@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Location, { timeout, countryValueResolver, country } from './Location'
+import Location, { timeout, countryValueResolver } from './Location'
 
 describe('The Address component', () => {
   it('Renders without errors', () => {
@@ -11,7 +11,7 @@ describe('The Address component', () => {
   it('Renders US Address', () => {
     let updates = 0
     const onUpdate = () => {
-      updates++
+      updates += 1
     }
     const component = mount(
       <Location onUpdate={onUpdate} layout={Location.US_ADDRESS} />
@@ -29,7 +29,7 @@ describe('The Address component', () => {
   it('Renders Country Address', () => {
     let updates = 0
     const onUpdate = () => {
-      updates++
+      updates += 1
     }
     const component = mount(
       <Location onUpdate={onUpdate} layout={Location.COUNTRY} country="" />
@@ -52,8 +52,8 @@ describe('The Address component', () => {
       layout: Location.ADDRESS,
       geocodeResult: {
         Error: 'error.geocode.partial',
-        Suggestions: []
-      }
+        Suggestions: [],
+      },
     }
 
     const component = mount(<Location {...expected} />)
@@ -77,10 +77,10 @@ describe('The Address component', () => {
             Address: '123 Some Rd',
             City: 'Arlington',
             State: 'VA',
-            Zipcode: '22201'
-          }
-        ]
-      }
+            Zipcode: '22201',
+          },
+        ],
+      },
     }
 
     const component = mount(<Location {...expected} />)
@@ -107,10 +107,10 @@ describe('The Address component', () => {
             Address: '123 Some Rd',
             City: 'Arlington',
             State: 'VA',
-            Zipcode: '22201'
-          }
-        ]
-      }
+            Zipcode: '22201',
+          },
+        ],
+      },
     }
 
     const component = mount(<Location {...expected} />)
@@ -127,86 +127,86 @@ describe('The Address component', () => {
       {
         props: {
           layout: Location.BIRTHPLACE,
-          country: { value: 'United States' }
+          country: { value: 'United States' },
         },
-        selectors: ['.state', '.city', '.county']
+        selectors: ['.state', '.city', '.county'],
       },
       {
         props: {
           layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY_COUNTRY,
-          country: { value: 'United States' }
+          country: { value: 'United States' },
         },
-        selectors: ['.state', '.city']
+        selectors: ['.state', '.city'],
       },
       {
         props: {
           layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
-          country: { value: 'United States' }
+          country: { value: 'United States' },
         },
-        selectors: ['.state', '.city']
+        selectors: ['.state', '.city'],
       },
       {
         props: {
           layout: Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY,
-          country: { value: 'United States' }
+          country: { value: 'United States' },
         },
-        selectors: ['.state', '.city']
+        selectors: ['.state', '.city'],
       },
       {
         props: {
           layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY,
-          country: { value: 'United States' }
+          country: { value: 'United States' },
         },
-        selectors: ['.city', '.state', '.zipcode']
+        selectors: ['.city', '.state', '.zipcode'],
       },
       {
         props: {
           layout: Location.ADDRESS,
-          country: { value: 'United States' }
+          country: { value: 'United States' },
         },
-        selectors: ['.street', '.street2', '.city', '.state', '.zipcode']
+        selectors: ['.street', '.street2', '.city', '.state', '.zipcode'],
       },
       {
         props: { layout: Location.STATE },
-        selectors: ['.state']
+        selectors: ['.state'],
       },
       {
         props: { layout: Location.CITY_STATE },
-        selectors: ['.city', '.state']
+        selectors: ['.city', '.state'],
       },
       {
         props: { layout: Location.STREET_CITY_COUNTRY },
-        selectors: ['.street', '.city', '.country']
+        selectors: ['.street', '.city', '.country'],
       },
       {
         props: { layout: Location.CITY_COUNTRY },
-        selectors: ['.city', '.country']
+        selectors: ['.city', '.country'],
       },
       {
         props: { layout: Location.CITY_STATE_COUNTRY },
-        selectors: ['.city', '.state', '.country']
+        selectors: ['.city', '.state', '.country'],
       },
       {
         props: { layout: Location.US_ADDRESS },
-        selectors: ['.street', '.city', '.state', '.zipcode']
+        selectors: ['.street', '.city', '.state', '.zipcode'],
       },
       {
         props: { layout: Location.STREET_CITY },
-        selectors: ['.street', '.city']
+        selectors: ['.street', '.city'],
       },
       {
         props: { layout: Location.COUNTRY },
-        selectors: ['.country']
+        selectors: ['.country'],
       },
       {
         props: { layout: 'Something New' },
-        selectors: ['.location']
-      }
+        selectors: ['.location'],
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const component = mount(<Location {...test.props} />)
-      test.selectors.forEach(selector => {
+      test.selectors.forEach((selector) => {
         const found = component.find(selector).length > 0
         if (!found) {
           console.log('props:', test.props)
@@ -220,32 +220,32 @@ describe('The Address component', () => {
   it('renders fields', () => {
     const tests = [
       {
-        fields: ['street']
+        fields: ['street'],
       },
       {
-        fields: ['street2']
+        fields: ['street2'],
       },
       {
-        fields: ['city']
+        fields: ['city'],
       },
       {
-        fields: ['state']
+        fields: ['state'],
       },
       {
-        fields: ['stateZipcode']
-      }
+        fields: ['stateZipcode'],
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const component = mount(<Location />)
-      let resolved = component.instance().renderFields(test.fields)
+      const resolved = component.instance().renderFields(test.fields)
       expect(resolved).not.toEqual(undefined)
     })
   })
 
   it('can show spinner', () => {
     const props = {
-      spinner: true
+      spinner: true,
     }
     const component = mount(<Location {...props} />)
     expect(component.find('.spinner').length).toBe(1)
@@ -254,7 +254,7 @@ describe('The Address component', () => {
   it('can show suggestions', () => {
     const props = {
       suggestions: true,
-      geocodeResult: { Error: null, Suggestions: [{}] }
+      geocodeResult: { Error: null, Suggestions: [{}] },
     }
     const component = mount(<Location {...props} />)
     expect(component.find('.suggestions').length).toBe(1)
@@ -263,16 +263,16 @@ describe('The Address component', () => {
   it('can set timeout function', () => {
     let called = false
     const w = {
-      setTimeout: (fn, ms) => {
+      setTimeout: () => {
         called = true
-      }
+      },
     }
     timeout(null, 0, w)
     expect(called).toBe(true)
   })
 
   it('timeout does nothing if window does not exist', () => {
-    let called = false
+    const called = false
     const w = null
     timeout(null, 0, w)
     expect(called).toBe(false)
@@ -284,60 +284,37 @@ describe('The Address component', () => {
         props: {
           country: {
             value: ['Germany'],
-            comments: 'My comment'
-          }
+            comments: 'My comment',
+          },
         },
         expect: {
           value: ['Germany'],
-          comments: 'My comment'
-        }
+          comments: 'My comment',
+        },
       },
       {
         props: {
           country: 'Germany',
-          countryComments: 'My comment'
+          countryComments: 'My comment',
         },
         expect: {
           value: ['Germany'],
-          comments: 'My comment'
-        }
+          comments: 'My comment',
+        },
       },
       {
         props: {
-          country: ''
+          country: '',
         },
         expect: {
           value: [],
-          comments: ''
-        }
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(countryValueResolver(test.props)).toEqual(test.expect)
-    })
-  })
-
-  it('can process extracting country', () => {
-    const tests = [
-      {
-        data: {
-          value: 'United States'
+          comments: '',
         },
-        expect: 'United States'
       },
-      {
-        data: null,
-        expect: null
-      },
-      {
-        data: 'United States',
-        expect: 'United States'
-      }
     ]
 
-    tests.forEach(test => {
-      expect(country(test.data)).toEqual(test.expect)
+    tests.forEach((test) => {
+      expect(countryValueResolver(test.props)).toEqual(test.expect)
     })
   })
 
@@ -350,13 +327,13 @@ describe('The Address component', () => {
           address: {
             street: '123 Some Rd',
             country: {
-              value: 'United States'
+              value: 'United States',
             },
             layout: Location.US_ADDRESS,
-            validated: false
-          }
+            validated: false,
+          },
         },
-        expect: []
+        expect: [],
       },
       {
         data: {
@@ -365,13 +342,13 @@ describe('The Address component', () => {
           address: {
             street: '123 Some Rd',
             country: {
-              value: 'United States'
+              value: 'United States',
             },
             layout: Location.US_ADDRESS,
-            validated: true
-          }
+            validated: true,
+          },
         },
-        expect: []
+        expect: [],
       },
       {
         data: {
@@ -380,14 +357,14 @@ describe('The Address component', () => {
           address: {
             street: '123 Some Rd',
             country: {
-              value: 'United States'
+              value: 'United States',
             },
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
             layout: Location.US_ADDRESS,
-            validated: true
-          }
+            validated: true,
+          },
         },
         expect: [
           {
@@ -397,9 +374,9 @@ describe('The Address component', () => {
             state: 'VA',
             street: '123 Some Rd',
             validated: true,
-            zipcode: '22202'
-          }
-        ]
+            zipcode: '22202',
+          },
+        ],
       },
       {
         data: {
@@ -407,13 +384,13 @@ describe('The Address component', () => {
           name: 'default',
           address: {
             country: {
-              value: 'United States'
+              value: 'United States',
             },
             layout: Location.US_ADDRESS,
-            validated: true
-          }
+            validated: true,
+          },
         },
-        expect: []
+        expect: [],
       },
       {
         data: {
@@ -422,13 +399,13 @@ describe('The Address component', () => {
           address: {
             street: '123 Some Rd',
             country: {
-              value: 'Germany'
+              value: 'Germany',
             },
             layout: Location.ADDRESS,
-            validated: true
-          }
+            validated: true,
+          },
         },
-        expect: []
+        expect: [],
       },
       {
         data: {
@@ -437,12 +414,12 @@ describe('The Address component', () => {
           address: {
             street: '123 Some Rd',
             country: {
-              value: 'Germany'
+              value: 'Germany',
             },
             city: 'Munich',
             layout: Location.ADDRESS,
-            validated: true
-          }
+            validated: true,
+          },
         },
         expect: [
           {
@@ -450,16 +427,16 @@ describe('The Address component', () => {
             country: { value: 'Germany' },
             layout: 'Address',
             street: '123 Some Rd',
-            validated: true
-          }
-        ]
+            validated: true,
+          },
+        ],
       },
       {
         data: {
           books: [
             {
-              uid: 'abc-123'
-            }
+              uid: 'abc-123',
+            },
           ],
           name: 'default',
           address: {
@@ -467,17 +444,17 @@ describe('The Address component', () => {
             street: '123 Some Rd',
             city: 'Munich',
             country: {
-              value: 'Germany'
+              value: 'Germany',
             },
             layout: Location.ADDRESS,
-            validated: true
-          }
+            validated: true,
+          },
         },
-        expect: []
-      }
+        expect: [],
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const loc = mount(<Location />)
       const book = loc
         .instance()

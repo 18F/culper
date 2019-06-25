@@ -28,7 +28,9 @@ import (
 
 var updateGolden = flag.Bool("update-golden", false, "update golden files")
 
-var serializerInitializer = simplestore.NewJSONSerializer
+var serializerInitializer = func() api.Serializer {
+	return simplestore.NewJSONSerializer()
+}
 
 type serviceSet struct {
 	env   api.Settings

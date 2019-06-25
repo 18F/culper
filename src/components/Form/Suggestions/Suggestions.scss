@@ -68,3 +68,22 @@
     border-top: 2px solid $eapp-grey;
   }
 }
+
+@media only screen and (max-width: 1000px) {
+  .suggestions {
+    width: 100%;
+
+    .suggestion .value,
+    .suggestion .action {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .dismiss .right {
+      float: none;
+      display: block;
+      margin-top: 3rem;
+    }
+  }
+}

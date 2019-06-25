@@ -1,350 +1,120 @@
-import {
-  validGenericTextfield,
-  validCurrency,
-  validDateField,
-  validBranch
-} from './helpers'
+import { validateModel } from 'models/validate'
+import foreignBenefit from 'models/foreignBenefit'
+import foreignBenefitType from 'models/foreignBenefitType'
+
+export const validateForeignBenefit = data => (
+  validateModel(data, foreignBenefit) === true
+)
+
+export const validateForeignBenefitType = (data, options = {}) => (
+  validateModel(data, foreignBenefitType, options) === true
+)
 
 export default class ForeignBenefitValidator {
   constructor(data = {}) {
-    this.interestTypes = (data.InterestTypes || {}).values || []
-    this.benefitType = (data.BenefitType || {}).value
-    this.otherBenefitType = data.OtherBenefitType
-    this.benefitFrequency = (data.BenefitFrequency || {}).value
-    this.oneTimeBenefit = data.OneTimeBenefit
-    this.futureBenefit = data.FutureBenefit
-    this.continuingBenefit = data.ContinuingBenefit
-    this.otherBenefit = data.OtherBenefit
-  }
-
-  validInterestTypes() {
-    return !!this.interestTypes && !!this.interestTypes.length
+    this.data = data
   }
 
   validBenefitType() {
-    switch (this.benefitType) {
-      case 'Educational':
-      case 'Medical':
-      case 'Retirement':
-        return true
-      case 'Other':
-        return validGenericTextfield(this.otherBenefitType)
-      default:
-        return false
-    }
-  }
-
-  validBenefitFrequency() {
-    return (
-      !!this.benefitFrequency &&
-      ['OneTime', 'Future', 'Continuing', 'Other'].includes(
-        this.benefitFrequency
-      )
-    )
+    return validateModel(this.data, {
+      BenefitType: foreignBenefit.BenefitType,
+      OtherBenefitType: foreignBenefit.OtherBenefitType,
+    }) === true
   }
 
   validBenefit() {
-    switch (this.benefitFrequency) {
-      case 'OneTime':
-        return new OneTimeBenefitValidator(this.oneTimeBenefit).isValid()
-      case 'Future':
-        return new FutureBenefitValidator(this.futureBenefit).isValid()
-      case 'Continuing':
-        return new ContinuingBenefitValidator(this.continuingBenefit).isValid()
-      case 'Other':
-        return new OtherBenefitValidator(this.otherBenefit).isValid()
-      default:
-        return false
-    }
+    return validateModel(this.data, {
+      BenefitFrequency: foreignBenefit.BenefitFrequency,
+      OneTimeBenefit: foreignBenefit.OneTimeBenefit,
+      FutureBenefit: foreignBenefit.FutureBenefit,
+      ContinuingBenefit: foreignBenefit.ContinuingBenefit,
+      OtherBenefit: foreignBenefit.OtherBenefit,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validInterestTypes() &&
-      this.validBenefitType() &&
-      this.validBenefitFrequency() &&
-      this.validBenefit()
-    )
+    return validateForeignBenefit(this.data)
   }
 }
 
 export class OneTimeBenefitValidator {
   constructor(data = {}) {
-    this.received = data.Received
-    this.country = data.Country
-    this.value = data.Value
-    this.reason = data.Reason
-    this.obligated = (data.Obligated || {}).value
-    this.obligatedExplanation = data.ObligatedExplanation
-  }
-
-  validReceived() {
-    return !!this.received && validDateField(this.received)
-  }
-
-  validCountry() {
-    return !!this.country && validGenericTextfield(this.country)
-  }
-
-  validValue() {
-    return !!this.value && validCurrency(this.value)
-  }
-
-  validReason() {
-    return !!this.reason && validGenericTextfield(this.reason)
-  }
-
-  validObligated() {
-    return validBranch(this.obligated)
+    this.data = data
   }
 
   validObligatedExplanation() {
-    if (!this.validObligated()) {
-      return false
-    }
-    if (this.obligated === 'No') {
-      return true
-    }
-    return validGenericTextfield(this.obligatedExplanation)
+    return validateModel(this.data, {
+      Obligated: foreignBenefitType.Obligated,
+      ObligatedExplanation: foreignBenefitType.ObligatedExplanation,
+    }, { benefitType: 'OneTime' }) === true
   }
 
   isValid() {
-    return (
-      this.validReceived() &&
-      this.validCountry() &&
-      this.validValue() &&
-      this.validReason() &&
-      this.validObligated() &&
-      this.validObligatedExplanation()
-    )
+    return validateForeignBenefitType(this.data, { benefitType: 'OneTime' })
   }
 }
 
 export class FutureBenefitValidator {
   constructor(data = {}) {
-    this.began = data.Began
-    this.frequency = (data.Frequency || {}).value
-    this.otherFrequency = data.OtherFrequency
-    this.country = data.Country
-    this.value = data.Value
-    this.reason = data.Reason
-    this.obligated = (data.Obligated || {}).value
-    this.obligatedExplanation = data.ObligatedExplanation
-  }
-
-  validBegan() {
-    return !!this.began && validDateField(this.began)
+    this.data = data
   }
 
   validFrequency() {
-    switch (this.frequency) {
-      case 'Annually':
-      case 'Quarterly':
-      case 'Monthly':
-      case 'Weekly':
-        return true
-      case 'Other':
-        return validGenericTextfield(this.otherFrequency)
-      default:
-        return false
-    }
-  }
-
-  validCountry() {
-    return !!this.country && validGenericTextfield(this.country)
-  }
-
-  validValue() {
-    return !!this.value && validCurrency(this.value)
-  }
-
-  validReason() {
-    return !!this.reason && validGenericTextfield(this.reason)
-  }
-
-  validObligated() {
-    return validBranch(this.obligated)
+    return validateModel(this.data, {
+      Frequency: foreignBenefitType.Frequency,
+      OtherFrequency: foreignBenefitType.OtherFrequency,
+    }, { benefitType: 'Future' }) === true
   }
 
   validObligatedExplanation() {
-    if (!this.validObligated()) {
-      return false
-    }
-    if (this.obligated === 'No') {
-      return true
-    }
-    return validGenericTextfield(this.obligatedExplanation)
+    return validateModel(this.data, {
+      Obligated: foreignBenefitType.Obligated,
+      ObligatedExplanation: foreignBenefitType.ObligatedExplanation,
+    }, { benefitType: 'Future' }) === true
   }
 
   isValid() {
-    return (
-      this.validBegan() &&
-      this.validFrequency() &&
-      this.validCountry() &&
-      this.validValue() &&
-      this.validReason() &&
-      this.validObligated() &&
-      this.validObligatedExplanation()
-    )
+    return validateForeignBenefitType(this.data, { benefitType: 'Future' })
   }
 }
 
 export class ContinuingBenefitValidator {
   constructor(data = {}) {
-    this.began = data.Began
-    this.end = data.End
-    this.frequency = (data.Frequency || {}).value
-    this.otherFrequency = data.OtherFrequency
-    this.country = data.Country
-    this.value = data.Value
-    this.reason = data.Reason
-    this.obligated = (data.Obligated || {}).value
-    this.obligatedExplanation = data.ObligatedExplanation
-  }
-
-  validBegan() {
-    return !!this.began && validDateField(this.began)
-  }
-
-  validEnd() {
-    return !!this.end && validDateField(this.end)
+    this.data = data
   }
 
   validFrequency() {
-    switch (this.frequency) {
-      case 'Annually':
-      case 'Quarterly':
-      case 'Monthly':
-      case 'Weekly':
-        return true
-      case 'Other':
-        return validGenericTextfield(this.otherFrequency)
-      default:
-        return false
-    }
-  }
-
-  validCountry() {
-    return !!this.country && validGenericTextfield(this.country)
-  }
-
-  validValue() {
-    return !!this.value && validCurrency(this.value)
-  }
-
-  validReason() {
-    return !!this.reason && validGenericTextfield(this.reason)
-  }
-
-  validObligated() {
-    return validBranch(this.obligated)
+    return validateModel(this.data, {
+      Frequency: foreignBenefitType.Frequency,
+      OtherFrequency: foreignBenefitType.OtherFrequency,
+    }, { benefitType: 'Continuing' }) === true
   }
 
   validObligatedExplanation() {
-    if (!this.validObligated()) {
-      return false
-    }
-    if (this.obligated === 'No') {
-      return true
-    }
-    return validGenericTextfield(this.obligatedExplanation)
+    return validateModel(this.data, {
+      Obligated: foreignBenefitType.Obligated,
+      ObligatedExplanation: foreignBenefitType.ObligatedExplanation,
+    }, { benefitType: 'Continuing' }) === true
   }
 
   isValid() {
-    return (
-      this.validBegan() &&
-      this.validEnd() &&
-      this.validFrequency() &&
-      this.validCountry() &&
-      this.validValue() &&
-      this.validReason() &&
-      this.validObligated() &&
-      this.validObligatedExplanation()
-    )
+    return validateForeignBenefitType(this.data, { benefitType: 'Continuing' })
   }
 }
 
-
 export class OtherBenefitValidator {
   constructor(data = {}) {
-    this.began = data.Began
-    this.end = data.End
-    this.frequency = (data.Frequency || {}).value
-    this.otherFrequency = data.OtherFrequency
-    this.otherFrequencyTypeExplanation = data.OtherFrequencyTypeExplanation
-    this.country = data.Country
-    this.value = data.Value
-    this.reason = data.Reason
-    this.obligated = (data.Obligated || {}).value
-    this.obligatedExplanation = data.ObligatedExplanation
-  }
-
-  validBegan() {
-    return !!this.began && validDateField(this.began)
-  }
-
-  validEnd() {
-    return !!this.end && validDateField(this.end)
+    this.data = data
   }
 
   validFrequency() {
-    switch (this.frequency) {
-      case 'Annually':
-      case 'Quarterly':
-      case 'Monthly':
-      case 'Weekly':
-        return true
-      case 'Other':
-        return validGenericTextfield(this.otherFrequency)
-      default:
-        return false
-    }
-  }
-
-  validCountry() {
-    return !!this.country && validGenericTextfield(this.country)
-  }
-
-  validValue() {
-    return !!this.value && validCurrency(this.value)
-  }
-
-  validReason() {
-    return !!this.reason && validGenericTextfield(this.reason)
-  }
-
-  validObligated() {
-    return validBranch(this.obligated)
-  }
-
-  validObligatedExplanation() {
-    if (!this.validObligated()) {
-      return false
-    }
-    if (this.obligated === 'No') {
-      return true
-    }
-    return validGenericTextfield(this.obligatedExplanation)
-  }
-
-  validOtherFrequencyTypeExplanation() {
-    if (this.validOtherFrequencyTypeExplanation) {
-      return validGenericTextfield(this.otherFrequencyTypeExplanation)
-    }
-    return true
+    return validateModel(this.data, {
+      Frequency: foreignBenefitType.Frequency,
+      OtherFrequency: foreignBenefitType.OtherFrequency,
+    }, { benefitType: 'Other' }) === true
   }
 
   isValid() {
-    return (
-      this.validBegan() &&
-      this.validEnd() &&
-      this.validFrequency() &&
-      this.validCountry() &&
-      this.validValue() &&
-      this.validReason() &&
-      this.validObligated() &&
-      this.validObligatedExplanation() &&
-      this.validOtherFrequencyTypeExplanation()
-    )
+    return validateForeignBenefitType(this.data, { benefitType: 'Other' })
   }
 }

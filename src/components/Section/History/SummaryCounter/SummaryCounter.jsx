@@ -1,11 +1,15 @@
 import React from 'react'
-import { rangeSorter, julian, today, daysAgo } from '../dateranges'
+import { Svg } from 'components/Form'
+import { i18n } from 'config'
+import {
+  rangeSorter, julian, today, daysAgo,
+} from '../dateranges'
 
 /**
  * Scan an array of items (of date ranges) and count those found with
  * appropriate date(s).
  */
-const scan = items => {
+const scan = (items) => {
   let counter = 0
 
   for (const dates of items.sort(rangeSorter)) {
@@ -26,7 +30,7 @@ export default class SummaryCounter extends React.Component {
   ranges() {
     return {
       schools: scan((this.props.schools && this.props.schools()) || []),
-      diplomas: scan((this.props.diplomas && this.props.diplomas()) || [])
+      diplomas: scan((this.props.diplomas && this.props.diplomas()) || []),
     }
   }
 
@@ -38,18 +42,20 @@ export default class SummaryCounter extends React.Component {
 
     return (
       <div className={klass}>
-        <div className="row">
-          <span className="content" />
-          <span className="cell schools">{totalSchools}</span>
-          <span className="cell diplomas">{totalDiplomas}</span>
+        <div className="summary-counter-title">
+          <Svg
+            src="/img/school-cap.svg"
+            alt={i18n.t('history.education.summary.svgAlt')}
+          />
+          <span className="title">{this.props.title}</span>
         </div>
-        <div className="row">
-          <div className="content">
-            {this.props.children}
-            <span className="title">{this.props.title}</span>
-          </div>
-          <span className="cell unit">{this.props.schoolsLabel}</span>
-          <span className="cell unit">{this.props.diplomasLabel}</span>
+        <div className="summary-counter-schools">
+          <span className="schools total">{totalSchools}</span>
+          <span className="schools unit">{this.props.schoolsLabel}</span>
+        </div>
+        <div className="summary-counter-diplomas">
+          <span className="diplomas total">{totalDiplomas}</span>
+          <span className="diplomas unit">{this.props.diplomasLabel}</span>
         </div>
       </div>
     )

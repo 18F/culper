@@ -1,73 +1,76 @@
-import {
-  validAccordion,
-  validGenericTextfield,
-  validDateField,
-} from './helpers'
+import {validateModel, hasYesOrNo } from 'models/validate'
+import militaryDiscipline from 'models/militaryDiscipline'
 
 export const hideDisciplinaryProcedures = (store = {}) => !(store.Military
     && store.Military.History
     && store.Military.History.HasServed
     && store.Military.History.HasServed.value === 'Yes')
 
+
+const militaryDisciplinaryProceduresModel = {
+  HasDisciplinary: { presence: true, hasValue: { validator: hasYesOrNo } },
+  List: (value, attributes) => {
+    const { HasDisciplinary } = attributes
+    if (HasDisciplinary && HasDisciplinary.value === 'Yes') {
+      return {
+        presence: true,
+        accordion: { validator: militaryDiscipline },
+      }
+    }
+
+    return {}
+  },
+}
+
+export const validateMilitaryDisciplinaryProcedures = data => (
+  validateModel(data, militaryDisciplinaryProceduresModel) === true
+)
+
 export class ProcedureValidator {
   constructor(data = {}) {
-    this.date = data.Date
-    this.offenses = data.Offenses
-    this.name = data.Name
-    this.court = data.Court
-    this.outcome = data.Outcome
+    this.data = data
   }
 
   validDate() {
-    return validDateField(this.date)
+    return validateModel(this.data, { Date: militaryDiscipline.Date }) === true
   }
 
   validOffenses() {
-    return validGenericTextfield(this.offenses)
+    return validateModel(this.data, { Offenses: militaryDiscipline.Offenses }) === true
   }
 
   validName() {
-    return validGenericTextfield(this.name)
+    return validateModel(this.data, { Name: militaryDiscipline.Name }) === true
   }
 
   validCourt() {
-    return validGenericTextfield(this.court)
+    return validateModel(this.data, { Court: militaryDiscipline.Court }) === true
   }
 
   validOutcome() {
-    return validGenericTextfield(this.outcome)
+    return validateModel(this.data, { Outcome: militaryDiscipline.Outcome }) === true
   }
 
   isValid() {
-    return (
-      this.validDate()
-      && this.validOffenses()
-      && this.validName()
-      && this.validCourt()
-      && this.validOutcome()
-    )
+    return validateModel(this.data, militaryDiscipline) === true
   }
 }
 
 export default class MilitaryDisciplinaryValidator {
   constructor(data = {}) {
-    this.hasDisciplinary = (data.HasDisciplinary || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   validDisciplinary() {
-    return this.hasDisciplinary === 'Yes' || this.hasDisciplinary === 'No'
-  }
-
-  validItems() {
-    if (this.validDisciplinary() && this.hasDisciplinary === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => new ProcedureValidator(item).isValid())
+    return (
+      validateModel(
+        this.data,
+        { HasDisciplinary: militaryDisciplinaryProceduresModel.HasDisciplinary },
+      ) === true
+    )
   }
 
   isValid() {
-    return this.validDisciplinary() && this.validItems()
+    return validateMilitaryDisciplinaryProcedures(this.data)
   }
 }

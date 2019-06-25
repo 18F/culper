@@ -2,7 +2,7 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 import schema from 'schema'
-import validate, { RevokedValidator } from 'validators'
+import validate, { RevokedItemValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 
@@ -113,7 +113,7 @@ export class Revoked extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={RevokedValidator}
+            validator={RevokedItemValidator}
             description={i18n.t('legal.investigations.revoked.collection.description')}
             appendTitle={i18n.t('legal.investigations.revoked.collection.appendTitle')}
             appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}

@@ -1,105 +1,108 @@
-import NameValidator from './name'
-import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignBusinessVentures from 'models/foreignBusinessVentures'
+
+export const validateVentures = data => validateModel(data, foreignBusinessVentures) === true
+
+export const validateForeignBusinessVentures = (data) => {
+  const foreignBusinessVenturesModel = {
+    HasForeignVentures: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasForeignVentures && attributes.HasForeignVentures.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignBusinessVentures },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignBusinessVenturesModel) === true
+}
 
 export default class ForeignBusinessVenturesValidator {
   constructor(data = {}) {
-    this.hasForeignVentures = (data.HasForeignVentures || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasForeignVentures === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new VenturesValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignBusinessVentures(this.data)
   }
 }
 
 export class VenturesValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.address = data.Address
-    this.citizenship = data.Citizenship
-    this.description = data.Description
-    this.relationship = data.Relationship
-    this.dates = data.Dates
-    this.association = data.Association
-    this.position = data.Position
-    this.service = data.Service
-    this.support = data.Support
-    this.compensation = data.Compensation
+    this.data = data
   }
 
   validName() {
-    return !!this.name && new NameValidator(this.name).isValid()
+    return validateModel(this.data, {
+      Name: foreignBusinessVentures.Name,
+    }) === true
   }
 
   validAddress() {
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, {
+      Address: foreignBusinessVentures.Address,
+    }) === true
   }
 
   validCitizenship() {
-    return (
-      !!this.citizenship &&
-      !!this.citizenship.value &&
-      this.citizenship.value.length > 0
-    )
+    return validateModel(this.data, {
+      Citizenship: foreignBusinessVentures.Citizenship,
+    }) === true
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, {
+      Description: foreignBusinessVentures.Description,
+    }) === true
   }
 
   validRelationship() {
-    return !!this.relationship && validGenericTextfield(this.relationship)
+    return validateModel(this.data, {
+      Relationship: foreignBusinessVentures.Relationship,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: foreignBusinessVentures.Dates,
+    }) === true
   }
 
   validAssociation() {
-    return !!this.association && validGenericTextfield(this.association)
+    return validateModel(this.data, {
+      Association: foreignBusinessVentures.Association,
+    }) === true
   }
 
   validPosition() {
-    return !!this.position && validGenericTextfield(this.position)
+    return validateModel(this.data, {
+      Position: foreignBusinessVentures.Position,
+    }) === true
   }
 
   validService() {
-    return !!this.service && validGenericTextfield(this.service)
+    return validateModel(this.data, {
+      Service: foreignBusinessVentures.Service,
+    }) === true
   }
 
   validSupport() {
-    return !!this.support && validGenericTextfield(this.support)
+    return validateModel(this.data, {
+      Support: foreignBusinessVentures.Support,
+    }) === true
   }
 
   validCompensation() {
-    return !!this.compensation && validGenericTextfield(this.compensation)
+    return validateModel(this.data, {
+      Compensation: foreignBusinessVentures.Compensation,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validAddress() &&
-      this.validCitizenship() &&
-      this.validDescription() &&
-      this.validRelationship() &&
-      this.validDates() &&
-      this.validAssociation() &&
-      this.validPosition() &&
-      this.validService() &&
-      this.validSupport() &&
-      this.validCompensation()
-    )
+    return validateVentures(this.data)
   }
 }

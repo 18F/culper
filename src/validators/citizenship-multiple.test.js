@@ -1,25 +1,228 @@
 import CitizenshipMultipleValidator, {
-  CitizenshipItemValidator
+  CitizenshipItemValidator,
+  validateCitizenshipMultiple,
 } from './citizenship-multiple'
 import { battery } from './helpers'
 
-describe('citizenship multiple component validation', function() {
+describe('validateCitizenshipMultiple function', () => {
+  describe('if renounced is required', () => {
+    it('requires renounced', () => {
+      const testData = {
+        HasMultiple: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                Country: {
+                  value: 'United States',
+                },
+                Dates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: true,
+                },
+                Current: { value: 'Yes' },
+                CurrentExplanation: {
+                  value: 'explanation',
+                },
+              },
+            },
+            {
+              Item: {
+                Country: {
+                  value: 'Germany',
+                },
+                Dates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: false,
+                },
+                How: {
+                  value: 'Birth',
+                },
+                Current: { value: 'Yes' },
+                CurrentExplanation: {
+                  value: 'explanation',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateCitizenshipMultiple(testData, 'SF86')).toEqual(false)
+    })
+
+    it('passes valid citizenships', () => {
+      const testData = {
+        HasMultiple: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                Country: {
+                  value: ['United States'],
+                },
+                Dates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: true,
+                },
+                Current: { value: 'Yes' },
+                CurrentExplanation: {
+                  value: 'explanation',
+                },
+              },
+            },
+            {
+              Item: {
+                Country: {
+                  value: 'Germany',
+                },
+                Dates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: false,
+                },
+                How: {
+                  value: 'Birth',
+                },
+                Renounced: { value: 'Yes' },
+                RenouncedExplanation: {
+                  value: 'explanation',
+                },
+                Current: { value: 'Yes' },
+                CurrentExplanation: {
+                  value: 'explanation',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateCitizenshipMultiple(testData, 'SF86')).toEqual(true)
+    })
+  })
+
+  describe('if renounced is not required', () => {
+    it('passes valid citizenships', () => {
+      const testData = {
+        HasMultiple: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                Country: {
+                  value: 'United States',
+                },
+                Dates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: true,
+                },
+                Current: { value: 'Yes' },
+                CurrentExplanation: {
+                  value: 'explanation',
+                },
+              },
+            },
+            {
+              Item: {
+                Country: {
+                  value: 'Germany',
+                },
+                Dates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: false,
+                },
+                How: {
+                  value: 'Birth',
+                },
+                Current: { value: 'Yes' },
+                CurrentExplanation: {
+                  value: 'explanation',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateCitizenshipMultiple(testData, 'SF85')).toEqual(true)
+    })
+  })
+})
+
+describe('citizenship multiple component validation', () => {
   it('can validate citizenship country', () => {
     const tests = [
       {
         state: {
-          Country: {}
+          Country: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Country: {
-            value: 'United States'
-          }
+            value: 'United States',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, CitizenshipItemValidator, 'validCountry')
@@ -29,9 +232,9 @@ describe('citizenship multiple component validation', function() {
     const tests = [
       {
         state: {
-          Dates: null
+          Dates: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -39,18 +242,18 @@ describe('citizenship multiple component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, CitizenshipItemValidator, 'validDates')
@@ -61,23 +264,23 @@ describe('citizenship multiple component validation', function() {
       {
         state: {
           Country: {
-            value: 'Germany'
+            value: 'Germany',
           },
-          How: null
+          How: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Country: {
-            value: 'Germany'
+            value: 'Germany',
           },
           How: {
-            value: 'Birth'
-          }
+            value: 'Birth',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, CitizenshipItemValidator, 'validHow')
@@ -88,51 +291,51 @@ describe('citizenship multiple component validation', function() {
       {
         state: {
           Country: {
-            value: 'Germany'
+            value: 'Germany',
           },
-          Renounced: { value: null }
+          Renounced: { value: null },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Country: {
-            value: 'Germany'
+            value: 'Germany',
           },
-          Renounced: { value: 'Yuppers' }
+          Renounced: { value: 'Yuppers' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Country: {
-            value: 'Germany'
+            value: 'Germany',
           },
-          Renounced: { value: 'No' }
+          Renounced: { value: 'No' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Country: {
-            value: 'Germany'
+            value: 'Germany',
           },
-          Renounced: { value: 'Yes' }
+          Renounced: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Country: {
-            value: 'Germany'
+            value: 'Germany',
           },
           Renounced: { value: 'Yes' },
           RenouncedExplanation: {
-            value: 'explanation'
-          }
+            value: 'explanation',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, CitizenshipItemValidator, 'validRenounced')
@@ -146,18 +349,18 @@ describe('citizenship multiple component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: true
+            present: true,
           },
-          Current: { value: null }
+          Current: { value: null },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -165,18 +368,18 @@ describe('citizenship multiple component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: true
+            present: true,
           },
-          Current: { value: 'Yuppers' }
+          Current: { value: 'Yuppers' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -184,18 +387,18 @@ describe('citizenship multiple component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: true
+            present: true,
           },
-          Current: { value: 'No' }
+          Current: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -203,18 +406,18 @@ describe('citizenship multiple component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: true
+            present: true,
           },
-          Current: { value: 'Yes' }
+          Current: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -222,22 +425,22 @@ describe('citizenship multiple component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: true
+            present: true,
           },
           Current: { value: 'Yes' },
           CurrentExplanation: {
-            value: 'explanation'
-          }
+            value: 'explanation',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, CitizenshipItemValidator, 'validCurrent')
@@ -247,15 +450,15 @@ describe('citizenship multiple component validation', function() {
     const tests = [
       {
         state: {
-          HasMultiple: { value: 'No' }
+          HasMultiple: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasMultiple: { value: 'Yes' }
+          HasMultiple: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -264,12 +467,12 @@ describe('citizenship multiple component validation', function() {
             branch: { value: 'No' },
             items: [
               {
-                Item: {}
-              }
-            ]
-          }
+                Item: {},
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -280,39 +483,39 @@ describe('citizenship multiple component validation', function() {
               {
                 Item: {
                   Country: {
-                    value: 'United States'
+                    value: 'United States',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   How: {
-                    value: 'Birth'
+                    value: 'Birth',
                   },
                   Renounced: { value: 'Yes' },
                   RenouncedExplanation: {
-                    value: 'explanation'
+                    value: 'explanation',
                   },
                   Current: { value: 'Yes' },
                   CurrentExplanation: {
-                    value: 'explanation'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'explanation',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, CitizenshipMultipleValidator, 'validCitizenships')
@@ -329,38 +532,38 @@ describe('citizenship multiple component validation', function() {
               {
                 Item: {
                   Country: {
-                    value: 'Germany'
+                    value: 'Germany',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   How: {
-                    value: 'Birth'
+                    value: 'Birth',
                   },
                   Renounced: { value: 'Yes' },
                   RenouncedExplanation: {
-                    value: 'explanation'
+                    value: 'explanation',
                   },
                   Current: { value: 'Yes' },
                   CurrentExplanation: {
-                    value: 'explanation'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'explanation',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -371,63 +574,63 @@ describe('citizenship multiple component validation', function() {
               {
                 Item: {
                   Country: {
-                    value: 'United States'
+                    value: 'United States',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Current: { value: 'Yes' },
                   CurrentExplanation: {
-                    value: 'explanation'
-                  }
-                }
+                    value: 'explanation',
+                  },
+                },
               },
               {
                 Item: {
                   Country: {
-                    value: 'Germany'
+                    value: 'Germany',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   How: {
-                    value: 'Birth'
+                    value: 'Birth',
                   },
                   Renounced: { value: 'Yes' },
                   RenouncedExplanation: {
-                    value: 'explanation'
+                    value: 'explanation',
                   },
                   Current: { value: 'Yes' },
                   CurrentExplanation: {
-                    value: 'explanation'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'explanation',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, CitizenshipMultipleValidator, 'validMinimumCitizenships')
@@ -440,10 +643,10 @@ describe('citizenship multiple component validation', function() {
           HasMultiple: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -454,63 +657,63 @@ describe('citizenship multiple component validation', function() {
               {
                 Item: {
                   Country: {
-                    value: 'United States'
+                    value: 'United States',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: true
+                    present: true,
                   },
                   Current: { value: 'Yes' },
                   CurrentExplanation: {
-                    value: 'explanation'
-                  }
-                }
+                    value: 'explanation',
+                  },
+                },
               },
               {
                 Item: {
                   Country: {
-                    value: 'Germany'
+                    value: 'Germany',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   How: {
-                    value: 'Birth'
+                    value: 'Birth',
                   },
                   Renounced: { value: 'Yes' },
                   RenouncedExplanation: {
-                    value: 'explanation'
+                    value: 'explanation',
                   },
                   Current: { value: 'Yes' },
                   CurrentExplanation: {
-                    value: 'explanation'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'explanation',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, CitizenshipMultipleValidator, 'isValid')

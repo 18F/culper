@@ -770,7 +770,9 @@ exports[`The identification section renders the IdentificationSections component
             <div
               className="datecontrol"
             >
-              <div>
+              <div
+                className="datecontrol-container"
+              >
                 <div
                   className="usa-form-group month"
                 >

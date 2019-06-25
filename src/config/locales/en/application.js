@@ -26,6 +26,16 @@ export const application = {
     '### List of incomplete sections',
     'Use the list below to complete all incomplete sections or sections with errors.',
   ],
+  submissionConfirmation: {
+    para: [
+      '**Once you submit, your form will be locked** and you will no longer be able to make changes.',
+      'After submission you will be able to download a copy of your completed {{formName}} and all signed certification and released documents.',
+      '**Are you sure you are ready to submit your {{formName}}?**',
+    ],
+    back: 'Back to review',
+    submit: 'Submit',
+    spinnerText: 'Your {{formName}} is being submitted',
+  },
   submissionStatus: {
     validating: [
       '# Verifying your information is complete',

@@ -936,7 +936,6 @@
                       "layout": "Address",
                       "street": "Self Employment APO",
                       "city": "Winnipeg",
-                      "zipcode": "34038",
                       "country": "Canada"
                     }
                   },
@@ -3151,7 +3150,7 @@
                       "layout": "Address",
                       "street": "APO Address",
                       "city": "APO",
-                      "state": "aa",
+                      "state": "AA",
                       "zipcode": "34050",
                       "country": "POSTOFFICE",
                       "validated": true

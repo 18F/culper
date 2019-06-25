@@ -1,13 +1,6 @@
 import CitizenshipValidator, {
   isCertificateRequired,
-  isCertificatePartial,
-  isDocumentationPartial,
   isDocumentRequired,
-  validateAbroadDocumentation,
-  validateBornOnMilitaryInstallation,
-  validateForeignBorn,
-  validateDocumentation,
-  validateCertificate,
 } from './citizenship'
 import Location from '../components/Form/Location'
 
@@ -68,14 +61,14 @@ describe('citizenship component validation', () => {
   describe('isDocumentRequired', () => {
     it('returns true if document is provided', () => {
       const expected = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'FS-545',
-        explanation: { value: '' },
-        documentNumber: { value: '12345abc' },
-        documentIssued: {
+        CitizenshipStatus: { value: 'ForeignBorn' },
+        AbroadDocumentation: { value: 'FS-545' },
+        Explanation: { value: '' },
+        DocumentNumber: { value: '12345abc' },
+        DocumentIssued: {
           month: '1', day: '1', year: '1998', estimated: false,
         },
-        documentName: {
+        DocumentName: {
           first: 'Henry',
           firstInitialOnly: false,
           middle: 'J',
@@ -85,33 +78,35 @@ describe('citizenship component validation', () => {
           suffix: '',
           suffixOther: '',
         },
-        documentExpiration: {
+        DocumentExpiration: {
           month: '1', day: '1', year: '2018', estimated: false,
         },
-        placeIssued: {
+        PlaceIssued: {
           layout: 'Birthplace without County',
           city: 'Venice',
           country: 'Italy',
         },
       }
-      expect(isDocumentRequired(expected)).toBe(true)
+      expect(isDocumentRequired(expected, true)).toBe(true)
     })
+
     it('returns true if document not provided', () => {
       const expected = {
-        citizenshipStatus: 'ForeignBorn',
+        CitizenshipStatus: { value: 'ForeignBorn' },
       }
-      expect(isDocumentRequired(expected)).toBe(true)
+      expect(isDocumentRequired(expected, true)).toBe(true)
     })
+
     it('returns true if document is partial and certificate provided', () => {
       const expected = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'FS-545',
-        explanation: { value: '' },
-        documentNumber: { value: '' },
-        documentIssued: {
+        CitizenshipStatus: { value: 'ForeignBorn' },
+        AbroadDocumentation: { value: 'FS-545' },
+        Explanation: { value: '' },
+        DocumentNumber: { value: '' },
+        DocumentIssued: {
           month: '', day: '', year: '', estimated: false,
         },
-        documentName: {
+        DocumentName: {
           first: 'Henry',
           firstInitialOnly: false,
           middle: 'J',
@@ -121,19 +116,19 @@ describe('citizenship component validation', () => {
           suffix: '',
           suffixOther: '',
         },
-        documentExpiration: {
+        DocumentExpiration: {
           month: '1', day: '1', year: '2018', estimated: false,
         },
-        placeIssued: {
+        PlaceIssued: {
           layout: 'Birthplace without County',
           city: 'Venice',
           country: 'Italy',
         },
-        certificateNumber: { value: '12345abc' },
-        certificateIssued: {
+        CertificateNumber: { value: '12345abc' },
+        CertificateIssued: {
           month: '1', day: '1', year: '1998', estimated: false,
         },
-        certificateName: {
+        CertificateName: {
           first: 'Henry',
           firstInitialOnly: false,
           middle: 'J',
@@ -144,16 +139,16 @@ describe('citizenship component validation', () => {
           suffixOther: '',
         },
       }
-      expect(isDocumentRequired(expected)).toBe(true)
+      expect(isDocumentRequired(expected, true)).toBe(true)
     })
     it('returns false if certificate is provided', () => {
       const expected = {
-        citizenshipStatus: 'ForeignBorn',
-        certificateNumber: { value: '12345abc' },
-        certificateIssued: {
+        CitizenshipStatus: { value: 'ForeignBorn' },
+        CertificateNumber: { value: '12345abc' },
+        CertificateIssued: {
           month: '1', day: '1', year: '1998', estimated: false,
         },
-        certificateName: {
+        CertificateName: {
           first: 'Henry',
           firstInitialOnly: false,
           middle: 'J',
@@ -164,18 +159,18 @@ describe('citizenship component validation', () => {
           suffixOther: '',
         },
       }
-      expect(isDocumentRequired(expected)).toBe(false)
+      expect(isDocumentRequired(expected, true)).toBe(false)
     })
   })
   describe('isCertificateRequired', () => {
     it('returns true if certificate is provided', () => {
       const expected = {
-        citizenshipStatus: 'ForeignBorn',
-        certificateNumber: { value: '12345abc' },
-        certificateIssued: {
+        CitizenshipStatus: { value: 'ForeignBorn' },
+        CertificateNumber: { value: '12345abc' },
+        CertificateIssued: {
           month: '1', day: '1', year: '1998', estimated: false,
         },
-        certificateName: {
+        CertificateName: {
           first: 'Henry',
           firstInitialOnly: false,
           middle: 'J',
@@ -186,24 +181,24 @@ describe('citizenship component validation', () => {
           suffixOther: '',
         },
       }
-      expect(isCertificateRequired(expected)).toBe(true)
+      expect(isCertificateRequired(expected, true)).toBe(true)
     })
     it('returns true if certificate not provided', () => {
       const expected = {
-        citizenshipStatus: 'ForeignBorn',
+        CitizenshipStatus: { value: 'ForeignBorn' },
       }
-      expect(isCertificateRequired(expected)).toBe(true)
+      expect(isCertificateRequired(expected, true)).toBe(true)
     })
     it('returns true if certificate is partial and document provided', () => {
       const expected = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'Other',
-        explanation: { value: 'I have another document' },
-        certificateNumber: { value: '' },
-        certificateIssued: {
+        CitizenshipStatus: { value: 'ForeignBorn' },
+        AbroadDocumentation: { value: 'Other' },
+        Explanation: { value: 'I have another document' },
+        CertificateNumber: { value: '' },
+        CertificateIssued: {
           month: '', day: '', year: '', estimated: false,
         },
-        certificateName: {
+        CertificateName: {
           first: 'Henry',
           firstInitialOnly: false,
           middle: 'J',
@@ -214,1085 +209,15 @@ describe('citizenship component validation', () => {
           suffixOther: '',
         },
       }
-      expect(isCertificateRequired(expected)).toBe(true)
+      expect(isCertificateRequired(expected, true)).toBe(true)
     })
     it('returns false if document is provided', () => {
       const expected = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'Other',
-        explanation: { value: 'I have a different document' },
+        CitizenshipStatus: { value: 'ForeignBorn' },
+        AbroadDocumentation: { value: 'Other' },
+        Explanation: { value: 'I have a different document' },
       }
-      expect(isCertificateRequired(expected)).toBe(false)
-    })
-  })
-
-  describe('validateAbroadDocumentation', () => {
-    it('returns false if nothing is set', () => {
-      expect(validateAbroadDocumentation({ abroadDocumentation: '', explanation: { value: '' } })).toBe(false)
-    })
-    it('returns true if FS-240, DS-1350, or FS-545 is set', () => {
-      ['FS-240', 'DS-1350', 'FS-545'].forEach(form => expect(validateAbroadDocumentation({ abroadDocumentation: form, explanation: { value: '' } })).toBe(true))
-    })
-    it('returns false if Other is set but no explanation', () => {
-      expect(validateAbroadDocumentation({ abroadDocumentation: 'Other', explanation: { value: '' } })).toBe(false)
-    })
-    it('returns true if Other is set with explanation', () => {
-      expect(validateAbroadDocumentation({ abroadDocumentation: 'Other', explanation: { value: 'Inducted as a spy' } })).toBe(true)
-    })
-  })
-
-  describe('validateBornOnMilitaryInstallation', () => {
-    it('returns false if nothing is selected', () => {
-      expect(validateBornOnMilitaryInstallation({ bornOnMilitaryInstallation: '', militaryBase: '' })).toBe(false)
-    })
-
-    it('returns true if No is selected', () => {
-      expect(validateBornOnMilitaryInstallation({ bornOnMilitaryInstallation: 'No', militaryBase: '' })).toBe(true)
-    })
-
-    it('returns true if Yes is selected with base', () => {
-      expect(validateBornOnMilitaryInstallation({ bornOnMilitaryInstallation: 'Yes', militaryBase: { value: 'Secret base in a foreign country' } })).toBe(true)
-    })
-
-    it('returns false if Yes is selected without base', () => {
-      expect(validateBornOnMilitaryInstallation({ bornOnMilitaryInstallation: 'Yes', militaryBase: '' })).toBe(false)
-    })
-  })
-
-  describe('validateDocumentation', () => {
-    it('returns false if abroadDocumentation is missing', () => {
-      const data = {
-        abroadDocumentation: '',
-        explanation: {
-          value: '',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-      }
-
-      expect(validateDocumentation(data)).toBe(false)
-    })
-    it('returns true if abroadDocumentation is other with explanation', () => {
-      const data = {
-        abroadDocumentation: 'Other',
-        explanation: {
-          value: 'I have proof of citizenship but not one of these forms',
-        },
-        documentNumber: {
-          value: '',
-        },
-        documentIssued: {
-          day: '',
-          month: '',
-          year: '',
-          estimated: false,
-        },
-        placeIssued: {
-          layout: '',
-          country: '',
-        },
-        documentName: {
-          first: '',
-          firstInitialOnly: false,
-          middle: '',
-          middleInitialOnly: false,
-          noMiddleName: false,
-          last: '',
-          suffix: '',
-        },
-      }
-
-      expect(validateDocumentation(data)).toBe(true)
-    })
-    it('returns false if documentNumber is missing', () => {
-      const data = {
-        abroadDocumentation: 'FS-545',
-        explanation: {
-          value: '',
-        },
-        documentNumber: {
-          value: '',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-      }
-
-      expect(validateDocumentation(data)).toBe(false)
-    })
-    it('returns false if documentIssued is missing', () => {
-      const data = {
-        abroadDocumentation: 'FS-545',
-        explanation: {
-          value: '',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {},
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-      }
-
-      expect(validateDocumentation(data)).toBe(false)
-    })
-    it('returns false if placedIssue is missing', () => {
-      const data = {
-        abroadDocumentation: 'FS-545',
-        explanation: {
-          value: '',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {},
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-      }
-
-      expect(validateDocumentation(data)).toBe(false)
-    })
-    it('returns false if documentName is missing', () => {
-      const data = {
-        abroadDocumentation: 'FS-545',
-        explanation: {
-          value: '',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {},
-      }
-
-      expect(validateDocumentation(data)).toBe(false)
-    })
-    it('returns true if data is filled in properly', () => {
-      const data = {
-        abroadDocumentation: 'Other',
-        explanation: {
-          value: 'Explanation',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        certificateNumber: {
-          value: '',
-        },
-        certificateIssued: {
-          day: '',
-          month: '',
-          year: '',
-        },
-        certificateName: {
-          first: '',
-          firstInitialOnly: false,
-          middle: '',
-          middleInitialOnly: false,
-          noMiddleName: false,
-          last: '',
-          suffix: '',
-        },
-      }
-
-      expect(validateDocumentation(data)).toBe(true)
-    })
-  })
-
-  describe('validateCertificate', () => {
-    it('returns false certificateIssued is not filled in', () => {
-      const data = {
-        certificateNumber: {
-          value: 'certificate number',
-        },
-        certificateIssued: {},
-        certificateName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-      }
-      expect(validateCertificate(data)).toBe(false)
-    })
-    it('returns false when certificate number is missing', () => {
-      const data = {
-        certificateNumber: {
-          value: '',
-        },
-        certificateIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        certificateName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-      }
-      expect(validateCertificate(data)).toBe(false)
-    })
-    it('returns false when certificate name is missing', () => {
-      const data = {
-        certificateNumber: {
-          value: 'certificate number',
-        },
-        certificateIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        certificateName: {},
-      }
-      expect(validateCertificate(data)).toBe(false)
-    })
-    it('validates when all certificate data is passed', () => {
-      const data = {
-        certificateNumber: {
-          value: 'certificate number',
-        },
-        certificateIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        certificateName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-      }
-      expect(validateCertificate(data)).toBe(true)
-    })
-  })
-
-  describe('isCertificatePartial', () => {
-    it('returns true if certificate name is filled in', () => {
-      const dataSets = [
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: { },
-          certificateName: {
-            first: 'Foo',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: { },
-          certificateName: {
-            first: '',
-            firstInitialOnly: true,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: { },
-          certificateName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: 'Jay',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: { },
-          certificateName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: true,
-            noMiddleName: false,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: { },
-          certificateName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: true,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: { },
-          certificateName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: 'Bar',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: { },
-          certificateName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: '',
-            suffix: 'Jr',
-          },
-        },
-      ]
-
-      dataSets.forEach(data => expect(isCertificatePartial(data)).toBe(true))
-    })
-    it('returns true if certificate issued is filled in', () => {
-      const dataSets = [
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: {
-            day: '1',
-            month: '',
-            year: '',
-          },
-          certificateName: { },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: {
-            day: '',
-            month: '1',
-            year: '',
-          },
-          certificateName: { },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          certificateNumber: { },
-          certificateIssued: {
-            day: '',
-            month: '',
-            year: '2016',
-          },
-          certificateName: { },
-        },
-      ]
-
-      dataSets.forEach(data => expect(isCertificatePartial(data)).toBe(true))
-    })
-    it('returns true if certificate number is filled in', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        certificateNumber: {
-          value: 'certificate number',
-        },
-        certificateIssued: { },
-        certificateName: { },
-      }
-
-      expect(isCertificatePartial(data)).toBe(true)
-    })
-    it('returns false if certificate is not filled in', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        certificateNumber: { },
-        certificateIssued: { },
-        certificateName: { },
-      }
-
-      expect(isCertificatePartial(data)).toBe(false)
-    })
-  })
-  describe('isDocumentationPartial', () => {
-    it('returns true if document name is filled in', () => {
-      const dataSets = [
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: { },
-          documentName: {
-            first: 'Foo',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: { },
-          documentName: {
-            first: '',
-            firstInitialOnly: true,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: { },
-          documentName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: 'Jay',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: { },
-          documentName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: true,
-            noMiddleName: false,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: { },
-          documentName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: true,
-            last: '',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: { },
-          documentName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: 'Bar',
-            suffix: '',
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: { },
-          documentName: {
-            first: '',
-            firstInitialOnly: false,
-            middle: '',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: '',
-            suffix: 'Jr',
-          },
-        },
-      ]
-
-      dataSets.forEach(data => expect(isDocumentationPartial(data)).toBe(true))
-    })
-    it('returns true if place issued is filled in', () => {
-      const dataSets = [
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: {
-            layout: Location.CITY_STATE_COUNTRY,
-            country: { value: 'United States' },
-            city: '',
-            state: '',
-          },
-          documentName: { },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: {
-            layout: Location.CITY_STATE_COUNTRY,
-            country: { },
-            city: 'Arlington',
-            state: '',
-          },
-          documentName: { },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: { },
-          placeIssued: {
-            layout: Location.CITY_STATE_COUNTRY,
-            country: { },
-            city: '',
-            state: 'VA',
-          },
-          documentName: { },
-        },
-      ]
-
-      dataSets.forEach(data => expect(isDocumentationPartial(data)).toBe(true))
-    })
-    it('returns true if document issued date is filled in', () => {
-      const dataSets = [
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: {
-            day: '1',
-            month: '',
-            year: '',
-          },
-          placeIssued: { },
-          documentName: {
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: {
-            day: '',
-            month: '1',
-            year: '',
-          },
-          placeIssued: { },
-          documentName: {
-          },
-        },
-        {
-          citizenshipStatus: 'ForeignBorn',
-          abroadDocumentation: '',
-          explanation: { },
-          documentNumber: { },
-          documentIssued: {
-            day: '',
-            month: '',
-            year: '2016',
-          },
-          placeIssued: { },
-          documentName: {
-          },
-        },
-      ]
-
-      dataSets.forEach(data => expect(isDocumentationPartial(data)).toBe(true))
-    })
-    it('returns true if document number is filled in', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: '',
-        explanation: { },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: { },
-        placeIssued: { },
-        documentName: { },
-      }
-
-      expect(isDocumentationPartial(data)).toBe(true)
-    })
-    it('returns true if explanation is filled in', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: '',
-        explanation: {
-          value: 'Explanation',
-        },
-        documentNumber: { },
-        documentIssued: { },
-        placeIssued: { },
-        documentName: { },
-      }
-
-      expect(isDocumentationPartial(data)).toBe(true)
-    })
-    it('returns true if abroadDocumentation is filled in', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'Other',
-        explanation: { },
-        documentNumber: { },
-        documentIssued: { },
-        placeIssued: { },
-        documentName: { },
-      }
-
-      expect(isDocumentationPartial(data)).toBe(true)
-    })
-    it('returns false if nothing is filled in', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: '',
-        explanation: {},
-        documentNumber: { },
-        documentIssued: { },
-        placeIssued: { },
-        documentName: { },
-      }
-
-      expect(isDocumentationPartial(data)).toBe(false)
-    })
-  })
-
-  describe('validateForeignBorn', () => {
-    it('returns true if not ForeignBorn', () => {
-      const data = { citizenshipStatus: 'NotCitizen' }
-      expect(validateForeignBorn(data)).toBe(true)
-    })
-    it('returns false if bornOnMilitaryInstallation data missing', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'Other',
-        explanation: {
-          value: 'Explanation',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        certificateNumber: {
-          value: 'certificate number',
-        },
-        certificateIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        certificateName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        bornOnMilitaryInstallation: '',
-        militaryBase: {},
-      }
-
-      expect(validateForeignBorn(data)).toBe(false)
-    })
-    it('returns false if document or certificate data NOT provided', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: '',
-        explanation: { },
-        documentNumber: { },
-        documentIssued: { },
-        placeIssued: { },
-        documentName: { },
-        certificateNumber: { },
-        certificateIssued: { },
-        certificateName: { },
-        bornOnMilitaryInstallation: 'Yes',
-        militaryBase: { value: 'Avengers Flying Aircraft Carrier' },
-      }
-
-      expect(validateForeignBorn(data)).toBe(false)
-    })
-    it('returns true if document provided', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'Other',
-        explanation: {
-          value: 'Explanation',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        certificateNumber: { },
-        certificateIssued: { },
-        certificateName: { },
-        bornOnMilitaryInstallation: 'Yes',
-        militaryBase: { value: 'Avengers Flying Aircraft Carrier' },
-      }
-
-      expect(validateForeignBorn(data)).toBe(true)
-    })
-    it('returns true if certificate data provided', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: '',
-        explanation: {},
-        documentNumber: {},
-        documentIssued: { },
-        placeIssued: {},
-        documentName: {},
-        certificateNumber: {
-          value: 'certificate number',
-        },
-        certificateIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        certificateName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        bornOnMilitaryInstallation: 'Yes',
-        militaryBase: { value: 'Avengers Flying Aircraft Carrier' },
-      }
-
-      expect(validateForeignBorn(data)).toBe(true)
-    })
-    it('returns false if document is partially completed', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'Other',
-        explanation: { },
-        documentNumber: { },
-        documentIssued: { },
-        placeIssued: { },
-        documentName: { },
-        certificateNumber: {
-          value: 'certificate number',
-        },
-        certificateIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        certificateName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        bornOnMilitaryInstallation: 'Yes',
-        militaryBase: { value: 'Avengers Flying Aircraft Carrier' },
-      }
-
-      expect(validateForeignBorn(data)).toBe(false)
-    })
-    it('returns false if certificate is partially completed', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'Other',
-        explanation: {
-          value: 'Explanation',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        certificateNumber: { },
-        certificateIssued: { },
-        certificateName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        bornOnMilitaryInstallation: 'Yes',
-        militaryBase: { value: 'Avengers Flying Aircraft Carrier' },
-      }
-
-      expect(validateForeignBorn(data)).toBe(false)
-    })
-    it('returns true if all data provided', () => {
-      const data = {
-        citizenshipStatus: 'ForeignBorn',
-        abroadDocumentation: 'Other',
-        explanation: {
-          value: 'Explanation',
-        },
-        documentNumber: {
-          value: 'document number',
-        },
-        documentIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        placeIssued: {
-          layout: Location.CITY_STATE_COUNTRY,
-          country: { value: 'United States' },
-          city: 'Arlington',
-          state: 'VA',
-        },
-        documentName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        certificateNumber: {
-          value: 'certificate number',
-        },
-        certificateIssued: {
-          day: '1',
-          month: '1',
-          year: '2016',
-        },
-        certificateName: {
-          first: 'Foo',
-          firstInitialOnly: false,
-          middle: 'J',
-          middleInitialOnly: true,
-          noMiddleName: false,
-          last: 'Bar',
-          suffix: 'Jr',
-        },
-        bornOnMilitaryInstallation: 'Yes',
-        militaryBase: { value: 'Avengers Flying Aircraft Carrier' },
-      }
-
-      expect(validateForeignBorn(data)).toBe(true)
+      expect(isCertificateRequired(expected, true)).toBe(false)
     })
   })
 
@@ -1300,24 +225,28 @@ describe('citizenship component validation', () => {
     const tests = [
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           AbroadDocumentation: { value: '' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           AbroadDocumentation: { value: 'Yuppers' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           AbroadDocumentation: { value: 'FS-240' },
         },
         expected: true,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           AbroadDocumentation: { value: 'Other' },
           Explanation: null,
         },
@@ -1325,6 +254,7 @@ describe('citizenship component validation', () => {
       },
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           AbroadDocumentation: { value: 'Other' },
           Explanation: {
             value: 'Explanation',
@@ -1345,24 +275,28 @@ describe('citizenship component validation', () => {
     const tests = [
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           BornOnMilitaryInstallation: { value: '' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           BornOnMilitaryInstallation: { value: 'Yuppers' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           BornOnMilitaryInstallation: { value: 'No' },
         },
         expected: true,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           BornOnMilitaryInstallation: { value: 'Yes' },
           MilitaryBase: null,
         },
@@ -1370,6 +304,7 @@ describe('citizenship component validation', () => {
       },
       {
         data: {
+          CitizenshipStatus: { value: 'ForeignBorn' },
           BornOnMilitaryInstallation: { value: 'Yes' },
           MilitaryBase: {
             value: 'Camp Pendleton',
@@ -1390,24 +325,28 @@ describe('citizenship component validation', () => {
     const tests = [
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           HasAlienRegistration: { value: '' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           HasAlienRegistration: { value: 'Yuppers' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           HasAlienRegistration: { value: 'No' },
         },
         expected: true,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           HasAlienRegistration: { value: 'Yes' },
           AlienRegistrationNumber: null,
         },
@@ -1415,6 +354,7 @@ describe('citizenship component validation', () => {
       },
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           HasAlienRegistration: { value: 'Yes' },
           AlienRegistrationNumber: {
             value: 'number',
@@ -1435,18 +375,21 @@ describe('citizenship component validation', () => {
     const tests = [
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           Basis: { value: '' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           Basis: { value: 'Some othe option' },
         },
         expected: true,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           Basis: { value: 'Other' },
           Explanation: null,
         },
@@ -1454,6 +397,7 @@ describe('citizenship component validation', () => {
       },
       {
         data: {
+          CitizenshipStatus: { value: 'Naturalized' },
           Basis: { value: 'Other' },
           Explanation: {
             value: 'Explanation',
@@ -1474,24 +418,28 @@ describe('citizenship component validation', () => {
     const tests = [
       {
         data: {
-          DocumentType: { value: '' },
+          CitizenshipStatus: { value: 'NotCitizen' },
+          DocumentType: { value: 'blah' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'NotCitizen' },
           DocumentType: { value: 'Yuppers' },
         },
         expected: false,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'NotCitizen' },
           DocumentType: { value: 'I-94' },
         },
         expected: true,
       },
       {
         data: {
+          CitizenshipStatus: { value: 'NotCitizen' },
           DocumentType: { value: 'Other' },
           Explanation: null,
         },
@@ -1499,6 +447,7 @@ describe('citizenship component validation', () => {
       },
       {
         data: {
+          CitizenshipStatus: { value: 'NotCitizen' },
           DocumentType: { value: 'Other' },
           Explanation: {
             value: 'Explanation',

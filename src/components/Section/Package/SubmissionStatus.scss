@@ -123,3 +123,13 @@
     }
   }
 }
+
+@media all and (max-width: 1000px) {
+  .submission-status .progress-container {
+    display: block;
+  }
+
+  .submission-status .progress-container .progress-outline {
+    width: 68%;
+  }
+}
