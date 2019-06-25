@@ -7,6 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/http"
 )
 
@@ -151,7 +152,7 @@ func TestLockedStatus(t *testing.T) {
 	}
 
 	var status struct {
-		Locked bool
+		Status string
 		Hash   string
 	}
 
@@ -160,8 +161,8 @@ func TestLockedStatus(t *testing.T) {
 		t.Fatal(jsonErr)
 	}
 
-	if status.Locked != true {
-		t.Log("The account should not be locked")
+	if status.Status != api.StatusSubmitted {
+		t.Log("The account should be locked:", status.Status)
 		t.Fail()
 	}
 

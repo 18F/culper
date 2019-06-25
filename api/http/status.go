@@ -20,7 +20,7 @@ type StatusHandler struct {
 // formStatusInfo represents extra information associated with the application
 // regarding its current state.
 type formStatusInfo struct {
-	Locked bool
+	Status string
 	Hash   string
 }
 
@@ -57,7 +57,7 @@ func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	status := formStatusInfo{
-		Locked: account.Locked,
+		Status: account.Status,
 		Hash:   hash,
 	}
 

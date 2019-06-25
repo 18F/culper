@@ -33,7 +33,7 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// If the account is locked then we cannot proceed
-	if account.Locked {
+	if account.Status == api.StatusSubmitted {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
 		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return
@@ -47,7 +47,14 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Lock the account
-	if err := account.Lock(service.Database); err != nil {
+	ok := account.Submit()
+	if !ok {
+		service.Log.Warn(api.AccountUpdateError, api.LogFields{"status": account.Status})
+		RespondWithStructuredError(w, api.AccountUpdateError, http.StatusInternalServerError)
+		return
+	}
+
+	if _, err := account.Save(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{})
 		RespondWithStructuredError(w, api.AccountUpdateError, http.StatusInternalServerError)
 		return

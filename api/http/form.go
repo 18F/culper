@@ -33,7 +33,7 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// If the account is locked then we cannot proceed
-	if account.Locked {
+	if account.Status == api.StatusSubmitted {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
 		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return

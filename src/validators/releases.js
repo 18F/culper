@@ -31,5 +31,5 @@ export const formIsSigned = (signatures = {}, hideHippaSection) => {
 
 export const formIsLocked = (store = {}) => {
   const settings = store.Settings || {}
-  return settings.locked
+  return settings.status === 'SUBMITTED'
 }

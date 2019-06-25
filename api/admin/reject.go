@@ -24,9 +24,8 @@ func NewRejecter(db api.DatabaseService, store api.StorageService, pdf api.PdfSe
 
 // Reject rejects the application for a given account
 func (r Rejecter) Reject(account api.Account) error {
-	err := account.Unlock(r.db)
-	if err != nil {
-		return errors.Wrap(err, "Reject failed to unlock account")
+	if !account.CanKickback() {
+		return errors.New("Account can't be rejected if it hasn't been submitted")
 	}
 
 	// TODO: port over PDF.RemovePdfs.
@@ -51,6 +50,16 @@ func (r Rejecter) Reject(account api.Account) error {
 	saveErr := r.store.UpdateApplication(app)
 	if saveErr != nil {
 		return errors.Wrap(saveErr, "Unable to save application after rejecting it")
+	}
+
+	ok := account.Kickback()
+	if !ok {
+		return errors.New("The account got into a bad state during the rejection.")
+	}
+
+	_, saveAccErr := account.Save(r.db, account.ID)
+	if saveAccErr != nil {
+		return errors.Wrap(saveAccErr, "couldn't save the account after changing the status")
 	}
 
 	return nil

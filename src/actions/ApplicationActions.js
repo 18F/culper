@@ -30,10 +30,10 @@ export function getApplicationState(done) {
       .status()
       .then((r) => {
         const statusData = (r || {}).data || {}
-        dispatch(updateApplication('Settings', 'locked', statusData.Locked))
+        dispatch(updateApplication('Settings', 'status', statusData.Status))
         dispatch(updateApplication('Settings', 'hash', statusData.Hash))
 
-        if (statusData.Locked) {
+        if (statusData.Status == 'SUBMITTED') {
           locked = true
           env.History().push('/locked')
         }

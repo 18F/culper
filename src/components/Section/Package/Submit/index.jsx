@@ -59,11 +59,11 @@ export class PackageSubmit extends React.Component {
         .then(() => api.status())
         .then((response = {}) => {
           const statusData = (response).data || {
-            Locked: false,
+            Status: 'INCOMPLETE',
             Hash: false,
           }
 
-          updateApplication('Settings', 'locked', statusData.Locked)
+          updateApplication('Settings', 'status', statusData.Status)
           updateApplication('Settings', 'hash', statusData.Hash)
 
           history.push('/form/package/print')
