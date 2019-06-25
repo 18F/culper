@@ -69,7 +69,7 @@ export default class ForeignNational extends ValidationElement {
 
   updateBirthdateNotApplicable = (value) => {
     this.update({
-      Birthday: value.applicable ? this.props.Birthday : {},
+      Birthdate: value.applicable ? this.props.Birthdate : {},
       BirthdateNotApplicable: value,
     })
   }
@@ -88,11 +88,17 @@ export default class ForeignNational extends ValidationElement {
     })
   }
 
-
   updateEmployerAddressNotApplicable = (value) => {
     this.update({
       EmployerAddress: value.applicable ? this.props.EmployerAddress : {},
       EmployerAddressNotApplicable: value,
+    })
+  }
+
+  updateAddressNotApplicable = (value) => {
+    this.update({
+      Address: value.applicable ? this.props.Address : {},
+      AddressNotApplicable: value,
     })
   }
 
