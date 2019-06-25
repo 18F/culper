@@ -50,6 +50,7 @@ export default class Supervisor extends ValidationElement {
   updateEmailNotApplicable(values) {
     this.update({
       EmailNotApplicable: values,
+      Email: values.applicable ? this.props.Email : {},
     })
   }
 
@@ -203,7 +204,7 @@ Supervisor.defaultProps = {
   Telephone: {},
   addressBooks: {},
   addressBook: 'Employment',
-  dispatch: (action) => {},
-  onUpdate: (queue) => {},
+  dispatch: () => {},
+  onUpdate: () => {},
   onError: (value, arr) => arr,
 }
