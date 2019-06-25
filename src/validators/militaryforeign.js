@@ -19,14 +19,12 @@ export class ForeignServiceValidator {
   constructor(data = {}) {
     const state = store.getState()
     const { formType } = state.application.Settings
-    this.data = {
-      ...data,
-      formType,
-    }
+    this.data = data
+    this.formType = formType
   }
 
   isValid() {
-    return validateModel(this.data, militaryForeign) === true
+    return validateModel(this.data, militaryForeign, { formType: this.formType }) === true
   }
 }
 
@@ -39,16 +37,19 @@ const militaryForeignModel = {
   },
 }
 
-const validateMilitaryForeign = data => (
-  validateModel(data, militaryForeignModel) === true
+const validateMilitaryForeign = (data, formType) => (
+  validateModel(data, militaryForeignModel, { formType }) === true
 )
 
 export default class MilitaryForeignValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   isValid() {
-    return validateMilitaryForeign(this.data)
+    return validateMilitaryForeign(this.data, this.formType)
   }
 }

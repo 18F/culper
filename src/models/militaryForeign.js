@@ -50,8 +50,8 @@ const militaryForeign = {
   Division: { presence: true, hasValue: true },
   Circumstances: { presence: true, hasValue: true },
   ReasonLeft: { presence: true, hasValue: true },
-  MaintainsContact: (value, attributes) => {
-    const { formType } = attributes
+  MaintainsContact: (value, attributes, attributeName, options) => {
+    const { formType } = options
     if (requireForeignMilitaryMaintainsContact(formType)) {
       return {
         presence: true,

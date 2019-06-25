@@ -31,18 +31,20 @@ describe('The foreign military model', () => {
   })
 
   it('requires MaintainsContact branch filled if SF86', () => {
-    const testData = { formType: 'SF86' }
+    const testData = {}
+    const options = { formType: 'SF86' }
     const expectedErrors = ['MaintainsContact.required']
 
-    expect(validateModel(testData, militaryForeign))
+    expect(validateModel(testData, militaryForeign, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('requires MaintainsContact branch filled if SF865P', () => {
-    const testData = { formType: 'SF85P' }
+    const testData = {}
+    const options = { formType: 'SF85P' }
     const expectedErrors = ['MaintainsContact.required']
 
-    expect(validateModel(testData, militaryForeign))
+    expect(validateModel(testData, militaryForeign, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
