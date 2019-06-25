@@ -13,15 +13,13 @@ import (
 type Rejecter struct {
 	db    api.DatabaseService
 	store api.StorageService
-	pdf   api.PdfService
 }
 
 // NewRejecter returns a configured Rejecter
-func NewRejecter(db api.DatabaseService, store api.StorageService, pdf api.PdfService) Rejecter {
+func NewRejecter(db api.DatabaseService, store api.StorageService) Rejecter {
 	return Rejecter{
 		db,
 		store,
-		pdf,
 	}
 }
 
