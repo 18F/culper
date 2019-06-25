@@ -9,6 +9,7 @@ storiesOf('CheckboxGroup', module)
   .add('default', () => (
     <CheckboxGroup
       className="option-list option-list-vertical"
+      selectedValues={['checkbox-1']}
     >
       <Checkbox
         name="checkbox-1"
