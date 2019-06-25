@@ -1,33 +1,39 @@
-import DateRangeValidator from './daterange'
-import {
-  validAccordion,
-  validGenericTextfield,
-  BranchCollection
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignBusinessConferences from 'models/foreignBusinessConferences'
+
+export const validateConferences = data => validateModel(data, foreignBusinessConferences) === true
+
+export const validateForeignBusinessConferences = (data) => {
+  const foreignBusinessConferencesModel = {
+    HasForeignConferences: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasForeignConferences && attributes.HasForeignConferences.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignBusinessConferences },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignBusinessConferencesModel) === true
+}
 
 export default class ForeignBusinessConferencesValidator {
   constructor(data = {}) {
-    this.hasForeignConferences = (data.HasForeignConferences || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasForeignConferences === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ConferencesValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignBusinessConferences(this.data)
   }
 }
 
 export class ConferencesValidator {
   constructor(data = {}) {
+    this.data = data
     this.description = data.Description
     this.sponsor = data.Sponsor
     this.city = data.City
@@ -38,57 +44,48 @@ export class ConferencesValidator {
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, {
+      Description: foreignBusinessConferences.Description,
+    }) === true
   }
 
   validSponsor() {
-    return !!this.sponsor && validGenericTextfield(this.sponsor)
+    return validateModel(this.data, {
+      Sponsor: foreignBusinessConferences.Sponsor,
+    }) === true
   }
 
   validCity() {
-    return !!this.city && validGenericTextfield(this.city)
+    return validateModel(this.data, {
+      City: foreignBusinessConferences.City,
+    }) === true
   }
 
   validCountry() {
-    return !!this.country && validGenericTextfield(this.country)
+    return validateModel(this.data, {
+      Country: foreignBusinessConferences.Country,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: foreignBusinessConferences.Dates,
+    }) === true
   }
 
   validPurpose() {
-    return !!this.purpose && validGenericTextfield(this.purpose)
+    return validateModel(this.data, {
+      Purpose: foreignBusinessConferences.Purpose,
+    }) === true
   }
 
   validContacts() {
-    if (!this.contacts) {
-      return false
-    }
-
-    const branchValidator = new BranchCollection(this.contacts.List)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
-
-    if (branchValidator.hasNo()) {
-      return true
-    }
-
-    return branchValidator.each(item => {
-      return validGenericTextfield(item.Explanation)
-    })
+    return validateModel(this.data, {
+      Contacts: foreignBusinessConferences.Contacts,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validDescription() &&
-      this.validSponsor() &&
-      this.validCity() &&
-      this.validCountry() &&
-      this.validDates() &&
-      this.validPurpose() &&
-      this.validContacts()
-    )
+    return validateConferences(this.data)
   }
 }

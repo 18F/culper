@@ -1,23 +1,33 @@
-import ForeignBenefitValidator from './foreignbenefit'
-import { validAccordion, validBranch } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignBenefit from 'models/foreignBenefit'
+
+export const validateForeignBenefitActivity = (data) => {
+  const foreignBenefitActivityModel = {
+    HasBenefits: {
+      presence: true,
+      hasValue: { validator: hasYesOrNo },
+    },
+    List: (value, attributes) => {
+      if (attributes.HasBenefits && attributes.HasBenefits.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignBenefit },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignBenefitActivityModel) === true
+}
 
 export default class ForeignBenefitActivityValidator {
   constructor(data = {}) {
-    data = data || {}
-    this.hasBenefits = (data.HasBenefits || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   isValid() {
-    if (!validBranch(this.hasBenefits)) {
-      return false
-    }
-    if (this.hasBenefits === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ForeignBenefitValidator(item).isValid()
-    })
+    return validateForeignBenefitActivity(this.data)
   }
 }

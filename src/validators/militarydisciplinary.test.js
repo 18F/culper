@@ -1,45 +1,45 @@
 import MilitaryDisciplinaryValidator, {
-  hideDisciplinaryProcedures
+  hideDisciplinaryProcedures,
 } from './militarydisciplinary'
 
-describe('Military disciplinary validation', function() {
+describe('Military disciplinary validation', () => {
   it('only display disciplinary procedures if military history is present', () => {
     const tests = [
       {
         store: {},
-        hidden: true
+        hidden: true,
       },
       {
         store: {
           Military: {
-            History: {}
-          }
+            History: {},
+          },
         },
-        hidden: true
-      },
-      {
-        store: {
-          Military: {
-            History: {
-              HasServed: { value: 'No' }
-            }
-          }
-        },
-        hidden: true
+        hidden: true,
       },
       {
         store: {
           Military: {
             History: {
-              HasServed: { value: 'Yes' }
-            }
-          }
+              HasServed: { value: 'No' },
+            },
+          },
         },
-        hidden: false
-      }
+        hidden: true,
+      },
+      {
+        store: {
+          Military: {
+            History: {
+              HasServed: { value: 'Yes' },
+            },
+          },
+        },
+        hidden: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(hideDisciplinaryProcedures(test.store)).toBe(test.hidden)
     })
   })
@@ -48,58 +48,64 @@ describe('Military disciplinary validation', function() {
     const tests = [
       {
         state: {
-          HasDisciplinary: { value: '' }
+          HasDisciplinary: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasDisciplinary: { value: 'No' }
+          HasDisciplinary: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasDisciplinary: { value: 'Yes' }
+          HasDisciplinary: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
+      {
+        state: {
+          HasDisciplinary: { value: 'Yaaassss' },
+        },
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new MilitaryDisciplinaryValidator(test.state, null).validDisciplinary()
       ).toBe(test.expected)
     })
   })
 
-  it('handle overall validity', function() {
+  it('handle overall validity', () => {
     const tests = [
       {
         state: {
-          HasDisciplinary: { value: 'Yes' }
+          HasDisciplinary: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasDisciplinary: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasDisciplinary: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -112,36 +118,36 @@ describe('Military disciplinary validation', function() {
                   Date: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Offenses: {
-                    value: 'Littering'
+                    value: 'Littering',
                   },
                   Name: {
-                    value: 'Local law'
+                    value: 'Local law',
                   },
                   Court: {
-                    value: 'In the Congo'
+                    value: 'In the Congo',
                   },
                   Outcome: {
-                    value: 'Lost my right hand'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Lost my right hand',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasDisciplinary: { value: 'No' }
+          HasDisciplinary: { value: 'No' },
         },
-        expected: true
+        expected: true,
       }
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new MilitaryDisciplinaryValidator(test.state, null).isValid()
       ).toBe(test.expected)

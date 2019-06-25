@@ -267,3 +267,11 @@
 .usa-form-control {
   margin-bottom: 1rem;
 }
+
+@media all and (max-width: 1200px) {
+  .field > .table,
+  .field > .table > .content,
+  .field > .table > .content > .component {
+    display: block;
+  }
+}

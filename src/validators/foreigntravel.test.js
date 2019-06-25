@@ -1,23 +1,23 @@
 import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
 import { battery } from './helpers'
 
-describe('Foreign travel component validation', function() {
+describe('Foreign travel component validation', () => {
   it('validate foreign travel country', () => {
     const tests = [
       {
         state: {
-          Country: {}
+          Country: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Country: {
-            value: 'Germany'
-          }
+            value: 'Germany',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validCountry')
@@ -27,9 +27,9 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Dates: {}
+          Dates: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -37,18 +37,18 @@ describe('Foreign travel component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validDates')
@@ -58,22 +58,22 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Days: { value: '' }
+          Days: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Days: { value: '00000' }
+          Days: { value: '00000' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Days: { value: '1-5' }
+          Days: { value: '1-5' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validDays')
@@ -83,22 +83,22 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Purpose: { values: [] }
+          Purpose: { values: [] },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Purpose: { values: ['Nothing'] }
+          Purpose: { values: ['Nothing'] },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Purpose: { values: ['Business', 'Family'] }
+          Purpose: { values: ['Business', 'Family'] },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validPurpose')
@@ -108,34 +108,34 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Questioned: { value: '' }
+          Questioned: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Questioned: { value: 'No' }
+          Questioned: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          Questioned: { value: 'Yes' },
-          QuestionedExplanation: {
-            value: ''
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           Questioned: { value: 'Yes' },
           QuestionedExplanation: {
-            value: 'some text'
-          }
+            value: '',
+          },
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Questioned: { value: 'Yes' },
+          QuestionedExplanation: {
+            value: 'some text',
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validQuestioned')
@@ -145,34 +145,34 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Encounter: { value: '' }
+          Encounter: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Encounter: { value: 'No' }
+          Encounter: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          Encounter: { value: 'Yes' },
-          EncounterExplanation: {
-            value: ''
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           Encounter: { value: 'Yes' },
           EncounterExplanation: {
-            value: 'some text'
-          }
+            value: '',
+          },
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Encounter: { value: 'Yes' },
+          EncounterExplanation: {
+            value: 'some text',
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validEncounter')
@@ -182,34 +182,34 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Contacted: { value: '' }
+          Contacted: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Contacted: { value: 'No' }
+          Contacted: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          Contacted: { value: 'Yes' },
-          ContactedExplanation: {
-            value: ''
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           Contacted: { value: 'Yes' },
           ContactedExplanation: {
-            value: 'some text'
-          }
+            value: '',
+          },
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Contacted: { value: 'Yes' },
+          ContactedExplanation: {
+            value: 'some text',
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validContacted')
@@ -219,34 +219,34 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Counter: { value: '' }
+          Counter: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Counter: { value: 'No' }
+          Counter: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          Counter: { value: 'Yes' },
-          CounterExplanation: {
-            value: ''
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           Counter: { value: 'Yes' },
           CounterExplanation: {
-            value: 'some text'
-          }
+            value: '',
+          },
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Counter: { value: 'Yes' },
+          CounterExplanation: {
+            value: 'some text',
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validCounter')
@@ -256,34 +256,34 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Interest: { value: '' }
+          Interest: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Interest: { value: 'No' }
+          Interest: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          Interest: { value: 'Yes' },
-          InterestExplanation: {
-            value: ''
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           Interest: { value: 'Yes' },
           InterestExplanation: {
-            value: 'some text'
-          }
+            value: '',
+          },
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Interest: { value: 'Yes' },
+          InterestExplanation: {
+            value: 'some text',
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validInterest')
@@ -293,34 +293,34 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Sensitive: { value: '' }
+          Sensitive: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Sensitive: { value: 'No' }
+          Sensitive: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          Sensitive: { value: 'Yes' },
-          SensitiveExplanation: {
-            value: ''
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           Sensitive: { value: 'Yes' },
           SensitiveExplanation: {
-            value: 'some text'
-          }
+            value: '',
+          },
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Sensitive: { value: 'Yes' },
+          SensitiveExplanation: {
+            value: 'some text',
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validSensitive')
@@ -330,34 +330,34 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Threatened: { value: '' }
+          Threatened: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Threatened: { value: 'No' }
+          Threatened: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          Threatened: { value: 'Yes' },
-          ThreatenedExplanation: {
-            value: ''
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           Threatened: { value: 'Yes' },
           ThreatenedExplanation: {
-            value: 'some text'
-          }
+            value: '',
+          },
         },
-        expected: true
-      }
+        expected: false,
+      },
+      {
+        state: {
+          Threatened: { value: 'Yes' },
+          ThreatenedExplanation: {
+            value: 'some text',
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, TravelValidator, 'validThreatened')
@@ -367,14 +367,20 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {},
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasForeignTravelOutside: { value: 'No' },
-          HasForeignTravelOfficial: { value: 'Yes' }
         },
-        expected: true
+        expected: true,
+      },
+      {
+        state: {
+          HasForeignTravelOutside: { value: 'No' },
+          HasForeignTravelOfficial: { value: 'Yes' },
+        },
+        expected: true,
       },
       {
         state: {
@@ -382,10 +388,10 @@ describe('Foreign travel component validation', function() {
           HasForeignTravelOfficial: { value: 'No' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -393,10 +399,10 @@ describe('Foreign travel component validation', function() {
           HasForeignTravelOfficial: { value: 'No' },
           List: {
             branch: { value: '' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -408,20 +414,20 @@ describe('Foreign travel component validation', function() {
               {
                 Item: {
                   Country: {
-                    value: 'Germany'
+                    value: 'Germany',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Days: { value: '1-5' },
                   Purpose: { values: ['Business', 'Family'] },
@@ -431,14 +437,14 @@ describe('Foreign travel component validation', function() {
                   Counter: { value: 'No' },
                   Interest: { value: 'No' },
                   Sensitive: { value: 'No' },
-                  Threatened: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Threatened: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignTravelValidator, 'isValid')

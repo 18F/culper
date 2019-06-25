@@ -1,23 +1,30 @@
-import ForeignIndirectInterestValidator from './foreignindirectinterest'
-import { validAccordion, validBranch } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignIndirectInterest from 'models/foreignIndirectInterest'
+
+export const validateForeignIndirectActivity = (data) => {
+  const foreignIndirectActivityModel = {
+    HasInterests: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasInterests && attributes.HasInterests.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignIndirectInterest },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignIndirectActivityModel) === true
+}
 
 export default class ForeignIndirectActivityValidator {
   constructor(data = {}) {
-    this.hasInterests = (data.HasInterests || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   isValid() {
-    if (!validBranch(this.hasInterests)) {
-      return false
-    }
-
-    if (this.hasInterests === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ForeignIndirectInterestValidator(item).isValid()
-    })
+    return validateForeignIndirectActivity(this.data)
   }
 }

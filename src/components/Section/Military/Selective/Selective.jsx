@@ -57,15 +57,21 @@ class Selective extends Subsection {
   }
 
   updateBornAfter(values) {
+    const {
+      HasRegistered, HasRegisteredNotApplicable, RegistrationNumber, Explanation,
+    } = this.props
     const emptyValue = { value: '' }
+    const wasBornAfterYes = values && values.value === 'Yes'
+
     // If there is no history clear out any previously entered data
     this.update({
       WasBornAfter: values,
-      HasRegistered:
-        values.value === 'Yes' ? this.props.HasRegistered : emptyValue,
-      RegistrationNumber:
-        values.value === 'Yes' ? this.props.RegistrationNumber : emptyValue,
-      Explanation: values.value === 'Yes' ? this.props.Explanation : emptyValue,
+      HasRegistered: wasBornAfterYes ? HasRegistered : emptyValue,
+      HasRegisteredNotApplicable: wasBornAfterYes
+        ? HasRegisteredNotApplicable
+        : { applicable: true },
+      RegistrationNumber: wasBornAfterYes ? RegistrationNumber : emptyValue,
+      Explanation: wasBornAfterYes ? Explanation : emptyValue,
     })
   }
 

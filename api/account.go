@@ -127,6 +127,10 @@ func (entity *Account) SetID(id int) {
 
 // Find will search for account by `username` if no identifier is present or by ID if it is.
 func (entity *Account) Find(context DatabaseService) error {
+	if entity.ExternalID != "" {
+		return entity.FindByExternalID(context)
+	}
+
 	if entity.ID == 0 {
 		return context.Where(entity, "Account.username = ?", entity.Username)
 	}
@@ -192,6 +196,17 @@ func (entity *Account) FormTypeIsKnown() bool {
 		}
 	}
 	return false
+}
+
+// DefaultFormVersion returns the most recent form version for the
+// given formType
+func DefaultFormVersion(formType string) (string, error) {
+	versions := knownFormVersions[formType]
+	if versions == nil {
+		return "", errors.New(fmt.Sprintf("No known form version for type: %s", formType))
+	}
+
+	return versions[0], nil
 }
 
 // BasicAuthentication checks if the username and password are valid and returns the users account

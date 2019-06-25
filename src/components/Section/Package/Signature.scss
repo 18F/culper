@@ -53,3 +53,9 @@
     }
   }
 }
+
+@media all and (max-width: 1000px) {
+  .signature .spacer {
+    width: 5%;
+  }
+}

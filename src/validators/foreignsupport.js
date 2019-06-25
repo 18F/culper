@@ -1,74 +1,80 @@
-import NameValidator from './name'
-import LocationValidator from './location'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignSupport from 'models/foreignSupport'
+
+export const validateSupport = data => (
+  validateModel(data, foreignSupport) === true
+)
+
+export const validateForeignActivitiesSupport = (data) => {
+  const foreignActivitiesSupportModel = {
+    HasForeignSupport: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasForeignSupport && attributes.HasForeignSupport.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignSupport },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignActivitiesSupportModel) === true
+}
 
 export default class ForeignActivitiesSupportValidator {
   constructor(data = {}) {
-    this.hasForeignSupport = (data.HasForeignSupport || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasForeignSupport === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new SupportValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignActivitiesSupport(this.data)
   }
 }
 
 export class SupportValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.address = data.Address
-    this.relationship = data.Relationship
-    this.amount = data.Amount
-    this.frequency = data.Frequency
-    this.citizenship = data.Citizenship
+    this.data = data
   }
 
   validName() {
-    return !!this.name && new NameValidator(this.name).isValid()
+    return validateModel(this.data, {
+      Name: foreignSupport.Name,
+    }) === true
   }
 
   validAddress() {
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, {
+      Address: foreignSupport.Address,
+    }) === true
   }
 
   validRelationship() {
-    return !!this.relationship && validGenericTextfield(this.relationship)
+    return validateModel(this.data, {
+      Relationship: foreignSupport.Relationship,
+    }) === true
   }
 
   validAmount() {
-    return !!this.amount && validGenericTextfield(this.amount)
+    return validateModel(this.data, {
+      Amount: foreignSupport.Amount,
+    }) === true
   }
 
   validFrequency() {
-    return !!this.frequency && validGenericTextfield(this.frequency)
+    return validateModel(this.data, {
+      Frequency: foreignSupport.Frequency,
+    }) === true
   }
 
   validCitizenship() {
-    return (
-      !!this.citizenship &&
-      !!this.citizenship.value &&
-      this.citizenship.value.length > 0
-    )
+    return validateModel(this.data, {
+      Citizenship: foreignSupport.Citizenship,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validAddress() &&
-      this.validRelationship() &&
-      this.validAmount() &&
-      this.validFrequency() &&
-      this.validCitizenship()
-    )
+    return validateSupport(this.data)
   }
 }

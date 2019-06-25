@@ -1,6 +1,6 @@
 .datecontrol {
-  display: inline-block !important;
-  width: auto !important;
+  display: inline-block;
+  width: auto;
 
   .month,
   .day,
@@ -28,13 +28,16 @@
   }
 }
 
-@media all and (max-width: 980px) {
-
+@media all and (max-width: 1200px) {
+  .datecontrol-container {
+    display: flex;
+  }
   .datecontrol {
+    width: 100%;
     .month,
     .day,
     .year {
-      width: 100%;
+      width: auto;
     }
   }
 }

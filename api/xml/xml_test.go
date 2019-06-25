@@ -340,6 +340,13 @@ func TestScenario10(t *testing.T) {
 	executeScenario(t, "test10")
 }
 
+// `test11` is a clone of `test8` with certain revisions.
+// `test11` is for:
+// * Having an applicant that has ForeignBorn (aka USByBirthOutsideUS) citizenship and has a U.S. Passport
+func TestScenario11(t *testing.T) {
+	executeScenario(t, "test11")
+}
+
 // executeScenario generates XML from JSON test fixtures for a complete
 // applicant scenario and compares the result with XML reference files.
 // It is a coarse and unforgiving test; anything less than an exact match,

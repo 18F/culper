@@ -61,6 +61,11 @@
       <BornOnBase>
         <Answer>{{branch $citizenship.BornOnMilitaryInstallation}}</Answer>
       </BornOnBase>
+      <MilitaryBase>
+        <Comment></Comment>
+        <Name>{{text $citizenship.MilitaryBase}}</Name>
+      </MilitaryBase>
+      {{if branch $passport.HasPassports | eq "No"}}
       <CitizenshipCertificate>
         <CertificateNumber>{{text $citizenship.CertificateNumber}}</CertificateNumber>
         <DateIssued>
@@ -69,10 +74,6 @@
         <IssuedName>{{name $citizenship.CertificateName}}</IssuedName>
       </CitizenshipCertificate>
       <Comment></Comment>
-      <MilitaryBase>
-        <Comment></Comment>
-        <Name>{{text $citizenship.MilitaryBase}}</Name>
-      </MilitaryBase>
       <StateDeptForm240>
         <DatePrepared>
           <Date Type="{{dateEstimated $citizenship.DocumentIssued}}">{{date $citizenship.DocumentIssued}}</Date>
@@ -83,6 +84,7 @@
         <OtherExplanation>{{textarea $citizenship.Explanation}}</OtherExplanation>
         <Place>{{locationOverrideLayout $citizenship.PlaceIssued "Birthplace without County CountriesNoUS"}}</Place>
       </StateDeptForm240>
+      {{end}}
       {{end}}
       {{if radio $citizenship.CitizenshipStatus | eq "Naturalized"}}
       <NaturalizationCertificate>
