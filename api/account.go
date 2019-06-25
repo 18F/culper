@@ -30,9 +30,12 @@ var knownFormVersions = map[string][]string{
 }
 
 const (
+	// StatusIncomplete indicates that the submission is INCOMPLETE
 	StatusIncomplete = "INCOMPLETE"
-	StatusSubmitted  = "SUBMITTED"
-	StatusKickback   = "KICKBACK"
+	// StatusSubmitted indicates that the submission is SUBMITTED
+	StatusSubmitted = "SUBMITTED"
+	// StatusKickback indicates that the submission is KICKBACK
+	StatusKickback = "KICKBACK"
 )
 
 // Account represents a user account
@@ -139,6 +142,7 @@ func (entity *Account) FindByExternalID(context DatabaseService) error {
 	return context.Where(entity, "Account.external_id = ?", entity.ExternalID)
 }
 
+// CanSubmit returns wether the account is in a valid state for submission
 func (entity *Account) CanSubmit() bool {
 	if entity.Status == StatusSubmitted {
 		return false
@@ -161,6 +165,7 @@ func (entity *Account) Unsubmit() {
 	entity.Status = StatusIncomplete
 }
 
+// CanKickback returns wether the account is in a valid state for kickback
 func (entity *Account) CanKickback() bool {
 	if entity.Status != StatusSubmitted {
 		return false

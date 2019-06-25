@@ -54,7 +54,7 @@ func (r Rejecter) Reject(account api.Account) error {
 
 	ok := account.Kickback()
 	if !ok {
-		return errors.New("The account got into a bad state during the rejection.")
+		return errors.New("The account got into a bad state during the rejection")
 	}
 
 	_, saveAccErr := account.Save(r.db, account.ID)
