@@ -3,7 +3,11 @@ import financialBankruptcy from '../financialBankruptcy'
 
 describe('The financial bankruptcy model', () => {
   it('has required fields', () => {
-    const testData = {}
+    const testData = {
+      DateDischargedNotApplicable: {
+        applicable: true,
+      },
+    }
     const expectedErrors = [
       'PetitionType.required',
       'CourtAddress.required',
@@ -12,6 +16,7 @@ describe('The financial bankruptcy model', () => {
       'TotalAmount.required',
       'DateFiled.required',
       'NameDebt.required',
+      'DateDischarged.required',
       'HasDischargeExplanation.required',
       'DischargeExplanation.required',
     ]
@@ -22,6 +27,9 @@ describe('The financial bankruptcy model', () => {
 
   it('requires a valid PetitionType', () => {
     const testData = {
+      DateDischargedNotApplicable: {
+        applicable: true,
+      },
       PetitionType: {
         value: 'InvalidType',
       },
@@ -33,7 +41,7 @@ describe('The financial bankruptcy model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('requires a DischargeDate if applicable', () => {
+  it('requires a DateDischarged if applicable', () => {
     const testData = {
       DateDischargedNotApplicable: {
         applicable: true,
