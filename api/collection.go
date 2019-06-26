@@ -196,6 +196,34 @@ func (entity *Collection) ClearBranchItemsNo(firstKey string, additionalKeys ...
 	return nil
 }
 
+// ClearNestedHasNo goes through all the items in the collection, pulls out
+// the named nested collection and clears its Has' No
+func (entity *Collection) ClearNestedHasNo(itemName string) error {
+
+	// loop through all items.
+	if entity != nil {
+		for _, item := range entity.Items {
+			collectionItem, repErr := item.GetItemValue(itemName)
+			if repErr != nil {
+				return repErr
+			}
+
+			nestedCollection := collectionItem.(*Collection)
+
+			clearErr := nestedCollection.ClearBranchItemsNo("Has")
+			if clearErr != nil {
+				return clearErr
+			}
+
+			setErr := item.SetItemValue(itemName, nestedCollection)
+			if setErr != nil {
+				return setErr
+			}
+		}
+	}
+	return nil
+}
+
 // ClearBranchNo clears the no of the list's branch
 // This is a convience wrapper that checks nil first.
 func (entity *Collection) ClearBranchNo() {

@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"errors"
 )
 
 // PsychologicalCompetence represents the payload for the psychological competence section.
@@ -74,26 +73,9 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 func (entity *PsychologicalCompetence) ClearNos() error {
 	entity.IsIncompetent.ClearNo()
 
-	for _, incident := range entity.List.Items {
-		appealsItem, getErr := incident.GetItemValue("Appeals")
-		if getErr != nil {
-			return getErr
-		}
-
-		appeals, ok := appealsItem.(*Collection)
-		if !ok {
-			return errors.New("Unexpected type found trying to clear the competence appeals")
-		}
-
-		clearErr := appeals.ClearBranchItemsNo("Has")
-		if clearErr != nil {
-			return clearErr
-		}
-
-		setErr := incident.SetItemValue("Appeals", appealsItem)
-		if setErr != nil {
-			return setErr
-		}
+	nestedErr := entity.List.ClearNestedHasNo("Appeals")
+	if nestedErr != nil {
+		return nestedErr
 	}
 
 	entity.List.ClearBranchNo()
@@ -169,26 +151,9 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 func (entity *PsychologicalConsultations) ClearNos() error {
 	entity.Consulted.ClearNo()
 
-	for _, incident := range entity.List.Items {
-		appealsItem, getErr := incident.GetItemValue("Appeals")
-		if getErr != nil {
-			return getErr
-		}
-
-		appeals, ok := appealsItem.(*Collection)
-		if !ok {
-			return errors.New("Unexpected type found trying to clear the consultation appeals")
-		}
-
-		clearErr := appeals.ClearBranchItemsNo("Has")
-		if clearErr != nil {
-			return clearErr
-		}
-
-		setErr := incident.SetItemValue("Appeals", appealsItem)
-		if setErr != nil {
-			return setErr
-		}
+	nestedErr := entity.List.ClearNestedHasNo("Appeals")
+	if nestedErr != nil {
+		return nestedErr
 	}
 
 	entity.List.ClearBranchNo()

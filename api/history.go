@@ -2,8 +2,6 @@ package api
 
 import (
 	"encoding/json"
-
-	"github.com/pkg/errors"
 )
 
 // HistoryResidence represents the payload for the history residence section.
@@ -117,28 +115,10 @@ func (entity *HistoryEmployment) Valid() (bool, error) {
 func (entity *HistoryEmployment) ClearNos() error {
 	entity.EmploymentRecord.ClearNo()
 
-	// loop through all the records of employment.
-	if entity.List != nil {
-		for _, employmentInstance := range entity.List.Items {
-			reprimandsEntity, repErr := employmentInstance.GetItemValue("Reprimand")
-			if repErr != nil {
-				return errors.Wrap(repErr, "Failed to pull a reprimand from an employment instance")
-			}
-
-			reprimands := reprimandsEntity.(*Collection)
-
-			clearErr := reprimands.ClearBranchItemsNo("Has")
-			if clearErr != nil {
-				return clearErr
-			}
-
-			setErr := employmentInstance.SetItemValue("Reprimand", reprimands)
-			if setErr != nil {
-				return setErr
-			}
-		}
+	nestedErr := entity.List.ClearNestedHasNo("Reprimand")
+	if nestedErr != nil {
+		return nestedErr
 	}
-
 	entity.List.ClearBranchNo()
 
 	return nil
