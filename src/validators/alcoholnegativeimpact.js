@@ -1,50 +1,40 @@
-import DateRangeValidator from './daterange'
-import {
-  validAccordion,
-  validBranch,
-  validGenericTextfield,
-  validGenericMonthYear
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import alcoholNegativeImpact from 'models/alcoholNegativeImpact'
+
+export const validateNegativeImpact = data => (
+  validateModel(data, alcoholNegativeImpact) === true
+)
+
+export const validateNegativeImpacts = (data) => {
+  const negativeImpactsModel = {
+    HasImpacts: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasImpacts && attributes.HasImpacts.value === 'Yes') {
+        return { presence: true, accordion: { validator: alcoholNegativeImpact } }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, negativeImpactsModel) === true
+}
 
 export default class NegativeImpactsValidator {
   constructor(data = {}) {
-    this.hasImpacts = (data.HasImpacts || {}).value
-    this.list = data.List || {}
-  }
-
-  validHasImpacts() {
-    return validBranch(this.hasImpacts)
-  }
-
-  validNegativeImpacts() {
-    if (this.validHasImpacts() && this.hasImpacts === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new NegativeImpactValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validHasImpacts() && this.validNegativeImpacts()
+    return validateNegativeImpacts(this.data)
   }
 }
 
 export class NegativeImpactValidator {
   constructor(data = {}) {
-    this.occurred = data.Occurred
-    this.circumstances = data.Circumstances
-    this.negativeImpact = data.NegativeImpact
-    this.used = data.Used
+    this.data = data
   }
 
   isValid() {
-    return (
-      validGenericMonthYear(this.occurred) &&
-      validGenericTextfield(this.circumstances) &&
-      validGenericTextfield(this.negativeImpact) &&
-      new DateRangeValidator(this.used).isValid()
-    )
+    return validateNegativeImpact(this.data)
   }
 }
