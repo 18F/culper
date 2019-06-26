@@ -312,39 +312,9 @@ func (entity *ForeignTravel) ClearNos() error {
 		entity.HasForeignTravelOfficial.Value = ""
 	}
 
-	questionedErr := entity.List.ClearBranchItemsNo("Questioned")
-	if questionedErr != nil {
-		return errors.Wrap(questionedErr, "Couldn't clear Questioned")
-	}
-
-	encounterErr := entity.List.ClearBranchItemsNo("Encounter")
-	if encounterErr != nil {
-		return errors.Wrap(encounterErr, "Couldn't clear Encounter")
-	}
-
-	contactErr := entity.List.ClearBranchItemsNo("Contacted")
-	if contactErr != nil {
-		return errors.Wrap(contactErr, "Couldn't clear Contacted")
-	}
-
-	counterErr := entity.List.ClearBranchItemsNo("Counter")
-	if counterErr != nil {
-		return errors.Wrap(counterErr, "Couldn't clear Counter")
-	}
-
-	interestErr := entity.List.ClearBranchItemsNo("Interest")
-	if interestErr != nil {
-		return errors.Wrap(interestErr, "Couldn't clear Interest")
-	}
-
-	sensitiveErr := entity.List.ClearBranchItemsNo("Sensitive")
-	if sensitiveErr != nil {
-		return errors.Wrap(sensitiveErr, "Couldn't clear Sensitive")
-	}
-
-	threatErr := entity.List.ClearBranchItemsNo("Threatened")
-	if threatErr != nil {
-		return errors.Wrap(threatErr, "Couldn't clear Threatened")
+	listErr := entity.List.ClearBranchItemsNo("Questioned", "Encounter", "Contacted", "Counter", "Interest", "Sensitive", "Threatened")
+	if listErr != nil {
+		return errors.Wrap(listErr, fmt.Sprintf("Couldn't clear the travel list"))
 	}
 
 	entity.List.ClearBranchNo()

@@ -143,19 +143,9 @@ func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
 func (entity *SubstanceDrugPurchase) ClearNos() error {
 	entity.Involved.ClearNo()
 
-	clearEmployErr := entity.List.ClearBranchItemsNo("InvolvementWhileEmployed")
-	if clearEmployErr != nil {
-		return clearEmployErr
-	}
-
-	clearClearErr := entity.List.ClearBranchItemsNo("InvolvementWithClearance")
-	if clearClearErr != nil {
-		return clearClearErr
-	}
-
-	clearFutureErr := entity.List.ClearBranchItemsNo("InvolvementInFuture")
-	if clearFutureErr != nil {
-		return clearFutureErr
+	listErr := entity.List.ClearBranchItemsNo("InvolvementWhileEmployed", "InvolvementWithClearance", "InvolvementInFuture")
+	if listErr != nil {
+		return listErr
 	}
 
 	entity.List.ClearBranchNo()
@@ -671,14 +661,9 @@ func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
 func (entity *SubstanceAlcoholOrdered) ClearNos() error {
 	entity.HasBeenOrdered.ClearNo()
 
-	clearErr := entity.List.ClearBranchItemsNo("ActionTaken")
-	if clearErr != nil {
-		return clearErr
-	}
-
-	clearErr = entity.List.ClearBranchItemsNo("CompletedTreatment")
-	if clearErr != nil {
-		return clearErr
+	listErr := entity.List.ClearBranchItemsNo("ActionTaken", "CompletedTreatment")
+	if listErr != nil {
+		return listErr
 	}
 
 	entity.List.ClearBranchNo()

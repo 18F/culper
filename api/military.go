@@ -336,14 +336,9 @@ func (entity *MilitaryForeign) Valid() (bool, error) {
 // ClearNos clears any questions answered nos on a kickback
 func (entity *MilitaryForeign) ClearNos() error {
 
-	hasErr := entity.List.ClearBranchItemsNo("Has")
-	if hasErr != nil {
-		return errors.Wrap(hasErr, "couldn't clear the military has")
-	}
-
-	contactErr := entity.List.ClearBranchItemsNo("MaintainsContact")
-	if contactErr != nil {
-		return errors.Wrap(contactErr, "Couldn't clear the foreign contacts")
+	listErr := entity.List.ClearBranchItemsNo("Has", "MaintainsContact")
+	if listErr != nil {
+		return errors.Wrap(listErr, "couldn't clear the military has")
 	}
 
 	return nil
