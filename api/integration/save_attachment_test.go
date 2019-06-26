@@ -137,12 +137,7 @@ func TestListNoAttachments(t *testing.T) {
 		Store:    services.store,
 	}
 
-	indexReq := httptest.NewRequest("GET", "/me/attachments/", nil)
-
-	getAuthCtx := http.SetAccountIDInRequestContext(indexReq, account.ID)
-	indexReq = indexReq.WithContext(getAuthCtx)
-
-	w := httptest.NewRecorder()
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account.ID)
 
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 
