@@ -1,4 +1,4 @@
-import eyeColorOptions from 'constants/enums/eyeColorOptions'
+import { eyeColorOptions } from 'constants/enums/physicalOptions'
 
 const eyeColor = {
   value: {

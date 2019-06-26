@@ -2,6 +2,8 @@ import { validateModel } from 'models/validate'
 import phone from 'models/shared/phone'
 import email from 'models/shared/email'
 
+// TODO - clean this up
+
 export const validateContactEmail = data => (
   validateModel(data, email) === true
 )
