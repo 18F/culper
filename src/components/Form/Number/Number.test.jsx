@@ -1,22 +1,22 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import Number from './Number'
 
 describe('The number component', () => {
   it('default value is not numeric displays as empty', () => {
     const expected = {
       name: 'input-type-text',
-      value: 'four score and seven years'
+      value: 'four score and seven years',
     }
-    const component = mount(<Number {...expected} />)
-    expect(component.find({ type: 'text', value: '' }).length).toEqual(1)
+    const component = shallow(<Number {...expected} />)
+    expect(component.instance().sanitizedInput(expected.value)).toEqual('')
   })
 
   it('validates minimum value', () => {
     const expected = {
       name: 'input-type-text',
       value: '1',
-      min: '10'
+      min: '10',
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('blur')
@@ -27,7 +27,7 @@ describe('The number component', () => {
     const expected = {
       name: 'input-type-text',
       value: '100',
-      max: '10'
+      max: '10',
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('blur')
@@ -38,7 +38,7 @@ describe('The number component', () => {
     const expected = {
       name: 'input-type-text',
       value: '100',
-      maxlength: '1'
+      maxlength: '1',
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('blur')
@@ -49,12 +49,10 @@ describe('The number component', () => {
     const expected = {
       name: 'input-type-text',
       value: '100',
-      maxlength: '4'
+      maxlength: '4',
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('change', { target: { value: '100a' } })
-    expect(
-      component.find({ type: 'text', value: expected.value }).length
-    ).toEqual(1)
+    expect(component.find(Number).props().value).toEqual(expected.value)
   })
 })

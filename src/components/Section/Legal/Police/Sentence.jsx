@@ -56,12 +56,14 @@ export default class Sentence extends ValidationElement {
 
   updateIncarcerationDatesNA = (values) => {
     this.update({
+      IncarcerationDates: values.applicable ? this.props.IncarcerationDates : {},
       IncarcerationDatesNA: values,
     })
   }
 
   updateProbationDatesNA = (values) => {
     this.update({
+      ProbationDates: values.applicable ? this.props.ProbationDates : {},
       ProbationDatesNA: values,
     })
   }
