@@ -34,6 +34,8 @@ const usPassport = {
 
     return validations
   },
+  // TODO issue date must be >= DOB, <= NOW
+  // TODO expiration date must be >= issue date, can be in the future
   Dates: (value, attributes) => (
     checkValue(attributes.HasPassports, 'No')
       ? {}

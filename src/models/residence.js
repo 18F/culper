@@ -17,19 +17,23 @@ const residenceRequiresReference = (dates = {}) => {
 }
 
 const residence = {
+  // TODO from must be >= DOB, to must be <= NOW
   Dates: {
     presence: true,
     daterange: true,
   },
+  // TODO no PO box allowed
   Address: {
     presence: true,
     location: { validator: address },
   },
 
   AlternateAddress: {
-    // TODO - currently no validation in place
-    // - figure out required/not required
-    // - valid address
+    // TODO required if Address is APO/FPO/DPO or if Address is outside of US and APO/FPO is yes
+    // TODO no PO box allowed
+    // TODO must be valid physical address
+    // US: Street/Unit/Duty/Location, City/Post name, State, Zip, Country
+    // Foreign: APO/FPO: address, APO/FPO/DPo, state, zipcode
   },
 
   Role: {
@@ -53,6 +57,7 @@ const residence = {
       }
       : {}
   ),
+  // TODO must be >= DOB, <= NOW
   ReferenceLastContact: (value, attributes = {}) => (
     residenceRequiresReference(attributes.Dates)
       ? {
@@ -131,9 +136,7 @@ const residence = {
       } : {}
   ),
   ReferenceAlternateAddress: {
-    // TODO - currently no validation in place
-    // - figure out required/not required
-    // - valid address
+    // TODO same validations as AlternateAddress
   },
 }
 

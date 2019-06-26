@@ -4,7 +4,9 @@ import name from 'models/shared/name'
 import foreignPassportTravel from 'models/foreignPassportTravel'
 
 const foreignPassport = {
+  // TODO country inclusion?
   Country: { presence: true, hasValue: true },
+  // TODO must be >= DOB, <= NOW
   Issued: { presence: true, date: true },
   Location: {
     presence: true,
@@ -15,6 +17,7 @@ const foreignPassport = {
     model: { validator: name },
   },
   Number: { presence: true, hasValue: true },
+  // TODO must be >= issued date
   Expiration: { presence: true, date: true },
   Used: { presence: true, hasValue: { validator: hasYesOrNo } },
   Countries: (value, attributes) => (
