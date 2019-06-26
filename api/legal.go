@@ -59,8 +59,8 @@ func (entity *LegalCourt) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalCourt) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalCourt) ClearNoBranches() error {
 	entity.HasCourtActions.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -123,8 +123,8 @@ func (entity *LegalPoliceOffenses) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalPoliceOffenses) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalPoliceOffenses) ClearNoBranches() error {
 	entity.HasOffenses.ClearNo()
 
 	clearErr := entity.List.ClearBranchItemsNo("WasCharged")
@@ -193,8 +193,8 @@ func (entity *LegalPoliceAdditionalOffenses) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalPoliceAdditionalOffenses) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalPoliceAdditionalOffenses) ClearNoBranches() error {
 	entity.HasOtherOffenses.ClearNo()
 
 	clearErr := entity.List.ClearBranchItemsNo("WasSentenced")
@@ -262,8 +262,8 @@ func (entity *LegalPoliceDomesticViolence) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalPoliceDomesticViolence) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalPoliceDomesticViolence) ClearNoBranches() error {
 	entity.HasDomesticViolence.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -326,8 +326,8 @@ func (entity *LegalInvestigationsDebarred) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalInvestigationsDebarred) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalInvestigationsDebarred) ClearNoBranches() error {
 	entity.HasDebarment.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -390,8 +390,8 @@ func (entity *LegalInvestigationsHistory) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalInvestigationsHistory) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalInvestigationsHistory) ClearNoBranches() error {
 	entity.HasHistory.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -454,8 +454,8 @@ func (entity *LegalInvestigationsRevoked) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalInvestigationsRevoked) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalInvestigationsRevoked) ClearNoBranches() error {
 	entity.HasRevocations.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -518,8 +518,8 @@ func (entity *LegalTechnologyManipulating) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalTechnologyManipulating) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalTechnologyManipulating) ClearNoBranches() error {
 	entity.HasManipulating.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -582,8 +582,8 @@ func (entity *LegalTechnologyUnauthorized) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalTechnologyUnauthorized) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalTechnologyUnauthorized) ClearNoBranches() error {
 	entity.HasUnauthorized.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -646,8 +646,8 @@ func (entity *LegalTechnologyUnlawful) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalTechnologyUnlawful) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalTechnologyUnlawful) ClearNoBranches() error {
 	entity.HasUnlawful.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -710,8 +710,8 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalAssociationsActivitiesToOverthrow) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsActivitiesToOverthrow) ClearNoBranches() error {
 	entity.HasActivities.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -774,8 +774,8 @@ func (entity *LegalAssociationsAdvocating) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalAssociationsAdvocating) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsAdvocating) ClearNoBranches() error {
 	entity.HasAdvocated.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -838,8 +838,8 @@ func (entity *LegalAssociationsEngagedInTerrorism) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalAssociationsEngagedInTerrorism) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsEngagedInTerrorism) ClearNoBranches() error {
 	entity.HasEngaged.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -902,8 +902,8 @@ func (entity *LegalAssociationsMembershipOverthrow) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalAssociationsMembershipOverthrow) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsMembershipOverthrow) ClearNoBranches() error {
 	entity.HasOverthrow.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -966,8 +966,8 @@ func (entity *LegalAssociationsMembershipViolence) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalAssociationsMembershipViolence) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsMembershipViolence) ClearNoBranches() error {
 	entity.HasViolence.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -1030,8 +1030,8 @@ func (entity *LegalAssociationsTerrorismAssociation) Valid() (bool, error) {
 	return entity.Explanation.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalAssociationsTerrorismAssociation) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsTerrorismAssociation) ClearNoBranches() error {
 	entity.HasTerrorism.ClearNo()
 	return nil
 }
@@ -1093,8 +1093,8 @@ func (entity *LegalAssociationsTerroristOrganization) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *LegalAssociationsTerroristOrganization) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsTerroristOrganization) ClearNoBranches() error {
 	entity.HasTerrorist.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil

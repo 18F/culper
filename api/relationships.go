@@ -92,8 +92,8 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *RelationshipsMarital) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *RelationshipsMarital) ClearNoBranches() error {
 
 	if entity.CivilUnion != nil {
 		entity.CivilUnion.Separated.ClearNo()
@@ -182,8 +182,8 @@ func (entity *RelationshipsCohabitants) Valid() (bool, error) {
 	return entity.CohabitantList.Valid()
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *RelationshipsCohabitants) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *RelationshipsCohabitants) ClearNoBranches() error {
 
 	entity.HasCohabitant.ClearNo()
 
@@ -234,8 +234,8 @@ func (entity *RelationshipsPeople) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *RelationshipsPeople) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *RelationshipsPeople) ClearNoBranches() error {
 
 	entity.List.ClearBranchNo()
 
@@ -283,8 +283,8 @@ func (entity *RelationshipsRelatives) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *RelationshipsRelatives) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *RelationshipsRelatives) ClearNoBranches() error {
 
 	deceasedErr := entity.List.ClearBranchItemsNo("IsDeceased")
 	if deceasedErr != nil {

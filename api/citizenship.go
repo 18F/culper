@@ -439,8 +439,8 @@ func (entity *CitizenshipStatus) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *CitizenshipStatus) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipStatus) ClearNoBranches() error {
 
 	if entity.CitizenshipStatus != nil {
 		entity.CitizenshipStatus.Value = ""
@@ -516,8 +516,8 @@ func (entity *CitizenshipMultiple) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *CitizenshipMultiple) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipMultiple) ClearNoBranches() error {
 
 	entity.HasMultiple.ClearNo()
 
@@ -573,8 +573,8 @@ func (entity *CitizenshipPassports) Valid() (bool, error) {
 	return entity.Passports.Valid()
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *CitizenshipPassports) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipPassports) ClearNoBranches() error {
 
 	listErr := entity.Passports.ClearBranchItemsNo("Has", "Used")
 	if listErr != nil {

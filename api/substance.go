@@ -67,8 +67,8 @@ func (entity *SubstanceDrugUsage) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceDrugUsage) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceDrugUsage) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -139,8 +139,8 @@ func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceDrugPurchase) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceDrugPurchase) ClearNoBranches() error {
 	entity.Involved.ClearNo()
 
 	listErr := entity.List.ClearBranchItemsNo("InvolvementWhileEmployed", "InvolvementWithClearance", "InvolvementInFuture")
@@ -217,8 +217,8 @@ func (entity *SubstanceDrugClearance) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceDrugClearance) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceDrugClearance) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -289,8 +289,8 @@ func (entity *SubstanceDrugPublicSafety) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceDrugPublicSafety) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceDrugPublicSafety) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -361,8 +361,8 @@ func (entity *SubstanceDrugMisuse) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceDrugMisuse) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceDrugMisuse) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -433,8 +433,8 @@ func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceDrugOrdered) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceDrugOrdered) ClearNoBranches() error {
 	entity.TreatmentOrdered.ClearNo()
 	clearErr := entity.List.ClearBranchItemsNo("ActionTaken")
 	if clearErr != nil {
@@ -509,8 +509,8 @@ func (entity *SubstanceDrugVoluntary) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceDrugVoluntary) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceDrugVoluntary) ClearNoBranches() error {
 	entity.TreatmentVoluntary.ClearNo()
 	clearErr := entity.List.ClearBranchItemsNo("TreatmentCompleted")
 	if clearErr != nil {
@@ -585,8 +585,8 @@ func (entity *SubstanceAlcoholNegative) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceAlcoholNegative) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceAlcoholNegative) ClearNoBranches() error {
 	entity.HasImpacts.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -657,8 +657,8 @@ func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceAlcoholOrdered) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceAlcoholOrdered) ClearNoBranches() error {
 	entity.HasBeenOrdered.ClearNo()
 
 	listErr := entity.List.ClearBranchItemsNo("ActionTaken", "CompletedTreatment")
@@ -735,8 +735,8 @@ func (entity *SubstanceAlcoholVoluntary) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceAlcoholVoluntary) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceAlcoholVoluntary) ClearNoBranches() error {
 	entity.SoughtTreatment.ClearNo()
 
 	clearErr := entity.List.ClearBranchItemsNo("CompletedTreatment")
@@ -813,8 +813,8 @@ func (entity *SubstanceAlcoholAdditional) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *SubstanceAlcoholAdditional) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *SubstanceAlcoholAdditional) ClearNoBranches() error {
 	entity.ReceivedTreatment.ClearNo()
 
 	clearErr := entity.List.ClearBranchItemsNo("CompletedTreatment")

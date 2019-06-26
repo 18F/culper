@@ -69,8 +69,8 @@ func (entity *FinancialBankruptcy) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *FinancialBankruptcy) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *FinancialBankruptcy) ClearNoBranches() error {
 	entity.HasBankruptcy.ClearNo()
 
 	clearErr := entity.List.ClearBranchItemsNo("HasDischargeExplanation")
@@ -147,8 +147,8 @@ func (entity *FinancialGambling) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *FinancialGambling) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *FinancialGambling) ClearNoBranches() error {
 	entity.HasGamblingDebt.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -219,8 +219,8 @@ func (entity *FinancialTaxes) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *FinancialTaxes) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *FinancialTaxes) ClearNoBranches() error {
 	entity.HasTaxes.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -291,8 +291,8 @@ func (entity *FinancialCard) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *FinancialCard) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *FinancialCard) ClearNoBranches() error {
 	entity.HasCardAbuse.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -363,8 +363,8 @@ func (entity *FinancialCredit) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *FinancialCredit) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *FinancialCredit) ClearNoBranches() error {
 	entity.HasCreditCounseling.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -435,8 +435,8 @@ func (entity *FinancialDelinquent) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *FinancialDelinquent) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *FinancialDelinquent) ClearNoBranches() error {
 	entity.HasDelinquent.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -507,8 +507,8 @@ func (entity *FinancialNonpayment) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *FinancialNonpayment) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *FinancialNonpayment) ClearNoBranches() error {
 	entity.HasNonpayment.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil

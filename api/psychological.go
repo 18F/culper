@@ -69,8 +69,8 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *PsychologicalCompetence) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalCompetence) ClearNoBranches() error {
 	entity.IsIncompetent.ClearNo()
 
 	nestedErr := entity.List.ClearNestedHasNo("Appeals")
@@ -147,8 +147,8 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *PsychologicalConsultations) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalConsultations) ClearNoBranches() error {
 	entity.Consulted.ClearNo()
 
 	nestedErr := entity.List.ClearNestedHasNo("Appeals")
@@ -275,8 +275,8 @@ func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *PsychologicalDiagnoses) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalDiagnoses) ClearNoBranches() error {
 	entity.Diagnosed.ClearNo()
 	entity.DiagnosisList.ClearBranchNo()
 	entity.DidNotConsult.ClearNo()
@@ -350,8 +350,8 @@ func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *PsychologicalHospitalizations) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalHospitalizations) ClearNoBranches() error {
 	entity.Hospitalized.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
