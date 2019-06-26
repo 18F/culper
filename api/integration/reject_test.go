@@ -78,6 +78,12 @@ func TestDeleteSingaturePDFs(t *testing.T) {
 		t.Fatal("submit didn't succeed")
 	}
 
+	// reload account now that it's been submitted.
+	loadErr := account.Find(services.db)
+	if loadErr != nil {
+		t.Fatal(loadErr)
+	}
+
 	// Reject this submission
 	rejector := admin.NewRejecter(services.db, services.store)
 	err := rejector.Reject(account)

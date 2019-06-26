@@ -33,6 +33,7 @@ func TestAccountPersistence(t *testing.T) {
 		Email:       "buzz1@example.com",
 		FormType:    "SF86",
 		FormVersion: "2017-07",
+		Status:      api.StatusIncomplete,
 		ExternalID:  uuid.New().String(),
 	}
 

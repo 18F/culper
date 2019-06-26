@@ -27,16 +27,11 @@ func NewSubmitter(db api.DatabaseService, store api.StorageService, xml api.XMLS
 // FilesForSubmission returns the XML and any Attachments for submission.
 func (s Submitter) FilesForSubmission(accountID int) ([]byte, []api.Attachment, error) {
 
-	// check that the acount isn't locked
 	// Get the account information from the data store
 	account := api.Account{ID: accountID}
 	_, accountErr := account.Get(s.db, accountID)
 	if accountErr != nil {
 		return []byte{}, []api.Attachment{}, accountErr
-	}
-
-	if account.Locked {
-		return []byte{}, []api.Attachment{}, errors.New("Account is locked")
 	}
 
 	application, appErr := s.store.LoadApplication(accountID)

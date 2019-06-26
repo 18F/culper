@@ -1,5 +1,6 @@
 import { env } from 'config'
 import { api } from 'services'
+import { STATUS_SUBMITTED } from 'constants/enums/applicationStatuses'
 
 import * as actionTypes from 'constants/actionTypes'
 
@@ -30,10 +31,10 @@ export function getApplicationState(done) {
       .status()
       .then((r) => {
         const statusData = (r || {}).data || {}
-        dispatch(updateApplication('Settings', 'locked', statusData.Locked))
+        dispatch(updateApplication('Settings', 'status', statusData.Status))
         dispatch(updateApplication('Settings', 'hash', statusData.Hash))
 
-        if (statusData.Locked) {
+        if (statusData.Status === STATUS_SUBMITTED) {
           locked = true
           env.History().push('/locked')
         }
@@ -51,7 +52,6 @@ export function getApplicationState(done) {
 
             dispatch(updateApplication('Settings', 'formType', formType))
             dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
-            dispatch(updateApplication('Settings', 'status', window.status))
             dispatch(setFormData(formData, done))
           })
       })

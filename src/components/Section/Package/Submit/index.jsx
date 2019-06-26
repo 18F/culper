@@ -80,7 +80,7 @@ export class PackageSubmit extends React.Component {
           Hash: false,
         }
 
-        updateApplication('Settings', 'locked', statusData.Locked)
+        updateApplication('Settings', 'status', statusData.Status)
         updateApplication('Settings', 'hash', statusData.Hash)
 
         this.setState({

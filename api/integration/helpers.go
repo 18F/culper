@@ -103,7 +103,7 @@ func createLockedTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 		Email:       email,
 		FormType:    "SF86",
 		FormVersion: "2017-07",
-		Locked:      true,
+		Status:      api.StatusSubmitted,
 		ExternalID:  uuid.New().String(),
 	}
 
@@ -125,6 +125,7 @@ func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 		Email:       email,
 		FormType:    "SF86",
 		FormVersion: "2017-07",
+		Status:      api.StatusIncomplete,
 		ExternalID:  uuid.New().String(),
 	}
 

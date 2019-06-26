@@ -25,9 +25,8 @@ func NewRejecter(db api.DatabaseService, store api.StorageService) Rejecter {
 
 // Reject rejects the application for a given account
 func (r Rejecter) Reject(account api.Account) error {
-	err := account.Unlock(r.db)
-	if err != nil {
-		return errors.Wrap(err, "Reject failed to unlock account")
+	if !account.CanKickback() {
+		return errors.New("Account can't be rejected if it hasn't been submitted")
 	}
 
 	// Load the application, clear the nos, save the application.
@@ -79,6 +78,17 @@ func (r Rejecter) Reject(account api.Account) error {
 		joinedErrs := strings.Join(errStrings, ", ")
 
 		return errors.New(fmt.Sprintf("Got an error deleting %d documents: [%s]", len(deletionErrors), joinedErrs))
+	}
+
+	// Update the account status to "KICKBACK"
+	ok := account.Kickback()
+	if !ok {
+		return errors.New("The account got into a bad state during the rejection")
+	}
+
+	_, saveAccErr := account.Save(r.db, account.ID)
+	if saveAccErr != nil {
+		return errors.Wrap(saveAccErr, "couldn't save the account after changing the status")
 	}
 
 	return nil

@@ -8,6 +8,7 @@ import * as sections from 'constants/sections'
 import { hideSelectiveService } from 'validators/selectiveservice'
 import { hideDisciplinaryProcedures } from 'validators/militarydisciplinary'
 import { hideExistingConditions } from 'validators/psychological'
+import { formIsLocked } from 'validators'
 
 import { formHasErrors, reduceSubsections } from 'helpers/navigation'
 
@@ -57,27 +58,21 @@ const getSectionCompleted = (state, props) => {
   ))
 }
 
-const getFormLocked = (state) => {
-  const { application } = state
-  const { Settings } = application
-  return Settings && Settings.locked
-}
-
 const getSectionLocked = (state, props) => {
   const { section } = props
-  const formIsLocked = getFormLocked(state)
+  const formLocked = formIsLocked(state.application)
 
   // Special cases
   switch (section.key) {
     case sections.REVIEW_AND_SUBMIT_SUBMIT: {
-      return formIsLocked || formHasErrors(state)
+      return formLocked || formHasErrors(state)
     }
 
     case sections.REVIEW_AND_SUBMIT_PRINT:
-      return !formIsLocked
+      return !formLocked
 
     default:
-      return formIsLocked
+      return formLocked
   }
 }
 

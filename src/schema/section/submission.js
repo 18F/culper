@@ -22,7 +22,6 @@ export const submission = (data = {}) => {
     }),
     Attachments: form.general('submission.attachments', {
       Method: form.text(attachmentType)
-    }),
-    Locked: data.Locked
+    })
   }
 }

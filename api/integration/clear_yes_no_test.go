@@ -21,6 +21,14 @@ func TestClearEmptyAccount(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
+	// Hacky, but seems OK for these tests. Technically you shouldn't be able to submit
+	// anything but a complete application, but I think it's ok to make these tests smaller.
+	account.Submit()
+	_, saveErr := account.Save(services.db, account.ID)
+	if saveErr != nil {
+		t.Fatal(saveErr)
+	}
+
 	rejector := admin.NewRejecter(services.db, services.store)
 
 	err := rejector.Reject(account)
@@ -105,6 +113,14 @@ func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName s
 	resp := saveJSON(services, json, account.ID)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save JSON", resp.StatusCode)
+	}
+
+	// Hacky, but seems OK for these tests. Technically you shouldn't be able to submit
+	// anything but a complete application, but I think it's ok to make these tests smaller.
+	account.Submit()
+	_, saveErr := account.Save(services.db, account.ID)
+	if saveErr != nil {
+		t.Fatal(saveErr)
 	}
 
 	rejector := admin.NewRejecter(services.db, services.store)
@@ -1034,6 +1050,14 @@ func TestClearComplexSectionNos(t *testing.T) {
 			resp := saveJSON(services, sectionJSON, account.ID)
 			if resp.StatusCode != 200 {
 				t.Fatal("Failed to save JSON", resp.StatusCode)
+			}
+
+			// Hacky, but seems OK for these tests. Technically you shouldn't be able to submit
+			// anything but a complete application, but I think it's ok to make these tests smaller.
+			account.Submit()
+			_, saveErr := account.Save(services.db, account.ID)
+			if saveErr != nil {
+				t.Fatal(saveErr)
 			}
 
 			rejector := admin.NewRejecter(services.db, services.store)
