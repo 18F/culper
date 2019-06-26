@@ -177,7 +177,7 @@ func (entity *PsychologicalConsultations) ClearNos() error {
 
 		appeals, ok := appealsItem.(*Collection)
 		if !ok {
-			return errors.New("Unexpected type found trying to clear the competence appeals")
+			return errors.New("Unexpected type found trying to clear the consultation appeals")
 		}
 
 		clearErr := appeals.ClearBranchItemsNo("Has")
