@@ -152,8 +152,8 @@ func (entity *ForeignPassport) Valid() (bool, error) {
 	return true, nil
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignPassport) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignPassport) ClearNoBranches() error {
 	entity.HasPassports.ClearNo()
 
 	return nil
@@ -216,8 +216,8 @@ func (entity *ForeignContacts) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignContacts) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignContacts) ClearNoBranches() error {
 	entity.HasForeignContacts.ClearNo()
 
 	itemErr := entity.List.ClearBranchItemsNo("HasAffiliations")
@@ -303,8 +303,8 @@ func (entity *ForeignTravel) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignTravel) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignTravel) ClearNoBranches() error {
 	entity.HasForeignTravelOutside.ClearNo()
 
 	// One of the few "Yes" answers that must be cleared
@@ -312,39 +312,9 @@ func (entity *ForeignTravel) ClearNos() error {
 		entity.HasForeignTravelOfficial.Value = ""
 	}
 
-	questionedErr := entity.List.ClearBranchItemsNo("Questioned")
-	if questionedErr != nil {
-		return errors.Wrap(questionedErr, "Couldn't clear Questioned")
-	}
-
-	encounterErr := entity.List.ClearBranchItemsNo("Encounter")
-	if encounterErr != nil {
-		return errors.Wrap(encounterErr, "Couldn't clear Encounter")
-	}
-
-	contactErr := entity.List.ClearBranchItemsNo("Contacted")
-	if contactErr != nil {
-		return errors.Wrap(contactErr, "Couldn't clear Contacted")
-	}
-
-	counterErr := entity.List.ClearBranchItemsNo("Counter")
-	if counterErr != nil {
-		return errors.Wrap(counterErr, "Couldn't clear Counter")
-	}
-
-	interestErr := entity.List.ClearBranchItemsNo("Interest")
-	if interestErr != nil {
-		return errors.Wrap(interestErr, "Couldn't clear Interest")
-	}
-
-	sensitiveErr := entity.List.ClearBranchItemsNo("Sensitive")
-	if sensitiveErr != nil {
-		return errors.Wrap(sensitiveErr, "Couldn't clear Sensitive")
-	}
-
-	threatErr := entity.List.ClearBranchItemsNo("Threatened")
-	if threatErr != nil {
-		return errors.Wrap(threatErr, "Couldn't clear Threatened")
+	listErr := entity.List.ClearBranchItemsNo("Questioned", "Encounter", "Contacted", "Counter", "Interest", "Sensitive", "Threatened")
+	if listErr != nil {
+		return errors.Wrap(listErr, fmt.Sprintf("Couldn't clear the travel list"))
 	}
 
 	entity.List.ClearBranchNo()
@@ -409,8 +379,8 @@ func (entity *ForeignActivitiesBenefits) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignActivitiesBenefits) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignActivitiesBenefits) ClearNoBranches() error {
 
 	entity.HasBenefits.ClearNo()
 
@@ -501,8 +471,8 @@ func (entity *ForeignActivitiesDirect) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignActivitiesDirect) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignActivitiesDirect) ClearNoBranches() error {
 
 	entity.HasInterests.ClearNo()
 
@@ -588,8 +558,8 @@ func (entity *ForeignActivitiesIndirect) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignActivitiesIndirect) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignActivitiesIndirect) ClearNoBranches() error {
 
 	entity.HasInterests.ClearNo()
 
@@ -656,8 +626,8 @@ func (entity *ForeignActivitiesRealEstate) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignActivitiesRealEstate) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignActivitiesRealEstate) ClearNoBranches() error {
 
 	entity.HasInterests.ClearNo()
 
@@ -724,8 +694,8 @@ func (entity *ForeignActivitiesSupport) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignActivitiesSupport) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignActivitiesSupport) ClearNoBranches() error {
 
 	entity.HasForeignSupport.ClearNo()
 
@@ -792,8 +762,8 @@ func (entity *ForeignBusinessAdvice) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessAdvice) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessAdvice) ClearNoBranches() error {
 	entity.HasForeignAdvice.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -856,8 +826,8 @@ func (entity *ForeignBusinessConferences) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessConferences) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessConferences) ClearNoBranches() error {
 	entity.HasForeignConferences.ClearNo()
 
 	for _, eventItem := range entity.List.Items {
@@ -939,8 +909,8 @@ func (entity *ForeignBusinessContact) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessContact) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessContact) ClearNoBranches() error {
 	entity.HasForeignContact.ClearNo()
 
 	for _, subsequentItem := range entity.List.Items {
@@ -1022,8 +992,8 @@ func (entity *ForeignBusinessEmployment) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessEmployment) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessEmployment) ClearNoBranches() error {
 	entity.HasForeignEmployment.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -1086,8 +1056,8 @@ func (entity *ForeignBusinessFamily) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessFamily) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessFamily) ClearNoBranches() error {
 	entity.HasForeignFamily.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -1150,8 +1120,8 @@ func (entity *ForeignBusinessPolitical) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessPolitical) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessPolitical) ClearNoBranches() error {
 	entity.HasForeignPolitical.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -1214,8 +1184,8 @@ func (entity *ForeignBusinessSponsorship) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessSponsorship) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessSponsorship) ClearNoBranches() error {
 	entity.HasForeignSponsorship.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -1278,8 +1248,8 @@ func (entity *ForeignBusinessVentures) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessVentures) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessVentures) ClearNoBranches() error {
 	entity.HasForeignVentures.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil
@@ -1342,8 +1312,8 @@ func (entity *ForeignBusinessVoting) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *ForeignBusinessVoting) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *ForeignBusinessVoting) ClearNoBranches() error {
 	entity.HasForeignVoting.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil

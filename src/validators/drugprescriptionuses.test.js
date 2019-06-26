@@ -1,49 +1,200 @@
-import DrugPrescriptionUsesValidator from './drugprescriptionuses'
+import DrugPrescriptionUsesValidator, {
+  validateDrugPrescriptionUses,
+} from './drugprescriptionuses'
 
-describe('Drug Prescription Validation', function() {
-  it('should validate drug prescription misuse', function() {
+describe('validateDrugPrescriptionUses function', () => {
+  describe('for the SF-86', () => {
+    it('fails if missing required fields', () => {
+      const testData = {
+        MisusedDrugs: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                InvolvementDates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: false,
+                },
+                PrescriptionName: {
+                  value: 'Foo',
+                },
+                Reason: {
+                  value: 'The reason',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateDrugPrescriptionUses(testData, 'SF86')).toEqual(false)
+    })
+
+    it('passes valid data', () => {
+      const testData = {
+        MisusedDrugs: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                InvolvementDates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: false,
+                },
+                PrescriptionName: {
+                  value: 'Foo',
+                },
+                Reason: {
+                  value: 'The reason',
+                },
+                UseWhileEmployed: { value: 'Yes' },
+                UseWithClearance: { value: 'Yes' },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateDrugPrescriptionUses(testData, 'SF86')).toEqual(true)
+    })
+  })
+
+  describe('for the SF-85', () => {
+    it('fails if missing required fields', () => {
+      const testData = {
+        MisusedDrugs: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                InvolvementDates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: false,
+                },
+                PrescriptionName: {
+                  value: 'Foo',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateDrugPrescriptionUses(testData, 'SF85')).toEqual(false)
+    })
+
+    it('passes valid data', () => {
+      const testData = {
+        MisusedDrugs: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                InvolvementDates: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2010',
+                  },
+                  to: {
+                    month: '1',
+                    day: '1',
+                    year: '2012',
+                  },
+                  present: false,
+                },
+                PrescriptionName: {
+                  value: 'Foo',
+                },
+                Reason: {
+                  value: 'The reason',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateDrugPrescriptionUses(testData, 'SF85')).toEqual(true)
+    })
+  })
+})
+
+describe('Drug Prescription Validation', () => {
+  it('should validate drug prescription misuse', () => {
     const tests = [
       {
         data: {
-          MisusedDrugs: { value: 'Nope' }
+          MisusedDrugs: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          MisusedDrugs: { value: 'No' }
+          MisusedDrugs: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{ DrugUse: {} }]
-          }
+            items: [{ DrugUse: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{ DrugUse: {} }]
-          }
+            items: [{ DrugUse: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -57,32 +208,32 @@ describe('Drug Prescription Validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   PrescriptionName: {
-                    value: 'Foo'
+                    value: 'Foo',
                   },
                   Reason: {
-                    value: 'The reason'
+                    value: 'The reason',
                   },
                   UseWhileEmployed: { value: 'Yes' },
-                  UseWithClearance: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  UseWithClearance: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DrugPrescriptionUsesValidator(test.data).isValid()).toBe(
         test.expected
       )

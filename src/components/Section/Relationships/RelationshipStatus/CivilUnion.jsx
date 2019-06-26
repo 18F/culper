@@ -457,6 +457,7 @@ class CivilUnion extends ValidationElement {
                   label={i18n.t('relationships.civilUnion.notApplicable.label')}
                   or={i18n.m('relationships.civilUnion.notApplicable.or')}
                   onUpdate={values => this.update({
+                    AddressSeparated: values.applicable ? this.props.AddressSeparated : {},
                     AddressSeparatedNotApplicable: values,
                   })}
                   onError={this.props.onError}

@@ -7,7 +7,7 @@ import {
   Field,
   Location,
   Telephone,
-  NotApplicable
+  NotApplicable,
 } from '../../../Form'
 
 export default class Supervisor extends ValidationElement {
@@ -31,54 +31,60 @@ export default class Supervisor extends ValidationElement {
       EmailNotApplicable: this.props.EmailNotApplicable,
       Address: this.props.Address,
       Telephone: this.props.Telephone,
-      ...queue
+      ...queue,
     })
   }
 
   updateSupervisorName(values) {
     this.update({
-      SupervisorName: values
+      SupervisorName: values,
     })
   }
 
   updateTitle(values) {
     this.update({
-      Title: values
+      Title: values,
     })
   }
 
   updateEmailNotApplicable(values) {
     this.update({
-      EmailNotApplicable: values
+      EmailNotApplicable: values,
+      Email: values.applicable ? this.props.Email : {},
     })
   }
 
   updateEmail(values) {
     this.update({
-      Email: values
+      Email: values,
     })
   }
 
   updateAddress(values) {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
   updateTelephone(values) {
     this.update({
-      Telephone: values
+      Telephone: values,
     })
   }
 
   render() {
+    const supervisorTitleLabel = this.props.nonMilitary
+      ? i18n.t('history.employment.default.supervisor.heading.titleNonMilitary')
+      : i18n.t('history.employment.default.supervisor.heading.title')
+
     return (
       <div className="supervisor">
         <Field
           title={i18n.t('history.employment.default.supervisor.heading.name')}
           titleSize="h4"
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="SupervisorName"
             className="text full-width supervisor-name"
@@ -90,10 +96,11 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field
-          title={i18n.t('history.employment.default.supervisor.heading.title')}
+          title={supervisorTitleLabel}
           titleSize="h4"
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Title"
             {...this.props.Title}
@@ -108,8 +115,9 @@ export default class Supervisor extends ValidationElement {
           title={i18n.t('history.employment.default.supervisor.heading.email')}
           titleSize="h4"
           adjustFor="label"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="EmailNotApplicable"
             {...this.props.EmailNotApplicable}
@@ -117,7 +125,8 @@ export default class Supervisor extends ValidationElement {
             label={i18n.t('reference.label.idk')}
             or={i18n.m('reference.para.or')}
             onUpdate={this.updateEmailNotApplicable}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <Email
               name="Email"
               {...this.props.Email}
@@ -138,10 +147,11 @@ export default class Supervisor extends ValidationElement {
             'history.employment.default.supervisor.heading.address'
           )}
           titleSize="h4"
-          optional={true}
+          optional
           help="history.employment.default.supervisor.address.help"
           adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="Address"
             {...this.props.Address}
@@ -150,10 +160,10 @@ export default class Supervisor extends ValidationElement {
             )}
             className="supervisor-address"
             layout={Location.ADDRESS}
-            geocode={true}
+            geocode
             addressBooks={this.props.addressBooks}
             addressBook={this.props.addressBook}
-            showPostOffice={true}
+            showPostOffice
             dispatch={this.props.dispatch}
             onUpdate={this.updateAddress}
             onError={this.props.onError}
@@ -168,7 +178,8 @@ export default class Supervisor extends ValidationElement {
           titleSize="h4"
           className="override-required"
           adjustFor="telephone"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Telephone
             name="Telephone"
             {...this.props.Telephone}
@@ -193,9 +204,7 @@ Supervisor.defaultProps = {
   Telephone: {},
   addressBooks: {},
   addressBook: 'Employment',
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

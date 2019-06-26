@@ -7,7 +7,7 @@ import {
   RadioGroup,
   Radio,
   Field,
-  Show
+  Show,
 } from '../../../Form'
 
 export class DiplomaItem extends ValidationElement {
@@ -25,25 +25,25 @@ export class DiplomaItem extends ValidationElement {
       Diploma: this.props.Diploma,
       DiplomaOther: this.props.DiplomaOther,
       Date: this.props.Date,
-      ...queue
+      ...queue,
     })
   }
 
   updateDiploma(values) {
     this.update({
-      Diploma: values
+      Diploma: values,
     })
   }
 
   updateDiplomaOther(values) {
     this.update({
-      DiplomaOther: values
+      DiplomaOther: values,
     })
   }
 
   updateDate(values) {
     this.update({
-      Date: values
+      Date: values,
     })
   }
 
@@ -55,13 +55,15 @@ export class DiplomaItem extends ValidationElement {
           titleSize="h4"
           help="history.education.help.diploma"
           adjustFor="big-buttons"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <RadioGroup
             className="diploma option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
-            selectedValue={(this.props.Diploma || {}).value}>
+            selectedValue={(this.props.Diploma || {}).value}
+          >
             <Radio
               name="diploma-highschool"
               className="diploma-highschool"
@@ -121,10 +123,11 @@ export class DiplomaItem extends ValidationElement {
           </RadioGroup>
           <Show when={(this.props.Diploma || {}).value === 'Other'}>
             <Field
-              title={i18n.t('history.education.label.diploma.other')}
+              title={i18n.t('history.education.label.diploma.otherDiploma')}
               titleSize="label"
               adjustFor="text"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="DiplomaOther"
                 {...this.props.DiplomaOther}
@@ -143,14 +146,15 @@ export class DiplomaItem extends ValidationElement {
           titleSize="h4"
           help="history.education.help.date"
           adjustFor="label"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          shrink
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
             name="Date"
             {...this.props.Date}
             className="date-awarded"
-            minDateEqualTo={true}
-            hideDay={true}
+            minDateEqualTo
+            hideDay
             onUpdate={this.updateDate}
             onError={this.props.onError}
             required={this.props.required}
@@ -165,8 +169,6 @@ DiplomaItem.defaultProps = {
   Diploma: {},
   DiplomaOther: {},
   Date: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: (queue) => {},
+  onError: (value, arr) => arr,
 }

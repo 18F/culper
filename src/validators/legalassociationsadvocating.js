@@ -1,42 +1,56 @@
-import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import terrorismAdvocate from 'models/terrorismAdvocate'
+
+export const validateAdvocate = data => (
+  validateModel(data, terrorismAdvocate) === true
+)
+
+export const validateLegalAssociationAdvocate = (data) => {
+  const legalAssociationAdvocateModel = {
+    HasAdvocated: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasAdvocated && attributes.HasAdvocated.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: terrorismAdvocate },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, legalAssociationAdvocateModel) === true
+}
 
 export default class LegalAssociationAdvocatingValidator {
   constructor(data = {}) {
-    this.hasAdvocated = (data.HasAdvocated || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasAdvocated === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new AdvocatingValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalAssociationAdvocate(this.data)
   }
 }
 
 export class AdvocatingValidator {
   constructor(data = {}) {
-    this.reasons = data.Reasons
-    this.dates = data.Dates
+    this.data = data
   }
 
   validReasons() {
-    return !!this.reasons && validGenericTextfield(this.reasons)
+    return validateModel(this.data, {
+      Reasons: terrorismAdvocate.Reasons,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: terrorismAdvocate.Dates,
+    }) === true
   }
 
   isValid() {
-    return this.validReasons() && this.validDates()
+    return validateAdvocate(this.data)
   }
 }

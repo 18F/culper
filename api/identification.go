@@ -334,8 +334,8 @@ func (entity *IdentificationOtherNames) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos Implements the Rejector interface and clears any nos on applicaiton kickback
-func (entity *IdentificationOtherNames) ClearNos() error {
+// ClearNoBranches Implements the Rejector interface and clears any nos on applicaiton kickback
+func (entity *IdentificationOtherNames) ClearNoBranches() error {
 
 	entity.HasOtherNames.ClearNo()
 	entity.List.ClearBranchNo()

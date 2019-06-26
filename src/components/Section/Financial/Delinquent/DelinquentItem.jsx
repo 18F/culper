@@ -103,6 +103,7 @@ export default class DelinquentItem extends ValidationElement {
 
   updateResolvedNotApplicable = (values) => {
     this.update({
+      Resolved: values.applicable ? this.props.Resolved : {},
       ResolvedNotApplicable: values,
     })
   }

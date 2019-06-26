@@ -1,7 +1,7 @@
 import CompetenceValidator from './competence'
 import Location from '../components/Form/Location'
 
-describe('Competence validation', function() {
+describe('Competence validation', () => {
   it('validates competence', () => {
     const tests = [
       {
@@ -13,7 +13,7 @@ describe('Competence validation', function() {
               {
                 Item: {
                   CourtName: {
-                    value: 'Circuit Court'
+                    value: 'Circuit Court',
                   },
                   CourtAddress: {
                     country: { value: 'United States' },
@@ -21,55 +21,89 @@ describe('Competence validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Disposition: {
-                    value: 'Stuff'
+                    value: 'Stuff',
                   },
                   Occurred: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Appeals: {
-                    items: [{ Item: { Has: { value: 'No' } } }]
-                  }
-                }
-              }
-            ]
-          }
+                    items: [{ Item: { Has: { value: 'No' } } }],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
+      },
+      {
+        data: {
+          IsIncompetent: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  CourtName: {
+                    value: 'Circuit Court',
+                  },
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS,
+                  },
+                  Occurred: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                  },
+                  Appeals: {
+                    items: [{ Item: { Has: { value: 'No' } } }],
+                  },
+                },
+              },
+            ],
+          },
+        },
+        expected: true,
       },
       {
         data: {
           List: {
             branch: { value: 'No' },
-            items: []
+            items: [],
           },
-          IsIncompetent: { value: 'Yes' }
+          IsIncompetent: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           List: {
             branch: { value: 'No' },
-            items: []
+            items: [],
           },
-          IsIncompetent: { value: 'No' }
+          IsIncompetent: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           List: {
             branch: { value: 'No' },
-            items: []
+            items: [],
           },
-          IsIncompetent: { value: 'Nope' }
+          IsIncompetent: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -86,28 +120,28 @@ describe('Competence validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Disposition: {
-                    value: 'Stuff'
+                    value: 'Stuff',
                   },
                   Occurred: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Appeals: {
-                    items: [{ Item: { Has: { value: 'No' } } }]
-                  }
-                }
-              }
-            ]
-          }
+                    items: [{ Item: { Has: { value: 'No' } } }],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CompetenceValidator(test.data).isValid()).toBe(test.expected)
     })
   })

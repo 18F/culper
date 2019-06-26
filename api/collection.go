@@ -167,24 +167,57 @@ func (ci *CollectionItem) SetItemValue(key string, value Entity) error {
 
 }
 
-// ClearBranchItemsNo goes through every item in the collection, pulls out a branch
-// with the given name and clears its no
-func (entity *Collection) ClearBranchItemsNo(key string) error {
+// ClearBranchItemsNo goes through every item in the collection, pulls out all the branches
+// with the given name and clears the no
+func (entity *Collection) ClearBranchItemsNo(firstKey string, additionalKeys ...string) error {
+	allKeys := append([]string{firstKey}, additionalKeys...)
+
 	if entity != nil {
 		for _, item := range entity.Items {
 
-			value, itemErr := item.GetItemValue(key)
-			if itemErr != nil {
-				return errors.Wrap(itemErr, fmt.Sprintf("Failed to pull out a %s", key))
+			for _, key := range allKeys {
+
+				value, itemErr := item.GetItemValue(key)
+				if itemErr != nil {
+					return errors.Wrap(itemErr, fmt.Sprintf("Failed to pull out a %s", key))
+				}
+
+				branch := value.(*Branch)
+				if branch.Value == "No" {
+					branch.Value = ""
+					setErr := item.SetItemValue(key, branch)
+					if setErr != nil {
+						return errors.Wrap(setErr, fmt.Sprintf("Failed to set a %s", key))
+					}
+				}
+			}
+		}
+	}
+	return nil
+}
+
+// ClearNestedHasNo goes through all the items in the collection, pulls out
+// the named nested collection and clears its Has' No
+func (entity *Collection) ClearNestedHasNo(itemName string) error {
+
+	// loop through all items.
+	if entity != nil {
+		for _, item := range entity.Items {
+			collectionItem, repErr := item.GetItemValue(itemName)
+			if repErr != nil {
+				return repErr
 			}
 
-			branch := value.(*Branch)
-			if branch.Value == "No" {
-				branch.Value = ""
-				setErr := item.SetItemValue(key, branch)
-				if setErr != nil {
-					return errors.Wrap(setErr, fmt.Sprintf("Failed to set a %s", key))
-				}
+			nestedCollection := collectionItem.(*Collection)
+
+			clearErr := nestedCollection.ClearBranchItemsNo("Has")
+			if clearErr != nil {
+				return clearErr
+			}
+
+			setErr := item.SetItemValue(itemName, nestedCollection)
+			if setErr != nil {
+				return setErr
 			}
 		}
 	}

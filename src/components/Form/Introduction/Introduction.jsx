@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import * as formTypes from 'constants/formTypes'
 import { i18n } from '../../../config'
 import { updateApplication } from '../../../actions/ApplicationActions'
 import { logout } from '../../../actions/AuthActions'
 import Branch from '../Branch'
 import Modal from '../Modal'
 import Show from '../Show'
-import * as formTypes from 'constants/formTypes'
 
 export class Introduction extends React.Component {
   constructor(props) {
@@ -48,17 +48,21 @@ export class Introduction extends React.Component {
     const accepted = (this.props.settings.acceptedTerms || {}).value === 'Yes'
 
     let introductionContent = ''
-    switch(this.props.formType) {
+    let acceptancePara = ''
+    switch (this.props.formType) {
       case formTypes.SF86: {
         introductionContent = i18n.m('introduction.contents')
+        acceptancePara = i18n.m('introduction.acceptance.para')
         break
       }
       case formTypes.SF85: {
         introductionContent = i18n.m('introduction.contents85')
+        acceptancePara = i18n.m('introduction.acceptance.para85')
         break
       }
       default: {
         introductionContent = i18n.m('introduction.contents')
+        acceptancePara = i18n.m('introduction.acceptance.para')
       }
     }
     return (
@@ -67,7 +71,8 @@ export class Introduction extends React.Component {
           className="introduction-content"
           show={!accepted || this.props.forceOpen}
           closeable={this.props.forceOpen}
-          onDismiss={this.props.onDismiss}>
+          onDismiss={this.props.onDismiss}
+        >
           <div>
             <div className="introduction-legal">
               {introductionContent}
@@ -80,10 +85,11 @@ export class Introduction extends React.Component {
                 {...this.props.settings.acceptedTerms}
                 yesAriaLabel={i18n.t('introduction.acceptance.aria.yes')}
                 noAriaLabel={i18n.t('introduction.acceptance.aria.no')}
-                optional={true}
+                optional
                 className="introduction-acceptance no-margin-bottom"
-                onUpdate={this.updateBranch}>
-                {i18n.m('introduction.acceptance.para')}
+                onUpdate={this.updateBranch}
+              >
+                {acceptancePara}
               </Branch>
             </Show>
           </div>
@@ -97,7 +103,7 @@ Introduction.defaultProps = {
   settings: { acceptedTerms: { value: '' } },
   forceOpen: false,
   onDismiss: () => {},
-  dispatch: action => {}
+  dispatch: (action) => {},
 }
 
 function mapStateToProps(state) {
@@ -105,7 +111,7 @@ function mapStateToProps(state) {
   const settings = app.Settings || { acceptedTerms: { value: '' } }
 
   return {
-    settings: settings,
+    settings,
     formType: settings.formType,
   }
 }

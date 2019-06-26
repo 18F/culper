@@ -123,8 +123,8 @@ func (entity *MilitarySelective) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *MilitarySelective) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *MilitarySelective) ClearNoBranches() error {
 
 	entity.HasRegistered.ClearNo()
 
@@ -196,8 +196,8 @@ func (entity *MilitaryHistory) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *MilitaryHistory) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *MilitaryHistory) ClearNoBranches() error {
 
 	entity.HasServed.ClearNo()
 
@@ -276,8 +276,8 @@ func (entity *MilitaryDisciplinary) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *MilitaryDisciplinary) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *MilitaryDisciplinary) ClearNoBranches() error {
 
 	entity.HasDisciplinary.ClearNo()
 
@@ -333,17 +333,12 @@ func (entity *MilitaryForeign) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *MilitaryForeign) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *MilitaryForeign) ClearNoBranches() error {
 
-	hasErr := entity.List.ClearBranchItemsNo("Has")
-	if hasErr != nil {
-		return errors.Wrap(hasErr, "couldn't clear the military has")
-	}
-
-	contactErr := entity.List.ClearBranchItemsNo("MaintainsContact")
-	if contactErr != nil {
-		return errors.Wrap(contactErr, "Couldn't clear the foreign contacts")
+	listErr := entity.List.ClearBranchItemsNo("Has", "MaintainsContact")
+	if listErr != nil {
+		return errors.Wrap(listErr, "couldn't clear the military has")
 	}
 
 	return nil

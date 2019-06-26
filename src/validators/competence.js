@@ -1,35 +1,16 @@
-import { CompetenceOrderValidator } from './order'
-import { validAccordion } from './helpers'
+import { validateModel } from 'models/validate'
+import competence from 'models/competence'
+
+export const validateCompetence = data => (
+  validateModel(data, competence) === true
+)
 
 export default class CompetenceValidator {
   constructor(data = {}) {
-    this.list = data.List || {}
-    this.isIncompetent = (data.IsIncompetent || {}).value
-  }
-
-  validIsIncompetent() {
-    return this.isIncompetent === 'Yes' || this.isIncompetent === 'No'
-  }
-
-  validList() {
-    if (this.isIncompetent === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new CompetenceOrderValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    if (!this.validIsIncompetent()) {
-      return false
-    }
-
-    if (this.isIncompetent === 'No') {
-      return true
-    }
-
-    return this.validList()
+    return validateCompetence(this.data)
   }
 }

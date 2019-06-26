@@ -1,65 +1,48 @@
-import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validBranch,
-  validGenericTextfield,
-  validPhoneNumber
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import alcoholVoluntaryCounseling from 'models/alcoholVoluntaryCounseling'
+
+export const validateVoluntaryCounseling = data => (
+  validateModel(data, alcoholVoluntaryCounseling) === true
+)
+
+export const validateVoluntaryCounselings = (data) => {
+  const voluntaryCounselingsModel = {
+    SoughtTreatment: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.SoughtTreatment
+        && attributes.SoughtTreatment.value === 'Yes') {
+        return { presence: true, accordion: { validator: alcoholVoluntaryCounseling } }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, voluntaryCounselingsModel) === true
+}
 
 export default class VoluntaryCounselingsValidator {
   constructor(data = {}) {
-    this.soughtTreatment = (data.SoughtTreatment || {}).value
-    this.list = data.List || {}
-  }
-
-  validSoughtTreatment() {
-    return validBranch(this.soughtTreatment)
-  }
-
-  validVoluntaryCounselings() {
-    if (this.validSoughtTreatment() && this.soughtTreatment === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new VoluntaryCounselingValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validSoughtTreatment() && this.validVoluntaryCounselings()
+    return validateVoluntaryCounselings(this.data)
   }
 }
 
 export class VoluntaryCounselingValidator {
   constructor(data = {}) {
-    this.counselingDates = data.CounselingDates
-    this.treatmentProviderName = data.TreatmentProviderName
-    this.treatmentProviderAddress = data.TreatmentProviderAddress
-    this.treatmentProviderTelephone = data.TreatmentProviderTelephone
-    this.completedTreatment = (data.CompletedTreatment || {}).value
-    this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
+    this.data = data
   }
 
   validCompletedTreatment() {
-    switch (this.completedTreatment) {
-      case 'Yes':
-        return true
-      case 'No':
-        return validGenericTextfield(this.noCompletedTreatmentExplanation)
-      default:
-        return false
-    }
+    return validateModel(this.data, {
+      CompletedTreatment: alcoholVoluntaryCounseling.CompletedTreatment,
+      NoCompletedTreatmentExplanation: alcoholVoluntaryCounseling.NoCompletedTreatmentExplanation,
+    }) === true
   }
 
   isValid() {
-    return (
-      new DateRangeValidator(this.counselingDates).isValid() &&
-      validGenericTextfield(this.treatmentProviderName) &&
-      new LocationValidator(this.treatmentProviderAddress).isValid() &&
-      validPhoneNumber(this.treatmentProviderTelephone) &&
-      this.validCompletedTreatment()
-    )
+    return validateVoluntaryCounseling(this.data)
   }
 }

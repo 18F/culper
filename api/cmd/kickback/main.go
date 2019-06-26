@@ -10,7 +10,7 @@ import (
 func main() {
 	logger := &log.Service{Log: log.NewLogger()}
 	cmd.Command(logger, func(context api.DatabaseService, store api.StorageService, account *api.Account) {
-		rejector := admin.NewRejecter(context, store, nil)
+		rejector := admin.NewRejecter(context, store)
 
 		rejectErr := rejector.Reject(*account)
 		if rejectErr != nil {

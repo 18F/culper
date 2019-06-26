@@ -1,13 +1,13 @@
 import OrderValidator from './order'
 import Location from '../components/Form/Location'
 
-describe('Order validation', function() {
+describe('Order validation', () => {
   it('validates court', () => {
     const tests = [
       {
         data: {
           CourtName: {
-            value: 'Circuit Court'
+            value: 'Circuit Court',
           },
           CourtAddress: {
             country: { value: 'United States' },
@@ -15,20 +15,20 @@ describe('Order validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           CourtName: null,
-          CourtAddress: null
+          CourtAddress: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OrderValidator(test.data).validCourt()).toBe(test.expected)
     })
   })
@@ -38,26 +38,26 @@ describe('Order validation', function() {
       {
         data: {
           Disposition: {
-            value: 'Stuff'
-          }
+            value: 'Stuff',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Disposition: {}
+          Disposition: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           prefix: 'competence',
-          Disposition: {}
+          Disposition: {},
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OrderValidator(test.data).validDisposition()).toBe(
         test.expected
       )
@@ -74,7 +74,7 @@ describe('Order validation', function() {
                 Item: {
                   Has: { value: 'Yes' },
                   CourtName: {
-                    value: 'Appeals Court'
+                    value: 'Appeals Court',
                   },
                   CourtAddress: {
                     country: { value: 'United States' },
@@ -82,36 +82,41 @@ describe('Order validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Disposition: {
-                    value: 'Stuff'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Stuff',
+                  },
+                },
+              },
+              {
+                Item: {
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Appeals: {
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Appeals: {
-            items: [{ Item: { Has: { value: 'No' } } }]
-          }
+            items: [{ Item: { Has: { value: 'No' } } }],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OrderValidator(test.data).validAppeals()).toBe(test.expected)
     })
   })
@@ -121,7 +126,7 @@ describe('Order validation', function() {
       {
         data: {
           CourtName: {
-            value: 'Circuit Court'
+            value: 'Circuit Court',
           },
           CourtAddress: {
             country: { value: 'United States' },
@@ -129,31 +134,56 @@ describe('Order validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Disposition: {
-            value: 'Stuff'
+            value: 'Stuff',
           },
           Occurred: {
             day: '1',
             month: '1',
-            year: '2016'
+            year: '2016',
           },
           Appeals: {
-            items: [{ Item: { Has: { value: 'No' } } }]
-          }
+            items: [{ Item: { Has: { value: 'No' } } }],
+          },
         },
-        expected: true
+        expected: true,
+      },
+      {
+        data: {
+          CourtName: {
+            value: 'Circuit Court',
+          },
+          CourtAddress: {
+            country: { value: 'United States' },
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'VA',
+            zipcode: '22202',
+            layout: Location.ADDRESS,
+          },
+          Occurred: {
+            day: '1',
+            month: '1',
+            year: '2016',
+          },
+          Appeals: {
+            items: [{ Item: { Has: { value: 'No' } } }],
+          },
+          prefix: 'competence',
+        },
+        expected: true,
       },
       {
         data: {
           CourtName: null,
-          CourtAddress: null
+          CourtAddress: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OrderValidator(test.data).isValid()).toBe(test.expected)
     })
   })

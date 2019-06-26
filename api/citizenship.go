@@ -439,8 +439,8 @@ func (entity *CitizenshipStatus) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *CitizenshipStatus) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipStatus) ClearNoBranches() error {
 
 	if entity.CitizenshipStatus != nil {
 		entity.CitizenshipStatus.Value = ""
@@ -516,8 +516,8 @@ func (entity *CitizenshipMultiple) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *CitizenshipMultiple) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipMultiple) ClearNoBranches() error {
 
 	entity.HasMultiple.ClearNo()
 
@@ -573,22 +573,12 @@ func (entity *CitizenshipPassports) Valid() (bool, error) {
 	return entity.Passports.Valid()
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *CitizenshipPassports) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipPassports) ClearNoBranches() error {
 
-	// This should be how this works, but it isn't right now.
-	// if entity.Passports != nil && entity.Passports.Branch != nil && entity.List.Branch.Value == "No" {
-	// 	entity.List.Branch.Value = ""
-	// }
-
-	hasErr := entity.Passports.ClearBranchItemsNo("Has")
-	if hasErr != nil {
-		return errors.Wrap(hasErr, "Couldn't clear the weird passport has")
-	}
-
-	usedErr := entity.Passports.ClearBranchItemsNo("Used")
-	if usedErr != nil {
-		return errors.Wrap(usedErr, "Couldn't clear the used passports section")
+	listErr := entity.Passports.ClearBranchItemsNo("Has", "Used")
+	if listErr != nil {
+		return errors.Wrap(listErr, "Couldn't clear the passport List")
 	}
 
 	return nil

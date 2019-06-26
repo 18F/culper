@@ -78,21 +78,23 @@ class DateControl extends ValidationElement {
   }
 
   update(el, year, month, day, estimated, touched) {
-    this.setState(
-      {
-        month, day, year, estimated, touched,
-      },
-      () => {
-        this.props.onUpdate({
-          name: this.props.name,
-          month: `${month}`,
-          day: `${day}`,
-          year: `${year}`,
-          estimated,
-          touched: touched || this.isTouched(year, month, day),
-        })
-      }
-    )
+    this.setState({
+      month: this.props.hideMonth ? '1' : month,
+      day: this.props.hideDay ? '1' : day,
+      year,
+      estimated,
+      touched,
+    },
+    () => {
+      this.props.onUpdate({
+        name: this.props.name,
+        month: this.props.hideMonth ? '1' : month,
+        day: this.props.hideDay ? '1' : day,
+        year: `${year}`,
+        estimated,
+        touched: touched || this.isTouched(year, month, day),
+      })
+    })
   }
 
   updateMonth(values) {

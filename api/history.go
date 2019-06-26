@@ -2,8 +2,6 @@ package api
 
 import (
 	"encoding/json"
-
-	"github.com/pkg/errors"
 )
 
 // HistoryResidence represents the payload for the history residence section.
@@ -47,8 +45,8 @@ func (entity *HistoryResidence) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *HistoryResidence) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *HistoryResidence) ClearNoBranches() error {
 	entity.List.ClearBranchNo()
 
 	return nil
@@ -113,32 +111,14 @@ func (entity *HistoryEmployment) Valid() (bool, error) {
 	return true, nil
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *HistoryEmployment) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *HistoryEmployment) ClearNoBranches() error {
 	entity.EmploymentRecord.ClearNo()
 
-	// loop through all the records of employment.
-	if entity.List != nil {
-		for _, employmentInstance := range entity.List.Items {
-			reprimandsEntity, repErr := employmentInstance.GetItemValue("Reprimand")
-			if repErr != nil {
-				return errors.Wrap(repErr, "Failed to pull a reprimand from an employment instance")
-			}
-
-			reprimands := reprimandsEntity.(*Collection)
-
-			clearErr := reprimands.ClearBranchItemsNo("Has")
-			if clearErr != nil {
-				return clearErr
-			}
-
-			setErr := employmentInstance.SetItemValue("Reprimand", reprimands)
-			if setErr != nil {
-				return setErr
-			}
-		}
+	nestedErr := entity.List.ClearNestedHasNo("Reprimand")
+	if nestedErr != nil {
+		return nestedErr
 	}
-
 	entity.List.ClearBranchNo()
 
 	return nil
@@ -213,8 +193,8 @@ func (entity *HistoryEducation) Valid() (bool, error) {
 	return true, nil
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *HistoryEducation) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *HistoryEducation) ClearNoBranches() error {
 
 	entity.HasAttended.ClearNo()
 	entity.HasDegree10.ClearNo()
@@ -281,8 +261,8 @@ func (entity *HistoryFederal) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-// ClearNos clears any questions answered nos on a kickback
-func (entity *HistoryFederal) ClearNos() error {
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *HistoryFederal) ClearNoBranches() error {
 
 	entity.HasFederalService.ClearNo()
 	entity.List.ClearBranchNo()

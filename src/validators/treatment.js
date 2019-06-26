@@ -1,18 +1,14 @@
-import LocationValidator from './location'
-import { validGenericTextfield, validPhoneNumber } from './helpers'
+import { validateModel } from 'models/validate'
+import treatment from 'models/treatment'
+
+export const validateTreatment = data => validateModel(data, treatment) === true
 
 export default class TreatmentValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.phone = data.Phone
-    this.address = data.Address
+    this.data = data
   }
 
   isValid() {
-    return (
-      validGenericTextfield(this.name) &&
-      validPhoneNumber(this.phone) &&
-      new LocationValidator(this.address).isValid()
-    )
+    return validateTreatment(this.data)
   }
 }

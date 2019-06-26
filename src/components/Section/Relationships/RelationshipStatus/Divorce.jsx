@@ -11,31 +11,11 @@ import {
   Telephone,
   Name,
   NotApplicable,
-  Country
+  Country,
 } from '../../../Form'
 
 export default class Divorce extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.updateName = this.updateName.bind(this)
-    this.updateBirthdate = this.updateBirthdate.bind(this)
-    this.updateBirthPlace = this.updateBirthPlace.bind(this)
-    this.updateCitizenship = this.updateCitizenship.bind(this)
-    this.updateTelephone = this.updateTelephone.bind(this)
-    this.updateRecognized = this.updateRecognized.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateDateDivorced = this.updateDateDivorced.bind(this)
-    this.updateDivorceLocation = this.updateDivorceLocation.bind(this)
-    this.updateStatus = this.updateStatus.bind(this)
-    this.updateDeceased = this.updateDeceased.bind(this)
-    this.updateDeceasedAddress = this.updateDeceasedAddress.bind(this)
-    this.updateDeceasedAddressNotApplicable = this.updateDeceasedAddressNotApplicable.bind(
-      this
-    )
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Name: this.props.Name,
       Birthdate: this.props.Birthdate,
@@ -49,85 +29,88 @@ export default class Divorce extends React.Component {
       Status: this.props.Status,
       Deceased: this.props.Deceased,
       DeceasedAddress: this.props.DeceasedAddress,
-      ...queue
+      DeceasedAddressNotApplicable: this.props.DeceasedAddressNotApplicable,
+      ...queue,
     })
   }
 
-  updateName(values) {
+  updateName = (values) => {
     this.update({
-      Name: values
+      Name: values,
     })
   }
 
-  updateBirthdate(values) {
+  updateBirthdate = (values) => {
     this.update({
-      Birthdate: values
+      Birthdate: values,
     })
   }
 
-  updateBirthPlace(values) {
+  updateBirthPlace = (values) => {
     this.update({
-      BirthPlace: values
+      BirthPlace: values,
     })
   }
 
-  updateCitizenship(values) {
+  updateCitizenship = (values) => {
     this.update({
-      Citizenship: values
+      Citizenship: values,
     })
   }
 
-  updateTelephone(values) {
+  updateTelephone = (values) => {
     this.update({
-      Telephone: values
+      Telephone: values,
     })
   }
 
-  updateRecognized(values) {
+  updateRecognized = (values) => {
     this.update({
-      Recognized: values
+      Recognized: values,
     })
   }
 
-  updateAddress(values) {
+  updateAddress = (values) => {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
-  updateDateDivorced(values) {
+  updateDateDivorced = (values) => {
     this.update({
-      DateDivorced: values
+      DateDivorced: values,
     })
   }
 
-  updateDivorceLocation(values) {
+  updateDivorceLocation = (values) => {
     this.update({
-      DivorceLocation: values
+      DivorceLocation: values,
     })
   }
 
-  updateStatus(values) {
+  updateStatus = (values) => {
     this.update({
-      Status: values
+      Status: values,
     })
   }
 
-  updateDeceased(values) {
+  updateDeceased = (values) => {
     this.update({
-      Deceased: values
+      Deceased: values,
     })
   }
 
-  updateDeceasedAddress(values) {
+  updateDeceasedAddress = (values) => {
     this.update({
-      DeceasedAddress: values
+      DeceasedAddress: values,
     })
   }
 
-  updateDeceasedAddressNotApplicable(values) {
+  updateDeceasedAddressNotApplicable = (values) => {
+    const { DeceasedAddress } = this.props
     this.update({
-      DeceasedAddressNotApplicable: values
+      DeceasedAddress: values.applicable ? DeceasedAddress : {},
+      DeceasedAddressNotApplicable: values,
     })
   }
 
@@ -137,10 +120,11 @@ export default class Divorce extends React.Component {
       <div className="divorce">
         <Field
           title={i18n.t('relationships.civilUnion.heading.name')}
-          optional={true}
+          optional
           filterErrors={Name.requiredErrorsOnly}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
+          adjustFor="labels"
+        >
           <Name
             name="Name"
             {...this.props.Name}
@@ -154,7 +138,8 @@ export default class Divorce extends React.Component {
           help="relationships.civilUnion.divorce.help.birthdate"
           title={i18n.t('relationships.civilUnion.divorce.heading.birthdate')}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="datecontrol">
+          adjustFor="datecontrol"
+        >
           <DateControl
             name="birthdate"
             className="birthdate"
@@ -168,7 +153,8 @@ export default class Divorce extends React.Component {
 
         <Field
           title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="birthplace"
             {...this.props.BirthPlace}
@@ -183,10 +169,11 @@ export default class Divorce extends React.Component {
 
         <Field
           title={i18n.t('relationships.civilUnion.divorce.heading.citizenship')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Country
             name="Citizenship"
-            multiple={true}
+            multiple
             {...this.props.Citizenship}
             className="citizenship"
             onError={this.props.onError}
@@ -199,7 +186,8 @@ export default class Divorce extends React.Component {
           title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
           className="override-required"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="telephone">
+          adjustFor="telephone"
+        >
           <Telephone
             name="Telephone"
             {...this.props.Telephone}
@@ -213,11 +201,12 @@ export default class Divorce extends React.Component {
           help="relationships.civilUnion.divorce.help.recognized"
           title={i18n.t('relationships.civilUnion.divorce.heading.recognized')}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="datecontrol">
+          adjustFor="datecontrol"
+        >
           <DateControl
             name="Recognized"
-            minDateEqualTo={true}
-            prefix={"civilUnion"}
+            minDateEqualTo
+            prefix="civilUnion"
             minDate={enteredCivilUnionMinDate}
             className="recognized"
             {...this.props.Recognized}
@@ -229,9 +218,10 @@ export default class Divorce extends React.Component {
 
         <Field
           title={i18n.t('relationships.civilUnion.divorce.heading.address')}
-          optional={true}
+          optional
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
+          adjustFor="labels"
+        >
           <Location
             name="address"
             className="location"
@@ -250,14 +240,15 @@ export default class Divorce extends React.Component {
             'relationships.civilUnion.divorce.heading.dateDivorced'
           )}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="datecontrol">
+          adjustFor="datecontrol"
+        >
           <DateControl
             name="DateDivorced"
             prefix="divorceDate"
             className="date-divorced"
             {...this.props.DateDivorced}
             minDate={this.props.Recognized}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDateDivorced}
             onError={this.props.onError}
             required={this.props.required}
@@ -267,13 +258,15 @@ export default class Divorce extends React.Component {
         <Field
           title={i18n.t('relationships.civilUnion.divorce.heading.status')}
           scrollIntoView={this.props.scrollIntoView}
-          className="status">
+          className="status"
+        >
           <RadioGroup
             name="status"
             className="option-list option-list-vertical"
             selectedValue={(this.props.Status || {}).value}
             required={this.props.required}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.divorced')}
               value="Divorced"
@@ -301,15 +294,17 @@ export default class Divorce extends React.Component {
         <Show
           when={['Divorced', 'Annulled'].includes(
             (this.props.Status || {}).value
-          )}>
+          )}
+        >
           <div>
             <Field
               title={i18n.t(
                 'relationships.civilUnion.divorce.heading.divorceLocation'
               )}
-              optional={true}
+              optional
               scrollIntoView={this.props.scrollIntoView}
-              adjustFor="labels">
+              adjustFor="labels"
+            >
               <Location
                 className="divorce-location"
                 {...this.props.DivorceLocation}
@@ -326,13 +321,15 @@ export default class Divorce extends React.Component {
                 'relationships.civilUnion.divorce.heading.deceased'
               )}
               className="deceased"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <RadioGroup
                 name="deceased"
                 className="option-list"
                 selectedValue={(this.props.Deceased || {}).value}
                 required={this.props.required}
-                onError={this.props.onError}>
+                onError={this.props.onError}
+              >
                 <Radio
                   className="yes"
                   label={i18n.t(
@@ -368,8 +365,9 @@ export default class Divorce extends React.Component {
                 title={i18n.t(
                   'relationships.civilUnion.divorce.heading.deceasedAddress'
                 )}
-                optional={true}
-                scrollIntoView={this.props.scrollIntoView}>
+                optional
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <NotApplicable
                   name="DeceasedAddressNotApplicable"
                   className="deceased-notapplicable"
@@ -381,13 +379,14 @@ export default class Divorce extends React.Component {
                     'relationships.civilUnion.deceasedAddressNotApplicable.or'
                   )}
                   onError={this.props.onError}
-                  onUpdate={this.updateDeceasedAddressNotApplicable}>
+                  onUpdate={this.updateDeceasedAddressNotApplicable}
+                >
                   <Location
                     className="address-deceased"
                     {...this.props.DeceasedAddress}
                     layout={Location.ADDRESS}
-                    geocode={true}
-                    showPostOffice={true}
+                    geocode
+                    showPostOffice
                     onUpdate={this.updateDeceasedAddress}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -404,8 +403,6 @@ export default class Divorce extends React.Component {
 
 Divorce.defaultProps = {
   DeceasedAddressNotApplicable: { applicable: true },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

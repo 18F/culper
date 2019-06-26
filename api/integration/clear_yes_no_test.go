@@ -29,7 +29,7 @@ func TestClearEmptyAccount(t *testing.T) {
 		t.Fatal(saveErr)
 	}
 
-	rejector := admin.NewRejecter(services.db, services.store, nil)
+	rejector := admin.NewRejecter(services.db, services.store)
 
 	err := rejector.Reject(account)
 	if err != nil {
@@ -123,7 +123,7 @@ func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName s
 		t.Fatal(saveErr)
 	}
 
-	rejector := admin.NewRejecter(services.db, services.store, nil)
+	rejector := admin.NewRejecter(services.db, services.store)
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
@@ -1060,7 +1060,7 @@ func TestClearComplexSectionNos(t *testing.T) {
 				t.Fatal(saveErr)
 			}
 
-			rejector := admin.NewRejecter(services.db, services.store, nil)
+			rejector := admin.NewRejecter(services.db, services.store)
 			err := rejector.Reject(account)
 			if err != nil {
 				t.Fatal("Failed to reject account: ", err)

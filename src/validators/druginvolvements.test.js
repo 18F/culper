@@ -1,51 +1,208 @@
 import DrugInvolvementsValidator, {
-  DrugInvolvementValidator
+  DrugInvolvementValidator,
+  validateDrugInvolvements,
 } from './druginvolvements'
 
-describe('Drug Involvement Validation', function() {
-  it('should validate drug usage', function() {
+describe('validateDrugInvolvements function', () => {
+  describe('for the SF-86', () => {
+    it('fails if missing required fields', () => {
+      const testData = {
+        Involved: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                DrugType: {
+                  DrugType: 'Cocaine',
+                  DrugTypeOther: null,
+                },
+                FirstInvolvement: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                RecentInvolvement: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                NatureOfInvolvement: {
+                  value: 'Some involvement',
+                },
+                Reasons: {
+                  value: 'Some reason',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateDrugInvolvements(testData, 'SF86')).toEqual(false)
+    })
+
+    it('passes valid data', () => {
+      const testData = {
+        Involved: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                DrugType: {
+                  DrugType: 'Cocaine',
+                  DrugTypeOther: null,
+                },
+                FirstInvolvement: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                RecentInvolvement: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                NatureOfInvolvement: {
+                  value: 'Some involvement',
+                },
+                Reasons: {
+                  value: 'Some reason',
+                },
+                InvolvementWhileEmployed: { value: 'Yes' },
+                InvolvementWithClearance: { value: 'Yes' },
+                InvolvementInFuture: { value: 'No' },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateDrugInvolvements(testData, 'SF86')).toEqual(true)
+    })
+  })
+
+  describe('for the SF-85', () => {
+    it('fails if missing required fields', () => {
+      const testData = {
+        Involved: { value: 'Yes' },
+        List: {
+          items: [
+            {
+              Item: {
+                DrugType: {
+                  DrugType: 'Cocaine',
+                  DrugTypeOther: null,
+                },
+                FirstInvolvement: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                RecentInvolvement: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                NatureOfInvolvement: {
+                  value: 'Some involvement',
+                },
+                InvolvementWhileEmployed: { value: 'Yes' },
+                InvolvementWithClearance: { value: 'Yes' },
+                InvolvementInFuture: { value: 'No' },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateDrugInvolvements(testData, 'SF85')).toEqual(false)
+    })
+
+    it('passes valid data', () => {
+      const testData = {
+        Involved: { value: 'Yes' },
+        List: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                DrugType: {
+                  DrugType: 'Cocaine',
+                  DrugTypeOther: null,
+                },
+                FirstInvolvement: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                RecentInvolvement: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                NatureOfInvolvement: {
+                  value: 'Some involvement',
+                },
+                Reasons: {
+                  value: 'Some reason',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      expect(validateDrugInvolvements(testData, 'SF85')).toEqual(true)
+    })
+  })
+})
+
+describe('Drug Involvement Validation', () => {
+  it('should validate drug usage', () => {
     const tests = [
       {
         state: {
-          Involved: { value: 'Nope' }
+          Involved: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Involved: { value: 'No' }
+          Involved: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Involved: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Involved: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{ DrugInvolvement: {} }]
-          }
+            items: [{ DrugInvolvement: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Involved: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{ DrugInvolvement: {} }]
-          }
+            items: [{ DrugInvolvement: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -57,67 +214,67 @@ describe('Drug Involvement Validation', function() {
                 Item: {
                   DrugType: {
                     DrugType: 'Cocaine',
-                    DrugTypeOther: null
+                    DrugTypeOther: null,
                   },
                   FirstInvolvement: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   RecentInvolvement: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   NatureOfInvolvement: {
-                    value: 'Some involvement'
+                    value: 'Some involvement',
                   },
                   Reasons: {
-                    value: 'Some reason'
+                    value: 'Some reason',
                   },
                   InvolvementWhileEmployed: { value: 'Yes' },
                   InvolvementWithClearance: { value: 'Yes' },
-                  InvolvementInFuture: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  InvolvementInFuture: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DrugInvolvementsValidator(test.state).isValid()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate future use', function() {
+  it('should validate future use', () => {
     const tests = [
       {
         state: {
           InvolvementInFuture: { value: 'Yes' },
           Explanation: {
-            value: 'Because'
-          }
+            value: 'Because',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          InvolvementInFuture: { value: 'No' }
+          InvolvementInFuture: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          InvolvementInFuture: { value: 'Nope' }
+          InvolvementInFuture: { value: 'Nope' },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DrugInvolvementValidator(test.state).validFuture()).toBe(
         test.expected
       )

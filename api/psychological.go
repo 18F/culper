@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"errors"
 )
 
 // PsychologicalCompetence represents the payload for the psychological competence section.
@@ -70,30 +69,13 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *PsychologicalCompetence) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalCompetence) ClearNoBranches() error {
 	entity.IsIncompetent.ClearNo()
 
-	for _, incident := range entity.List.Items {
-		appealsItem, getErr := incident.GetItemValue("Appeals")
-		if getErr != nil {
-			return getErr
-		}
-
-		appeals, ok := appealsItem.(*Collection)
-		if !ok {
-			return errors.New("Unexpected type found trying to clear the competence appeals")
-		}
-
-		clearErr := appeals.ClearBranchItemsNo("Has")
-		if clearErr != nil {
-			return clearErr
-		}
-
-		setErr := incident.SetItemValue("Appeals", appealsItem)
-		if setErr != nil {
-			return setErr
-		}
+	nestedErr := entity.List.ClearNestedHasNo("Appeals")
+	if nestedErr != nil {
+		return nestedErr
 	}
 
 	entity.List.ClearBranchNo()
@@ -165,30 +147,13 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *PsychologicalConsultations) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalConsultations) ClearNoBranches() error {
 	entity.Consulted.ClearNo()
 
-	for _, incident := range entity.List.Items {
-		appealsItem, getErr := incident.GetItemValue("Appeals")
-		if getErr != nil {
-			return getErr
-		}
-
-		appeals, ok := appealsItem.(*Collection)
-		if !ok {
-			return errors.New("Unexpected type found trying to clear the competence appeals")
-		}
-
-		clearErr := appeals.ClearBranchItemsNo("Has")
-		if clearErr != nil {
-			return clearErr
-		}
-
-		setErr := incident.SetItemValue("Appeals", appealsItem)
-		if setErr != nil {
-			return setErr
-		}
+	nestedErr := entity.List.ClearNestedHasNo("Appeals")
+	if nestedErr != nil {
+		return nestedErr
 	}
 
 	entity.List.ClearBranchNo()
@@ -310,8 +275,8 @@ func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *PsychologicalDiagnoses) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalDiagnoses) ClearNoBranches() error {
 	entity.Diagnosed.ClearNo()
 	entity.DiagnosisList.ClearBranchNo()
 	entity.DidNotConsult.ClearNo()
@@ -385,8 +350,8 @@ func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos clears the "no" answers on application rejection
-func (entity *PsychologicalHospitalizations) ClearNos() error {
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalHospitalizations) ClearNoBranches() error {
 	entity.Hospitalized.ClearNo()
 	entity.List.ClearBranchNo()
 	return nil

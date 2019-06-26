@@ -148,7 +148,7 @@ func (a *Application) ClearNoBranches() error {
 
 		clearable, ok := section.(Rejector)
 		if ok {
-			clearErr := clearable.ClearNos()
+			clearErr := clearable.ClearNoBranches()
 			if clearErr != nil {
 				return errors.Wrap(clearErr, fmt.Sprintf("Error clearing the 'No' responses from %s", sectionInfo.Payload))
 			}

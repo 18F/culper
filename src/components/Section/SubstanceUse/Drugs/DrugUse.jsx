@@ -95,7 +95,6 @@ export default class DrugUse extends ValidationElement {
             {...this.props.FirstUse}
             hideDay
             minDateEqualTo
-            showEstimated={false}
             onUpdate={this.updateFirstUse}
             onError={this.props.onError}
             required={this.props.required}
@@ -115,7 +114,6 @@ export default class DrugUse extends ValidationElement {
             minDate={this.props.FirstUse}
             prefix="drugUsage"
             minDateEqualTo
-            showEstimated={false}
             onUpdate={this.updateRecentUse}
             onError={this.props.onError}
             required={this.props.required}
