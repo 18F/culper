@@ -89,7 +89,7 @@ export default class RealEstateInterest extends ValidationElement {
 
   updateSoldNotApplicable = (values) => {
     this.update({
-      Solid: values.applicable ? this.props.Solid : {},
+      Sold: values.applicable ? this.props.Sold : {},
       SoldNotApplicable: values,
     })
   }
