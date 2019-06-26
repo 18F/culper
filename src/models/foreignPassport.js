@@ -15,6 +15,7 @@ const foreignPassport = {
     model: { validator: name },
   },
   Number: { presence: true, hasValue: true },
+  // TODO must be >= issued date
   Expiration: { presence: true, date: true },
   Used: { presence: true, hasValue: { validator: hasYesOrNo } },
   Countries: (value, attributes) => (
