@@ -17,21 +17,29 @@
     <Travel ID="{{inc $index}}">
       <ContactedByForeignMilitaryOrganization>
         <Answer>{{branch $Item.Contacted}}</Answer>
+        {{ if branch $Item.Contacted | eq "Yes" }}
         <Explanation>{{text $Item.ContactedExplanation}}</Explanation>
+        {{end}}
       </ContactedByForeignMilitaryOrganization>
       <ContactedByPersonAttemptingToObtainInformation>
         <Answer>{{branch $Item.Sensitive}}</Answer>
+        {{ if branch $Item.Sensitive | eq "Yes" }}
         <Explanation>{{text $Item.SensitiveExplanation}}</Explanation>
+        {{end}}
       </ContactedByPersonAttemptingToObtainInformation>
       <ContactedByPersonWithInterestInYourJob>
         <Answer>{{branch $Item.Interest}}</Answer>
+        {{ if branch $Item.Interest | eq "Yes" }}
         <Explanation>{{text $Item.InterestExplanation}}</Explanation>
+        {{end}}
       </ContactedByPersonWithInterestInYourJob>
       {{country $Item.Country}}
       {{monthYearDaterange $Item.Dates}}
       <Detained>
         <Answer>{{branch $Item.Questioned}}</Answer>
+        {{ if branch $Item.Questioned | eq "Yes" }}
         <Explanation>{{text $Item.QuestionedExplanation}}</Explanation>
+        {{end}}
       </Detained>
       <Duration>
         <NumberOfDaysRange>{{radio $Item.Days | daysInRange}}</NumberOfDaysRange>
@@ -39,11 +47,14 @@
       <EntryComment></EntryComment>
       <InvolvedInCounterintelligence>
         <Answer>{{branch $Item.Counter}}</Answer>
-        <Explanation>{{text $Item.CounterExplanation}}</Explanation>
+        {{ if branch $Item.Counter | eq "Yes" }}
+        <Explanation>{{text $Item.CounterExplanation}}</Explanation>        {{end}}
       </InvolvedInCounterintelligence>
       <PoliceEncounter>
         <Answer>{{branch $Item.Encounter}}</Answer>
+        {{ if branch $Item.Encounter | eq "Yes" }}
         <Explanation>{{text $Item.EncounterExplanation}}</Explanation>
+        {{end}}
       </PoliceEncounter>
       <PurposeOfVisit
         {{if (checkboxHas $Item.Purpose "Business") | eq "True"}}
@@ -70,7 +81,9 @@
         />
       <Threatened>
         <Answer>{{branch $Item.Threatened}}</Answer>
+        {{ if branch $Item.Threatened | eq "Yes" }}
         <Explanation>{{text $Item.ThreatenedExplanation}}</Explanation>
+        {{end}}
       </Threatened>
     </Travel>
     {{end}}

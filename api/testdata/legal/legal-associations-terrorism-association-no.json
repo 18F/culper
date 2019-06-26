@@ -1,0 +1,17 @@
+{
+    "props": {
+        "Explanation": {
+            "props": {
+                "value": ""
+            },
+            "type": "textarea"
+        },
+        "HasTerrorism": {
+            "props": {
+                "value": "No"
+            },
+            "type": "branch"
+        }
+    },
+    "type": "legal.associations.terrorism-association"
+}

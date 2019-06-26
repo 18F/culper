@@ -235,10 +235,12 @@
                 }
               },
               "HasAffiliations": {
-                "type": "radio",
                 "props": {
-                  "value": "Yes"
-                }
+                    "checked": false,
+                    "name": "affiliation_yes",
+                    "value": "Yes"
+                },
+                "type": "branch"
               },
               "Affiliations": {
                 "type": "textarea",

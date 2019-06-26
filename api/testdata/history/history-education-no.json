@@ -1,0 +1,29 @@
+{
+    "props": {
+        "HasAttended": {
+            "props": {
+                "name": "branch_school",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "HasDegree10": {
+            "props": {
+                "name": "branch_degree10",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {},
+                    "type": "branch"
+                },
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "history.education"
+}

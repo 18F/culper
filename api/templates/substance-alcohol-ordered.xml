@@ -10,11 +10,6 @@
       </ActionToSeekCounselingTaken>
       <Explanation>{{textarea $Item.NoActionTakenExplanation}}</Explanation>
       <ExplanationComment></ExplanationComment>
-      <CompletedTreatmentProgram>
-        <Answer>{{branch $Item.CompletedTreatment}}</Answer>
-        <Comment></Comment>
-        <Explanation>{{textarea $Item.NoCompletedTreatmentExplanation}}</Explanation>
-      </CompletedTreatmentProgram>
       <CounselingOrderedBy>
         <Answer
           {{if (checkboxHas $Item.Seekers "Employer") | eq "True"}}
@@ -39,7 +34,12 @@
         <Comment></Comment>
         <Explanation>{{text $Item.OtherSeeker}}</Explanation>
       </CounselingOrderedBy>
-      {{if branch $Item.ActionTaken | eq "Yes" }}
+      {{ if branch $Item.ActionTaken | eq "Yes" }}
+      <CompletedTreatmentProgram>
+        <Answer>{{branch $Item.CompletedTreatment}}</Answer>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.NoCompletedTreatmentExplanation}}</Explanation>
+      </CompletedTreatmentProgram>
       {{monthYearDaterange $Item.CounselingDates}}
       <Doctor>
         <Name>{{text $Item.TreatmentProviderName}}</Name>

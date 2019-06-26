@@ -269,6 +269,16 @@ func areEqualJSON(t *testing.T, s1, s2 []byte) bool {
 	return reflect.DeepEqual(o1, o2)
 }
 
+func getBranchItemValue(t *testing.T, item *api.CollectionItem, key string) *api.Branch {
+	value, itemErr := item.GetItemValue(key)
+	if itemErr != nil {
+		t.Log("Error on getting item", itemErr)
+		t.Fail()
+	}
+	branch := value.(*api.Branch)
+	return branch
+}
+
 func compareGoldenJSON(t *testing.T, testJSON []byte, goldenPath string) {
 	t.Helper()
 

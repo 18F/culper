@@ -1,22 +1,23 @@
 {
-  "type": "identification.othernames",
+  "type": "relationships.status.cohabitant",
   "props": {
-    "HasOtherNames": {
+    "HasCohabitant": {
       "type": "branch",
       "props": {
         "value": "No"
       }
     },
-    "List": {
+    "CohabitantList": {
       "type": "collection",
       "props": {
+        "items": [
+        ],
         "branch": {
           "type": "branch",
           "props": {
             "value": ""
           }
-        },
-        "items": []
+        }
       }
     }
   }

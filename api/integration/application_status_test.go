@@ -82,7 +82,7 @@ func TestStatus(t *testing.T) {
 
 	// If we save an additional section, the hash should change
 
-	additionalSectionPath := "../testdata/financial-bankruptcy.json"
+	additionalSectionPath := "../testdata/financial/financial-bankruptcy.json"
 	additionalSection := readTestData(t, additionalSectionPath)
 
 	addSecResp := saveJSON(services, additionalSection, account.ID)

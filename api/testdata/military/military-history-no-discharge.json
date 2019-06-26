@@ -1,7 +1,7 @@
 {
-  "type": "substance.alcohol.ordered",
+  "type": "military.history",
   "props": {
-    "HasBeenOrdered": {
+    "HasServed": {
       "type": "branch",
       "props": {
         "value": "Yes"
@@ -19,31 +19,34 @@
         "items": [
           {
             "Item": {
-              "Seekers": {
-                "type": "checkboxgroup",
+              "Service": {
+                "type": "radio",
                 "props": {
-                  "values": ["Other", "NotOrdered"]
+                  "value": "AirNationalGuard",
+                  "checked": true
                 }
               },
-              "OtherSeeker": {
+              "Status": {
+                "type": "radio",
+                "props": {
+                  "value": "ActiveDuty",
+                  "checked": true
+                }
+              },
+              "Officer": {
+                "type": "radio",
+                "props": {
+                  "value": "Officer",
+                  "checked": true
+                }
+              },
+              "ServiceNumber": {
                 "type": "text",
                 "props": {
-                  "value": "something else"
+                  "value": "service number"
                 }
               },
-              "ActionTaken": {
-                "type": "branch",
-                "props": {
-                  "value": "Yes"
-                }
-              },
-              "NoActionTakenExplanation": {
-                "type": "textarea",
-                "props": {
-                  "value": "no action taken explanation"
-                }
-              },
-              "CounselingDates": {
+              "Dates": {
                 "type": "daterange",
                 "props": {
                   "from": {
@@ -69,47 +72,24 @@
                   "present": false
                 }
               },
-              "TreatmentProviderName": {
-                "type": "text",
-                "props": {
-                  "value": "provider name"
-                }
-              },
-              "TreatmentProviderAddress": {
+              "ServiceState": {
                 "type": "location",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
+                  "layout": "State",
+                  "street": "",
                   "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
+                  "city": "",
+                  "state": "AZ",
+                  "zipcode": "",
                   "county": "",
-                  "country": "United States",
+                  "country": "",
                   "validated": false
                 }
               },
-              "TreatmentProviderTelephone": {
-                "type": "telephone",
-                "props": {
-                  "timeOfDay": "Both",
-                  "type": "Domestic",
-                  "numberType": "",
-                  "number": "2128675309",
-                  "extension": "",
-                  "noNumber": false
-                }
-              },
-              "CompletedTreatment": {
+              "HasBeenDischarged": {
                 "type": "branch",
                 "props": {
                   "value": "No"
-                }
-              },
-              "NoCompletedTreatmentExplanation": {
-                "type": "textarea",
-                "props": {
-                  "value": "went on vacation for oktoberfest"
                 }
               }
             }

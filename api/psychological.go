@@ -69,6 +69,19 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalCompetence) ClearNoBranches() error {
+	entity.IsIncompetent.ClearNo()
+
+	nestedErr := entity.List.ClearNestedHasNo("Appeals")
+	if nestedErr != nil {
+		return nestedErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // PsychologicalConsultations represents the payload for the psychological consultations section.
 type PsychologicalConsultations struct {
 	PayloadConsulted Payload `json:"Consulted" sql:"-"`
@@ -132,6 +145,19 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalConsultations) ClearNoBranches() error {
+	entity.Consulted.ClearNo()
+
+	nestedErr := entity.List.ClearNestedHasNo("Appeals")
+	if nestedErr != nil {
+		return nestedErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // PsychologicalDiagnoses represents the payload for the psychological diagnosis section.
@@ -249,6 +275,16 @@ func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalDiagnoses) ClearNoBranches() error {
+	entity.Diagnosed.ClearNo()
+	entity.DiagnosisList.ClearBranchNo()
+	entity.DidNotConsult.ClearNo()
+	entity.InTreatment.ClearNo()
+	entity.TreatmentList.ClearBranchNo()
+	return nil
+}
+
 // PsychologicalHospitalizations represents the payload for the psychological hospitalizations section.
 type PsychologicalHospitalizations struct {
 	PayloadHospitalized Payload `json:"Hospitalized" sql:"-"`
@@ -312,6 +348,13 @@ func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *PsychologicalHospitalizations) ClearNoBranches() error {
+	entity.Hospitalized.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // PsychologicalExisting represents the payload for the psychological existing conditions section.

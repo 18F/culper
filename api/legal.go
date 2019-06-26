@@ -59,6 +59,13 @@ func (entity *LegalCourt) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalCourt) ClearNoBranches() error {
+	entity.HasCourtActions.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // LegalPoliceOffenses represents the payload for the legal police offenses section.
 type LegalPoliceOffenses struct {
 	PayloadHasOffenses Payload `json:"HasOffenses" sql:"-"`
@@ -114,6 +121,19 @@ func (entity *LegalPoliceOffenses) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalPoliceOffenses) ClearNoBranches() error {
+	entity.HasOffenses.ClearNo()
+
+	clearErr := entity.List.ClearBranchItemsNo("WasCharged")
+	if clearErr != nil {
+		return clearErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // LegalPoliceAdditionalOffenses represents the payload for the legal police additional offenses section.
@@ -173,6 +193,19 @@ func (entity *LegalPoliceAdditionalOffenses) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalPoliceAdditionalOffenses) ClearNoBranches() error {
+	entity.HasOtherOffenses.ClearNo()
+
+	clearErr := entity.List.ClearBranchItemsNo("WasSentenced")
+	if clearErr != nil {
+		return clearErr
+	}
+
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // LegalPoliceDomesticViolence represents the payload for the legal police domestic violence section.
 type LegalPoliceDomesticViolence struct {
 	PayloadHasDomesticViolence Payload `json:"HasDomesticViolence" sql:"-"`
@@ -227,6 +260,13 @@ func (entity *LegalPoliceDomesticViolence) Valid() (bool, error) {
 		return true, nil
 	}
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalPoliceDomesticViolence) ClearNoBranches() error {
+	entity.HasDomesticViolence.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // LegalInvestigationsDebarred represents the payload for the legal investigations debarred section.
@@ -286,6 +326,13 @@ func (entity *LegalInvestigationsDebarred) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalInvestigationsDebarred) ClearNoBranches() error {
+	entity.HasDebarment.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // LegalInvestigationsHistory represents the payload for the legal investigations history section.
 type LegalInvestigationsHistory struct {
 	PayloadHasHistory Payload `json:"HasHistory" sql:"-"`
@@ -341,6 +388,13 @@ func (entity *LegalInvestigationsHistory) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalInvestigationsHistory) ClearNoBranches() error {
+	entity.HasHistory.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // LegalInvestigationsRevoked represents the payload for the legal investigatinos revoked section.
@@ -400,6 +454,13 @@ func (entity *LegalInvestigationsRevoked) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalInvestigationsRevoked) ClearNoBranches() error {
+	entity.HasRevocations.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // LegalTechnologyManipulating represents the payload for the legal technology manipulating section.
 type LegalTechnologyManipulating struct {
 	PayloadHasManipulating Payload `json:"HasManipulating" sql:"-"`
@@ -455,6 +516,13 @@ func (entity *LegalTechnologyManipulating) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalTechnologyManipulating) ClearNoBranches() error {
+	entity.HasManipulating.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // LegalTechnologyUnauthorized represents the payload for the legal technology unauthorized access section.
@@ -514,6 +582,13 @@ func (entity *LegalTechnologyUnauthorized) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalTechnologyUnauthorized) ClearNoBranches() error {
+	entity.HasUnauthorized.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // LegalTechnologyUnlawful represents the payload for the legal technology unlawful use section.
 type LegalTechnologyUnlawful struct {
 	PayloadHasUnlawful Payload `json:"HasUnlawful" sql:"-"`
@@ -569,6 +644,13 @@ func (entity *LegalTechnologyUnlawful) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalTechnologyUnlawful) ClearNoBranches() error {
+	entity.HasUnlawful.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // LegalAssociationsActivitiesToOverthrow represents the payload for the legal associations activities to overthrow section.
@@ -628,6 +710,13 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsActivitiesToOverthrow) ClearNoBranches() error {
+	entity.HasActivities.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // LegalAssociationsAdvocating represents the payload for the legal associations advocating section.
 type LegalAssociationsAdvocating struct {
 	PayloadHasAdvocated Payload `json:"HasAdvocated" sql:"-"`
@@ -683,6 +772,13 @@ func (entity *LegalAssociationsAdvocating) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsAdvocating) ClearNoBranches() error {
+	entity.HasAdvocated.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // LegalAssociationsEngagedInTerrorism represents the payload for the legal associations engaged in terrorism section.
@@ -742,6 +838,13 @@ func (entity *LegalAssociationsEngagedInTerrorism) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsEngagedInTerrorism) ClearNoBranches() error {
+	entity.HasEngaged.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // LegalAssociationsMembershipOverthrow represents the payload for the legal associations membership to overthrow government section.
 type LegalAssociationsMembershipOverthrow struct {
 	PayloadHasOverthrow Payload `json:"HasOverthrow" sql:"-"`
@@ -797,6 +900,13 @@ func (entity *LegalAssociationsMembershipOverthrow) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsMembershipOverthrow) ClearNoBranches() error {
+	entity.HasOverthrow.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }
 
 // LegalAssociationsMembershipViolence represents the payload for the legal associations memberhisp advocating violence section.
@@ -856,6 +966,13 @@ func (entity *LegalAssociationsMembershipViolence) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsMembershipViolence) ClearNoBranches() error {
+	entity.HasViolence.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
+}
+
 // LegalAssociationsTerrorismAssociation represents the payload for the legal associations with terrorism section.
 type LegalAssociationsTerrorismAssociation struct {
 	PayloadHasTerrorism Payload `json:"HasTerrorism" sql:"-"`
@@ -913,6 +1030,12 @@ func (entity *LegalAssociationsTerrorismAssociation) Valid() (bool, error) {
 	return entity.Explanation.Valid()
 }
 
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsTerrorismAssociation) ClearNoBranches() error {
+	entity.HasTerrorism.ClearNo()
+	return nil
+}
+
 // LegalAssociationsTerroristOrganization represents the payload for the legal associations with terrorist organizations section.
 type LegalAssociationsTerroristOrganization struct {
 	PayloadHasTerrorist Payload `json:"HasTerrorist" sql:"-"`
@@ -968,4 +1091,11 @@ func (entity *LegalAssociationsTerroristOrganization) Valid() (bool, error) {
 	}
 
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears the "no" answers on application rejection
+func (entity *LegalAssociationsTerroristOrganization) ClearNoBranches() error {
+	entity.HasTerrorist.ClearNo()
+	entity.List.ClearBranchNo()
+	return nil
 }

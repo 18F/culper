@@ -1,0 +1,191 @@
+{
+    "props": {
+        "IsIncompetent": {
+            "props": {
+                "value": "Yes"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "items": [
+                    {
+                        "Item": {
+                            "Appeals": {
+                                "props": {
+                                    "branch": null,
+                                    "items": [
+                                        {
+                                            "Item": {
+                                                "CourtAddress": {
+                                                    "props": {
+                                                        "city": "Arlington",
+                                                        "country": "United States",
+                                                        "county": "",
+                                                        "layout": "Address",
+                                                        "state": "VA",
+                                                        "street": "123 Some Rd",
+                                                        "street2": "",
+                                                        "validated": false,
+                                                        "zipcode": "22202"
+                                                    },
+                                                    "type": "location"
+                                                },
+                                                "CourtName": {
+                                                    "props": {
+                                                        "value": "the appeals court"
+                                                    },
+                                                    "type": "text"
+                                                },
+                                                "Disposition": {
+                                                    "props": {
+                                                        "value": "the final disposition"
+                                                    },
+                                                    "type": "text"
+                                                },
+                                                "Has": {
+                                                    "props": {
+                                                        "value": "Yes"
+                                                    },
+                                                    "type": "branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "Item": {
+                                                "CourtAddress": {
+                                                    "props": {},
+                                                    "type": "location"
+                                                },
+                                                "CourtName": {
+                                                    "props": {},
+                                                    "type": "text"
+                                                },
+                                                "Disposition": {
+                                                    "props": {},
+                                                    "type": "text"
+                                                },
+                                                "Has": {
+                                                    "props": {
+                                                        "value": "No"
+                                                    },
+                                                    "type": "branch"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "collection"
+                            },
+                            "CourtAddress": {
+                                "props": {
+                                    "city": "Arlington",
+                                    "country": "United States",
+                                    "county": "",
+                                    "layout": "Address",
+                                    "state": "VA",
+                                    "street": "123 Some Rd",
+                                    "street2": "",
+                                    "validated": false,
+                                    "zipcode": "22202"
+                                },
+                                "type": "location"
+                            },
+                            "CourtName": {
+                                "props": {
+                                    "value": "the court name"
+                                },
+                                "type": "text"
+                            },
+                            "Occurred": {
+                                "props": {
+                                    "date": "2017-07-01T00:00:00Z",
+                                    "day": "1",
+                                    "estimated": false,
+                                    "month": "7",
+                                    "year": "2017"
+                                },
+                                "type": "datecontrol"
+                            }
+                        }
+                    },
+                    {
+                        "Item": {
+                            "Appeals": {
+                                "props": {
+                                    "branch": null,
+                                    "items": [
+                                        {
+                                            "Item": {
+                                                "CourtAddress": {
+                                                    "props": {},
+                                                    "type": "location"
+                                                },
+                                                "CourtName": {
+                                                    "props": {},
+                                                    "type": "text"
+                                                },
+                                                "Disposition": {
+                                                    "props": {},
+                                                    "type": "text"
+                                                },
+                                                "Has": {
+                                                    "props": {
+                                                        "name": "branchcollection",
+                                                        "value": "No"
+                                                    },
+                                                    "type": "branch"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "collection"
+                            },
+                            "CourtAddress": {
+                                "props": {
+                                    "city": "San Francisco",
+                                    "country": "United States",
+                                    "layout": "Address",
+                                    "state": "CA",
+                                    "street": "2253 Market St",
+                                    "street2": "",
+                                    "uid": "CourtAddress-81a56c87-d4a0-7715-510c-30b2d6c0376b",
+                                    "validated": false,
+                                    "zipcode": "94110"
+                                },
+                                "type": "location"
+                            },
+                            "CourtName": {
+                                "props": {
+                                    "name": "CourtName",
+                                    "value": "The Quakers"
+                                },
+                                "type": "text"
+                            },
+                            "Occurred": {
+                                "props": {
+                                    "day": "1",
+                                    "estimated": true,
+                                    "month": "6",
+                                    "name": "Occurred",
+                                    "touched": true,
+                                    "year": "2011"
+                                },
+                                "type": "datecontrol"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        }
+    },
+    "type": "psychological.competence"
+}

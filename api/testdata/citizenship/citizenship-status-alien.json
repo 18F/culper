@@ -1,0 +1,124 @@
+{
+    "props": {
+        "AbroadDocumentation": {
+            "props": {},
+            "type": "radio"
+        },
+        "AlienRegistrationExpiration": {
+            "props": {},
+            "type": "datecontrol"
+        },
+        "AlienRegistrationNumber": {
+            "props": {},
+            "type": "text"
+        },
+        "Basis": {
+            "props": {},
+            "type": "radio"
+        },
+        "BornOnMilitaryInstallation": {
+            "props": {},
+            "type": "branch"
+        },
+        "CertificateCourtAddress": {
+            "props": {},
+            "type": "location"
+        },
+        "CertificateCourtName": {
+            "props": {},
+            "type": "text"
+        },
+        "CertificateIssued": {
+            "props": {},
+            "type": "datecontrol"
+        },
+        "CertificateName": {
+            "props": {},
+            "type": "name"
+        },
+        "CertificateNumber": {
+            "props": {},
+            "type": "text"
+        },
+        "CitizenshipStatus": {
+            "props": {
+                "checked": false,
+                "name": "citizenship-status-naturalized",
+                "value": "Naturalized"
+            },
+            "type": "radio"
+        },
+        "DocumentExpiration": {
+            "props": {},
+            "type": "datecontrol"
+        },
+        "DocumentIssued": {
+            "props": {},
+            "type": "datecontrol"
+        },
+        "DocumentName": {
+            "props": {},
+            "type": "name"
+        },
+        "DocumentNumber": {
+            "props": {},
+            "type": "text"
+        },
+        "DocumentType": {
+            "props": {},
+            "type": "radio"
+        },
+        "EntryDate": {
+            "props": {},
+            "type": "datecontrol"
+        },
+        "EntryLocation": {
+            "props": {
+                "city": "Portland",
+                "layout": "City, State",
+                "state": "ME",
+                "uid": "EntryLocation-2098889e-b6cd-0021-6d95-15fe8ca5c59d",
+                "validated": false
+            },
+            "type": "location"
+        },
+        "Explanation": {
+            "props": {},
+            "type": "textarea"
+        },
+        "HasAlienRegistration": {
+            "props": {
+                "name": "has_alien_registration",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "MilitaryBase": {
+            "props": {},
+            "type": "text"
+        },
+        "PermanentResidentCardNumber": {
+            "props": {},
+            "type": "text"
+        },
+        "PlaceIssued": {
+            "props": {},
+            "type": "location"
+        },
+        "PriorCitizenship": {
+            "props": {
+                "name": "PriorCitizenship",
+                "showComments": false,
+                "value": [
+                    "Mozambique"
+                ]
+            },
+            "type": "country"
+        },
+        "ResidenceStatus": {
+            "props": {},
+            "type": "text"
+        }
+    },
+    "type": "citizenship.status"
+}

@@ -1,0 +1,445 @@
+{
+    "props": {
+        "HasOffenses": {
+            "props": {
+                "value": "Yes"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "items": [
+                    {
+                        "Item": {
+                            "Address": {
+                                "props": {
+                                    "city": "Arlington",
+                                    "country": "United States",
+                                    "county": "",
+                                    "layout": "Offense",
+                                    "state": "VA",
+                                    "validated": false,
+                                    "zipcode": "22202"
+                                },
+                                "type": "location"
+                            },
+                            "AgencyAddress": {
+                                "props": {
+                                    "city": "Arlington",
+                                    "country": "United States",
+                                    "county": "",
+                                    "layout": "Offense",
+                                    "state": "VA",
+                                    "validated": false,
+                                    "zipcode": "22202"
+                                },
+                                "type": "location"
+                            },
+                            "AwaitingTrial": {
+                                "props": {
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "AwaitingTrialExplanation": {
+                                "props": {
+                                    "value": "my explanation"
+                                },
+                                "type": "textarea"
+                            },
+                            "ChargeType": {
+                                "props": {
+                                    "value": "Other"
+                                },
+                                "type": "radio"
+                            },
+                            "CitedBy": {
+                                "props": {
+                                    "value": "cited by"
+                                },
+                                "type": "text"
+                            },
+                            "CourtAddress": {
+                                "props": {
+                                    "city": "Arlington",
+                                    "country": "United States",
+                                    "county": "",
+                                    "layout": "Offense",
+                                    "state": "VA",
+                                    "validated": false,
+                                    "zipcode": "22202"
+                                },
+                                "type": "location"
+                            },
+                            "CourtCharge": {
+                                "props": {
+                                    "value": "my charge"
+                                },
+                                "type": "text"
+                            },
+                            "CourtDate": {
+                                "props": {
+                                    "date": "2017-07-25T00:00:00Z",
+                                    "day": "25",
+                                    "estimated": false,
+                                    "month": "7",
+                                    "year": "2017"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "CourtName": {
+                                "props": {
+                                    "value": "my court name"
+                                },
+                                "type": "text"
+                            },
+                            "CourtOutcome": {
+                                "props": {
+                                    "value": "my outcome"
+                                },
+                                "type": "text"
+                            },
+                            "Date": {
+                                "props": {
+                                    "date": "2017-07-25T00:00:00Z",
+                                    "day": "25",
+                                    "estimated": false,
+                                    "month": "7",
+                                    "year": "2017"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "Description": {
+                                "props": {
+                                    "value": "my description"
+                                },
+                                "type": "textarea"
+                            },
+                            "Explanation": {
+                                "props": {
+                                    "value": "my explanation"
+                                },
+                                "type": "textarea"
+                            },
+                            "InvolvedFirearms": {
+                                "props": {
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "InvolvedSubstances": {
+                                "props": {
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "InvolvedViolence": {
+                                "props": {
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "Sentence": {
+                                "props": {
+                                    "Description": {
+                                        "props": {
+                                            "value": "my description"
+                                        },
+                                        "type": "textarea"
+                                    },
+                                    "ExceedsYear": {
+                                        "props": {
+                                            "value": "Yes"
+                                        },
+                                        "type": "branch"
+                                    },
+                                    "Incarcerated": {
+                                        "props": {
+                                            "value": "Yes"
+                                        },
+                                        "type": "branch"
+                                    },
+                                    "IncarcerationDates": {
+                                        "props": {
+                                            "from": {
+                                                "props": {
+                                                    "date": "2017-07-01T00:00:00Z",
+                                                    "day": "1",
+                                                    "estimated": false,
+                                                    "month": "7",
+                                                    "year": "2017"
+                                                },
+                                                "type": "datecontrol"
+                                            },
+                                            "present": false,
+                                            "to": {
+                                                "props": {
+                                                    "date": "2017-07-25T00:00:00Z",
+                                                    "day": "25",
+                                                    "estimated": false,
+                                                    "month": "7",
+                                                    "year": "2017"
+                                                },
+                                                "type": "datecontrol"
+                                            }
+                                        },
+                                        "type": "daterange"
+                                    },
+                                    "IncarcerationDatesNA": {
+                                        "props": {
+                                            "applicable": true
+                                        },
+                                        "type": "notapplicable"
+                                    },
+                                    "ProbationDates": {
+                                        "props": {
+                                            "from": {
+                                                "props": {
+                                                    "date": "2017-07-01T00:00:00Z",
+                                                    "day": "1",
+                                                    "estimated": false,
+                                                    "month": "7",
+                                                    "year": "2017"
+                                                },
+                                                "type": "datecontrol"
+                                            },
+                                            "present": false,
+                                            "to": {
+                                                "props": {
+                                                    "date": "2017-07-25T00:00:00Z",
+                                                    "day": "25",
+                                                    "estimated": false,
+                                                    "month": "7",
+                                                    "year": "2017"
+                                                },
+                                                "type": "datecontrol"
+                                            }
+                                        },
+                                        "type": "daterange"
+                                    },
+                                    "ProbationDatesNA": {
+                                        "props": {
+                                            "applicable": true
+                                        },
+                                        "type": "notapplicable"
+                                    }
+                                },
+                                "type": "sentence"
+                            },
+                            "WasCharged": {
+                                "props": {
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "WasCited": {
+                                "props": {
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "WasSentenced": {
+                                "props": {
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            }
+                        }
+                    },
+                    {
+                        "Item": {
+                            "Address": {
+                                "props": {
+                                    "city": "San Francisco",
+                                    "country": "United States",
+                                    "county": "San Francisco",
+                                    "layout": "Offense",
+                                    "state": "CA",
+                                    "uid": "Address-d97fdc9a-8575-5dcd-c24c-5b0a88a3c9f5",
+                                    "validated": false,
+                                    "zipcode": "94110"
+                                },
+                                "type": "location"
+                            },
+                            "AgencyAddress": {
+                                "props": {
+                                    "city": "Monterey",
+                                    "country": "United States",
+                                    "county": "Monterey",
+                                    "layout": "Offense",
+                                    "state": "CA",
+                                    "uid": "AgencyAddress-3af9854d-e38a-9266-4b83-b85bc6804f87",
+                                    "validated": false,
+                                    "zipcode": "94221"
+                                },
+                                "type": "location"
+                            },
+                            "AwaitingTrial": {
+                                "props": {},
+                                "type": "branch"
+                            },
+                            "AwaitingTrialExplanation": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "ChargeType": {
+                                "props": {},
+                                "type": "radio"
+                            },
+                            "CitedBy": {
+                                "props": {
+                                    "name": "CitedBy",
+                                    "value": "CHP"
+                                },
+                                "type": "text"
+                            },
+                            "CourtAddress": {
+                                "props": {},
+                                "type": "location"
+                            },
+                            "CourtCharge": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "CourtDate": {
+                                "props": {},
+                                "type": "datecontrol"
+                            },
+                            "CourtName": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "CourtOutcome": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "Date": {
+                                "props": {
+                                    "day": "4",
+                                    "estimated": false,
+                                    "month": "2",
+                                    "name": "Date",
+                                    "touched": true,
+                                    "year": "2012"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "Description": {
+                                "props": {
+                                    "name": "Description",
+                                    "value": "this one hasn't metastasized"
+                                },
+                                "type": "textarea"
+                            },
+                            "Explanation": {
+                                "props": {
+                                    "name": "Explanation",
+                                    "value": "it weren't no thing"
+                                },
+                                "type": "textarea"
+                            },
+                            "InvolvedFirearms": {
+                                "props": {
+                                    "name": "involved_firearms",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "InvolvedSubstances": {
+                                "props": {
+                                    "name": "involved_substances",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "InvolvedViolence": {
+                                "props": {
+                                    "name": "involved_violence",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "Sentence": {
+                                "props": {
+                                    "Description": {
+                                        "props": {},
+                                        "type": "textarea"
+                                    },
+                                    "ExceedsYear": {
+                                        "props": {},
+                                        "type": "branch"
+                                    },
+                                    "Incarcerated": {
+                                        "props": {},
+                                        "type": "branch"
+                                    },
+                                    "IncarcerationDates": {
+                                        "props": {
+                                            "from": {
+                                                "props": {},
+                                                "type": "datecontrol"
+                                            },
+                                            "to": {
+                                                "props": {},
+                                                "type": "datecontrol"
+                                            }
+                                        },
+                                        "type": "daterange"
+                                    },
+                                    "IncarcerationDatesNA": {
+                                        "props": {},
+                                        "type": "notapplicable"
+                                    },
+                                    "ProbationDates": {
+                                        "props": {
+                                            "from": {
+                                                "props": {},
+                                                "type": "datecontrol"
+                                            },
+                                            "to": {
+                                                "props": {},
+                                                "type": "datecontrol"
+                                            }
+                                        },
+                                        "type": "daterange"
+                                    },
+                                    "ProbationDatesNA": {
+                                        "props": {},
+                                        "type": "notapplicable"
+                                    }
+                                },
+                                "type": "sentence"
+                            },
+                            "WasCharged": {
+                                "props": {
+                                    "name": "was_charged",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "WasCited": {
+                                "props": {
+                                    "name": "was_cited",
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "WasSentenced": {
+                                "props": {},
+                                "type": "branch"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        }
+    },
+    "type": "legal.police.offenses"
+}

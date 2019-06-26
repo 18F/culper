@@ -2,6 +2,8 @@ package api
 
 import (
 	"encoding/json"
+
+	"github.com/pkg/errors"
 )
 
 // CitizenshipStatus represents the payload for the citizenship status section.
@@ -437,6 +439,18 @@ func (entity *CitizenshipStatus) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipStatus) ClearNoBranches() error {
+
+	if entity.CitizenshipStatus != nil {
+		entity.CitizenshipStatus.Value = ""
+	}
+
+	entity.HasAlienRegistration.ClearNo()
+
+	return nil
+}
+
 // CitizenshipMultiple represents the payload for the citizenship multiple section.
 type CitizenshipMultiple struct {
 	PayloadHasMultiple Payload `json:"HasMultiple" sql:"-"`
@@ -502,6 +516,21 @@ func (entity *CitizenshipMultiple) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipMultiple) ClearNoBranches() error {
+
+	entity.HasMultiple.ClearNo()
+
+	renouncedErr := entity.List.ClearBranchItemsNo("Renounced")
+	if renouncedErr != nil {
+		return errors.Wrap(renouncedErr, "Couldn't clear renounced")
+	}
+
+	entity.List.ClearBranchNo()
+
+	return nil
+}
+
 // CitizenshipPassports represents the payload for the citizenship passports section.
 type CitizenshipPassports struct {
 	PayloadPassports Payload `json:"Passports" sql:"-"`
@@ -542,4 +571,15 @@ func (entity *CitizenshipPassports) Marshal() Payload {
 // Valid checks the value(s) against an battery of tests.
 func (entity *CitizenshipPassports) Valid() (bool, error) {
 	return entity.Passports.Valid()
+}
+
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *CitizenshipPassports) ClearNoBranches() error {
+
+	listErr := entity.Passports.ClearBranchItemsNo("Has", "Used")
+	if listErr != nil {
+		return errors.Wrap(listErr, "Couldn't clear the passport List")
+	}
+
+	return nil
 }

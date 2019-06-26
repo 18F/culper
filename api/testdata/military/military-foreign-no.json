@@ -1,0 +1,76 @@
+{
+    "props": {
+        "List": {
+            "props": {
+                "branch": null,
+                "items": [
+                    {
+                        "Item": {
+                            "Circumstances": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "Country": {
+                                "props": {},
+                                "type": "country"
+                            },
+                            "Dates": {
+                                "props": {
+                                    "from": {
+                                        "props": {},
+                                        "type": "datecontrol"
+                                    },
+                                    "to": {
+                                        "props": {},
+                                        "type": "datecontrol"
+                                    }
+                                },
+                                "type": "daterange"
+                            },
+                            "Division": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "Has": {
+                                "props": {
+                                    "name": "has_foreign",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "List": {
+                                "props": {
+                                    "branch": null,
+                                    "items": []
+                                },
+                                "type": "collection"
+                            },
+                            "MaintainsContact": {
+                                "props": {},
+                                "type": "branch"
+                            },
+                            "Name": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "Organization": {
+                                "props": {},
+                                "type": "radio"
+                            },
+                            "Rank": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "ReasonLeft": {
+                                "props": {},
+                                "type": "textarea"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        }
+    },
+    "type": "military.foreign"
+}

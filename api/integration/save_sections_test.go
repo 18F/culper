@@ -18,7 +18,6 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/identification/identification-name.json", "Identification", "ApplicantName"},
 		{"../testdata/identification/identification-contacts.json", "Identification", "Contacts"},
 		{"../testdata/identification/identification-othernames.json", "Identification", "OtherNames"},
-		{"../testdata/identification/identification-othernames-no.json", "Identification", "OtherNames"},
 		{"../testdata/identification/identification-othernames-unfinished.json", "Identification", "OtherNames"},
 		{"../testdata/identification/identification-birthdate.json", "Identification", "ApplicantBirthDate"},
 		{"../testdata/identification/identification-birthplace.json", "Identification", "ApplicantBirthPlace"},
@@ -26,13 +25,13 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/identification/identification-ssn.json", "Identification", "ApplicantSSN"},
 		{"../testdata/identification/identification-physical.json", "Identification", "Physical"},
 
-		{"../testdata/financial-bankruptcy.json", "Financial", "Bankruptcy"},
-		{"../testdata/financial-gambling.json", "Financial", "Gambling"},
-		{"../testdata/financial-taxes.json", "Financial", "Taxes"},
-		{"../testdata/financial-card.json", "Financial", "Card"},
-		{"../testdata/financial-credit.json", "Financial", "Credit"},
-		{"../testdata/financial-delinquent.json", "Financial", "Delinquent"},
-		{"../testdata/financial-nonpayment.json", "Financial", "Nonpayment"},
+		{"../testdata/financial/financial-bankruptcy.json", "Financial", "Bankruptcy"},
+		{"../testdata/financial/financial-gambling.json", "Financial", "Gambling"},
+		{"../testdata/financial/financial-taxes.json", "Financial", "Taxes"},
+		{"../testdata/financial/financial-card.json", "Financial", "Card"},
+		{"../testdata/financial/financial-credit.json", "Financial", "Credit"},
+		{"../testdata/financial/financial-delinquent.json", "Financial", "Delinquent"},
+		{"../testdata/financial/financial-nonpayment.json", "Financial", "Nonpayment"},
 
 		{"../testdata/history/history-residence.json", "History", "Residence"},
 		{"../testdata/history/history-residence-unfinished-list.json", "History", "Residence"},
@@ -41,103 +40,106 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/history/history-education.json", "History", "Education"},
 		{"../testdata/history/history-federal.json", "History", "Federal"},
 
-		{"../testdata/relationships-status-marital.json", "Relationships", "Marital"},
-		{"../testdata/relationships-status-cohabitant.json", "Relationships", "Cohabitants"},
-		{"../testdata/relationships-people.json", "Relationships", "People"},
-		{"../testdata/relationships-relatives.json", "Relationships", "Relatives"},
+		{"../testdata/relationships/relationships-status-marital.json", "Relationships", "Marital"},
+		{"../testdata/relationships/relationships-status-cohabitant.json", "Relationships", "Cohabitants"},
+		{"../testdata/relationships/relationships-people.json", "Relationships", "People"},
+		{"../testdata/relationships/relationships-relatives.json", "Relationships", "Relatives"},
 
-		{"../testdata/citizenship-status.json", "Citizenship", "Status"},
-		{"../testdata/citizenship-multiple.json", "Citizenship", "Multiple"},
-		{"../testdata/citizenship-passports.json", "Citizenship", "Passports"},
-		{"../testdata/citizenship-passports-thin.json", "Citizenship", "Passports"},
+		{"../testdata/citizenship/citizenship-status.json", "Citizenship", "Status"},
+		{"../testdata/citizenship/citizenship-multiple.json", "Citizenship", "Multiple"},
+		{"../testdata/citizenship/citizenship-passports.json", "Citizenship", "Passports"},
+		{"../testdata/citizenship/citizenship-passports-thin.json", "Citizenship", "Passports"},
 
-		{"../testdata/military-selective.json", "Military", "Selective"},
-		{"../testdata/military-history.json", "Military", "History"},
-		{"../testdata/military-disciplinary.json", "Military", "Disciplinary"},
-		{"../testdata/military-foreign.json", "Military", "Foreign"},
+		{"../testdata/military/military-selective.json", "Military", "Selective"},
+		{"../testdata/military/military-history.json", "Military", "History"},
+		{"../testdata/military/military-disciplinary.json", "Military", "Disciplinary"},
+		{"../testdata/military/military-foreign.json", "Military", "Foreign"},
 
-		{"../testdata/foreign-passport.json", "Foreign", "Passport"},
-		{"../testdata/foreign-contacts.json", "Foreign", "Contacts"},
-		{"../testdata/foreign-travel.json", "Foreign", "Travel"},
-		{"../testdata/foreign-activities-benefits.json", "Foreign", "BenefitActivity"},
-		{"../testdata/foreign-activities-direct.json", "Foreign", "DirectActivity"},
-		{"../testdata/foreign-activities-indirect.json", "Foreign", "IndirectActivity"},
-		{"../testdata/foreign-activities-realestate.json", "Foreign", "RealEstateActivity"},
-		{"../testdata/foreign-business-advice.json", "Foreign", "Advice"},
-		{"../testdata/foreign-business-conferences.json", "Foreign", "Conferences"},
-		{"../testdata/foreign-business-contact.json", "Foreign", "Contact"},
-		{"../testdata/foreign-business-employment.json", "Foreign", "Employment"},
-		{"../testdata/foreign-business-family.json", "Foreign", "Family"},
-		{"../testdata/foreign-business-political.json", "Foreign", "Political"},
-		{"../testdata/foreign-business-sponsorship.json", "Foreign", "Sponsorship"},
-		{"../testdata/foreign-business-ventures.json", "Foreign", "Ventures"},
-		{"../testdata/foreign-business-voting.json", "Foreign", "Voting"},
+		{"../testdata/foreign/foreign-passport.json", "Foreign", "Passport"},
+		{"../testdata/foreign/foreign-contacts.json", "Foreign", "Contacts"},
+		{"../testdata/foreign/foreign-travel.json", "Foreign", "Travel"},
+		{"../testdata/foreign/foreign-activities-benefits.json", "Foreign", "BenefitActivity"},
+		{"../testdata/foreign/foreign-activities-direct.json", "Foreign", "DirectActivity"},
+		{"../testdata/foreign/foreign-activities-indirect.json", "Foreign", "IndirectActivity"},
+		{"../testdata/foreign/foreign-activities-realestate.json", "Foreign", "RealEstateActivity"},
+		{"../testdata/foreign/foreign-business-advice.json", "Foreign", "Advice"},
+		{"../testdata/foreign/foreign-business-conferences.json", "Foreign", "Conferences"},
+		{"../testdata/foreign/foreign-business-contact.json", "Foreign", "Contact"},
+		{"../testdata/foreign/foreign-business-employment.json", "Foreign", "Employment"},
+		{"../testdata/foreign/foreign-business-family.json", "Foreign", "Family"},
+		{"../testdata/foreign/foreign-business-political.json", "Foreign", "Political"},
+		{"../testdata/foreign/foreign-business-sponsorship.json", "Foreign", "Sponsorship"},
+		{"../testdata/foreign/foreign-business-ventures.json", "Foreign", "Ventures"},
+		{"../testdata/foreign/foreign-business-voting.json", "Foreign", "Voting"},
 
-		{"../testdata/substance-drug-clearance.json", "Substance", "DrugClearanceUses"},
-		{"../testdata/substance-drug-misuse.json", "Substance", "PrescriptionUses"},
-		{"../testdata/substance-drug-ordered.json", "Substance", "OrderedTreatments"},
-		{"../testdata/substance-drug-publicsafety.json", "Substance", "DrugPublicSafetyUses"},
-		{"../testdata/substance-drug-purchase.json", "Substance", "DrugInvolvements"},
-		{"../testdata/substance-drug-usage.json", "Substance", "DrugUses"},
-		{"../testdata/substance-drug-voluntary.json", "Substance", "VoluntaryTreatments"},
-		{"../testdata/substance-alcohol-negative.json", "Substance", "NegativeImpacts"},
-		{"../testdata/substance-alcohol-ordered.json", "Substance", "OrderedCounselings"},
-		{"../testdata/substance-alcohol-voluntary.json", "Substance", "VoluntaryCounselings"},
-		{"../testdata/substance-alcohol-additional.json", "Substance", "ReceivedCounselings"},
+		{"../testdata/substance/substance-drug-clearance.json", "Substance", "DrugClearanceUses"},
+		{"../testdata/substance/substance-drug-misuse.json", "Substance", "PrescriptionUses"},
+		{"../testdata/substance/substance-drug-ordered.json", "Substance", "OrderedTreatments"},
+		{"../testdata/substance/substance-drug-publicsafety.json", "Substance", "DrugPublicSafetyUses"},
+		{"../testdata/substance/substance-drug-purchase.json", "Substance", "DrugInvolvements"},
+		{"../testdata/substance/substance-drug-usage.json", "Substance", "DrugUses"},
+		{"../testdata/substance/substance-drug-voluntary.json", "Substance", "VoluntaryTreatments"},
+		{"../testdata/substance/substance-alcohol-negative.json", "Substance", "NegativeImpacts"},
+		{"../testdata/substance/substance-alcohol-ordered.json", "Substance", "OrderedCounselings"},
+		{"../testdata/substance/substance-alcohol-voluntary.json", "Substance", "VoluntaryCounselings"},
+		{"../testdata/substance/substance-alcohol-additional.json", "Substance", "ReceivedCounselings"},
 
-		{"../testdata/legal-associations-activities-to-overthrow.json", "Legal", "ActivitiesToOverthrow"},
-		{"../testdata/legal-associations-advocating.json", "Legal", "Advocating"},
-		{"../testdata/legal-associations-engaged-in-terrorism.json", "Legal", "EngagedInTerrorism"},
-		{"../testdata/legal-associations-membership-overthrow.json", "Legal", "MembershipOverthrow"},
-		{"../testdata/legal-associations-membership-violence-or-force.json", "Legal", "MembershipViolence"},
-		{"../testdata/legal-associations-terrorism-association.json", "Legal", "TerrorismAssociation"},
-		{"../testdata/legal-associations-terrorist-organization.json", "Legal", "TerroristOrganization"},
-		{"../testdata/legal-court.json", "Legal", "NonCriminalCourtActions"},
-		{"../testdata/legal-investigations-debarred.json", "Legal", "Debarred"},
-		{"../testdata/legal-investigations-history.json", "Legal", "History"},
-		{"../testdata/legal-investigations-revoked.json", "Legal", "Revoked"},
-		{"../testdata/legal-police-additionaloffenses.json", "Legal", "PoliceOtherOffenses"},
-		{"../testdata/legal-police-domesticviolence.json", "Legal", "PoliceDomesticViolence"},
-		{"../testdata/legal-police-offenses.json", "Legal", "PoliceOffenses"},
-		{"../testdata/legal-technology-manipulating.json", "Legal", "Manipulating"},
-		{"../testdata/legal-technology-unauthorized.json", "Legal", "Unauthorized"},
-		{"../testdata/legal-technology-unlawful.json", "Legal", "Unlawful"},
+		{"../testdata/legal/legal-associations-activities-to-overthrow.json", "Legal", "ActivitiesToOverthrow"},
+		{"../testdata/legal/legal-associations-advocating.json", "Legal", "Advocating"},
+		{"../testdata/legal/legal-associations-engaged-in-terrorism.json", "Legal", "EngagedInTerrorism"},
+		{"../testdata/legal/legal-associations-membership-overthrow.json", "Legal", "MembershipOverthrow"},
+		{"../testdata/legal/legal-associations-membership-violence-or-force.json", "Legal", "MembershipViolence"},
+		{"../testdata/legal/legal-associations-terrorism-association.json", "Legal", "TerrorismAssociation"},
+		{"../testdata/legal/legal-associations-terrorist-organization.json", "Legal", "TerroristOrganization"},
+		{"../testdata/legal/legal-court.json", "Legal", "NonCriminalCourtActions"},
+		{"../testdata/legal/legal-investigations-debarred.json", "Legal", "Debarred"},
+		{"../testdata/legal/legal-investigations-history.json", "Legal", "History"},
+		{"../testdata/legal/legal-investigations-revoked.json", "Legal", "Revoked"},
+		{"../testdata/legal/legal-police-additionaloffenses.json", "Legal", "PoliceOtherOffenses"},
+		{"../testdata/legal/legal-police-domesticviolence.json", "Legal", "PoliceDomesticViolence"},
+		{"../testdata/legal/legal-police-offenses.json", "Legal", "PoliceOffenses"},
+		{"../testdata/legal/legal-technology-manipulating.json", "Legal", "Manipulating"},
+		{"../testdata/legal/legal-technology-unauthorized.json", "Legal", "Unauthorized"},
+		{"../testdata/legal/legal-technology-unlawful.json", "Legal", "Unlawful"},
 
-		{"../testdata/psychological-competence.json", "Psychological", "Competence"},
-		{"../testdata/psychological-consultations.json", "Psychological", "Consultations"},
-		{"../testdata/psychological-diagnoses.json", "Psychological", "Diagnoses"},
-		{"../testdata/psychological-conditions.json", "Psychological", "ExistingConditions"},
-		{"../testdata/psychological-hospitalizations.json", "Psychological", "Hospitalizations"},
+		{"../testdata/psychological/psychological-competence.json", "Psychological", "Competence"},
+		{"../testdata/psychological/psychological-consultations.json", "Psychological", "Consultations"},
+		{"../testdata/psychological/psychological-diagnoses.json", "Psychological", "Diagnoses"},
+		{"../testdata/psychological/psychological-conditions.json", "Psychological", "ExistingConditions"},
+		{"../testdata/psychological/psychological-hospitalizations.json", "Psychological", "Hospitalizations"},
 
 		{"../testdata/submission.json", "Submission", "Releases"},
 	}
 
 	for _, secTest := range tests {
-		section := readTestData(t, secTest.path)
 
-		resp := saveJSON(services, section, account.ID)
-		if resp.StatusCode != 200 {
-			t.Fatal(fmt.Sprintf("Failed to save %s %s", secTest.section, secTest.subSection), resp.StatusCode)
-		}
+		t.Run(fmt.Sprintf("%s:%s", secTest.section, secTest.subSection), func(t *testing.T) {
+			section := readTestData(t, secTest.path)
 
-		formResp := getForm(services, account.ID)
-		if formResp.StatusCode != 200 {
-			t.Fatal(fmt.Sprintf("Failed to load %s %s", secTest.section, secTest.subSection), resp.StatusCode)
-		}
-		body := readBody(t, formResp)
+			resp := saveJSON(services, section, account.ID)
+			if resp.StatusCode != 200 {
+				t.Fatal(fmt.Sprintf("Failed to save %s %s", secTest.section, secTest.subSection), resp.StatusCode)
+			}
 
-		var form map[string]map[string]json.RawMessage
-		jsonErr := json.Unmarshal([]byte(body), &form)
-		if jsonErr != nil {
-			t.Fatal(jsonErr)
-		}
+			formResp := getForm(services, account.ID)
+			if formResp.StatusCode != 200 {
+				t.Fatal(fmt.Sprintf("Failed to load %s %s", secTest.section, secTest.subSection), resp.StatusCode)
+			}
+			body := readBody(t, formResp)
 
-		rawSection, ok := form[secTest.section][secTest.subSection]
-		if !ok {
-			t.Fatal(fmt.Sprintf("The %s %s section is not in the returned form", secTest.section, secTest.subSection), resp.StatusCode)
-		}
+			var form map[string]map[string]json.RawMessage
+			jsonErr := json.Unmarshal([]byte(body), &form)
+			if jsonErr != nil {
+				t.Fatal(jsonErr)
+			}
 
-		compareGoldenJSON(t, rawSection, secTest.path)
+			rawSection, ok := form[secTest.section][secTest.subSection]
+			if !ok {
+				t.Fatal(fmt.Sprintf("The %s %s section is not in the returned form", secTest.section, secTest.subSection), resp.StatusCode)
+			}
+
+			compareGoldenJSON(t, rawSection, secTest.path)
+		})
 	}
 
 }
