@@ -1,107 +1,52 @@
 import DrugOrderedTreatmentsValidator, {
-  DrugOrderedTreatmentValidator
+  DrugOrderedTreatmentValidator,
 } from './drugorderedtreatments'
 import Location from '../components/Form/Location'
 
-describe('Drug Ordered Treatment Validation', function() {
-  it('should validate drug ordered treatments', function() {
+describe('Drug Ordered Treatment Validation', () => {
+  it('should validate drug ordered treatments', () => {
     const tests = [
       {
         state: {
-          TreatmentOrdered: { value: 'Nope' }
+          TreatmentOrdered: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          TreatmentOrdered: { value: 'No' }
+          TreatmentOrdered: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           TreatmentOrdered: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           TreatmentOrdered: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{ OrderedTreatment: {} }]
-          }
+            items: [{ OrderedTreatment: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           TreatmentOrdered: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{ OrderedTreatment: {} }]
-          }
+            items: [{ OrderedTreatment: {} }],
+          },
         },
-        expected: false
-      },
-      {
-        state: {
-          TreatmentOrdered: { value: 'Yes' },
-          List: {
-            branch: { value: 'No' },
-            items: [
-              {
-                Item: {
-                  OrderedBy: {
-                    values: ['Employer']
-                  },
-                  Explanation: {
-                    value: 'The explanation'
-                  },
-                  ActionTaken: { value: 'Yes' },
-                  DrugType: 'Cocaine',
-                  TreatmentProvider: {
-                    value: 'Provider'
-                  },
-                  TreatmentProviderAddress: {
-                    country: { value: 'United States' },
-                    street: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'VA',
-                    zipcode: '22202',
-                    layout: Location.ADDRESS
-                  },
-                  TreatmentProviderTelephone: {
-                    noNumber: '',
-                    number: '7031112222',
-                    numberType: 'Home',
-                    timeOfDay: 'Both',
-                    type: 'Domestic',
-                    extension: ''
-                  },
-                  TreatmentDates: {
-                    from: {
-                      month: '1',
-                      day: '1',
-                      year: '2010'
-                    },
-                    to: {
-                      month: '1',
-                      day: '1',
-                      year: '2012'
-                    }
-                  },
-                  TreatmentCompleted: { value: 'Yes' }
-                }
-              }
-            ]
-          }
-        },
-        expected: true
+        expected: false,
       },
       {
         state: {
@@ -112,15 +57,15 @@ describe('Drug Ordered Treatment Validation', function() {
               {
                 Item: {
                   OrderedBy: {
-                    values: ['Employer']
+                    values: ['Employer'],
                   },
                   Explanation: {
-                    value: 'The explanation'
+                    value: 'The explanation',
                   },
                   ActionTaken: { value: 'Yes' },
                   DrugType: 'Cocaine',
                   TreatmentProvider: {
-                    value: 'Provider'
+                    value: 'Provider',
                   },
                   TreatmentProviderAddress: {
                     country: { value: 'United States' },
@@ -128,7 +73,62 @@ describe('Drug Ordered Treatment Validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
+                  },
+                  TreatmentProviderTelephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: '',
+                  },
+                  TreatmentDates: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                    },
+                  },
+                  TreatmentCompleted: { value: 'Yes' },
+                },
+              },
+            ],
+          },
+        },
+        expected: true,
+      },
+      {
+        state: {
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  OrderedBy: {
+                    values: ['Employer'],
+                  },
+                  Explanation: {
+                    value: 'The explanation',
+                  },
+                  ActionTaken: { value: 'Yes' },
+                  DrugType: 'Cocaine',
+                  TreatmentProvider: {
+                    value: 'Provider',
+                  },
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS,
                   },
                   TreatmentProviderTelephone: {
                     noNumber: '',
@@ -136,30 +136,30 @@ describe('Drug Ordered Treatment Validation', function() {
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
+                    extension: '',
                   },
                   TreatmentDates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
-                    }
+                      year: '2012',
+                    },
                   },
                   TreatmentCompleted: { value: 'No' },
                   NoTreatmentExplanation: {
-                    value: 'No treatment'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'No treatment',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -170,21 +170,21 @@ describe('Drug Ordered Treatment Validation', function() {
               {
                 Item: {
                   OrderedBy: {
-                    values: ['Employer']
+                    values: ['Employer'],
                   },
                   Explanation: {
-                    value: 'The explanation'
+                    value: 'The explanation',
                   },
                   ActionTaken: { value: 'No' },
                   NoActionTakenExplanation: {
-                    value: 'No action taken'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'No action taken',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -195,21 +195,21 @@ describe('Drug Ordered Treatment Validation', function() {
               {
                 Item: {
                   OrderedBy: {
-                    values: ['Employer', 'None']
+                    values: ['Employer', 'None'],
                   },
                   Explanation: {
-                    value: 'The explanation'
+                    value: 'The explanation',
                   },
                   ActionTaken: { value: 'No' },
                   NoActionTakenExplanation: {
-                    value: 'No action taken'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'No action taken',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -220,53 +220,56 @@ describe('Drug Ordered Treatment Validation', function() {
               {
                 Item: {
                   OrderedBy: {
-                    values: ['Employer']
+                    values: ['Employer'],
                   },
                   Explanation: {
-                    value: 'The explanation'
+                    value: 'The explanation',
                   },
-                  ActionTaken: { value: 'Nope' }
-                }
-              }
-            ]
-          }
+                  ActionTaken: { value: 'Nope' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DrugOrderedTreatmentsValidator(test.state).isValid()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate treatment completed', function() {
+  it('should validate treatment completed', () => {
     const tests = [
       {
         state: {
-          TreatmentCompleted: { value: 'Nope' }
+          ActionTaken: { value: 'Yes' },
+          TreatmentCompleted: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
+          ActionTaken: { value: 'Yes' },
           TreatmentCompleted: { value: 'No' },
           NoTreatmentExplanation: {
-            value: 'Nothing'
-          }
+            value: 'Nothing',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          TreatmentCompleted: { value: 'Yes' }
+          ActionTaken: { value: 'Yes' },
+          TreatmentCompleted: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DrugOrderedTreatmentValidator(test.state).validTreatmentCompleted()
       ).toBe(test.expected)

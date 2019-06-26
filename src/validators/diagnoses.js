@@ -1,50 +1,26 @@
-import TreatmentValidator from './treatment'
-import DiagnosisValidator from './diagnosis'
-import { validAccordion, validBranch } from './helpers'
+import { validateModel } from 'models/validate'
+import diagnoses from 'models/diagnoses'
+
+export const validateDiagnoses = data => validateModel(data, diagnoses) === true
 
 export default class DiagnosesValidator {
   constructor(data = {}) {
-    this.diagnosed = (data.Diagnosed || {}).value
-    this.didNotConsult = (data.DidNotConsult || {}).value
-    this.inTreatment = (data.InTreatment || {}).value
-    this.diagnosisList = data.DiagnosisList
-    this.treatmentList = data.TreatmentList
+    this.data = data
   }
 
   validDiagnosisList() {
-    if (this.diagnosed === 'No') {
-      return true
-    }
-
-    return validAccordion(this.diagnosisList, item => {
-      return new DiagnosisValidator(item).isValid()
-    })
+    return validateModel(this.data, {
+      DiagnosisList: diagnoses.DiagnosisList,
+    }) === true
   }
 
   validTreatmentList() {
-    if (this.inTreatment === 'No') {
-      return true
-    }
-
-    return validAccordion(this.treatmentList, item => {
-      return new TreatmentValidator(item).isValid()
-    })
+    return validateModel(this.data, {
+      TreatmentList: diagnoses.TreatmentList,
+    }) === true
   }
 
   isValid() {
-    if (!validBranch(this.diagnosed)) {
-      return false
-    }
-
-    if (this.diagnosed === 'No') {
-      return true
-    }
-
-    return (
-      validBranch(this.didNotConsult) &&
-      validBranch(this.inTreatment) &&
-      this.validDiagnosisList() &&
-      this.validTreatmentList()
-    )
+    return validateDiagnoses(this.data)
   }
 }

@@ -1,50 +1,61 @@
-import {
-  validAccordion,
-  validGenericTextfield,
-  validDateField
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import debarred from 'models/debarred'
+
+export const validateDebarred = data => (
+  validateModel(data, debarred) === true
+)
+
+export const validateLegalInvestigationsDebarred = (data) => {
+  const legalInvestigationsDebarredModel = {
+    HasDebarment: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasDebarment && attributes.HasDebarment.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: debarred },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, legalInvestigationsDebarredModel) === true
+}
 
 export default class LegalInvestigationsDebarredValidator {
   constructor(data = {}) {
-    this.hasDebarment = (data.HasDebarment || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasDebarment === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new DebarredValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalInvestigationsDebarred(this.data)
   }
 }
 
 export class DebarredValidator {
   constructor(data = {}) {
-    this.agency = data.Agency
-    this.date = data.Date
-    this.explanation = data.Explanation
+    this.data = data
   }
 
   validAgency() {
-    return !!this.agency && validGenericTextfield(this.agency)
+    return validateModel(this.data, {
+      Agency: debarred.Agency,
+    }) === true
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, {
+      Date: debarred.Date,
+    }) === true
   }
 
   validExplanation() {
-    return !!this.explanation && validGenericTextfield(this.explanation)
+    return validateModel(this.data, {
+      Explanation: debarred.Explanation,
+    }) === true
   }
 
   isValid() {
-    return this.validAgency() && this.validDate() && this.validExplanation()
+    return validateDebarred(this.data)
   }
 }

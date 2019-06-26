@@ -1,43 +1,43 @@
-import DateRangeValidator from './daterange'
-import { validAccordion, validBranch, validGenericTextfield } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import drugSafetyUse from 'models/drugSafetyUse'
+
+export const validateDrugSafetyUse = data => (
+  validateModel(data, drugSafetyUse) === true
+)
+
+export const validateDrugSafetyUses = (data) => {
+  const drugSafetyUsesModel = {
+    UsedDrugs: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.UsedDrugs && attributes.UsedDrugs.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: drugSafetyUse },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, drugSafetyUsesModel) === true
+}
 
 export default class DrugPublicSafetyUsesValidator {
   constructor(data = {}) {
-    this.usedDrugs = (data.UsedDrugs || {}).value
-    this.list = data.List
-  }
-
-  validUsedDrugs() {
-    return validBranch(this.usedDrugs)
-  }
-
-  validDrugPublicSafetyUses() {
-    if (this.validUsedDrugs() && this.usedDrugs === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new DrugPublicSafetyUseValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validUsedDrugs() && this.validDrugPublicSafetyUses()
+    return validateDrugSafetyUses(this.data)
   }
 }
 
 export class DrugPublicSafetyUseValidator {
   constructor(data = {}) {
-    this.description = data.Description
-    this.involvementDates = data.InvolvementDates
-    this.estimatedUse = data.EstimatedUse
+    this.data = data
   }
 
   isValid() {
-    return (
-      new DateRangeValidator(this.involvementDates).isValid() &&
-      validGenericTextfield(this.description) &&
-      validGenericTextfield(this.estimatedUse)
-    )
+    return validateDrugSafetyUse(this.data)
   }
 }

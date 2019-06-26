@@ -1,91 +1,81 @@
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validBranch,
-  validGenericTextfield,
-  validDateField
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import alcoholReceivedCounseling from 'models/alcoholReceivedCounseling'
+
+export const validateReceivedCounseling = (data) => {
+  const modelData = {
+    ...data,
+    TreatmentDates: {
+      from: data.TreatmentBeganDate,
+      to: data.TreatmentEndDate,
+    },
+  }
+
+  return validateModel(modelData, alcoholReceivedCounseling) === true
+}
+
+export const validateReceivedCounselings = (data) => {
+  const receivedCounselingsModel = {
+    ReceivedTreatment: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.ReceivedTreatment
+        && attributes.ReceivedTreatment.value === 'Yes') {
+        return { presence: true, accordion: { validator: alcoholReceivedCounseling } }
+      }
+      return {}
+    },
+  }
+
+  // We need to make actual date ranges for consistent validation
+  const modelData = { ...data }
+  if (data.List && data.List.items) {
+    const newItems = data.List.items.map(i => ({
+      ...i,
+      Item: {
+        ...i.Item,
+        TreatmentDates: {
+          from: i.Item && i.Item.TreatmentBeganDate,
+          to: i.Item && i.Item.TreatmentEndDate,
+        },
+      },
+    }))
+
+    modelData.List.items = newItems
+  }
+
+  return validateModel(modelData, receivedCounselingsModel) === true
+}
 
 export default class ReceivedCounselingsValidator {
   constructor(data = {}) {
-    this.receivedTreatment = (data.ReceivedTreatment || {}).value
-    this.list = data.List || {}
-  }
-
-  validReceivedTreatment() {
-    return validBranch(this.receivedTreatment)
-  }
-
-  validReceivedCounselings() {
-    if (this.validReceivedTreatment() && this.receivedTreatment === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ReceivedCounselingValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validReceivedTreatment() && this.validReceivedCounselings()
+    return validateReceivedCounselings(this.data)
   }
 }
 
 export class ReceivedCounselingValidator {
   constructor(data = {}) {
-    this.treatmentProviderName = data.TreatmentProviderName
-    this.treatmentProviderAddress = data.TreatmentProviderAddress
-    this.agencyName = data.AgencyName
-    this.agencyAddress = data.AgencyAddress
-    this.useSameAddress = (data.UseSameAddress || {}).value
-    this.treatmentBeganDate = data.TreatmentBeganDate
-    this.treatmentEndDate = data.TreatmentEndDate
-    this.completedTreatment = (data.CompletedTreatment || {}).value
-    this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
+    this.data = data
   }
 
   validCompletedTreatment() {
-    switch (this.completedTreatment) {
-      case 'Yes':
-      case 'No':
-        return validGenericTextfield(this.noCompletedTreatmentExplanation)
-      default:
-        return false
-    }
+    return validateModel(this.data, {
+      CompletedTreatment: alcoholReceivedCounseling.CompletedTreatment,
+      NoCompletedTreatmentExplanation: alcoholReceivedCounseling.NoCompletedTreatmentExplanation,
+    }) === true
   }
 
   validAddress() {
-    if (this.useSameAddress === 'Yes') {
-      return new LocationValidator(this.treatmentProviderAddress).isValid()
-    }
-    return (
-      new LocationValidator(this.treatmentProviderAddress).isValid() &&
-      new LocationValidator(this.agencyAddress).isValid()
-    )
-  }
-
-  daterange() {
-    const start = new Date(
-      `${this.treatmentBeganDate.month || '1'}/${this.treatmentBeganDate.day ||
-        '1'}/${this.treatmentBeganDate.year || '1900'}`
-    )
-    const stop = new Date(
-      `${this.treatmentEndDate.month || '1'}/${this.treatmentEndDate.day ||
-        '1'}/${this.treatmentEndDate.year || '1900'}`
-    )
-    return start <= stop
+    return validateModel(this.data, {
+      TreatmentProviderAddress: alcoholReceivedCounseling.TreatmentProviderAddress,
+      UseSameAddress: alcoholReceivedCounseling.UseSameAddress,
+      AgencyAddress: alcoholReceivedCounseling.AgencyAddress,
+    }) === true
   }
 
   isValid() {
-    return (
-      validGenericTextfield(this.treatmentProviderName) &&
-      validBranch(this.useSameAddress) &&
-      this.validAddress() &&
-      validGenericTextfield(this.agencyName) &&
-      this.validCompletedTreatment() &&
-      validDateField(this.treatmentBeganDate) &&
-      validDateField(this.treatmentEndDate) &&
-      this.daterange()
-    )
+    return validateReceivedCounseling(this.data)
   }
 }

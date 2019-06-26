@@ -1,65 +1,43 @@
-import LocationValidator from './location'
-import {
-  validGenericTextfield,
-  validGenericMonthYear,
-  BranchCollection
-} from './helpers'
+import { validateModel } from 'models/validate'
+import order from 'models/shared/order'
+
+export const validateOrder = (data, requireDisposition = true) => (
+  validateModel(data, order, { requireDisposition }) === true
+)
 
 export default class OrderValidator {
   constructor(data = {}) {
+    this.data = data
     this.prefix = (data || {}).prefix || 'order'
-    this.courtAddress = data.CourtAddress
-    this.courtName = data.CourtName
-    this.disposition = data.Disposition
-    this.occurred = data.Occurred
-    this.appeals = data.Appeals
   }
 
   validCourt() {
-    return (
-      validGenericTextfield(this.courtName) &&
-      new LocationValidator(this.courtAddress).isValid()
-    )
+    return validateModel(this.data, {
+      CourtName: order.CourtName,
+      CourtAddress: order.CourtAddress,
+    }) === true
   }
 
   validOccurred() {
-    return validGenericMonthYear(this.occurred)
+    return validateModel(this.data, {
+      Occurred: order.Occurred,
+    }) === true
   }
 
   validDisposition() {
-    if (this.prefix === 'competence') {
-      return true
-    }
-
-    return validGenericTextfield(this.disposition)
+    return validateModel(this.data, {
+      Disposition: order.Disposition,
+    }, { requireDisposition: this.prefix !== 'competence' }) === true
   }
 
   validAppeals() {
-    const branchValidator = new BranchCollection(this.appeals)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
-
-    if (branchValidator.hasNo()) {
-      return true
-    }
-
-    return branchValidator.each(item => {
-      return (
-        validGenericTextfield(item.CourtName) &&
-        new LocationValidator(item.CourtAddress) &&
-        validGenericTextfield(item.Disposition)
-      )
-    })
+    return validateModel(this.data, {
+      Appeals: order.Appeals,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validCourt() &&
-      this.validDisposition() &&
-      this.validOccurred() &&
-      this.validAppeals()
-    )
+    return validateOrder(this.data, this.prefix !== 'competence')
   }
 }
 

@@ -1,80 +1,79 @@
-import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validGenericTextfield,
-  validNotApplicable
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import terrorist from 'models/terrorist'
+
+export const validateTerrorist = data => (
+  validateModel(data, terrorist) === true
+)
+
+export const validateLegalTerrorist = (data) => {
+  const legalTerroristModel = {
+    HasTerrorist: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasTerrorist && attributes.HasTerrorist.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: terrorist },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, legalTerroristModel) === true
+}
 
 export default class LegalTerroristValidator {
   constructor(data = {}) {
-    this.hasTerrorist = (data.HasTerrorist || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasTerrorist === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new TerroristValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateLegalTerrorist(this.data)
   }
 }
 
 export class TerroristValidator {
   constructor(data = {}) {
-    this.organization = data.Organization
-    this.address = data.Address
-    this.dates = data.Dates
-    this.positions = data.Positions
-    this.positionsNotApplicable = data.PositionsNotApplicable
-    this.contributions = data.Contributions
-    this.contributionsNotApplicable = data.ContributionsNotApplicable
-    this.reasons = data.Reasons
+    this.data = data
   }
 
   validOrganization() {
-    return !!this.organization && validGenericTextfield(this.organization)
+    return validateModel(this.data, {
+      Organization: terrorist.Organization,
+    }) === true
   }
 
   validAddress() {
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, {
+      Address: terrorist.Address,
+    }) === true
   }
 
   validDates() {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return validateModel(this.data, {
+      Dates: terrorist.Dates,
+    }) === true
   }
 
   validPositions() {
-    return validNotApplicable(this.positionsNotApplicable, () => {
-      return !!this.positions && validGenericTextfield(this.positions)
-    })
+    return validateModel(this.data, {
+      Positions: terrorist.Positions,
+    }) === true
   }
 
   validContributions() {
-    return validNotApplicable(this.contributionsNotApplicable, () => {
-      return !!this.contributions && validGenericTextfield(this.contributions)
-    })
+    return validateModel(this.data, {
+      Contributions: terrorist.Contributions,
+    }) === true
   }
 
   validReasons() {
-    return !!this.reasons && validGenericTextfield(this.reasons)
+    return validateModel(this.data, {
+      Reasons: terrorist.Reasons,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validOrganization() &&
-      this.validAddress() &&
-      this.validDates() &&
-      this.validPositions() &&
-      this.validContributions() &&
-      this.validReasons()
-    )
+    return validateTerrorist(this.data)
   }
 }
