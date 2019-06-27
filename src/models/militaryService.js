@@ -36,9 +36,11 @@ const militaryService = {
       },
     },
   },
+  // TODO from >= DOB, to <= NOW
   Dates: { presence: true, daterange: true },
   ServiceNumber: { presence: true, hasValue: true },
   ServiceState: (value, attributes) => {
+    // TODO require empty if not natl guard
     if (isAirOrArmyNationalGuard(attributes.Service)) {
       return {
         presence: true,
@@ -77,6 +79,7 @@ const militaryService = {
       ? { presence: true, hasValue: true }
       : {}
   ),
+  // TODO >= DOB, <= NOW
   DischargeDate: (value, attributes) => (
     checkValue(attributes.HasBeenDischarged, 'Yes')
       ? { presence: true, date: true }
