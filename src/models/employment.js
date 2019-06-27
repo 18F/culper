@@ -31,6 +31,8 @@ const matchEmploymentActivity = (attributes = {}, activities = []) => (
 )
 
 /** Nested models (could be broken out into other files) */
+
+// TODO add SupervisorAlternateAddress validations
 const supervisor = {
   SupervisorName: { presence: true, hasValue: true },
   Title: { presence: true, hasValue: true },
@@ -47,16 +49,19 @@ const supervisor = {
 const additional = {
   Position: { presence: true, hasValue: true },
   Supervisor: { presence: true, hasValue: true },
+  // TODO from >= DOB, to <= employment dates from
   DatesEmployed: { presence: true, daterange: true },
 }
 
 const reprimand = {
   Text: { presence: true, hasValue: true },
+  // TODO date must be >= DOB, <= NOW
   Date: { presence: true, date: { requireDay: false } },
 }
 
 const reasonLeftReason = {
   Reason: { presence: true, hasValue: true },
+  // TODO date must be >= DOB, <= NOW
   Date: { presence: true, date: true },
   Text: { presence: true, hasValue: true },
 }
@@ -77,6 +82,8 @@ const reasonLeft = {
   },
 }
 
+// TODO add AlternateAddress validations
+
 /** Employment model */
 const employment = {
   /** Required by all */
@@ -86,6 +93,8 @@ const employment = {
       validator: { inclusion: employmentActivityOptions },
     },
   },
+  // TODO - require EmploymentActivity.otherExplanation if Other
+  // TODO from must be >= DOB, to must be <= NOW
   Dates: {
     presence: true,
     daterange: true,
@@ -219,6 +228,7 @@ const employment = {
 
     return {}
   },
+  // TODO add ReferenceAlternateAddress
   ReferenceAddress: (value, attributes = {}) => {
     if (matchEmploymentActivity(attributes, [
       SELF_EMPLOYMENT,
