@@ -10,6 +10,7 @@ const otherName = {
     model: { validator: name },
   },
   MaidenName: { presence: true, hasValue: true },
+  // TODO from must be >= person's DOB, to <= NOW
   DatesUsed: { presence: true, daterange: true },
 }
 
@@ -18,6 +19,7 @@ const cohabitant = {
     presence: true,
     model: { validator: name },
   },
+  // TODO >= 200 years ago, <= NOW
   Birthdate: {
     presence: true,
     date: true,
@@ -30,6 +32,7 @@ const cohabitant = {
     presence: true,
     ssn: true,
   },
+  // TODO country
   Citizenship: {
     presence: true,
     hasValue: { validator: { length: { minimum: 1 } } },
@@ -39,6 +42,10 @@ const cohabitant = {
     branchCollection: {
       validator: otherName,
     },
+  },
+  // TODO date >= DOB and person's DOB, <= NOW
+  CohabitationBegan: {
+    presence: true, date: true,
   },
   ForeignBornDocument: (value, attributes = {}) => {
     if (attributes.BirthPlace
