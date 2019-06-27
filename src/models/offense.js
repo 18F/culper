@@ -4,6 +4,7 @@ import sentence from 'models/shared/sentence'
 import { offenseChargeTypes } from 'constants/enums/legalOptions'
 
 const offense = {
+  // TODO >= DOB, <= NOW
   Date: { presence: true, date: true },
   Description: { presence: true, hasValue: true },
   InvolvedViolence: {
@@ -76,9 +77,10 @@ const offense = {
       ? { presence: true, hasValue: true }
       : {}
   ),
+  // TODO >= DOB, <= NOW
   CourtDate: (value, attributes) => (
     checkValue(attributes.WasCharged, 'Yes')
-      ? { presence: true, date: true }
+      ? { presence: true, date: { requireDay: false } }
       : {}
   ),
   WasSentenced: (value, attributes) => (

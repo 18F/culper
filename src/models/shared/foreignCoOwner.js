@@ -7,6 +7,7 @@ const foreignCoOwner = {
     presence: true,
     location: { validator: address },
   },
+  // TODO country
   Countries: {
     presence: true,
     hasValue: { validator: { length: { minimum: 1 } } },

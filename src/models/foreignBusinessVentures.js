@@ -4,12 +4,14 @@ import address from 'models/shared/locations/address'
 const foreignBusinessVentures = {
   Name: { presence: true, model: { validator: name } },
   Address: { presence: true, location: { validator: address } },
+  // TODO country
   Citizenship: {
     presence: true,
     hasValue: { validator: { length: { minimum: 1 } } },
   },
   Description: { presence: true, hasValue: true },
   Relationship: { presence: true, hasValue: true },
+  // TODO from >= DOB, to <= NOW
   Dates: { presence: true, daterange: true },
   Association: { presence: true, hasValue: true },
   Position: { presence: true, hasValue: true },

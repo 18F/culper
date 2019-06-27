@@ -13,6 +13,7 @@ const foreignSupport = {
   Relationship: { presence: true, hasValue: true },
   Amount: { presence: true, hasValue: true },
   Frequency: { presence: true, hasValue: true },
+  // TODO country
   Citizenship: {
     presence: true,
     hasValue: { validator: { length: { minimum: 1 } } },

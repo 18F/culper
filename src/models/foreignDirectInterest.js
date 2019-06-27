@@ -9,17 +9,19 @@ const foreignDirectInterest = {
     },
   },
   InterestType: { presence: true, hasValue: true },
-  Acquired: { presence: true, date: { requireDay: false } },
+  // TODO <= NOW
+  Acquired: { presence: true, date: true },
   HowAcquired: { presence: true, hasValue: true },
   Cost: { presence: true, hasValue: true },
   Value: { presence: true, hasValue: true },
+  // TODO >= DOB, <= NOW
   Relinquished: (value, attributes) => {
     const { RelinquishedNotApplicable } = attributes
     if (RelinquishedNotApplicable && RelinquishedNotApplicable.applicable === false) {
       return {}
     }
 
-    return { presence: true, date: { requireDay: false } }
+    return { presence: true, date: true }
   },
   Explanation: (value, attributes) => {
     const { RelinquishedNotApplicable } = attributes

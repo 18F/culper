@@ -1,7 +1,10 @@
 import { hasYesOrNo } from 'models/validate'
 
 const drugUse = {
+  // TODO add DrugType, DrugTypeExplanation
+  // TODO >= DOB, <= NOW
   FirstUse: { presence: true, date: { requireDay: false } },
+  // TODO >= first use, <= NOW
   RecentUse: { presence: true, date: { requireDay: false } },
   NatureOfUse: { presence: true, hasValue: true },
   Explanation: { presence: true, hasValue: true },

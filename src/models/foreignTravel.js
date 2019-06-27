@@ -20,7 +20,9 @@ const purposeOptions = [
 ]
 
 const foreignTravel = {
+  // TODO country
   Country: { presence: true, hasValue: true },
+  // TODO from >= DOB, now <= NOW
   Dates: { presence: true, daterange: true },
   Days: { presence: true, hasValue: { validator: { inclusion: daysOptions } } },
   Purpose: {

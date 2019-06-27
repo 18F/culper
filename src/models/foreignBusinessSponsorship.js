@@ -4,6 +4,7 @@ import address from 'models/shared/locations/address'
 
 const foreignBusinessSponsorship = {
   Name: { presence: true, model: { validator: name } },
+  // TODO must be >= 200 years ago, <= NOW
   Birthdate: (value, attributes) => {
     const { BirthdateNotApplicable } = attributes
     if (BirthdateNotApplicable && BirthdateNotApplicable.applicable === false) {
@@ -14,10 +15,12 @@ const foreignBusinessSponsorship = {
   },
   Birthplace: { presence: true, location: { validator: usCityStateZipInternationalCity } },
   Address: { presence: true, location: { validator: address } },
+  // TODO Country
   Citizenship: {
     presence: true,
     hasValue: { validator: { length: { minimum: 1 } } },
   },
+  // TODO from >= DOB & person's DOB, <= NOW
   Dates: { presence: true, daterange: true },
   Residence: { presence: true, location: { validator: address } },
   Organization: (value, attributes) => {
