@@ -10,7 +10,7 @@ storiesOf('Field', module)
       title="Field title"
     />
   ))
-  .add('default (with help)', () => (
+  .add('with help', () => (
     <Field
       titleSize="h4"
       title="Field title with help"

@@ -9,7 +9,7 @@ storiesOf('EyeColor', module)
       name="Eye color"
     />
   ))
-  .add('default (with error)', () => (
+  .add('with error', () => (
     <EyeColor
       name="Eye color"
       className="usa-input-error"

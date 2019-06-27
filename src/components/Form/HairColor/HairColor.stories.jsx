@@ -7,7 +7,7 @@ storiesOf('HairColor', module)
   .add('default', () => (
     <HairColor />
   ))
-  .add('default (with error)', () => (
+  .add('with error', () => (
     <HairColor
       className="usa-input-error"
     />

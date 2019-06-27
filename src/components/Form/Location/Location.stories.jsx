@@ -9,52 +9,52 @@ storiesOf('Location', module)
       layout={Location.ADDRESS}
     />
   ))
-  .add('default (birthplace)', () => (
+  .add('birthplace', () => (
     <Location
       layout={Location.BIRTHPLACE}
     />
   ))
-  .add('default (birthplace w/o country)', () => (
+  .add('birthplace w/o country', () => (
     <Location
       layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
     />
   ))
-  .add('default (country only)', () => (
+  .add('country only', () => (
     <Location
       layout={Location.COUNTRY}
     />
   ))
-  .add('default (state only)', () => (
+  .add('state only', () => (
     <Location
       layout={Location.STATE}
     />
   ))
-  .add('default (city and state only)', () => (
+  .add('city and state only', () => (
     <Location
       layout={Location.CITY_STATE}
     />
   ))
-  .add('default (street, city, country only)', () => (
+  .add('street, city, country only', () => (
     <Location
       layout={Location.STREET_CITY_COUNTRY}
     />
   ))
-  .add('default (city and country only)', () => (
+  .add('city and country only', () => (
     <Location
       layout={Location.CITY_COUNTRY}
     />
   ))
-  .add('default (city, state, country only)', () => (
+  .add('city, state, country only', () => (
     <Location
       layout={Location.CITY_STATE_COUNTRY}
     />
   ))
-  .add('default (U.S. address)', () => (
+  .add('U.S. address', () => (
     <Location
       layout={Location.US_ADDRESS}
     />
   ))
-  .add('default (city, street only)', () => (
+  .add('city, street only', () => (
     <Location
       layout={Location.STREET_CITY}
     />

@@ -9,13 +9,13 @@ storiesOf('Email', module)
       label="Email"
     />
   ))
-  .add('default (with success)', () => (
+  .add('with success', () => (
     <Email
       label="Email"
       value="josh@email.com"
     />
   ))
-  .add('default (with error)', () => (
+  .add('with error', () => (
     <Email
       label="Email"
       value="josh-at-email.com"

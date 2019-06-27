@@ -4,11 +4,16 @@ import { storiesOf } from '@storybook/react'
 import { ProgressBar } from './ProgressBar'
 
 storiesOf('ProgressBar', module)
-  .add('default', () => (
+  .add('empty', () => (
     <ProgressBar />
   ))
-  .add('default (half complete)', () => (
+  .add('partial', () => (
     <ProgressBar
       completed="5"
+    />
+  ))
+  .add('completed', () => (
+    <ProgressBar
+      completed="10"
     />
   ))

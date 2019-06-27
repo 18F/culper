@@ -9,13 +9,13 @@ storiesOf('Textarea', module)
       label="Text area"
     />
   ))
-  .add('default (disabled)', () => (
+  .add('disabled', () => (
     <Textarea
       label="Text area"
       disabled
     />
   ))
-  .add('default (with error)', () => (
+  .add('with error', () => (
     <Textarea
       label="Text area"
       className="usa-input-error"

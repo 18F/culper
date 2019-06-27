@@ -12,7 +12,7 @@ storiesOf('Modal', module)
       <p>Content that shows within the modal body</p>
     </Modal>
   ))
-  .add('default (closable)', () => (
+  .add('closable', () => (
     <Modal
       show
       closeable

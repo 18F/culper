@@ -3,19 +3,19 @@ import { storiesOf } from '@storybook/react'
 
 import Generic from './Generic'
 
-storiesOf('Generic Input', module)
+storiesOf('Generic', module)
   .add('default', () => (
     <Generic
       label="Generic input"
     />
   ))
-  .add('default (disabled)', () => (
+  .add('disabled', () => (
     <Generic
       label="Generic input"
       disabled
     />
   ))
-  .add('default (with error)', () => (
+  .add('with error', () => (
     <Generic
       label="Generic input"
       className="usa-input-error"

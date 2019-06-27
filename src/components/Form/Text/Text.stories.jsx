@@ -9,13 +9,13 @@ storiesOf('Text', module)
       label="Text input"
     />
   ))
-  .add('default (disabled)', () => (
+  .add('disabled', () => (
     <Text
       label="Text input"
       disabled
     />
   ))
-  .add('default (with error)', () => (
+  .add('with error', () => (
     <Text
       label="Text input"
       className="usa-input-error"

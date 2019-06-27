@@ -7,6 +7,15 @@ storiesOf('MultipleDropdown', module)
   .add('default', () => (
     <MultipleDropdown
       label="Multi select dropdown"
-      value={['value 1', 'value 2']}
-    />
+    >
+      <option key="option-1" value="Option 1">
+        Option 1
+      </option>
+      <option key="option-2" value="Option 2">
+        Option 2
+      </option>
+      <option key="option-3" value="Option 3">
+        Option 3
+      </option>
+    </MultipleDropdown>
   ))

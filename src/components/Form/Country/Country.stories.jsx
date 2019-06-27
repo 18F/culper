@@ -9,7 +9,7 @@ storiesOf('Country input', module)
       label="Select a country"
     />
   ))
-  .add('default (multi-select)', () => (
+  .add('multi-select', () => (
     // Unable to get multi-select working
     <Country
       label="Selected multiple countries"

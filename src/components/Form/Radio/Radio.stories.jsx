@@ -7,16 +7,13 @@ import { action } from '@storybook/addon-actions'
 import Radio from './Radio'
 
 storiesOf('Radio', module)
-  .add('default (no label)', () => (
-    <Radio onUpdate={action('onUpdate')} />
-  ))
-  .add('with label', () => (
+  .add('default', () => (
     <Radio
       label="Select me"
       onUpdate={action('onUpdate')}
     />
   ))
-  .add('with label (disabled)', () => (
+  .add('disabled', () => (
     <Radio
       label="Select me"
       onUpdate={action('onUpdate')}
