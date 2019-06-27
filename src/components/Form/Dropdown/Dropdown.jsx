@@ -106,27 +106,32 @@ export default class Dropdown extends ValidationElement {
   }
 
   componentWillReceiveProps(next) {
-    let updates = {}
-    if (next.receiveProps) {
+    const updates = {}
 
+    if (next.receiveProps) {
       if (next.value !== this.state.value) {
-        updates = { ...updates, value: next.value }
+        updates.value = next.value
       }
 
-      if (updates.value !== undefined && updates.value !== this.state.value) {
+      if (
+        updates.value !== undefined
+        && updates.value !== this.state.value
+        && !next.disabled
+      ) {
         const errors = this.errors(updates.value)
         updates.error = errors.some(x => x.valid === false)
         updates.valid = errors.every(x => x.valid === true)
       }
-
-      this.setState(updates)
     }
 
     // If disabled, we clear the value and clear state
     if (next.disabled) {
-      updates = { value: '', valid: null, error: null }
-      this.setState(updates)
+      updates.value = ''
+      updates.valid = null
+      updates.error = null
     }
+
+    this.setState(updates)
   }
 
   update(queue) {
