@@ -50,6 +50,7 @@ export const requireResidenceDocumentation = attributes => (
 )
 
 /** Relative model */
+// TODO add AlternateAddress
 const relative = {
   Name: {
     presence: true,
@@ -59,6 +60,9 @@ const relative = {
     presence: true,
     hasValue: { validator: { length: { minimum: 1 } } },
   },
+  // TODO if mother or father: >= 200 years ago, < DOB
+  // TODO if child: >= DOB, < NOW
+  // TODO else: >= 200 years ago, <= NOW
   Birthdate: {
     presence: true,
     date: true,
@@ -209,6 +213,7 @@ const relative = {
 
     return {}
   },
+  // TODO must be >= DOB and relative's DOB, <= NOW
   FirstContact: (value, attributes) => {
     if (isLivingNonCitizen(attributes)) {
       return {
@@ -219,6 +224,7 @@ const relative = {
 
     return {}
   },
+  // TODO must be >= first contact, <= NOW
   LastContact: (value, attributes) => {
     if (isLivingNonCitizen(attributes)) {
       return {

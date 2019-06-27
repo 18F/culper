@@ -5,6 +5,7 @@ import address from 'models/shared/locations/address'
 const foreignOrganization = [
   'Military',
   'Intelligence',
+  'Diplomatic',
   'Security',
   'Militia',
   'Defense',
@@ -24,6 +25,7 @@ export const foreignMilitaryContact = {
     presence: true,
     hasValue: true,
   },
+  // TODO from >= DOB, to <= NOW
   Dates: {
     presence: true,
     daterange: true,
@@ -42,12 +44,16 @@ const militaryForeign = {
     },
   },
   Name: { presence: true, hasValue: true },
+  // TODO from >= DOB, to <= NOW
   Dates: { presence: true, daterange: true },
   Country: { presence: true, country: true },
   Rank: { presence: true, hasValue: true },
   Division: { presence: true, hasValue: true },
   Circumstances: { presence: true, hasValue: true },
-  ReasonLeft: { presence: true, hasValue: true },
+  ReasonLeft: (value, attributes) => {
+    if (attributes.Dates && attributes.Dates.present) return {}
+    return { presence: true, hasValue: true }
+  },
   MaintainsContact: (value, attributes, attributeName, options) => {
     const { requireForeignMilitaryMaintainsContact } = options
     if (requireForeignMilitaryMaintainsContact) {

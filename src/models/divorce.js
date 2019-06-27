@@ -13,6 +13,7 @@ const divorce = {
     presence: true,
     model: { validator: name },
   },
+  // TODO >= 200 years ago, <= NOW
   Birthdate: {
     presence: true,
     date: true,
@@ -21,6 +22,7 @@ const divorce = {
     presence: true,
     location: { validator: birthplaceWithoutCounty },
   },
+  // TODO country
   Citizenship: {
     presence: true,
     country: true,
@@ -29,6 +31,7 @@ const divorce = {
     presence: true,
     model: { validator: phone },
   },
+  // TODO date >= DOB and person's DOB, <= NOW
   Recognized: {
     presence: true,
     date: true,
@@ -37,6 +40,7 @@ const divorce = {
     presence: true,
     location: { validator: birthplaceWithoutCounty },
   },
+  // TODO must be >= date recognized, <= NOW
   DateDivorced: {
     presence: true,
     date: true,
