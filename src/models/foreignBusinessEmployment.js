@@ -5,6 +5,7 @@ import { hasYesOrNo } from 'models/validate'
 const foreignBusinessEmployment = {
   Name: { presence: true, model: { validator: name } },
   Description: { presence: true, hasValue: true },
+  // TODO must be >= DOB, <= NOW
   Date: { presence: true, date: true },
   Address: { presence: true, location: { validator: usCityStateZipInternationalCity } },
   Accepted: { presence: true, hasValue: { validator: hasYesOrNo } },

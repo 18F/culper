@@ -16,11 +16,14 @@ const sentence = {
       return {}
     }
 
+    // TODO more than 1 year or less than 1 year based on ExceedsYear
+    // TODO >= DOB, <= NOW
     return {
       presence: true,
       daterange: true,
     }
   },
+  // TODO >= DOB, <= NOW
   ProbationDates: (value, attributes) => {
     if (attributes.ProbationDatesNA
       && attributes.ProbationDatesNA.applicable === false) {

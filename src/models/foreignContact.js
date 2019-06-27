@@ -45,10 +45,12 @@ const foreignContact = {
       hasValue: true,
     }
   },
+  // TODO must be >= DOB and persons DOB, <= NOW
   FirstContact: {
     presence: true,
     date: true,
   },
+  // TODO must be >= first contact, <= NOW
   LastContact: {
     presence: true,
     date: true,
@@ -130,6 +132,7 @@ const foreignContact = {
       },
     }
   },
+  // TODO add Alternate Address
   Address: (value, attributes) => {
     const { AddressNotApplicable } = attributes
     if (AddressNotApplicable && AddressNotApplicable.applicable === false) return {}

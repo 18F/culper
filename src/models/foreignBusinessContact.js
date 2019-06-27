@@ -3,6 +3,7 @@ import usCityStateZipInternationalCity from 'models/shared/locations/usCityState
 
 const subsequentContact = {
   Subsequent: { presence: true, hasValue: true },
+  // TODO must be >= DOB, <= NOW
   Recent: { presence: true, date: true },
   Future: { presence: true, hasValue: true },
 }
@@ -10,6 +11,7 @@ const subsequentContact = {
 const foreignBusinessContact = {
   Name: { presence: true, model: { validator: name } },
   Location: { presence: true, location: { validator: usCityStateZipInternationalCity } },
+  // TODO must be >= DOB, <= NOW
   Date: { presence: true, date: true },
   Governments: { presence: true, country: true },
   Establishment: { presence: true, hasValue: true },

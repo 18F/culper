@@ -12,7 +12,9 @@ const alcoholReceivedCounseling = {
     return { presence: true, location: { validator: address } }
   },
   AgencyName: { presence: true, hasValue: true },
+  // TODO >= DOB, <= NOW
   TreatmentBeganDate: { presence: true, date: true },
+  // TODO >= date began, <= NOW
   TreatmentEndDate: { presence: true, date: true },
   TreatmentDates: { presence: true, daterange: true },
   CompletedTreatment: { presence: true, hasValue: { validator: hasYesOrNo } },

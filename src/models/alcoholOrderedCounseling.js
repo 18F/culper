@@ -31,6 +31,7 @@ const alcoholOrderedCounseling = {
     }
     return {}
   },
+  // TODO >= DOB, <= NOW
   CounselingDates: (value, attributes) => {
     if (checkValue(attributes.ActionTaken, 'Yes')) {
       return { presence: true, daterange: true }

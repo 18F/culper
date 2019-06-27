@@ -20,6 +20,7 @@ const drugOrderedTreatment = {
       },
     }
   },
+  // TODO add DrugType, DrugTypeExplanation
   TreatmentProvider: (value, attributes) => {
     if (checkValue(attributes.ActionTaken, 'Yes')) {
       return { presence: true, hasValue: true }
@@ -38,6 +39,7 @@ const drugOrderedTreatment = {
     }
     return {}
   },
+  // TODO >= DOB, <= NOW
   TreatmentDates: (value, attributes) => {
     if (checkValue(attributes.ActionTaken, 'Yes')) {
       return { presence: true, daterange: true }

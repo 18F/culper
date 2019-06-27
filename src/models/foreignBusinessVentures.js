@@ -7,6 +7,7 @@ const foreignBusinessVentures = {
   Citizenship: { presence: true, country: true },
   Description: { presence: true, hasValue: true },
   Relationship: { presence: true, hasValue: true },
+  // TODO from >= DOB, to <= NOW
   Dates: { presence: true, daterange: true },
   Association: { presence: true, hasValue: true },
   Position: { presence: true, hasValue: true },

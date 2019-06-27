@@ -4,6 +4,7 @@ import address from 'models/shared/locations/address'
 
 const foreignBusinessSponsorship = {
   Name: { presence: true, model: { validator: name } },
+  // TODO must be >= 200 years ago, <= NOW
   Birthdate: (value, attributes) => {
     const { BirthdateNotApplicable } = attributes
     if (BirthdateNotApplicable && BirthdateNotApplicable.applicable === false) {

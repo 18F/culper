@@ -22,6 +22,7 @@ const foreignBenefitType = {
 
     return {}
   },
+  // TODO must be >= DOBSpouseDOBCohabDOBFloor ??, <= NOW
   Received: (value, attributes, attributeName, options) => {
     const { benefitType } = options
     if (benefitType === ONE_TIME) {
@@ -33,6 +34,8 @@ const foreignBenefitType = {
 
     return {}
   },
+  // TODO must be >= NOW if Future
+  // TODO must be >= DOBSpouseDOBCohabDOBFloor ??, <= NOW if Continuing/Other
   Began: (value, attributes, attributeName, options) => {
     const { benefitType } = options
     if ([FUTURE, CONTINUING, OTHER].indexOf(benefitType) > -1) {
@@ -63,6 +66,7 @@ const foreignBenefitType = {
 
     return {}
   },
+  // TODO must be >= date began, future ok
   End: (value, attributes, attributeName, options) => {
     const { benefitType } = options
     if ([CONTINUING, OTHER].indexOf(benefitType) > -1) {

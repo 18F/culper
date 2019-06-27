@@ -1,4 +1,5 @@
 const foreignBusinessVoting = {
+  // TODO >= DOB, <= NOW
   Date: { presence: true, date: true },
   Country: { presence: true, country: true },
   Reason: { presence: true, hasValue: true },
