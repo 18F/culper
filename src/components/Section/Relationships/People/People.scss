@@ -28,3 +28,25 @@
     text-align: center;
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .people .summaryprogress.progress {
+    display: block;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .people .people-summary {
+    width: 100%;
+
+    .content,
+    .status {
+      width: 100%;
+    }
+  }
+
+  .people .counter {
+    display: block;
+    width: 100%;
+  }
+}

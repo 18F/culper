@@ -9,7 +9,7 @@ ShallowWrapper {
   },
   "length": 1,
   "node": <div
-    className="submission-status valid"
+    className="eapp-submit submission-status valid"
   >
     <ReactMarkdown
       containerTagName="div"
@@ -102,7 +102,7 @@ Not a guarantee of acceptance, but all required fields are complete."
   </div>,
   "nodes": Array [
     <div
-      className="submission-status valid"
+      className="eapp-submit submission-status valid"
     >
       <ReactMarkdown
         containerTagName="div"
@@ -217,6 +217,8 @@ Not a guarantee of acceptance, but all required fields are complete."
       "_instance": PackageSubmit {
         "_reactInternalInstance": [Circular],
         "context": Object {},
+        "handleCancel": [Function],
+        "handleConfirmSubmission": [Function],
         "handleSubmit": [Function],
         "props": Object {
           "Application": Object {},
@@ -230,11 +232,13 @@ Not a guarantee of acceptance, but all required fields are complete."
         "refs": Object {},
         "renderAccordion": [Function],
         "state": Object {
+          "isConfirmingSubmission": false,
           "isSubmitting": false,
           "showAdditionalComments": true,
           "showCreditItem": false,
           "showGeneralItem": false,
           "signatures": Object {},
+          "spinnerAction": "spin",
           "submissionError": false,
         },
         "togglePanel": [Function],
@@ -262,7 +266,7 @@ Not a guarantee of acceptance, but all required fields are complete."
       "_pendingStateQueue": null,
       "_renderedComponent": NoopInternalComponent {
         "_currentElement": <div
-          className="submission-status valid"
+          className="eapp-submit submission-status valid"
         >
           <ReactMarkdown
             containerTagName="div"
@@ -355,7 +359,7 @@ Not a guarantee of acceptance, but all required fields are complete."
         </div>,
         "_debugID": 2,
         "_renderedOutput": <div
-          className="submission-status valid"
+          className="eapp-submit submission-status valid"
         >
           <ReactMarkdown
             containerTagName="div"

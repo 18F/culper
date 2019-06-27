@@ -51,7 +51,7 @@ export const military = {
       born: {
         title: 'Why are we asking?',
         message:
-          'The selective service only applies to men born before after this date.',
+          'The selective service only applies to men born after this date.',
         note: '',
       },
       registered: {

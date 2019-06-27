@@ -1,6 +1,10 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/pkg/errors"
+)
 
 // MilitarySelective represents the payload for the military service section.
 type MilitarySelective struct {
@@ -119,6 +123,14 @@ func (entity *MilitarySelective) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *MilitarySelective) ClearNoBranches() error {
+
+	entity.HasRegistered.ClearNo()
+
+	return nil
+}
+
 // MilitaryHistory represents the payload for the military history section.
 type MilitaryHistory struct {
 	PayloadHasServed Payload `json:"HasServed" sql:"-"`
@@ -182,6 +194,21 @@ func (entity *MilitaryHistory) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *MilitaryHistory) ClearNoBranches() error {
+
+	entity.HasServed.ClearNo()
+
+	itemsErr := entity.List.ClearBranchItemsNo("HasBeenDischarged")
+	if itemsErr != nil {
+		errors.Wrap(itemsErr, "Couldn't clear discharge from military")
+	}
+
+	entity.List.ClearBranchNo()
+
+	return nil
 }
 
 // MilitaryDisciplinary represents the payload for the military disposition section.
@@ -249,6 +276,16 @@ func (entity *MilitaryDisciplinary) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *MilitaryDisciplinary) ClearNoBranches() error {
+
+	entity.HasDisciplinary.ClearNo()
+
+	entity.List.ClearBranchNo()
+
+	return nil
+}
+
 // MilitaryForeign represents the payload for the military foreign section.
 type MilitaryForeign struct {
 	PayloadList Payload `json:"List" sql:"-"`
@@ -294,4 +331,15 @@ func (entity *MilitaryForeign) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *MilitaryForeign) ClearNoBranches() error {
+
+	listErr := entity.List.ClearBranchItemsNo("Has", "MaintainsContact")
+	if listErr != nil {
+		return errors.Wrap(listErr, "couldn't clear the military has")
+	}
+
+	return nil
 }

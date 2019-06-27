@@ -1,48 +1,48 @@
 import OrderedCounselingsValidator, {
-  OrderedCounselingValidator
+  OrderedCounselingValidator,
 } from './alcoholorderedcounseling'
 import Location from '../components/Form/Location'
 
-describe('ordered counseling component validation', function() {
+describe('ordered counseling component validation', () => {
   it('can validate ordered counseling', () => {
     const tests = [
       {
         state: {
           ActionTaken: { value: 'No' },
           NoActionTakenExplanation: {
-            value: 'Foo'
-          }
+            value: 'Foo',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          ActionTaken: { value: 'Nope' }
+          ActionTaken: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Seekers: { values: ['Other'] },
           OtherSeeker: {
-            value: 'Other'
+            value: 'Other',
           },
           ActionTaken: { value: 'Yes' },
           CounselingDates: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
+            present: false,
           },
           TreatmentProviderName: {
-            value: 'The name'
+            value: 'The name',
           },
           TreatmentProviderAddress: {
             country: { value: 'United States' },
@@ -50,7 +50,7 @@ describe('ordered counseling component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           TreatmentProviderTelephone: {
             noNumber: '',
@@ -58,14 +58,14 @@ describe('ordered counseling component validation', function() {
             numberType: 'Home',
             timeOfDay: 'Both',
             type: 'Domestic',
-            extension: ''
+            extension: '',
           },
-          CompletedTreatment: { value: 'Yes' }
+          CompletedTreatment: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OrderedCounselingValidator(test.state, null).isValid()).toBe(
         test.expected
       )
@@ -76,27 +76,30 @@ describe('ordered counseling component validation', function() {
     const tests = [
       {
         state: {
-          CompletedTreatment: { value: 'Yes' }
+          ActionTaken: { value: 'Yes' },
+          CompletedTreatment: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
+          ActionTaken: { value: 'Yes' },
           CompletedTreatment: { value: 'No' },
           NoCompletedTreatmentExplanation: {
-            value: 'Foo'
-          }
+            value: 'Foo',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          CompletedTreatment: { value: 'Nope' }
+          ActionTaken: { value: 'Yes' },
+          CompletedTreatment: { value: 'Nope' },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new OrderedCounselingValidator(test.state).validCompletedTreatment()
       ).toBe(test.expected)
@@ -118,17 +121,17 @@ describe('ordered counseling component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   TreatmentProviderName: {
-                    value: 'The name'
+                    value: 'The name',
                   },
                   TreatmentProviderAddress: {
                     country: { value: 'United States' },
@@ -136,7 +139,7 @@ describe('ordered counseling component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   TreatmentProviderTelephone: {
                     noNumber: '',
@@ -144,54 +147,54 @@ describe('ordered counseling component validation', function() {
                     numberType: 'Home',
                     timeOfDay: 'Both',
                     type: 'Domestic',
-                    extension: ''
+                    extension: '',
                   },
-                  CompletedTreatment: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  CompletedTreatment: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasBeenOrdered: { value: 'No' }
+          HasBeenOrdered: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          HasBeenOrdered: { value: 'Yes' },
-          List: {
-            branch: { value: '' },
-            items: []
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           HasBeenOrdered: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: [{}]
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
+      },
+      {
+        state: {
+          HasBeenOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}],
+          },
+        },
+        expected: false,
       },
       {
         state: {
           HasBeenOrdered: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{ Item: {} }]
-          }
+            items: [{ Item: {} }],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new OrderedCounselingsValidator(test.state).isValid()).toBe(
         test.expected
       )

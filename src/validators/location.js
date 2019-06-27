@@ -1,7 +1,7 @@
 import { validate } from 'validate.js'
 import usStates from 'constants/enums/usStates'
 import usTerritories from 'constants/enums/usTerritories'
-import militaryStatesEnum from 'constants/enums/militaryStates'
+import militaryStates from 'constants/enums/militaryStates'
 
 import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
@@ -28,10 +28,6 @@ export const isInternational = location => (
   )
 )
 
-export const unitedStates = usStates
-export const otherUsTerritories = usTerritories
-export const militaryStates = militaryStatesEnum
-
 /**
  * Take a potential state name and convert it to its state code.
  * @param {Type of state} state - The state name.
@@ -39,8 +35,8 @@ export const militaryStates = militaryStatesEnum
  */
 const toCode = (state) => {
   const allUsStates = [
-    ...unitedStates,
-    ...otherUsTerritories,
+    ...usStates,
+    ...usTerritories,
     ...militaryStates,
   ]
 
@@ -158,7 +154,7 @@ export default class LocationValidator {
       return militaryCodes.includes(code)
     }
 
-    const codes = [...unitedStates, ...otherUsTerritories].map(
+    const codes = [...usStates, ...usTerritories].map(
       state => state.postalCode
     )
 

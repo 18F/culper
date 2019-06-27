@@ -1,28 +1,28 @@
 import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
 import Location from '../components/Form/Location'
 
-describe('taxes component validation', function() {
+describe('taxes component validation', () => {
   it('validate agency', () => {
     const tests = [
       {
         state: {
           Agency: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Agency: {
-            value: 'IRS'
-          }
+            value: 'IRS',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CardAbuseItemValidator(test.state, null).validAgency()).toBe(
         test.expected
       )
@@ -33,9 +33,9 @@ describe('taxes component validation', function() {
     const tests = [
       {
         state: {
-          Address: {}
+          Address: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -45,14 +45,14 @@ describe('taxes component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CardAbuseItemValidator(test.state, null).validAddress()).toBe(
         test.expected
       )
@@ -63,9 +63,9 @@ describe('taxes component validation', function() {
     const tests = [
       {
         state: {
-          Date: null
+          Date: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -73,14 +73,14 @@ describe('taxes component validation', function() {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CardAbuseItemValidator(test.state, null).validDate()).toBe(
         test.expected
       )
@@ -92,22 +92,22 @@ describe('taxes component validation', function() {
       {
         state: {
           Reason: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Reason: {
-            value: 'Completely forgot'
-          }
+            value: 'Completely forgot',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CardAbuseItemValidator(test.state, null).validReason()).toBe(
         test.expected
       )
@@ -119,38 +119,38 @@ describe('taxes component validation', function() {
       {
         state: {
           Amount: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: 'abc'
-          }
+            value: 'abc',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: '0'
-          }
+            value: '0',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: '20000'
-          }
+            value: '20000',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CardAbuseItemValidator(test.state, null).validAmount()).toBe(
         test.expected
       )
@@ -162,22 +162,22 @@ describe('taxes component validation', function() {
       {
         state: {
           Description: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Description: {
-            value: 'The description'
-          }
+            value: 'The description',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new CardAbuseItemValidator(test.state, null).validDescription()
       ).toBe(test.expected)
@@ -188,31 +188,31 @@ describe('taxes component validation', function() {
     const tests = [
       {
         state: {
-          HasCardAbuse: { value: '' }
+          HasCardAbuse: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasCardAbuse: { value: 'Unicorn' }
+          HasCardAbuse: { value: 'Unicorn' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasCardAbuse: { value: 'No' }
+          HasCardAbuse: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasCardAbuse: { value: 'Yes' }
+          HasCardAbuse: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CardAbuseValidator(test.state, null).validHasCardAbuse()).toBe(
         test.expected
       )
@@ -226,30 +226,30 @@ describe('taxes component validation', function() {
           HasCardAbuse: { value: 'No' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           HasCardAbuse: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasCardAbuse: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -260,7 +260,7 @@ describe('taxes component validation', function() {
               {
                 Item: {
                   Agency: {
-                    value: 'IRS'
+                    value: 'IRS',
                   },
                   Address: {
                     country: { value: 'United States' },
@@ -268,33 +268,33 @@ describe('taxes component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Date: {
                     day: '1',
                     month: '1',
                     year: '2016',
-                    present: false
+                    present: false,
                   },
                   Reason: {
-                    value: 'Completely forgot'
+                    value: 'Completely forgot',
                   },
                   Amount: {
-                    value: '20000'
+                    value: '20000',
                   },
                   Description: {
-                    value: 'The description'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'The description',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CardAbuseValidator(test.state, null).isValid()).toBe(
         test.expected
       )

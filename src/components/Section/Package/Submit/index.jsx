@@ -13,6 +13,8 @@ import { SignatureValidator } from 'validators'
 import { formIsSigned, hideHippa } from 'validators/releases'
 
 import { Show } from 'components/Form'
+import { SpinnerAction } from 'components/Form/Spinner'
+import wait from 'util/wait'
 
 import FormStatus from '../FormStatus'
 import BasicAccordion from '../BasicAccordion'
@@ -21,62 +23,88 @@ import Verify from '../Verify'
 import General from '../General'
 import Medical from '../Medical'
 import Credit from '../Credit'
+import SubmitConfirmationModal from '../SubmitConfirmationModal'
 
 import connectPackageSection from '../PackageConnector'
 
 const signatureValid = data => new SignatureValidator(data).isValid()
+
 
 export class PackageSubmit extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      isConfirmingSubmission: false,
       isSubmitting: false,
       submissionError: false,
       showAdditionalComments: true,
       showGeneralItem: false,
       showCreditItem: false,
       signatures: {},
+      spinnerAction: SpinnerAction.Spin,
     }
   }
 
+  handleConfirmSubmission = () => {
+    this.setState({
+      isConfirmingSubmission: true,
+    })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      isConfirmingSubmission: false,
+    })
+  }
+
   handleSubmit = () => {
-    if (window.confirm('Are you sure you want to submit this application?')) {
-      const { updateApplication, history } = this.props
-      const { signatures } = this.state
+    const { updateApplication, history } = this.props
+    const { signatures } = this.state
 
-      const data = { ...signatures }
-      const payload = schema('package.submit', data, false)
+    const data = { ...signatures }
+    const payload = schema('package.submit', data, false)
 
-      this.setState({
-        isSubmitting: true,
+    this.setState({
+      isSubmitting: true,
+    })
+
+    // Make API call
+    axios
+      .all([api.save(payload)])
+      .then(() => api.submit())
+      .then(() => api.status())
+      .then((response = {}) => {
+        const statusData = (response).data || {
+          Locked: false,
+          Hash: false,
+        }
+
+        updateApplication('Settings', 'status', statusData.Status)
+        updateApplication('Settings', 'hash', statusData.Hash)
+
+        this.setState({
+          spinnerAction: SpinnerAction.Shrink,
+        })
       })
-
-      // Make API call
-      axios
-        .all([api.save(payload)])
-        .then(() => api.submit())
-        .then(() => api.status())
-        .then((response = {}) => {
-          const statusData = (response).data || {
-            Locked: false,
-            Hash: false,
-          }
-
-          updateApplication('Settings', 'locked', statusData.Locked)
-          updateApplication('Settings', 'hash', statusData.Hash)
-
-          history.push('/form/package/print')
+      .then(wait(1000))
+      .then(() => {
+        this.setState({
+          spinnerAction: SpinnerAction.Grow,
         })
-        .catch(() => {
-          console.warn('Failed to form package')
+      })
+      .then(wait(1000))
+      .then(() => {
+        history.push('/form/package/print')
+      })
+      .catch(() => {
+        console.warn('Failed to form package')
 
-          this.setState({
-            isSubmitting: false,
-            submissionError: true,
-          })
+        this.setState({
+          isSubmitting: false,
+          submissionError: true,
         })
-    }
+      })
   }
 
   update = (values) => {
@@ -253,13 +281,16 @@ export class PackageSubmit extends React.Component {
 
   render() {
     const { Application = {}, Settings = {} } = this.props
-    const { signatures, isSubmitting, submissionError } = this.state
+    const {
+      signatures, isSubmitting, isConfirmingSubmission, submissionError, spinnerAction,
+    } = this.state
     const { formType } = Settings
     const formName = formType
       && formConfig[formType]
       && formConfig[formType].FORM_LABEL
 
     const classes = classnames(
+      'eapp-submit',
       'submission-status',
       'valid'
     )
@@ -288,7 +319,7 @@ export class PackageSubmit extends React.Component {
           <div className="text-right">
             <button
               type="button"
-              onClick={this.handleSubmit}
+              onClick={this.handleConfirmSubmission}
               className="submit usa-button"
               disabled={isSubmitting || !isSigned}
             >
@@ -308,6 +339,40 @@ export class PackageSubmit extends React.Component {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {isConfirmingSubmission && (
+          <SubmitConfirmationModal
+            formName={formName}
+            handleCancel={this.handleCancel}
+            handleSubmit={this.handleSubmit}
+          />
+        )}
+
+        {isSubmitting && (
+          <div className="spinner eapp-submit__spinner-bg">
+            <div className="eapp-submit__spinner-container">
+              <div
+                className={
+                  classnames(
+                    'spinner-icon',
+                    spinnerAction === SpinnerAction.Grow ? 'hidden' : spinnerAction,
+                  )
+                }
+              />
+              <i
+                className={
+                  classnames(
+                    'fa',
+                    'fa-check-circle',
+                    spinnerAction === SpinnerAction.Grow ? 'grow' : 'hidden',
+                  )
+                }
+                aria-hidden="false"
+              />
+              <span className="spinner-label">{i18n.t('application.submissionConfirmation.spinnerText', { formName })}</span>
             </div>
           </div>
         )}

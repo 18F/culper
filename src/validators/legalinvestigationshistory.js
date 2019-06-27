@@ -1,90 +1,70 @@
-import {
-  validAccordion,
-  validGenericTextfield,
-  validDateField,
-  validNotApplicable
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import investigation from 'models/investigation'
+
+export const validateInvestigation = data => (
+  validateModel(data, investigation) === true
+)
+
+export const validateLegalInvestigationsHistory = (data) => {
+  const legalInvestigationsHistoryModel = {
+    HasHistory: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasHistory && attributes.HasHistory.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: investigation },
+        }
+      }
+      return {}
+    },
+  }
+
+  return validateModel(data, legalInvestigationsHistoryModel) === true
+}
 
 export default class LegalInvestigationsHistoryValidator {
   constructor(data = {}) {
+    this.data = data
     this.hasHistory = (data.HasHistory || {}).value
     this.list = data.List || {}
   }
 
-  validList() {
-    if (this.hasHistory === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new HistoryValidator(item).isValid()
-    })
-  }
-
   isValid() {
-    return this.validList()
+    return validateLegalInvestigationsHistory(this.data)
   }
 }
 
 export class HistoryValidator {
   constructor(data = {}) {
-    this.agencyNotApplicable = data.AgencyNotApplicable
-    this.agency = data.Agency
-    this.agencyExplanation = data.AgencyExplanation
-    this.completedNotApplicable = data.CompletedNotApplicable
-    this.completed = data.Completed
-    this.issued = data.Issued // optional
-    this.grantedNotApplicable = data.GrantedNotApplicable
-    this.granted = data.Granted
-    this.clearanceNotApplicable = data.ClearanceLevelNotApplicable
-    this.clearance = data.ClearanceLevel || {}
+    this.data = data
   }
 
   validAgency() {
-    return validNotApplicable(this.agencyNotApplicable, () => {
-      let valid = !!this.agency && !!this.agency.value
-      if (
-        valid &&
-        ['U.S. Department of Treasury', 'Foreign government', 'Other'].includes(
-          (this.agency || {}).value
-        )
-      ) {
-        valid =
-          !!this.agencyExplanation &&
-          validGenericTextfield(this.agencyExplanation || {})
-      }
-      return valid
-    })
+    return validateModel(this.data, {
+      Agency: investigation.Agency,
+      AgencyExplanation: investigation.AgencyExplanation,
+    }) === true
   }
 
   validCompleted() {
-    return validNotApplicable(this.completedNotApplicable, () => {
-      return !!this.completed && validDateField(this.completed)
-    })
+    return validateModel(this.data, {
+      Completed: investigation.Completed,
+    }) === true
   }
 
   validGranted() {
-    return validNotApplicable(this.grantedNotApplicable, () => {
-      return !!this.granted && validDateField(this.granted)
-    })
+    return validateModel(this.data, {
+      Granted: investigation.Granted,
+    }) === true
   }
 
   validClearance() {
-    return validNotApplicable(this.clearanceNotApplicable, () => {
-      let valid = !!((this.clearance || {}).Level || {}).value
-      if (valid && ((this.clearance || {}).Level || {}).value === 'Other') {
-        valid = validGenericTextfield((this.clearance || {}).Explanation || {})
-      }
-      return valid
-    })
+    return validateModel(this.data, {
+      ClearanceLevel: investigation.ClearanceLevel,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validAgency() &&
-      this.validCompleted() &&
-      this.validGranted() &&
-      this.validClearance()
-    )
+    return validateInvestigation(this.data)
   }
 }

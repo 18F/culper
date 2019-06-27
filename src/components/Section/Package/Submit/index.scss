@@ -1,0 +1,35 @@
+.eapp-submit {
+  &__spinner-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: 9999;
+  }
+
+  &__spinner-container {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .spinner-icon {
+    height: 20rem;
+    width: 20rem;
+  }
+
+  .spinner {
+    i {
+      font-size: 19rem;
+    }
+  }
+
+  .spinner-label {
+    margin-top: 3rem;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}

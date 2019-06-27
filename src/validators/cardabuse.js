@@ -1,94 +1,75 @@
-import LocationValidator from './location'
-import {
-  validAccordion,
-  validDateField,
-  validGenericTextfield
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import financialCardAbuse from 'models/financialCardAbuse'
+
+const cardAbuseModel = {
+  HasCardAbuse: {
+    presence: true,
+    hasValue: { validator: hasYesOrNo },
+  },
+  List: (value, attributes) => {
+    const { HasCardAbuse } = attributes
+    if (HasCardAbuse && HasCardAbuse.value === 'Yes') {
+      return {
+        presence: true,
+        accordion: { validator: financialCardAbuse },
+      }
+    }
+    return {}
+  },
+}
 
 export default class CardAbuseValidator {
   constructor(data = {}) {
-    this.hasCardAbuse = (data.HasCardAbuse || {}).value
-    this.list = data.List || {}
+    this.data = data
   }
 
   validHasCardAbuse() {
-    if (!this.hasCardAbuse) {
-      return false
-    }
-
-    if (!(this.hasCardAbuse === 'No' || this.hasCardAbuse === 'Yes')) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, { HasCardAbuse: cardAbuseModel.HasCardAbuse }) === true
   }
 
   validList() {
-    if (this.validHasCardAbuse() && this.hasCardAbuse === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new CardAbuseItemValidator(item).isValid()
-    })
+    return validateModel(this.data, { List: cardAbuseModel.List }) === true
   }
 
   isValid() {
-    return this.validHasCardAbuse() && this.validList()
+    return validateModel(this.data, cardAbuseModel) === true
   }
 }
 
+const validateCardAbuseItem = data => (
+  validateModel(data, financialCardAbuse) === true
+)
+
 export class CardAbuseItemValidator {
   constructor(data = {}) {
-    this.agency = data.Agency
-    this.address = data.Address
-    this.date = data.Date
-    this.reason = data.Reason
-    this.amount = data.Amount
-    this.amountEstimated = data.AmountEstimated
-    this.description = data.Description
+    this.data = data
   }
 
   validAgency() {
-    return !!this.agency && validGenericTextfield(this.agency)
+    return validateModel(this.data, { Agency: financialCardAbuse.Agency }) === true
   }
 
   validAddress() {
-    return !!this.address && new LocationValidator(this.address).isValid()
+    return validateModel(this.data, { Address: financialCardAbuse.Address }) === true
   }
 
   validDate() {
-    return !!this.date && validDateField(this.date)
+    return validateModel(this.data, { Date: financialCardAbuse.Date }) === true
   }
 
   validReason() {
-    return !!this.reason && validGenericTextfield(this.reason)
+    return validateModel(this.data, { Reason: financialCardAbuse.Reason }) === true
   }
 
   validAmount() {
-    if (
-      !this.amount ||
-      isNaN(parseInt(this.amount.value)) ||
-      parseInt(this.amount.value) <= 0
-    ) {
-      return false
-    }
-
-    return true
+    return validateModel(this.data, { Amount: financialCardAbuse.Amount }) === true
   }
 
   validDescription() {
-    return !!this.description && validGenericTextfield(this.description)
+    return validateModel(this.data, { Description: financialCardAbuse.Description }) === true
   }
 
   isValid() {
-    return (
-      this.validAgency() &&
-      this.validAddress() &&
-      this.validDate() &&
-      this.validReason() &&
-      this.validAmount() &&
-      this.validDescription()
-    )
+    return validateCardAbuseItem(this.data)
   }
 }

@@ -1,215 +1,137 @@
-import LocationValidator from './location'
-import NameValidator from './name'
-import BirthPlaceValidator from './birthplace'
-import {
-  validAccordion,
-  validNotApplicable,
-  validGenericTextfield,
-  validDateField,
-  BranchCollection
-} from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import foreignContact from 'models/foreignContact'
+
+export const validateForeignContact = data => validateModel(data, foreignContact) === true
+
+export const validateForeignContacts = (data) => {
+  const foreignContactsModel = {
+    HasForeignContacts: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => {
+      if (attributes.HasForeignContacts && attributes.HasForeignContacts.value === 'Yes') {
+        return {
+          presence: true,
+          accordion: { validator: foreignContact },
+        }
+      }
+
+      return {}
+    },
+  }
+
+  return validateModel(data, foreignContactsModel) === true
+}
 
 export default class ForeignContactsValidator {
   constructor(data = {}) {
-    this.hasForeignContacts = (data.HasForeignContacts || {}).value
-    this.list = data.List || {}
-  }
-
-  validList() {
-    if (this.hasForeignContacts === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new ForeignNationalValidator(item).isValid()
-    })
+    this.data = data
   }
 
   isValid() {
-    return this.validList()
+    return validateForeignContacts(this.data)
   }
 }
 
 export class ForeignNationalValidator {
   constructor(data = {}) {
-    this.name = data.Name
-    this.nameNotApplicable = data.NameNotApplicable
-    this.nameExplanation = data.NameExplanation
-    this.firstContact = data.FirstContact
-    this.lastContact = data.LastContact
-    this.methods = (data.Methods || {}).values || []
-    this.methodsExplanation = data.MethodsExplanation
-    this.frequency = (data.Frequency || {}).value
-    this.frequencyExplanation = data.FrequencyExplanation
-    this.relationship = (data.Relationship || {}).values || []
-    this.relationshipExplanation = data.RelationshipExplanation
-    this.aliases = data.Aliases || {}
-    this.citizenship = data.Citizenship
-    this.birthdate = data.Birthdate
-    this.birthdateNotApplicable = data.BirthdateNotApplicable
-    this.birthplace = data.Birthplace
-    this.birthplaceNotApplicable = data.BirthplaceNotApplicable
-    this.address = data.Address
-    this.addressNotApplicable = data.AddressNotApplicable
-    this.employer = data.Employer
-    this.employerNotApplicable = data.EmployerNotApplicable
-    this.employerAddress = data.EmployerAddress
-    this.employerAddressNotApplicable = data.EmployerAddressNotApplicable
-    this.hasAffiliations = (data.HasAffiliations || {}).value
-    this.affiliations = data.Affiliations
+    this.data = data
   }
 
   validName() {
-    return validNotApplicable(
-      this.nameNotApplicable,
-      () => {
-        return new NameValidator(this.name).isValid()
-      },
-      () => {
-        return validGenericTextfield(this.nameExplanation)
-      }
-    )
+    return validateModel(this.data, {
+      Name: foreignContact.Name,
+      NameNotApplicable: foreignContact.NameNotApplicable,
+      NameExplanation: foreignContact.NameExplanation,
+    }) === true
   }
 
   validFirstContact() {
-    return validDateField(this.firstContact)
+    return validateModel(this.data, {
+      FirstContact: foreignContact.FirstContact,
+    }) === true
   }
 
   validLastContact() {
-    return validDateField(this.lastContact)
+    return validateModel(this.data, {
+      LastContact: foreignContact.LastContact,
+    }) === true
   }
 
   validMethods() {
-    const choices = ['In person', 'Telephone', 'Electronic', 'Written']
-    const wanting = ['Other']
-    return (
-      this.methods &&
-      this.methods.length > 0 &&
-      this.methods.every(x => choices.includes(x) || wanting.includes(x)) &&
-      (this.methods.some(x => wanting.includes(x))
-        ? validGenericTextfield(this.methodsExplanation)
-        : true)
-    )
+    return validateModel(this.data, {
+      Methods: foreignContact.Methods,
+      MethodsExplanation: foreignContact.MethodsExplanation,
+    }) === true
   }
 
   validFrequency() {
-    const choices = [
-      'Daily',
-      'Weekly',
-      'Monthly',
-      'Quarterly',
-      'Annually',
-      'Other'
-    ]
-    return (
-      choices.includes(this.frequency) &&
-      (this.frequency === 'Other'
-        ? validGenericTextfield(this.frequencyExplanation)
-        : true)
-    )
+    return validateModel(this.data, {
+      Frequency: foreignContact.Frequency,
+      FrequencyExplanation: foreignContact.FrequencyExplanation,
+    }) === true
   }
 
   validRelationship() {
-    const choices = ['Professional', 'Personal', 'Obligation', 'Other']
-    const wanting = ['Obligation', 'Other']
-    return (
-      !!this.relationship &&
-      this.relationship.length > 0 &&
-      this.relationship.every(
-        x => choices.includes(x) || wanting.includes(x)
-      ) &&
-      (this.relationship.some(x => wanting.includes(x))
-        ? validGenericTextfield(this.relationshipExplanation)
-        : true)
-    )
+    return validateModel(this.data, {
+      Relationship: foreignContact.Relationship,
+      RelationshipExplanation: foreignContact.RelationshipExplanation,
+    }) === true
   }
 
   validAliases() {
-    const branchValidator = new BranchCollection(this.aliases)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
-
-    if (branchValidator.hasNo()) {
-      return true
-    }
-
-    return branchValidator.each(item => {
-      return new NameValidator(item.Alias).isValid()
-    })
+    return validateModel(this.data, {
+      Aliases: foreignContact.Aliases,
+    }) === true
   }
 
   validCitizenship() {
-    return (
-      !!this.citizenship &&
-      !!this.citizenship.value &&
-      this.citizenship.value.length > 0
-    )
+    return validateModel(this.data, {
+      Citizenship: foreignContact.Citizenship,
+    }) === true
   }
 
   validBirthdate() {
-    return validNotApplicable(this.birthdateNotApplicable, () => {
-      return validDateField(this.birthdate)
-    })
+    return validateModel(this.data, {
+      Birthdate: foreignContact.Birthdate,
+      BirthdateNotApplicable: foreignContact.BirthdateNotApplicable,
+    }) === true
   }
 
   validBirthplace() {
-    return validNotApplicable(this.birthplaceNotApplicable, () => {
-      return (
-        !!this.birthplace && new BirthPlaceValidator(this.birthplace).isValid()
-      )
-    })
+    return validateModel(this.data, {
+      Birthplace: foreignContact.Birthplace,
+      BirthplaceNotApplicable: foreignContact.BirthplaceNotApplicable,
+    }) === true
   }
 
   validAddress() {
-    return validNotApplicable(this.addressNotApplicable, () => {
-      return new LocationValidator(this.address).isValid()
-    })
+    return validateModel(this.data, {
+      Address: foreignContact.Address,
+      AddressNotApplicable: foreignContact.AddressNotApplicable,
+    }) === true
   }
 
   validEmployer() {
-    return validNotApplicable(this.employerNotApplicable, () => {
-      return validGenericTextfield(this.employer)
-    })
+    return validateModel(this.data, {
+      Employer: foreignContact.Employer,
+      EmployerNotApplicable: foreignContact.EmployerNotApplicable,
+    }) === true
   }
 
   validEmployerAddress() {
-    return validNotApplicable(this.employerAddressNotApplicable, () => {
-      return new LocationValidator(this.employerAddress).isValid()
-    })
+    return validateModel(this.data, {
+      EmployerAddress: foreignContact.EmployerAddress,
+      EmployerAddressNotApplicable: foreignContact.EmployerAddressNotApplicable,
+    }) === true
   }
 
   validAffiliations() {
-    if (!this.hasAffiliations) {
-      return false
-    }
-
-    if (
-      this.hasAffiliations === 'No' ||
-      this.hasAffiliations === "I don't know"
-    ) {
-      return true
-    }
-
-    return validGenericTextfield(this.affiliations)
+    return validateModel(this.data, {
+      HasAffiliations: foreignContact.HasAffiliations,
+      Affiliations: foreignContact.Affiliations,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validName() &&
-      this.validFirstContact() &&
-      this.validLastContact() &&
-      this.validMethods() &&
-      this.validFrequency() &&
-      this.validRelationship() &&
-      this.validAliases() &&
-      this.validCitizenship() &&
-      this.validBirthdate() &&
-      this.validBirthplace() &&
-      this.validAddress() &&
-      this.validEmployer() &&
-      this.validEmployerAddress() &&
-      this.validAffiliations()
-    )
+    return validateForeignContact(this.data)
   }
 }

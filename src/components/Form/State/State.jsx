@@ -1,70 +1,58 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ValidationElement from '../ValidationElement'
-import Dropdown from '../Dropdown'
-import { unitedStates, otherUsTerritories } from '../../../validators/location'
+
+import usStates from 'constants/enums/usStates'
+import usTerritories from 'constants/enums/usTerritories'
+
+import ValidationElement from 'components/Form/ValidationElement'
+import Dropdown from 'components/Form/Dropdown'
 
 export default class State extends ValidationElement {
-  constructor(props) {
-    super(props)
-    this.getStatePostalCode = this.getStatePostalCode.bind(this)
-    this.getStates = this.getStates.bind(this)
-    this.handleError = this.handleError.bind(this)
-    this.handleUpdate = this.handleUpdate.bind(this)
+  states = () => [
+    ...usStates,
+    ...usTerritories,
+    ...this.props.additionalStates,
+  ]
 
-    this.states = [
-      ...unitedStates,
-      ...otherUsTerritories,
-      ...props.additionalStates
-    ]
-  }
-
-  getStatePostalCode(stateName) {
-    const stateObj = this.states.find(
+  getStatePostalCode = (stateName) => {
+    const stateObj = this.states().find(
       state => state.name.toLowerCase() === stateName.toLowerCase()
     )
 
     if (stateObj) {
       return stateObj.postalCode
     }
+
     return stateName
   }
 
-  // Gets all internally stored states and children states
-  getStates() {
-    return this.states.map(state => (
-      <option key={state.name} value={state.postalCode}>
-        {state.name}
-      </option>
-    ))
-  }
-
-  handleError(value, arr) {
-    arr = arr.map(err => {
-      return {
-        code: `state.${err.code}`,
-        valid: err.valid,
-        uid: err.uid
-      }
-    })
+  handleError = (value, arr) => {
+    /* eslint no-param-reassign: 0 */
+    arr = arr.map(err => ({
+      code: `state.${err.code}`,
+      valid: err.valid,
+      uid: err.uid,
+    }))
+    /* eslint no-param-reassign: 1 */
 
     // Take the original and concatenate our new error values to it
     return this.props.onError(value, arr)
   }
 
-  handleUpdate(stateObj) {
-    const value =
-      stateObj.value.length > 2
-        ? this.getStatePostalCode(stateObj.value)
-        : stateObj.value.toUpperCase()
+  handleUpdate = (stateObj) => {
+    const value = stateObj.value.length > 2
+      ? this.getStatePostalCode(stateObj.value)
+      : stateObj.value.toUpperCase()
 
     this.props.onUpdate({
       ...stateObj,
-      value
+      value,
     })
   }
 
   render() {
+    const allStates = this.states()
+
     return (
       <div className="usa-form-control">
         <Dropdown
@@ -81,8 +69,13 @@ export default class State extends ValidationElement {
           required={this.props.required}
           tabBack={this.props.tabBack}
           tabNext={this.props.tabNext}
-          receiveProps={true}>
-          {this.getStates()}
+          receiveProps
+        >
+          {allStates.map(state => (
+            <option key={state.name} value={state.postalCode}>
+              {state.name}
+            </option>
+          ))}
         </Dropdown>
       </div>
     )
@@ -92,18 +85,16 @@ export default class State extends ValidationElement {
 State.propTypes = {
   additionalStates: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    postalCode: PropTypes.string.isRequried
-  }))
+    postalCode: PropTypes.string.isRequired,
+  })),
 }
 
 State.defaultProps = {
   value: '',
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   required: false,
-  additionalStates: []
+  additionalStates: [],
 }
 
 State.errors = []

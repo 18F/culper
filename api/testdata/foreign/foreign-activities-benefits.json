@@ -1,0 +1,303 @@
+{
+  "type": "foreign.activities.benefits",
+  "props": {
+    "HasBenefits": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "InterestTypes": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": ["Yourself"]
+                }
+              },
+              "BenefitType": {
+                "type": "radio",
+                "props": {
+                  "value": "Other"
+                }
+              },
+              "OtherBenefitType": {
+                "type": "textarea",
+                "props": {
+                  "value": "my other benefit"
+                }
+              },
+              "BenefitFrequency": {
+                "type": "radio",
+                "props": {
+                  "value": "OneTime"
+                }
+              },
+              "OneTimeBenefit": {
+                "type": "benefit",
+                "props": {
+                  "Began": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "End": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "OtherFrequency": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Received": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-25T00:00:00Z"
+                    }
+                  },
+                  "Country": {
+                    "type": "country",
+                    "props": {
+                      "value": ["Germany"]
+                    }
+                  },
+                  "Value": {
+                    "type": "number",
+                    "props": {
+                      "value": "10000"
+                    }
+                  },
+                  "ValueEstimated": {
+                    "type": "checkbox",
+                    "props": {
+                      "value": "",
+                      "checked": false
+                    }
+                  },
+                  "Reason": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "my reason"
+                    }
+                  },
+                  "Obligated": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "ObligatedExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "my explanation to the obligation"
+                    }
+                  }
+                }
+              },
+              "FutureBenefit": {
+                "type": "benefit",
+                "props": {
+                  "Began": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-25T00:00:00Z"
+                    }
+                  },
+                  "End": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Other"
+                    }
+                  },
+                  "OtherFrequency": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "something else"
+                    }
+                  },
+                  "Received": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "1",
+                      "day": "1",
+                      "year": "2000",
+                      "estimated": true
+                    }
+                  },
+                  "Country": {
+                    "type": "country",
+                    "props": {
+                      "value": ["Germany"]
+                    }
+                  },
+                  "Value": {
+                    "type": "number",
+                    "props": {
+                      "value": "10000"
+                    }
+                  },
+                  "ValueEstimated": {
+                    "type": "checkbox",
+                    "props": {
+                      "value": "",
+                      "checked": false
+                    }
+                  },
+                  "Reason": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "my reason"
+                    }
+                  },
+                  "Obligated": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "ObligatedExplanation": {
+                    "type": "textarea",
+                    "props": {}
+                  }
+                }
+              },
+              "ContinuingBenefit": {
+                "type": "benefit",
+                "props": {
+                  "Began": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-25T00:00:00Z"
+                    }
+                  },
+                  "End": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-25T00:00:00Z"
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Other"
+                    }
+                  },
+                  "OtherFrequency": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "something else"
+                    }
+                  },
+                  "Received": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "1",
+                      "day": "1",
+                      "year": "2000",
+                      "estimated": true
+                    }
+                  },
+                  "Country": {
+                    "type": "country",
+                    "props": {
+                      "value": ["Germany"]
+                    }
+                  },
+                  "Value": {
+                    "type": "number",
+                    "props": {
+                      "value": "10000"
+                    }
+                  },
+                  "ValueEstimated": {
+                    "type": "checkbox",
+                    "props": {
+                      "value": "",
+                      "checked": false
+                    }
+                  },
+                  "Reason": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "my reason"
+                    }
+                  },
+                  "Obligated": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "ObligatedExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "my explanation to the obligation"
+                    }
+                  }
+                }
+              },
+              "OtherBenefit": {
+                "type": "textarea",
+                "props": {
+                  "value": "other freq type"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

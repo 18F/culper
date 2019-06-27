@@ -334,22 +334,12 @@ func (entity *IdentificationOtherNames) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// ClearNos Implements the Rejector interface and clears any nos on applicaiton kickback
-func (entity *IdentificationOtherNames) ClearNos() error {
-	if entity.HasOtherNames != nil {
-		if entity.HasOtherNames.Value == "No" {
-			entity.HasOtherNames.Value = ""
-		} else {
-			// the last thing in the list will be another branch, which must also be cleared.
-			if entity.List != nil {
-				if entity.List.Branch != nil {
-					if entity.List.Branch.Value == "No" {
-						entity.List.Branch.Value = ""
-					}
-				}
-			}
-		}
-	}
+// ClearNoBranches Implements the Rejector interface and clears any nos on applicaiton kickback
+func (entity *IdentificationOtherNames) ClearNoBranches() error {
+
+	entity.HasOtherNames.ClearNo()
+	entity.List.ClearBranchNo()
+
 	return nil
 }
 

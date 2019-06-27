@@ -1,0 +1,154 @@
+{
+    "props": {
+        "Diagnosed": {
+            "props": {
+                "name": "diagnosed",
+                "value": "Yes"
+            },
+            "type": "branch"
+        },
+        "DiagnosisList": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": "No"
+                    },
+                    "type": "branch"
+                },
+                "items": [
+                    {
+                        "Item": {
+                            "Condition": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "diagnosis-condition-delusional",
+                                    "value": "Delusional disorder"
+                                },
+                                "type": "radio"
+                            },
+                            "Diagnosed": {
+                                "props": {
+                                    "from": {
+                                        "props": {
+                                            "day": "1",
+                                            "estimated": false,
+                                            "month": "1",
+                                            "name": "from",
+                                            "touched": true,
+                                            "year": "1999"
+                                        },
+                                        "type": "datecontrol"
+                                    },
+                                    "present": true,
+                                    "to": {
+                                        "props": {
+                                            "day": "19",
+                                            "estimated": false,
+                                            "month": "6",
+                                            "year": "2019"
+                                        },
+                                        "type": "datecontrol"
+                                    }
+                                },
+                                "type": "daterange"
+                            },
+                            "Effective": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "effective",
+                                    "value": "Yes"
+                                },
+                                "type": "branch"
+                            },
+                            "Explanation": {
+                                "props": {},
+                                "type": "textarea"
+                            },
+                            "Treatment": {
+                                "props": {
+                                    "Address": {
+                                        "props": {
+                                            "city": "Denver",
+                                            "country": "United States",
+                                            "layout": "Address",
+                                            "state": "CO",
+                                            "street": "434 Danger Rd",
+                                            "street2": "",
+                                            "uid": "Address-dc4b431e-2034-59da-1373-efe9c7f8b407",
+                                            "validated": false,
+                                            "zipcode": "80011"
+                                        },
+                                        "type": "location"
+                                    },
+                                    "Name": {
+                                        "props": {
+                                            "name": "Name",
+                                            "value": "Dr. Gren Plovis"
+                                        },
+                                        "type": "text"
+                                    },
+                                    "Phone": {
+                                        "props": {
+                                            "extension": "33",
+                                            "name": "Phone",
+                                            "noNumber": false,
+                                            "number": "4432323333",
+                                            "numberType": "",
+                                            "timeOfDay": "Both",
+                                            "type": "Domestic"
+                                        },
+                                        "type": "telephone"
+                                    }
+                                },
+                                "type": "psychological.treatment"
+                            },
+                            "TreatmentFacility": {
+                                "props": {
+                                    "Address": {
+                                        "props": {},
+                                        "type": "location"
+                                    },
+                                    "Name": {
+                                        "props": {
+                                            "name": "Name",
+                                            "value": ""
+                                        },
+                                        "type": "text"
+                                    },
+                                    "Phone": {
+                                        "props": {},
+                                        "type": "telephone"
+                                    }
+                                },
+                                "type": "psychological.treatment"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        },
+        "DidNotConsult": {
+            "props": {
+                "name": "didNotConsult",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "InTreatment": {
+            "props": {
+                "name": "inTreatment",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "TreatmentList": {
+            "props": {
+                "branch": null,
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "psychological.diagnoses"
+}

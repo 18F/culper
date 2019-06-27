@@ -40,14 +40,16 @@ export const documentationIsEmpty = (attributes) => {
     && locationIsEmpty(PlaceIssued)
 }
 
-export const requireCertificateFields = attributes => (
-  checkValue(attributes.CitizenshipStatus, FOREIGN_BORN)
+export const requireCertificateFields = (attributes, options = {}) => (
+  options.requireForeignBornDocumentation
+    && checkValue(attributes.CitizenshipStatus, FOREIGN_BORN)
     && (!certificateIsEmpty(attributes) || documentationIsEmpty(attributes))
 )
 
-export const requireDocumentationFields = attributes => (
-  checkValue(attributes.CitizenshipStatus, FOREIGN_BORN)
-   && (!documentationIsEmpty(attributes) || certificateIsEmpty(attributes))
+export const requireDocumentationFields = (attributes, options = {}) => (
+  options.requireForeignBornDocumentation
+    && checkValue(attributes.CitizenshipStatus, FOREIGN_BORN)
+    && (!documentationIsEmpty(attributes) || certificateIsEmpty(attributes))
 )
 
 /** Citizenship Status model */
@@ -68,8 +70,8 @@ const citizenshipStatus = {
       ? { presence: true, hasValue: true }
       : {}
   ),
-  AbroadDocumentation: (value, attributes) => (
-    requireDocumentationFields(attributes)
+  AbroadDocumentation: (value, attributes, attributeName, options) => (
+    requireDocumentationFields(attributes, options)
       ? {
         presence: true,
         hasValue: { validator: { inclusion: foreignBornDocumentTypes } },
@@ -82,8 +84,8 @@ const citizenshipStatus = {
       ? { presence: true, hasValue: true }
       : {}
   ),
-  DocumentNumber: (value, attributes) => (
-    (requireDocumentationFields(attributes)
+  DocumentNumber: (value, attributes, attributeName, options) => (
+    (requireDocumentationFields(attributes, options)
       && !checkValue(attributes.AbroadDocumentation, 'Other'))
       || checkValue(attributes.CitizenshipStatus, NOT_CITIZEN)
       ? {
@@ -91,8 +93,8 @@ const citizenshipStatus = {
         hasValue: true,
       } : {}
   ),
-  DocumentIssued: (value, attributes) => (
-    (requireDocumentationFields(attributes)
+  DocumentIssued: (value, attributes, attributeName, options) => (
+    (requireDocumentationFields(attributes, options)
       && !checkValue(attributes.AbroadDocumentation, 'Other'))
       || checkValue(attributes.CitizenshipStatus, NOT_CITIZEN)
       ? {
@@ -100,16 +102,16 @@ const citizenshipStatus = {
         date: true,
       } : {}
   ),
-  PlaceIssued: (value, attributes) => (
-    requireDocumentationFields(attributes)
+  PlaceIssued: (value, attributes, attributeName, options) => (
+    requireDocumentationFields(attributes, options)
       && !checkValue(attributes.AbroadDocumentation, 'Other')
       ? {
         presence: true,
         location: { validator: birthplaceWithoutCounty },
       } : {}
   ),
-  DocumentName: (value, attributes) => (
-    (requireDocumentationFields(attributes)
+  DocumentName: (value, attributes, attributeName, options) => (
+    (requireDocumentationFields(attributes, options)
       && !checkValue(attributes.AbroadDocumentation, 'Other'))
       || checkValue(attributes.CitizenshipStatus, NOT_CITIZEN)
       ? {
@@ -117,8 +119,8 @@ const citizenshipStatus = {
         model: { validator: name },
       } : {}
   ),
-  CertificateNumber: (value, attributes) => (
-    (requireCertificateFields(attributes)
+  CertificateNumber: (value, attributes, attributeName, options) => (
+    (requireCertificateFields(attributes, options)
       || checkValue(attributes.CitizenshipStatus, NATURALIZED)
       || (checkValue(attributes.CitizenshipStatus, DERIVED)
         && !(attributes.AlienRegistrationNumber
@@ -128,14 +130,14 @@ const citizenshipStatus = {
       ? { presence: true, hasValue: true }
       : {}
   ),
-  CertificateIssued: (value, attributes) => (
-    (requireCertificateFields(attributes)
+  CertificateIssued: (value, attributes, attributeName, options) => (
+    (requireCertificateFields(attributes, options)
       || checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, DERIVED]))
       ? { presence: true, date: true }
       : {}
   ),
-  CertificateName: (value, attributes) => (
-    (requireCertificateFields(attributes)
+  CertificateName: (value, attributes, attributeName, options) => (
+    (requireCertificateFields(attributes, options)
       || checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, DERIVED]))
       ? { presence: true, model: { validator: name } }
       : {}

@@ -1,28 +1,28 @@
 import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import Location from '../components/Form/Location'
 
-describe('delinquent component validation', function() {
+describe('delinquent component validation', () => {
   it('validate name', () => {
     const tests = [
       {
         state: {
           Name: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Name: {
-            value: 'The name'
-          }
+            value: 'The name',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DelinquentItemValidator(test.state, null).validName()).toBe(
         test.expected
       )
@@ -33,25 +33,31 @@ describe('delinquent component validation', function() {
     const tests = [
       {
         state: {
-          Infractions: []
+          Infractions: {
+            values: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Infractions: ['DoesNotExist']
+          Infractions: {
+            values: ['DoesNotExist'],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Infractions: ['Alimony']
+          Infractions: {
+            values: ['Alimony'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DelinquentItemValidator(test.state, null).validInfractions()
       ).toBe(test.expected)
@@ -63,22 +69,22 @@ describe('delinquent component validation', function() {
       {
         state: {
           AccountNumber: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           AccountNumber: {
-            value: 'ABC1234567890'
-          }
+            value: 'ABC1234567890',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DelinquentItemValidator(test.state, null).validAccountNumber()
       ).toBe(test.expected)
@@ -90,22 +96,22 @@ describe('delinquent component validation', function() {
       {
         state: {
           PropertyType: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: true
+        expected: false,
       },
       {
         state: {
           PropertyType: {
-            value: 'ABC1234567890'
-          }
+            value: 'ABC1234567890',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DelinquentItemValidator(test.state, null).validPropertyType()
       ).toBe(test.expected)
@@ -117,38 +123,38 @@ describe('delinquent component validation', function() {
       {
         state: {
           Amount: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: 'abc'
-          }
+            value: 'abc',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: '0'
-          }
+            value: '0',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: '20000'
-          }
+            value: '20000',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DelinquentItemValidator(test.state, null).validAmount()).toBe(
         test.expected
       )
@@ -160,22 +166,22 @@ describe('delinquent component validation', function() {
       {
         state: {
           Reason: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Reason: {
-            value: 'Completely forgot'
-          }
+            value: 'Completely forgot',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DelinquentItemValidator(test.state, null).validReason()).toBe(
         test.expected
       )
@@ -187,22 +193,22 @@ describe('delinquent component validation', function() {
       {
         state: {
           Status: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Status: {
-            value: 'Paid'
-          }
+            value: 'Paid',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DelinquentItemValidator(test.state, null).validStatus()).toBe(
         test.expected
       )
@@ -213,9 +219,9 @@ describe('delinquent component validation', function() {
     const tests = [
       {
         state: {
-          Date: null
+          Date: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -223,14 +229,14 @@ describe('delinquent component validation', function() {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DelinquentItemValidator(test.state, null).validDate()).toBe(
         test.expected
       )
@@ -242,55 +248,52 @@ describe('delinquent component validation', function() {
       {
         state: {
           ResolvedNotApplicable: {
-            applicable: true
+            applicable: true,
           },
           Resolved: {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
+          ResolvedNotApplicable: {
+            applicable: true,
+          },
           Resolved: {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           ResolvedNotApplicable: {
-            applicable: false
+            applicable: false,
           },
-          Resolved: null
+          Resolved: null,
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           ResolvedNotApplicable: {
-            applicable: true
+            applicable: true,
           },
-          Resolved: null
+          Resolved: null,
         },
-        expected: false
+        expected: false,
       },
-      {
-        state: {
-          Resolved: null
-        },
-        expected: false
-      }
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DelinquentItemValidator(test.state, null).validResolved()
       ).toBe(test.expected)
@@ -302,22 +305,22 @@ describe('delinquent component validation', function() {
       {
         state: {
           CourtName: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           CourtName: {
-            value: 'The court'
-          }
+            value: 'The court',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DelinquentItemValidator(test.state, null).validCourtName()
       ).toBe(test.expected)
@@ -328,9 +331,9 @@ describe('delinquent component validation', function() {
     const tests = [
       {
         state: {
-          CourtAddress: {}
+          CourtAddress: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -340,14 +343,14 @@ describe('delinquent component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DelinquentItemValidator(test.state, null).validCourtAddress()
       ).toBe(test.expected)
@@ -359,22 +362,22 @@ describe('delinquent component validation', function() {
       {
         state: {
           Description: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Description: {
-            value: 'The description'
-          }
+            value: 'The description',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DelinquentItemValidator(test.state, null).validDescription()
       ).toBe(test.expected)
@@ -385,31 +388,31 @@ describe('delinquent component validation', function() {
     const tests = [
       {
         state: {
-          HasDelinquent: { value: '' }
+          HasDelinquent: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasDelinquent: { value: 'Unicorn' }
+          HasDelinquent: { value: 'Unicorn' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasDelinquent: { value: 'No' }
+          HasDelinquent: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasDelinquent: { value: 'Yes' }
+          HasDelinquent: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DelinquentValidator(test.state, null).validHasDelinquent()
       ).toBe(test.expected)
@@ -423,30 +426,38 @@ describe('delinquent component validation', function() {
           HasDelinquent: { value: 'No' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           HasDelinquent: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasDelinquent: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{}]
-          }
+            items: [
+              {
+                Item: {
+                  ResolvedNotApplicable: {
+                    applicable: true,
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -457,41 +468,43 @@ describe('delinquent component validation', function() {
               {
                 Item: {
                   Name: {
-                    value: 'The name'
+                    value: 'The name',
                   },
-                  Infractions: [],
+                  Infractions: {
+                    values: ['Alimony', 'Judgement'],
+                  },
                   AccountNumber: {
-                    value: 'ABC1234567890'
+                    value: 'ABC1234567890',
                   },
                   PropertyType: {
-                    value: 'ABC1234567890'
+                    value: 'ABC1234567890',
                   },
                   Amount: {
-                    value: '20000'
+                    value: '20000',
                   },
                   Reason: {
-                    value: 'Completely forgot'
+                    value: 'Completely forgot',
                   },
                   Status: {
-                    value: 'Paid'
+                    value: 'Paid',
                   },
                   Date: {
                     day: '1',
                     month: '1',
                     year: '2016',
-                    present: false
+                    present: false,
                   },
                   ResolvedNotApplicable: {
-                    applicable: true
+                    applicable: true,
                   },
                   Resolved: {
                     day: '1',
                     month: '1',
                     year: '2016',
-                    present: false
+                    present: false,
                   },
                   CourtName: {
-                    value: 'The court'
+                    value: 'The court',
                   },
                   CourtAddress: {
                     country: { value: 'United States' },
@@ -499,21 +512,21 @@ describe('delinquent component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Description: {
-                    value: 'The description'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'The description',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DelinquentValidator(test.state, null).isValid()).toBe(
         test.expected
       )

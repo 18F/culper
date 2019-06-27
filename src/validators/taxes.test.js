@@ -1,41 +1,41 @@
 import TaxesValidator, { TaxValidator } from './taxes'
 
-describe('taxes component validation', function() {
+describe('taxes component validation', () => {
   it('validate failures', () => {
     const tests = [
       {
         state: {
-          Failure: ''
+          Failure: '',
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Failure: {
-            value: 'File'
-          }
+            value: 'File',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Failure: {
-            value: 'Pay'
-          }
+            value: 'Pay',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Failure: {
-            value: 'Both'
-          }
+            value: 'Both',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxValidator(test.state, null).validFailure()).toBe(
         test.expected
       )
@@ -47,38 +47,38 @@ describe('taxes component validation', function() {
       {
         state: {
           Year: {
-            year: ''
-          }
+            year: '',
+          },
         },
-        expected: false
+        expected: false,
       },
+      // {
+      //   state: {
+      //     Year: {
+      //       year: '0'
+      //     }
+      //   },
+      //   expected: false
+      // },
+      // {
+      //   state: {
+      //     Year: {
+      //       year: 'abc'
+      //     }
+      //   },
+      //   expected: false
+      // },
       {
         state: {
           Year: {
-            year: '0'
-          }
+            year: '2000',
+          },
         },
-        expected: false
+        expected: true,
       },
-      {
-        state: {
-          Year: {
-            year: 'abc'
-          }
-        },
-        expected: false
-      },
-      {
-        state: {
-          Year: {
-            year: '2000'
-          }
-        },
-        expected: true
-      }
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxValidator(test.state, null).validYear()).toBe(test.expected)
     })
   })
@@ -88,22 +88,22 @@ describe('taxes component validation', function() {
       {
         state: {
           Reason: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Reason: {
-            value: 'Completely forgot'
-          }
+            value: 'Completely forgot',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxValidator(test.state, null).validReason()).toBe(
         test.expected
       )
@@ -115,22 +115,22 @@ describe('taxes component validation', function() {
       {
         state: {
           Agency: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Agency: {
-            value: 'IRS'
-          }
+            value: 'IRS',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxValidator(test.state, null).validAgency()).toBe(
         test.expected
       )
@@ -142,22 +142,22 @@ describe('taxes component validation', function() {
       {
         state: {
           TaxType: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           TaxType: {
-            value: 'Income'
-          }
+            value: 'Income',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxValidator(test.state, null).validTaxType()).toBe(
         test.expected
       )
@@ -169,38 +169,38 @@ describe('taxes component validation', function() {
       {
         state: {
           Amount: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: 'abc'
-          }
+            value: 'abc',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: '0'
-          }
+            value: '0',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Amount: {
-            value: '20000'
-          }
+            value: '20000',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxValidator(test.state, null).validAmount()).toBe(
         test.expected
       )
@@ -212,16 +212,16 @@ describe('taxes component validation', function() {
       {
         state: {
           DateNotApplicable: {
-            applicable: true
+            applicable: true,
           },
           Date: {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
@@ -229,38 +229,41 @@ describe('taxes component validation', function() {
             day: '1',
             month: '1',
             year: '2016',
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           DateNotApplicable: {
-            applicable: false
+            applicable: false,
           },
-          Date: null
+          Date: null,
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           DateNotApplicable: {
-            applicable: true
+            applicable: true,
           },
-          Date: null
+          Date: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          Date: null
+          DateNotApplicable: {
+            applicable: true,
+          },
+          Date: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxValidator(test.state, null).validDate()).toBe(test.expected)
     })
   })
@@ -270,22 +273,22 @@ describe('taxes component validation', function() {
       {
         state: {
           Description: {
-            value: ''
-          }
+            value: '',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Description: {
-            value: 'The description'
-          }
+            value: 'The description',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxValidator(test.state, null).validDescription()).toBe(
         test.expected
       )
@@ -296,31 +299,31 @@ describe('taxes component validation', function() {
     const tests = [
       {
         state: {
-          HasTaxes: { value: '' }
+          HasTaxes: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasTaxes: { value: 'Unicorn' }
+          HasTaxes: { value: 'Unicorn' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasTaxes: { value: 'No' }
+          HasTaxes: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          HasTaxes: { value: 'Yes' }
+          HasTaxes: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxesValidator(test.state, null).validHasTaxes()).toBe(
         test.expected
       )
@@ -334,30 +337,30 @@ describe('taxes component validation', function() {
           HasTaxes: { value: 'No' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           HasTaxes: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           HasTaxes: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -368,45 +371,45 @@ describe('taxes component validation', function() {
               {
                 Item: {
                   Failure: {
-                    value: 'File'
+                    value: 'File',
                   },
                   Year: {
-                    year: '2000'
+                    year: '2000',
                   },
                   Reason: {
-                    value: 'Completely forgot'
+                    value: 'Completely forgot',
                   },
                   Agency: {
-                    value: 'IRS'
+                    value: 'IRS',
                   },
                   TaxType: {
-                    value: 'Income'
+                    value: 'Income',
                   },
                   Amount: {
-                    value: '20000'
+                    value: '20000',
                   },
                   DateNotApplicable: {
-                    applicable: true
+                    applicable: true,
                   },
                   Date: {
                     day: '1',
                     month: '1',
                     year: '2016',
-                    present: false
+                    present: false,
                   },
                   Description: {
-                    value: 'The description'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'The description',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TaxesValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })

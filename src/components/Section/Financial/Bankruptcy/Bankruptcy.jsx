@@ -23,7 +23,7 @@ export default class Bankruptcy extends ValidationElement {
       PetitionType: this.props.PetitionType,
       CourtNumber: this.props.CourtNumber,
       DateFiled: this.props.DateFiled,
-      DischargeDateNotApplicable: this.props.DischargeDateNotApplicable,
+      DateDischargedNotApplicable: this.props.DateDischargedNotApplicable,
       DateDischarged: this.props.DateDischarged,
       TotalAmount: this.props.TotalAmount,
       TotalAmountEstimated: this.props.TotalAmountEstimated,
@@ -35,6 +35,13 @@ export default class Bankruptcy extends ValidationElement {
       HasDischargeExplanation: this.props.HasDischargeExplanation,
       DischargeExplanation: this.props.DischargeExplanation,
       ...queue,
+    })
+  }
+
+  updateDateDischargedNotApplicable = (values) => {
+    this.update({
+      DateDischarged: values.applicable ? this.props.DateDischarged : {},
+      DateDischargedNotApplicable: values,
     })
   }
 
@@ -136,7 +143,7 @@ export default class Bankruptcy extends ValidationElement {
             name="DateDischargedNotApplicable"
             {...this.props.DateDischargedNotApplicable}
             onError={this.props.onError}
-            onUpdate={(value) => { this.updateField('DateDischargedNotApplicable', value) }}
+            onUpdate={this.updateDateDischargedNotApplicable}
           >
             <DateControl
               name="DateDischarged"
@@ -309,7 +316,7 @@ export default class Bankruptcy extends ValidationElement {
 }
 
 Bankruptcy.defaultProps = {
-  DischargeDateNotApplicable: { applicable: true },
+  DateDischargedNotApplicable: { applicable: true },
   addressBooks: {},
   dispatch: () => {},
   onUpdate: () => {},

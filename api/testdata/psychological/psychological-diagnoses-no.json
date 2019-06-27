@@ -1,0 +1,34 @@
+{
+    "props": {
+        "Diagnosed": {
+            "props": {
+                "name": "diagnosed",
+                "value": "No"
+            },
+            "type": "branch"
+        },
+        "DiagnosisList": {
+            "props": {
+                "branch": null,
+                "items": []
+            },
+            "type": "collection"
+        },
+        "DidNotConsult": {
+            "props": {},
+            "type": "branch"
+        },
+        "InTreatment": {
+            "props": {},
+            "type": "branch"
+        },
+        "TreatmentList": {
+            "props": {
+                "branch": null,
+                "items": []
+            },
+            "type": "collection"
+        }
+    },
+    "type": "psychological.diagnoses"
+}

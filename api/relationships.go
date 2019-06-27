@@ -1,6 +1,10 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/pkg/errors"
+)
 
 // RelationshipsMarital represents the payload for the relationships marital section.
 type RelationshipsMarital struct {
@@ -88,6 +92,39 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *RelationshipsMarital) ClearNoBranches() error {
+
+	if entity.CivilUnion != nil {
+		entity.CivilUnion.Separated.ClearNo()
+		entity.CivilUnion.Divorced.ClearNo()
+	}
+
+	if entity.DivorcedList != nil {
+		for _, divorcedItem := range entity.DivorcedList.Items {
+
+			deceased, itemErr := divorcedItem.GetItemValue("Deceased")
+			if itemErr != nil {
+				return errors.Wrap(itemErr, "Failed to pull deceased from a divorcee")
+			}
+			deceasedRadio := deceased.(*Radio)
+
+			if deceasedRadio.Value == "No" {
+				deceasedRadio.Value = ""
+			}
+
+			setErr := divorcedItem.SetItemValue("Deceased", deceasedRadio)
+			if setErr != nil {
+				return errors.Wrap(setErr, "Failed to set deceased for a divorcee")
+			}
+		}
+	}
+
+	entity.DivorcedList.ClearBranchNo()
+
+	return nil
+}
+
 // RelationshipsCohabitants represents the payload for the relationships cohabitants section.
 type RelationshipsCohabitants struct {
 	PayloadHasCohabitant  Payload `json:"HasCohabitant" sql:"-"`
@@ -145,6 +182,17 @@ func (entity *RelationshipsCohabitants) Valid() (bool, error) {
 	return entity.CohabitantList.Valid()
 }
 
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *RelationshipsCohabitants) ClearNoBranches() error {
+
+	entity.HasCohabitant.ClearNo()
+
+	entity.CohabitantList.ClearBranchNo()
+
+	return nil
+
+}
+
 // RelationshipsPeople represents the payload for the relationships people section.
 type RelationshipsPeople struct {
 	PayloadList Payload `json:"List" sql:"-"`
@@ -186,6 +234,14 @@ func (entity *RelationshipsPeople) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *RelationshipsPeople) ClearNoBranches() error {
+
+	entity.List.ClearBranchNo()
+
+	return nil
+}
+
 // RelationshipsRelatives represents the payload for the relationships relatives section.
 type RelationshipsRelatives struct {
 	PayloadList Payload `json:"List" sql:"-"`
@@ -225,4 +281,17 @@ func (entity *RelationshipsRelatives) Marshal() Payload {
 // Valid checks the value(s) against an battery of tests.
 func (entity *RelationshipsRelatives) Valid() (bool, error) {
 	return entity.List.Valid()
+}
+
+// ClearNoBranches clears any questions answered nos on a kickback
+func (entity *RelationshipsRelatives) ClearNoBranches() error {
+
+	deceasedErr := entity.List.ClearBranchItemsNo("IsDeceased")
+	if deceasedErr != nil {
+		return errors.Wrap(deceasedErr, "Couldn't clear deceased from relative")
+	}
+
+	entity.List.ClearBranchNo()
+
+	return nil
 }

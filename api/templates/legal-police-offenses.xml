@@ -101,12 +101,14 @@
         <Name>{{text $Item.CitedBy}}</Name>
       </ArrestingAgency>
       {{end}}
-      {{if and (branch $Item.WasCharged | eq "Yes") (branch $Item.WasSentenced | ne "Yes")}}
+      {{if branch $Item.WasCharged | eq "Yes"}}
+      {{if branch $Item.WasSentenced | ne "Yes"}}
       <AwaitingTrial>
         <Answer>{{branch $Item.AwaitingTrial}}</Answer>
         <AnswerComment></AnswerComment>
         <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
       </AwaitingTrial>
+      {{end}}
       {{end}}
       <Date Type="{{dateEstimated $Item.Date}}">
         {{monthYear $Item.Date}}

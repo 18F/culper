@@ -117,7 +117,7 @@ func TestSubmitter(t *testing.T) {
 
 	// call the /form/submit handler. It's a dummy handler that just returns
 	// the XML on success.
-	w, req := standardResponseAndRequest("GET", "/me/form/submit", nil, account.ID)
+	w, req := standardResponseAndRequest("POST", "/me/form/submit", nil, account.ID)
 	submitHandler.ServeHTTP(w, req)
 
 	submitResp := w.Result()

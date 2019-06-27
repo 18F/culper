@@ -29,6 +29,15 @@ var knownFormVersions = map[string][]string{
 	},
 }
 
+const (
+	// StatusIncomplete indicates that the submission is INCOMPLETE
+	StatusIncomplete = "INCOMPLETE"
+	// StatusSubmitted indicates that the submission is SUBMITTED
+	StatusSubmitted = "SUBMITTED"
+	// StatusKickback indicates that the submission is KICKBACK
+	StatusKickback = "KICKBACK"
+)
+
 // Account represents a user account
 type Account struct {
 	ID          int
@@ -38,7 +47,7 @@ type Account struct {
 	Token       string
 	TokenUsed   bool
 	Email       string
-	Locked      bool
+	Status      string
 	FormType    string `db:"form_type"`
 	FormVersion string `db:"form_version"`
 	ExternalID  string `db:"external_id"` // ExternalID is an identifier used by external systems to id applications
@@ -137,18 +146,45 @@ func (entity *Account) FindByExternalID(context DatabaseService) error {
 	return context.Where(entity, "Account.external_id = ?", entity.ExternalID)
 }
 
-// Lock will mark the account in a `locked` status.
-func (entity *Account) Lock(context DatabaseService) error {
-	entity.Locked = true
-	_, err := entity.Save(context, entity.ID)
-	return err
+// CanSubmit returns wether the account is in a valid state for submission
+func (entity *Account) CanSubmit() bool {
+	if entity.Status == StatusSubmitted {
+		return false
+	}
+	return true
 }
 
-// Unlock will mark the account in an `unlocked` status.
-func (entity *Account) Unlock(context DatabaseService) error {
-	entity.Locked = false
-	_, err := entity.Save(context, entity.ID)
-	return err
+// Submit will mark the account in a `SUBMITTED` status.
+func (entity *Account) Submit() bool {
+	if !entity.CanSubmit() {
+		return false
+	}
+
+	entity.Status = StatusSubmitted
+	return true
+}
+
+// Unsubmit will mark the account in a `INCOMPLETE` status. This will likely be for debugging purposes only.
+func (entity *Account) Unsubmit() {
+	entity.Status = StatusIncomplete
+}
+
+// CanKickback returns wether the account is in a valid state for kickback
+func (entity *Account) CanKickback() bool {
+	if entity.Status != StatusSubmitted {
+		return false
+	}
+	return true
+}
+
+// Kickback will mark the account in a `KICKBACK` status.
+func (entity *Account) Kickback() bool {
+	if !entity.CanKickback() {
+		return false
+	}
+
+	entity.Status = StatusKickback
+	return true
 }
 
 // FormTypeIsKnown returns wether the form type and version are known to eApp
@@ -197,7 +233,7 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 		entity.Token = basicMembership.Account.Token
 		entity.TokenUsed = basicMembership.Account.TokenUsed
 		entity.Email = basicMembership.Account.Email
-		entity.Locked = basicMembership.Account.Locked
+		entity.Status = basicMembership.Account.Status
 		entity.FormType = basicMembership.Account.FormType
 		entity.FormVersion = basicMembership.Account.FormVersion
 	}

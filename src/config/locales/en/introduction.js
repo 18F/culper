@@ -1,4 +1,4 @@
-/*global EAPP_VERSION*/
+/* global EAPP_VERSION */
 
 export const introduction = {
   contents: [
@@ -47,7 +47,7 @@ export const introduction = {
     'You will not receive prior notice of such disclosures under a routine use.',
     'In addition to those disclosures generally permitted under the Privacy Act, all or a portion of the records or information you provide on this form or during your investigation may be disclosed outside of OPM as a routine use as outlined below.',
     '---',
-    '## Office of Personnel Management (OPM) routine uses',
+    '## Office of Personnel Management (OPM) Routine Uses',
     'OPM has published the following Privacy Act routine uses for its system of records for background investigations:',
     '**a.** To designated officers and employees of agencies, offices, and other establishments in the executive, legislative, and judicial branches of the Federal Government or the Government of the District of Columbia having a need to investigate, evaluate, or make a determination regarding loyalty to the United States; qualifications, suitability, or fitness for Government employment or military service; eligibility for logical or physical access to federally-controlled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
     '**b.** To an element of the U.S. Intelligence Community as identified in E.O. 12333, as amended, for use in intelligence activities for the purpose of protecting United States national security interests.',
@@ -82,7 +82,7 @@ export const introduction = {
     '**aa.** To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.',
     '---',
     '## Public burden information',
-    'Public burden reporting for this collection of information is **estimated to average 150 minutes per response**, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, Federal Investigative Services, Attn: OMB Number 3206-0005, 1900 E Street, N.W., Washington, DC 20415. The OMB clearance number, 3206-0005, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.'
+    'Public burden reporting for this collection of information is **estimated to average 150 minutes per response**, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, Federal Investigative Services, Attn: OMB Number 3206-0005, 1900 E Street, N.W., Washington, DC 20415. The OMB clearance number, 3206-0005, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.',
   ],
   contents85: [
     '# Questionnaire for Non-Sensitive Positions',
@@ -94,7 +94,7 @@ export const introduction = {
     '3. **Do not abbreviate the names of cities or foreign countries**. Whenever you are asked to supply a country name, you may select the country name by using the country dropdown feature.',
     '4. **All dates provided in this form must be in Month/Day/Year or Month/Year format**. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" checkbox.',
     '---',
-    'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to Sections 18 and 21, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
+    'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
     '---',
     '## How to save your progress',
     '**This form will auto save your progress continuously throughout.** Each input will be validated and save as you enter your information.',
@@ -112,7 +112,7 @@ export const introduction = {
     '---',
     '## The investigative process',
     'Background investigations for **non-sensitive positions** are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and will not present an unacceptable risk,. **The information that you provide on this form and your Declaration for Federal Employment (OF 306) may be confirmed during the investigation. The investigation may extend beyond the time covered by this form, when necessary to resolve issues. Your current employer may be contacted as part of the investigation, although you may have previously indicated** on applications or other forms that you do not want your current employer to be contacted. If you have a security freeze on your consumer or credit report file and a credit report is required by the agency requesting your investigation, then we may not be able to complete your investigation, which can adversely affect your eligibility for positions, physical and /or logical access required to perform duties, or your ability to obtain Federal or contract employment. To avoid such delays, you must request that the consumer reporting agencies lift the freeze in these instances.',
-    'In addition to the questions on this form, inquiry also is made about your adherence to security requirements, your honesty and integrity, vulnerability to exploitation or coercion, falsification, misrepresentation, and any other behavior, activities, or associations that tend to demonstrate a person is not reliable, trustworthy, or loyal. Federal agency records checks may be conducted on your spouse or legally recognized civil union/domestic partner, cohabitant(s), and immediate family members. After an eligibility determination has been completed, you also may be subject to continuous evaluation, which may include periodic reinvestigations, to determine whether retention in your position is clearly consistent with the interests of national security.',
+    'In addition to the questions on this form, inquiry also is made about your adherence to security requirements, your honesty and integrity, falsification, misrepresentation, and any other behavior, activities, or associations that tend to demonstrate a person is not reliable, trustworthy, or poses an unacceptable risk to the life, safety, or health of employees, contractors, vendors or visitors to a Federal facility; the Government’s physical assets or information systems; personal property; records, or, the privacy of the individuals whose data the Government holds in its systems. After an eligibility determination is made, you may also be subject to reinvestigations to ensure your continuing suitability for employment.',
     '**The information you provide on this form may be confirmed during the investigation, and may be used for identification purposes throughout the investigation process.**',
     '---',
     '## Your personal interview',
@@ -130,7 +130,7 @@ export const introduction = {
     '**You will not receive prior notice of such disclosures under a routine use.**',
     '**In addition to those disclosures generally permitted under the Privacy Act, all or a portion of the records or information you provide on this form or during your investigation may be disclosed outside of OPM as a routine use as outlined below.**',
     '---',
-    '## Office of Personnel Management (OPM) routine uses',
+    '## Common routine uses',
     'The Privacy Act routine uses of agencies conducting or requesting investigations, or with authorized custody over your investigative information, commonly include some or all of the following:',
     '**a.** To designated officers and employees of agencies, offices, and other establishments in the executive, legislative, and judicial branches of the Federal Government or the Government of the District of Columbia having a need to investigate, evaluate, or make a determination regarding loyalty to the United States; qualifications, suitability, or fitness for Government employment or military service; eligibility for logical or physical access to federally-controlled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
     '**b.** To an element of the U.S. Intelligence Community as identified in E.O. 12333, as amended, for use in intelligence activities for the purpose of protecting United States national security interests.',
@@ -166,7 +166,7 @@ export const introduction = {
     '**aa.** aa. To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.',
     '---',
     '## Public burden information',
-    'Public burden reporting for this collection of information is **estimated to average 120 minutes** per response, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, National Background Investigations Bureau, Attn: OMB Number 3206-0261 1900 E Street, NW, Washington, DC 20415. The OMB clearance number, 3206-0261, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.'
+    'Public burden reporting for this collection of information is **estimated to average 120 minutes** per response, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, National Background Investigations Bureau, Attn: OMB Number 3206-0261 1900 E Street, NW, Washington, DC 20415. The OMB clearance number, 3206-0261, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.',
   ],
   acceptance: {
     heading:
@@ -174,11 +174,14 @@ export const introduction = {
     title:
       'Persons completing this form should begin after carefully reading the preceding instructions',
     para: [
-      'I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.'
+      'I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.',
+    ],
+    para85: [
+      'I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), or removal and debarment from Federal Service.',
     ],
     aria: {
       yes: 'Yes, I agree to this agreement',
-      no: 'No, I do not agree to this agreement'
-    }
-  }
+      no: 'No, I do not agree to this agreement',
+    },
+  },
 }

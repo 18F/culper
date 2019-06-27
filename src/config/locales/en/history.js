@@ -428,6 +428,7 @@ export const history = {
         heading: {
           name: 'Provide the name of your supervisor',
           title: 'Provide the rank/position title of your supervisor',
+          titleNonMilitary: 'Provide the position title of your supervisor',
           email: 'Provide the email address of your supervisor',
           address: 'Provide the physical work location of your supervisor',
           telephone: 'Provide the telephone number for this supervisor',
@@ -1589,7 +1590,7 @@ export const history = {
         },
         append: 'Add another school',
         appendTitle:
-          'Do you have additional education (include education within the last {{years}} years, as well as degrees or diplomas more than {{years}} years ago)?',
+          'Do you have additional education to enter (include education within the last {{years}} years, as well as degrees or diplomas more than {{years}} years ago)?',
       },
       diploma: {
         summary: {
@@ -1629,7 +1630,7 @@ export const history = {
         'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       name: 'School name',
       address: 'This address is',
-      addressLink: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained. For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
+      addressLink: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained. For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search](https://ope.ed.gov/accreditation/search).',
       type: {
         highschool: 'High school',
         college: 'College, university, or military college',
@@ -1671,7 +1672,7 @@ export const history = {
         title:
           'For correspondence/distance/extension/online schools, provide the address where the records are maintained',
         message:
-          'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
+          'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search](https://ope.ed.gov/accreditation/search).',
         note:
           'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
       },

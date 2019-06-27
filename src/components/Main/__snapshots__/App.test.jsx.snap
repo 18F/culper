@@ -105,7 +105,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   <strong>
                     If you are a current civilian employee of the federal government:
                   </strong>
-                   failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to Sections 18 and 21, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.
+                   failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.
                 </p>
               </div>
               <div>
@@ -201,7 +201,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  In addition to the questions on this form, inquiry also is made about your adherence to security requirements, your honesty and integrity, vulnerability to exploitation or coercion, falsification, misrepresentation, and any other behavior, activities, or associations that tend to demonstrate a person is not reliable, trustworthy, or loyal. Federal agency records checks may be conducted on your spouse or legally recognized civil union/domestic partner, cohabitant(s), and immediate family members. After an eligibility determination has been completed, you also may be subject to continuous evaluation, which may include periodic reinvestigations, to determine whether retention in your position is clearly consistent with the interests of national security.
+                  In addition to the questions on this form, inquiry also is made about your adherence to security requirements, your honesty and integrity, falsification, misrepresentation, and any other behavior, activities, or associations that tend to demonstrate a person is not reliable, trustworthy, or poses an unacceptable risk to the life, safety, or health of employees, contractors, vendors or visitors to a Federal facility; the Government’s physical assets or information systems; personal property; records, or, the privacy of the individuals whose data the Government holds in its systems. After an eligibility determination is made, you may also be subject to reinvestigations to ensure your continuing suitability for employment.
                 </p>
               </div>
               <div>
@@ -287,7 +287,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <h2>
-                  Office of Personnel Management (OPM) routine uses
+                  Common routine uses
                 </h2>
               </div>
               <div>
@@ -618,7 +618,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     >
                       <div>
                         <p>
-                          I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.
+                          I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), or removal and debarment from Federal Service.
                         </p>
                       </div>
                     </div>
@@ -881,7 +881,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -895,7 +895,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             7
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>
@@ -2169,15 +2169,15 @@ exports[`App component for the SF85 renders the homepage 1`] = `
         </button>
          
       </div>
-      <a
-        className="eapp-section-focus"
-        href="javascript:;;;"
-        title="Main content. Please press TAB to go to the next question"
-      />
       <div
         className="eapp-structure-right eapp-core visible"
         id="main-content"
       >
+        <a
+          className="eapp-section-focus"
+          href="javascript:;;;"
+          title="Main content. Please press TAB to go to the next question"
+        />
          
       </div>
     </div>
@@ -2455,7 +2455,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <h2>
-                  Office of Personnel Management (OPM) routine uses
+                  Office of Personnel Management (OPM) Routine Uses
                 </h2>
               </div>
               <div>
@@ -3044,7 +3044,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -3058,7 +3058,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             9
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>
@@ -4936,15 +4936,15 @@ exports[`App component for the SF85P renders the homepage 1`] = `
         </button>
          
       </div>
-      <a
-        className="eapp-section-focus"
-        href="javascript:;;;"
-        title="Main content. Please press TAB to go to the next question"
-      />
       <div
         className="eapp-structure-right eapp-core visible"
         id="main-content"
       >
+        <a
+          className="eapp-section-focus"
+          href="javascript:;;;"
+          title="Main content. Please press TAB to go to the next question"
+        />
          
       </div>
     </div>
@@ -5222,7 +5222,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
               </div>
               <div>
                 <h2>
-                  Office of Personnel Management (OPM) routine uses
+                  Office of Personnel Management (OPM) Routine Uses
                 </h2>
               </div>
               <div>
@@ -5811,7 +5811,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -5825,7 +5825,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             10
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>
@@ -8147,15 +8147,15 @@ exports[`App component for the SF86 renders the homepage 1`] = `
         </button>
          
       </div>
-      <a
-        className="eapp-section-focus"
-        href="javascript:;;;"
-        title="Main content. Please press TAB to go to the next question"
-      />
       <div
         className="eapp-structure-right eapp-core visible"
         id="main-content"
       >
+        <a
+          className="eapp-section-focus"
+          href="javascript:;;;"
+          title="Main content. Please press TAB to go to the next question"
+        />
          
       </div>
     </div>

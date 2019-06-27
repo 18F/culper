@@ -24,6 +24,8 @@ const accordionValidator = (value, options = {}) => {
   let itemErrors
   for (let i = 0; i < items.length; i += 1) {
     const { Item } = items[i]
+    if (!Item) return 'No item'
+
     itemErrors = validateModel(Item, validator, options)
     if (itemErrors !== true) return itemErrors
   }

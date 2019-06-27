@@ -83,8 +83,8 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	// If the account is locked then we cannot proceed
-	if account.Locked {
+	// If the account is submitted then we cannot proceed
+	if account.Status == api.StatusSubmitted {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
 		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return
@@ -239,7 +239,7 @@ func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.
 	}
 
 	// If the account is locked then we cannot proceed
-	if account.Locked {
+	if account.Status == api.StatusSubmitted {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
 		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return

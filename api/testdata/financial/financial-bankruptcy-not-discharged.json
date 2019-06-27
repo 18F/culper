@@ -1,0 +1,106 @@
+{
+    "props": {
+        "HasBankruptcy": {
+            "props": {
+                "name": "has_bankruptcydebt",
+                "value": "Yes"
+            },
+            "type": "branch"
+        },
+        "List": {
+            "props": {
+                "branch": {
+                    "props": {
+                        "value": ""
+                    },
+                    "type": "branch"
+                },
+                "items": [
+                    {
+                        "Item": {
+                            "CourtAddress": {
+                                "props": {},
+                                "type": "location"
+                            },
+                            "CourtInvolved": {
+                                "props": {
+                                    "name": "CourtInvolved",
+                                    "value": "Supreme"
+                                },
+                                "type": "text"
+                            },
+                            "CourtNumber": {
+                                "props": {
+                                    "name": "CourtNumber",
+                                    "value": "232323"
+                                },
+                                "type": "text"
+                            },
+                            "DateDischarged": {
+                                "props": {},
+                                "type": "datecontrol"
+                            },
+                            "DateDischargedNotApplicable": {
+                                "props": {},
+                                "type": "notapplicable"
+                            },
+                            "DateFiled": {
+                                "props": {
+                                    "day": "1",
+                                    "estimated": false,
+                                    "month": "3",
+                                    "name": "DateFiled",
+                                    "touched": true,
+                                    "year": "1988"
+                                },
+                                "type": "datecontrol"
+                            },
+                            "DischargeExplanation": {
+                                "props": {
+                                    "name": "DischargeExplanation",
+                                    "value": "I still owe I guess. "
+                                },
+                                "type": "textarea"
+                            },
+                            "HasDischargeExplanation": {
+                                "props": {
+                                    "name": "discharge_explanation",
+                                    "value": "No"
+                                },
+                                "type": "branch"
+                            },
+                            "NameDebt": {
+                                "props": {},
+                                "type": "name"
+                            },
+                            "PetitionType": {
+                                "props": {
+                                    "checked": false,
+                                    "name": "petition_type",
+                                    "value": "Chapter11"
+                                },
+                                "type": "radio"
+                            },
+                            "TotalAmount": {
+                                "props": {
+                                    "value": ""
+                                },
+                                "type": "number"
+                            },
+                            "Trustee": {
+                                "props": {},
+                                "type": "text"
+                            },
+                            "TrusteeAddress": {
+                                "props": {},
+                                "type": "location"
+                            }
+                        }
+                    }
+                ]
+            },
+            "type": "collection"
+        }
+    },
+    "type": "financial.bankruptcy"
+}

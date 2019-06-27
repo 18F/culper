@@ -99,6 +99,7 @@ export default class EducationItem extends ValidationElement {
 
   updateReferenceNameNotApplicable = (values) => {
     this.update({
+      ReferenceName: values.applicable ? this.props.ReferenceName : {},
       ReferenceNameNotApplicable: values,
     })
   }
@@ -193,8 +194,9 @@ export default class EducationItem extends ValidationElement {
             titleSize="h4"
             help="history.education.help.dates"
             adjustFor="daterange"
-            shrink={true}
-            scrollIntoView={this.props.scrollIntoView}>
+            shrink
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <DateRange
               name="Dates"
               {...this.props.Dates}

@@ -9,5 +9,5 @@ type Section interface {
 
 // Rejector interface allows an entity to have nos cleared when the application is kicked back
 type Rejector interface {
-	ClearNos() error
+	ClearNoBranches() error
 }

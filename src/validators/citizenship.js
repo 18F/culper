@@ -1,14 +1,27 @@
+import store from 'services/store'
+import { selectValidUSPassport } from 'selectors/misc'
+
 import { validateModel } from 'models/validate'
 import citizenshipStatus, {
   requireCertificateFields,
   requireDocumentationFields,
 } from 'models/citizenshipStatus'
 
-export const validateCitizenshipStatus = data => validateModel(data, citizenshipStatus) === true
+export const validateCitizenshipStatus = (data) => {
+  const { hasValidUSPassport } = selectValidUSPassport(store.getState())
 
-export const isCertificateRequired = data => requireCertificateFields(data)
+  return validateModel(data, citizenshipStatus, {
+    requireForeignBornDocumentation: !hasValidUSPassport,
+  }) === true
+}
 
-export const isDocumentRequired = data => requireDocumentationFields(data)
+export const isCertificateRequired = (data, requireForeignBornDocumentation) => (
+  requireCertificateFields(data, { requireForeignBornDocumentation })
+)
+
+export const isDocumentRequired = (data, requireForeignBornDocumentation) => (
+  requireDocumentationFields(data, { requireForeignBornDocumentation })
+)
 
 export default class CitizenshipValidator {
   constructor(data = {}) {
@@ -25,7 +38,7 @@ export default class CitizenshipValidator {
     return validateModel(this.data, {
       AbroadDocumentation: citizenshipStatus.AbroadDocumentation,
       Explanation: citizenshipStatus.Explanation,
-    }) === true
+    }, { requireForeignBornDocumentation: true }) === true
   }
 
   validBornOnMilitaryInstallation() {

@@ -1,66 +1,56 @@
-import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import { validAccordion, validGenericTextfield, validBranch } from './helpers'
+import { validateModel, hasYesOrNo } from 'models/validate'
+import hospitalization from 'models/hospitalization'
+
+const hospitalizationsModel = {
+  Hospitalized: { presence: true, hasValue: { validator: hasYesOrNo } },
+  List: (value, attributes) => {
+    if (attributes.Hospitalized && attributes.Hospitalized.value === 'Yes') {
+      return {
+        presence: true,
+        accordion: { validator: hospitalization },
+      }
+    }
+    return {}
+  },
+}
+
+export const validateHospitalization = data => (
+  validateModel(data, hospitalization) === true
+)
+
+export const validateHospitalizations = data => (
+  validateModel(data, hospitalizationsModel) === true
+)
 
 export default class HospitalizationsValidator {
   constructor(data = {}) {
-    this.list = data.List || {}
-    this.hospitalized = (data.Hospitalized || {}).value
-  }
-
-  validList() {
-    if (this.hospitalized === 'No') {
-      return true
-    }
-
-    return validAccordion(this.list, item => {
-      return new HospitalizationValidator(item).isValid()
-    })
+    this.data = data
   }
 
   validHospitalization() {
-    return validBranch(this.hospitalized)
+    return validateModel(this.data, {
+      Hospitalized: hospitalizationsModel.Hospitalized,
+    }) === true
   }
 
   isValid() {
-    return this.validHospitalization() && this.validList()
+    return validateHospitalizations(this.data)
   }
 }
 
 export class HospitalizationValidator {
   constructor(data = {}) {
-    this.treatmentDate = data.TreatmentDate
-    this.admission = (data.Admission || {}).value
-    this.facility = data.Facility
-    this.facilityAddress = data.FacilityAddress
-    this.explanation = data.Explanation
-  }
-
-  validTreatmentDate() {
-    return new DateRangeValidator(this.treatmentDate).isValid()
+    this.data = data
   }
 
   validAdmission() {
-    if (this.admission !== 'Voluntary' && this.admission !== 'Involuntary') {
-      return false
-    }
-    return validGenericTextfield(this.explanation)
-  }
-
-  validFacilityAddress() {
-    return new LocationValidator(this.facilityAddress).isValid()
-  }
-
-  validFacility() {
-    return validGenericTextfield(this.facility)
+    return validateModel(this.data, {
+      Admission: hospitalization.Admission,
+      Explanation: hospitalization.Explanation,
+    }) === true
   }
 
   isValid() {
-    return (
-      this.validTreatmentDate() &&
-      this.validAdmission() &&
-      this.validFacilityAddress() &&
-      this.validFacility()
-    )
+    return validateHospitalization(this.data)
   }
 }
