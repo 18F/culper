@@ -34,7 +34,8 @@ export class ApplicantSSN extends Subsection {
     this.state = {
       uid: `${subsection.name}-${super.guid()}`,
       verification: {},
-      error: false
+      error: false,
+      verified: props.verified || false,
     }
 
     this.updateSSN = this.updateSSN.bind(this)
@@ -51,38 +52,41 @@ export class ApplicantSSN extends Subsection {
   }
 
   updateSSN(values) {
+    this.setState({
+      verified: false,
+    })
+
     this.update({
       ssn: values,
       verified: false,
-      error: false
+      error: false,
     })
   }
 
   updateVerification(values) {
-    const verified =
-      this.props.ssn.first === values.first &&
-      this.props.ssn.middle === values.middle &&
-      this.props.ssn.last === values.last &&
-      validSSN(values)
-
-    this.setState(
-      {
-        verification: verified ? {} : values,
-        error: verified ? false : this.state.error
-      },
-      () => {
-        // Update the properties so they can be reflected
-        // within this component.
-        this.update({ verified: verified })
-
-        // If everything checks out there are no errors and
-        // we are going to forcefully flush them.
-        if (verified) {
-          this.handleError(values, [])
-          this.verificationError(values, [])
-        }
-      }
+    const verified = (
+      this.props.ssn.first === values.first
+      && this.props.ssn.middle === values.middle
+      && this.props.ssn.last === values.last
+      && validSSN(values)
     )
+
+    this.setState(prevState => ({
+      verified,
+      verification: verified ? {} : values,
+      error: verified ? false : prevState.error,
+    }), () => {
+      // Update the properties so they can be reflected
+      // within this component.
+      this.update({ verified })
+
+      // If everything checks out there are no errors and
+      // we are going to forcefully flush them.
+      if (verified) {
+        this.handleError(values, [])
+        this.verificationError(values, [])
+      }
+    })
   }
 
   verificationError(value, arr) {
