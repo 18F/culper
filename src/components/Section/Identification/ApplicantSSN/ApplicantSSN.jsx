@@ -7,11 +7,11 @@ import validate from 'validators'
 import { validSSN } from 'validators/helpers'
 
 import { Field, SSN, Show } from 'components/Form'
+import { IDENTIFICATION, IDENTIFICATION_SSN } from 'config/formSections/identification'
 
 import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
 
-import { IDENTIFICATION, IDENTIFICATION_SSN } from 'config/formSections/identification'
 
 const sectionConfig = {
   section: IDENTIFICATION.name,
@@ -24,7 +24,9 @@ export class ApplicantSSN extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
@@ -37,21 +39,17 @@ export class ApplicantSSN extends Subsection {
       error: false,
       verified: props.verified || false,
     }
-
-    this.updateSSN = this.updateSSN.bind(this)
-    this.updateVerification = this.updateVerification.bind(this)
-    this.verificationError = this.verificationError.bind(this)
   }
 
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate(this.storeKey, {
       ssn: this.props.ssn,
       verified: this.props.verified,
-      ...queue
+      ...queue,
     })
   }
 
-  updateSSN(values) {
+  updateSSN = (values) => {
     this.setState({
       verified: false,
     })
@@ -63,7 +61,7 @@ export class ApplicantSSN extends Subsection {
     })
   }
 
-  updateVerification(values) {
+  updateVerification = (values) => {
     const verified = (
       this.props.ssn.first === values.first
       && this.props.ssn.middle === values.middle
@@ -89,25 +87,26 @@ export class ApplicantSSN extends Subsection {
     })
   }
 
-  verificationError(value, arr) {
+  verificationError = (value, arr) => {
     // If the verification SSN is valid then we run our validation
     // function(s). However, if it is not then we set the `valid` property
     // to a neutral state. This allows the error notifications to be properly
     // toggled within the various subscribing components.
-    const verification = this.state.verification
-    const local =
+    const { verification } = this.state
+    const local = (
       this.props.onError(
         value,
-        this.constructor.errors.map(err => {
-          return {
+        this.constructor.errors.map(err => (
+          {
             code: err.code,
             valid: validSSN(verification)
               ? err.func(verification, this.props)
               : null,
-            uid: this.state.uid
+            uid: this.state.uid,
           }
-        })
+        ))
       ) || []
+    )
 
     // Set the error state value so we can apply a CSS class to
     // the entire SSN.
@@ -116,15 +115,16 @@ export class ApplicantSSN extends Subsection {
   }
 
   render() {
-    const klass = `section-content applicant-ssn ${this.props.className ||
-      ''}`.trim()
+    const klass = `section-content applicant-ssn ${this.props.className
+      || ''}`.trim()
     const klassVerify = `applicant-ssn-verification ${
       this.state.error ? 'usa-input-error' : ''
     }`.trim()
-    const verify =
-      validSSN(this.props.ssn) &&
-      !this.props.verified &&
-      !this.props.ssn.notApplicable
+    const verify = (
+      validSSN(this.props.ssn)
+      && !this.props.verified
+      && !this.props.ssn.notApplicable
+    )
 
     return (
       <div
@@ -132,12 +132,13 @@ export class ApplicantSSN extends Subsection {
         data-section={IDENTIFICATION.key}
         data-subsection={IDENTIFICATION_SSN.key}
       >
-      <h1 className="section-header">{i18n.t('identification.destination.ssn')}</h1>
+        <h1 className="section-header">{i18n.t('identification.destination.ssn')}</h1>
         <Field
           title={i18n.t('identification.ssn.title')}
           titleSize="h4"
           help="identification.ssn.help"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <SSN
             name="ssn"
             {...this.props.ssn}
@@ -152,7 +153,8 @@ export class ApplicantSSN extends Subsection {
           <Field
             title={i18n.t('identification.ssn.heading.verify')}
             scrollIntoView={this.props.scrollIntoView}
-            titleSize="h4">
+            titleSize="h4"
+          >
             <SSN
               name="verification"
               {...this.state.verification}
@@ -180,15 +182,11 @@ export class ApplicantSSN extends Subsection {
 ApplicantSSN.defaultProps = {
   ssn: {},
   verified: false,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
   required: false,
-  validator: data => {
-    return validate(schema('identification.ssn', data))
-  }
+  validator: data => validate(schema('identification.ssn', data)),
 }
 
 ApplicantSSN.errors = [
@@ -199,13 +197,13 @@ ApplicantSSN.errors = [
         return null
       }
       return (
-        validate(schema('ssn', value)) &&
-        props.ssn.first === value.first &&
-        props.ssn.middle === value.middle &&
-        props.ssn.last === value.last
+        validate(schema('ssn', value))
+        && props.ssn.first === value.first
+        && props.ssn.middle === value.middle
+        && props.ssn.last === value.last
       )
-    }
-  }
+    },
+  },
 ]
 
 export default connectIdentificationSection(ApplicantSSN, sectionConfig)
