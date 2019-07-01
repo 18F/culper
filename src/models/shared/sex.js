@@ -1,4 +1,4 @@
-import sexOptions from 'constants/enums/physicalOptions'
+import { sexOptions } from 'constants/enums/physicalOptions'
 
 const sex = {
   value: { presence: true, inclusion: sexOptions },
