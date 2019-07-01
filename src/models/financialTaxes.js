@@ -13,6 +13,7 @@ const financialTaxes = {
       },
     },
   },
+  // TODO >= DOB, <= NOW
   Year: {
     presence: true,
     date: {
@@ -33,6 +34,7 @@ const financialTaxes = {
       },
     },
   },
+  // TODO >= year failed to pay, <= NOW
   Date: (value, attributes = {}) => {
     const { DateNotApplicable } = attributes
     if (DateNotApplicable && DateNotApplicable.applicable) {

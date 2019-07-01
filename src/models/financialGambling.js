@@ -1,4 +1,5 @@
 const financialGambling = {
+  // TODO >= DOB, <= NOW
   Dates: { presence: true, daterange: true },
   Losses: {
     presence: true,

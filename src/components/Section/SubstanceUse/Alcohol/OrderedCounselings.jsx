@@ -66,7 +66,7 @@ export class OrderedCounselings extends Subsection {
     }
 
     const seekers = []
-    if (o.Seekers) {
+    if (o.Seekers && o.Seekers.values) {
       o.Seekers.values.forEach((seeker) => {
         if (seeker === 'Other') {
           seekers.push((o.OtherSeeker || {}).value || 'Other')

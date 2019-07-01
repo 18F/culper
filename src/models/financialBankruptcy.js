@@ -30,10 +30,12 @@ const financialBankruptcy = {
       validator: { numericality: true },
     },
   },
+  // TODO >= DOB, <= NOW
   DateFiled: {
     presence: true,
     date: { requireDay: false },
   },
+  // TODO >= date filed, <= NOW
   DateDischarged: (value, attributes) => {
     const { DateDischargedNotApplicable } = attributes
     if (DateDischargedNotApplicable && DateDischargedNotApplicable.applicable) {

@@ -1,6 +1,5 @@
-import address from 'models/shared/locations/address'
-
 const revoked = {
+  // TODO >= DOB, <= NOW
   Date: { presence: true, date: true },
   Agency: { presence: true, hasValue: true },
   Explanation: { presence: true, hasValue: true },
