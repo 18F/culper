@@ -45,10 +45,12 @@ const financialDelinquentPayments = {
   },
   Reason: { presence: true, hasValue: true },
   Status: { presence: true, hasValue: true },
+  // TODO >= DOB, <= NOW
   Date: {
     presence: true,
     date: { requireDay: false },
   },
+  // TODO >= date began, <= NOW
   Resolved: (value, attributes) => {
     const { ResolvedNotApplicable } = attributes
     if (ResolvedNotApplicable && ResolvedNotApplicable.applicable) {

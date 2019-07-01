@@ -29,6 +29,7 @@ const investigation = {
 
     return {}
   },
+  // TODO >= DOB, < NOW
   Completed: (value, attributes) => {
     if (attributes.CompletedNotApplicable
       && attributes.CompletedNotApplicable.applicable === false) {
@@ -37,6 +38,8 @@ const investigation = {
 
     return { presence: true, date: true }
   },
+  Issued: {},
+  // TODO >= DOB and date completed, <= NOW
   Granted: (value, attributes) => {
     if (attributes.GrantedNotApplicable
       && attributes.GrantedNotApplicable.applicable === false) {
