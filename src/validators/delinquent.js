@@ -26,6 +26,15 @@ const delinquentItemsModel = {
   },
 }
 
+export const validateFinancialDelinquent = (data, formType = formTypes.SF86) => {
+  const requiredFinancialDelinquentName = requireFinancialDelinquentName(formType)
+  const requiredFinancialDelinquentInfraction = requireFinancialDelinquentInfraction(formType)
+  return validateModel(data, delinquentItemsModel, {
+    requiredFinancialDelinquentName,
+    requiredFinancialDelinquentInfraction,
+  }) === true
+}
+
 /** Object Validators (as classes) - legacy */
 export default class DelinquentValidator {
   constructor(data = {}) {
@@ -42,7 +51,10 @@ export default class DelinquentValidator {
 
   validList() {
     const requiredFinancialDelinquentName = requireFinancialDelinquentName(this.formType)
-    const requiredFinancialDelinquentInfraction = requireFinancialDelinquentInfraction(this.formType)
+    const requiredFinancialDelinquentInfraction = requireFinancialDelinquentInfraction(
+      this.formType
+    )
+
     return validateModel(
       this.data,
       { List: delinquentItemsModel.List },
@@ -51,13 +63,7 @@ export default class DelinquentValidator {
   }
 
   isValid() {
-    const requiredFinancialDelinquentName = requireFinancialDelinquentName(this.formType)
-    const requiredFinancialDelinquentInfraction = requireFinancialDelinquentInfraction(this.formType)
-    return validateModel(
-      this.data,
-      delinquentItemsModel,
-      { requiredFinancialDelinquentName, requiredFinancialDelinquentInfraction }
-    ) === true
+    return validateFinancialDelinquent(this.data, this.formType)
   }
 }
 
@@ -91,7 +97,9 @@ export class DelinquentItemValidator {
   }
 
   validInfractions() {
-    const requiredFinancialDelinquentInfraction = requireFinancialDelinquentInfraction(this.formType)
+    const requiredFinancialDelinquentInfraction = requireFinancialDelinquentInfraction(
+      this.formType
+    )
 
     return validateModel(
       this.data,
