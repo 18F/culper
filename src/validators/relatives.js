@@ -67,7 +67,7 @@ export default class RelativesValidator {
         presence: true,
       },
     }
-    console.log(maritalStatus)
+
     if (marriedOptions.includes(maritalStatus)) {
       requiredRelations = requiredParentalInLaws
 
@@ -76,7 +76,6 @@ export default class RelativesValidator {
       }
     }
 
-    console.log(maritalRelationsModel)
 
     return validateModel(this.data, maritalRelationsModel) === true
   }
