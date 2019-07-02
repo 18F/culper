@@ -1193,13 +1193,11 @@ export const error = {
   },
   validMaritalRelation: {
     title: 'Mother-in-law and father-in-law must be provided',
-    message:
-      'You indicated that you are married or separated, please provide entries for mother-in-law and father-in-law.',
+    message: '',
   },
   validRelation: {
     title: 'Mother and father must be provided',
-    message:
-      'If you do not know your mother or father, please enter "I don\'t know" and provide a comment explaining your relationship.',
+    message: '',
   },
   validPhoneTypes: {
     title: 'There is a problem with your phone numbers',
