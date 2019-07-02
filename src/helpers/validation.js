@@ -337,14 +337,14 @@ export const getValidatorForSection = (section) => {
   }
 }
 
-export const validateSection = ({ key, data }, formType = SF86) => {
+export const validateSection = ({ key = '', data = {} }, formType = SF86) => {
   const validator = getValidatorForSection(key)
 
   if (validator) {
     try {
       return validator(data, formType)
     } catch (e) {
-      console.warn(`Invalid validator for section ${key}`)
+      console.warn(`Invalid validator for section ${key}`, e)
     }
   }
 
