@@ -55,6 +55,45 @@ describe('The relatives component', () => {
     expect(expected.onUpdate.mock.calls.length).toEqual(4)
   })
 
+  it('it displays the correct errors about required relatives', () => {
+    const testReduxState = {
+      application: {
+        Relationships: {
+          Marital: {
+            Status: { value: 'Married' },
+          },
+          Relatives: {
+            List: {
+              branch: { value: 'No' },
+              items: [],
+            },
+          },
+        },
+        AddressBooks: {},
+      },
+    }
+
+    const testStore = mockStore(testReduxState)
+
+    const expected = {
+      name: 'relatives',
+      List: {
+        branch: { value: 'No' },
+        items: [],
+      },
+    }
+
+    const wrapper = mount(
+      <Provider store={testStore}>
+        <Relatives {...expected} />
+      </Provider>
+    )
+
+
+    expect(wrapper.find("[data-i18n='error.validRelation'] > h5").text())
+      .toEqual('Mother and father must be provided')
+  })
+
   const relativeDatesSetup = {
     name: 'relatives',
     applicantBirthdate: {

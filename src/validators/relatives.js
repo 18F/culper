@@ -3,11 +3,21 @@ import relative, { isCitizen, requireCitizenshipDocumentation } from 'models/rel
 import alias from 'models/shared/alias'
 
 import {
-  MARRIED, SEPARATED, MOTHER, FATHER, FATHER_IN_LAW, MOTHER_IN_LAW,
+  MOTHER, FATHER, FATHER_IN_LAW, MOTHER_IN_LAW, marriedOptions,
 } from 'constants/enums/relationshipOptions'
 
 import store from 'services/store'
 import { selectMaritalStatus } from 'selectors/data'
+
+const requiredMotherAndFather = [
+  i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER,
+  i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER,
+]
+
+const requiredParentalInLaws = [
+  i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER_IN_LAW,
+  i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER_IN_LAW,
+]
 
 export const validateRelative = data => validateModel(data, relative) === true
 
@@ -21,18 +31,14 @@ export const getMaritalStatus = () => {
 export const validateRelatives = (data) => {
   const maritalStatus = getMaritalStatus()
 
-  const requiredRelations = [
-    i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER,
-    i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER,
-  ]
-
-  if ([MARRIED, SEPARATED].includes(maritalStatus)) {
-    requiredRelations.push(
-      i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER_IN_LAW,
-    )
-    requiredRelations.push(
-      i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER_IN_LAW,
-    )
+  let requiredRelations
+  if (marriedOptions.includes(maritalStatus)) {
+    requiredRelations = [
+      ...requiredMotherAndFather,
+      ...requiredParentalInLaws,
+    ]
+  } else {
+    requiredRelations = requiredMotherAndFather
   }
 
   const relativesModel = {
@@ -55,34 +61,28 @@ export default class RelativesValidator {
 
   validMaritalRelations(context = null) {
     const maritalStatus = context || getMaritalStatus()
-    const requiredRelations = []
-
-    if ([MARRIED, SEPARATED].includes(maritalStatus)) {
-      requiredRelations.push(
-        i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER_IN_LAW,
-      )
-      requiredRelations.push(
-        i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER_IN_LAW,
-      )
-    }
-
+    let requiredRelations
     const maritalRelationsModel = {
       List: {
         presence: true,
-        containsRequiredItems: {
-          requirements: requiredRelations,
-        },
       },
     }
+    console.log(maritalStatus)
+    if (marriedOptions.includes(maritalStatus)) {
+      requiredRelations = requiredParentalInLaws
+
+      maritalRelationsModel.List.containsRequiredItems = {
+        requirements: requiredRelations,
+      }
+    }
+
+    console.log(maritalRelationsModel)
 
     return validateModel(this.data, maritalRelationsModel) === true
   }
 
   validMinimumRelations() {
-    const requiredRelations = [
-      i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER,
-      i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER,
-    ]
+    const requiredRelations = requiredMotherAndFather
 
     const minimumRelationsModel = {
       List: {

@@ -75,6 +75,7 @@ export class Relatives extends Subsection {
   validRelations = () => new RelativesValidator(this.props).validMinimumRelations()
 
   render() {
+    const { List } = this.props
     return (
       <div
         className="section-content relatives"
@@ -92,20 +93,24 @@ export class Relatives extends Subsection {
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
 
-        <Field
-          errors={[{ code: 'validRelation', valid: this.validRelations() }]}
-          className={this.validRelations() && 'hidden'}
-        />
+        {List.branch && List.branch.value === 'No' && (
+          <Field
+            errors={[{ code: 'validRelation', valid: this.validRelations() }]}
+            className={this.validRelations() && 'hidden'}
+          />
+        )}
 
-        <Field
-          errors={[
-            {
-              code: 'validMaritalRelation',
-              valid: this.validMaritalRelations(),
-            },
-          ]}
-          className={this.validMaritalRelations() && 'hidden'}
-        />
+        {List.branch && List.branch.value === 'No' && (
+          <Field
+            errors={[
+              {
+                code: 'validMaritalRelation',
+                valid: this.validMaritalRelations(),
+              },
+            ]}
+            className={this.validMaritalRelations() && 'hidden'}
+          />
+        )}
 
         <Accordion
           {...this.props.List}
