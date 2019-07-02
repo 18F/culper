@@ -3,9 +3,8 @@ import { createSelector } from 'reselect'
 
 import { validateSection, sectionIsValid } from 'helpers/validation'
 
-import {
-  nestedFormSectionsSelector,
-} from './navigation'
+import { nestedFormSectionsSelector } from 'selectors/navigation'
+import { formTypeSelector } from 'selectors/formType'
 
 /**
  * Recursive function that loops through sections and their subsections, checks
@@ -14,6 +13,7 @@ import {
  */
 const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
   const { application } = state
+  const formType = formTypeSelector(state)
   const newSections = sections
     .filter(s => s.subsections || s.storeKey)
     .map((s) => {
@@ -36,7 +36,7 @@ const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
         sectionData = application[store][s.storeKey] || {}
       }
 
-      const isValid = validateSection({ ...s, data: sectionData })
+      const isValid = validateSection({ ...s, data: sectionData }, formType)
 
       return {
         ...s,
