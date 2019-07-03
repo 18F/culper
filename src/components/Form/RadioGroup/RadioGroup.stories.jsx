@@ -8,37 +8,107 @@ import RadioGroup from './RadioGroup'
 import Radio from '../Radio/Radio'
 
 storiesOf('RadioGroup', module)
-  .add('default (empty)', () => (
-    <RadioGroup />
-  ))
-  .add('with Yes/No radios (yes selected)', () => (
+  .add('default', () => (
     <RadioGroup
-      selectedValue="yes"
+      className="option-list option-list-vertical"
     >
       <Radio
-        label="Yes"
-        value="yes"
+        label="Radio 1"
+        value="Radio 1"
         onUpdate={action('onUpdate')}
       />
       <Radio
-        label="No"
-        value="no"
+        label="Radio 2"
+        value="Radio 2"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 3"
+        value="Radio 3"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 4"
+        value="Radio 4"
         onUpdate={action('onUpdate')}
       />
     </RadioGroup>
   ))
-  .add('with Yes/No radios (no selected)', () => (
+  .add('option selected', () => (
     <RadioGroup
-      selectedValue="no"
+      className="option-list option-list-vertical"
+      selectedValue="Radio 1"
     >
       <Radio
-        label="Yes"
-        value="yes"
+        label="Radio 1"
+        value="Radio 1"
         onUpdate={action('onUpdate')}
       />
       <Radio
-        label="No"
-        value="no"
+        label="Radio 2"
+        value="Radio 2"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 3"
+        value="Radio 3"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 4"
+        value="Radio 4"
+        onUpdate={action('onUpdate')}
+      />
+    </RadioGroup>
+  ))
+  .add('with error', () => (
+    <RadioGroup
+      className="option-list option-list-vertical usa-input-error"
+    >
+      <Radio
+        label="Radio 1"
+        value="Radio 1"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 2"
+        value="Radio 2"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 3"
+        value="Radio 3"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 4"
+        value="Radio 4"
+        onUpdate={action('onUpdate')}
+      />
+    </RadioGroup>
+  ))
+  .add('inline', () => (
+    <RadioGroup
+      className="option-list"
+    >
+      <Radio
+        label="Radio 1"
+        value="Radio 1"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 2"
+        value="Radio 2"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 3"
+        value="Radio 3"
+        onUpdate={action('onUpdate')}
+      />
+      <Radio
+        label="Radio 4"
+        value="Radio 4"
         onUpdate={action('onUpdate')}
       />
     </RadioGroup>
