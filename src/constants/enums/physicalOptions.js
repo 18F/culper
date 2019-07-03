@@ -1,8 +1,3 @@
-export const sexOptions = [
-  'Female',
-  'Male',
-]
-
 export const eyeColorOptions = [
   'Black',
   'Blue',
@@ -16,7 +11,6 @@ export const eyeColorOptions = [
   'Unknown',
 ]
 
-// TODO - add labels
 export const hairColorOptions = [
   'Bald',
   'Black',
@@ -32,4 +26,9 @@ export const hairColorOptions = [
   'Pink',
   'Purple',
   'Unknown',
+]
+
+export const sexOptions = [
+  'Female',
+  'Male',
 ]
