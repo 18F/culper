@@ -38,7 +38,9 @@ export class Relatives extends Subsection {
   }
 
   componentDidMount() {
-    this.checkRelativesSubsectionErrors(this.props.List.branch.value)
+    if (this.props.List.branch) {
+      this.checkRelativesSubsectionErrors(this.props.List.branch.value)
+    }
   }
 
   componentDidUpdate(prevProps) {
