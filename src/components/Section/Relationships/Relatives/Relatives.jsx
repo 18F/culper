@@ -116,25 +116,6 @@ export class Relatives extends Subsection {
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
 
-        {List.branch && List.branch.value === 'No' && (
-          <Field
-            errors={[{ code: 'validRelation', valid: this.validRelations() }]}
-            className={this.validRelations() && 'hidden'}
-          />
-        )}
-
-        {List.branch && List.branch.value === 'No' && (
-          <Field
-            errors={[
-              {
-                code: 'validMaritalRelation',
-                valid: this.validMaritalRelations(),
-              },
-            ]}
-            className={this.validMaritalRelations() && 'hidden'}
-          />
-        )}
-
         <Accordion
           {...this.props.List}
           defaultState={this.props.defaultState}
@@ -161,6 +142,25 @@ export class Relatives extends Subsection {
             required={this.props.required}
           />
         </Accordion>
+
+        {List.branch && List.branch.value === 'No' && (
+          <Field
+            errors={[{ code: 'validRelation', valid: this.validRelations() }]}
+            className={this.validRelations() && 'hidden'}
+          />
+        )}
+
+        {List.branch && List.branch.value === 'No' && (
+          <Field
+            errors={[
+              {
+                code: 'validMaritalRelation',
+                valid: this.validMaritalRelations(),
+              },
+            ]}
+            className={this.validMaritalRelations() && 'hidden'}
+          />
+        )}
       </div>
     )
   }
@@ -184,10 +184,11 @@ Relatives.errors = [
   {
     code: 'validMaritalRelation',
     func: (props) => {
+      const { List } = props
       if (
-        props.List
-        && props.List.branch
-        && props.List.branch.value === 'No'
+        List
+        && List.branch
+        && List.branch.value === 'No'
       ) {
         return new RelativesValidator(props).validMaritalRelations()
       }
