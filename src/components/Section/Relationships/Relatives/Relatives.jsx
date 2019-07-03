@@ -37,6 +37,29 @@ export class Relatives extends Subsection {
     this.storeKey = storeKey
   }
 
+  componentDidMount() {
+    this.checkRelativesSubsectionErrors(this.props.List.branch.value)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.List.branch.value !== this.props.List.branch.value) {
+      this.checkRelativesSubsectionErrors(this.props.List.branch.value)
+    }
+  }
+
+  checkRelativesSubsectionErrors = (value) => {
+    const requiredErrors = (
+      this.constructor.errors.map(err => (
+        {
+          code: `relatives.${err.code}`,
+          valid: err.func(this.props),
+        }
+      ))
+    )
+
+    this.props.onError(value, requiredErrors)
+  }
+
   update = (queue) => {
     this.props.onUpdate(this.storeKey, {
       List: this.props.List,
@@ -156,5 +179,21 @@ Relatives.defaultProps = {
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,
 }
+
+Relatives.errors = [
+  {
+    code: 'validMaritalRelation',
+    func: (props) => {
+      if (
+        props.List
+        && props.List.branch
+        && props.List.branch.value === 'No'
+      ) {
+        return new RelativesValidator(props).validMaritalRelations()
+      }
+      return null
+    },
+  },
+]
 
 export default connectRelationshipsSection(Relatives, sectionConfig)

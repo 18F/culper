@@ -1193,7 +1193,8 @@ export const error = {
   },
   validMaritalRelation: {
     title: 'Mother-in-law and father-in-law must be provided',
-    message: '',
+    message:
+      'You indicated that you are married or separated, please provide entries for mother-in-law and father-in-law.',
   },
   validRelation: {
     title: 'Mother and father must be provided',
