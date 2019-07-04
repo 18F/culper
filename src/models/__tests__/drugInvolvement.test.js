@@ -5,6 +5,7 @@ describe('The drugInvolvement model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
+      'DrugType.required',
       'FirstInvolvement.required',
       'RecentInvolvement.required',
       'NatureOfInvolvement.required',
@@ -16,6 +17,33 @@ describe('The drugInvolvement model', () => {
 
     expect(validateModel(testData, drugInvolvement))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DrugType must have a valid value', () => {
+    const testData = {
+      DrugType: { value: 'Something' },
+    }
+    const expectedErrors = [
+      'DrugType.hasValue',
+    ]
+
+    expect(validateModel(testData, drugInvolvement))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  describe('if DrugType is "Other"', () => {
+    it('DrugTypeExplanation must have a value', () => {
+      const testData = {
+        DrugType: { value: 'Other' },
+        DrugTypeExplanation: 'test',
+      }
+      const expectedErrors = [
+        'DrugTypeExplanation.hasValue',
+      ]
+
+      expect(validateModel(testData, drugInvolvement))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 
   it('FirstInvolvement must be a valid month/year', () => {
@@ -33,6 +61,19 @@ describe('The drugInvolvement model', () => {
   it('RecentInvolvement must be a valid month/year', () => {
     const testData = {
       RecentInvolvement: { day: 5, month: 10 },
+    }
+    const expectedErrors = [
+      'RecentInvolvement.date',
+    ]
+
+    expect(validateModel(testData, drugInvolvement))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('RecentInvolvement must be after FirstInvolvement', () => {
+    const testData = {
+      FirstInvolvement: { month: 8, year: 2001 },
+      RecentInvolvement: { month: 5, year: 1990 },
     }
     const expectedErrors = [
       'RecentInvolvement.date',
@@ -117,6 +158,7 @@ describe('The drugInvolvement model', () => {
 
     it('passes a valid drugInvolvement', () => {
       const testData = {
+        DrugType: { value: 'Stimulants' },
         FirstInvolvement: { month: 2, year: 1999 },
         RecentInvolvement: { month: 5, year: 2001 },
         NatureOfInvolvement: { value: 'Testing' },
@@ -144,6 +186,8 @@ describe('The drugInvolvement model', () => {
 
     it('passes a valid drugInvolvement', () => {
       const testData = {
+        DrugType: { value: 'Other' },
+        DrugTypeExplanation: { value: 'Test' },
         FirstInvolvement: { month: 2, year: 1999 },
         RecentInvolvement: { month: 5, year: 2001 },
         NatureOfInvolvement: { value: 'Testing' },
@@ -170,6 +214,7 @@ describe('The drugInvolvement model', () => {
 
     it('passes a valid drugInvolvement', () => {
       const testData = {
+        DrugType: { value: 'THC' },
         FirstInvolvement: { month: 2, year: 1999 },
         RecentInvolvement: { month: 5, year: 2001 },
         NatureOfInvolvement: { value: 'Testing' },
@@ -196,6 +241,7 @@ describe('The drugInvolvement model', () => {
 
     it('passes a valid drugInvolvement', () => {
       const testData = {
+        DrugType: { value: 'Cocaine' },
         FirstInvolvement: { month: 2, year: 1999 },
         RecentInvolvement: { month: 5, year: 2001 },
         NatureOfInvolvement: { value: 'Testing' },
@@ -211,6 +257,7 @@ describe('The drugInvolvement model', () => {
 
   it('passes a valid drugInvolvement', () => {
     const testData = {
+      DrugType: { value: 'Steroids' },
       FirstInvolvement: { month: 2, year: 1999 },
       RecentInvolvement: { month: 5, year: 2001 },
       NatureOfInvolvement: { value: 'Testing' },

@@ -5,6 +5,7 @@ describe('The drugOrderedTreatment model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
+      'DrugType.required',
       'Explanation.required',
       'ActionTaken.required',
       'OrderedBy.required',
@@ -12,6 +13,33 @@ describe('The drugOrderedTreatment model', () => {
 
     expect(validateModel(testData, drugOrderedTreatment))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DrugType must have a valid value', () => {
+    const testData = {
+      DrugType: { value: 'Something' },
+    }
+    const expectedErrors = [
+      'DrugType.hasValue',
+    ]
+
+    expect(validateModel(testData, drugOrderedTreatment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  describe('if DrugType is "Other"', () => {
+    it('DrugTypeExplanation must have a value', () => {
+      const testData = {
+        DrugType: { value: 'Other' },
+        DrugTypeExplanation: 'test',
+      }
+      const expectedErrors = [
+        'DrugTypeExplanation.hasValue',
+      ]
+
+      expect(validateModel(testData, drugOrderedTreatment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 
   it('Explanation must have a value', () => {
@@ -53,6 +81,8 @@ describe('The drugOrderedTreatment model', () => {
 
     it('passes a valid drugOrderedTreatment', () => {
       const testData = {
+        DrugType: { value: 'Other' },
+        DrugTypeExplanation: { value: 'Test Drug' },
         Explanation: { value: 'Testing' },
         OrderedBy: { values: ['None'] },
         ActionTaken: { value: 'No' },
@@ -144,6 +174,7 @@ describe('The drugOrderedTreatment model', () => {
     describe('if TreatmentCompleted is "Yes"', () => {
       it('passes a valid drugOrderedTreatment', () => {
         const testData = {
+          DrugType: { value: 'THC' },
           Explanation: { value: 'Testing' },
           OrderedBy: { values: ['Test 1', 'Test 2'] },
           ActionTaken: { value: 'Yes' },
@@ -188,6 +219,7 @@ describe('The drugOrderedTreatment model', () => {
 
       it('passes a valid drugOrderedTreatment', () => {
         const testData = {
+          DrugType: { value: 'THC' },
           Explanation: { value: 'Testing' },
           OrderedBy: { values: ['Test 1', 'Test 2'] },
           ActionTaken: { value: 'Yes' },
@@ -233,6 +265,7 @@ describe('The drugOrderedTreatment model', () => {
 
     it('passes a valid drugOrderedTreatment', () => {
       const testData = {
+        DrugType: { value: 'THC' },
         Explanation: { value: 'Testing' },
         OrderedBy: { values: ['Test 1', 'Test 2'] },
         ActionTaken: { value: 'No' },

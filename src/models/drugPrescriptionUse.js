@@ -2,7 +2,6 @@ import { hasYesOrNo } from 'models/validate'
 
 const drugPrescriptionUse = {
   PrescriptionName: { presence: true, hasValue: true },
-  // TODO >= DOB, <= NOW
   InvolvementDates: { presence: true, daterange: true },
   Reason: { presence: true, hasValue: true },
   UseWhileEmployed: (value, attributes, attributeName, options) => {

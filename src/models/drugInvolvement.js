@@ -1,11 +1,24 @@
 import { hasYesOrNo } from 'models/validate'
+import { drugTypes } from 'constants/enums/substanceOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const drugInvolvement = {
-  // TODO add DrugType, DrugTypeExplanation
-  // TODO >= DOB, <= NOW
+  DrugType: { presence: true, hasValue: { validator: { inclusion: drugTypes } } },
+  DrugTypeExplanation: (value, attributes) => {
+    if (attributes.DrugType && attributes.DrugType.value === 'Other') {
+      return { presence: true, hasValue: true }
+    }
+    return {}
+  },
   FirstInvolvement: { presence: true, date: { requireDay: false } },
-  // TODO >= first use, <= NOW
-  RecentInvolvement: { presence: true, date: { requireDay: false } },
+  RecentInvolvement: (value, attributes) => {
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (attributes.FirstInvolvement) {
+      dateLimits.earliest = attributes.FirstInvolvement
+    }
+
+    return { presence: true, date: { requireDay: false, ...dateLimits } }
+  },
   NatureOfInvolvement: { presence: true, hasValue: true },
   Reasons: { presence: true, hasValue: true },
   InvolvementWhileEmployed: (value, attributes, attributeName, options) => {

@@ -1,8 +1,16 @@
 import { hasYesOrNo, checkValue } from 'models/validate'
 import address from 'models/shared/locations/address'
 import phone from 'models/shared/phone'
+import { drugTypes } from 'constants/enums/substanceOptions'
 
 const drugOrderedTreatment = {
+  DrugType: { presence: true, hasValue: { validator: { inclusion: drugTypes } } },
+  DrugTypeExplanation: (value, attributes) => {
+    if (attributes.DrugType && attributes.DrugType.value === 'Other') {
+      return { presence: true, hasValue: true }
+    }
+    return {}
+  },
   Explanation: { presence: true, hasValue: true },
   ActionTaken: { presence: true, hasValue: { validator: hasYesOrNo } },
   OrderedBy: (value) => {
@@ -20,7 +28,6 @@ const drugOrderedTreatment = {
       },
     }
   },
-  // TODO add DrugType, DrugTypeExplanation
   TreatmentProvider: (value, attributes) => {
     if (checkValue(attributes.ActionTaken, 'Yes')) {
       return { presence: true, hasValue: true }
@@ -39,7 +46,6 @@ const drugOrderedTreatment = {
     }
     return {}
   },
-  // TODO >= DOB, <= NOW
   TreatmentDates: (value, attributes) => {
     if (checkValue(attributes.ActionTaken, 'Yes')) {
       return { presence: true, daterange: true }
