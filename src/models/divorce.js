@@ -3,6 +3,7 @@ import address from 'models/shared/locations/address'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import usCityStateZipInternationalCity from 'models/shared/locations/usCityStateZipInternationalCity'
 import phone from 'models/shared/phone'
+import { DEFAULT_LATEST, OTHER } from 'constants/dateLimits'
 
 import {
   previouslyMarriedOptions,
@@ -13,10 +14,9 @@ const divorce = {
     presence: true,
     model: { validator: name },
   },
-  // TODO >= 200 years ago, <= NOW
   Birthdate: {
     presence: true,
-    date: true,
+    date: OTHER,
   },
   BirthPlace: {
     presence: true,
@@ -31,7 +31,6 @@ const divorce = {
     presence: true,
     model: { validator: phone },
   },
-  // TODO date >= DOB and person's DOB, <= NOW
   Recognized: {
     presence: true,
     date: true,
@@ -40,10 +39,16 @@ const divorce = {
     presence: true,
     location: { validator: birthplaceWithoutCounty },
   },
-  // TODO must be >= date recognized, <= NOW
-  DateDivorced: {
-    presence: true,
-    date: true,
+  DateDivorced: (value, attributes) => {
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (attributes.Recognized) {
+      dateLimits.earliest = attributes.Recognized
+    }
+
+    return {
+      presence: true,
+      date: dateLimits,
+    }
   },
   Status: {
     presence: true,

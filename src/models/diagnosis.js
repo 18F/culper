@@ -10,7 +10,6 @@ const diagnosis = {
       hasValue: true,
     }
   },
-  // TODO from >= DOB, <= NOW
   Diagnosed: { presence: true, daterange: true },
   Treatment: { presence: true, model: { validator: treatment } },
   TreatmentFacility: { presence: true, model: { validator: treatment } },

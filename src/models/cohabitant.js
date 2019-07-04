@@ -1,6 +1,7 @@
 import name from 'models/shared/name'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import foreignBornDocument from 'models/foreignBornDocument'
+import { OTHER } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
 import { DEFAULT_LATEST } from 'constants/dateLimits'
@@ -20,10 +21,9 @@ const cohabitant = {
     presence: true,
     model: { validator: name },
   },
-  // TODO >= 200 years ago, <= NOW
   Birthdate: {
     presence: true,
-    date: true,
+    date: OTHER,
   },
   BirthPlace: {
     presence: true,
@@ -50,7 +50,6 @@ const cohabitant = {
       },
     }
   },
-  // TODO date >= DOB and person's DOB, <= NOW
   CohabitationBegan: {
     presence: true, date: true,
   },
