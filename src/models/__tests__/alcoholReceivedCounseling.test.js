@@ -20,6 +20,32 @@ describe('The alcoholReceivedCounseling model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('TreatmentEndDate must be after the TreatmentBeganDate', () => {
+    const testData = {
+      TreatmentBeganDate: { month: 1, day: 2, year: 2018 },
+      TreatmentEndDate: { month: 8, day: 30, year: 2016 },
+    }
+    const expectedErrors = [
+      'TreatmentEndDate.date',
+    ]
+
+    expect(validateModel(testData, alcoholReceivedCounseling))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('TreatmentEndDate cannot be in the future', () => {
+    const testData = {
+      TreatmentBeganDate: { month: 1, day: 2, year: 2018 },
+      TreatmentEndDate: { month: 8, day: 30, year: 2030 },
+    }
+    const expectedErrors = [
+      'TreatmentEndDate.date',
+    ]
+
+    expect(validateModel(testData, alcoholReceivedCounseling))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('TreatmentProviderName must have a value', () => {
     const testData = {
       TreatmentProviderName: { value: '' },

@@ -1,5 +1,6 @@
 import { hasYesOrNo } from 'models/validate'
 import address from 'models/shared/locations/address'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const alcoholReceivedCounseling = {
   TreatmentProviderName: { presence: true, hasValue: true },
@@ -14,8 +15,15 @@ const alcoholReceivedCounseling = {
   AgencyName: { presence: true, hasValue: true },
   // TODO >= DOB, <= NOW
   TreatmentBeganDate: { presence: true, date: true },
-  // TODO >= date began, <= NOW
-  TreatmentEndDate: { presence: true, date: true },
+  TreatmentEndDate: (value, attributes) => {
+    const dateLimits = { latest: DEFAULT_LATEST }
+
+    if (attributes.TreatmentBeganDate) {
+      dateLimits.earliest = attributes.TreatmentBeganDate
+    }
+
+    return { presence: true, date: dateLimits }
+  },
   TreatmentDates: { presence: true, daterange: true },
   CompletedTreatment: { presence: true, hasValue: { validator: hasYesOrNo } },
   NoCompletedTreatmentExplanation: { presence: true, hasValue: true },

@@ -336,7 +336,6 @@ describe('The civilUnion model', () => {
         ],
       },
     }
-
     const expectedErrors = ['OtherNames.branchCollection']
 
     expect(validateModel(testData, civilUnion))

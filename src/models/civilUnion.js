@@ -5,6 +5,7 @@ import address from 'models/shared/locations/address'
 import usCityStateZipInternationalCity from 'models/shared/locations/usCityStateZipInternationalCity'
 import foreignBornDocument from 'models/foreignBornDocument'
 import { hasYesOrNo } from 'models/validate'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
 import { DEFAULT_LATEST } from 'constants/dateLimits'

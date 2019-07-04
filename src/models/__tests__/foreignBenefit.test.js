@@ -86,7 +86,7 @@ describe('The foreignBenefit model', () => {
     it('passes a valid benefit', () => {
       const testData = {
         InterestTypes: { values: ['something'] },
-        BenefitType: { value: 'Educational' },
+        BenefitType: { value: 'SocialWelfare' },
         BenefitFrequency: { value: 'OneTime' },
         OneTimeBenefit: {
           Country: { value: 'Canada' },
