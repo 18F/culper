@@ -6,7 +6,6 @@ const financialCardAbuse = {
     presence: true,
     location: { validator: address },
   },
-  // TODO >= DOB, <= NOW
   Date: {
     presence: true,
     date: { requireDay: false },

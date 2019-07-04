@@ -27,7 +27,6 @@ const diploma = {
 
     return {}
   },
-  // TODO must be >= DOB, <= NOW
   Date: {
     presence: true,
     date: { requireDay: false },
@@ -35,7 +34,6 @@ const diploma = {
 }
 
 const education = {
-  // TODO from must be >= DOB, to must be <= NOW
   Dates: {
     presence: true,
     daterange: true,

@@ -1,3 +1,5 @@
+import { DEFAULT_LATEST } from 'constants/dateLimits'
+
 const taxFailureTypes = [
   'File',
   'Pay',
@@ -34,18 +36,18 @@ const financialTaxes = {
       },
     },
   },
-  // TODO >= year failed to pay, <= NOW
   Date: (value, attributes = {}) => {
-    const { DateNotApplicable } = attributes
-    if (DateNotApplicable && DateNotApplicable.applicable) {
-      return {
-        presence: true,
-        date: {
-          requireDay: false,
-        },
-      }
+    const { DateNotApplicable, Year } = attributes
+    if (DateNotApplicable && DateNotApplicable.applicable === false) {
+      return {}
     }
-    return {}
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (Year) dateLimits.earliest = Year
+
+    return {
+      presence: true,
+      date: { requireDay: false, ...dateLimits },
+    }
   },
   Description: { presence: true, hasValue: true },
 }

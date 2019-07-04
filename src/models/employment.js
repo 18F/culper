@@ -49,19 +49,16 @@ const supervisor = {
 const additional = {
   Position: { presence: true, hasValue: true },
   Supervisor: { presence: true, hasValue: true },
-  // TODO from >= DOB, to <= employment dates from
   DatesEmployed: { presence: true, daterange: true },
 }
 
 const reprimand = {
   Text: { presence: true, hasValue: true },
-  // TODO date must be >= DOB, <= NOW
   Date: { presence: true, date: { requireDay: false } },
 }
 
 const reasonLeftReason = {
   Reason: { presence: true, hasValue: true },
-  // TODO date must be >= DOB, <= NOW
   Date: { presence: true, date: true },
   Text: { presence: true, hasValue: true },
 }
@@ -89,12 +86,21 @@ const employment = {
   /** Required by all */
   EmploymentActivity: {
     presence: true,
-    hasValue: {
-      validator: { inclusion: employmentActivityOptions },
+    model: {
+      validator: {
+        value: {
+          presence: true,
+          inclusion: employmentActivityOptions,
+        },
+        otherExplanation: (value, attributes) => {
+          if (attributes.value && attributes.value === 'Other') {
+            return { presence: true }
+          }
+          return {}
+        },
+      },
     },
   },
-  // TODO - require EmploymentActivity.otherExplanation if Other
-  // TODO from must be >= DOB, to must be <= NOW
   Dates: {
     presence: true,
     daterange: true,

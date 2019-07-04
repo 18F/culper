@@ -1,3 +1,5 @@
+import { DEFAULT_LATEST } from 'constants/dateLimits'
+
 const nonpaymentInfractionOptions = [
   'Repossession',
   'Defaulted',
@@ -35,21 +37,22 @@ const financialNonpayment = {
   },
   Reason: { presence: true, hasValue: true },
   Status: { presence: true, hasValue: true },
-  // TODO >= DOB, <= NOW
   Date: {
     presence: true,
     date: { requireDay: false },
   },
-  // TODO >= date began, <= NOW
   Resolved: (value, attributes) => {
     const { ResolvedNotApplicable } = attributes
-    if (ResolvedNotApplicable && ResolvedNotApplicable.applicable) {
-      return {
-        presence: true,
-        date: { requireDay: false },
-      }
+    if (ResolvedNotApplicable && ResolvedNotApplicable.applicable === false) {
+      return {}
     }
-    return {}
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (attributes.Date) dateLimits.earliest = attributes.Date
+
+    return {
+      presence: true,
+      date: { requireDay: false, ...dateLimits },
+    }
   },
   Description: { presence: true, hasValue: true },
 }
