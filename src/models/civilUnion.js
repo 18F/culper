@@ -5,7 +5,7 @@ import address from 'models/shared/locations/address'
 import usCityStateZipInternationalCity from 'models/shared/locations/usCityStateZipInternationalCity'
 import foreignBornDocument from 'models/foreignBornDocument'
 import { hasYesOrNo } from 'models/validate'
-import { DEFAULT_LATEST } from 'constants/dateLimits'
+import { DEFAULT_LATEST, OTHER } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
 import { DEFAULT_LATEST } from 'constants/dateLimits'
@@ -20,21 +20,29 @@ export const otherName = {
   DatesUsed: { presence: true, daterange: true },
 }
 
-// TODO add email, emailnotapplicable?
 // TODO add alternate address
 const civilUnion = {
   Name: {
     presence: true,
     model: { validator: name },
   },
-  // TODO >= 200 years ago, <= NOW
   Birthdate: {
     presence: true,
-    date: true,
+    date: { ...OTHER },
   },
   BirthPlace: {
     presence: true,
     location: { validator: birthplace },
+  },
+  Email: (value, attributes) => {
+    if (attributes.EmailNotApplicable && attributes.EmailNotApplicable.applicable === false) {
+      return {}
+    }
+
+    return {
+      presence: true,
+      hasValue: { validator: { email: true } },
+    }
   },
   Telephone: {
     presence: true,
@@ -64,7 +72,6 @@ const civilUnion = {
     presence: true,
     country: true,
   },
-  // TODO date >= DOB and person's DOB, <= NOW
   EnteredCivilUnion: {
     presence: true, date: true,
   },
@@ -112,14 +119,14 @@ const civilUnion = {
 
     return {}
   },
-  // TODO >= date entered civil union, <= NOW
   DateSeparated: (value, attributes) => {
-    if (attributes.Separated
-      && attributes.Separated.value === 'Yes') {
-      return {
-        presence: true,
-        date: true,
+    if (attributes.Separated && attributes.Separated.value === 'Yes') {
+      const dateLimits = { latest: DEFAULT_LATEST }
+      if (attributes.EnteredCivilUnion) {
+        dateLimits.earliest = attributes.EnteredCivilUnion
       }
+
+      return { presence: true, date: dateLimits }
     }
 
     return {}

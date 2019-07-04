@@ -15,7 +15,6 @@ const alcoholNegativeImpact = {
   },
   Circumstances: { presence: true, hasValue: true },
   NegativeImpact: { presence: true, hasValue: true },
-  // TODO >= DOB, <= NOW
   Used: { presence: true, daterange: true },
 }
 

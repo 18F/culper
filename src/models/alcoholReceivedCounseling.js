@@ -13,7 +13,6 @@ const alcoholReceivedCounseling = {
     return { presence: true, location: { validator: address } }
   },
   AgencyName: { presence: true, hasValue: true },
-  // TODO >= DOB, <= NOW
   TreatmentBeganDate: { presence: true, date: true },
   TreatmentEndDate: (value, attributes) => {
     const dateLimits = { latest: DEFAULT_LATEST }

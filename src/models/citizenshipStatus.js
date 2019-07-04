@@ -93,7 +93,6 @@ const citizenshipStatus = {
         hasValue: true,
       } : {}
   ),
-  // TODO - date must be >= DOB, <= NOW
   DocumentIssued: (value, attributes, attributeName, options) => (
     (requireDocumentationFields(attributes, options)
       && !checkValue(attributes.AbroadDocumentation, 'Other'))
@@ -131,7 +130,6 @@ const citizenshipStatus = {
       ? { presence: true, hasValue: true }
       : {}
   ),
-  // TODO must be >= DOB, <= NOW
   CertificateIssued: (value, attributes, attributeName, options) => (
     (requireCertificateFields(attributes, options)
       || checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, DERIVED]))
@@ -144,7 +142,6 @@ const citizenshipStatus = {
       ? { presence: true, model: { validator: name } }
       : {}
   ),
-  // TODO must be >= DOB, <= NOW
   EntryDate: (value, attributes) => (
     checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])
       ? { presence: true, date: true }
