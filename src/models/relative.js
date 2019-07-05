@@ -9,6 +9,7 @@ import {
   MOTHER, immedateFamilyOptions, relativeCitizenshipDocumentationOptions,
   relativeResidentDocumentationOptions,
 } from 'constants/enums/relationshipOptions'
+import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
 
@@ -50,7 +51,6 @@ export const requireResidenceDocumentation = attributes => (
 )
 
 /** Relative model */
-// TODO add AlternateAddress
 const relative = {
   Name: {
     presence: true,
@@ -60,12 +60,9 @@ const relative = {
     presence: true,
     hasValue: { validator: { length: { minimum: 1 } } },
   },
-  // TODO if mother or father: >= 200 years ago, < DOB
-  // TODO if child: >= DOB, < NOW
-  // TODO else: >= 200 years ago, <= NOW
   Birthdate: {
     presence: true,
-    date: true,
+    date: { ...OTHER },
   },
   Birthplace: {
     presence: true,
@@ -213,7 +210,6 @@ const relative = {
 
     return {}
   },
-  // TODO must be >= DOB and relative's DOB, <= NOW
   FirstContact: (value, attributes) => {
     if (isLivingNonCitizen(attributes)) {
       return {
@@ -224,12 +220,14 @@ const relative = {
 
     return {}
   },
-  // TODO must be >= first contact, <= NOW
   LastContact: (value, attributes) => {
     if (isLivingNonCitizen(attributes)) {
+      const dateLimits = { latest: DEFAULT_LATEST }
+      if (attributes.FirstContact) dateLimits.earliest = attributes.FirstContact
+
       return {
         presence: true,
-        date: true,
+        date: dateLimits,
       }
     }
 

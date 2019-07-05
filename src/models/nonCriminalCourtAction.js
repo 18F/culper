@@ -1,7 +1,6 @@
 import address from 'models/shared/locations/address'
 
 const nonCriminalCourtAction = {
-// TODO >= DOB, <= NOW
   CivilActionDate: { presence: true, date: true },
   CourtName: { presence: true, hasValue: true },
   CourtAddress: { presence: true, location: { validator: address } },

@@ -1,7 +1,6 @@
 import address from 'models/shared/locations/address'
 
 const hospitalization = {
-  // TODO from >= DOB, to <= NOW
   TreatmentDate: { presence: true, daterange: true },
   Admission: {
     presence: true,

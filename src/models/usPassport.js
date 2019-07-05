@@ -1,7 +1,7 @@
 import { hasYesOrNo, checkValue } from 'models/validate'
 import name from 'models/shared/name'
 import { passportPattern } from 'constants/patterns'
-import { cleanDateObject, createDateFromObject } from 'helpers/date'
+import { createDateFromObject } from 'helpers/date'
 
 const usPassport = {
   HasPassports: {
@@ -17,7 +17,7 @@ const usPassport = {
       }
   ),
   Number: (value, attributes) => {
-    const { HasPassports, Dates } = attributes
+    const { HasPassports, Issued } = attributes
     if (checkValue(HasPassports, 'No')) return {}
 
     const validations = {
@@ -26,7 +26,7 @@ const usPassport = {
     }
 
     // If issued in 1990 or after, must be 9 characters long
-    const issuedDate = Dates && Dates.from && createDateFromObject(cleanDateObject(Dates.from))
+    const issuedDate = Issued && createDateFromObject(Issued)
     const dateThreshold = createDateFromObject({ day: 1, month: 1, year: 1990 })
     if (issuedDate && (issuedDate >= dateThreshold)) {
       validations.hasValue.validator.length = { is: 9 }
@@ -34,16 +34,21 @@ const usPassport = {
 
     return validations
   },
-  // TODO issue date must be >= DOB, <= NOW
-  // TODO expiration date must be >= issue date, can be in the future
-  Dates: (value, attributes) => (
-    checkValue(attributes.HasPassports, 'No')
-      ? {}
-      : {
-        presence: true,
-        daterange: true,
-      }
-  ),
+  Issued: (value, attributes) => {
+    if (checkValue(attributes.HasPassports, 'No')) return {}
+
+    return {
+      presence: true,
+      date: true,
+    }
+  },
+  Expiration: (value, attributes) => {
+    const { HasPassports, Issued } = attributes
+    if (checkValue(HasPassports, 'No')) return {}
+    const dateLimits = {}
+    if (Issued) dateLimits.earliest = Issued
+    return { presence: true, date: dateLimits }
+  },
 }
 
 export default usPassport

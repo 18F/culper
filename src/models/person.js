@@ -9,7 +9,6 @@ const person = {
     presence: true,
     model: { validator: name },
   },
-  // TODO from >= DOB, to <= NOW
   Dates: {
     presence: true,
     daterange: true,

@@ -25,7 +25,6 @@ export const foreignMilitaryContact = {
     presence: true,
     hasValue: true,
   },
-  // TODO from >= DOB, to <= NOW
   Dates: {
     presence: true,
     daterange: true,
@@ -44,7 +43,6 @@ const militaryForeign = {
     },
   },
   Name: { presence: true, hasValue: true },
-  // TODO from >= DOB, to <= NOW
   Dates: { presence: true, daterange: true },
   Country: { presence: true, country: true },
   Rank: { presence: true, hasValue: true },

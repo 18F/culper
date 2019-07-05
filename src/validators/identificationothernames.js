@@ -7,7 +7,6 @@ const otherNameModel = {
     model: { validator: name },
   },
   MaidenName: { presence: true, hasValue: { validator: hasYesOrNo } },
-  // TODO: add daterange constraints: from must be >= DOB, to most be <= now
   DatesUsed: { presence: true, daterange: true },
   Reason: { presence: true, hasValue: true },
 }

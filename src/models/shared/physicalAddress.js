@@ -9,7 +9,6 @@ const physicalAddress = {
       validator: hasYesOrNo,
     },
   },
-  // TODO add PhysicalAlternateAddress validations
   Address: (value, attributes = {}) => {
     const { HasDifferentAddress } = attributes
     if (HasDifferentAddress

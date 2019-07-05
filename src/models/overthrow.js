@@ -3,7 +3,6 @@ import address from 'models/shared/locations/address'
 const overthrow = {
   Organization: { presence: true, hasValue: true },
   Address: { presence: true, location: { validator: address } },
-  // TODO >= DOB, <= NOW
   Dates: { presence: true, daterange: true },
   Positions: (value, attributes) => {
     if (attributes.PositionsNotApplicable

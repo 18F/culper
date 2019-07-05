@@ -17,15 +17,16 @@ const residenceRequiresReference = (dates = {}) => {
 }
 
 const residence = {
-  // TODO from must be >= DOB, to must be <= NOW
   Dates: {
     presence: true,
     daterange: true,
   },
-  // TODO no PO box allowed
   Address: {
     presence: true,
-    location: { validator: address },
+    location: {
+      validator: address,
+      allowPOBox: false,
+    },
   },
 
   AlternateAddress: {
@@ -57,7 +58,6 @@ const residence = {
       }
       : {}
   ),
-  // TODO must be >= DOB, <= NOW
   ReferenceLastContact: (value, attributes = {}) => (
     residenceRequiresReference(attributes.Dates)
       ? {

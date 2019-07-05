@@ -1,5 +1,4 @@
 const militaryDiscipline = {
-  // TODO >= DOB, <= NOW
   Date: {
     presence: true,
     date: { requireDay: false },

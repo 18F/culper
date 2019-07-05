@@ -13,7 +13,6 @@ const order = {
     if (options && options.requireDisposition === false) return {}
     return { presence: true, hasValue: true }
   },
-  // TODO >= DOB, <= NOW
   Occurred: { presence: true, date: { requireDay: false } },
   Appeals: {
     presence: true,

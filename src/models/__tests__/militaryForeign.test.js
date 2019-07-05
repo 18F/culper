@@ -12,7 +12,6 @@ describe('The foreign military model', () => {
       'Rank.required',
       'Division.required',
       'Circumstances.required',
-      'ReasonLeft.required',
     ]
 
     expect(validateModel(testData, militaryForeign))
@@ -65,6 +64,55 @@ describe('The foreign military model', () => {
 
     expect(validateModel(testData, militaryForeign))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  describe('if Dates includes present', () => {
+    it('ReasonLeft is not required', () => {
+      const testData = {
+        Dates: { present: true },
+      }
+      const expectedErrors = [
+        'ReasonLeft.required',
+      ]
+
+      expect(validateModel(testData, militaryForeign))
+        .not.toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
+  describe('if Dates does not include present', () => {
+    it('ReasonLeft is required', () => {
+      const testData = {
+        Dates: {
+          from: { day: 3, month: 5, year: 2000 },
+          to: { day: 5, month: 10, year: 2005 },
+        },
+      }
+      const expectedErrors = [
+        'ReasonLeft.required',
+      ]
+
+      expect(validateModel(testData, militaryForeign))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
+  it('passes a valid foreignMilitary', () => {
+    const testData = {
+      Organization: { value: 'Diplomatic' },
+      Name: { value: 'test name' },
+      Dates: {
+        from: { month: 10, day: 9, year: 2000 },
+        to: { month: 11, day: 10, year: 2005 },
+      },
+      Country: { value: 'Test country' },
+      Rank: { value: 'test rank' },
+      Division: { value: 'test division' },
+      Circumstances: { value: 'testing' },
+      ReasonLeft: { value: 'because I was done' },
+    }
+
+    expect(validateModel(testData, militaryForeign)).toEqual(true)
   })
 })
 
