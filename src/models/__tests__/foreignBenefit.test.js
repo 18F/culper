@@ -133,7 +133,7 @@ describe('The foreignBenefit model', () => {
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },
-          Began: { year: 2000, month: 2, day: 10 },
+          Began: { year: 2030, month: 2, day: 10 },
           Frequency: { value: 'Other' },
           OtherFrequency: { value: 'some other frequency' },
         },
