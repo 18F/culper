@@ -11,7 +11,6 @@ const foreignRealEstateInterest = {
   },
   RealEstateType: { presence: true, hasValue: true },
   Address: { presence: true, location: { validator: streetCityCountry } },
-  // TODO "DOBSpouseDOBCohabDOBFloor" unclear, future allowed
   Acquired: { presence: true, date: true },
   HowAcquired: { presence: true, hasValue: true },
   Cost: { presence: true, hasValue: true },

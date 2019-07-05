@@ -1,4 +1,6 @@
 import { foreignCoOwnersModel } from 'validators/foreigncoowner'
+import { namePattern } from 'constants/patterns'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const foreignIndirectInterest = {
   InterestTypes: {
@@ -9,24 +11,29 @@ const foreignIndirectInterest = {
     },
   },
   InterestType: { presence: true, hasValue: true },
-  // TODO add name pattern validations
-  Firstname: { presence: true, hasValue: true },
-  // TODO add name pattern validations
-  Lastname: { presence: true, hasValue: true },
+  Firstname: {
+    presence: true,
+    hasValue: { validator: { format: namePattern } },
+  },
+  Lastname: {
+    presence: true,
+    hasValue: { validator: { format: namePattern } },
+  },
   Relationship: { presence: true, hasValue: true },
-  // TODO <= NOW
-  Acquired: { presence: true, date: true },
+  Acquired: { presence: true, date: { latest: DEFAULT_LATEST } },
   HowAcquired: { presence: true, hasValue: true },
   Cost: { presence: true, hasValue: true },
   Value: { presence: true, hasValue: true },
-  // TODO >= date acquired, future allowed
   Sold: (value, attributes) => {
-    const { SoldNotApplicable } = attributes
+    const { Acquired, SoldNotApplicable } = attributes
     if (SoldNotApplicable && SoldNotApplicable.applicable === false) {
       return {}
     }
 
-    return { presence: true, date: true }
+    const dateLimits = {}
+    if (Acquired) dateLimits.earliest = Acquired
+
+    return { presence: true, date: dateLimits }
   },
   Explanation: (value, attributes) => {
     const { SoldNotApplicable } = attributes

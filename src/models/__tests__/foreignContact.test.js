@@ -80,6 +80,16 @@ describe('The foreignContact model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('LastContact cannot be before FirstContact', () => {
+    const testData = {
+      FirstContact: { year: 2003, month: 5, day: 2 },
+      LastContact: { year: 2000, month: 2, day: 5 },
+    }
+    const expectedErrors = ['LastContact.date']
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Methods is required', () => {
     const testData = {}
     const expectedErrors = ['Methods.required']
@@ -268,6 +278,26 @@ describe('The foreignContact model', () => {
       Birthdate: 'invalid date',
     }
     const expectedErrors = ['Birthdate.date']
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be more than 200 years ago', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be in the future', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

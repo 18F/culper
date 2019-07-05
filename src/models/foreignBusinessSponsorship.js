@@ -1,17 +1,17 @@
 import name from 'models/shared/name'
 import usCityStateZipInternationalCity from 'models/shared/locations/usCityStateZipInternationalCity'
 import address from 'models/shared/locations/address'
+import { OTHER } from 'constants/dateLimits'
 
 const foreignBusinessSponsorship = {
   Name: { presence: true, model: { validator: name } },
-  // TODO must be >= 200 years ago, <= NOW
   Birthdate: (value, attributes) => {
     const { BirthdateNotApplicable } = attributes
     if (BirthdateNotApplicable && BirthdateNotApplicable.applicable === false) {
       return {}
     }
 
-    return { presence: true, date: true }
+    return { presence: true, date: OTHER }
   },
   Birthplace: { presence: true, location: { validator: usCityStateZipInternationalCity } },
   Address: { presence: true, location: { validator: address } },

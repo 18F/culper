@@ -41,18 +41,18 @@ describe('The foreignIndirectInterest model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Firstname must have a value', () => {
+  it('Firstname must have a valid value', () => {
     const testData = {
-      Firstname: { value: false },
+      Firstname: { value: '!!invalid' },
     }
     const expectedErrors = ['Firstname.hasValue']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Lastname must have a value', () => {
+  it('Lastname must have a valid value', () => {
     const testData = {
-      Lastname: { value: false },
+      Lastname: { value: 'myname12345' },
     }
     const expectedErrors = ['Lastname.hasValue']
     expect(validateModel(testData, foreignIndirectInterest))
@@ -71,6 +71,15 @@ describe('The foreignIndirectInterest model', () => {
   it('Acquired must be a valid month/year', () => {
     const testData = {
       Acquired: { month: 15, year: 9 },
+    }
+    const expectedErrors = ['Acquired.date']
+    expect(validateModel(testData, foreignIndirectInterest))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Acquired cannot be in the future', () => {
+    const testData = {
+      Acquired: { day: 3, month: 12, year: 2050 },
     }
     const expectedErrors = ['Acquired.date']
     expect(validateModel(testData, foreignIndirectInterest))
@@ -133,6 +142,26 @@ describe('The foreignIndirectInterest model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Sold must be after Acquired', () => {
+    const testData = {
+      Acquired: { day: 2, month: 1, year: 2015 },
+      Sold: { day: 2, month: 10, year: 1990 },
+    }
+    const expectedErrors = ['Sold.date']
+    expect(validateModel(testData, foreignIndirectInterest))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Sold can be in the future', () => {
+    const testData = {
+      Acquired: { day: 2, month: 1, year: 2015 },
+      Sold: { day: 2, month: 10, year: 2050 },
+    }
+    const expectedErrors = ['Sold.date']
+    expect(validateModel(testData, foreignIndirectInterest))
+      .not.toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Explanation must have a value', () => {
     const testData = {
       Explanation: { value: false },
@@ -168,7 +197,7 @@ describe('The foreignIndirectInterest model', () => {
         Firstname: { value: 'first' },
         Lastname: { value: 'last' },
         Relationship: { value: 'test' },
-        Acquired: { month: 2, year: '2002' },
+        Acquired: { day: 9, month: 2, year: '2002' },
         HowAcquired: { value: 'I bought it' },
         Cost: { value: 2500 },
         Value: { value: '12000' },
@@ -206,11 +235,11 @@ describe('The foreignIndirectInterest model', () => {
       Firstname: { value: 'first' },
       Lastname: { value: 'last' },
       Relationship: { value: 'test' },
-      Acquired: { month: 2, year: '2002' },
+      Acquired: { day: 9, month: 2, year: '2002' },
       HowAcquired: { value: 'I bought it' },
       Cost: { value: 2500 },
       Value: { value: '12000' },
-      Sold: { month: '10', year: '2010' },
+      Sold: { day: 2, month: '10', year: '2010' },
       Explanation: { value: 'I sold it' },
       CoOwners: {
         List: {

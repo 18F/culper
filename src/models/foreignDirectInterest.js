@@ -1,3 +1,4 @@
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 import { foreignCoOwnersModel } from 'validators/foreigncoowner'
 
 const foreignDirectInterest = {
@@ -9,12 +10,10 @@ const foreignDirectInterest = {
     },
   },
   InterestType: { presence: true, hasValue: true },
-  // TODO <= NOW
-  Acquired: { presence: true, date: true },
+  Acquired: { presence: true, date: { latest: DEFAULT_LATEST } },
   HowAcquired: { presence: true, hasValue: true },
   Cost: { presence: true, hasValue: true },
   Value: { presence: true, hasValue: true },
-  // TODO >= DOB, <= NOW
   Relinquished: (value, attributes) => {
     const { RelinquishedNotApplicable } = attributes
     if (RelinquishedNotApplicable && RelinquishedNotApplicable.applicable === false) {
