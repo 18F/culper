@@ -15,7 +15,6 @@ const financialTaxes = {
       },
     },
   },
-  // TODO >= DOB, <= NOW
   Year: {
     presence: true,
     date: {

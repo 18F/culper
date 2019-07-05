@@ -22,7 +22,6 @@ const divorce = {
     presence: true,
     location: { validator: birthplaceWithoutCounty },
   },
-  // TODO country
   Citizenship: {
     presence: true,
     country: true,

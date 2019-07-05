@@ -152,7 +152,6 @@ const citizenshipStatus = {
       ? { presence: true, location: { validator: cityState } }
       : {}
   ),
-  // TODO - countries inclusion?
   PriorCitizenship: (value, attributes) => (
     checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])
       ? {

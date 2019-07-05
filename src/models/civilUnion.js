@@ -16,11 +16,9 @@ export const otherName = {
     model: { validator: name },
   },
   MaidenName: { presence: true, hasValue: true },
-  // TODO from must be >= person's DOB, to <= NOW
   DatesUsed: { presence: true, daterange: true },
 }
 
-// TODO add alternate address
 const civilUnion = {
   Name: {
     presence: true,
@@ -67,7 +65,6 @@ const civilUnion = {
     presence: true,
     location: { validator: birthplace },
   },
-  // TODO country
   Citizenship: {
     presence: true,
     country: true,

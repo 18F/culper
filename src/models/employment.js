@@ -32,7 +32,6 @@ const matchEmploymentActivity = (attributes = {}, activities = []) => (
 
 /** Nested models (could be broken out into other files) */
 
-// TODO add SupervisorAlternateAddress validations
 const supervisor = {
   SupervisorName: { presence: true, hasValue: true },
   Title: { presence: true, hasValue: true },
@@ -78,8 +77,6 @@ const reasonLeft = {
     return {}
   },
 }
-
-// TODO add AlternateAddress validations
 
 /** Employment model */
 const employment = {
@@ -234,7 +231,6 @@ const employment = {
 
     return {}
   },
-  // TODO add ReferenceAlternateAddress
   ReferenceAddress: (value, attributes = {}) => {
     if (matchEmploymentActivity(attributes, [
       SELF_EMPLOYMENT,

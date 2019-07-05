@@ -12,7 +12,6 @@ export const otherName = {
     model: { validator: name },
   },
   MaidenName: { presence: true, hasValue: true },
-  // TODO from must be >= person's DOB, to <= NOW
   DatesUsed: { presence: true, daterange: true },
 }
 
@@ -33,7 +32,6 @@ const cohabitant = {
     presence: true,
     ssn: true,
   },
-  // TODO country
   Citizenship: {
     presence: true,
     country: true,
