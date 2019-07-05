@@ -16,10 +16,16 @@ const sentence = {
       return {}
     }
 
-    // TODO more than 1 year or less than 1 year based on ExceedsYear
+    const daterangeOptions = {}
+    if (attributes.ExceedsYear && attributes.ExceedsYear.value === 'Yes') {
+      daterangeOptions.minDuration = { years: 1 }
+    } else if (attributes.ExceedsYear && attributes.ExceedsYear.value === 'No') {
+      daterangeOptions.maxDuration = { years: 1 }
+    }
+
     return {
       presence: true,
-      daterange: true,
+      daterange: daterangeOptions,
     }
   },
   ProbationDates: (value, attributes) => {

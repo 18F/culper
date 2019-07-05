@@ -86,4 +86,48 @@ describe('The date range validator', () => {
 
     expect(daterange(testData)).toBe(null)
   })
+
+  describe('with a maxDuration option', () => {
+    it('fails if the date range diff is greater than the max duration', () => {
+      const testData = {
+        from: { year: 2010, month: 10, day: 25 },
+        to: { year: 2015, month: 10, day: 25 },
+        present: false,
+      }
+
+      expect(daterange(testData, { maxDuration: { years: 1 } })).toBeTruthy()
+    })
+
+    it('passes if the date range diff is less than or equal to the max duration', () => {
+      const testData = {
+        from: { year: 2010, month: 10, day: 25 },
+        to: { year: 2011, month: 10, day: 25 },
+        present: false,
+      }
+
+      expect(daterange(testData, { maxDuration: { years: 1 } })).toBe(null)
+    })
+  })
+
+  describe('with a minDuration option', () => {
+    it('fails if the date range diff is less than the min duration', () => {
+      const testData = {
+        from: { year: 2010, month: 10, day: 25 },
+        to: { year: 2010, month: 12, day: 2 },
+        present: false,
+      }
+
+      expect(daterange(testData, { minDuration: { years: 1 } })).toBeTruthy()
+    })
+
+    it('passes if the date range diff is greater than or equal to the min duration', () => {
+      const testData = {
+        from: { year: 2010, month: 10, day: 25 },
+        to: { year: 2011, month: 10, day: 25 },
+        present: false,
+      }
+
+      expect(daterange(testData, { minDuration: { years: 1 } })).toBe(null)
+    })
+  })
 })

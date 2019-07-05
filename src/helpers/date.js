@@ -51,6 +51,14 @@ export const createDateFromTimestamp = (ts) => {
   }
 }
 
+export const createDurationFromObject = (data) => {
+  try {
+    return Duration.fromObject(data)
+  } catch (e) {
+    return NaN
+  }
+}
+
 export const dateWithinRange = (date, range) => {
   const duration = Duration.fromObject(range)
   const boundary = today.minus(duration)
