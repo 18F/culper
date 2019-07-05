@@ -1,10 +1,11 @@
 import { hasYesOrNo } from 'models/validate'
+import { countryValues } from 'constants/enums/countries'
 
 // This is an array for some reason.
 const isUnitedStates = value => value && value.includes('United States')
 
 const citizenship = {
-  Country: { presence: true, hasValue: true },
+  Country: { presence: true, hasValue: { validator: { inclusion: countryValues } } },
   Dates: { presence: true, daterange: true },
   Current: (value, attributes) => (
     (attributes.Dates && !attributes.Dates.present)
