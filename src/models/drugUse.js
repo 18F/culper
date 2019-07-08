@@ -1,8 +1,11 @@
 import { hasYesOrNo } from 'models/validate'
-import { drugTypes } from 'constants/enums/substanceOptions'
+// import { drugTypes } from 'constants/enums/substanceOptions'
 import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const drugUse = {
+  DrugType: { presence: true, hasValue: { validator: { exclusion: ['Other'] } } },
+  // TODO - add this back after fixing DrugType structure
+  /*
   DrugType: { presence: true, hasValue: { validator: { inclusion: drugTypes } } },
   DrugTypeExplanation: (value, attributes) => {
     if (attributes.DrugType && attributes.DrugType.value === 'Other') {
@@ -10,6 +13,7 @@ const drugUse = {
     }
     return {}
   },
+  */
   FirstUse: { presence: true, date: { requireDay: false } },
   RecentUse: (value, attributes) => {
     const dateLimits = { latest: DEFAULT_LATEST }

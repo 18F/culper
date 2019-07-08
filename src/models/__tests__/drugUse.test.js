@@ -21,7 +21,7 @@ describe('The drugUse model', () => {
 
   it('DrugType must have a valid value', () => {
     const testData = {
-      DrugType: { value: 'Something' },
+      DrugType: { value: 'Other' },
     }
     const expectedErrors = [
       'DrugType.hasValue',
@@ -31,7 +31,10 @@ describe('The drugUse model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  describe('if DrugType is "Other"', () => {
+  // TODO this is not how the form works
+  // Right now, Explanation text becomes DrugType.value
+  // So currently, only validation on DrugType is that it can't be "Other"
+  describe.skip('if DrugType is "Other"', () => {
     it('DrugTypeExplanation must have a value', () => {
       const testData = {
         DrugType: { value: 'Other' },
@@ -156,8 +159,8 @@ describe('The drugUse model', () => {
 
     it('passes a valid drugUse', () => {
       const testData = {
-        DrugType: { value: 'Other' },
-        DrugTypeExplanation: { value: 'Test drug' },
+        DrugType: { value: 'Test drug' },
+        // DrugTypeExplanation: { value: 'Test drug' },
         FirstUse: { month: 2, year: 1999 },
         RecentUse: { month: 5, year: 2001 },
         NatureOfUse: { value: 'Testing' },
