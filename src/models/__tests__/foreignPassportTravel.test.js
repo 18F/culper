@@ -10,9 +10,9 @@ describe('The foreignPassportTravel model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Country must have a value', () => {
-    const testData = { Country: 'Canada' }
-    const expectedErrors = ['Country.hasValue']
+  it('Country must have a valid value', () => {
+    const testData = { Country: 'Canda' }
+    const expectedErrors = ['Country.country']
 
     expect(validateModel(testData, foreignPassportTravel))
       .toEqual(expect.arrayContaining(expectedErrors))

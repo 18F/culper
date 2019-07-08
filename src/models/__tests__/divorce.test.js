@@ -66,9 +66,9 @@ describe('The divorce model', () => {
 
   it('the citizenship field must be valid', () => {
     const testData = {
-      Citizenship: { value: [] },
+      Citizenship: { value: '' },
     }
-    const expectedErrors = ['Citizenship.hasValue']
+    const expectedErrors = ['Citizenship.country']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))

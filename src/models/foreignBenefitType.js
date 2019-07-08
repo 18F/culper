@@ -10,7 +10,7 @@ import {
 // TODO - check max currency value $2,147,483,647
 
 const foreignBenefitType = {
-  Country: { presence: true, hasValue: true },
+  Country: { presence: true, country: true },
   Value: { presence: true, hasValue: { validator: { numericality: true } } },
   Reason: { presence: true, hasValue: true },
   Obligated: { presence: true, hasValue: { validator: hasYesOrNo } },

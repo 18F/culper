@@ -17,7 +17,15 @@ describe('The foreignBenefitType model', () => {
 
   it('Country must have a value', () => {
     const testData = { Country: 'test' }
-    const expectedErrors = ['Country.hasValue']
+    const expectedErrors = ['Country.country']
+
+    expect(validateModel(testData, foreignBenefitType))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Country must have a valid value', () => {
+    const testData = { Country: { value: ['invalid'] } }
+    const expectedErrors = ['Country.country']
 
     expect(validateModel(testData, foreignBenefitType))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -103,7 +111,7 @@ describe('The foreignBenefitType model', () => {
 
     it('passes a valid benefit', () => {
       const testData = {
-        Country: { value: 'test' },
+        Country: { value: 'Germany' },
         Value: { value: '2500' },
         Reason: { value: 'because' },
         Obligated: { value: 'No' },
@@ -176,7 +184,7 @@ describe('The foreignBenefitType model', () => {
 
       it('passes a valid benefit', () => {
         const testData = {
-          Country: { value: 'test' },
+          Country: { value: 'France' },
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },
@@ -192,7 +200,7 @@ describe('The foreignBenefitType model', () => {
 
     it('passes a valid benefit', () => {
       const testData = {
-        Country: { value: 'test' },
+        Country: { value: 'Italy' },
         Value: { value: '2500' },
         Reason: { value: 'because' },
         Obligated: { value: 'No' },
@@ -284,7 +292,7 @@ describe('The foreignBenefitType model', () => {
 
       it('passes a valid benefit', () => {
         const testData = {
-          Country: { value: 'test' },
+          Country: { value: 'Canada' },
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },
@@ -301,7 +309,7 @@ describe('The foreignBenefitType model', () => {
 
     it('passes a valid benefit', () => {
       const testData = {
-        Country: { value: 'test' },
+        Country: { value: 'United Kingdom' },
         Value: { value: '2500' },
         Reason: { value: 'because' },
         Obligated: { value: 'No' },
@@ -412,7 +420,7 @@ describe('The foreignBenefitType model', () => {
 
       it('passes a valid benefit', () => {
         const testData = {
-          Country: { value: 'test' },
+          Country: { value: 'Costa Rica' },
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },
@@ -430,7 +438,7 @@ describe('The foreignBenefitType model', () => {
 
     it('passes a valid benefit', () => {
       const testData = {
-        Country: { value: 'test' },
+        Country: { value: 'Japan' },
         Value: { value: '2500' },
         Reason: { value: 'because' },
         Obligated: { value: 'No' },

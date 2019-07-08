@@ -49,7 +49,16 @@ describe('The foreignBusinessContact model', () => {
     const testData = {
       Governments: { value: [] },
     }
-    const expectedErrors = ['Governments.hasValue']
+    const expectedErrors = ['Governments.country']
+    expect(validateModel(testData, foreignBusinessContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Governments must have valid values', () => {
+    const testData = {
+      Governments: { value: ['United Kingdom', 'Germany', 'test'] },
+    }
+    const expectedErrors = ['Governments.country']
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -104,7 +113,7 @@ describe('The foreignBusinessContact model', () => {
       Name: { first: 'My', middle: 'Foreign', last: 'Friend' },
       Location: { city: 'Paris', country: 'France' },
       Date: { year: 2010, month: 2, day: 4 },
-      Governments: { value: ['French'] },
+      Governments: { value: ['France'] },
       Establishment: { value: 'Test' },
       Representatives: { value: 'Testing' },
       Purpose: { value: 'Because' },

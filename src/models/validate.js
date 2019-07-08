@@ -12,6 +12,7 @@ import daterange from 'models/validators/daterange'
 import location from 'models/validators/location'
 import ssn from 'models/validators/ssn'
 import zipcode from 'models/validators/zipcode'
+import countryValidator from 'models/validators/country'
 import durationCoverage from 'models/validators/durationCoverage'
 import containsRequiredItems from 'models/validators/containsRequiredItems'
 
@@ -79,6 +80,7 @@ validate.validators.daterange = daterange
 validate.validators.location = location
 validate.validators.ssn = ssn
 validate.validators.zipcode = zipcode
+validate.validators.country = countryValidator
 validate.validators.durationCoverage = durationCoverage
 validate.validators.containsRequiredItems = containsRequiredItems
 
