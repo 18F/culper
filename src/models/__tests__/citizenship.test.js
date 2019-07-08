@@ -12,7 +12,7 @@ describe('The citizenship model', () => {
 
   it('Country must have a valid value', () => {
     const testData = { Country: { value: 'Place' } }
-    const expectedErrors = ['Country.hasValue']
+    const expectedErrors = ['Country.country']
 
     expect(validateModel(testData, citizenship))
       .toEqual(expect.arrayContaining(expectedErrors))

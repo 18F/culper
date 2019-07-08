@@ -39,7 +39,17 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       Countries: { value: [] },
     }
-    const expectedErrors = ['Countries.hasValue']
+    const expectedErrors = ['Countries.country']
+
+    expect(validateModel(testData, foreignCoOwner))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Countries must have valid values', () => {
+    const testData = {
+      Countries: { value: ['Germany', 'French'] },
+    }
+    const expectedErrors = ['Countries.country']
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))
