@@ -257,7 +257,7 @@ describe('The offense model', () => {
         WasSentenced: { value: 'Yes' },
         Sentence: {
           Description: { value: 'Something' },
-          ExceedsYear: { value: 'No' },
+          ExceedsYear: { value: 'Yes' },
           Incarcerated: { value: 'Yes' },
           ProbationDates: {
             from: { year: 2010, month: 2, day: 10 },
