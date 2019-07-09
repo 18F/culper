@@ -1,44 +1,44 @@
 import ForeignCoOwnersValidator, {
-  ForeignCoOwnerValidator
+  ForeignCoOwnerValidator,
 } from './foreigncoowner'
 import Location from '../components/Form/Location'
 
-describe('CoOwner validation', function() {
-  it('should validate countries', function() {
+describe('CoOwner validation', () => {
+  it('should validate countries', () => {
     const tests = [
       {
         data: {
           Countries: {
-            value: ['Germany']
-          }
+            value: ['Germany'],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Countries: {
-            value: []
-          }
+            value: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Countries: {
-            value: null
-          }
+            value: null,
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new ForeignCoOwnerValidator(test.data).validCountries()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate co-owner', function() {
+  it('should validate co-owner', () => {
     const tests = [
       {
         data: {
@@ -49,7 +49,7 @@ describe('CoOwner validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           Address: {
             country: { value: 'United States' },
@@ -57,42 +57,42 @@ describe('CoOwner validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Countries: {
-            value: [{ value: 'Germany' }]
+            value: ['Germany'],
           },
           RelationshipNature: {
-            value: 'Some stuff'
-          }
+            value: 'Some stuff',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new ForeignCoOwnerValidator(test.data).isValid()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate list of co-owners', function() {
+  it('should validate list of co-owners', () => {
     const tests = [
       {
         data: {
           List: {
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           List: {
-            items: [{ Item: { Has: { value: 'No' } } }]
-          }
+            items: [{ Item: { Has: { value: 'No' } } }],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -101,7 +101,7 @@ describe('CoOwner validation', function() {
               {
                 Item: {
                   Has: {
-                    value: 'Yes'
+                    value: 'Yes',
                   },
                   Name: {
                     first: 'Foo',
@@ -110,7 +110,7 @@ describe('CoOwner validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Address: {
                     country: { value: 'United States' },
@@ -118,30 +118,30 @@ describe('CoOwner validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Countries: {
-                    value: ['Germany']
+                    value: ['Germany'],
                   },
                   RelationshipNature: {
-                    value: 'Some stuff'
-                  }
-                }
+                    value: 'Some stuff',
+                  },
+                },
               },
               {
                 Item: {
                   Has: {
-                    value: 'No'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'No',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new ForeignCoOwnersValidator(test.data).isValid()).toBe(
         test.expected
       )
