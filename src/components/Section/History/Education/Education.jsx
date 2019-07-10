@@ -74,11 +74,7 @@ export class Education extends Subsection {
     const { totalYears } = this.props
 
     return (
-      <div
-        className="section-content education"
-        data-section={HISTORY.key}
-        data-subsection={HISTORY_EDUCATION.key}
-      >
+      <div>
         <Accordion
           scrollToTop={this.props.scrollToTop}
           defaultState={this.props.defaultState}
