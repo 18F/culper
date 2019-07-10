@@ -35,4 +35,6 @@ const mapStateToProps = state => ({
   completed: completedSections(state),
 })
 
+export { ProgressBar }
+
 export default connect(mapStateToProps)(ProgressBar)

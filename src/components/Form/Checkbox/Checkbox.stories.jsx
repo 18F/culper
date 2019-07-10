@@ -1,21 +1,19 @@
-/* eslint import/no-extraneous-dependencies: 0 */
-
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 
-import Radio from './Radio'
+import Checkbox from './Checkbox'
 
-storiesOf('Radio', module)
+storiesOf('Checkbox', module)
   .add('default', () => (
-    <Radio
-      label="Select me"
+    <Checkbox
+      label="select me"
       onUpdate={action('onUpdate')}
     />
   ))
   .add('disabled', () => (
-    <Radio
-      label="Select me"
+    <Checkbox
+      label="select me"
       onUpdate={action('onUpdate')}
       disabled
     />

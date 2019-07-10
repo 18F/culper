@@ -13,7 +13,7 @@ class SavedIndicator extends React.Component {
       interval: props.interval || 1000,
       elapsed: props.elapsed || 0,
       hover: false,
-      animate: false
+      animate: false,
     }
 
     this.save = this.save.bind(this)
@@ -60,7 +60,7 @@ class SavedIndicator extends React.Component {
       .then(() => {
         self.setState({ animate: false })
       })
-      .catch(error => {
+      .catch((error) => {
         self.setState({ animate: false })
         alert(error)
       })
@@ -167,7 +167,8 @@ class SavedIndicator extends React.Component {
           title={talkback}
           onClick={this.save}
           onMouseEnter={this.mouseEnter}
-          onMouseLeave={this.mouseLeave}>
+          onMouseLeave={this.mouseLeave}
+        >
           <div className="spinner">
             <div className={klassCircle} />
             <i className={klassIcon} aria-hidden="true" />
@@ -200,11 +201,13 @@ function mapStateToProps(state) {
   const app = state.application || {}
   const settings = app.Settings || {}
   return {
-    section: section,
-    app: app,
+    section,
+    app,
     saved: settings.saved || new Date(),
-    saveError: settings.saveError
+    saveError: settings.saveError,
   }
 }
+
+export { SavedIndicator }
 
 export default connect(mapStateToProps)(SavedIndicator)
