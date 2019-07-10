@@ -120,6 +120,7 @@ export default class IndirectInterest extends ValidationElement {
     this.update({
       SoldNotApplicable: values,
       Sold: values.applicable ? this.props.Sold : {},
+      Explanation: values.applicable ? this.props.Explanation : {},
     })
   }
 

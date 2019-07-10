@@ -99,6 +99,7 @@ export default class DirectInterest extends ValidationElement {
     this.update({
       RelinquishedNotApplicable: values,
       Relinquished: values.applicable ? this.props.Relinquished : {},
+      Explanation: values.applicable ? this.props.Explanation : {},
     })
   }
 
