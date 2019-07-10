@@ -2,30 +2,26 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import env from '../config/environment'
 
-export const getQueryValue = (queryString, key) => {
-  return getSplitValue(key, queryString.substring(1), '&', '=')
-}
-
 const getSplitValue = (key, raw, delim1, delim2) => {
   const vars = raw.split(delim1)
 
-  for (let i = 0; i < vars.length; i++) {
+  for (let i = 0; i < vars.length; i += 1) {
     const pair = vars[i].split(delim2)
-    if (pair.length !== 2) {
-      continue
-    }
-
-    const pairKey = pair[0].trim()
-    const pairValue = pair[1].trim()
-    if (pairKey === key && pairValue) {
-      return pairValue
+    if (pair.length === 2) {
+      const pairKey = pair[0].trim()
+      const pairValue = pair[1].trim()
+      if (pairKey === key && pairValue) {
+        return pairValue
+      }
     }
   }
 
   return null
 }
 
-export const deleteCookie = name => {
+export const getQueryValue = (queryString, key) => getSplitValue(key, queryString.substring(1), '&', '=')
+
+export const deleteCookie = (name) => {
   const domain = process.env.COOKIE_DOMAIN || window.location.hostname
   Cookies.remove(name, { domain })
   if (Cookies.get(name)) {
@@ -44,11 +40,9 @@ class Api {
     })
   }
 
-  getToken() {
-    return window.token
-  }
+  getToken = () => window.token
 
-  setToken(token) {
+  setToken = (token) => {
     window.token = token
   }
 
@@ -64,6 +58,7 @@ class Api {
     const h = secure
       ? { headers: { ...headers, ...this.bearerToken() } }
       : headers
+
     return this.proxy.get(endpoint, h)
   }
 
@@ -71,6 +66,7 @@ class Api {
     const h = secure
       ? { headers: { ...headers, ...this.bearerToken() } }
       : headers
+
     return this.proxy.post(endpoint, params, h)
   }
 
@@ -135,7 +131,7 @@ class Api {
 
   updateAttachment(id, description) {
     return this.post(env.EndpointAttachmentUpdate(id), {
-      description: description
+      description,
     })
   }
 
@@ -149,4 +145,5 @@ class Api {
 }
 
 const api = new Api()
+
 export { api }
