@@ -4,7 +4,7 @@ import { validateModel } from 'models/validate'
 // Temporary while country values are inconsistent
 import { countryString } from 'validators/location'
 
-const locationValidator = (value, options = {}) => {
+const locationValidator = (value, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
 
   const { validator } = options
@@ -13,7 +13,7 @@ const locationValidator = (value, options = {}) => {
   const locationErrors = validateModel({
     ...value,
     country: countryString(value && value.country),
-  }, validator, options)
+  }, validator, { ...globalOptions, ...options })
 
   if (locationErrors !== true) return locationErrors
 

@@ -4,7 +4,7 @@ import location from '../location'
 describe('The location validator', () => {
   it('fails if no validator is passed', () => {
     const testData = { test: '123' }
-    expect(location(testData)).toBeTruthy()
+    expect(location(testData, {})).toBeTruthy()
   })
 
   it('fails if the data is not valid for the given location model', () => {
