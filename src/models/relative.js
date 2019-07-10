@@ -100,6 +100,7 @@ const relative = {
       branchCollection: {
         validator: alias,
         hideMaiden: attributes.Relation && attributes.Relation.value === MOTHER,
+        earliest: attributes.Birthdate,
       },
     }
   },
