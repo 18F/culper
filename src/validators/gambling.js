@@ -48,7 +48,7 @@ export default class GamblingValidator {
   }
 }
 
-export const validateGamblingItem = data => (
+export const validateFinancialGamblingItem = data => (
   validateModel(data, financialGambling) === true
 )
 
@@ -58,6 +58,6 @@ export class GamblingItemValidator {
   }
 
   isValid() {
-    return validateGamblingItem(this.data)
+    return validateFinancialGamblingItem(this.data)
   }
 }
