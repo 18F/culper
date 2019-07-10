@@ -4,7 +4,7 @@ import customModel from '../customModel'
 describe('The model validator', () => {
   it('fails if no validator is passed', () => {
     const testData = { test: '123' }
-    expect(customModel(testData)).toEqual('INVALID_VALIDATOR')
+    expect(customModel(testData, {})).toEqual('INVALID_VALIDATOR')
   })
 
   it('fails if the data is not valid for the given model', () => {

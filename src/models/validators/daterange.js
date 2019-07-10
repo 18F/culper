@@ -3,7 +3,7 @@ import { validateModel } from 'models/validate'
 import { today, cleanDateObject, createDateFromObject } from 'helpers/date'
 import { INVALID_DATE_RANGE } from 'constants/errors'
 
-const dateRangeValidator = (value = {}) => {
+const dateRangeValidator = (value = {}, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
 
   const { from, present } = value
@@ -14,7 +14,7 @@ const dateRangeValidator = (value = {}) => {
   const dateErrors = validateModel({ from, to }, {
     from: { presence: true, date: true },
     to: { presence: true, date: true },
-  })
+  }, { ...globalOptions, ...options })
 
   if (dateErrors !== true) return dateErrors
 
