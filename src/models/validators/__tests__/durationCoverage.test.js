@@ -43,7 +43,7 @@ describe('The duration coverage validator', () => {
       },
     ]
 
-    expect(durationCoverage({ items: testRanges }))
+    expect(durationCoverage({ items: testRanges }, {}))
       .toEqual('INVALID_DURATION')
   })
 

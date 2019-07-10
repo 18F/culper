@@ -17,7 +17,7 @@ import { NO } from 'constants/values'
  * }
 */
 
-const accordionValidator = (value, options = {}) => {
+const accordionValidator = (value, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
 
   const { validator, length, ignoreBranch } = options
@@ -33,7 +33,7 @@ const accordionValidator = (value, options = {}) => {
 
   // Validate item length
   if (length) {
-    const lengthErrors = validateModel({ items }, { items: { length } })
+    const lengthErrors = validateModel({ items }, { items: { length } }, { ...globalOptions })
     if (lengthErrors !== true) return lengthErrors
   }
 
@@ -42,7 +42,7 @@ const accordionValidator = (value, options = {}) => {
     const { Item } = items[i]
     if (!Item) return INVALID_ITEM
 
-    const itemErrors = validateModel(Item, validator, options)
+    const itemErrors = validateModel(Item, validator, { ...globalOptions, ...options })
     if (itemErrors !== true) itemsErrors = itemsErrors.concat(itemErrors)
   }
 

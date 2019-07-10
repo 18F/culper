@@ -15,7 +15,7 @@ describe('The accordion validator', () => {
 
   it('fails if there is no validator', () => {
     const testData = { items: [{ Item: 'Thing' }] }
-    expect(accordion(testData)).toEqual('INVALID_VALIDATOR')
+    expect(accordion(testData, {})).toEqual('INVALID_VALIDATOR')
   })
 
   it('fails if there is no branch value', () => {

@@ -8,7 +8,7 @@ describe('The array validator', () => {
 
   it('fails if there is no validator', () => {
     const testData = { values: [] }
-    expect(array(testData)).toEqual('INVALID_VALIDATOR')
+    expect(array(testData, {})).toEqual('INVALID_VALIDATOR')
   })
 
   it('fails if any item in the array fails the validation', () => {

@@ -14,7 +14,7 @@ import { NO } from 'constants/values'
  * }
  */
 
-const branchCollectionValidator = (value, options = {}) => {
+const branchCollectionValidator = (value, options, key, attributes, globalOptions) => {
   if (value === undefined) return null // Only validate if there's a value
   if (value === null) return MISSING_ITEMS
 
@@ -35,7 +35,7 @@ const branchCollectionValidator = (value, options = {}) => {
     if (Item && Item.Has && Item.Has.value === NO) {
       // Skip it
     } else {
-      const itemErrors = validateModel(Item, validator, options)
+      const itemErrors = validateModel(Item, validator, { ...globalOptions, ...options })
       if (itemErrors !== true) itemsErrors = itemsErrors.concat(itemErrors)
     }
   }
