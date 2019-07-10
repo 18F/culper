@@ -236,7 +236,7 @@ describe('CivilUnion validation', () => {
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016',
+            year: '2010',
           },
           BirthPlace: {
             country: { value: 'United States' },
