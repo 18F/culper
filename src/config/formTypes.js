@@ -169,6 +169,7 @@ export const SF85P = [
       formSections.MILITARY_INTRO,
       formSections.MILITARY_SELECTIVE,
       formSections.MILITARY_HISTORY,
+      formSections.MILITARY_DISCIPLINARY,
       formSections.MILITARY_FOREIGN,
       formSections.MILITARY_REVIEW,
     ],
