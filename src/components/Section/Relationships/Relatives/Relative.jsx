@@ -1088,6 +1088,7 @@ Relative.defaultProps = {
   EmployerRelationship: {},
   addressBooks: {},
   addressBook: 'Relative',
+  requireRelationshipRelativesUSResidenceDoc: true,
   dispatch: () => {},
   onUpdate: () => {},
   onError: (value, arr) => arr,
