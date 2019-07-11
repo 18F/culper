@@ -14,7 +14,13 @@ services:
     volumes:
       # persist the embedded databases
       # https://docs.wso2.com/display/ADMIN44x/Working+with+Databases
-      - /home/wso2carbon/wso2is-5.8.0/repository/data
-      - /home/wso2carbon/wso2is-5.8.0/repository/database
+      - identity-data:/home/wso2carbon/wso2is-5.8.0/repository/data
+      - identity-db:/home/wso2carbon/wso2is-5.8.0/repository/database
     networks:
       - eapp
+
+volumes:
+  identity-data:
+    driver: local
+  identity-db:
+    driver: local

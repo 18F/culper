@@ -52,7 +52,7 @@ services:
       - .:/usr/src/app
       # ensure node_modules aren't shared with host system
       # https://michalzalecki.com/docker-compose-for-nodejs-and-postresql/#docker-compose
-      - /usr/src/app/node_modules
+      - js_node_modules:/usr/src/app/node_modules
     networks:
       - eapp
 
@@ -65,7 +65,7 @@ services:
     command: ./bin/live_reload.sh
     volumes:
       - .:/go/src/github.com/18F/e-QIP-prototype
-      - /go/src/github.com/18F/e-QIP-prototype/api/vendor
+      - api_vendor:/go/src/github.com/18F/e-QIP-prototype/api/vendor
     ports:
       - 3000:3000
     environment:
@@ -80,3 +80,9 @@ services:
 networks:
   eapp:
     driver: bridge
+
+volumes:
+  js_node_modules:
+    driver: local
+  api_vendor:
+    driver: local
