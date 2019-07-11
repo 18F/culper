@@ -12,7 +12,7 @@ import {
   Suggestions,
   Show,
   Country,
-  Location
+  Location,
 } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 import { countryString } from '../../../../validators/location'
@@ -49,7 +49,7 @@ export default class Cohabitant extends ValidationElement {
       Citizenship: this.props.Citizenship,
       CohabitationBegan: this.props.CohabitationBegan,
       SameSpouse: this.props.SameSpouse,
-      ...queue
+      ...queue,
     })
   }
 
@@ -64,7 +64,7 @@ export default class Cohabitant extends ValidationElement {
       Citizenship: null,
       CohabitationBegan: null,
       SameSpouse: false,
-      SameSpouseConfirmed: false
+      SameSpouseConfirmed: false,
     }
 
     if (this.props.onUpdate) {
@@ -78,61 +78,61 @@ export default class Cohabitant extends ValidationElement {
     }
 
     const similarSpouse = new CohabitantValidator({
-      Name: values
+      Name: values,
     }).similarSpouse(this.props.spouse)
     this.update({
       Name: values,
-      SameSpouse: similarSpouse
+      SameSpouse: similarSpouse,
     })
   }
 
   updateBirthdate(values) {
     this.update({
-      Birthdate: values
+      Birthdate: values,
     })
   }
 
   updateBirthPlace(values) {
     this.update({
-      BirthPlace: values
+      BirthPlace: values,
     })
   }
 
   updateForeignBornDocument(values) {
     this.update({
-      ForeignBornDocument: values
+      ForeignBornDocument: values,
     })
   }
 
   updateSSN(values) {
     this.update({
-      SSN: values
+      SSN: values,
     })
   }
 
   updateOtherNames(values) {
     this.update({
-      OtherNames: values
+      OtherNames: values,
     })
   }
 
   updateCitizenship(values) {
     this.update({
-      Citizenship: values
+      Citizenship: values,
     })
   }
 
   updateCohabitationBegan(values) {
     this.update({
-      CohabitationBegan: values
+      CohabitationBegan: values,
     })
   }
 
   renderSpouseSuggestion() {
     const spouse = this.props.spouse
     const name = spouse
-      ? `${spouse.first || ''} ${spouse.middle || ''} ${spouse.last ||
-          ''}`.trim()
+      ? `${spouse.first || ''} ${spouse.middle || ''} ${spouse.last
+          || ''}`.trim()
       : ''
     return <div>{name}</div>
   }
@@ -144,7 +144,7 @@ export default class Cohabitant extends ValidationElement {
   dismissSpouseSuggestion() {
     this.update({
       SameSpouseConfirmed: true,
-      SameSpouse: false
+      SameSpouse: false,
     })
   }
 
@@ -167,6 +167,7 @@ export default class Cohabitant extends ValidationElement {
   }
 
   render() {
+    const { requireRelationshipMaritalForeignBornDocExpiration } = this.props
     const cohabitationBeganMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="cohabitant">
@@ -192,9 +193,10 @@ export default class Cohabitant extends ValidationElement {
         />
         <Field
           title={i18n.t('relationships.cohabitant.heading.name')}
-          optional={true}
+          optional
           filterErrors={Name.requiredErrorsOnly}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Name
             name="Name"
             className="cohabitant-name"
@@ -210,7 +212,8 @@ export default class Cohabitant extends ValidationElement {
           help="relationships.cohabitant.help.birthdate"
           title={i18n.t('relationships.cohabitant.heading.birthdate')}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="datecontrol">
+          adjustFor="datecontrol"
+        >
           <DateControl
             name="birthdate"
             className="birthdate"
@@ -224,7 +227,8 @@ export default class Cohabitant extends ValidationElement {
 
         <Field
           title={i18n.t('relationships.cohabitant.heading.birthplace')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="birthplace"
             {...this.props.BirthPlace}
@@ -248,12 +252,14 @@ export default class Cohabitant extends ValidationElement {
             onError={this.props.onError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
+            requireRelationshipMaritalForeignBornDocExpiration={requireRelationshipMaritalForeignBornDocExpiration}
           />
         </Show>
 
         <Field
           title={i18n.t('relationships.cohabitant.heading.ssn')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <SSN
             name="ssn"
             {...this.props.SSN}
@@ -273,10 +279,11 @@ export default class Cohabitant extends ValidationElement {
           onError={this.props.onError}
           onUpdate={this.updateOtherNames}
           required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <OtherName
             name="Item"
-            bind={true}
+            bind
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           />
@@ -286,11 +293,12 @@ export default class Cohabitant extends ValidationElement {
           title={i18n.t('relationships.cohabitant.heading.citizenship')}
           help="relationships.cohabitant.help.citizenship"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="country">
+          adjustFor="country"
+        >
           <Country
             name="Citizenship"
             {...this.props.Citizenship}
-            multiple={true}
+            multiple
             className="relationships-cohabitant-citizenship"
             onUpdate={this.updateCitizenship}
             onError={this.props.onError}
@@ -302,14 +310,15 @@ export default class Cohabitant extends ValidationElement {
           help="relationships.cohabitant.help.cohabitationBegan"
           title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="datecontrol">
+          adjustFor="datecontrol"
+        >
           <DateControl
             name="cohabitationBegan"
             className="cohabitation-began"
-            prefix={"cohabitant"}
+            prefix="cohabitant"
             minDate={cohabitationBeganMinDate}
             {...this.props.CohabitationBegan}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateCohabitationBegan}
             onError={this.props.onError}
             required={this.props.required}
@@ -330,8 +339,7 @@ Cohabitant.defaultProps = {
   Citizenship: {},
   CohabitationBegan: {},
   SameSpouse: false,
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  requireRelationshipMaritalForeignBornDocExpiration: true,
 }

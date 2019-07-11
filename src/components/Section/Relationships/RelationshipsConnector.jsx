@@ -79,6 +79,7 @@ const connectRelationshipsSection = (Component, {
           ...Relationships && Relationships.Cohabitants,
           spouse,
           applicantBirthdate,
+          ...selectRelationshipMaritalForeignBornDocExpiration(state),
         }
 
       case 'People':

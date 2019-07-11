@@ -32,37 +32,37 @@ export default class ForeignBornDocuments extends ValidationElement {
       DocumentExpiration: this.props.DocumentExpiration,
       DocumentExpirationNotApplicable: this.props
         .DocumentExpirationNotApplicable,
-      ...queue
+      ...queue,
     })
   }
 
   updateDocumentType(values) {
     this.update({
-      DocumentType: values
+      DocumentType: values,
     })
   }
 
   updateOtherExplanation(values) {
     this.update({
-      OtherExplanation: values
+      OtherExplanation: values,
     })
   }
 
   updateDocumentNumber(values) {
     this.update({
-      DocumentNumber: values
+      DocumentNumber: values,
     })
   }
 
   updateDocumentExpiration(values) {
     this.update({
-      DocumentExpiration: values
+      DocumentExpiration: values,
     })
   }
 
   updateDocumentExpirationNotApplicable(values) {
     this.update({
-      DocumentExpirationNotApplicable: values
+      DocumentExpirationNotApplicable: values,
     })
   }
 
@@ -74,14 +74,16 @@ export default class ForeignBornDocuments extends ValidationElement {
           help="relationships.civilUnion.help.foreignBornDocument"
           title={i18n.t('relationships.civilUnion.heading.foreignBornDocument')}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="p">
+          adjustFor="p"
+        >
           <label>{i18n.t('foreignBornDocuments.para.bornToUSParents')}</label>
           <RadioGroup
             name="born"
             className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <Radio
               className="born"
               label={i18n.m('foreignBornDocuments.bornToUSParents.label.fs240')}
@@ -110,7 +112,8 @@ export default class ForeignBornDocuments extends ValidationElement {
             className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <Radio
               className="naturalized alien"
               label={i18n.m('foreignBornDocuments.naturalized.label.alien')}
@@ -150,7 +153,8 @@ export default class ForeignBornDocuments extends ValidationElement {
             className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <Radio
               className="derived alien"
               label={i18n.m('foreignBornDocuments.derived.label.alien')}
@@ -190,7 +194,8 @@ export default class ForeignBornDocuments extends ValidationElement {
             className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <Radio
               className="notcitizen permanent"
               label={i18n.m(
@@ -263,7 +268,8 @@ export default class ForeignBornDocuments extends ValidationElement {
             className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
-            onError={this.props.onError}>
+            onError={this.props.onError}
+          >
             <Radio
               className="other"
               label={i18n.m('foreignBornDocuments.other.label.other')}
@@ -291,7 +297,8 @@ export default class ForeignBornDocuments extends ValidationElement {
         <Field
           title={i18n.t('foreignBornDocuments.heading.documentNumber')}
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
+          adjustFor="labels"
+        >
           <Text
             name="documentNumber"
             label="Document Number"
@@ -317,7 +324,8 @@ export default class ForeignBornDocuments extends ValidationElement {
               {...this.props.DocumentExpirationNotApplicable}
               label={i18n.t('reference.label.idk')}
               or={i18n.m('reference.para.or')}
-              onUpdate={this.updateDocumentExpirationNotApplicable}>
+              onUpdate={this.updateDocumentExpirationNotApplicable}
+            >
               <DateControl
                 name="documentExpiration"
                 {...this.props.DocumentExpiration}
@@ -339,8 +347,7 @@ ForeignBornDocuments.defaultProps = {
   DocumentNumber: {},
   DocumentExpiration: {},
   DocumentExpirationNotApplicable: { applicable: true },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  requireRelationshipMaritalForeignBornDocExpiration: true,
 }
