@@ -103,6 +103,10 @@ export class Marital extends Subsection {
   }
 
   render() {
+    const {
+      requireRelationshipMaritalForeignBornDocExpiration,
+      requireRelationshipMaritalDivorcePhoneNumber,
+    } = this.props
     return (
       <div
         className="section-content marital"
@@ -181,6 +185,7 @@ export class Marital extends Subsection {
             defaultState={this.props.defaultState}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
+            requireRelationshipMaritalForeignBornDocExpiration={requireRelationshipMaritalForeignBornDocExpiration}
           />
         </Show>
         <Show when={this.showDivorce()}>
@@ -206,6 +211,7 @@ export class Marital extends Subsection {
               applicantBirthdate={this.props.applicantBirthdate}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireRelationshipMaritalDivorcePhoneNumber={requireRelationshipMaritalDivorcePhoneNumber}
             />
           </Accordion>
         </Show>

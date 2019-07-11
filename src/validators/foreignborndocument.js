@@ -1,13 +1,25 @@
 import { validateModel } from 'models/validate'
 import foreignBornDocument from 'models/foreignBornDocument'
+import store from 'services/store'
+import * as formTypes from 'constants/formTypes'
+import { requireRelationshipMaritalForeignBornDocExpiration } from 'helpers/branches'
 
-export const validateForeignBornDocument = data => (
-  validateModel(data, foreignBornDocument) === true
-)
+export const validateForeignBornDocument = (data, formType = formTypes.SF86) => {
+  const isForeignBornDocExpirationRequired = requireRelationshipMaritalForeignBornDocExpiration(formType)
+  return validateModel(
+    data,
+    foreignBornDocument,
+    { requireRelationshipMaritalForeignBornDocExpiration: isForeignBornDocExpirationRequired }
+  ) === true
+}
 
 export default class ForeignBornDocumentValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
+
     this.data = data
+    this.formType = formType
   }
 
   validDocumentType() {
@@ -29,6 +41,6 @@ export default class ForeignBornDocumentValidator {
   }
 
   isValid() {
-    return validateForeignBornDocument(this.data)
+    return validateForeignBornDocument(this.data, this.formType)
   }
 }

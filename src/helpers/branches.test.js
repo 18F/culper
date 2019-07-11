@@ -15,6 +15,8 @@ import {
   requireFinancialCreditSection,
   requireFinancialDelinquentSection,
   requireFinancialNonpaymentSection,
+  requireRelationshipMaritalForeignBornDocExpiration,
+  requireRelationshipMaritalDivorcePhoneNumber,
 } from './branches'
 
 describe('Branches helper function', () => {
@@ -188,6 +190,28 @@ describe('Branches helper function', () => {
 
     it('is not required by the SF85', () => {
       expect(requireFinancialNonpaymentSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireRelationshipMaritalForeignBornDocExpiration', () => {
+    it('is required by the SF86', () => {
+      expect(requireRelationshipMaritalForeignBornDocExpiration('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireRelationshipMaritalForeignBornDocExpiration('SF85')).toBe(false)
+      expect(requireRelationshipMaritalForeignBornDocExpiration('SF85P')).toBe(false)
+    })
+  })
+
+  describe('requireRelationshipMaritalDivorcePhoneNumber', () => {
+    it('is required by the SF86', () => {
+      expect(requireRelationshipMaritalDivorcePhoneNumber('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireRelationshipMaritalDivorcePhoneNumber('SF85')).toBe(false)
+      expect(requireRelationshipMaritalDivorcePhoneNumber('SF85P')).toBe(false)
     })
   })
 })

@@ -81,7 +81,7 @@ class CivilUnion extends ValidationElement {
      *  {name: "country", comments: "", showComments: false, value: ['germany']}
      *
      */
-
+    const { requireRelationshipMaritalForeignBornDocExpiration } = this.props
     const { country } = this.props.BirthPlace
     const showForeignBornDocumentation = country && countryString(country) !== 'United States'
     const enteredCivilUnionMinDate = pickDate([
@@ -157,6 +157,7 @@ class CivilUnion extends ValidationElement {
               onError={this.props.onError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireRelationshipMaritalForeignBornDocExpiration={requireRelationshipMaritalForeignBornDocExpiration}
             />
           </Show>
 

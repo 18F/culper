@@ -23,8 +23,11 @@ describe('The foreign born document model', () => {
   it('DocumentExpiration is required', () => {
     const testData = {}
     const expectedErrors = ['DocumentExpiration.required']
+    const options = {
+      requireRelationshipMaritalForeignBornDocExpiration: true,
+    }
 
-    expect(validateModel(testData, foreignBornDocument))
+    expect(validateModel(testData, foreignBornDocument, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -33,8 +36,11 @@ describe('The foreign born document model', () => {
       DocumentExpiration: 'invalid',
     }
     const expectedErrors = ['DocumentExpiration.date']
+    const options = {
+      requireRelationshipMaritalForeignBornDocExpiration: true,
+    }
 
-    expect(validateModel(testData, foreignBornDocument))
+    expect(validateModel(testData, foreignBornDocument, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -120,6 +126,22 @@ describe('The foreign born document model', () => {
       }
 
       expect(validateModel(testData, foreignBornDocument)).toEqual(true)
+    })
+  })
+
+  describe('SF85P', () => {
+    it('validates when there is no document expiration date', () => {
+      const testData = {
+        DocumentType: { value: 'Other' },
+        OtherExplanation: { value: 'Something' },
+        DocumentExpiration: {},
+        DocumentNumber: { value: '123' },
+      }
+      const options = {
+        requireRelationshipMaritalForeignBornDocExpiration: false,
+      }
+
+      expect(validateModel(testData, foreignBornDocument, options)).toEqual(true)
     })
   })
 })

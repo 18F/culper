@@ -128,3 +128,11 @@ export const requireLegalOffenseIncarcerated = formType => (
 export const requireLegalInvestigationClearanceGranted = formType => (
   requiredByForms(formType, [formTypes.SF85])
 )
+
+export const requireRelationshipMaritalForeignBornDocExpiration = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireRelationshipMaritalDivorcePhoneNumber = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)

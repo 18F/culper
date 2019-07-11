@@ -27,9 +27,14 @@ const divorce = {
       validator: { length: { minimum: 1 } },
     },
   },
-  Telephone: {
-    presence: true,
-    model: { validator: phone },
+  Telephone: (value, attributes, attributeName, options) => {
+    if (options.requireRelationshipMaritalDivorcePhoneNumber) {
+      return {
+        presence: true,
+        model: { validator: phone },
+      }
+    }
+    return {}
   },
   Recognized: {
     presence: true,

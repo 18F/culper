@@ -67,6 +67,7 @@ export default class ForeignBornDocuments extends ValidationElement {
   }
 
   render() {
+    const { requireRelationshipMaritalForeignBornDocExpiration } = this.props
     return (
       <div className="foreign-born-documents">
         <Field
@@ -305,25 +306,28 @@ export default class ForeignBornDocuments extends ValidationElement {
           />
         </Field>
 
-        <Field
-          title={i18n.t('foreignBornDocuments.heading.documentExpiration')}
-          scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
-          <NotApplicable
-            name="DocumentExpirationNotApplicable"
-            {...this.props.DocumentExpirationNotApplicable}
-            label={i18n.t('reference.label.idk')}
-            or={i18n.m('reference.para.or')}
-            onUpdate={this.updateDocumentExpirationNotApplicable}>
-            <DateControl
-              name="documentExpiration"
-              {...this.props.DocumentExpiration}
-              onUpdate={this.updateDocumentExpiration}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </NotApplicable>
-        </Field>
+        {requireRelationshipMaritalForeignBornDocExpiration && (
+          <Field
+            title={i18n.t('foreignBornDocuments.heading.documentExpiration')}
+            scrollIntoView={this.props.scrollIntoView}
+            adjustFor="labels"
+          >
+            <NotApplicable
+              name="DocumentExpirationNotApplicable"
+              {...this.props.DocumentExpirationNotApplicable}
+              label={i18n.t('reference.label.idk')}
+              or={i18n.m('reference.para.or')}
+              onUpdate={this.updateDocumentExpirationNotApplicable}>
+              <DateControl
+                name="documentExpiration"
+                {...this.props.DocumentExpiration}
+                onUpdate={this.updateDocumentExpiration}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </NotApplicable>
+          </Field>
+        )}
       </div>
     )
   }
