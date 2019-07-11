@@ -528,6 +528,7 @@ CivilUnion.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   defaultState: true,
+  requireRelationshipMaritalForeignBornDocExpiration: true,
 }
 
 export default CivilUnion
