@@ -837,6 +837,13 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
+                  <a
+                    className="logout"
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    Logout
+                  </a>
                 </div>
               </div>
             </div>
@@ -874,7 +881,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -888,7 +895,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
             7
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>
@@ -928,7 +935,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/intro"
                       onClick={[Function]}
@@ -945,7 +952,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/name"
                       onClick={[Function]}
@@ -962,7 +969,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/birthdate"
                       onClick={[Function]}
@@ -979,7 +986,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/birthplace"
                       onClick={[Function]}
@@ -996,7 +1003,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/ssn"
                       onClick={[Function]}
@@ -1013,7 +1020,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/othernames"
                       onClick={[Function]}
@@ -1030,7 +1037,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/contacts"
                       onClick={[Function]}
@@ -1047,7 +1054,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/physical"
                       onClick={[Function]}
@@ -1064,7 +1071,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/review"
                       onClick={[Function]}
@@ -1110,7 +1117,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/intro"
                       onClick={[Function]}
@@ -1127,7 +1134,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/residence"
                       onClick={[Function]}
@@ -1144,7 +1151,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/employment"
                       onClick={[Function]}
@@ -1161,7 +1168,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/education"
                       onClick={[Function]}
@@ -1178,7 +1185,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/review"
                       onClick={[Function]}
@@ -1224,7 +1231,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/intro"
                       onClick={[Function]}
@@ -1241,7 +1248,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/passport"
                       onClick={[Function]}
@@ -1258,7 +1265,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/status"
                       onClick={[Function]}
@@ -1275,7 +1282,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/multiple"
                       onClick={[Function]}
@@ -1292,7 +1299,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/review"
                       onClick={[Function]}
@@ -1338,7 +1345,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/intro"
                       onClick={[Function]}
@@ -1355,7 +1362,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/selective"
                       onClick={[Function]}
@@ -1372,7 +1379,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/history"
                       onClick={[Function]}
@@ -1389,7 +1396,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/foreign"
                       onClick={[Function]}
@@ -1406,7 +1413,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/review"
                       onClick={[Function]}
@@ -1452,7 +1459,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/intro"
                       onClick={[Function]}
@@ -1469,7 +1476,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/taxes"
                       onClick={[Function]}
@@ -1486,7 +1493,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/delinquent"
                       onClick={[Function]}
@@ -1503,7 +1510,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/review"
                       onClick={[Function]}
@@ -1549,7 +1556,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/substance/intro"
                       onClick={[Function]}
@@ -1592,7 +1599,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/usage"
                             onClick={[Function]}
@@ -1609,7 +1616,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/purchase"
                             onClick={[Function]}
@@ -1626,7 +1633,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/misuse"
                             onClick={[Function]}
@@ -1643,7 +1650,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/ordered"
                             onClick={[Function]}
@@ -1660,7 +1667,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/voluntary"
                             onClick={[Function]}
@@ -1680,7 +1687,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/substance/review"
                       onClick={[Function]}
@@ -1726,7 +1733,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/legal/intro"
                       onClick={[Function]}
@@ -1769,7 +1776,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/intro"
                             onClick={[Function]}
@@ -1786,7 +1793,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/offenses"
                             onClick={[Function]}
@@ -1803,7 +1810,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/domesticviolence"
                             onClick={[Function]}
@@ -1849,7 +1856,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/history"
                             onClick={[Function]}
@@ -1866,7 +1873,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/revoked"
                             onClick={[Function]}
@@ -1883,7 +1890,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/debarred"
                             onClick={[Function]}
@@ -1929,7 +1936,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/terrorist-organization"
                             onClick={[Function]}
@@ -1946,7 +1953,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/engaged-in-terrorism"
                             onClick={[Function]}
@@ -1963,7 +1970,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/advocating"
                             onClick={[Function]}
@@ -1980,7 +1987,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/membership-overthrow"
                             onClick={[Function]}
@@ -1997,7 +2004,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/membership-violence-or-force"
                             onClick={[Function]}
@@ -2014,7 +2021,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/activities-to-overthrow"
                             onClick={[Function]}
@@ -2031,7 +2038,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/terrorism-association"
                             onClick={[Function]}
@@ -2051,7 +2058,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/legal/review"
                       onClick={[Function]}
@@ -2097,7 +2104,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/package/review"
                       onClick={[Function]}
@@ -2114,7 +2121,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link locked"
                       href="/form/package/submit"
                       onClick={[Function]}
@@ -2131,7 +2138,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link locked"
                       href="/form/package/print"
                       onClick={[Function]}
@@ -3037,6 +3044,13 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
+                  <a
+                    className="logout"
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    Logout
+                  </a>
                 </div>
               </div>
             </div>
@@ -3074,7 +3088,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -3088,7 +3102,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
             9
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>
@@ -3128,7 +3142,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/intro"
                       onClick={[Function]}
@@ -3145,7 +3159,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/name"
                       onClick={[Function]}
@@ -3162,7 +3176,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/birthdate"
                       onClick={[Function]}
@@ -3179,7 +3193,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/birthplace"
                       onClick={[Function]}
@@ -3196,7 +3210,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/ssn"
                       onClick={[Function]}
@@ -3213,7 +3227,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/othernames"
                       onClick={[Function]}
@@ -3230,7 +3244,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/contacts"
                       onClick={[Function]}
@@ -3247,7 +3261,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/physical"
                       onClick={[Function]}
@@ -3264,7 +3278,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/review"
                       onClick={[Function]}
@@ -3310,7 +3324,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/intro"
                       onClick={[Function]}
@@ -3327,7 +3341,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/residence"
                       onClick={[Function]}
@@ -3344,7 +3358,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/employment"
                       onClick={[Function]}
@@ -3361,7 +3375,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/education"
                       onClick={[Function]}
@@ -3378,7 +3392,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/federal"
                       onClick={[Function]}
@@ -3395,7 +3409,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/review"
                       onClick={[Function]}
@@ -3441,7 +3455,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/relationships/intro"
                       onClick={[Function]}
@@ -3484,7 +3498,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/relationships/status/marital"
                             onClick={[Function]}
@@ -3501,7 +3515,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/relationships/status/cohabitant"
                             onClick={[Function]}
@@ -3521,7 +3535,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/relationships/people"
                       onClick={[Function]}
@@ -3538,7 +3552,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/relationships/relatives"
                       onClick={[Function]}
@@ -3555,7 +3569,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/relationships/review"
                       onClick={[Function]}
@@ -3601,7 +3615,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/intro"
                       onClick={[Function]}
@@ -3618,7 +3632,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/passport"
                       onClick={[Function]}
@@ -3635,7 +3649,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/status"
                       onClick={[Function]}
@@ -3652,7 +3666,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/multiple"
                       onClick={[Function]}
@@ -3669,7 +3683,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/passports"
                       onClick={[Function]}
@@ -3686,7 +3700,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/review"
                       onClick={[Function]}
@@ -3732,7 +3746,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/intro"
                       onClick={[Function]}
@@ -3749,7 +3763,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/selective"
                       onClick={[Function]}
@@ -3766,7 +3780,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/history"
                       onClick={[Function]}
@@ -3783,7 +3797,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/foreign"
                       onClick={[Function]}
@@ -3800,7 +3814,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/review"
                       onClick={[Function]}
@@ -3846,7 +3860,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/foreign/intro"
                       onClick={[Function]}
@@ -3863,7 +3877,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/foreign/travel"
                       onClick={[Function]}
@@ -3880,7 +3894,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/foreign/review"
                       onClick={[Function]}
@@ -3926,7 +3940,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/intro"
                       onClick={[Function]}
@@ -3943,7 +3957,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/bankruptcy"
                       onClick={[Function]}
@@ -3960,7 +3974,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/gambling"
                       onClick={[Function]}
@@ -3977,7 +3991,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/taxes"
                       onClick={[Function]}
@@ -3994,7 +4008,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/card"
                       onClick={[Function]}
@@ -4011,7 +4025,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/credit"
                       onClick={[Function]}
@@ -4028,7 +4042,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/delinquent"
                       onClick={[Function]}
@@ -4045,7 +4059,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/nonpayment"
                       onClick={[Function]}
@@ -4062,7 +4076,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/review"
                       onClick={[Function]}
@@ -4108,7 +4122,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/substance/intro"
                       onClick={[Function]}
@@ -4151,7 +4165,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/usage"
                             onClick={[Function]}
@@ -4168,7 +4182,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/purchase"
                             onClick={[Function]}
@@ -4185,7 +4199,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/clearance"
                             onClick={[Function]}
@@ -4202,7 +4216,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/publicsafety"
                             onClick={[Function]}
@@ -4219,7 +4233,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/misuse"
                             onClick={[Function]}
@@ -4236,7 +4250,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/ordered"
                             onClick={[Function]}
@@ -4253,7 +4267,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/voluntary"
                             onClick={[Function]}
@@ -4299,7 +4313,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/alcohol/negative"
                             onClick={[Function]}
@@ -4316,7 +4330,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/alcohol/ordered"
                             onClick={[Function]}
@@ -4333,7 +4347,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/alcohol/voluntary"
                             onClick={[Function]}
@@ -4350,7 +4364,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/alcohol/additional"
                             onClick={[Function]}
@@ -4370,7 +4384,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/substance/review"
                       onClick={[Function]}
@@ -4416,7 +4430,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/legal/intro"
                       onClick={[Function]}
@@ -4459,7 +4473,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/intro"
                             onClick={[Function]}
@@ -4476,7 +4490,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/offenses"
                             onClick={[Function]}
@@ -4493,7 +4507,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/additionaloffenses"
                             onClick={[Function]}
@@ -4510,7 +4524,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/domesticviolence"
                             onClick={[Function]}
@@ -4556,7 +4570,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/history"
                             onClick={[Function]}
@@ -4573,7 +4587,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/revoked"
                             onClick={[Function]}
@@ -4590,7 +4604,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/debarred"
                             onClick={[Function]}
@@ -4610,7 +4624,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/legal/court"
                       onClick={[Function]}
@@ -4653,7 +4667,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/technology/unauthorized"
                             onClick={[Function]}
@@ -4670,7 +4684,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/technology/manipulating"
                             onClick={[Function]}
@@ -4687,7 +4701,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/technology/unlawful"
                             onClick={[Function]}
@@ -4733,7 +4747,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/terrorist-organization"
                             onClick={[Function]}
@@ -4750,7 +4764,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/engaged-in-terrorism"
                             onClick={[Function]}
@@ -4767,7 +4781,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/advocating"
                             onClick={[Function]}
@@ -4784,7 +4798,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/membership-overthrow"
                             onClick={[Function]}
@@ -4801,7 +4815,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/membership-violence-or-force"
                             onClick={[Function]}
@@ -4818,7 +4832,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/activities-to-overthrow"
                             onClick={[Function]}
@@ -4835,7 +4849,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/terrorism-association"
                             onClick={[Function]}
@@ -4855,7 +4869,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/legal/review"
                       onClick={[Function]}
@@ -4901,7 +4915,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/package/review"
                       onClick={[Function]}
@@ -4918,7 +4932,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link locked"
                       href="/form/package/submit"
                       onClick={[Function]}
@@ -4935,7 +4949,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link locked"
                       href="/form/package/print"
                       onClick={[Function]}
@@ -5797,6 +5811,13 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
+                  <a
+                    className="logout"
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    Logout
+                  </a>
                 </div>
               </div>
             </div>
@@ -5834,7 +5855,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
         className="eapp-structure-left eapp-navigation mobile-hidden"
       >
         <div
-          className="score-card"
+          className="ScoreCard score-card"
         >
           <span
             className="score-card-done"
@@ -5848,7 +5869,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
             10
           </span>
           <span
-            className="score-card-text"
+            className="text score-card-text"
           >
             Sections complete
           </span>
@@ -5888,7 +5909,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/intro"
                       onClick={[Function]}
@@ -5905,7 +5926,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/name"
                       onClick={[Function]}
@@ -5922,7 +5943,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/birthdate"
                       onClick={[Function]}
@@ -5939,7 +5960,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/birthplace"
                       onClick={[Function]}
@@ -5956,7 +5977,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/ssn"
                       onClick={[Function]}
@@ -5973,7 +5994,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/othernames"
                       onClick={[Function]}
@@ -5990,7 +6011,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/contacts"
                       onClick={[Function]}
@@ -6007,7 +6028,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/physical"
                       onClick={[Function]}
@@ -6024,7 +6045,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/identification/review"
                       onClick={[Function]}
@@ -6070,7 +6091,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/intro"
                       onClick={[Function]}
@@ -6087,7 +6108,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/residence"
                       onClick={[Function]}
@@ -6104,7 +6125,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/employment"
                       onClick={[Function]}
@@ -6121,7 +6142,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/education"
                       onClick={[Function]}
@@ -6138,7 +6159,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/federal"
                       onClick={[Function]}
@@ -6155,7 +6176,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/history/review"
                       onClick={[Function]}
@@ -6201,7 +6222,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/relationships/intro"
                       onClick={[Function]}
@@ -6244,7 +6265,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/relationships/status/marital"
                             onClick={[Function]}
@@ -6261,7 +6282,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/relationships/status/cohabitant"
                             onClick={[Function]}
@@ -6281,7 +6302,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/relationships/people"
                       onClick={[Function]}
@@ -6298,7 +6319,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/relationships/relatives"
                       onClick={[Function]}
@@ -6315,7 +6336,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/relationships/review"
                       onClick={[Function]}
@@ -6361,7 +6382,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/intro"
                       onClick={[Function]}
@@ -6378,7 +6399,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/passport"
                       onClick={[Function]}
@@ -6395,7 +6416,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/status"
                       onClick={[Function]}
@@ -6412,7 +6433,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/multiple"
                       onClick={[Function]}
@@ -6429,7 +6450,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/passports"
                       onClick={[Function]}
@@ -6446,7 +6467,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/citizenship/review"
                       onClick={[Function]}
@@ -6492,7 +6513,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/intro"
                       onClick={[Function]}
@@ -6509,7 +6530,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/selective"
                       onClick={[Function]}
@@ -6526,7 +6547,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/history"
                       onClick={[Function]}
@@ -6543,7 +6564,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/foreign"
                       onClick={[Function]}
@@ -6560,7 +6581,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/military/review"
                       onClick={[Function]}
@@ -6606,7 +6627,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/foreign/intro"
                       onClick={[Function]}
@@ -6623,7 +6644,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/foreign/contacts"
                       onClick={[Function]}
@@ -6666,7 +6687,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/activities/direct"
                             onClick={[Function]}
@@ -6683,7 +6704,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/activities/indirect"
                             onClick={[Function]}
@@ -6700,7 +6721,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/activities/realestate"
                             onClick={[Function]}
@@ -6717,7 +6738,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/activities/benefits"
                             onClick={[Function]}
@@ -6734,7 +6755,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/activities/support"
                             onClick={[Function]}
@@ -6780,7 +6801,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/advice"
                             onClick={[Function]}
@@ -6797,7 +6818,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/family"
                             onClick={[Function]}
@@ -6814,7 +6835,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/employment"
                             onClick={[Function]}
@@ -6831,7 +6852,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/ventures"
                             onClick={[Function]}
@@ -6848,7 +6869,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/conferences"
                             onClick={[Function]}
@@ -6865,7 +6886,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/contact"
                             onClick={[Function]}
@@ -6882,7 +6903,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/sponsorship"
                             onClick={[Function]}
@@ -6899,7 +6920,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/political"
                             onClick={[Function]}
@@ -6916,7 +6937,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/foreign/business/voting"
                             onClick={[Function]}
@@ -6936,7 +6957,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/foreign/travel"
                       onClick={[Function]}
@@ -6953,7 +6974,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/foreign/review"
                       onClick={[Function]}
@@ -6999,7 +7020,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/intro"
                       onClick={[Function]}
@@ -7016,7 +7037,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/bankruptcy"
                       onClick={[Function]}
@@ -7033,7 +7054,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/gambling"
                       onClick={[Function]}
@@ -7050,7 +7071,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/taxes"
                       onClick={[Function]}
@@ -7067,7 +7088,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/card"
                       onClick={[Function]}
@@ -7084,7 +7105,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/credit"
                       onClick={[Function]}
@@ -7101,7 +7122,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/delinquent"
                       onClick={[Function]}
@@ -7118,7 +7139,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/nonpayment"
                       onClick={[Function]}
@@ -7135,7 +7156,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/financial/review"
                       onClick={[Function]}
@@ -7181,7 +7202,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/substance/intro"
                       onClick={[Function]}
@@ -7224,7 +7245,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/usage"
                             onClick={[Function]}
@@ -7241,7 +7262,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/purchase"
                             onClick={[Function]}
@@ -7258,7 +7279,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/clearance"
                             onClick={[Function]}
@@ -7275,7 +7296,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/publicsafety"
                             onClick={[Function]}
@@ -7292,7 +7313,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/misuse"
                             onClick={[Function]}
@@ -7309,7 +7330,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/ordered"
                             onClick={[Function]}
@@ -7326,7 +7347,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/drugs/voluntary"
                             onClick={[Function]}
@@ -7372,7 +7393,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/alcohol/negative"
                             onClick={[Function]}
@@ -7389,7 +7410,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/alcohol/ordered"
                             onClick={[Function]}
@@ -7406,7 +7427,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/alcohol/voluntary"
                             onClick={[Function]}
@@ -7423,7 +7444,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/substance/alcohol/additional"
                             onClick={[Function]}
@@ -7443,7 +7464,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/substance/review"
                       onClick={[Function]}
@@ -7489,7 +7510,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/legal/intro"
                       onClick={[Function]}
@@ -7532,7 +7553,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/intro"
                             onClick={[Function]}
@@ -7549,7 +7570,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/offenses"
                             onClick={[Function]}
@@ -7566,7 +7587,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/additionaloffenses"
                             onClick={[Function]}
@@ -7583,7 +7604,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/police/domesticviolence"
                             onClick={[Function]}
@@ -7629,7 +7650,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/history"
                             onClick={[Function]}
@@ -7646,7 +7667,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/revoked"
                             onClick={[Function]}
@@ -7663,7 +7684,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/investigations/debarred"
                             onClick={[Function]}
@@ -7683,7 +7704,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/legal/court"
                       onClick={[Function]}
@@ -7726,7 +7747,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/technology/unauthorized"
                             onClick={[Function]}
@@ -7743,7 +7764,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/technology/manipulating"
                             onClick={[Function]}
@@ -7760,7 +7781,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/technology/unlawful"
                             onClick={[Function]}
@@ -7806,7 +7827,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                       >
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/terrorist-organization"
                             onClick={[Function]}
@@ -7823,7 +7844,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/engaged-in-terrorism"
                             onClick={[Function]}
@@ -7840,7 +7861,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/advocating"
                             onClick={[Function]}
@@ -7857,7 +7878,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/membership-overthrow"
                             onClick={[Function]}
@@ -7874,7 +7895,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/membership-violence-or-force"
                             onClick={[Function]}
@@ -7891,7 +7912,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/activities-to-overthrow"
                             onClick={[Function]}
@@ -7908,7 +7929,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                         </li>
                         <li>
                           <a
-                            aria-current={null}
+                            aria-current={false}
                             className="section-link"
                             href="/form/legal/associations/terrorism-association"
                             onClick={[Function]}
@@ -7928,7 +7949,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/legal/review"
                       onClick={[Function]}
@@ -7974,7 +7995,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/psychological/intro"
                       onClick={[Function]}
@@ -7991,7 +8012,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/psychological/competence"
                       onClick={[Function]}
@@ -8008,7 +8029,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/psychological/consultations"
                       onClick={[Function]}
@@ -8025,7 +8046,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/psychological/hospitalizations"
                       onClick={[Function]}
@@ -8042,7 +8063,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/psychological/diagnoses"
                       onClick={[Function]}
@@ -8059,7 +8080,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/psychological/review"
                       onClick={[Function]}
@@ -8105,7 +8126,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 >
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link"
                       href="/form/package/review"
                       onClick={[Function]}
@@ -8122,7 +8143,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link locked"
                       href="/form/package/submit"
                       onClick={[Function]}
@@ -8139,7 +8160,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   </li>
                   <li>
                     <a
-                      aria-current={null}
+                      aria-current={false}
                       className="section-link locked"
                       href="/form/package/print"
                       onClick={[Function]}
