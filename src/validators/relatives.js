@@ -103,7 +103,10 @@ export default class RelativesValidator {
 
 export class RelativeValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   citizen() {
@@ -111,7 +114,7 @@ export class RelativeValidator {
   }
 
   requiresCitizenshipDocumentation() {
-    return requireCitizenshipDocumentation(this.data)
+    return requireCitizenshipDocumentation(this.data, this.formType)
   }
 
   validRelation() {

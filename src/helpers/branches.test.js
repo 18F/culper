@@ -17,6 +17,9 @@ import {
   requireFinancialNonpaymentSection,
   requireRelationshipMaritalForeignBornDocExpiration,
   requireRelationshipMaritalDivorcePhoneNumber,
+  requireRelationshipRelativesForeignBornDoc,
+  requireRelationshipRelativesUSResidenceDoc,
+  requireRelationshipRelativesForeignGovtAffExplanation,
 } from './branches'
 
 describe('Branches helper function', () => {
@@ -212,6 +215,39 @@ describe('Branches helper function', () => {
     it('is not required by the SF85 and SF85P', () => {
       expect(requireRelationshipMaritalDivorcePhoneNumber('SF85')).toBe(false)
       expect(requireRelationshipMaritalDivorcePhoneNumber('SF85P')).toBe(false)
+    })
+  })
+
+  describe('requireRelationshipRelativesForeignBornDoc', () => {
+    it('is required by the SF86', () => {
+      expect(requireRelationshipRelativesForeignBornDoc('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireRelationshipRelativesForeignBornDoc('SF85')).toBe(false)
+      expect(requireRelationshipRelativesForeignBornDoc('SF85P')).toBe(false)
+    })
+  })
+
+  describe('requireRelationshipRelativesUSResidenceDoc', () => {
+    it('is required by the SF86', () => {
+      expect(requireRelationshipRelativesUSResidenceDoc('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireRelationshipRelativesUSResidenceDoc('SF85')).toBe(false)
+      expect(requireRelationshipRelativesUSResidenceDoc('SF85P')).toBe(false)
+    })
+  })
+
+  describe('requireRelationshipRelativesForeignGovtAffExplanation', () => {
+    it('is required by the SF86', () => {
+      expect(requireRelationshipRelativesForeignGovtAffExplanation('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireRelationshipRelativesForeignGovtAffExplanation('SF85')).toBe(false)
+      expect(requireRelationshipRelativesForeignGovtAffExplanation('SF85P')).toBe(false)
     })
   })
 })

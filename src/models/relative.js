@@ -4,9 +4,14 @@ import address from 'models/shared/locations/address'
 import usAddress from 'models/shared/locations/usAddress'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import { hasYesOrNo } from 'models/validate'
+import * as formTypes from 'constants/formTypes'
+import { requireRelationshipRelativesForeignBornDoc } from 'helpers/branches'
 
 import {
-  MOTHER, immedateFamilyOptions, relativeCitizenshipDocumentationOptions,
+  MOTHER,
+  immedateFamilyOptions,
+  relativeOptions,
+  relativeCitizenshipDocumentationOptions,
   relativeResidentDocumentationOptions,
 } from 'constants/enums/relationshipOptions'
 
@@ -24,15 +29,18 @@ export const isLiving = attributes => (
   attributes.IsDeceased && attributes.IsDeceased.value === 'No'
 )
 
-export const requireCitizenshipDocumentation = (attributes) => {
-  const bornInUS = attributes.Birthplace
-    && attributes.Birthplace.country
-    && countryString(attributes.Birthplace.country) === 'United States'
+export const requireCitizenshipDocumentation = (attributes, formType = formTypes.SF86) => {
+  if (requireRelationshipRelativesForeignBornDoc(formType)) {
+    const bornInUS = attributes.Birthplace
+      && attributes.Birthplace.country
+      && countryString(attributes.Birthplace.country) === 'United States'
 
-  return !!(isCitizen(attributes)
-    && attributes.Birthplace
-    && attributes.Birthplace.country
-    && !bornInUS)
+    return !!(isCitizen(attributes)
+      && attributes.Birthplace
+      && attributes.Birthplace.country
+      && !bornInUS)
+  }
+  return false
 }
 
 export const isLivingNonCitizen = attributes => (

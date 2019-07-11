@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import {
   selectRelationshipMaritalForeignBornDocExpiration,
   selectRelationshipMaritalDivorcePhoneNumber,
+  selectRelationshipRelativesUSResidenceDoc,
+  selectRelationshipRelativesForeignGovtAffExplanation,
 } from 'selectors/branches'
 
 import {
@@ -93,6 +95,8 @@ const connectRelationshipsSection = (Component, {
           ...Relationships && Relationships.Relatives,
           applicantBirthdate,
           addressBooks: AddressBooks,
+          ...selectRelationshipRelativesUSResidenceDoc(state),
+          ...selectRelationshipRelativesForeignGovtAffExplanation(state),
         }
 
       default:

@@ -33,6 +33,9 @@ import {
   requireLegalInvestigationClearanceGranted,
   requireRelationshipMaritalForeignBornDocExpiration,
   requireRelationshipMaritalDivorcePhoneNumber,
+  requireRelationshipRelativesForeignBornDoc,
+  requireRelationshipRelativesUSResidenceDoc,
+  requireRelationshipRelativesForeignGovtAffExplanation,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -148,4 +151,19 @@ export const selectRelationshipMaritalForeignBornDocExpiration = createSelector(
 export const selectRelationshipMaritalDivorcePhoneNumber = createSelector(formTypeSelector,
   formType => ({
     requireRelationshipMaritalDivorcePhoneNumber: requireRelationshipMaritalDivorcePhoneNumber(formType),
+  }))
+
+export const selectRelationshipRelativesForeignBornDoc = createSelector(formTypeSelector,
+  formType => ({
+    requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
+  }))
+
+export const selectRelationshipRelativesUSResidenceDoc = createSelector(formTypeSelector,
+  formType => ({
+    requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
+  }))
+
+export const selectRelationshipRelativesForeignGovtAffExplanation = createSelector(formTypeSelector,
+  formType => ({
+    requireRelationshipRelativesForeignGovtAffExplanation: requireRelationshipRelativesForeignGovtAffExplanation(formType),
   }))

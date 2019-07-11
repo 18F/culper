@@ -25,6 +25,7 @@ import {
 import ConnectedAlternateAddress from 'components/Form/Location/AlternateAddress'
 import { RelativeValidator } from 'validators'
 import { countryString } from 'validators/location'
+import { selectRelationshipRelativesForeignGovtAffExplanation } from 'selectors/branches'
 import Alias from './Alias'
 
 export default class Relative extends ValidationElement {
@@ -302,6 +303,7 @@ export default class Relative extends ValidationElement {
   }
 
   render() {
+    const { requireRelationshipRelativesUSResidenceDoc } = this.props
     const relativeContactMinDate = pickDate([
       this.props.applicantBirthdate,
       this.props.Birthdate,
@@ -701,7 +703,8 @@ export default class Relative extends ValidationElement {
 
         <Show
           when={
-            this.props.Citizenship.value
+            requireRelationshipRelativesUSResidenceDoc
+            && this.props.Citizenship.value
             && !validator.citizen()
             && this.props.IsDeceased.value === 'No'
           }
@@ -1025,7 +1028,11 @@ export default class Relative extends ValidationElement {
                 onError={this.props.onError}
               />
             </NotApplicable>
-            <Show when={this.props.HasAffiliation.value === 'Yes'}>
+            <Show when={
+              selectRelationshipRelativesForeignGovtAffExplanation
+              && this.props.HasAffiliation.value === 'Yes'
+            }
+            >
               <Field
                 title={i18n.t('relationships.relatives.heading.employer.relationship')}
                 scrollIntoView={this.props.scrollIntoView}

@@ -136,3 +136,15 @@ export const requireRelationshipMaritalForeignBornDocExpiration = formType => (
 export const requireRelationshipMaritalDivorcePhoneNumber = formType => (
   requiredByForms(formType, [formTypes.SF86])
 )
+
+export const requireRelationshipRelativesForeignBornDoc = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireRelationshipRelativesUSResidenceDoc = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireRelationshipRelativesForeignGovtAffExplanation = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)

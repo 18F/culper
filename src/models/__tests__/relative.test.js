@@ -1,4 +1,5 @@
 import { validateModel } from 'models/validate'
+import * as formTypes from 'constants/formTypes'
 import relative, {
   isCitizen, requireCitizenshipDocumentation, requireResidenceDocumentation,
   isLivingNonCitizen,
@@ -46,6 +47,13 @@ describe('The requireCitizenshipDocumentation function', () => {
       Birthplace: { country: { value: 'Canada' } },
     }))
       .toEqual(true)
+  })
+
+  it('returns false if the form is SF85P', () => {
+    expect(requireCitizenshipDocumentation({
+      Citizenship: { value: ['United States', 'Canada'] },
+      Birthplace: { country: { value: 'Canada' } },
+    }, formTypes.SF85P))
   })
 })
 
