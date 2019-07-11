@@ -67,7 +67,7 @@ export default class ForeignBornDocuments extends ValidationElement {
   }
 
   render() {
-    const { requireRelationshipMaritalForeignBornDocExpiration } = this.props
+    const { requireExpirationDate } = this.props
     return (
       <div className="foreign-born-documents">
         <Field
@@ -313,7 +313,7 @@ export default class ForeignBornDocuments extends ValidationElement {
           />
         </Field>
 
-        {requireRelationshipMaritalForeignBornDocExpiration && (
+        {requireExpirationDate && (
           <Field
             title={i18n.t('foreignBornDocuments.heading.documentExpiration')}
             scrollIntoView={this.props.scrollIntoView}
@@ -349,5 +349,5 @@ ForeignBornDocuments.defaultProps = {
   DocumentExpirationNotApplicable: { applicable: true },
   onUpdate: () => {},
   onError: (value, arr) => arr,
-  requireRelationshipMaritalForeignBornDocExpiration: true,
+  requireExpirationDate: true,
 }

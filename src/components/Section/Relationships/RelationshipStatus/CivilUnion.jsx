@@ -157,7 +157,7 @@ class CivilUnion extends ValidationElement {
               onError={this.props.onError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              requireRelationshipMaritalForeignBornDocExpiration={requireRelationshipMaritalForeignBornDocExpiration}
+              requireExpirationDate={requireRelationshipMaritalForeignBornDocExpiration}
             />
           </Show>
 
