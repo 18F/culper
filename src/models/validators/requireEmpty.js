@@ -1,3 +1,5 @@
+import { VALUE_NOT_EMPTY } from 'constants/errors'
+
 const requireEmpty = (value) => {
   if (value === null
     || value === undefined
@@ -7,7 +9,7 @@ const requireEmpty = (value) => {
     return null
   }
 
-  return 'Value must be empty'
+  return VALUE_NOT_EMPTY
 }
 
 export default requireEmpty
