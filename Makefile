@@ -180,6 +180,14 @@ run:
 	docker-compose rm -f api js
 	$(info Running local development server)
 	docker-compose up --abort-on-container-exit --build
+run-saml:
+	docker-compose rm -f api js
+	$(info Running local development server)
+	docker-compose -f docker-compose.yml \
+		-f docker-compose.identity.yml \
+		up \
+		--abort-on-container-exit \
+		--build
 identity:
 	docker-compose -f docker-compose.yml -f docker-compose.identity.yml up identity
 docs:

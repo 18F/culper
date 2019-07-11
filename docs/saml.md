@@ -1,9 +1,20 @@
 # SAML
 
+The eQIP prototype uses wso2 identity server as its SAML provider. The exact distribution used is only currently available to folks within GSA, but for development purposes a fresh install of wso2is 5.8.0 will suffice.
+
+## Setting up SAML
+
+### Dependencies
+
+wso2is uses a lot of resources during startup. Make sure your Docker daemon has allotted enough resources, or it will silently kill the server before it's done initializing. To successfully launch the full eApp cluster, use the following settings (under Docker > Preferences > Advanced):
+- 3+ GB memory
+- 3+ CPU cores
+
+### Initial Configuration
+
 To authenticate with SAML rather than the basic auth:
 
-1. Create the Identity Server image. Options:
-    * [Build from scratch](https://github.com/wso2/docker-is/tree/master/dockerfiles/is)
+1. [For GSA folks only] Create the Identity Server image.
     * Download the existing image (GSA only) <!-- because we don't have a registry -->
         1. [Download the image](https://drive.google.com/file/d/1o7aP98rhoGPL5PEZALnXNnQfWxqfRyJi/view?usp=sharing)
         1. Unarchive and load the image.
@@ -13,7 +24,7 @@ To authenticate with SAML rather than the basic auth:
             docker load -i wso2-image.tar
             ```
 
-1. Start the Identity Server.
+1. Start the Identity Server. If you did not install wso2is in the previous step, then the script will pull 5.8.0 from docker hub.
 
     ```shell
     make identity
@@ -46,11 +57,26 @@ To authenticate with SAML rather than the basic auth:
 1. Enable SAML on the "client" side.
     1. Make sure your `.env` has the `SAML_*` defaults from `.env.example`.
     1. In your `.env`, set `BASIC_ENABLED=` and `SAML_ENABLED=1`.
-1. In another terminal, start the server (or restart, if already running).
 
-    ```shell
-    make run
-    ```
+### Optional configutation changes
+
+Since wso2is is very verbose, you may wish to reduce its logging levels. You can adjust this under Configurations (menu at far left) > Logging > Global Log4j Configuration. These changes will take effect immediately, though be warned that the server will always log the first 70ish INFO statements during startup.
+
+## Running the full eApp cluster with SAML
+
+Once you have completed the initial configuration, you can launch the full cluster including wso2is:
+
+```shell
+make run-saml
+```
+
+Or if you still have `make identity` running, you can launch the rest of the cluster with:
+
+```shell
+make run
+```
+
+### Login with PIV or CAC
 
 1. Visit [http://localhost:8080](http://localhost:8080).
 1. `Log in with PIV/CAC`, with username and password of `admin`.
