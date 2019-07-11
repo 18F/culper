@@ -25,7 +25,7 @@ describe('The Education component', () => {
     }
 
     const component = createComponent(expected)
-    expect(component.find('.education').length).toEqual(1)
+    expect(component.find('.education').length).toEqual(0)
   })
 
   it('no error on with items', () => {
@@ -40,6 +40,6 @@ describe('The Education component', () => {
       },
     }
     const component = createComponent(expected)
-    expect(component.find('.education').length).toEqual(2)
+    expect(component.find('.education').length).toEqual(1)
   })
 })
