@@ -3,6 +3,7 @@ import { validateModel } from 'models/validate'
 import {
   today, cleanDateObject, createDateFromObject, createDurationFromObject,
 } from 'helpers/date'
+import { INVALID_DATE_RANGE } from 'constants/errors'
 
 const dateRangeValidator = (value = {}, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
@@ -41,7 +42,7 @@ const dateRangeValidator = (value = {}, options, key, attributes, globalOptions)
     return null
   }
 
-  return 'To date must be after from date'
+  return INVALID_DATE_RANGE
 }
 
 export default dateRangeValidator

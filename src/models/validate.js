@@ -1,5 +1,8 @@
 import { validate } from 'validate.js'
 
+import * as errorKeys from 'constants/errors'
+import { YES, NO } from 'constants/values'
+
 import requireTrue from 'models/validators/requireTrue'
 import requireEmpty from 'models/validators/requireEmpty'
 import hasValue from 'models/validators/hasValue'
@@ -22,14 +25,7 @@ import {
 
 // Error message format
 validate.formatters.errorKeys = errors => (
-  errors.map((e) => {
-    let { validator } = e
-    if (validator === 'presence') {
-      validator = 'required'
-    }
-
-    return `${e.attribute}.${validator}`
-  })
+  errors.map(e => `${e.attribute}.${e.validator}.${e.error}`)
 )
 
 // Date parser/formatting
@@ -56,8 +52,35 @@ validate.extend(validate.validators.datetime, {
 })
 
 // Set default options/config
-validate.validators.presence.options = { allowEmpty: false }
+validate.validators.datetime.notValid = errorKeys.INVALID_DATE
+validate.validators.datetime.tooEarly = errorKeys.DATE_TOO_EARLY
+validate.validators.datetime.tooLate = errorKeys.DATE_TOO_LATE
+validate.validators.email.message = errorKeys.INVALID_EMAIL
+validate.validators.equality.message = errorKeys.NOT_EQUAL
+validate.validators.exclusion.message = errorKeys.EXCLUSION
+validate.validators.format.message = errorKeys.INVALID_FORMAT
+validate.validators.inclusion.message = errorKeys.INCLUSION
+validate.validators.length.notValid = errorKeys.INVALID_LENGTH
+validate.validators.length.wrongLength = errorKeys.LENGTH_WRONG
+validate.validators.length.tooShort = errorKeys.LENGTH_TOO_SHORT
+validate.validators.length.tooLong = errorKeys.LENGTH_TOO_LONG
+validate.validators.numericality.notValid = errorKeys.INVALID_NUMBER
+validate.validators.numericality.notInteger = errorKeys.NUMBER_NOT_INTEGER
+validate.validators.numericality.notGreaterThan = errorKeys.NUMBER_NOT_GREATER_THAN
+validate.validators.numericality.notGreaterThanOrEqualTo = errorKeys
+  .NUMBER_NOT_GREATER_THAN_OR_EQUAL_TO
+validate.validators.numericality.notEqualTo = errorKeys.NUMBER_NOT_EQUAL_TO
+validate.validators.numericality.notLessThan = errorKeys.NUMBER_NOT_LESS_THAN
+validate.validators.numericality.notLessThanOrEqualTo = errorKeys.NUMBER_NOT_LESS_THAN_OR_EQUAL_TO
+validate.validators.numericality.notDivisibleBy = errorKeys.NUMBER_NOT_DIVISIBLE_BY
+validate.validators.numericality.notOdd = errorKeys.NUMBER_NOT_ODD
+validate.validators.numericality.notEven = errorKeys.NUMBER_NOT_EVEN
+validate.validators.presence.allowEmpty = false
+validate.validators.presence.message = errorKeys.REQUIRED
+validate.validators.url.message = errorKeys.INVALID_URL
+
 validate.options = {
+  fullMessages: false,
   format: 'errorKeys',
   allowPOBox: true,
   requireDay: true,
@@ -102,7 +125,7 @@ export default validateModel
 
 /** require Yes or No */
 export const hasYesOrNo = {
-  inclusion: ['Yes', 'No'],
+  inclusion: [YES, NO],
 }
 
 /** check the value of an attribute.value */
