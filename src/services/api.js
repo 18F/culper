@@ -38,6 +38,8 @@ class Api {
       timeout: 30000,
       withCredentials: true,
     })
+
+    this.proxy.interceptors.response.use(this.handleResponseSuccess, this.handleResponseError)
   }
 
   getToken = () => window.token
@@ -48,6 +50,13 @@ class Api {
 
   bearerToken() {
     return { Authorization: `Bearer ${this.getToken()}` }
+  }
+
+  handleResponseSuccess = response => response
+
+  handleResponseError = (error) => {
+    console.warn(`API request failed: ${error.message}`)
+    return Promise.reject(error)
   }
 
   information() {
@@ -70,6 +79,7 @@ class Api {
     return this.proxy.post(endpoint, params, h)
   }
 
+  /** AUTH */
   saml() {
     return this.get(env.EndpointSaml(), false)
   }
@@ -93,12 +103,9 @@ class Api {
     return this.post(env.EndpointRefresh())
   }
 
+  /** FORM */
   save(payload) {
     return this.post(env.EndpointSave(), payload)
-  }
-
-  section(type) {
-    return this.get(env.EndpointSection(type))
   }
 
   status() {
@@ -113,14 +120,11 @@ class Api {
     return this.get(env.EndpointForm())
   }
 
-  hash() {
-    return this.get(env.EndpointFormHash())
-  }
-
   validate(payload) {
     return this.post(env.EndpointValidate(), payload)
   }
 
+  /** ATTACHMENTS */
   listAttachments() {
     return this.get(env.EndpointAttachment())
   }
