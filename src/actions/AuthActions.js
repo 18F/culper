@@ -48,16 +48,23 @@ export function login(username, password) {
             window.status = query.status.toUpperCase()
           }
         }
-        api.setToken(response.data)
-        dispatch(handleLoginSuccess(response.data))
-        env.History().push('/loading')
-      })
-      .catch((error) => {
-        if (error.response.status === 500) {
-          dispatch(handleLoginError(error.response.data))
+
+        if (query.status) {
+          window.status = query.status.toUpperCase()
         }
-      })
-  }
+      }
+      api.setToken(response.data)
+      dispatch(handleLoginSuccess(response.data))
+      env.History().push('/loading')
+    })
+    .catch((error) => {
+      if (error.response) {
+        dispatch(handleLoginError(error.response.data))
+      } else {
+        // No response - API unreachable
+        dispatch(handleLoginError('Network Error'))
+      }
+    })
 }
 */
 /**
