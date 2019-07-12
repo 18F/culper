@@ -1,42 +1,75 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import Cookies from 'js-cookie'
-import { i18n, env } from '../../config'
-import { api, getQueryValue, deleteCookie } from '../../services'
-import { login, handleLoginSuccess } from '../../actions/AuthActions'
-import { Consent } from '../../components/Form'
+
+import i18n from 'util/i18n'
+import { env } from 'config'
+import { api, getQueryValue, deleteCookie } from 'services'
+import { login, handleLoginSuccess } from 'actions/AuthActions'
+import { Consent } from 'components/Form'
 
 export class Login extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      authenticated: this.props.authenticated,
-      username: this.props.username,
-      password: this.props.password,
-      showPassword: this.props.showPassword,
-      saml: {}
-    }
 
-    this.onUsernameChange = this.onUsernameChange.bind(this)
-    this.onPasswordChange = this.onPasswordChange.bind(this)
-    this.togglePassword = this.togglePassword.bind(this)
-    this.login = this.login.bind(this)
+    this.state = {
+      username: '',
+      password: '',
+      showPassword: false,
+      saml: {},
+    }
   }
 
   componentWillMount() {
     this.redirect()
+
     if (env.SamlEnabled()) {
-      api.saml().then(response => {
+      api.saml().then((response) => {
         this.setState({ saml: response.data || {} })
       })
     }
   }
 
+  onUsernameChange = (e) => {
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState({ username: e.target.value })
+    }
+  }
+
+  onPasswordChange = (e) => {
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState({ password: e.target.value })
+    }
+  }
+
+  togglePassword = () => {
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState(prev => ({
+        showPassword: !prev.showPassword,
+      }))
+    }
+  }
+
+  login = (event) => {
+    const { dispatch } = this.props
+    const { username, password } = this.state
+
+    event.preventDefault()
+
+    if (env.BasicAuthenticationEnabled()) {
+      dispatch(login(username, password))
+    }
+  }
+
   redirect() {
+    const { authenticated, history, dispatch } = this.props
+
     // If user is authenticated, redirect to home page
-    if (this.props.authenticated) {
-      this.props.history.push('/loading')
+    if (authenticated) {
+      history.push('/loading')
       return
     }
 
@@ -45,8 +78,8 @@ export class Login extends React.Component {
     if (token) {
       deleteCookie('token')
       api.setToken(token)
-      this.props.dispatch(handleLoginSuccess())
-      this.props.history.push('/loading')
+      dispatch(handleLoginSuccess())
+      history.push('/loading')
       return
     }
 
@@ -54,55 +87,31 @@ export class Login extends React.Component {
     if (err) {
       switch (err) {
         case 'token':
-          this.props.history.push('/token')
+          history.push('/token')
           return
         case 'access_denied':
-          this.props.history.push('/accessdenied')
+          history.push('/accessdenied')
           return
         case 'saml_logout_failed':
-          this.props.history.push('/error')
+          history.push('/error')
           break
         default:
-          this.props.history.push('/error')
+          history.push('/error')
           break
       }
     }
   }
 
-  onUsernameChange(e) {
-    if (env.BasicAuthenticationEnabled()) {
-      this.setState({ username: e.target.value })
-    }
-  }
-
-  onPasswordChange(e) {
-    if (env.BasicAuthenticationEnabled()) {
-      this.setState({ password: e.target.value })
-    }
-  }
-
-  togglePassword() {
-    if (env.BasicAuthenticationEnabled()) {
-      this.setState({ showPassword: !this.state.showPassword })
-    }
-  }
-
-  login(event) {
-    event.preventDefault()
-    if (env.BasicAuthenticationEnabled()) {
-      this.props.dispatch(login(this.state.username, this.state.password))
-    }
-  }
-
   errorMessage() {
-    if (!this.props.error) {
+    const { error } = this.props
+
+    if (!error) {
       return ''
     }
 
-    const msg =
-      this.props.error.indexOf('pg: ') === -1
-        ? this.props.error
-        : i18n.m('login.error.generic')
+    const msg = error.indexOf('pg: ') === -1
+      ? error
+      : i18n.m('login.error.generic')
 
     return (
       <div className="field no-margin-bottom">
@@ -123,13 +132,15 @@ export class Login extends React.Component {
       return null
     }
 
+    const { saml } = this.state
+
     return (
       <div id="saml" className="auth saml">
-        <form method="post" action={this.state.saml.URL}>
+        <form method="post" action={saml.URL}>
           <input
             type="hidden"
             name="SAMLRequest"
-            value={this.state.saml.Base64XML}
+            value={saml.Base64XML}
           />
           <button type="submit" className="usa-button-big">
             <span>{i18n.t('login.saml.button')}</span>
@@ -144,11 +155,23 @@ export class Login extends React.Component {
       return null
     }
 
-    const authValid = this.props.error === undefined || this.props.error === ''
-    let pwClass = 'password help'
-    if (!authValid) {
-      pwClass += ' usa-input-error'
-    }
+    const { error } = this.props
+    const { username, password, showPassword } = this.state
+
+    const authValid = error === undefined || error === ''
+    const pwClass = classnames(
+      'password',
+      'help',
+      { 'usa-input-error': !authValid }
+    )
+
+    const showPasswordButtonTitle = showPassword
+      ? i18n.t('login.basic.hide.title')
+      : i18n.t('login.basic.show.title')
+
+    const showPasswordButtonText = showPassword
+      ? i18n.t('login.basic.hide.text')
+      : i18n.t('login.basic.show.text')
 
     return (
       <div id="basic" className="auth basic">
@@ -159,7 +182,7 @@ export class Login extends React.Component {
               id="user"
               name="user"
               type="text"
-              value={this.state.username}
+              value={username}
               onChange={this.onUsernameChange}
             />
           </div>
@@ -170,26 +193,19 @@ export class Login extends React.Component {
             <input
               id="password"
               name="password"
-              type={this.state.showPassword ? 'text' : 'password'}
-              value={this.state.password}
+              type={showPassword ? 'text' : 'password'}
+              value={password}
               onChange={this.onPasswordChange}
             />
             <div className="peek">
-              <a
+              <button
+                type="button"
                 id="show-password"
                 onClick={this.togglePassword}
-                href="javascript:;;"
-                title={i18n.t(
-                  `login.basic.${
-                    this.state.showPassword ? 'hide' : 'show'
-                  }.title`
-                )}>
-                {i18n.t(
-                  `login.basic.${
-                    this.state.showPassword ? 'hide' : 'show'
-                  }.text`
-                )}
-              </a>
+                title={showPasswordButtonTitle}
+              >
+                {showPasswordButtonText}
+              </button>
             </div>
             {this.errorMessage()}
           </div>
@@ -199,8 +215,9 @@ export class Login extends React.Component {
             </button>
             <a
               id="forgot-password"
-              href="javascript:;;"
-              title={i18n.t('login.basic.forgot.title')}>
+              href="#TODO"
+              title={i18n.t('login.basic.forgot.title')}
+            >
               {i18n.t('login.basic.forgot.text')}
             </a>
           </div>
@@ -209,32 +226,18 @@ export class Login extends React.Component {
     )
   }
 
-  loginFormClass(auths) {
-    let count = 0
-    for (const auth of auths) {
-      if (auth) {
-        count++
-      }
-    }
-
-    switch (count) {
-      case 3:
-        return 'table three'
-      case 2:
-        return 'table two'
-      case 1:
-        return 'table one'
-      default:
-        return 'table zero'
-    }
-  }
-
   loginForm() {
     const saml = this.authSAML()
     const basic = this.authBasic()
 
+    const loginFormClass = classnames('table', {
+      two: saml && basic,
+      one: (saml && !basic) || (!saml && basic),
+      zero: !saml && !basic,
+    })
+
     return (
-      <div className={this.loginFormClass([saml, basic])}>
+      <div className={loginFormClass}>
         {saml}
         {basic}
       </div>
@@ -242,15 +245,18 @@ export class Login extends React.Component {
   }
 
   render() {
+    const { dispatch, authenticated } = this.props
+
     const modalOpen = document.body.classList.contains('modal-open')
     return (
       <div className="login eapp-core" id="login">
-        <Consent dispatch={this.props.dispatch} />
+        <Consent dispatch={dispatch} />
         <div
           id="seal-header"
           className="seal-header text-center"
           aria-hidden={modalOpen}
-          aria-disabled={modalOpen}>
+          aria-disabled={modalOpen}
+        >
           <div className="content">
             <img
               src="/img/nbis-seal.png"
@@ -262,19 +268,27 @@ export class Login extends React.Component {
         <div
           className="content"
           aria-hidden={modalOpen}
-          aria-disabled={modalOpen}>
-          {!this.props.authenticated && this.loginForm()}
+          aria-disabled={modalOpen}
+        >
+          {!authenticated && this.loginForm()}
         </div>
       </div>
     )
   }
 }
 
+Login.propTypes = {
+  authenticated: PropTypes.bool,
+  history: PropTypes.object,
+  dispatch: PropTypes.func,
+  error: PropTypes.string,
+}
+
 Login.defaultProps = {
   authenticated: false,
-  username: '',
-  password: '',
-  showPassword: false
+  history: {},
+  dispatch: () => {},
+  error: '',
 }
 
 /**
@@ -284,11 +298,11 @@ Login.defaultProps = {
  * method is executed which causes a re-render.
  */
 function mapStateToProps(state) {
-  const auth = state.authentication
+  const { authentication } = state
+
   return {
-    authenticated: auth.authenticated,
-    token: auth.token,
-    error: auth.error
+    authenticated: authentication.authenticated,
+    error: authentication.error,
   }
 }
 
