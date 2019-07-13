@@ -2,6 +2,7 @@ package api
 
 import (
 	"github.com/pkg/errors"
+	"time"
 )
 
 var (
@@ -35,6 +36,13 @@ type StorageService interface {
 	LoadAttachment(accountID int, attachmentID int) (Attachment, error)
 	// ListAttachmentMetadata returns a slice of attachments' metadata for a given account.
 	ListAttachmentsMetadata(accountID int) ([]Attachment, error)
-	//DeleteAttachment deletes an attachment for the given account
+	// DeleteAttachment deletes an attachment for the given account
 	DeleteAttachment(accountID int, attachmentID int) error
+
+	// CreateSession creates a new session record in the db
+	CreateSession(accountId int, sessionKey string, expirationDate time.Time) error
+	// DeleteSession removes a session record from the db
+	DeleteSession(sessionKey string) error
+	// FetchSessionAccount fetches an account and session data from the db
+	FetchSessionAccount(sessionKey string) (Account, error)
 }
