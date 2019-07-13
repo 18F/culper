@@ -75,30 +75,6 @@ The hooks should automatically be applied once `yarn install` is complete, and w
 
 The eslint rules for the pre-commit hook will be using a stricter standard than the CI build to allow us to improve the code as we modify files while avoiding having to fix all the errors that would be generated if the rules were applied to the whole project immediately. Eventually we will want to apply the stricter rules to the CI build as well.
 
-#### Feature Tests
-
-Setup steps:
-
-1. Edit _.env_ file and set `API_REDIRECT=http://web:8080` and `API_BASE_URL=http://api:3000`
-1. Disable *SAML\_ENABLED* auth and enable *BASIC\_ENABLED*
-1. Edit /etc/hosts file __OPTIONAL__ add _web_ and _api_ to the end of the localhost line in /etc/hosts so you don't have to keep changing the values of API\_REDIRECT or API\_BASE\_URL in .env file back to localhost
-1. Run __make run__ to ensure services are restarted
-1. Run the purge directions from docs/test-scenarios.md to clear out old data
-
-To run the feature specs locally:
-
-```shell
-make specs
-```
-
-Screenshots will be recorded in _specs/screenshots_
-
-To run a single feature spec locally:
-
-```shell
-make specs COMMAND='bash -c "yarn run nightwatch --test features/identification.feature"'
-```
-
 ### Running a local server
 
 To run a local server, we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:
