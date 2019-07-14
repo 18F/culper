@@ -16,7 +16,7 @@
   "dependencies": {
     "@18f/stylelint-rules": "^2.0.0",
     "@babel/polyfill": "^7.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "axios-mock-adapter": "^1.15.0",
     "cache-loader": "^1.2.2",
     "classnames": "^2.2.6",
