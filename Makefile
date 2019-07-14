@@ -174,7 +174,5 @@ run:
 	docker-compose up --abort-on-container-exit --build
 identity:
 	docker-compose -f docker-compose.yml -f docker-compose.identity.yml up identity
-docs:
-	docker-compose -f docker-compose.yml -f docker-compose.docs.yml up docs
 tag:
 	echo $(tag)
