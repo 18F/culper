@@ -128,3 +128,19 @@ export const requireLegalOffenseIncarcerated = formType => (
 export const requireLegalInvestigationClearanceGranted = formType => (
   requiredByForms(formType, [formTypes.SF85])
 )
+
+export const requireForeignCounterIntelligence = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireForeignExcessiveKnowledge = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireForeignSensitiveInformation = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireForeignThreatened = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)

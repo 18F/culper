@@ -15,6 +15,10 @@ import {
   requireFinancialCreditSection,
   requireFinancialDelinquentSection,
   requireFinancialNonpaymentSection,
+  requireForeignCounterIntelligence,
+  requireForeignExcessiveKnowledge,
+  requireForeignSensitiveInformation,
+  requireForeignThreatened,
 } from './branches'
 
 describe('Branches helper function', () => {
@@ -188,6 +192,50 @@ describe('Branches helper function', () => {
 
     it('is not required by the SF85', () => {
       expect(requireFinancialNonpaymentSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignCounterIntelligence', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignCounterIntelligence('SF86')).toBe(true)
+    })
+
+    it('is required by the SF85 and SF85P', () => {
+      expect(requireForeignCounterIntelligence('SF85P')).toBe(false)
+      expect(requireForeignCounterIntelligence('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignExcessiveKnowledge', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignExcessiveKnowledge('SF86')).toBe(true)
+    })
+
+    it('is required by the SF85 and SF85P', () => {
+      expect(requireForeignExcessiveKnowledge('SF85P')).toBe(false)
+      expect(requireForeignExcessiveKnowledge('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignSensitiveInformation', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignSensitiveInformation('SF86')).toBe(true)
+    })
+
+    it('is required by the SF85 and SF85P', () => {
+      expect(requireForeignSensitiveInformation('SF85P')).toBe(false)
+      expect(requireForeignSensitiveInformation('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignThreatened', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignThreatened('SF86')).toBe(true)
+    })
+
+    it('is required by the SF85 and SF85P', () => {
+      expect(requireForeignThreatened('SF85P')).toBe(false)
+      expect(requireForeignThreatened('SF85')).toBe(false)
     })
   })
 })

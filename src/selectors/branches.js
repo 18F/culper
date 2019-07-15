@@ -31,6 +31,10 @@ import {
   requireLegalOffenseSentenced,
   requireLegalOffenseIncarcerated,
   requireLegalInvestigationClearanceGranted,
+  requireForeignCounterIntelligence,
+  requireForeignExcessiveKnowledge,
+  requireForeignSensitiveInformation,
+  requireForeignThreatened,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -136,4 +140,24 @@ export const selectLegalOffenseIncarcerated = createSelector(formTypeSelector,
 export const selectLegalInvestigationClearanceGranted = createSelector(formTypeSelector,
   formType => ({
     requireLegalInvestigationClearanceGranted: requireLegalInvestigationClearanceGranted(formType),
+  }))
+
+export const selectForeignCounterIntelligence = createSelector(formTypeSelector,
+  formType => ({
+    requireForeignCounterIntelligence: requireForeignCounterIntelligence(formType),
+  }))
+
+export const selectForeignExcessiveKnowledge = createSelector(formTypeSelector,
+  formType => ({
+    requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(formType),
+  }))
+
+export const selectForeignSensitiveInformation = createSelector(formTypeSelector,
+  formType => ({
+    requireForeignSensitiveInformation: requireForeignSensitiveInformation(formType),
+  }))
+
+export const selectForeignThreatened = createSelector(formTypeSelector,
+  formType => ({
+    requireForeignThreatened: requireForeignThreatened(formType),
   }))
