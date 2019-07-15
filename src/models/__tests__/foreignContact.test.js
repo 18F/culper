@@ -367,6 +367,45 @@ describe('The foreignContact model', () => {
     })
   })
 
+  it('AlternateAddress is required', () => {
+    const testData = {}
+    const expectedErrors = ['AlternateAddress.required']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('AlternateAddress must be a valid physical address', () => {
+    const testData = {
+      AlternateAddress: {
+        HasDifferentAddress: false,
+      },
+    }
+    const expectedErrors = ['AlternateAddress.model']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('AlternateAddress must be a military address', () => {
+    const testData = {
+      AlternateAddress: {
+        HasDifferentAddress: { value: 'Yes' },
+        Address: {
+          street: '123 Main ST',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10003',
+          country: 'United States',
+        },
+      },
+    }
+    const expectedErrors = ['AlternateAddress.model']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Employer is required', () => {
     const testData = {}
     const expectedErrors = ['Employer.required']
@@ -471,6 +510,16 @@ describe('The foreignContact model', () => {
       Birthdate: { year: 1980, month: 10, day: 12 },
       Birthplace: { city: 'London', country: 'United Kingdom' },
       AddressNotApplicable: { applicable: false },
+      AlternateAddress: {
+        HasDifferentAddress: { value: 'Yes' },
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+      },
       Employer: { value: 'Something' },
       EmployerAddressNotApplicable: { applicable: false },
       HasAffiliations: { value: 'No' },

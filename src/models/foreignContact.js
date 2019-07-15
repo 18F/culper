@@ -1,6 +1,8 @@
 import name from 'models/shared/name'
 import cityCountry from 'models/shared/locations/cityCountry'
 import address from 'models/shared/locations/address'
+import physicalAddress from 'models/shared/physicalAddress'
+
 import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
 
 const contactMethodOptions = [
@@ -144,6 +146,10 @@ const foreignContact = {
         validator: address,
       },
     }
+  },
+  AlternateAddress: {
+    presence: true,
+    model: { validator: physicalAddress, militaryAddress: true },
   },
   Employer: (value, attributes) => {
     const { EmployerNotApplicable } = attributes

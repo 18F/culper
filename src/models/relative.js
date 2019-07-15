@@ -3,6 +3,7 @@ import alias from 'models/shared/alias'
 import address from 'models/shared/locations/address'
 import usAddress from 'models/shared/locations/usAddress'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
+import physicalAddress from 'models/shared/physicalAddress'
 import { hasYesOrNo } from 'models/validate'
 
 import {
@@ -109,6 +110,15 @@ const relative = {
     return {
       presence: true,
       location: { validator: address },
+    }
+  },
+  AlternateAddress: (value, attributes) => {
+    if (attributes.IsDeceased
+      && attributes.IsDeceased.value === 'Yes') return {}
+
+    return {
+      presence: true,
+      model: { validator: physicalAddress, militaryAddress: true },
     }
   },
   CitizenshipDocumentation: (value, attributes) => {
