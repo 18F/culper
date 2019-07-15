@@ -2,31 +2,6 @@
 
 
 [[projects]]
-  digest = "1:b00a0396239b035ed5ac3d710fcbb93abb5f1c7a17f33be08daebdb631c233c2"
-  name = "github.com/18F/e-QIP-prototype"
-  packages = [
-    "api",
-    "api/admin",
-    "api/cloudfoundry",
-    "api/cmd",
-    "api/env",
-    "api/eqip",
-    "api/http",
-    "api/jwt",
-    "api/log",
-    "api/mock",
-    "api/pdf",
-    "api/postgresql",
-    "api/saml",
-    "api/simplestore",
-    "api/usps",
-    "api/xml",
-  ]
-  pruneopts = "UT"
-  revision = "efc447a27420765f208345f9dd7cf08cf5daa882"
-  version = "v2.1.0-preview.4.6"
-
-[[projects]]
   digest = "1:cf84c1cf34b76875b25f45cbffd95ca409cdf370473a6caa078abc16db06484a"
   name = "github.com/Jeffail/gabs"
   packages = ["."]
@@ -308,22 +283,6 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/18F/e-QIP-prototype/api",
-    "github.com/18F/e-QIP-prototype/api/admin",
-    "github.com/18F/e-QIP-prototype/api/cloudfoundry",
-    "github.com/18F/e-QIP-prototype/api/cmd",
-    "github.com/18F/e-QIP-prototype/api/env",
-    "github.com/18F/e-QIP-prototype/api/eqip",
-    "github.com/18F/e-QIP-prototype/api/http",
-    "github.com/18F/e-QIP-prototype/api/jwt",
-    "github.com/18F/e-QIP-prototype/api/log",
-    "github.com/18F/e-QIP-prototype/api/mock",
-    "github.com/18F/e-QIP-prototype/api/pdf",
-    "github.com/18F/e-QIP-prototype/api/postgresql",
-    "github.com/18F/e-QIP-prototype/api/saml",
-    "github.com/18F/e-QIP-prototype/api/simplestore",
-    "github.com/18F/e-QIP-prototype/api/usps",
-    "github.com/18F/e-QIP-prototype/api/xml",
     "github.com/Jeffail/gabs",
     "github.com/RobotsAndPencils/go-saml",
     "github.com/antchfx/xmlquery",
