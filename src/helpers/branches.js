@@ -17,7 +17,7 @@ export const requireCitizenshipForeignPassportsSection = formType => (
 )
 
 export const requireForeignMilitaryMaintainsContact = formType => (
-  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86])
 )
 
 export const requireForeignContactsSection = formType => (

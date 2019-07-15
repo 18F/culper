@@ -62,7 +62,7 @@ describe('Branches helper function', () => {
   describe('requireCitizenshipForeignPassportsSection', () => {
     it('is required by the SF86 and SF85P', () => {
       expect(requireCitizenshipForeignPassportsSection('SF86')).toBe(true)
-      expect(requireHistoryFederalSection('SF85P')).toBe(true)
+      expect(requireCitizenshipForeignPassportsSection('SF85P')).toBe(true)
     })
 
     it('is not required by the SF85', () => {
@@ -71,13 +71,13 @@ describe('Branches helper function', () => {
   })
 
   describe('requireForeignMilitaryMaintainsContact', () => {
-    it('is required by the SF86 and SF85P', () => {
+    it('is required by the SF86', () => {
       expect(requireForeignMilitaryMaintainsContact('SF86')).toBe(true)
-      expect(requireHistoryFederalSection('SF85P')).toBe(true)
     })
 
-    it('is not required by the SF85', () => {
+    it('is not required by the SF85  and SF85P', () => {
       expect(requireForeignMilitaryMaintainsContact('SF85')).toBe(false)
+      expect(requireForeignMilitaryMaintainsContact('SF85P')).toBe(false)
     })
   })
 
