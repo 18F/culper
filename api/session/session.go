@@ -18,9 +18,15 @@ func NewSessionService(timeout time.Duration, store api.StorageService) *Session
 	}
 }
 
+// return a session key and an error if applicable
 func (s SessionService) UserDidAuthenticate(accountID int) (string, error) {
-
+	// if account id doesn't match any records, create a new one
+	sessionKey := "mock key"
+	err := s.store.CreateOrUpdateSession(accountID, sessionKey, s.timeout)
 	return "", nil
 
 }
 
+func (s SessionService) GetAccountIfSessionIsValid(sessionKey string) (api.Account, error) {
+	return api.Account{}, nil
+}
