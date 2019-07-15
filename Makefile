@@ -188,6 +188,8 @@ run-saml:
 		up \
 		--abort-on-container-exit \
 		--build
+stop-saml:
+	docker-compose -f docker-compose.yml -f docker-compose.identity.yml down
 identity:
 	docker-compose -f docker-compose.yml -f docker-compose.identity.yml up identity
 docs:

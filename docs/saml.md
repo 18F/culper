@@ -14,16 +14,6 @@ wso2is uses a lot of resources during startup. Make sure your Docker daemon has 
 
 To authenticate with SAML rather than the basic auth:
 
-1. [For GSA folks only] Create the Identity Server image.
-    * Download the existing image (GSA only) <!-- because we don't have a registry -->
-        1. [Download the image](https://drive.google.com/file/d/1o7aP98rhoGPL5PEZALnXNnQfWxqfRyJi/view?usp=sharing)
-        1. Unarchive and load the image.
-
-            ```shell
-            gunzip wso2-image.tar.gz
-            docker load -i wso2-image.tar
-            ```
-
 1. Start the Identity Server. If you did not install wso2is in the previous step, then the script will pull 5.8.0 from docker hub.
 
     ```shell
@@ -41,7 +31,12 @@ To authenticate with SAML rather than the basic auth:
         - Assertion Consumer URLs: `http://localhost:3000/auth/saml/callback`, then click `Add` <!-- this should match SAML_CONSUMER_SERVICE_URL -->
         - Uncheck everything but `Enable Response Signing`
         - Check `Enable Single Logout`, no need to set SLO request or response URLs
-1. Copy the certificate.
+1. Copy the eApp certificate to wso2.
+    1. Go back to [the service provider settings](https://localhost:9443/carbon/application/add-service-provider.jsp).
+    1. Edit your new `localhost` certificate.
+    1. Click the browse button under `Application Certificate`, and select or copy the contents of the cert located in `e-QIP-prototype > api > eapp.crt`.
+    1. Save these changes.
+1. Copy the wso2 certificate to eApp.
     1. [Go to `Identity Providers`->`Resident`.](https://localhost:9443/carbon/idpmgt/idp-mgt-edit-local.jsp)
     1. Expand `Inbound Authentication Configuration`, then `SAML2 Web SSO Configuration`.
     1. Click `Download SAML Metadata`.
@@ -76,10 +71,19 @@ Or if you still have `make identity` running, you can launch the rest of the clu
 make run
 ```
 
+Sometimes when cancelling the process, docker fails to shut down the containers. You can drop them with:
+
+```shell
+make stop-saml
+```
+
 ### Login with PIV or CAC
 
 1. Visit [http://localhost:8080](http://localhost:8080).
 1. `Log in with PIV/CAC`, with username and password of `admin`.
+<!--
+# TODO: update with what it looks like on 5.8.0
+-->
 
 ## Caveats
 
