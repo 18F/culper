@@ -7,7 +7,7 @@ import {
   Field,
   Textarea,
   Country,
-  DateRange
+  DateRange,
 } from '../../../Form'
 import TravelDays from './TravelDays'
 import TravelPurpose from './TravelPurpose'
@@ -61,115 +61,115 @@ export default class TravelQuestions extends ValidationElement {
       SensitiveExplanation: this.props.SensitiveExplanation,
       Threatened: this.props.Threatened,
       ThreatenedExplanation: this.props.ThreatenedExplanation,
-      ...queue
+      ...queue,
     })
   }
 
   updateThreatenedExplanation(values) {
     this.update({
-      ThreatenedExplanation: values
+      ThreatenedExplanation: values,
     })
   }
 
   updateThreatened(values) {
     this.update({
-      Threatened: values
+      Threatened: values,
     })
   }
 
   updateSensitiveExplanation(values) {
     this.update({
-      SensitiveExplanation: values
+      SensitiveExplanation: values,
     })
   }
 
   updateSensitive(values) {
     this.update({
-      Sensitive: values
+      Sensitive: values,
     })
   }
 
   updateInterestExplanation(values) {
     this.update({
-      InterestExplanation: values
+      InterestExplanation: values,
     })
   }
 
   updateInterest(values) {
     this.update({
-      Interest: values
+      Interest: values,
     })
   }
 
   updateCounterExplanation(values) {
     this.update({
-      CounterExplanation: values
+      CounterExplanation: values,
     })
   }
 
   updateCounter(values) {
     this.update({
-      Counter: values
+      Counter: values,
     })
   }
 
   updateContactedExplanation(values) {
     this.update({
-      ContactedExplanation: values
+      ContactedExplanation: values,
     })
   }
 
   updateContacted(values) {
     this.update({
-      Contacted: values
+      Contacted: values,
     })
   }
 
   updateEncounterExplanation(values) {
     this.update({
-      EncounterExplanation: values
+      EncounterExplanation: values,
     })
   }
 
   updateEncounter(values) {
     this.update({
-      Encounter: values
+      Encounter: values,
     })
   }
 
   updateQuestionedExplanation(values) {
     this.update({
-      QuestionedExplanation: values
+      QuestionedExplanation: values,
     })
   }
 
   updateQuestioned(values) {
     this.update({
-      Questioned: values
+      Questioned: values,
     })
   }
 
   updatePurpose(values) {
     this.update({
-      Purpose: values
+      Purpose: values,
     })
   }
 
   updateDays(values) {
     this.update({
-      Days: values
+      Days: values,
     })
   }
 
   updateDates(values) {
     this.update({
-      Dates: values
+      Dates: values,
     })
   }
 
   updateCountry(values) {
     this.update({
-      Country: values
+      Country: values,
     })
   }
 
@@ -185,11 +185,12 @@ export default class TravelQuestions extends ValidationElement {
         <Field
           title={i18n.t('foreign.travel.heading.country')}
           adjustFor="country"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Country
             name="Country"
             {...this.props.Country}
-            excludeUnitedStates={true}
+            excludeUnitedStates
             className="foreign-travel-country"
             onUpdate={this.updateCountry}
             onError={this.props.onError}
@@ -201,12 +202,13 @@ export default class TravelQuestions extends ValidationElement {
           title={i18n.t('foreign.travel.heading.dates')}
           help="foreign.travel.help.dates"
           adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="Dates"
             {...this.props.Dates}
             className="foreign-travel-dates"
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -217,7 +219,8 @@ export default class TravelQuestions extends ValidationElement {
           title={i18n.t('foreign.travel.heading.days')}
           help="foreign.travel.help.days"
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <TravelDays
             name="Days"
             className="foreign-travel-days"
@@ -232,7 +235,8 @@ export default class TravelQuestions extends ValidationElement {
         <Field
           title={i18n.t('foreign.travel.heading.purpose')}
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('foreign.travel.para.checkall')}
           <TravelPurpose
             name="Purpose"
@@ -265,7 +269,8 @@ export default class TravelQuestions extends ValidationElement {
             title={i18n.t('foreign.travel.heading.explanation')}
             titleSize="label"
             adjustFor="textarea"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="QuestionedExplanation"
               {...this.props.QuestionedExplanation}
@@ -295,7 +300,8 @@ export default class TravelQuestions extends ValidationElement {
             title={i18n.t('foreign.travel.heading.explanation')}
             titleSize="label"
             adjustFor="textarea"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="EncounterExplanation"
               {...this.props.EncounterExplanation}
@@ -325,7 +331,8 @@ export default class TravelQuestions extends ValidationElement {
             title={i18n.t('foreign.travel.heading.explanation')}
             titleSize="label"
             adjustFor="textarea"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="ContactedExplanation"
               {...this.props.ContactedExplanation}
@@ -356,7 +363,8 @@ export default class TravelQuestions extends ValidationElement {
             <Field
               title={i18n.t('foreign.travel.heading.explanation')}
               titleSize="label"
-              adjustFor="textarea">
+              adjustFor="textarea"
+            >
               <Textarea
                 name="CounterExplanation"
                 {...this.props.CounterExplanation}
@@ -388,7 +396,8 @@ export default class TravelQuestions extends ValidationElement {
             <Field
               title={i18n.t('foreign.travel.heading.explanation')}
               titleSize="label"
-              adjustFor="textarea">
+              adjustFor="textarea"
+            >
               <Textarea
                 name="InterestExplanation"
                 {...this.props.InterestExplanation}
@@ -420,7 +429,8 @@ export default class TravelQuestions extends ValidationElement {
             <Field
               title={i18n.t('foreign.travel.heading.explanation')}
               titleSize="label"
-              adjustFor="textarea">
+              adjustFor="textarea"
+            >
               <Textarea
                 name="SensitiveExplanation"
                 {...this.props.SensitiveExplanation}
@@ -452,7 +462,8 @@ export default class TravelQuestions extends ValidationElement {
             <Field
               title={i18n.t('foreign.travel.heading.explanation')}
               titleSize="label"
-              adjustFor="textarea">
+              adjustFor="textarea"
+            >
               <Textarea
                 name="ThreatenedExplanation"
                 {...this.props.ThreatenedExplanation}
