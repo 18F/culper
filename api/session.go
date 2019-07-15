@@ -5,8 +5,8 @@ import (
 )
 
 var (
-	// ErrSessionInvalid is returned when the session is invalid
-	ErrSessionInvalid = errors.New("Session is invalid")
+	// ErrValidSessionNotFound is returned when a valid session is not found
+	ErrValidSessionNotFound = errors.New("Valid session not found")
 )
 
 type SessionService interface {

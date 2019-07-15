@@ -4,6 +4,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/google/uuid"
 )
 
@@ -17,7 +18,11 @@ func TestSessionOverwritesPreviousRecord(t *testing.T) {
 	if firstCreateErr != nil {
 		t.Fatal(firstCreateErr)
 	}
-	// confirm first expiration date
+
+	firstFetchedAccount, fetchErr := store.FetchSessionAccount(firstSessionKey)
+	if fetchErr != nil {
+		t.Fatal(fetchErr)
+	}
 
 	secondSessionKey := uuid.New().String()
 	secondExpirationDate := time.Now().Add(time.Duration(25 * time.Minute))
@@ -25,10 +30,23 @@ func TestSessionOverwritesPreviousRecord(t *testing.T) {
 	if secondCreateErr != nil {
 		t.Fatal(secondCreateErr)
 	}
-	// confirm record updated via second exp date
+
+	secondFetchedAccount, fetchErr := store.FetchSessionAccount(secondSessionKey)
+	if fetchErr != nil {
+		t.Fatal(fetchErr)
+	}
+
+	if firstFetchedAccount != secondFetchedAccount {
+		t.Fatal("both fetches should return the same account")
+	}
+
+	_, expectedFetchErr := store.FetchSessionAccount(firstSessionKey)
+	if expectedFetchErr != api.ErrValidSessionNotFound {
+		t.Fatal("using the first session key should cause an error to be thrown")
+	}
 }
 
-func TestFetchSession(t *testing.T) {
+func TestFetchSessionReturnAccountOnValidSession(t *testing.T) {
 	store := getSimpleStore()
 	account := createAccount(t, store)
 
@@ -46,5 +64,22 @@ func TestFetchSession(t *testing.T) {
 
 	if actualAccount != account {
 		t.Fatal("actual returned account does not match expected returned account")
+	}
+}
+
+func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
+	store := getSimpleStore()
+	account := createAccount(t, store)
+
+	sKey := uuid.New().String()
+	sExpiry := time.Now().Add(time.Duration(-5 * time.Minute))
+	createErr := store.CreateOrUpdateSession(sKey, account.ID, sExpiry)
+	if createErr != nil {
+		t.Fatal(createErr)
+	}
+
+	_, err := store.FetchSessionAccount(sKey)
+	if err != api.ErrValidSessionNotFound {
+		t.Fatal(err)
 	}
 }

@@ -1,6 +1,7 @@
 package simplestore
 
 import (
+	"database/sql"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -33,15 +34,28 @@ type sessionRow struct {
 	ExpirationDate time.Time `db:"expiration_date"`
 }
 
+type sessionAccountRow struct {
+	sessionRow
+	api.Account
+}
+
 // FetchSessionAccount fetches an account and session data from the db
 func (s SimpleStore) FetchSessionAccount(sessionKey string) (api.Account, error) {
 
-	fetchQuery := `SELECT session_key, account_id, expiration_date FROM Sessions WHERE session_key = $1`
-	row := sessionRow{}
-	selectErr := s.db.Get(&row, fetchQuery, sessionKey)
+	fetchQuery := `SELECT sessions.session_key, sessions.account_id, sessions.expiration_date,
+		accounts.id, accounts.form_version, accounts.form_type, accounts.username,
+		accounts.email, accounts.external_id
+		FROM sessions, accounts
+		WHERE sessions.account_id = accounts.id
+		AND sessions.session_key = $1 AND sessions.expiration_date > $2`
+	row := sessionAccountRow{}
+	selectErr := s.db.Get(&row, fetchQuery, sessionKey, time.Now())
 	if selectErr != nil {
+		if selectErr == sql.ErrNoRows {
+			return api.Account{}, api.ErrValidSessionNotFound
+		}
 		return api.Account{}, errors.Wrap(selectErr, "Couldn't find Session")
 	}
 
-	return api.Account{}, nil
+	return row.Account, nil
 }
