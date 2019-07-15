@@ -8,17 +8,17 @@ describe('The branch collection validator', () => {
 
   it('fails if there are no items', () => {
     const testData = {}
-    expect(branchCollection(testData)).toBe('Collection is empty')
+    expect(branchCollection(testData, {})).toBe('Collection is empty')
   })
 
   it('fails if the items array is empty', () => {
     const testData = { items: [] }
-    expect(branchCollection(testData)).toBe('Collection is empty')
+    expect(branchCollection(testData, {})).toBe('Collection is empty')
   })
 
   it('fails if no validator is passed', () => {
     const testData = { items: ['one', 'two', 'three'] }
-    expect(branchCollection(testData)).toBeTruthy()
+    expect(branchCollection(testData, {})).toBeTruthy()
   })
 
   it('fails if none of the items have a "No" value', () => {

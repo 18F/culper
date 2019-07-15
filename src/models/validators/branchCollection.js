@@ -1,6 +1,6 @@
 import { validateModel } from 'models/validate'
 
-const branchCollectionValidator = (value, options = {}) => {
+const branchCollectionValidator = (value, options, key, attributes, globalOptions) => {
   if (value === undefined) return null // Only validate if there's a value
   if (value === null) return 'Invalid value'
 
@@ -20,7 +20,7 @@ const branchCollectionValidator = (value, options = {}) => {
     if (Item && Item.Has && Item.Has.value === 'No') {
       // Skip it
     } else {
-      const itemErrors = validateModel(Item, validator, options)
+      const itemErrors = validateModel(Item, validator, { ...globalOptions, ...options })
       if (itemErrors !== true) return itemErrors
     }
   }

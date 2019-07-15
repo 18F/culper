@@ -6,8 +6,8 @@ import { DateTime } from 'luxon'
 
 const TODAY = DateTime.local()
 
-const DEFAULT_LATEST = TODAY
-const DEFAULT_EARLIEST = TODAY.minus({ years: 200, days: 1 })
+export const DEFAULT_LATEST = TODAY
+export const DEFAULT_EARLIEST = TODAY.minus({ years: 200, days: 1 })
 
 /**
  * Applicant birthdate must be:

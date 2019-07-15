@@ -1,5 +1,88 @@
 import { validateModel } from 'models/validate'
-import cohabitant from '../cohabitant'
+import cohabitant, { otherName } from '../cohabitant'
+
+describe('The otherName model', () => {
+  it('validates required fields', () => {
+    const testData = {}
+    const expectedErrors = [
+      'OtherName.required',
+      'MaidenName.required',
+      'DatesUsed.required',
+    ]
+
+    expect(validateModel(testData, otherName))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('OtherName must be a valid name', () => {
+    const testData = {
+      OtherName: { first: 'P' },
+    }
+    const expectedErrors = ['OtherName.model']
+
+    expect(validateModel(testData, otherName))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('MaidenName must have a value', () => {
+    const testData = {
+      MaidenName: 'true',
+    }
+    const expectedErrors = ['MaidenName.hasValue']
+
+    expect(validateModel(testData, otherName))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DatesUsed must be a valid date range', () => {
+    const testData = {
+      DatesUsed: {
+        from: { year: 2010, month: 2, day: 2 },
+        present: false,
+      },
+    }
+    const expectedErrors = ['DatesUsed.daterange']
+
+    expect(validateModel(testData, otherName))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DatesUsed must be within the given limits', () => {
+    const testData = {
+      DatesUsed: {
+        from: { year: 2001, month: 2, day: 2 },
+        to: { year: 2030, month: 1, day: 2 },
+      },
+    }
+    const dateLimits = {
+      earliest: { year: 2005, month: 1, day: 4 },
+      latest: { year: 2015, month: 2, day: 3 },
+    }
+    const expectedErrors = ['DatesUsed.daterange']
+
+    expect(validateModel(testData, otherName, dateLimits))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('passes a valid otherName', () => {
+    const testData = {
+      Has: { value: 'Yes' },
+      OtherName: { first: 'Someone', noMiddleName: true, last: 'Else' },
+      MaidenName: { value: 'No' },
+      DatesUsed: {
+        from: { day: 1, month: 1, year: 2006 },
+        to: { day: 5, month: 10, year: 2010 },
+      },
+    }
+
+    const dateLimits = {
+      earliest: { year: 2005, month: 1, day: 4 },
+      latest: { year: 2015, month: 2, day: 3 },
+    }
+
+    expect(validateModel(testData, otherName, dateLimits)).toEqual(true)
+  })
+})
 
 describe('The cohabitant model', () => {
   it('name is required', () => {
@@ -119,6 +202,33 @@ describe('The cohabitant model', () => {
         ],
       },
     }
+    const expectedErrors = ['OtherNames.branchCollection']
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('OtherNames items date range must be after the Birthdate', () => {
+    const testData = {
+      Birthdate: { year: 2000, month: 2, day: 15 },
+      OtherNames: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              OtherName: { first: 'Someone', noMiddleName: true, last: 'Else' },
+              MaidenName: { value: 'No' },
+              DatesUsed: {
+                from: { day: 1, month: 1, year: 1990 },
+                to: { day: 5, month: 10, year: 1995 },
+              },
+            },
+          },
+          { Item: { Has: { value: 'No' } } },
+        ],
+      },
+    }
+
     const expectedErrors = ['OtherNames.branchCollection']
 
     expect(validateModel(testData, cohabitant))
