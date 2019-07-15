@@ -54,34 +54,70 @@ const foreignTravel = {
     }
     return {}
   },
-  Counter: { presence: true, hasValue: { validator: hasYesOrNo } },
-  CounterExplanation: (value, attributes) => {
+  Counter: (value, attributes, attributeName, options) => {
+    if (options.requireForeignCounterIntelligence) {
+      return { presence: true, hasValue: { validator: hasYesOrNo } }
+    }
+    return {}
+  },
+  CounterExplanation: (value, attributes, attributeName, options) => {
     const { Counter } = attributes
-    if (Counter && Counter.value === 'Yes') {
+    if (
+      options.requireForeignCounterIntelligence
+      && Counter
+      && Counter.value === 'Yes'
+    ) {
       return { presence: true, hasValue: true }
     }
     return {}
   },
-  Interest: { presence: true, hasValue: { validator: hasYesOrNo } },
-  InterestExplanation: (value, attributes) => {
+  Interest: (value, attributes, attributeName, options) => {
+    if (options.requireForeignExcessiveKnowledge) {
+      return { presence: true, hasValue: { validator: hasYesOrNo } }
+    }
+    return {}
+  },
+  InterestExplanation: (value, attributes, attributeName, options) => {
     const { Interest } = attributes
-    if (Interest && Interest.value === 'Yes') {
+    if (
+      options.requireForeignExcessiveKnowledge
+      && Interest
+      && Interest.value === 'Yes'
+    ) {
       return { presence: true, hasValue: true }
     }
     return {}
   },
-  Sensitive: { presence: true, hasValue: { validator: hasYesOrNo } },
-  SensitiveExplanation: (value, attributes) => {
+  Sensitive: (value, attributes, attributeName, options) => {
+    if (options.requireForeignSensitiveInformation) {
+      return { presence: true, hasValue: { validator: hasYesOrNo } }
+    }
+    return {}
+  },
+  SensitiveExplanation: (value, attributes, attributeName, options) => {
     const { Sensitive } = attributes
-    if (Sensitive && Sensitive.value === 'Yes') {
+    if (
+      options.requireForeignSensitiveInformation
+      && Sensitive
+      && Sensitive.value === 'Yes'
+    ) {
       return { presence: true, hasValue: true }
     }
     return {}
   },
-  Threatened: { presence: true, hasValue: { validator: hasYesOrNo } },
-  ThreatenedExplanation: (value, attributes) => {
+  Threatened: (value, attributes, attributeName, options) => {
+    if (options.requireForeignThreatened) {
+      return { presence: true, hasValue: { validator: hasYesOrNo } }
+    }
+    return {}
+  },
+  ThreatenedExplanation: (value, attributes, attributeName, options) => {
     const { Threatened } = attributes
-    if (Threatened && Threatened.value === 'Yes') {
+    if (
+      options.requireForeignThreatened
+      && Threatened
+      && Threatened.value === 'Yes'
+    ) {
       return { presence: true, hasValue: true }
     }
     return {}

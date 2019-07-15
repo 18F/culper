@@ -2,6 +2,12 @@ import { validateModel } from 'models/validate'
 import foreignTravel from '../foreignTravel'
 
 describe('The foreignTravel model', () => {
+  const SF86Options = {
+    requireForeignCounterIntelligence: true,
+    requireForeignExcessiveKnowledge: true,
+    requireForeignSensitiveInformation: true,
+    requireForeignThreatened: true,
+  }
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
@@ -17,7 +23,7 @@ describe('The foreignTravel model', () => {
       'Sensitive.required',
       'Threatened.required',
     ]
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -26,7 +32,7 @@ describe('The foreignTravel model', () => {
       Country: { values: 'test' },
     }
     const expectedErrors = ['Country.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -35,7 +41,7 @@ describe('The foreignTravel model', () => {
       Dates: 'invalid date',
     }
     const expectedErrors = ['Dates.daterange']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -44,7 +50,7 @@ describe('The foreignTravel model', () => {
       Days: { value: 'invalid' },
     }
     const expectedErrors = ['Days.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -53,7 +59,7 @@ describe('The foreignTravel model', () => {
       Purpose: { values: [] },
     }
     const expectedErrors = ['Purpose.array']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -62,7 +68,7 @@ describe('The foreignTravel model', () => {
       Purpose: { values: ['invalid', 'test'] },
     }
     const expectedErrors = ['Purpose.array']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -71,7 +77,7 @@ describe('The foreignTravel model', () => {
       Questioned: { value: false },
     }
     const expectedErrors = ['Questioned.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -81,7 +87,7 @@ describe('The foreignTravel model', () => {
         Questioned: { value: 'Yes' },
       }
       const expectedErrors = ['QuestionedExplanation.required']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -91,7 +97,7 @@ describe('The foreignTravel model', () => {
         QuestionedExplanation: 'Test',
       }
       const expectedErrors = ['QuestionedExplanation.hasValue']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -114,7 +120,7 @@ describe('The foreignTravel model', () => {
         Threatened: { value: 'No' },
       }
 
-      expect(validateModel(testData, foreignTravel)).toEqual(true)
+      expect(validateModel(testData, foreignTravel, SF86Options)).toEqual(true)
     })
   })
 
@@ -123,7 +129,7 @@ describe('The foreignTravel model', () => {
       Encounter: { value: false },
     }
     const expectedErrors = ['Encounter.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -133,7 +139,7 @@ describe('The foreignTravel model', () => {
         Encounter: { value: 'Yes' },
       }
       const expectedErrors = ['EncounterExplanation.required']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -143,7 +149,7 @@ describe('The foreignTravel model', () => {
         EncounterExplanation: 'Test',
       }
       const expectedErrors = ['EncounterExplanation.hasValue']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -166,7 +172,7 @@ describe('The foreignTravel model', () => {
         Threatened: { value: 'No' },
       }
 
-      expect(validateModel(testData, foreignTravel)).toEqual(true)
+      expect(validateModel(testData, foreignTravel, SF86Options)).toEqual(true)
     })
   })
 
@@ -175,7 +181,7 @@ describe('The foreignTravel model', () => {
       Contacted: { value: false },
     }
     const expectedErrors = ['Contacted.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -185,7 +191,7 @@ describe('The foreignTravel model', () => {
         Contacted: { value: 'Yes' },
       }
       const expectedErrors = ['ContactedExplanation.required']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -195,7 +201,7 @@ describe('The foreignTravel model', () => {
         ContactedExplanation: 'Test',
       }
       const expectedErrors = ['ContactedExplanation.hasValue']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -218,7 +224,7 @@ describe('The foreignTravel model', () => {
         Threatened: { value: 'No' },
       }
 
-      expect(validateModel(testData, foreignTravel)).toEqual(true)
+      expect(validateModel(testData, foreignTravel, SF86Options)).toEqual(true)
     })
   })
 
@@ -227,7 +233,7 @@ describe('The foreignTravel model', () => {
       Counter: { value: false },
     }
     const expectedErrors = ['Counter.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -237,7 +243,7 @@ describe('The foreignTravel model', () => {
         Counter: { value: 'Yes' },
       }
       const expectedErrors = ['CounterExplanation.required']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -247,7 +253,7 @@ describe('The foreignTravel model', () => {
         CounterExplanation: 'Test',
       }
       const expectedErrors = ['CounterExplanation.hasValue']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -270,7 +276,7 @@ describe('The foreignTravel model', () => {
         Threatened: { value: 'No' },
       }
 
-      expect(validateModel(testData, foreignTravel)).toEqual(true)
+      expect(validateModel(testData, foreignTravel, SF86Options)).toEqual(true)
     })
   })
 
@@ -279,7 +285,7 @@ describe('The foreignTravel model', () => {
       Interest: { value: false },
     }
     const expectedErrors = ['Interest.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -289,7 +295,7 @@ describe('The foreignTravel model', () => {
         Interest: { value: 'Yes' },
       }
       const expectedErrors = ['InterestExplanation.required']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -299,7 +305,7 @@ describe('The foreignTravel model', () => {
         InterestExplanation: 'Test',
       }
       const expectedErrors = ['InterestExplanation.hasValue']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -322,7 +328,7 @@ describe('The foreignTravel model', () => {
         Threatened: { value: 'No' },
       }
 
-      expect(validateModel(testData, foreignTravel)).toEqual(true)
+      expect(validateModel(testData, foreignTravel, SF86Options)).toEqual(true)
     })
   })
 
@@ -331,7 +337,7 @@ describe('The foreignTravel model', () => {
       Sensitive: { value: false },
     }
     const expectedErrors = ['Sensitive.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -341,7 +347,7 @@ describe('The foreignTravel model', () => {
         Sensitive: { value: 'Yes' },
       }
       const expectedErrors = ['SensitiveExplanation.required']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -351,7 +357,7 @@ describe('The foreignTravel model', () => {
         SensitiveExplanation: 'Test',
       }
       const expectedErrors = ['SensitiveExplanation.hasValue']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -374,7 +380,7 @@ describe('The foreignTravel model', () => {
         Threatened: { value: 'No' },
       }
 
-      expect(validateModel(testData, foreignTravel)).toEqual(true)
+      expect(validateModel(testData, foreignTravel, SF86Options)).toEqual(true)
     })
   })
 
@@ -383,7 +389,7 @@ describe('The foreignTravel model', () => {
       Threatened: { value: false },
     }
     const expectedErrors = ['Threatened.hasValue']
-    expect(validateModel(testData, foreignTravel))
+    expect(validateModel(testData, foreignTravel, SF86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -393,7 +399,7 @@ describe('The foreignTravel model', () => {
         Threatened: { value: 'Yes' },
       }
       const expectedErrors = ['ThreatenedExplanation.required']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -403,7 +409,7 @@ describe('The foreignTravel model', () => {
         ThreatenedExplanation: 'Test',
       }
       const expectedErrors = ['ThreatenedExplanation.hasValue']
-      expect(validateModel(testData, foreignTravel))
+      expect(validateModel(testData, foreignTravel, SF86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -426,7 +432,7 @@ describe('The foreignTravel model', () => {
         ThreatenedExplanation: { value: 'Test' },
       }
 
-      expect(validateModel(testData, foreignTravel)).toEqual(true)
+      expect(validateModel(testData, foreignTravel, SF86Options)).toEqual(true)
     })
   })
 
@@ -448,6 +454,31 @@ describe('The foreignTravel model', () => {
       Threatened: { value: 'No' },
     }
 
-    expect(validateModel(testData, foreignTravel)).toEqual(true)
+    expect(validateModel(testData, foreignTravel, SF86Options)).toEqual(true)
+  })
+
+  describe('SF85P', () => {
+    const SF85POptions = {
+      requireForeignCounterIntelligence: false,
+      requireForeignExcessiveKnowledge: false,
+      requireForeignSensitiveInformation: false,
+      requireForeignThreatened: false,
+    }
+
+    it('passes a valid foreign travel', () => {
+      const testData = {
+        Country: { value: 'United Kingdom' },
+        Dates: {
+          from: { year: 2012, month: 8, day: 2 },
+          to: { year: 2012, month: 8, day: 28 },
+        },
+        Days: { value: '21-30' },
+        Purpose: { values: ['Business', 'Other'] },
+        Questioned: { value: 'No' },
+        Encounter: { value: 'No' },
+        Contacted: { value: 'No' },
+      }
+      expect(validateModel(testData, foreignTravel, SF85POptions)).toEqual(true)
+    })
   })
 })

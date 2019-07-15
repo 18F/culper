@@ -1,7 +1,12 @@
+import * as formTypes from 'constants/formTypes'
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignTravel from 'models/foreignTravel'
+import store from 'services/store'
 
-export const validateTravel = data => validateModel(data, foreignTravel) === true
+
+export const validateTravel = (data, formType = formTypes.SF86) => (
+  validateModel(data, foreignTravel, formType) === true
+)
 
 export const validateForeignTravel = (data) => {
   const foreignTravelModel = {
@@ -32,7 +37,10 @@ export const validateForeignTravel = (data) => {
 
 export default class ForeignTravelValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   isValid() {
@@ -42,7 +50,10 @@ export default class ForeignTravelValidator {
 
 export class TravelValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   validCountry() {
@@ -119,6 +130,6 @@ export class TravelValidator {
   }
 
   isValid() {
-    return validateTravel(this.data)
+    return validateTravel(this.data, this.formType)
   }
 }
