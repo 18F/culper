@@ -22,7 +22,10 @@ func NewSessionService(timeout time.Duration, store api.StorageService) *Session
 func (s SessionService) UserDidAuthenticate(accountID int) (string, error) {
 	// if account id doesn't match any records, create a new one
 	sessionKey := "mock key"
-	err := s.store.CreateOrUpdateSession(accountID, sessionKey, s.timeout)
+	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, s.timeout)
+	if createErr != nil {
+		return "", createErr
+	}
 	return "", nil
 
 }

@@ -41,7 +41,7 @@ type StorageService interface {
 	DeleteAttachment(accountID int, attachmentID int) error
 
 	// CreateOrUpdateSession creates a new session record in the db
-	CreateOrUpdateSession(accountId int, sessionKey string, expirationDate time.Time) error
+	CreateOrUpdateSession(accountId int, sessionKey string, expirationDate time.Duration) error
 	// DeleteSession removes a session record from the db
 	DeleteSession(sessionKey string) error
 	// FetchSessionAccount fetches an account and session data from the db
