@@ -76,6 +76,7 @@ const connectFinancialSection = (Component, {
       case 'Gambling':
         return {
           ...financial.Gambling,
+          formType: settings.formType,
         }
 
       case 'Taxes':

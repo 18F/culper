@@ -1,4 +1,5 @@
 import React from 'react'
+import * as formTypes from 'constants/formTypes'
 
 import { i18n } from 'config'
 import schema from 'schema'
@@ -90,6 +91,17 @@ export class Gambling extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const branchTitle = ((type) => {
+      switch (type) {
+        case formTypes.SF86:
+          return i18n.t('financial.gambling.title')
+        case formTypes.SF85P:
+          return i18n.t('financial.85p.gambling.title')
+        default:
+          return i18n.t('financial.gambling.title')
+      }
+    })(formType)
     return (
       <div
         className="section-content gambling"
@@ -99,7 +111,7 @@ export class Gambling extends Subsection {
         <h1 className="section-header">{i18n.t('financial.destination.gambling')}</h1>
         <Branch
           name="has_gamblingdebt"
-          label={i18n.t('financial.gambling.title')}
+          label={branchTitle}
           labelSize="h4"
           className="has-gambling-debt"
           {...this.props.HasGamblingDebt}

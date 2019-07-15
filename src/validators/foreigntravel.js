@@ -2,13 +2,32 @@ import * as formTypes from 'constants/formTypes'
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignTravel from 'models/foreignTravel'
 import store from 'services/store'
+import {
+  requireForeignCounterIntelligence,
+  requireForeignExcessiveKnowledge,
+  requireForeignSensitiveInformation,
+  requireForeignThreatened,
+} from 'helpers/branches'
 
 
-export const validateTravel = (data, formType = formTypes.SF86) => (
-  validateModel(data, foreignTravel, formType) === true
-)
+export const validateTravel = (data, formType = formTypes.SF86) => {
+  const options = {
+    requireForeignCounterIntelligence: requireForeignCounterIntelligence(formType),
+    requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(formType),
+    requireForeignSensitiveInformation: requireForeignSensitiveInformation(formType),
+    requireForeignThreatened: requireForeignThreatened(formType),
+  }
+  return validateModel(data, foreignTravel, options) === true
+}
 
-export const validateForeignTravel = (data) => {
+export const validateForeignTravel = (data, formType) => {
+  const options = {
+    requireForeignCounterIntelligence: requireForeignCounterIntelligence(formType),
+    requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(formType),
+    requireForeignSensitiveInformation: requireForeignSensitiveInformation(formType),
+    requireForeignThreatened: requireForeignThreatened(formType),
+  }
+
   const foreignTravelModel = {
     HasForeignTravelOutside: { presence: true, hasValue: { validator: hasYesOrNo } },
     HasForeignTravelOfficial: (value, attributes) => {
@@ -32,26 +51,26 @@ export const validateForeignTravel = (data) => {
     },
   }
 
-  return validateModel(data, foreignTravelModel) === true
+  return validateModel(data, foreignTravelModel, options) === true
 }
 
 export default class ForeignTravelValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { formType } = state.application.Settings
+    const { formType = formTypes.SF86 } = state.application.Settings
     this.data = data
     this.formType = formType
   }
 
   isValid() {
-    return validateForeignTravel(this.data)
+    return validateForeignTravel(this.data, this.formType)
   }
 }
 
 export class TravelValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { formType } = state.application.Settings
+    const { formType = formTypes.SF86 } = state.application.Settings
     this.data = data
     this.formType = formType
   }
@@ -105,6 +124,8 @@ export class TravelValidator {
     return validateModel(this.data, {
       Counter: foreignTravel.Counter,
       CounterExplanation: foreignTravel.CounterExplanation,
+    }, {
+      requireForeignCounterIntelligence: requireForeignCounterIntelligence(this.formType),
     }) === true
   }
 
@@ -112,6 +133,8 @@ export class TravelValidator {
     return validateModel(this.data, {
       Interest: foreignTravel.Interest,
       InterestExplanation: foreignTravel.InterestExplanation,
+    }, {
+      requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(this.formType)
     }) === true
   }
 
@@ -119,6 +142,8 @@ export class TravelValidator {
     return validateModel(this.data, {
       Sensitive: foreignTravel.Sensitive,
       SensitiveExplanation: foreignTravel.SensitiveExplanation,
+    }, {
+      requireForeignSensitiveInformation: requireForeignSensitiveInformation(this.formType),
     }) === true
   }
 
@@ -126,6 +151,8 @@ export class TravelValidator {
     return validateModel(this.data, {
       Threatened: foreignTravel.Threatened,
       ThreatenedExplanation: foreignTravel.ThreatenedExplanation,
+    }, {
+      requireForeignThreatened: requireForeignThreatened(this.formType),
     }) === true
   }
 
