@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/18f/e-QIP-prototype/api/session"
+	"github.com/18F/e-QIP-prototype/api/session"
 )
 
 func TestCreateSession(t *testing.T) {
