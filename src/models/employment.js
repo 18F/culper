@@ -13,6 +13,8 @@ import address from 'models/shared/locations/address'
 import phone from 'models/shared/phone'
 
 import { today, dateWithinRange } from 'helpers/date'
+import { isInternational, isPO } from 'helpers/location'
+import { checkValue } from 'models/validate'
 
 /** Helpers */
 const withinSevenYears = (dates = {}) => {
@@ -42,6 +44,23 @@ const supervisor = {
     return { presence: true, model: { validator: email } }
   },
   Address: { presence: true, location: { validator: address } },
+  AlternateAddress: (value, attributes) => {
+    if (attributes.Address && isInternational(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: true },
+      }
+    }
+
+    if (attributes.Address && isPO(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: false },
+      }
+    }
+
+    return {}
+  },
   Telephone: { presence: true, model: { validator: phone } },
 }
 
@@ -118,6 +137,23 @@ const employment = {
       presence: true,
       location: { validator: address },
     }
+  },
+  AlternateAddress: (value, attributes) => {
+    if (attributes.Address && isInternational(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: true },
+      }
+    }
+
+    if (attributes.Address && isPO(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: false },
+      }
+    }
+
+    return {}
   },
   Telephone: (value, attributes = {}) => {
     if (matchEmploymentActivity(attributes, [UNEMPLOYMENT])) return {}
@@ -201,6 +237,28 @@ const employment = {
     return {}
   },
 
+  PhysicalAlternateAddress: (value, attributes) => {
+    const { PhysicalAddress } = attributes
+    if (PhysicalAddress && checkValue(PhysicalAddress.HasDifferentAddress, 'Yes')) {
+      const { Address } = PhysicalAddress
+      if (Address && isInternational(Address)) {
+        return {
+          presence: true,
+          model: { validator: physicalAddress, militaryAddress: true },
+        }
+      }
+
+      if (Address && isPO(Address)) {
+        return {
+          presence: true,
+          model: { validator: physicalAddress, militaryAddress: false },
+        }
+      }
+    }
+
+    return {}
+  },
+
   // Required by self-employment & unemployed
   ReferenceName: (value, attributes = {}) => {
     if (matchEmploymentActivity(attributes, [
@@ -239,6 +297,23 @@ const employment = {
       return {
         presence: true,
         location: { validator: address },
+      }
+    }
+
+    return {}
+  },
+  ReferenceAlternateAddress: (value, attributes = {}) => {
+    if (attributes.ReferenceAddress && isInternational(attributes.ReferenceAddress)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: true },
+      }
+    }
+
+    if (attributes.ReferenceAddress && isPO(attributes.ReferenceAddress)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: false },
       }
     }
 
