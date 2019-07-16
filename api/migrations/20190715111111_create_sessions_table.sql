@@ -3,9 +3,9 @@
 -- SQL in section 'Up' is executed when this migration is applied
 -- +goose StatementBegin
 CREATE TABLE sessions(
-    session_key                 text PRIMARY KEY,
-	account_id					integer UNIQUE,
-	expiration_date             timestamp
+    session_key     text PRIMARY KEY,
+    account_id      integer UNIQUE,
+    expiration_date timestamp
 );
 
 -- +goose StatementEnd

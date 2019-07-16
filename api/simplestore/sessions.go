@@ -20,7 +20,7 @@ func (s SimpleStore) CreateOrUpdateSession(accountID int, sessionKey string, exp
 		return errors.Wrap(createErr, "Failed to create or update session")
 	}
 
-	return createErr
+	return nil
 }
 
 // DeleteSession removes a session record from the db
@@ -37,9 +37,10 @@ func (s SimpleStore) DeleteSession(sessionKey string) error {
 		return api.ErrValidSessionNotFound
 	}
 
-	return deleteErr
+	return nil
 }
 
+// SessionRow represents a row of data from the sessions table
 type SessionRow struct {
 	SessionKey     string    `db:"session_key"`
 	AccountID      int       `db:"account_id"`
@@ -69,5 +70,5 @@ func (s SimpleStore) FetchSessionAccount(sessionKey string) (api.Account, error)
 		return api.Account{}, errors.Wrap(selectErr, "Couldn't find Session")
 	}
 
-	return row.Account, selectErr
+	return row.Account, nil
 }
