@@ -9,15 +9,15 @@ import (
 	"github.com/google/uuid"
 )
 
-func getDateAndUUID() (string, time.Time) {
-	return uuid.New().String(), time.Now().Add(time.Duration(5 * time.Minute))
+func getDateAndUUID() (time.Time, string) {
+	return time.Now().Add(time.Duration(5 * time.Minute)), uuid.New().String()
 }
 
-func getTestObjects(t *testing.T) (ss SimpleStore, account api.Account, UUID string, date time.Time) {
-	ss = getSimpleStore()
-	account = createAccount(t, ss)
-	UUID, date = getDateAndUUID()
-	return
+func getTestObjects(t *testing.T) (SimpleStore, api.Account, string, time.Time) {
+	ss := getSimpleStore()
+	account := createAccount(t, ss)
+	date, UUID := getDateAndUUID()
+	return ss, account, UUID, date
 }
 
 func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
@@ -33,7 +33,7 @@ func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
 		t.Fatal(fetchErr)
 	}
 
-	secondSessionKey, secondExpirationDate := getDateAndUUID()
+	secondExpirationDate, secondSessionKey := getDateAndUUID()
 	secondCreateErr := store.CreateOrUpdateSession(account.ID, secondSessionKey, secondExpirationDate)
 	if secondCreateErr != nil {
 		t.Fatal(secondCreateErr)

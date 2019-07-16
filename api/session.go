@@ -9,6 +9,7 @@ var (
 	ErrValidSessionNotFound = errors.New("Valid session not found")
 )
 
+// SessionService backs user authentication -- providing a way to verify & modify session status
 type SessionService interface {
 	// UserDidAuthenticate creates a session for a newly logged in user
 	UserDidAuthenticate(accountID int) (sessionKey string, err error)
