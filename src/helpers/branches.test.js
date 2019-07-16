@@ -15,6 +15,7 @@ import {
   requireFinancialCreditSection,
   requireFinancialDelinquentSection,
   requireFinancialNonpaymentSection,
+  requireFinancialCardDisciplinaryDate,
   requireForeignCounterIntelligence,
   requireForeignExcessiveKnowledge,
   requireForeignSensitiveInformation,
@@ -193,6 +194,17 @@ describe('Branches helper function', () => {
 
     it('is not required by the SF85', () => {
       expect(requireFinancialNonpaymentSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireFinancialCardDisciplinaryDate', () => {
+    it('is required by the SF86', () => {
+      expect(requireFinancialCardDisciplinaryDate('SF86')).toBe(true)
+    })
+
+    it('is required by the SF85 and SF85P', () => {
+      expect(requireFinancialCardDisciplinaryDate('SF85P')).toBe(false)
+      expect(requireFinancialCardDisciplinaryDate('SF85')).toBe(false)
     })
   })
 

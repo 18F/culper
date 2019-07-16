@@ -1,5 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import financialCardAbuse from 'models/financialCardAbuse'
+import { requireFinancialCardDisciplinaryDate } from 'helpers/branches'
+import store from 'services/store'
 
 const cardAbuseModel = {
   HasCardAbuse: {
@@ -20,7 +22,10 @@ const cardAbuseModel = {
 
 export default class CardAbuseValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   validHasCardAbuse() {
@@ -32,17 +37,29 @@ export default class CardAbuseValidator {
   }
 
   isValid() {
-    return validateModel(this.data, cardAbuseModel) === true
+    return validateModel(
+      this.data,
+      cardAbuseModel,
+      { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(this.formType) }
+    ) === true
   }
 }
 
-const validateCardAbuseItem = data => (
-  validateModel(data, financialCardAbuse) === true
-)
+const validateCardAbuseItem = (data, formType) => {
+
+  return validateModel(
+    data,
+    financialCardAbuse,
+    { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType) },
+  ) === true
+}
 
 export class CardAbuseItemValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   validAgency() {
@@ -54,7 +71,11 @@ export class CardAbuseItemValidator {
   }
 
   validDate() {
-    return validateModel(this.data, { Date: financialCardAbuse.Date }) === true
+    return validateModel(
+      this.data,
+      { Date: financialCardAbuse.Date },
+      { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(this.formType) },
+    ) === true
   }
 
   validReason() {
@@ -70,6 +91,6 @@ export class CardAbuseItemValidator {
   }
 
   isValid() {
-    return validateCardAbuseItem(this.data)
+    return validateCardAbuseItem(this.data, this.formType)
   }
 }

@@ -4157,23 +4157,6 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                           <a
                             aria-current={false}
                             className="section-link"
-                            href="/form/substance/drugs/clearance"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Security clearance position
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
                             href="/form/substance/drugs/publicsafety"
                             onClick={[Function]}
                           >
@@ -4312,23 +4295,6 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                               className="section-name"
                             >
                               Voluntary counseling or treatment
-                            </span>
-                            <span
-                              className="eapp-status-icon"
-                            />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            aria-current={false}
-                            className="section-link"
-                            href="/form/substance/alcohol/additional"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="section-name"
-                            >
-                              Additional instances
                             </span>
                             <span
                               className="eapp-status-icon"

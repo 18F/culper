@@ -148,3 +148,7 @@ export const requireForeignThreatened = formType => (
 export const requireAlcoholOrderedCounselingParty = formType => (
   requiredByForms(formType, [formTypes.SF86])
 )
+
+export const requireFinancialCardDisciplinaryDate = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)

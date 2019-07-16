@@ -81,6 +81,7 @@ export class Card extends Subsection {
   }
 
   render() {
+    const { requireFinancialCardDisciplinaryDate } = this.props
     return (
       <div
         className="section-content card-abuse"
@@ -122,6 +123,7 @@ export class Card extends Subsection {
               addressBooks={this.props.addressBooks}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireFinancialCardDisciplinaryDate={requireFinancialCardDisciplinaryDate}
             />
           </Accordion>
         </Show>
@@ -139,6 +141,7 @@ Card.defaultProps = {
   validator: data => validate(schema('financial.card', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
+  requireFinancialCardDisciplinaryDate: true,
 }
 
 export default connectFinancialSection(Card, sectionConfig)

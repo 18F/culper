@@ -80,6 +80,7 @@ export default class CardItem extends ValidationElement {
   }
 
   render() {
+    const { requireFinancialCardDisciplinaryDate } = this.props
     return (
       <div className="card-item">
         <Field
@@ -115,23 +116,24 @@ export default class CardItem extends ValidationElement {
             onError={this.props.onError}
           />
         </Field>
-
-        <Field
-          title={i18n.t('financial.card.heading.date')}
-          adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
-          <DateControl
-            name="Date"
-            {...this.props.Date}
-            className="card-date"
-            hideDay={true}
-            minDateEqualTo={true}
-            required={this.props.required}
-            onUpdate={this.updateDate}
-            onError={this.props.onError}
-          />
-        </Field>
+        {requireFinancialCardDisciplinaryDate && (
+          <Field
+            title={i18n.t('financial.card.heading.date')}
+            adjustFor="labels"
+            scrollIntoView={this.props.scrollIntoView}
+            shrink={true}>
+            <DateControl
+              name="Date"
+              {...this.props.Date}
+              className="card-date"
+              hideDay={true}
+              minDateEqualTo={true}
+              required={this.props.required}
+              onUpdate={this.updateDate}
+              onError={this.props.onError}
+            />
+          </Field>
+        )}
 
         <Field
           title={i18n.t('financial.card.heading.reason')}
@@ -193,9 +195,8 @@ export default class CardItem extends ValidationElement {
 }
 
 CardItem.defaultProps = {
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  required: false
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  required: false,
+  requireFinancialCardDisciplinaryDate: true,
 }

@@ -17,6 +17,7 @@ import {
   selectFinancialDelinquentName,
   selectFinancialDelinquentNonFederal,
   selectFinancialNonpaymentSection,
+  selectFinancialCardDisciplinaryDate,
 } from 'selectors/branches'
 
 const connectFinancialSection = (Component, {
@@ -89,6 +90,7 @@ const connectFinancialSection = (Component, {
         return {
           ...financial.Card,
           addressBooks,
+          ...selectFinancialCardDisciplinaryDate(state),
         }
 
       case 'Credit':
@@ -131,6 +133,7 @@ const connectFinancialSection = (Component, {
           ...selectFinancialCreditSection(state),
           ...selectFinancialDelinquentSection(state),
           ...selectFinancialNonpaymentSection(state),
+          ...selectFinancialCardDisciplinaryDate(state),
         }
     }
   }
