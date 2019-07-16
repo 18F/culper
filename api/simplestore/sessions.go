@@ -25,28 +25,29 @@ func (s SimpleStore) CreateOrUpdateSession(sessionKey string, accountID int, exp
 
 // DeleteSession removes a session record from the db
 func (s SimpleStore) DeleteSession(sessionKey string) error {
-	deleteQuery := "DELETE FROM sessions WHERE session_key = $1;"
+	deleteQuery := "DELETE FROM sessions WHERE session_key = $1"
 
-	sqlResp, deleteErr := s.db.Exec(deleteQuery, sessionKey)
+	sqlResult, deleteErr := s.db.Exec(deleteQuery, sessionKey)
 	if deleteErr != nil {
 		return errors.Wrap(deleteErr, "Failed to delete session")
 	}
 
-	if sqlResp.data.resi.data == 0 {
+	rowsAffected, _ := sqlResult.RowsAffected()
+	if rowsAffected == 0 {
 		return api.ErrValidSessionNotFound
 	}
 
 	return deleteErr
 }
 
-type sessionRow struct {
+type SessionRow struct {
 	SessionKey     string    `db:"session_key"`
 	AccountID      int       `db:"account_id"`
 	ExpirationDate time.Time `db:"expiration_date"`
 }
 
 type sessionAccountRow struct {
-	sessionRow
+	SessionRow
 	api.Account
 }
 

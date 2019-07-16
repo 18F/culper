@@ -1,6 +1,7 @@
 package simplestore
 
 import (
+	"database/sql"
 	"testing"
 	"time"
 
@@ -49,11 +50,11 @@ func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
 
 	_, expectedFetchErr := store.FetchSessionAccount(firstSessionKey)
 	if expectedFetchErr != api.ErrValidSessionNotFound {
-		t.Fatal("using the first session key should cause an error to be thrown")
+		t.Fatal("using the first session key should cause an error to be thrown, since it has been overwritten")
 	}
 }
 
-func TestFetchSessionReturnAccountOnValidSession(t *testing.T) {
+func TestFetchSessionReturnsAccountOnValidSession(t *testing.T) {
 	store, account, sessionKey, expirationDate := getTestObjects(t)
 
 	createErr := store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
@@ -88,22 +89,25 @@ func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
 
 func TestDeleteSessionRemovesRecord(t *testing.T) {
 	store, account, sessionKey, expirationDate := getTestObjects(t)
+	store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
 
-	createErr := store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
-	if createErr != nil {
-		t.Fatal(createErr)
+	fetchQuery := `SELECT * FROM sessions WHERE session_key = $1`
+	row := SessionRow{}
+	store.db.Get(&row, fetchQuery, sessionKey)
+	if row.SessionKey != sessionKey {
+		t.Fatal("new session should have been created")
 	}
-
-	// TODO: since operating on DB, use SQL verify record
 
 	err := store.DeleteSession(sessionKey)
 	if err != nil {
-		t.Fatal("unable to delete session")
+		t.Fatal("encountered issue when trinyg to delete session")
 	}
 
-	// TODO: since operating on DB, use SQL to verify no record
-
-	t.Fatal("not implemented")
+	row = SessionRow{}
+	expectedErr := store.db.Get(&row, fetchQuery, sessionKey)
+	if expectedErr != sql.ErrNoRows {
+		t.Fatal("session should not exist")
+	}
 }
 
 func TestDeleteSessionReturnsErrIfSessionNotFound(t *testing.T) {
