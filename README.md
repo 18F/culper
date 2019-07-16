@@ -60,6 +60,13 @@ To do the initial setup and ensure that all tests pass locally:
 make
 ```
 
+#### Setting up the database for API integration tests
+
+```shell
+cd api
+make reset-test-db
+```
+
 #### Pre-Commit Hooks
 
 There are some pre commit hooks added using [husky](https://github.com/typicode/husky) to run them. The pre-commit hooks are designed to run outside of docker for speed so you will need to have run `yarn install` outside the containers if you have not done so.
