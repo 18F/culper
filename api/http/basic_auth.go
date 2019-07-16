@@ -35,15 +35,20 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	errors := structuredErrors{}
+
 	if respBody.Username == "" {
 		service.Log.Warn(api.BasicAuthMissingUsername, api.LogFields{})
-		RespondWithStructuredError(w, api.BasicAuthMissingUsername, http.StatusBadRequest)
-		return
+		errors.addError("USERNAME_MISSING", api.BasicAuthMissingUsername)
 	}
 
 	if respBody.Password == "" {
 		service.Log.Warn(api.BasicAuthMissingPassword, api.LogFields{})
-		RespondWithStructuredError(w, api.BasicAuthMissingPassword, http.StatusBadRequest)
+		errors.addError("PASSWORD_MISSING", api.BasicAuthMissingPassword)
+	}
+
+	if errors.hasErrors() {
+		RespondWithErrors(w, errors, http.StatusBadRequest)
 		return
 	}
 

@@ -3,6 +3,9 @@ import { env } from 'config'
 
 import * as actionTypes from 'constants/actionTypes'
 import { api } from 'services/api'
+
+import { NETWORK_ERROR, UNKNOWN_ERROR } from 'constants/errorCodes'
+
 import AuthConstants from './AuthConstants'
 
 export const initApp = path => ({
@@ -58,11 +61,22 @@ export function login(username, password) {
       env.History().push('/loading')
     })
     .catch((error) => {
+      // Expected error format:
+      // { errors: [{ message: "", code: "" }, { message: "", code: "" }] }
       if (error.response) {
-        dispatch(handleLoginError(error.response.data))
+        const { data, status } = error.response
+        if (data && data.errors) {
+          dispatch(handleLoginError(data.errors))
+        } else {
+          dispatch(handleLoginError([{
+            message: UNKNOWN_ERROR,
+            code: UNKNOWN_ERROR,
+            status,
+          }]))
+        }
       } else {
         // No response - API unreachable
-        dispatch(handleLoginError('Network Error'))
+        dispatch(handleLoginError([{ message: NETWORK_ERROR, code: NETWORK_ERROR }]))
       }
     })
 }

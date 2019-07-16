@@ -9,6 +9,7 @@ import i18n from 'util/i18n'
 import { env } from 'config'
 import { api, getQueryValue, deleteCookie } from 'services'
 import { login, handleLoginSuccess } from 'actions/AuthActions'
+import * as errorCodes from 'constants/errorCodes'
 import { Consent } from 'components/Form'
 
 export class Login extends React.Component {
@@ -100,15 +101,31 @@ export class Login extends React.Component {
   }
 
   errorMessage() {
-    const { error } = this.props
+    const { errors } = this.props
 
-    if (!error) {
-      return ''
+    if (!errors || errors.length < 0) {
+      return null
     }
 
-    const msg = error.indexOf('pg: ') === -1
-      ? error
-      : i18n.m('login.error.generic')
+    // Only show first error for now? UI TBD if multiple
+    const [error] = errors
+    const { message, code } = error
+
+    let errorMessage
+    switch (code) {
+      case errorCodes.USERNAME_MISSING:
+      case errorCodes.PASSWORD_MISSING:
+        errorMessage = i18n.t('login.error.generic')
+        break
+      case errorCodes.NETWORK_ERROR:
+        errorMessage = i18n.t('login.error.network')
+        break
+      case errorCodes.UNKNOWN_ERROR:
+        errorMessage = i18n.t('login.error.network', { code })
+        break
+      default:
+        errorMessage = message // default to message sent by API
+    }
 
     return (
       <div className="field no-margin-bottom">
@@ -116,7 +133,7 @@ export class Login extends React.Component {
           <div className="usa-alert usa-alert-error" role="alert">
             <div className="usa-alert-body">
               <h5 className="usa-alert-heading">{i18n.t('login.error.title')}</h5>
-              <p>{msg}</p>
+              <p>{errorMessage}</p>
             </div>
           </div>
         </div>
@@ -152,14 +169,12 @@ export class Login extends React.Component {
       return null
     }
 
-    const { error } = this.props
+    const { errors } = this.props
     const { username, password, showPassword } = this.state
-
-    const authValid = error === undefined || error === ''
     const pwClass = classnames(
       'password',
       'help',
-      { 'usa-input-error': !authValid }
+      { 'usa-input-error': errors && errors.length }
     )
 
     const showPasswordButtonTitle = showPassword
@@ -278,14 +293,14 @@ Login.propTypes = {
   authenticated: PropTypes.bool,
   history: PropTypes.object,
   dispatch: PropTypes.func,
-  error: PropTypes.string,
+  errors: PropTypes.array,
 }
 
 Login.defaultProps = {
   authenticated: false,
   history: {},
   dispatch: () => {},
-  error: '',
+  errors: null,
 }
 
 /**
@@ -299,7 +314,7 @@ function mapStateToProps(state) {
 
   return {
     authenticated: authentication.authenticated,
-    error: authentication.error,
+    errors: authentication.error,
   }
 }
 

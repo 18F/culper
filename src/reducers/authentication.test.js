@@ -5,6 +5,7 @@ describe('Authentication Reducer', () => {
   const defaultState = {
     authenticated: false,
     token: null,
+    error: null,
   }
 
   it('should return the initial state', () => {
@@ -15,7 +16,7 @@ describe('Authentication Reducer', () => {
     const expectedState = {
       authenticated: true,
       token: 'faketoken',
-      error: '',
+      error: null,
     }
 
     const action = handleLoginSuccess('faketoken')
@@ -26,10 +27,10 @@ describe('Authentication Reducer', () => {
     const expectedState = {
       authenticated: false,
       token: null,
-      error: undefined,
+      error: 'testError',
     }
 
-    const action = handleLoginError()
+    const action = handleLoginError('testError')
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 })
