@@ -7,21 +7,22 @@ import (
 	"github.com/google/uuid"
 )
 
-type SessionService struct {
+// Service represents a StorageService internally
+type Service struct {
 	timeout time.Duration
 	store   api.StorageService
 }
 
 // NewSessionService returns a SessionService
-func NewSessionService(timeout time.Duration, store api.StorageService) *SessionService {
-	return &SessionService{
+func NewSessionService(timeout time.Duration, store api.StorageService) *Service {
+	return &Service{
 		timeout,
 		store,
 	}
 }
 
 // UserDidAuthenticate returns a session key and an error if applicable
-func (s SessionService) UserDidAuthenticate(accountID int) (string, error) {
+func (s Service) UserDidAuthenticate(accountID int) (string, error) {
 	sessionKey := uuid.New().String()
 
 	// TODO: add tests to sanity check time edge cases / that time.Time is the right type to use here
@@ -39,11 +40,11 @@ func (s SessionService) UserDidAuthenticate(accountID int) (string, error) {
 }
 
 // GetAccountIfSessionIsValid returns an Account if the session key is valid and an error otherwise
-func (s SessionService) GetAccountIfSessionIsValid(sessionKey string) (api.Account, error) {
+func (s Service) GetAccountIfSessionIsValid(sessionKey string) (api.Account, error) {
 	return s.store.FetchSessionAccount(sessionKey)
 }
 
 // UserDidLogout attempts to end the session and returns an error on failure
-func (s SessionService) UserDidLogout(sessionKey string) error {
+func (s Service) UserDidLogout(sessionKey string) error {
 	return s.store.DeleteSession(sessionKey)
 }
