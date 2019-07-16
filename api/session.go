@@ -12,8 +12,8 @@ var (
 type SessionService interface {
 	// UserDidAuthenticate creates a session for a newly logged in user
 	UserDidAuthenticate(accountID int) (sessionKey string, err error)
-	// GetAccountIfSessionIsValid returns an account if the session is valid, or ErrSessionInvalid otherwise
+	// GetAccountIfSessionIsValid returns an account if the session is valid, or ErrValidSessionNotFound otherwise
 	GetAccountIfSessionIsValid(sessionKey string) (account Account, err error)
-	// UserDidLogout invalidates a sessino for a newly logged out user
+	// UserDidLogout invalidates a session for a newly logged out user
 	UserDidLogout(sessionKey string) error
 }
