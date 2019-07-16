@@ -8,11 +8,19 @@ import (
 	"github.com/google/uuid"
 )
 
-func TestSessionOverwritesPreviousRecord(t *testing.T) {
-	store := getSimpleStore()
-	account := createAccount(t, store)
-	firstSessionKey := uuid.New().String()
-	firstExpirationDate := time.Now().Add(time.Duration(5 * time.Minute))
+func getDateAndUUID() (string, time.Time) {
+	return uuid.New().String(), time.Now().Add(time.Duration(5 * time.Minute))
+}
+
+func getTestObjects(t *testing.T) (ss SimpleStore, account api.Account, UUID string, date time.Time) {
+	ss = getSimpleStore()
+	account = createAccount(t, ss)
+	UUID, date = getDateAndUUID()
+	return
+}
+
+func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
+	store, account, firstSessionKey, firstExpirationDate := getTestObjects(t)
 
 	firstCreateErr := store.CreateOrUpdateSession(firstSessionKey, account.ID, firstExpirationDate)
 	if firstCreateErr != nil {
@@ -24,8 +32,7 @@ func TestSessionOverwritesPreviousRecord(t *testing.T) {
 		t.Fatal(fetchErr)
 	}
 
-	secondSessionKey := uuid.New().String()
-	secondExpirationDate := time.Now().Add(time.Duration(25 * time.Minute))
+	secondSessionKey, secondExpirationDate := getDateAndUUID()
 	secondCreateErr := store.CreateOrUpdateSession(secondSessionKey, account.ID, secondExpirationDate)
 	if secondCreateErr != nil {
 		t.Fatal(secondCreateErr)
@@ -47,17 +54,14 @@ func TestSessionOverwritesPreviousRecord(t *testing.T) {
 }
 
 func TestFetchSessionReturnAccountOnValidSession(t *testing.T) {
-	store := getSimpleStore()
-	account := createAccount(t, store)
+	store, account, sessionKey, expirationDate := getTestObjects(t)
 
-	sKey := uuid.New().String()
-	sExpiry := time.Now().Add(time.Duration(25 * time.Minute))
-	createErr := store.CreateOrUpdateSession(sKey, account.ID, sExpiry)
+	createErr := store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
 
-	actualAccount, err := store.FetchSessionAccount(sKey)
+	actualAccount, err := store.FetchSessionAccount(sessionKey)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -68,18 +72,46 @@ func TestFetchSessionReturnAccountOnValidSession(t *testing.T) {
 }
 
 func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
-	store := getSimpleStore()
-	account := createAccount(t, store)
+	store, account, sessionKey, expirationDate := getTestObjects(t)
+	expirationDate = expirationDate.Add(-10 * time.Minute)
 
-	sKey := uuid.New().String()
-	sExpiry := time.Now().Add(time.Duration(-5 * time.Minute))
-	createErr := store.CreateOrUpdateSession(sKey, account.ID, sExpiry)
+	createErr := store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
 
-	_, err := store.FetchSessionAccount(sKey)
+	_, err := store.FetchSessionAccount(sessionKey)
 	if err != api.ErrValidSessionNotFound {
 		t.Fatal(err)
+	}
+}
+
+func TestDeleteSessionRemovesRecord(t *testing.T) {
+	store, account, sessionKey, expirationDate := getTestObjects(t)
+
+	createErr := store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
+	if createErr != nil {
+		t.Fatal(createErr)
+	}
+
+	// TODO: since operating on DB, use SQL verify record
+
+	err := store.DeleteSession(sessionKey)
+	if err != nil {
+		t.Fatal("unable to delete session")
+	}
+
+	// TODO: since operating on DB, use SQL to verify no record
+
+	t.Fatal("not implemented")
+}
+
+func TestDeleteSessionReturnsErrIfSessionNotFound(t *testing.T) {
+	store := getSimpleStore()
+	sessionKeyWithNoAssociatedRecord := uuid.New().String()
+
+	err := store.DeleteSession(sessionKeyWithNoAssociatedRecord)
+	if err != api.ErrValidSessionNotFound {
+		t.Fatal("session should not exist")
 	}
 }
