@@ -3,6 +3,7 @@ import AuthConstants from '../actions/AuthConstants'
 const defaultState = {
   authenticated: false,
   token: null,
+  error: null,
 }
 
 // Defines the authentication sub-state for the application.
@@ -14,7 +15,7 @@ const authentication = (state = defaultState, action) => {
         ...state,
         authenticated: true,
         token: action.token,
-        error: '',
+        error: null,
       }
 
     case AuthConstants.LOGIN_ERROR:
