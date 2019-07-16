@@ -114,6 +114,7 @@ type SamlResponseHandler struct {
 	Token    api.TokenService
 	Database api.DatabaseService
 	SAML     api.SamlService
+	Session  api.SessionService
 }
 
 // ServeHTTP is the callback handler for both login and logout SAML Responses.
