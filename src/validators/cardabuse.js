@@ -2,6 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import financialCardAbuse from 'models/financialCardAbuse'
 import { requireFinancialCardDisciplinaryDate } from 'helpers/branches'
 import store from 'services/store'
+import * as formTypes from 'constants/formTypes'
 
 const cardAbuseModel = {
   HasCardAbuse: {
@@ -23,7 +24,7 @@ const cardAbuseModel = {
 export default class CardAbuseValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { formType } = state.application.Settings
+    const { formType = formTypes.SF86 } = state.application.Settings
     this.data = data
     this.formType = formType
   }
@@ -57,7 +58,7 @@ const validateCardAbuseItem = (data, formType) => {
 export class CardAbuseItemValidator {
   constructor(data = {}) {
     const state = store.getState()
-    const { formType } = state.application.Settings
+    const { formType = formTypes.SF86 } = state.application.Settings
     this.data = data
     this.formType = formType
   }
