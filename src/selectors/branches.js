@@ -35,6 +35,7 @@ import {
   requireForeignExcessiveKnowledge,
   requireForeignSensitiveInformation,
   requireForeignThreatened,
+  requireAlcoholOrderedCounselingParty,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -160,4 +161,9 @@ export const selectForeignSensitiveInformation = createSelector(formTypeSelector
 export const selectForeignThreatened = createSelector(formTypeSelector,
   formType => ({
     requireForeignThreatened: requireForeignThreatened(formType),
+  }))
+
+export const selectAlcoholOrderedCounselingParty = createSelector(formTypeSelector,
+  formType => ({
+    requireAlcoholOrderedCounselingParty: requireAlcoholOrderedCounselingParty(formType),
   }))

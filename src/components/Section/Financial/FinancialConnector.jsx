@@ -64,7 +64,7 @@ const connectFinancialSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
-    const settings = app.Settings
+    const settings = app.Settings || {}
 
     switch (storeKey) {
       case 'Bankruptcy':

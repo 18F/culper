@@ -118,103 +118,106 @@ export default class OrderedCounseling extends ValidationElement {
   }
 
   render() {
+    const { requireAlcoholOrderedCounselingParty } = this.props
     return (
       <div className="ordered-counseling">
-        <Field
-          title={i18n.t('substance.alcohol.orderedCounseling.heading.seekers')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
-          <CheckboxGroup
-            className="seekers option-list option-list-vertical"
-            onError={this.props.onError}
-            required={this.props.required}
-            selectedValues={(this.props.Seekers || {}).values || []}>
-            <Checkbox
-              name="seekers-employer"
-              label={i18n.m(
-                'substance.alcohol.orderedCounseling.seekers.label.employer'
-              )}
-              value="Employer"
-              className="seekers-employer"
+        {requireAlcoholOrderedCounselingParty && (
+          <Field
+            title={i18n.t('substance.alcohol.orderedCounseling.heading.seekers')}
+            adjustFor="p"
+            scrollIntoView={this.props.scrollIntoView}>
+            {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
+            <CheckboxGroup
+              className="seekers option-list option-list-vertical"
               onError={this.props.onError}
-              onUpdate={this.updateSeekers}
-            />
-
-            <Checkbox
-              name="seekers-medicalProfessional"
-              label={i18n.m(
-                'substance.alcohol.orderedCounseling.seekers.label.medicalProfessional'
-              )}
-              value="MedicalProfessional"
-              className="seekers-medical-professional"
-              onError={this.props.onError}
-              onUpdate={this.updateSeekers}
-            />
-
-            <Checkbox
-              name="seekers-mentalHealthProfessional"
-              label={i18n.m(
-                'substance.alcohol.orderedCounseling.seekers.label.mentalHealthProfessional'
-              )}
-              value="MentalHealthProfessional"
-              className="seekers-mental-health-professional"
-              onError={this.props.onError}
-              onUpdate={this.updateSeekers}
-            />
-
-            <Checkbox
-              name="seekers-courtOfficial"
-              label={i18n.m(
-                'substance.alcohol.orderedCounseling.seekers.label.courtOfficial'
-              )}
-              value="CourtOfficial"
-              className="seekers-court-official"
-              onError={this.props.onError}
-              onUpdate={this.updateSeekers}
-            />
-
-            <Checkbox
-              name="seekers-notordered"
-              label={i18n.m(
-                'substance.alcohol.orderedCounseling.seekers.label.notOrdered'
-              )}
-              value="NotOrdered"
-              className="seekers-not-ordered"
-              onError={this.props.onError}
-              onUpdate={this.updateSeekers}
-            />
-
-            <Checkbox
-              name="seekers-other"
-              label={i18n.m(
-                'substance.alcohol.orderedCounseling.seekers.label.other'
-              )}
-              value="Other"
-              className="seekers-other"
-              onError={this.props.onError}
-              onUpdate={this.updateSeekers}
-            />
-          </CheckboxGroup>
-          <Show
-            when={((this.props.Seekers || {}).values || []).includes('Other')}>
-            <Field
-              title={i18n.t(
-                'substance.alcohol.orderedCounseling.label.otherSeeker'
-              )}
-              titleSize="label"
-              adjustFor="text"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text
-                name="OtherSeeker"
-                {...this.props.OtherSeeker}
-                onUpdate={this.updateOtherSeeker}
+              required={this.props.required}
+              selectedValues={(this.props.Seekers || {}).values || []}>
+              <Checkbox
+                name="seekers-employer"
+                label={i18n.m(
+                  'substance.alcohol.orderedCounseling.seekers.label.employer'
+                )}
+                value="Employer"
+                className="seekers-employer"
                 onError={this.props.onError}
-                required={this.props.required}
+                onUpdate={this.updateSeekers}
               />
-            </Field>
-          </Show>
-        </Field>
+
+              <Checkbox
+                name="seekers-medicalProfessional"
+                label={i18n.m(
+                  'substance.alcohol.orderedCounseling.seekers.label.medicalProfessional'
+                )}
+                value="MedicalProfessional"
+                className="seekers-medical-professional"
+                onError={this.props.onError}
+                onUpdate={this.updateSeekers}
+              />
+
+              <Checkbox
+                name="seekers-mentalHealthProfessional"
+                label={i18n.m(
+                  'substance.alcohol.orderedCounseling.seekers.label.mentalHealthProfessional'
+                )}
+                value="MentalHealthProfessional"
+                className="seekers-mental-health-professional"
+                onError={this.props.onError}
+                onUpdate={this.updateSeekers}
+              />
+
+              <Checkbox
+                name="seekers-courtOfficial"
+                label={i18n.m(
+                  'substance.alcohol.orderedCounseling.seekers.label.courtOfficial'
+                )}
+                value="CourtOfficial"
+                className="seekers-court-official"
+                onError={this.props.onError}
+                onUpdate={this.updateSeekers}
+              />
+
+              <Checkbox
+                name="seekers-notordered"
+                label={i18n.m(
+                  'substance.alcohol.orderedCounseling.seekers.label.notOrdered'
+                )}
+                value="NotOrdered"
+                className="seekers-not-ordered"
+                onError={this.props.onError}
+                onUpdate={this.updateSeekers}
+              />
+
+              <Checkbox
+                name="seekers-other"
+                label={i18n.m(
+                  'substance.alcohol.orderedCounseling.seekers.label.other'
+                )}
+                value="Other"
+                className="seekers-other"
+                onError={this.props.onError}
+                onUpdate={this.updateSeekers}
+              />
+            </CheckboxGroup>
+            <Show
+              when={((this.props.Seekers || {}).values || []).includes('Other')}>
+              <Field
+                title={i18n.t(
+                  'substance.alcohol.orderedCounseling.label.otherSeeker'
+                )}
+                titleSize="label"
+                adjustFor="text"
+                scrollIntoView={this.props.scrollIntoView}>
+                <Text
+                  name="OtherSeeker"
+                  {...this.props.OtherSeeker}
+                  onUpdate={this.updateOtherSeeker}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                />
+              </Field>
+            </Show>
+          </Field>
+        )}
 
         <Branch
           name="ActionTaken"

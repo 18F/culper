@@ -144,3 +144,7 @@ export const requireForeignSensitiveInformation = formType => (
 export const requireForeignThreatened = formType => (
   requiredByForms(formType, [formTypes.SF86])
 )
+
+export const requireAlcoholOrderedCounselingParty = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)

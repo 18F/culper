@@ -19,6 +19,7 @@ import {
   requireForeignExcessiveKnowledge,
   requireForeignSensitiveInformation,
   requireForeignThreatened,
+  requireAlcoholOrderedCounselingParty,
 } from './branches'
 
 describe('Branches helper function', () => {
@@ -236,6 +237,17 @@ describe('Branches helper function', () => {
     it('is required by the SF85 and SF85P', () => {
       expect(requireForeignThreatened('SF85P')).toBe(false)
       expect(requireForeignThreatened('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireAlcoholOrderedCounselingParty', () => {
+    it('is required by the SF86', () => {
+      expect(requireAlcoholOrderedCounselingParty('SF86')).toBe(true)
+    })
+
+    it('is required by the SF85 and SF85P', () => {
+      expect(requireAlcoholOrderedCounselingParty('SF85P')).toBe(false)
+      expect(requireAlcoholOrderedCounselingParty('SF85')).toBe(false)
     })
   })
 })

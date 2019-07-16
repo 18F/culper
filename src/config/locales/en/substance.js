@@ -74,6 +74,7 @@ export const substance = {
         'In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
       orderedCounseling:
         'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?',
+      orderedCounselingNum: 'In the last {{numberOfYearsString}} have you been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?',
       voluntaryCounseling:
         'Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?',
       receivedCounseling:
