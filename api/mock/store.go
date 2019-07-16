@@ -1,6 +1,8 @@
 package mock
 
 import (
+	"time"
+
 	"github.com/18F/e-QIP-prototype/api"
 )
 
@@ -50,4 +52,19 @@ func (s *StorageService) ListAttachmentsMetadata(accountID int) ([]api.Attachmen
 //DeleteAttachment deletes an attachment for the given account
 func (s *StorageService) DeleteAttachment(accountID int, attachmentID int) error {
 	return nil
+}
+
+// CreateOrUpdateSession creates a new session record in the db
+func (s *StorageService) CreateOrUpdateSession(accountID int, sessionKey string, expirationDate time.Time) error {
+	return nil
+}
+
+// DeleteSession removes a session record from the db
+func (s *StorageService) DeleteSession(sessionKey string) error {
+	return nil
+}
+
+// FetchSessionAccount fetches an account and session data from the db
+func (s *StorageService) FetchSessionAccount(sessionKey string) (api.Account, error) {
+	return api.Account{}, nil
 }

@@ -10,32 +10,12 @@ import {
   NotApplicable,
   Checkbox,
   CheckboxGroup,
-  Show
+  Show,
 } from '../../../../Form'
 import CoOwners from '../CoOwners'
 
 export default class DirectInterest extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateInterestTypes = this.updateInterestTypes.bind(this)
-    this.updateInterestType = this.updateInterestType.bind(this)
-    this.updateAcquired = this.updateAcquired.bind(this)
-    this.updateHowAcquired = this.updateHowAcquired.bind(this)
-    this.updateCost = this.updateCost.bind(this)
-    this.updateCostEstimated = this.updateCostEstimated.bind(this)
-    this.updateValue = this.updateValue.bind(this)
-    this.updateValueEstimated = this.updateValueEstimated.bind(this)
-    this.updateRelinquished = this.updateRelinquished.bind(this)
-    this.updateRelinquishedNotApplicable = this.updateRelinquishedNotApplicable.bind(
-      this
-    )
-    this.updateExplanation = this.updateExplanation.bind(this)
-    this.updateCoOwners = this.updateCoOwners.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       InterestTypes: this.props.InterestTypes,
       InterestType: this.props.InterestType,
@@ -49,13 +29,13 @@ export default class DirectInterest extends ValidationElement {
       RelinquishedNotApplicable: this.props.RelinquishedNotApplicable,
       Explanation: this.props.Explanation,
       CoOwners: this.props.CoOwners,
-      ...queue
+      ...queue,
     })
   }
 
-  updateInterestTypes(values) {
-    let interestType = values.value
-    let selected = [...((this.props.InterestTypes || {}).values || [])]
+  updateInterestTypes = (values) => {
+    const interestType = values.value
+    const selected = [...((this.props.InterestTypes || {}).values || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
     } else {
@@ -63,93 +43,96 @@ export default class DirectInterest extends ValidationElement {
     }
 
     this.update({
-      InterestTypes: { values: selected }
+      InterestTypes: { values: selected },
     })
   }
 
-  updateInterestType(values) {
+  updateInterestType = (values) => {
     this.update({
-      InterestType: values
+      InterestType: values,
     })
   }
 
-  updateAcquired(values) {
+  updateAcquired = (values) => {
     this.update({
-      Acquired: values
+      Acquired: values,
     })
   }
 
-  updateHowAcquired(values) {
+  updateHowAcquired = (values) => {
     this.update({
-      HowAcquired: values
+      HowAcquired: values,
     })
   }
 
-  updateCost(values) {
+  updateCost = (values) => {
     this.update({
-      Cost: values
+      Cost: values,
     })
   }
 
-  updateCostEstimated(values) {
+  updateCostEstimated = (values) => {
     this.update({
-      CostEstimated: values
+      CostEstimated: values,
     })
   }
 
-  updateValue(values) {
+  updateValue = (values) => {
     this.update({
-      Value: values
+      Value: values,
     })
   }
 
-  updateValueEstimated(values) {
+  updateValueEstimated = (values) => {
     this.update({
-      ValueEstimated: values
+      ValueEstimated: values,
     })
   }
 
-  updateRelinquished(values) {
+  updateRelinquished = (values) => {
     this.update({
-      Relinquished: values
+      Relinquished: values,
     })
   }
 
-  updateRelinquishedNotApplicable(values) {
+  updateRelinquishedNotApplicable = (values) => {
     this.update({
       RelinquishedNotApplicable: values,
-      Explanation: values.applicable ? this.props.Explanation : {}
+      Relinquished: values.applicable ? this.props.Relinquished : {},
+      Explanation: values.applicable ? this.props.Explanation : {},
     })
   }
 
-  updateExplanation(values) {
+  updateExplanation = (values) => {
     this.update({
-      Explanation: values
+      Explanation: values,
     })
   }
 
-  updateCoOwners(values) {
+  updateCoOwners = (values) => {
     this.update({
-      CoOwners: values
+      CoOwners: values,
     })
   }
 
   render() {
-    const prefix = this.props.prefix
+    const { prefix } = this.props
     return (
       <div className="interest">
         <Field
           title={i18n.t(
-            `foreign.activities.direct.interest.heading.interestTypes`
+            'foreign.activities.direct.interest.heading.interestTypes'
           )}
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <p>{i18n.t('foreign.activities.direct.interest.para.checkAll')}</p>
           <CheckboxGroup
             className="interest-types option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
-            selectedValues={(this.props.InterestTypes || {}).values}>
+            selectedValues={(this.props.InterestTypes || {}).values}
+          >
             <Checkbox
               name="interest-type"
               label={i18n.m(
@@ -195,9 +178,10 @@ export default class DirectInterest extends ValidationElement {
 
         <Field
           title={i18n.t(
-            `foreign.activities.direct.interest.heading.interestType`
+            'foreign.activities.direct.interest.heading.interestType'
           )}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="InterestType"
             className="interest-type"
@@ -211,11 +195,12 @@ export default class DirectInterest extends ValidationElement {
         <Field
           title={i18n.t('foreign.activities.direct.interest.heading.acquired')}
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
             name="Acquired"
             className="acquired"
-            minDateEqualTo={true}
+            minDateEqualTo
             {...this.props.Acquired}
             onUpdate={this.updateAcquired}
             onError={this.props.onError}
@@ -228,7 +213,8 @@ export default class DirectInterest extends ValidationElement {
             'foreign.activities.direct.interest.heading.howAcquired'
           )}
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.t('foreign.activities.direct.interest.para.howAcquired')}
           <Textarea
             name="HowAcquired"
@@ -242,7 +228,8 @@ export default class DirectInterest extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.activities.direct.interest.heading.cost')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Currency
             name="Cost"
             className="cost"
@@ -268,7 +255,8 @@ export default class DirectInterest extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.activities.direct.interest.heading.value')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Currency
             name="Value"
             className="value"
@@ -296,9 +284,10 @@ export default class DirectInterest extends ValidationElement {
           title={i18n.t(
             'foreign.activities.direct.interest.heading.relinquished'
           )}
-          help={'foreign.activities.direct.interest.help.relinquished'}
+          help="foreign.activities.direct.interest.help.relinquished"
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="RelinquishedNotApplicable"
             {...this.props.RelinquishedNotApplicable}
@@ -308,11 +297,12 @@ export default class DirectInterest extends ValidationElement {
             or={i18n.m('foreign.activities.direct.interest.label.or')}
             onError={this.props.onError}
             required={this.props.required}
-            onUpdate={this.updateRelinquishedNotApplicable}>
+            onUpdate={this.updateRelinquishedNotApplicable}
+          >
             <DateControl
               name="Relinquished"
               minDate={this.props.Acquired}
-              minDateEqualTo={true}
+              minDateEqualTo
               className="relinquished"
               {...this.props.Relinquished}
               onUpdate={this.updateRelinquished}
@@ -328,7 +318,8 @@ export default class DirectInterest extends ValidationElement {
             title={i18n.t(
               'foreign.activities.direct.interest.heading.explanation'
             )}
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="Explanation"
               className="explanation"
@@ -359,9 +350,7 @@ DirectInterest.defaultProps = {
   prefix: 'activities.direct.interest',
   addressBooks: {},
   RelinquishedNotApplicable: { applicable: true },
-  dispatch: action => {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

@@ -61,7 +61,7 @@ export const Review = ({
         <span>
           <Advice {...props} />
           {sectionDivider}
-          <Family />
+          <Family {...props} />
           {sectionDivider}
           <Employment {...props} />
           {sectionDivider}
@@ -75,13 +75,13 @@ export const Review = ({
           {sectionDivider}
           <Political {...props} />
           {sectionDivider}
-          <Voting />
+          <Voting {...props} />
           {sectionDivider}
         </span>
       )}
 
       {requireForeignTravelSection && (
-        <Travel />
+        <Travel {...props} />
       )}
     </div>
   )

@@ -9723,7 +9723,29 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              />
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.required"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Your response is required
+                      </h5>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
             </div>
             <div
               className="table"
@@ -9753,7 +9775,7 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
                     </div>
                   </div>
                   <div
-                    className="blocks option-list branch"
+                    className="blocks option-list branch usa-input-error"
                   >
                     <div
                       className="yes block"
@@ -10794,7 +10816,29 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              />
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.required"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Your response is required
+                      </h5>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
             </div>
             <div
               className="table"
@@ -10809,7 +10853,7 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
                     className="content"
                   />
                   <div
-                    className="blocks option-list branch"
+                    className="blocks option-list branch usa-input-error"
                   >
                     <div
                       className="yes block"
@@ -10919,7 +10963,29 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
               aria-live="polite"
               className="messages error-messages"
               role="alert"
-            />
+            >
+              <div
+                aria-live="polite"
+                className="message error usa-alert usa-alert-error"
+                role="alert"
+              >
+                <div
+                  className="usa-alert-body"
+                >
+                  <div
+                    data-i18n="error.required"
+                  >
+                    <h5
+                      className="usa-alert-heading"
+                    >
+                      Your response is required
+                    </h5>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </span>
           </div>
           <div
             className="table"
@@ -10934,7 +11000,7 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
                   className="content"
                 />
                 <div
-                  className="blocks option-list branch"
+                  className="blocks option-list branch usa-input-error"
                 >
                   <div
                     className="yes block"
@@ -11309,7 +11375,11 @@ exports[`The section component renders HISTORY_EDUCATION 1`] = `
     <div
       className="view view-education"
     >
-      <div>
+      <div
+        className="section-content education"
+        data-section="HISTORY"
+        data-subsection="HISTORY_EDUCATION"
+      >
         <h1
           className="section-header"
         >
@@ -13665,7 +13735,11 @@ exports[`The section component renders HISTORY_REVIEW 1`] = `
         >
           Where you went to school
         </h1>
-        <div>
+        <div
+          className="section-content education"
+          data-section="HISTORY"
+          data-subsection="HISTORY_EDUCATION"
+        >
           <div
             aria-label="List the places you went to school"
             className="field no-margin-bottom"
@@ -13778,7 +13852,29 @@ exports[`The section component renders HISTORY_REVIEW 1`] = `
                 aria-live="polite"
                 className="messages error-messages"
                 role="alert"
-              />
+              >
+                <div
+                  aria-live="polite"
+                  className="message error usa-alert usa-alert-error"
+                  role="alert"
+                >
+                  <div
+                    className="usa-alert-body"
+                  >
+                    <div
+                      data-i18n="error.required"
+                    >
+                      <h5
+                        className="usa-alert-heading"
+                      >
+                        Your response is required
+                      </h5>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </span>
             </div>
             <div
               className="table"
@@ -13793,7 +13889,7 @@ exports[`The section component renders HISTORY_REVIEW 1`] = `
                     className="content"
                   />
                   <div
-                    className="blocks option-list branch"
+                    className="blocks option-list branch usa-input-error"
                   >
                     <div
                       className="yes block"
@@ -13927,7 +14023,29 @@ exports[`The section component renders HISTORY_REVIEW 1`] = `
                   aria-live="polite"
                   className="messages error-messages"
                   role="alert"
-                />
+                >
+                  <div
+                    aria-live="polite"
+                    className="message error usa-alert usa-alert-error"
+                    role="alert"
+                  >
+                    <div
+                      className="usa-alert-body"
+                    >
+                      <div
+                        data-i18n="error.required"
+                      >
+                        <h5
+                          className="usa-alert-heading"
+                        >
+                          Your response is required
+                        </h5>
+                        
+                        
+                      </div>
+                    </div>
+                  </div>
+                </span>
               </div>
               <div
                 className="table"
@@ -13942,7 +14060,7 @@ exports[`The section component renders HISTORY_REVIEW 1`] = `
                       className="content"
                     />
                     <div
-                      className="blocks option-list branch"
+                      className="blocks option-list branch usa-input-error"
                     >
                       <div
                         className="yes block"

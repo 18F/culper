@@ -85,7 +85,11 @@ class EducationWrapper extends React.Component {
     }
 
     return (
-      <div>
+      <div
+        className="section-content education"
+        data-section={HISTORY.key}
+        data-subsection={HISTORY_EDUCATION.key}
+      >
         {!inReview && (
           <h1 className="section-header">
             {i18n.t('history.education.summary.title')}
@@ -110,6 +114,7 @@ class EducationWrapper extends React.Component {
           labelSize={inReview ? 'h3' : 'h4'}
           warning
           onUpdate={this.updateBranchAttendance}
+          required={inReview}
         />
 
         <Show when={Education.HasAttended.value === 'No'}>
@@ -121,6 +126,7 @@ class EducationWrapper extends React.Component {
             labelSize={inReview ? 'h3' : 'h4'}
             warning
             onUpdate={this.updateBranchDegree10}
+            required={inReview}
           />
         </Show>
 
