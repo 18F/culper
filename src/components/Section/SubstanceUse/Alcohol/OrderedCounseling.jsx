@@ -55,7 +55,7 @@ export default class OrderedCounseling extends ValidationElement {
         CompletedTreatment: this.props.CompletedTreatment,
         NoCompletedTreatmentExplanation: this.props
           .NoCompletedTreatmentExplanation,
-        ...updateValues
+        ...updateValues,
       })
     }
   }
@@ -371,8 +371,7 @@ OrderedCounseling.defaultProps = {
   ActionTaken: {},
   CompletedTreatment: {},
   addressBooks: {},
-  dispatch: action => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: () => {},
+  onError: (value, arr) => arr,
+  requireAlcoholOrderedCounselingParty: true,
 }
