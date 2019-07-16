@@ -7,6 +7,8 @@ import (
 	"github.com/google/uuid"
 )
 
+const SessionCookieName = "eapp-session-key"
+
 // Service represents a StorageService internally
 type Service struct {
 	timeout time.Duration

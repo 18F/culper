@@ -1,6 +1,7 @@
 package http
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -13,6 +14,7 @@ type BasicAuthHandler struct {
 	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
+	Session  api.SessionService
 }
 
 // ServeHTTP processes a users request to login with a Username and Password
@@ -46,6 +48,8 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	fmt.Println("AUTHS", respBody.Username, respBody.Password)
+
 	account := &api.Account{
 		Username: respBody.Username,
 	}
@@ -64,13 +68,14 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	// Generate jwt token
-	signedToken, _, err := service.Token.NewToken(account.ID, "basic-session", api.BasicAuthAudience)
-	if err != nil {
-		service.Log.WarnError(api.JWTError, err, api.LogFields{"account": account.ID})
-		RespondWithStructuredError(w, api.JWTError, http.StatusInternalServerError)
+	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID)
+	if authErr != nil {
+		service.Log.WarnError("bad session get", authErr, api.LogFields{"account": account.ID})
+		RespondWithStructuredError(w, "bad session get", http.StatusInternalServerError)
 		return
 	}
+
+	AddSessionKeyToResponse(w, sessionKey)
 
 	// If we need to flush the storage first then do so now.
 	if service.Env.True(api.FlushStorage) {
@@ -82,5 +87,4 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	}
 
 	service.Log.Info(api.BasicAuthValid, api.LogFields{"account": account.ID})
-	EncodeJSON(w, signedToken)
 }

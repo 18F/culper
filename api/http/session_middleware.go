@@ -1,9 +1,11 @@
 package http
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/session"
 )
 
 // SessionMiddleware is the session handler.
@@ -22,25 +24,44 @@ func NewSessionMiddleware(log api.LogService, session api.SessionService) *Sessi
 // Middleware for verifying session
 func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// TODO: use a better name for session key cookie piece
-		_, cookieErr := r.Cookie("session-key")
+
+		sessionCookie, cookieErr := r.Cookie(session.SessionCookieName)
 		if cookieErr != nil {
-			service.log.WarnError("Error retrieving session key from Cookie", cookieErr, api.LogFields{})
+			service.log.WarnError("Request is missing session cookie", cookieErr, api.LogFields{})
 			RespondWithStructuredError(w, api.InvalidJWT, http.StatusUnauthorized) // TODO: fix returned error
 			return
 		}
 
-		// account, err := service.session.GetAccountIfSessionIsValid(r)
-		// if err != nil {
-		// 	service.log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		// 	RespondWithStructuredError(w, api.InvalidJWT, http.StatusUnauthorized)
-		// 	return
-		// }
+		sessionKey := sessionCookie.Value
+		account, err := service.session.GetAccountIfSessionIsValid(sessionKey)
+		if err != nil {
+			service.log.WarnError(api.InvalidJWT, err, api.LogFields{})
+			RespondWithStructuredError(w, api.InvalidJWT, http.StatusUnauthorized)
+			return
+		}
+
+		fmt.Println("LoggedIN: ", account)
 		// service.log.AddField("account", id)
 		// newContext := SetAccountIDInRequestContext(r, id)
 
 		// next.ServeHTTP(w, r.WithContext(newContext))
 	})
+}
+
+func AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
+
+	cookie := &http.Cookie{
+		// Domain:   cookieDomain,
+		Name:     session.SessionCookieName,
+		Value:    sessionKey,
+		HttpOnly: true,
+		// Path:     "/",
+		// MaxAge:   60,
+		// Expires:  expiration,
+	}
+
+	http.SetCookie(w, cookie)
+
 }
 
 // type authContextKey string
