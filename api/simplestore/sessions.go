@@ -9,13 +9,13 @@ import (
 )
 
 // CreateOrUpdateSession returns session key or error
-func (s SimpleStore) CreateOrUpdateSession(sessionKey string, accountID int, expiration_date time.Time) error {
+func (s SimpleStore) CreateOrUpdateSession(accountID int, sessionKey string, expirationDate time.Time) error {
 	createQuery := `INSERT INTO Sessions (session_key, account_id, expiration_date)
 		VALUES ($1, $2, $3)
 		ON CONFLICT (account_id) DO UPDATE
 		SET session_key = $1, expiration_date = $3`
 
-	_, createErr := s.db.Exec(createQuery, sessionKey, accountID, expiration_date)
+	_, createErr := s.db.Exec(createQuery, sessionKey, accountID, expirationDate)
 	if createErr != nil {
 		return errors.Wrap(createErr, "Failed to create or update session")
 	}

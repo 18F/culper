@@ -23,7 +23,7 @@ func getTestObjects(t *testing.T) (ss SimpleStore, account api.Account, UUID str
 func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
 	store, account, firstSessionKey, firstExpirationDate := getTestObjects(t)
 
-	firstCreateErr := store.CreateOrUpdateSession(firstSessionKey, account.ID, firstExpirationDate)
+	firstCreateErr := store.CreateOrUpdateSession(account.ID, firstSessionKey, firstExpirationDate)
 	if firstCreateErr != nil {
 		t.Fatal(firstCreateErr)
 	}
@@ -34,7 +34,7 @@ func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
 	}
 
 	secondSessionKey, secondExpirationDate := getDateAndUUID()
-	secondCreateErr := store.CreateOrUpdateSession(secondSessionKey, account.ID, secondExpirationDate)
+	secondCreateErr := store.CreateOrUpdateSession(account.ID, secondSessionKey, secondExpirationDate)
 	if secondCreateErr != nil {
 		t.Fatal(secondCreateErr)
 	}
@@ -57,7 +57,7 @@ func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
 func TestFetchSessionReturnsAccountOnValidSession(t *testing.T) {
 	store, account, sessionKey, expirationDate := getTestObjects(t)
 
-	createErr := store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
+	createErr := store.CreateOrUpdateSession(account.ID, sessionKey, expirationDate)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
@@ -76,7 +76,7 @@ func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
 	store, account, sessionKey, expirationDate := getTestObjects(t)
 	expirationDate = expirationDate.Add(-10 * time.Minute)
 
-	createErr := store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
+	createErr := store.CreateOrUpdateSession(account.ID, sessionKey, expirationDate)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
@@ -89,7 +89,7 @@ func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
 
 func TestDeleteSessionRemovesRecord(t *testing.T) {
 	store, account, sessionKey, expirationDate := getTestObjects(t)
-	store.CreateOrUpdateSession(sessionKey, account.ID, expirationDate)
+	store.CreateOrUpdateSession(account.ID, sessionKey, expirationDate)
 
 	fetchQuery := `SELECT * FROM sessions WHERE session_key = $1`
 	row := SessionRow{}
