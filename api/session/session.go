@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/google/uuid"
 )
 
 type SessionService struct {
@@ -11,6 +12,7 @@ type SessionService struct {
 	store   api.StorageService
 }
 
+// NewSessionService returns a SessionService
 func NewSessionService(timeout time.Duration, store api.StorageService) *SessionService {
 	return &SessionService{
 		timeout,
@@ -18,19 +20,30 @@ func NewSessionService(timeout time.Duration, store api.StorageService) *Session
 	}
 }
 
-// return a session key and an error if applicable
+// UserDidAuthenticate returns a session key and an error if applicable
 func (s SessionService) UserDidAuthenticate(accountID int) (string, error) {
-	// if account id doesn't match any records, create a new one
-	sessionKey := "mock key"
+	sessionKey := uuid.New().String()
 
-	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, s.timeout)
+	// TODO: add tests to sanity check time edge cases / that time.Time is the right type to use here
+	expirationDate := time.Now().Add(s.timeout)
+
+	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, expirationDate)
+
+	// TODO: update accounts table with login datetime
+
 	if createErr != nil {
 		return "", createErr
 	}
-	return "", nil
 
+	return sessionKey, createErr
 }
 
+// GetAccountIfSessionIsValid returns an Account if the session key is valid and an error otherwise
 func (s SessionService) GetAccountIfSessionIsValid(sessionKey string) (api.Account, error) {
-	return api.Account{}, nil
+	return s.store.FetchSessionAccount(sessionKey)
+}
+
+// UserDidLogout attempts to end the session and returns an error on failure
+func (s SessionService) UserDidLogout(sessionKey string) error {
+	return s.store.DeleteSession(sessionKey)
 }

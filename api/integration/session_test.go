@@ -4,10 +4,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/session"
 )
 
-func TestCreateSession(t *testing.T) {
+func TestFullSessionFlow(t *testing.T) {
 	// get a store
 	services := cleanTestServices(t) // actually *returning* clean test services
 
@@ -20,17 +21,28 @@ func TestCreateSession(t *testing.T) {
 	// create a session for the user
 	sessionKey, userAuthdErr := sessionService.UserDidAuthenticate(testUser.ID)
 	if userAuthdErr != nil {
-		t.Fatal(userAuthdErr)
+		t.Fatal("Failed to authenticate user", userAuthdErr)
 	}
 
 	// verify there is now a session for the user
 	account, getAccountErr := sessionService.GetAccountIfSessionIsValid(sessionKey)
 	if getAccountErr != nil {
-		t.Fatal(getAccountErr)
+		t.Fatal("Failed to retrieve user's account", getAccountErr)
 	}
 
-	if account != testUser {
-		t.Fatal("returned account does not match testUser account")
+	if account.ID != testUser.ID {
+		t.Fatal("Wrong account retrieved. Returned account does not match testUser account.")
 	}
 
+	// logout
+	logoutErr := sessionService.UserDidLogout(sessionKey)
+	if logoutErr != nil {
+		t.Fatal("Failed to logout", logoutErr)
+	}
+
+	// verify session key is now invalid
+	_, expectedErr := sessionService.GetAccountIfSessionIsValid(sessionKey)
+	if expectedErr != api.ErrValidSessionNotFound {
+		t.Fatal("Failed to invalidate session during logout")
+	}
 }
