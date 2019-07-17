@@ -34,6 +34,23 @@ describe('The appeal model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('the CourtAddress field cannot be a PO box', () => {
+    const testData = {
+      CourtAddress: {
+        street: 'PO Box 123',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10002',
+        country: 'United States',
+      },
+    }
+
+    const expectedErrors = ['CourtAddress.location']
+
+    expect(validateModel(testData, appeal))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Disposition must have a value', () => {
     const testData = { Disposition: 'test' }
     const expectedErrors = ['Disposition.hasValue.MISSING_VALUE']
@@ -89,6 +106,23 @@ describe('The order model', () => {
       'CourtAddress.location.city.presence.REQUIRED',
       'CourtAddress.location.country.presence.REQUIRED',
     ]
+
+    expect(validateModel(testData, order))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('the CourtAddress field cannot be a PO box', () => {
+    const testData = {
+      CourtAddress: {
+        street: 'PO Box 123',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10002',
+        country: 'United States',
+      },
+    }
+
+    const expectedErrors = ['CourtAddress.location']
 
     expect(validateModel(testData, order))
       .toEqual(expect.arrayContaining(expectedErrors))
