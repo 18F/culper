@@ -34,6 +34,8 @@ To authenticate with SAML rather than the basic auth:
 1. Copy the eApp certificate to wso2.
     1. Go back to [the service provider settings](https://localhost:9443/carbon/application/add-service-provider.jsp).
     1. Edit your new `localhost` certificate.
+        ![A screenshot of the edit localhost menu with markings under relevant sections used in the next steps](./edit_certificate_menu.png "A screenshot of the edit localhost menu with markings under relevant sections used in the next steps")
+    1. Make sure Upload SP certificate is selected (`Select SP Certificate Type`).
     1. Click the browse button under `Application Certificate`, and select or copy the contents of the cert located in `e-QIP-prototype > api > eapp.crt`.
     1. Save these changes.
 1. Copy the wso2 certificate to eApp.
