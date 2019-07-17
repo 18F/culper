@@ -4,7 +4,7 @@ import customModel from '../customModel'
 describe('The model validator', () => {
   it('fails if no validator is passed', () => {
     const testData = { test: '123' }
-    expect(customModel(testData)).toBeTruthy()
+    expect(customModel(testData, {})).toBeTruthy()
   })
 
   it('fails if the data is not valid for the given model', () => {

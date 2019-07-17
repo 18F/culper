@@ -325,6 +325,35 @@ describe('The relative model', () => {
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
+      it('Aliases cannot be before birthdate', () => {
+        const testData = {
+          Relation: { value: 'Father' },
+          Birthdate: { year: 1950, month: 5, day: 3 },
+          Aliases: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Name: { first: 'Alias', middle: 'Name', last: 'Something' },
+                  Dates: {
+                    from: { year: 1930, month: 1, day: 30 },
+                    to: { year: 2018, month: 8, day: 10 },
+                  },
+                  MaidenName: { value: 'No' },
+                  Reason: { value: 'Because' },
+                },
+              },
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        const expectedErrors = ['Aliases.branchCollection']
+
+        expect(validateModel(testData, relative))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
       it('passes a valid alias', () => {
         const testData = {
           Relation: { value: 'Father' },
