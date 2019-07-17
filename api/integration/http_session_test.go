@@ -225,8 +225,8 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 	// now make an authenticated request with this valid session key
 	unauthenticatedResponse := makeAuthenticatedFormRequest(services, sessionService, sessionKey)
 
-	if unauthenticatedResponse.StatusCode == 200 {
-		t.Fatal("Didn't get an auth error even though we logged out", response.StatusCode)
+	if unauthenticatedResponse.StatusCode != 401 {
+		t.Fatal("Didn't get an auth error even though we logged out", unauthenticatedResponse.StatusCode)
 	}
 
 	os.Setenv("BASIC_ENABLED", "")
