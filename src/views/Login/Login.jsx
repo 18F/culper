@@ -34,9 +34,10 @@ export class Login extends React.Component {
         this.setState({ samlData: data })
       }).catch((e) => {
         console.warn('SAML initialization failed', e)
+        // TODO - what are potential errors here?
         this.setState({
           samlData: {},
-          samlError: 'SAML initialization failed',
+          samlError: i18n.t('login.error.saml'),
         })
       })
     }
