@@ -148,9 +148,9 @@ func readTestData(t *testing.T, filepath string) []byte {
 	return b
 }
 
-func standardResponseAndRequest(method string, path string, body io.Reader, accountID int) (*httptest.ResponseRecorder, *gohttp.Request) {
+func standardResponseAndRequest(method string, path string, body io.Reader, account api.Account) (*httptest.ResponseRecorder, *gohttp.Request) {
 	req := httptest.NewRequest(method, path, body)
-	authCtx := http.SetAccountIDInRequestContext(req, accountID)
+	authCtx := http.SetAccountInRequestContext(req, account)
 	req = req.WithContext(authCtx)
 
 	w := httptest.NewRecorder()
@@ -160,9 +160,9 @@ func standardResponseAndRequest(method string, path string, body io.Reader, acco
 }
 
 // saveJSON calls the save handler with the given json body.
-func saveJSON(services serviceSet, json []byte, accountID int) *gohttp.Response {
+func saveJSON(services serviceSet, json []byte, account api.Account) *gohttp.Response {
 	// create request/response
-	w, r := standardResponseAndRequest("POST", "/me/save", strings.NewReader(string(json)), accountID)
+	w, r := standardResponseAndRequest("POST", "/me/save", strings.NewReader(string(json)), account)
 
 	saveHandler := http.SaveHandler{
 		Env:      services.env,
@@ -179,7 +179,7 @@ func saveJSON(services serviceSet, json []byte, accountID int) *gohttp.Response 
 
 }
 
-func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, accountID int) {
+func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, account api.Account) {
 	t.Helper()
 
 	var form map[string]map[string]json.RawMessage
@@ -193,7 +193,7 @@ func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, accountID 
 		for subSectionName := range form[sectionName] {
 			sectionJSON := form[sectionName][subSectionName]
 
-			resp := saveJSON(services, sectionJSON, accountID)
+			resp := saveJSON(services, sectionJSON, account)
 			if resp.StatusCode != 200 {
 				t.Fatal("Couldn't save section", sectionName, subSectionName)
 			}
@@ -202,10 +202,10 @@ func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, accountID 
 
 }
 
-func getForm(services serviceSet, accountID int) *gohttp.Response {
+func getForm(services serviceSet, account api.Account) *gohttp.Response {
 	// create request/response
 
-	w, r := standardResponseAndRequest("GET", "/me/form", nil, accountID)
+	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
 
 	formHandler := http.FormHandler{
 		Env:      services.env,
@@ -224,9 +224,9 @@ func getForm(services serviceSet, accountID int) *gohttp.Response {
 func getApplication(t *testing.T, services serviceSet, account api.Account) api.Application {
 	t.Helper()
 
-	formResp := getForm(services, account.ID)
+	formResp := getForm(services, account)
 	if formResp.StatusCode != 200 {
-		t.Fatal("Failed to load Employment History", formResp.StatusCode)
+		t.Fatal("Failed to getApplication", formResp.StatusCode)
 	}
 	formBody := readBody(t, formResp)
 

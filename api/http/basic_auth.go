@@ -1,7 +1,6 @@
 package http
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -47,8 +46,6 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		RespondWithStructuredError(w, api.BasicAuthMissingPassword, http.StatusBadRequest)
 		return
 	}
-
-	fmt.Println("AUTHS", respBody.Username, respBody.Password)
 
 	account := &api.Account{
 		Username: respBody.Username,

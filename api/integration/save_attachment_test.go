@@ -18,7 +18,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/http"
 )
 
-func postAttachmentRequest(t *testing.T, filename string, filebytes []byte, accountID int) *gohttp.Request {
+func postAttachmentRequest(t *testing.T, filename string, filebytes []byte, account api.Account) *gohttp.Request {
 	t.Helper()
 
 	body := &bytes.Buffer{}
@@ -35,7 +35,7 @@ func postAttachmentRequest(t *testing.T, filename string, filebytes []byte, acco
 	req := httptest.NewRequest("POST", "/me/attachments", body)
 	req.Header.Set("Content-Type", formWriter.FormDataContentType())
 
-	authCtx := http.SetAccountIDInRequestContext(req, accountID)
+	authCtx := http.SetAccountInRequestContext(req, account)
 	req = req.WithContext(authCtx)
 
 	return req
@@ -50,7 +50,7 @@ func TestSaveAttachment(t *testing.T) {
 
 	certificationBytes := readTestData(t, certificationPath)
 
-	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes, account.ID)
+	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes, account)
 
 	w := httptest.NewRecorder()
 
@@ -82,16 +82,11 @@ func TestSaveAttachment(t *testing.T) {
 
 	// -- now get it back
 
-	getReq := httptest.NewRequest("GET", "/me/attachments/"+attachmentID, nil)
-
-	getAuthCtx := http.SetAccountIDInRequestContext(getReq, account.ID)
-	getReq = getReq.WithContext(getAuthCtx)
+	getW, getReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 
 	getReq = mux.SetURLVars(getReq, map[string]string{
 		"id": attachmentID,
 	})
-
-	getW := httptest.NewRecorder()
 
 	getAttachmentHandler := http.AttachmentGetHandler{
 		Env:      services.env,
@@ -137,7 +132,7 @@ func TestListNoAttachments(t *testing.T) {
 		Store:    services.store,
 	}
 
-	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account.ID)
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 
@@ -190,7 +185,7 @@ func TestListAttachments(t *testing.T) {
 		attachmentBytes := readTestData(t, attachmentPath)
 
 		filename := path.Base(attachmentPath)
-		req := postAttachmentRequest(t, filename, attachmentBytes, account.ID)
+		req := postAttachmentRequest(t, filename, attachmentBytes, account)
 		w := httptest.NewRecorder()
 
 		createAttachmentHandler.ServeHTTP(w, req)
@@ -224,12 +219,7 @@ func TestListAttachments(t *testing.T) {
 
 	// -- now get it back
 
-	indexReq := httptest.NewRequest("GET", "/me/attachments/", nil)
-
-	getAuthCtx := http.SetAccountIDInRequestContext(indexReq, account.ID)
-	indexReq = indexReq.WithContext(getAuthCtx)
-
-	w := httptest.NewRecorder()
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 
@@ -286,7 +276,7 @@ func TestDeleteAttachment(t *testing.T) {
 
 	certificationBytes := readTestData(t, certificationPath)
 
-	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes, account.ID)
+	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes, account)
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
@@ -316,7 +306,7 @@ func TestDeleteAttachment(t *testing.T) {
 	}
 
 	// -- now delete it
-	delW, delReq := standardResponseAndRequest("DELETE", "/me/attachments/"+attachmentID+"/delete", nil, account.ID)
+	delW, delReq := standardResponseAndRequest("DELETE", "/me/attachments/"+attachmentID+"/delete", nil, account)
 	delReq = mux.SetURLVars(delReq, map[string]string{
 		"id": attachmentID,
 	})
@@ -350,7 +340,7 @@ func TestDeleteAttachment(t *testing.T) {
 
 	// -- now fail to get it back
 
-	getW, getReq := standardResponseAndRequest("GET", "/me/attachments/"+attachmentID, nil, account.ID)
+	getW, getReq := standardResponseAndRequest("GET", "/me/attachments/"+attachmentID, nil, account)
 	getReq = mux.SetURLVars(getReq, map[string]string{
 		"id": attachmentID,
 	})

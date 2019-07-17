@@ -21,16 +21,8 @@ type SubmitHandler struct {
 // ServeHTTP submits the application package to the external web service for further processing.
 func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
-
-	// Get the account information from the data store
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
+	// Get account information
+	account := AccountFromRequestContext(r)
 
 	// If the account is locked then we cannot proceed
 	if account.Status == api.StatusSubmitted {

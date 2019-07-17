@@ -1,7 +1,7 @@
 package http
 
 import (
-	"fmt"
+	"context"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -40,11 +40,10 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 			return
 		}
 
-		fmt.Println("LoggedIN: ", account)
-		// service.log.AddField("account", id)
-		// newContext := SetAccountIDInRequestContext(r, id)
+		service.log.AddField("account_id", account.ID)
 
-		// next.ServeHTTP(w, r.WithContext(newContext))
+		newContext := SetAccountInRequestContext(r, account)
+		next.ServeHTTP(w, r.WithContext(newContext))
 	})
 }
 
@@ -64,19 +63,19 @@ func AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
 
 }
 
-// type authContextKey string
+type authContextKey string
 
-// const accountIDKey authContextKey = "ACCOUNT_ID"
+const accountKey authContextKey = "ACCOUNT"
 
-// // SetAccountIDInRequestContext modifies the request's Context() to add the Account
-// func SetAccountIDInRequestContext(r *http.Request, accountID int) context.Context {
-// 	return context.WithValue(r.Context(), accountIDKey, accountID)
-// }
+// SetAccountInRequestContext modifies the request's Context() to add the Account
+func SetAccountInRequestContext(r *http.Request, account api.Account) context.Context {
+	return context.WithValue(r.Context(), accountKey, account)
+}
 
-// // AccountIDFromRequestContext gets the reference to the Account stored in the request.Context()
-// func AccountIDFromRequestContext(r *http.Request) int {
-// 	// This will panic if it is not set or if it's not an int. That will always be a programmer
-// 	// error so I think that it's worth the tradeoff for the simpler method signature.
-// 	accountID := r.Context().Value(accountIDKey).(int)
-// 	return accountID
-// }
+// AccountFromRequestContext gets the reference to the Account stored in the request.Context()
+func AccountFromRequestContext(r *http.Request) api.Account {
+	// This will panic if it is not set or if it's not an int. That will always be a programmer
+	// error so I think that it's worth the tradeoff for the simpler method signature.
+	account := r.Context().Value(accountKey).(api.Account)
+	return account
+}
