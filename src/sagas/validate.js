@@ -7,6 +7,7 @@ import * as actionTypes from 'constants/actionTypes'
 import { reportCompletion } from 'actions/ApplicationActions'
 import { validateSection } from 'helpers/validation'
 import { nestedFormSectionsSelector } from 'selectors/navigation'
+import { formTypeSelector } from 'selectors/formType'
 
 import {
   selectState,
@@ -19,6 +20,7 @@ export function* updateSectionStatus(section, store = '', state = {}) {
     const parentStore = store || section.store
     yield all(section.subsections.map(s => call(updateSectionStatus, s, parentStore, state)))
   } else {
+    const formType = yield select(formTypeSelector)
     const { application } = state
 
     let sectionName = store.toLowerCase()
@@ -33,7 +35,7 @@ export function* updateSectionStatus(section, store = '', state = {}) {
       sectionData = application[store][section.storeKey] || {}
     }
 
-    const isValid = yield call(validateSection, { ...section, data: sectionData })
+    const isValid = yield call(validateSection, { ...section, data: sectionData }, formType)
 
     yield put(reportCompletion(
       sectionName,
