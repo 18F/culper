@@ -55,6 +55,23 @@ describe('The hospitalization model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+it('the FacilityAddress field cannot be a PO box', () => {
+    const testData = {
+      FacilityAddress: {
+        street: 'PO Box 123',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10002',
+        country: 'United States',
+      },
+    }
+
+    const expectedErrors = ['FacilityAddress.location']
+
+    expect(validateModel(testData, hospitalization))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Facility must have a value', () => {
     const testData = {
       Facility: { value: '' },

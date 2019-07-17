@@ -15,4 +15,18 @@ describe('The financial credit counseling model', () => {
     expect(validateModel(testData, financialCreditCounseling))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
+
+  it('needs to have a phone number', () => {
+    const testData = {
+      Telephone: {
+        number: '1234567890',
+      },
+    }
+
+    const expectedErrors = ['Telephone.model']
+
+    expect(validateModel(testData, financialCreditCounseling))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
 })

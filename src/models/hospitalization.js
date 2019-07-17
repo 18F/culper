@@ -7,7 +7,7 @@ const hospitalization = {
     hasValue: { validator: { inclusion: ['Voluntary', 'Involuntary'] } },
   },
   Explanation: { presence: true, hasValue: true },
-  FacilityAddress: { presence: true, location: { validator: address } },
+  FacilityAddress: { presence: true, location: { validator: address, allowPOBox: false  } },
   Facility: { presence: true, hasValue: true },
 }
 
