@@ -230,5 +230,4 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 	}
 
 	os.Setenv("BASIC_ENABLED", "")
-	t.Fatal("NONONO")
 }
