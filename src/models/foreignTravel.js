@@ -20,7 +20,7 @@ const purposeOptions = [
 ]
 
 const foreignTravel = {
-  Country: { presence: true, hasValue: true },
+  Country: { presence: true, country: true },
   Dates: { presence: true, daterange: true },
   Days: { presence: true, hasValue: { validator: { inclusion: daysOptions } } },
   Purpose: {

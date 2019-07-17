@@ -1,5 +1,5 @@
 const foreignPassportTravel = {
-  Country: { presence: true, hasValue: true },
+  Country: { presence: true, country: true },
   Dates: { presence: true, daterange: true },
 }
 

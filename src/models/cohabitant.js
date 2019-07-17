@@ -32,7 +32,7 @@ const cohabitant = {
   },
   Citizenship: {
     presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
+    country: true,
   },
   OtherNames: {
     presence: true,

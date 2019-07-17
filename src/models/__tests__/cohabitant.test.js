@@ -82,11 +82,11 @@ describe('The cohabitant model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('the Citizenship field must have a value', () => {
+  it('the Citizenship field must have a valid value', () => {
     const testData = {
-      Citizenship: { value: [] },
+      Citizenship: { value: ['United States', 'invalid'] },
     }
-    const expectedErrors = ['Citizenship.hasValue']
+    const expectedErrors = ['Citizenship.country']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))

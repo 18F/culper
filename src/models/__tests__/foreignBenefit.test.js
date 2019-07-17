@@ -89,7 +89,7 @@ describe('The foreignBenefit model', () => {
         BenefitType: { value: 'Educational' },
         BenefitFrequency: { value: 'OneTime' },
         OneTimeBenefit: {
-          Country: { value: 'test' },
+          Country: { value: 'Canada' },
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },
@@ -129,7 +129,7 @@ describe('The foreignBenefit model', () => {
         BenefitType: { value: 'Educational' },
         BenefitFrequency: { value: 'Future' },
         FutureBenefit: {
-          Country: { value: 'test' },
+          Country: { value: 'Spain' },
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },
@@ -171,7 +171,7 @@ describe('The foreignBenefit model', () => {
         BenefitType: { value: 'Educational' },
         BenefitFrequency: { value: 'Continuing' },
         ContinuingBenefit: {
-          Country: { value: 'test' },
+          Country: { value: 'Portugal' },
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },
@@ -213,7 +213,7 @@ describe('The foreignBenefit model', () => {
         BenefitType: { value: 'Educational' },
         BenefitFrequency: { value: 'Other' },
         OtherBenefit: {
-          Country: { value: 'test' },
+          Country: { value: 'Australia' },
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },

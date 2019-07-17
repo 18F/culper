@@ -30,6 +30,17 @@ describe('The foreign military model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Country requires a valid value', () => {
+    const testData = {
+      Country: { value: 'TestInvalidValue' },
+    }
+
+    const expectedErrors = ['Country.country']
+
+    expect(validateModel(testData, militaryForeign))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('requires MaintainsContact branch filled if SF86', () => {
     const testData = {}
     const options = { requireForeignMilitaryMaintainsContact: true }
