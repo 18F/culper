@@ -6,8 +6,8 @@ export const appeal = {
     presence: true,
     location: {
       validator: address,
-      allowPOBox: false
-    }
+      allowPOBox: false,
+    },
   },
   Disposition: { presence: true, hasValue: true },
 }
@@ -18,8 +18,8 @@ const order = {
     presence: true,
     location: {
       validator: address,
-      allowPOBox: false
-    }
+      allowPOBox: false,
+    },
   },
   Disposition: (value, attributes, attributeName, options) => {
     if (options && options.requireDisposition === false) return {}
