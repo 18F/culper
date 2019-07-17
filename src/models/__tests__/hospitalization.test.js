@@ -55,7 +55,7 @@ describe('The hospitalization model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-it('the FacilityAddress field cannot be a PO box', () => {
+  it('the FacilityAddress field cannot be a PO box', () => {
     const testData = {
       FacilityAddress: {
         street: 'PO Box 123',

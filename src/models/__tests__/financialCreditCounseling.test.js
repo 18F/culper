@@ -28,5 +28,4 @@ describe('The financial credit counseling model', () => {
     expect(validateModel(testData, financialCreditCounseling))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
-
 })
