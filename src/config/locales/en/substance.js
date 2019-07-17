@@ -77,6 +77,8 @@ export const substance = {
       orderedCounselingNum: 'In the last {{numberOfYearsString}} have you been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?',
       voluntaryCounseling:
         'Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?',
+      voluntaryCounselingNum:
+        'In the last {{numberOfYearsString}} have you voluntarily sought counseling or treatment as a result of your use of alcohol?',
       receivedCounseling:
         'Have you EVER received counseling or treatment as a result of your use of alcohol in addition to what you have already listed on this form?',
     },

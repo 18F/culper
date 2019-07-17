@@ -135,6 +135,7 @@ const connectSubstanceUseSection = (Component, {
       case 'VoluntaryCounselings':
         return {
           ...substance.VoluntaryCounselings,
+          formType: settings.formType,
           addressBooks,
         }
 
