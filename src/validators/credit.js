@@ -18,13 +18,19 @@ const creditCounselingModel = {
   },
 }
 
+export const validateFinancialCredit = data => (
+  validateModel(data, creditCounselingModel) === true
+)
+
 export default class CreditValidator {
   constructor(data = {}) {
     this.data = data
   }
 
   validHasCreditCounseling() {
-    return validateModel(this.data, { HasCreditCounseling: creditCounselingModel.HasCreditCounseling }) === true
+    return validateModel(this.data, {
+      HasCreditCounseling: creditCounselingModel.HasCreditCounseling,
+    }) === true
   }
 
   validList() {
@@ -32,13 +38,14 @@ export default class CreditValidator {
   }
 
   isValid() {
-    return validateModel(this.data, creditCounselingModel) === true
+    return validateFinancialCredit(this.data)
   }
 }
 
 const validateCreditCounselingItem = data => (
   validateModel(data, financialCreditCounseling) === true
 )
+
 export class CreditItemValidator {
   constructor(data = {}) {
     this.data = data

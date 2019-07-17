@@ -67,10 +67,7 @@ const relative = {
     presence: true,
     location: { validator: birthplaceWithoutCounty },
   },
-  Citizenship: {
-    presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
-  },
+  Citizenship: { presence: true, country: true },
   IsDeceased: {
     presence: true,
     hasValue: { validator: hasYesOrNo },

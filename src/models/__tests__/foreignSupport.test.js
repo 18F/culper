@@ -65,7 +65,16 @@ describe('The foreignSupport model', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.hasValue']
+    const expectedErrors = ['Citizenship.country']
+    expect(validateModel(testData, foreignSupport))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Citizenship must have valid values', () => {
+    const testData = {
+      Citizenship: { value: 'testing' },
+    }
+    const expectedErrors = ['Citizenship.country']
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -81,7 +90,7 @@ describe('The foreignSupport model', () => {
       Relationship: { value: 'Personal' },
       Amount: { value: '500' },
       Frequency: { value: 'Daily' },
-      Citizenship: { value: ['test'] },
+      Citizenship: { value: ['United Kingdom'] },
     }
 
     expect(validateModel(testData, foreignSupport)).toEqual(true)

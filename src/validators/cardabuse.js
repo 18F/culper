@@ -21,6 +21,14 @@ const cardAbuseModel = {
   },
 }
 
+export const validateFinancialCardAbuse = (data, formType) => (
+  validateModel(
+    data,
+    cardAbuseModel,
+    { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType) },
+  ) === true
+)
+
 export default class CardAbuseValidator {
   constructor(data = {}) {
     const state = store.getState()
@@ -38,22 +46,17 @@ export default class CardAbuseValidator {
   }
 
   isValid() {
-    return validateModel(
-      this.data,
-      cardAbuseModel,
-      { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(this.formType) }
-    ) === true
+    return validateFinancialCardAbuse(this.data, this.formType)
   }
 }
 
-const validateCardAbuseItem = (data, formType) => {
-
-  return validateModel(
+const validateCardAbuseItem = (data, formType) => (
+  validateModel(
     data,
     financialCardAbuse,
     { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType) },
   ) === true
-}
+)
 
 export class CardAbuseItemValidator {
   constructor(data = {}) {

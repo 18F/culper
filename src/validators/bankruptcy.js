@@ -15,7 +15,7 @@ const financialBankruptcyModel = {
   },
 }
 
-const validateFinancialBankruptcy = data => (
+export const validateFinancialBankruptcy = data => (
   validateModel(data, financialBankruptcyModel) === true
 )
 
@@ -31,7 +31,9 @@ export default class BankruptcyValidator {
    * Validates the yes/no branching for bankruptcy
    */
   validHasBankruptcy() {
-    return validateModel(this.data, { HasBankruptcy: financialBankruptcyModel.HasBankruptcy }) === true
+    return validateModel(this.data, {
+      HasBankruptcy: financialBankruptcyModel.HasBankruptcy,
+    }) === true
   }
 
   validBankruptcies() {
@@ -87,7 +89,9 @@ export class BankruptcyItemValidator {
   }
 
   validDischargeExplanation() {
-    return validateModel(this.data, { DischargeExplanation: financialBankruptcy.DischargeExplanation }) === true
+    return validateModel(this.data, {
+      DischargeExplanation: financialBankruptcy.DischargeExplanation,
+    }) === true
   }
 
   isValid() {

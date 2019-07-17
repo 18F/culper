@@ -156,7 +156,7 @@ const citizenshipStatus = {
     checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])
       ? {
         presence: true,
-        hasValue: { validator: { length: { minimum: 1 } } },
+        country: true,
       }
       : {}
   ),

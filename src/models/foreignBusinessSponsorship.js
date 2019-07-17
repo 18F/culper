@@ -14,10 +14,7 @@ const foreignBusinessSponsorship = {
   },
   Birthplace: { presence: true, location: { validator: usCityStateZipInternationalCity } },
   Address: { presence: true, location: { validator: address } },
-  Citizenship: {
-    presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
-  },
+  Citizenship: { presence: true, country: true },
   Dates: { presence: true, daterange: true },
   Residence: { presence: true, location: { validator: address } },
   Organization: (value, attributes) => {

@@ -56,7 +56,7 @@ const civilUnion = {
   },
   Citizenship: {
     presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
+    country: true,
   },
   Divorced: {
     presence: true,

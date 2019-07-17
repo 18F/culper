@@ -242,7 +242,16 @@ describe('The foreignContact model', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.hasValue']
+    const expectedErrors = ['Citizenship.country']
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Citizenship must have valid values', () => {
+    const testData = {
+      Citizenship: { value: ['United Kingdom', 'invalid'] },
+    }
+    const expectedErrors = ['Citizenship.country']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -428,7 +437,7 @@ describe('The foreignContact model', () => {
       Frequency: { value: 'Daily' },
       Relationship: { values: ['Personal'] },
       Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
-      Citizenship: { value: ['test'] },
+      Citizenship: { value: ['United Kingdom', 'United States'] },
       Birthdate: { year: 1980, month: 10, day: 12 },
       Birthplace: { city: 'London', country: 'United Kingdom' },
       AddressNotApplicable: { applicable: false },

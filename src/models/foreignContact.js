@@ -111,12 +111,7 @@ const foreignContact = {
       },
     },
   },
-  Citizenship: {
-    presence: true,
-    hasValue: {
-      validator: { length: { minimum: 1 } },
-    },
-  },
+  Citizenship: { presence: true, country: true },
   Birthdate: (value, attributes) => {
     const { BirthdateNotApplicable } = attributes
     if (BirthdateNotApplicable && BirthdateNotApplicable.applicable === false) return {}
