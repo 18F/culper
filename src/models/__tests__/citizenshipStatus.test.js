@@ -658,7 +658,21 @@ describe('The citizenshipStatus model', () => {
       }
 
       const expectedErrors = [
-        'PriorCitizenship.hasValue',
+        'PriorCitizenship.country',
+      ]
+
+      expect(validateModel(testData, citizenshipStatus))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('PriorCitizenship values must be valid', () => {
+      const testData = {
+        CitizenshipStatus: { value: 'Naturalized' },
+        PriorCitizenship: { value: ['Germany', 'Invalid country'] },
+      }
+
+      const expectedErrors = [
+        'PriorCitizenship.country',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1134,7 +1148,7 @@ describe('The citizenshipStatus model', () => {
       }
 
       const expectedErrors = [
-        'PriorCitizenship.hasValue',
+        'PriorCitizenship.country',
       ]
 
       expect(validateModel(testData, citizenshipStatus))

@@ -255,11 +255,11 @@ describe('The civilUnion model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('the Citizenship field must have a value', () => {
+  it('the Citizenship field must have a valid value', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.hasValue']
+    const expectedErrors = ['Citizenship.country']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))

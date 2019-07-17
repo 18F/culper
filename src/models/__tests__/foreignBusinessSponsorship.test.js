@@ -72,7 +72,16 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.hasValue']
+    const expectedErrors = ['Citizenship.country']
+    expect(validateModel(testData, foreignBusinessSponsorship))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Citizenship must have valid values', () => {
+    const testData = {
+      Citizenship: { value: ['not a country', 'Germany'] },
+    }
+    const expectedErrors = ['Citizenship.country']
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

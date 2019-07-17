@@ -18,6 +18,10 @@ const cardAbuseModel = {
   },
 }
 
+export const validateFinancialCardAbuse = data => (
+  validateModel(data, cardAbuseModel) === true
+)
+
 export default class CardAbuseValidator {
   constructor(data = {}) {
     this.data = data
@@ -32,7 +36,7 @@ export default class CardAbuseValidator {
   }
 
   isValid() {
-    return validateModel(this.data, cardAbuseModel) === true
+    return validateFinancialCardAbuse(this.data)
   }
 }
 

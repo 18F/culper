@@ -23,9 +23,7 @@ const divorce = {
   },
   Citizenship: {
     presence: true,
-    hasValue: {
-      validator: { length: { minimum: 1 } },
-    },
+    country: true,
   },
   Telephone: (value, attributes, attributeName, options) => {
     if (options.requireRelationshipMaritalDivorcePhoneNumber) {

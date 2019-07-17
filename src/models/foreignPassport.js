@@ -4,7 +4,7 @@ import name from 'models/shared/name'
 import foreignPassportTravel from 'models/foreignPassportTravel'
 
 const foreignPassport = {
-  Country: { presence: true, hasValue: true },
+  Country: { presence: true, country: true },
   Issued: { presence: true, date: true },
   Location: {
     presence: true,

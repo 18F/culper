@@ -193,11 +193,11 @@ describe('The relative model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Citizenship must have a value', () => {
+  it('Citizenship must have a valid value', () => {
     const testData = {
       Citizenship: { value: true },
     }
-    const expectedErrors = ['Citizenship.hasValue']
+    const expectedErrors = ['Citizenship.country']
 
     expect(validateModel(testData, relative))
       .toEqual(expect.arrayContaining(expectedErrors))

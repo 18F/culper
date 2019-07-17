@@ -77,14 +77,6 @@ test-go:
 	@docker-compose run --rm api make test
 
 #
-# Integration testing
-#
-.PHONY: specs
-specs:
-	$(info Running integration test suite)
-	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch $(COMMAND)
-
-#
 # Coverage
 #
 .PHONY: coverage
@@ -182,7 +174,5 @@ run:
 	docker-compose up --abort-on-container-exit --build
 identity:
 	docker-compose -f docker-compose.yml -f docker-compose.identity.yml up identity
-docs:
-	docker-compose -f docker-compose.yml -f docker-compose.docs.yml up docs
 tag:
 	echo $(tag)

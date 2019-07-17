@@ -203,7 +203,7 @@ export class ErrorList extends React.Component {
               {issues}
               {' '}
               {issues > 1 ? 'questions' : 'question'}
-              with issues
+              {' with issues'}
             </h3>
             {sectionErrors}
           </div>

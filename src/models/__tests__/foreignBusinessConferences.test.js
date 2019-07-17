@@ -44,11 +44,11 @@ describe('The foreignBusinessConferences model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Country must have a value', () => {
+  it('Country must have a valid value', () => {
     const testData = {
       Country: { values: 'test' },
     }
-    const expectedErrors = ['Country.hasValue']
+    const expectedErrors = ['Country.country']
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

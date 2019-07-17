@@ -1,17 +1,17 @@
 import ForeignBusinessContactValidator, {
-  ContactValidator
+  ContactValidator,
 } from './foreignbusinesscontact'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign business contact component validation', function() {
+describe('Foreign business contact component validation', () => {
   it('validate foreign business contact name', () => {
     const tests = [
       {
         state: {
-          Name: {}
+          Name: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -22,11 +22,11 @@ describe('Foreign business contact component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
-          }
+            suffix: 'Jr',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ContactValidator, 'validName')
@@ -36,9 +36,9 @@ describe('Foreign business contact component validation', function() {
     const tests = [
       {
         state: {
-          Location: {}
+          Location: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -47,11 +47,11 @@ describe('Foreign business contact component validation', function() {
             city: 'Arlington',
             zipcode: '22202',
             state: 'VA',
-            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
-          }
+            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ContactValidator, 'validLocation')
@@ -61,20 +61,20 @@ describe('Foreign business contact component validation', function() {
     const tests = [
       {
         state: {
-          Date: {}
+          Date: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Date: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ContactValidator, 'validDate')
@@ -84,18 +84,18 @@ describe('Foreign business contact component validation', function() {
     const tests = [
       {
         state: {
-          Governments: {}
+          Governments: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Governments: {
-            value: [{ name: 'Germany', value: 'Germany' }]
-          }
+            value: ['Germany'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ContactValidator, 'validGovernments')
@@ -105,18 +105,18 @@ describe('Foreign business contact component validation', function() {
     const tests = [
       {
         state: {
-          Establishment: {}
+          Establishment: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Establishment: {
-            value: 'this is the establishment'
-          }
+            value: 'this is the establishment',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ContactValidator, 'validEstablishment')
@@ -126,18 +126,18 @@ describe('Foreign business contact component validation', function() {
     const tests = [
       {
         state: {
-          Representatives: {}
+          Representatives: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Representatives: {
-            value: 'this is the representatives'
-          }
+            value: 'this is the representatives',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ContactValidator, 'validRepresentatives')
@@ -147,18 +147,18 @@ describe('Foreign business contact component validation', function() {
     const tests = [
       {
         state: {
-          Purpose: {}
+          Purpose: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Purpose: {
-            value: 'this is the purpose'
-          }
+            value: 'this is the purpose',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ContactValidator, 'validPurpose')
@@ -168,29 +168,15 @@ describe('Foreign business contact component validation', function() {
     const tests = [
       {
         state: {
-          SubsequentContacts: null
+          SubsequentContacts: null,
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          SubsequentContacts: {}
+          SubsequentContacts: {},
         },
-        expected: false
-      },
-      {
-        state: {
-          SubsequentContacts: {
-            items: [
-              {
-                Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
-        },
-        expected: true
+        expected: false,
       },
       {
         state: {
@@ -198,13 +184,13 @@ describe('Foreign business contact component validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: true,
       },
       {
         state: {
@@ -213,13 +199,27 @@ describe('Foreign business contact component validation', function() {
               {
                 Item: {
                   Has: { value: 'Yes' },
-                  Explanation: {}
-                }
-              }
-            ]
-          }
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
+      },
+      {
+        state: {
+          SubsequentContacts: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Explanation: {},
+                },
+              },
+            ],
+          },
+        },
+        expected: false,
       },
       {
         state: {
@@ -229,28 +229,28 @@ describe('Foreign business contact component validation', function() {
                 Item: {
                   Has: { value: 'Yes' },
                   Subsequent: {
-                    value: 'This is the subsequent purpose'
+                    value: 'This is the subsequent purpose',
                   },
                   Recent: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Future: {
-                    value: 'This is the subsequent future meetings'
-                  }
-                }
+                    value: 'This is the subsequent future meetings',
+                  },
+                },
               },
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ContactValidator, 'validSubsequentContacts')
@@ -260,33 +260,33 @@ describe('Foreign business contact component validation', function() {
     const tests = [
       {
         state: {},
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasForeignContact: { value: 'No' }
+          HasForeignContact: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          HasForeignContact: { value: 'Yes' },
-          List: {
-            branch: { value: 'No' },
-            items: []
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           HasForeignContact: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{}]
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
+      },
+      {
+        state: {
+          HasForeignContact: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{}],
+          },
+        },
+        expected: false,
       },
       {
         state: {
@@ -303,42 +303,42 @@ describe('Foreign business contact component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Location: {
                     country: { value: 'United States' },
                     city: 'Arlington',
                     zipcode: '22202',
                     state: 'VA',
-                    layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+                    layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY,
                   },
                   Date: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Governments: {
-                    value: [{ name: 'Germany', value: 'Germany' }]
+                    value: ['Germany'],
                   },
                   Establishment: {
-                    value: 'this is the establishment'
+                    value: 'this is the establishment',
                   },
                   Representatives: {
-                    value: 'this is the representatives'
+                    value: 'this is the representatives',
                   },
                   Purpose: {
-                    value: 'this is the purpose'
+                    value: 'this is the purpose',
                   },
                   SubsequentContacts: {
-                    items: [{ Item: { Has: { value: 'No' } } }]
-                  }
-                }
-              }
-            ]
-          }
+                    items: [{ Item: { Has: { value: 'No' } } }],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignBusinessContactValidator, 'isValid')

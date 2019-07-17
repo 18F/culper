@@ -46,8 +46,10 @@ export default class Country extends ValidationElement {
   updateSingleCountry(values) {
     const { value } = values
     let arr
-
-    const capitalizedCountry = value[0].toUpperCase() + value.slice(1)
+    let capitalizedCountry
+    if (value) {
+      capitalizedCountry = value[0].toUpperCase() + value.slice(1)
+    }
     const matchingCountries = this.filterValidCountries(value)
     if (matchingCountries.length > 0) {
       // If more than 1 matching country, keep typed value
