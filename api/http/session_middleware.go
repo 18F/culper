@@ -14,6 +14,7 @@ type SessionMiddleware struct {
 	session api.SessionService
 }
 
+// NewSessionMiddleware returns a configured SessionMiddleware
 func NewSessionMiddleware(log api.LogService, session api.SessionService) *SessionMiddleware {
 	return &SessionMiddleware{
 		log,
@@ -47,6 +48,7 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 	})
 }
 
+// AddSessionKeyToResponse adds the session cookie to a response given a valid sessionKey
 func AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
 
 	cookie := &http.Cookie{
