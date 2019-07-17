@@ -79,7 +79,7 @@ export class VoluntaryCounselings extends Subsection {
     const years = formTypeConfig && formTypeConfig.SUBSTANCE_ALCOHOL_TREATMENT_YEARS
     let branchLabelCopy
     if (years === 'EVER') {
-      branchLabelCopy = i18n.t('substance.alcohol.heading.orderedCounseling')
+      branchLabelCopy = i18n.t('substance.alcohol.heading.voluntaryCounseling')
     } else {
       const numberOfYearsString = getNumberOfYearsString(years)
       branchLabelCopy = i18n.t('substance.alcohol.heading.voluntaryCounselingNum', { numberOfYearsString })
