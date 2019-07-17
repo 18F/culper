@@ -7,6 +7,7 @@ export const login = {
     generic: 'The username or password was incorrect.',
     network: 'Sorry, there was a network error during your attempt to login.',
     unknown: 'Sorry, an unknown error {{status}} occurred.',
+    saml: 'SAML initialization failed',
   },
   saml: {
     button: 'Log in',
