@@ -32,18 +32,11 @@ func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
+	// Get the account information
+	account := AccountFromRequestContext(r)
 
-	// Get the account information from the data store.
 	// Proceed even if the account is locked, as files are presented
 	// after application submission, on the Print page.
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
 
 	attachments, listErr := service.Store.ListAttachmentsMetadata(account.ID)
 	if listErr != nil {
@@ -72,16 +65,8 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
-
-	// Get the account information from the data store
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
+	// Get account information
+	account := AccountFromRequestContext(r)
 
 	// If the account is submitted then we cannot proceed
 	if account.Status == api.StatusSubmitted {
@@ -176,18 +161,11 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 		return
 	}
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
+	// Get account information
+	account := AccountFromRequestContext(r)
 
-	// Get the account information from the data store.
 	// Proceed even if the account is locked, as files are presented
 	// after application submission, on the Print page.
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
 
 	// Get the attachment by identifier.
 	vars := mux.Vars(r)
@@ -199,7 +177,7 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 	}
 
 	//LoadAttachment wants the AccountID then the AttachmentID
-	attachment, loadErr := service.Store.LoadAttachment(id, attachmentID)
+	attachment, loadErr := service.Store.LoadAttachment(account.ID, attachmentID)
 	if loadErr != nil {
 		service.Log.WarnError(api.AttachmentNotFound, err, api.LogFields{"attachment": attachmentID})
 		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusNotFound)
@@ -227,16 +205,8 @@ func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.
 		return
 	}
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
-
-	// Get the account information from the data store
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
+	// Get account information
+	account := AccountFromRequestContext(r)
 
 	// If the account is locked then we cannot proceed
 	if account.Status == api.StatusSubmitted {

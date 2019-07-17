@@ -116,12 +116,12 @@ func TestSaveSection(t *testing.T) {
 		t.Run(fmt.Sprintf("%s:%s", secTest.section, secTest.subSection), func(t *testing.T) {
 			section := readTestData(t, secTest.path)
 
-			resp := saveJSON(services, section, account.ID)
+			resp := saveJSON(services, section, account)
 			if resp.StatusCode != 200 {
 				t.Fatal(fmt.Sprintf("Failed to save %s %s", secTest.section, secTest.subSection), resp.StatusCode)
 			}
 
-			formResp := getForm(services, account.ID)
+			formResp := getForm(services, account)
 			if formResp.StatusCode != 200 {
 				t.Fatal(fmt.Sprintf("Failed to load %s %s", secTest.section, secTest.subSection), resp.StatusCode)
 			}
@@ -151,12 +151,12 @@ func TestSaveMultipleSections(t *testing.T) {
 
 	employmentSection := readTestData(t, "../testdata/history/history-employment-full.json")
 
-	resp := saveJSON(services, employmentSection, account.ID)
+	resp := saveJSON(services, employmentSection, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save Employment History", resp.StatusCode)
 	}
 
-	formResp := getForm(services, account.ID)
+	formResp := getForm(services, account)
 	if formResp.StatusCode != 200 {
 		t.Fatal("Failed to load Employment History", resp.StatusCode)
 	}
@@ -182,12 +182,12 @@ func TestSaveMultipleSections(t *testing.T) {
 
 	nameSection := readTestData(t, "../testdata/identification/identification-name.json")
 
-	resp = saveJSON(services, nameSection, account.ID)
+	resp = saveJSON(services, nameSection, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save Name", resp.StatusCode)
 	}
 
-	formResp = getForm(services, account.ID)
+	formResp = getForm(services, account)
 	if formResp.StatusCode != 200 {
 		t.Fatal("Failed to load Name", resp.StatusCode)
 	}
@@ -227,7 +227,7 @@ func TestDeleteApplication(t *testing.T) {
 
 	section := readTestData(t, "../testdata/identification/identification-birthplace-full.json")
 
-	resp := saveJSON(services, section, account.ID)
+	resp := saveJSON(services, section, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save a section", resp.StatusCode)
 	}
@@ -237,7 +237,7 @@ func TestDeleteApplication(t *testing.T) {
 		t.Fatal(delErr)
 	}
 
-	formResp := getForm(services, account.ID)
+	formResp := getForm(services, account)
 	if formResp.StatusCode != 200 {
 		t.Fatal(fmt.Sprintf("Failed to load form"), resp.StatusCode)
 	}

@@ -17,9 +17,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/session"
 )
 
-func TestFullSessionHTTPFlow_Unauthenticated(t *testing.T) {
-	services := cleanTestServices(t)
-	sessionService := session.NewSessionService(5*time.Minute, services.store)
+func makeAuthenticatedFormRequest(services serviceSet, sessionService *session.Service, sessionKey string) *gohttp.Response {
 	sessionMiddleware := http.NewSessionMiddleware(services.log, sessionService)
 
 	formHandler := http.FormHandler{
@@ -34,11 +32,30 @@ func TestFullSessionHTTPFlow_Unauthenticated(t *testing.T) {
 	responseWriter := httptest.NewRecorder()
 	req := httptest.NewRequest("GET", "/me/save", nil)
 
+	if sessionKey != "" {
+		sessionCookie := &gohttp.Cookie{
+			Name:     session.SessionCookieName,
+			Value:    sessionKey,
+			HttpOnly: true,
+		}
+
+		req.AddCookie(sessionCookie)
+	}
+
 	// make a request to some endpoint wrapped in middleware
 	wrappedHandler.ServeHTTP(responseWriter, req)
 
 	// confirm response follows unauthorized path
 	response := responseWriter.Result()
+	return response
+}
+
+func TestFullSessionHTTPFlow_Unauthenticated(t *testing.T) {
+	services := cleanTestServices(t)
+	sessionService := session.NewSessionService(5*time.Minute, services.store)
+
+	response := makeAuthenticatedFormRequest(services, sessionService, "")
+
 	if response.StatusCode != 401 {
 		t.Fatal("Session middleware should have returned 401 unauthorized response")
 	}
@@ -47,33 +64,10 @@ func TestFullSessionHTTPFlow_Unauthenticated(t *testing.T) {
 func TestFullSessionHTTPFlow_BadAuthentication(t *testing.T) {
 	services := cleanTestServices(t)
 	sessionService := session.NewSessionService(5*time.Minute, services.store)
-	sessionMiddleware := http.NewSessionMiddleware(services.log, sessionService)
 
-	formHandler := http.FormHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-	}
-
-	wrappedHandler := sessionMiddleware.Middleware(formHandler)
-
-	responseWriter := httptest.NewRecorder()
-	req := httptest.NewRequest("GET", "/me/save", nil)
-
-	sessionCookie := &gohttp.Cookie{
-		Name:     session.SessionCookieName,
-		Value:    "GARBAGE",
-		HttpOnly: true,
-	}
-
-	req.AddCookie(sessionCookie)
-
-	// make a request to some endpoint wrapped in middleware
-	wrappedHandler.ServeHTTP(responseWriter, req)
+	response := makeAuthenticatedFormRequest(services, sessionService, "GARBAGE")
 
 	// confirm response follows unauthorized path
-	response := responseWriter.Result()
 	if response.StatusCode != 401 {
 		t.Fatal("Session middleware should have returned 401 unauthorized response")
 	}
@@ -172,19 +166,69 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 		t.Fatal("should be a valid login")
 	}
 
+	// Check that one of the cookies is the session cookie
 	cookies := response.Cookies()
-	fmt.Println(cookies)
+	var sessionKey string
+	for _, cookie := range cookies {
+		if cookie.Name == session.SessionCookieName {
+			sessionKey = cookie.Value
+			break
+		}
+	}
 
-	// login request
-	// - hit saml login endpoint
-	// - confirm cookie was set in response
-	// - confirm http only cookie
-	// make another request to some endpoint wrapped in middleware
-	// - confirm works
-	// logout
-	// - nothing to do here? / verify doesn't throw error
-	// make a request to some endpoint wrapped in middleware
-	// - confirm doesn't work, returns some invalid session warning
+	if sessionKey == "" {
+		t.Fatal("The cookie was not set on the response")
+	}
 
-	t.Fatal("NOPE")
+	// now make an authenticated request with this valid session key
+	authenticatedResponse := makeAuthenticatedFormRequest(services, sessionService, sessionKey)
+
+	if authenticatedResponse.StatusCode != 200 {
+		t.Fatal("Got an invalid status code while making an authenticated request", response.StatusCode)
+	}
+
+	authdBody, readAuthedErr := ioutil.ReadAll(authenticatedResponse.Body)
+	if readAuthedErr != nil {
+		t.Fatal(readAuthedErr)
+	}
+
+	if string(authdBody) != `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}` {
+		t.Fatal("GET /me/form didn't return the expected body: ", authdBody)
+	}
+
+	// Make a logout request
+	logoutHandler := http.LogoutHandler{
+		Log:     services.log,
+		Session: sessionService,
+	}
+	sessionMiddleware := http.NewSessionMiddleware(services.log, sessionService)
+	authenticatedLogout := sessionMiddleware.Middleware(logoutHandler)
+
+	logoutW := httptest.NewRecorder()
+	logoutR := httptest.NewRequest("GET", "/me/logout", nil)
+	sessionCookie := &gohttp.Cookie{
+		Name:     session.SessionCookieName,
+		Value:    sessionKey,
+		HttpOnly: true,
+	}
+
+	logoutR.AddCookie(sessionCookie)
+
+	authenticatedLogout.ServeHTTP(logoutW, logoutR)
+
+	logoutResponse := logoutW.Result()
+
+	if logoutResponse.StatusCode != 200 {
+		t.Fatal("Logout Errored: ", logoutResponse.StatusCode)
+	}
+
+	// now make an authenticated request with this valid session key
+	unauthenticatedResponse := makeAuthenticatedFormRequest(services, sessionService, sessionKey)
+
+	if unauthenticatedResponse.StatusCode == 200 {
+		t.Fatal("Didn't get an auth error even though we logged out", response.StatusCode)
+	}
+
+	os.Setenv("BASIC_ENABLED", "")
+	t.Fatal("NONONO")
 }

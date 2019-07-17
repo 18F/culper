@@ -110,7 +110,7 @@ func getBasicBranches(t *testing.T, section api.Section, branchName string) (*ap
 func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName string) api.Section {
 	account := createTestAccount(t, services.db)
 
-	resp := saveJSON(services, json, account.ID)
+	resp := saveJSON(services, json, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save JSON", resp.StatusCode)
 	}
@@ -127,6 +127,12 @@ func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName s
 	err := rejector.Reject(account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
+	}
+
+	// reload the account now that it's been rejected
+	_, reloadErr := account.Get(services.db, account.ID)
+	if reloadErr != nil {
+		t.Fatal(reloadErr)
 	}
 
 	resetApp := getApplication(t, services, account)
@@ -1047,7 +1053,7 @@ func TestClearComplexSectionNos(t *testing.T) {
 
 			sectionJSON := readTestData(t, clearTest.path)
 
-			resp := saveJSON(services, sectionJSON, account.ID)
+			resp := saveJSON(services, sectionJSON, account)
 			if resp.StatusCode != 200 {
 				t.Fatal("Failed to save JSON", resp.StatusCode)
 			}
@@ -1064,6 +1070,12 @@ func TestClearComplexSectionNos(t *testing.T) {
 			err := rejector.Reject(account)
 			if err != nil {
 				t.Fatal("Failed to reject account: ", err)
+			}
+
+			// reload the account now that it's been rejected
+			_, reloadErr := account.Get(services.db, account.ID)
+			if reloadErr != nil {
+				t.Fatal(reloadErr)
 			}
 
 			resetApp := getApplication(t, services, account)
