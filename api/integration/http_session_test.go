@@ -168,17 +168,23 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 
 	// Check that one of the cookies is the session cookie
 	cookies := response.Cookies()
-	var sessionKey string
+	var sessionCookie *gohttp.Cookie
 	for _, cookie := range cookies {
 		if cookie.Name == session.SessionCookieName {
-			sessionKey = cookie.Value
+			sessionCookie = cookie
 			break
 		}
 	}
 
-	if sessionKey == "" {
+	if sessionCookie == nil {
 		t.Fatal("The cookie was not set on the response")
 	}
+
+	if sessionCookie.HttpOnly != true {
+		t.Fatal("The cookie was not set HTTP_ONLY = true")
+	}
+
+	sessionKey := sessionCookie.Value
 
 	// now make an authenticated request with this valid session key
 	authenticatedResponse := makeAuthenticatedFormRequest(services, sessionService, sessionKey)
@@ -206,11 +212,6 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 
 	logoutW := httptest.NewRecorder()
 	logoutR := httptest.NewRequest("GET", "/me/logout", nil)
-	sessionCookie := &gohttp.Cookie{
-		Name:     session.SessionCookieName,
-		Value:    sessionKey,
-		HttpOnly: true,
-	}
 
 	logoutR.AddCookie(sessionCookie)
 
