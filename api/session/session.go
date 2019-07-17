@@ -7,6 +7,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// SessionCookieName is the name of the cookie that is used to store the session
 const SessionCookieName = "eapp-session-key"
 
 // Service represents a StorageService internally
