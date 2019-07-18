@@ -24,7 +24,7 @@ describe('The foreign born document model', () => {
     const testData = {}
     const expectedErrors = ['DocumentExpiration.required']
     const options = {
-      requireRelationshipMaritalForeignBornDocExpiration: true,
+      requireForeignBornDocExpiration: true,
     }
 
     expect(validateModel(testData, foreignBornDocument, options))
@@ -37,7 +37,7 @@ describe('The foreign born document model', () => {
     }
     const expectedErrors = ['DocumentExpiration.date']
     const options = {
-      requireRelationshipMaritalForeignBornDocExpiration: true,
+      requireForeignBornDocExpiration: true,
     }
 
     expect(validateModel(testData, foreignBornDocument, options))
