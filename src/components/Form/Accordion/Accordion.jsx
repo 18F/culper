@@ -1,11 +1,20 @@
 import React from 'react'
-import { i18n } from '../../../config'
-import ValidationElement from '../ValidationElement'
-import Branch from '../Branch'
-import Show from '../Show'
-import Svg from '../Svg'
-import StickyAccordionSummary from '../../Sticky/StickyAccordionSummary'
-import { findPosition } from '../../Navigation/navigation-helpers'
+
+import { i18n } from 'config'
+import ValidationElement from 'components/Form/ValidationElement'
+import Branch from 'components/Form/Branch'
+import Show from 'components/Form/Show'
+import Svg from 'components/Form/Svg'
+import StickyAccordionSummary from 'components/Sticky/StickyAccordionSummary'
+import { findPosition } from 'components/Navigation/navigation-helpers'
+
+/**
+ * This file has too many violations and is in fact relying on them in some cases to work as it
+ * does currently. Recommend rebuilding in a new component instead of trying to refactor or fix
+ * linting issues here.
+ */
+
+/* eslint-disable */
 
 export const openState = (item = {}, initial = false) => {
   return `${item.open ? 'open' : 'close'} ${
@@ -538,6 +547,7 @@ export default class Accordion extends ValidationElement {
     if (this.props.required) {
       return new this.props.validator(item).isValid() === true && this.hasNoErrors(uuid)
     }
+
     return true
   }
 
