@@ -75,6 +75,7 @@ export class Relatives extends Subsection {
   validRelations = () => new RelativesValidator(this.props).validMinimumRelations()
 
   render() {
+    const { requireRelationshipRelativesUSResidenceDoc } = this.props
     return (
       <div
         className="section-content relatives"
@@ -131,6 +132,7 @@ export class Relatives extends Subsection {
             bind
             scrollIntoView={this.props.scrollIntoView}
             required={this.props.required}
+            requireRelationshipRelativesUSResidenceDoc={requireRelationshipRelativesUSResidenceDoc}
           />
         </Accordion>
       </div>

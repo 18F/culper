@@ -25,7 +25,6 @@ import {
 import ConnectedAlternateAddress from 'components/Form/Location/AlternateAddress'
 import { RelativeValidator } from 'validators'
 import { countryString } from 'validators/location'
-import { selectRelationshipRelativesForeignGovtAffExplanation } from 'selectors/branches'
 import Alias from './Alias'
 
 export default class Relative extends ValidationElement {
@@ -303,7 +302,11 @@ export default class Relative extends ValidationElement {
   }
 
   render() {
-    const { requireRelationshipRelativesUSResidenceDoc } = this.props
+    const {
+      requireRelationshipRelativesUSResidenceDoc,
+      requireRelationshipRelativesForeignGovtAffExplanation,
+    } = this.props
+
     const relativeContactMinDate = pickDate([
       this.props.applicantBirthdate,
       this.props.Birthdate,
@@ -1029,7 +1032,7 @@ export default class Relative extends ValidationElement {
               />
             </NotApplicable>
             <Show when={
-              selectRelationshipRelativesForeignGovtAffExplanation
+              requireRelationshipRelativesForeignGovtAffExplanation
               && this.props.HasAffiliation.value === 'Yes'
             }
             >
