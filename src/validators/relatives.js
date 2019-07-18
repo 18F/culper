@@ -54,45 +54,50 @@ export const validateRelatives = (data) => {
   return validateModel(data, relativesModel) === true
 }
 
+export const validateMaritalRelations = (data, context = null) => {
+  const maritalStatus = context || getMaritalStatus()
+  let requiredRelations
+  const maritalRelationsModel = {
+    List: {
+      presence: true,
+    },
+  }
+
+  if (marriedOptions.includes(maritalStatus)) {
+    requiredRelations = requiredParentalInLaws
+
+    maritalRelationsModel.List.containsRequiredItems = {
+      requirements: requiredRelations,
+    }
+  }
+
+
+  return validateModel(data, maritalRelationsModel) === true
+}
+
+export const validateMinimumRelations = (data) => {
+  const minimumRelationsModel = {
+    List: {
+      presence: true,
+      containsRequiredItems: {
+        requirements: requiredMotherAndFather,
+      },
+    },
+  }
+
+  return validateModel(data, minimumRelationsModel) === true
+}
 export default class RelativesValidator {
   constructor(data = {}) {
     this.data = data
   }
 
   validMaritalRelations(context = null) {
-    const maritalStatus = context || getMaritalStatus()
-    let requiredRelations
-    const maritalRelationsModel = {
-      List: {
-        presence: true,
-      },
-    }
-
-    if (marriedOptions.includes(maritalStatus)) {
-      requiredRelations = requiredParentalInLaws
-
-      maritalRelationsModel.List.containsRequiredItems = {
-        requirements: requiredRelations,
-      }
-    }
-
-
-    return validateModel(this.data, maritalRelationsModel) === true
+    return validateMaritalRelations(this.data, context)
   }
 
   validMinimumRelations() {
-    const requiredRelations = requiredMotherAndFather
-
-    const minimumRelationsModel = {
-      List: {
-        presence: true,
-        containsRequiredItems: {
-          requirements: requiredRelations,
-        },
-      },
-    }
-
-    return validateModel(this.data, minimumRelationsModel) === true
+    return validateMinimumRelations(this.data)
   }
 
   isValid() {

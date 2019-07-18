@@ -11,6 +11,7 @@ import { Summary, NameSummary } from 'components/Summary'
 import { Field, Accordion } from 'components/Form'
 
 import Subsection from 'components/Section/shared/Subsection'
+import { validateMaritalRelations, validateMinimumRelations } from 'validators/relatives'
 
 import connectRelationshipsSection from '../RelationshipsConnector'
 
@@ -35,31 +36,6 @@ export class Relatives extends Subsection {
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
-  }
-
-  componentDidMount() {
-    if (this.props.List.branch) {
-      this.checkRelativesSubsectionErrors(this.props.List.branch.value)
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.List.branch.value !== this.props.List.branch.value) {
-      this.checkRelativesSubsectionErrors(this.props.List.branch.value)
-    }
-  }
-
-  checkRelativesSubsectionErrors = (value) => {
-    const requiredErrors = (
-      this.constructor.errors.map(err => (
-        {
-          code: `relatives.${err.code}`,
-          valid: err.func(this.props),
-        }
-      ))
-    )
-
-    this.props.onError(value, requiredErrors)
   }
 
   update = (queue) => {
@@ -94,10 +70,6 @@ export class Relatives extends Subsection {
       placeholder: i18n.t('relationships.relatives.collection.summary.unknown'),
     })
   }
-
-  validMaritalRelations = () => new RelativesValidator(this.props).validMaritalRelations()
-
-  validRelations = () => new RelativesValidator(this.props).validMinimumRelations()
 
   render() {
     const { List } = this.props
@@ -147,8 +119,8 @@ export class Relatives extends Subsection {
 
         {List.branch && List.branch.value === 'No' && (
           <Field
-            errors={[{ code: 'validRelation', valid: this.validRelations() }]}
-            className={this.validRelations() && 'hidden'}
+            errors={[{ code: 'validRelation', valid: validateMinimumRelations(this.props) }]}
+            className={validateMinimumRelations(this.props) && 'hidden'}
           />
         )}
 
@@ -157,10 +129,10 @@ export class Relatives extends Subsection {
             errors={[
               {
                 code: 'validMaritalRelation',
-                valid: this.validMaritalRelations(),
+                valid: validateMaritalRelations(this.props),
               },
             ]}
-            className={this.validMaritalRelations() && 'hidden'}
+            className={validateMaritalRelations(this.props) && 'hidden'}
           />
         )}
       </div>
@@ -181,22 +153,5 @@ Relatives.defaultProps = {
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,
 }
-
-Relatives.errors = [
-  {
-    code: 'validMaritalRelation',
-    func: (props) => {
-      const { List } = props
-      if (
-        List
-        && List.branch
-        && List.branch.value === 'No'
-      ) {
-        return new RelativesValidator(props).validMaritalRelations()
-      }
-      return null
-    },
-  },
-]
 
 export default connectRelationshipsSection(Relatives, sectionConfig)
