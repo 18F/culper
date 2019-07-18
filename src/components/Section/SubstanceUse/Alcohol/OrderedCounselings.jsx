@@ -1,7 +1,8 @@
 import React from 'react'
 import i18n from 'util/i18n'
 import schema from 'schema'
-import validate, { OrderedCounselingValidator } from 'validators'
+import validate from 'validators'
+import { validateOrderedCounseling } from 'validators/alcoholorderedcounseling'
 import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
@@ -128,7 +129,7 @@ export class OrderedCounselings extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={OrderedCounselingValidator}
+            validator={validateOrderedCounseling}
             description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
             appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
             appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
