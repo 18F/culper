@@ -95,6 +95,7 @@ const connectSubstanceUseSection = (Component, {
       case 'DrugPublicSafetyUses':
         return {
           ...substance.DrugPublicSafetyUses,
+          formType: settings.formType,
         }
 
       case 'PrescriptionUses':

@@ -362,6 +362,8 @@ export const substance = {
         'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
       drugPublicSafetyUses:
         'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
+      drugPublicSafetyUsesNum:
+        'In the last {{numberOfYearsString}} have you illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
       prescriptionUses:
         'In the last {{numberOfYearsString}} have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?',
       orderedTreatments:
