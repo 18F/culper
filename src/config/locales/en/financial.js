@@ -698,9 +698,4 @@ export const financial = {
       append: 'Add another non-payment or excessive late payment',
     },
   },
-  '85p': {
-    gambling: {
-      title: 'In the last seven (7) years have you ever experienced financial problems due to gambling?',
-    },
-  },
 }

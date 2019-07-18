@@ -48,6 +48,9 @@ describe('The financial card abuse model', () => {
 
       expect(validateModel(testData, financialCardAbuse, sf85pOptions))
         .toEqual(expect.arrayContaining(expectedErrors))
+
+      expect(validateModel(testData, financialCardAbuse, sf85pOptions))
+        .toEqual(expect.not.arrayContaining(['Date.required']))
     })
   })
 })
