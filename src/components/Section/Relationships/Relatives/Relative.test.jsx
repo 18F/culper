@@ -9,7 +9,7 @@ describe('The relative component', () => {
   const mockStore = configureMockStore()
   const defaultAppState = {
     application: {
-      AddressBooks: {}
+      AddressBooks: {},
     }
   }
   let createComponent
@@ -190,7 +190,9 @@ describe('The relative component', () => {
         country: { value: 'Germany' },
         layout: Location.ADDRESS
       },
-      HasAffiliation: { value: 'Yes' }
+      HasAffiliation: { value: 'Yes' },
+      requireRelationshipRelativesUSResidenceDoc: true,
+      requireRelationshipRelativesForeignGovtAffExplanation: true,
     }
 
     const component = createComponent(expected)
@@ -414,7 +416,7 @@ describe('The relative component', () => {
         zipcode: '22202'
       },
       Document: { value: 'Other' },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
     expect(component.find('.relative-address').length).toBe(1)
@@ -477,7 +479,9 @@ describe('The relative component', () => {
       Methods: { value: ['Telephone'] },
       Frequency: { value: 'Daily' },
       HasAffiliation: { value: 'Yes' },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
+      requireRelationshipRelativesUSResidenceDoc: true,
+      requireRelationshipRelativesForeignGovtAffExplanation: true,
     }
     const component = createComponent(expected)
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
