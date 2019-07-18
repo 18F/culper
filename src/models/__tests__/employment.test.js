@@ -2573,7 +2573,7 @@ describe('The employment model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('the Telephone field is required', () => {
+    it('the Telephone field must exist', () => {
       const testData = {
         Telephone: { noNumber: true },
       }
