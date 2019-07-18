@@ -6,17 +6,25 @@ import (
     "strings"
     "testing"
 
+    "github.com/18F/e-QIP-prototype/api"
     "github.com/18F/e-QIP-prototype/api/mock"
 )
+
+type saveStore struct {
+    mock.StorageService
+    saveCount int
+}
+
+func (s *saveStore) SaveSection(section api.Section, accountID int) error {
+    s.saveCount = s.saveCount + 1
+    return nil
+}
 
 func TestSaveHandler(t *testing.T) {
 
     var mockDB mock.DatabaseService
-    mockDB.SelectFn = func(query interface{}) error {
-        return nil
-    }
 
-    var mockStore mock.StorageService
+    var mockStore saveStore
 
     var mockLog mock.LogService
 
@@ -53,8 +61,10 @@ func TestSaveHandler(t *testing.T) {
     // Create a request to pass to our handler. We don't have any query parameters for now, so we'll
     // pass 'nil' as the third parameter.
     req := httptest.NewRequest("POST", "/me/save", reqBody)
-    accountID := 1
-    req = req.WithContext(SetAccountIDInRequestContext(req, accountID))
+    account := api.Account{
+        ID: 1,
+    }
+    req = req.WithContext(SetAccountInRequestContext(req, account))
     // We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
     rr := httptest.NewRecorder()
     // Our handlers satisfy http.Handler, so we can call their ServeHTTP method
@@ -75,8 +85,8 @@ func TestSaveHandler(t *testing.T) {
     }
 
     // Check that the db got called
-    if mockDB.SelectCount != 1 {
-        t.Errorf("never called the mock db.")
+    if mockStore.saveCount != 1 {
+        t.Errorf("never called the mock store.")
     }
 }
 
@@ -105,8 +115,10 @@ func TestSaveHandlerBadEntity(t *testing.T) {
     // Create a request to pass to our handler. We don't have any query parameters for now, so we'll
     // pass 'nil' as the third parameter.
     req := httptest.NewRequest("POST", "/me/save", reqBody)
-    accountID := 1
-    req = req.WithContext(SetAccountIDInRequestContext(req, accountID))
+    account := api.Account{
+        ID: 1,
+    }
+    req = req.WithContext(SetAccountInRequestContext(req, account))
     // We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
     rr := httptest.NewRecorder()
     // Our handlers satisfy http.Handler, so we can call their ServeHTTP method
