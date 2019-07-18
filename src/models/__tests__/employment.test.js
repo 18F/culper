@@ -2099,6 +2099,34 @@ describe('The employment model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('the Supervisor must have a phone number', () => {
+      const testData = {
+        EmploymentActivity: { value: 'NationalGuard' },
+        Supervisor: {
+          SupervisorName: { value: 'Person Supervisor' },
+          Title: { value: 'VP' },
+          EmailNotApplicable: { applicable: false },
+          Address: {
+            street: '40 Office St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          Telephone: {
+            noNumber: true,
+          },
+        },
+      }
+
+      const expectedErrors = [
+        'Supervisor.model',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('passes a valid Employment item', () => {
       const testData = {
         EmploymentActivity: { value: 'ActiveMilitary' },

@@ -184,6 +184,17 @@ describe('The civilUnion model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('the civilUnion telephone field is required', () => {
+    const testData = {
+      Telephone: '1234567890',
+    }
+
+    const expectedErrors = ['Telephone.model']
+
+    expect(validateModel(testData, civilUnion))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('the telephone field must be a valid phone number', () => {
     const testData = {
       Telephone: { number: '123' },
