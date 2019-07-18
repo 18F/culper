@@ -102,6 +102,20 @@ describe('The employment model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('the ReferencePhone must exist', () => {
+      const testData = {
+        EmploymentActivity: { value: 'Unemployment' },
+        ReferencePhone: { noNumber: true },
+      }
+
+      const expectedErrors = [
+        'ReferencePhone.model',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('ReferenceAddress must be a valid address', () => {
       const testData = {
         EmploymentActivity: { value: 'Unemployment' },
@@ -2525,6 +2539,18 @@ describe('The employment model', () => {
 
       const expectedErrors = [
         'Telephone.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('the Telephone field is required', () => {
+      const testData = {
+        Telephone: { noNumber: true },
+      }
+      const expectedErrors = [
+        'Telephone.model',
       ]
 
       expect(validateModel(testData, employment))
