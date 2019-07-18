@@ -71,7 +71,7 @@ const education = {
     educationRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        model: { validator: phone },
+        model: { validator: phone, requireNumber: true },
       }
       : {}
   ),
