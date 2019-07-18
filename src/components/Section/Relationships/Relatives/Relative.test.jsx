@@ -191,8 +191,6 @@ describe('The relative component', () => {
         layout: Location.ADDRESS
       },
       HasAffiliation: { value: 'Yes' },
-      requireRelationshipRelativesUSResidenceDoc: true,
-      requireRelationshipRelativesForeignGovtAffExplanation: true,
     }
 
     const component = createComponent(expected)
@@ -480,8 +478,6 @@ describe('The relative component', () => {
       Frequency: { value: 'Daily' },
       HasAffiliation: { value: 'Yes' },
       onUpdate: jest.fn(),
-      requireRelationshipRelativesUSResidenceDoc: true,
-      requireRelationshipRelativesForeignGovtAffExplanation: true,
     }
     const component = createComponent(expected)
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
