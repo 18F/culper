@@ -20,6 +20,7 @@ func TestSamlResponse(t *testing.T) {
 	os.Setenv("SAML_IDP_PUBLIC_CERT", "testdata/test_cert.pem")
 	os.Setenv("SAML_SIGN_REQUEST", "1")
 	os.Setenv("SAML_CONSUMER_SERVICE_URL", "")
+	os.Setenv("SAML_SLO_ENABLED", "")
 
 	settings := mock.Native{}
 	service := &Service{Log: &mock.LogService{}, Env: settings}
