@@ -9,7 +9,7 @@ export const validateForeignBornDocument = (data, formType = formTypes.SF86) => 
   return validateModel(
     data,
     foreignBornDocument,
-    { requireRelationshipMaritalForeignBornDocExpiration: isForeignBornDocExpirationRequired }
+    { requireForeignBornDocExpiration: isForeignBornDocExpirationRequired }
   ) === true
 }
 

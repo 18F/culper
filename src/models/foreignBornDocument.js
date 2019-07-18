@@ -22,7 +22,7 @@ const foreignBornDocument = {
     if (
       (attributes.DocumentExpirationNotApplicable
       && attributes.DocumentExpirationNotApplicable.applicable === false)
-      || !options.requireRelationshipMaritalForeignBornDocExpiration
+      || !options.requireForeignBornDocExpiration
     ) {
       return {}
     }
