@@ -211,6 +211,7 @@ export default class Relative extends ValidationElement {
       EmployerAddress: this.props.EmployerAddress,
       HasAffiliation: this.props.HasAffiliation,
       EmployerRelationship: this.props.EmployerRelationship,
+      AlternateAddress: this.props.AlternateAddress,
       ...queue,
     })
   }
