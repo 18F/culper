@@ -2078,6 +2078,20 @@ describe('The employment model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('the Telephone field must exist', () => {
+      const testData = {
+        EmploymentActivity: { value: 'USPHS' },
+        Telephone: { noNumber: true },
+      }
+
+      const expectedErrors = [
+        'Telephone.model',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('the Telephone field must be a valid phone', () => {
       const testData = {
         EmploymentActivity: { value: 'USPHS' },
