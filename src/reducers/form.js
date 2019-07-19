@@ -1,4 +1,8 @@
-import { UPDATE_SUBSECTION_DATA } from 'constants/actionTypes'
+import {
+  UPDATE_SUBSECTION_DATA,
+  UPDATE_SUBSECTION_ERRORS,
+  UPDATE_SUBSECTION_COMPLETE,
+} from 'constants/actionTypes'
 
 const defaultState = {}
 
@@ -19,6 +23,32 @@ const form = (state = defaultState, action) => {
       return {
         ...state,
         [`${key}`]: formSection,
+      }
+    }
+
+    case UPDATE_SUBSECTION_ERRORS: {
+      const { key, errors } = action
+      const formSection = state[key] || {}
+
+      return {
+        ...state,
+        [`${key}`]: {
+          ...formSection,
+          errors,
+        },
+      }
+    }
+
+    case UPDATE_SUBSECTION_COMPLETE: {
+      const { key, complete } = action
+      const formSection = state[key] || {}
+
+      return {
+        ...state,
+        [`${key}`]: {
+          ...formSection,
+          complete,
+        },
       }
     }
 
