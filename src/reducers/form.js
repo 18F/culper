@@ -1,4 +1,5 @@
 import {
+  UPDATE_SUBSECTION,
   UPDATE_SUBSECTION_DATA,
   UPDATE_SUBSECTION_ERRORS,
   UPDATE_SUBSECTION_COMPLETE,
@@ -8,9 +9,17 @@ const defaultState = {}
 
 const form = (state = defaultState, action) => {
   switch (action.type) {
+    case UPDATE_SUBSECTION: {
+      // This rewrites the entire subsection object - use with caution
+      const { key, subsection } = action
+      return {
+        ...state,
+        [`${key}`]: subsection,
+      }
+    }
+
     case UPDATE_SUBSECTION_DATA: {
       const { key, field, data } = action
-      // console.log(`UPDATE ${key} ${field}`)
 
       let formSection = state[key] || { data: {} }
       let sectionData = formSection.data || {}
