@@ -1,4 +1,5 @@
 import {
+  UPDATE_SUBSECTION,
   UPDATE_SUBSECTION_DATA,
   UPDATE_SUBSECTION_ERRORS,
   UPDATE_SUBSECTION_COMPLETE,
@@ -10,6 +11,39 @@ const defaultState = {}
 describe('The form reducer', () => {
   it('returns the default state', () => {
     expect(reducer(undefined, {})).toEqual(defaultState)
+  })
+
+  it('sets a new subsection object', () => {
+    expect(reducer(defaultState, {
+      type: UPDATE_SUBSECTION,
+      key: 'IDENTIFICATION_NAME',
+      subsection: { data: 'test data', errors: ['test error'], complete: false },
+    })).toEqual({
+      IDENTIFICATION_NAME: {
+        data: 'test data',
+        errors: ['test error'],
+        complete: false,
+      },
+    })
+  })
+
+  it('replaces an existing subsection object', () => {
+    expect(reducer({
+      IDENTIFICATION_NAME: {
+        data: 'test data',
+        errors: ['test error'],
+        complete: false,
+      },
+    }, {
+      type: UPDATE_SUBSECTION,
+      key: 'IDENTIFICATION_NAME',
+      subsection: { data: 'new test data', complete: true },
+    })).toEqual({
+      IDENTIFICATION_NAME: {
+        data: 'new test data',
+        complete: true,
+      },
+    })
   })
 
   it('adds new subsection data', () => {

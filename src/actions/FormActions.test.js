@@ -1,11 +1,38 @@
 import * as actionTypes from 'constants/actionTypes'
 import {
+  handleSubsectionUpdate,
+  updateSubsection,
   updateSubsectionData,
   updateSubsectionErrors,
   updateSubsectionComplete,
 } from './FormActions'
 
 describe('Form actions', () => {
+  it('should create an action for handling section updates', () => {
+    const expectedAction = {
+      type: actionTypes.HANDLE_SUBSECTION_UPDATE,
+      key: 'IDENTIFICATION_NAME',
+      field: 'Name',
+      data: { first: 'test data' },
+    }
+
+    expect(handleSubsectionUpdate('IDENTIFICATION_NAME', 'Name', { first: 'test data' }))
+      .toEqual(expectedAction)
+  })
+
+  it('should create an action for updating a whole subsection object', () => {
+    const expectedAction = {
+      type: actionTypes.UPDATE_SUBSECTION,
+      key: 'IDENTIFICATION_NAME',
+      subsection: { data: 'test data', errors: ['test error'], complete: false },
+    }
+
+    expect(updateSubsection('IDENTIFICATION_NAME', {
+      data: 'test data', errors: ['test error'], complete: false,
+    }))
+      .toEqual(expectedAction)
+  })
+
   it('should create an action for updating section data', () => {
     const expectedAction = {
       type: actionTypes.UPDATE_SUBSECTION_DATA,
