@@ -18,13 +18,25 @@ import {
 describe('The updateSubsection watcher', () => {
   const generator = updateSubsectionWatcher()
 
-  it('responds to all HANDLE_SUBSECTION_UPDATE actions', () => {
+  it('takes all HANDLE_SUBSECTION_UPDATE actions', () => {
     expect(generator.next().value)
-      .toEqual(take(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate))
+      .toEqual(take(HANDLE_SUBSECTION_UPDATE))
   })
 
-  it('is done', () => {
-    expect(generator.next().done).toBe(true)
+  it('calls the handleSubsectionUpdate handler', () => {
+    const action = {
+      type: HANDLE_SUBSECTION_UPDATE,
+      key: 'IDENTIFICATION_NAME',
+      field: 'Name',
+      data: { first: 'test data' },
+    }
+
+    expect(generator.next(action).value)
+      .toEqual(call(handleSubsectionUpdate, action))
+  })
+
+  it('is never done', () => {
+    expect(generator.next().done).toBe(false)
   })
 })
 
