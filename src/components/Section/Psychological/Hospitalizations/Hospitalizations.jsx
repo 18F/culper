@@ -17,6 +17,7 @@ import connectPsychologicalSection from '../PsychologicalConnector'
 import Hospitalization from './Hospitalization'
 
 const sectionConfig = {
+  key: PSYCHOLOGICAL_HOSPITALIZATIONS.key,
   section: PSYCHOLOGICAL.name,
   store: PSYCHOLOGICAL.store,
   subsection: PSYCHOLOGICAL_HOSPITALIZATIONS.name,
@@ -86,7 +87,7 @@ export class Hospitalizations extends Subsection {
           label={i18n.t('psychological.heading.hospitalization')}
           labelSize="h4"
           {...this.props.Hospitalized}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHospitalized}
@@ -116,7 +117,7 @@ export class Hospitalizations extends Subsection {
           >
             <Hospitalization
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

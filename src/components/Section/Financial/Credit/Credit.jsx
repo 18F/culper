@@ -14,6 +14,7 @@ import connectFinancialSection from '../FinancialConnector'
 import CreditItem from './CreditItem'
 
 const sectionConfig = {
+  key: FINANCIAL_CREDIT.key,
   section: FINANCIAL.name,
   store: FINANCIAL.store,
   subsection: FINANCIAL_CREDIT.name,
@@ -92,7 +93,7 @@ export class Credit extends Subsection {
           labelSize="h4"
           className="credit-branch"
           {...this.props.HasCreditCounseling}
-          warning
+          warning={true}
           onUpdate={this.updateBranch}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -115,7 +116,7 @@ export class Credit extends Subsection {
           >
             <CreditItem
               name="Item"
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

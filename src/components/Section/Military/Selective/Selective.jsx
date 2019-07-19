@@ -16,6 +16,7 @@ import {
 import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
+  key: MILITARY_SELECTIVE.key,
   section: MILITARY.name,
   store: MILITARY.store,
   subsection: MILITARY_SELECTIVE.name,
@@ -124,7 +125,7 @@ class Selective extends Subsection {
           className="born"
           {...this.props.WasBornAfter}
           help="military.selective.help.born"
-          warning
+          warning={true}
           onUpdate={this.updateBornAfter}
           required={this.props.required}
           onError={this.handleError}
@@ -147,7 +148,7 @@ class Selective extends Subsection {
                 label={i18n.t('military.selective.heading.registered')}
                 labelSize="h4"
                 {...this.props.HasRegistered}
-                warning
+                warning={true}
                 onUpdate={this.updateRegistered}
                 required={this.props.required}
                 onError={this.handleError}

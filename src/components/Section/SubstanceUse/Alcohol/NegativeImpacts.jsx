@@ -13,6 +13,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import NegativeImpact from './NegativeImpact'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_ALCOHOL_NEGATIVE.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_ALCOHOL_NEGATIVE.name,
@@ -81,7 +82,7 @@ export class NegativeImpacts extends Subsection {
           labelSize="h4"
           className="has-impacts"
           {...this.props.HasImpacts}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasImpacts}
@@ -105,7 +106,7 @@ export class NegativeImpacts extends Subsection {
           >
             <NegativeImpact
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

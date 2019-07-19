@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import ConferencesItem from './ConferencesItem'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_CONFERENCES.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_CONFERENCES.name,
@@ -81,7 +82,7 @@ export class Conferences extends Subsection {
           labelSize="h4"
           adjustFor="p"
           {...this.props.HasForeignConferences}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignConferences}
           required={this.props.required}
           onError={this.handleError}
@@ -108,7 +109,7 @@ export class Conferences extends Subsection {
           >
             <ConferencesItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
