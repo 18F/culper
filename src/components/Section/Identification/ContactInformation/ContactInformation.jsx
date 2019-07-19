@@ -22,6 +22,7 @@ import Subsection from '../../shared/Subsection'
 
 
 const sectionConfig = {
+  key: IDENTIFICATION_CONTACTS.key,
   section: IDENTIFICATION.name,
   store: IDENTIFICATION.store,
   subsection: IDENTIFICATION_CONTACTS.name,
@@ -134,7 +135,7 @@ export class ContactInformation extends Subsection {
           title={i18n.t('identification.contacts.heading.email')}
           titleSize="h3"
           help="identification.contacts.help.email"
-          optional
+          optional={true}
           className="no-margin-bottom"
           scrollIntoView={false}
         >
@@ -175,7 +176,7 @@ export class ContactInformation extends Subsection {
         <Field
           title={i18n.t('identification.contacts.heading.phoneNumber')}
           titleSize="h3"
-          optional
+          optional={true}
           help="identification.contacts.help.phoneNumber"
           className="no-margin-bottom"
           scrollIntoView={false}
@@ -207,13 +208,13 @@ export class ContactInformation extends Subsection {
               scrollIntoView={this.props.scrollIntoView}
               required={this.props.required}
             >
-              <Field optional scrollIntoView={this.props.scrollIntoView}>
+              <Field optional={true} scrollIntoView={this.props.scrollIntoView}>
                 <Telephone
                   name="Telephone"
                   typeClass="title"
-                  showNumberType
+                  showNumberType={true}
                   allowNotApplicable={false}
-                  bind
+                  bind={true}
                 />
               </Field>
             </AccordionItem>

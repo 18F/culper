@@ -8,21 +8,19 @@ import validate, { OtherNameValidator } from 'validators'
 import {
   Field,
   Accordion,
-  Textarea,
-  DateRange,
   Branch,
-  Show
+  Show,
 } from 'components/Form'
 import { Summary, NameSummary, DateSummary } from 'components/Summary'
+import { IDENTIFICATION, IDENTIFICATION_OTHER_NAMES } from 'config/formSections/identification'
 
 import OtherNameItem from './OtherNameItem'
 
 import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
 
-import { IDENTIFICATION, IDENTIFICATION_OTHER_NAMES } from 'config/formSections/identification'
-
 const sectionConfig = {
+  key: IDENTIFICATION_OTHER_NAMES.key,
   section: IDENTIFICATION.name,
   store: IDENTIFICATION.store,
   subsection: IDENTIFICATION_OTHER_NAMES.name,
@@ -33,7 +31,9 @@ export class OtherNames extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
@@ -49,39 +49,39 @@ export class OtherNames extends Subsection {
     this.props.onUpdate(this.storeKey, {
       List: this.props.List,
       HasOtherNames: this.props.HasOtherNames,
-      ...queue
+      ...queue,
     })
   }
 
   updateBranch(values) {
     this.update({
       HasOtherNames: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} },
     })
   }
 
   updateList(values) {
     this.update({
-      List: values
+      List: values,
     })
   }
 
   /**
    * Assists in rendering the summary section.
    */
-  summary(item, index) {
+  summary = (item, index) => {
     const itemObj = item.Item || {}
     const dates = DateSummary(itemObj.DatesUsed)
     const name = NameSummary(itemObj.Name)
 
     return Summary({
       type: i18n.t('identification.othernames.collection.summary.name'),
-      index: index,
+      index,
       left: name,
       right: dates,
       placeholder: i18n.t(
         'identification.othernames.collection.summary.unknown'
-      )
+      ),
     })
   }
 
@@ -98,7 +98,8 @@ export class OtherNames extends Subsection {
           titleSize="h3"
           optional={true}
           help="identification.othernames.branch.help"
-          className="no-margin-bottom">
+          className="no-margin-bottom"
+        >
           {i18n.m('identification.othernames.info')}
         </Field>
 
@@ -130,7 +131,8 @@ export class OtherNames extends Subsection {
               'identification.othernames.collection.appendTitle'
             )}
             appendLabel={i18n.t('identification.othernames.collection.append')}
-            titleSize="h4">
+            titleSize="h4"
+          >
             <OtherNameItem
               name="Item"
               required={this.props.required}
@@ -147,16 +149,12 @@ export class OtherNames extends Subsection {
 OtherNames.defaultProps = {
   List: Accordion.defaultList,
   HasOtherNames: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('identification.othernames', data))
-  },
+  validator: data => validate(schema('identification.othernames', data)),
   defaultState: true,
-  required: false
+  required: false,
 }
 
 export default connectIdentificationSection(OtherNames, sectionConfig)

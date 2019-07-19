@@ -17,6 +17,7 @@ import connectFinancialSection from '../FinancialConnector'
 import Bankruptcy from './Bankruptcy'
 
 const sectionConfig = {
+  key: FINANCIAL_BANKRUPTCY.key,
   section: FINANCIAL.name,
   store: FINANCIAL.store,
   subsection: FINANCIAL_BANKRUPTCY.name,
@@ -90,7 +91,7 @@ export class Bankruptcies extends Subsection {
           className="bankruptcy-branch"
           {...this.props.HasBankruptcy}
           help="financial.bankruptcy.help"
-          warning
+          warning={true}
           onUpdate={this.updateHasBankruptcy}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -121,7 +122,7 @@ export class Bankruptcies extends Subsection {
               addressBooks={this.props.addressBooks}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              bind
+              bind={true}
             />
           </Accordion>
         </Show>

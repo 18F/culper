@@ -13,6 +13,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import DrugClearanceUse from './DrugClearanceUse'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_DRUGS_CLEARANCE.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_DRUGS_CLEARANCE.name,
@@ -82,7 +83,7 @@ export class DrugClearanceUses extends Subsection {
           labelSize="h4"
           className="used-drugs"
           {...this.props.UsedDrugs}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateUsedDrugs}
@@ -106,7 +107,7 @@ export class DrugClearanceUses extends Subsection {
           >
             <DrugClearanceUse
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

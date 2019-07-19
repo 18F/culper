@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import ForeignNational from './ForeignNational'
 
 const sectionConfig = {
+  key: FOREIGN_CONTACTS.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_CONTACTS.name,
@@ -76,7 +77,7 @@ export class Contacts extends Subsection {
           label={i18n.t('foreign.contacts.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignContacts}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignContacts}
           onError={this.handleError}
           required={this.props.required}
@@ -104,7 +105,7 @@ export class Contacts extends Subsection {
             <ForeignNational
               name="Item"
               applicantBirthdate={this.props.applicantBirthdate}
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

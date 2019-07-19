@@ -18,6 +18,7 @@ import connectLegalSection from '../LegalConnector'
 import DebarredItem from './DebarredItem'
 
 const sectionConfig = {
+  key: LEGAL_INVESTIGATIONS_DEBARRED.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_INVESTIGATIONS_DEBARRED.name,
@@ -96,7 +97,7 @@ export class Debarred extends Subsection {
           labelSize="h4"
           className="legal-investigations-debarred-has-debarment"
           {...this.props.HasDebarment}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -120,7 +121,7 @@ export class Debarred extends Subsection {
           >
             <DebarredItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

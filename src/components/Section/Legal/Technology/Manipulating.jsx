@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import ManipulatingItem from './ManipulatingItem'
 
 const sectionConfig = {
+  key: LEGAL_TECHNOLOGY_MANIPULATING.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_TECHNOLOGY_MANIPULATING.name,
@@ -83,7 +84,7 @@ export class Manipulating extends Subsection {
           labelSize="h4"
           className="legal-technology-manipulating-has-manipulating"
           {...this.props.HasManipulating}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -107,7 +108,7 @@ export class Manipulating extends Subsection {
           >
             <ManipulatingItem
               name="Item"
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import UnlawfulItem from './UnlawfulItem'
 
 const sectionConfig = {
+  key: LEGAL_TECHNOLOGY_UNLAWFUL.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_TECHNOLOGY_UNLAWFUL.name,
@@ -82,7 +83,7 @@ export class Unlawful extends Subsection {
           labelSize="h4"
           className="legal-technology-unlawful-has-unlawful"
           {...this.props.HasUnlawful}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -106,7 +107,7 @@ export class Unlawful extends Subsection {
           >
             <UnlawfulItem
               name="Item"
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

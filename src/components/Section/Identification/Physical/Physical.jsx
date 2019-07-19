@@ -13,6 +13,7 @@ import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
 
 const sectionConfig = {
+  key: IDENTIFICATION_PHYSICAL.key,
   section: IDENTIFICATION.name,
   store: IDENTIFICATION.store,
   subsection: IDENTIFICATION_PHYSICAL.name,
@@ -62,12 +63,12 @@ export class Physical extends Subsection {
           help="identification.traits.help.height"
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
-          shrink
+          shrink={true}
         >
           <Height
             name="height"
             {...this.props.Height}
-            onUpdate={this.handleUpdate.bind(this, 'Height')}
+            onUpdate={(values) => { this.handleUpdate('Height', values) }}
             onError={this.handleError}
             required={this.props.required}
           />
@@ -79,12 +80,12 @@ export class Physical extends Subsection {
           help="identification.traits.help.weight"
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
-          shrink
+          shrink={true}
         >
           <Weight
             name="weight"
             {...this.props.Weight}
-            onUpdate={this.handleUpdate.bind(this, 'Weight')}
+            onUpdate={(values) => { this.handleUpdate('Weight', values) }}
             onError={this.handleError}
             required={this.props.required}
           />
@@ -102,7 +103,7 @@ export class Physical extends Subsection {
             help="identification.traits.help.hair"
             className=""
             {...this.props.HairColor}
-            onUpdate={this.handleUpdate.bind(this, 'HairColor')}
+            onUpdate={(values) => { this.handleUpdate('HairColor', values) }}
             onError={this.handleError}
             required={this.props.required}
           />
@@ -119,7 +120,7 @@ export class Physical extends Subsection {
             name="eye"
             className=""
             {...this.props.EyeColor}
-            onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
+            onUpdate={(values) => { this.handleUpdate('EyeColor', values) }}
             onError={this.handleError}
             required={this.props.required}
           />
@@ -130,12 +131,12 @@ export class Physical extends Subsection {
           titleSize="h4"
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}
-          shrink
+          shrink={true}
         >
           <Sex
             name="sex"
             {...this.props.Sex}
-            onUpdate={this.handleUpdate.bind(this, 'Sex')}
+            onUpdate={(values) => { this.handleUpdate('Sex', values) }}
             onError={this.handleError}
             required={this.props.required}
           />
