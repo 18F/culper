@@ -8,8 +8,21 @@ import {
 
 import store from 'services/store'
 import { selectMaritalStatus } from 'selectors/data'
+import {
+  requireRelationshipRelativesForeignBornDoc,
+  requireRelationshipRelativesUSResidenceDoc,
+} from 'helpers/branches'
 
-export const validateRelative = data => validateModel(data, relative) === true
+export const validateRelative = (data, formType) => (
+  validateModel(
+    data,
+    relative,
+    {
+      requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
+      requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
+    },
+  ) === true
+)
 
 export const validateAlias = data => validateModel(data, alias) === true
 
@@ -18,7 +31,7 @@ export const getMaritalStatus = () => {
   return selectMaritalStatus(state)
 }
 
-export const validateRelatives = (data) => {
+export const validateRelatives = (data, formType) => {
   const maritalStatus = getMaritalStatus()
 
   const requiredRelations = [
@@ -45,12 +58,22 @@ export const validateRelatives = (data) => {
     },
   }
 
-  return validateModel(data, relativesModel) === true
+  return validateModel(
+    data,
+    relativesModel,
+    {
+      requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
+      requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
+    },
+  ) === true
 }
 
 export default class RelativesValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   validMaritalRelations(context = null) {
@@ -97,7 +120,7 @@ export default class RelativesValidator {
   }
 
   isValid() {
-    return validateRelatives(this.data)
+    return validateRelatives(this.data, this.formType)
   }
 }
 
@@ -114,7 +137,10 @@ export class RelativeValidator {
   }
 
   requiresCitizenshipDocumentation() {
-    return requireCitizenshipDocumentation(this.data, this.formType)
+    return requireCitizenshipDocumentation(
+      this.data,
+      { requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(this.formType) },
+    )
   }
 
   validRelation() {
@@ -239,7 +265,7 @@ export class RelativeValidator {
   }
 
   isValid() {
-    return validateRelative(this.data)
+    return validateRelative(this.data, this.formType)
   }
 }
 
