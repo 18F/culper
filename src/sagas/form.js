@@ -19,6 +19,8 @@ export function* handleSubsectionUpdate({ key, field, data }) {
   const formType = yield select(formTypeSelector)
   const formSection = yield select(selectSubsection, key)
   const newData = yield call(updateSectionData, formSection.data, field, data)
+
+  // TODO - this data is not accurate until EN-3835 has been incorporated
   const errors = yield call(validateSection, key, newData, formType)
 
   const newFormSection = {
@@ -31,5 +33,8 @@ export function* handleSubsectionUpdate({ key, field, data }) {
 }
 
 export function* updateSubsectionWatcher() {
-  yield take(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate)
+  while (true) {
+    const action = yield take(HANDLE_SUBSECTION_UPDATE)
+    yield call(handleSubsectionUpdate, action)
+  }
 }
