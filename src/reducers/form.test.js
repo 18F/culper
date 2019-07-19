@@ -1,4 +1,8 @@
-import { UPDATE_SUBSECTION_DATA } from 'constants/actionTypes'
+import {
+  UPDATE_SUBSECTION_DATA,
+  UPDATE_SUBSECTION_ERRORS,
+  UPDATE_SUBSECTION_COMPLETE,
+} from 'constants/actionTypes'
 import reducer from './form'
 
 const defaultState = {}
@@ -48,6 +52,94 @@ describe('The form reducer', () => {
             last: 'old name',
           },
         },
+      },
+    })
+  })
+
+  it('updates subsection errors', () => {
+    expect(reducer({
+      IDENTIFICATION_NAME: {
+        data: {
+          Name: {
+            first: 'old name',
+            last: 'old name',
+          },
+        },
+        errors: ['old error'],
+      },
+    }, {
+      type: UPDATE_SUBSECTION_ERRORS,
+      key: 'IDENTIFICATION_NAME',
+      errors: ['test error 1', 'test error 2'],
+    })).toEqual({
+      IDENTIFICATION_NAME: {
+        data: {
+          Name: {
+            first: 'old name',
+            last: 'old name',
+          },
+        },
+        errors: ['test error 1', 'test error 2'],
+      },
+    })
+  })
+
+  it('updates subsection complete status to true', () => {
+    expect(reducer({
+      IDENTIFICATION_NAME: {
+        data: {
+          Name: {
+            first: 'old name',
+            last: 'old name',
+          },
+        },
+        errors: ['old error'],
+        complete: false,
+      },
+    }, {
+      type: UPDATE_SUBSECTION_COMPLETE,
+      key: 'IDENTIFICATION_NAME',
+      complete: true,
+    })).toEqual({
+      IDENTIFICATION_NAME: {
+        data: {
+          Name: {
+            first: 'old name',
+            last: 'old name',
+          },
+        },
+        errors: ['old error'],
+        complete: true,
+      },
+    })
+  })
+
+  it('updates subsection complete status to false', () => {
+    expect(reducer({
+      IDENTIFICATION_NAME: {
+        data: {
+          Name: {
+            first: 'old name',
+            last: 'old name',
+          },
+        },
+        errors: ['old error'],
+        complete: true,
+      },
+    }, {
+      type: UPDATE_SUBSECTION_COMPLETE,
+      key: 'IDENTIFICATION_NAME',
+      complete: false,
+    })).toEqual({
+      IDENTIFICATION_NAME: {
+        data: {
+          Name: {
+            first: 'old name',
+            last: 'old name',
+          },
+        },
+        errors: ['old error'],
+        complete: false,
       },
     })
   })
