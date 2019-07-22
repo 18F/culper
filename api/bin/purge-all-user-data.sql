@@ -6,7 +6,7 @@
 --   docker exec --user postgres -it CONTAINERID psql -f /tmp/purge-all-user-data.sql
 
 BEGIN;
-UPDATE accounts SET locked = false;
+UPDATE accounts SET status = 'INCOMPLETE';
 
 DELETE FROM benefits;
 DELETE FROM checkbox_groups;
