@@ -153,4 +153,4 @@ docker exec -it CONTAINERID bin/load-scenario testdata/complete-scenarios/test1.
 ```
 
 ## Clearing account data
-1. You can use the `flush` script to delete all the application data for a given user. See (dev-tools)[./dev-tools.md]
+1. You can use the `flush` script to delete all the application data for a given user. See [dev-tools](./dev-tools.md)
