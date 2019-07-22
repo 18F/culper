@@ -57,20 +57,19 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(select(selectSubsection, 'IDENTIFICATION_NAME'))
   })
 
-  it('updates the section data with the new data', () => {
+  it('validates the new section data', () => {
     const prevState = {
       data: { first: 'old data', last: 'existing data' },
     }
 
-    expect(generator.next(prevState).value)
-      .toEqual(call(updateSectionData, prevState.data, 'Name', { first: 'test data' }))
-  })
-
-  it('validates the new section data', () => {
     const newState = { first: 'test data', last: 'existing data' }
 
-    expect(generator.next(newState).value)
-      .toEqual(call(validateSection, 'IDENTIFICATION_NAME', newState, 'SF-86'))
+    expect(generator.next(prevState).value)
+      .toEqual(call(validateSection, {
+        key: 'IDENTIFICATION_NAME',
+        data: newState,
+        formType: 'SF-86',
+      }))
   })
 
   it('dispatches the new section data', () => {
