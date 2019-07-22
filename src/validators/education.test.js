@@ -183,7 +183,7 @@ describe('Education component validation', function() {
             applicable: true
           },
           ReferencePhone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             numberType: 'Home',
             type: 'Domestic',
