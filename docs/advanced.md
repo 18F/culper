@@ -113,9 +113,15 @@ The application should re-deploy correctly at this point, either on the next com
 
 ### Purging the database
 
-To execute the [database purge script](https://github.com/18F/e-QIP-prototype/blob/develop/docs/test-scenarios.md) against the cloud.gov PostgreSQL, the following approach may be used. It requires `cf`, the [`cf-service-connect`](cf-service-connect) plug-in and the PostgreSQL `psql` client. Additional details can be found in the [cloud.gov database documentation](https://cloud.gov/docs/services/relational-database/#manually-access-a-database).
+If you desire to remove all data from the db, you can use `dbreset` and `dbmigrate` to return to a pristine state. `dbreset` will delete the entire database and create a new one and then `dbmigrate` will run all the migrations, setting up the tables correctly. The default DATABASENAME for eApp is "postgres"
+```
+docker exec CONTAINERID bin/dbreset DATABASENAME
+docker exec CONTAINERID bin/dbmigrate -migrations_path ./migrations DATABASENAME
+```
 
-This example purges the `dev` database, which is a service used by the api backend. In one terminal window:
+### Getting DB info for the cloud.gov instance
+
+To perform database operations on cloud.gov databases, you need to get the connection parameters. The following approach may be used to do so. It requires `cf`, the [`cf-service-connect`](cf-service-connect) plug-in and the PostgreSQL `psql` client. Additional details can be found in the [cloud.gov database documentation](https://cloud.gov/docs/services/relational-database/#manually-access-a-database).
 
 ```
 cf login -a api.fr.cloud.gov -u INSERT-USERNAME-HERE -o gsa-acq-eqip -s production --sso
@@ -133,8 +139,4 @@ Password: GENERATED-PASS
 Name: GENERATED-DB
 ```
 
-In a second terminal window, you can connect `psql` to the local port, and `cf` will proxy those commands to the remote cloud.gov instance. When prompted for a password, supply `GENERATED-PASS` from the `cf connect-to-service` output:
-
-```
-psql -h localhost -p GENERATED-PORT -U GENERATED-USER -W GENERATED-DB -f purge-all-user-data.sql
-```
+With this data, you can set the associated env vars and then modify the database using tools like `dbmigrate` or `dbreset`
