@@ -1,57 +1,56 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { reportCompletion } from 'actions/ApplicationActions'
-import { newGuid } from '../../Form/ValidationElement'
+import { newGuid } from 'components/Form/ValidationElement'
 
 export default class SubsectionElement extends React.Component {
-  constructor(props) {
-    super(props)
+  guid = () => newGuid()
 
-    this.handleError = this.handleError.bind(this)
-    this.handleCompletion = this.handleCompletion.bind(this)
-  }
+  handleCompletion = () => {
+    const { dispatch, validator } = this.props
 
-  handleCompletion() {
     const data = {
       ...this.props,
-      ...this.state
+      ...this.state,
     }
 
-    this.props.dispatch(
+    dispatch(
       reportCompletion(
         this.section,
         this.subsection,
-        this.props.validator(data)
+        validator(data) === true,
       )
     )
   }
 
-  handleError(value, arr) {
+  handleError = (value, arr) => {
+    const { onError } = this.props
+
     this.handleCompletion()
-    arr = arr.map(err => {
-      return {
-        ...err,
-        // note the original subsection the field is associated with, as it could be appearing under 'review'
-        section: this.section,
-        subsection: this.subsection
-      }
-    })
 
-    return this.props.onError(value, arr)
-  }
+    /* eslint no-param-reassign: 0 */
+    arr = arr.map(err => ({
+      ...err,
+      // note the original subsection the field is associated with, as it could
+      // be appearing under 'review'
+      section: this.section,
+      subsection: this.subsection,
+    }))
+    /* eslint no-param-reassign: 1 */
 
-  guid() {
-    return newGuid()
+    return onError(value, arr)
   }
 }
 
+SubsectionElement.propTypes = {
+  dispatch: PropTypes.func,
+  validator: PropTypes.func,
+  onError: PropTypes.func,
+}
+
 SubsectionElement.defaultProps = {
-  section: '',
-  subsection: '',
   dispatch: () => {},
-  validator: data => {
-    return false
-  },
-  onError: (value, arr) => {
-    return arr
-  }
+  validator: () => false,
+  onError: (value, arr) => arr,
 }

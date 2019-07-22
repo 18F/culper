@@ -40,7 +40,7 @@ const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
 
       return {
         ...s,
-        isValid,
+        isValid: isValid === true,
       }
     })
 
