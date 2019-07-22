@@ -84,6 +84,18 @@ describe('The drugVoluntaryTreatment model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('TreatmentProviderTelephone must exist', () => {
+    const testData = {
+      TreatmentProviderTelephone: { noNumber: true },
+    }
+    const expectedErrors = [
+      'TreatmentProviderTelephone.model',
+    ]
+
+    expect(validateModel(testData, drugVoluntaryTreatment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('TreatmentDates must be a valid date range', () => {
     const testData = {
       TreatmentDates: false,
