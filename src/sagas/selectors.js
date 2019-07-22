@@ -1,6 +1,6 @@
-export const selectSubsection = state => state
+export const selectState = state => state
 
-export const selectState = (state, sectionKey) => (
+export const selectSubsection = (state, sectionKey) => (
   (state && state.form && state.form[sectionKey]) || {}
 )
 

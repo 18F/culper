@@ -40,7 +40,7 @@ export function* updateSectionStatus(section, store = '', state = {}) {
     yield put(reportCompletion(
       sectionName,
       subsectionName,
-      isValid,
+      isValid === true,
     ))
   }
 }
