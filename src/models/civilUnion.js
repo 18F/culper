@@ -8,7 +8,6 @@ import { hasYesOrNo } from 'models/validate'
 import { DEFAULT_LATEST, OTHER } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
-import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 export const otherName = {
   Name: {
