@@ -1,0 +1,2223 @@
+{
+  "Citizenship": {
+    "Multiple": {
+      "type": "citizenship.multiple",
+      "props": {
+        "HasMultiple": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Passports": {
+      "type": "citizenship.passports",
+      "props": {
+        "Passports": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Status": {
+      "type": "citizenship.status",
+      "props": {
+        "CitizenshipStatus": {
+          "type": "radio",
+          "props": {
+            "value": "Citizen"
+          }
+        },
+        "AbroadDocumentation": {
+          "type": "radio",
+          "props": {
+            "value": ""
+          }
+        },
+        "Explanation": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        },
+        "DocumentNumber": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "DocumentIssued": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "DocumentName": {
+          "type": "name",
+          "props": {
+            "first": "",
+            "firstInitialOnly": false,
+            "middle": "",
+            "middleInitialOnly": false,
+            "noMiddleName": false,
+            "last": "",
+            "suffix": "",
+            "suffixOther": ""
+          }
+        },
+        "DocumentExpiration": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "DocumentType": {
+          "type": "radio",
+          "props": {
+            "value": ""
+          }
+        },
+        "PlaceIssued": {
+          "type": "location",
+          "props": {
+            "layout": "",
+            "country": ""
+          }
+        },
+        "CertificateNumber": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "CertificateIssued": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "CertificateName": {
+          "type": "name",
+          "props": {
+            "first": "",
+            "firstInitialOnly": false,
+            "middle": "",
+            "middleInitialOnly": false,
+            "noMiddleName": false,
+            "last": "",
+            "suffix": "",
+            "suffixOther": ""
+          }
+        },
+        "CertificateCourtName": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "CertificateCourtAddress": {
+          "type": "location",
+          "props": {
+            "layout": "",
+            "country": ""
+          }
+        },
+        "BornOnMilitaryInstallation": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "MilitaryBase": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "EntryDate": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "EntryLocation": {
+          "type": "location",
+          "props": {
+            "layout": "",
+            "country": ""
+          }
+        },
+        "PriorCitizenship": {
+          "type": "country",
+          "props": {
+            "value": null
+          }
+        },
+        "HasAlienRegistration": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "AlienRegistrationNumber": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "AlienRegistrationExpiration": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "Basis": {
+          "type": "radio",
+          "props": {
+            "value": ""
+          }
+        },
+        "PermanentResidentCardNumber": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "ResidenceStatus": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "Financial": {
+    "Bankruptcy": {
+      "type": "financial.bankruptcy",
+      "props": {
+        "HasBankruptcy": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Card": {
+      "type": "financial.card",
+      "props": {
+        "HasCardAbuse": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Credit": {
+      "type": "financial.credit",
+      "props": {
+        "HasCreditCounseling": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Delinquent": {
+      "type": "financial.delinquent",
+      "props": {
+        "HasDelinquent": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Gambling": {
+      "type": "financial.gambling",
+      "props": {
+        "HasGamblingDebt": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Nonpayment": {
+      "type": "financial.nonpayment",
+      "props": {
+        "HasNonpayment": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Taxes": {
+      "type": "financial.taxes",
+      "props": {
+        "HasTaxes": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    }
+  },
+  "Foreign": {
+    "Passport": {
+      "type": "foreign.passport",
+      "props": {
+        "HasPassports": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "Name": {
+          "type": "name",
+          "props": {
+            "first": "",
+            "firstInitialOnly": false,
+            "middle": "",
+            "middleInitialOnly": false,
+            "noMiddleName": false,
+            "last": "",
+            "suffix": "",
+            "suffixOther": ""
+          }
+        },
+        "Card": {
+          "type": "radio",
+          "props": {
+            "value": "Book"
+          }
+        },
+        "Number": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "Issued": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "Expiration": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "Comments": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "History": {
+    "Education": {
+      "type": "history.education",
+      "props": {
+        "HasAttended": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "HasDegree10": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Employment": {
+      "type": "history.employment",
+      "props": {
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "items": [
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "items": [
+                        {
+                          "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "name": "branchcollection",
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {}
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {}
+                            },
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {}
+                                },
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "branch": null
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "uid": "Address-a7f0ef7b-532c-b9a1-7f7e-bf810961af90",
+                      "street": "1212 wawa street",
+                      "street2": "",
+                      "city": "brooklyn",
+                      "zipcode": "11215",
+                      "state": "NY",
+                      "country": "United States",
+                      "layout": "Address",
+                      "validated": true
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "year": "2019",
+                          "month": "7",
+                          "day": "23",
+                          "estimated": false
+                        }
+                      },
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "name": "from",
+                          "month": "6",
+                          "day": "12",
+                          "year": "2015",
+                          "estimated": false,
+                          "touched": true
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {}
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "Wawa",
+                      "name": "Employment"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment",
+                      "otherExplanation": ""
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "name": "physicalAddress",
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {}
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {}
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "items": [],
+                          "branch": null
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {}
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {}
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {}
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {}
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "items": [
+                        {
+                          "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "name": "branchcollection",
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {}
+                            },
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {}
+                            }
+                          }
+                        }
+                      ],
+                      "branch": null
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "name": "Status",
+                      "value": "PartTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Brian Henderson",
+                          "name": "SupervisorName"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Store manager",
+                          "name": "Title"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {}
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "name": "EmailNotApplicable",
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "uid": "Address-cd70aed9-d452-65e3-297a-881e6dd7c94e",
+                          "street": "1212 wawa street",
+                          "street2": "",
+                          "city": "brooklyn",
+                          "zipcode": "11215",
+                          "state": "NY",
+                          "country": "United States",
+                          "layout": "Address",
+                          "validated": false
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "name": "Telephone",
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "5555555555",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "name": "Telephone",
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "5555555555",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Cashier",
+                      "name": "Title"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "items": [],
+                      "branch": null
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {}
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {}
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "name": "to",
+                          "month": "6",
+                          "day": "1",
+                          "year": "2015",
+                          "estimated": false,
+                          "touched": true
+                        }
+                      },
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "name": "from",
+                          "month": "5",
+                          "day": "15",
+                          "year": "1995",
+                          "estimated": false,
+                          "touched": true
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {}
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {}
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "Unemployment",
+                      "otherExplanation": ""
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {}
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "PhysicalAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {}
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {}
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "items": [],
+                          "branch": null
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "uid": "ReferenceAddress-301d6f0a-e150-f419-cf2c-539f900caa12",
+                      "street": "100 Main street",
+                      "street2": "",
+                      "city": "brooklyn",
+                      "zipcode": "11215",
+                      "state": "NY",
+                      "country": "United States",
+                      "layout": "Address",
+                      "validated": true
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "Cindy",
+                      "firstInitialOnly": false,
+                      "last": "Donaldson",
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "hideMiddleName": true,
+                      "noMiddleName": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "name": "ReferencePhone",
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "5555555555",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "items": [],
+                      "branch": null
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {}
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {}
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {}
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {}
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {}
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {}
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {}
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {}
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "EmploymentRecord": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
+      }
+    },
+    "Federal": {
+      "type": "history.federal",
+      "props": {
+        "HasFederalService": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Residence": {
+      "type": "history.residence",
+      "props": {
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "items": [
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "uid": "Address-f35026bd-23a7-5de4-bc81-4b2aaefbd8b6",
+                      "street": "100 UNION ST",
+                      "street2": "",
+                      "city": "BROOKLYN",
+                      "zipcode": "11231",
+                      "state": "NY",
+                      "country": "United States",
+                      "layout": "Address",
+                      "validated": true
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "Comments": {
+                    "type": "textarea",
+                    "props": {}
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "year": "2019",
+                          "month": "7",
+                          "day": "23",
+                          "estimated": false
+                        }
+                      },
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "name": "from",
+                          "month": "5",
+                          "day": "1",
+                          "year": "2011",
+                          "estimated": false,
+                          "touched": true
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "uid": "ReferenceAddress-26b500ec-2d85-8c6b-1605-2be2630a8ee0",
+                      "street": "101 Union St",
+                      "street2": "",
+                      "city": "Brooklyn",
+                      "zipcode": "11231",
+                      "state": "NY",
+                      "country": "United States",
+                      "layout": "Address",
+                      "validated": true
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {}
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "ReferenceEmail": {
+                    "type": "email",
+                    "props": {
+                      "name": "ReferenceEmail",
+                      "value": "jane@email.com"
+                    }
+                  },
+                  "ReferenceEmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "ReferenceLastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "name": "ReferenceLastContact",
+                      "month": "10",
+                      "day": "31",
+                      "year": "2018",
+                      "estimated": false,
+                      "touched": true
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "Jane",
+                      "firstInitialOnly": false,
+                      "last": "Dorman",
+                      "middle": "Donna",
+                      "middleInitialOnly": false,
+                      "hideMiddleName": false,
+                      "noMiddleName": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhoneDay": {
+                    "type": "telephone",
+                    "props": {
+                      "name": "ReferencePhoneDay",
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": true
+                    }
+                  },
+                  "ReferencePhoneEvening": {
+                    "type": "telephone",
+                    "props": {
+                      "name": "ReferencePhoneEvening",
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": true
+                    }
+                  },
+                  "ReferencePhoneMobile": {
+                    "type": "telephone",
+                    "props": {
+                      "name": "ReferencePhoneMobile",
+                      "timeOfDay": "NA",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "5555555555",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferenceRelationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Neighbor"
+                      ]
+                    }
+                  },
+                  "ReferenceRelationshipComments": {
+                    "type": "checkboxgroup",
+                    "props": {}
+                  },
+                  "ReferenceRelationshipOther": {
+                    "type": "text",
+                    "props": {}
+                  },
+                  "Role": {
+                    "type": "radio",
+                    "props": {
+                      "name": "role-other",
+                      "value": "Other",
+                      "checked": false
+                    }
+                  },
+                  "RoleOther": {
+                    "type": "text",
+                    "props": {
+                      "value": "This is my childhood home",
+                      "name": "RoleOther"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Identification": {
+    "ApplicantBirthDate": {
+      "type": "identification.birthdate",
+      "props": {
+        "Date": {
+          "type": "datecontrol",
+          "props": {
+            "month": "5",
+            "day": "15",
+            "year": "1995",
+            "estimated": false
+          }
+        },
+        "Confirmed": {
+          "type": "checkbox",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    },
+    "ApplicantBirthPlace": {
+      "type": "identification.birthplace",
+      "props": {
+        "Location": {
+          "type": "location",
+          "props": {
+            "layout": "Birthplace",
+            "city": "Brooklyn",
+            "state": "NY",
+            "county": "Kings",
+            "country": "United States"
+          }
+        }
+      }
+    },
+    "ApplicantName": {
+      "type": "identification.name",
+      "props": {
+        "Name": {
+          "type": "name",
+          "props": {
+            "first": "James",
+            "firstInitialOnly": false,
+            "middle": "Ronald",
+            "middleInitialOnly": false,
+            "noMiddleName": false,
+            "last": "Dolan",
+            "suffix": "",
+            "suffixOther": ""
+          }
+        }
+      }
+    },
+    "ApplicantSSN": {
+      "type": "identification.ssn",
+      "props": {
+        "ssn": {
+          "type": "ssn",
+          "props": {
+            "first": "555",
+            "middle": "55",
+            "last": "5555",
+            "notApplicable": false
+          }
+        },
+        "verified": true
+      }
+    },
+    "Contacts": {
+      "type": "identification.contacts",
+      "props": {
+        "HomeEmail": {
+          "type": "email",
+          "props": {
+            "value": "james@email.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": "james@workemail.com"
+          }
+        },
+        "PhoneNumbers": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": [
+              {
+                "Item": {
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "name": "Telephone",
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "Cell",
+                      "number": "5555555555",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "OtherNames": {
+      "type": "identification.othernames",
+      "props": {
+        "HasOtherNames": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Physical": {
+      "type": "identification.physical",
+      "props": {
+        "Comments": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        },
+        "EyeColor": {
+          "type": "text",
+          "props": {
+            "value": "Brown"
+          }
+        },
+        "HairColor": {
+          "type": "text",
+          "props": {
+            "value": "Brown"
+          }
+        },
+        "Height": {
+          "type": "height",
+          "props": {
+            "feet": 5,
+            "inches": 10
+          }
+        },
+        "Sex": {
+          "type": "text",
+          "props": {
+            "value": "Male"
+          }
+        },
+        "Weight": {
+          "type": "number",
+          "props": {
+            "value": "170"
+          }
+        }
+      }
+    }
+  },
+  "Legal": {
+    "ActivitiesToOverthrow": {
+      "type": "legal.associations.activities-to-overthrow",
+      "props": {
+        "HasActivities": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Advocating": {
+      "type": "legal.associations.advocating",
+      "props": {
+        "HasAdvocated": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Debarred": {
+      "type": "legal.investigations.debarred",
+      "props": {
+        "HasDebarment": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "EngagedInTerrorism": {
+      "type": "legal.associations.engaged-in-terrorism",
+      "props": {
+        "HasEngaged": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "History": {
+      "type": "legal.investigations.history",
+      "props": {
+        "HasHistory": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Manipulating": {
+      "type": "legal.technology.manipulating",
+      "props": {
+        "HasManipulating": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "MembershipOverthrow": {
+      "type": "legal.associations.membership-overthrow",
+      "props": {
+        "HasOverthrow": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "MembershipViolence": {
+      "type": "legal.associations.membership-violence-or-force",
+      "props": {
+        "HasViolence": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "NonCriminalCourtActions": {
+      "type": "legal.court",
+      "props": {
+        "HasCourtActions": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "PoliceDomesticViolence": {
+      "type": "legal.police.domesticviolence",
+      "props": {
+        "HasDomesticViolence": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "PoliceOffenses": {
+      "type": "legal.police.offenses",
+      "props": {
+        "HasOffenses": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "PoliceOtherOffenses": {
+      "type": "legal.police.additionaloffenses",
+      "props": {
+        "HasOtherOffenses": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Revoked": {
+      "type": "legal.investigations.revoked",
+      "props": {
+        "HasRevocations": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "TerrorismAssociation": {
+      "type": "legal.associations.terrorism-association",
+      "props": {
+        "HasTerrorism": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "Explanation": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    },
+    "TerroristOrganization": {
+      "type": "legal.associations.terrorist-organization",
+      "props": {
+        "HasTerrorist": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Unauthorized": {
+      "type": "legal.technology.unauthorized",
+      "props": {
+        "HasUnauthorized": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Unlawful": {
+      "type": "legal.technology.unlawful",
+      "props": {
+        "HasUnlawful": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    }
+  },
+  "Metadata": {
+    "form_type": "SF85",
+    "form_version": "2017-12-draft7",
+    "type": "metadata"
+  },
+  "Military": {
+    "Disciplinary": {
+      "type": "military.disciplinary",
+      "props": {
+        "HasDisciplinary": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Foreign": {
+      "type": "military.foreign",
+      "props": {
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": [
+              {
+                "Item": {
+                  "Circumstances": {
+                    "type": "textarea",
+                    "props": {}
+                  },
+                  "Country": {
+                    "type": "country",
+                    "props": {}
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {}
+                      },
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {}
+                      }
+                    }
+                  },
+                  "Division": {
+                    "type": "text",
+                    "props": {}
+                  },
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "name": "has_foreign",
+                      "value": "No"
+                    }
+                  },
+                  "List": {
+                    "type": "collection",
+                    "props": {
+                      "items": [],
+                      "branch": null
+                    }
+                  },
+                  "MaintainsContact": {
+                    "type": "branch",
+                    "props": {}
+                  },
+                  "Name": {
+                    "type": "text",
+                    "props": {}
+                  },
+                  "Organization": {
+                    "type": "radio",
+                    "props": {}
+                  },
+                  "Rank": {
+                    "type": "text",
+                    "props": {}
+                  },
+                  "ReasonLeft": {
+                    "type": "textarea",
+                    "props": {}
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "History": {
+      "type": "military.history",
+      "props": {
+        "HasServed": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Selective": {
+      "type": "military.selective",
+      "props": {
+        "WasBornAfter": {
+          "type": "branch",
+          "props": {
+            "value": "Yes"
+          }
+        },
+        "HasRegistered": {
+          "type": "branch",
+          "props": {
+            "value": "Yes"
+          }
+        },
+        "RegistrationNumber": {
+          "type": "text",
+          "props": {
+            "value": "12345"
+          }
+        },
+        "Explanation": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        },
+        "HasRegisteredNotApplicable": {
+          "type": "notapplicable",
+          "props": {
+            "applicable": true
+          }
+        }
+      }
+    }
+  },
+  "Substance": {
+    "DrugClearanceUses": {
+      "type": "substance.drugs.clearance",
+      "props": {
+        "UsedDrugs": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "DrugInvolvements": {
+      "type": "substance.drugs.purchase",
+      "props": {
+        "Involved": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "DrugPublicSafetyUses": {
+      "type": "substance.drugs.publicsafety",
+      "props": {
+        "UsedDrugs": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "DrugUses": {
+      "type": "substance.drugs.usage",
+      "props": {
+        "UsedDrugs": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "NegativeImpacts": {
+      "type": "substance.alcohol.negative",
+      "props": {
+        "HasImpacts": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "OrderedCounselings": {
+      "type": "substance.alcohol.ordered",
+      "props": {
+        "HasBeenOrdered": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "OrderedTreatments": {
+      "type": "substance.drugs.ordered",
+      "props": {
+        "TreatmentOrdered": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "PrescriptionUses": {
+      "type": "substance.drugs.misuse",
+      "props": {
+        "MisusedDrugs": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "ReceivedCounselings": {
+      "type": "substance.alcohol.additional",
+      "props": {
+        "ReceivedTreatment": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "VoluntaryCounselings": {
+      "type": "substance.alcohol.voluntary",
+      "props": {
+        "SoughtTreatment": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "VoluntaryTreatments": {
+      "type": "substance.drugs.voluntary",
+      "props": {
+        "TreatmentVoluntary": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    }
+  }
+}
