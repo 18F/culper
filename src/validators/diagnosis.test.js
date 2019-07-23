@@ -1,36 +1,36 @@
 import DiagnosisValidator from './diagnosis'
 import Location from '../components/Form/Location'
 
-describe('Diagnosis validation', function() {
+describe('Diagnosis validation', () => {
   it('validates condition', () => {
     const tests = [
       {
         data: {
-          prefix: 'existingConditions.diagnosis'
+          prefix: 'existingConditions.diagnosis',
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           prefix: 'existingConditions.diagnosis',
-          Condition: {}
+          Condition: {},
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Condition: {}
+          Condition: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Condition: { value: 'Test' }
+          Condition: { value: 'Test' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DiagnosisValidator(test.data).validCondition()).toBe(
         test.expected
       )
@@ -43,50 +43,50 @@ describe('Diagnosis validation', function() {
         data: {
           Effective: { value: 'Yes' },
           Explanation: {
-            value: null
-          }
+            value: null,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Effective: { value: 'No' },
           Explanation: {
-            value: null
-          }
+            value: null,
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Effective: { value: 'No' },
           Explanation: {
-            value: 'The explanation'
-          }
+            value: 'The explanation',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Effective: { value: 'Nope' },
           Explanation: {
-            value: 'The explanation'
-          }
+            value: 'The explanation',
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           prefix: 'existingConditions.diagnosis',
           Effective: { value: 'Nope' },
           Explanation: {
-            value: 'The explanation'
-          }
+            value: 'The explanation',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DiagnosisValidator(test.data).validEffective()).toBe(
         test.expected
       )
@@ -100,24 +100,24 @@ describe('Diagnosis validation', function() {
           Condition: { value: 'Test' },
           Effective: { value: 'Yes' },
           Explanation: {
-            value: null
+            value: null,
           },
           Diagnosed: {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
+            present: false,
           },
           Treatment: {
             Name: {
-              value: 'Circuit Court'
+              value: 'Circuit Court',
             },
             Address: {
               country: { value: 'United States' },
@@ -125,20 +125,20 @@ describe('Diagnosis validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Phone: {
-              noNumber: '',
+              noNumber: false,
               number: '7031112222',
               numberType: 'Home',
               timeOfDay: 'Both',
               type: 'Domestic',
-              extension: ''
-            }
+              extension: '',
+            },
           },
           TreatmentFacility: {
             Name: {
-              value: 'Circuit Court'
+              value: 'Circuit Court',
             },
             Address: {
               country: { value: 'United States' },
@@ -146,22 +146,22 @@ describe('Diagnosis validation', function() {
               city: 'Arlington',
               state: 'VA',
               zipcode: '22202',
-              layout: Location.ADDRESS
+              layout: Location.ADDRESS,
             },
             Phone: {
-              noNumber: '',
+              noNumber: false,
               number: '7031112222',
               numberType: 'Home',
               timeOfDay: 'Both',
               type: 'Domestic',
-              extension: ''
-            }
-          }
+              extension: '',
+            },
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DiagnosisValidator(test.data).isValid()).toBe(test.expected)
     })
   })
