@@ -26,7 +26,7 @@ dbmigrate will run any un-run migrations on the given db
 
 usage: `docker exec e-qip-prototype_api_1 bin/dbreset [-force] <db_name>`
 
-dbreset drops the given db if it exists and then recreates it.
+dbreset drops the given db if it exists and then recreates it. WARNING: This deletes all user accounts, after running dbmigrate only the default test01-test20 accounts will exist.
 
 ### flush -- deletes all application data in a given account
 
