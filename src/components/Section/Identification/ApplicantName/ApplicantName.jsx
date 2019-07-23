@@ -9,9 +9,9 @@ import {
   IDENTIFICATION,
   IDENTIFICATION_NAME,
 } from 'config/formSections/identification'
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 const sectionConfig = {
   key: IDENTIFICATION_NAME.key,
@@ -96,4 +96,4 @@ ApplicantName.defaultProps = {
 
 ApplicantName.errors = []
 
-export default connectIdentificationSection(ApplicantName, sectionConfig)
+export default connectSubsection(ApplicantName, sectionConfig)
