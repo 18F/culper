@@ -103,6 +103,36 @@ describe('The residence model', () => {
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
+      it('AlternateAddress may not be a PO box', () => {
+        const testData = {
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: 'P.O. Box 234',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+          Dates: {
+            from: { year: 2000, month: 1, day: 1 },
+            to: { year: 2001, month: 1, day: 1 },
+          },
+          Role: { value: 'Own' },
+        }
+
+        const expectedErrors = ['AlternateAddress.model']
+
+        expect(validateModel(testData, residence))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
       it('passes a valid residence with an alternate address', () => {
         const testData = {
           Address: {
@@ -191,6 +221,37 @@ describe('The residence model', () => {
             country: 'POSTOFFICE',
           },
         },
+      }
+
+      const expectedErrors = ['AlternateAddress.model']
+
+      expect(validateModel(testData, residence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('AlternateAddress may not be a PO box', () => {
+      const testData = {
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+        AlternateAddress: {
+          Address: {
+            street: 'PO Box 123',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10003',
+            country: 'United States',
+          },
+        },
+        Dates: {
+          from: { year: 2000, month: 1, day: 1 },
+          to: { year: 2001, month: 1, day: 1 },
+        },
+        Role: { value: 'Own' },
       }
 
       const expectedErrors = ['AlternateAddress.model']

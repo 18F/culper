@@ -35,14 +35,14 @@ const residence = {
     if (attributes.Address && isInternational(attributes.Address)) {
       return {
         presence: true,
-        model: { validator: physicalAddress, militaryAddress: true },
+        model: { validator: physicalAddress, militaryAddress: true, allowPOBox: false },
       }
     }
 
     if (attributes.Address && isPO(attributes.Address)) {
       return {
         presence: true,
-        model: { validator: physicalAddress, militaryAddress: false },
+        model: { validator: physicalAddress, militaryAddress: false, allowPOBox: false },
       }
     }
 
