@@ -24,7 +24,7 @@ describe('The array validator', () => {
       ],
     }
 
-    expect(array(testData, { validator: testValidator })).toEqual(['value.email.INVALID_EMAIL'])
+    expect(array(testData, { validator: testValidator })).toEqual(['1.value.email.INVALID_EMAIL'])
   })
 
   it('passes if all items in the array pass the validation', () => {

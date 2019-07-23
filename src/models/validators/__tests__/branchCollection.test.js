@@ -45,6 +45,7 @@ describe('The branch collection validator', () => {
         { Item: { Has: { value: 'Yes' }, Text: 'Some text' } },
         { Item: { Has: { value: 'Yes' }, Test: 'Invalid' } },
         { Item: { Has: { value: 'No' } } },
+        { Item: { Has: { value: 'Yes' } }, index: 'abc123' },
       ],
     }
 
@@ -52,7 +53,10 @@ describe('The branch collection validator', () => {
       Text: { presence: true },
     }
 
-    expect(branchCollection(testData, { validator })).toEqual(['Text.presence.REQUIRED'])
+    expect(branchCollection(testData, { validator })).toEqual([
+      '1.Text.presence.REQUIRED',
+      'abc123.Text.presence.REQUIRED',
+    ])
   })
 
   it('passes a valid list of items', () => {

@@ -46,7 +46,7 @@ describe('The accordion validator', () => {
   it('fails if any of the items fail the validator', () => {
     const testData = {
       items: [
-        { Item: { value: 'Thing' } },
+        { Item: { value: 'Thing' }, uuid: 'abc123' },
         { Item: { value: 'email@gmail.com' } },
         { Item: { value: '' } },
       ],
@@ -55,8 +55,8 @@ describe('The accordion validator', () => {
 
     const validator = { value: { email: true } }
     expect(accordion(testData, { validator })).toEqual([
-      'value.email.INVALID_EMAIL',
-      'value.email.INVALID_EMAIL',
+      'abc123.value.email.INVALID_EMAIL',
+      '2.value.email.INVALID_EMAIL',
     ])
   })
 

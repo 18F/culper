@@ -36,7 +36,7 @@ const arrayValidator = (value, options, key, attributes, globalOptions) => {
       { value: validator },
       { ...globalOptions, ...options }
     )
-    if (itemErrors !== true) itemsErrors = itemsErrors.concat(itemErrors)
+    if (itemErrors !== true) itemsErrors = itemsErrors.concat(itemErrors.map(e => `${i}.${e}`))
   }
 
   if (itemsErrors.length) return itemsErrors

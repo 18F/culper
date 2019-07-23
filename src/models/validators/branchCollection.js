@@ -31,12 +31,15 @@ const branchCollectionValidator = (value, options, key, attributes, globalOption
   // Validate each item
   let itemsErrors = []
   for (let i = 0; i < items.length; i += 1) {
-    const { Item } = items[i]
+    const { Item, index } = items[i]
     if (Item && Item.Has && Item.Has.value === NO) {
       // Skip it
     } else {
+      const itemId = index || i
       const itemErrors = validateModel(Item, validator, { ...globalOptions, ...options })
-      if (itemErrors !== true) itemsErrors = itemsErrors.concat(itemErrors)
+      if (itemErrors !== true) {
+        itemsErrors = itemsErrors.concat(itemErrors.map(e => `${itemId}.${e}`))
+      }
     }
   }
 
