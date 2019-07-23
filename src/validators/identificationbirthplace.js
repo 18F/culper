@@ -1,14 +1,9 @@
 import { validateModel } from 'models/validate'
-import birthplace from 'models/shared/locations/birthplace'
+import identificationPlaceOfBirth from 'models/sections/identificationPlaceOfBirth'
+
 
 export const validateIdentificationBirthPlace = (data) => {
-  const applicantBirthPlaceModel = {
-    Location: {
-      location: { validator: birthplace },
-    },
-  }
-
-  return validateModel(data, applicantBirthPlaceModel) === true
+  return validateModel(data, identificationPlaceOfBirth) === true
 }
 
 export default class IdentificationBirthPlaceValidator {

@@ -5,17 +5,10 @@ import hairColor from 'models/shared/hairColor'
 import height from 'models/shared/height'
 import sex from 'models/shared/sex'
 import weight from 'models/shared/weight'
+import identificationPhysical from 'models/sections/identificationPhysical'
 
 export const validateIdentificationPhysical = (data) => {
-  const physicalModel = {
-    Height: { presence: true, model: { validator: height } },
-    Weight: { presence: true, model: { validator: weight } },
-    HairColor: { presence: true, model: { validator: hairColor } },
-    EyeColor: { presence: true, model: { validator: eyeColor } },
-    Sex: { presence: true, model: { validator: sex } },
-  }
-
-  return validateModel(data, physicalModel) === true
+  return validateModel(data, identificationPhysical) === true
 }
 
 /** LEGACY */

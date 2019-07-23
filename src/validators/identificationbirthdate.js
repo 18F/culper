@@ -1,15 +1,8 @@
 import { validateModel } from 'models/validate'
-import { SELF } from 'constants/dateLimits'
+import identificationDateOfBirth from 'models/sections/identificationDateOfBirth'
 
 export const validateIdentificationBirthDate = (data) => {
-  const applicantBirthDateModel = {
-    Date: {
-      presence: true,
-      date: { ...SELF },
-    },
-  }
-
-  return validateModel(data, applicantBirthDateModel) === true
+  return validateModel(data, identificationDateOfBirth) === true
 }
 
 export default class IdentificationBirthDateValidator {

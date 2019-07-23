@@ -1,5 +1,6 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
+import { validateModel } from 'models/validate'
 import name from 'models/shared/name'
+import identificationOtherNames from 'models/sections/identificationOtherNames'
 
 const otherNameModel = {
   Name: {
@@ -11,26 +12,12 @@ const otherNameModel = {
   Reason: { presence: true, hasValue: true },
 }
 
-const otherNamesModel = {
-  HasOtherNames: { presence: true, hasValue: { validator: hasYesOrNo } },
-  List: (value, attributes) => {
-    if (attributes.HasOtherNames
-      && attributes.HasOtherNames.value
-      && attributes.HasOtherNames.value === 'No') return {}
-
-    return {
-      presence: true,
-      accordion: { validator: otherNameModel },
-    }
-  },
-}
-
 export const validateOtherName = data => (
   validateModel(data, otherNameModel) === true
 )
 
 export const validateOtherNames = data => (
-  validateModel(data, otherNamesModel) === true
+  validateModel(data, identificationOtherNames) === true
 )
 
 export default class OtherNamesValidator {
@@ -42,7 +29,7 @@ export default class OtherNamesValidator {
    * Validates that proper values were included for branching
    */
   validHasOtherNames() {
-    return validateModel(this.data, { HasOtherNames: otherNamesModel.HasOtherNames }) === true
+    return validateModel(this.data, { HasOtherNames: identificationOtherNames.HasOtherNames }) === true
   }
 
   /**
@@ -50,7 +37,7 @@ export default class OtherNamesValidator {
    */
   validOtherNames() {
     return validateModel(this.data, {
-      List: otherNamesModel.List,
+      List: identificationOtherNames.List,
     }) === true
   }
 
