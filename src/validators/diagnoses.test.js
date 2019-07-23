@@ -1,7 +1,7 @@
 import DiagnosesValidator from './diagnoses'
 import Location from '../components/Form/Location'
 
-describe('Diagnoses validation', function() {
+describe('Diagnoses validation', () => {
   it('validates treatment list', () => {
     const tests = [
       {
@@ -13,7 +13,7 @@ describe('Diagnoses validation', function() {
               {
                 Item: {
                   Name: {
-                    value: 'Circuit Court'
+                    value: 'Circuit Court',
                   },
                   Address: {
                     country: { value: 'United States' },
@@ -21,55 +21,55 @@ describe('Diagnoses validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Phone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     timeOfDay: 'Both',
                     type: 'Domestic',
-                    extension: ''
-                  }
-                }
-              }
-            ]
-          }
+                    extension: '',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           InTreatment: { value: 'No' },
           TreatmentList: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           InTreatment: { value: 'Yes' },
           TreatmentList: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           InTreatment: { value: 'Yes' },
           TreatmentList: {
             branch: { value: 'No' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DiagnosesValidator(test.state, null).validTreatmentList()
       ).toBe(test.expected)
@@ -87,28 +87,28 @@ describe('Diagnoses validation', function() {
               {
                 Item: {
                   Condition: {
-                    value: 'Test'
+                    value: 'Test',
                   },
                   Effective: { value: 'Yes' },
                   Explanation: {
-                    value: null
+                    value: null,
                   },
                   Diagnosed: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Treatment: {
                     Name: {
-                      value: 'Circuit Court'
+                      value: 'Circuit Court',
                     },
                     Address: {
                       country: { value: 'United States' },
@@ -116,20 +116,20 @@ describe('Diagnoses validation', function() {
                       city: 'Arlington',
                       state: 'VA',
                       zipcode: '22202',
-                      layout: Location.ADDRESS
+                      layout: Location.ADDRESS,
                     },
                     Phone: {
-                      noNumber: '',
+                      noNumber: false,
                       number: '7031112222',
                       numberType: 'Home',
                       timeOfDay: 'Both',
                       type: 'Domestic',
-                      extension: ''
-                    }
+                      extension: '',
+                    },
                   },
                   TreatmentFacility: {
                     Name: {
-                      value: 'Circuit Court'
+                      value: 'Circuit Court',
                     },
                     Address: {
                       country: { value: 'United States' },
@@ -137,56 +137,56 @@ describe('Diagnoses validation', function() {
                       city: 'Arlington',
                       state: 'VA',
                       zipcode: '22202',
-                      layout: Location.ADDRESS
+                      layout: Location.ADDRESS,
                     },
                     Phone: {
-                      noNumber: '',
+                      noNumber: false,
                       number: '7031112222',
                       numberType: 'Home',
                       timeOfDay: 'Both',
                       type: 'Domestic',
-                      extension: ''
-                    }
-                  }
-                }
-              }
-            ]
-          }
+                      extension: '',
+                    },
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Diagnosed: { value: 'No' },
           DiagnosisList: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           Diagnosed: { value: 'Yes' },
           DiagnosisList: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Diagnosed: { value: 'Yes' },
           DiagnosisList: {
             branch: { value: 'No' },
-            items: [{}]
-          }
+            items: [{}],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DiagnosesValidator(test.state, null).validDiagnosisList()
       ).toBe(test.expected)
@@ -202,18 +202,18 @@ describe('Diagnoses validation', function() {
           DidNotConsult: { value: 'Yes' },
           DiagnosisList: {
             branch: { value: 'No' },
-            items: []
+            items: [],
           },
           TreatmentList: {
             branch: { value: 'No' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DiagnosesValidator(test.state, null).isValid()).toBe(
         test.expected
       )
