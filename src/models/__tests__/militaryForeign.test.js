@@ -105,7 +105,7 @@ describe('The foreign military model', () => {
         from: { month: 10, day: 9, year: 2000 },
         to: { month: 11, day: 10, year: 2005 },
       },
-      Country: { value: 'Test country' },
+      Country: { value: 'United States' },
       Rank: { value: 'test rank' },
       Division: { value: 'test division' },
       Circumstances: { value: 'testing' },

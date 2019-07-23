@@ -7,7 +7,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData)).toBeTruthy()
+    expect(daterange(testData, {})).toBeTruthy()
   })
 
   it('fails an invalid date object', () => {
@@ -16,7 +16,7 @@ describe('The date range validator', () => {
       from: { test: 'not a date' },
     }
 
-    expect(daterange(testData)).toBeTruthy()
+    expect(daterange(testData, {})).toBeTruthy()
   })
 
   it('fails a date range missing a "to" value and present is false', () => {
@@ -25,7 +25,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData)).toBeTruthy()
+    expect(daterange(testData, {})).toBeTruthy()
   })
 
   it('fails a date range with an invalid "from" value', () => {
@@ -35,7 +35,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData)).toBeTruthy()
+    expect(daterange(testData, {})).toBeTruthy()
   })
 
   it('fails a date range with an invalid "to" value', () => {
@@ -45,7 +45,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData)).toBeTruthy()
+    expect(daterange(testData, {})).toBeTruthy()
   })
 
   it('fails a date range where the "from" value is after the "to" value', () => {
@@ -55,7 +55,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData)).toBeTruthy()
+    expect(daterange(testData, {})).toBeTruthy()
   })
 
   it('fails a date range where the "from" value is in the future', () => {
@@ -64,7 +64,7 @@ describe('The date range validator', () => {
       present: true,
     }
 
-    expect(daterange(testData)).toBeTruthy()
+    expect(daterange(testData, {})).toBeTruthy()
   })
 
   it('passes a valid date range where present is false', () => {
@@ -74,7 +74,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData)).toBe(null)
+    expect(daterange(testData, {})).toBe(null)
   })
 
   it('passes a valid date range where the dates are the same', () => {
@@ -84,7 +84,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData)).toBe(null)
+    expect(daterange(testData, {})).toBe(null)
   })
 
   describe('with a maxDuration option', () => {
