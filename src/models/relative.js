@@ -70,6 +70,11 @@ export const requireResidenceDocumentation = (attributes, options) => (
   && livesInUS(attributes)
 )
 
+export const requireRelativeContactDescription = (attributes, options) => (
+  options.requireRelationshipRelativesUSResidenceDoc
+  && isLivingNonCitizen(attributes)
+)
+
 /** Relative model */
 const relative = {
   Name: {
@@ -231,7 +236,7 @@ const relative = {
     return {}
   },
   FirstContact: (value, attributes, attributeName, options) => {
-    if (requireResidenceDocumentation(attributes, options)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         date: true,
@@ -241,7 +246,7 @@ const relative = {
     return {}
   },
   LastContact: (value, attributes, attributeName, options) => {
-    if (requireResidenceDocumentation(attributes, options)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         date: true,
@@ -251,7 +256,7 @@ const relative = {
     return {}
   },
   Methods: (value, attributes, attributeName, options) => {
-    if (requireResidenceDocumentation(attributes, options)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         array: {
@@ -277,7 +282,7 @@ const relative = {
     return {}
   },
   Frequency: (value, attributes, attributeName, options) => {
-    if (requireResidenceDocumentation(attributes, options)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         hasValue: true,
@@ -301,7 +306,7 @@ const relative = {
     if (attributes.EmployerNotApplicable
       && attributes.EmployerNotApplicable.applicable === false) return {}
 
-    if (requireResidenceDocumentation(attributes, options)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         hasValue: true,
@@ -314,7 +319,7 @@ const relative = {
     if (attributes.EmployerAddressNotApplicable
       && attributes.EmployerAddressNotApplicable.applicable === false) return {}
 
-    if (requireResidenceDocumentation(attributes, options)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         location: { validator: address },
@@ -327,7 +332,7 @@ const relative = {
     if (attributes.EmployerRelationshipNotApplicable
       && attributes.EmployerRelationshipNotApplicable.applicable === false) return {}
 
-    if (requireResidenceDocumentation(attributes, options)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         hasValue: { validator: hasYesOrNo },
