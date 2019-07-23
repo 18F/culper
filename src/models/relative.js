@@ -15,7 +15,6 @@ import {
 } from 'constants/enums/relationshipOptions'
 
 import { countryString } from 'validators/location'
-import { alternateaddress } from '../schema/form';
 
 /** Helper functions */
 export const isCitizen = attributes => !!(
@@ -44,18 +43,22 @@ export const wasBornInUS = attributes => (
   && countryString(attributes.Birthplace.country) === 'United States'
 )
 
+export const hasApoAddress = attributes => (
+  attributes.AlternateAddress
+  && attributes.AlternateAddress.HasDifferentAddress
+  && attributes.AlternateAddress.HasDifferentAddress === 'Yes'
+)
+
 export const requireCitizenshipDocumentation = (attributes, options) => {
   if (options.requireRelationshipRelativesForeignBornDoc) {
     return !!((
       isCitizen(attributes)
       && !wasBornInUS(attributes)
-      && isLiving(attributes)
-      && livesInUS(attributes)
+      && !isLiving(attributes)
     ) || (
       isCitizen(attributes)
       && !wasBornInUS(attributes)
-      && attributes.AlternateAddress.HasDifferentAddress
-      && attributes.AlternateAddress.HasDifferentAddress === 'Yes'
+      && (livesInUS(attributes) || hasApoAddress(attributes))
     ))
   }
   return false
@@ -64,6 +67,7 @@ export const requireCitizenshipDocumentation = (attributes, options) => {
 export const requireResidenceDocumentation = (attributes, options) => (
   options.requireRelationshipRelativesUSResidenceDoc
   && isLivingNonCitizen(attributes)
+  && livesInUS(attributes)
 )
 
 /** Relative model */
