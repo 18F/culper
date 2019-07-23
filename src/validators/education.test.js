@@ -1,40 +1,40 @@
 import HistoryEducationValidator, { EducationItemValidator } from './education'
 import Location from '../components/Form/Location'
 
-describe('Education component validation', function() {
+describe('Education component validation', () => {
   it('handle no education', () => {
     const tests = [
       {
         data: {
           HasAttended: { value: 'No' },
-          HasDegree10: { value: 'No' }
+          HasDegree10: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           HasAttended: { value: 'Yes' },
-          HasDegree10: { value: 'No' }
+          HasDegree10: { value: 'No' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           HasAttended: { value: 'No' },
-          HasDegree10: { value: 'Yes' }
+          HasDegree10: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           HasAttended: null,
-          HasDegree10: null
+          HasDegree10: null,
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new HistoryEducationValidator(test.data).isValid()).toBe(
         test.expected
       )
@@ -50,17 +50,17 @@ describe('Education component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2000'
+              year: '2000',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2004'
+              year: '2004',
             },
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -69,21 +69,21 @@ describe('Education component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2004'
+              year: '2004',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2000'
+              year: '2000',
             },
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EducationItemValidator(test.data).validDates()).toBe(
         test.expected
       )
@@ -101,14 +101,14 @@ describe('Education component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EducationItemValidator(test.data).validAddress()).toBe(
         test.expected
       )
@@ -121,14 +121,14 @@ describe('Education component validation', function() {
         data: {
           HasAttended: { value: 'Yes' },
           Name: {
-            value: 'Hubert Humphrey High'
-          }
+            value: 'Hubert Humphrey High',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EducationItemValidator(test.data).validName()).toBe(
         test.expected
       )
@@ -140,13 +140,13 @@ describe('Education component validation', function() {
       {
         data: {
           HasAttended: { value: 'Yes' },
-          Type: { value: 'High School' }
+          Type: { value: 'High School' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EducationItemValidator(test.data).validType()).toBe(
         test.expected
       )
@@ -163,38 +163,38 @@ describe('Education component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2000'
+              year: '2000',
             },
             to: {
               month: `${today.getMonth() + 1}`,
               day: `${today.getDate()}`,
-              year: `${today.getFullYear()}`
+              year: `${today.getFullYear()}`,
             },
-            present: true
+            present: true,
           },
           ReferenceName: {
             first: 'Foo',
             firstInitialOnly: false,
             noMiddleName: true,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           ReferenceNameNotApplicable: {
-            applicable: true
+            applicable: true,
           },
           ReferencePhone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             numberType: 'Home',
             type: 'Domestic',
             timeOfDay: 'Both',
-            extension: ''
+            extension: '',
           },
           ReferenceEmail: {
-            value: 'user@local.dev'
+            value: 'user@local.dev',
           },
           ReferenceEmailNotApplicable: {
-            applicable: true
+            applicable: true,
           },
           ReferenceAddress: {
             country: { value: 'United States' },
@@ -202,10 +202,10 @@ describe('Education component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -214,21 +214,21 @@ describe('Education component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2000'
+              year: '2000',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2001'
+              year: '2001',
             },
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EducationItemValidator(test.data).validReference()).toBe(
         test.expected
       )
@@ -245,27 +245,27 @@ describe('Education component validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           HasAttended: { value: 'Yes' },
-          Diplomas: { items: [] }
+          Diplomas: { items: [] },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           HasAttended: { value: 'Yes' },
-          Diplomas: null
+          Diplomas: null,
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -278,20 +278,20 @@ describe('Education component validation', function() {
                   Date: {
                     month: `${today.getMonth() + 1}`,
                     day: `${today.getDate()}`,
-                    year: `${today.getFullYear()}`
+                    year: `${today.getFullYear()}`,
                   },
                   Diploma: {
-                    value: 'Other'
+                    value: 'Other',
                   },
                   DiplomaOther: {
-                    value: ''
-                  }
-                }
-              }
-            ]
-          }
+                    value: '',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -303,17 +303,17 @@ describe('Education component validation', function() {
                   Has: { value: 'Yes' },
                   Date: {},
                   Diploma: {
-                    value: 'Other'
+                    value: 'Other',
                   },
                   DiplomaOther: {
-                    value: 'Other'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'Other',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -323,13 +323,13 @@ describe('Education component validation', function() {
               {
                 Item: {
                   Has: { value: 'Yes' },
-                  Diploma: {}
-                }
-              }
-            ]
-          }
+                  Diploma: {},
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -342,13 +342,13 @@ describe('Education component validation', function() {
                   Date: {
                     month: `${today.getMonth() + 1}`,
                     day: `${today.getDate()}`,
-                    year: `${today.getFullYear()}`
+                    year: `${today.getFullYear()}`,
                   },
                   Diploma: {
-                    value: 'High School Diploma'
+                    value: 'High School Diploma',
                   },
-                  DiplomaOther: {}
-                }
+                  DiplomaOther: {},
+                },
               },
               {
                 Item: {
@@ -356,25 +356,25 @@ describe('Education component validation', function() {
                   Date: {
                     month: `${today.getMonth() + 1}`,
                     day: `${today.getDate()}`,
-                    year: `${today.getFullYear()}`
+                    year: `${today.getFullYear()}`,
                   },
                   Diploma: {
-                    value: 'Other'
+                    value: 'Other',
                   },
                   DiplomaOther: {
-                    value: 'GED'
-                  }
-                }
+                    value: 'GED',
+                  },
+                },
               },
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -387,27 +387,27 @@ describe('Education component validation', function() {
                   Date: {
                     month: `${today.getMonth() + 1}`,
                     day: `${today.getDate()}`,
-                    year: `${today.getFullYear()}`
+                    year: `${today.getFullYear()}`,
                   },
                   Diploma: {
-                    value: 'High School Diploma'
+                    value: 'High School Diploma',
                   },
-                  DiplomaOther: {}
-                }
+                  DiplomaOther: {},
+                },
               },
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new EducationItemValidator(test.data).validDiplomas()).toBe(
         test.expected
       )
@@ -419,27 +419,27 @@ describe('Education component validation', function() {
       {
         data: {
           HasAttended: { value: 'Yes' },
-          HasDegree10: { value: 'Yes' }
+          HasDegree10: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           HasAttended: { value: 'Nope' },
-          HasDegree10: { value: 'Yes' }
+          HasDegree10: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           HasAttended: { value: 'No' },
-          HasDegree10: { value: 'Nope' }
+          HasDegree10: { value: 'Nope' },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new HistoryEducationValidator(test.data).validAttendance()).toBe(
         test.expected
       )
@@ -454,16 +454,16 @@ describe('Education component validation', function() {
           HasDegree10: { value: 'Yes' },
           List: {
             branch: {
-              value: 'No'
+              value: 'No',
             },
             items: [
               {
                 Item: {
                   Name: {
-                    value: 'School name'
+                    value: 'School name',
                   },
                   ReferenceNameNotApplicable: {
-                    applicable: false
+                    applicable: false,
                   },
                   Type: { value: 'High School' },
                   Address: {
@@ -472,37 +472,37 @@ describe('Education component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2016'
+                      year: '2016',
                     },
-                    present: false
+                    present: false,
                   },
                   Diplomas: {
                     items: [
                       {
                         Item: {
                           Has: { value: 'No' },
-                          Diploma: {}
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            ]
-          }
+                          Diploma: {},
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -510,13 +510,13 @@ describe('Education component validation', function() {
           HasDegree10: { value: 'Yes' },
           List: {
             branch: {
-              value: 'No'
+              value: 'No',
             },
             items: [
               {
                 Item: {
                   Name: {
-                    value: ''
+                    value: '',
                   },
                   Type: { value: 'High School' },
                   Address: {
@@ -525,41 +525,41 @@ describe('Education component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2016'
+                      year: '2016',
                     },
-                    present: false
+                    present: false,
                   },
                   Diplomas: {
                     items: [
                       {
                         Item: {
                           Has: { value: 'No' },
-                          Diploma: {}
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            ]
-          }
+                          Diploma: {},
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new HistoryEducationValidator(test.data).validList()).toBe(
         test.expected
       )
