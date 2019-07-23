@@ -10,13 +10,11 @@ import IdentificationValidator from './identification'
 import IdentificationNameValidator from './identificationname'
 import IdentificationBirthDateValidator from './identificationbirthdate'
 import IdentificationBirthPlaceValidator from './identificationbirthplace'
-import IdentificationSSNValidator from './identificationssn'
 import NameValidator from './name'
 import IdentificationOtherNamesValidator, {
   OtherNameValidator,
 } from './identificationothernames'
 import PassportValidator from './passport'
-import IdentificationPhysicalValidator from './identificationphysical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
@@ -217,7 +215,6 @@ export {
   IdentificationNameValidator,
   IdentificationBirthDateValidator,
   IdentificationBirthPlaceValidator,
-  IdentificationSSNValidator,
   BankruptcyValidator,
   BankruptcyItemValidator,
   BirthPlaceValidator,
@@ -228,7 +225,6 @@ export {
   IdentificationOtherNamesValidator,
   OtherNameValidator,
   PassportValidator,
-  IdentificationPhysicalValidator,
   GamblingValidator,
   GamblingItemValidator,
   HistoryResidenceValidator,
