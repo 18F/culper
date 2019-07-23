@@ -130,6 +130,10 @@ export class RelativeValidator {
     const { formType } = state.application.Settings
     this.data = data
     this.formType = formType
+    this.options = {
+      requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
+      requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
+    }
   }
 
   citizen() {
@@ -137,135 +141,120 @@ export class RelativeValidator {
   }
 
   requiresCitizenshipDocumentation() {
-    return requireCitizenshipDocumentation(
-      this.data,
-      { requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(this.formType) },
-    )
+    return requireCitizenshipDocumentation(this.data, this.options)
   }
 
   validRelation() {
-    return validateModel(this.data, { Relation: relative.Relation }) === true
+    return validateModel(this.data, { Relation: relative.Relation }, this.options) === true
   }
 
   validName() {
-    return validateModel(this.data, { Name: relative.Name }) === true
+    return validateModel(this.data, { Name: relative.Name }, this.options) === true
   }
 
   validBirthdate() {
-    return validateModel(this.data, { Birthdate: relative.Birthdate }) === true
+    return validateModel(this.data, { Birthdate: relative.Birthdate }, this.options) === true
   }
 
   validBirthplace() {
-    return validateModel(this.data, { Birthplace: relative.Birthplace }) === true
+    return validateModel(this.data, { Birthplace: relative.Birthplace }, this.options) === true
   }
 
   validCitizenship() {
-    return validateModel(this.data, { Citizenship: relative.Citizenship }) === true
+    return validateModel(this.data, { Citizenship: relative.Citizenship }, this.options) === true
   }
 
   validMaidenName() {
-    return validateModel(this.data, {
-      MaidenName: relative.MaidenName,
-    }) === true
+    return validateModel(this.data, { MaidenName: relative.MaidenName }, this.options) === true
   }
 
   validAliases() {
-    return validateModel(this.data, { Aliases: relative.Aliases }) === true
+    return validateModel(this.data, { Aliases: relative.Aliases }, this.options) === true
   }
 
   validIsDeceased() {
-    return validateModel(this.data, { IsDeceased: relative.IsDeceased }) === true
+    return validateModel(this.data, { IsDeceased: relative.IsDeceased }, this.options) === true
   }
 
   validAddress() {
-    return validateModel(this.data, { Address: relative.Address }) === true
+    return validateModel(this.data, { Address: relative.Address }, this.options) === true
   }
 
   validCitizenshipDocumentation() {
     return validateModel(this.data, {
       CitizenshipDocumentation: relative.CitizenshipDocumentation,
       OtherCitizenshipDocumentation: relative.OtherCitizenshipDocumentation,
-    }) === true
+    }, this.options) === true
   }
 
   validDocumentNumber() {
-    return validateModel(this.data, { DocumentNumber: relative.DocumentNumber }) === true
+    return validateModel(this.data, { DocumentNumber: relative.DocumentNumber }, this.options) === true
   }
 
   validCourtName() {
-    return validateModel(this.data, { CourtName: relative.CourtName }) === true
+    return validateModel(this.data, { CourtName: relative.CourtName }, this.options) === true
   }
 
   validCourtAddress() {
-    return validateModel(this.data, { CourtAddress: relative.CourtAddress }) === true
+    return validateModel(this.data, { CourtAddress: relative.CourtAddress }, this.options) === true
   }
 
   validDocument() {
     return validateModel(this.data, {
       Document: relative.Document,
       DocumentComments: relative.DocumentComments,
-    }) === true
+    }, this.options) === true
   }
 
   validResidenceDocumentNumber() {
     return validateModel(this.data, {
       ResidenceDocumentNumber: relative.ResidenceDocumentNumber,
-    }) === true
+    }, this.options) === true
   }
 
   validExpiration() {
-    return validateModel(this.data, {
-      Expiration: relative.Expiration,
-    }) === true
+    return validateModel(this.data, { Expiration: relative.Expiration }, this.options) === true
   }
 
   validFirstContact() {
-    return validateModel(this.data, {
-      FirstContact: relative.FirstContact,
-    }) === true
+    return validateModel(this.data, { FirstContact: relative.FirstContact }, this.options) === true
   }
 
   validLastContact() {
-    return validateModel(this.data, {
-      LastContact: relative.LastContact,
-    }) === true
+    return validateModel(this.data, { LastContact: relative.LastContact }, this.options) === true
   }
 
   validMethods() {
     return validateModel(this.data, {
       Methods: relative.Methods,
       MethodsComments: relative.MethodsComments,
-    }) === true
+    }, this.options) === true
   }
 
   validFrequency() {
     return validateModel(this.data, {
       Frequency: relative.Frequency,
       FrequencyComments: relative.FrequencyComments,
-    }) === true
+    }, this.options) === true
   }
 
   validEmployer() {
-    return validateModel(this.data, {
-      Employer: relative.Employer,
-    }) === true
+    return validateModel(this.data, { Employer: relative.Employer }, this.options) === true
   }
 
   validEmployerAddress() {
-    return validateModel(this.data, {
-      EmployerAddress: relative.EmployerAddress,
-    }) === true
+    return validateModel(this.data, { EmployerAddress: relative.EmployerAddress }, this.options) === true
   }
 
   validEmployerRelationship() {
     return validateModel(this.data, {
       HasAffiliation: relative.HasAffiliation,
       EmployerRelationship: relative.EmployerRelationship,
-    }) === true
+    }, this.options) === true
   }
 
   isValid() {
-    return validateRelative(this.data, this.formType)
+    return validateRelative(this.data, this.formType, this.options)
   }
 }
 
