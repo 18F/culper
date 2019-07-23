@@ -4,7 +4,7 @@ import alias from '../alias'
 describe('The alias model', () => {
   it('name is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,11 @@ describe('The alias model', () => {
     const testData = {
       Name: 'My Name',
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +26,7 @@ describe('The alias model', () => {
 
   it('maiden name is required', () => {
     const testData = {}
-    const expectedErrors = ['MaidenName.required']
+    const expectedErrors = ['MaidenName.presence.REQUIRED']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -32,7 +36,7 @@ describe('The alias model', () => {
     const testData = {
       MaidenName: { value: 'something' },
     }
-    const expectedErrors = ['MaidenName.hasValue']
+    const expectedErrors = ['MaidenName.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -40,7 +44,7 @@ describe('The alias model', () => {
 
   it('dates is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -53,7 +57,7 @@ describe('The alias model', () => {
         to: { year: 2001, month: 5, day: 1 },
       },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -66,7 +70,10 @@ describe('The alias model', () => {
         to: { year: 2050, month: 2, day: 2 },
       },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.date.date.datetime.DATE_TOO_LATE',
+      'Dates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -79,7 +86,7 @@ describe('The alias model', () => {
         present: true,
       },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.from.date.date.datetime.DATE_TOO_EARLY']
     const options = {
       earliest: { year: 2010, month: 2, day: 3 },
     }
@@ -90,7 +97,7 @@ describe('The alias model', () => {
 
   it('reason is required', () => {
     const testData = {}
-    const expectedErrors = ['Reason.required']
+    const expectedErrors = ['Reason.presence.REQUIRED']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -100,7 +107,7 @@ describe('The alias model', () => {
     const testData = {
       Reason: true,
     }
-    const expectedErrors = ['Reason.hasValue']
+    const expectedErrors = ['Reason.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
