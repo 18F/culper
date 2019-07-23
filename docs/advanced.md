@@ -139,4 +139,9 @@ Password: GENERATED-PASS
 Name: GENERATED-DB
 ```
 
-With this data, you can set the associated env vars and then modify the database using tools like `dbmigrate` or `dbreset`
+With this data, you can set the associated env vars and then modify the database. For example, you can use the `flush` command to clear the account data for a user like so:
+
+```
+go build -o api/bin/flush ./api/cmd/flush # build flush for your native platform
+DATABASE_USER=<generated-user> DATABASE_PASSWORD=<generated-pass> DATABASE_HOST=<generatedhost> DATABASE_NAME=<generated-name> ./api/bin/flush <username>
+```
