@@ -1,15 +1,33 @@
-import eyeColor from 'models/shared/eyeColor'
-import hairColor from 'models/shared/hairColor'
 import height from 'models/shared/height'
-import sex from 'models/shared/sex'
-import weight from 'models/shared/weight'
+
+import {
+  eyeColorOptions,
+  hairColorOptions,
+  sexOptions,
+} from 'constants/enums/physicalOptions'
 
 const identificationPhysical = {
   Height: { presence: true, model: { validator: height } },
-  Weight: { presence: true, model: { validator: weight } },
-  HairColor: { presence: true, model: { validator: hairColor } },
-  EyeColor: { presence: true, model: { validator: eyeColor } },
-  Sex: { presence: true, model: { validator: sex } },
+  Weight: {
+    presence: true,
+    hasValue: {
+      validator: {
+        numericality: { greaterThanOrEqualTo: 10 },
+      },
+    },
+  },
+  HairColor: {
+    presence: true,
+    hasValue: { validator: { inclusion: hairColorOptions } },
+  },
+  EyeColor: {
+    presence: true,
+    hasValue: { validator: { inclusion: eyeColorOptions } },
+  },
+  Sex: {
+    presence: true,
+    hasValue: { validator: { inclusion: sexOptions } },
+  },
 }
 
 export default identificationPhysical
