@@ -263,7 +263,7 @@ describe('CivilUnion validation', () => {
           },
           EmailNotApplicable: { applicable: false },
           Telephone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             numberType: 'Home',
             type: 'Domestic',
