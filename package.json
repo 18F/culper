@@ -61,7 +61,8 @@
       "EAPP_VERSION": "MAJOR.MINOR.PATCH-IDENTIFIER"
     },
     "setupFiles": [
-      "<rootDir>/node_modules/regenerator-runtime/runtime"
+      "<rootDir>/node_modules/regenerator-runtime/runtime",
+      "<rootDir>/setupJest"
     ],
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy"
