@@ -1,15 +1,12 @@
 package saml
 
 import (
-	"io/ioutil"
 	"os"
-	"regexp"
 	"strings"
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
-	saml "github.com/RobotsAndPencils/go-saml"
 )
 
 func TestSamlResponse(t *testing.T) {
@@ -20,7 +17,7 @@ func TestSamlResponse(t *testing.T) {
 	os.Setenv("SAML_IDP_PUBLIC_CERT", "testdata/test_cert.pem")
 	os.Setenv("SAML_SIGN_REQUEST", "1")
 	os.Setenv("SAML_CONSUMER_SERVICE_URL", "")
-	os.Setenv("SAML_SLO_ENABLED", "")
+	os.Setenv("SAML_SLO_ENABLED", "1")
 
 	settings := mock.Native{}
 	service := &Service{Log: &mock.LogService{}, Env: settings}
@@ -31,41 +28,15 @@ func TestSamlResponse(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// Public signing cert
-	b, err := ioutil.ReadFile(settings.String(api.SamlPublicCert))
-	if err != nil {
-		t.Fatal(err)
+	conf := SamlTestResponseConfig{
+		SigningCert:    "testdata/test_cert.pem",
+		SigningKey:     "testdata/test_key.pem",
+		IDPIssuerUrl:   "http://localhost:8080",
+		SSODescription: "http://localhost:8080",
+		CallbackURL:    "/auth/saml/callback",
 	}
-	publickey := string(b)
-	re := regexp.MustCompile("---(.*)CERTIFICATE(.*)---")
-	publickey = re.ReplaceAllString(publickey, "")
-	publickey = strings.Trim(publickey, " \n")
-	publickey = strings.Replace(publickey, " \n", "", -1)
+	encodedResponse := CreateSamlTestResponse(t, conf)
 
-	// Find the right callback URI
-	callback := settings.String(api.SamlConsumerServiceURL)
-	if callback == "" {
-		callback = settings.String(api.APIBaseURL) + "/auth/saml/callback"
-	}
-
-	// Create a response
-	signedResponse := saml.NewSignedResponse()
-	signedResponse.Destination = callback
-	signedResponse.Issuer.Url = settings.String(api.SamlIdpSsoURL)
-	signedResponse.Assertion.Issuer.Url = settings.String(api.SamlIdpSsoURL)
-	signedResponse.Signature.KeyInfo.X509Data.X509Certificate.Cert = publickey
-	signedResponse.Assertion.Subject.NameID.Value = "test01"
-	signedResponse.AddAttribute("uid", "test01")
-	signedResponse.AddAttribute("email", "someone@domain")
-	signedResponse.Assertion.Subject.SubjectConfirmation.SubjectConfirmationData.InResponseTo = callback
-	signedResponse.InResponseTo = settings.String(api.SamlIdpSsoDescURL)
-	signedResponse.Assertion.Subject.SubjectConfirmation.SubjectConfirmationData.Recipient = callback
-
-	// Signed base64 encoded XML string
-	encodedResponse, err := signedResponse.EncodedSignedString(settings.String(api.SamlPrivateCert))
-	if err != nil {
-		t.Fatal(err)
-	}
 
 	// Validate the response
 	username, _, err := service.ValidateAuthenticationResponse(encodedResponse)

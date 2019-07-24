@@ -1,7 +1,6 @@
 package http
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -11,7 +10,6 @@ import (
 type RefreshHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 }
 
@@ -19,17 +17,17 @@ type RefreshHandler struct {
 func (service RefreshHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Get account information
-	account := AccountFromRequestContext(r)
+	_, _ = AccountAndSessionFromRequestContext(r)
 
 	// Generate a new token
-	signedToken, _, err := service.Token.NewToken(account.ID, service.Token.SessionIndex(r), service.Token.CurrentAudience(r))
+	// signedToken, _, err := service.Token.NewToken(account.ID, service.Token.SessionIndex(r), service.Token.CurrentAudience(r))
 
-	if err != nil {
-		service.Log.WarnError(api.JWTError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.JWTError, http.StatusInternalServerError)
-		return
-	}
+	// if err != nil {
+	// 	service.Log.WarnError(api.JWTError, err, api.LogFields{})
+	// 	RespondWithStructuredError(w, api.JWTError, http.StatusInternalServerError)
+	// 	return
+	// }
 
-	// Send the new token with a more recent expiration
-	fmt.Fprintf(w, signedToken)
+	// // Send the new token with a more recent expiration
+	// fmt.Fprintf(w, signedToken)
 }

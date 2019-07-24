@@ -100,7 +100,7 @@ func createLockedTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 
 	account := api.Account{
 		Username:    email,
-		Email:       email,
+		Email:       simplestore.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusSubmitted,
@@ -122,7 +122,7 @@ func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 
 	account := api.Account{
 		Username:    email,
-		Email:       email,
+		Email:       simplestore.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusIncomplete,
@@ -150,7 +150,7 @@ func readTestData(t *testing.T, filepath string) []byte {
 
 func standardResponseAndRequest(method string, path string, body io.Reader, account api.Account) (*httptest.ResponseRecorder, *gohttp.Request) {
 	req := httptest.NewRequest(method, path, body)
-	authCtx := http.SetAccountInRequestContext(req, account)
+	authCtx := http.SetAccountAndSessionInRequestContext(req, account, api.Session{})
 	req = req.WithContext(authCtx)
 
 	w := httptest.NewRecorder()

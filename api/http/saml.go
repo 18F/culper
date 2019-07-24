@@ -3,12 +3,10 @@ package http
 import (
 	"fmt"
 	"net/http"
-	"net/url"
 	"os"
-	"strings"
-	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 var (
@@ -20,7 +18,6 @@ var (
 type SamlRequestHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	SAML     api.SamlService
 }
@@ -49,47 +46,33 @@ func (service SamlRequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Reque
 	})
 }
 
-// SamlSLORequestHandler is the handler for creating a SAML request.
+// SamlSLORequestHandler is the handler for creating a SAML Logout request
 type SamlSLORequestHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	SAML     api.SamlService
+	Session  api.SessionService
 }
 
 // ServeHTTP is the initial entry point for authentication.
 func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("SLO GETTING")
 	if !service.Env.True(api.SamlEnabled) || !service.Env.True(api.SamlSloEnabled) {
 		service.Log.Warn(api.SamlSLONotEnabled, api.LogFields{})
 		http.Error(w, api.SamlSLONotEnabled, http.StatusInternalServerError)
 		return
 	}
 
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+	account, session := AccountAndSessionFromRequestContext(r)
+
+	if !session.SessionIndex.Valid {
+		service.Log.Warn("WOAH THERE'S NO SESSION INDEX FOR THIS SESSION", api.LogFields{})
+		http.Error(w, api.SamlSLORequestGeneration, http.StatusInternalServerError)
 		return
 	}
 
-	// Get the SessionIndex from the token
-	sessionIndex := service.Token.SessionIndex(r)
-	if sessionIndex == "" {
-		service.Log.Fatal(api.SamlSLOMissingSessionID, api.LogFields{})
-		http.Error(w, api.SamlSLOMissingSessionID, http.StatusInternalServerError)
-		return
-	}
-
-	// Get the account information from the data store
-	account := &api.Account{}
-	account.ID = id
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
+	sessionIndex := session.SessionIndex.String
 
 	encoded, url, err := service.SAML.CreateSLORequest(account.Username, sessionIndex)
 	if err != nil {
@@ -97,6 +80,8 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		http.Error(w, api.SamlSLORequestGeneration, http.StatusInternalServerError)
 		return
 	}
+
+	fmt.Println("WELL??")
 
 	EncodeJSON(w, struct {
 		Base64XML string
@@ -111,7 +96,6 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 type SamlResponseHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	SAML     api.SamlService
 	Session  api.SessionService
@@ -125,6 +109,8 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
+	fmt.Println("CHECKING RESPONSE: ", r.URL)
+
 	encoded := r.FormValue("SAMLResponse")
 	if encoded == "" {
 		service.Log.Warn(api.SamlFormError, api.LogFields{})
@@ -132,8 +118,11 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
+	fmt.Println("GOT: ", encoded)
+
 	responseType, err := service.SAML.ResponseType(encoded)
 	if err != nil {
+		fmt.Println("NONONONO")
 		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
 		redirectAccessDenied(w, r)
 		return
@@ -169,32 +158,15 @@ func (service SamlResponseHandler) serveAuthnResponse(encodedResponse string, w 
 		redirectAccessDenied(w, r)
 	}
 
-	// Generate jwt token
-	signedToken, _, err := service.Token.NewToken(account.ID, sessionIndex, api.SingleSignOnAudience)
-	if err != nil {
-		service.Log.WarnError(api.JWTError, err, api.LogFields{"account": account})
-		redirectAccessDenied(w, r)
+	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID, simplestore.NonNullString(sessionIndex))
+	if authErr != nil {
+		service.Log.WarnError("bad session get", authErr, api.LogFields{"account": account.ID})
+		RespondWithStructuredError(w, "bad session get", http.StatusInternalServerError)
 		return
 	}
 
-	service.Log.Info(api.SamlValid, api.LogFields{"account": account})
-	if cookieDomain == "" {
-		service.Log.Warn(api.CookieDomainNotSet, api.LogFields{})
-		// Default to frontend host
-		uri, _ := url.Parse(redirectTo)
-		cookieDomain = strings.Split(uri.Host, ":")[0]
-	}
-	expiration := time.Now().Add(time.Duration(1) * time.Minute)
-	cookie := &http.Cookie{
-		Domain:   cookieDomain,
-		Name:     "token",
-		Value:    signedToken,
-		HttpOnly: false,
-		Path:     "/",
-		MaxAge:   60,
-		Expires:  expiration,
-	}
-	http.SetCookie(w, cookie)
+	AddSessionKeyToResponse(w, sessionKey)
+
 	http.Redirect(w, r, redirectTo, http.StatusFound)
 }
 

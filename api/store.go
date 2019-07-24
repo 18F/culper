@@ -1,6 +1,7 @@
 package api
 
 import (
+	"database/sql"
 	"time"
 
 	"github.com/pkg/errors"
@@ -41,9 +42,9 @@ type StorageService interface {
 	DeleteAttachment(accountID int, attachmentID int) error
 
 	// CreateOrUpdateSession creates a new session record in the db
-	CreateOrUpdateSession(accountID int, sessionKey string, expirationDate time.Time) error
+	CreateOrUpdateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationDate time.Time) error
 	// DeleteSession removes a session record from the db
 	DeleteSession(sessionKey string) error
 	// FetchSessionAccount fetches an account and session data from the db
-	FetchSessionAccount(sessionKey string) (Account, error)
+	FetchSessionAccount(sessionKey string) (Account, Session, error)
 }

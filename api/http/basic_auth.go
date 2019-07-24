@@ -4,13 +4,13 @@ import (
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 // BasicAuthHandler is the handler for basic authentication.
 type BasicAuthHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 	Session  api.SessionService
@@ -65,7 +65,7 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID)
+	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID, simplestore.NullString())
 	if authErr != nil {
 		service.Log.WarnError("bad session get", authErr, api.LogFields{"account": account.ID})
 		RespondWithStructuredError(w, "bad session get", http.StatusInternalServerError)

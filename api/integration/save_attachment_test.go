@@ -35,7 +35,7 @@ func postAttachmentRequest(t *testing.T, filename string, filebytes []byte, acco
 	req := httptest.NewRequest("POST", "/me/attachments", body)
 	req.Header.Set("Content-Type", formWriter.FormDataContentType())
 
-	authCtx := http.SetAccountInRequestContext(req, account)
+	authCtx := http.SetAccountAndSessionInRequestContext(req, account, api.Session{})
 	req = req.WithContext(authCtx)
 
 	return req

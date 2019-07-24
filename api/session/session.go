@@ -1,6 +1,7 @@
 package session
 
 import (
+	"database/sql"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -25,13 +26,13 @@ func NewSessionService(timeout time.Duration, store api.StorageService) *Service
 }
 
 // UserDidAuthenticate returns a session key and an error if applicable
-func (s Service) UserDidAuthenticate(accountID int) (string, error) {
+func (s Service) UserDidAuthenticate(accountID int, sessionIndex sql.NullString) (string, error) {
 	sessionKey := uuid.New().String()
 
 	// TODO: add tests to sanity check time edge cases / that time.Time is the right type to use here
 	expirationDate := time.Now().Add(s.timeout)
 
-	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, expirationDate)
+	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, sessionIndex, expirationDate)
 
 	// TODO: update accounts table with login datetime
 
@@ -43,7 +44,7 @@ func (s Service) UserDidAuthenticate(accountID int) (string, error) {
 }
 
 // GetAccountIfSessionIsValid returns an Account if the session key is valid and an error otherwise
-func (s Service) GetAccountIfSessionIsValid(sessionKey string) (api.Account, error) {
+func (s Service) GetAccountIfSessionIsValid(sessionKey string) (api.Account, api.Session, error) {
 	return s.store.FetchSessionAccount(sessionKey)
 }
 

@@ -17,7 +17,7 @@ type LogoutHandler struct {
 func (service LogoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// TODO: Maybe we want to have UserDidLogout take an account instead of a sessionKey?
-	// account := AccountFromRequestContext(r)
+	// account, _ := AccountAndSessionFromRequestContext(r)
 
 	// we've already fetched the cookie in the auth layer so this really sholuldn't
 	// be able to error.

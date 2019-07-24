@@ -12,7 +12,6 @@ import (
 type StatusHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -28,7 +27,7 @@ type formStatusInfo struct {
 func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Get account information
-	account := AccountFromRequestContext(r)
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	application, fetchErr := service.Store.LoadApplication(account.ID)
 	if fetchErr != nil {

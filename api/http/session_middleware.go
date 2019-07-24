@@ -3,6 +3,8 @@ package http
 import (
 	"context"
 	"net/http"
+	"net/url"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/session"
@@ -34,25 +36,40 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 		}
 
 		sessionKey := sessionCookie.Value
-		account, err := service.session.GetAccountIfSessionIsValid(sessionKey)
+		account, session, err := service.session.GetAccountIfSessionIsValid(sessionKey)
 		if err != nil {
-			service.log.WarnError(api.InvalidJWT, err, api.LogFields{})
-			RespondWithStructuredError(w, api.InvalidJWT, http.StatusUnauthorized)
+			if err == api.ErrValidSessionNotFound {
+				service.log.WarnError(api.InvalidJWT, err, api.LogFields{})
+				RespondWithStructuredError(w, api.InvalidJWT, http.StatusUnauthorized)
+
+			}
+			service.log.WarnError("TODO: Error getting session datya", err, api.LogFields{})
+			RespondWithStructuredError(w, api.InvalidJWT, http.StatusInternalServerError)
 			return
 		}
 
 		service.log.AddField("account_id", account.ID)
 
-		newContext := SetAccountInRequestContext(r, account)
+		newContext := SetAccountAndSessionInRequestContext(r, account, session)
 		next.ServeHTTP(w, r.WithContext(newContext))
 	})
 }
 
 // AddSessionKeyToResponse adds the session cookie to a response given a valid sessionKey
 func AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
+	// ugh, this should be configured....TODO
+	// cookieDomain = os.Getenv("COOKIE_DOMAIN")
+
+	if cookieDomain == "" {
+		// TODO LOOOOG
+		// service.Log.Warn(api.CookieDomainNotSet, api.LogFields{})
+		// Default to frontend host
+		uri, _ := url.Parse(redirectTo)
+		cookieDomain = strings.Split(uri.Host, ":")[0]
+	}
 
 	cookie := &http.Cookie{
-		// Domain:   cookieDomain,
+		Domain:   cookieDomain,
 		Name:     session.SessionCookieName,
 		Value:    sessionKey,
 		HttpOnly: true,
@@ -68,16 +85,21 @@ func AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
 type authContextKey string
 
 const accountKey authContextKey = "ACCOUNT"
+const sessionKey authContextKey = "SESSION"
 
-// SetAccountInRequestContext modifies the request's Context() to add the Account
-func SetAccountInRequestContext(r *http.Request, account api.Account) context.Context {
-	return context.WithValue(r.Context(), accountKey, account)
+// SetAccountAndSessionInRequestContext modifies the request's Context() to add the Account
+func SetAccountAndSessionInRequestContext(r *http.Request, account api.Account, session api.Session) context.Context {
+	accountContext := context.WithValue(r.Context(), accountKey, account)
+	sessionContext := context.WithValue(accountContext, sessionKey, session)
+
+	return sessionContext
 }
 
-// AccountFromRequestContext gets the reference to the Account stored in the request.Context()
-func AccountFromRequestContext(r *http.Request) api.Account {
-	// This will panic if it is not set or if it's not an int. That will always be a programmer
+// AccountAndSessionFromRequestContext gets the reference to the Account stored in the request.Context()
+func AccountAndSessionFromRequestContext(r *http.Request) (api.Account, api.Session) {
+	// This will panic if it is not set or if it's not an Account. That will always be a programmer
 	// error so I think that it's worth the tradeoff for the simpler method signature.
 	account := r.Context().Value(accountKey).(api.Account)
-	return account
+	session := r.Context().Value(sessionKey).(api.Session)
+	return account, session
 }

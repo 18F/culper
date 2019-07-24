@@ -18,7 +18,6 @@ import (
 type AttachmentListHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -33,7 +32,7 @@ func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	}
 
 	// Get the account information
-	account := AccountFromRequestContext(r)
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// Proceed even if the account is locked, as files are presented
 	// after application submission, on the Print page.
@@ -52,7 +51,6 @@ func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 type AttachmentSaveHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -66,7 +64,7 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	}
 
 	// Get account information
-	account := AccountFromRequestContext(r)
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// If the account is submitted then we cannot proceed
 	if account.Status == api.StatusSubmitted {
@@ -147,7 +145,6 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 type AttachmentGetHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -162,7 +159,7 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 	}
 
 	// Get account information
-	account := AccountFromRequestContext(r)
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// Proceed even if the account is locked, as files are presented
 	// after application submission, on the Print page.
@@ -192,7 +189,6 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 type AttachmentDeleteHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -206,7 +202,7 @@ func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.
 	}
 
 	// Get account information
-	account := AccountFromRequestContext(r)
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// If the account is locked then we cannot proceed
 	if account.Status == api.StatusSubmitted {
