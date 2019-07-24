@@ -121,6 +121,26 @@ describe('The civilUnion model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Birthdate must not be more than 200 years ago', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, civilUnion))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be in the future', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, civilUnion))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('the birthplace field is required', () => {
     const testData = {}
     const expectedErrors = ['BirthPlace.required']
@@ -155,6 +175,49 @@ describe('The civilUnion model', () => {
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('EnteredCivilUnion is required', () => {
+    const testData = {}
+    const expectedErrors = ['EnteredCivilUnion.required']
+    expect(validateModel(testData, civilUnion))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('EnteredCivilUnion must be a valid date', () => {
+    const testData = {
+      EnteredCivilUnion: 'January 2',
+    }
+    const expectedErrors = ['EnteredCivilUnion.date']
+    expect(validateModel(testData, civilUnion))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Email is required', () => {
+    const testData = {}
+    const expectedErrors = ['Email.required']
+    expect(validateModel(testData, civilUnion))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Email must be a valid email', () => {
+    const testData = {
+      Email: { value: 'invalid email' },
+    }
+    const expectedErrors = ['Email.hasValue']
+    expect(validateModel(testData, civilUnion))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  describe('if Email is not applicable', () => {
+    it('Email is not required', () => {
+      const testData = {
+        EmailNotApplicable: { applicable: false },
+      }
+      const expectedErrors = ['Email.required']
+      expect(validateModel(testData, civilUnion))
+        .not.toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 
   it('the SSN field is required', () => {
@@ -336,7 +399,6 @@ describe('The civilUnion model', () => {
         ],
       },
     }
-
     const expectedErrors = ['OtherNames.branchCollection']
 
     expect(validateModel(testData, civilUnion))
@@ -371,6 +433,7 @@ describe('The civilUnion model', () => {
         BirthPlace: {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },
+        Email: { value: 'test@email.com' },
         Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
         SSN: { first: '234', middle: '12', last: '3490' },
         Separated: { value: 'No' },
@@ -379,6 +442,7 @@ describe('The civilUnion model', () => {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },
         Citizenship: { value: ['United States'] },
+        EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
         Divorced: { value: 'No' },
         OtherNames: {
           items: [
@@ -437,10 +501,23 @@ describe('The civilUnion model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('the Date Separated field must be a valid date', () => {
+    it('the Date Separated field must not be before EnteredCivilUnion', () => {
       const testData = {
+        EnteredCivilUnion: { day: 5, month: 1, year: 2001 },
         Separated: { value: 'Yes' },
-        DateSeparated: { day: 50, month: 10, year: 3000 },
+        DateSeparated: { day: 5, month: 10, year: 2000 },
+      }
+      const expectedErrors = ['DateSeparated.date']
+
+      expect(validateModel(testData, civilUnion))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('the Date Separated field must not be in the future', () => {
+      const testData = {
+        EnteredCivilUnion: { day: 5, month: 1, year: 2001 },
+        Separated: { value: 'Yes' },
+        DateSeparated: { day: 5, month: 10, year: 2030 },
       }
       const expectedErrors = ['DateSeparated.date']
 
@@ -455,6 +532,7 @@ describe('The civilUnion model', () => {
         BirthPlace: {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },
+        Email: { value: 'test@email.com' },
         Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
         SSN: { first: '234', middle: '12', last: '3490' },
         Separated: { value: 'Yes' },
@@ -476,8 +554,9 @@ describe('The civilUnion model', () => {
           country: 'United States',
           county: 'County',
         },
-        DateSeparated: { day: 6, month: 7, year: 2000 },
+        DateSeparated: { day: 6, month: 7, year: 2005 },
         Citizenship: { value: ['United States'] },
+        EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
         Divorced: { value: 'No' },
         OtherNames: {
           items: [
@@ -508,6 +587,7 @@ describe('The civilUnion model', () => {
           BirthPlace: {
             city: 'Boston', state: 'MA', country: 'United States', county: 'County',
           },
+          Email: { value: 'test@email.com' },
           Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
           SSN: { first: '234', middle: '12', last: '3490' },
           Separated: { value: 'Yes' },
@@ -516,8 +596,9 @@ describe('The civilUnion model', () => {
             city: 'Boston', state: 'MA', country: 'United States', county: 'County',
           },
           AddressSeparatedNotApplicable: { applicable: false },
-          DateSeparated: { day: 6, month: 7, year: 2000 },
+          DateSeparated: { day: 6, month: 7, year: 2010 },
           Citizenship: { value: ['United States'] },
+          EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
           Divorced: { value: 'No' },
           OtherNames: {
             items: [
@@ -560,6 +641,7 @@ describe('The civilUnion model', () => {
         BirthPlace: {
           city: 'Toronto', country: 'Canada',
         },
+        EmailNotApplicable: { applicable: false },
         Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
         SSN: { first: '234', middle: '12', last: '3490' },
         Separated: { value: 'No' },
@@ -568,6 +650,7 @@ describe('The civilUnion model', () => {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },
         Citizenship: { value: ['United States'] },
+        EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
         Divorced: { value: 'No' },
         OtherNames: {
           items: [

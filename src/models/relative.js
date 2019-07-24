@@ -9,6 +9,7 @@ import {
   MOTHER, immedateFamilyOptions, relativeCitizenshipDocumentationOptions,
   relativeResidentDocumentationOptions,
 } from 'constants/enums/relationshipOptions'
+import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
 
@@ -61,7 +62,7 @@ const relative = {
   },
   Birthdate: {
     presence: true,
-    date: true,
+    date: { ...OTHER },
   },
   Birthplace: {
     presence: true,
@@ -221,9 +222,12 @@ const relative = {
   },
   LastContact: (value, attributes) => {
     if (isLivingNonCitizen(attributes)) {
+      const dateLimits = { latest: DEFAULT_LATEST }
+      if (attributes.FirstContact) dateLimits.earliest = attributes.FirstContact
+
       return {
         presence: true,
-        date: true,
+        date: dateLimits,
       }
     }
 

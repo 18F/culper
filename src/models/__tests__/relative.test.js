@@ -159,6 +159,43 @@ describe('The relative model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  describe('if relation is mother or father', () => {
+    it('Birthdate must be no more than 200 years ago', () => {
+      const testData = {
+        Relation: { value: 'Father' },
+        Birthdate: { day: 10, month: 10, year: 1800 },
+      }
+
+      const expectedErrors = ['Birthdate.date']
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
+  describe('if relation is other', () => {
+    it('Birthdate must be no more than 200 years ago', () => {
+      const testData = {
+        Relation: { value: 'Half-sister' },
+        Birthdate: { day: 10, month: 10, year: 1800 },
+      }
+
+      const expectedErrors = ['Birthdate.date']
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('Birthdate cannot be in the future', () => {
+      const testData = {
+        Relation: { value: 'Guardian' },
+        Birthdate: { day: 10, month: 10, year: 2050 },
+      }
+
+      const expectedErrors = ['Birthdate.date']
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
   it('Birthplace is required', () => {
     const testData = {}
     const expectedErrors = ['Birthplace.required']
@@ -934,6 +971,19 @@ describe('The relative model', () => {
           Citizenship: { value: ['Canada'] },
           IsDeceased: { value: 'No' },
           LastContact: 'invalid',
+        }
+        const expectedErrors = ['LastContact.date']
+
+        expect(validateModel(testData, relative))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('LastContact must be after FirstContact', () => {
+        const testData = {
+          Citizenship: { value: ['Canada'] },
+          IsDeceased: { value: 'No' },
+          FirstContact: { day: 8, month: 5, year: 2015 },
+          LastContact: { day: 2, month: 3, year: 2015 },
         }
         const expectedErrors = ['LastContact.date']
 

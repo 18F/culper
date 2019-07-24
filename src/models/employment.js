@@ -31,6 +31,7 @@ const matchEmploymentActivity = (attributes = {}, activities = []) => (
 )
 
 /** Nested models (could be broken out into other files) */
+
 const supervisor = {
   SupervisorName: { presence: true, hasValue: true },
   Title: { presence: true, hasValue: true },
@@ -82,8 +83,19 @@ const employment = {
   /** Required by all */
   EmploymentActivity: {
     presence: true,
-    hasValue: {
-      validator: { inclusion: employmentActivityOptions },
+    model: {
+      validator: {
+        value: {
+          presence: true,
+          inclusion: employmentActivityOptions,
+        },
+        otherExplanation: (value, attributes) => {
+          if (attributes.value && attributes.value === 'Other') {
+            return { presence: true }
+          }
+          return {}
+        },
+      },
     },
   },
   Dates: {

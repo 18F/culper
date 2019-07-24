@@ -89,6 +89,16 @@ describe('The investigation model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Granted must be after Completed', () => {
+    const testData = {
+      Completed: { day: 2, month: 1, year: 2019 },
+      Granted: { day: 2, month: 10, year: 2018 },
+    }
+    const expectedErrors = ['Granted.date']
+    expect(validateModel(testData, investigation))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('ClearanceLevel must be a valid ClearanceLevel', () => {
     const testData = {
       ClearanceLevel: {

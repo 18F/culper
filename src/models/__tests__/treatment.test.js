@@ -50,6 +50,23 @@ describe('The treatment model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Address cannot be a PO box', () => {
+    const testData = {
+      Address: {
+        street: 'PO Box 123',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10002',
+        country: 'United States',
+      },
+    }
+
+    const expectedErrors = ['Address.location']
+
+    expect(validateModel(testData, treatment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('passes a valid treatment', () => {
     const testData = {
       Name: { value: 'Test name' },

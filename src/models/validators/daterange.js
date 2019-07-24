@@ -1,6 +1,8 @@
 import { validate } from 'validate.js'
 import { validateModel } from 'models/validate'
-import { today, cleanDateObject, createDateFromObject } from 'helpers/date'
+import {
+  today, cleanDateObject, createDateFromObject, createDurationFromObject,
+} from 'helpers/date'
 
 const dateRangeValidator = (value = {}, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
@@ -17,8 +19,25 @@ const dateRangeValidator = (value = {}, options, key, attributes, globalOptions)
 
   if (dateErrors !== true) return dateErrors
 
-  if (createDateFromObject(cleanDateObject(to))
-    >= createDateFromObject(cleanDateObject(from))) {
+  const fromDateObj = createDateFromObject(cleanDateObject(from))
+  const toDateObj = createDateFromObject(cleanDateObject(to))
+  if (toDateObj >= fromDateObj) {
+    const { minDuration, maxDuration } = options
+    if (minDuration || maxDuration) {
+      // validate the diff
+      const durationUnit = 'days'
+      const rangeDiff = toDateObj.diff(fromDateObj, durationUnit).as(durationUnit)
+      if (minDuration
+        && (createDurationFromObject(minDuration).as(durationUnit) > rangeDiff)) {
+        return 'Range is shorter than minimum duration'
+      }
+
+      if (maxDuration
+        && (createDurationFromObject(maxDuration).as(durationUnit) < rangeDiff)) {
+        return 'Range exceeds maximum duration'
+      }
+    }
+
     return null
   }
 

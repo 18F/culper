@@ -7,7 +7,7 @@ import { DateTime } from 'luxon'
 const TODAY = DateTime.local()
 
 export const DEFAULT_LATEST = TODAY
-export const DEFAULT_EARLIEST = TODAY.minus({ years: 200, days: 1 })
+export const DEFAULT_EARLIEST = TODAY.minus({ years: 200 })
 
 /**
  * Applicant birthdate must be:
@@ -21,7 +21,7 @@ export const SELF = {
 
 /**
  * Applicant's parent birthdate must be:
- * - less than 200 years, 1 day ago
+ * - no more than 200 years ago
  * - older than the applicant
  */
 export const PARENT = applicantBirthdate => ({
@@ -41,7 +41,7 @@ export const CHILD = applicantBirthdate => ({
 
 /**
  * Other person's birthdate must be:
- * - less than 200 years, 1 day ago
+ * - no more than 200 years ago
  * - not in the future
  */
 export const OTHER = {

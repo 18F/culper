@@ -5,6 +5,7 @@ describe('The drugUse model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
+      'DrugType.required',
       'FirstUse.required',
       'RecentUse.required',
       'NatureOfUse.required',
@@ -16,6 +17,36 @@ describe('The drugUse model', () => {
 
     expect(validateModel(testData, drugUse))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DrugType must have a valid value', () => {
+    const testData = {
+      DrugType: { value: 'Other' },
+    }
+    const expectedErrors = [
+      'DrugType.hasValue',
+    ]
+
+    expect(validateModel(testData, drugUse))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  // TODO this is not how the form works
+  // Right now, Explanation text becomes DrugType.value
+  // So currently, only validation on DrugType is that it can't be "Other"
+  describe.skip('if DrugType is "Other"', () => {
+    it('DrugTypeExplanation must have a value', () => {
+      const testData = {
+        DrugType: { value: 'Other' },
+        DrugTypeExplanation: 'test',
+      }
+      const expectedErrors = [
+        'DrugTypeExplanation.hasValue',
+      ]
+
+      expect(validateModel(testData, drugUse))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 
   it('FirstUse must be a valid month/year', () => {
@@ -33,6 +64,19 @@ describe('The drugUse model', () => {
   it('RecentUse must be a valid month/year', () => {
     const testData = {
       RecentUse: { day: 5, month: 10 },
+    }
+    const expectedErrors = [
+      'RecentUse.date',
+    ]
+
+    expect(validateModel(testData, drugUse))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('RecentUse must be after FirstUse', () => {
+    const testData = {
+      FirstUse: { month: 8, year: 2001 },
+      RecentUse: { month: 5, year: 1990 },
     }
     const expectedErrors = [
       'RecentUse.date',
@@ -115,6 +159,8 @@ describe('The drugUse model', () => {
 
     it('passes a valid drugUse', () => {
       const testData = {
+        DrugType: { value: 'Test drug' },
+        // DrugTypeExplanation: { value: 'Test drug' },
         FirstUse: { month: 2, year: 1999 },
         RecentUse: { month: 5, year: 2001 },
         NatureOfUse: { value: 'Testing' },
@@ -141,6 +187,7 @@ describe('The drugUse model', () => {
 
     it('passes a valid drugUse', () => {
       const testData = {
+        DrugType: { value: 'Cocaine' },
         FirstUse: { month: 2, year: 1999 },
         RecentUse: { month: 5, year: 2001 },
         NatureOfUse: { value: 'Testing' },
@@ -167,6 +214,7 @@ describe('The drugUse model', () => {
 
     it('passes a valid drugUse', () => {
       const testData = {
+        DrugType: { value: 'Steroids' },
         FirstUse: { month: 2, year: 1999 },
         RecentUse: { month: 5, year: 2001 },
         NatureOfUse: { value: 'Testing' },
@@ -182,6 +230,7 @@ describe('The drugUse model', () => {
 
   it('passes a valid drugUse', () => {
     const testData = {
+      DrugType: { value: 'THC' },
       FirstUse: { month: 2, year: 1999 },
       RecentUse: { month: 5, year: 2001 },
       NatureOfUse: { value: 'Testing' },

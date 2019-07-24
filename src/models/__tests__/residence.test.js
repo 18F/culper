@@ -44,6 +44,23 @@ describe('The residence model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('the Address field cannot be a PO box', () => {
+    const testData = {
+      Address: {
+        street: 'PO Box 123',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10002',
+        country: 'United States',
+      },
+    }
+
+    const expectedErrors = ['Address.location']
+
+    expect(validateModel(testData, residence))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('the Role field is required', () => {
     const testData = { Role: '' }
     const expectedErrors = ['Role.required']

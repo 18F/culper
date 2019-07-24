@@ -14,10 +14,21 @@ describe('The employment model', () => {
     const testData = {
       EmploymentActivity: 'Some other thing',
     }
-    const expectedErrors = ['EmploymentActivity.hasValue']
+    const expectedErrors = ['EmploymentActivity.model']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  describe('if EmploymentActivity value is "Other"', () => {
+    it('EmploymentActivity.otherExplanation is required', () => {
+      const testData = {
+        EmploymentActivity: { value: 'Other' },
+      }
+      const expectedErrors = ['EmploymentActivity.model']
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 
   it('the Dates field is required', () => {
@@ -1015,7 +1026,10 @@ describe('The employment model', () => {
 
     it('passes a valid Employment item', () => {
       const testData = {
-        EmploymentActivity: { value: 'NonGovernment' },
+        EmploymentActivity: {
+          value: 'Other',
+          otherExplanation: 'Test job',
+        },
         Dates: {
           from: { year: 1990, month: 5, day: 12 },
           present: true,

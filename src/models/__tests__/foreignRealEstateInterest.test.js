@@ -117,7 +117,7 @@ describe('The foreignRealEstateInterest model', () => {
         InterestTypes: { values: ['One', 'Two'] },
         RealEstateType: { value: 'Something' },
         Address: { street: '123 Test St', city: 'London', country: 'United Kingdom' },
-        Acquired: { month: 2, year: '2002' },
+        Acquired: { day: 10, month: 2, year: '2002' },
         HowAcquired: { value: 'I bought it' },
         Cost: { value: 2500 },
         SoldNotApplicable: { applicable: false },
@@ -152,10 +152,10 @@ describe('The foreignRealEstateInterest model', () => {
       InterestTypes: { values: ['One', 'Two'] },
       RealEstateType: { value: 'Something' },
       Address: { street: '123 Test St', city: 'London', country: { value: 'United Kingdom' } },
-      Acquired: { month: 2, year: '2002' },
+      Acquired: { day: 2, month: 2, year: '2002' },
       HowAcquired: { value: 'I bought it' },
       Cost: { value: 2500 },
-      Sold: { month: '10', year: '2010' },
+      Sold: { day: 9, month: '10', year: '2010' },
       CoOwners: {
         List: {
           items: [

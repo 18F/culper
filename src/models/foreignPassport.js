@@ -15,7 +15,11 @@ const foreignPassport = {
     model: { validator: name },
   },
   Number: { presence: true, hasValue: true },
-  Expiration: { presence: true, date: true },
+  Expiration: (value, attributes) => {
+    const dateLimits = {}
+    if (attributes.Issued) dateLimits.earliest = attributes.Issued
+    return { presence: true, date: dateLimits }
+  },
   Used: { presence: true, hasValue: { validator: hasYesOrNo } },
   Countries: (value, attributes) => (
     checkValue(attributes.Used, 'Yes')
