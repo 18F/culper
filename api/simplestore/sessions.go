@@ -9,13 +9,13 @@ import (
 )
 
 // CreateOrUpdateSession returns session key or error
-func (s SimpleStore) CreateOrUpdateSession(accountID int, sessionKey string, expirationDate time.Time) error {
-	createQuery := `INSERT INTO Sessions (session_key, account_id, expiration_date)
-		VALUES ($1, $2, $3)
+func (s SimpleStore) CreateOrUpdateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationDate time.Time) error {
+	createQuery := `INSERT INTO Sessions (session_key, account_id, session_index, expiration_date)
+		VALUES ($1, $2, $3, $4)
 		ON CONFLICT (account_id) DO UPDATE
-		SET session_key = $1, expiration_date = $3`
+		SET session_key = $1, session_index = $3, expiration_date = $4`
 
-	_, createErr := s.db.Exec(createQuery, sessionKey, accountID, expirationDate)
+	_, createErr := s.db.Exec(createQuery, sessionKey, accountID, sessionIndex, expirationDate)
 	if createErr != nil {
 		return errors.Wrap(createErr, "Failed to create or update session")
 	}
@@ -40,22 +40,28 @@ func (s SimpleStore) DeleteSession(sessionKey string) error {
 	return nil
 }
 
-// SessionRow represents a row of data from the sessions table
-type SessionRow struct {
-	SessionKey     string    `db:"session_key"`
-	AccountID      int       `db:"account_id"`
-	ExpirationDate time.Time `db:"expiration_date"`
+
+// Helper methods for sql.NullString
+
+// NonNullString returns a valid sql.NullString
+func NonNullString(value string) sql.NullString {
+	return sql.NullString{Valid: true, String: value}
+}
+
+// NullString returns an invalid sql.NullString
+func NullString() sql.NullString {
+	return sql.NullString{}
 }
 
 type sessionAccountRow struct {
-	SessionRow
+	api.Session
 	api.Account
 }
 
 // FetchSessionAccount fetches an account and session data from the db
-func (s SimpleStore) FetchSessionAccount(sessionKey string) (api.Account, error) {
+func (s SimpleStore) FetchSessionAccount(sessionKey string) (api.Account, api.Session, error) {
 
-	fetchQuery := `SELECT sessions.session_key, sessions.account_id, sessions.expiration_date,
+	fetchQuery := `SELECT sessions.session_key, sessions.account_id, sessions.expiration_date, sessions.session_index,
 		accounts.id, accounts.form_version, accounts.form_type, accounts.username,
 		accounts.email, accounts.external_id
 		FROM sessions, accounts
@@ -65,10 +71,10 @@ func (s SimpleStore) FetchSessionAccount(sessionKey string) (api.Account, error)
 	selectErr := s.db.Get(&row, fetchQuery, sessionKey, time.Now())
 	if selectErr != nil {
 		if selectErr == sql.ErrNoRows {
-			return api.Account{}, api.ErrValidSessionNotFound
+			return api.Account{}, api.Session{}, api.ErrValidSessionNotFound
 		}
-		return api.Account{}, errors.Wrap(selectErr, "Couldn't find Session")
+		return api.Account{}, api.Session{}, errors.Wrap(selectErr, "Couldn't find Session")
 	}
 
-	return row.Account, nil
+	return row.Account, row.Session, nil
 }

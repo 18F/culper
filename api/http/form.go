@@ -12,7 +12,6 @@ import (
 type FormHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -21,7 +20,7 @@ type FormHandler struct {
 // information specifict to the account.
 func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Get account ID
-	account := AccountFromRequestContext(r)
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// If the account is locked then we cannot proceed
 	if account.Status == api.StatusSubmitted {

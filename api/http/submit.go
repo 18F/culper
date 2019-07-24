@@ -22,7 +22,7 @@ type SubmitHandler struct {
 func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Get account information
-	account := AccountFromRequestContext(r)
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// If the account is locked then we cannot proceed
 	if account.Status == api.StatusSubmitted {

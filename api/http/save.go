@@ -11,7 +11,6 @@ import (
 type SaveHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -20,7 +19,7 @@ type SaveHandler struct {
 func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Get account information
-	account := AccountFromRequestContext(r)
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// If the account is locked then we cannot proceed
 	if account.Status == api.StatusSubmitted {
