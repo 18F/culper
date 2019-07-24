@@ -40,3 +40,5 @@ settings:
   import/resolver:
     babel-module:
       root: ['./src']
+  react:
+    version: 'detect'
