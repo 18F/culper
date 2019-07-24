@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import ContactItem from './ContactItem'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_CONTACT.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_CONTACT.name,
@@ -63,7 +64,7 @@ export class Contact extends Subsection {
     if (name && govt) {
       display = (
         <span className="title-case">
-          {name} ({govt})
+          {`${name} (${govt})`}
         </span>
       )
     } else if (name) {
@@ -95,7 +96,7 @@ export class Contact extends Subsection {
           label={i18n.t('foreign.business.contact.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignContact}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignContact}
           required={this.props.required}
           onError={this.handleError}
@@ -122,7 +123,7 @@ export class Contact extends Subsection {
           >
             <ContactItem
               name="Item"
-              bind
+              bind={true}
               scrollIntoView={this.props.scrollIntoView}
               required={this.props.required}
             />

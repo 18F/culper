@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import TravelQuestions from './TravelQuestions'
 
 const sectionConfig = {
+  key: FOREIGN_TRAVEL.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_TRAVEL.name,
@@ -85,7 +86,7 @@ export class Travel extends Subsection {
           name="has_foreign_travel_outside"
           className="foreign-travel-outside"
           {...this.props.HasForeignTravelOutside}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignTravelOutside}
           required={this.props.required}
           onError={this.handleError}
@@ -131,7 +132,7 @@ export class Travel extends Subsection {
           >
             <TravelQuestions
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

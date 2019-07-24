@@ -10,6 +10,7 @@ import MilitaryService from 'components/Section/Military/History/MilitaryService
 import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
+  key: MILITARY_HISTORY.key,
   section: MILITARY.name,
   store: MILITARY.store,
   subsection: MILITARY_HISTORY.name,
@@ -115,7 +116,7 @@ class History extends Subsection {
           className="served"
           {...this.props.HasServed}
           help="military.history.help.served"
-          warning
+          warning={true}
           onUpdate={this.updateServed}
           required={this.props.required}
           onError={this.handleError}
@@ -139,7 +140,7 @@ class History extends Subsection {
           >
             <MilitaryService
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

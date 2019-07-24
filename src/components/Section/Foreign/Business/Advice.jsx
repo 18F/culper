@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import AdviceItem from './AdviceItem'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_ADVICE.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_ADVICE.name,
@@ -78,7 +79,7 @@ export class Advice extends Subsection {
           labelSize="h4"
           adjustFor="p"
           {...this.props.HasForeignAdvice}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignAdvice}
           required={this.props.required}
           onError={this.handleError}
@@ -105,7 +106,7 @@ export class Advice extends Subsection {
           >
             <AdviceItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

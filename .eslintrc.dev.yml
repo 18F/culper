@@ -34,6 +34,8 @@ rules:
     forbid: ['any']
   }]
   react/jsx-boolean-value: ['error', 'always']
+  jsx-a11y/label-has-for: 0
+  jsx-a11y/label-has-associated-control: 2
 settings:
   import/resolver:
     babel-module:

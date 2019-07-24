@@ -3,17 +3,20 @@ import { i18n } from 'config'
 
 import schema from 'schema'
 import validate from 'validators'
-import { Field, DateControl, Show, Checkbox } from 'components/Form'
-
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
+import {
+  Field, DateControl, Show, Checkbox,
+} from 'components/Form'
 
 import {
   IDENTIFICATION,
   IDENTIFICATION_BIRTH_DATE,
 } from 'config/formSections/identification'
 
+import connectIdentificationSection from '../IdentificationConnector'
+import Subsection from '../../shared/Subsection'
+
 const sectionConfig = {
+  key: IDENTIFICATION_BIRTH_DATE.key,
   section: IDENTIFICATION.name,
   store: IDENTIFICATION.store,
   subsection: IDENTIFICATION_BIRTH_DATE.name,
@@ -24,7 +27,9 @@ export class ApplicantBirthDate extends Subsection {
   constructor(props) {
     super(props)
 
-    const { section, subsection, store, storeKey } = sectionConfig
+    const {
+      section, subsection, store, storeKey,
+    } = sectionConfig
 
     this.section = section
     this.subsection = subsection
@@ -34,7 +39,7 @@ export class ApplicantBirthDate extends Subsection {
     this.state = {
       uid: `${subsection}-${super.guid()}`,
       errors: [],
-      needsConfirmation: false
+      needsConfirmation: false,
     }
 
     this.update = this.update.bind(this)
@@ -51,20 +56,20 @@ export class ApplicantBirthDate extends Subsection {
     this.props.onUpdate(this.storeKey, {
       Date: this.props.Date,
       Confirmed: this.props.Confirmed,
-      ...queue
+      ...queue,
     })
   }
 
   updateDate(values) {
     this.update({
       Date: values,
-      Confirmed: { value: '', checked: false }
+      Confirmed: { value: '', checked: false },
     })
   }
 
   updateConfirmed(values) {
     this.update({
-      Confirmed: values
+      Confirmed: values,
     })
   }
 
@@ -74,17 +79,15 @@ export class ApplicantBirthDate extends Subsection {
     const hasMinMaxError = local.some(
       x => x.valid === false && (x.code === 'date.min' || x.code === 'date.max')
     )
-    const birthdateValid =
-      this.props.Confirmed && this.props.Confirmed.checked === true
-        ? true
-        : hasMinMaxError
-          ? false
-          : null
+
+    let birthdateValid = null
+    if (this.props.Confirmed && this.props.Confirmed.checked === true) birthdateValid = true
+    else if (hasMinMaxError) birthdateValid = false
 
     local.push({
       code: 'birthdate.age',
       valid: birthdateValid,
-      uid: this.state.uid
+      uid: this.state.uid,
     })
 
     local = local.filter(x => x.code !== 'date.min' && x.code !== 'date.max')
@@ -96,13 +99,13 @@ export class ApplicantBirthDate extends Subsection {
     return super.handleError(value, local)
   }
 
-  confirmationError(value, arr) {
-    let local = [...this.state.errors]
+  confirmationError(value) {
+    let local = [...this.state.errors] // eslint-disable-line
     local = local.filter(x => x.code !== 'birthdate.age')
     local.push({
       code: 'birthdate.age',
       valid: value,
-      uid: this.state.uid
+      uid: this.state.uid,
     })
 
     // Store the errors
@@ -113,8 +116,7 @@ export class ApplicantBirthDate extends Subsection {
   }
 
   render() {
-    const klass = `section-content birthdate ${this.props.className ||
-      ''}`.trim()
+    const klass = `section-content birthdate ${this.props.className || ''}`.trim()
 
     return (
       <div
@@ -127,7 +129,8 @@ export class ApplicantBirthDate extends Subsection {
           title={i18n.t('identification.birthdate.title')}
           titleSize="h4"
           help="identification.birthdate.help"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
             name="birthdate"
             {...this.props.Date}
@@ -159,14 +162,10 @@ export class ApplicantBirthDate extends Subsection {
 ApplicantBirthDate.defaultProps = {
   Date: {},
   Confirmed: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => {
-    return validate(schema('identification.birthdate', data))
-  }
+  validator: data => validate(schema('identification.birthdate', data)),
 }
 
 export default connectIdentificationSection(ApplicantBirthDate, sectionConfig)
