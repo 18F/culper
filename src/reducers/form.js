@@ -14,7 +14,7 @@ const form = (state = defaultState, action) => {
       const { key, subsection } = action
       return {
         ...state,
-        [`${key}`]: subsection,
+        [key]: subsection,
       }
     }
 
@@ -31,7 +31,7 @@ const form = (state = defaultState, action) => {
 
       return {
         ...state,
-        [`${key}`]: formSection,
+        [key]: formSection,
       }
     }
 
@@ -41,7 +41,7 @@ const form = (state = defaultState, action) => {
 
       return {
         ...state,
-        [`${key}`]: {
+        [key]: {
           ...formSection,
           errors,
         },
@@ -54,7 +54,7 @@ const form = (state = defaultState, action) => {
 
       return {
         ...state,
-        [`${key}`]: {
+        [key]: {
           ...formSection,
           complete,
         },
