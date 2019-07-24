@@ -339,6 +339,7 @@ describe('The civilUnion model', () => {
           BirthPlace: {
             city: 'Boston', state: 'MA', country: 'United States', county: 'County',
           },
+          Email: { value: 'test@email.com' },
           Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
           SSN: { first: '234', middle: '12', last: '3490' },
           Separated: { value: 'No' },
@@ -361,6 +362,7 @@ describe('The civilUnion model', () => {
             city: 'Boston', state: 'MA', country: 'United States', county: 'County',
           },
           Citizenship: { value: ['United States'] },
+          EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
           Divorced: { value: 'No' },
           OtherNames: {
             items: [
@@ -392,6 +394,7 @@ describe('The civilUnion model', () => {
           BirthPlace: {
             city: 'Boston', state: 'MA', country: 'United States', county: 'County',
           },
+          Email: { value: 'test@email.com' },
           Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
           SSN: { first: '234', middle: '12', last: '3490' },
           Separated: { value: 'No' },
@@ -407,6 +410,7 @@ describe('The civilUnion model', () => {
             city: 'Boston', state: 'MA', country: 'United States', county: 'County',
           },
           Citizenship: { value: ['United States'] },
+          EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
           Divorced: { value: 'No' },
           OtherNames: {
             items: [
@@ -483,6 +487,7 @@ describe('The civilUnion model', () => {
         BirthPlace: {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },
+        Email: { value: 'test@email.com' },
         Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
         SSN: { first: '234', middle: '12', last: '3490' },
         Separated: { value: 'No' },
@@ -506,6 +511,7 @@ describe('The civilUnion model', () => {
           city: 'Boston', state: 'MA', country: 'United States', county: 'County',
         },
         Citizenship: { value: ['United States'] },
+        EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
         Divorced: { value: 'No' },
         OtherNames: {
           items: [
