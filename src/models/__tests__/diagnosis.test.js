@@ -5,11 +5,11 @@ describe('The diagnosis model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Condition.required',
-      'Diagnosed.required',
-      'Treatment.required',
-      'Effective.required',
-      'TreatmentFacility.required',
+      'Condition.presence.REQUIRED',
+      'Diagnosed.presence.REQUIRED',
+      'Treatment.presence.REQUIRED',
+      'Effective.presence.REQUIRED',
+      'TreatmentFacility.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, diagnosis))
@@ -21,7 +21,7 @@ describe('The diagnosis model', () => {
       Condition: { value: '' },
     }
     const expectedErrors = [
-      'Condition.hasValue',
+      'Condition.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, diagnosis))
@@ -33,7 +33,8 @@ describe('The diagnosis model', () => {
       Diagnosed: { value: '123456789' },
     }
     const expectedErrors = [
-      'Diagnosed.daterange',
+      'Diagnosed.daterange.from.presence.REQUIRED',
+      'Diagnosed.daterange.to.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, diagnosis))
@@ -45,7 +46,9 @@ describe('The diagnosis model', () => {
       Treatment: { value: 'Test' },
     }
     const expectedErrors = [
-      'Treatment.model',
+      'Treatment.model.Name.presence.REQUIRED',
+      'Treatment.model.Phone.presence.REQUIRED',
+      'Treatment.model.Address.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, diagnosis))
@@ -57,7 +60,9 @@ describe('The diagnosis model', () => {
       TreatmentFacility: { value: 'Test' },
     }
     const expectedErrors = [
-      'TreatmentFacility.model',
+      'TreatmentFacility.model.Name.presence.REQUIRED',
+      'TreatmentFacility.model.Phone.presence.REQUIRED',
+      'TreatmentFacility.model.Address.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, diagnosis))
@@ -69,7 +74,7 @@ describe('The diagnosis model', () => {
       Effective: { value: 'test' },
     }
     const expectedErrors = [
-      'Effective.hasValue',
+      'Effective.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, diagnosis))
@@ -83,7 +88,7 @@ describe('The diagnosis model', () => {
         Explanation: { value: '' },
       }
       const expectedErrors = [
-        'Explanation.hasValue',
+        'Explanation.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, diagnosis))
@@ -139,7 +144,7 @@ describe('The diagnosis model', () => {
     it('Condition is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'Condition.required',
+        'Condition.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, diagnosis, { existingCondition: true }))
@@ -149,7 +154,7 @@ describe('The diagnosis model', () => {
     it('Effective is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'Effective.required',
+        'Effective.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, diagnosis, { existingCondition: true }))

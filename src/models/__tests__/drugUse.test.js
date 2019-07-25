@@ -5,14 +5,14 @@ describe('The drugUse model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'DrugType.required',
-      'FirstUse.required',
-      'RecentUse.required',
-      'NatureOfUse.required',
-      'UseWhileEmployed.required',
-      'UseWithClearance.required',
-      'UseInFuture.required',
-      'Explanation.required',
+      'DrugType.presence.REQUIRED',
+      'FirstUse.presence.REQUIRED',
+      'RecentUse.presence.REQUIRED',
+      'NatureOfUse.presence.REQUIRED',
+      'UseWhileEmployed.presence.REQUIRED',
+      'UseWithClearance.presence.REQUIRED',
+      'UseInFuture.presence.REQUIRED',
+      'Explanation.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugUse))
@@ -54,7 +54,7 @@ describe('The drugUse model', () => {
       FirstUse: { day: 5, month: 10 },
     }
     const expectedErrors = [
-      'FirstUse.date',
+      'FirstUse.date.year.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugUse))
@@ -66,7 +66,7 @@ describe('The drugUse model', () => {
       RecentUse: { day: 5, month: 10 },
     }
     const expectedErrors = [
-      'RecentUse.date',
+      'RecentUse.date.year.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugUse))
@@ -91,7 +91,7 @@ describe('The drugUse model', () => {
       NatureOfUse: 'testing',
     }
     const expectedErrors = [
-      'NatureOfUse.hasValue',
+      'NatureOfUse.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugUse))
@@ -103,7 +103,7 @@ describe('The drugUse model', () => {
       UseWhileEmployed: { value: 'nope' },
     }
     const expectedErrors = [
-      'UseWhileEmployed.hasValue',
+      'UseWhileEmployed.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugUse))
@@ -115,7 +115,7 @@ describe('The drugUse model', () => {
       UseWithClearance: { value: 'nope' },
     }
     const expectedErrors = [
-      'UseWithClearance.hasValue',
+      'UseWithClearance.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugUse))
@@ -127,7 +127,7 @@ describe('The drugUse model', () => {
       UseInFuture: { value: 'nope' },
     }
     const expectedErrors = [
-      'UseInFuture.hasValue',
+      'UseInFuture.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugUse))
@@ -139,7 +139,7 @@ describe('The drugUse model', () => {
       Explanation: 'testing',
     }
     const expectedErrors = [
-      'Explanation.hasValue',
+      'Explanation.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugUse))
@@ -150,7 +150,7 @@ describe('The drugUse model', () => {
     it('UseWhileEmployed is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'UseWhileEmployed.required',
+        'UseWhileEmployed.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugUse, { requireUseWhileEmployed: false }))
@@ -178,7 +178,7 @@ describe('The drugUse model', () => {
     it('UseWithClearance is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'UseWithClearance.required',
+        'UseWithClearance.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugUse, { requireUseWithClearance: false }))
@@ -205,7 +205,7 @@ describe('The drugUse model', () => {
     it('UseInFuture is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'UseInFuture.required',
+        'UseInFuture.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugUse, { requireUseInFuture: false }))
