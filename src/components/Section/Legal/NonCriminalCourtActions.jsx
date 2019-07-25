@@ -1,7 +1,9 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { NonCriminalCourtActionValidator } from 'validators'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -69,6 +71,11 @@ export class NonCriminalCourtActions extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.LEGAL_COURT_YEARS
+    const numberOfYearsString = getNumberOfYearsString(years)
+    const branchLabelCopy = i18n.t('legal.nonCriminalAction.heading.hasCourtActions', { numberOfYearsString })
     return (
       <div
         className="section-content non-criminal-court-actions"
@@ -78,7 +85,7 @@ export class NonCriminalCourtActions extends Subsection {
         <h1 className="section-header">{i18n.t('legal.subsection.court')}</h1>
         <Branch
           name="HasCourtActions"
-          label={i18n.t('legal.nonCriminalAction.heading.hasCourtActions')}
+          label={branchLabelCopy}
           labelSize="h4"
           className="has-court-actions"
           {...this.props.HasCourtActions}

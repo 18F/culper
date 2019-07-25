@@ -117,6 +117,7 @@ const connectLegalSection = (Component, {
       case 'NonCriminalCourtActions':
         return {
           ...legal.NonCriminalCourtActions,
+          formType: settings.formType,
           addressBooks,
         }
 
