@@ -28,8 +28,8 @@ const physicalAddress = {
       && HasDifferentAddress.value
       && HasDifferentAddress.value === 'Yes') {
       return {
-        presence: false, // Telephone is optional
-        model: { validator: phone },
+        presence: true, // Telephone is required
+        model: { validator: phone, requireNumber: true },
       }
     }
 
