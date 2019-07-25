@@ -25,6 +25,7 @@ export const NUMBER_NOT_DIVISIBLE_BY = 'NUMBER_NOT_DIVISIBLE_BY'
 export const NUMBER_NOT_ODD = 'NUMBER_NOT_ODD'
 export const NUMBER_NOT_EVEN = 'NUMBER_NOT_EVEN'
 export const INVALID_URL = 'INVALID_URL'
+export const INVALID_COUNTRY = 'INVALID_COUNTRY'
 
 // Custom validator errors
 export const MISSING_ITEMS = 'MISSING_ITEMS'

@@ -44,7 +44,7 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       Countries: { value: [] },
     }
-    const expectedErrors = ['Countries.country']
+    const expectedErrors = ['Countries.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -54,7 +54,7 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       Countries: { value: ['Germany', 'French'] },
     }
-    const expectedErrors = ['Countries.country']
+    const expectedErrors = ['Countries.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -64,7 +64,7 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       RelationshipNature: { values: 'invalid' },
     }
-    const expectedErrors = ['RelationshipNature.hasValue']
+    const expectedErrors = ['RelationshipNature.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))

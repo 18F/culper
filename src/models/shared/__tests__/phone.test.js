@@ -8,7 +8,7 @@ describe('The phone model', () => {
         type: 'Something',
       }
 
-      const expectedErrors = ['type.inclusion']
+      const expectedErrors = ['type.inclusion.INCLUSION']
 
       expect(validateModel(testData, phone))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +19,7 @@ describe('The phone model', () => {
         type: 'Domestic',
       }
 
-      const expectedErrors = ['number.required']
+      const expectedErrors = ['number.presence.REQUIRED']
 
       expect(validateModel(testData, phone))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -30,7 +30,7 @@ describe('The phone model', () => {
         type: 'Domestic',
       }
 
-      const expectedErrors = ['numberType.required']
+      const expectedErrors = ['numberType.presence.REQUIRED']
 
       expect(validateModel(testData, phone))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -41,7 +41,7 @@ describe('The phone model', () => {
         type: 'Domestic',
       }
 
-      const expectedErrors = ['timeOfDay.required']
+      const expectedErrors = ['timeOfDay.presence.REQUIRED']
 
       expect(validateModel(testData, phone))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -54,7 +54,7 @@ describe('The phone model', () => {
         noNumber: true,
       }
 
-      const expectedErrors = ['noNumber.inclusion']
+      const expectedErrors = ['noNumber.inclusion.INCLUSION']
 
       expect(validateModel(testData, phone, { requireNumber: true }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -66,7 +66,7 @@ describe('The phone model', () => {
         type: 'Domestic',
       }
 
-      const expectedErrors = ['number.required']
+      const expectedErrors = ['number.presence.REQUIRED']
 
       expect(validateModel(testData, phone, { requireNumber: true }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -79,7 +79,7 @@ describe('The phone model', () => {
         type: 'Domestic',
       }
 
-      const expectedErrors = ['numberType.required']
+      const expectedErrors = ['numberType.presence.REQUIRED']
 
       expect(validateModel(testData, phone, { requireNumberType: true }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -93,7 +93,7 @@ describe('The phone model', () => {
         number: '12345abcde',
       }
 
-      const expectedErrors = ['number.format']
+      const expectedErrors = ['number.format.INVALID_FORMAT']
 
       expect(validateModel(testData, phone))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -107,7 +107,7 @@ describe('The phone model', () => {
         number: '1234567890',
       }
 
-      const expectedErrors = ['number.format']
+      const expectedErrors = ['number.format.INVALID_FORMAT']
 
       expect(validateModel(testData, phone))
         .toEqual(expect.arrayContaining(expectedErrors))
