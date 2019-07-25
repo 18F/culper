@@ -64,7 +64,7 @@ func (s *StorageService) DeleteSession(sessionKey string) error {
 	return nil
 }
 
-// FetchSessionAccount fetches an account and session data from the db
-func (s *StorageService) FetchSessionAccount(sessionKey string) (api.Account, error) {
+// ExtendAndFetchSessionAccount fetches an account and session data from the db
+func (s *StorageService) ExtendAndFetchSessionAccount(sessionKey string) (api.Account, error) {
 	return api.Account{}, nil
 }

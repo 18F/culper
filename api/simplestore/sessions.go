@@ -9,7 +9,9 @@ import (
 )
 
 // CreateOrUpdateSession returns session key or error
-func (s SimpleStore) CreateOrUpdateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationDate time.Time) error {
+func (s SimpleStore) CreateOrUpdateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationDuration time.Duration) error {
+	expirationDate := time.Now().UTC().Add(expirationDuration)
+
 	createQuery := `INSERT INTO Sessions (session_key, account_id, session_index, expiration_date)
 		VALUES ($1, $2, $3, $4)
 		ON CONFLICT (account_id) DO UPDATE
@@ -40,7 +42,6 @@ func (s SimpleStore) DeleteSession(sessionKey string) error {
 	return nil
 }
 
-
 // Helper methods for sql.NullString
 
 // NonNullString returns a valid sql.NullString
@@ -58,23 +59,34 @@ type sessionAccountRow struct {
 	api.Account
 }
 
-// FetchSessionAccount fetches an account and session data from the db
-func (s SimpleStore) FetchSessionAccount(sessionKey string) (api.Account, api.Session, error) {
+// ExtendAndFetchSessionAccount fetches an account and session data from the db
+func (s SimpleStore) ExtendAndFetchSessionAccount(sessionKey string, expirationDuration time.Duration) (api.Account, api.Session, error) {
 
-	fetchQuery := `SELECT sessions.session_key, sessions.account_id, sessions.expiration_date, sessions.session_index,
-		accounts.id, accounts.form_version, accounts.form_type, accounts.username,
-		accounts.email, accounts.external_id
-		FROM sessions, accounts
-		WHERE sessions.account_id = accounts.id
-		AND sessions.session_key = $1 AND sessions.expiration_date > $2`
+	expirationDate := time.Now().UTC().Add(expirationDuration)
+
+	fetchQuery := `UPDATE sessions
+					SET expiration_date = $1
+				FROM accounts
+				WHERE
+					sessions.account_id = accounts.id
+					AND sessions.session_key = $2
+					AND sessions.expiration_date > $3
+				RETURNING
+					sessions.session_key, sessions.account_id, sessions.expiration_date, sessions.session_index,
+					accounts.id, accounts.form_version, accounts.form_type, accounts.username,
+					accounts.email, accounts.external_id`
+
 	row := sessionAccountRow{}
-	selectErr := s.db.Get(&row, fetchQuery, sessionKey, time.Now())
+	selectErr := s.db.Get(&row, fetchQuery, expirationDate, sessionKey, time.Now().UTC())
 	if selectErr != nil {
 		if selectErr == sql.ErrNoRows {
 			return api.Account{}, api.Session{}, api.ErrValidSessionNotFound
 		}
-		return api.Account{}, api.Session{}, errors.Wrap(selectErr, "Couldn't find Session")
+		return api.Account{}, api.Session{}, errors.Wrap(selectErr, "Couldn't find valid Session")
 	}
+
+	// time.Times come back from the db with no tz info, so let's set it to UTC to be safe and consistent.
+	row.Session.ExpirationDate = row.Session.ExpirationDate.UTC()
 
 	return row.Account, row.Session, nil
 }

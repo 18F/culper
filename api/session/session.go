@@ -29,10 +29,7 @@ func NewSessionService(timeout time.Duration, store api.StorageService) *Service
 func (s Service) UserDidAuthenticate(accountID int, sessionIndex sql.NullString) (string, error) {
 	sessionKey := uuid.New().String()
 
-	// TODO: add tests to sanity check time edge cases / that time.Time is the right type to use here
-	expirationDate := time.Now().Add(s.timeout)
-
-	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, sessionIndex, expirationDate)
+	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, sessionIndex, s.timeout)
 
 	// TODO: update accounts table with login datetime
 
@@ -45,7 +42,7 @@ func (s Service) UserDidAuthenticate(accountID int, sessionIndex sql.NullString)
 
 // GetAccountIfSessionIsValid returns an Account if the session key is valid and an error otherwise
 func (s Service) GetAccountIfSessionIsValid(sessionKey string) (api.Account, api.Session, error) {
-	return s.store.FetchSessionAccount(sessionKey)
+	return s.store.ExtendAndFetchSessionAccount(sessionKey, s.timeout)
 }
 
 // UserDidLogout attempts to end the session and returns an error on failure
