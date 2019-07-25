@@ -1101,7 +1101,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['LastContact.date']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
