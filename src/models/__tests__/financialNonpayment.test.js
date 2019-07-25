@@ -9,16 +9,16 @@ describe('The financial nonpayment model', () => {
       },
     }
     const expectedErrors = [
-      'Name.required',
-      'Infractions.required',
-      'AccountNumber.required',
-      'PropertyType.required',
-      'Amount.required',
-      'Reason.required',
-      'Status.required',
-      'Date.required',
-      'Resolved.required',
-      'Description.required',
+      'Name.presence.REQUIRED',
+      'Infractions.presence.REQUIRED',
+      'AccountNumber.presence.REQUIRED',
+      'PropertyType.presence.REQUIRED',
+      'Amount.presence.REQUIRED',
+      'Reason.presence.REQUIRED',
+      'Status.presence.REQUIRED',
+      'Date.presence.REQUIRED',
+      'Resolved.presence.REQUIRED',
+      'Description.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, financialNonpayment))
@@ -31,7 +31,9 @@ describe('The financial nonpayment model', () => {
         value: 'Invalid',
       },
     }
-    const expectedErrors = ['Infractions.array']
+    const expectedErrors = [
+      'Infractions.array.MISSING_ITEMS',
+    ]
 
     expect(validateModel(testData, financialNonpayment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -43,7 +45,7 @@ describe('The financial nonpayment model', () => {
         value: 0,
       },
     }
-    const expectedErrors = ['Amount.hasValue']
+    const expectedErrors = ['Amount.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, financialNonpayment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -66,7 +68,7 @@ describe('The financial nonpayment model', () => {
         applicable: false,
       },
     }
-    const unexpectedErrors = ['Resolved.required']
+    const unexpectedErrors = ['Resolved.presence.REQUIRED']
 
     expect(validateModel(testData, financialNonpayment))
       .toEqual(expect.not.arrayContaining(unexpectedErrors))

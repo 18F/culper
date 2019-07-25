@@ -4,7 +4,7 @@ import employment from 'models/employment'
 describe('The employment model', () => {
   it('the EmploymentActivity field is required', () => {
     const testData = {}
-    const expectedErrors = ['EmploymentActivity.required']
+    const expectedErrors = ['EmploymentActivity.presence.REQUIRED']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -33,7 +33,7 @@ describe('The employment model', () => {
 
   it('the Dates field is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -48,7 +48,7 @@ describe('The employment model', () => {
       },
     }
 
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -61,9 +61,9 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.required',
-        'ReferencePhone.required',
-        'ReferenceAddress.required',
+        'ReferenceName.presence.REQUIRED',
+        'ReferencePhone.presence.REQUIRED',
+        'ReferenceAddress.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -79,7 +79,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.model',
+        'ReferenceName.model.first.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -95,7 +95,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.model',
+        'ReferencePhone.model.timeOfDay.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -109,7 +109,9 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceAddress.location',
+        'ReferenceAddress.location.street.presence.REQUIRED',
+        'ReferenceAddress.location.city.presence.REQUIRED',
+        'ReferenceAddress.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -358,7 +360,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['Reprimand.required']
+        const expectedErrors = ['Reprimand.presence.REQUIRED']
 
         expect(validateModel(testData, employment))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -375,7 +377,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['Reprimand.required']
+        const expectedErrors = ['Reprimand.presence.REQUIRED']
 
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -391,7 +393,7 @@ describe('The employment model', () => {
           Reprimand: 'invalid',
         }
 
-        const expectedErrors = ['Reprimand.branchCollection']
+        const expectedErrors = ['Reprimand.branchCollection.MISSING_ITEMS']
 
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -429,11 +431,15 @@ describe('The employment model', () => {
             Reprimand: {
               items: [
                 { Item: { Has: { value: 'Yes' } } },
+                { Item: { Has: { value: 'No' } } },
               ],
             },
           }
 
-          const expectedErrors = ['Reprimand.branchCollection']
+          const expectedErrors = [
+            'Reprimand.branchCollection.0.Text.presence.REQUIRED',
+            'Reprimand.branchCollection.0.Date.presence.REQUIRED',
+          ]
 
           expect(validateModel(testData, employment))
             .toEqual(expect.arrayContaining(expectedErrors))
@@ -478,7 +484,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['ReasonLeft.required']
+        const expectedErrors = ['ReasonLeft.presence.REQUIRED']
 
         expect(validateModel(testData, employment))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -496,7 +502,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['ReasonLeft.required']
+        const expectedErrors = ['ReasonLeft.presence.REQUIRED']
 
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -515,7 +521,10 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['ReasonLeft.model']
+        const expectedErrors = [
+          'ReasonLeft.model.ReasonDescription.hasValue.MISSING_VALUE',
+          'ReasonLeft.model.Reasons.presence.REQUIRED',
+        ]
 
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -535,7 +544,7 @@ describe('The employment model', () => {
             },
           }
 
-          const expectedErrors = ['ReasonLeft.model']
+          const expectedErrors = ['ReasonLeft.model.Reasons.presence.REQUIRED']
 
           expect(validateModel(testData, employment))
             .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -556,7 +565,7 @@ describe('The employment model', () => {
             },
           }
 
-          const expectedErrors = ['ReasonLeft.model']
+          const expectedErrors = ['ReasonLeft.model.Reasons.presence.REQUIRED']
 
           expect(validateModel(testData, employment))
             .toEqual(expect.arrayContaining(expectedErrors))
@@ -580,7 +589,9 @@ describe('The employment model', () => {
             },
           }
 
-          const expectedErrors = ['ReasonLeft.model']
+          const expectedErrors = [
+            'ReasonLeft.model.Reasons.branchCollection.INCOMPLETE_COLLECTION',
+          ]
 
           expect(validateModel(testData, employment))
             .toEqual(expect.arrayContaining(expectedErrors))
@@ -628,7 +639,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Title.required',
+        'Title.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -641,7 +652,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Status.required',
+        'Status.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -654,7 +665,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.required',
+        'Address.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -668,7 +679,9 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.location',
+        'Address.location.street.presence.REQUIRED',
+        'Address.location.city.presence.REQUIRED',
+        'Address.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -1252,7 +1265,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.model',
+        'ReferencePhone.model.timeOfDay.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -1266,7 +1279,9 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceAddress.location',
+        'ReferenceAddress.location.street.presence.REQUIRED',
+        'ReferenceAddress.location.city.presence.REQUIRED',
+        'ReferenceAddress.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -1667,7 +1682,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Title.required',
+        'Title.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -1680,7 +1695,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'DutyStation.required',
+        'DutyStation.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -1988,7 +2003,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.required',
+        'Telephone.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2004,7 +2019,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.model',
+        'Telephone.model.timeOfDay.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2017,7 +2032,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.required',
+        'Supervisor.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2033,7 +2048,11 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.model',
+        'Supervisor.model.SupervisorName.hasValue.MISSING_VALUE',
+        'Supervisor.model.Title.presence.REQUIRED',
+        'Supervisor.model.Email.presence.REQUIRED',
+        'Supervisor.model.Address.presence.REQUIRED',
+        'Supervisor.model.Telephone.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2097,7 +2116,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Title.required',
+        'Title.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2110,7 +2129,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Employment.required',
+        'Employment.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2123,7 +2142,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Status.required',
+        'Status.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2136,7 +2155,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.required',
+        'Address.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2150,7 +2169,9 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.location',
+        'Address.location.street.presence.REQUIRED',
+        'Address.location.city.presence.REQUIRED',
+        'Address.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2431,7 +2452,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.required',
+        'Telephone.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2447,7 +2468,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.model',
+        'Telephone.model.timeOfDay.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2460,7 +2481,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.required',
+        'Supervisor.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2476,7 +2497,11 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.model',
+        'Supervisor.model.SupervisorName.hasValue.MISSING_VALUE',
+        'Supervisor.model.Title.presence.REQUIRED',
+        'Supervisor.model.Email.presence.REQUIRED',
+        'Supervisor.model.Address.presence.REQUIRED',
+        'Supervisor.model.Telephone.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2549,7 +2574,8 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['Additional.branchCollection']
+        const expectedErrors = ['Additional.branchCollection.INCOMPLETE_COLLECTION']
+
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
       })

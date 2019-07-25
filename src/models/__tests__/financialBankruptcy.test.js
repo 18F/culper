@@ -9,16 +9,16 @@ describe('The financial bankruptcy model', () => {
       },
     }
     const expectedErrors = [
-      'PetitionType.required',
-      'CourtAddress.required',
-      'CourtInvolved.required',
-      'CourtNumber.required',
-      'TotalAmount.required',
-      'DateFiled.required',
-      'NameDebt.required',
-      'DateDischarged.required',
-      'HasDischargeExplanation.required',
-      'DischargeExplanation.required',
+      'PetitionType.presence.REQUIRED',
+      'CourtAddress.presence.REQUIRED',
+      'CourtInvolved.presence.REQUIRED',
+      'CourtNumber.presence.REQUIRED',
+      'TotalAmount.presence.REQUIRED',
+      'DateFiled.presence.REQUIRED',
+      'NameDebt.presence.REQUIRED',
+      'DateDischarged.presence.REQUIRED',
+      'HasDischargeExplanation.presence.REQUIRED',
+      'DischargeExplanation.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, financialBankruptcy))
@@ -35,7 +35,7 @@ describe('The financial bankruptcy model', () => {
       },
     }
 
-    const expectedErrors = ['PetitionType.hasValue']
+    const expectedErrors = ['PetitionType.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, financialBankruptcy))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -48,7 +48,7 @@ describe('The financial bankruptcy model', () => {
       },
     }
 
-    const expectedErrors = ['DateDischarged.required']
+    const expectedErrors = ['DateDischarged.presence.REQUIRED']
 
     expect(validateModel(testData, financialBankruptcy))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -74,7 +74,7 @@ describe('The financial bankruptcy model', () => {
         },
       }
 
-      const expectedErrors = ['Trustee.required']
+      const expectedErrors = ['Trustee.presence.REQUIRED']
 
       expect(validateModel(testData, financialBankruptcy))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -87,7 +87,7 @@ describe('The financial bankruptcy model', () => {
         },
       }
 
-      const expectedErrors = ['TrusteeAddress.required']
+      const expectedErrors = ['TrusteeAddress.presence.REQUIRED']
 
       expect(validateModel(testData, financialBankruptcy))
         .toEqual(expect.arrayContaining(expectedErrors))
