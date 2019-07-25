@@ -5,18 +5,18 @@ describe('The foreignIndirectInterest model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'InterestTypes.required',
-      'InterestType.required',
-      'Firstname.required',
-      'Lastname.required',
-      'Relationship.required',
-      'Acquired.required',
-      'HowAcquired.required',
-      'Cost.required',
-      'Value.required',
-      'Sold.required',
-      'CoOwners.required',
-      'Explanation.required',
+      'InterestTypes.presence.REQUIRED',
+      'InterestType.presence.REQUIRED',
+      'Firstname.presence.REQUIRED',
+      'Lastname.presence.REQUIRED',
+      'Relationship.presence.REQUIRED',
+      'Acquired.presence.REQUIRED',
+      'HowAcquired.presence.REQUIRED',
+      'Cost.presence.REQUIRED',
+      'Value.presence.REQUIRED',
+      'Sold.presence.REQUIRED',
+      'CoOwners.presence.REQUIRED',
+      'Explanation.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, foreignIndirectInterest))
@@ -27,7 +27,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       InterestTypes: { values: [] },
     }
-    const expectedErrors = ['InterestTypes.array']
+    const expectedErrors = ['InterestTypes.array.array.length.LENGTH_TOO_SHORT']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -36,7 +36,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       InterestType: { value: false },
     }
-    const expectedErrors = ['InterestType.hasValue']
+    const expectedErrors = ['InterestType.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -45,7 +45,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Firstname: { value: '!!invalid' },
     }
-    const expectedErrors = ['Firstname.hasValue']
+    const expectedErrors = ['Firstname.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -54,7 +54,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Lastname: { value: 'myname12345' },
     }
-    const expectedErrors = ['Lastname.hasValue']
+    const expectedErrors = ['Lastname.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -63,7 +63,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Relationship: { value: false },
     }
-    const expectedErrors = ['Relationship.hasValue']
+    const expectedErrors = ['Relationship.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -72,7 +72,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Acquired: { month: 15, year: 9 },
     }
-    const expectedErrors = ['Acquired.date']
+    const expectedErrors = ['Acquired.date.date.datetime.INVALID_DATE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -90,7 +90,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       HowAcquired: { value: false },
     }
-    const expectedErrors = ['HowAcquired.hasValue']
+    const expectedErrors = ['HowAcquired.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -99,7 +99,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Cost: { value: false },
     }
-    const expectedErrors = ['Cost.hasValue']
+    const expectedErrors = ['Cost.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -108,7 +108,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Value: { value: false },
     }
-    const expectedErrors = ['Value.hasValue']
+    const expectedErrors = ['Value.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -128,7 +128,7 @@ describe('The foreignIndirectInterest model', () => {
       },
     }
 
-    const expectedErrors = ['CoOwners.model']
+    const expectedErrors = ['CoOwners.model.List.branchCollection.INCOMPLETE_COLLECTION']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -137,7 +137,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Sold: { day: 2, month: 10 },
     }
-    const expectedErrors = ['Sold.date']
+    const expectedErrors = ['Sold.date.year.presence.REQUIRED']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -166,7 +166,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Explanation: { value: false },
     }
-    const expectedErrors = ['Explanation.hasValue']
+    const expectedErrors = ['Explanation.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -176,7 +176,7 @@ describe('The foreignIndirectInterest model', () => {
       const testData = {
         SoldNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Sold.required']
+      const expectedErrors = ['Sold.presence.REQUIRED']
       expect(validateModel(testData, foreignIndirectInterest))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -185,7 +185,7 @@ describe('The foreignIndirectInterest model', () => {
       const testData = {
         SoldNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Explanation.required']
+      const expectedErrors = ['Explanation.presence.REQUIRED']
       expect(validateModel(testData, foreignIndirectInterest))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })

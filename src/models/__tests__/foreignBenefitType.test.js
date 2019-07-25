@@ -5,10 +5,10 @@ describe('The foreignBenefitType model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Country.required',
-      'Value.required',
-      'Reason.required',
-      'Obligated.required',
+      'Country.presence.REQUIRED',
+      'Value.presence.REQUIRED',
+      'Reason.presence.REQUIRED',
+      'Obligated.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, foreignBenefitType))
@@ -17,7 +17,7 @@ describe('The foreignBenefitType model', () => {
 
   it('Country must have a value', () => {
     const testData = { Country: 'test' }
-    const expectedErrors = ['Country.country']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, foreignBenefitType))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -25,7 +25,7 @@ describe('The foreignBenefitType model', () => {
 
   it('Country must have a valid value', () => {
     const testData = { Country: { value: ['invalid'] } }
-    const expectedErrors = ['Country.country']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, foreignBenefitType))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -33,7 +33,9 @@ describe('The foreignBenefitType model', () => {
 
   it('Value must be a valid currency', () => {
     const testData = { Value: { value: 'invalid' } }
-    const expectedErrors = ['Value.hasValue']
+    const expectedErrors = [
+      'Value.hasValue.value.numericality.INVALID_NUMBER',
+    ]
 
     expect(validateModel(testData, foreignBenefitType))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -41,7 +43,7 @@ describe('The foreignBenefitType model', () => {
 
   it('Reason must have a value', () => {
     const testData = { Reason: 'test' }
-    const expectedErrors = ['Reason.hasValue']
+    const expectedErrors = ['Reason.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, foreignBenefitType))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -49,7 +51,7 @@ describe('The foreignBenefitType model', () => {
 
   it('Obligated must have a valid value', () => {
     const testData = { Obligated: { value: true } }
-    const expectedErrors = ['Obligated.hasValue']
+    const expectedErrors = ['Obligated.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, foreignBenefitType))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -60,7 +62,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Obligated: { value: 'Yes' },
       }
-      const expectedErrors = ['ObligatedExplanation.required']
+      const expectedErrors = ['ObligatedExplanation.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -71,7 +73,7 @@ describe('The foreignBenefitType model', () => {
         Obligated: { value: 'Yes' },
         ObligatedExplanation: 'test',
       }
-      const expectedErrors = ['ObligatedExplanation.hasValue']
+      const expectedErrors = ['ObligatedExplanation.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, foreignBenefitType))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -83,7 +85,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Obligated: { value: 'No' },
       }
-      const expectedErrors = ['ObligatedExplanation.required']
+      const expectedErrors = ['ObligatedExplanation.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -93,7 +95,7 @@ describe('The foreignBenefitType model', () => {
   describe('for a One Time benefit', () => {
     it('Received is required', () => {
       const testData = {}
-      const expectedErrors = ['Received.required']
+      const expectedErrors = ['Received.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'OneTime' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -103,7 +105,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Received: { year: 2000, month: 99, day: 200 },
       }
-      const expectedErrors = ['Received.date']
+      const expectedErrors = ['Received.date.date.datetime.INVALID_DATE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'OneTime' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -126,7 +128,7 @@ describe('The foreignBenefitType model', () => {
   describe('for a Future benefit', () => {
     it('Began is required', () => {
       const testData = {}
-      const expectedErrors = ['Began.required']
+      const expectedErrors = ['Began.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Future' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -136,7 +138,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Began: { year: 2000, month: 99, day: 200 },
       }
-      const expectedErrors = ['Began.date']
+      const expectedErrors = ['Began.date.date.datetime.INVALID_DATE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Future' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -154,7 +156,7 @@ describe('The foreignBenefitType model', () => {
 
     it('Frequency is required', () => {
       const testData = {}
-      const expectedErrors = ['Frequency.required']
+      const expectedErrors = ['Frequency.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Future' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -164,7 +166,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Frequency: { value: 'invalid' },
       }
-      const expectedErrors = ['Frequency.hasValue']
+      const expectedErrors = ['Frequency.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Future' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -175,7 +177,7 @@ describe('The foreignBenefitType model', () => {
         const testData = {
           Frequency: { value: 'Other' },
         }
-        const expectedErrors = ['OtherFrequency.required']
+        const expectedErrors = ['OtherFrequency.presence.REQUIRED']
 
         expect(validateModel(testData, foreignBenefitType, { benefitType: 'Future' }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -186,7 +188,7 @@ describe('The foreignBenefitType model', () => {
           Frequency: { value: 'Other' },
           OtherFrequency: { value: '' },
         }
-        const expectedErrors = ['OtherFrequency.hasValue']
+        const expectedErrors = ['OtherFrequency.hasValue.MISSING_VALUE']
 
         expect(validateModel(testData, foreignBenefitType, { benefitType: 'Future' }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -226,7 +228,7 @@ describe('The foreignBenefitType model', () => {
   describe('for a Continuing benefit', () => {
     it('Began is required', () => {
       const testData = {}
-      const expectedErrors = ['Began.required']
+      const expectedErrors = ['Began.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -236,7 +238,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Began: { year: 2000, month: 99, day: 200 },
       }
-      const expectedErrors = ['Began.date']
+      const expectedErrors = ['Began.date.date.datetime.INVALID_DATE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -254,7 +256,7 @@ describe('The foreignBenefitType model', () => {
 
     it('End is required', () => {
       const testData = {}
-      const expectedErrors = ['End.required']
+      const expectedErrors = ['End.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -264,7 +266,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         End: { year: 2000, month: 99, day: 200 },
       }
-      const expectedErrors = ['End.date']
+      const expectedErrors = ['End.date.date.datetime.INVALID_DATE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -283,7 +285,7 @@ describe('The foreignBenefitType model', () => {
 
     it('Frequency is required', () => {
       const testData = {}
-      const expectedErrors = ['Frequency.required']
+      const expectedErrors = ['Frequency.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -293,7 +295,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Frequency: { value: 'invalid' },
       }
-      const expectedErrors = ['Frequency.hasValue']
+      const expectedErrors = ['Frequency.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -304,7 +306,7 @@ describe('The foreignBenefitType model', () => {
         const testData = {
           Frequency: { value: 'Other' },
         }
-        const expectedErrors = ['OtherFrequency.required']
+        const expectedErrors = ['OtherFrequency.presence.REQUIRED']
 
         expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -315,7 +317,7 @@ describe('The foreignBenefitType model', () => {
           Frequency: { value: 'Other' },
           OtherFrequency: { value: '' },
         }
-        const expectedErrors = ['OtherFrequency.hasValue']
+        const expectedErrors = ['OtherFrequency.hasValue.MISSING_VALUE']
 
         expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -357,7 +359,7 @@ describe('The foreignBenefitType model', () => {
   describe('for an Other benefit', () => {
     it('OtherFrequencyTypeExplanation is required', () => {
       const testData = {}
-      const expectedErrors = ['OtherFrequencyTypeExplanation.required']
+      const expectedErrors = ['OtherFrequencyTypeExplanation.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -367,7 +369,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         OtherFrequencyTypeExplanation: { value: '' },
       }
-      const expectedErrors = ['OtherFrequencyTypeExplanation.hasValue']
+      const expectedErrors = ['OtherFrequencyTypeExplanation.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -375,7 +377,7 @@ describe('The foreignBenefitType model', () => {
 
     it('Began is required', () => {
       const testData = {}
-      const expectedErrors = ['Began.required']
+      const expectedErrors = ['Began.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -385,7 +387,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Began: { year: 2000, month: 99, day: 200 },
       }
-      const expectedErrors = ['Began.date']
+      const expectedErrors = ['Began.date.date.datetime.INVALID_DATE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -403,7 +405,7 @@ describe('The foreignBenefitType model', () => {
 
     it('End is required', () => {
       const testData = {}
-      const expectedErrors = ['End.required']
+      const expectedErrors = ['End.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -413,7 +415,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         End: { year: 2000, month: 99, day: 200 },
       }
-      const expectedErrors = ['End.date']
+      const expectedErrors = ['End.date.date.datetime.INVALID_DATE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -432,7 +434,7 @@ describe('The foreignBenefitType model', () => {
 
     it('Frequency is required', () => {
       const testData = {}
-      const expectedErrors = ['Frequency.required']
+      const expectedErrors = ['Frequency.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -442,7 +444,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Frequency: { value: 'invalid' },
       }
-      const expectedErrors = ['Frequency.hasValue']
+      const expectedErrors = ['Frequency.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -453,7 +455,7 @@ describe('The foreignBenefitType model', () => {
         const testData = {
           Frequency: { value: 'Other' },
         }
-        const expectedErrors = ['OtherFrequency.required']
+        const expectedErrors = ['OtherFrequency.presence.REQUIRED']
 
         expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -464,7 +466,7 @@ describe('The foreignBenefitType model', () => {
           Frequency: { value: 'Other' },
           OtherFrequency: { value: '' },
         }
-        const expectedErrors = ['OtherFrequency.hasValue']
+        const expectedErrors = ['OtherFrequency.hasValue.MISSING_VALUE']
 
         expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
           .toEqual(expect.arrayContaining(expectedErrors))
