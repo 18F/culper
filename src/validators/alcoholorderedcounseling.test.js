@@ -53,7 +53,7 @@ describe('ordered counseling component validation', () => {
             layout: Location.ADDRESS,
           },
           TreatmentProviderTelephone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             numberType: 'Home',
             timeOfDay: 'Both',
@@ -142,7 +142,7 @@ describe('ordered counseling component validation', () => {
                     layout: Location.ADDRESS,
                   },
                   TreatmentProviderTelephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     timeOfDay: 'Both',
