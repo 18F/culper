@@ -186,7 +186,7 @@ describe('The civilUnion model', () => {
 
   it('the civilUnion telephone field is required', () => {
     const testData = {
-      Telephone: '1234567890',
+      Telephone: { noNumber: true },
     }
 
     const expectedErrors = ['Telephone.model']
