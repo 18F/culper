@@ -5,11 +5,11 @@ describe('The hospitalization model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'TreatmentDate.required',
-      'Admission.required',
-      'Facility.required',
-      'FacilityAddress.required',
-      'Explanation.required',
+      'TreatmentDate.presence.REQUIRED',
+      'Admission.presence.REQUIRED',
+      'Facility.presence.REQUIRED',
+      'FacilityAddress.presence.REQUIRED',
+      'Explanation.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, hospitalization))
@@ -21,7 +21,8 @@ describe('The hospitalization model', () => {
       TreatmentDate: { value: 'Test' },
     }
     const expectedErrors = [
-      'TreatmentDate.daterange',
+      'TreatmentDate.daterange.from.presence.REQUIRED',
+      'TreatmentDate.daterange.to.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, hospitalization))
@@ -33,7 +34,7 @@ describe('The hospitalization model', () => {
       Admission: { value: 'Test' },
     }
     const expectedErrors = [
-      'Admission.hasValue',
+      'Admission.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, hospitalization))
@@ -45,7 +46,9 @@ describe('The hospitalization model', () => {
       FacilityAddress: { value: 'Test' },
     }
     const expectedErrors = [
-      'FacilityAddress.location',
+      'FacilityAddress.location.street.presence.REQUIRED',
+      'FacilityAddress.location.city.presence.REQUIRED',
+      'FacilityAddress.location.country.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, hospitalization))
@@ -57,7 +60,7 @@ describe('The hospitalization model', () => {
       Facility: { value: '' },
     }
     const expectedErrors = [
-      'Facility.hasValue',
+      'Facility.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, hospitalization))
@@ -69,7 +72,7 @@ describe('The hospitalization model', () => {
       Explanation: { value: '' },
     }
     const expectedErrors = [
-      'Explanation.hasValue',
+      'Explanation.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, hospitalization))
