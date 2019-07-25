@@ -5,9 +5,9 @@ describe('The otherName model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'MaidenName.required',
-      'DatesUsed.required',
+      'Name.presence.REQUIRED',
+      'MaidenName.presence.REQUIRED',
+      'DatesUsed.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, otherName))
@@ -18,7 +18,11 @@ describe('The otherName model', () => {
     const testData = {
       Name: { first: 'P' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.length.LENGTH_TOO_SHORT',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, otherName))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -28,7 +32,7 @@ describe('The otherName model', () => {
     const testData = {
       MaidenName: 'true',
     }
-    const expectedErrors = ['MaidenName.hasValue']
+    const expectedErrors = ['MaidenName.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, otherName))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -41,7 +45,7 @@ describe('The otherName model', () => {
         present: false,
       },
     }
-    const expectedErrors = ['DatesUsed.daterange']
+    const expectedErrors = ['DatesUsed.daterange.to.presence.REQUIRED']
 
     expect(validateModel(testData, otherName))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -58,7 +62,10 @@ describe('The otherName model', () => {
       earliest: { year: 2005, month: 1, day: 4 },
       latest: { year: 2015, month: 2, day: 3 },
     }
-    const expectedErrors = ['DatesUsed.daterange']
+    const expectedErrors = [
+      'DatesUsed.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+      'DatesUsed.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
 
     expect(validateModel(testData, otherName, dateLimits))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -87,7 +94,7 @@ describe('The otherName model', () => {
 describe('The civilUnion model', () => {
   it('the name field is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -97,7 +104,11 @@ describe('The civilUnion model', () => {
     const testData = {
       Name: { first: 'P' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.length.LENGTH_TOO_SHORT',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -105,7 +116,7 @@ describe('The civilUnion model', () => {
 
   it('the birthdate field is required', () => {
     const testData = {}
-    const expectedErrors = ['Birthdate.required']
+    const expectedErrors = ['Birthdate.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -115,7 +126,10 @@ describe('The civilUnion model', () => {
     const testData = {
       Birthdate: { year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = [
+      'Birthdate.date.day.presence.REQUIRED',
+      'Birthdate.date.month.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -143,7 +157,7 @@ describe('The civilUnion model', () => {
 
   it('the birthplace field is required', () => {
     const testData = {}
-    const expectedErrors = ['BirthPlace.required']
+    const expectedErrors = ['BirthPlace.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -153,7 +167,10 @@ describe('The civilUnion model', () => {
     const testData = {
       BirthPlace: { street: 'address' },
     }
-    const expectedErrors = ['BirthPlace.location']
+    const expectedErrors = [
+      'BirthPlace.location.city.presence.REQUIRED',
+      'BirthPlace.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -161,7 +178,7 @@ describe('The civilUnion model', () => {
 
   it('the telephone field is required', () => {
     const testData = {}
-    const expectedErrors = ['Telephone.required']
+    const expectedErrors = ['Telephone.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -171,7 +188,9 @@ describe('The civilUnion model', () => {
     const testData = {
       Telephone: { number: '123' },
     }
-    const expectedErrors = ['Telephone.model']
+    const expectedErrors = [
+      'Telephone.model.timeOfDay.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -222,7 +241,7 @@ describe('The civilUnion model', () => {
 
   it('the SSN field is required', () => {
     const testData = {}
-    const expectedErrors = ['SSN.required']
+    const expectedErrors = ['SSN.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -232,7 +251,11 @@ describe('The civilUnion model', () => {
     const testData = {
       SSN: { number: '123456789' },
     }
-    const expectedErrors = ['SSN.ssn']
+    const expectedErrors = [
+      'SSN.ssn.first.presence.REQUIRED',
+      'SSN.ssn.middle.presence.REQUIRED',
+      'SSN.ssn.last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -240,7 +263,7 @@ describe('The civilUnion model', () => {
 
   it('the Separated field is required', () => {
     const testData = {}
-    const expectedErrors = ['Separated.required']
+    const expectedErrors = ['Separated.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -250,7 +273,7 @@ describe('The civilUnion model', () => {
     const testData = {
       Separated: true,
     }
-    const expectedErrors = ['Separated.hasValue']
+    const expectedErrors = ['Separated.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -258,7 +281,7 @@ describe('The civilUnion model', () => {
 
   it('the Address field is required', () => {
     const testData = {}
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -271,7 +294,9 @@ describe('The civilUnion model', () => {
         city: 'Invalid',
       },
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -283,7 +308,7 @@ describe('The civilUnion model', () => {
         UseCurrentAddress: { applicable: true },
       }
 
-      const expectedErrors = ['Address.required']
+      const expectedErrors = ['Address.presence.REQUIRED']
 
       expect(validateModel(testData, civilUnion))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -537,7 +562,7 @@ describe('The civilUnion model', () => {
 
   it('the Location field is required', () => {
     const testData = {}
-    const expectedErrors = ['Location.required']
+    const expectedErrors = ['Location.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -549,7 +574,9 @@ describe('The civilUnion model', () => {
         city: 'Invalid',
       },
     }
-    const expectedErrors = ['Location.location']
+    const expectedErrors = [
+      'Location.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -557,7 +584,7 @@ describe('The civilUnion model', () => {
 
   it('the Citizenship field is required', () => {
     const testData = {}
-    const expectedErrors = ['Citizenship.required']
+    const expectedErrors = ['Citizenship.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -567,7 +594,7 @@ describe('The civilUnion model', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -575,7 +602,7 @@ describe('The civilUnion model', () => {
 
   it('the Divorced field is required', () => {
     const testData = {}
-    const expectedErrors = ['Divorced.required']
+    const expectedErrors = ['Divorced.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -585,7 +612,7 @@ describe('The civilUnion model', () => {
     const testData = {
       Divorced: true,
     }
-    const expectedErrors = ['Divorced.hasValue']
+    const expectedErrors = ['Divorced.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -593,7 +620,7 @@ describe('The civilUnion model', () => {
 
   it('the OtherNames field is required', () => {
     const testData = {}
-    const expectedErrors = ['OtherNames.required']
+    const expectedErrors = ['OtherNames.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -603,7 +630,7 @@ describe('The civilUnion model', () => {
     const testData = {
       OtherNames: true,
     }
-    const expectedErrors = ['OtherNames.branchCollection']
+    const expectedErrors = ['OtherNames.branchCollection.MISSING_ITEMS']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -618,7 +645,11 @@ describe('The civilUnion model', () => {
         ],
       },
     }
-    const expectedErrors = ['OtherNames.branchCollection']
+    const expectedErrors = [
+      'OtherNames.branchCollection.0.Name.presence.REQUIRED',
+      'OtherNames.branchCollection.0.MaidenName.presence.REQUIRED',
+      'OtherNames.branchCollection.0.DatesUsed.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -644,7 +675,11 @@ describe('The civilUnion model', () => {
         ],
       },
     }
-    const expectedErrors = ['OtherNames.branchCollection']
+
+    const expectedErrors = [
+      'OtherNames.branchCollection.0.DatesUsed.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+      'OtherNames.branchCollection.0.DatesUsed.daterange.to.date.date.datetime.DATE_TOO_EARLY',
+    ]
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -655,7 +690,7 @@ describe('The civilUnion model', () => {
       const testData = {
         Separated: { value: 'No' },
       }
-      const expectedErrors = ['AddressSeparated.required']
+      const expectedErrors = ['AddressSeparated.presence.REQUIRED']
 
       expect(validateModel(testData, civilUnion))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -665,7 +700,7 @@ describe('The civilUnion model', () => {
       const testData = {
         Separated: { value: 'No' },
       }
-      const expectedErrors = ['DateSeparated.required']
+      const expectedErrors = ['DateSeparated.presence.REQUIRED']
 
       expect(validateModel(testData, civilUnion))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -716,7 +751,7 @@ describe('The civilUnion model', () => {
       const testData = {
         Separated: { value: 'Yes' },
       }
-      const expectedErrors = ['AddressSeparated.required']
+      const expectedErrors = ['AddressSeparated.presence.REQUIRED']
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -730,7 +765,9 @@ describe('The civilUnion model', () => {
           state: 'MA',
         },
       }
-      const expectedErrors = ['AddressSeparated.location']
+      const expectedErrors = [
+        'AddressSeparated.location.country.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -740,7 +777,7 @@ describe('The civilUnion model', () => {
       const testData = {
         Separated: { value: 'Yes' },
       }
-      const expectedErrors = ['DateSeparated.required']
+      const expectedErrors = ['DateSeparated.presence.REQUIRED']
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -764,7 +801,9 @@ describe('The civilUnion model', () => {
         Separated: { value: 'Yes' },
         DateSeparated: { day: 5, month: 10, year: 2030 },
       }
-      const expectedErrors = ['DateSeparated.date']
+      const expectedErrors = [
+        'DateSeparated.date.date.datetime.INVALID_DATE',
+      ]
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -819,7 +858,7 @@ describe('The civilUnion model', () => {
           Separated: { value: 'Yes' },
           AddressSeparatedNotApplicable: { applicable: false },
         }
-        const expectedErrors = ['AddressSeparated.required']
+        const expectedErrors = ['AddressSeparated.presence.REQUIRED']
 
         expect(validateModel(testData, civilUnion))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -862,7 +901,7 @@ describe('The civilUnion model', () => {
       const testData = {
         BirthPlace: { country: 'Canada' },
       }
-      const expectedErrors = ['ForeignBornDocument.required']
+      const expectedErrors = ['ForeignBornDocument.presence.REQUIRED']
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -873,7 +912,11 @@ describe('The civilUnion model', () => {
         BirthPlace: { country: 'Canada' },
         ForeignBornDocument: 'my document',
       }
-      const expectedErrors = ['ForeignBornDocument.model']
+      const expectedErrors = [
+        'ForeignBornDocument.model.DocumentType.presence.REQUIRED',
+        'ForeignBornDocument.model.DocumentExpiration.presence.REQUIRED',
+        'ForeignBornDocument.model.DocumentNumber.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
