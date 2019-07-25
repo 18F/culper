@@ -15,6 +15,7 @@ import connectFinancialSection from '../FinancialConnector'
 import GamblingItem from './GamblingItem'
 
 const sectionConfig = {
+  key: FINANCIAL_GAMBLING.key,
   section: FINANCIAL.name,
   store: FINANCIAL.store,
   subsection: FINANCIAL_GAMBLING.name,
@@ -115,7 +116,7 @@ export class Gambling extends Subsection {
           labelSize="h4"
           className="has-gambling-debt"
           {...this.props.HasGamblingDebt}
-          warning
+          warning={true}
           onUpdate={this.onUpdate}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -140,7 +141,7 @@ export class Gambling extends Subsection {
               name="Item"
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              bind
+              bind={true}
             />
           </Accordion>
         </Show>

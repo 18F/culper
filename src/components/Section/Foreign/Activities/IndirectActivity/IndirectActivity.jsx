@@ -10,6 +10,7 @@ import connectForeignSection from '../../ForeignConnector'
 import IndirectInterest from './IndirectInterest'
 
 const sectionConfig = {
+  key: FOREIGN_ACTIVITIES_INDIRECT.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_ACTIVITIES_INDIRECT.name,
@@ -90,7 +91,7 @@ export class IndirectActivity extends Subsection {
           labelSize="h4"
           {...this.props.HasInterests}
           help="foreign.activities.indirect.help.indirectControl"
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasInterests}
@@ -116,7 +117,7 @@ export class IndirectActivity extends Subsection {
               name="Item"
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

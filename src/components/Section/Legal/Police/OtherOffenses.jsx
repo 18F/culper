@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import OtherOffense from './OtherOffense'
 
 const sectionConfig = {
+  key: LEGAL_POLICE_ADDITIONAL_OFFENSES.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_POLICE_ADDITIONAL_OFFENSES.name,
@@ -104,7 +105,7 @@ export class OtherOffenses extends Subsection {
           labelSize="h4"
           className="has-otheroffenses"
           {...this.props.HasOtherOffenses}
-          warning
+          warning={true}
           onUpdate={this.updateHasOtherOffenses}
           required={this.props.required}
           onError={this.handleError}
@@ -139,7 +140,7 @@ export class OtherOffenses extends Subsection {
               name="Item"
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
               requireLegalPoliceFirearms={requireLegalPoliceFirearms}

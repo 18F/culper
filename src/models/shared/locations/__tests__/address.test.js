@@ -92,4 +92,64 @@ describe('The location/address model', () => {
       expect(validateModel(testData, address)).toEqual(true)
     })
   })
+
+  describe('with the "militaryAddress" option set to true', () => {
+    it('must be a military address', () => {
+      const testData = {
+        street: '123 Main ST',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10003',
+        country: 'United States',
+      }
+
+      const expectedErrors = ['country.inclusion']
+
+      expect(validateModel(testData, address, { militaryAddress: true }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid military address', () => {
+      const testData = {
+        street: '123 Main ST',
+        city: 'FPO',
+        state: 'AA',
+        zipcode: '34035',
+        country: 'POSTOFFICE',
+      }
+
+      expect(validateModel(testData, address, { militaryAddress: true }))
+        .toEqual(true)
+    })
+  })
+
+  describe('with the "militaryAddress" option set to false', () => {
+    it('must not be a military address', () => {
+      const testData = {
+        street: '123 Main ST',
+        city: 'FPO',
+        state: 'AA',
+        zipcode: '34035',
+        country: 'POSTOFFICE',
+      }
+
+      const expectedErrors = ['country.exclusion']
+
+      expect(validateModel(testData, address, { militaryAddress: false }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid non-military address', () => {
+      const testData = {
+        street: '123 Main ST',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10003',
+        country: 'United States',
+      }
+
+      expect(validateModel(testData, address, { militaryAddress: false }))
+        .toEqual(true)
+    })
+  })
 })

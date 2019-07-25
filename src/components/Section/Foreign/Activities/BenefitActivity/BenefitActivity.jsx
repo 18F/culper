@@ -10,6 +10,7 @@ import connectForeignSection from '../../ForeignConnector'
 import Benefit from './Benefit'
 
 const sectionConfig = {
+  key: FOREIGN_ACTIVITIES_BENEFITS.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_ACTIVITIES_BENEFITS.name,
@@ -111,7 +112,7 @@ export class BenefitActivity extends Subsection {
           label={i18n.t('foreign.activities.benefit.heading.title')}
           labelSize="h4"
           {...this.props.HasBenefits}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasBenefits}
@@ -135,7 +136,7 @@ export class BenefitActivity extends Subsection {
           >
             <Benefit
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

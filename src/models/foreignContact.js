@@ -1,6 +1,9 @@
 import name from 'models/shared/name'
 import cityCountry from 'models/shared/locations/cityCountry'
 import address from 'models/shared/locations/address'
+import physicalAddress from 'models/shared/physicalAddress'
+
+import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
 
 const contactMethodOptions = [
   'In person',
@@ -49,9 +52,13 @@ const foreignContact = {
     presence: true,
     date: true,
   },
-  LastContact: {
-    presence: true,
-    date: true,
+  LastContact: (value, attributes) => {
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (attributes.FirstContact) dateLimits.earliest = attributes.FirstContact
+    return {
+      presence: true,
+      date: dateLimits,
+    }
   },
   Methods: {
     presence: true,
@@ -117,7 +124,7 @@ const foreignContact = {
     if (BirthdateNotApplicable && BirthdateNotApplicable.applicable === false) return {}
     return {
       presence: true,
-      date: true,
+      date: OTHER,
     }
   },
   Birthplace: (value, attributes) => {
@@ -139,6 +146,10 @@ const foreignContact = {
         validator: address,
       },
     }
+  },
+  AlternateAddress: {
+    presence: true,
+    model: { validator: physicalAddress, militaryAddress: true },
   },
   Employer: (value, attributes) => {
     const { EmployerNotApplicable } = attributes

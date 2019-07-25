@@ -18,6 +18,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import OrderedTreatment from './OrderedTreatment'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_DRUGS_ORDERED.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_DRUGS_ORDERED.name,
@@ -99,7 +100,7 @@ export class OrderedTreatments extends Subsection {
           labelSize="h4"
           className="treatment-ordered"
           {...this.props.TreatmentOrdered}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateTreatmentOrdered}
@@ -123,7 +124,7 @@ export class OrderedTreatments extends Subsection {
           >
             <OrderedTreatment
               name="Item"
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

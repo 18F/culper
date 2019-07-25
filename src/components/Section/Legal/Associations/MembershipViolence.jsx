@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import MembershipViolenceItem from './MembershipViolenceItem'
 
 const sectionConfig = {
+  key: LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE.name,
@@ -86,7 +87,7 @@ export class MembershipViolence extends Subsection {
           labelSize="h4"
           className="legal-associations-violence-has-violence"
           {...this.props.HasViolence}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -110,7 +111,7 @@ export class MembershipViolence extends Subsection {
           >
             <MembershipViolenceItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
               addressBooks={this.props.addressBooks}

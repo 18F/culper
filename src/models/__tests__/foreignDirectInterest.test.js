@@ -38,9 +38,18 @@ describe('The foreignDirectInterest model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Acquired must be a valid month/year', () => {
+  it('Acquired must be a valid date', () => {
     const testData = {
       Acquired: { month: 15, year: 9 },
+    }
+    const expectedErrors = ['Acquired.date']
+    expect(validateModel(testData, foreignDirectInterest))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Acquired cannot be in the future', () => {
+    const testData = {
+      Acquired: { day: 2, month: 11, year: 2030 },
     }
     const expectedErrors = ['Acquired.date']
     expect(validateModel(testData, foreignDirectInterest))
@@ -135,7 +144,7 @@ describe('The foreignDirectInterest model', () => {
       const testData = {
         InterestTypes: { values: ['One', 'Two'] },
         InterestType: { value: 'Something' },
-        Acquired: { month: 2, year: '2002' },
+        Acquired: { day: 4, month: 2, year: '2002' },
         HowAcquired: { value: 'I bought it' },
         Cost: { value: 2500 },
         Value: { value: '12000' },
@@ -170,11 +179,11 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       InterestTypes: { values: ['One', 'Two'] },
       InterestType: { value: 'Something' },
-      Acquired: { month: 2, year: '2002' },
+      Acquired: { day: 2, month: 2, year: '2002' },
       HowAcquired: { value: 'I bought it' },
       Cost: { value: 2500 },
       Value: { value: '12000' },
-      Relinquished: { month: '10', year: '2010' },
+      Relinquished: { day: 12, month: '10', year: '2010' },
       Explanation: { value: 'I sold it' },
       CoOwners: {
         List: {

@@ -15,6 +15,7 @@ import connectLegalSection from './LegalConnector'
 import NonCriminalCourtAction from './NonCriminalCourtAction'
 
 const sectionConfig = {
+  key: LEGAL_COURT.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_COURT.name,
@@ -89,7 +90,7 @@ export class NonCriminalCourtActions extends Subsection {
           labelSize="h4"
           className="has-court-actions"
           {...this.props.HasCourtActions}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasCourtActions}
@@ -113,7 +114,7 @@ export class NonCriminalCourtActions extends Subsection {
           >
             <NonCriminalCourtAction
               name="Item"
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

@@ -107,6 +107,17 @@ describe('The foreignPassport model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Expiration must be after Issued', () => {
+    const testData = {
+      Issued: { day: 5, month: 10, year: 2018 },
+      Expiration: { day: 5, month: 10, year: 2015 },
+    }
+    const expectedErrors = ['Expiration.date']
+
+    expect(validateModel(testData, foreignPassport))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Used is required', () => {
     const testData = {}
     const expectedErrors = ['Used.required']

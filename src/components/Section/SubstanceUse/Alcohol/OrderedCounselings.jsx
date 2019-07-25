@@ -15,6 +15,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import OrderedCounseling from './OrderedCounseling'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_ALCOHOL_ORDERED.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_ALCOHOL_ORDERED.name,
@@ -112,7 +113,7 @@ export class OrderedCounselings extends Subsection {
           labelSize="h4"
           className="has-been-ordered"
           {...this.props.HasBeenOrdered}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasBeenOrdered}
@@ -136,7 +137,7 @@ export class OrderedCounselings extends Subsection {
           >
             <OrderedCounseling
               name="Item"
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

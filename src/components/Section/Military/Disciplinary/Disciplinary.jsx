@@ -16,6 +16,7 @@ import Procedure from 'components/Section/Military/Disciplinary/Procedure'
 import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
+  key: MILITARY_DISCIPLINARY.key,
   section: MILITARY.name,
   store: MILITARY.store,
   subsection: MILITARY_DISCIPLINARY.name,
@@ -98,7 +99,7 @@ class Disciplinary extends Subsection {
           label={i18n.t('military.disciplinary.para.info', { years })}
           labelSize="h4"
           {...this.props.HasDisciplinary}
-          weight
+          weight={true}
           onUpdate={this.updateDisciplinary}
           required={this.props.required}
           onError={this.handleError}
@@ -124,7 +125,7 @@ class Disciplinary extends Subsection {
           >
             <Procedure
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
