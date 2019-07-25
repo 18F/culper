@@ -128,7 +128,7 @@ func (wc *WebClient) Submit() {
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalln("Error or bad response while submitting application.", err)
+		log.Fatalln("Error or bad response while submitting application.", err, resp.StatusCode)
 	}
 	defer resp.Body.Close()
 }

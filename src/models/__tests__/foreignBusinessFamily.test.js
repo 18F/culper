@@ -51,6 +51,26 @@ describe('The foreignBusinessFamily model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Date must not be more than 200 years ago', () => {
+    const testData = {
+      Date: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Date.date']
+
+    expect(validateModel(testData, foreignBusinessFamily))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date must not be in the future', () => {
+    const testData = {
+      Date: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Date.date']
+
+    expect(validateModel(testData, foreignBusinessFamily))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Circumstances must have a value', () => {
     const testData = {
       Circumstances: { values: 'test' },

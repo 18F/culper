@@ -22,6 +22,7 @@ describe('The financial taxes model', () => {
     expect(validateModel(testData, financialTaxes))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
+
   it('Failure must have an accepted value', () => {
     const testData = {
       Failure: {
@@ -29,6 +30,17 @@ describe('The financial taxes model', () => {
       },
     }
     const expectedErrors = ['Failure.hasValue']
+
+    expect(validateModel(testData, financialTaxes))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date must be after Year', () => {
+    const testData = {
+      Year: { year: 2015 },
+      Date: { month: 5, year: 2014 },
+    }
+    const expectedErrors = ['Date.date']
 
     expect(validateModel(testData, financialTaxes))
       .toEqual(expect.arrayContaining(expectedErrors))

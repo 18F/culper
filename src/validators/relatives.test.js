@@ -1880,6 +1880,9 @@ describe('Relatives validation', () => {
                     zipcode: '22202',
                     layout: Location.ADDRESS,
                   },
+                  AlternateAddress: {
+                    HasDifferentAddress: { value: 'No' },
+                  },
                 },
               },
               {
@@ -1965,6 +1968,9 @@ describe('Relatives validation', () => {
                     state: 'VA',
                     zipcode: '22202',
                     layout: Location.ADDRESS,
+                  },
+                  AlternateAddress: {
+                    HasDifferentAddress: { value: 'No' },
                   },
                 },
               },

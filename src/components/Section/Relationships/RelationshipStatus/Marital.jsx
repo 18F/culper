@@ -19,6 +19,7 @@ import CivilUnion from './CivilUnion'
 import Divorce from './Divorce'
 
 const sectionConfig = {
+  key: RELATIONSHIPS_STATUS_MARITAL.key,
   section: RELATIONSHIPS.name,
   store: RELATIONSHIPS.store,
   subsection: RELATIONSHIPS_STATUS_MARITAL.name,
@@ -207,7 +208,7 @@ export class Marital extends Subsection {
           >
             <Divorce
               name="Item"
-              bind
+              bind={true}
               applicantBirthdate={this.props.applicantBirthdate}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}

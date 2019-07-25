@@ -3,6 +3,7 @@ import alias from 'models/shared/alias'
 import address from 'models/shared/locations/address'
 import usAddress from 'models/shared/locations/usAddress'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
+import physicalAddress from 'models/shared/physicalAddress'
 import { hasYesOrNo } from 'models/validate'
 import * as formTypes from 'constants/formTypes'
 
@@ -13,6 +14,7 @@ import {
   relativeCitizenshipDocumentationOptions,
   relativeResidentDocumentationOptions,
 } from 'constants/enums/relationshipOptions'
+import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
 
@@ -87,7 +89,7 @@ const relative = {
   },
   Birthdate: {
     presence: true,
-    date: true,
+    date: { ...OTHER },
   },
   Birthplace: {
     presence: true,
@@ -134,6 +136,15 @@ const relative = {
     return {
       presence: true,
       location: { validator: address },
+    }
+  },
+  AlternateAddress: (value, attributes) => {
+    if (attributes.IsDeceased
+      && attributes.IsDeceased.value === 'Yes') return {}
+
+    return {
+      presence: true,
+      model: { validator: physicalAddress, militaryAddress: true },
     }
   },
   CitizenshipDocumentation: (value, attributes, attributeNane, options) => {
@@ -247,9 +258,11 @@ const relative = {
   },
   LastContact: (value, attributes, attributeName, options) => {
     if (requireRelativeContactDescription(attributes, options)) {
+      const dateLimits = { latest: DEFAULT_LATEST }
+      if (attributes.FirstContact) dateLimits.earliest = attributes.FirstContact
       return {
         presence: true,
-        date: true,
+        date: dateLimits,
       }
     }
 

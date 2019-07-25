@@ -12,6 +12,7 @@ import ForeignService from 'components/Section/Military/Foreign/ForeignService'
 import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
+  key: MILITARY_FOREIGN.key,
   section: MILITARY.name,
   store: MILITARY.store,
   subsection: MILITARY_FOREIGN.name,
@@ -63,7 +64,7 @@ class Foreign extends Subsection {
         >
           <ForeignService
             name="Item"
-            bind
+            bind={true}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             defaultState={this.props.defaultState}

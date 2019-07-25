@@ -38,6 +38,26 @@ describe('The divorce model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Birthdate must not be more than 200 years ago', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, divorce))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be in the future', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, divorce))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('the birthplace field is required', () => {
     const testData = {}
     const expectedErrors = ['BirthPlace.required']
@@ -144,6 +164,27 @@ describe('The divorce model', () => {
   it('the date divorced field must be a valid date', () => {
     const testData = {
       DateDivorced: { year: '500' },
+    }
+    const expectedErrors = ['DateDivorced.date']
+
+    expect(validateModel(testData, divorce))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DateDivorced must be after Recognized', () => {
+    const testData = {
+      Recognized: { day: 2, month: 12, year: 2010 },
+      DateDivorced: { day: 2, month: 12, year: 2009 },
+    }
+    const expectedErrors = ['DateDivorced.date']
+
+    expect(validateModel(testData, divorce))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DateDivorced must not be in the future', () => {
+    const testData = {
+      DateDivorced: { day: 2, month: 12, year: 2050 },
     }
     const expectedErrors = ['DateDivorced.date']
 

@@ -4,6 +4,7 @@ const height = {
     numericality: {
       onlyInteger: true,
       greaterThanOrEqualTo: 1,
+      lessThanOrEqualTo: 9,
     },
   },
   inches: {

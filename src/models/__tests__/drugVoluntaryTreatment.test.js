@@ -5,6 +5,7 @@ describe('The drugVoluntaryTreatment model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
+      'DrugType.required',
       'TreatmentProvider.required',
       'TreatmentProviderAddress.required',
       'TreatmentProviderTelephone.required',
@@ -14,6 +15,36 @@ describe('The drugVoluntaryTreatment model', () => {
 
     expect(validateModel(testData, drugVoluntaryTreatment))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DrugType must have a valid value', () => {
+    const testData = {
+      DrugType: { value: 'Other' },
+    }
+    const expectedErrors = [
+      'DrugType.hasValue',
+    ]
+
+    expect(validateModel(testData, drugVoluntaryTreatment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  // TODO this is not how the form works
+  // Right now, Explanation text becomes DrugType.value
+  // So currently, only validation on DrugType is that it can't be "Other"
+  describe.skip('if DrugType is "Other"', () => {
+    it('DrugTypeExplanation must have a value', () => {
+      const testData = {
+        DrugType: { value: 'Other' },
+        DrugTypeExplanation: 'test',
+      }
+      const expectedErrors = [
+        'DrugTypeExplanation.hasValue',
+      ]
+
+      expect(validateModel(testData, drugVoluntaryTreatment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 
   it('TreatmentProvider must have a value', () => {
@@ -77,6 +108,7 @@ describe('The drugVoluntaryTreatment model', () => {
   describe('if TreatmentCompleted is "Yes"', () => {
     it('passes a valid drugVoluntaryTreatment', () => {
       const testData = {
+        DrugType: { value: 'THC' },
         TreatmentProvider: { value: 'Testing' },
         TreatmentProviderAddress: {
           street: '50 Provider ST',
@@ -116,6 +148,8 @@ describe('The drugVoluntaryTreatment model', () => {
 
     it('passes a valid drugVoluntaryTreatment', () => {
       const testData = {
+        DrugType: { value: 'test' },
+        // DrugTypeExplanation: { value: 'test' },
         TreatmentProvider: { value: 'Testing' },
         TreatmentProviderAddress: {
           street: '50 Provider ST',

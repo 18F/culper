@@ -6,6 +6,7 @@ import {
   OTHER,
   foreignBenefitFrequencyOptions,
 } from 'constants/enums/foreignActivityOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 // TODO - check max currency value $2,147,483,647
 
@@ -36,9 +37,17 @@ const foreignBenefitType = {
   Began: (value, attributes, attributeName, options) => {
     const { benefitType } = options
     if ([FUTURE, CONTINUING, OTHER].indexOf(benefitType) > -1) {
+      const dateLimits = {}
+
+      if (benefitType === FUTURE) {
+        dateLimits.earliest = DEFAULT_LATEST
+      } else {
+        dateLimits.latest = DEFAULT_LATEST
+      }
+
       return {
         presence: true,
-        date: true,
+        date: dateLimits,
       }
     }
 
@@ -66,9 +75,11 @@ const foreignBenefitType = {
   End: (value, attributes, attributeName, options) => {
     const { benefitType } = options
     if ([CONTINUING, OTHER].indexOf(benefitType) > -1) {
+      const dateLimits = {}
+      if (attributes.Began) dateLimits.earliest = attributes.Began
       return {
         presence: true,
-        date: true,
+        date: dateLimits,
       }
     }
 

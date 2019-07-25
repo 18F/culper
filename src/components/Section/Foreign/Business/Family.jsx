@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import FamilyItem from './FamilyItem'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_FAMILY.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_FAMILY.name,
@@ -80,7 +81,7 @@ export class Family extends Subsection {
           labelSize="h4"
           adjustFor="p"
           {...this.props.HasForeignFamily}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignFamily}
           required={this.props.required}
           onError={this.handleError}
@@ -107,7 +108,7 @@ export class Family extends Subsection {
           >
             <FamilyItem
               name="Item"
-              bind
+              bind={true}
               onError={this.props.onError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}

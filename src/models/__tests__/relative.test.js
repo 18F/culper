@@ -208,6 +208,43 @@ describe('The relative model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  describe('if relation is mother or father', () => {
+    it('Birthdate must be no more than 200 years ago', () => {
+      const testData = {
+        Relation: { value: 'Father' },
+        Birthdate: { day: 10, month: 10, year: 1800 },
+      }
+
+      const expectedErrors = ['Birthdate.date']
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
+  describe('if relation is other', () => {
+    it('Birthdate must be no more than 200 years ago', () => {
+      const testData = {
+        Relation: { value: 'Half-sister' },
+        Birthdate: { day: 10, month: 10, year: 1800 },
+      }
+
+      const expectedErrors = ['Birthdate.date']
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('Birthdate cannot be in the future', () => {
+      const testData = {
+        Relation: { value: 'Guardian' },
+        Birthdate: { day: 10, month: 10, year: 2050 },
+      }
+
+      const expectedErrors = ['Birthdate.date']
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
   it('Birthplace is required', () => {
     const testData = {}
     const expectedErrors = ['Birthplace.required']
@@ -492,6 +529,9 @@ describe('The relative model', () => {
           zipcode: '10001',
           country: 'United States',
         },
+        AlternateAddress: {
+          HasDifferentAddress: { value: 'No' },
+        },
         IsDeceased: { value: 'No' },
       }
 
@@ -551,6 +591,49 @@ describe('The relative model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('AlternateAddress is required', () => {
+      const testData = {
+        IsDeceased: { value: 'No' },
+      }
+      const expectedErrors = ['AlternateAddress.required']
+
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('AlternateAddress must be a valid physical address', () => {
+      const testData = {
+        IsDeceased: { value: 'No' },
+        AlternateAddress: {
+          HasDifferentAddress: false,
+        },
+      }
+      const expectedErrors = ['AlternateAddress.model']
+
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('AlternateAddress must be a military address', () => {
+      const testData = {
+        IsDeceased: { value: 'No' },
+        AlternateAddress: {
+          HasDifferentAddress: { value: 'Yes' },
+          Address: {
+            street: '123 Main ST',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10003',
+            country: 'United States',
+          },
+        },
+      }
+      const expectedErrors = ['AlternateAddress.model']
+
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('passes a valid relative', () => {
       const testData = {
         Name: { first: 'Relative', noMiddleName: true, last: 'Person' },
@@ -571,6 +654,16 @@ describe('The relative model', () => {
         },
         Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
         IsDeceased: { value: 'No' },
+        AlternateAddress: {
+          HasDifferentAddress: { value: 'Yes' },
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+        },
       }
 
       expect(validateModel(testData, relative, sf86Options)).toEqual(true)
@@ -640,6 +733,9 @@ describe('The relative model', () => {
             state: 'NY',
             zipcode: '10001',
             country: 'United States',
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'No' },
           },
           Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
           IsDeceased: { value: 'No' },
@@ -712,6 +808,9 @@ describe('The relative model', () => {
               state: 'NY',
               zipcode: '10001',
               country: 'United States',
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
             },
             Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
             IsDeceased: { value: 'No' },
@@ -818,6 +917,9 @@ describe('The relative model', () => {
             state: 'NY',
             zipcode: '10001',
             country: 'United States',
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'No' },
           },
           Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
           IsDeceased: { value: 'No' },
@@ -990,6 +1092,19 @@ describe('The relative model', () => {
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
+      it('LastContact must be after FirstContact', () => {
+        const testData = {
+          Citizenship: { value: ['Canada'] },
+          IsDeceased: { value: 'No' },
+          FirstContact: { day: 8, month: 5, year: 2015 },
+          LastContact: { day: 2, month: 3, year: 2015 },
+        }
+        const expectedErrors = ['LastContact.date']
+
+        expect(validateModel(testData, relative))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
       it('Methods is required', () => {
         const testData = {
           Citizenship: { value: ['Canada'] },
@@ -1053,6 +1168,9 @@ describe('The relative model', () => {
               zipcode: '10001',
               country: 'United States',
             },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
             Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
             IsDeceased: { value: 'No' },
             Document: { value: 'Permanent' },
@@ -1108,6 +1226,9 @@ describe('The relative model', () => {
             state: 'NY',
             zipcode: '10001',
             country: 'United States',
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'No' },
           },
           Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
           IsDeceased: { value: 'No' },
@@ -1165,6 +1286,9 @@ describe('The relative model', () => {
               state: 'NY',
               zipcode: '10001',
               country: 'United States',
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
             },
             Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
             IsDeceased: { value: 'No' },
@@ -1302,6 +1426,9 @@ describe('The relative model', () => {
                 city: 'Toronto',
                 country: 'Canada',
               },
+              AlternateAddress: {
+                HasDifferentAddress: { value: 'No' },
+              },
               Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
               IsDeceased: { value: 'No' },
               EmployerNotApplicable: { applicable: false },
@@ -1368,6 +1495,9 @@ describe('The relative model', () => {
                 city: 'Toronto',
                 country: 'Canada',
               },
+              AlternateAddress: {
+                HasDifferentAddress: { value: 'No' },
+              },
               Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
               IsDeceased: { value: 'No' },
               Employer: { value: 'Boss' },
@@ -1420,6 +1550,9 @@ describe('The relative model', () => {
                 street: '123 Street',
                 city: 'Toronto',
                 country: 'Canada',
+              },
+              AlternateAddress: {
+                HasDifferentAddress: { value: 'No' },
               },
               Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
               IsDeceased: { value: 'No' },
@@ -1476,6 +1609,9 @@ describe('The relative model', () => {
                 city: 'Toronto',
                 country: 'Canada',
               },
+              AlternateAddress: {
+                HasDifferentAddress: { value: 'No' },
+              },
               Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
               IsDeceased: { value: 'No' },
               Employer: { value: 'Boss' },
@@ -1517,6 +1653,9 @@ describe('The relative model', () => {
                 street: '123 Street',
                 city: 'Toronto',
                 country: 'Canada',
+              },
+              AlternateAddress: {
+                HasDifferentAddress: { value: 'No' },
               },
               Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
               IsDeceased: { value: 'No' },
@@ -1708,6 +1847,9 @@ describe('The relative model', () => {
               state: 'NY',
               zipcode: '10002',
               country: 'United States',
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
             },
             Aliases: { items: [{ Item: { Has: { value: 'No' } } }] },
             IsDeceased: { value: 'No' },

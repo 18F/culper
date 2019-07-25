@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import UnauthorizedItem from './UnauthorizedItem'
 
 const sectionConfig = {
+  key: LEGAL_TECHNOLOGY_UNAUTHORIZED.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_TECHNOLOGY_UNAUTHORIZED.name,
@@ -83,7 +84,7 @@ export class Unauthorized extends Subsection {
           labelSize="h4"
           className="legal-technology-unauthorized-has-unauthorized"
           {...this.props.HasUnauthorized}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -107,7 +108,7 @@ export class Unauthorized extends Subsection {
           >
             <UnauthorizedItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
               addressBooks={this.props.addressBooks}

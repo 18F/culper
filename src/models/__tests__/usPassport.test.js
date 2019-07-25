@@ -62,11 +62,16 @@ describe('The US Passport model', () => {
   })
 
   describe('if HasPassports is "Yes"', () => {
-    it('Name is required', () => {
+    it('validates required fields', () => {
       const testData = {
         HasPassports: { value: 'Yes' },
       }
-      const expectedErrors = ['Name.required']
+      const expectedErrors = [
+        'Name.required',
+        'Number.required',
+        'Issued.required',
+        'Expiration.required',
+      ]
       expect(validateModel(testData, usPassport))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -81,45 +86,35 @@ describe('The US Passport model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('Number is required', () => {
+    it('Expiration must be after Issued', () => {
       const testData = {
         HasPassports: { value: 'Yes' },
+        Issued: { day: 5, month: 12, year: 2010 },
+        Expiration: { day: 5, month: 12, year: 2009 },
       }
-      const expectedErrors = ['Number.required']
+      const expectedErrors = ['Expiration.date']
       expect(validateModel(testData, usPassport))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('Dates is required', () => {
+    it('Expiration can be in the future', () => {
       const testData = {
         HasPassports: { value: 'Yes' },
+        Issued: { day: 5, month: 12, year: 2010 },
+        Expiration: { day: 5, month: 12, year: 2030 },
       }
-      const expectedErrors = ['Dates.required']
-      expect(validateModel(testData, usPassport))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
 
-    it('Dates (Issued and Expiration) must be a valid date range', () => {
-      const testData = {
-        HasPassports: { value: 'Yes' },
-        Dates: {
-          from: { year: '1900', day: '10', month: '22' },
-          present: true,
-        },
-      }
-      const expectedErrors = ['Dates.daterange']
+      const expectedErrors = ['Expiration.date']
       expect(validateModel(testData, usPassport))
-        .toEqual(expect.arrayContaining(expectedErrors))
+        .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
     describe('if Issued is before 1/1/1990', () => {
       it('Number must be a valid value', () => {
         const testData = {
           HasPassports: { value: 'Yes' },
-          Dates: {
-            from: { year: '1980', day: '10', month: '4' },
-            to: { year: '1990', day: '10', month: '4' },
-          },
+          Issued: { year: '1980', day: '10', month: '4' },
+          Expiration: { year: '1990', day: '10', month: '4' },
           Number: {
             value: '....',
           },
@@ -133,10 +128,8 @@ describe('The US Passport model', () => {
         const testData = {
           HasPassports: { value: 'Yes' },
           Name: { first: 'Test', noMiddleName: true, last: 'Passport' },
-          Dates: {
-            from: { year: '1980', day: '10', month: '4' },
-            to: { year: '1990', day: '10', month: '4' },
-          },
+          Issued: { year: '1980', day: '10', month: '4' },
+          Expiration: { year: '1990', day: '10', month: '4' },
           Number: {
             value: 'abc123',
           },
@@ -150,10 +143,8 @@ describe('The US Passport model', () => {
         const testData = {
           HasPassports: { value: 'Yes' },
           Name: { first: 'Test', noMiddleName: true, last: 'Passport' },
-          Dates: {
-            from: { year: '1990', day: '10', month: '4' },
-            to: { year: '2000', day: '10', month: '4' },
-          },
+          Issued: { year: '1990', day: '10', month: '4' },
+          Expiration: { year: '2000', day: '10', month: '4' },
           Number: {
             value: 'abc123',
           },
@@ -167,10 +158,8 @@ describe('The US Passport model', () => {
         const testData = {
           HasPassports: { value: 'Yes' },
           Name: { first: 'Test', noMiddleName: true, last: 'Passport' },
-          Dates: {
-            from: { year: '1995', day: '10', month: '4' },
-            to: { year: '2000', day: '10', month: '4' },
-          },
+          Issued: { year: '1990', day: '10', month: '4' },
+          Expiration: { year: '2000', day: '10', month: '4' },
           Number: {
             value: 'abc123def',
           },

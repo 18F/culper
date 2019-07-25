@@ -16,6 +16,7 @@ import connectRelationshipsSection from '../RelationshipsConnector'
 import Cohabitant from './Cohabitant'
 
 const sectionConfig = {
+  key: RELATIONSHIPS_STATUS_COHABITANTS.key,
   section: RELATIONSHIPS.name,
   store: RELATIONSHIPS.store,
   subsection: RELATIONSHIPS_STATUS_COHABITANTS.name,
@@ -89,7 +90,7 @@ export class Cohabitants extends Subsection {
           labelSize="h4"
           className="has-cohabitant"
           {...this.props.HasCohabitant}
-          warning
+          warning={true}
           help="relationships.cohabitant.help.hasCohabitant"
           onUpdate={this.updateHasCohabitant}
           required={this.props.required}
@@ -124,7 +125,7 @@ export class Cohabitants extends Subsection {
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
               requireRelationshipMaritalForeignBornDocExpiration={requireRelationshipMaritalForeignBornDocExpiration}
-              bind
+              bind={true}
             />
           </Accordion>
         </Show>

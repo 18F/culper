@@ -142,6 +142,16 @@ describe('The foreignBenefitType model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('Began must be in the future', () => {
+      const testData = {
+        Began: { year: 2000, month: 9, day: 20 },
+      }
+      const expectedErrors = ['Began.date']
+
+      expect(validateModel(testData, foreignBenefitType, { benefitType: 'Future' }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('Frequency is required', () => {
       const testData = {}
       const expectedErrors = ['Frequency.required']
@@ -188,7 +198,7 @@ describe('The foreignBenefitType model', () => {
           Value: { value: '2500' },
           Reason: { value: 'because' },
           Obligated: { value: 'No' },
-          Began: { year: 2000, month: 2, day: 10 },
+          Began: { year: 2030, month: 2, day: 10 },
           Frequency: { value: 'Other' },
           OtherFrequency: { value: 'some other frequency' },
         }
@@ -204,7 +214,7 @@ describe('The foreignBenefitType model', () => {
         Value: { value: '2500' },
         Reason: { value: 'because' },
         Obligated: { value: 'No' },
-        Began: { year: 2000, month: 2, day: 10 },
+        Began: { year: 2030, month: 2, day: 10 },
         Frequency: { value: 'Annually' },
       }
 
@@ -232,6 +242,16 @@ describe('The foreignBenefitType model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('Began cannot be in the future', () => {
+      const testData = {
+        Began: { year: 2030, month: 9, day: 20 },
+      }
+      const expectedErrors = ['Began.date']
+
+      expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('End is required', () => {
       const testData = {}
       const expectedErrors = ['End.required']
@@ -243,6 +263,17 @@ describe('The foreignBenefitType model', () => {
     it('End must be a valid date', () => {
       const testData = {
         End: { year: 2000, month: 99, day: 200 },
+      }
+      const expectedErrors = ['End.date']
+
+      expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('End must be after Began', () => {
+      const testData = {
+        Began: { year: 2010, month: 2, day: 1 },
+        End: { year: 2000, month: 9, day: 20 },
       }
       const expectedErrors = ['End.date']
 
@@ -360,6 +391,16 @@ describe('The foreignBenefitType model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('Began cannot be in the future', () => {
+      const testData = {
+        Began: { year: 2030, month: 9, day: 20 },
+      }
+      const expectedErrors = ['Began.date']
+
+      expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('End is required', () => {
       const testData = {}
       const expectedErrors = ['End.required']
@@ -371,6 +412,17 @@ describe('The foreignBenefitType model', () => {
     it('End must be a valid date', () => {
       const testData = {
         End: { year: 2000, month: 99, day: 200 },
+      }
+      const expectedErrors = ['End.date']
+
+      expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('End must be after Began', () => {
+      const testData = {
+        Began: { year: 2010, month: 2, day: 1 },
+        End: { year: 2000, month: 9, day: 20 },
       }
       const expectedErrors = ['End.date']
 
