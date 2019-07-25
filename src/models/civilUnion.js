@@ -3,11 +3,12 @@ import phone from 'models/shared/phone'
 import birthplace from 'models/shared/locations/birthplace'
 import address from 'models/shared/locations/address'
 import usCityStateZipInternationalCity from 'models/shared/locations/usCityStateZipInternationalCity'
+import physicalAddress from 'models/shared/physicalAddress'
 import foreignBornDocument from 'models/foreignBornDocument'
 import { hasYesOrNo } from 'models/validate'
 import { DEFAULT_LATEST, OTHER } from 'constants/dateLimits'
-
 import { countryString } from 'validators/location'
+import { isInternational, isPO } from 'helpers/location'
 
 export const otherName = {
   Name: {
@@ -59,6 +60,23 @@ const civilUnion = {
       && attributes.UseCurrentAddress.applicable === true) return {}
 
     return { presence: true, location: { validator: address } }
+  },
+  AlternateAddress: (value, attributes) => {
+    if (attributes.Address && isInternational(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: true },
+      }
+    }
+
+    if (attributes.Address && isPO(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: false },
+      }
+    }
+
+    return {}
   },
   Location: {
     presence: true,

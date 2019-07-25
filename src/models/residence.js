@@ -4,8 +4,10 @@ import address from 'models/shared/locations/address'
 import name from 'models/shared/name'
 import phone from 'models/shared/phone'
 import email from 'models/shared/email'
+import physicalAddress from 'models/shared/physicalAddress'
 
 import { today, dateWithinRange } from 'helpers/date'
+import { isInternational, isPO } from 'helpers/location'
 
 const residenceRequiresReference = (dates = {}) => {
   const { from, present } = dates
@@ -29,12 +31,22 @@ const residence = {
     },
   },
 
-  AlternateAddress: {
-    // TODO required if Address is APO/FPO/DPO or if Address is outside of US and APO/FPO is yes
-    // TODO no PO box allowed
-    // TODO must be valid physical address
-    // US: Street/Unit/Duty/Location, City/Post name, State, Zip, Country
-    // Foreign: APO/FPO: address, APO/FPO/DPo, state, zipcode
+  AlternateAddress: (value, attributes) => {
+    if (attributes.Address && isInternational(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: true, allowPOBox: false },
+      }
+    }
+
+    if (attributes.Address && isPO(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: false, allowPOBox: false },
+      }
+    }
+
+    return {}
   },
 
   Role: {
@@ -135,8 +147,22 @@ const residence = {
         location: { validator: address },
       } : {}
   ),
-  ReferenceAlternateAddress: {
-    // TODO same validations as AlternateAddress
+  ReferenceAlternateAddress: (value, attributes) => {
+    if (attributes.ReferenceAddress && isInternational(attributes.ReferenceAddress)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: true },
+      }
+    }
+
+    if (attributes.ReferenceAddress && isPO(attributes.ReferenceAddress)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: false },
+      }
+    }
+
+    return {}
   },
 }
 

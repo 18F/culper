@@ -290,6 +290,251 @@ describe('The civilUnion model', () => {
     })
   })
 
+  describe('if the Address field is international', () => {
+    it('AlternateAddress is required', () => {
+      const testData = {
+        Address: {
+          street: '123 Test St',
+          city: 'London',
+          country: { value: 'United Kingdom' },
+        },
+      }
+
+      const expectedErrors = ['AlternateAddress.required']
+
+      expect(validateModel(testData, civilUnion))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('if HasDifferentAddress is "Yes"', () => {
+      it('AlternateAddress must be a PO address', () => {
+        const testData = {
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10002',
+              country: 'United States',
+            },
+          },
+        }
+
+        const expectedErrors = ['AlternateAddress.model']
+
+        expect(validateModel(testData, civilUnion))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid civilUnion with an alternate address', () => {
+        const testData = {
+          Name: { first: 'Person', noMiddleName: true, last: 'Name' },
+          Birthdate: { day: 5, month: 2, year: 1980 },
+          BirthPlace: {
+            city: 'Boston', state: 'MA', country: 'United States', county: 'County',
+          },
+          Email: { value: 'test@email.com' },
+          Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
+          SSN: { first: '234', middle: '12', last: '3490' },
+          Separated: { value: 'No' },
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+          Location: {
+            city: 'Boston', state: 'MA', country: 'United States', county: 'County',
+          },
+          Citizenship: { value: ['United States'] },
+          EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
+          Divorced: { value: 'No' },
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Name: { first: 'Someone', noMiddleName: true, last: 'Else' },
+                  MaidenName: { value: 'No' },
+                  DatesUsed: {
+                    from: { day: 1, month: 1, year: 1990 },
+                    to: { day: 5, month: 10, year: 1995 },
+                  },
+                },
+              },
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        expect(validateModel(testData, civilUnion)).toEqual(true)
+      })
+    })
+
+    describe('if HasDifferentAddress is "No"', () => {
+      it('passes a valid civilUnion with an alternate address', () => {
+        const testData = {
+          Name: { first: 'Person', noMiddleName: true, last: 'Name' },
+          Birthdate: { day: 5, month: 2, year: 1980 },
+          BirthPlace: {
+            city: 'Boston', state: 'MA', country: 'United States', county: 'County',
+          },
+          Email: { value: 'test@email.com' },
+          Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
+          SSN: { first: '234', middle: '12', last: '3490' },
+          Separated: { value: 'No' },
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Location: {
+            city: 'Boston', state: 'MA', country: 'United States', county: 'County',
+          },
+          Citizenship: { value: ['United States'] },
+          EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
+          Divorced: { value: 'No' },
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Name: { first: 'Someone', noMiddleName: true, last: 'Else' },
+                  MaidenName: { value: 'No' },
+                  DatesUsed: {
+                    from: { day: 1, month: 1, year: 1990 },
+                    to: { day: 5, month: 10, year: 1995 },
+                  },
+                },
+              },
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        expect(validateModel(testData, civilUnion)).toEqual(true)
+      })
+    })
+  })
+
+  describe('if the Address field is a military address', () => {
+    it('AlternateAddress is required', () => {
+      const testData = {
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+      }
+
+      const expectedErrors = ['AlternateAddress.required']
+
+      expect(validateModel(testData, civilUnion))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('AlternateAddress must not be a PO address', () => {
+      const testData = {
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+        AlternateAddress: {
+          HasDifferentAddress: { value: 'Yes' },
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+        },
+      }
+
+      const expectedErrors = ['AlternateAddress.model']
+
+      expect(validateModel(testData, civilUnion))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid civilUnion with an alternate address', () => {
+      const testData = {
+        Name: { first: 'Person', noMiddleName: true, last: 'Name' },
+        Birthdate: { day: 5, month: 2, year: 1980 },
+        BirthPlace: {
+          city: 'Boston', state: 'MA', country: 'United States', county: 'County',
+        },
+        Email: { value: 'test@email.com' },
+        Telephone: { number: '1234567890', type: 'Domestic', timeOfDay: 'Both' },
+        SSN: { first: '234', middle: '12', last: '3490' },
+        Separated: { value: 'No' },
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+        AlternateAddress: {
+          Address: {
+            street: '123 Main ST',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10003',
+            country: 'United States',
+          },
+        },
+        Location: {
+          city: 'Boston', state: 'MA', country: 'United States', county: 'County',
+        },
+        Citizenship: { value: ['United States'] },
+        EnteredCivilUnion: { day: 10, month: 10, year: 2001 },
+        Divorced: { value: 'No' },
+        OtherNames: {
+          items: [
+            {
+              Item: {
+                Has: { value: 'Yes' },
+                Name: { first: 'Someone', noMiddleName: true, last: 'Else' },
+                MaidenName: { value: 'No' },
+                DatesUsed: {
+                  from: { day: 1, month: 1, year: 1990 },
+                  to: { day: 5, month: 10, year: 1995 },
+                },
+              },
+            },
+            { Item: { Has: { value: 'No' } } },
+          ],
+        },
+      }
+
+      expect(validateModel(testData, civilUnion)).toEqual(true)
+    })
+  })
+
   it('the Location field is required', () => {
     const testData = {}
     const expectedErrors = ['Location.required']
