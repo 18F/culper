@@ -133,6 +133,14 @@ export const requireLegalInvestigationClearanceGranted = formType => (
   requiredByForms(formType, [formTypes.SF85])
 )
 
+export const requireLegalPoliceFirearms = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireLegalPoliceDrugs = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
 export const requireForeignCounterIntelligence = formType => (
   requiredByForms(formType, [formTypes.SF86])
 )

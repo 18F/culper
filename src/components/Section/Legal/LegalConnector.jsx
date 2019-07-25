@@ -15,6 +15,8 @@ import {
   selectLegalOffenseSentenced,
   selectLegalOffenseIncarcerated,
   selectLegalInvestigationClearanceGranted,
+  selectLegalPoliceFirearms,
+  selectLegalPoliceDrugs,
 } from 'selectors/branches'
 
 const connectLegalSection = (Component, {
@@ -83,6 +85,8 @@ const connectLegalSection = (Component, {
         return {
           ...legal.PoliceOtherOffenses,
           addressBooks,
+          ...selectLegalPoliceFirearms(state),
+          ...selectLegalPoliceDrugs(state),
         }
 
       case 'PoliceDomesticViolence':

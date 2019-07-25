@@ -38,6 +38,8 @@ import {
   requireForeignThreatened,
   requireAlcoholOrderedCounselingParty,
   requireAlcoholReceivedCounselingsSection,
+  requireLegalPoliceFirearms,
+  requireLegalPoliceDrugs,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -178,4 +180,14 @@ export const selectAlcoholOrderedCounselingParty = createSelector(formTypeSelect
 export const selectAlcoholReceivedCounselingsSection = createSelector(formTypeSelector,
   formType => ({
     requireAlcoholReceivedCounselingsSection: requireAlcoholReceivedCounselingsSection(formType),
+  }))
+
+export const selectLegalPoliceFirearms = createSelector(formTypeSelector,
+  formType => ({
+    requireLegalPoliceFirearms: requireLegalPoliceFirearms(formType),
+  }))
+
+export const selectLegalPoliceDrugs = createSelector(formTypeSelector,
+  formType => ({
+    requireLegalPoliceDrugs: requireLegalPoliceDrugs(formType),
   }))

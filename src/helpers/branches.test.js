@@ -22,6 +22,8 @@ import {
   requireForeignThreatened,
   requireAlcoholOrderedCounselingParty,
   requireAlcoholReceivedCounselingsSection,
+  requireLegalPoliceFirearms,
+  requireLegalPoliceDrugs,
 } from './branches'
 
 describe('Branches helper function', () => {
@@ -272,6 +274,28 @@ describe('Branches helper function', () => {
     it('is not required by the SF85 and SF85P', () => {
       expect(requireAlcoholReceivedCounselingsSection('SF85P')).toBe(false)
       expect(requireAlcoholReceivedCounselingsSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireLegalPoliceFirearms', () => {
+    it('is required by the SF86', () => {
+      expect(requireLegalPoliceFirearms('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireLegalPoliceFirearms('SF85P')).toBe(false)
+      expect(requireLegalPoliceFirearms('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireLegalPoliceDrugs', () => {
+    it('is required by the SF86', () => {
+      expect(requireLegalPoliceDrugs('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireLegalPoliceDrugs('SF85P')).toBe(false)
+      expect(requireLegalPoliceDrugs('SF85')).toBe(false)
     })
   })
 })

@@ -86,6 +86,11 @@ export class OtherOffenses extends Subsection {
   )
 
   render() {
+    const {
+      requireLegalPoliceFirearms,
+      requireLegalPoliceDrugs,
+    } = this.props
+
     return (
       <div
         className="section-content police-other-offenses"
@@ -137,6 +142,8 @@ export class OtherOffenses extends Subsection {
               bind
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireLegalPoliceFirearms={requireLegalPoliceFirearms}
+              requireLegalPoliceDrugs={requireLegalPoliceDrugs}
             />
           </Accordion>
         </Show>
@@ -157,6 +164,8 @@ OtherOffenses.defaultProps = {
   validator: data => validate(schema('legal.police.additionaloffenses', data)),
   defaultState: true,
   scrollToBottom: '',
+  requireLegalPoliceFirearms: true,
+  requireLegalPoliceDrugs: true,
 }
 
 export default connectLegalSection(OtherOffenses, sectionConfig)

@@ -13,6 +13,7 @@ import {
   Radio,
   Field,
 } from '../../../Form'
+import { requireLegalPoliceFirearms } from '../../../../helpers/branches';
 
 export default class OtherOffense extends ValidationElement {
   constructor(props) {
@@ -150,6 +151,11 @@ export default class OtherOffense extends ValidationElement {
   }
 
   render() {
+    const {
+      requireLegalPoliceDrugs,
+      requireLegalPoliceFirearms,
+    } = this.props
+
     return (
       <div className="offense">
         <Field
@@ -199,29 +205,33 @@ export default class OtherOffense extends ValidationElement {
           {i18n.m('legal.police.label.violence')}
         </Branch>
 
-        <Branch
-          name="involved_firearms"
-          className="offense-firearms no-margin-bottom"
-          {...this.props.InvolvedFirearms}
-          onUpdate={this.updateInvolvedFirearms}
-          required={this.props.required}
-          onError={this.props.onError}
-          scrollIntoView={this.props.scrollIntoView}
-        >
-          {i18n.m('legal.police.label.firearms')}
-        </Branch>
+        {requireLegalPoliceFirearms && (
+          <Branch
+            name="involved_firearms"
+            className="offense-firearms no-margin-bottom"
+            {...this.props.InvolvedFirearms}
+            onUpdate={this.updateInvolvedFirearms}
+            required={this.props.required}
+            onError={this.props.onError}
+            scrollIntoView={this.props.scrollIntoView}
+          >
+            {i18n.m('legal.police.label.firearms')}
+          </Branch>
+        )}
 
-        <Branch
-          name="involved_substances"
-          className="offense-substances"
-          {...this.props.InvolvedSubstances}
-          onUpdate={this.updateInvolvedSubstances}
-          required={this.props.required}
-          onError={this.props.onError}
-          scrollIntoView={this.props.scrollIntoView}
-        >
-          {i18n.m('legal.police.label.substances')}
-        </Branch>
+        {requireLegalPoliceDrugs && (
+          <Branch
+            name="involved_substances"
+            className="offense-substances"
+            {...this.props.InvolvedSubstances}
+            onUpdate={this.updateInvolvedSubstances}
+            required={this.props.required}
+            onError={this.props.onError}
+            scrollIntoView={this.props.scrollIntoView}
+          >
+            {i18n.m('legal.police.label.substances')}
+          </Branch>
+        )}
 
         <Field
           title={i18n.t('legal.police.heading.courtname')}
@@ -418,4 +428,6 @@ OtherOffense.defaultProps = {
   dispatch: () => {},
   onUpdate: () => {},
   onError: (value, arr) => arr,
+  requireLegalPoliceDrugs: true,
+  requireLegalPoliceFirearms: true,
 }
