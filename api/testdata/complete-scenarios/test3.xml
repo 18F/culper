@@ -648,8 +648,45 @@
                 <Answer>No</Answer>
               </ReceivedDegreeOrDiploma>
               <SchoolsAttended>
-    
-  </SchoolsAttended>
+                <SchoolAttended ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>College</Type>
+                  <Name>University of California, Berkeley</Name>
+                  <Address>
+                    <Street>120 Sproul Hall</Street>
+                    <City>Berkeley</City>
+                    <State>CA</State>
+                    <ZipCode>94720</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>No</Answer>
+                  </DegreeReceived>
+                  <Verifier>
+                    <LegalName DoNotKnow="True"/>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>5555555555</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>120 Sproul Hall</Street>
+                      <City>Berkeley</City>
+                      <State>CA</State>
+                      <ZipCode>94720</ZipCode>
+                    </Address>
+                  </Verifier>
+                </SchoolAttended>
+              </SchoolsAttended>
             </Education>
             <FormerFederalServiceActivities Version="1" Type="Pooled">
               <HadFormerFederalCivilianEmployment>
@@ -689,7 +726,7 @@
             </Citizenship>
             <DualCitizenship Version="1" Type="Pooled">
               <DualCitizenships>
-    
+
   </DualCitizenships>
               <HeldDualCitizenship>
                 <Answer>No</Answer>
@@ -705,9 +742,9 @@
                 <Answer>No</Answer>
               </ForeignService>
               <ForeignMilitaryService>
-  
-  
-  
+
+
+
 </ForeignMilitaryService>
               <Answer>No</Answer>
             </MilitaryHistory>
@@ -719,44 +756,44 @@
             <FinancialRecord Type="Pooled" Version="1">
               <Bankruptcy>
                 <Activities>
-    
+
   </Activities>
                 <Answer>No</Answer>
               </Bankruptcy>
               <ViolatedCorporateCardAgreement>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </ViolatedCorporateCardAgreement>
               <UtilizingOrSeekingCreditCounseling>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </UtilizingOrSeekingCreditCounseling>
               <DelinquencyInvolvingEnforcement>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </DelinquencyInvolvingEnforcement>
               <ProblemsDueToGambling>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </ProblemsDueToGambling>
               <DelinquencyInvolvingRoutineAccounts>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </DelinquencyInvolvingRoutineAccounts>
               <UnpaidTaxes>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </UnpaidTaxes>
             </FinancialRecord>
@@ -2029,25 +2066,25 @@
               <EverReceivedCounseling>
                 <Answer>No</Answer>
                 <Consultations>
-    
+
   </Consultations>
               </EverReceivedCounseling>
               <NegativeImpact>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </NegativeImpact>
               <OrderedAdvisedOrAskedToSeekCounseling>
                 <Answer>No</Answer>
                 <Consultations>
-    
+
   </Consultations>
               </OrderedAdvisedOrAskedToSeekCounseling>
               <SoughtCounseling>
                 <Answer>No</Answer>
                 <Consultations>
-    
+
   </Consultations>
               </SoughtCounseling>
             </UseOfAlcohol>
@@ -2055,43 +2092,43 @@
               <InvolvementWhilePossessingASecurityClearance>
                 <Answer>No</Answer>
                 <Involvements>
-    
+
   </Involvements>
               </InvolvementWhilePossessingASecurityClearance>
               <MisuseOfPrescriptionDrugs>
                 <Answer>No</Answer>
                 <Instances>
-    
+
   </Instances>
               </MisuseOfPrescriptionDrugs>
               <OrderedAdvisedOrAskedToSeekCounseling>
                 <Answer>No</Answer>
                 <Consultations>
-    
+
   </Consultations>
               </OrderedAdvisedOrAskedToSeekCounseling>
               <InvolvementWhileEmployedAsLawEnforcement>
                 <Answer>No</Answer>
                 <Involvements>
-    
+
   </Involvements>
               </InvolvementWhileEmployedAsLawEnforcement>
               <IllegalDrugActivity>
                 <Answer>No</Answer>
                 <Activities>
-    
+
   </Activities>
               </IllegalDrugActivity>
               <IllegalUse>
                 <Answer>No</Answer>
                 <Instances>
-    
+
   </Instances>
               </IllegalUse>
               <VoluntaryTreatment>
                 <Answer>No</Answer>
                 <Consultations>
-    
+
   </Consultations>
               </VoluntaryTreatment>
             </IllegalDrugUse>
@@ -2099,7 +2136,7 @@
               <Past7Years>
                 <Answer>No</Answer>
                 <Offenses>
-    
+
   </Offenses>
               </Past7Years>
               <Ever>
@@ -2116,58 +2153,58 @@
                 <Answer>No</Answer>
               </CivilCourtAction>
               <CourtActions>
-    
+
   </CourtActions>
             </CivilCourtRecord>
             <InformationSystemUse Version="1" Type="Pooled">
               <IllegalEntry>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </IllegalEntry>
               <IllegalUse>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </IllegalUse>
               <IllegallyAlteredInformation>
                 <Answer>No</Answer>
                 <Incidents>
-    
+
   </Incidents>
               </IllegallyAlteredInformation>
             </InformationSystemUse>
             <AssociationRecord Version="1" Type="Pooled">
               <ActivitiesToOverthrowTheUSGovernment>
                 <Activities>
-    
+
   </Activities>
                 <Answer>No</Answer>
               </ActivitiesToOverthrowTheUSGovernment>
               <AdvocatedTerrorism>
                 <Answer>No</Answer>
                 <Instances>
-    
+
   </Instances>
               </AdvocatedTerrorism>
               <BeenInOrganizationAdvocatingViolence>
                 <Answer>No</Answer>
                 <Organizations>
-    
+
   </Organizations>
               </BeenInOrganizationAdvocatingViolence>
               <BeenInOrganizationDedicatedToTerrorism>
                 <Answer>No</Answer>
                 <Organizations>
-    
+
   </Organizations>
               </BeenInOrganizationDedicatedToTerrorism>
               <EngagedInTerrorism>
                 <Answer>No</Answer>
                 <TerroristActs>
-    
+
   </TerroristActs>
               </EngagedInTerrorism>
               <TerrorismAssociations>
@@ -2176,7 +2213,7 @@
               <TerroristOrganizationMember>
                 <Answer>No</Answer>
                 <Organizations>
-    
+
   </Organizations>
               </TerroristOrganizationMember>
             </AssociationRecord>
