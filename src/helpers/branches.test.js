@@ -21,6 +21,7 @@ import {
   requireForeignSensitiveInformation,
   requireForeignThreatened,
   requireAlcoholOrderedCounselingParty,
+  requireAlcoholReceivedCounselingsSection,
 } from './branches'
 
 describe('Branches helper function', () => {
@@ -202,7 +203,7 @@ describe('Branches helper function', () => {
       expect(requireFinancialCardDisciplinaryDate('SF86')).toBe(true)
     })
 
-    it('is required by the SF85 and SF85P', () => {
+    it('is not required by the SF85 and SF85P', () => {
       expect(requireFinancialCardDisciplinaryDate('SF85P')).toBe(false)
       expect(requireFinancialCardDisciplinaryDate('SF85')).toBe(false)
     })
@@ -213,7 +214,7 @@ describe('Branches helper function', () => {
       expect(requireForeignCounterIntelligence('SF86')).toBe(true)
     })
 
-    it('is required by the SF85 and SF85P', () => {
+    it('is not required by the SF85 and SF85P', () => {
       expect(requireForeignCounterIntelligence('SF85P')).toBe(false)
       expect(requireForeignCounterIntelligence('SF85')).toBe(false)
     })
@@ -224,7 +225,7 @@ describe('Branches helper function', () => {
       expect(requireForeignExcessiveKnowledge('SF86')).toBe(true)
     })
 
-    it('is required by the SF85 and SF85P', () => {
+    it('is not required by the SF85 and SF85P', () => {
       expect(requireForeignExcessiveKnowledge('SF85P')).toBe(false)
       expect(requireForeignExcessiveKnowledge('SF85')).toBe(false)
     })
@@ -257,9 +258,20 @@ describe('Branches helper function', () => {
       expect(requireAlcoholOrderedCounselingParty('SF86')).toBe(true)
     })
 
-    it('is required by the SF85 and SF85P', () => {
+    it('is not required by the SF85 and SF85P', () => {
       expect(requireAlcoholOrderedCounselingParty('SF85P')).toBe(false)
       expect(requireAlcoholOrderedCounselingParty('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireAlcoholReceivedCounselingsSection', () => {
+    it('is required by the SF86', () => {
+      expect(requireAlcoholReceivedCounselingsSection('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireAlcoholReceivedCounselingsSection('SF85P')).toBe(false)
+      expect(requireAlcoholReceivedCounselingsSection('SF85')).toBe(false)
     })
   })
 })

@@ -82,11 +82,15 @@ export const requireDrugWhileSafetySection = formType => (
 )
 
 export const requireDrugWithClearanceSection = formType => (
-  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86])
 )
 
 export const requireAlcoholSections = formType => (
   requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+)
+
+export const requireAlcoholReceivedCounselingsSection = formType => (
+  requiredByForms(formType, [formTypes.SF86])
 )
 
 export const requireDrugWhileSafety = formType => (

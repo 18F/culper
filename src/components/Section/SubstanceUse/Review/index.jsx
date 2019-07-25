@@ -26,6 +26,7 @@ export const Review = ({
   requireDrugWhileSafetySection,
   requireDrugWithClearanceSection,
   requireAlcoholSections,
+  requireAlcoholAdditionalInstances,
 }) => {
   const props = {
     required: true,
@@ -72,7 +73,9 @@ export const Review = ({
           {sectionDivider}
           <ConnectedVoluntaryCounselings {...props} />
           {sectionDivider}
-          <ConnectedReceivedCounselings {...props} />
+          {requireAlcoholAdditionalInstances && (
+            <ConnectedReceivedCounselings {...props} />
+          )}
         </span>
       )}
     </div>

@@ -15,6 +15,7 @@ import {
   selectDrugWithClearance,
   selectDrugInFuture,
   selectAlcoholOrderedCounselingParty,
+  selectAlcoholReceivedCounselingsSection,
 } from 'selectors/branches'
 
 const connectSubstanceUseSection = (Component, {
@@ -166,6 +167,7 @@ const connectSubstanceUseSection = (Component, {
           ...selectDrugWhileSafetySection(state),
           ...selectDrugWithClearanceSection(state),
           ...selectAlcoholSections(state),
+          ...selectAlcoholReceivedCounselingsSection(state),
         }
     }
   }
