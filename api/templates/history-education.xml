@@ -45,8 +45,8 @@
       </DegreesAwarded>
       {{end}}
 
-      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1035 -->
-
+      {{if $Item.ReferenceName}}
+      {{if $Item.ReferencePhone.props.number}}
       <Verifier>
         {{if notApplicable $Item.ReferenceNameNotApplicable | eq "True"}}
         <LegalName DoNotKnow="True"></LegalName>
@@ -59,6 +59,8 @@
         <Address>{{location $Item.ReferenceAddress}}</Address>
         <Comment></Comment>
       </Verifier>
+      {{end}}
+      {{end}}
 
       <Comments>{{textarea $Item.Comments}}</Comments>
     </SchoolAttended>
