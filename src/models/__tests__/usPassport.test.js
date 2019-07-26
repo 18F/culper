@@ -4,14 +4,14 @@ import usPassport from '../usPassport'
 describe('The US Passport model', () => {
   it('HasPassports is required', () => {
     const testData = {}
-    const expectedErrors = ['HasPassports.required']
+    const expectedErrors = ['HasPassports.presence.REQUIRED']
     expect(validateModel(testData, usPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('HasPassports must have a valid value', () => {
     const testData = { HasPassports: { value: true } }
-    const expectedErrors = ['HasPassports.hasValue']
+    const expectedErrors = ['HasPassports.hasValue.value.inclusion.INCLUSION']
     expect(validateModel(testData, usPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -21,7 +21,7 @@ describe('The US Passport model', () => {
       const testData = {
         HasPassports: { value: 'No' },
       }
-      const expectedErrors = ['Name.required']
+      const expectedErrors = ['Name.presence.REQUIRED']
       expect(validateModel(testData, usPassport))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -30,7 +30,7 @@ describe('The US Passport model', () => {
       const testData = {
         HasPassports: { value: 'No' },
       }
-      const expectedErrors = ['Number.required']
+      const expectedErrors = ['Number.presence.REQUIRED']
       expect(validateModel(testData, usPassport))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -39,7 +39,7 @@ describe('The US Passport model', () => {
       const testData = {
         HasPassports: { value: 'No' },
       }
-      const expectedErrors = ['Issued.required']
+      const expectedErrors = ['Issued.presence.REQUIRED']
       expect(validateModel(testData, usPassport))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -48,7 +48,7 @@ describe('The US Passport model', () => {
       const testData = {
         HasPassports: { value: 'No' },
       }
-      const expectedErrors = ['Expiration.required']
+      const expectedErrors = ['Expiration.presence.REQUIRED']
       expect(validateModel(testData, usPassport))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -67,10 +67,10 @@ describe('The US Passport model', () => {
         HasPassports: { value: 'Yes' },
       }
       const expectedErrors = [
-        'Name.required',
-        'Number.required',
-        'Issued.required',
-        'Expiration.required',
+        'Name.presence.REQUIRED',
+        'Number.presence.REQUIRED',
+        'Issued.presence.REQUIRED',
+        'Expiration.presence.REQUIRED',
       ]
       expect(validateModel(testData, usPassport))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -81,7 +81,11 @@ describe('The US Passport model', () => {
         HasPassports: { value: 'Yes' },
         Name: 'First middle last',
       }
-      const expectedErrors = ['Name.model']
+      const expectedErrors = [
+        'Name.model.first.presence.REQUIRED',
+        'Name.model.middle.presence.REQUIRED',
+        'Name.model.last.presence.REQUIRED',
+      ]
       expect(validateModel(testData, usPassport))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -119,7 +123,7 @@ describe('The US Passport model', () => {
             value: '....',
           },
         }
-        const expectedErrors = ['Number.hasValue']
+        const expectedErrors = ['Number.hasValue.value.format.INVALID_FORMAT']
         expect(validateModel(testData, usPassport))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
@@ -149,7 +153,7 @@ describe('The US Passport model', () => {
             value: 'abc123',
           },
         }
-        const expectedErrors = ['Number.hasValue']
+        const expectedErrors = ['Number.hasValue.value.length.LENGTH_WRONG']
         expect(validateModel(testData, usPassport))
           .toEqual(expect.arrayContaining(expectedErrors))
       })

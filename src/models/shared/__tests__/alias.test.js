@@ -130,7 +130,7 @@ describe('The alias model', () => {
   describe('if maiden name is hidden', () => {
     it('maiden name is not required', () => {
       const testData = {}
-      const expectedErrors = ['MaidenName.required']
+      const expectedErrors = ['MaidenName.presence.REQUIRED']
 
       expect(validateModel(testData, alias, { hideMaiden: true }))
         .not.toEqual(expect.arrayContaining(expectedErrors))

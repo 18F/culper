@@ -4,7 +4,7 @@ import revoked from 'models/revoked'
 describe('The revoked model', () => {
   it('the Agency field is required', () => {
     const testData = {}
-    const expectedErrors = ['Agency.required']
+    const expectedErrors = ['Agency.presence.REQUIRED']
 
     expect(validateModel(testData, revoked))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,7 @@ describe('The revoked model', () => {
     const testData = {
       Agency: 'invalid',
     }
-    const expectedErrors = ['Agency.hasValue']
+    const expectedErrors = ['Agency.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, revoked))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +22,7 @@ describe('The revoked model', () => {
 
   it('the Explanation field is required', () => {
     const testData = {}
-    const expectedErrors = ['Explanation.required']
+    const expectedErrors = ['Explanation.presence.REQUIRED']
 
     expect(validateModel(testData, revoked))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -32,7 +32,7 @@ describe('The revoked model', () => {
     const testData = {
       Explanation: 'invalid',
     }
-    const expectedErrors = ['Explanation.hasValue']
+    const expectedErrors = ['Explanation.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, revoked))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -40,7 +40,7 @@ describe('The revoked model', () => {
 
   it('the Date field is required', () => {
     const testData = {}
-    const expectedErrors = ['Date.required']
+    const expectedErrors = ['Date.presence.REQUIRED']
 
     expect(validateModel(testData, revoked))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -51,7 +51,7 @@ describe('The revoked model', () => {
       Date: { year: 1990, month: 33, day: 12 },
     }
 
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.INVALID_DATE']
 
     expect(validateModel(testData, revoked))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -62,7 +62,7 @@ describe('The revoked model', () => {
       Date: { year: 12, month: 33, day: 12 },
     }
 
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.INVALID_DATE']
 
     expect(validateModel(testData, revoked))
       .toEqual(expect.arrayContaining(expectedErrors))

@@ -5,9 +5,9 @@ describe('The treatment model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Phone.required',
-      'Address.required',
+      'Name.presence.REQUIRED',
+      'Phone.presence.REQUIRED',
+      'Address.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, treatment))
@@ -19,7 +19,7 @@ describe('The treatment model', () => {
       Name: { value: '' },
     }
     const expectedErrors = [
-      'Name.hasValue',
+      'Name.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, treatment))
@@ -31,7 +31,8 @@ describe('The treatment model', () => {
       Phone: { value: '123456789' },
     }
     const expectedErrors = [
-      'Phone.model',
+      'Phone.model.timeOfDay.presence.REQUIRED',
+      'Phone.model.number.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, treatment))
@@ -43,7 +44,9 @@ describe('The treatment model', () => {
       Address: { value: 'Test' },
     }
     const expectedErrors = [
-      'Address.location',
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, treatment))

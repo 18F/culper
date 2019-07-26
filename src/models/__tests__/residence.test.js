@@ -4,7 +4,7 @@ import residence from 'models/residence'
 describe('The residence model', () => {
   it('the Dates field is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +19,7 @@ describe('The residence model', () => {
       },
     }
 
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -27,7 +27,7 @@ describe('The residence model', () => {
 
   it('the Address field is required', () => {
     const testData = {}
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -38,7 +38,11 @@ describe('The residence model', () => {
       Address: 'Not a valid address',
     }
 
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -291,7 +295,7 @@ describe('The residence model', () => {
 
   it('the Role field is required', () => {
     const testData = { Role: '' }
-    const expectedErrors = ['Role.required']
+    const expectedErrors = ['Role.presence.REQUIRED']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -302,7 +306,7 @@ describe('The residence model', () => {
       Role: { value: 'Blah' },
     }
 
-    const expectedErrors = ['Role.hasValue']
+    const expectedErrors = ['Role.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -314,7 +318,7 @@ describe('The residence model', () => {
       RoleOther: undefined,
     }
 
-    const expectedErrors = ['RoleOther.required']
+    const expectedErrors = ['RoleOther.presence.REQUIRED']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -326,7 +330,7 @@ describe('The residence model', () => {
       RoleOther: { value: null },
     }
 
-    const expectedErrors = ['RoleOther.hasValue']
+    const expectedErrors = ['RoleOther.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -341,7 +345,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferenceName.required']
+      const expectedErrors = ['ReferenceName.presence.REQUIRED']
 
       expect(validateModel(testData, residence))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -385,14 +389,14 @@ describe('The residence model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.required',
-        'ReferenceLastContact.required',
-        'ReferencePhoneEvening.required',
-        'ReferencePhoneDay.required',
-        'ReferencePhoneMobile.required',
-        'ReferenceRelationship.required',
-        'ReferenceEmail.required',
-        'ReferenceAddress.required',
+        'ReferenceName.presence.REQUIRED',
+        'ReferenceLastContact.presence.REQUIRED',
+        'ReferencePhoneEvening.presence.REQUIRED',
+        'ReferencePhoneDay.presence.REQUIRED',
+        'ReferencePhoneMobile.presence.REQUIRED',
+        'ReferenceRelationship.presence.REQUIRED',
+        'ReferenceEmail.presence.REQUIRED',
+        'ReferenceAddress.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, residence))
@@ -410,7 +414,10 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferenceName.model']
+      const expectedErrors = [
+        'ReferenceName.model.first.presence.REQUIRED',
+        'ReferenceName.model.middle.presence.REQUIRED',
+      ]
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -424,7 +431,11 @@ describe('The residence model', () => {
         ReferenceLastContact: ['not', 'a', 'date'],
       }
 
-      const expectedErrors = ['ReferenceLastContact.date']
+      const expectedErrors = [
+        'ReferenceLastContact.date.day.presence.REQUIRED',
+        'ReferenceLastContact.date.month.presence.REQUIRED',
+        'ReferenceLastContact.date.year.presence.REQUIRED',
+      ]
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -440,7 +451,9 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneEvening.model']
+      const expectedErrors = [
+        'ReferencePhoneEvening.model.timeOfDay.presence.REQUIRED',
+      ]
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -456,7 +469,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneDay.model']
+      const expectedErrors = ['ReferencePhoneDay.model.timeOfDay.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -472,7 +485,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneMobile.model']
+      const expectedErrors = ['ReferencePhoneMobile.model.timeOfDay.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -486,7 +499,7 @@ describe('The residence model', () => {
         ReferenceRelationship: { values: [] },
       }
 
-      const expectedErrors = ['ReferenceRelationship.array']
+      const expectedErrors = ['ReferenceRelationship.array.array.length.LENGTH_TOO_SHORT']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -500,7 +513,11 @@ describe('The residence model', () => {
         ReferenceRelationship: { values: ['blah', 'test', 'x'] },
       }
 
-      const expectedErrors = ['ReferenceRelationship.array']
+      const expectedErrors = [
+        'ReferenceRelationship.array.0.value.inclusion.INCLUSION',
+        'ReferenceRelationship.array.1.value.inclusion.INCLUSION',
+        'ReferenceRelationship.array.2.value.inclusion.INCLUSION',
+      ]
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -514,7 +531,7 @@ describe('The residence model', () => {
         ReferenceRelationship: { values: ['Neighbor', 'Friend'] },
       }
 
-      const expectedErrors = ['ReferenceRelationshipOther.required']
+      const expectedErrors = ['ReferenceRelationshipOther.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -528,7 +545,7 @@ describe('The residence model', () => {
         ReferenceRelationship: { values: ['Neighbor', 'Other'] },
       }
 
-      const expectedErrors = ['ReferenceRelationshipOther.required']
+      const expectedErrors = ['ReferenceRelationshipOther.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -543,7 +560,7 @@ describe('The residence model', () => {
         ReferenceRelationshipOther: { value: '' },
       }
 
-      const expectedErrors = ['ReferenceRelationshipOther.hasValue']
+      const expectedErrors = ['ReferenceRelationshipOther.hasValue.MISSING_VALUE']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -557,7 +574,7 @@ describe('The residence model', () => {
         ReferenceEmail: 'notanemail',
       }
 
-      const expectedErrors = ['ReferenceEmail.model']
+      const expectedErrors = ['ReferenceEmail.model.value.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -572,7 +589,7 @@ describe('The residence model', () => {
           ReferenceEmailNotApplicable: { applicable: true },
         }
 
-        const expectedErrors = ['ReferenceEmail.required']
+        const expectedErrors = ['ReferenceEmail.presence.REQUIRED']
         expect(validateModel(testData, residence))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
@@ -588,7 +605,7 @@ describe('The residence model', () => {
           ReferenceEmailNotApplicable: { applicable: false },
         }
 
-        const expectedErrors = ['ReferenceEmail.required']
+        const expectedErrors = ['ReferenceEmail.presence.REQUIRED']
         expect(validateModel(testData, residence))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
@@ -603,7 +620,11 @@ describe('The residence model', () => {
         ReferenceAddress: 'Not a valid address',
       }
 
-      const expectedErrors = ['ReferenceAddress.location']
+      const expectedErrors = [
+        'ReferenceAddress.location.street.presence.REQUIRED',
+        'ReferenceAddress.location.city.presence.REQUIRED',
+        'ReferenceAddress.location.country.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))

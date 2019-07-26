@@ -57,7 +57,12 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData, {})).toEqual(['to.date.date.datetime.INVALID_DATE'])
+    expect(daterange(testData, {})).toEqual([
+      'to.date.day.presence.REQUIRED',
+      'to.date.month.presence.REQUIRED',
+      'to.date.year.presence.REQUIRED',
+      'to.date.date.datetime.INVALID_DATE',
+    ])
   })
 
   it('fails a date range where the "from" value is after the "to" value', () => {
