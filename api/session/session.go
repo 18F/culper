@@ -2,10 +2,12 @@ package session
 
 import (
 	"database/sql"
+	"encoding/base64"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
-	"github.com/google/uuid"
+	"github.com/gorilla/securecookie"
+	"github.com/pkg/errors"
 )
 
 // SessionCookieName is the name of the cookie that is used to store the session
@@ -25,9 +27,27 @@ func NewSessionService(timeout time.Duration, store api.StorageService) *Service
 	}
 }
 
+//TODO Log Correct
+
+// generateSessionKey generates a cryptographically random session key
+func generateSessionKey() (string, error) {
+	secureBytes := securecookie.GenerateRandomKey(32)
+	if secureBytes == nil {
+		return "", errors.New("Failed to generate random data for a key")
+	}
+
+	secureString := base64.StdEncoding.EncodeToString(secureBytes)
+
+	return secureString, nil
+
+}
+
 // UserDidAuthenticate returns a session key and an error if applicable
 func (s Service) UserDidAuthenticate(accountID int, sessionIndex sql.NullString) (string, error) {
-	sessionKey := uuid.New().String()
+	sessionKey, keyErr := generateSessionKey()
+	if keyErr != nil {
+		return "", keyErr
+	}
 
 	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, sessionIndex, s.timeout)
 
