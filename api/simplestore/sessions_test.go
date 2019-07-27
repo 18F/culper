@@ -171,3 +171,69 @@ func TestDeleteSessionReturnsErrIfSessionNotFound(t *testing.T) {
 		t.Fatal("session should not exist")
 	}
 }
+
+func TestSessionDBConstraints(t *testing.T) {
+	s, account, sessionKey := getTestObjects(t)
+	expirationDuration := 5 * time.Minute
+	expirationDate := time.Now().UTC().Add(expirationDuration)
+	sessionIndex := "test-session-index"
+
+	justCreateQuery := `INSERT INTO Sessions (session_key, account_id, session_index, expiration_date) VALUES ($1, $2, $3, $4)`
+
+	// bogus account ID
+	_, createErr := s.db.Exec(justCreateQuery, sessionKey, -200, sessionIndex, expirationDate)
+	if createErr == nil {
+		t.Log("Should not have created a bogus session: bogus account id")
+		t.Fail()
+
+		s.DeleteSession(sessionKey)
+	}
+
+	// missing account.ID
+	_, createErr = s.db.Exec(justCreateQuery, sessionKey, sql.NullInt64{}, sessionIndex, expirationDate)
+	if createErr == nil {
+		t.Log("Should not have created a bogus session: missing account id")
+		t.Fail()
+
+		s.DeleteSession(sessionKey)
+	}
+
+	// nil sessionkey
+	_, createErr = s.db.Exec(justCreateQuery, NullString(), account.ID, sessionIndex, expirationDate)
+	if createErr == nil {
+		t.Log("Should not have created a bogus session: missing sessionkey")
+		t.Fail()
+	}
+
+	noDateQuery := `INSERT INTO Sessions (session_key, account_id, session_index) VALUES ($1, $2, $3)`
+
+	_, createErr = s.db.Exec(noDateQuery, sessionKey, account.ID, sessionIndex)
+	if createErr == nil {
+		t.Log("Should not have created a bogus session: missing date")
+		t.Fail()
+	}
+
+	// nil sessionIndex, this creates a record we can check UNIQE against
+	_, createErr = s.db.Exec(justCreateQuery, sessionKey, account.ID, NullString(), expirationDate)
+	if createErr != nil {
+		t.Log("Should have created a session without a sessionIndex")
+		t.Fail()
+	}
+
+	// duplicate accountid
+	differentSessionKey := uuid.New().String()
+	_, createErr = s.db.Exec(justCreateQuery, differentSessionKey, account.ID, NullString(), expirationDate)
+	if createErr == nil {
+		t.Log("Should not have created a session with a duplicate account ID")
+		t.Fail()
+	}
+
+	// duplicate sessionkey
+	differentAccount := createAccount(t, s)
+	_, createErr = s.db.Exec(justCreateQuery, sessionKey, differentAccount.ID, NullString(), expirationDate)
+	if createErr == nil {
+		t.Log("Should not have created a session with a duplicate SessionKey")
+		t.Fail()
+	}
+
+}
