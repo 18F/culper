@@ -1,29 +1,26 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
+import { validateModel } from 'models/validate'
 import cohabitant from 'models/cohabitant'
+import relationshipsCohabitants from 'models/sections/relationshipsCohabitants'
 
 export const validateCohabitant = data => validateModel(data, cohabitant) === true
 
-export const validateCohabitants = (data) => {
-  const cohabitantsModel = {
-    HasCohabitant: {
-      presence: true,
-      hasValue: { validator: hasYesOrNo },
-    },
-    CohabitantList: (value, attributes) => {
-      if (attributes.HasCohabitant && attributes.HasCohabitant.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: cohabitant },
-        }
-      }
+export const validateCohabitants = data => validateModel(data, relationshipsCohabitants) === true
 
-      return {}
-    },
+export const validateSimilarSpouse = (cohabitantName, spouse) => {
+  if (!cohabitantName || !spouse) {
+    return false
   }
 
-  return validateModel(data, cohabitantsModel) === true
-}
+  if (
+    cohabitantName.first === spouse.first
+    && cohabitantName.last === spouse.last
+    && cohabitantName.middle === spouse.middle
+  ) {
+    return true
+  }
 
+  return false
+}
 export default class CohabitantsValidator {
   constructor(data = {}) {
     this.data = data
@@ -41,19 +38,7 @@ export class CohabitantValidator {
   }
 
   similarSpouse(spouse) {
-    if (!this.name || !spouse) {
-      return false
-    }
-
-    if (
-      this.name.first === spouse.first
-      && this.name.last === spouse.last
-      && this.name.middle === spouse.middle
-    ) {
-      return true
-    }
-
-    return false
+    return validateSimilarSpouse(this.name, spouse)
   }
 
   validForeignBornDocument() {

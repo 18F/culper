@@ -1,58 +1,16 @@
-import name from 'models/shared/name'
-import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
-import foreignBornDocument from 'models/foreignBornDocument'
-import { countryString } from 'validators/location'
-import { DEFAULT_LATEST } from 'constants/dateLimits'
+import { hasYesOrNo } from 'models/validate'
+import cohabitant from 'models/cohabitant'
 
-export const otherName = {
-  OtherName: {
+const relationshipsCohabitants = {
+  HasCohabitant: {
     presence: true,
-    model: { validator: name },
+    hasValue: { validator: hasYesOrNo },
   },
-  MaidenName: { presence: true, hasValue: true },
-  DatesUsed: { presence: true, daterange: true },
-}
-
-const relationshipsCohabitant = {
-  Name: {
-    presence: true,
-    model: { validator: name },
-  },
-  Birthdate: {
-    presence: true,
-    date: true,
-  },
-  BirthPlace: {
-    presence: true,
-    location: { validator: birthplaceWithoutCounty },
-  },
-  SSN: {
-    presence: true,
-    ssn: true,
-  },
-  Citizenship: {
-    presence: true,
-    country: true,
-  },
-  OtherNames: (value, attributes) => {
-    const dateLimits = { latest: DEFAULT_LATEST }
-    if (attributes.Birthdate) dateLimits.earliest = attributes.Birthdate
-
-    return {
-      presence: true,
-      branchCollection: {
-        validator: otherName,
-        ...dateLimits,
-      },
-    }
-  },
-  ForeignBornDocument: (value, attributes = {}) => {
-    if (attributes.BirthPlace
-      && attributes.BirthPlace.country
-      && countryString(attributes.BirthPlace.country) !== 'United States') {
+  CohabitantList: (value, attributes) => {
+    if (attributes.HasCohabitant && attributes.HasCohabitant.value === 'Yes') {
       return {
         presence: true,
-        model: { validator: foreignBornDocument },
+        accordion: { validator: cohabitant },
       }
     }
 
@@ -60,4 +18,4 @@ const relationshipsCohabitant = {
   },
 }
 
-export default relationshipsCohabitant
+export default relationshipsCohabitants

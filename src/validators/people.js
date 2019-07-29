@@ -1,25 +1,10 @@
 import { validateModel } from 'models/validate'
 import person from 'models/person'
+import relationshipsPeople from 'models/sections/relationshipsPeople'
 
-const minimumYears = 7
-const minimumPeople = 3
-
-export const validatePeople = (data) => {
-  const peopleModel = {
-    List: {
-      presence: true,
-      accordion: {
-        validator: person,
-        length: { minimum: minimumPeople },
-      },
-      durationCoverage: {
-        requiredDuration: { years: minimumYears },
-      },
-    },
-  }
-
-  return validateModel(data, peopleModel) === true
-}
+export const validatePeople = data => (
+  validateModel(data, relationshipsPeople) === true
+)
 
 export default class PeopleValidator {
   constructor(data = {}) {

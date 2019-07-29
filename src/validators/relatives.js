@@ -1,5 +1,6 @@
 import { validateModel } from 'models/validate'
 import relative, { isCitizen, requireCitizenshipDocumentation } from 'models/relative'
+import relationshipsRelatives from 'models/sections/relationshipsRelatives'
 import alias from 'models/shared/alias'
 
 import {
@@ -18,35 +19,9 @@ export const getMaritalStatus = () => {
   return selectMaritalStatus(state)
 }
 
-export const validateRelatives = (data) => {
-  const maritalStatus = getMaritalStatus()
-
-  const requiredRelations = [
-    i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER,
-    i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER,
-  ]
-
-  if ([MARRIED, SEPARATED].includes(maritalStatus)) {
-    requiredRelations.push(
-      i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER_IN_LAW,
-    )
-    requiredRelations.push(
-      i => i.Item && i.Item.Relation && i.Item.Relation.value === FATHER_IN_LAW,
-    )
-  }
-
-  const relativesModel = {
-    List: {
-      presence: true,
-      accordion: { validator: relative },
-      containsRequiredItems: {
-        requirements: requiredRelations,
-      },
-    },
-  }
-
-  return validateModel(data, relativesModel) === true
-}
+export const validateRelatives = data => (
+  validateModel(data, relationshipsRelatives) === true
+)
 
 export default class RelativesValidator {
   constructor(data = {}) {

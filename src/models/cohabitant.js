@@ -1,10 +1,9 @@
 import name from 'models/shared/name'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import foreignBornDocument from 'models/foreignBornDocument'
-import { OTHER } from 'constants/dateLimits'
+import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
-import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 export const otherName = {
   OtherName: {
