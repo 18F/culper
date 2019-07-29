@@ -20,7 +20,7 @@ describe('The drugOrderedTreatment model', () => {
       DrugType: { value: '' },
     }
     const expectedErrors = [
-      'DrugType.hasValue',
+      'DrugType.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugOrderedTreatment))

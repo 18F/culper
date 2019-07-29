@@ -26,7 +26,7 @@ describe('The alcoholReceivedCounseling model', () => {
       TreatmentEndDate: { month: 8, day: 30, year: 2016 },
     }
     const expectedErrors = [
-      'TreatmentEndDate.date',
+      'TreatmentEndDate.date.date.datetime.DATE_TOO_EARLY',
     ]
 
     expect(validateModel(testData, alcoholReceivedCounseling))
@@ -39,7 +39,7 @@ describe('The alcoholReceivedCounseling model', () => {
       TreatmentEndDate: { month: 8, day: 30, year: 2030 },
     }
     const expectedErrors = [
-      'TreatmentEndDate.date',
+      'TreatmentEndDate.date.date.datetime.DATE_TOO_LATE',
     ]
 
     expect(validateModel(testData, alcoholReceivedCounseling))

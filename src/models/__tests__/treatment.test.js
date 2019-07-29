@@ -64,7 +64,7 @@ describe('The treatment model', () => {
       },
     }
 
-    const expectedErrors = ['Address.location']
+    const expectedErrors = ['Address.location.street.format.INVALID_FORMAT']
 
     expect(validateModel(testData, treatment))
       .toEqual(expect.arrayContaining(expectedErrors))

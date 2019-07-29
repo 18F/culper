@@ -69,7 +69,7 @@ describe('The sentence model', () => {
           to: { day: 2, month: 8, year: 2000 },
         },
       }
-      const expectedErrors = ['IncarcerationDates.daterange']
+      const expectedErrors = ['IncarcerationDates.daterange.DATE_RANGE_TOO_SHORT']
 
       expect(validateModel(testData, sentence))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -103,7 +103,7 @@ describe('The sentence model', () => {
           to: { day: 2, month: 8, year: 2001 },
         },
       }
-      const expectedErrors = ['IncarcerationDates.daterange']
+      const expectedErrors = ['IncarcerationDates.daterange.DATE_RANGE_TOO_LONG']
 
       expect(validateModel(testData, sentence))
         .toEqual(expect.arrayContaining(expectedErrors))

@@ -1,9 +1,10 @@
+/* eslint import/no-cycle: 0 */
 import { validate } from 'validate.js'
 import { validateModel } from 'models/validate'
 import {
   today, cleanDateObject, createDateFromObject, createDurationFromObject,
 } from 'helpers/date'
-import { INVALID_DATE_RANGE } from 'constants/errors'
+import { INVALID_DATE_RANGE, DATE_RANGE_TOO_SHORT, DATE_RANGE_TOO_LONG } from 'constants/errors'
 
 const dateRangeValidator = (value = {}, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
@@ -30,12 +31,12 @@ const dateRangeValidator = (value = {}, options, key, attributes, globalOptions)
       const rangeDiff = toDateObj.diff(fromDateObj, durationUnit).as(durationUnit)
       if (minDuration
         && (createDurationFromObject(minDuration).as(durationUnit) > rangeDiff)) {
-        return 'Range is shorter than minimum duration'
+        return DATE_RANGE_TOO_SHORT
       }
 
       if (maxDuration
         && (createDurationFromObject(maxDuration).as(durationUnit) < rangeDiff)) {
-        return 'Range exceeds maximum duration'
+        return DATE_RANGE_TOO_LONG
       }
     }
 

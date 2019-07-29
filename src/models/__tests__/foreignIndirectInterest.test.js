@@ -45,7 +45,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Firstname: { value: '!!invalid' },
     }
-    const expectedErrors = ['Firstname.hasValue.MISSING_VALUE']
+    const expectedErrors = ['Firstname.hasValue.value.format.INVALID_FORMAT']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -54,7 +54,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Lastname: { value: 'myname12345' },
     }
-    const expectedErrors = ['Lastname.hasValue.MISSING_VALUE']
+    const expectedErrors = ['Lastname.hasValue.value.format.INVALID_FORMAT']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -81,7 +81,7 @@ describe('The foreignIndirectInterest model', () => {
     const testData = {
       Acquired: { day: 3, month: 12, year: 2050 },
     }
-    const expectedErrors = ['Acquired.date']
+    const expectedErrors = ['Acquired.date.date.datetime.DATE_TOO_LATE']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -147,7 +147,7 @@ describe('The foreignIndirectInterest model', () => {
       Acquired: { day: 2, month: 1, year: 2015 },
       Sold: { day: 2, month: 10, year: 1990 },
     }
-    const expectedErrors = ['Sold.date']
+    const expectedErrors = ['Sold.date.date.datetime.DATE_TOO_EARLY']
     expect(validateModel(testData, foreignIndirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

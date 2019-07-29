@@ -42,7 +42,7 @@ describe('The financial taxes model', () => {
       Year: { year: 2015 },
       Date: { month: 5, year: 2014 },
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, financialTaxes))
       .toEqual(expect.arrayContaining(expectedErrors))

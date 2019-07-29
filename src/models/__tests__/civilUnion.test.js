@@ -139,7 +139,7 @@ describe('The civilUnion model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 1800 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -149,7 +149,7 @@ describe('The civilUnion model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -198,7 +198,7 @@ describe('The civilUnion model', () => {
 
   it('EnteredCivilUnion is required', () => {
     const testData = {}
-    const expectedErrors = ['EnteredCivilUnion.required']
+    const expectedErrors = ['EnteredCivilUnion.presence.REQUIRED']
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -207,14 +207,18 @@ describe('The civilUnion model', () => {
     const testData = {
       EnteredCivilUnion: 'January 2',
     }
-    const expectedErrors = ['EnteredCivilUnion.date']
+    const expectedErrors = [
+      'EnteredCivilUnion.date.day.presence.REQUIRED',
+      'EnteredCivilUnion.date.month.presence.REQUIRED',
+      'EnteredCivilUnion.date.year.presence.REQUIRED',
+    ]
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('Email is required', () => {
     const testData = {}
-    const expectedErrors = ['Email.required']
+    const expectedErrors = ['Email.presence.REQUIRED']
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -223,7 +227,7 @@ describe('The civilUnion model', () => {
     const testData = {
       Email: { value: 'invalid email' },
     }
-    const expectedErrors = ['Email.hasValue']
+    const expectedErrors = ['Email.hasValue.value.email.INVALID_EMAIL']
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -325,7 +329,7 @@ describe('The civilUnion model', () => {
         },
       }
 
-      const expectedErrors = ['AlternateAddress.required']
+      const expectedErrors = ['AlternateAddress.presence.REQUIRED']
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -351,7 +355,9 @@ describe('The civilUnion model', () => {
           },
         }
 
-        const expectedErrors = ['AlternateAddress.model']
+        const expectedErrors = [
+          'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+        ]
 
         expect(validateModel(testData, civilUnion))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -472,7 +478,7 @@ describe('The civilUnion model', () => {
         },
       }
 
-      const expectedErrors = ['AlternateAddress.required']
+      const expectedErrors = ['AlternateAddress.presence.REQUIRED']
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -499,7 +505,9 @@ describe('The civilUnion model', () => {
         },
       }
 
-      const expectedErrors = ['AlternateAddress.model']
+      const expectedErrors = [
+        'AlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+      ]
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -789,7 +797,7 @@ describe('The civilUnion model', () => {
         Separated: { value: 'Yes' },
         DateSeparated: { day: 5, month: 10, year: 2000 },
       }
-      const expectedErrors = ['DateSeparated.date']
+      const expectedErrors = ['DateSeparated.date.date.datetime.DATE_TOO_EARLY']
 
       expect(validateModel(testData, civilUnion))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -802,7 +810,7 @@ describe('The civilUnion model', () => {
         DateSeparated: { day: 5, month: 10, year: 2030 },
       }
       const expectedErrors = [
-        'DateSeparated.date.date.datetime.INVALID_DATE',
+        'DateSeparated.date.date.datetime.DATE_TOO_LATE',
       ]
 
       expect(validateModel(testData, civilUnion))

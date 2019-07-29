@@ -51,7 +51,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       Acquired: { day: 2, month: 11, year: 2030 },
     }
-    const expectedErrors = ['Acquired.date']
+    const expectedErrors = ['Acquired.date.date.datetime.DATE_TOO_LATE']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

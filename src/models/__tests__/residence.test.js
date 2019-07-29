@@ -59,7 +59,7 @@ describe('The residence model', () => {
       },
     }
 
-    const expectedErrors = ['Address.location']
+    const expectedErrors = ['Address.location.street.format.INVALID_FORMAT']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -75,7 +75,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['AlternateAddress.required']
+      const expectedErrors = ['AlternateAddress.presence.REQUIRED']
 
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -101,7 +101,9 @@ describe('The residence model', () => {
           },
         }
 
-        const expectedErrors = ['AlternateAddress.model']
+        const expectedErrors = [
+          'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+        ]
 
         expect(validateModel(testData, residence))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -131,7 +133,7 @@ describe('The residence model', () => {
           Role: { value: 'Own' },
         }
 
-        const expectedErrors = ['AlternateAddress.model']
+        const expectedErrors = ['AlternateAddress.model.Address.location.street.format.INVALID_FORMAT']
 
         expect(validateModel(testData, residence))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -200,7 +202,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['AlternateAddress.required']
+      const expectedErrors = ['AlternateAddress.presence.REQUIRED']
 
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -227,7 +229,9 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['AlternateAddress.model']
+      const expectedErrors = [
+        'AlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+      ]
 
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -258,7 +262,9 @@ describe('The residence model', () => {
         Role: { value: 'Own' },
       }
 
-      const expectedErrors = ['AlternateAddress.model']
+      const expectedErrors = [
+        'AlternateAddress.model.Address.location.street.format.INVALID_FORMAT',
+      ]
 
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -677,7 +683,7 @@ describe('The residence model', () => {
           },
         }
 
-        const expectedErrors = ['ReferenceAlternateAddress.required']
+        const expectedErrors = ['ReferenceAlternateAddress.presence.REQUIRED']
 
         expect(validateModel(testData, residence))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -703,7 +709,9 @@ describe('The residence model', () => {
             },
           }
 
-          const expectedErrors = ['ReferenceAlternateAddress.model']
+          const expectedErrors = [
+            'ReferenceAlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+          ]
 
           expect(validateModel(testData, residence))
             .toEqual(expect.arrayContaining(expectedErrors))
@@ -815,7 +823,7 @@ describe('The residence model', () => {
           },
         }
 
-        const expectedErrors = ['ReferenceAlternateAddress.required']
+        const expectedErrors = ['ReferenceAlternateAddress.presence.REQUIRED']
 
         expect(validateModel(testData, residence))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -842,7 +850,9 @@ describe('The residence model', () => {
           },
         }
 
-        const expectedErrors = ['ReferenceAlternateAddress.model']
+        const expectedErrors = [
+          'ReferenceAlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+        ]
 
         expect(validateModel(testData, residence))
           .toEqual(expect.arrayContaining(expectedErrors))

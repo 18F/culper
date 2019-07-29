@@ -103,7 +103,7 @@ describe('The location/address model', () => {
         country: 'United States',
       }
 
-      const expectedErrors = ['country.inclusion']
+      const expectedErrors = ['country.inclusion.INCLUSION']
 
       expect(validateModel(testData, address, { militaryAddress: true }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -133,7 +133,7 @@ describe('The location/address model', () => {
         country: 'POSTOFFICE',
       }
 
-      const expectedErrors = ['country.exclusion']
+      const expectedErrors = ['country.exclusion.EXCLUSION']
 
       expect(validateModel(testData, address, { militaryAddress: false }))
         .toEqual(expect.arrayContaining(expectedErrors))

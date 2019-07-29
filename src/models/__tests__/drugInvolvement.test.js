@@ -24,7 +24,7 @@ describe('The drugInvolvement model', () => {
       DrugType: { value: 'Other' },
     }
     const expectedErrors = [
-      'DrugType.hasValue',
+      'DrugType.hasValue.value.exclusion.EXCLUSION',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -79,7 +79,7 @@ describe('The drugInvolvement model', () => {
       RecentInvolvement: { month: 5, year: 1990 },
     }
     const expectedErrors = [
-      'RecentInvolvement.date',
+      'RecentInvolvement.date.date.datetime.DATE_TOO_EARLY',
     ]
 
     expect(validateModel(testData, drugInvolvement))

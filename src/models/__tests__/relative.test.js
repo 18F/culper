@@ -173,7 +173,7 @@ describe('The relative model', () => {
         Birthdate: { day: 10, month: 10, year: 1800 },
       }
 
-      const expectedErrors = ['Birthdate.date']
+      const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
       expect(validateModel(testData, relative))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -186,7 +186,7 @@ describe('The relative model', () => {
         Birthdate: { day: 10, month: 10, year: 1800 },
       }
 
-      const expectedErrors = ['Birthdate.date']
+      const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
       expect(validateModel(testData, relative))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -197,7 +197,7 @@ describe('The relative model', () => {
         Birthdate: { day: 10, month: 10, year: 2050 },
       }
 
-      const expectedErrors = ['Birthdate.date']
+      const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
       expect(validateModel(testData, relative))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -569,7 +569,7 @@ describe('The relative model', () => {
       const testData = {
         IsDeceased: { value: 'No' },
       }
-      const expectedErrors = ['AlternateAddress.required']
+      const expectedErrors = ['AlternateAddress.presence.REQUIRED']
 
       expect(validateModel(testData, relative))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -582,7 +582,9 @@ describe('The relative model', () => {
           HasDifferentAddress: false,
         },
       }
-      const expectedErrors = ['AlternateAddress.model']
+      const expectedErrors = [
+        'AlternateAddress.model.HasDifferentAddress.hasValue.MISSING_VALUE',
+      ]
 
       expect(validateModel(testData, relative))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -602,7 +604,9 @@ describe('The relative model', () => {
           },
         },
       }
-      const expectedErrors = ['AlternateAddress.model']
+      const expectedErrors = [
+        'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+      ]
 
       expect(validateModel(testData, relative))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -1083,7 +1087,7 @@ describe('The relative model', () => {
           FirstContact: { day: 8, month: 5, year: 2015 },
           LastContact: { day: 2, month: 3, year: 2015 },
         }
-        const expectedErrors = ['LastContact.date']
+        const expectedErrors = ['LastContact.date.date.datetime.DATE_TOO_EARLY']
 
         expect(validateModel(testData, relative))
           .toEqual(expect.arrayContaining(expectedErrors))

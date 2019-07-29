@@ -22,7 +22,7 @@ describe('The drugVoluntaryTreatment model', () => {
       DrugType: { value: 'Other' },
     }
     const expectedErrors = [
-      'DrugType.hasValue',
+      'DrugType.hasValue.value.exclusion.EXCLUSION',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))

@@ -60,7 +60,7 @@ describe('The financial bankruptcy model', () => {
       DateDischarged: { month: 1, year: 2001 },
     }
 
-    const expectedErrors = ['DateDischarged.date']
+    const expectedErrors = ['DateDischarged.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, financialBankruptcy))
       .toEqual(expect.arrayContaining(expectedErrors))

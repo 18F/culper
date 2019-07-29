@@ -124,7 +124,7 @@ describe('The foreignPassport model', () => {
       Issued: { day: 5, month: 10, year: 2018 },
       Expiration: { day: 5, month: 10, year: 2015 },
     }
-    const expectedErrors = ['Expiration.date']
+    const expectedErrors = ['Expiration.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))

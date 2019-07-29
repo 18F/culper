@@ -85,7 +85,7 @@ describe('The military service model', () => {
         Service: { value: 'Army' },
         ServiceState: { value: 'MA' },
       }
-      const expectedErrors = ['ServiceState.requireEmpty']
+      const expectedErrors = ['ServiceState.requireEmpty.VALUE_NOT_EMPTY']
 
       expect(validateModel(testData, militaryService))
         .toEqual(expect.arrayContaining(expectedErrors))

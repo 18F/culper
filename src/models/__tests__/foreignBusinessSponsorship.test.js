@@ -51,7 +51,7 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 1800 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -61,7 +61,7 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))

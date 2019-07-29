@@ -37,7 +37,7 @@ describe('The alcoholNegativeImpact model', () => {
       },
     }
     const expectedErrors = [
-      'Occurred.date',
+      'Occurred.date.date.datetime.DATE_TOO_EARLY',
     ]
 
     expect(validateModel(testData, alcoholNegativeImpact))

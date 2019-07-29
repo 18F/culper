@@ -58,7 +58,7 @@ describe('The foreignBusinessFamily model', () => {
     const testData = {
       Date: { day: 2, month: 12, year: 1800 },
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, foreignBusinessFamily))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -68,7 +68,7 @@ describe('The foreignBusinessFamily model', () => {
     const testData = {
       Date: { day: 2, month: 12, year: 3000 },
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, foreignBusinessFamily))
       .toEqual(expect.arrayContaining(expectedErrors))

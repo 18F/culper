@@ -112,7 +112,7 @@ describe('The date range validator', () => {
         present: false,
       }
 
-      expect(daterange(testData, { maxDuration: { years: 1 } })).toBeTruthy()
+      expect(daterange(testData, { maxDuration: { years: 1 } })).toEqual('DATE_RANGE_TOO_LONG')
     })
 
     it('passes if the date range diff is less than or equal to the max duration', () => {
@@ -134,7 +134,7 @@ describe('The date range validator', () => {
         present: false,
       }
 
-      expect(daterange(testData, { minDuration: { years: 1 } })).toBeTruthy()
+      expect(daterange(testData, { minDuration: { years: 1 } })).toEqual('DATE_RANGE_TOO_SHORT')
     })
 
     it('passes if the date range diff is greater than or equal to the min duration', () => {

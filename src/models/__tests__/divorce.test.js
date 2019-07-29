@@ -49,7 +49,7 @@ describe('The divorce model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 1800 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -59,7 +59,7 @@ describe('The divorce model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -194,7 +194,7 @@ describe('The divorce model', () => {
       Recognized: { day: 2, month: 12, year: 2010 },
       DateDivorced: { day: 2, month: 12, year: 2009 },
     }
-    const expectedErrors = ['DateDivorced.date']
+    const expectedErrors = ['DateDivorced.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -204,7 +204,7 @@ describe('The divorce model', () => {
     const testData = {
       DateDivorced: { day: 2, month: 12, year: 2050 },
     }
-    const expectedErrors = ['DateDivorced.date']
+    const expectedErrors = ['DateDivorced.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))

@@ -141,7 +141,7 @@ describe('The cohabitant model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 1800 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -151,7 +151,7 @@ describe('The cohabitant model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -287,7 +287,7 @@ describe('The cohabitant model', () => {
 
   it('CohabitationBegan is required', () => {
     const testData = {}
-    const expectedErrors = ['CohabitationBegan.required']
+    const expectedErrors = ['CohabitationBegan.presence.REQUIRED']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -297,7 +297,10 @@ describe('The cohabitant model', () => {
     const testData = {
       CohabitationBegan: { year: 3000 },
     }
-    const expectedErrors = ['CohabitationBegan.date']
+    const expectedErrors = [
+      'CohabitationBegan.date.day.presence.REQUIRED',
+      'CohabitationBegan.date.month.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))

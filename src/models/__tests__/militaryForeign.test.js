@@ -73,7 +73,7 @@ describe('The foreign military model', () => {
         Dates: { present: true },
       }
       const expectedErrors = [
-        'ReasonLeft.required',
+        'ReasonLeft.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, militaryForeign))
@@ -90,7 +90,7 @@ describe('The foreign military model', () => {
         },
       }
       const expectedErrors = [
-        'ReasonLeft.required',
+        'ReasonLeft.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, militaryForeign))

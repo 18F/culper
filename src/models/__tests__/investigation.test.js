@@ -94,7 +94,7 @@ describe('The investigation model', () => {
       Completed: { day: 2, month: 1, year: 2019 },
       Granted: { day: 2, month: 10, year: 2018 },
     }
-    const expectedErrors = ['Granted.date']
+    const expectedErrors = ['Granted.date.date.datetime.DATE_TOO_EARLY']
     expect(validateModel(testData, investigation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

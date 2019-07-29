@@ -95,7 +95,7 @@ describe('The foreignContact model', () => {
       FirstContact: { year: 2003, month: 5, day: 2 },
       LastContact: { year: 2000, month: 2, day: 5 },
     }
-    const expectedErrors = ['LastContact.date']
+    const expectedErrors = ['LastContact.date.date.datetime.DATE_TOO_EARLY']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -303,7 +303,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 1800 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -313,7 +313,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -393,7 +393,7 @@ describe('The foreignContact model', () => {
 
   it('AlternateAddress is required', () => {
     const testData = {}
-    const expectedErrors = ['AlternateAddress.required']
+    const expectedErrors = ['AlternateAddress.presence.REQUIRED']
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -405,7 +405,9 @@ describe('The foreignContact model', () => {
         HasDifferentAddress: false,
       },
     }
-    const expectedErrors = ['AlternateAddress.model']
+    const expectedErrors = [
+      'AlternateAddress.model.HasDifferentAddress.hasValue.MISSING_VALUE',
+    ]
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -424,7 +426,9 @@ describe('The foreignContact model', () => {
         },
       },
     }
-    const expectedErrors = ['AlternateAddress.model']
+    const expectedErrors = [
+      'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+    ]
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))

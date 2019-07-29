@@ -145,7 +145,7 @@ describe('The PhysicalAddress model', () => {
         },
       }
 
-      const expectedErrors = ['Address.location']
+      const expectedErrors = ['Address.location.country.inclusion.INCLUSION']
 
       expect(validateModel(testData, physicalAddress, { militaryAddress: true }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -187,7 +187,7 @@ describe('The PhysicalAddress model', () => {
         },
       }
 
-      const expectedErrors = ['Address.location']
+      const expectedErrors = ['Address.location.country.exclusion.EXCLUSION']
 
       expect(validateModel(testData, physicalAddress, { militaryAddress: false }))
         .toEqual(expect.arrayContaining(expectedErrors))

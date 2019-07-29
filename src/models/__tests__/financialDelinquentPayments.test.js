@@ -7,7 +7,7 @@ describe('The financial delinquent payments model', () => {
       Date: { month: 1, year: 2015 },
       Resolved: { month: 5, year: 2014 },
     }
-    const expectedErrors = ['Resolved.date']
+    const expectedErrors = ['Resolved.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, financialDelinquentPayments))
       .toEqual(expect.arrayContaining(expectedErrors))

@@ -148,7 +148,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Began: { year: 2000, month: 9, day: 20 },
       }
-      const expectedErrors = ['Began.date']
+      const expectedErrors = ['Began.date.date.datetime.DATE_TOO_EARLY']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Future' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -248,7 +248,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Began: { year: 2030, month: 9, day: 20 },
       }
-      const expectedErrors = ['Began.date']
+      const expectedErrors = ['Began.date.date.datetime.DATE_TOO_LATE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -277,7 +277,7 @@ describe('The foreignBenefitType model', () => {
         Began: { year: 2010, month: 2, day: 1 },
         End: { year: 2000, month: 9, day: 20 },
       }
-      const expectedErrors = ['End.date']
+      const expectedErrors = ['End.date.date.datetime.DATE_TOO_EARLY']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Continuing' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -397,7 +397,7 @@ describe('The foreignBenefitType model', () => {
       const testData = {
         Began: { year: 2030, month: 9, day: 20 },
       }
-      const expectedErrors = ['Began.date']
+      const expectedErrors = ['Began.date.date.datetime.DATE_TOO_LATE']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -426,7 +426,7 @@ describe('The foreignBenefitType model', () => {
         Began: { year: 2010, month: 2, day: 1 },
         End: { year: 2000, month: 9, day: 20 },
       }
-      const expectedErrors = ['End.date']
+      const expectedErrors = ['End.date.date.datetime.DATE_TOO_EARLY']
 
       expect(validateModel(testData, foreignBenefitType, { benefitType: 'Other' }))
         .toEqual(expect.arrayContaining(expectedErrors))

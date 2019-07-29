@@ -96,7 +96,7 @@ describe('The US Passport model', () => {
         Issued: { day: 5, month: 12, year: 2010 },
         Expiration: { day: 5, month: 12, year: 2009 },
       }
-      const expectedErrors = ['Expiration.date']
+      const expectedErrors = ['Expiration.date.date.datetime.DATE_TOO_EARLY']
       expect(validateModel(testData, usPassport))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -108,7 +108,7 @@ describe('The US Passport model', () => {
         Expiration: { day: 5, month: 12, year: 2030 },
       }
 
-      const expectedErrors = ['Expiration.date']
+      const expectedErrors = ['Expiration.date.date.datetime.DATE_TOO_LATE']
       expect(validateModel(testData, usPassport))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
