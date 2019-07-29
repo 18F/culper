@@ -2,6 +2,17 @@ import { validateModel } from 'models/validate'
 import financialDelinquentPayments from '../financialDelinquentPayments'
 
 describe('The financial delinquent payments model', () => {
+  it('Resolved must be after Date', () => {
+    const testData = {
+      Date: { month: 1, year: 2015 },
+      Resolved: { month: 5, year: 2014 },
+    }
+    const expectedErrors = ['Resolved.date']
+
+    expect(validateModel(testData, financialDelinquentPayments))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   describe('SF86', () => {
     const options = {
       requiredFinancialDelinquentName: true,

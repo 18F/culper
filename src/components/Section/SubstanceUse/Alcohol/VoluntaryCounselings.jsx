@@ -13,6 +13,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import VoluntaryCounseling from './VoluntaryCounseling'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_ALCOHOL_VOLUNTARY.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_ALCOHOL_VOLUNTARY.name,
@@ -85,7 +86,7 @@ export class VoluntaryCounselings extends Subsection {
           labelSize="h4"
           className="sought-treatment"
           {...this.props.SoughtTreatment}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateSoughtTreatment}
@@ -109,7 +110,7 @@ export class VoluntaryCounselings extends Subsection {
           >
             <VoluntaryCounseling
               name="Item"
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

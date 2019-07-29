@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import SupportItem from './SupportItem'
 
 const sectionConfig = {
+  key: FOREIGN_ACTIVITIES_SUPPORT.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_ACTIVITIES_SUPPORT.name,
@@ -74,7 +75,7 @@ export class Support extends Subsection {
           label={i18n.t('foreign.activities.support.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignSupport}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignSupport}
           onError={this.handleError}
           required={this.props.required}
@@ -98,7 +99,7 @@ export class Support extends Subsection {
           >
             <SupportItem
               name="Item"
-              bind
+              bind={true}
               dispatch={this.props.dispatch}
               addressBooks={this.props.addressBooks}
               required={this.props.required}

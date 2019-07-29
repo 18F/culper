@@ -65,6 +65,7 @@ package-lock.json
 /api/bin/load
 /api/bin/load-scenario
 /api/bin/submit
+/api/bin/sftype
 /api/bin/transmit
 /api/bin/unlock
 /api/bin/dbmigrate

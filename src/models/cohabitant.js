@@ -1,6 +1,7 @@
 import name from 'models/shared/name'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import foreignBornDocument from 'models/foreignBornDocument'
+import { OTHER } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
 import { DEFAULT_LATEST } from 'constants/dateLimits'
@@ -21,7 +22,7 @@ const cohabitant = {
   },
   Birthdate: {
     presence: true,
-    date: true,
+    date: OTHER,
   },
   BirthPlace: {
     presence: true,
@@ -46,6 +47,9 @@ const cohabitant = {
         ...dateLimits,
       },
     }
+  },
+  CohabitationBegan: {
+    presence: true, date: true,
   },
   ForeignBornDocument: (value, attributes = {}) => {
     if (attributes.BirthPlace

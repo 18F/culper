@@ -1,6 +1,7 @@
 import name from 'models/shared/name'
 import usCityStateZipInternationalCity from 'models/shared/locations/usCityStateZipInternationalCity'
 import address from 'models/shared/locations/address'
+import { OTHER } from 'constants/dateLimits'
 
 const foreignBusinessSponsorship = {
   Name: { presence: true, model: { validator: name } },
@@ -10,7 +11,7 @@ const foreignBusinessSponsorship = {
       return {}
     }
 
-    return { presence: true, date: true }
+    return { presence: true, date: OTHER }
   },
   Birthplace: { presence: true, location: { validator: usCityStateZipInternationalCity } },
   Address: { presence: true, location: { validator: address } },

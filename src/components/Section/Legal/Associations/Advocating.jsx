@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import AdvocatingItem from './AdvocatingItem'
 
 const sectionConfig = {
+  key: LEGAL_ASSOCIATIONS_ADVOCATING.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_ASSOCIATIONS_ADVOCATING.name,
@@ -82,7 +83,7 @@ export class Advocating extends Subsection {
           labelSize="h4"
           className="legal-associations-advocating-has-advocated"
           {...this.props.HasAdvocated}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -106,7 +107,7 @@ export class Advocating extends Subsection {
           >
             <AdvocatingItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

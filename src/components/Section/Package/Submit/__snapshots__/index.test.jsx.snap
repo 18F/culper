@@ -210,6 +210,12 @@ Not a guarantee of acceptance, but all required fields are complete."
           }
         }
         Submission={Object {}}
+        history={
+          Object {
+            "push": [Function],
+          }
+        }
+        updateApplication={[Function]}
       />,
       "_debugID": 1,
       "_hostContainerInfo": null,
@@ -228,6 +234,10 @@ Not a guarantee of acceptance, but all required fields are complete."
             "formType": "SF86",
           },
           "Submission": Object {},
+          "history": Object {
+            "push": [Function],
+          },
+          "updateApplication": [Function],
         },
         "refs": Object {},
         "renderAccordion": [Function],
@@ -471,6 +481,12 @@ Not a guarantee of acceptance, but all required fields are complete."
       }
     }
     Submission={Object {}}
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    updateApplication={[Function]}
   />,
 }
 `;

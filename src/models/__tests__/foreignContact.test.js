@@ -80,6 +80,16 @@ describe('The foreignContact model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('LastContact cannot be before FirstContact', () => {
+    const testData = {
+      FirstContact: { year: 2003, month: 5, day: 2 },
+      LastContact: { year: 2000, month: 2, day: 5 },
+    }
+    const expectedErrors = ['LastContact.date']
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Methods is required', () => {
     const testData = {}
     const expectedErrors = ['Methods.required']
@@ -272,6 +282,26 @@ describe('The foreignContact model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Birthdate must not be more than 200 years ago', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be in the future', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   describe('if Birthdate is not applicable', () => {
     it('Birthdate is not required', () => {
       const testData = {
@@ -335,6 +365,45 @@ describe('The foreignContact model', () => {
       expect(validateModel(testData, foreignContact))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
+  })
+
+  it('AlternateAddress is required', () => {
+    const testData = {}
+    const expectedErrors = ['AlternateAddress.required']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('AlternateAddress must be a valid physical address', () => {
+    const testData = {
+      AlternateAddress: {
+        HasDifferentAddress: false,
+      },
+    }
+    const expectedErrors = ['AlternateAddress.model']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('AlternateAddress must be a military address', () => {
+    const testData = {
+      AlternateAddress: {
+        HasDifferentAddress: { value: 'Yes' },
+        Address: {
+          street: '123 Main ST',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10003',
+          country: 'United States',
+        },
+      },
+    }
+    const expectedErrors = ['AlternateAddress.model']
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('Employer is required', () => {
@@ -441,6 +510,16 @@ describe('The foreignContact model', () => {
       Birthdate: { year: 1980, month: 10, day: 12 },
       Birthplace: { city: 'London', country: 'United Kingdom' },
       AddressNotApplicable: { applicable: false },
+      AlternateAddress: {
+        HasDifferentAddress: { value: 'Yes' },
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+      },
       Employer: { value: 'Something' },
       EmployerAddressNotApplicable: { applicable: false },
       HasAffiliations: { value: 'No' },

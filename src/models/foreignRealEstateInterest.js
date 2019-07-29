@@ -11,7 +11,7 @@ const foreignRealEstateInterest = {
   },
   RealEstateType: { presence: true, hasValue: true },
   Address: { presence: true, location: { validator: streetCityCountry } },
-  Acquired: { presence: true, date: { requireDay: false } },
+  Acquired: { presence: true, date: true },
   HowAcquired: { presence: true, hasValue: true },
   Cost: { presence: true, hasValue: true },
   Sold: (value, attributes) => {
@@ -20,7 +20,7 @@ const foreignRealEstateInterest = {
       return {}
     }
 
-    return { presence: true, date: { requireDay: false } }
+    return { presence: true, date: true }
   },
   CoOwners: {
     presence: true,

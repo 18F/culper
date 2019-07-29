@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import PoliticalItem from './PoliticalItem'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_POLITICAL.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_POLITICAL.name,
@@ -82,7 +83,7 @@ export class Political extends Subsection {
           label={i18n.t('foreign.business.political.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignPolitical}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignPolitical}
           required={this.props.required}
           onError={this.handleError}
@@ -106,7 +107,7 @@ export class Political extends Subsection {
           >
             <PoliticalItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

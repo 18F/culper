@@ -18,6 +18,7 @@ import connectLegalSection from '../LegalConnector'
 import RevokedItem from './RevokedItem'
 
 const sectionConfig = {
+  key: LEGAL_INVESTIGATIONS_REVOKED.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_INVESTIGATIONS_REVOKED.name,
@@ -96,7 +97,7 @@ export class Revoked extends Subsection {
           labelSize="h4"
           className="legal-investigations-revoked-has-revocations"
           {...this.props.HasRevocations}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -122,7 +123,7 @@ export class Revoked extends Subsection {
           >
             <RevokedItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

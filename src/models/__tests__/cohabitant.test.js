@@ -121,6 +121,26 @@ describe('The cohabitant model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Birthdate must not be more than 200 years ago', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be in the future', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('the birthplace field is required', () => {
     const testData = {}
     const expectedErrors = ['BirthPlace.required']
@@ -235,6 +255,24 @@ describe('The cohabitant model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('CohabitationBegan is required', () => {
+    const testData = {}
+    const expectedErrors = ['CohabitationBegan.required']
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('CohabitationBegan must be a valid date', () => {
+    const testData = {
+      CohabitationBegan: { year: 3000 },
+    }
+    const expectedErrors = ['CohabitationBegan.date']
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('passes a valid cohabitant', () => {
     const testData = {
       Name: { first: 'Person', noMiddleName: true, last: 'Name' },
@@ -244,6 +282,7 @@ describe('The cohabitant model', () => {
       },
       SSN: { first: '234', middle: '12', last: '3490' },
       Citizenship: { value: ['United States'] },
+      CohabitationBegan: { day: 2, month: 10, year: 2000 },
       OtherNames: {
         items: [
           {
@@ -296,6 +335,7 @@ describe('The cohabitant model', () => {
         },
         SSN: { first: '234', middle: '12', last: '3490' },
         Citizenship: { value: ['United States'] },
+        CohabitationBegan: { day: 2, month: 10, year: 2000 },
         OtherNames: {
           items: [
             { Item: { Has: { value: 'No' } } },

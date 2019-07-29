@@ -29,7 +29,7 @@ const offense = {
   },
   CourtCharge: { presence: true, hasValue: true },
   CourtOutcome: { presence: true, hasValue: true },
-  CourtDate: { presence: true, date: true },
+  CourtDate: { presence: true, date: { requireDay: false } },
   WasSentenced: { presence: true, hasValue: { validator: hasYesOrNo } },
   AwaitingTrial: (value, attributes) => (
     checkValue(attributes.WasSentenced, 'No')

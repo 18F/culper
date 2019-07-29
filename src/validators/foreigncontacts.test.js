@@ -1,48 +1,48 @@
 import ForeignContactsValidator, {
-  ForeignNationalValidator
+  ForeignNationalValidator,
 } from './foreigncontacts'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign contacts component validation', function() {
-  it('validate foreign national name', function() {
+describe('Foreign contacts component validation', () => {
+  it('validate foreign national name', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           NameNotApplicable: {
-            applicable: false
-          }
+            applicable: false,
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           NameNotApplicable: {
-            applicable: false
+            applicable: false,
           },
           NameExplanation: {
-            value: 'explanation'
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          NameNotApplicable: {
-            applicable: true
+            value: 'explanation',
           },
-          Name: {}
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
           NameNotApplicable: {
-            applicable: true
+            applicable: true,
+          },
+          Name: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          NameNotApplicable: {
+            applicable: true,
           },
           Name: {
             first: 'Foo',
@@ -51,222 +51,222 @@ describe('Foreign contacts component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
-          }
+            suffix: 'Jr',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validName')
   })
 
-  it('validate foreign nation date of first contact', function() {
+  it('validate foreign nation date of first contact', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           FirstContact: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validFirstContact')
   })
 
-  it('validate foreign nation date of last contact', function() {
+  it('validate foreign nation date of last contact', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           LastContact: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validLastContact')
   })
 
-  it('validate foreign national methods of contact', function() {
+  it('validate foreign national methods of contact', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Methods: { values: [] }
+          Methods: { values: [] },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Methods: { values: ['In person'] }
+          Methods: { values: ['In person'] },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Methods: { values: ['In person', 'Written'] }
+          Methods: { values: ['In person', 'Written'] },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Methods: { values: ['In person', 'Other'] }
+          Methods: { values: ['In person', 'Other'] },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Methods: { values: ['In person', 'Other'] },
           MethodsExplanation: {
-            value: 'explanation'
-          }
+            value: 'explanation',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validMethods')
   })
 
-  it('validate foreign national frequency of contact', function() {
+  it('validate foreign national frequency of contact', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Frequency: { value: '' }
+          Frequency: { value: '' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Frequency: { value: 'Weekly' }
+          Frequency: { value: 'Weekly' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Frequency: { value: 'Other' }
+          Frequency: { value: 'Other' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Frequency: { value: 'Other' },
           FrequencyExplanation: {
-            value: 'explanation'
-          }
+            value: 'explanation',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validFrequency')
   })
 
-  it('validate foreign national nature of the relationship', function() {
+  it('validate foreign national nature of the relationship', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Relationship: { values: [] }
+          Relationship: { values: [] },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Relationship: { values: ['Personal'] }
+          Relationship: { values: ['Personal'] },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Relationship: { values: ['Personal', 'Professional'] }
+          Relationship: { values: ['Personal', 'Professional'] },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          Relationship: { values: ['Personal', 'Other'] }
+          Relationship: { values: ['Personal', 'Other'] },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Relationship: { values: ['Personal', 'Other'] },
           RelationshipExplanation: {
-            value: 'explanation'
-          }
+            value: 'explanation',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Relationship: { values: ['Personal', 'Obligation'] },
           RelationshipExplanation: {
-            value: 'explanation'
-          }
+            value: 'explanation',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validRelationship')
   })
 
-  it('validate foreign national aliases', function() {
+  it('validate foreign national aliases', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           Aliases: {
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Aliases: {
-            items: [{ Item: { Has: { value: 'No' } } }]
-          }
+            items: [{ Item: { Has: { value: 'No' } } }],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Aliases: {
-            items: [{ Item: { Has: { value: 'Yes' } } }]
-          }
+            items: [{ Item: { Has: { value: 'Yes' } } }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -282,169 +282,169 @@ describe('Foreign contacts component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
-                  }
-                }
+                    suffix: 'Jr',
+                  },
+                },
               },
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validAliases')
   })
 
-  it('validate foreign national citizenship', function() {
+  it('validate foreign national citizenship', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          Citizenship: {}
+          Citizenship: {},
         },
-        expected: false
-      },
-      {
-        data: {
-          Citizenship: {
-            value: ['United States']
-          }
-        },
-        expected: true
+        expected: false,
       },
       {
         data: {
           Citizenship: {
-            value: ['United States', 'Germany']
-          }
+            value: ['United States'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
+      {
+        data: {
+          Citizenship: {
+            value: ['United States', 'Germany'],
+          },
+        },
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validCitizenship')
   })
 
-  it('validate foreign national date of birth', function() {
+  it('validate foreign national date of birth', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           BirthdateNotApplicable: {
-            applicable: false
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          BirthdateNotApplicable: {
-            applicable: true
+            applicable: false,
           },
-          Birthdate: {}
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
           BirthdateNotApplicable: {
-            applicable: true
+            applicable: true,
+          },
+          Birthdate: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          BirthdateNotApplicable: {
+            applicable: true,
           },
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016'
-          }
+            year: '2016',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validBirthdate')
   })
 
-  it('validate foreign national place of birth', function() {
+  it('validate foreign national place of birth', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           BirthplaceNotApplicable: {
-            applicable: false
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          BirthplaceNotApplicable: {
-            applicable: true
+            applicable: false,
           },
-          Birthplace: {}
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
           BirthplaceNotApplicable: {
-            applicable: true
+            applicable: true,
+          },
+          Birthplace: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          BirthplaceNotApplicable: {
+            applicable: true,
           },
           Birthplace: {
             domestic: 'Yes',
             country: { value: 'United States' },
             city: 'Arlington',
             county: 'Arlington',
-            state: 'VA'
-          }
+            state: 'VA',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validBirthplace')
   })
 
-  it('validate foreign national current address', function() {
+  it('validate foreign national current address', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           AddressNotApplicable: {
-            applicable: false
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          AddressNotApplicable: {
-            applicable: true
+            applicable: false,
           },
-          Address: {}
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
           AddressNotApplicable: {
-            applicable: true
+            applicable: true,
+          },
+          Address: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          AddressNotApplicable: {
+            applicable: true,
           },
           Address: {
             country: { value: 'United States' },
@@ -452,82 +452,82 @@ describe('Foreign contacts component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validAddress')
   })
 
-  it('validate foreign national employer', function() {
+  it('validate foreign national employer', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           EmployerNotApplicable: {
-            applicable: false
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          EmployerNotApplicable: {
-            applicable: true
+            applicable: false,
           },
-          Employer: {}
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
           EmployerNotApplicable: {
-            applicable: true
+            applicable: true,
+          },
+          Employer: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          EmployerNotApplicable: {
+            applicable: true,
           },
           Employer: {
-            value: 'employer name'
-          }
+            value: 'employer name',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validEmployer')
   })
 
-  it('validate foreign national employer address', function() {
+  it('validate foreign national employer address', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
           EmployerAddressNotApplicable: {
-            applicable: false
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          EmployerAddressNotApplicable: {
-            applicable: true
+            applicable: false,
           },
-          EmployerAddress: {}
         },
-        expected: false
+        expected: true,
       },
       {
         data: {
           EmployerAddressNotApplicable: {
-            applicable: true
+            applicable: true,
+          },
+          EmployerAddress: {},
+        },
+        expected: false,
+      },
+      {
+        data: {
+          EmployerAddressNotApplicable: {
+            applicable: true,
           },
           EmployerAddress: {
             country: { value: 'United States' },
@@ -535,72 +535,72 @@ describe('Foreign contacts component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validEmployerAddress')
   })
 
-  it('validate foreign national affiliations', function() {
+  it('validate foreign national affiliations', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          HasAffiliations: { value: 'No' }
+          HasAffiliations: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          HasAffiliations: { value: "I don't know" }
+          HasAffiliations: { value: "I don't know" },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           HasAffiliations: { value: 'Yes' },
-          Affiliations: {}
+          Affiliations: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           HasAffiliations: { value: 'Yes' },
           Affiliations: {
-            value: 'list of my affiliations'
-          }
+            value: 'list of my affiliations',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignNationalValidator, 'validAffiliations')
   })
 
-  it('validate foreign contacts', function() {
+  it('validate foreign contacts', () => {
     const tests = [
       {
         data: {},
-        expected: false
+        expected: false,
       },
       {
         data: {
-          HasForeignContacts: { value: 'No' }
+          HasForeignContacts: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          HasForeignContacts: { value: 'Yes' }
+          HasForeignContacts: { value: 'Yes' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -611,53 +611,56 @@ describe('Foreign contacts component validation', function() {
               {
                 Item: {
                   NameNotApplicable: {
-                    applicable: false
+                    applicable: false,
                   },
                   NameExplanation: {
-                    value: 'explanation'
+                    value: 'explanation',
                   },
                   FirstContact: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   LastContact: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   Methods: { values: ['In person'] },
                   Frequency: { value: 'Weekly' },
                   Relationship: { values: ['Personal'] },
                   Aliases: {
-                    items: [{ Item: { Has: { value: 'No' } } }]
+                    items: [{ Item: { Has: { value: 'No' } } }],
                   },
                   Citizenship: {
-                    value: ['United States']
+                    value: ['United States'],
                   },
                   BirthdateNotApplicable: {
-                    applicable: false
+                    applicable: false,
                   },
                   BirthplaceNotApplicable: {
-                    applicable: false
+                    applicable: false,
                   },
                   AddressNotApplicable: {
-                    applicable: false
+                    applicable: false,
                   },
                   EmployerNotApplicable: {
-                    applicable: false
+                    applicable: false,
                   },
                   EmployerAddressNotApplicable: {
-                    applicable: false
+                    applicable: false,
                   },
-                  HasAffiliations: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  HasAffiliations: { value: 'No' },
+                  AlternateAddress: {
+                    HasDifferentAddress: { value: 'No' },
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignContactsValidator, 'isValid')

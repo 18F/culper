@@ -22,6 +22,7 @@ import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
 import connectHistorySection from '../HistoryConnector'
 
 const sectionConfig = {
+  key: HISTORY_EMPLOYMENT.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_EMPLOYMENT.name,
@@ -199,7 +200,7 @@ export class Employment extends Subsection {
           scrollIntoView={this.props.scrollIntoView}
         >
           <EmploymentItem
-            bind
+            bind={true}
             name="Item"
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}

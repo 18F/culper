@@ -49,6 +49,17 @@ describe('The financial nonpayment model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Resolved must be after Date', () => {
+    const testData = {
+      Date: { month: 1, year: 2015 },
+      Resolved: { month: 5, year: 2014 },
+    }
+    const expectedErrors = ['Resolved.date']
+
+    expect(validateModel(testData, financialNonpayment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('does not need Resolved date if its not applicable', () => {
     const testData = {
       ResolvedNotApplicable: {
