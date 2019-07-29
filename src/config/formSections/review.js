@@ -7,6 +7,13 @@ export const REVIEW_AND_SUBMIT = {
   label: 'Review and submit',
 }
 
+export const REVIEW_AND_SUBMIT_COMMENTS = {
+  key: sections.REVIEW_AND_SUBMIT_COMMENTS,
+  name: 'comments',
+  path: 'comments',
+  label: 'Additional Comments',
+}
+
 export const REVIEW_AND_SUBMIT_REVIEW = {
   key: sections.REVIEW_AND_SUBMIT_REVIEW,
   name: 'review',
@@ -30,6 +37,7 @@ export const REVIEW_AND_SUBMIT_PRINT = {
 
 export default {
   REVIEW_AND_SUBMIT,
+  REVIEW_AND_SUBMIT_COMMENTS,
   REVIEW_AND_SUBMIT_REVIEW,
   REVIEW_AND_SUBMIT_SUBMIT,
   REVIEW_AND_SUBMIT_PRINT,
