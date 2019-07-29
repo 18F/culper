@@ -1,6 +1,5 @@
 import { validateModel } from 'models/validate'
 import relationshipsCohabitants from 'models/sections/relationshipsCohabitants'
-import { validate } from '@babel/types';
 
 describe('The cohabitants section model', () => {
   describe('HasCohabitant', () => {
