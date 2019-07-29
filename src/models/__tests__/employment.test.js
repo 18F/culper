@@ -116,6 +116,24 @@ describe('The employment model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    describe('if there is no ReferenceAddress', () => {
+      it('ReferenceAlternateAddress is not required', () => {
+        const testData = {
+          ReferenceAddress: {},
+          ReferenceAlternateAddress: {
+            HasDifferentAddress: {},
+            Address: {},
+            Telephone: {},
+          },
+        }
+
+        const expectedErrors = ['ReferenceAlternateAddress.model']
+
+        expect(validateModel(testData, employment))
+          .not.toEqual(expect.arrayContaining(expectedErrors))
+      })
+    })
+
     describe('if the ReferenceAddress field is international', () => {
       it('ReferenceAlternateAddress is required', () => {
         const testData = {
