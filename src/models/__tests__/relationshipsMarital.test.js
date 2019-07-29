@@ -56,6 +56,66 @@ describe('The relationships marital section', () => {
     it('validates civil union', () => {
       const testData = {
         Status: { value: 'Married' },
+        DivorcedList: {
+          branch: { value: 'No' },
+          items: [
+            {
+              Item: {
+                Status: { value: 'Widowed' },
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  suffix: 'Jr',
+                },
+                DateDivorced: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                Birthdate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                BirthPlace: {
+                  country: { value: 'United States' },
+                  city: 'Arlington',
+                  county: 'Arlington',
+                  state: 'VA',
+                  layout: Location.BIRTHPLACE,
+                },
+                Citizenship: {
+                  value: ['Germany'],
+                },
+                Telephone: {
+                  noNumber: '',
+                  number: '7031112222',
+                  numberType: 'Home',
+                  type: 'Domestic',
+                  timeOfDay: 'Both',
+                  extension: '',
+                },
+                Recognized: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                },
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'VA',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS,
+                },
+              },
+            },
+          ],
+        },
         CivilUnion: {
           Name: {
             first: 'Foo',
@@ -85,6 +145,7 @@ describe('The relationships marital section', () => {
             state: 'VA',
             layout: Location.BIRTHPLACE,
           },
+          EmailNotApplicable: { applicable: false },
           Address: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -107,7 +168,12 @@ describe('The relationships marital section', () => {
             last: '1111',
             applicable: true,
           },
-          Divorced: { value: 'No' },
+          EnteredCivilUnion: {
+            month: '2',
+            day: '2',
+            year: '2016',
+          },
+          Divorced: { value: 'Yes' },
           Separated: { value: 'No' },
           OtherNames: {
             items: [

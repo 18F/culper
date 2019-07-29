@@ -7,8 +7,12 @@ import store from 'services/store'
 import { selectMaritalStatus } from 'selectors/data'
 
 export const getMaritalStatus = () => {
-  const state = store.getState()
-  return selectMaritalStatus(state)
+  if (store) {
+    const state = store.getState()
+    return selectMaritalStatus(state)
+  }
+
+  return ''
 }
 
 const requiredRelations = () => {

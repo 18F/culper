@@ -27,7 +27,7 @@ describe('The cohabitants section model', () => {
 
     it('validates on valid value', () => {
       const testData = {
-        HasCohabitant: { value: 'Yes' },
+        HasCohabitant: { value: 'No' },
       }
 
       expect(validateModel(testData, relationshipsCohabitants)).toEqual(true)
