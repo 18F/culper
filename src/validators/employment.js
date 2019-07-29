@@ -1,26 +1,14 @@
 import { validateModel } from 'models/validate'
 import employment from 'models/employment'
+import historyEmployment from 'models/sections/historyEmployment'
 
 export const validateEmployment = data => (
   validateModel(data, employment) === true
 )
 
-export const validateHistoryEmployment = (data) => {
-  const historyEmploymentModel = {
-    EmploymentRecord: {
-      presence: true,
-      hasValue: {
-        validator: { inclusion: ['No'] },
-      },
-    },
-    List: {
-      presence: true,
-      accordion: { validator: employment },
-    },
-  }
-
-  return validateModel(data, historyEmploymentModel) === true
-}
+export const validateHistoryEmployment = data => (
+  validateModel(data, historyEmployment) === true
+)
 
 export default class HistoryEmploymentValidator {
   constructor(data = {}) {

@@ -1,18 +1,12 @@
 import { validateModel } from 'models/validate'
 import residence from 'models/residence'
+import historyResidence from 'models/sections/historyResidence'
 
 export const validateResidence = data => validateModel(data, residence) === true
 
-export const validateHistoryResidence = (data) => {
-  const historyResidenceModel = {
-    List: {
-      presence: true,
-      accordion: { validator: residence },
-    },
-  }
-
-  return validateModel(data, historyResidenceModel) === true
-}
+export const validateHistoryResidence = data => (
+  validateModel(data, historyResidence) === true
+)
 
 export class ResidenceValidator {
   constructor(data = {}) {

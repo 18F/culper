@@ -1,3 +1,4 @@
+import { hasYesOrNo } from 'models/validate'
 import name from 'models/shared/name'
 
 const identificationOtherName = {
