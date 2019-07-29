@@ -54,6 +54,18 @@ describe('The financial bankruptcy model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('DateDischarged must be after DateFiled', () => {
+    const testData = {
+      DateFiled: { month: 2, year: 2001 },
+      DateDischarged: { month: 1, year: 2001 },
+    }
+
+    const expectedErrors = ['DateDischarged.date']
+
+    expect(validateModel(testData, financialBankruptcy))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   describe('if PetitionType is Chapter13', () => {
     it('requires a Trustee', () => {
       const testData = {

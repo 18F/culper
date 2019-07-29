@@ -14,8 +14,7 @@ describe('validateDrugInvolvements function', () => {
             {
               Item: {
                 DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null,
+                  value: 'Cocaine',
                 },
                 FirstInvolvement: {
                   day: '1',
@@ -51,8 +50,7 @@ describe('validateDrugInvolvements function', () => {
             {
               Item: {
                 DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null,
+                  value: 'Cocaine',
                 },
                 FirstInvolvement: {
                   day: '1',
@@ -92,8 +90,7 @@ describe('validateDrugInvolvements function', () => {
             {
               Item: {
                 DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null,
+                  value: 'Cocaine',
                 },
                 FirstInvolvement: {
                   day: '1',
@@ -129,8 +126,7 @@ describe('validateDrugInvolvements function', () => {
             {
               Item: {
                 DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null,
+                  value: 'Cocaine',
                 },
                 FirstInvolvement: {
                   day: '1',
@@ -213,8 +209,7 @@ describe('Drug Involvement Validation', () => {
               {
                 Item: {
                   DrugType: {
-                    DrugType: 'Cocaine',
-                    DrugTypeOther: null,
+                    value: 'Cocaine',
                   },
                   FirstInvolvement: {
                     day: '1',

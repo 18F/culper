@@ -1,9 +1,12 @@
+// Temporary while country values are inconsistent
+import { countryString } from 'validators/location'
+
 export const isPO = location => (
-  location.country === 'POSTOFFICE'
+  countryString(location.country) === 'POSTOFFICE'
 )
 
 export const isUS = location => (
-  location.country === 'United States'
+  countryString(location.country) === 'United States'
 )
 
 export const isInternational = location => (

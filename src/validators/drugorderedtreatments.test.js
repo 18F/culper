@@ -63,7 +63,7 @@ describe('Drug Ordered Treatment Validation', () => {
                     value: 'The explanation',
                   },
                   ActionTaken: { value: 'Yes' },
-                  DrugType: 'Cocaine',
+                  DrugType: { value: 'Cocaine' },
                   TreatmentProvider: {
                     value: 'Provider',
                   },
@@ -118,7 +118,7 @@ describe('Drug Ordered Treatment Validation', () => {
                     value: 'The explanation',
                   },
                   ActionTaken: { value: 'Yes' },
-                  DrugType: 'Cocaine',
+                  DrugType: { value: 'Cocaine' },
                   TreatmentProvider: {
                     value: 'Provider',
                   },
@@ -176,6 +176,7 @@ describe('Drug Ordered Treatment Validation', () => {
                     value: 'The explanation',
                   },
                   ActionTaken: { value: 'No' },
+                  DrugType: { value: 'Cocaine' },
                   NoActionTakenExplanation: {
                     value: 'No action taken',
                   },

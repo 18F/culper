@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import EngagedInTerrorismItem from './EngagedInTerrorismItem'
 
 const sectionConfig = {
+  key: LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM.name,
@@ -82,7 +83,7 @@ export class EngagedInTerrorism extends Subsection {
           labelSize="h4"
           className="legal-associations-engaged-has-engaged"
           {...this.props.HasEngaged}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -106,7 +107,7 @@ export class EngagedInTerrorism extends Subsection {
           >
             <EngagedInTerrorismItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

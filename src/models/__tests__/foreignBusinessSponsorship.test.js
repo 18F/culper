@@ -39,6 +39,26 @@ describe('The foreignBusinessSponsorship model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Birthdate must not be more than 200 years ago', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, foreignBusinessSponsorship))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be in the future', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Birthdate.date']
+
+    expect(validateModel(testData, foreignBusinessSponsorship))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   describe('if Birthdate is not applicable', () => {
     it('Birthdate is not required', () => {
       const testData = {

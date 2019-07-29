@@ -1,4 +1,4 @@
-import hairColorOptions from 'constants/enums/hairColorOptions'
+import { hairColorOptions } from 'constants/enums/physicalOptions'
 
 const hairColor = {
   value: {

@@ -18,6 +18,7 @@ import connectFinancialSection from '../FinancialConnector'
 import DelinquentItem from './DelinquentItem'
 
 const sectionConfig = {
+  key: FINANCIAL_DELINQUENT.key,
   section: FINANCIAL.name,
   store: FINANCIAL.store,
   subsection: FINANCIAL_DELINQUENT.name,
@@ -123,7 +124,7 @@ export class Delinquent extends Subsection {
           labelSize="h4"
           className="delinquent-branch eapp-field-wrap"
           {...this.props.HasDelinquent}
-          warning
+          warning={true}
           onUpdate={this.updateBranch}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -152,7 +153,7 @@ export class Delinquent extends Subsection {
           >
             <DelinquentItem
               name="Item"
-              bind
+              bind={true}
               dispatch={this.props.dispatch}
               addressBooks={this.props.addressBooks}
               required={this.props.required}

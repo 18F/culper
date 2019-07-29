@@ -103,6 +103,8 @@ See [advanced docs](docs/advanced.md) for more.
 
 ### Tooling
 
+See [tools docs](docs/dev-tools.md) for more.
+
 #### Formatting
 
 Supported files are formatted using [Prettier](https://prettier.io/), though note this should only be done when a file is new or heavily modified. You should install Prettier for whatever editor you use.

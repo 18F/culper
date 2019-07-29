@@ -12,6 +12,7 @@ import PassportItem from './PassportItem'
 import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
+  key: CITIZENSHIP_PASSPORTS.key,
   section: CITIZENSHIP.name,
   store: CITIZENSHIP.store,
   subsection: CITIZENSHIP_PASSPORTS.name,
@@ -66,7 +67,7 @@ export class Passports extends Subsection {
         >
           <PassportItem
             name="Item"
-            bind
+            bind={true}
             defaultState={this.props.defaultState}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}

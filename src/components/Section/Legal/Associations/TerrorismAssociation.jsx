@@ -16,6 +16,7 @@ import Subsection from 'components/Section/shared/Subsection'
 import connectLegalSection from '../LegalConnector'
 
 const sectionConfig = {
+  key: LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION.name,
@@ -71,7 +72,7 @@ export class TerrorismAssociation extends Subsection {
           labelSize="h4"
           className="legal-associations-terrorism-has-terrorism"
           {...this.props.HasTerrorism}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}

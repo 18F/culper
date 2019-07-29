@@ -14,6 +14,7 @@ import Subsection from '../../shared/Subsection'
 
 
 const sectionConfig = {
+  key: IDENTIFICATION_NAME.key,
   section: IDENTIFICATION.name,
   store: IDENTIFICATION.store,
   subsection: IDENTIFICATION_NAME.name,
@@ -64,12 +65,12 @@ export class ApplicantName extends Subsection {
         <Field
           title={i18n.t('identification.name.title')}
           titleSize="h4"
-          optional
+          optional={true}
           filterErrors={Name.requiredErrorsOnly}
           scrollIntoView={this.props.scrollIntoView}
           adjustFor="labels"
         >
-          <label className="name-label">{i18n.t('identification.name.info')}</label>
+          <label className="name-label">{i18n.t('identification.name.info')}</label> {/* eslint-disable-line */}
           <Name
             name="name"
             {...this.props.Name}
@@ -86,7 +87,7 @@ export class ApplicantName extends Subsection {
 
 ApplicantName.defaultProps = {
   Name: {},
-  onUpdate: (queue) => {},
+  onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
   required: false,

@@ -55,6 +55,74 @@ describe('The sentence model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  describe('if ExceedsYear is "Yes"', () => {
+    it('IncarcerationDates must cover a duration greater than a year', () => {
+      const testData = {
+        ExceedsYear: { value: 'Yes' },
+        IncarcerationDates: {
+          from: { day: 5, month: 5, year: 2000 },
+          to: { day: 2, month: 8, year: 2000 },
+        },
+      }
+      const expectedErrors = ['IncarcerationDates.daterange']
+
+      expect(validateModel(testData, sentence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid sentence', () => {
+      const testData = {
+        Description: { value: 'Something' },
+        ExceedsYear: { value: 'Yes' },
+        Incarcerated: { value: 'Yes' },
+        ProbationDates: {
+          from: { year: 2010, month: 2, day: 10 },
+          to: { year: 2013, month: 10, day: 1 },
+        },
+        IncarcerationDates: {
+          from: { day: 5, month: 5, year: 2000 },
+          to: { day: 2, month: 8, year: 2001 },
+        },
+      }
+
+      expect(validateModel(testData, sentence)).toEqual(true)
+    })
+  })
+
+  describe('if ExceedsYear is "No"', () => {
+    it('IncarcerationDates must cover a duration less than or equal to one year', () => {
+      const testData = {
+        ExceedsYear: { value: 'No' },
+        IncarcerationDates: {
+          from: { day: 5, month: 5, year: 2000 },
+          to: { day: 2, month: 8, year: 2001 },
+        },
+      }
+      const expectedErrors = ['IncarcerationDates.daterange']
+
+      expect(validateModel(testData, sentence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid sentence', () => {
+      const testData = {
+        Description: { value: 'Something' },
+        ExceedsYear: { value: 'No' },
+        Incarcerated: { value: 'Yes' },
+        ProbationDates: {
+          from: { year: 2010, month: 2, day: 10 },
+          to: { year: 2013, month: 10, day: 1 },
+        },
+        IncarcerationDates: {
+          from: { day: 5, month: 5, year: 2000 },
+          to: { day: 2, month: 8, year: 2000 },
+        },
+      }
+
+      expect(validateModel(testData, sentence)).toEqual(true)
+    })
+  })
+
   it('the ProbationDates field is required', () => {
     const testData = {}
     const expectedErrors = ['ProbationDates.required']
@@ -87,7 +155,7 @@ describe('The sentence model', () => {
       },
       IncarcerationDates: {
         from: { year: 1995, month: 2, day: 10 },
-        to: { year: 2010, month: 10, day: 1 },
+        to: { year: 1995, month: 10, day: 1 },
       },
     }
 
