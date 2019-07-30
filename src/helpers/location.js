@@ -10,5 +10,5 @@ export const isUS = location => (
 )
 
 export const isInternational = location => (
-  !isPO(location) && !isUS(location)
+  location && location.country && (!isPO(location) && !isUS(location))
 )

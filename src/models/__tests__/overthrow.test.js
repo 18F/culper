@@ -5,12 +5,12 @@ describe('The overthrow model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Organization.required',
-      'Address.required',
-      'Dates.required',
-      'Positions.required',
-      'Contributions.required',
-      'Reasons.required',
+      'Organization.presence.REQUIRED',
+      'Address.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'Positions.presence.REQUIRED',
+      'Contributions.presence.REQUIRED',
+      'Reasons.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, overthrow))
@@ -21,7 +21,7 @@ describe('The overthrow model', () => {
     const testData = {
       Organization: 'test organization',
     }
-    const expectedErrors = ['Organization.hasValue']
+    const expectedErrors = ['Organization.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, overthrow))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -31,7 +31,11 @@ describe('The overthrow model', () => {
     const testData = {
       Address: '123 Main St',
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, overthrow))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -41,7 +45,10 @@ describe('The overthrow model', () => {
     const testData = {
       Dates: 12345,
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.presence.REQUIRED',
+      'Dates.daterange.to.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, overthrow))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -51,7 +58,7 @@ describe('The overthrow model', () => {
     const testData = {
       Positions: 'test',
     }
-    const expectedErrors = ['Positions.hasValue']
+    const expectedErrors = ['Positions.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, overthrow))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -61,7 +68,7 @@ describe('The overthrow model', () => {
     const testData = {
       Contributions: 'test',
     }
-    const expectedErrors = ['Contributions.hasValue']
+    const expectedErrors = ['Contributions.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, overthrow))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -71,7 +78,7 @@ describe('The overthrow model', () => {
     const testData = {
       Reasons: 'test',
     }
-    const expectedErrors = ['Reasons.hasValue']
+    const expectedErrors = ['Reasons.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, overthrow))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -82,7 +89,7 @@ describe('The overthrow model', () => {
       const testData = {
         PositionsNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Positions.required']
+      const expectedErrors = ['Positions.presence.REQUIRED']
 
       expect(validateModel(testData, overthrow))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -116,7 +123,7 @@ describe('The overthrow model', () => {
       const testData = {
         ContributionsNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Contributions.required']
+      const expectedErrors = ['Contributions.presence.REQUIRED']
 
       expect(validateModel(testData, overthrow))
         .not.toEqual(expect.arrayContaining(expectedErrors))

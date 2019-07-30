@@ -235,17 +235,16 @@ func TestListAttachments(t *testing.T) {
 
 	resp := w.Result()
 
-	if resp.StatusCode != 200 {
-		t.Log("Got an error back from ListAttachments")
-		t.Fail()
-	}
-
-	// comes back as JSON, leaving out the body
-
 	body, readErr := ioutil.ReadAll(resp.Body)
 	if readErr != nil {
 		t.Fatal(readErr)
 	}
+
+	if resp.StatusCode != 200 {
+		t.Fatal("Got an error back from ListAttachments", string(body))
+	}
+
+	// comes back as JSON, leaving out the body
 
 	retrievedAttachments := []api.Attachment{}
 

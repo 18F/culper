@@ -4,7 +4,7 @@ import divorce from '../divorce'
 describe('The divorce model', () => {
   it('the name field is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,11 @@ describe('The divorce model', () => {
     const testData = {
       Name: { first: 'P' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.length.LENGTH_TOO_SHORT',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +26,7 @@ describe('The divorce model', () => {
 
   it('the birthdate field is required', () => {
     const testData = {}
-    const expectedErrors = ['Birthdate.required']
+    const expectedErrors = ['Birthdate.presence.REQUIRED']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -32,7 +36,10 @@ describe('The divorce model', () => {
     const testData = {
       Birthdate: { year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = [
+      'Birthdate.date.day.presence.REQUIRED',
+      'Birthdate.date.month.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -42,7 +49,7 @@ describe('The divorce model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 1800 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -52,7 +59,7 @@ describe('The divorce model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -60,7 +67,7 @@ describe('The divorce model', () => {
 
   it('the birthplace field is required', () => {
     const testData = {}
-    const expectedErrors = ['BirthPlace.required']
+    const expectedErrors = ['BirthPlace.presence.REQUIRED']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -70,7 +77,10 @@ describe('The divorce model', () => {
     const testData = {
       BirthPlace: { street: 'address' },
     }
-    const expectedErrors = ['BirthPlace.location']
+    const expectedErrors = [
+      'BirthPlace.location.city.presence.REQUIRED',
+      'BirthPlace.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -78,7 +88,7 @@ describe('The divorce model', () => {
 
   it('the citizenship field is required', () => {
     const testData = {}
-    const expectedErrors = ['Citizenship.required']
+    const expectedErrors = ['Citizenship.presence.REQUIRED']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -88,7 +98,7 @@ describe('The divorce model', () => {
     const testData = {
       Citizenship: { value: '' },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -96,10 +106,11 @@ describe('The divorce model', () => {
 
   it('the telephone field is required', () => {
     const testData = {}
-    const expectedErrors = ['Telephone.required']
     const options = {
       requireRelationshipMaritalDivorcePhoneNumber: true,
     }
+    const expectedErrors = ['Telephone.presence.REQUIRED']
+
     expect(validateModel(testData, divorce, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -108,10 +119,12 @@ describe('The divorce model', () => {
     const testData = {
       Telephone: { number: '123' },
     }
-    const expectedErrors = ['Telephone.model']
     const options = {
       requireRelationshipMaritalDivorcePhoneNumber: true,
     }
+    const expectedErrors = [
+      'Telephone.model.timeOfDay.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, divorce, options))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -119,7 +132,7 @@ describe('The divorce model', () => {
 
   it('the recognized field is required', () => {
     const testData = {}
-    const expectedErrors = ['Recognized.required']
+    const expectedErrors = ['Recognized.presence.REQUIRED']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -129,7 +142,11 @@ describe('The divorce model', () => {
     const testData = {
       Recognized: 'date',
     }
-    const expectedErrors = ['Recognized.date']
+    const expectedErrors = [
+      'Recognized.date.day.presence.REQUIRED',
+      'Recognized.date.month.presence.REQUIRED',
+      'Recognized.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -137,7 +154,7 @@ describe('The divorce model', () => {
 
   it('the address field is required', () => {
     const testData = {}
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -147,7 +164,10 @@ describe('The divorce model', () => {
     const testData = {
       Address: 'invalid',
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -155,7 +175,7 @@ describe('The divorce model', () => {
 
   it('the date divorced field is required', () => {
     const testData = {}
-    const expectedErrors = ['DateDivorced.required']
+    const expectedErrors = ['DateDivorced.presence.REQUIRED']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -165,7 +185,11 @@ describe('The divorce model', () => {
     const testData = {
       DateDivorced: { year: '500' },
     }
-    const expectedErrors = ['DateDivorced.date']
+    const expectedErrors = [
+      'DateDivorced.date.day.presence.REQUIRED',
+      'DateDivorced.date.month.presence.REQUIRED',
+      'DateDivorced.date.date.datetime.DATE_TOO_EARLY',
+    ]
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -176,7 +200,7 @@ describe('The divorce model', () => {
       Recognized: { day: 2, month: 12, year: 2010 },
       DateDivorced: { day: 2, month: 12, year: 2009 },
     }
-    const expectedErrors = ['DateDivorced.date']
+    const expectedErrors = ['DateDivorced.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -186,7 +210,7 @@ describe('The divorce model', () => {
     const testData = {
       DateDivorced: { day: 2, month: 12, year: 2050 },
     }
-    const expectedErrors = ['DateDivorced.date']
+    const expectedErrors = ['DateDivorced.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -194,7 +218,7 @@ describe('The divorce model', () => {
 
   it('the status field is required', () => {
     const testData = {}
-    const expectedErrors = ['Status.required']
+    const expectedErrors = ['Status.presence.REQUIRED']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -206,7 +230,7 @@ describe('The divorce model', () => {
         value: 'invalid',
       },
     }
-    const expectedErrors = ['Status.hasValue']
+    const expectedErrors = ['Status.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, divorce))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -217,7 +241,7 @@ describe('The divorce model', () => {
       const testData = {
         Status: { value: 'Widowed' },
       }
-      const expectedErrors = ['DivorceLocation.required']
+      const expectedErrors = ['DivorceLocation.presence.REQUIRED']
 
       expect(validateModel(testData, divorce))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -227,7 +251,7 @@ describe('The divorce model', () => {
       const testData = {
         Status: { value: 'Widowed' },
       }
-      const expectedErrors = ['Deceased.required']
+      const expectedErrors = ['Deceased.presence.REQUIRED']
 
       expect(validateModel(testData, divorce))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -237,7 +261,7 @@ describe('The divorce model', () => {
       const testData = {
         Status: { value: 'Widowed' },
       }
-      const expectedErrors = ['DeceasedAddress.required']
+      const expectedErrors = ['DeceasedAddress.presence.REQUIRED']
 
       expect(validateModel(testData, divorce))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -275,7 +299,7 @@ describe('The divorce model', () => {
       const testData = {
         Status: { value: 'Divorced' },
       }
-      const expectedErrors = ['DivorceLocation.required']
+      const expectedErrors = ['DivorceLocation.presence.REQUIRED']
 
       expect(validateModel(testData, divorce))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -286,7 +310,10 @@ describe('The divorce model', () => {
         Status: { value: 'Divorced' },
         DivorceLocation: 'invalid',
       }
-      const expectedErrors = ['DivorceLocation.location']
+      const expectedErrors = [
+        'DivorceLocation.location.city.presence.REQUIRED',
+        'DivorceLocation.location.country.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, divorce))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -296,7 +323,7 @@ describe('The divorce model', () => {
       const testData = {
         Status: { value: 'Annulled' },
       }
-      const expectedErrors = ['Deceased.required']
+      const expectedErrors = ['Deceased.presence.REQUIRED']
 
       expect(validateModel(testData, divorce))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -307,7 +334,7 @@ describe('The divorce model', () => {
         Status: { value: 'Annulled' },
         Deceased: { value: 'invalid' },
       }
-      const expectedErrors = ['Deceased.hasValue']
+      const expectedErrors = ['Deceased.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, divorce))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -319,7 +346,7 @@ describe('The divorce model', () => {
           Status: { value: 'Divorced' },
           Deceased: { value: 'Yes' },
         }
-        const expectedErrors = ['DeceasedAddress.required']
+        const expectedErrors = ['DeceasedAddress.presence.REQUIRED']
 
         expect(validateModel(testData, divorce))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -366,7 +393,7 @@ describe('The divorce model', () => {
           Status: { value: 'Divorced' },
           Deceased: { value: 'No' },
         }
-        const expectedErrors = ['DeceasedAddress.required']
+        const expectedErrors = ['DeceasedAddress.presence.REQUIRED']
 
         expect(validateModel(testData, divorce))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -378,7 +405,11 @@ describe('The divorce model', () => {
           Deceased: { value: 'No' },
           DeceasedAddress: 'invalid address',
         }
-        const expectedErrors = ['DeceasedAddress.location']
+        const expectedErrors = [
+          'DeceasedAddress.location.street.presence.REQUIRED',
+          'DeceasedAddress.location.city.presence.REQUIRED',
+          'DeceasedAddress.location.country.presence.REQUIRED',
+        ]
 
         expect(validateModel(testData, divorce))
           .toEqual(expect.arrayContaining(expectedErrors))

@@ -2,12 +2,12 @@ import requireEmpty from '../requireEmpty'
 
 describe('The requireEmpty validator', () => {
   it('fails if a value is not empty', () => {
-    expect(requireEmpty(true)).toBeTruthy()
-    expect(requireEmpty(false)).toBeTruthy()
-    expect(requireEmpty('test')).toBeTruthy()
-    expect(requireEmpty(0)).toBeTruthy()
-    expect(requireEmpty({ test: 'thing' })).toBeTruthy()
-    expect(requireEmpty(['blah'])).toBeTruthy()
+    expect(requireEmpty(true)).toEqual('VALUE_NOT_EMPTY')
+    expect(requireEmpty(false)).toEqual('VALUE_NOT_EMPTY')
+    expect(requireEmpty('test')).toEqual('VALUE_NOT_EMPTY')
+    expect(requireEmpty(0)).toEqual('VALUE_NOT_EMPTY')
+    expect(requireEmpty({ test: 'thing' })).toEqual('VALUE_NOT_EMPTY')
+    expect(requireEmpty(['blah'])).toEqual('VALUE_NOT_EMPTY')
   })
 
   it('passes if a value is empty', () => {

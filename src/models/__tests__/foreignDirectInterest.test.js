@@ -5,15 +5,15 @@ describe('The foreignDirectInterest model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'InterestTypes.required',
-      'InterestType.required',
-      'Acquired.required',
-      'HowAcquired.required',
-      'Cost.required',
-      'Value.required',
-      'Relinquished.required',
-      'CoOwners.required',
-      'Explanation.required',
+      'InterestTypes.presence.REQUIRED',
+      'InterestType.presence.REQUIRED',
+      'Acquired.presence.REQUIRED',
+      'HowAcquired.presence.REQUIRED',
+      'Cost.presence.REQUIRED',
+      'Value.presence.REQUIRED',
+      'Relinquished.presence.REQUIRED',
+      'CoOwners.presence.REQUIRED',
+      'Explanation.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, foreignDirectInterest))
@@ -24,7 +24,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       InterestTypes: { values: [] },
     }
-    const expectedErrors = ['InterestTypes.array']
+    const expectedErrors = ['InterestTypes.array.array.length.LENGTH_TOO_SHORT']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -33,7 +33,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       InterestType: { value: false },
     }
-    const expectedErrors = ['InterestType.hasValue']
+    const expectedErrors = ['InterestType.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -42,7 +42,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       Acquired: { month: 15, year: 9 },
     }
-    const expectedErrors = ['Acquired.date']
+    const expectedErrors = ['Acquired.date.date.datetime.INVALID_DATE']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -51,7 +51,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       Acquired: { day: 2, month: 11, year: 2030 },
     }
-    const expectedErrors = ['Acquired.date']
+    const expectedErrors = ['Acquired.date.date.datetime.DATE_TOO_LATE']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -60,7 +60,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       HowAcquired: { value: false },
     }
-    const expectedErrors = ['HowAcquired.hasValue']
+    const expectedErrors = ['HowAcquired.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -69,7 +69,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       Cost: { value: false },
     }
-    const expectedErrors = ['Cost.hasValue']
+    const expectedErrors = ['Cost.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -78,7 +78,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       Value: { value: false },
     }
-    const expectedErrors = ['Value.hasValue']
+    const expectedErrors = ['Value.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -98,7 +98,7 @@ describe('The foreignDirectInterest model', () => {
       },
     }
 
-    const expectedErrors = ['CoOwners.model']
+    const expectedErrors = ['CoOwners.model.List.branchCollection.INCOMPLETE_COLLECTION']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -107,7 +107,9 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       Relinquished: { day: 2, month: 10 },
     }
-    const expectedErrors = ['Relinquished.date']
+    const expectedErrors = [
+      'Relinquished.date.year.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -116,7 +118,7 @@ describe('The foreignDirectInterest model', () => {
     const testData = {
       Explanation: { value: false },
     }
-    const expectedErrors = ['Explanation.hasValue']
+    const expectedErrors = ['Explanation.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignDirectInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -126,7 +128,7 @@ describe('The foreignDirectInterest model', () => {
       const testData = {
         RelinquishedNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Relinquished.required']
+      const expectedErrors = ['Relinquished.presence.REQUIRED']
       expect(validateModel(testData, foreignDirectInterest))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -135,7 +137,7 @@ describe('The foreignDirectInterest model', () => {
       const testData = {
         RelinquishedNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Explanation.required']
+      const expectedErrors = ['Explanation.presence.REQUIRED']
       expect(validateModel(testData, foreignDirectInterest))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })

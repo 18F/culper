@@ -4,7 +4,7 @@ import offense from '../offense'
 describe('The location/offense model', () => {
   it('city is required', () => {
     const testData = { city: '' }
-    const expectedErrors = ['city.required']
+    const expectedErrors = ['city.presence.REQUIRED']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The location/offense model', () => {
 
   it('country is required', () => {
     const testData = { country: '' }
-    const expectedErrors = ['country.required']
+    const expectedErrors = ['country.presence.REQUIRED']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -21,7 +21,7 @@ describe('The location/offense model', () => {
   describe('for a domestic address', () => {
     it('state is required', () => {
       const testData = { state: '', country: 'United States' }
-      const expectedErrors = ['state.required']
+      const expectedErrors = ['state.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -29,7 +29,7 @@ describe('The location/offense model', () => {
 
     it('zipcode is required', () => {
       const testData = { zipcode: '', country: 'POSTOFFICE' }
-      const expectedErrors = ['zipcode.required']
+      const expectedErrors = ['zipcode.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
