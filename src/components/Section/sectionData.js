@@ -881,6 +881,14 @@ const sectionData = (section, subsection, application = {}) => {
         },
       ]
 
+    case 'package/comments':
+      return [
+        {
+          path: 'package/comments',
+          data: wrap(application.Comments),
+        },
+      ]
+
     case 'submission/releases':
       return [
         {
