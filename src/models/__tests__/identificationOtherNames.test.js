@@ -127,7 +127,7 @@ describe('The identification other names section', () => {
                   suffix: 'Jr',
                 },
                 MaidenName: {
-                  value: 'Foo',
+                  value: 'No',
                 },
                 DatesUsed: {
                   from: {

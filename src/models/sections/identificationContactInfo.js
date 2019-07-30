@@ -1,23 +1,49 @@
-// TOOD: How do we handle validations dependent on other questions within the section
-// import { validateModel } from 'models/validate'
-// import email from 'models/shared/email'
+import phone from 'models/shared/phone'
+import email from 'models/shared/email'
 
-// const validateEmail = data => (
-//   validateModel(data, email) === true
-// )
-// const identificationContactInfo = {
-//   HomeEmail: (value, attributes) => {
-//     if (attributes.HomeEmail.value) {
-//       return {
-//         presence: true,
-//         model: { validator: email },
-//       }
-//     }
-//   },
-//   WorkEmail: (value, attributes) => {
+export const contactPhoneNumber = {
+  Telephone: {
+    model: {
+      validator: phone,
+      requireNumberType: true,
+    },
+  },
+}
 
-//   },
-//   PhoneNumbers: {},
-// }
+const identificationContactInfo = {
+  HomeEmail: (value, attributes) => {
+    if (attributes.WorkEmail && attributes.WorkEmail.value) return {}
+    return {
+      presence: true,
+      model: { validator: email },
+    }
+  },
+  WorkEmail: (value, attributes) => {
+    if (attributes.HomeEmail && attributes.HomeEmail.value) return {}
+    return {
+      presence: true,
+      model: { validator: email },
+    }
+  },
+  PhoneNumbers: {
+    presence: true,
+    accordion: {
+      ignoreBranch: true,
+      length: { minimum: 1 },
+      validator: contactPhoneNumber,
+      itemsValidator: (items) => {
+        const numberTypes = []
+        items.forEach((i) => {
+          if (i.Item && i.Item.Telephone) {
+            numberTypes.push(i.Item.Telephone.numberType)
+          }
+        })
+        const unique = [...new Set(numberTypes)]
+        if (numberTypes.length === unique.length) return null
+        return 'Duplicate number types'
+      },
+    },
+  },
+}
 
-// export default identificationContactInfo
+export default identificationContactInfo
