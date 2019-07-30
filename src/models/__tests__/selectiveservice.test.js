@@ -3,7 +3,7 @@ import selectiveService from 'models/selectiveService'
 
 describe('The selective service model', () => {
   it('the WasBornAfter branch is required', () => {
-    const expectedErrors = ['WasBornAfter.hasValue']
+    const expectedErrors = ['WasBornAfter.hasValue.MISSING_VALUE']
     const testData = {
       WasBornAfter: { value: '' },
     }
@@ -13,7 +13,7 @@ describe('The selective service model', () => {
   })
 
   it('the HasRegistered branch is required', () => {
-    const expectedErrors = ['HasRegistered.required']
+    const expectedErrors = ['HasRegistered.presence.REQUIRED']
     const testData = {
       WasBornAfter: { value: 'Yes' },
       HasRegisteredNotApplicable: { applicable: true },
@@ -24,7 +24,7 @@ describe('The selective service model', () => {
   })
 
   it('the RegistrationNumber must have a value', () => {
-    const expectedErrors = ['RegistrationNumber.required']
+    const expectedErrors = ['RegistrationNumber.presence.REQUIRED']
     const testData = {
       WasBornAfter: { value: 'Yes' },
       HasRegistered: { value: 'Yes' },
@@ -35,7 +35,7 @@ describe('The selective service model', () => {
   })
 
   it('the Explanation must have a value if not registered', () => {
-    const expectedErrors = ['Explanation.required']
+    const expectedErrors = ['Explanation.presence.REQUIRED']
     const testData = {
       WasBornAfter: { value: 'Yes' },
       HasRegistered: { value: 'No' },
@@ -46,7 +46,7 @@ describe('The selective service model', () => {
   })
 
   it('the Explanation must have a value if applicant doesnt know selective service registration status', () => {
-    const expectedErrors = ['Explanation.required']
+    const expectedErrors = ['Explanation.presence.REQUIRED']
     const testData = {
       WasBornAfter: { value: 'Yes' },
       HasRegistered: { value: '' },

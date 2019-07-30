@@ -5,9 +5,9 @@ describe('The drugSafetyUse model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Description.required',
-      'InvolvementDates.required',
-      'EstimatedUse.required',
+      'Description.presence.REQUIRED',
+      'InvolvementDates.presence.REQUIRED',
+      'EstimatedUse.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugSafetyUse))
@@ -19,7 +19,7 @@ describe('The drugSafetyUse model', () => {
       Description: 'testing',
     }
     const expectedErrors = [
-      'Description.hasValue',
+      'Description.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugSafetyUse))
@@ -31,7 +31,8 @@ describe('The drugSafetyUse model', () => {
       InvolvementDates: { day: 5, month: 10 },
     }
     const expectedErrors = [
-      'InvolvementDates.daterange',
+      'InvolvementDates.daterange.from.presence.REQUIRED',
+      'InvolvementDates.daterange.to.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugSafetyUse))
@@ -43,7 +44,7 @@ describe('The drugSafetyUse model', () => {
       EstimatedUse: 'testing',
     }
     const expectedErrors = [
-      'EstimatedUse.hasValue',
+      'EstimatedUse.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugSafetyUse))

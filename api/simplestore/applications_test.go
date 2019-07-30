@@ -30,6 +30,7 @@ func getSimpleStore() SimpleStore {
 		Password: env.String(api.DatabasePassword),
 		Address:  env.String(api.DatabaseHost),
 		DBName:   env.String(api.TestDatabaseName),
+		SSLMode:  "disable",
 	}
 
 	connString := postgresql.PostgresConnectURI(dbConf)

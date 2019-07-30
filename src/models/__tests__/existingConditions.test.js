@@ -5,7 +5,7 @@ describe('The existingConditions model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'HasCondition.required',
+      'HasCondition.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, existingConditions))
@@ -17,7 +17,7 @@ describe('The existingConditions model', () => {
       HasCondition: { value: 'true' },
     }
     const expectedErrors = [
-      'HasCondition.hasValue',
+      'HasCondition.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, existingConditions))
@@ -40,8 +40,8 @@ describe('The existingConditions model', () => {
         HasCondition: { value: 'Yes' },
       }
       const expectedErrors = [
-        'DidNotFollow.required',
-        'ReceivedTreatment.required',
+        'DidNotFollow.presence.REQUIRED',
+        'ReceivedTreatment.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, existingConditions))
@@ -54,7 +54,7 @@ describe('The existingConditions model', () => {
         DidNotFollow: { value: 'true' },
       }
       const expectedErrors = [
-        'DidNotFollow.hasValue',
+        'DidNotFollow.hasValue.value.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, existingConditions))
@@ -68,7 +68,7 @@ describe('The existingConditions model', () => {
           DidNotFollow: { value: 'Yes' },
         }
         const expectedErrors = [
-          'DidNotFollowExplanation.hasValue',
+          'DidNotFollowExplanation.hasValue.MISSING_VALUE',
         ]
 
         expect(validateModel(testData, existingConditions))
@@ -105,7 +105,7 @@ describe('The existingConditions model', () => {
         ReceivedTreatment: { value: 'true' },
       }
       const expectedErrors = [
-        'ReceivedTreatment.hasValue',
+        'ReceivedTreatment.hasValue.value.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, existingConditions))
@@ -119,7 +119,7 @@ describe('The existingConditions model', () => {
           ReceivedTreatment: { value: 'No' },
         }
         const expectedErrors = [
-          'Explanation.hasValue',
+          'Explanation.hasValue.MISSING_VALUE',
         ]
 
         expect(validateModel(testData, existingConditions))
@@ -158,7 +158,7 @@ describe('The existingConditions model', () => {
           TreatmentList: { values: [] },
         }
         const expectedErrors = [
-          'TreatmentList.accordion',
+          'TreatmentList.accordion.INVALID_BRANCH',
         ]
 
         expect(validateModel(testData, existingConditions))
@@ -177,7 +177,9 @@ describe('The existingConditions model', () => {
           },
         }
         const expectedErrors = [
-          'TreatmentList.accordion',
+          'TreatmentList.accordion.0.Diagnosed.presence.REQUIRED',
+          'TreatmentList.accordion.0.Treatment.presence.REQUIRED',
+          'TreatmentList.accordion.0.TreatmentFacility.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, existingConditions))

@@ -5,9 +5,13 @@ import usAddress from 'models/shared/locations/usAddress'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import physicalAddress from 'models/shared/physicalAddress'
 import { hasYesOrNo } from 'models/validate'
+import * as formTypes from 'constants/formTypes'
 
 import {
-  MOTHER, immedateFamilyOptions, relativeCitizenshipDocumentationOptions,
+  MOTHER,
+  immedateFamilyOptions,
+  relativeOptions,
+  relativeCitizenshipDocumentationOptions,
   relativeResidentDocumentationOptions,
 } from 'constants/enums/relationshipOptions'
 import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
@@ -26,29 +30,51 @@ export const isLiving = attributes => (
   attributes.IsDeceased && attributes.IsDeceased.value === 'No'
 )
 
-export const requireCitizenshipDocumentation = (attributes) => {
-  const bornInUS = attributes.Birthplace
-    && attributes.Birthplace.country
-    && countryString(attributes.Birthplace.country) === 'United States'
-
-  return !!(isCitizen(attributes)
-    && attributes.Birthplace
-    && attributes.Birthplace.country
-    && !bornInUS)
-}
-
-export const isLivingNonCitizen = attributes => (
-  isLiving(attributes) && !isCitizen(attributes)
-)
-
 export const livesInUS = attributes => !!(
   attributes.Address
     && attributes.Address.country
     && countryString(attributes.Address.country) === 'United States'
 )
 
-export const requireResidenceDocumentation = attributes => (
-  livesInUS(attributes) && isLivingNonCitizen(attributes)
+export const isLivingNonCitizen = attributes => (
+  isLiving(attributes) && !isCitizen(attributes)
+)
+export const wasBornInUS = attributes => (
+  attributes.Birthplace
+  && attributes.Birthplace.country
+  && countryString(attributes.Birthplace.country) === 'United States'
+)
+
+export const hasApoAddress = attributes => (
+  attributes.AlternateAddress
+  && attributes.AlternateAddress.HasDifferentAddress
+  && attributes.AlternateAddress.HasDifferentAddress === 'Yes'
+)
+
+export const requireCitizenshipDocumentation = (attributes, options) => {
+  if (options.requireRelationshipRelativesForeignBornDoc) {
+    return !!((
+      isCitizen(attributes)
+      && !wasBornInUS(attributes)
+      && !isLiving(attributes)
+    ) || (
+      isCitizen(attributes)
+      && !wasBornInUS(attributes)
+      && (livesInUS(attributes) || hasApoAddress(attributes))
+    ))
+  }
+  return false
+}
+
+export const requireResidenceDocumentation = (attributes, options) => (
+  options.requireRelationshipRelativesUSResidenceDoc
+  && isLivingNonCitizen(attributes)
+  && livesInUS(attributes)
+)
+
+export const requireRelativeContactDescription = (attributes, options) => (
+  options.requireRelationshipRelativesUSResidenceDoc
+  && isLivingNonCitizen(attributes)
 )
 
 /** Relative model */
@@ -121,8 +147,8 @@ const relative = {
       model: { validator: physicalAddress, militaryAddress: true },
     }
   },
-  CitizenshipDocumentation: (value, attributes) => {
-    if (requireCitizenshipDocumentation(attributes)) {
+  CitizenshipDocumentation: (value, attributes, attributeNane, options) => {
+    if (requireCitizenshipDocumentation(attributes, options)) {
       return {
         presence: true,
         hasValue: {
@@ -146,8 +172,8 @@ const relative = {
 
     return {}
   },
-  DocumentNumber: (value, attributes) => {
-    if (requireCitizenshipDocumentation(attributes)) {
+  DocumentNumber: (value, attributes, attributeName, options) => {
+    if (requireCitizenshipDocumentation(attributes, options)) {
       return {
         presence: true,
         hasValue: true,
@@ -156,8 +182,8 @@ const relative = {
 
     return {}
   },
-  CourtName: (value, attributes) => {
-    if (requireCitizenshipDocumentation(attributes)) {
+  CourtName: (value, attributes, attributeName, options) => {
+    if (requireCitizenshipDocumentation(attributes, options)) {
       return {
         presence: true,
         hasValue: true,
@@ -166,8 +192,8 @@ const relative = {
 
     return {}
   },
-  CourtAddress: (value, attributes) => {
-    if (requireCitizenshipDocumentation(attributes)) {
+  CourtAddress: (value, attributes, attributeName, options) => {
+    if (requireCitizenshipDocumentation(attributes, options)) {
       return {
         presence: true,
         location: { validator: usAddress },
@@ -176,8 +202,8 @@ const relative = {
 
     return {}
   },
-  Document: (value, attributes) => {
-    if (requireResidenceDocumentation(attributes)) {
+  Document: (value, attributes, attributeName, options) => {
+    if (requireResidenceDocumentation(attributes, options)) {
       return {
         presence: true,
         hasValue: {
@@ -200,8 +226,8 @@ const relative = {
 
     return {}
   },
-  ResidenceDocumentNumber: (value, attributes) => {
-    if (requireResidenceDocumentation(attributes)) {
+  ResidenceDocumentNumber: (value, attributes, attributeName, options) => {
+    if (requireResidenceDocumentation(attributes, options)) {
       return {
         presence: true,
         hasValue: true,
@@ -210,8 +236,8 @@ const relative = {
 
     return {}
   },
-  Expiration: (value, attributes) => {
-    if (requireResidenceDocumentation(attributes)) {
+  Expiration: (value, attributes, attributeName, options) => {
+    if (requireResidenceDocumentation(attributes, options)) {
       return {
         presence: true,
         date: true,
@@ -220,8 +246,8 @@ const relative = {
 
     return {}
   },
-  FirstContact: (value, attributes) => {
-    if (isLivingNonCitizen(attributes)) {
+  FirstContact: (value, attributes, attributeName, options) => {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         date: true,
@@ -230,11 +256,10 @@ const relative = {
 
     return {}
   },
-  LastContact: (value, attributes) => {
-    if (isLivingNonCitizen(attributes)) {
+  LastContact: (value, attributes, attributeName, options) => {
+    if (requireRelativeContactDescription(attributes, options)) {
       const dateLimits = { latest: DEFAULT_LATEST }
       if (attributes.FirstContact) dateLimits.earliest = attributes.FirstContact
-
       return {
         presence: true,
         date: dateLimits,
@@ -243,8 +268,8 @@ const relative = {
 
     return {}
   },
-  Methods: (value, attributes) => {
-    if (isLivingNonCitizen(attributes)) {
+  Methods: (value, attributes, attributeName, options) => {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         array: {
@@ -269,8 +294,8 @@ const relative = {
 
     return {}
   },
-  Frequency: (value, attributes) => {
-    if (isLivingNonCitizen(attributes)) {
+  Frequency: (value, attributes, attributeName, options) => {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         hasValue: true,
@@ -290,11 +315,11 @@ const relative = {
 
     return {}
   },
-  Employer: (value, attributes) => {
+  Employer: (value, attributes, attributeName, options) => {
     if (attributes.EmployerNotApplicable
       && attributes.EmployerNotApplicable.applicable === false) return {}
 
-    if (isLivingNonCitizen(attributes) && !livesInUS(attributes)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         hasValue: true,
@@ -303,11 +328,11 @@ const relative = {
 
     return {}
   },
-  EmployerAddress: (value, attributes) => {
+  EmployerAddress: (value, attributes, attributeName, options) => {
     if (attributes.EmployerAddressNotApplicable
       && attributes.EmployerAddressNotApplicable.applicable === false) return {}
 
-    if (isLivingNonCitizen(attributes) && !livesInUS(attributes)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         location: { validator: address },
@@ -316,11 +341,11 @@ const relative = {
 
     return {}
   },
-  HasAffiliation: (value, attributes) => {
+  HasAffiliation: (value, attributes, attributeName, options) => {
     if (attributes.EmployerRelationshipNotApplicable
       && attributes.EmployerRelationshipNotApplicable.applicable === false) return {}
 
-    if (isLivingNonCitizen(attributes) && !livesInUS(attributes)) {
+    if (requireRelativeContactDescription(attributes, options)) {
       return {
         presence: true,
         hasValue: { validator: hasYesOrNo },

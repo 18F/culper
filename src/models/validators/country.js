@@ -1,5 +1,6 @@
 import { validate } from 'validate.js'
 import { countryValues } from 'constants/enums/countries'
+import { INVALID_COUNTRY } from 'constants/errors'
 
 const countryValidator = (value) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
@@ -18,7 +19,7 @@ const countryValidator = (value) => {
   // string
   if (countryValues.indexOf(value) > -1) return null
 
-  return 'Invalid country'
+  return INVALID_COUNTRY
 }
 
 export default countryValidator

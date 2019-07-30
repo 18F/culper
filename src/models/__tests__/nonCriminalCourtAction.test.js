@@ -5,12 +5,12 @@ describe('The nonCriminalCourtAction model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'CivilActionDate.required',
-      'CourtName.required',
-      'CourtAddress.required',
-      'NatureOfAction.required',
-      'ResultsOfAction.required',
-      'PrincipalPartyNames.required',
+      'CivilActionDate.presence.REQUIRED',
+      'CourtName.presence.REQUIRED',
+      'CourtAddress.presence.REQUIRED',
+      'NatureOfAction.presence.REQUIRED',
+      'ResultsOfAction.presence.REQUIRED',
+      'PrincipalPartyNames.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, nonCriminalCourtAction))
@@ -21,7 +21,11 @@ describe('The nonCriminalCourtAction model', () => {
     const testData = {
       CivilActionDate: 12345,
     }
-    const expectedErrors = ['CivilActionDate.date']
+    const expectedErrors = [
+      'CivilActionDate.date.day.presence.REQUIRED',
+      'CivilActionDate.date.month.presence.REQUIRED',
+      'CivilActionDate.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, nonCriminalCourtAction))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -31,7 +35,7 @@ describe('The nonCriminalCourtAction model', () => {
     const testData = {
       CourtName: 'test court',
     }
-    const expectedErrors = ['CourtName.hasValue']
+    const expectedErrors = ['CourtName.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, nonCriminalCourtAction))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -41,7 +45,11 @@ describe('The nonCriminalCourtAction model', () => {
     const testData = {
       CourtAddress: '123 Main St',
     }
-    const expectedErrors = ['CourtAddress.location']
+    const expectedErrors = [
+      'CourtAddress.location.street.presence.REQUIRED',
+      'CourtAddress.location.city.presence.REQUIRED',
+      'CourtAddress.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, nonCriminalCourtAction))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -51,7 +59,7 @@ describe('The nonCriminalCourtAction model', () => {
     const testData = {
       NatureOfAction: 'test',
     }
-    const expectedErrors = ['NatureOfAction.hasValue']
+    const expectedErrors = ['NatureOfAction.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, nonCriminalCourtAction))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -61,7 +69,7 @@ describe('The nonCriminalCourtAction model', () => {
     const testData = {
       ResultsOfAction: 'test',
     }
-    const expectedErrors = ['ResultsOfAction.hasValue']
+    const expectedErrors = ['ResultsOfAction.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, nonCriminalCourtAction))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -71,7 +79,7 @@ describe('The nonCriminalCourtAction model', () => {
     const testData = {
       PrincipalPartyNames: 'test',
     }
-    const expectedErrors = ['PrincipalPartyNames.hasValue']
+    const expectedErrors = ['PrincipalPartyNames.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, nonCriminalCourtAction))
       .toEqual(expect.arrayContaining(expectedErrors))

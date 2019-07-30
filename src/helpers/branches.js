@@ -17,7 +17,7 @@ export const requireCitizenshipForeignPassportsSection = formType => (
 )
 
 export const requireForeignMilitaryMaintainsContact = formType => (
-  requiredByForms(formType, [formTypes.SF86, formTypes.SF85P])
+  requiredByForms(formType, [formTypes.SF86])
 )
 
 export const requireForeignContactsSection = formType => (
@@ -162,5 +162,25 @@ export const requireAlcoholOrderedCounselingParty = formType => (
 )
 
 export const requireFinancialCardDisciplinaryDate = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireRelationshipMaritalForeignBornDocExpiration = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireRelationshipMaritalDivorcePhoneNumber = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireRelationshipRelativesForeignBornDoc = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireRelationshipRelativesUSResidenceDoc = formType => (
+  requiredByForms(formType, [formTypes.SF86])
+)
+
+export const requireRelationshipRelativesForeignGovtAffExplanation = formType => (
   requiredByForms(formType, [formTypes.SF86])
 )

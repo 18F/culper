@@ -5,7 +5,7 @@ describe('The terrorism model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'HasTerrorism.required',
+      'HasTerrorism.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, terrorism))
@@ -16,7 +16,7 @@ describe('The terrorism model', () => {
     const testData = {
       HasTerrorism: { value: 'true' },
     }
-    const expectedErrors = ['HasTerrorism.hasValue']
+    const expectedErrors = ['HasTerrorism.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, terrorism))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -28,8 +28,8 @@ describe('The terrorism model', () => {
         HasTerrorism: { value: 'Yes' },
       }
       const expectedErrors = [
-        'Explanation.required',
-        'Explanation.hasValue',
+        'Explanation.presence.REQUIRED',
+        'Explanation.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, terrorism))
@@ -51,7 +51,7 @@ describe('The terrorism model', () => {
       const testData = {
         HasTerrorism: { value: 'No' },
       }
-      const expectedErrors = ['Explanation.required']
+      const expectedErrors = ['Explanation.presence.REQUIRED']
 
       expect(validateModel(testData, terrorism))
         .not.toEqual(expect.arrayContaining(expectedErrors))

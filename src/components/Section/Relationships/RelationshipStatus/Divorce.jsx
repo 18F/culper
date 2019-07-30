@@ -115,6 +115,7 @@ export default class Divorce extends React.Component {
   }
 
   render() {
+    const { requireRelationshipMaritalDivorcePhoneNumber } = this.props
     const enteredCivilUnionMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="divorce">
@@ -182,20 +183,22 @@ export default class Divorce extends React.Component {
           />
         </Field>
 
-        <Field
-          title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
-          className="override-required"
-          scrollIntoView={this.props.scrollIntoView}
-          adjustFor="telephone"
-        >
-          <Telephone
-            name="Telephone"
-            {...this.props.Telephone}
-            onUpdate={this.updateTelephone}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
-        </Field>
+        {requireRelationshipMaritalDivorcePhoneNumber && (
+          <Field
+            title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
+            className="override-required"
+            scrollIntoView={this.props.scrollIntoView}
+            adjustFor="telephone"
+          >
+            <Telephone
+              name="Telephone"
+              {...this.props.Telephone}
+              onUpdate={this.updateTelephone}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
+          </Field>
+        )}
 
         <Field
           help="relationships.civilUnion.divorce.help.recognized"

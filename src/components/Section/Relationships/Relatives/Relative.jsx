@@ -211,6 +211,7 @@ export default class Relative extends ValidationElement {
       EmployerAddress: this.props.EmployerAddress,
       HasAffiliation: this.props.HasAffiliation,
       EmployerRelationship: this.props.EmployerRelationship,
+      AlternateAddress: this.props.AlternateAddress,
       ...queue,
     })
   }
@@ -302,6 +303,11 @@ export default class Relative extends ValidationElement {
   }
 
   render() {
+    const {
+      requireRelationshipRelativesUSResidenceDoc,
+      requireRelationshipRelativesForeignGovtAffExplanation,
+    } = this.props
+
     const relativeContactMinDate = pickDate([
       this.props.applicantBirthdate,
       this.props.Birthdate,
@@ -701,7 +707,8 @@ export default class Relative extends ValidationElement {
 
         <Show
           when={
-            this.props.Citizenship.value
+            requireRelationshipRelativesUSResidenceDoc
+            && this.props.Citizenship.value
             && !validator.citizen()
             && this.props.IsDeceased.value === 'No'
           }
@@ -1025,7 +1032,11 @@ export default class Relative extends ValidationElement {
                 onError={this.props.onError}
               />
             </NotApplicable>
-            <Show when={this.props.HasAffiliation.value === 'Yes'}>
+            <Show when={
+              requireRelationshipRelativesForeignGovtAffExplanation
+              && this.props.HasAffiliation.value === 'Yes'
+            }
+            >
               <Field
                 title={i18n.t('relationships.relatives.heading.employer.relationship')}
                 scrollIntoView={this.props.scrollIntoView}
@@ -1081,6 +1092,8 @@ Relative.defaultProps = {
   EmployerRelationship: {},
   addressBooks: {},
   addressBook: 'Relative',
+  requireRelationshipRelativesForeignGovtAffExplanation: true,
+  requireRelationshipRelativesUSResidenceDoc: true,
   dispatch: () => {},
   onUpdate: () => {},
   onError: (value, arr) => arr,

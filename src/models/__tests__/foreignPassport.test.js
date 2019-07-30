@@ -4,7 +4,7 @@ import foreignPassport from '../foreignPassport'
 describe('The foreignPassport model', () => {
   it('Country is required', () => {
     const testData = {}
-    const expectedErrors = ['Country.required']
+    const expectedErrors = ['Country.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The foreignPassport model', () => {
 
   it('Country must have a valid value', () => {
     const testData = { Country: 'invalid' }
-    const expectedErrors = ['Country.country']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -20,7 +20,7 @@ describe('The foreignPassport model', () => {
 
   it('Issued is required', () => {
     const testData = {}
-    const expectedErrors = ['Issued.required']
+    const expectedErrors = ['Issued.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -28,7 +28,11 @@ describe('The foreignPassport model', () => {
 
   it('Issued must be a valid date', () => {
     const testData = { Issued: 'May 2 1990' }
-    const expectedErrors = ['Issued.date']
+    const expectedErrors = [
+      'Issued.date.day.presence.REQUIRED',
+      'Issued.date.month.presence.REQUIRED',
+      'Issued.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -36,7 +40,7 @@ describe('The foreignPassport model', () => {
 
   it('Location is required', () => {
     const testData = {}
-    const expectedErrors = ['Location.required']
+    const expectedErrors = ['Location.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -48,7 +52,9 @@ describe('The foreignPassport model', () => {
         city: 'Test city',
       },
     }
-    const expectedErrors = ['Location.location']
+    const expectedErrors = [
+      'Location.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -56,7 +62,7 @@ describe('The foreignPassport model', () => {
 
   it('Name is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -69,7 +75,9 @@ describe('The foreignPassport model', () => {
         last: 'Person',
       },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.middle.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -77,7 +85,7 @@ describe('The foreignPassport model', () => {
 
   it('Number is required', () => {
     const testData = {}
-    const expectedErrors = ['Number.required']
+    const expectedErrors = ['Number.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -85,7 +93,7 @@ describe('The foreignPassport model', () => {
 
   it('Number must have a value', () => {
     const testData = { Number: '123' }
-    const expectedErrors = ['Number.hasValue']
+    const expectedErrors = ['Number.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -93,7 +101,7 @@ describe('The foreignPassport model', () => {
 
   it('Expiration is required', () => {
     const testData = {}
-    const expectedErrors = ['Expiration.required']
+    const expectedErrors = ['Expiration.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -101,7 +109,11 @@ describe('The foreignPassport model', () => {
 
   it('Expiration must be a valid date', () => {
     const testData = { Expiration: 'May 2 1990' }
-    const expectedErrors = ['Expiration.date']
+    const expectedErrors = [
+      'Expiration.date.day.presence.REQUIRED',
+      'Expiration.date.month.presence.REQUIRED',
+      'Expiration.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -112,7 +124,7 @@ describe('The foreignPassport model', () => {
       Issued: { day: 5, month: 10, year: 2018 },
       Expiration: { day: 5, month: 10, year: 2015 },
     }
-    const expectedErrors = ['Expiration.date']
+    const expectedErrors = ['Expiration.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -120,7 +132,7 @@ describe('The foreignPassport model', () => {
 
   it('Used is required', () => {
     const testData = {}
-    const expectedErrors = ['Used.required']
+    const expectedErrors = ['Used.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -128,7 +140,7 @@ describe('The foreignPassport model', () => {
 
   it('Used must have a valid value', () => {
     const testData = { Used: 'true' }
-    const expectedErrors = ['Used.hasValue']
+    const expectedErrors = ['Used.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, foreignPassport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -137,7 +149,7 @@ describe('The foreignPassport model', () => {
   describe('if Used is "No"', () => {
     it('Countries are not required', () => {
       const testData = { Used: { value: 'No' } }
-      const expectedErrors = ['Countries.required']
+      const expectedErrors = ['Countries.presence.REQUIRED']
 
       expect(validateModel(testData, foreignPassport))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -165,7 +177,7 @@ describe('The foreignPassport model', () => {
   describe('if Used is "Yes"', () => {
     it('Countries are required', () => {
       const testData = { Used: { value: 'Yes' } }
-      const expectedErrors = ['Countries.required']
+      const expectedErrors = ['Countries.presence.REQUIRED']
 
       expect(validateModel(testData, foreignPassport))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -184,7 +196,10 @@ describe('The foreignPassport model', () => {
           ],
         },
       }
-      const expectedErrors = ['Countries.accordion']
+      const expectedErrors = [
+        'Countries.accordion.0.Country.country.INVALID_COUNTRY',
+        'Countries.accordion.0.Dates.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, foreignPassport))
         .toEqual(expect.arrayContaining(expectedErrors))

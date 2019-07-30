@@ -2210,9 +2210,9 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               className="introduction-legal"
             >
               <div>
-                <h2>
-                  Questionnaire for National Security Positions
-                </h2>
+                <h1>
+                  Questionnaire for Public Trust Positions
+                </h1>
               </div>
               <div>
                 <p>
@@ -2235,9 +2235,12 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <ol>
                   <li>
                     <strong>
-                      Follow the instructions provided to you by the office that gave you this form
+                      Follow the instructions provided to you, by the office that gave you this form
                     </strong>
-                     and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.
+                     and any other clarifying instructions, provided by that office, to assist you with completion of this form. You must sign and date, in ink, the original and each copy you submit. 
+                    <strong>
+                      You should retain a copy of the completed form for your records.
+                    </strong>
                   </li>
                 </ol>
               </div>
@@ -2261,13 +2264,49 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     <strong>
                       Do not abbreviate the names of cities or foreign countries
                     </strong>
-                    .
+                    . Whenever you are asked to supply a country name, you may select the country name by using the country dropdown feature.
                   </li>
                 </ol>
               </div>
               <div>
                 <ol
                   start="4"
+                >
+                  <li>
+                    When entering a U.S. address or location, select the state or territory from the "States" dropdown list that will be provided. For locations outside of the U.S. and its territories, select the country in the "Country" dropdown list and leave the "State" field blank.
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <ol
+                  start="5"
+                >
+                  <li>
+                    Do not abbreviate the names of cities or foreign countries.
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <ol
+                  start="6"
+                >
+                  <li>
+                    The 5-digit postal Zip Codes are required to process your investigation more rapidly. Refer to an automated system approved by the U.S. Postal Service to assist you with Zip Codes.
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <ol
+                  start="7"
+                >
+                  <li>
+                    For telephone numbers in the U.S., ensure that the area code is included.
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <ol
+                  start="8"
                 >
                   <li>
                     <strong>
@@ -2291,6 +2330,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     If you are a current civilian employee of the federal government:
                   </strong>
                    failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.
+                </p>
+              </div>
+              <div>
+                <p>
+                  Note: If you complete the SF 85P, an Authorization for Release of Medical Information Pursuant to the Health Insurance Portability and Accountability Act (HIPAA) will be provided to you only in the event information arises in an investigation that requires further inquiry for resolution, and only to resolve such issues. This release authorizes an investigator to ask your health practitioner(s) only the questions specified on the release concerning mental health consultations of which the practitioner might be aware. If you are completing the SF 85P with the supplemental SF 85P-S, this release will be provided to you if you respond “yes” to the question regarding Your Medical Record. You may also be asked to complete a specific release if more detailed information is needed from your provider.
                 </p>
               </div>
               <div>
@@ -2324,22 +2368,22 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  This form will be used by the United States (U.S.) Government in conducting background investigations, reinvestigations, and continuous evaluations of persons under consideration for, or retention of, national security positions as defined in 5 CFR 732, and for individuals requiring eligibility for access to classified information under Executive Order 12968. This form may also be used by agencies in determining whether a subject performing work for, or on behalf of, the Government under a contract should be deemed eligible for logical or physical access when the nature of the work to be performed is sensitive and could bring about an adverse effect on the national security.
+                  This form will be used by the United States (U.S.) Government in conducting background investigations and reinvestigations of persons under consideration for, or retention of, public trust positions as defined in 5 CFR 731. This form may also be used by agencies in determining whether a subject performing work for, or on behalf of, the Government under a contract should be deemed eligible for logical or physical access when duties to be performed by an employee of a contractor are equivalent to the duties performed by an employee in a public trust position. For applicants, this form is to be used only after a conditional offer of employment has been made. This form is not to be used for National Security sensitive positions.
                 </p>
               </div>
               <div>
                 <p>
-                  Providing this information is voluntary. If you do not provide each item of requested information, however, we will not be able to complete your investigation, which will adversely affect your eligibility for a national security position, eligibility for access to classified information, or logical or physical access. It is imperative that the information provided be true and accurate, to the best of your knowledge. Any information that you provide is evaluated on the basis of its currency, seriousness, relevance to the position and duties, and consistency with all other information about you. Withholding, misrepresenting, or falsifying information may affect your eligibility for access to classified information, eligibility for a sensitive position, or your ability to obtain or retain Federal or contract employment. In addition, withholding, misrepresenting, or falsifying information may affect your eligibility for physical and logical access to federally controlled facilities or information systems. Withholding, misrepresenting, or falsifying information may also negatively affect your employment prospects and job status, and the potential consequences include, but are not limited to, removal, debarment from Federal service, loss of eligibility for access to classified information, or prosecution.
+                  Providing this information is voluntary. If you do not provide each item of requested information, however, we will not be able to complete your investigation, which will adversely affect your eligibility for a public trust position or your ability to obtain or retain Federal or contract employment, or logical or physical access. It is imperative that the information provided be true and accurate, to the best of your knowledge. Any information that you provide is evaluated on the basis of its currency, seriousness, relevance to the position and duties, and consistency with all other information about you. Withholding, misrepresenting, or falsifying information may affect your eligibility for a public trust position, or your ability to obtain or retain Federal or contract employment. In addition, withholding, misrepresenting, or falsifying information may affect your eligibility for physical and logical access to federally controlled facilities or information systems. Withholding, misrepresenting, or falsifying information may also negatively affect your employment prospects and job status, and the potential consequences include, but are not limited to, removal, debarment from Federal service, or prosecution.
                 </p>
               </div>
               <div>
                 <p>
-                  This form may become a permanent document that may be used as the basis for future investigations, eligibility determinations for access to classified information, or to hold a sensitive position, suitability or fitness for Federal employment, fitness for contract employment, or eligibility for physical and logical access to federally controlled facilities or information systems. Your responses to this form may be compared with your responses to previous SF-86 questionnaires.
+                  This form is a permanent document that may be used as the basis for future investigations, suitability or fitness for Federal employment, fitness for contract employment, or eligibility for physical and logical access to federally controlled facilities or information systems. Your responses to this form may be compared with your responses to previous SF 85P questionnaires.
                 </p>
               </div>
               <div>
                 <p>
-                  The investigation conducted on the basis of information provided on this form may be selected for studies and analyses in support of evaluating and improving the effectiveness and efficiency of the investigative and adjudicative methodologies. All study results released to the general public will delete personal identifiers such as name, Social Security Number, and date and place of birth.
+                  The investigation conducted on the basis of information provided on this form may be selected for studies and analyses in support of evaluating and improving the effectiveness and efficiency of the investigative and adjudicative methodologies. All study results released to the general public will delete personal identifiers such as name, social security number, and date and place of birth.
                 </p>
               </div>
               <div>
@@ -2347,12 +2391,12 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <h2>
-                  Authority to request this information
+                  Authority to Request this Information
                 </h2>
               </div>
               <div>
                 <p>
-                  Depending upon the purpose of your investigation, the U.S. Government is authorized to ask for this information under Executive Orders 10450, 10865, 12333, and 12968; sections 3301, 3302, and 9101 of title 5, United States Code (U.S.C.); sections 2165 and 2201 of title 42, U.S.C.; chapter 23 of title 50, U.S.C.; and parts 2, 5, 731, 732, and 736 of title 5, Code of Federal Regulations (CFR).
+                  Depending upon the purpose of your investigation, the U.S. Government is authorized to ask for this information under Executive Orders 13467, 10865, 12333, and 12968; sections 3301, 3302, and 9101 of title 5, United States Code (U.S.C.); sections 2165 and 2201 of title 42, U.S.C.; chapter 23 of title 50, U.S.C.; and parts 2, 5, 731, 732, and 736 of title 5, Code of Federal Regulations (CFR), and Federal information processing standards.
                 </p>
               </div>
               <div>
@@ -2361,26 +2405,31 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 </p>
               </div>
               <div>
+                <p>
+                  Your spouse’s SSN is needed solely to allow the investigative service provider to make inquiries regarding whether there is relevant conduct on your part as a result of your relationship with your spouse. Your spouse is not subject of the investigation.
+                </p>
+              </div>
+              <div>
                 <hr />
               </div>
               <div>
                 <h2>
-                  The investigative process
+                  The Investigative Process
                 </h2>
               </div>
               <div>
                 <p>
-                  Background investigations for national security positions are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and loyal to the U.S. The information that you provide on this form may be confirmed during the investigation. The investigation may extend beyond the time covered by this form, when necessary to resolve issues. Your current employer may be contacted as part of the investigation, although you may have previously indicated on applications or other forms that you do not want your current employer to be contacted. If you have a security freeze on your consumer or credit report file, then we may not be able to complete your investigation, which can adversely affect your eligibility for a national security position. To avoid such delays, you should request that the consumer reporting agencies lift the freeze in these instances.
+                  Background investigations for public trust positions are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and loyal to the U.S. The information that you provide on this form and your Declaration for Federal Employment (OF 306) may be confirmed during the investigation. The investigation may extend beyond the time covered by this form, when necessary to resolve issues. Your current employer may be contacted as part of the investigation, although you may have previously indicated on applications or other forms that you do not want your current employer to be contacted. If you have a security freeze on your consumer or credit report file, then we may not be able to complete your investigation, which can adversely affect your eligibility for a public trust position or your ability to obtain Federal or contract employment. To avoid such delays, you must request that the consumer reporting agencies lift the freeze in these instances.
                 </p>
               </div>
               <div>
                 <p>
-                  In addition to the questions on this form, inquiry also is made about your adherence to security requirements, your honesty and integrity, vulnerability to exploitation or coercion, falsification, misrepresentation, and any other behavior, activities, or associations that tend to demonstrate a person is not reliable, trustworthy, or loyal. Federal agency records checks may be conducted on your spouse or legally recognized civil union/domestic partner, cohabitant(s), and immediate family members. After an eligibility determination has been completed, you also may be subject to continuous evaluation, which may include periodic reinvestigations, to determine whether retention in your position is clearly consistent with the interests of national security.
+                  In addition to the questions on this form, inquiry also is made about your adherence to security requirements your honesty and integrity, falsification, misrepresentation, and any other behavior, activities, or associations that tend to demonstrate a person is not reliable, trustworthy, or loyal.
                 </p>
               </div>
               <div>
                 <p>
-                  The information you provide on this form may be confirmed during the investigation, and may be used for identification purposes throughout the investigation process.
+                  After a suitability fitness determination is made, you may also be subject to continuous vetting which may include periodic reinvestigations to ensure your continuing suitability for employment.
                 </p>
               </div>
               <div>
@@ -2388,7 +2437,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <h2>
-                  Your personal interview
+                  Your Personal Interview
                 </h2>
               </div>
               <div>
@@ -2411,7 +2460,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Final determination on your eligibility for a national security position is the responsibility of the Federal agency that requested your investigation and the agency that conducted your investigation. You will be provided the opportunity to explain, refute, or clarify any information before a final decision is made, if an unfavorable decision is considered. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, or sexual orientation when granting access to classified information.
+                  Final determination on your suitability for a public trust position is the responsibility of the Office of Personnel Management or the Federal agency that requested your investigation. You may be provided the opportunity to explain, refute, or clarify any information before a final decision is made. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, and sexual orientation, when making determinations of suitability for a public trust position.
                 </p>
               </div>
               <div>
@@ -2424,7 +2473,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  The U.S. Criminal Code (title 18, section 1001) provides that knowingly falsifying or concealing a material fact is a felony which may result in fines and/or up to five (5) years imprisonment. In addition, Federal agencies generally fire, do not grant a security clearance, or disqualify individuals who have materially and deliberately falsified these forms, and this remains a part of the permanent record for future placements. Your prospects of placement or security clearance are better if you answer all questions truthfully and completely. You will have adequate opportunity to explain any information you provide on this form and to make your comments part of the record.
+                  The U.S. Criminal Code (title 18, section 1001) provides that knowingly falsifying or concealing a material fact is a felony which may result in fines and/or up to five (5) years imprisonment. In addition, Federal agencies generally fire, or disqualify individuals who have materially and deliberately falsified these forms, and this remains a part of the permanent record for future placements. Your prospects of placement are better if you answer all questions truthfully and completely. You will have adequate opportunity to explain any information you provide on this form and to make your comments part of the record.
                 </p>
               </div>
               <div>
@@ -2437,17 +2486,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  The information you provide is for the purpose of investigating you for a national security position, and the information will be protected from unauthorized disclosure. The collection, maintenance, and disclosure of background investigative information are governed by the Privacy Act. The agency that requested the investigation and the agency that conducted the investigation have published notices in the Federal Register describing the systems of records in which your records will be maintained. The information you provide on this form, and information collected during an investigation, may be disclosed without your consent by an agency maintaining the information in a system of records as permitted by the Privacy Act [5 U.S.C. 552a(b)], and by routine uses, a list of which are published by the agency in the Federal Register. The office that gave you this form will provide you a copy of its routine uses.
-                </p>
-              </div>
-              <div>
-                <p>
-                  You will not receive prior notice of such disclosures under a routine use.
-                </p>
-              </div>
-              <div>
-                <p>
-                  In addition to those disclosures generally permitted under the Privacy Act, all or a portion of the records or information you provide on this form or during your investigation may be disclosed outside of OPM as a routine use as outlined below.
+                  The information you provide is for the purpose of investigating you for a position, and the information will be protected from unauthorized disclosure. The collection, maintenance, and disclosure of background investigative information are governed by the Privacy Act. The agency that requested the investigation and the agency that conducted the investigation have published notices in the Federal Register describing the systems of records in which your records will be maintained. The information you provide on this form, and information collected during an investigation, may be disclosed without your consent by an agency maintaining the information in a system of records as permitted by the Privacy Act [5 U.S.C. 552a(b)], and by routine uses, a list of which are published by the agency in the Federal Register. The office that gave you this form will provide you a copy of its routine uses.
                 </p>
               </div>
               <div>
@@ -2460,7 +2499,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  OPM has published the following Privacy Act routine uses for its system of records for background investigations:
+                  The Privacy Act routine uses of agencies conducting or requesting investigations, or with authorized custody over your investigative information, commonly include some or all of the following:
                 </p>
               </div>
               <div>
@@ -2605,9 +2644,14 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   start="4"
                 >
                   <li>
-                    The United States, when OPM determines that litigation is likely to affect OPM or any of its components; is a party to litigation or has an interest in such litigation, and the use of such records by the Department of Justice or OPM is deemed by OPM to be relevant and necessary to the litigation, provided, however, that the disclosure is compatible with the purpose for which records were collected.
+                    The United States, when OPM determines that litigation is likely to affect OPM or any of its components;
                   </li>
                 </ol>
+              </div>
+              <div>
+                <p>
+                  is a party to litigation or has an interest in such litigation, and the use of such records by the Department of Justice or OPM is deemed by OPM to be relevant and necessary to the litigation, provided, however, that the disclosure is compatible with the purpose for which records were collected.
+                </p>
               </div>
               <div>
                 <p>
@@ -2710,7 +2754,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   <strong>
                     aa.
                   </strong>
-                   To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.
+                   aa. To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.
                 </p>
               </div>
               <div>
@@ -2725,9 +2769,9 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                 <p>
                   Public burden reporting for this collection of information is 
                   <strong>
-                    estimated to average 150 minutes per response
+                    estimated to average 120 minutes
                   </strong>
-                  , including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, Federal Investigative Services, Attn: OMB Number 3206-0005, 1900 E Street, N.W., Washington, DC 20415. The OMB clearance number, 3206-0005, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.
+                   per response, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, National Background Investigations Bureau, Attn: OMB Number 3206-0261 1900 E Street, NW, Washington, DC 20415. The OMB clearance number, 3206-0261, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.
                 </p>
               </div>
             </div>
@@ -2781,7 +2825,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     >
                       <div>
                         <p>
-                          I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.
+                          I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), or removal and debarment from Federal Service.
                         </p>
                       </div>
                     </div>
