@@ -13,6 +13,7 @@ describe('The location validator', () => {
     expect(location(testData, options)).toEqual([
       'city.presence.REQUIRED',
       'country.presence.REQUIRED',
+      'county.presence.REQUIRED',
     ])
   })
 
