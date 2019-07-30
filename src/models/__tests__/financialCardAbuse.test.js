@@ -39,11 +39,11 @@ describe('The financial card abuse model', () => {
       }
       const testData = {}
       const expectedErrors = [
-        'Agency.required',
-        'Address.required',
-        'Reason.required',
-        'Amount.required',
-        'Description.required',
+        'Agency.presence.REQUIRED',
+        'Address.presence.REQUIRED',
+        'Reason.presence.REQUIRED',
+        'Amount.presence.REQUIRED',
+        'Description.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, financialCardAbuse, sf85pOptions))
