@@ -358,8 +358,11 @@ describe('The cohabitant model', () => {
         'ForeignBornDocument.model.DocumentExpiration.presence.REQUIRED',
         'ForeignBornDocument.model.DocumentNumber.presence.REQUIRED',
       ]
+      const options = {
+        requireForeignBornDocExpiration: true,
+      }
 
-      expect(validateModel(testData, cohabitant))
+      expect(validateModel(testData, cohabitant, options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
