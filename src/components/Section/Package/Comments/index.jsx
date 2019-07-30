@@ -7,10 +7,11 @@ import { updateApplication } from 'actions/ApplicationActions'
 import {
   Branch, Show, Field, Textarea,
 } from 'components/Form'
+import SectionNavigation from 'components/Section/shared/SectionNavigation'
 
 const PackageComments = (props) => {
   const {
-    HasComments, Comments, required, dispatch,
+    HasComments, Comments, required, dispatch, location,
   } = props
 
   const updateBranch = (values) => {
@@ -22,36 +23,40 @@ const PackageComments = (props) => {
   }
 
   return (
-    <div className="section-content">
-      <h1 className="section-header">
-        {i18n.t('review.commentsHeader')}
-      </h1>
-      <Branch
-        name="has_comments"
-        label={i18n.t('review.commentsBranchLabel')}
-        labelSize="h4"
-        {...HasComments}
-        warning={true}
-        required={required}
-        onUpdate={updateBranch}
-      />
-      <Show when={HasComments && HasComments.value === 'Yes'}>
-        <Field
-          title={i18n.t('review.commentsTitle')}
-          adjustFor="textarea"
-        >
-          {/* eslint jsx-a11y/label-has-associated-control: 0 */}
-          <label htmlFor="Comments">
-            {i18n.t('review.commentsLabel')}
-          </label>
-          <Textarea
-            name="Comments"
-            {...Comments}
-            required={required}
-            onUpdate={updateComments}
-          />
-        </Field>
-      </Show>
+    <div className="view">
+      <div className="section-content">
+        <h1 className="section-header">
+          {i18n.t('review.commentsHeader')}
+        </h1>
+        <Branch
+          name="has_comments"
+          label={i18n.t('review.commentsBranchLabel')}
+          labelSize="h4"
+          {...HasComments}
+          warning={true}
+          required={required}
+          onUpdate={updateBranch}
+        />
+        <Show when={HasComments && HasComments.value === 'Yes'}>
+          <Field
+            title={i18n.t('review.commentsTitle')}
+            adjustFor="textarea"
+          >
+            {/* eslint jsx-a11y/label-has-associated-control: 0 */}
+            <label htmlFor="Comments">
+              {i18n.t('review.commentsLabel')}
+            </label>
+            <Textarea
+              name="Comments"
+              {...Comments}
+              required={required}
+              onUpdate={updateComments}
+            />
+          </Field>
+        </Show>
+      </div>
+
+      <SectionNavigation currentPath={location.pathname} />
     </div>
   )
 }
@@ -61,6 +66,7 @@ PackageComments.propTypes = {
   Comments: PropTypes.object,
   required: PropTypes.bool,
   dispatch: PropTypes.func,
+  location: PropTypes.object,
 }
 
 PackageComments.defaultProps = {
@@ -68,6 +74,7 @@ PackageComments.defaultProps = {
   Comments: {},
   required: false,
   dispatch: () => {},
+  location: {},
 }
 
 const mapStateToProps = (state) => {
