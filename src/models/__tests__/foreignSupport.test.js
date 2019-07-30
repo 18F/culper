@@ -5,12 +5,12 @@ describe('The foreignSupport model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Address.required',
-      'Relationship.required',
-      'Amount.required',
-      'Frequency.required',
-      'Citizenship.required',
+      'Name.presence.REQUIRED',
+      'Address.presence.REQUIRED',
+      'Relationship.presence.REQUIRED',
+      'Amount.presence.REQUIRED',
+      'Frequency.presence.REQUIRED',
+      'Citizenship.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -20,7 +20,11 @@ describe('The foreignSupport model', () => {
     const testData = {
       Name: 'My name',
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -29,7 +33,11 @@ describe('The foreignSupport model', () => {
     const testData = {
       Address: 'invalid date',
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -38,7 +46,7 @@ describe('The foreignSupport model', () => {
     const testData = {
       Relationship: { value: '' },
     }
-    const expectedErrors = ['Relationship.hasValue']
+    const expectedErrors = ['Relationship.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -47,7 +55,7 @@ describe('The foreignSupport model', () => {
     const testData = {
       Amount: 500,
     }
-    const expectedErrors = ['Amount.hasValue']
+    const expectedErrors = ['Amount.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -56,7 +64,7 @@ describe('The foreignSupport model', () => {
     const testData = {
       Frequency: { value: '' },
     }
-    const expectedErrors = ['Frequency.hasValue']
+    const expectedErrors = ['Frequency.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -65,7 +73,7 @@ describe('The foreignSupport model', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -74,7 +82,7 @@ describe('The foreignSupport model', () => {
     const testData = {
       Citizenship: { value: 'testing' },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignSupport))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

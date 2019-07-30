@@ -5,11 +5,11 @@ describe('The drugPrescriptionUse model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'PrescriptionName.required',
-      'InvolvementDates.required',
-      'Reason.required',
-      'UseWhileEmployed.required',
-      'UseWithClearance.required',
+      'PrescriptionName.presence.REQUIRED',
+      'InvolvementDates.presence.REQUIRED',
+      'Reason.presence.REQUIRED',
+      'UseWhileEmployed.presence.REQUIRED',
+      'UseWithClearance.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugPrescriptionUse))
@@ -21,7 +21,7 @@ describe('The drugPrescriptionUse model', () => {
       PrescriptionName: 'testing',
     }
     const expectedErrors = [
-      'PrescriptionName.hasValue',
+      'PrescriptionName.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugPrescriptionUse))
@@ -33,7 +33,8 @@ describe('The drugPrescriptionUse model', () => {
       InvolvementDates: { day: 5, month: 10 },
     }
     const expectedErrors = [
-      'InvolvementDates.daterange',
+      'InvolvementDates.daterange.from.presence.REQUIRED',
+      'InvolvementDates.daterange.to.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugPrescriptionUse))
@@ -45,7 +46,7 @@ describe('The drugPrescriptionUse model', () => {
       Reason: 'testing',
     }
     const expectedErrors = [
-      'Reason.hasValue',
+      'Reason.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugPrescriptionUse))
@@ -57,7 +58,7 @@ describe('The drugPrescriptionUse model', () => {
       UseWhileEmployed: { value: 'nope' },
     }
     const expectedErrors = [
-      'UseWhileEmployed.hasValue',
+      'UseWhileEmployed.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugPrescriptionUse))
@@ -69,7 +70,7 @@ describe('The drugPrescriptionUse model', () => {
       UseWithClearance: { value: 'nope' },
     }
     const expectedErrors = [
-      'UseWithClearance.hasValue',
+      'UseWithClearance.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugPrescriptionUse))
@@ -80,7 +81,7 @@ describe('The drugPrescriptionUse model', () => {
     it('UseWhileEmployed is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'UseWhileEmployed.required',
+        'UseWhileEmployed.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugPrescriptionUse, { requireUseWhileEmployed: false }))
@@ -107,7 +108,7 @@ describe('The drugPrescriptionUse model', () => {
     it('UseWithClearance is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'UseWithClearance.required',
+        'UseWithClearance.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugPrescriptionUse, { requireUseWithClearance: false }))

@@ -5,13 +5,14 @@ describe('The foreign military model', () => {
   it('has required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Organization.required',
-      'Name.required',
-      'Dates.required',
-      'Country.required',
-      'Rank.required',
-      'Division.required',
-      'Circumstances.required',
+      'Organization.presence.REQUIRED',
+      'Name.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'Country.presence.REQUIRED',
+      'Rank.presence.REQUIRED',
+      'Division.presence.REQUIRED',
+      'Circumstances.presence.REQUIRED',
+      'ReasonLeft.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, militaryForeign))
@@ -23,7 +24,7 @@ describe('The foreign military model', () => {
       Organization: { value: 'TestInvalidValue' },
     }
 
-    const expectedErrors = ['Organization.hasValue']
+    const expectedErrors = ['Organization.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, militaryForeign))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -34,7 +35,7 @@ describe('The foreign military model', () => {
       Country: { value: 'TestInvalidValue' },
     }
 
-    const expectedErrors = ['Country.country']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, militaryForeign))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -43,7 +44,7 @@ describe('The foreign military model', () => {
   it('requires MaintainsContact branch filled if SF86', () => {
     const testData = {}
     const options = { requireForeignMilitaryMaintainsContact: true }
-    const expectedErrors = ['MaintainsContact.required']
+    const expectedErrors = ['MaintainsContact.presence.REQUIRED']
 
     expect(validateModel(testData, militaryForeign, options))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -52,7 +53,7 @@ describe('The foreign military model', () => {
   it('does not require MaintainsContact branch filled if SF85', () => {
     const testData = {}
     const options = { requireForeignMilitaryMaintainsContact: false }
-    const expectedErrors = ['MaintainsContact.required']
+    const expectedErrors = ['MaintainsContact.presence.REQUIRED']
 
     expect(validateModel(testData, militaryForeign, options))
       .toEqual(expect.not.arrayContaining(expectedErrors))
@@ -60,7 +61,7 @@ describe('The foreign military model', () => {
 
   it('requires a valid list of contacts if MaintainsContact', () => {
     const testData = { MaintainsContact: { value: 'Yes' } }
-    const expectedErrors = ['List.required']
+    const expectedErrors = ['List.presence.REQUIRED']
 
     expect(validateModel(testData, militaryForeign))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -72,7 +73,7 @@ describe('The foreign military model', () => {
         Dates: { present: true },
       }
       const expectedErrors = [
-        'ReasonLeft.required',
+        'ReasonLeft.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, militaryForeign))
@@ -89,7 +90,7 @@ describe('The foreign military model', () => {
         },
       }
       const expectedErrors = [
-        'ReasonLeft.required',
+        'ReasonLeft.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, militaryForeign))
@@ -120,11 +121,11 @@ describe('The foreign military contact model', () => {
   it('has required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Address.required',
-      'Title.required',
-      'Dates.required',
-      'Frequency.required',
+      'Name.presence.REQUIRED',
+      'Address.presence.REQUIRED',
+      'Title.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'Frequency.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, foreignMilitaryContact))

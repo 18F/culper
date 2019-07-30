@@ -4,7 +4,7 @@ import sentence from '../sentence'
 describe('The sentence model', () => {
   it('the Description field is required', () => {
     const testData = {}
-    const expectedErrors = ['Description.required']
+    const expectedErrors = ['Description.presence.REQUIRED']
 
     expect(validateModel(testData, sentence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The sentence model', () => {
 
   it('the Description field must have a value', () => {
     const testData = { Description: 'something' }
-    const expectedErrors = ['Description.hasValue']
+    const expectedErrors = ['Description.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, sentence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -20,7 +20,7 @@ describe('The sentence model', () => {
 
   it('the ExceedsYear field must have a valid value', () => {
     const testData = { ExceedsYear: { value: 'true' } }
-    const expectedErrors = ['ExceedsYear.hasValue']
+    const expectedErrors = ['ExceedsYear.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, sentence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -28,7 +28,7 @@ describe('The sentence model', () => {
 
   it('the Incarcerated field must have a valid value', () => {
     const testData = { Incarcerated: { value: 'false' } }
-    const expectedErrors = ['Incarcerated.hasValue']
+    const expectedErrors = ['Incarcerated.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, sentence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -36,7 +36,7 @@ describe('The sentence model', () => {
 
   it('the IncarcerationDates field is required', () => {
     const testData = {}
-    const expectedErrors = ['IncarcerationDates.required']
+    const expectedErrors = ['IncarcerationDates.presence.REQUIRED']
 
     expect(validateModel(testData, sentence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -49,7 +49,12 @@ describe('The sentence model', () => {
         to: { year: 1990 },
       },
     }
-    const expectedErrors = ['IncarcerationDates.daterange']
+    const expectedErrors = [
+      'IncarcerationDates.daterange.from.date.day.presence.REQUIRED',
+      'IncarcerationDates.daterange.from.date.month.presence.REQUIRED',
+      'IncarcerationDates.daterange.to.date.day.presence.REQUIRED',
+      'IncarcerationDates.daterange.to.date.month.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, sentence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -64,7 +69,7 @@ describe('The sentence model', () => {
           to: { day: 2, month: 8, year: 2000 },
         },
       }
-      const expectedErrors = ['IncarcerationDates.daterange']
+      const expectedErrors = ['IncarcerationDates.daterange.DATE_RANGE_TOO_SHORT']
 
       expect(validateModel(testData, sentence))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -98,7 +103,7 @@ describe('The sentence model', () => {
           to: { day: 2, month: 8, year: 2001 },
         },
       }
-      const expectedErrors = ['IncarcerationDates.daterange']
+      const expectedErrors = ['IncarcerationDates.daterange.DATE_RANGE_TOO_LONG']
 
       expect(validateModel(testData, sentence))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -125,7 +130,7 @@ describe('The sentence model', () => {
 
   it('the ProbationDates field is required', () => {
     const testData = {}
-    const expectedErrors = ['ProbationDates.required']
+    const expectedErrors = ['ProbationDates.presence.REQUIRED']
 
     expect(validateModel(testData, sentence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -138,7 +143,10 @@ describe('The sentence model', () => {
         to: { year: 1990, month: 10, day: 1 },
       },
     }
-    const expectedErrors = ['ProbationDates.daterange']
+
+    const expectedErrors = [
+      'ProbationDates.daterange.INVALID_DATE_RANGE',
+    ]
 
     expect(validateModel(testData, sentence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -167,7 +175,7 @@ describe('The sentence model', () => {
       const testData = {
         IncarcerationDatesNA: { applicable: false },
       }
-      const expectedErrors = ['IncarcerationDates.required']
+      const expectedErrors = ['IncarcerationDates.presence.REQUIRED']
 
       expect(validateModel(testData, sentence))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -194,7 +202,7 @@ describe('The sentence model', () => {
       const testData = {
         ProbationDatesNA: { applicable: false },
       }
-      const expectedErrors = ['ProbationDates.required']
+      const expectedErrors = ['ProbationDates.presence.REQUIRED']
 
       expect(validateModel(testData, sentence))
         .not.toEqual(expect.arrayContaining(expectedErrors))

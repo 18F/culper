@@ -5,12 +5,12 @@ describe('The financial card abuse model', () => {
   it('has required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Agency.required',
-      'Address.required',
-      'Date.required',
-      'Reason.required',
-      'Amount.required',
-      'Description.required',
+      'Agency.presence.REQUIRED',
+      'Address.presence.REQUIRED',
+      'Date.presence.REQUIRED',
+      'Reason.presence.REQUIRED',
+      'Amount.presence.REQUIRED',
+      'Description.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, financialCardAbuse))
@@ -23,7 +23,7 @@ describe('The financial card abuse model', () => {
         value: '0',
       },
     }
-    const expectedErrors = ['Amount.hasValue']
+    const expectedErrors = ['Amount.hasValue.value.numericality.NUMBER_NOT_GREATER_THAN']
 
     expect(validateModel(testData, financialCardAbuse))
       .toEqual(expect.arrayContaining(expectedErrors))

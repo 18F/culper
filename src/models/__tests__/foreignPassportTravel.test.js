@@ -4,7 +4,7 @@ import foreignPassportTravel from '../foreignPassportTravel'
 describe('The foreignPassportTravel model', () => {
   it('Country is required', () => {
     const testData = {}
-    const expectedErrors = ['Country.required']
+    const expectedErrors = ['Country.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassportTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The foreignPassportTravel model', () => {
 
   it('Country must have a valid value', () => {
     const testData = { Country: 'Canda' }
-    const expectedErrors = ['Country.country']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, foreignPassportTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -20,7 +20,7 @@ describe('The foreignPassportTravel model', () => {
 
   it('Dates are required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, foreignPassportTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -33,7 +33,7 @@ describe('The foreignPassportTravel model', () => {
         to: { year: 2010, day: 1, month: 3 },
       },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, foreignPassportTravel))
       .toEqual(expect.arrayContaining(expectedErrors))

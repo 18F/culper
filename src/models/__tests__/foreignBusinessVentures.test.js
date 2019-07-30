@@ -5,17 +5,17 @@ describe('The foreignBusinessVentures model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Address.required',
-      'Citizenship.required',
-      'Description.required',
-      'Relationship.required',
-      'Dates.required',
-      'Association.required',
-      'Position.required',
-      'Service.required',
-      'Support.required',
-      'Compensation.required',
+      'Name.presence.REQUIRED',
+      'Address.presence.REQUIRED',
+      'Citizenship.presence.REQUIRED',
+      'Description.presence.REQUIRED',
+      'Relationship.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'Association.presence.REQUIRED',
+      'Position.presence.REQUIRED',
+      'Service.presence.REQUIRED',
+      'Support.presence.REQUIRED',
+      'Compensation.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -25,7 +25,10 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Name: { last: 'invalid' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -34,7 +37,11 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Address: '15 Broadway Ave, New York NY 10002',
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -43,7 +50,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -52,7 +59,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Citizenship: { value: ['test'] },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -61,7 +68,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Description: { values: 'test' },
     }
-    const expectedErrors = ['Description.hasValue']
+    const expectedErrors = ['Description.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -70,7 +77,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Relationship: { values: 'test' },
     }
-    const expectedErrors = ['Relationship.hasValue']
+    const expectedErrors = ['Relationship.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -79,7 +86,10 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Dates: { year: 500, month: 3, day: 32 },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.presence.REQUIRED',
+      'Dates.daterange.to.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -88,7 +98,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Association: { values: 'test' },
     }
-    const expectedErrors = ['Association.hasValue']
+    const expectedErrors = ['Association.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -97,7 +107,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Position: { values: 'test' },
     }
-    const expectedErrors = ['Position.hasValue']
+    const expectedErrors = ['Position.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -106,7 +116,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Service: { values: 'test' },
     }
-    const expectedErrors = ['Service.hasValue']
+    const expectedErrors = ['Service.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -115,7 +125,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Support: { values: 'test' },
     }
-    const expectedErrors = ['Support.hasValue']
+    const expectedErrors = ['Support.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -124,7 +134,7 @@ describe('The foreignBusinessVentures model', () => {
     const testData = {
       Compensation: { values: 'test' },
     }
-    const expectedErrors = ['Compensation.hasValue']
+    const expectedErrors = ['Compensation.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVentures))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

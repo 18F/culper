@@ -5,10 +5,10 @@ describe('The foreignCoOwner model', () => {
   it('Name, Address, Countries, Relationship nature are required', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Address.required',
-      'Countries.required',
-      'RelationshipNature.required',
+      'Name.presence.REQUIRED',
+      'Address.presence.REQUIRED',
+      'Countries.presence.REQUIRED',
+      'RelationshipNature.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, foreignCoOwner))
@@ -19,7 +19,9 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       Name: { first: 'my', last: 'name' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.middle.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -29,7 +31,10 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       Address: { city: 'somewhere', state: 'NY' },
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -39,7 +44,7 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       Countries: { value: [] },
     }
-    const expectedErrors = ['Countries.country']
+    const expectedErrors = ['Countries.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -49,7 +54,7 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       Countries: { value: ['Germany', 'French'] },
     }
-    const expectedErrors = ['Countries.country']
+    const expectedErrors = ['Countries.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -59,7 +64,7 @@ describe('The foreignCoOwner model', () => {
     const testData = {
       RelationshipNature: { values: 'invalid' },
     }
-    const expectedErrors = ['RelationshipNature.hasValue']
+    const expectedErrors = ['RelationshipNature.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, foreignCoOwner))
       .toEqual(expect.arrayContaining(expectedErrors))

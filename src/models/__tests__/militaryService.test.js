@@ -5,12 +5,12 @@ describe('The military service model', () => {
   it('requires required fields to be filled', () => {
     const testData = {}
     const expectedErrors = [
-      'Service.required',
-      'Status.required',
-      'Officer.required',
-      'Dates.required',
-      'ServiceNumber.required',
-      'HasBeenDischarged.required',
+      'Service.presence.REQUIRED',
+      'Status.presence.REQUIRED',
+      'Officer.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'ServiceNumber.presence.REQUIRED',
+      'HasBeenDischarged.presence.REQUIRED',
     ]
 
 
@@ -24,7 +24,7 @@ describe('The military service model', () => {
         value: 'InvalidArmy',
       },
     }
-    const expectedErrors = ['Service.hasValue']
+    const expectedErrors = ['Service.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -37,7 +37,7 @@ describe('The military service model', () => {
         value: 'InvalidValue',
       },
     }
-    const expectedErrors = ['Status.hasValue']
+    const expectedErrors = ['Status.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -49,7 +49,7 @@ describe('The military service model', () => {
         value: 'InvalidType',
       },
     }
-    const expectedErrors = ['Officer.hasValue']
+    const expectedErrors = ['Officer.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -61,7 +61,7 @@ describe('The military service model', () => {
         value: '',
       },
     }
-    const expectedErrors = ['ServiceNumber.hasValue']
+    const expectedErrors = ['ServiceNumber.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -73,7 +73,7 @@ describe('The military service model', () => {
         value: 'AirNationalGuard',
       },
     }
-    const expectedErrors = ['ServiceState.required']
+    const expectedErrors = ['ServiceState.presence.REQUIRED']
 
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -85,7 +85,7 @@ describe('The military service model', () => {
         Service: { value: 'Army' },
         ServiceState: { value: 'MA' },
       }
-      const expectedErrors = ['ServiceState.requireEmpty']
+      const expectedErrors = ['ServiceState.requireEmpty.VALUE_NOT_EMPTY']
 
       expect(validateModel(testData, militaryService))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -99,7 +99,7 @@ describe('The military service model', () => {
       },
     }
 
-    const expectedErrors = ['HasBeenDischarged.hasValue']
+    const expectedErrors = ['HasBeenDischarged.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -112,7 +112,7 @@ describe('The military service model', () => {
           value: 'Yes',
         },
       }
-      const expectedErrors = ['DischargeType.required']
+      const expectedErrors = ['DischargeType.presence.REQUIRED']
 
       expect(validateModel(testData, militaryService))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -127,7 +127,7 @@ describe('The military service model', () => {
           value: 'InvalidType',
         },
       }
-      const expectedErrors = ['DischargeType.hasValue']
+      const expectedErrors = ['DischargeType.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, militaryService))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -143,7 +143,7 @@ describe('The military service model', () => {
           value: 'Dishonorable',
         },
       }
-      const expectedErrors = ['DischargeReason.required', 'DischargeReason.hasValue']
+      const expectedErrors = ['DischargeReason.presence.REQUIRED', 'DischargeReason.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, militaryService))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -158,7 +158,7 @@ describe('The military service model', () => {
           value: 'Other',
         },
       }
-      const expectedErrors = ['DischargeTypeOther.required', 'DischargeTypeOther.hasValue']
+      const expectedErrors = ['DischargeTypeOther.presence.REQUIRED', 'DischargeTypeOther.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, militaryService))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -171,7 +171,7 @@ describe('The military service model', () => {
           value: 'Yes',
         },
       }
-      const expectedErrors = ['DischargeDate.required']
+      const expectedErrors = ['DischargeDate.presence.REQUIRED']
 
       expect(validateModel(testData, militaryService))
         .toEqual(expect.arrayContaining(expectedErrors))
