@@ -26,7 +26,7 @@ const form = (state = defaultState, action) => {
       let fieldData = sectionData[field] || {}
 
       fieldData = { ...fieldData, ...data }
-      sectionData = { ...sectionData, [`${field}`]: fieldData }
+      sectionData = { ...sectionData, [field]: fieldData }
       formSection = { ...formSection, data: sectionData }
 
       return {

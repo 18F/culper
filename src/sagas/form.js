@@ -1,3 +1,5 @@
+/* eslint import/no-cycle: 0 */
+
 import {
   take, select, call, put,
 } from 'redux-saga/effects'
@@ -9,22 +11,19 @@ import { selectSubsection, formTypeSelector } from './selectors'
 // This fn currently unused. Will be useful if form starts field-level updates.
 export const updateSectionData = (prevData, field, data) => ({
   ...prevData,
-  [`${field}`]: {
+  [field]: {
     ...(prevData && prevData[field]),
     ...data,
   },
 })
 
 export function* handleSubsectionUpdate({ key, data }) {
-  // console.log('handle update', key, field)
   const formType = yield select(formTypeSelector)
   const formSection = yield select(selectSubsection, key)
 
   // This because currently, data is updated a whole subsection at a time
   // Consider changing to updateSectionData for field-level updates in the future
   const newData = { ...formSection.data, ...data }
-
-  // TODO - this data is not accurate until EN-3835 has been incorporated
   const errors = yield call(validateSection, { key, data: newData, formType })
 
   const newFormSection = {
