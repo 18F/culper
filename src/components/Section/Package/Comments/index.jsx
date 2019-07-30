@@ -1,37 +1,48 @@
 import React from 'react'
-import { Branch, Show, Field, Textarea } from 'components/Form'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
+import i18n from 'util/i18n'
+import { updateApplication } from 'actions/ApplicationActions'
+import {
+  Branch, Show, Field, Textarea,
+} from 'components/Form'
 
 const PackageComments = (props) => {
-  const { HasComments, Comments, required } = props
+  const {
+    HasComments, Comments, required, dispatch,
+  } = props
 
   const updateBranch = (values) => {
-    console.log('update branch', values)
+    dispatch(updateApplication('Comments', 'HasComments', values))
   }
 
   const updateComments = (values) => {
-    console.log('update comments', values)
+    dispatch(updateApplication('Comments', 'Comments', values))
   }
 
   return (
     <div className="section-content">
       <h1 className="section-header">
-        Additional Comments
+        {i18n.t('review.commentsHeader')}
       </h1>
       <Branch
         name="has_comments"
-        label="Do you have additional comments to provide about any of the information you provided?"
+        label={i18n.t('review.commentsBranchLabel')}
         labelSize="h4"
+        {...HasComments}
         warning={true}
         required={required}
         onUpdate={updateBranch}
       />
-      <Show when={HasComments.value === 'Yes'}>
+      <Show when={HasComments && HasComments.value === 'Yes'}>
         <Field
-          title="Use the space below to continue your responses from previous sections and provide any other information you would like to add."
-
+          title={i18n.t('review.commentsTitle')}
+          adjustFor="textarea"
         >
-          <label>
-            Please identify the number and title of the relevant section and question before each comment.
+          {/* eslint jsx-a11y/label-has-associated-control: 0 */}
+          <label htmlFor="Comments">
+            {i18n.t('review.commentsLabel')}
           </label>
           <Textarea
             name="Comments"
@@ -45,8 +56,25 @@ const PackageComments = (props) => {
   )
 }
 
-PackageComments.defaultProps = {
-  HasComments: { value: 'Yes' },
+PackageComments.propTypes = {
+  HasComments: PropTypes.object,
+  Comments: PropTypes.object,
+  required: PropTypes.bool,
+  dispatch: PropTypes.func,
 }
 
-export default PackageComments
+PackageComments.defaultProps = {
+  HasComments: {},
+  Comments: {},
+  required: false,
+  dispatch: () => {},
+}
+
+const mapStateToProps = (state) => {
+  const { application } = state
+  const { Comments } = application
+
+  return { ...Comments }
+}
+
+export default connect(mapStateToProps)(PackageComments)
