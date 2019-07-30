@@ -1,5 +1,5 @@
 import { validateModel, checkValue } from 'models/validate'
-import usPassport from 'models/usPassport'
+import usPassport from 'models/sections/citizenshipUsPassport'
 
 export const validateUsPassport = data => (
   validateModel(data, usPassport) === true

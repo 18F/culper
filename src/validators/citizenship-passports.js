@@ -1,6 +1,7 @@
 import { validateModel } from 'models/validate'
 import foreignPassport from 'models/foreignPassport'
 import foreignPassportTravel from 'models/foreignPassportTravel'
+import citizenshipForeignPassports from 'models/sections/citizenshipForeignPassports'
 
 export const validateForeignPassportTravel = data => (
   validateModel(data, foreignPassportTravel) === true)
@@ -8,18 +9,9 @@ export const validateForeignPassportTravel = data => (
 export const validateForeignPassport = data => (
   validateModel(data, foreignPassport) === true)
 
-export const validateCitizenshipPassports = (data) => {
-  const citizenshipPassportsModel = {
-    Passports: {
-      presence: true,
-      branchCollection: {
-        validator: foreignPassport,
-      },
-    },
-  }
-
-  return validateModel(data, citizenshipPassportsModel) === true
-}
+export const validateCitizenshipPassports = data => (
+  validateModel(data, citizenshipForeignPassports) === true
+)
 
 export default class CitizenshipPassportsValidator {
   constructor(data = {}) {

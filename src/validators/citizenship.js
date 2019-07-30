@@ -5,7 +5,7 @@ import { validateModel } from 'models/validate'
 import citizenshipStatus, {
   requireCertificateFields,
   requireDocumentationFields,
-} from 'models/citizenshipStatus'
+} from 'models/sections/citizenshipStatus'
 
 export const validateCitizenshipStatus = (data) => {
   const { hasValidUSPassport } = selectValidUSPassport(store.getState())

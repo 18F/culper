@@ -2,7 +2,7 @@ import { validateModel } from 'models/validate'
 import citizenshipStatus, {
   certificateIsEmpty,
   documentationIsEmpty,
-} from '../citizenshipStatus'
+} from '../sections/citizenshipStatus'
 
 describe('The certificateIsEmpty function', () => {
   it('returns false if any of the fields have a value', () => {

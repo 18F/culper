@@ -1,5 +1,5 @@
 import { validateModel } from 'models/validate'
-import usPassport from '../usPassport'
+import usPassport from 'models/sections/citizenshipUsPassport'
 
 describe('The US Passport model', () => {
   it('HasPassports is required', () => {
