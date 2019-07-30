@@ -97,11 +97,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  All questions on this form must be answered
+                  All questions on this form must be answered 
                   <strong>
                     completely and truthfully
                   </strong>
-                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below.
+                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. 
                   <strong>
                     If you are a current civilian employee of the federal government:
                   </strong>
@@ -167,7 +167,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Depending upon the purpose of your investigation, the U.S. Government is authorized to ask for this information under Executive Order
+                  Depending upon the purpose of your investigation, the U.S. Government is authorized to ask for this information under Executive Order 
                   <strong>
                     13764, 13741, 10577, 13467, and 13488; sections 3301, 3302, 7301, and 9101 of title 5, United States Code (U.S.C.); parts 2, 5, 731, and 736 of title 5, Code of Federal Regulations (CFR).
                   </strong>
@@ -188,11 +188,11 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Background investigations for
+                  Background investigations for 
                   <strong>
                     non-sensitive positions
                   </strong>
-                   are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and will not present an unacceptable risk,.
+                   are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and will not present an unacceptable risk,. 
                   <strong>
                     The information that you provide on this form and your Declaration for Federal Employment (OF 306) may be confirmed during the investigation. The investigation may extend beyond the time covered by this form, when necessary to resolve issues. Your current employer may be contacted as part of the investigation, although you may have previously indicated
                   </strong>
@@ -560,7 +560,7 @@ exports[`App component for the SF85 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Public burden reporting for this collection of information is
+                  Public burden reporting for this collection of information is 
                   <strong>
                     estimated to average 120 minutes
                   </strong>
@@ -2237,7 +2237,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     <strong>
                       Follow the instructions provided to you, by the office that gave you this form
                     </strong>
-                     and any other clarifying instructions, provided by that office, to assist you with completion of this form. You must sign and date, in ink, the original and each copy you submit.
+                     and any other clarifying instructions, provided by that office, to assist you with completion of this form. You must sign and date, in ink, the original and each copy you submit. 
                     <strong>
                       You should retain a copy of the completed form for your records.
                     </strong>
@@ -2321,11 +2321,11 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  All questions on this form must be answered
+                  All questions on this form must be answered 
                   <strong>
                     completely and truthfully
                   </strong>
-                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below.
+                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. 
                   <strong>
                     If you are a current civilian employee of the federal government:
                   </strong>
@@ -2767,7 +2767,7 @@ exports[`App component for the SF85P renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Public burden reporting for this collection of information is
+                  Public burden reporting for this collection of information is 
                   <strong>
                     estimated to average 120 minutes
                   </strong>
@@ -5059,11 +5059,11 @@ exports[`App component for the SF86 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  All questions on this form must be answered
+                  All questions on this form must be answered 
                   <strong>
                     completely and truthfully
                   </strong>
-                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below.
+                   in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. 
                   <strong>
                     If you are a current civilian employee of the federal government:
                   </strong>
@@ -5500,7 +5500,7 @@ exports[`App component for the SF86 renders the homepage 1`] = `
               </div>
               <div>
                 <p>
-                  Public burden reporting for this collection of information is
+                  Public burden reporting for this collection of information is 
                   <strong>
                     estimated to average 150 minutes per response
                   </strong>
