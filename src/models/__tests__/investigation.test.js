@@ -5,7 +5,7 @@ describe('The clearanceLevel model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Level.required',
+      'Level.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, clearanceLevel))
@@ -14,7 +14,7 @@ describe('The clearanceLevel model', () => {
 
   it('Level must have a value', () => {
     const testData = { Level: 'Secret' }
-    const expectedErrors = ['Level.hasValue']
+    const expectedErrors = ['Level.hasValue.MISSING_VALUE']
     expect(validateModel(testData, clearanceLevel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -22,7 +22,7 @@ describe('The clearanceLevel model', () => {
   describe('if Level is "Other"', () => {
     it('Explanation is required', () => {
       const testData = { Level: { value: 'Other' } }
-      const expectedErrors = ['Explanation.required']
+      const expectedErrors = ['Explanation.presence.REQUIRED']
       expect(validateModel(testData, clearanceLevel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -32,7 +32,7 @@ describe('The clearanceLevel model', () => {
         Level: { value: 'Other' },
         Explanation: 'test',
       }
-      const expectedErrors = ['Explanation.hasValue']
+      const expectedErrors = ['Explanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, clearanceLevel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -58,10 +58,10 @@ describe('The investigation model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Agency.required',
-      'Completed.required',
-      'Granted.required',
-      'ClearanceLevel.required',
+      'Agency.presence.REQUIRED',
+      'Completed.presence.REQUIRED',
+      'Granted.presence.REQUIRED',
+      'ClearanceLevel.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, investigation))
@@ -70,21 +70,31 @@ describe('The investigation model', () => {
 
   it('Agency must have a value', () => {
     const testData = { Agency: 'FBI' }
-    const expectedErrors = ['Agency.hasValue']
+    const expectedErrors = ['Agency.hasValue.MISSING_VALUE']
     expect(validateModel(testData, investigation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('Completed must be a valid date', () => {
     const testData = { Completed: { day: 2, year: 1000 } }
-    const expectedErrors = ['Completed.date']
+    const expectedErrors = ['Completed.date.month.presence.REQUIRED']
     expect(validateModel(testData, investigation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('Granted must be a valid date', () => {
     const testData = { Granted: { day: 2, year: 1000 } }
-    const expectedErrors = ['Granted.date']
+    const expectedErrors = ['Granted.date.month.presence.REQUIRED']
+    expect(validateModel(testData, investigation))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Granted must be after Completed', () => {
+    const testData = {
+      Completed: { day: 2, month: 1, year: 2019 },
+      Granted: { day: 2, month: 10, year: 2018 },
+    }
+    const expectedErrors = ['Granted.date.date.datetime.DATE_TOO_EARLY']
     expect(validateModel(testData, investigation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -95,7 +105,9 @@ describe('The investigation model', () => {
         value: 'Secret',
       },
     }
-    const expectedErrors = ['ClearanceLevel.model']
+    const expectedErrors = [
+      'ClearanceLevel.model.Level.presence.REQUIRED',
+    ]
     expect(validateModel(testData, investigation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -105,7 +117,7 @@ describe('The investigation model', () => {
       const testData = {
         AgencyNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Agency.required']
+      const expectedErrors = ['Agency.presence.REQUIRED']
       expect(validateModel(testData, investigation))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -129,8 +141,8 @@ describe('The investigation model', () => {
         Agency: { value: 'U.S. Department of Treasury' },
       }
       const expectedErrors = [
-        'AgencyExplanation.required',
-        'AgencyExplanation.hasValue',
+        'AgencyExplanation.presence.REQUIRED',
+        'AgencyExplanation.hasValue.MISSING_VALUE',
       ]
       expect(validateModel(testData, investigation))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -156,8 +168,8 @@ describe('The investigation model', () => {
         Agency: { value: 'Foreign government' },
       }
       const expectedErrors = [
-        'AgencyExplanation.required',
-        'AgencyExplanation.hasValue',
+        'AgencyExplanation.presence.REQUIRED',
+        'AgencyExplanation.hasValue.MISSING_VALUE',
       ]
       expect(validateModel(testData, investigation))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -183,8 +195,8 @@ describe('The investigation model', () => {
         Agency: { value: 'Other' },
       }
       const expectedErrors = [
-        'AgencyExplanation.required',
-        'AgencyExplanation.hasValue',
+        'AgencyExplanation.presence.REQUIRED',
+        'AgencyExplanation.hasValue.MISSING_VALUE',
       ]
       expect(validateModel(testData, investigation))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -209,7 +221,7 @@ describe('The investigation model', () => {
       const testData = {
         CompletedNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Completed.required']
+      const expectedErrors = ['Completed.presence.REQUIRED']
       expect(validateModel(testData, investigation))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -232,7 +244,7 @@ describe('The investigation model', () => {
       const testData = {
         GrantedNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Granted.required']
+      const expectedErrors = ['Granted.presence.REQUIRED']
       expect(validateModel(testData, investigation))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -255,7 +267,7 @@ describe('The investigation model', () => {
       const testData = {
         ClearanceLevelNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['ClearanceLevel.required']
+      const expectedErrors = ['ClearanceLevel.presence.REQUIRED']
       expect(validateModel(testData, investigation))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })

@@ -6,7 +6,7 @@ import address from '../address'
 describe('The location/address model', () => {
   it('street is required', () => {
     const testData = { street: '' }
-    const expectedErrors = ['street.required']
+    const expectedErrors = ['street.presence.REQUIRED']
 
     expect(validateModel(testData, address))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,7 @@ describe('The location/address model', () => {
 
   it('street2 is not required', () => {
     const testData = { street: '123 Main Street' }
-    const expectedErrors = ['street2.required']
+    const expectedErrors = ['street2.presence.REQUIRED']
 
     expect(validateModel(testData, address))
       .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +22,7 @@ describe('The location/address model', () => {
 
   it('city is required', () => {
     const testData = { city: '' }
-    const expectedErrors = ['city.required']
+    const expectedErrors = ['city.presence.REQUIRED']
 
     expect(validateModel(testData, address))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -30,7 +30,7 @@ describe('The location/address model', () => {
 
   it('country is required', () => {
     const testData = { country: '' }
-    const expectedErrors = ['country.required']
+    const expectedErrors = ['country.presence.REQUIRED']
 
     expect(validateModel(testData, address))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -39,7 +39,7 @@ describe('The location/address model', () => {
   describe('for a PO or domestic address', () => {
     it('state is required', () => {
       const testData = { state: '', country: 'United States' }
-      const expectedErrors = ['state.required']
+      const expectedErrors = ['state.presence.REQUIRED']
 
       expect(validateModel(testData, address))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -47,7 +47,7 @@ describe('The location/address model', () => {
 
     it('zipcode is required', () => {
       const testData = { zipcode: '', country: 'POSTOFFICE' }
-      const expectedErrors = ['zipcode.required']
+      const expectedErrors = ['zipcode.presence.REQUIRED']
 
       expect(validateModel(testData, address))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -90,6 +90,66 @@ describe('The location/address model', () => {
       }
 
       expect(validateModel(testData, address)).toEqual(true)
+    })
+  })
+
+  describe('with the "militaryAddress" option set to true', () => {
+    it('must be a military address', () => {
+      const testData = {
+        street: '123 Main ST',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10003',
+        country: 'United States',
+      }
+
+      const expectedErrors = ['country.inclusion.INCLUSION']
+
+      expect(validateModel(testData, address, { militaryAddress: true }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid military address', () => {
+      const testData = {
+        street: '123 Main ST',
+        city: 'FPO',
+        state: 'AA',
+        zipcode: '34035',
+        country: 'POSTOFFICE',
+      }
+
+      expect(validateModel(testData, address, { militaryAddress: true }))
+        .toEqual(true)
+    })
+  })
+
+  describe('with the "militaryAddress" option set to false', () => {
+    it('must not be a military address', () => {
+      const testData = {
+        street: '123 Main ST',
+        city: 'FPO',
+        state: 'AA',
+        zipcode: '34035',
+        country: 'POSTOFFICE',
+      }
+
+      const expectedErrors = ['country.exclusion.EXCLUSION']
+
+      expect(validateModel(testData, address, { militaryAddress: false }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid non-military address', () => {
+      const testData = {
+        street: '123 Main ST',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10003',
+        country: 'United States',
+      }
+
+      expect(validateModel(testData, address, { militaryAddress: false }))
+        .toEqual(true)
     })
   })
 })

@@ -306,7 +306,7 @@ export class PackageSubmit extends React.Component {
       <div className={classes}>
         {i18n.m('application.submissionStatus.valid')}
         <FormStatus
-          isValid
+          isValid={true}
           isTransitioning={false}
         />
 
@@ -386,6 +386,9 @@ PackageSubmit.propTypes = {
   Identification: PropTypes.object,
   History: PropTypes.object,
   Submission: PropTypes.object,
+  updateApplication: PropTypes.func,
+  history: PropTypes.object,
+  Settings: PropTypes.object,
 }
 
 PackageSubmit.defaultProps = {
@@ -393,6 +396,9 @@ PackageSubmit.defaultProps = {
   Identification: {},
   History: {},
   Submission: {},
+  updateApplication: () => {},
+  history: { push: () => {} },
+  Settings: { formType: '' },
 }
 
 export default connectPackageSection(PackageSubmit)

@@ -13,8 +13,7 @@ describe('validateDrugUses function', () => {
             {
               Item: {
                 DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null,
+                  value: 'Cocaine',
                 },
                 FirstUse: {
                   day: '1',
@@ -50,8 +49,7 @@ describe('validateDrugUses function', () => {
             {
               Item: {
                 DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null,
+                  value: 'Cocaine',
                 },
                 FirstUse: {
                   day: '1',
@@ -120,8 +118,7 @@ describe('validateDrugUses function', () => {
             {
               Item: {
                 DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null,
+                  value: 'Cocaine',
                 },
                 FirstUse: {
                   day: '1',
@@ -204,8 +201,7 @@ describe('Drug Use Validation', () => {
               {
                 Item: {
                   DrugType: {
-                    DrugType: 'Cocaine',
-                    DrugTypeOther: null,
+                    value: 'Cocaine',
                   },
                   FirstUse: {
                     day: '1',

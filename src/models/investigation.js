@@ -1,7 +1,6 @@
 import { checkValueIncluded } from 'models/validate'
-import {
-  US_DEPT_OF_TREASURY, FOREIGN_GOVT, OTHER,
-} from 'constants/enums/legalOptions'
+import { US_DEPT_OF_TREASURY, FOREIGN_GOVT, OTHER } from 'constants/enums/legalOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 export const clearanceLevel = {
   Level: { presence: true, hasValue: true },
@@ -37,13 +36,15 @@ const investigation = {
 
     return { presence: true, date: true }
   },
+  Issued: {},
   Granted: (value, attributes) => {
     if (attributes.GrantedNotApplicable
       && attributes.GrantedNotApplicable.applicable === false) {
       return {}
     }
-
-    return { presence: true, date: true }
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (attributes.Completed) dateLimits.earliest = attributes.Completed
+    return { presence: true, date: dateLimits }
   },
   ClearanceLevel: (value, attributes) => {
     if (attributes.ClearanceLevelNotApplicable

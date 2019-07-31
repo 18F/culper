@@ -13,10 +13,7 @@ const foreignSupport = {
   Relationship: { presence: true, hasValue: true },
   Amount: { presence: true, hasValue: true },
   Frequency: { presence: true, hasValue: true },
-  Citizenship: {
-    presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
-  },
+  Citizenship: { presence: true, country: true },
 }
 
 export default foreignSupport

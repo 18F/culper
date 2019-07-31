@@ -236,7 +236,7 @@ describe('CivilUnion validation', () => {
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016',
+            year: '2010',
           },
           BirthPlace: {
             country: { value: 'United States' },
@@ -261,6 +261,7 @@ describe('CivilUnion validation', () => {
             zipcode: '22202',
             layout: Location.ADDRESS,
           },
+          EmailNotApplicable: { applicable: false },
           Telephone: {
             noNumber: '',
             number: '7031112222',
@@ -275,6 +276,7 @@ describe('CivilUnion validation', () => {
             last: '1111',
             applicable: true,
           },
+          EnteredCivilUnion: { day: '3', month: '8', year: '2011' },
           Divorced: { value: 'No' },
           Separated: { value: 'No' },
           OtherNames: {

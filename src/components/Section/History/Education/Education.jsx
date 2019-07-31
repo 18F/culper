@@ -17,6 +17,7 @@ import { EducationCustomSummary } from '../summaries'
 import EducationItem from './EducationItem'
 
 const sectionConfig = {
+  key: HISTORY_EDUCATION.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_EDUCATION.name,
@@ -98,7 +99,7 @@ export class Education extends Subsection {
           scrollIntoView={this.props.scrollIntoView}
         >
           <EducationItem
-            bind
+            bind={true}
             name="Item"
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}

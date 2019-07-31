@@ -5,9 +5,9 @@ describe('The debarred model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Agency.required',
-      'Date.required',
-      'Explanation.required',
+      'Agency.presence.REQUIRED',
+      'Date.presence.REQUIRED',
+      'Explanation.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, debarred))
@@ -18,7 +18,7 @@ describe('The debarred model', () => {
     const testData = {
       Agency: 'test agency',
     }
-    const expectedErrors = ['Agency.hasValue']
+    const expectedErrors = ['Agency.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, debarred))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -28,7 +28,11 @@ describe('The debarred model', () => {
     const testData = {
       Date: 12345,
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = [
+      'Date.date.day.presence.REQUIRED',
+      'Date.date.month.presence.REQUIRED',
+      'Date.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, debarred))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -38,7 +42,7 @@ describe('The debarred model', () => {
     const testData = {
       Explanation: 'test',
     }
-    const expectedErrors = ['Explanation.hasValue']
+    const expectedErrors = ['Explanation.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, debarred))
       .toEqual(expect.arrayContaining(expectedErrors))

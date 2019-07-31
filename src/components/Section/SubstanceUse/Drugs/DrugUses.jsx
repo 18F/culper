@@ -19,6 +19,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import DrugUse from './DrugUse'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_DRUGS_USAGE.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_DRUGS_USAGE.name,
@@ -95,7 +96,7 @@ export class DrugUses extends Subsection {
           labelSize="h4"
           className="used-drugs"
           {...this.props.UsedDrugs}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateUsedDrugs}
@@ -121,7 +122,7 @@ export class DrugUses extends Subsection {
           >
             <DrugUse
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
               requireDrugWhileSafety={requireDrugWhileSafety}

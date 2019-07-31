@@ -45,7 +45,8 @@ const militaryService = {
         location: { validator: state },
       }
     }
-    return {}
+
+    return { requireEmpty: true }
   },
   HasBeenDischarged: {
     presence: true,

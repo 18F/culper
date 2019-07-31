@@ -86,7 +86,7 @@ func TestDeleteSingaturePDFs(t *testing.T) {
 
 	// Reject this submission
 	rejector := admin.NewRejecter(services.db, services.store)
-	err := rejector.Reject(account)
+	err := rejector.Reject(&account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
 	}

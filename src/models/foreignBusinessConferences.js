@@ -2,7 +2,7 @@ const foreignBusinessConferences = {
   Description: { presence: true, hasValue: true },
   Sponsor: { presence: true, hasValue: true },
   City: { presence: true, hasValue: true },
-  Country: { presence: true, hasValue: true },
+  Country: { presence: true, country: true },
   Dates: { presence: true, daterange: true },
   Purpose: { presence: true, hasValue: true },
   Contacts: {

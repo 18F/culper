@@ -1864,7 +1864,7 @@ describe('Relatives validation', () => {
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
+                    year: '2010',
                   },
                   Birthplace: {
                     city: 'Arlington',
@@ -1930,6 +1930,9 @@ describe('Relatives validation', () => {
                     state: 'VA',
                     zipcode: '22202',
                     layout: Location.ADDRESS,
+                  },
+                  AlternateAddress: {
+                    HasDifferentAddress: { value: 'No' },
                   },
                 },
               },
@@ -1950,7 +1953,7 @@ describe('Relatives validation', () => {
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
+                    year: '2010',
                   },
                   Birthplace: {
                     city: 'Arlington',
@@ -2016,6 +2019,9 @@ describe('Relatives validation', () => {
                     state: 'VA',
                     zipcode: '22202',
                     layout: Location.ADDRESS,
+                  },
+                  AlternateAddress: {
+                    HasDifferentAddress: { value: 'No' },
                   },
                 },
               },

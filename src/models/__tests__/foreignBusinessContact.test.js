@@ -5,14 +5,14 @@ describe('The foreignBusinessContact model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Location.required',
-      'Date.required',
-      'Governments.required',
-      'Establishment.required',
-      'Representatives.required',
-      'Purpose.required',
-      'SubsequentContacts.required',
+      'Name.presence.REQUIRED',
+      'Location.presence.REQUIRED',
+      'Date.presence.REQUIRED',
+      'Governments.presence.REQUIRED',
+      'Establishment.presence.REQUIRED',
+      'Representatives.presence.REQUIRED',
+      'Purpose.presence.REQUIRED',
+      'SubsequentContacts.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +22,11 @@ describe('The foreignBusinessContact model', () => {
     const testData = {
       Name: 'Persons Name',
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -31,7 +35,11 @@ describe('The foreignBusinessContact model', () => {
     const testData = {
       Location: 'Place',
     }
-    const expectedErrors = ['Location.location']
+    const expectedErrors = [
+      'Location.location.city.presence.REQUIRED',
+      'Location.location.country.presence.REQUIRED',
+    ]
+
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -40,7 +48,12 @@ describe('The foreignBusinessContact model', () => {
     const testData = {
       Date: 'invalid date',
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = [
+      'Date.date.day.presence.REQUIRED',
+      'Date.date.month.presence.REQUIRED',
+      'Date.date.year.presence.REQUIRED',
+    ]
+
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -49,7 +62,16 @@ describe('The foreignBusinessContact model', () => {
     const testData = {
       Governments: { value: [] },
     }
-    const expectedErrors = ['Governments.hasValue']
+    const expectedErrors = ['Governments.country.INVALID_COUNTRY']
+    expect(validateModel(testData, foreignBusinessContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Governments must have valid values', () => {
+    const testData = {
+      Governments: { value: ['United Kingdom', 'Germany', 'test'] },
+    }
+    const expectedErrors = ['Governments.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -58,7 +80,7 @@ describe('The foreignBusinessContact model', () => {
     const testData = {
       Establishment: { values: 'test' },
     }
-    const expectedErrors = ['Establishment.hasValue']
+    const expectedErrors = ['Establishment.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -67,7 +89,7 @@ describe('The foreignBusinessContact model', () => {
     const testData = {
       Representatives: { values: 'test' },
     }
-    const expectedErrors = ['Representatives.hasValue']
+    const expectedErrors = ['Representatives.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -76,7 +98,7 @@ describe('The foreignBusinessContact model', () => {
     const testData = {
       Purpose: { values: 'test' },
     }
-    const expectedErrors = ['Purpose.hasValue']
+    const expectedErrors = ['Purpose.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -94,7 +116,10 @@ describe('The foreignBusinessContact model', () => {
         ],
       },
     }
-    const expectedErrors = ['SubsequentContacts.branchCollection']
+    const expectedErrors = [
+      'SubsequentContacts.branchCollection.0.Subsequent.presence.REQUIRED',
+    ]
+
     expect(validateModel(testData, foreignBusinessContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -104,7 +129,7 @@ describe('The foreignBusinessContact model', () => {
       Name: { first: 'My', middle: 'Foreign', last: 'Friend' },
       Location: { city: 'Paris', country: 'France' },
       Date: { year: 2010, month: 2, day: 4 },
-      Governments: { value: ['French'] },
+      Governments: { value: ['France'] },
       Establishment: { value: 'Test' },
       Representatives: { value: 'Testing' },
       Purpose: { value: 'Because' },

@@ -5,17 +5,17 @@ describe('The foreignBusinessSponsorship model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Birthdate.required',
-      'Birthplace.required',
-      'Address.required',
-      'Citizenship.required',
-      'Dates.required',
-      'Residence.required',
-      'Organization.required',
-      'OrganizationAddress.required',
-      'Stay.required',
-      'Sponsorship.required',
+      'Name.presence.REQUIRED',
+      'Birthdate.presence.REQUIRED',
+      'Birthplace.presence.REQUIRED',
+      'Address.presence.REQUIRED',
+      'Citizenship.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'Residence.presence.REQUIRED',
+      'Organization.presence.REQUIRED',
+      'OrganizationAddress.presence.REQUIRED',
+      'Stay.presence.REQUIRED',
+      'Sponsorship.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -25,7 +25,11 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Name: 'Persons Name',
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -34,7 +38,31 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Birthdate: 'invalid date',
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = [
+      'Birthdate.date.day.presence.REQUIRED',
+      'Birthdate.date.month.presence.REQUIRED',
+      'Birthdate.date.year.presence.REQUIRED',
+    ]
+    expect(validateModel(testData, foreignBusinessSponsorship))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be more than 200 years ago', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
+
+    expect(validateModel(testData, foreignBusinessSponsorship))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be in the future', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
+
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -44,7 +72,7 @@ describe('The foreignBusinessSponsorship model', () => {
       const testData = {
         BirthdateNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Birthdate.required']
+      const expectedErrors = ['Birthdate.presence.REQUIRED']
       expect(validateModel(testData, foreignBusinessSponsorship))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -54,7 +82,10 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Birthplace: 'Place',
     }
-    const expectedErrors = ['Birthplace.location']
+    const expectedErrors = [
+      'Birthplace.location.city.presence.REQUIRED',
+      'Birthplace.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -63,7 +94,11 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Address: 'Place',
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -72,7 +107,16 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.hasValue']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
+    expect(validateModel(testData, foreignBusinessSponsorship))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Citizenship must have valid values', () => {
+    const testData = {
+      Citizenship: { value: ['not a country', 'Germany'] },
+    }
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -81,7 +125,10 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Dates: 'invalid date',
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.presence.REQUIRED',
+      'Dates.daterange.to.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -90,7 +137,11 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Residence: 'Place',
     }
-    const expectedErrors = ['Residence.location']
+    const expectedErrors = [
+      'Residence.location.street.presence.REQUIRED',
+      'Residence.location.city.presence.REQUIRED',
+      'Residence.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -99,7 +150,7 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Organization: { values: 'test' },
     }
-    const expectedErrors = ['Organization.hasValue']
+    const expectedErrors = ['Organization.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -109,7 +160,7 @@ describe('The foreignBusinessSponsorship model', () => {
       const testData = {
         OrganizationNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Organization.required']
+      const expectedErrors = ['Organization.presence.REQUIRED']
       expect(validateModel(testData, foreignBusinessSponsorship))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -119,7 +170,11 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       OrganizationAddress: 'Place',
     }
-    const expectedErrors = ['OrganizationAddress.location']
+    const expectedErrors = [
+      'OrganizationAddress.location.street.presence.REQUIRED',
+      'OrganizationAddress.location.city.presence.REQUIRED',
+      'OrganizationAddress.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -129,7 +184,7 @@ describe('The foreignBusinessSponsorship model', () => {
       const testData = {
         OrganizationAddressNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['OrganizationAddress.required']
+      const expectedErrors = ['OrganizationAddress.presence.REQUIRED']
       expect(validateModel(testData, foreignBusinessSponsorship))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -139,7 +194,7 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Stay: { values: 'test' },
     }
-    const expectedErrors = ['Stay.hasValue']
+    const expectedErrors = ['Stay.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -148,7 +203,7 @@ describe('The foreignBusinessSponsorship model', () => {
     const testData = {
       Sponsorship: { values: 'test' },
     }
-    const expectedErrors = ['Sponsorship.hasValue']
+    const expectedErrors = ['Sponsorship.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessSponsorship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

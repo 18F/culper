@@ -1,33 +1,33 @@
 import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 import Location from '../components/Form/Location'
 
-describe('Cohabitant validation', function() {
+describe('Cohabitant validation', () => {
   it('validates citizenship', () => {
     const tests = [
       {
         data: {
-          Citizenship: {}
+          Citizenship: {},
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Citizenship: {
-            value: []
-          }
+            value: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Citizenship: {
-            value: ['Germany', 'United States']
-          }
+            value: ['Germany', 'United States'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CohabitantValidator(test.data).validCitizenship()).toBe(
         test.expected
       )
@@ -39,10 +39,10 @@ describe('Cohabitant validation', function() {
       {
         data: {
           OtherNames: {
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -50,13 +50,13 @@ describe('Cohabitant validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'No' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
@@ -64,13 +64,13 @@ describe('Cohabitant validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'Nope' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'Nope' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
@@ -78,16 +78,16 @@ describe('Cohabitant validation', function() {
             items: [
               {
                 Item: {
-                  Has: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  Has: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CohabitantValidator(test.data).validOtherNames()).toBe(
         test.expected
       )
@@ -105,50 +105,55 @@ describe('Cohabitant validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
+            suffix: 'Jr',
           },
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016'
+            year: '2016',
           },
           BirthPlace: {
             country: { value: 'United States' },
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA',
-            layout: Location.BIRTHPLACE
+            layout: Location.BIRTHPLACE,
           },
           SSN: {
             first: '111',
             middle: '11',
             last: '1111',
-            applicable: true
+            applicable: true,
+          },
+          CohabitationBegan: {
+            day: 5,
+            month: 2,
+            year: 2018,
           },
           OtherNames: {
             items: [
               {
                 Item: {
-                  Has: { value: 'No' }
-                }
-              }
-            ]
+                  Has: { value: 'No' },
+                },
+              },
+            ],
           },
           Citizenship: {
-            value: ['Germany', 'United States']
+            value: ['Germany', 'United States'],
           },
           ForeignBornDocument: {
             DocumentType: { value: 'FS240' },
             DocumentExpirationNotApplicable: { applicable: true },
             DocumentNumber: {
-              value: 'A1234'
-            }
-          }
+              value: 'A1234',
+            },
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CohabitantValidator(test.data).isValid()).toBe(test.expected)
     })
   })
@@ -157,35 +162,35 @@ describe('Cohabitant validation', function() {
     const tests = [
       {
         data: {
-          HasCohabitant: { value: 'Nope' }
+          HasCohabitant: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
-          HasCohabitant: { value: 'No' }
+          HasCohabitant: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        data: {
-          HasCohabitant: { value: 'Yes' },
-          CohabitantList: {
-            branch: { value: 'No' },
-            items: []
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         data: {
           HasCohabitant: { value: 'Yes' },
           CohabitantList: {
             branch: { value: 'No' },
-            items: [{ Cohabitant: {} }]
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
+      },
+      {
+        data: {
+          HasCohabitant: { value: 'Yes' },
+          CohabitantList: {
+            branch: { value: 'No' },
+            items: [{ Cohabitant: {} }],
+          },
+        },
+        expected: false,
       },
       {
         data: {
@@ -202,54 +207,59 @@ describe('Cohabitant validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2016',
                   },
                   BirthPlace: {
                     country: { value: 'United States' },
                     city: 'Arlington',
                     county: 'Arlington',
                     state: 'VA',
-                    layout: Location.BIRTHPLACE
+                    layout: Location.BIRTHPLACE,
                   },
                   SSN: {
                     first: '111',
                     middle: '11',
                     last: '1111',
-                    applicable: true
+                    applicable: true,
                   },
                   OtherNames: {
                     items: [
                       {
                         Item: {
-                          Has: { value: 'No' }
-                        }
-                      }
-                    ]
+                          Has: { value: 'No' },
+                        },
+                      },
+                    ],
+                  },
+                  CohabitationBegan: {
+                    day: 5,
+                    month: 2,
+                    year: 2018,
                   },
                   Citizenship: {
-                    value: ['Germany', 'United States']
+                    value: ['Germany', 'United States'],
                   },
                   ForeignBornDocument: {
                     DocumentType: { value: 'FS240' },
                     DocumentExpirationNotApplicable: { applicable: true },
                     DocumentNumber: {
-                      value: 'A1234'
-                    }
-                  }
-                }
-              }
-            ]
-          }
+                      value: 'A1234',
+                    },
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new CohabitantsValidator(test.data).isValid()).toBe(test.expected)
     })
   })
@@ -261,26 +271,26 @@ describe('Cohabitant validation', function() {
           data: {
             country: { value: 'Germany' },
             city: 'Munich',
-            layout: Location.BIRTHPLACE
+            layout: Location.BIRTHPLACE,
           },
           ForeignBornDocument: {
             DocumentType: { value: 'FS240' },
             DocumentExpirationNotApplicable: { applicable: true },
             DocumentNumber: {
-              value: 'A1234'
-            }
-          }
+              value: 'A1234',
+            },
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
-          BirthPlace: {}
+          BirthPlace: {},
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new CohabitantValidator(test.data).validForeignBornDocument()
       ).toBe(test.expected)
@@ -291,42 +301,42 @@ describe('Cohabitant validation', function() {
     const tests = [
       {
         data: {
-          name: null
+          name: null,
         },
-        expected: false
+        expected: false,
       },
       {
         data: {
           Name: {
             first: 'John',
             middle: 'S',
-            last: 'Doe'
-          }
+            last: 'Doe',
+          },
         },
         spouse: {
           first: 'John',
           middle: 'S',
-          last: 'Doe'
+          last: 'Doe',
         },
-        expected: true
+        expected: true,
       },
       {
         data: {
           Name: {
             first: 'John',
             middle: 'S',
-            last: 'Doe'
-          }
+            last: 'Doe',
+          },
         },
         spouse: {
           first: 'John',
           middle: 'S',
-          last: 'Does'
+          last: 'Does',
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new CohabitantValidator(test.data).similarSpouse(test.spouse)
       ).toBe(test.expected)

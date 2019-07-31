@@ -5,11 +5,11 @@ describe('The alcoholVoluntaryCounseling model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'CounselingDates.required',
-      'TreatmentProviderName.required',
-      'TreatmentProviderAddress.required',
-      'TreatmentProviderTelephone.required',
-      'CompletedTreatment.required',
+      'CounselingDates.presence.REQUIRED',
+      'TreatmentProviderName.presence.REQUIRED',
+      'TreatmentProviderAddress.presence.REQUIRED',
+      'TreatmentProviderTelephone.presence.REQUIRED',
+      'CompletedTreatment.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, alcoholVoluntaryCounseling))
@@ -21,7 +21,7 @@ describe('The alcoholVoluntaryCounseling model', () => {
       TreatmentProviderName: { value: '' },
     }
     const expectedErrors = [
-      'TreatmentProviderName.hasValue',
+      'TreatmentProviderName.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, alcoholVoluntaryCounseling))
@@ -33,7 +33,9 @@ describe('The alcoholVoluntaryCounseling model', () => {
       TreatmentProviderAddress: 'invalid address',
     }
     const expectedErrors = [
-      'TreatmentProviderAddress.location',
+      'TreatmentProviderAddress.location.street.presence.REQUIRED',
+      'TreatmentProviderAddress.location.city.presence.REQUIRED',
+      'TreatmentProviderAddress.location.country.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, alcoholVoluntaryCounseling))
@@ -45,7 +47,8 @@ describe('The alcoholVoluntaryCounseling model', () => {
       TreatmentProviderTelephone: '1234567890',
     }
     const expectedErrors = [
-      'TreatmentProviderTelephone.model',
+      'TreatmentProviderTelephone.model.timeOfDay.presence.REQUIRED',
+      'TreatmentProviderTelephone.model.number.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, alcoholVoluntaryCounseling))
@@ -57,7 +60,8 @@ describe('The alcoholVoluntaryCounseling model', () => {
       CounselingDates: false,
     }
     const expectedErrors = [
-      'CounselingDates.daterange',
+      'CounselingDates.daterange.from.presence.REQUIRED',
+      'CounselingDates.daterange.to.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, alcoholVoluntaryCounseling))
@@ -69,7 +73,7 @@ describe('The alcoholVoluntaryCounseling model', () => {
       CompletedTreatment: true,
     }
     const expectedErrors = [
-      'CompletedTreatment.hasValue',
+      'CompletedTreatment.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, alcoholVoluntaryCounseling))
@@ -109,8 +113,8 @@ describe('The alcoholVoluntaryCounseling model', () => {
         CompletedTreatment: { value: 'No' },
       }
       const expectedErrors = [
-        'NoCompletedTreatmentExplanation.required',
-        'NoCompletedTreatmentExplanation.hasValue',
+        'NoCompletedTreatmentExplanation.presence.REQUIRED',
+        'NoCompletedTreatmentExplanation.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, alcoholVoluntaryCounseling))

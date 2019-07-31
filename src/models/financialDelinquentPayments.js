@@ -1,4 +1,5 @@
 import address from 'models/shared/locations/address'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const infractionOptions = [
   'Alimony',
@@ -51,13 +52,16 @@ const financialDelinquentPayments = {
   },
   Resolved: (value, attributes) => {
     const { ResolvedNotApplicable } = attributes
-    if (ResolvedNotApplicable && ResolvedNotApplicable.applicable) {
-      return {
-        presence: true,
-        date: { requireDay: false },
-      }
+    if (ResolvedNotApplicable && ResolvedNotApplicable.applicable === false) {
+      return {}
     }
-    return {}
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (attributes.Date) dateLimits.earliest = attributes.Date
+
+    return {
+      presence: true,
+      date: { requireDay: false, ...dateLimits },
+    }
   },
   CourtName: { presence: true, hasValue: true },
   CourtAddress: {

@@ -18,6 +18,7 @@ import connectHistorySection from '../HistoryConnector'
 import FederalItem from './FederalItem'
 
 const sectionConfig = {
+  key: HISTORY_FEDERAL.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_FEDERAL.name,
@@ -96,7 +97,7 @@ export class Federal extends Subsection {
           help="history.federal.help.branch"
           helpTitle={i18n.t('history.federal.help.branch.title', { years })}
           {...this.props.HasFederalService}
-          warning
+          warning={true}
           onUpdate={this.updateBranch}
           onError={this.handleError}
           required={this.props.required}
@@ -118,7 +119,7 @@ export class Federal extends Subsection {
           >
             <FederalItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
               onError={this.props.onError}

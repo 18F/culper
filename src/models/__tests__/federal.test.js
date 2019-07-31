@@ -4,7 +4,7 @@ import federal from 'models/federal'
 describe('The federal model', () => {
   it('the Name field is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, federal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,7 @@ describe('The federal model', () => {
     const testData = {
       Name: 'invalid',
     }
-    const expectedErrors = ['Name.hasValue']
+    const expectedErrors = ['Name.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, federal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +22,7 @@ describe('The federal model', () => {
 
   it('the Position field is required', () => {
     const testData = {}
-    const expectedErrors = ['Position.required']
+    const expectedErrors = ['Position.presence.REQUIRED']
 
     expect(validateModel(testData, federal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -32,7 +32,7 @@ describe('The federal model', () => {
     const testData = {
       Position: 'invalid',
     }
-    const expectedErrors = ['Position.hasValue']
+    const expectedErrors = ['Position.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, federal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -40,7 +40,7 @@ describe('The federal model', () => {
 
   it('the Address field is required', () => {
     const testData = {}
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
 
     expect(validateModel(testData, federal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -50,7 +50,11 @@ describe('The federal model', () => {
     const testData = {
       Address: ['not', 'an', 'address'],
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, federal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -58,7 +62,7 @@ describe('The federal model', () => {
 
   it('the Dates field is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, federal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -73,7 +77,7 @@ describe('The federal model', () => {
       },
     }
 
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, federal))
       .toEqual(expect.arrayContaining(expectedErrors))

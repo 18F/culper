@@ -78,7 +78,7 @@ const offense = {
   ),
   CourtDate: (value, attributes) => (
     checkValue(attributes.WasCharged, 'Yes')
-      ? { presence: true, date: true }
+      ? { presence: true, date: { requireDay: false } }
       : {}
   ),
   WasSentenced: (value, attributes) => (

@@ -23,6 +23,7 @@ import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
 
 const sectionConfig = {
+  key: PSYCHOLOGICAL_DIAGNOSES.key,
   section: PSYCHOLOGICAL.name,
   store: PSYCHOLOGICAL.store,
   subsection: PSYCHOLOGICAL_DIAGNOSES.name,
@@ -134,7 +135,7 @@ export class Diagnoses extends Subsection {
           labelSize="h4"
           className="diagnosed"
           {...this.props.Diagnosed}
-          warning
+          warning={true}
           onError={this.handleError}
           onUpdate={this.updateDiagnosed}
           required={this.props.required}
@@ -173,7 +174,7 @@ export class Diagnoses extends Subsection {
                 scrollIntoView={this.props.scrollIntoView}
                 addressBooks={this.props.addressBooks}
                 dispatch={this.props.dispatch}
-                bind
+                bind={true}
               />
             </Accordion>
 
@@ -195,7 +196,7 @@ export class Diagnoses extends Subsection {
               labelSize="h4"
               className="intreatment"
               {...this.props.InTreatment}
-              warning
+              warning={true}
               onError={this.handleError}
               required={this.props.required}
               onUpdate={this.updateInTreatment}
@@ -225,7 +226,7 @@ export class Diagnoses extends Subsection {
                     'psychological.diagnosis.heading.healthcareProfessional'
                   )}
                   titleSize="h4"
-                  optional
+                  optional={true}
                   className="no-margin-bottom"
                 />
                 <Treatment
@@ -235,7 +236,7 @@ export class Diagnoses extends Subsection {
                   dispatch={this.props.dispatch}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
-                  bind
+                  bind={true}
                 />
               </Accordion>
             </Show>

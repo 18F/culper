@@ -14,6 +14,7 @@ import Subsection from '../../shared/Subsection'
 
 
 const sectionConfig = {
+  key: IDENTIFICATION_SSN.key,
   section: IDENTIFICATION.name,
   store: IDENTIFICATION.store,
   subsection: IDENTIFICATION_SSN.name,

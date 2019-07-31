@@ -4,7 +4,7 @@ import name from '../name'
 describe('The name model', () => {
   it('first name is required', () => {
     const testData = { first: '' }
-    const expectedErrors = ['first.required']
+    const expectedErrors = ['first.presence.REQUIRED']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The name model', () => {
 
   it('first name must be 1 character if firstInitialOnly is checked', () => {
     const testData = { first: 'Foo', firstInitialOnly: true }
-    const expectedErrors = ['first.length']
+    const expectedErrors = ['first.length.LENGTH_WRONG']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -20,7 +20,7 @@ describe('The name model', () => {
 
   it('first name must be greater than 1 character if firstInitialOnly is not checked', () => {
     const testData = { first: 'F', firstInitialOnly: false }
-    const expectedErrors = ['first.length']
+    const expectedErrors = ['first.length.LENGTH_TOO_SHORT']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -30,7 +30,7 @@ describe('The name model', () => {
     const testData = {
       first: 'Fooaslfkjalsfkjalsfkjalsfkjalskfjlaskfjaskjflaksjflkasjflakjsflaksjflasjflkasfjlajsflalskfjlaskfjalsfkja',
     }
-    const expectedErrors = ['first.length']
+    const expectedErrors = ['first.length.LENGTH_TOO_LONG']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -42,7 +42,7 @@ describe('The name model', () => {
       noMiddleName: false,
     }
 
-    const expectedErrors = ['middle.required']
+    const expectedErrors = ['middle.presence.REQUIRED']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -54,7 +54,7 @@ describe('The name model', () => {
       noMiddleName: true,
     }
 
-    const expectedErrors = ['middle.requireEmpty']
+    const expectedErrors = ['middle.requireEmpty.VALUE_NOT_EMPTY']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -67,7 +67,7 @@ describe('The name model', () => {
       middleInitialOnly: true,
     }
 
-    const expectedErrors = ['middle.length']
+    const expectedErrors = ['middle.length.LENGTH_WRONG']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -80,7 +80,7 @@ describe('The name model', () => {
       middleInitialOnly: false,
     }
 
-    const expectedErrors = ['middle.length']
+    const expectedErrors = ['middle.length.LENGTH_TOO_SHORT']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -93,7 +93,7 @@ describe('The name model', () => {
       middleInitialOnly: false,
     }
 
-    const expectedErrors = ['middle.length']
+    const expectedErrors = ['middle.length.LENGTH_TOO_LONG']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -101,7 +101,7 @@ describe('The name model', () => {
 
   it('last name is required', () => {
     const testData = { last: '' }
-    const expectedErrors = ['last.required']
+    const expectedErrors = ['last.presence.REQUIRED']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -112,7 +112,7 @@ describe('The name model', () => {
       last: 'Fooaslfkjalsfkjalsfkjalsfkjalskfjlaskfjaskjflaksjflkasjflakjsflaksjflasjflkasfjlajsflalskfjlaskfjalsfkja',
     }
 
-    const expectedErrors = ['last.length']
+    const expectedErrors = ['last.length.LENGTH_TOO_LONG']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -126,7 +126,7 @@ describe('The name model', () => {
       suffix: null,
     }
 
-    const expectedErrors = ['suffix.required']
+    const expectedErrors = ['suffix.presence.REQUIRED']
 
     expect(validateModel(testData, name))
       .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -140,7 +140,7 @@ describe('The name model', () => {
       suffix: 'Foo',
     }
 
-    const expectedErrors = ['suffix.inclusion']
+    const expectedErrors = ['suffix.inclusion.INCLUSION']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -155,7 +155,7 @@ describe('The name model', () => {
       suffixOther: '',
     }
 
-    const expectedErrors = ['suffixOther.required']
+    const expectedErrors = ['suffixOther.presence.REQUIRED']
 
     expect(validateModel(testData, name))
       .toEqual(expect.arrayContaining(expectedErrors))

@@ -3,12 +3,14 @@ import alias from 'models/shared/alias'
 import address from 'models/shared/locations/address'
 import usAddress from 'models/shared/locations/usAddress'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
+import physicalAddress from 'models/shared/physicalAddress'
 import { hasYesOrNo } from 'models/validate'
 
 import {
   MOTHER, immedateFamilyOptions, relativeCitizenshipDocumentationOptions,
   relativeResidentDocumentationOptions,
 } from 'constants/enums/relationshipOptions'
+import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
 
@@ -61,16 +63,13 @@ const relative = {
   },
   Birthdate: {
     presence: true,
-    date: true,
+    date: { ...OTHER },
   },
   Birthplace: {
     presence: true,
     location: { validator: birthplaceWithoutCounty },
   },
-  Citizenship: {
-    presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
-  },
+  Citizenship: { presence: true, country: true },
   IsDeceased: {
     presence: true,
     hasValue: { validator: hasYesOrNo },
@@ -100,6 +99,7 @@ const relative = {
       branchCollection: {
         validator: alias,
         hideMaiden: attributes.Relation && attributes.Relation.value === MOTHER,
+        earliest: attributes.Birthdate,
       },
     }
   },
@@ -110,6 +110,15 @@ const relative = {
     return {
       presence: true,
       location: { validator: address },
+    }
+  },
+  AlternateAddress: (value, attributes) => {
+    if (attributes.IsDeceased
+      && attributes.IsDeceased.value === 'Yes') return {}
+
+    return {
+      presence: true,
+      model: { validator: physicalAddress, militaryAddress: true },
     }
   },
   CitizenshipDocumentation: (value, attributes) => {
@@ -223,9 +232,12 @@ const relative = {
   },
   LastContact: (value, attributes) => {
     if (isLivingNonCitizen(attributes)) {
+      const dateLimits = { latest: DEFAULT_LATEST }
+      if (attributes.FirstContact) dateLimits.earliest = attributes.FirstContact
+
       return {
         presence: true,
-        date: true,
+        date: dateLimits,
       }
     }
 

@@ -24,6 +24,7 @@ import Person from './Person'
 import PeopleCounter from './PeopleCounter'
 
 const sectionConfig = {
+  key: RELATIONSHIPS_PEOPLE.key,
   section: RELATIONSHIPS.name,
   store: RELATIONSHIPS.store,
   subsection: RELATIONSHIPS_PEOPLE.name,
@@ -177,7 +178,7 @@ export class People extends Subsection {
           {...this.props.List}
           defaultState={this.props.defaultState}
           scrollToBottom={this.props.scrollToBottom}
-          realtime
+          realtime={true}
           sort={sort}
           inject={this.inject}
           summary={this.summary}
@@ -193,7 +194,7 @@ export class People extends Subsection {
         >
           <Person
             name="Item"
-            bind
+            bind={true}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             required={this.props.required}

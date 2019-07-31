@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import HistoryItem from './HistoryItem'
 
 const sectionConfig = {
+  key: LEGAL_INVESTIGATIONS_HISTORY.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_INVESTIGATIONS_HISTORY.name,
@@ -84,7 +85,7 @@ export class History extends Subsection {
           labelSize="h4"
           className="legal-investigations-history-has-history"
           {...this.props.HasHistory}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -108,7 +109,7 @@ export class History extends Subsection {
           >
             <HistoryItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
               requireLegalInvestigationClearanceGranted={requireLegalInvestigationClearanceGranted}

@@ -3,12 +3,12 @@ import array from '../array'
 describe('The array validator', () => {
   it('fails if there are no values', () => {
     const testData = { test: 'thing' }
-    expect(array(testData)).toBeTruthy()
+    expect(array(testData)).toEqual('MISSING_ITEMS')
   })
 
   it('fails if there is no validator', () => {
     const testData = { values: [] }
-    expect(array(testData)).toBeTruthy()
+    expect(array(testData, {})).toEqual('INVALID_VALIDATOR')
   })
 
   it('fails if any item in the array fails the validation', () => {
@@ -24,7 +24,7 @@ describe('The array validator', () => {
       ],
     }
 
-    expect(array(testData, { validator: testValidator })).toBeTruthy()
+    expect(array(testData, { validator: testValidator })).toEqual(['1.value.email.INVALID_EMAIL'])
   })
 
   it('passes if all items in the array pass the validation', () => {
@@ -67,7 +67,8 @@ describe('The array validator', () => {
 
       const lengthValidator = { minimum: 2 }
 
-      expect(array(testData, { validator: testValidator, length: lengthValidator })).toBeTruthy()
+      expect(array(testData, { validator: testValidator, length: lengthValidator }))
+        .toEqual(['array.length.LENGTH_TOO_SHORT'])
     })
   })
 })

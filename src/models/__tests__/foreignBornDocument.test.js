@@ -4,7 +4,7 @@ import foreignBornDocument from '../foreignBornDocument'
 describe('The foreign born document model', () => {
   it('DocumentType field is required', () => {
     const testData = {}
-    const expectedErrors = ['DocumentType.required']
+    const expectedErrors = ['DocumentType.presence.REQUIRED']
 
     expect(validateModel(testData, foreignBornDocument))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,7 @@ describe('The foreign born document model', () => {
     const testData = {
       DocumentType: { value: 'invalid' },
     }
-    const expectedErrors = ['DocumentType.hasValue']
+    const expectedErrors = ['DocumentType.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, foreignBornDocument))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +22,7 @@ describe('The foreign born document model', () => {
 
   it('DocumentExpiration is required', () => {
     const testData = {}
-    const expectedErrors = ['DocumentExpiration.required']
+    const expectedErrors = ['DocumentExpiration.presence.REQUIRED']
 
     expect(validateModel(testData, foreignBornDocument))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -32,7 +32,11 @@ describe('The foreign born document model', () => {
     const testData = {
       DocumentExpiration: 'invalid',
     }
-    const expectedErrors = ['DocumentExpiration.date']
+    const expectedErrors = [
+      'DocumentExpiration.date.day.presence.REQUIRED',
+      'DocumentExpiration.date.month.presence.REQUIRED',
+      'DocumentExpiration.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, foreignBornDocument))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -40,7 +44,7 @@ describe('The foreign born document model', () => {
 
   it('DocumentNumber is required', () => {
     const testData = {}
-    const expectedErrors = ['DocumentNumber.required']
+    const expectedErrors = ['DocumentNumber.presence.REQUIRED']
 
     expect(validateModel(testData, foreignBornDocument))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -50,7 +54,7 @@ describe('The foreign born document model', () => {
     const testData = {
       DocumentNumber: '123',
     }
-    const expectedErrors = ['DocumentNumber.hasValue']
+    const expectedErrors = ['DocumentNumber.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, foreignBornDocument))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -72,7 +76,7 @@ describe('The foreign born document model', () => {
         DocumentExpirationNotApplicable: { applicable: false },
       }
 
-      const expectedErrors = ['DocumentExpiration.required']
+      const expectedErrors = ['DocumentExpiration.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBornDocument))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -94,7 +98,7 @@ describe('The foreign born document model', () => {
       const testData = {
         DocumentType: { value: 'Other' },
       }
-      const expectedErrors = ['OtherExplanation.required']
+      const expectedErrors = ['OtherExplanation.presence.REQUIRED']
 
       expect(validateModel(testData, foreignBornDocument))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -105,7 +109,7 @@ describe('The foreign born document model', () => {
         DocumentType: { value: 'Other' },
         OtherExplanation: { value: '' },
       }
-      const expectedErrors = ['OtherExplanation.hasValue']
+      const expectedErrors = ['OtherExplanation.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, foreignBornDocument))
         .toEqual(expect.arrayContaining(expectedErrors))

@@ -2,6 +2,17 @@ import { validateModel } from 'models/validate'
 import financialDelinquentPayments from '../financialDelinquentPayments'
 
 describe('The financial delinquent payments model', () => {
+  it('Resolved must be after Date', () => {
+    const testData = {
+      Date: { month: 1, year: 2015 },
+      Resolved: { month: 5, year: 2014 },
+    }
+    const expectedErrors = ['Resolved.date.date.datetime.DATE_TOO_EARLY']
+
+    expect(validateModel(testData, financialDelinquentPayments))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   describe('SF86', () => {
     const options = {
       requiredFinancialDelinquentName: true,
@@ -14,18 +25,18 @@ describe('The financial delinquent payments model', () => {
         },
       }
       const expectedErrors = [
-        'Name.required',
-        'Infractions.required',
-        'AccountNumber.required',
-        'PropertyType.required',
-        'Amount.required',
-        'Reason.required',
-        'Status.required',
-        'Date.required',
-        'Resolved.required',
-        'CourtName.required',
-        'CourtAddress.required',
-        'Description.required',
+        'Name.presence.REQUIRED',
+        'Infractions.presence.REQUIRED',
+        'AccountNumber.presence.REQUIRED',
+        'PropertyType.presence.REQUIRED',
+        'Amount.presence.REQUIRED',
+        'Reason.presence.REQUIRED',
+        'Status.presence.REQUIRED',
+        'Date.presence.REQUIRED',
+        'Resolved.presence.REQUIRED',
+        'CourtName.presence.REQUIRED',
+        'CourtAddress.presence.REQUIRED',
+        'Description.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, financialDelinquentPayments, options))
@@ -38,7 +49,9 @@ describe('The financial delinquent payments model', () => {
           values: ['InvalidType'],
         },
       }
-      const expectedErrors = ['Infractions.array']
+      const expectedErrors = [
+        'Infractions.array.0.value.inclusion.INCLUSION',
+      ]
 
       expect(validateModel(testData, financialDelinquentPayments, options))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -57,8 +70,8 @@ describe('The financial delinquent payments model', () => {
         },
       }
       const unexpectedError = [
-        'Name.required',
-        'Infractions.required',
+        'Name.presence.REQUIRED',
+        'Infractions.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, financialDelinquentPayments, options))

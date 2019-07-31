@@ -5,10 +5,10 @@ describe('The alcoholNegativeImpact model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Occurred.required',
-      'Circumstances.required',
-      'NegativeImpact.required',
-      'Used.required',
+      'Occurred.presence.REQUIRED',
+      'Circumstances.presence.REQUIRED',
+      'NegativeImpact.presence.REQUIRED',
+      'Used.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, alcoholNegativeImpact))
@@ -20,7 +20,24 @@ describe('The alcoholNegativeImpact model', () => {
       Occurred: 'invalid',
     }
     const expectedErrors = [
-      'Occurred.date',
+      'Occurred.date.month.presence.REQUIRED',
+      'Occurred.date.year.presence.REQUIRED',
+    ]
+
+    expect(validateModel(testData, alcoholNegativeImpact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Occurred must be after the Used from date', () => {
+    const testData = {
+      Occurred: { month: 1, year: 2013 },
+      Used: {
+        from: { month: 5, day: 10, year: 2015 },
+        present: true,
+      },
+    }
+    const expectedErrors = [
+      'Occurred.date.date.datetime.DATE_TOO_EARLY',
     ]
 
     expect(validateModel(testData, alcoholNegativeImpact))
@@ -30,7 +47,7 @@ describe('The alcoholNegativeImpact model', () => {
   it('Circumstances must have a value', () => {
     const testData = { Circumstances: 'testing' }
     const expectedErrors = [
-      'Circumstances.hasValue',
+      'Circumstances.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, alcoholNegativeImpact))
@@ -40,7 +57,7 @@ describe('The alcoholNegativeImpact model', () => {
   it('NegativeImpact must have a value', () => {
     const testData = { NegativeImpact: 'testing' }
     const expectedErrors = [
-      'NegativeImpact.hasValue',
+      'NegativeImpact.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, alcoholNegativeImpact))
@@ -52,7 +69,8 @@ describe('The alcoholNegativeImpact model', () => {
       Used: false,
     }
     const expectedErrors = [
-      'Used.daterange',
+      'Used.daterange.from.presence.REQUIRED',
+      'Used.daterange.to.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, alcoholNegativeImpact))
@@ -61,7 +79,7 @@ describe('The alcoholNegativeImpact model', () => {
 
   it('passes a valid alcoholNegativeImpact', () => {
     const testData = {
-      Occurred: { month: 5, year: 2003 },
+      Occurred: { month: 5, year: 2011 },
       Circumstances: { value: 'Testing' },
       NegativeImpact: { value: 'Something bad happened' },
       Used: {

@@ -5,27 +5,27 @@ describe('The foreignTravel model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Country.required',
-      'Dates.required',
-      'Days.required',
-      'Purpose.required',
-      'Questioned.required',
-      'Encounter.required',
-      'Contacted.required',
-      'Counter.required',
-      'Interest.required',
-      'Sensitive.required',
-      'Threatened.required',
+      'Country.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'Days.presence.REQUIRED',
+      'Purpose.presence.REQUIRED',
+      'Questioned.presence.REQUIRED',
+      'Encounter.presence.REQUIRED',
+      'Contacted.presence.REQUIRED',
+      'Counter.presence.REQUIRED',
+      'Interest.presence.REQUIRED',
+      'Sensitive.presence.REQUIRED',
+      'Threatened.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Country must have a value', () => {
+  it('Country must have a valid value', () => {
     const testData = {
-      Country: { values: 'test' },
+      Country: { value: 'test' },
     }
-    const expectedErrors = ['Country.hasValue']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -34,7 +34,10 @@ describe('The foreignTravel model', () => {
     const testData = {
       Dates: 'invalid date',
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.presence.REQUIRED',
+      'Dates.daterange.to.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -43,7 +46,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Days: { value: 'invalid' },
     }
-    const expectedErrors = ['Days.hasValue']
+    const expectedErrors = ['Days.hasValue.value.inclusion.INCLUSION']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -52,7 +55,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Purpose: { values: [] },
     }
-    const expectedErrors = ['Purpose.array']
+    const expectedErrors = ['Purpose.array.array.length.LENGTH_TOO_SHORT']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -61,7 +64,10 @@ describe('The foreignTravel model', () => {
     const testData = {
       Purpose: { values: ['invalid', 'test'] },
     }
-    const expectedErrors = ['Purpose.array']
+    const expectedErrors = [
+      'Purpose.array.0.value.inclusion.INCLUSION',
+      'Purpose.array.1.value.inclusion.INCLUSION',
+    ]
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -70,7 +76,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Questioned: { value: false },
     }
-    const expectedErrors = ['Questioned.hasValue']
+    const expectedErrors = ['Questioned.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -80,7 +86,7 @@ describe('The foreignTravel model', () => {
       const testData = {
         Questioned: { value: 'Yes' },
       }
-      const expectedErrors = ['QuestionedExplanation.required']
+      const expectedErrors = ['QuestionedExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -90,7 +96,7 @@ describe('The foreignTravel model', () => {
         Questioned: { value: 'Yes' },
         QuestionedExplanation: 'Test',
       }
-      const expectedErrors = ['QuestionedExplanation.hasValue']
+      const expectedErrors = ['QuestionedExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -122,7 +128,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Encounter: { value: false },
     }
-    const expectedErrors = ['Encounter.hasValue']
+    const expectedErrors = ['Encounter.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -132,7 +138,7 @@ describe('The foreignTravel model', () => {
       const testData = {
         Encounter: { value: 'Yes' },
       }
-      const expectedErrors = ['EncounterExplanation.required']
+      const expectedErrors = ['EncounterExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -142,7 +148,7 @@ describe('The foreignTravel model', () => {
         Encounter: { value: 'Yes' },
         EncounterExplanation: 'Test',
       }
-      const expectedErrors = ['EncounterExplanation.hasValue']
+      const expectedErrors = ['EncounterExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -174,7 +180,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Contacted: { value: false },
     }
-    const expectedErrors = ['Contacted.hasValue']
+    const expectedErrors = ['Contacted.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -184,7 +190,7 @@ describe('The foreignTravel model', () => {
       const testData = {
         Contacted: { value: 'Yes' },
       }
-      const expectedErrors = ['ContactedExplanation.required']
+      const expectedErrors = ['ContactedExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -194,7 +200,7 @@ describe('The foreignTravel model', () => {
         Contacted: { value: 'Yes' },
         ContactedExplanation: 'Test',
       }
-      const expectedErrors = ['ContactedExplanation.hasValue']
+      const expectedErrors = ['ContactedExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -226,7 +232,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Counter: { value: false },
     }
-    const expectedErrors = ['Counter.hasValue']
+    const expectedErrors = ['Counter.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -236,7 +242,7 @@ describe('The foreignTravel model', () => {
       const testData = {
         Counter: { value: 'Yes' },
       }
-      const expectedErrors = ['CounterExplanation.required']
+      const expectedErrors = ['CounterExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -246,7 +252,7 @@ describe('The foreignTravel model', () => {
         Counter: { value: 'Yes' },
         CounterExplanation: 'Test',
       }
-      const expectedErrors = ['CounterExplanation.hasValue']
+      const expectedErrors = ['CounterExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -278,7 +284,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Interest: { value: false },
     }
-    const expectedErrors = ['Interest.hasValue']
+    const expectedErrors = ['Interest.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -288,7 +294,7 @@ describe('The foreignTravel model', () => {
       const testData = {
         Interest: { value: 'Yes' },
       }
-      const expectedErrors = ['InterestExplanation.required']
+      const expectedErrors = ['InterestExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -298,7 +304,7 @@ describe('The foreignTravel model', () => {
         Interest: { value: 'Yes' },
         InterestExplanation: 'Test',
       }
-      const expectedErrors = ['InterestExplanation.hasValue']
+      const expectedErrors = ['InterestExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -330,7 +336,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Sensitive: { value: false },
     }
-    const expectedErrors = ['Sensitive.hasValue']
+    const expectedErrors = ['Sensitive.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -340,7 +346,7 @@ describe('The foreignTravel model', () => {
       const testData = {
         Sensitive: { value: 'Yes' },
       }
-      const expectedErrors = ['SensitiveExplanation.required']
+      const expectedErrors = ['SensitiveExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -350,7 +356,7 @@ describe('The foreignTravel model', () => {
         Sensitive: { value: 'Yes' },
         SensitiveExplanation: 'Test',
       }
-      const expectedErrors = ['SensitiveExplanation.hasValue']
+      const expectedErrors = ['SensitiveExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -382,7 +388,7 @@ describe('The foreignTravel model', () => {
     const testData = {
       Threatened: { value: false },
     }
-    const expectedErrors = ['Threatened.hasValue']
+    const expectedErrors = ['Threatened.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignTravel))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -392,7 +398,7 @@ describe('The foreignTravel model', () => {
       const testData = {
         Threatened: { value: 'Yes' },
       }
-      const expectedErrors = ['ThreatenedExplanation.required']
+      const expectedErrors = ['ThreatenedExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -402,7 +408,7 @@ describe('The foreignTravel model', () => {
         Threatened: { value: 'Yes' },
         ThreatenedExplanation: 'Test',
       }
-      const expectedErrors = ['ThreatenedExplanation.hasValue']
+      const expectedErrors = ['ThreatenedExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignTravel))
         .toEqual(expect.arrayContaining(expectedErrors))
     })

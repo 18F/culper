@@ -24,7 +24,7 @@ func NewRejecter(db api.DatabaseService, store api.StorageService) Rejecter {
 }
 
 // Reject rejects the application for a given account
-func (r Rejecter) Reject(account api.Account) error {
+func (r Rejecter) Reject(account *api.Account) error {
 	if !account.CanKickback() {
 		return errors.New("Account can't be rejected if it hasn't been submitted")
 	}

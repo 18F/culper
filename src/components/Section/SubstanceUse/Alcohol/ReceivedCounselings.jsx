@@ -13,6 +13,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import ReceivedCounseling from './ReceivedCounseling'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_ALCOHOL_ADDITIONAL.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_ALCOHOL_ADDITIONAL.name,
@@ -87,7 +88,7 @@ export class ReceivedCounselings extends Subsection {
           labelSize="h4"
           className="received-treatment"
           {...this.props.ReceivedTreatment}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateReceivedTreatment}
@@ -111,7 +112,7 @@ export class ReceivedCounselings extends Subsection {
           >
             <ReceivedCounseling
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

@@ -1,6 +1,7 @@
 import name from 'models/shared/name'
 import address from 'models/shared/locations/address'
 import { hasYesOrNo } from 'models/validate'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const petitionTypes = [
   'Chapter7',
@@ -35,14 +36,17 @@ const financialBankruptcy = {
     date: { requireDay: false },
   },
   DateDischarged: (value, attributes) => {
-    const { DateDischargedNotApplicable } = attributes
-    if (DateDischargedNotApplicable && DateDischargedNotApplicable.applicable) {
-      return {
-        presence: true,
-        date: { requireDay: false },
-      }
+    const { DateDischargedNotApplicable, DateFiled } = attributes
+    if (DateDischargedNotApplicable && DateDischargedNotApplicable.applicable === false) {
+      return {}
     }
-    return {}
+
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (DateFiled) dateLimits.earliest = DateFiled
+    return {
+      presence: true,
+      date: { requireDay: false, ...dateLimits },
+    }
   },
   NameDebt: {
     presence: true,

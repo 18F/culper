@@ -5,11 +5,11 @@ describe('The foreignBusinessFamily model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Agency.required',
-      'Country.required',
-      'Date.required',
-      'Circumstances.required',
+      'Name.presence.REQUIRED',
+      'Agency.presence.REQUIRED',
+      'Country.presence.REQUIRED',
+      'Date.presence.REQUIRED',
+      'Circumstances.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignBusinessFamily))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +19,10 @@ describe('The foreignBusinessFamily model', () => {
     const testData = {
       Name: { last: 'invalid' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessFamily))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -28,16 +31,16 @@ describe('The foreignBusinessFamily model', () => {
     const testData = {
       Agency: { values: 'test' },
     }
-    const expectedErrors = ['Agency.hasValue']
+    const expectedErrors = ['Agency.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessFamily))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Country must have a value', () => {
+  it('Country must have a valid value', () => {
     const testData = {
-      Country: { values: 'test' },
+      Country: { value: 'test' },
     }
-    const expectedErrors = ['Country.hasValue']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessFamily))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -46,7 +49,27 @@ describe('The foreignBusinessFamily model', () => {
     const testData = {
       Date: { year: 500, month: 3, day: 32 },
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.INVALID_DATE']
+    expect(validateModel(testData, foreignBusinessFamily))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date must not be more than 200 years ago', () => {
+    const testData = {
+      Date: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_EARLY']
+
+    expect(validateModel(testData, foreignBusinessFamily))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date must not be in the future', () => {
+    const testData = {
+      Date: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_LATE']
+
     expect(validateModel(testData, foreignBusinessFamily))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -55,7 +78,7 @@ describe('The foreignBusinessFamily model', () => {
     const testData = {
       Circumstances: { values: 'test' },
     }
-    const expectedErrors = ['Circumstances.hasValue']
+    const expectedErrors = ['Circumstances.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessFamily))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

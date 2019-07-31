@@ -147,14 +147,10 @@ docker exec -it CONTAINERID bin/form output.json
 Note: The files in [`api/testdata/complete-scenarios`](../api/testdata/complete-scenarios) have been formated with the `jq` tool.
 
 ## Loading existing test JSON files
-
-1. Clear the database of existing form data using `purge-all-user-data.sql`, replacing `CONTAINERID` with the container id for PostgreSQL. This will purge **ALL** user form data, but leave accounts and passwords intact. All accounts are unlocked.
-```
-docker cp api/bin/purge-all-user-data.sql CONTAINERID:/tmp
-docker exec --user postgres -it CONTAINERID psql -f /tmp/purge-all-user-data.sql
-```
-
-2. Load a test file with `load-scenario`, specifying one of the test accounts (e.g., `test01`) and replacing `CONTAINERID` with the container id for the API backend. When prompted for a URL, specify `http://localhost:3000` or `https://localhost:3000`, depending if you have configured HTTPS.
+1. Load a test file with `load-scenario`, specifying one of the test accounts (e.g., `test01`) and replacing `CONTAINERID` with the container id for the API backend. When prompted for a URL, specify `http://localhost:3000` or `https://localhost:3000`, depending if you have configured HTTPS.
 ```
 docker exec -it CONTAINERID bin/load-scenario testdata/complete-scenarios/test1.json
 ```
+
+## Clearing account data
+1. You can use the `flush` script to delete all the application data for a given user. See [dev-tools](./dev-tools.md)

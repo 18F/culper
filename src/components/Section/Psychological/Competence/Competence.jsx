@@ -15,6 +15,7 @@ import connectPsychologicalSection from '../PsychologicalConnector'
 import Order from '../Order'
 
 const sectionConfig = {
+  key: PSYCHOLOGICAL_COMPETENCE.key,
   section: PSYCHOLOGICAL.name,
   store: PSYCHOLOGICAL.store,
   subsection: PSYCHOLOGICAL_COMPETENCE.name,
@@ -85,7 +86,7 @@ export class Competence extends Subsection {
           label={i18n.t('psychological.heading.competence')}
           labelSize="h4"
           {...this.props.IsIncompetent}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateIsIncompentent}
@@ -120,7 +121,7 @@ export class Competence extends Subsection {
               dispatch={this.props.dispatch}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              bind
+              bind={true}
             />
           </Accordion>
         </Show>

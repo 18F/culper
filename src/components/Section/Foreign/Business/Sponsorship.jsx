@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import SponsorshipItem from './SponsorshipItem'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_SPONSORSHIP.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_SPONSORSHIP.name,
@@ -81,7 +82,7 @@ export class Sponsorship extends Subsection {
           labelSize="h4"
           help="foreign.business.sponsorship.help.branch"
           {...this.props.HasForeignSponsorship}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignSponsorship}
           required={this.props.required}
           onError={this.handleError}
@@ -106,7 +107,7 @@ export class Sponsorship extends Subsection {
             <SponsorshipItem
               applicantBirthdate={this.props.applicantBirthdate}
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

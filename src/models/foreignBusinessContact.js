@@ -11,10 +11,7 @@ const foreignBusinessContact = {
   Name: { presence: true, model: { validator: name } },
   Location: { presence: true, location: { validator: usCityStateZipInternationalCity } },
   Date: { presence: true, date: true },
-  Governments: {
-    presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
-  },
+  Governments: { presence: true, country: true },
   Establishment: { presence: true, hasValue: true },
   Representatives: { presence: true, hasValue: true },
   Purpose: { presence: true, hasValue: true },

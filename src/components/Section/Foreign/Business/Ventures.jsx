@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import VenturesItem from './VenturesItem'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_VENTURES.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_VENTURES.name,
@@ -81,7 +82,7 @@ export class Ventures extends Subsection {
           labelSize="h4"
           adjustFor="p"
           {...this.props.HasForeignVentures}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignVentures}
           required={this.props.required}
           onError={this.handleError}
@@ -108,7 +109,7 @@ export class Ventures extends Subsection {
           >
             <VenturesItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

@@ -5,11 +5,11 @@ describe('The foreignBusinessAdvice model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Name.required',
-      'Description.required',
-      'Organization.required',
-      'Country.required',
-      'Dates.required',
+      'Name.presence.REQUIRED',
+      'Description.presence.REQUIRED',
+      'Organization.presence.REQUIRED',
+      'Country.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignBusinessAdvice))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +19,10 @@ describe('The foreignBusinessAdvice model', () => {
     const testData = {
       Name: { last: 'invalid' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessAdvice))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -28,7 +31,7 @@ describe('The foreignBusinessAdvice model', () => {
     const testData = {
       Description: { values: 'test' },
     }
-    const expectedErrors = ['Description.hasValue']
+    const expectedErrors = ['Description.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessAdvice))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -37,16 +40,16 @@ describe('The foreignBusinessAdvice model', () => {
     const testData = {
       Organization: { values: 'test' },
     }
-    const expectedErrors = ['Organization.hasValue']
+    const expectedErrors = ['Organization.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessAdvice))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Country must have a value', () => {
+  it('Country must have a valid value', () => {
     const testData = {
       Country: { values: 'test' },
     }
-    const expectedErrors = ['Country.hasValue']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessAdvice))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -59,7 +62,9 @@ describe('The foreignBusinessAdvice model', () => {
         present: true,
       },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.date.month.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessAdvice))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

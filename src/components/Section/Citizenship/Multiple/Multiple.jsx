@@ -22,6 +22,7 @@ import CitizenshipItem from './CitizenshipItem'
 import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
+  key: CITIZENSHIP_MULTIPLE.key,
   section: CITIZENSHIP.name,
   store: CITIZENSHIP.store,
   subsection: CITIZENSHIP_MULTIPLE.name,
@@ -94,7 +95,7 @@ export class Multiple extends Subsection {
           labelSize="h4"
           className="has-multiple"
           {...this.props.HasMultiple}
-          warning
+          warning={true}
           onUpdate={this.updateHasMultiple}
           onError={this.handleError}
           required={this.props.required}
@@ -128,7 +129,7 @@ export class Multiple extends Subsection {
           >
             <CitizenshipItem
               name="Item"
-              bind
+              bind={true}
               requireMultipleCitizenshipRenounced={this.props.requireMultipleCitizenshipRenounced}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}

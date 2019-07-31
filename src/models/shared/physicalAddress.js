@@ -3,20 +3,20 @@ import phone from 'models/shared/phone'
 import { hasYesOrNo } from 'models/validate'
 
 const physicalAddress = {
-  HasDifferentAddress: {
-    presence: true,
-    hasValue: {
-      validator: hasYesOrNo,
-    },
-  },
-  Address: (value, attributes = {}) => {
+  HasDifferentAddress: (value, attributes, attributeName, options) => (
+    options.militaryAddress === false ? {} : {
+      presence: true,
+      hasValue: { validator: hasYesOrNo },
+    }
+  ),
+  Address: (value, attributes = {}, attributeName, options) => {
     const { HasDifferentAddress } = attributes
-    if (HasDifferentAddress
+    if (options.militaryAddress === false || (HasDifferentAddress
       && HasDifferentAddress.value
-      && HasDifferentAddress.value === 'Yes') {
+      && HasDifferentAddress.value === 'Yes')) {
       return {
         presence: true,
-        location: { validator: address },
+        location: { ...options, validator: address },
       }
     }
 
