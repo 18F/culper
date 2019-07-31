@@ -44,8 +44,9 @@ func generateSessionKey() (string, error) {
 }
 
 func hashSessionKey(sessionKey string) string {
-	s := sha512.Sum512([]byte(sessionKey))
-	return hex.EncodeToString(s[:])
+	hashed := sha512.Sum512([]byte(sessionKey))
+	hexEncoded := hex.EncodeToString(hashed[:])
+	return hexEncoded[:12]
 }
 
 // UserDidAuthenticate returns a session key and an error if applicable
