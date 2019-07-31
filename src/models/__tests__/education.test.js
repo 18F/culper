@@ -272,7 +272,7 @@ describe('The education model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.model',
+        'ReferencePhone.model.number.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, education))

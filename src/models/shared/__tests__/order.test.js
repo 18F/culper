@@ -45,7 +45,7 @@ describe('The appeal model', () => {
       },
     }
 
-    const expectedErrors = ['CourtAddress.location']
+    const expectedErrors = ['CourtAddress.location.street.format.INVALID_FORMAT']
 
     expect(validateModel(testData, appeal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -122,7 +122,7 @@ describe('The order model', () => {
       },
     }
 
-    const expectedErrors = ['CourtAddress.location']
+    const expectedErrors = ['CourtAddress.location.street.format.INVALID_FORMAT']
 
     expect(validateModel(testData, order))
       .toEqual(expect.arrayContaining(expectedErrors))

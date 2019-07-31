@@ -189,7 +189,7 @@ describe('The civilUnion model', () => {
       Telephone: { noNumber: true },
     }
 
-    const expectedErrors = ['Telephone.model']
+    const expectedErrors = ['Telephone.model.number.presence.REQUIRED']
 
     expect(validateModel(testData, civilUnion))
       .toEqual(expect.arrayContaining(expectedErrors))

@@ -109,7 +109,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.model',
+        'ReferencePhone.model.number.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -1247,7 +1247,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.model',
+        'Telephone.model.number.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2085,7 +2085,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.model',
+        'Telephone.model.number.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2162,7 +2162,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.model',
+        'Supervisor.model.Telephone.model.number.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -2578,7 +2578,7 @@ describe('The employment model', () => {
         Telephone: { noNumber: true },
       }
       const expectedErrors = [
-        'Telephone.model',
+        'Telephone.model.number.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
