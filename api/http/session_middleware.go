@@ -30,8 +30,8 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 
 		sessionCookie, cookieErr := r.Cookie(session.SessionCookieName)
 		if cookieErr != nil {
-			service.log.WarnError("Request is missing session cookie", cookieErr, api.LogFields{})
-			RespondWithStructuredError(w, api.InvalidJWT, http.StatusUnauthorized) // TODO: fix returned error
+			service.log.WarnError(api.RequestIsMissingSessionCookie, cookieErr, api.LogFields{})
+			RespondWithStructuredError(w, api.RequestIsMissingSessionCookie, http.StatusUnauthorized)
 			return
 		}
 
@@ -39,12 +39,15 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 		account, session, err := service.session.GetAccountIfSessionIsValid(sessionKey)
 		if err != nil {
 			if err == api.ErrValidSessionNotFound {
-				service.log.WarnError(api.InvalidJWT, err, api.LogFields{})
-				RespondWithStructuredError(w, api.InvalidJWT, http.StatusUnauthorized)
-
+				service.log.WarnError(api.SessionDoesNotExist, err, api.LogFields{})
+				RespondWithStructuredError(w, api.SessionDoesNotExist, http.StatusUnauthorized)
 			}
-			service.log.WarnError("TODO: Error getting session datya", err, api.LogFields{})
-			RespondWithStructuredError(w, api.InvalidJWT, http.StatusInternalServerError)
+			if err == api.ErrSessionExpired {
+				service.log.WarnError(api.SessionExpired, err, api.LogFields{})
+				RespondWithStructuredError(w, api.SessionExpired, http.StatusUnauthorized)
+			}
+			service.log.WarnError(api.SessionUnexpectedError, err, api.LogFields{})
+			RespondWithStructuredError(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 			return
 		}
 
