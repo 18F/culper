@@ -5,12 +5,10 @@ import usAddress from 'models/shared/locations/usAddress'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import physicalAddress from 'models/shared/physicalAddress'
 import { hasYesOrNo } from 'models/validate'
-import * as formTypes from 'constants/formTypes'
 
 import {
   MOTHER,
   immedateFamilyOptions,
-  relativeOptions,
   relativeCitizenshipDocumentationOptions,
   relativeResidentDocumentationOptions,
 } from 'constants/enums/relationshipOptions'
