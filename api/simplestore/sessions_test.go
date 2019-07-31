@@ -133,7 +133,7 @@ func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
 	}
 
 	_, _, err := store.ExtendAndFetchSessionAccount(sessionKey, expirationDuration)
-	if err != api.ErrValidSessionNotFound {
+	if err != api.ErrSessionExpired {
 		t.Fatal(err)
 	}
 }

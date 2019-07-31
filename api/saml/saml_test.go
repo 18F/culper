@@ -28,15 +28,14 @@ func TestSamlResponse(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	conf := SamlTestResponseConfig{
+	conf := TestResponseConfig{
 		SigningCert:    "testdata/test_cert.pem",
 		SigningKey:     "testdata/test_key.pem",
-		IDPIssuerUrl:   "http://localhost:8080",
+		IDPIssuerURL:   "http://localhost:8080",
 		SSODescription: "http://localhost:8080",
 		CallbackURL:    "/auth/saml/callback",
 	}
 	encodedResponse := CreateSamlTestResponse(t, conf)
-
 
 	// Validate the response
 	username, _, err := service.ValidateAuthenticationResponse(encodedResponse)

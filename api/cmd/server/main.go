@@ -55,7 +55,7 @@ func main() {
 	submitter := admin.NewSubmitter(database, store, xmlsvc, pdfsvc)
 
 	sessionTimeout := time.Duration(settings.Int(api.SessionTimeout)) * time.Minute
-	sessionService := session.NewSessionService(sessionTimeout, store)
+	sessionService := session.NewSessionService(sessionTimeout, store, logger)
 	samlsvc := &saml.Service{Log: logger, Env: settings}
 	api.Geocode = usps.Geocoder{Log: logger, Env: settings}
 

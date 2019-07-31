@@ -31,7 +31,6 @@ func TestSaveHandler(t *testing.T) {
     handler := SaveHandler{
         Env:      nil,
         Log:      &mockLog,
-        Token:    nil,
         Database: &mockDB,
         Store:    &mockStore,
     }
@@ -64,7 +63,7 @@ func TestSaveHandler(t *testing.T) {
     account := api.Account{
         ID: 1,
     }
-    req = req.WithContext(SetAccountInRequestContext(req, account))
+    req = req.WithContext(SetAccountAndSessionInRequestContext(req, account, api.Session{}))
     // We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
     rr := httptest.NewRecorder()
     // Our handlers satisfy http.Handler, so we can call their ServeHTTP method
@@ -102,7 +101,6 @@ func TestSaveHandlerBadEntity(t *testing.T) {
     handler := SaveHandler{
         Env:      nil,
         Log:      &mockLog,
-        Token:    nil,
         Database: &mockDB,
     }
 
@@ -118,7 +116,7 @@ func TestSaveHandlerBadEntity(t *testing.T) {
     account := api.Account{
         ID: 1,
     }
-    req = req.WithContext(SetAccountInRequestContext(req, account))
+    req = req.WithContext(SetAccountAndSessionInRequestContext(req, account, api.Session{}))
     // We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
     rr := httptest.NewRecorder()
     // Our handlers satisfy http.Handler, so we can call their ServeHTTP method
