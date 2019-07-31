@@ -54,7 +54,7 @@ func makeAuthenticatedFormRequest(services serviceSet, sessionService *session.S
 
 func TestFullSessionHTTPFlow_Unauthenticated(t *testing.T) {
 	services := cleanTestServices(t)
-	sessionService := session.NewSessionService(5*time.Minute, services.store)
+	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	response := makeAuthenticatedFormRequest(services, sessionService, "")
 
@@ -65,7 +65,7 @@ func TestFullSessionHTTPFlow_Unauthenticated(t *testing.T) {
 
 func TestFullSessionHTTPFlow_BadAuthentication(t *testing.T) {
 	services := cleanTestServices(t)
-	sessionService := session.NewSessionService(5*time.Minute, services.store)
+	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	response := makeAuthenticatedFormRequest(services, sessionService, "GARBAGE")
 
@@ -88,7 +88,7 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	os.Setenv("SAML_CONSUMER_SERVICE_URL", "")
 
 	services := cleanTestServices(t)
-	sessionService := session.NewSessionService(5*time.Minute, services.store)
+	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	samlService := &saml.Service{
 		Log: services.log,
@@ -103,10 +103,10 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 		Session:  sessionService,
 	}
 
-	conf := saml.SamlTestResponseConfig{
+	conf := saml.TestResponseConfig{
 		SigningCert:    "../saml/testdata/test_cert.pem",
 		SigningKey:     "../saml/testdata/test_key.pem",
-		IDPIssuerUrl:   "http://localhost:8080",
+		IDPIssuerURL:   "http://localhost:8080",
 		SSODescription: "http://localhost:8080",
 		CallbackURL:    "http://localhost:3000/auth/saml/callback",
 	}
@@ -150,10 +150,7 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	}
 
 	// confirm that you can make an authenticated request
-
 	sessionKey := sessionCookie.Value
-
-	fmt.Println("Session Cookies", sessionKey)
 
 	// now make an authenticated request with this valid session key
 	authenticatedResponse := makeAuthenticatedFormRequest(services, sessionService, sessionKey)
@@ -224,7 +221,7 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 	os.Setenv("BASIC_ENABLED", "1")
 	services := cleanTestServices(t)
-	sessionService := session.NewSessionService(5*time.Minute, services.store)
+	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	account := createTestAccount(t, services.db)
 

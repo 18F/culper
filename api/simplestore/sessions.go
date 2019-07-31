@@ -2,6 +2,7 @@ package simplestore
 
 import (
 	"database/sql"
+	"fmt"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -60,10 +61,13 @@ type sessionAccountRow struct {
 }
 
 // ExtendAndFetchSessionAccount fetches an account and session data from the db
+// On success it returns the account and the session
+// On failure, it can return ErrValidSessionNotFound, ErrSessionExpired, or an unexpected error
 func (s SimpleStore) ExtendAndFetchSessionAccount(sessionKey string, expirationDuration time.Duration) (api.Account, api.Session, error) {
 
 	expirationDate := time.Now().UTC().Add(expirationDuration)
 
+	// We update the session expiration date to be $DURATION from now and fetch the account and the session.
 	fetchQuery := `UPDATE sessions
 					SET expiration_date = $1
 				FROM accounts
@@ -79,10 +83,29 @@ func (s SimpleStore) ExtendAndFetchSessionAccount(sessionKey string, expirationD
 	row := sessionAccountRow{}
 	selectErr := s.db.Get(&row, fetchQuery, expirationDate, sessionKey, time.Now().UTC())
 	if selectErr != nil {
-		if selectErr == sql.ErrNoRows {
-			return api.Account{}, api.Session{}, api.ErrValidSessionNotFound
+		if selectErr != sql.ErrNoRows {
+			return api.Account{}, api.Session{}, errors.Wrap(selectErr, "Unexpected error looking for valid session")
 		}
-		return api.Account{}, api.Session{}, errors.Wrap(selectErr, "Couldn't find valid Session")
+
+		// If the above query returns no rows, either the session is expired, or it does not exist.
+		// To determine which and return an appropriate error, we do a second query to see if it exists
+		existsQuery := `SELECT sessions.* FROM sessions, accounts WHERE sessions.account_id = accounts.id AND sessions.session_key = $1`
+
+		session := api.Session{}
+		selectAgainErr := s.db.Get(&session, existsQuery, sessionKey)
+		if selectAgainErr != nil {
+			if selectAgainErr == sql.ErrNoRows {
+				return api.Account{}, api.Session{}, api.ErrValidSessionNotFound
+			}
+			return api.Account{}, api.Session{}, errors.Wrap(selectAgainErr, "Unexpected error fetching single invalid session")
+		}
+
+		// quick sanity check:
+		if session.ExpirationDate.After(time.Now()) {
+			errors.New(fmt.Sprintf("For some reason, this session we could not find was not actually expired: %s", session.SessionKey))
+		}
+		// The session must have been expired, not deleted.
+		return api.Account{}, api.Session{}, api.ErrSessionExpired
 	}
 
 	// time.Times come back from the db with no tz info, so let's set it to UTC to be safe and consistent.
