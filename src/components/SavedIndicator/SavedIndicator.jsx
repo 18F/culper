@@ -201,17 +201,10 @@ function mapStateToProps(state) {
   const app = state.application || {}
   const settings = app.Settings || {}
   return {
-<<<<<<< HEAD
     section,
     app,
     saved: settings.saved || new Date(),
     saveError: settings.saveError,
-=======
-    section: section,
-    app: app,
-    saved: settings.saved || new Date(),
-    saveError: settings.saveError
->>>>>>> Provide feedback to user if form fails to save
   }
 }
 

@@ -334,7 +334,7 @@ File path (absolute or relative) to identity data provider's public certificate 
 
 ## `SAML_SIGN_REQUEST`
 
-Flag to enable signing of SAML 2.0 requests.
+Flag to enable signing of SAML 2.0 requests. The target identity provider (IdP) should be configured to verify authentication requests against trusted public certificates; e.g., `SAML_PUBLIC_CERT`.
 
 **Target** - Back-end (api)<br>
 **Default** - False: *empty*<br>

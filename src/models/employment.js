@@ -61,7 +61,7 @@ const supervisor = {
 
     return {}
   },
-  Telephone: { presence: true, model: { validator: phone } },
+  Telephone: { presence: true, model: { validator: phone, requireNumber: true } },
 }
 
 const additional = {

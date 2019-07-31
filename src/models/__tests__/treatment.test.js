@@ -44,7 +44,11 @@ describe('The treatment model', () => {
       Phone: { noNumber: true },
     }
 
-    const expectedErrors = ['Phone.model']
+    const expectedErrors = [
+      'Phone.model.noNumber.inclusion.INCLUSION',
+      'Phone.model.timeOfDay.presence.REQUIRED',
+      'Phone.model.number.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, treatment))
       .toEqual(expect.arrayContaining(expectedErrors))

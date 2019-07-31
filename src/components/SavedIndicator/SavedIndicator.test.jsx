@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import SavedIndicator from 'components/SavedIndicator/SavedIndicator'
+import ConnectedSavedIndicator from 'components/SavedIndicator/SavedIndicator'
 import { i18n } from 'config'
 
 describe('The saved indicator component', () => {
@@ -15,17 +15,17 @@ describe('The saved indicator component', () => {
   it('catches failed save', () => {
     const store = mockStore({
       authentication: {
-        authenticated: true
+        authenticated: true,
       },
       application: {
         Settings: {
-          saveError: true
-        }
-      }
+          saveError: true,
+        },
+      },
     })
     const component = mount(
       <Provider store={store}>
-        <SavedIndicator />
+        <ConnectedSavedIndicator />
       </Provider>
     )
     expect(component.find('strong').text()).toContain(
@@ -38,12 +38,11 @@ describe('The saved indicator component', () => {
 
     beforeEach(() => {
       const store = mockStore({ authentication: { authenticated: true } })
-      createComponent = (elapsed = 0) =>
-        mount(
-          <Provider store={store}>
-            <SavedIndicator elapsed={elapsed} />
-          </Provider>
-        )
+      createComponent = (elapsed = 0) => mount(
+        <Provider store={store}>
+          <ConnectedSavedIndicator elapsed={elapsed} />
+        </Provider>
+      )
     })
 
     it('visible when authenticated', () => {
@@ -76,7 +75,6 @@ describe('The saved indicator component', () => {
     })
 
     it('mouse in and out', () => {
-      const store = mockStore({ authentication: { authenticated: true } })
       const component = createComponent()
       component.find('button').simulate('mouseenter')
       expect(component.find('SavedIndicator').getNode().state.hover).toBe(true)

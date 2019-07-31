@@ -23,7 +23,9 @@ describe('The financial credit counseling model', () => {
       },
     }
 
-    const expectedErrors = ['Telephone.model']
+    const expectedErrors = [
+      'Telephone.model.timeOfDay.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, financialCreditCounseling))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -34,7 +36,9 @@ describe('The financial credit counseling model', () => {
       Telephone: { noNumber: true },
     }
 
-    const expectedErrors = ['Telephone.model']
+    const expectedErrors = [
+      'Telephone.model.noNumber.inclusion.INCLUSION',
+    ]
 
     expect(validateModel(testData, financialCreditCounseling))
       .toEqual(expect.arrayContaining(expectedErrors))
