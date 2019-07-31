@@ -2,20 +2,10 @@ package simplestore
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"math/rand"
-	"os"
-	"reflect"
 	"testing"
-	"time"
-
-	"github.com/google/uuid"
 
 	"github.com/18F/e-QIP-prototype/api"
-	"github.com/18F/e-QIP-prototype/api/env"
-	"github.com/18F/e-QIP-prototype/api/log"
-	"github.com/18F/e-QIP-prototype/api/postgresql"
 )
 
 func TestSaveSection(t *testing.T) {

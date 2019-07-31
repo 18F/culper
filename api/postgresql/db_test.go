@@ -1,6 +1,7 @@
 package postgresql
 
 import (
+	"database/sql"
 	"testing"
 
 	"github.com/google/uuid"
@@ -30,7 +31,7 @@ func TestAccountPersistence(t *testing.T) {
 
 	account := api.Account{
 		Username:    "buzz1@example.com",
-		Email:       "buzz1@example.com",
+		Email:       sql.NullString{"buzz1@example.com", true},
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusIncomplete,
@@ -50,7 +51,7 @@ func TestAccountPersistence(t *testing.T) {
 	}
 
 	// modify and save again to trigger the Update behavior
-	account.Email = "buzz2@example.com"
+	account.Email = sql.NullString{"buzz2@example.com", true}
 
 	_, saveAgainErr := account.Save(service, -1)
 	if saveAgainErr != nil {
