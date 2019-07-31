@@ -10,6 +10,7 @@ import { env } from 'config'
 import {
   initializeFormData,
   initializeApp,
+  fetchForm,
   setFormData,
   updateSectionData,
 } from './initialize'
@@ -32,7 +33,7 @@ describe('Initialize app saga', () => {
 
   it('responds to the INITIALIZE_APP action', () => {
     expect(generator.next().value)
-      .toEqual(takeLatest(actionTypes.INITIALIZE_APP, initializeApp))
+      .toEqual(takeLatest(actionTypes.INIT_APP, fetchForm))
   })
 
   it('is done', () => {

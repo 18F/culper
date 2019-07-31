@@ -42,10 +42,7 @@ export function* initializeFormData() {
   yield takeLatest(actionTypes.SET_FORM_DATA, setFormData)
 }
 
-
-
-function* fetchForm() {
-  console.log("FETCHING THE FORM")
+export function* fetchForm() {
   yield put({ type: actionTypes.FETCH_FORM })
 }
 
