@@ -14,19 +14,32 @@ import {
 import { env } from 'config'
 import { api } from 'services/api'
 import { handleLoginSuccess } from 'actions/AuthActions'
+import { INIT_APP } from 'constants/actionTypes'
 
 class Main extends React.Component {
   constructor(props) {
     super(props)
-    this.onEnter = this.onEnter.bind(this)
+    // this.onEnter = this.onEnter.bind(this)
   }
 
-  // Check if we have a token in our base Route so that it gets called once when a page renders.
-  onEnter() {
-    const token = api.getToken()
-    if (token && token.length) {
-      this.props.dispatch(handleLoginSuccess())
-    }
+  // // Check if we have a token in our base Route so that it gets called once when a page renders.
+  // onEnter() {
+  //   console.log("ENTRING MAIN")
+  //   const token = api.getToken()
+  //   if (token && token.length) {
+  //     this.props.dispatch(handleLoginSuccess())
+  //   }
+  // }
+
+  componentDidMount() {
+    console.log("MAIN DID MOUNT")
+
+    // request /form
+    // dispatch a saga action
+    this.props.dispatch({ type: INIT_APP })
+
+    // then...
+
   }
 
   render() {

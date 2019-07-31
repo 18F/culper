@@ -85,7 +85,7 @@ func main() {
 
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
-		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService}.ServeHTTP).Methods("POST")
+		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService, Session: sessionService}.ServeHTTP).Methods("POST")
 	}
 	if settings.True(api.SamlEnabled) {
 		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
