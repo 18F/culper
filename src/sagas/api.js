@@ -1,46 +1,69 @@
-import { env } from 'config'
-import { takeLatest, put, all, call } from 'redux-saga/effects'
+import {
+  take, put, all, call, race,
+} from 'redux-saga/effects'
 import { api } from 'services/api'
 import * as actionTypes from 'constants/actionTypes'
+import { env } from 'config'
 
-function* callFetchForm() {
+export function* callFetchForm() {
   try {
-    console.log("AEEPI", api)
-
     const response = yield call(api.form)
-    console.log("WELDLL")
-    yield put({type: actionTypes.FETCH_FORM_SUCCESS})
+    yield put({ type: actionTypes.FETCH_FORM_SUCCESS, response })
   } catch (error) {
-    console.log("ERROR FETCHING FORM", error)
-    yield put({type: actionTypes.FETCH_FORM_ERROR})
+    yield put({ type: actionTypes.FETCH_FORM_ERROR, error })
   }
 }
 
-function* handleFetchFormSuccess() {
-  console.log("SUCCESS")
+function* handleFetchFormError(action) {
+  const { error } = action
+
+  if (error && error.response) {
+    switch (error.response.status) {
+      case 401:
+      case 403:
+        yield call(env.History().push, '/login')
+        break
+
+      default:
+        yield call(env.History().push, '/error')
+    }
+  } else {
+    console.warn('Unknown error', error)
+    yield call(env.History().push, '/error')
+  }
 }
 
+function* handleFetchFormSuccess(data) {
+  console.log("SUCCESS", data)
+  // TODO go to the loader
+  yield
+}
 
-function* fetchFormWatcher() {
-  console.log("WATCHING FOR FORM FETCHING")
+function* fetchFormResponseWatcher() {
+  const { data, error } = yield race({
+    data: take(actionTypes.FETCH_FORM_SUCCESS),
+    error: take(actionTypes.FETCH_FORM_ERROR),
+  })
+
+  if (error) {
+    yield call(handleFetchFormError, error)
+  } else {
+    yield call(handleFetchFormSuccess, data)
+  }
+}
+
+export function* fetchFormWatcher() {
   while (true) {
-    yield take(actionTypes.FETCH_FORM, callFetchForm)
-    yield call(callFetchForm)
-    const { data, error } = yield race({
-      data: take(actionTypes.FETCH_FORM_SUCCESS),
-      error: take(actionTypes.FETCH_FORM_ERROR),
-    })
-
-    if (error) {
-      yield call(errorHandler, error)
-    } else {
-      yield call(successHandler, data)
-    }
+    yield take(actionTypes.FETCH_FORM)
+    yield all([
+      call(callFetchForm),
+      call(fetchFormResponseWatcher),
+    ])
   }
 }
 
 export function* apiWatcher() {
   yield all([
     fetchFormWatcher(),
-    ])
+  ])
 }

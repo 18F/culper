@@ -72,11 +72,11 @@ func AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
 	}
 
 	cookie := &http.Cookie{
-		Domain:   cookieDomain,
+		Domain:   ".api",
 		Name:     session.SessionCookieName,
 		Value:    sessionKey,
 		HttpOnly: true,
-		// Path:     "/",
+		Path:     "/",
 		// MaxAge:   60,
 		// Expires:  expiration,
 	}

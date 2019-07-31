@@ -39,7 +39,8 @@ class Api {
   constructor() {
     this.proxy = axios.create({
       baseURL: env ? env.ApiBaseURL() : '/api',
-      timeout: 30000
+      timeout: 30000,
+      withCredentials: true,
     })
   }
 

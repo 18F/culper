@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects'
 
-import { initializeFormData } from 'sagas/initialize'
+import { apiWatcher } from 'sagas/api'
+import { initializeFormData, initializeApp } from 'sagas/initialize'
 import { validateWatcher } from 'sagas/validate'
 import rootSaga from './index'
 
@@ -9,6 +10,8 @@ describe('Root saga', () => {
 
   it('starts the initializeFormData and validateWatcher sagas', () => {
     expect(generator.next().value).toEqual(all([
+      apiWatcher(),
+      initializeApp(),
       initializeFormData(),
       validateWatcher(),
     ]))
