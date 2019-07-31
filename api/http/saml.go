@@ -57,7 +57,6 @@ type SamlSLORequestHandler struct {
 
 // ServeHTTP is the initial entry point for authentication.
 func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("SLO GETTING")
 	if !service.Env.True(api.SamlEnabled) || !service.Env.True(api.SamlSloEnabled) {
 		service.Log.Warn(api.SamlSLONotEnabled, api.LogFields{})
 		http.Error(w, api.SamlSLONotEnabled, http.StatusInternalServerError)
@@ -67,8 +66,8 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	account, session := AccountAndSessionFromRequestContext(r)
 
 	if !session.SessionIndex.Valid {
-		service.Log.Warn("WOAH THERE'S NO SESSION INDEX FOR THIS SESSION", api.LogFields{})
-		http.Error(w, api.SamlSLORequestGeneration, http.StatusInternalServerError)
+		service.Log.Warn(api.SamlSLOMissingSessionIndex, api.LogFields{})
+		http.Error(w, api.SamlSLOMissingSessionIndex, http.StatusInternalServerError)
 		return
 	}
 
@@ -80,8 +79,6 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		http.Error(w, api.SamlSLORequestGeneration, http.StatusInternalServerError)
 		return
 	}
-
-	fmt.Println("WELL??")
 
 	EncodeJSON(w, struct {
 		Base64XML string
@@ -109,8 +106,6 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	fmt.Println("CHECKING RESPONSE: ", r.URL)
-
 	encoded := r.FormValue("SAMLResponse")
 	if encoded == "" {
 		service.Log.Warn(api.SamlFormError, api.LogFields{})
@@ -118,11 +113,8 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	fmt.Println("GOT: ", encoded)
-
 	responseType, err := service.SAML.ResponseType(encoded)
 	if err != nil {
-		fmt.Println("NONONONO")
 		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
 		redirectAccessDenied(w, r)
 		return
