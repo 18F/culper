@@ -9,6 +9,9 @@ import (
 var (
 	// ErrValidSessionNotFound is returned when a valid session is not found
 	ErrValidSessionNotFound = errors.New("Valid session not found")
+
+	// ErrSessionExpired is returned when the requested session has expired
+	ErrSessionExpired = errors.New("Valid session not found")
 )
 
 // SessionService backs user authentication -- providing a way to verify & modify session status

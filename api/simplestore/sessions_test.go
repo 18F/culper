@@ -11,7 +11,7 @@ import (
 
 func getTestObjects(t *testing.T) (SimpleStore, api.Account, string) {
 	ss := getSimpleStore()
-	account := createAccount(t, ss)
+	account := CreateTestAccount(t, ss)
 	UUID := uuid.New().String()
 	return ss, account, UUID
 }
@@ -229,7 +229,7 @@ func TestSessionDBConstraints(t *testing.T) {
 	}
 
 	// duplicate sessionkey
-	differentAccount := createAccount(t, s)
+	differentAccount := CreateTestAccount(t, s)
 	_, createErr = s.db.Exec(justCreateQuery, sessionKey, differentAccount.ID, NullString(), expirationDate)
 	if createErr == nil {
 		t.Log("Should not have created a session with a duplicate SessionKey")

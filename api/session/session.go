@@ -1,8 +1,9 @@
 package session
 
 import (
+	"crypto/sha512"
 	"database/sql"
-	"encoding/base64"
+	"encoding/hex"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -17,17 +18,17 @@ const SessionCookieName = "eapp-session-key"
 type Service struct {
 	timeout time.Duration
 	store   api.StorageService
+	log     api.LogService
 }
 
 // NewSessionService returns a SessionService
-func NewSessionService(timeout time.Duration, store api.StorageService) *Service {
+func NewSessionService(timeout time.Duration, store api.StorageService, log api.LogService) *Service {
 	return &Service{
 		timeout,
 		store,
+		log,
 	}
 }
-
-//TODO Log Correct
 
 // generateSessionKey generates a cryptographically random session key
 func generateSessionKey() (string, error) {
@@ -36,10 +37,15 @@ func generateSessionKey() (string, error) {
 		return "", errors.New("Failed to generate random data for a key")
 	}
 
-	secureString := base64.StdEncoding.EncodeToString(secureBytes)
+	secureString := hex.EncodeToString(secureBytes)
 
 	return secureString, nil
 
+}
+
+func hashSessionKey(sessionKey string) string {
+	s := sha512.Sum512([]byte(sessionKey))
+	return hex.EncodeToString(s[:])
 }
 
 // UserDidAuthenticate returns a session key and an error if applicable
@@ -50,22 +56,40 @@ func (s Service) UserDidAuthenticate(accountID int, sessionIndex sql.NullString)
 	}
 
 	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, sessionIndex, s.timeout)
-
-	// TODO: update accounts table with login datetime
-
 	if createErr != nil {
 		return "", createErr
 	}
+	hashedSessionKey := hashSessionKey(sessionKey)
+	s.log.AddField("session_hash", hashedSessionKey)
+	s.log.Info(api.SessionCreated, api.LogFields{})
 
 	return sessionKey, createErr
 }
 
 // GetAccountIfSessionIsValid returns an Account if the session key is valid and an error otherwise
 func (s Service) GetAccountIfSessionIsValid(sessionKey string) (api.Account, api.Session, error) {
-	return s.store.ExtendAndFetchSessionAccount(sessionKey, s.timeout)
+	account, session, fetchErr := s.store.ExtendAndFetchSessionAccount(sessionKey, s.timeout)
+	if fetchErr != nil {
+		if fetchErr == api.ErrSessionExpired {
+			s.log.Info(api.SessionExpired, api.LogFields{})
+		} else if fetchErr == api.ErrValidSessionNotFound {
+			s.log.Info(api.SessionDoesNotExist, api.LogFields{})
+		}
+
+		return api.Account{}, api.Session{}, fetchErr
+	}
+
+	return account, session, nil
 }
 
 // UserDidLogout attempts to end the session and returns an error on failure
 func (s Service) UserDidLogout(sessionKey string) error {
-	return s.store.DeleteSession(sessionKey)
+	delErr := s.store.DeleteSession(sessionKey)
+	if delErr != nil {
+		return delErr
+	}
+
+	s.log.Info(api.SessionDestroyed, api.LogFields{})
+
+	return nil
 }

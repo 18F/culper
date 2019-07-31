@@ -17,7 +17,7 @@ func TestFullSessionFlow(t *testing.T) {
 	testUser := createTestAccount(t, services.db)
 
 	// get a session service
-	sessionService := session.NewSessionService(5*time.Second, services.store)
+	sessionService := session.NewSessionService(5*time.Second, services.store, services.log)
 
 	// create a session for the user
 	sessionKey, userAuthdErr := sessionService.UserDidAuthenticate(testUser.ID, simplestore.NullString())

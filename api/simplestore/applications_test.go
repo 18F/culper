@@ -108,7 +108,7 @@ func createAccount(t *testing.T, store SimpleStore) api.Account {
 func TestSaveSection(t *testing.T) {
 
 	store := getSimpleStore()
-	account := createAccount(t, store)
+	account := CreateTestAccount(t, store)
 
 	sectionFilename := "../testdata/identification/identification-name.json"
 
@@ -188,7 +188,7 @@ func TestSaveSection(t *testing.T) {
 func TestStoreErrors(t *testing.T) {
 
 	store := getSimpleStore()
-	account := createAccount(t, store)
+	account := CreateTestAccount(t, store)
 
 	sectionFilename := "../testdata/identification/identification-name.json"
 

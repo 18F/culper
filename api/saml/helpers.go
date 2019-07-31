@@ -6,15 +6,17 @@ import (
 	saml "github.com/RobotsAndPencils/go-saml"
 )
 
-type SamlTestResponseConfig struct {
-	SigningCert string
-	SigningKey string
-	IDPIssuerUrl string
+// TestResponseConfig is way to configure CreateSamlTestResponse
+type TestResponseConfig struct {
+	SigningCert    string
+	SigningKey     string
+	IDPIssuerURL   string
 	SSODescription string
-	CallbackURL string
+	CallbackURL    string
 }
 
-func CreateSamlTestResponse(t *testing.T, conf SamlTestResponseConfig) string {
+// CreateSamlTestResponse crafts a SAML response, mimicing a response from WSO2
+func CreateSamlTestResponse(t *testing.T, conf TestResponseConfig) string {
 	publickey, exErr := extractCertBody(conf.SigningCert)
 	if exErr != nil {
 		t.Fatal(exErr)
@@ -23,8 +25,8 @@ func CreateSamlTestResponse(t *testing.T, conf SamlTestResponseConfig) string {
 	// Create a response
 	signedResponse := saml.NewSignedResponse()
 	signedResponse.Destination = conf.CallbackURL
-	signedResponse.Issuer.Url = conf.IDPIssuerUrl
-	signedResponse.Assertion.Issuer.Url = conf.IDPIssuerUrl
+	signedResponse.Issuer.Url = conf.IDPIssuerURL
+	signedResponse.Assertion.Issuer.Url = conf.IDPIssuerURL
 	signedResponse.Signature.KeyInfo.X509Data.X509Certificate.Cert = publickey
 	signedResponse.Assertion.Subject.NameID.Value = "test01"
 	signedResponse.AddAttribute("uid", "test01")
