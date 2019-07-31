@@ -9,6 +9,7 @@ import { env } from 'config'
 
 import {
   initializeFormData,
+  initializeApp,
   setFormData,
   updateSectionData,
 } from './initialize'
@@ -25,6 +26,20 @@ describe('Initialize form data saga', () => {
     expect(generator.next().done).toBe(true)
   })
 })
+
+describe('Initialize app saga', () => {
+  const generator = initializeApp()
+
+  it('responds to the INITIALIZE_APP action', () => {
+    expect(generator.next().value)
+      .toEqual(takeLatest(actionTypes.INITIALIZE_APP, initializeApp))
+  })
+
+  it('is done', () => {
+    expect(generator.next().done).toBe(true)
+  })
+})
+
 
 describe('setFormData saga', () => {
   describe('with valid data', () => {

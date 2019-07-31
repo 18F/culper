@@ -41,3 +41,15 @@ export function* setFormData(action) {
 export function* initializeFormData() {
   yield takeLatest(actionTypes.SET_FORM_DATA, setFormData)
 }
+
+
+
+function* fetchForm() {
+  console.log("FETCHING THE FORM")
+  yield put({ type: actionTypes.FETCH_FORM })
+}
+
+
+export function* initializeApp() {
+  yield takeLatest(actionTypes.INIT_APP, fetchForm)
+}

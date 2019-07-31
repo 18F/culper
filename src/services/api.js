@@ -113,7 +113,7 @@ class Api {
     return this.post(env.EndpointSubmit())
   }
 
-  form() {
+  form = () => {
     return this.get(env.EndpointForm())
   }
 
