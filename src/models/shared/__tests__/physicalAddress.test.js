@@ -93,7 +93,10 @@ describe('The PhysicalAddress model', () => {
         Telephone: 'something',
       }
 
-      const expectedErrors = ['Telephone.presence.REQUIRED']
+      const expectedErrors = [
+        'Telephone.model.timeOfDay.presence.REQUIRED',
+        'Telephone.model.number.presence.REQUIRED',
+      ]
       expect(validateModel(testData, physicalAddress))
         .toEqual(expect.arrayContaining(expectedErrors))
     })

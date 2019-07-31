@@ -89,7 +89,7 @@ describe('The drugVoluntaryTreatment model', () => {
       TreatmentProviderTelephone: { noNumber: true },
     }
     const expectedErrors = [
-      'TreatmentProviderTelephone.model',
+      'TreatmentProviderTelephone.model.noNumber.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))
