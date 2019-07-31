@@ -19,18 +19,17 @@ const foreignBornDocument = {
     return {}
   },
   DocumentExpiration: (value, attributes, attributeName, options) => {
-    if (
-      (attributes.DocumentExpirationNotApplicable
-      && attributes.DocumentExpirationNotApplicable.applicable === false)
-      || !options.requireForeignBornDocExpiration
+    if (attributes.DocumentExpirationNotApplicable
+      && attributes.DocumentExpirationNotApplicable.applicable === true
+      && options.requireForeignBornDocExpiration
     ) {
-      return {}
+      return {
+        presence: true,
+        date: true,
+      }
     }
 
-    return {
-      presence: true,
-      date: true,
-    }
+    return {}
   },
   DocumentNumber: {
     presence: true,
