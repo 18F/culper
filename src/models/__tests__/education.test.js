@@ -253,7 +253,7 @@ describe('The education model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('ReferencePhone must exist', () => {
+    it('ReferencePhone number must exist', () => {
       const testData = {
         Dates: {
           from: { year: 2017, month: 9, day: 1 },
@@ -272,7 +272,7 @@ describe('The education model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.model.number.presence.REQUIRED',
+        'ReferencePhone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, education))

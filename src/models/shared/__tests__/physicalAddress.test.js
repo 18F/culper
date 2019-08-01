@@ -87,29 +87,26 @@ describe('The PhysicalAddress model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('Telephone must be a valid phone', () => {
+    it('Telephone is not required', () => {
       const testData = {
         HasDifferentAddress: { value: 'Yes' },
-        Telephone: 'something',
       }
 
       const expectedErrors = [
-        'Telephone.model.timeOfDay.presence.REQUIRED',
-        'Telephone.model.number.presence.REQUIRED',
+        'Telephone.presence.REQUIRED',
       ]
       expect(validateModel(testData, physicalAddress))
-        .toEqual(expect.arrayContaining(expectedErrors))
+        .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('Telephone must exist', () => {
+    it('Telephone must have a number', () => {
       const testData = {
         HasDifferentAddress: { value: 'Yes' },
         Telephone: { noNumber: true },
       }
 
       const expectedErrors = [
-        'Telephone.model.timeOfDay.presence.REQUIRED',
-        'Telephone.model.number.presence.REQUIRED',
+        'Telephone.model.noNumber.inclusion.INCLUSION',
       ]
       expect(validateModel(testData, physicalAddress))
         .toEqual(expect.arrayContaining(expectedErrors))
