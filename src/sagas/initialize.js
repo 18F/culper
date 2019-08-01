@@ -20,6 +20,7 @@ export function* updateSectionData(name, data) {
       )
     )))
   } catch (e) {
+    console.warn('failed to update section', name, e)
     yield call(env.History().push, '/error')
   }
 }
@@ -32,9 +33,9 @@ export function* setFormData(action) {
       .map(section => call(updateSectionData, section, data[section])))
 
     yield put(validateFormData())
-
     yield call(cb)
   } catch (e) {
+    console.warn('failed to set form data', e)
     yield call(env.History().push, '/error')
   }
 }
@@ -61,15 +62,19 @@ export function* handleInitError(action) {
   }
 }
 
-export function* handleInitSuccess(action) {
+export function* handleInitSuccess(action, path = '/form/identification/intro') {
   const { response } = action
+  console.log('success', action, path)
+  yield call(env.History().push, '/loading')
 
   if (response && response.data) {
+    console.log('GO TO', path)
+    const cb = () => { env.History().replace(path) }
     yield put({
       type: actionTypes.SET_FORM_DATA,
       data: response.data,
+      cb,
     })
-    yield
   } else {
     console.warn('Missing response', response)
     yield call(env.History().push, '/error')
@@ -78,6 +83,7 @@ export function* handleInitSuccess(action) {
 
 export function* initializeApp() {
   const initAction = yield take(actionTypes.INIT_APP)
+  const { path } = initAction
 
   // attempt to load the form
   yield put(fetchForm())
@@ -91,6 +97,6 @@ export function* initializeApp() {
   if (error) {
     yield call(handleInitError, error)
   } else {
-    yield call(handleInitSuccess, data)
+    yield call(handleInitSuccess, data, path)
   }
 }

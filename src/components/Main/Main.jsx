@@ -28,7 +28,8 @@ class Main extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    const path = window.location.pathname
+    let path = window.location.pathname
+    if (path.indexOf('/form') < 0) path = undefined
     dispatch(initApp(path))
   }
 
