@@ -5501,13 +5501,13 @@
         "HasAttended": {
           "type": "branch",
           "props": {
-            "value": "No"
+            "value": "Yes"
           }
         },
         "HasDegree10": {
           "type": "branch",
           "props": {
-            "value": "No"
+            "value": ""
           }
         },
         "List": {
@@ -5516,10 +5516,174 @@
             "branch": {
               "type": "branch",
               "props": {
-                "value": ""
+                "value": "No"
               }
             },
-            "items": []
+            "items": [
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "uid": "Address-76473667-431d-fc9a-41de-3f9810d3bc29",
+                      "street": "120 Sproul Hall",
+                      "street2": "",
+                      "city": "Berkeley",
+                      "zipcode": "94720",
+                      "state": "CA",
+                      "country": "United States",
+                      "layout": "Address",
+                      "validated": true
+                    }
+                  },
+                  "Comments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "year": "2019",
+                          "month": "6",
+                          "day": "17",
+                          "estimated": false
+                        }
+                      },
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "name": "from",
+                          "month": "01",
+                          "day": "01",
+                          "year": "2018",
+                          "estimated": false,
+                          "touched": true
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "Diplomas": {
+                    "type": "collection",
+                    "props": {
+                      "items": [
+                        {
+                          "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "name": "branchcollection",
+                                "value": "No"
+                              }
+                            },
+                            "Diploma": {
+                              "type": "radio",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "DiplomaOther": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "day": "",
+                                "estimated": false,
+                                "month": "",
+                                "year": ""
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "branch": null
+                    }
+                  },
+                  "Name": {
+                    "type": "text",
+                    "props": {
+                      "value": "University of California, Berkeley",
+                      "name": "Name"
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "uid": "ReferenceAddress-587adb2b-3034-ec00-f35a-09a0e05ba314",
+                      "street": "120 Sproul Hall",
+                      "city": "Berkeley",
+                      "zipcode": "94720",
+                      "state": "CA",
+                      "country": "United States",
+                      "layout": "Address",
+                      "validated": true
+                    }
+                  },
+                  "ReferenceEmail": {
+                    "type": "email",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "ReferenceEmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "name": "ReferenceEmailNotApplicable",
+                      "applicable": false
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferenceNameNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "name": "ReferenceNameNotApplicable",
+                      "applicable": false
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "name": "ReferencePhone",
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "5555555555",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Type": {
+                    "type": "radio",
+                    "props": {
+                      "name": "type-college",
+                      "value": "College",
+                      "checked": false
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       }
