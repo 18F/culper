@@ -46,7 +46,7 @@ class Main extends React.Component {
     return (
       <Router history={env.History()}>
         <Switch>
-          <Route exact path="/" component={Login} onEnter={this.onEnter} />
+          {/*<Route exact path="/" component={Login} onEnter={this.onEnter} />*/}
           <Route exact path="/loading" component={Loading} />
           <Route
             exact

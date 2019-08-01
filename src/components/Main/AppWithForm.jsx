@@ -1,6 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import App from 'components/Main/App'
-import AuthenticatedView from 'views/AuthenticatedView'
+// import AuthenticatedView from 'views/AuthenticatedView'
 import { Form } from 'views'
 
 class AppWithForm extends React.Component {
@@ -13,4 +14,4 @@ class AppWithForm extends React.Component {
   }
 }
 
-export default AuthenticatedView(AppWithForm)
+export default connect()(AppWithForm)

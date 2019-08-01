@@ -2,6 +2,7 @@ package http
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"net/url"
 	"strings"
@@ -28,6 +29,8 @@ func NewSessionMiddleware(log api.LogService, session api.SessionService) *Sessi
 func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
+		fmt.Println("CHECING FOR COOKIE", r)
+
 		sessionCookie, cookieErr := r.Cookie(session.SessionCookieName)
 		if cookieErr != nil {
 			service.log.WarnError(api.RequestIsMissingSessionCookie, cookieErr, api.LogFields{})
@@ -35,16 +38,20 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 			return
 		}
 
+		fmt.Println("GOT A DOMAIN", sessionCookie.Domain)
+
 		sessionKey := sessionCookie.Value
 		account, session, err := service.session.GetAccountIfSessionIsValid(sessionKey)
 		if err != nil {
 			if err == api.ErrValidSessionNotFound {
 				service.log.WarnError(api.SessionDoesNotExist, err, api.LogFields{})
 				RespondWithStructuredError(w, api.SessionDoesNotExist, http.StatusUnauthorized)
+				return
 			}
 			if err == api.ErrSessionExpired {
 				service.log.WarnError(api.SessionExpired, err, api.LogFields{})
 				RespondWithStructuredError(w, api.SessionExpired, http.StatusUnauthorized)
+				return
 			}
 			service.log.WarnError(api.SessionUnexpectedError, err, api.LogFields{})
 			RespondWithStructuredError(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
@@ -71,15 +78,23 @@ func AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
 		cookieDomain = strings.Split(uri.Host, ":")[0]
 	}
 
+	// LESSONS:
+	// The domain must be "" for localhost to work
+	// Safari will fuck up cookies if you have a .local hostname, chrome does fine
+	// Secure must be false for http to work
+
 	cookie := &http.Cookie{
-		Domain:   ".api",
-		Name:     session.SessionCookieName,
-		Value:    sessionKey,
-		HttpOnly: true,
-		Path:     "/",
+		// Secure:   true,
+		// Domain:   ".localhost",
+		Name:  session.SessionCookieName,
+		Value: sessionKey,
+		// HttpOnly: true,
+		Path: "/",
 		// MaxAge:   60,
 		// Expires:  expiration,
 	}
+
+	fmt.Println("SETTING COOKIE")
 
 	http.SetCookie(w, cookie)
 
