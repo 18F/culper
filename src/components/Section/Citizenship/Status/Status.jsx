@@ -28,6 +28,7 @@ import Subsection from 'components/Section/shared/Subsection'
 import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
+  key: CITIZENSHIP_STATUS.key,
   section: CITIZENSHIP.name,
   store: CITIZENSHIP.store,
   subsection: CITIZENSHIP_STATUS.name,
@@ -319,7 +320,7 @@ export class Status extends Subsection {
                     <DateControl
                       name="DocumentIssued"
                       className="document-issued"
-                      minDateEqualTo
+                      minDateEqualTo={true}
                       {...this.props.DocumentIssued}
                       onUpdate={(value) => { this.updateField('DocumentIssued', value) }}
                       onError={this.handleError}
@@ -345,7 +346,7 @@ export class Status extends Subsection {
 
                   <Field
                     title={i18n.t('citizenship.status.heading.documentname')}
-                    optional
+                    optional={true}
                     filterErrors={Name.requiredErrorsOnly}
                     scrollIntoView={this.props.scrollIntoView}
                   >
@@ -391,7 +392,7 @@ export class Status extends Subsection {
                     name="CertificateIssued"
                     className="certificate-issued"
                     {...this.props.CertificateIssued}
-                    minDateEqualTo
+                    minDateEqualTo={true}
                     onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
                     onError={this.handleError}
                     required={resultIsCertificateRequired && this.props.required}
@@ -402,7 +403,7 @@ export class Status extends Subsection {
                   title={i18n.t(
                     'citizenship.status.heading.certificatename.foreignborn'
                   )}
-                  optional
+                  optional={true}
                   filterErrors={Name.requiredErrorsOnly}
                   scrollIntoView={this.props.scrollIntoView}
                 >
@@ -467,7 +468,7 @@ export class Status extends Subsection {
                 name="EntryDate"
                 className="entry-date"
                 {...this.props.EntryDate}
-                minDateEqualTo
+                minDateEqualTo={true}
                 onUpdate={(value) => { this.updateField('EntryDate', value) }}
                 onError={this.handleError}
                 required={this.props.required}
@@ -501,7 +502,7 @@ export class Status extends Subsection {
                 name="PriorCitizenship"
                 className="prior-citizenship"
                 {...this.props.PriorCitizenship}
-                multiple
+                multiple={true}
                 onUpdate={(value) => { this.updateField('PriorCitizenship', value) }}
                 onError={this.handleError}
                 required={this.props.required}
@@ -580,7 +581,7 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatecourtaddress'
               )}
-              optional
+              optional={true}
               help="citizenship.status.help.certificatecourtaddress"
               scrollIntoView={this.props.scrollIntoView}
               adjustFor="label"
@@ -589,7 +590,7 @@ export class Status extends Subsection {
                 name="CertificateCourtAddress"
                 {...this.props.CertificateCourtAddress}
                 layout={Location.US_ADDRESS}
-                geocode
+                geocode={true}
                 className="certificate-court-address"
                 onUpdate={(value) => { this.updateField('CertificateCourtAddress', value) }}
                 onError={this.handleError}
@@ -609,7 +610,7 @@ export class Status extends Subsection {
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
-                minDateEqualTo
+                minDateEqualTo={true}
                 onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
@@ -620,7 +621,7 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatename.naturalized'
               )}
-              optional
+              optional={true}
               filterErrors={Name.requiredErrorsOnly}
               scrollIntoView={this.props.scrollIntoView}
             >
@@ -748,7 +749,7 @@ export class Status extends Subsection {
               title={i18n.t(
                 'citizenship.status.heading.certificatename.derived'
               )}
-              optional
+              optional={true}
               filterErrors={Name.requiredErrorsOnly}
               scrollIntoView={this.props.scrollIntoView}
             >
@@ -774,7 +775,7 @@ export class Status extends Subsection {
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
-                minDateEqualTo
+                minDateEqualTo={true}
                 onUpdate={(value) => { this.updateField('CertificateIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
@@ -859,7 +860,7 @@ export class Status extends Subsection {
                 name="EntryDate"
                 className="entry-date"
                 {...this.props.EntryDate}
-                minDateEqualTo
+                minDateEqualTo={true}
                 onUpdate={(value) => { this.updateField('EntryDate', value) }}
                 onError={this.handleError}
                 required={this.props.required}
@@ -877,7 +878,7 @@ export class Status extends Subsection {
                 name="PriorCitizenship"
                 className="prior-citizenship"
                 {...this.props.PriorCitizenship}
-                multiple
+                multiple={true}
                 onUpdate={(value) => { this.updateField('PriorCitizenship', value) }}
                 onError={this.handleError}
                 required={this.props.required}
@@ -930,7 +931,7 @@ export class Status extends Subsection {
                 name="AlienRegistrationExpiration"
                 className="alien-registration-expiration"
                 {...this.props.AlienRegistrationExpiration}
-                noMaxDate
+                noMaxDate={true}
                 onUpdate={(value) => { this.updateField('AlienRegistrationExpiration', value) }}
                 onError={this.handleError}
                 required={this.props.required}
@@ -1031,7 +1032,7 @@ export class Status extends Subsection {
             <Field
               title={i18n.t('citizenship.status.heading.documentname')}
               filterErrors={Name.requiredErrorsOnly}
-              optional
+              optional={true}
             >
               <Name
                 name="DocumentName"
@@ -1053,7 +1054,7 @@ export class Status extends Subsection {
                 name="DocumentIssued"
                 className="document-issued"
                 {...this.props.DocumentIssued}
-                minDateEqualTo
+                minDateEqualTo={true}
                 onUpdate={(value) => { this.updateField('DocumentIssued', value) }}
                 onError={this.handleError}
                 required={this.props.required}
@@ -1069,8 +1070,8 @@ export class Status extends Subsection {
                 name="DocumentExpiration"
                 className="document-expiration"
                 {...this.props.DocumentExpiration}
-                noMaxDate
-                minDateEqualTo
+                noMaxDate={true}
+                minDateEqualTo={true}
                 onUpdate={(value) => { this.updateField('DocumentExpiration', value) }}
                 onError={this.handleError}
                 required={this.props.required}

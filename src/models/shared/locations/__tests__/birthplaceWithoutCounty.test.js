@@ -4,7 +4,7 @@ import birthplaceWithoutCounty from '../birthplaceWithoutCounty'
 describe('The location/birthplaceWithoutCounty model', () => {
   it('city is required', () => {
     const testData = { city: '' }
-    const expectedErrors = ['city.required']
+    const expectedErrors = ['city.presence.REQUIRED']
 
     expect(validateModel(testData, birthplaceWithoutCounty))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The location/birthplaceWithoutCounty model', () => {
 
   it('country is required', () => {
     const testData = { country: '' }
-    const expectedErrors = ['country.required']
+    const expectedErrors = ['country.presence.REQUIRED']
 
     expect(validateModel(testData, birthplaceWithoutCounty))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -21,7 +21,7 @@ describe('The location/birthplaceWithoutCounty model', () => {
   describe('for a domestic address', () => {
     it('state must be a valid US state', () => {
       const testData = { state: 'XY', country: 'United States' }
-      const expectedErrors = ['state.inclusion']
+      const expectedErrors = ['state.inclusion.INCLUSION']
 
       expect(validateModel(testData, birthplaceWithoutCounty))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -29,7 +29,7 @@ describe('The location/birthplaceWithoutCounty model', () => {
 
     it('county is not required', () => {
       const testData = { state: 'NY', country: 'United States' }
-      const expectedErrors = ['county.required']
+      const expectedErrors = ['county.presence.REQUIRED']
 
       expect(validateModel(testData, birthplaceWithoutCounty))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -49,7 +49,7 @@ describe('The location/birthplaceWithoutCounty model', () => {
   describe('for an international address', () => {
     it('state must be empty', () => {
       const testData = { state: 'MA', country: 'Canada' }
-      const expectedErrors = ['state.requireEmpty']
+      const expectedErrors = ['state.requireEmpty.VALUE_NOT_EMPTY']
 
       expect(validateModel(testData, birthplaceWithoutCounty))
         .toEqual(expect.arrayContaining(expectedErrors))

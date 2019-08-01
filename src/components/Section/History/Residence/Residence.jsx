@@ -22,6 +22,7 @@ import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
 
 const sectionConfig = {
+  key: HISTORY_RESIDENCE.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_RESIDENCE.name,
@@ -152,7 +153,7 @@ export class Residence extends Subsection {
           scrollIntoView={this.props.scrollIntoView}
         >
           <ResidenceItem
-            bind
+            bind={true}
             name="Item"
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}

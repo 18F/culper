@@ -14,6 +14,7 @@ import Subsection from '../../shared/Subsection'
 
 
 const sectionConfig = {
+  key: IDENTIFICATION_BIRTH_PLACE.key,
   section: IDENTIFICATION.name,
   store: IDENTIFICATION.store,
   subsection: IDENTIFICATION_BIRTH_PLACE.name,
@@ -85,7 +86,7 @@ export class ApplicantBirthPlace extends Subsection {
 
 ApplicantBirthPlace.defaultProps = {
   Location: {},
-  onUpdate: (queue) => {},
+  onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
   validator: data => validate(schema('identification.birthplace', data)),

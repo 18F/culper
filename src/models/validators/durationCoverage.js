@@ -1,12 +1,13 @@
 import { validate } from 'validate.js'
 import { validateModel } from 'models/validate'
 import { findTimelineGaps } from 'helpers/date'
+import { INVALID_DURATION, INCOMPLETE_DURATION } from 'constants/errors'
 
 const durationCoverageValidator = (value, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
 
   const { requiredDuration } = options
-  if (!requiredDuration) return 'Invalid options'
+  if (!requiredDuration) return INVALID_DURATION
 
   // Extract valid date ranges
   const { items } = value
@@ -19,7 +20,7 @@ const durationCoverageValidator = (value, options, key, attributes, globalOption
     .map(i => i.Item.Dates)
 
   const gaps = findTimelineGaps(requiredDuration, ranges)
-  if (gaps.length > 0) return 'Gaps present'
+  if (gaps.length > 0) return INCOMPLETE_DURATION
 
   return null
 }

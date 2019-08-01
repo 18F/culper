@@ -4,7 +4,7 @@ import cityCountry from '../cityCountry'
 describe('The location/cityCountry model', () => {
   it('city is required', () => {
     const testData = { city: '' }
-    const expectedErrors = ['city.required']
+    const expectedErrors = ['city.presence.REQUIRED']
 
     expect(validateModel(testData, cityCountry))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The location/cityCountry model', () => {
 
   it('country is required', () => {
     const testData = { country: '' }
-    const expectedErrors = ['country.required']
+    const expectedErrors = ['country.presence.REQUIRED']
 
     expect(validateModel(testData, cityCountry))
       .toEqual(expect.arrayContaining(expectedErrors))

@@ -4,7 +4,7 @@ import usCityStateZipInternationalCity from '../usCityStateZipInternationalCity'
 describe('The location/usCityStateZipInternationalCity model', () => {
   it('city is required', () => {
     const testData = { city: '' }
-    const expectedErrors = ['city.required']
+    const expectedErrors = ['city.presence.REQUIRED']
 
     expect(validateModel(testData, usCityStateZipInternationalCity))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The location/usCityStateZipInternationalCity model', () => {
 
   it('country is required', () => {
     const testData = { country: '' }
-    const expectedErrors = ['country.required']
+    const expectedErrors = ['country.presence.REQUIRED']
 
     expect(validateModel(testData, usCityStateZipInternationalCity))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -21,7 +21,7 @@ describe('The location/usCityStateZipInternationalCity model', () => {
   describe('for a domestic address', () => {
     it('state must be a valid US state', () => {
       const testData = { state: 'XY', country: 'United States' }
-      const expectedErrors = ['state.inclusion']
+      const expectedErrors = ['state.inclusion.INCLUSION']
 
       expect(validateModel(testData, usCityStateZipInternationalCity))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -29,7 +29,7 @@ describe('The location/usCityStateZipInternationalCity model', () => {
 
     it('zipcode is required', () => {
       const testData = { state: 'NY', country: 'United States' }
-      const expectedErrors = ['zipcode.required']
+      const expectedErrors = ['zipcode.presence.REQUIRED']
 
       expect(validateModel(testData, usCityStateZipInternationalCity))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -37,7 +37,7 @@ describe('The location/usCityStateZipInternationalCity model', () => {
 
     it('zipcode must match the state', () => {
       const testData = { state: 'NY', country: 'United States', zipcode: '99999' }
-      const expectedErrors = ['zipcode.zipcode']
+      const expectedErrors = ['zipcode.zipcode.ZIPCODE_STATE_MISMATCH']
 
       expect(validateModel(testData, usCityStateZipInternationalCity))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -58,7 +58,7 @@ describe('The location/usCityStateZipInternationalCity model', () => {
   describe('for an international address', () => {
     it('state must be empty', () => {
       const testData = { state: 'MA', country: 'Canada' }
-      const expectedErrors = ['state.requireEmpty']
+      const expectedErrors = ['state.requireEmpty.VALUE_NOT_EMPTY']
 
       expect(validateModel(testData, usCityStateZipInternationalCity))
         .toEqual(expect.arrayContaining(expectedErrors))

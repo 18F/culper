@@ -5,9 +5,9 @@ describe('The otherName model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'OtherName.required',
-      'MaidenName.required',
-      'DatesUsed.required',
+      'OtherName.presence.REQUIRED',
+      'MaidenName.presence.REQUIRED',
+      'DatesUsed.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, otherName))
@@ -18,7 +18,11 @@ describe('The otherName model', () => {
     const testData = {
       OtherName: { first: 'P' },
     }
-    const expectedErrors = ['OtherName.model']
+    const expectedErrors = [
+      'OtherName.model.first.length.LENGTH_TOO_SHORT',
+      'OtherName.model.middle.presence.REQUIRED',
+      'OtherName.model.last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, otherName))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -28,7 +32,7 @@ describe('The otherName model', () => {
     const testData = {
       MaidenName: 'true',
     }
-    const expectedErrors = ['MaidenName.hasValue']
+    const expectedErrors = ['MaidenName.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, otherName))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -41,7 +45,9 @@ describe('The otherName model', () => {
         present: false,
       },
     }
-    const expectedErrors = ['DatesUsed.daterange']
+    const expectedErrors = [
+      'DatesUsed.daterange.to.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, otherName))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -58,7 +64,10 @@ describe('The otherName model', () => {
       earliest: { year: 2005, month: 1, day: 4 },
       latest: { year: 2015, month: 2, day: 3 },
     }
-    const expectedErrors = ['DatesUsed.daterange']
+    const expectedErrors = [
+      'DatesUsed.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+      'DatesUsed.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
 
     expect(validateModel(testData, otherName, dateLimits))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -87,7 +96,7 @@ describe('The otherName model', () => {
 describe('The cohabitant model', () => {
   it('name is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -97,7 +106,11 @@ describe('The cohabitant model', () => {
     const testData = {
       Name: { first: 'P' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.length.LENGTH_TOO_SHORT',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -105,7 +118,7 @@ describe('The cohabitant model', () => {
 
   it('birthdate is required', () => {
     const testData = {}
-    const expectedErrors = ['Birthdate.required']
+    const expectedErrors = ['Birthdate.presence.REQUIRED']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -115,7 +128,30 @@ describe('The cohabitant model', () => {
     const testData = {
       Birthdate: { year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = [
+      'Birthdate.date.day.presence.REQUIRED',
+      'Birthdate.date.month.presence.REQUIRED',
+    ]
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be more than 200 years ago', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 1800 },
+    }
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Birthdate must not be in the future', () => {
+    const testData = {
+      Birthdate: { day: 2, month: 12, year: 3000 },
+    }
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -123,7 +159,7 @@ describe('The cohabitant model', () => {
 
   it('the birthplace field is required', () => {
     const testData = {}
-    const expectedErrors = ['BirthPlace.required']
+    const expectedErrors = ['BirthPlace.presence.REQUIRED']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -133,7 +169,10 @@ describe('The cohabitant model', () => {
     const testData = {
       BirthPlace: { street: 'address' },
     }
-    const expectedErrors = ['BirthPlace.location']
+    const expectedErrors = [
+      'BirthPlace.location.city.presence.REQUIRED',
+      'BirthPlace.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -141,7 +180,7 @@ describe('The cohabitant model', () => {
 
   it('the SSN field is required', () => {
     const testData = {}
-    const expectedErrors = ['SSN.required']
+    const expectedErrors = ['SSN.presence.REQUIRED']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -151,7 +190,11 @@ describe('The cohabitant model', () => {
     const testData = {
       SSN: { number: '123456789' },
     }
-    const expectedErrors = ['SSN.ssn']
+    const expectedErrors = [
+      'SSN.ssn.first.presence.REQUIRED',
+      'SSN.ssn.middle.presence.REQUIRED',
+      'SSN.ssn.last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -159,7 +202,7 @@ describe('The cohabitant model', () => {
 
   it('the Citizenship field is required', () => {
     const testData = {}
-    const expectedErrors = ['Citizenship.required']
+    const expectedErrors = ['Citizenship.presence.REQUIRED']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -169,7 +212,7 @@ describe('The cohabitant model', () => {
     const testData = {
       Citizenship: { value: ['United States', 'invalid'] },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -177,7 +220,7 @@ describe('The cohabitant model', () => {
 
   it('the OtherNames field is required', () => {
     const testData = {}
-    const expectedErrors = ['OtherNames.required']
+    const expectedErrors = ['OtherNames.presence.REQUIRED']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -187,7 +230,7 @@ describe('The cohabitant model', () => {
     const testData = {
       OtherNames: true,
     }
-    const expectedErrors = ['OtherNames.branchCollection']
+    const expectedErrors = ['OtherNames.branchCollection.MISSING_ITEMS']
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -202,7 +245,11 @@ describe('The cohabitant model', () => {
         ],
       },
     }
-    const expectedErrors = ['OtherNames.branchCollection']
+    const expectedErrors = [
+      'OtherNames.branchCollection.0.OtherName.presence.REQUIRED',
+      'OtherNames.branchCollection.0.MaidenName.presence.REQUIRED',
+      'OtherNames.branchCollection.0.DatesUsed.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -229,7 +276,31 @@ describe('The cohabitant model', () => {
       },
     }
 
-    const expectedErrors = ['OtherNames.branchCollection']
+    const expectedErrors = [
+      'OtherNames.branchCollection.0.DatesUsed.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+      'OtherNames.branchCollection.0.DatesUsed.daterange.to.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('CohabitationBegan is required', () => {
+    const testData = {}
+    const expectedErrors = ['CohabitationBegan.presence.REQUIRED']
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('CohabitationBegan must be a valid date', () => {
+    const testData = {
+      CohabitationBegan: { year: 3000 },
+    }
+    const expectedErrors = [
+      'CohabitationBegan.date.day.presence.REQUIRED',
+      'CohabitationBegan.date.month.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, cohabitant))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -244,6 +315,7 @@ describe('The cohabitant model', () => {
       },
       SSN: { first: '234', middle: '12', last: '3490' },
       Citizenship: { value: ['United States'] },
+      CohabitationBegan: { day: 2, month: 10, year: 2000 },
       OtherNames: {
         items: [
           {
@@ -270,7 +342,7 @@ describe('The cohabitant model', () => {
       const testData = {
         BirthPlace: { country: 'Canada' },
       }
-      const expectedErrors = ['ForeignBornDocument.required']
+      const expectedErrors = ['ForeignBornDocument.presence.REQUIRED']
 
       expect(validateModel(testData, cohabitant))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -281,7 +353,11 @@ describe('The cohabitant model', () => {
         BirthPlace: { country: 'Canada' },
         ForeignBornDocument: 'my document',
       }
-      const expectedErrors = ['ForeignBornDocument.model']
+      const expectedErrors = [
+        'ForeignBornDocument.model.DocumentType.presence.REQUIRED',
+        'ForeignBornDocument.model.DocumentExpiration.presence.REQUIRED',
+        'ForeignBornDocument.model.DocumentNumber.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, cohabitant))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -296,6 +372,7 @@ describe('The cohabitant model', () => {
         },
         SSN: { first: '234', middle: '12', last: '3490' },
         Citizenship: { value: ['United States'] },
+        CohabitationBegan: { day: 2, month: 10, year: 2000 },
         OtherNames: {
           items: [
             { Item: { Has: { value: 'No' } } },

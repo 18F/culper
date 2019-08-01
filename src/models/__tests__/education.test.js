@@ -1,10 +1,47 @@
 import { validateModel } from 'models/validate'
-import education from 'models/education'
+import education, { educationRequiresReference } from 'models/education'
+
+describe('The educationRequiresReference function', () => {
+  it('returns false if the data is invalid', () => {
+    const testData = {
+      from: null,
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(false)
+  })
+
+  it('returns false if the date range is not within 3 years', () => {
+    const testData = {
+      from: { year: 2000, month: 2, day: 10 },
+      to: { year: 2001, month: 5, day: 2 },
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(false)
+  })
+
+  it('returns true if the date range is within 3 years', () => {
+    const testData = {
+      from: { year: 2018, month: 2, day: 10 },
+      to: { year: 20019, month: 5, day: 2 },
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(true)
+  })
+
+  it('returns true if present is true', () => {
+    const testData = {
+      from: { year: 2010, month: 2, day: 10 },
+      present: true,
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(true)
+  })
+})
 
 describe('The education model', () => {
   it('the Dates field is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +56,7 @@ describe('The education model', () => {
       },
     }
 
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -27,7 +64,7 @@ describe('The education model', () => {
 
   it('the Address field is required', () => {
     const testData = {}
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -37,7 +74,11 @@ describe('The education model', () => {
     const testData = {
       Address: ['not', 'an', 'address'],
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -45,7 +86,7 @@ describe('The education model', () => {
 
   it('the Name field is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -55,7 +96,7 @@ describe('The education model', () => {
     const testData = {
       Name: 'invalid',
     }
-    const expectedErrors = ['Name.hasValue']
+    const expectedErrors = ['Name.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -65,7 +106,7 @@ describe('The education model', () => {
     const testData = {
       Type: { test: false },
     }
-    const expectedErrors = ['Type.hasValue']
+    const expectedErrors = ['Type.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -73,7 +114,7 @@ describe('The education model', () => {
 
   it('the Diplomas field is required', () => {
     const testData = {}
-    const expectedErrors = ['Diplomas.required']
+    const expectedErrors = ['Diplomas.presence.REQUIRED']
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -87,7 +128,7 @@ describe('The education model', () => {
         ],
       },
     }
-    const expectedErrors = ['Diplomas.branchCollection']
+    const expectedErrors = ['Diplomas.branchCollection.INCOMPLETE_COLLECTION']
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -98,10 +139,14 @@ describe('The education model', () => {
       Diplomas: {
         items: [
           { Item: { Has: { value: 'Yes' }, Diploma: 'Testing' } },
+          { Item: { Has: { value: 'No' } } },
         ],
       },
     }
-    const expectedErrors = ['Diplomas.branchCollection']
+    const expectedErrors = [
+      'Diplomas.branchCollection.0.Diploma.hasValue.MISSING_VALUE',
+      'Diplomas.branchCollection.0.Date.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, education))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -126,10 +171,10 @@ describe('The education model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.required',
-        'ReferencePhone.required',
-        'ReferenceEmail.required',
-        'ReferenceAddress.required',
+        'ReferenceName.presence.REQUIRED',
+        'ReferencePhone.presence.REQUIRED',
+        'ReferenceEmail.presence.REQUIRED',
+        'ReferenceAddress.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, education))
@@ -182,10 +227,10 @@ describe('The education model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.required',
-        'ReferencePhone.required',
-        'ReferenceEmail.required',
-        'ReferenceAddress.required',
+        'ReferenceName.presence.REQUIRED',
+        'ReferencePhone.presence.REQUIRED',
+        'ReferenceEmail.presence.REQUIRED',
+        'ReferenceAddress.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, education))
@@ -211,7 +256,7 @@ describe('The education model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.model',
+        'ReferenceName.model.last.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, education))
@@ -237,7 +282,8 @@ describe('The education model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.model',
+        'ReferencePhone.model.timeOfDay.presence.REQUIRED',
+        'ReferencePhone.model.number.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, education))
@@ -263,7 +309,7 @@ describe('The education model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceEmail.model',
+        'ReferenceEmail.model.value.email.INVALID_EMAIL',
       ]
 
       expect(validateModel(testData, education))
@@ -292,7 +338,8 @@ describe('The education model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceAddress.location',
+        'ReferenceAddress.location.city.presence.REQUIRED',
+        'ReferenceAddress.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, education))
@@ -328,7 +375,7 @@ describe('The education model', () => {
         }
 
         const expectedErrors = [
-          'ReferenceName.required',
+          'ReferenceName.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, education))
@@ -354,9 +401,9 @@ describe('The education model', () => {
         }
 
         const expectedErrors = [
-          'ReferenceEmail.required',
-          'ReferencePhone.required',
-          'ReferenceAddress.required',
+          'ReferenceEmail.presence.REQUIRED',
+          'ReferencePhone.presence.REQUIRED',
+          'ReferenceAddress.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, education))
@@ -393,7 +440,7 @@ describe('The education model', () => {
         }
 
         const expectedErrors = [
-          'ReferenceName.required',
+          'ReferenceName.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, education))

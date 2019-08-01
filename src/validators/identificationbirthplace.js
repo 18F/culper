@@ -4,6 +4,7 @@ import birthplace from 'models/shared/locations/birthplace'
 export const validateIdentificationBirthPlace = (data) => {
   const applicantBirthPlaceModel = {
     Location: {
+      presence: true,
       location: { validator: birthplace },
     },
   }

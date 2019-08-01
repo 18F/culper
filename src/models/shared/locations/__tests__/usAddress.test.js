@@ -4,7 +4,7 @@ import usAddress from '../usAddress'
 describe('The location/usAddress model', () => {
   it('street is required', () => {
     const testData = { street: '' }
-    const expectedErrors = ['street.required']
+    const expectedErrors = ['street.presence.REQUIRED']
 
     expect(validateModel(testData, usAddress))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The location/usAddress model', () => {
 
   it('street2 is not required', () => {
     const testData = { street: '123 Main Street' }
-    const expectedErrors = ['street2.required']
+    const expectedErrors = ['street2.presence.REQUIRED']
 
     expect(validateModel(testData, usAddress))
       .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -20,7 +20,7 @@ describe('The location/usAddress model', () => {
 
   it('city is required', () => {
     const testData = { city: '' }
-    const expectedErrors = ['city.required']
+    const expectedErrors = ['city.presence.REQUIRED']
 
     expect(validateModel(testData, usAddress))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -28,7 +28,7 @@ describe('The location/usAddress model', () => {
 
   it('country is required', () => {
     const testData = { country: '' }
-    const expectedErrors = ['country.required']
+    const expectedErrors = ['country.presence.REQUIRED']
 
     expect(validateModel(testData, usAddress))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -36,7 +36,7 @@ describe('The location/usAddress model', () => {
 
   it('state is required', () => {
     const testData = { state: '', country: 'United States' }
-    const expectedErrors = ['state.required']
+    const expectedErrors = ['state.presence.REQUIRED']
 
     expect(validateModel(testData, usAddress))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -44,7 +44,7 @@ describe('The location/usAddress model', () => {
 
   it('zipcode is required', () => {
     const testData = { zipcode: '', country: 'POSTOFFICE' }
-    const expectedErrors = ['zipcode.required']
+    const expectedErrors = ['zipcode.presence.REQUIRED']
 
     expect(validateModel(testData, usAddress))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -60,7 +60,7 @@ describe('The location/usAddress model', () => {
       zipcode: '34052',
     }
 
-    const expectedErrors = ['country.inclusion']
+    const expectedErrors = ['country.inclusion.INCLUSION']
 
     expect(validateModel(testData, usAddress))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -73,7 +73,7 @@ describe('The location/usAddress model', () => {
       country: 'Canada',
     }
 
-    const expectedErrors = ['country.inclusion']
+    const expectedErrors = ['country.inclusion.INCLUSION']
 
     expect(validateModel(testData, usAddress))
       .toEqual(expect.arrayContaining(expectedErrors))

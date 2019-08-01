@@ -14,6 +14,7 @@ export const foreignBenefitTypeOptions = [
   'Educational',
   'Medical',
   'Retirement',
+  'SocialWelfare',
   'Other',
 ]
 

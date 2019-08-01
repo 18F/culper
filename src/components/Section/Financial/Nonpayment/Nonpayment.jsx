@@ -14,6 +14,7 @@ import connectFinancialSection from '../FinancialConnector'
 import NonpaymentItem from './NonpaymentItem'
 
 const sectionConfig = {
+  key: FINANCIAL_NONPAYMENT.key,
   section: FINANCIAL.name,
   store: FINANCIAL.store,
   subsection: FINANCIAL_NONPAYMENT.name,
@@ -110,7 +111,7 @@ export class Nonpayment extends Subsection {
           labelSize="h4"
           className="nonpayment-branch"
           {...this.props.HasNonpayment}
-          warning
+          warning={true}
           onUpdate={this.updateBranch}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -147,7 +148,7 @@ export class Nonpayment extends Subsection {
           >
             <NonpaymentItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

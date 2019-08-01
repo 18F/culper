@@ -10,6 +10,7 @@ import connectForeignSection from '../../ForeignConnector'
 import RealEstateInterest from './RealEstateInterest'
 
 const sectionConfig = {
+  key: FOREIGN_ACTIVITIES_REAL_ESTATE.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_ACTIVITIES_REAL_ESTATE.name,
@@ -60,7 +61,7 @@ export class RealEstateActivity extends Subsection {
       if (prev && next) {
         return (
           <span>
-            {prev} - {next}
+            {`${prev} - ${next}`}
           </span>
         )
       }
@@ -89,7 +90,7 @@ export class RealEstateActivity extends Subsection {
           label={i18n.t('foreign.activities.realestate.heading.title')}
           labelSize="h4"
           {...this.props.HasInterests}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateHasInterests}
@@ -113,7 +114,7 @@ export class RealEstateActivity extends Subsection {
           >
             <RealEstateInterest
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

@@ -12,17 +12,16 @@ describe('The reason left component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <ReasonLeft {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <ReasonLeft {...expected} />
+      </Provider>
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'peace_i_am_out'
+      name: 'peace_i_am_out',
     }
     const component = createComponent(expected)
     expect(component.find('.employment-left').length).toEqual(0)
@@ -38,11 +37,11 @@ describe('The reason left component', () => {
         present: true,
         from: {
           month: `${past.getMonth() + 1}`,
-          day: `${past.getDate()}`,
-          year: `${past.getFullYear()}`
+          day: `${past.getUTCDate()}`,
+          year: `${past.getFullYear()}`,
         },
-        to: {}
-      }
+        to: {},
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.reason-description').length).toEqual(0)
@@ -57,11 +56,11 @@ describe('The reason left component', () => {
         present: false,
         from: {
           month: `${past.getMonth() + 1}`,
-          day: `${past.getDate()}`,
-          year: `${past.getFullYear()}`
+          day: `${past.getUTCDate()}`,
+          year: `${past.getFullYear()}`,
         },
-        to: {}
-      }
+        to: {},
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.reason-description').length).toEqual(1)
@@ -76,11 +75,11 @@ describe('The reason left component', () => {
         present: false,
         from: {
           month: `${past.getMonth() + 1}`,
-          day: `${past.getDate()}`,
-          year: `${past.getFullYear()}`
+          day: `${past.getUTCDate()}`,
+          year: `${past.getFullYear()}`,
         },
-        to: {}
-      }
+        to: {},
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.reason-description').length).toEqual(1)
@@ -95,13 +94,13 @@ describe('The reason left component', () => {
         present: false,
         from: {
           month: `${past.getMonth() + 1}`,
-          day: `${past.getDate()}`,
-          year: `${past.getFullYear()}`
+          day: `${past.getUTCDate()}`,
+          year: `${past.getFullYear()}`,
         },
-        to: {}
+        to: {},
       },
       Comments: { value: 'Hello' },
-      Reasons: { items: [{ Item: { Has: { value: 'Yes' } } }] }
+      Reasons: { items: [{ Item: { Has: { value: 'Yes' } } }] },
     }
     const component = createComponent(expected)
     expect(component.find('.employment-left').length).toEqual(1)
@@ -116,18 +115,18 @@ describe('The reason left component', () => {
           present: false,
           from: {
             month: `${past.getMonth() + 1}`,
-            day: `${past.getDate()}`,
-            year: `${past.getFullYear()}`
+            day: `${past.getUTCDate()}`,
+            year: `${past.getFullYear()}`,
           },
-          to: {}
+          to: {},
         },
         Reasons: {
           items: [
-            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Fired' } } }
-          ]
+            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Fired' } } },
+          ],
         },
         explanationText: i18n.t('history.employment.default.left.fired.text'),
-        dateText: i18n.t('history.employment.default.left.fired.date')
+        dateText: i18n.t('history.employment.default.left.fired.date'),
       },
       {
         name: 'peace_i_am_out',
@@ -135,18 +134,18 @@ describe('The reason left component', () => {
           present: false,
           from: {
             month: `${past.getMonth() + 1}`,
-            day: `${past.getDate()}`,
-            year: `${past.getFullYear()}`
+            day: `${past.getUTCDate()}`,
+            year: `${past.getFullYear()}`,
           },
-          to: {}
+          to: {},
         },
         Reasons: {
           items: [
-            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Quit' } } }
-          ]
+            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Quit' } } },
+          ],
         },
         explanationText: i18n.t('history.employment.default.left.quit.text'),
-        dateText: i18n.t('history.employment.default.left.quit.date')
+        dateText: i18n.t('history.employment.default.left.quit.date'),
       },
       {
         name: 'peace_i_am_out',
@@ -154,18 +153,18 @@ describe('The reason left component', () => {
           present: false,
           from: {
             month: `${past.getMonth() + 1}`,
-            day: `${past.getDate()}`,
-            year: `${past.getFullYear()}`
+            day: `${past.getUTCDate()}`,
+            year: `${past.getFullYear()}`,
           },
-          to: {}
+          to: {},
         },
         Reasons: {
           items: [
-            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Charges' } } }
-          ]
+            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Charges' } } },
+          ],
         },
         explanationText: i18n.t('history.employment.default.left.charges.text'),
-        dateText: i18n.t('history.employment.default.left.charges.date')
+        dateText: i18n.t('history.employment.default.left.charges.date'),
       },
       {
         name: 'peace_i_am_out',
@@ -173,38 +172,40 @@ describe('The reason left component', () => {
           present: false,
           from: {
             month: `${past.getMonth() + 1}`,
-            day: `${past.getDate()}`,
-            year: `${past.getFullYear()}`
+            day: `${past.getUTCDate()}`,
+            year: `${past.getFullYear()}`,
           },
-          to: {}
+          to: {},
         },
         Reasons: {
           items: [
             {
-              Item: { Has: { value: 'Yes' }, Reason: { value: 'Performance' } }
-            }
-          ]
+              Item: { Has: { value: 'Yes' }, Reason: { value: 'Performance' } },
+            },
+          ],
         },
         explanationText: i18n.t(
           'history.employment.default.left.performance.text'
         ),
-        dateText: i18n.t('history.employment.default.left.performance.date')
-      }
+        dateText: i18n.t('history.employment.default.left.performance.date'),
+      },
     ]
-    for (const dreams of expectations) {
+
+    for (let i = 0; i < expectations.length; i += 1) {
+      const item = expectations[i]
       let updates = 0
       const expected = {
-        ...dreams,
+        ...item,
         onUpdate: () => {
-          updates++
-        }
+          updates += 1
+        },
       }
       const component = createComponent(expected)
       expect(component.find('.explanation-left h4').text()).toEqual(
-        dreams.explanationText
+        item.explanationText
       )
       expect(component.find('.date-left h4').text()).toEqual(
-        dreams.dateText
+        item.dateText
       )
       component
         .find({ type: 'radio' })

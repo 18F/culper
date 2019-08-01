@@ -44,7 +44,7 @@ describe('The duration coverage validator', () => {
     ]
 
     expect(durationCoverage({ items: testRanges }, {}))
-      .toEqual('Invalid options')
+      .toEqual('INVALID_DURATION')
   })
 
   it('fails if there are any gaps', () => {
@@ -86,7 +86,7 @@ describe('The duration coverage validator', () => {
     ]
 
     expect(durationCoverage({ items: testRanges }, { requiredDuration: testDuration }))
-      .toEqual('Gaps present')
+      .toEqual('INCOMPLETE_DURATION')
   })
 
   it('passes if there are no gaps', () => {

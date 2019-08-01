@@ -6,7 +6,7 @@ import email from 'models/shared/email'
 import { today, dateWithinRange } from 'helpers/date'
 
 /** Helpers */
-const educationRequiresReference = (dates = {}) => {
+export const educationRequiresReference = (dates = {}) => {
   const { from, present } = dates
   const to = present ? today.toObject() : dates.to
   const educationTimeFrame = { years: 3 }

@@ -343,6 +343,7 @@ describe('Marital validation', () => {
               state: 'VA',
               layout: Location.BIRTHPLACE,
             },
+            EmailNotApplicable: { applicable: false },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -364,6 +365,11 @@ describe('Marital validation', () => {
               middle: '11',
               last: '1111',
               applicable: true,
+            },
+            EnteredCivilUnion: {
+              month: '2',
+              day: '2',
+              year: '2016',
             },
             Divorced: { value: 'Yes' },
             Separated: { value: 'No' },

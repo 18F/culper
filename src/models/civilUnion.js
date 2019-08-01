@@ -3,11 +3,12 @@ import phone from 'models/shared/phone'
 import birthplace from 'models/shared/locations/birthplace'
 import address from 'models/shared/locations/address'
 import usCityStateZipInternationalCity from 'models/shared/locations/usCityStateZipInternationalCity'
+import physicalAddress from 'models/shared/physicalAddress'
 import foreignBornDocument from 'models/foreignBornDocument'
 import { hasYesOrNo } from 'models/validate'
-
+import { DEFAULT_LATEST, OTHER } from 'constants/dateLimits'
 import { countryString } from 'validators/location'
-import { DEFAULT_LATEST } from 'constants/dateLimits'
+import { isInternational, isPO } from 'helpers/location'
 
 export const otherName = {
   Name: {
@@ -25,11 +26,21 @@ const civilUnion = {
   },
   Birthdate: {
     presence: true,
-    date: true,
+    date: { ...OTHER },
   },
   BirthPlace: {
     presence: true,
     location: { validator: birthplace },
+  },
+  Email: (value, attributes) => {
+    if (attributes.EmailNotApplicable && attributes.EmailNotApplicable.applicable === false) {
+      return {}
+    }
+
+    return {
+      presence: true,
+      hasValue: { validator: { email: true } },
+    }
   },
   Telephone: {
     presence: true,
@@ -50,6 +61,23 @@ const civilUnion = {
 
     return { presence: true, location: { validator: address } }
   },
+  AlternateAddress: (value, attributes) => {
+    if (attributes.Address && isInternational(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: true },
+      }
+    }
+
+    if (attributes.Address && isPO(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: false },
+      }
+    }
+
+    return {}
+  },
   Location: {
     presence: true,
     location: { validator: birthplace },
@@ -57,6 +85,9 @@ const civilUnion = {
   Citizenship: {
     presence: true,
     country: true,
+  },
+  EnteredCivilUnion: {
+    presence: true, date: true,
   },
   Divorced: {
     presence: true,
@@ -103,12 +134,13 @@ const civilUnion = {
     return {}
   },
   DateSeparated: (value, attributes) => {
-    if (attributes.Separated
-      && attributes.Separated.value === 'Yes') {
-      return {
-        presence: true,
-        date: true,
+    if (attributes.Separated && attributes.Separated.value === 'Yes') {
+      const dateLimits = { latest: DEFAULT_LATEST }
+      if (attributes.EnteredCivilUnion) {
+        dateLimits.earliest = attributes.EnteredCivilUnion
       }
+
+      return { presence: true, date: dateLimits }
     }
 
     return {}

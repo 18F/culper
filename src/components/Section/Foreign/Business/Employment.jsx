@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import JobOffer from './JobOffer'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_EMPLOYMENT.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_EMPLOYMENT.name,
@@ -79,7 +80,7 @@ export class Employment extends Subsection {
           label={i18n.t('foreign.business.employment.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignEmployment}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignEmployment}
           onError={this.handleError}
           required={this.props.required}
@@ -103,7 +104,7 @@ export class Employment extends Subsection {
           >
             <JobOffer
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

@@ -13,7 +13,7 @@ applications:
     - usps-api
   env:
     PATH: /bin:/usr/bin:$HOME/bin
-    GOVERSION: go1.10
+    GOVERSION: go1.12
     GOPACKAGENAME: github.com/18F/e-QIP-prototype
     GOLANG_ENV: development
     CORS_ALLOWED: https://eqip-prototype-dev.fr.cloud.gov

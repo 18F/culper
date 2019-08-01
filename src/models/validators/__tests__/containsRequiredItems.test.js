@@ -3,17 +3,17 @@ import containsRequiredItems from '../containsRequiredItems'
 describe('The containsRequiredItems validator', () => {
   it('fails if items is undefined', () => {
     const testData = { items: undefined }
-    expect(containsRequiredItems(testData)).toBeTruthy()
+    expect(containsRequiredItems(testData)).toEqual('MISSING_ITEMS')
   })
 
   it('fails if there are no items', () => {
     const testData = { items: [] }
-    expect(containsRequiredItems(testData)).toBeTruthy()
+    expect(containsRequiredItems(testData)).toEqual('MISSING_ITEMS')
   })
 
   it('fails if there are no requirements', () => {
     const testData = { items: [{ Item: 'Thing' }] }
-    expect(containsRequiredItems(testData)).toBeTruthy()
+    expect(containsRequiredItems(testData)).toEqual('INVALID_REQUIREMENTS')
   })
 
   it('fails if not all of the requirements are met', () => {
@@ -31,7 +31,7 @@ describe('The containsRequiredItems validator', () => {
       i => i.Item === 'Three',
     ]
 
-    expect(containsRequiredItems(testData, { requirements })).toBeTruthy()
+    expect(containsRequiredItems(testData, { requirements })).toEqual('REQUIREMENT_NOT_MET')
   })
 
   it('passes if all of the requirements are met', () => {

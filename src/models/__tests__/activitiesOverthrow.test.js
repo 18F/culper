@@ -5,8 +5,8 @@ describe('The activitiesOverthrow model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Dates.required',
-      'Reasons.required',
+      'Dates.presence.REQUIRED',
+      'Reasons.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, activitiesOverthrow))
@@ -17,7 +17,10 @@ describe('The activitiesOverthrow model', () => {
     const testData = {
       Dates: 12345,
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.presence.REQUIRED',
+      'Dates.daterange.to.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, activitiesOverthrow))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -27,7 +30,7 @@ describe('The activitiesOverthrow model', () => {
     const testData = {
       Reasons: 'test',
     }
-    const expectedErrors = ['Reasons.hasValue']
+    const expectedErrors = ['Reasons.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, activitiesOverthrow))
       .toEqual(expect.arrayContaining(expectedErrors))
