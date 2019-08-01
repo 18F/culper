@@ -17,13 +17,15 @@ export function* callFetchForm() {
 function* handleFetchFormError(action) {
   const { error } = action
 
+  console.log("CHECKING")
+
   if (error && error.response) {
     switch (error.response.status) {
       case 401:
       case 403:
+        console.log('pusthing LOGIN')
         yield call(env.History().push, '/login')
         break
-
       default:
         yield call(env.History().push, '/error')
     }
@@ -34,9 +36,9 @@ function* handleFetchFormError(action) {
 }
 
 function* handleFetchFormSuccess(data) {
-  console.log("SUCCESS", data)
+  console.log("SUCCESS ROUTE", data)
   // TODO go to the loader
-  yield
+  yield call(env.History().push, '/form/identification/intro')
 }
 
 function* fetchFormResponseWatcher() {

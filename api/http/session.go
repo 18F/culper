@@ -2,6 +2,7 @@ package http
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"net/url"
 	"strings"
@@ -37,16 +38,20 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 			return
 		}
 
+		fmt.Println("GOT A DOMAIN", sessionCookie.Domain)
+
 		sessionKey := sessionCookie.Value
 		account, session, err := service.session.GetAccountIfSessionIsValid(sessionKey)
 		if err != nil {
 			if err == api.ErrValidSessionNotFound {
 				service.log.WarnError(api.SessionDoesNotExist, err, api.LogFields{})
 				RespondWithStructuredError(w, api.SessionDoesNotExist, http.StatusUnauthorized)
+				return
 			}
 			if err == api.ErrSessionExpired {
 				service.log.WarnError(api.SessionExpired, err, api.LogFields{})
 				RespondWithStructuredError(w, api.SessionExpired, http.StatusUnauthorized)
+				return
 			}
 			service.log.WarnError(api.SessionUnexpectedError, err, api.LogFields{})
 			RespondWithStructuredError(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
@@ -107,6 +112,8 @@ func (s SessionCookieService) AddSessionKeyToResponse(w http.ResponseWriter, ses
 		Path:     "/",
 		// Omit MaxAge and Expires to make this a session cookie.
 	}
+
+	fmt.Println("SETTING COOKIE")
 
 	http.SetCookie(w, cookie)
 
