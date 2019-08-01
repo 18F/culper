@@ -1,19 +1,147 @@
 import {
-  takeLatest, put, all, call,
+  take, takeLatest, put, all, call, race,
 } from 'redux-saga/effects'
 
 import * as actionTypes from 'constants/actionTypes'
 import { updateApplication, validateFormData } from 'actions/ApplicationActions'
+import { fetchForm } from 'actions/api'
 
 import { env } from 'config'
 
 import {
-  initializeFormData,
   initializeApp,
-  fetchForm,
+  handleInitError,
+  handleInitSuccess,
+
+  initializeFormData,
   setFormData,
   updateSectionData,
 } from './initialize'
+
+
+describe('Initialize app saga', () => {
+  describe('if not logged in', () => {
+    const generator = initializeApp()
+
+    it('responds to the INIT_APP action', () => {
+      expect(generator.next().value)
+        .toEqual(take(actionTypes.INIT_APP))
+    })
+
+    it('tries to fetch the form', () => {
+      expect(generator.next().value)
+        .toEqual(put(fetchForm()))
+    })
+
+    it('waits for the form fetch to succeed or fail', () => {
+      expect(generator.next().value)
+        .toEqual(race({
+          data: take(actionTypes.FETCH_FORM_SUCCESS),
+          error: take(actionTypes.FETCH_FORM_ERROR),
+        }))
+    })
+
+    it('calls the init error handler', () => {
+      const error = { response: { status: 401 } }
+      expect(generator.next({ error }).value)
+        .toEqual(call(handleInitError, error))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toBe(true)
+    })
+  })
+
+  describe('if logged in', () => {
+    const generator = initializeApp()
+
+    it('responds to the INIT_APP action', () => {
+      expect(generator.next().value)
+        .toEqual(take(actionTypes.INIT_APP))
+    })
+
+    it('tries to fetch the form', () => {
+      expect(generator.next().value)
+        .toEqual(put(fetchForm()))
+    })
+
+    it('waits for the form fetch to succeed or fail', () => {
+      expect(generator.next().value)
+        .toEqual(race({
+          data: take(actionTypes.FETCH_FORM_SUCCESS),
+          error: take(actionTypes.FETCH_FORM_ERROR),
+        }))
+    })
+
+    it('calls the init success handler', () => {
+      const data = { response: { data: { form: 'test data' } } }
+      expect(generator.next({ data }).value)
+        .toEqual(call(handleInitSuccess, data))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toBe(true)
+    })
+  })
+})
+
+describe('handleInitSuccess function', () => {
+  const data = { response: { data: { form: 'test data' } } }
+  const path = '/form/history/employment'
+  const generator = handleInitSuccess(data, path)
+
+  it('calls the setFormData action', () => {
+    expect(generator.next().value)
+      .toEqual(put({
+        type: actionTypes.SET_FORM_DATA,
+        data: { form: 'test data' },
+      }))
+  })
+})
+
+describe('handleInitError function', () => {
+  describe('if the error is a 401 or 403', () => {
+    const error = { response: { status: 401 } }
+    const generator = handleInitError({ error })
+
+    it('redirects to the Login page', () => {
+      expect(generator.next().value)
+        .toEqual(call(env.History().push, '/login'))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toBe(true)
+    })
+  })
+
+  describe('if the error status is something else', () => {
+    const error = { response: { status: 500 } }
+    const generator = handleInitError({ error })
+
+    it('redirects to the Error page', () => {
+      expect(generator.next().value)
+        .toEqual(call(env.History().push, '/error'))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toBe(true)
+    })
+  })
+
+  describe('if the error is unknown', () => {
+    const error = {}
+    const generator = handleInitError({ error })
+
+    it('redirects to the Error page', () => {
+      expect(generator.next().value)
+        .toEqual(call(env.History().push, '/error'))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toBe(true)
+    })
+  })
+})
 
 describe('Initialize form data saga', () => {
   const generator = initializeFormData()
@@ -27,20 +155,6 @@ describe('Initialize form data saga', () => {
     expect(generator.next().done).toBe(true)
   })
 })
-
-describe('Initialize app saga', () => {
-  const generator = initializeApp()
-
-  it('responds to the INITIALIZE_APP action', () => {
-    expect(generator.next().value)
-      .toEqual(takeLatest(actionTypes.INIT_APP, fetchForm))
-  })
-
-  it('is done', () => {
-    expect(generator.next().done).toBe(true)
-  })
-})
-
 
 describe('setFormData saga', () => {
   describe('with valid data', () => {

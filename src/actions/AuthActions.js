@@ -1,7 +1,14 @@
 import queryString from 'query-string'
 import { env } from 'config'
+
+import * as actionTypes from 'constants/actionTypes'
 import { api } from 'services/api'
 import AuthConstants from './AuthConstants'
+
+export const initApp = (path = '/') => ({
+  type: actionTypes.INIT_APP,
+  path,
+})
 
 export function handleLoginSuccess(token) {
   return {

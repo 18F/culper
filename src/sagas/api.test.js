@@ -1,26 +1,13 @@
-import {
-  take, call,
-} from 'redux-saga/effects'
-//import * as actionTypes from 'constants/actionTypes'
+import { takeLatest } from 'redux-saga/effects'
+import * as actionTypes from 'constants/actionTypes'
 
-import { fetchFormWatcher, callFetchForm } from './api'
+import { fetchFormWatcher, fetchForm } from './api'
 
 describe('The fetchFormWatcher', () => {
   const generator = fetchFormWatcher()
 
-  it('takes FETCH_FORM', () => {
+  it('responds to the FETCH_FORM action', () => {
     expect(generator.next().value)
-      .toEqual(take('FETCH_FORM'))
-  })
-
-  it('calls the fetchForm handler', () => {
-    expect(generator.next().value)
-      .toEqual(call(callFetchForm))
-  })
-
-  // TODO
-  it.skip('starts a race between FETCH_FORM_SUCESS and FETCH_FORM_ERROR', () => {
-    //const value = generator.next().value
-    //console.log('next', value)
+      .toEqual(takeLatest(actionTypes.FETCH_FORM, fetchForm))
   })
 })
