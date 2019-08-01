@@ -17,17 +17,11 @@ import { env } from 'config'
 import { initApp } from 'actions/AuthActions'
 
 class Main extends React.Component {
-  // // Check if we have a token in our base Route so that it gets called once when a page renders.
-  // onEnter() {
-  //   console.log("ENTRING MAIN")
-  //   const token = api.getToken()
-  //   if (token && token.length) {
-  //     this.props.dispatch(handleLoginSuccess())
-  //   }
-  // }
-
   componentDidMount() {
     const { dispatch } = this.props
+
+    // allow user to go to the route they were trying to access IF
+    // they are logged in and its a form section
     let path = window.location.pathname
     if (path.indexOf('/form') < 0) path = undefined
     dispatch(initApp(path))
@@ -37,18 +31,14 @@ class Main extends React.Component {
     return (
       <Router history={env.History()}>
         <Switch>
-
-          {/* <Route exact path="/" component={Login} onEnter={this.onEnter} /> */}
-
+          <Route exact={true} path="/login" component={Login} />
           <Route exact={true} path="/loading" component={Loading} />
           <Route
             exact={true}
             path="/form/:section/:subsection*"
             component={AppWithForm}
-            onEnter={this.onEnter}
           />
           <Route exact={true} path="/help" component={Help} />
-          <Route exact={true} path="/login" component={Login} />
           <Route exact={true} path="/accessdenied" component={AccessDenied} />
           <Route exact={true} path="/locked" component={Locked} />
           <Route exact={true} path="/error" component={Error} />

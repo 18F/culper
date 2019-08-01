@@ -82,15 +82,14 @@ class Api {
     return this.get(env.EndpointSamlSLO())
   }
 
-  login(username, password) {
-    return this.post(
-      env.EndpointBasicAuthentication(),
-      { username: username, password: password },
-      false
-    )
-  }
+  login = (username, password) => this.post(
+    env.EndpointBasicAuthentication(),
+    { username, password },
+    false
+  )
 
-  logout() {
+  // TODO logout calls are failing - does this need to change?
+  logout = () => {
     return this.get(env.EndpointLogout())
   }
 
