@@ -46,7 +46,7 @@ const drugOrderedTreatment = {
   },
   TreatmentProviderTelephone: (value, attributes) => {
     if (checkValue(attributes.ActionTaken, 'Yes')) {
-      return { presence: true, model: { validator: phone } }
+      return { presence: true, model: { validator: phone, requireNumber: true } }
     }
     return {}
   },

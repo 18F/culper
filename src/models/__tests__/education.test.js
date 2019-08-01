@@ -290,6 +290,32 @@ describe('The education model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('ReferencePhone number must exist', () => {
+      const testData = {
+        Dates: {
+          from: { year: 2017, month: 9, day: 1 },
+          to: { year: 2019, month: 1, day: 30 },
+        },
+        Address: {
+          street: '40 School St',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10001',
+          country: 'United States',
+        },
+        Name: { value: 'My School' },
+        Type: { value: 'College' },
+        ReferencePhone: { noNumber: true },
+      }
+
+      const expectedErrors = [
+        'ReferencePhone.model.noNumber.inclusion.INCLUSION',
+      ]
+
+      expect(validateModel(testData, education))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('ReferenceEmail must be a valid email', () => {
       const testData = {
         Dates: {

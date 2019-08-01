@@ -1,8 +1,8 @@
 import HistoryValidator from './history'
 import Location from '../components/Form/Location'
 
-describe('Employment component validation', function() {
-  it('should validate entire history', function() {
+describe('Employment component validation', () => {
+  it('should validate entire history', () => {
     const tests = [
       {
         data: {
@@ -12,29 +12,29 @@ describe('Employment component validation', function() {
                 type: 'Employment',
                 Item: {
                   EmploymentActivity: {
-                    value: 'FederalContractor'
+                    value: 'FederalContractor',
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Employment: {
-                    value: 'SW'
+                    value: 'SW',
                   },
                   Status: {
-                    value: 'Some status'
+                    value: 'Some status',
                   },
                   Title: {
-                    value: 'Dev'
+                    value: 'Dev',
                   },
                   Address: {
                     country: { value: 'United States' },
@@ -42,7 +42,7 @@ describe('Employment component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   PhysicalAddress: {
                     HasDifferentAddress: { value: 'Yes' },
@@ -52,18 +52,18 @@ describe('Employment component validation', function() {
                       city: 'Arlington',
                       state: 'VA',
                       zipcode: '22202',
-                      layout: Location.ADDRESS
-                    }
+                      layout: Location.ADDRESS,
+                    },
                   },
                   Additional: {
-                    items: [{ Item: { Has: { value: 'No' } } }]
+                    items: [{ Item: { Has: { value: 'No' } } }],
                   },
                   Telephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '2028675309',
                     numberType: 'Cell',
                     timeOfDay: 'Day',
-                    type: 'Domestic'
+                    type: 'Domestic',
                   },
                   Supervisor: {
                     Address: {
@@ -72,24 +72,24 @@ describe('Employment component validation', function() {
                       city: 'Arlington',
                       state: 'VA',
                       zipcode: '22202',
-                      layout: Location.ADDRESS
+                      layout: Location.ADDRESS,
                     },
                     Email: {
-                      value: 'foo@local.dev'
+                      value: 'foo@local.dev',
                     },
                     SupervisorName: {
-                      value: 'John Doe'
+                      value: 'John Doe',
                     },
                     Telephone: {
-                      noNumber: '',
+                      noNumber: false,
                       number: '2021112222',
                       numberType: 'Cell',
                       type: 'Domestic',
-                      timeOfDay: 'Day'
+                      timeOfDay: 'Day',
                     },
                     Title: {
-                      value: 'The Foo'
-                    }
+                      value: 'The Foo',
+                    },
                   },
                   ReasonLeft: {
                     ReasonDescription: { value: 'Because' },
@@ -102,15 +102,15 @@ describe('Employment component validation', function() {
                             Date: {
                               day: '1',
                               month: '1',
-                              year: '2016'
+                              year: '2016',
                             },
                             Text: {
-                              value: 'Some excuse'
-                            }
-                          }
-                        }
-                      ]
-                    }
+                              value: 'Some excuse',
+                            },
+                          },
+                        },
+                      ],
+                    },
                   },
                   Reprimand: {
                     items: [
@@ -119,30 +119,30 @@ describe('Employment component validation', function() {
                           Has: { value: 'Yes' },
                           Date: {
                             month: '1',
-                            year: '2015'
+                            year: '2015',
                           },
                           Text: {
-                            value: 'Foo'
-                          }
-                        }
+                            value: 'Foo',
+                          },
+                        },
                       },
                       {
                         Item: {
-                          Has: { value: 'No' }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            ]
-          }
+                          Has: { value: 'No' },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new HistoryValidator(test.data).isValid()).toBe(test.expected)
     })
   })

@@ -67,7 +67,7 @@ describe('credit component validation', () => {
       {
         state: {
           Telephone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             numberType: 'Home',
             timeOfDay: 'Both',
@@ -239,7 +239,7 @@ describe('credit component validation', () => {
                     value: 'The name',
                   },
                   Telephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     timeOfDay: 'Both',

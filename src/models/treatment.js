@@ -3,7 +3,7 @@ import phone from 'models/shared/phone'
 
 const treatment = {
   Name: { presence: true, hasValue: true },
-  Phone: { presence: true, model: { validator: phone } },
+  Phone: { presence: true, model: { validator: phone, requireNumber: true } },
   Address: {
     presence: true,
     location: {

@@ -40,7 +40,7 @@ describe('Employment component validation', () => {
             layout: Location.ADDRESS,
           },
           Telephone: {
-            noNumber: '',
+            noNumber: false,
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
@@ -62,7 +62,7 @@ describe('Employment component validation', () => {
               value: 'John Doe',
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '2021112222',
               numberType: '',
               timeOfDay: 'Day',
@@ -149,7 +149,7 @@ describe('Employment component validation', () => {
             layout: Location.ADDRESS,
           },
           Telephone: {
-            noNumber: '',
+            noNumber: false,
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
@@ -171,7 +171,7 @@ describe('Employment component validation', () => {
               value: 'John Doe',
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '2021112222',
               numberType: '',
               type: 'Domestic',
@@ -279,7 +279,7 @@ describe('Employment component validation', () => {
           },
           Additional: { items: [{ Item: { Has: { value: 'No' } } }] },
           Telephone: {
-            noNumber: '',
+            noNumber: false,
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
@@ -301,7 +301,7 @@ describe('Employment component validation', () => {
               value: 'John Doe',
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '2021112222',
               numberType: '',
               type: 'Domestic',
@@ -399,7 +399,7 @@ describe('Employment component validation', () => {
             },
           },
           Telephone: {
-            noNumber: '',
+            noNumber: false,
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
@@ -421,7 +421,7 @@ describe('Employment component validation', () => {
               value: 'John Doe',
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '2021112222',
               numberType: '',
               type: 'Domestic',
@@ -556,7 +556,7 @@ describe('Employment component validation', () => {
             },
           },
           Telephone: {
-            noNumber: '',
+            noNumber: false,
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
@@ -591,7 +591,7 @@ describe('Employment component validation', () => {
             suffix: 'Jr',
           },
           ReferencePhone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             type: 'Domestic',
             timeOfDay: 'Both',
@@ -672,7 +672,7 @@ describe('Employment component validation', () => {
             suffix: 'Jr',
           },
           ReferencePhone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             timeOfDay: 'Both',
             type: 'Domestic',
@@ -970,7 +970,7 @@ describe('Employment component validation', () => {
       {
         data: {
           Telephone: {
-            noNumber: '',
+            noNumber: false,
             number: '2028675309',
             numberType: '',
             type: 'Domestic',
@@ -1013,7 +1013,7 @@ describe('Employment component validation', () => {
               layout: Location.ADDRESS,
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '2028675309',
               numberType: '',
               type: 'Domestic',
@@ -1500,7 +1500,7 @@ describe('Employment component validation', () => {
               layout: Location.ADDRESS,
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '2028675309',
               numberType: '',
               type: 'Domestic',
@@ -1522,7 +1522,7 @@ describe('Employment component validation', () => {
                 value: 'John Doe',
               },
               Telephone: {
-                noNumber: '',
+                noNumber: false,
                 number: '2021112222',
                 numberType: '',
                 type: 'Domestic',
