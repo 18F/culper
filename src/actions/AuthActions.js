@@ -10,34 +10,33 @@ export const initApp = path => ({
   path,
 })
 
-export function handleLoginSuccess(token) {
-  return {
-    type: AuthConstants.LOGIN_SUCCESS,
-    token,
-  }
-}
+export const login = (username, password) => ({
+  type: actionTypes.LOGIN,
+  username,
+  password,
+})
 
-export function handleLoginError(error) {
-  return {
-    type: AuthConstants.LOGIN_ERROR,
-    error,
-  }
-}
+export const handleLoginSuccess = () => ({
+  type: actionTypes.LOGIN_SUCCESS,
+})
 
+export const handleLoginError = error => ({
+  type: actionTypes.LOGIN_ERROR,
+  error,
+})
+
+// TODO - finish migrating legacy login fn below
 /**
  * Executes a request to log in the user and then
  * dispatches a login success handler and redirects to
  * home page.
  */
+/*
 export function login(username, password) {
   return (dispatch) => {
     return api
       .login(username, password)
       .then((response) => {
-        /**
-         * In local development and staging, we have the ability to manually
-         * set the formType by using URL params.
-         */
         if (env.IsDevelopment() || env.IsStaging()) {
           const params = location.search
           const query = queryString.parse(params)
@@ -60,7 +59,7 @@ export function login(username, password) {
       })
   }
 }
-
+*/
 /**
  * Logs out a user
  */

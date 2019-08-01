@@ -4,6 +4,7 @@ import {
 
 import { api } from 'services/api'
 import * as actionTypes from 'constants/actionTypes'
+import { handleLoginSuccess, handleLoginError } from 'actions/AuthActions'
 
 export function* fetchForm() {
   try {
@@ -14,6 +15,20 @@ export function* fetchForm() {
   }
 }
 
+export function* login({ username, password }) {
+  try {
+    const response = yield call(api.login, username, password)
+    yield put(handleLoginSuccess(response))
+  } catch (error) {
+    console.log('login failed', error, username, password)
+    yield put(handleLoginError(error))
+  }
+}
+
+export function* loginWatcher() {
+  yield takeLatest(actionTypes.LOGIN, login)
+}
+
 export function* fetchFormWatcher() {
   yield takeLatest(actionTypes.FETCH_FORM, fetchForm)
 }
@@ -21,5 +36,6 @@ export function* fetchFormWatcher() {
 export function* apiWatcher() {
   yield all([
     fetchFormWatcher(),
+    loginWatcher(),
   ])
 }
