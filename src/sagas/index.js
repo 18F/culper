@@ -8,9 +8,9 @@ export const selectState = state => state
 
 export default function* rootSaga() {
   yield all([
-    apiWatcher(),
-    initializeApp(),
     initializeFormData(),
     validateWatcher(),
+    apiWatcher(),
+    initializeApp(),
   ])
 }

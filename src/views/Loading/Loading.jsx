@@ -1,44 +1,24 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { i18n } from '../../config'
-import { getApplicationState } from '../../actions/ApplicationActions'
-import { Spinner, SpinnerAction } from '../../components/Form'
-import { timeout } from '../../components/Form/Location/Location'
+import i18n from 'util/i18n'
+import { Spinner, SpinnerAction } from 'components/Form'
+import { timeout } from 'components/Form/Location/Location'
 
 class Loading extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      spinner: this.props.spinner,
-      spinnerState: SpinnerAction.ACTION_SPIN
-    }
-
-    // Animations
-    this.animationDelay = null
-    this.cancelAnimations = this.cancelAnimations.bind(this)
-    this.animateCloseTimeout = this.animateCloseTimeout.bind(this)
-  }
-
-  componentWillMount() {
-    if (!this.props.authenticated) {
-      this.props.history.push('/login')
+      spinner: false,
+      spinnerAction: SpinnerAction.ACTION_SPIN,
     }
   }
 
   componentDidMount() {
-    this.cancelAnimations()
-    this.setState({ spinner: true }, () => {
-      this.props.dispatch(
-        getApplicationState(() => {
-          this.animateCloseTimeout()
-        })
-      )
-    })
+    this.setState({ spinner: true })
   }
 
-  animateCloseTimeout() {
+  // TODO - trigger this when load is done
+  animateCloseTimeout = () => {
     timeout(() => {
       this.setState({ spinner: true, spinnerAction: SpinnerAction.Shrink })
 
@@ -48,7 +28,8 @@ class Loading extends React.Component {
           { spinner: true, spinnerAction: SpinnerAction.Grow },
           () => {
             timeout(() => {
-              this.props.history.push('/form/identification/intro')
+              console.log('done')
+              // this.props.history.push('/form/identification/intro')
             }, 1000)
           }
         )
@@ -56,18 +37,13 @@ class Loading extends React.Component {
     }, 1000)
   }
 
-  cancelAnimations(w = window) {
-    if (this.animationDelay) {
-      w.clearTimeout(this.animationDelay)
-    }
-  }
-
   render() {
+    const { spinner, spinnerAction } = this.state
     return (
       <div className="loading">
         <Spinner
-          show={this.state.spinner}
-          action={this.state.spinnerAction}
+          show={spinner}
+          action={spinnerAction}
           label={i18n.m('application.loading.title')}
         />
       </div>
@@ -77,22 +53,6 @@ class Loading extends React.Component {
 
 Loading.defaultProps = {
   spinner: false,
-  authenticated: false
 }
 
-/**
- * Maps the relevant subtree state from the applications state tree.
- * In this case, we pull the authentication sub-state. This is mapped
- * to the authentication reducer. When actions are dispatched, this
- * method is executed which causes a re-render.
- */
-function mapStateToProps(state) {
-  const auth = state.authentication
-  return {
-    authenticated: auth.authenticated
-  }
-}
-
-// Wraps the the App component with connect() which adds the dispatch()
-// function to the props property for this component
-export default withRouter(connect(mapStateToProps)(Loading))
+export default Loading

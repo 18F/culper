@@ -29,7 +29,7 @@ describe('Initialize app saga', () => {
     })
 
     it('tries to fetch the form', () => {
-      expect(generator.next().value)
+      expect(generator.next({ type: actionTypes.INIT_APP }).value)
         .toEqual(put(fetchForm()))
     })
 
@@ -61,7 +61,10 @@ describe('Initialize app saga', () => {
     })
 
     it('tries to fetch the form', () => {
-      expect(generator.next().value)
+      expect(generator.next({
+        type: actionTypes.INIT_APP,
+        path: '/form/history/employment',
+      }).value)
         .toEqual(put(fetchForm()))
     })
 
@@ -76,7 +79,7 @@ describe('Initialize app saga', () => {
     it('calls the init success handler', () => {
       const data = { response: { data: { form: 'test data' } } }
       expect(generator.next({ data }).value)
-        .toEqual(call(handleInitSuccess, data))
+        .toEqual(call(handleInitSuccess, data, '/form/history/employment'))
     })
 
     it('is done', () => {
@@ -90,11 +93,19 @@ describe('handleInitSuccess function', () => {
   const path = '/form/history/employment'
   const generator = handleInitSuccess(data, path)
 
+  it('displays the loader', () => {
+    expect(generator.next().value)
+      .toEqual(call(env.History().push, '/loading'))
+  })
+
   it('calls the setFormData action', () => {
+    const cb = () => { env.History().replace('/form/history/employment') }
+
     expect(generator.next().value)
       .toEqual(put({
         type: actionTypes.SET_FORM_DATA,
         data: { form: 'test data' },
+        cb,
       }))
   })
 })
