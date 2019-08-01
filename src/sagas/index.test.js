@@ -5,7 +5,7 @@ import { initializeFormData, initializeApp } from 'sagas/initialize'
 import { validateWatcher } from 'sagas/validate'
 import rootSaga from './index'
 
-describe('Root saga', () => {
+describe.skip('Root saga', () => {
   const generator = rootSaga()
 
   it('starts the initializeFormData and validateWatcher sagas', () => {
