@@ -17,7 +17,7 @@ const drugVoluntaryTreatment = {
   */
   TreatmentProvider: { presence: true, hasValue: true },
   TreatmentProviderAddress: { presence: true, location: { validator: address } },
-  TreatmentProviderTelephone: { presence: true, model: { validator: phone } },
+  TreatmentProviderTelephone: { presence: true, model: { validator: phone, requireNumber: true } },
   TreatmentDates: { presence: true, daterange: true },
   TreatmentCompleted: { presence: true, hasValue: { validator: hasYesOrNo } },
   NoTreatmentExplanation: (value, attributes) => {

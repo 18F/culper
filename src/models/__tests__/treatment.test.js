@@ -39,6 +39,21 @@ describe('The treatment model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Phone number must exist', () => {
+    const testData = {
+      Phone: { noNumber: true },
+    }
+
+    const expectedErrors = [
+      'Phone.model.noNumber.inclusion.INCLUSION',
+      'Phone.model.timeOfDay.presence.REQUIRED',
+      'Phone.model.number.presence.REQUIRED',
+    ]
+
+    expect(validateModel(testData, treatment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Address must be a valid location', () => {
     const testData = {
       Address: { value: 'Test' },
