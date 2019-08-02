@@ -112,14 +112,12 @@ func main() {
 
 		val, ok := form[v.Name].(map[string]interface{})
 		if !ok {
-			log.Printf("`%s` is not found\n", v.Name)
-			continue
+			log.Fatalf("`%s` is not found\n", v.Name)
 		}
 
 		js, ok := val[v.Subsection].(map[string]interface{})
 		if !ok {
-			log.Printf("`%s:%s` is not found\n", v.Name, v.Subsection)
-			continue
+			log.Fatalf("`%s:%s` is not found\n", v.Name, v.Subsection)
 		}
 
 		jsonString, err := json.Marshal(js)
