@@ -4,8 +4,6 @@ import (
 	"database/sql"
 	"testing"
 
-	"github.com/google/uuid"
-
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/mock"
@@ -35,7 +33,7 @@ func TestAccountPersistence(t *testing.T) {
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusIncomplete,
-		ExternalID:  uuid.New().String(),
+		ExternalID:  "ccc21c9d-20c4-47fa-83ed-2f1bd26fac7d",
 	}
 
 	_, err := account.Get(service, -1)
