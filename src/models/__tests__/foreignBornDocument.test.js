@@ -142,7 +142,7 @@ describe('The foreign born document model', () => {
         DocumentNumber: { value: '123' },
       }
       const options = {
-        requireRelationshipMaritalForeignBornDocExpiration: false,
+        requireForeignBornDocExpiration: false,
       }
 
       expect(validateModel(testData, foreignBornDocument, options)).toEqual(true)
