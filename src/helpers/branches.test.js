@@ -15,6 +15,15 @@ import {
   requireFinancialCreditSection,
   requireFinancialDelinquentSection,
   requireFinancialNonpaymentSection,
+  requireFinancialCardDisciplinaryDate,
+  requireForeignCounterIntelligence,
+  requireForeignExcessiveKnowledge,
+  requireForeignSensitiveInformation,
+  requireForeignThreatened,
+  requireAlcoholOrderedCounselingParty,
+  requireAlcoholReceivedCounselingsSection,
+  requireLegalPoliceFirearms,
+  requireLegalPoliceDrugs,
   requireRelationshipMaritalForeignBornDocExpiration,
   requireRelationshipMaritalDivorcePhoneNumber,
   requireRelationshipRelativesForeignBornDoc,
@@ -193,6 +202,105 @@ describe('Branches helper function', () => {
 
     it('is not required by the SF85', () => {
       expect(requireFinancialNonpaymentSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireFinancialCardDisciplinaryDate', () => {
+    it('is required by the SF86', () => {
+      expect(requireFinancialCardDisciplinaryDate('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireFinancialCardDisciplinaryDate('SF85P')).toBe(false)
+      expect(requireFinancialCardDisciplinaryDate('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignCounterIntelligence', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignCounterIntelligence('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireForeignCounterIntelligence('SF85P')).toBe(false)
+      expect(requireForeignCounterIntelligence('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignExcessiveKnowledge', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignExcessiveKnowledge('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireForeignExcessiveKnowledge('SF85P')).toBe(false)
+      expect(requireForeignExcessiveKnowledge('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignSensitiveInformation', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignSensitiveInformation('SF86')).toBe(true)
+    })
+
+    it('is required by the SF85 and SF85P', () => {
+      expect(requireForeignSensitiveInformation('SF85P')).toBe(false)
+      expect(requireForeignSensitiveInformation('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireForeignThreatened', () => {
+    it('is required by the SF86', () => {
+      expect(requireForeignThreatened('SF86')).toBe(true)
+    })
+
+    it('is required by the SF85 and SF85P', () => {
+      expect(requireForeignThreatened('SF85P')).toBe(false)
+      expect(requireForeignThreatened('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireAlcoholOrderedCounselingParty', () => {
+    it('is required by the SF86', () => {
+      expect(requireAlcoholOrderedCounselingParty('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireAlcoholOrderedCounselingParty('SF85P')).toBe(false)
+      expect(requireAlcoholOrderedCounselingParty('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireAlcoholReceivedCounselingsSection', () => {
+    it('is required by the SF86', () => {
+      expect(requireAlcoholReceivedCounselingsSection('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireAlcoholReceivedCounselingsSection('SF85P')).toBe(false)
+      expect(requireAlcoholReceivedCounselingsSection('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireLegalPoliceFirearms', () => {
+    it('is required by the SF86', () => {
+      expect(requireLegalPoliceFirearms('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireLegalPoliceFirearms('SF85P')).toBe(false)
+      expect(requireLegalPoliceFirearms('SF85')).toBe(false)
+    })
+  })
+
+  describe('requireLegalPoliceDrugs', () => {
+    it('is required by the SF86', () => {
+      expect(requireLegalPoliceDrugs('SF86')).toBe(true)
+    })
+
+    it('is not required by the SF85 and SF85P', () => {
+      expect(requireLegalPoliceDrugs('SF85P')).toBe(false)
+      expect(requireLegalPoliceDrugs('SF85')).toBe(false)
     })
   })
 

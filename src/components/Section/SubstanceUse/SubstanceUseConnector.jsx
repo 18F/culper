@@ -14,6 +14,8 @@ import {
   selectDrugWhileSafety,
   selectDrugWithClearance,
   selectDrugInFuture,
+  selectAlcoholOrderedCounselingParty,
+  selectAlcoholReceivedCounselingsSection,
 } from 'selectors/branches'
 
 const connectSubstanceUseSection = (Component, {
@@ -65,7 +67,7 @@ const connectSubstanceUseSection = (Component, {
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
-    const settings = app.Settings
+    const settings = app.Settings || {}
 
     switch (storeKey) {
       case 'DrugUses':
@@ -94,6 +96,7 @@ const connectSubstanceUseSection = (Component, {
       case 'DrugPublicSafetyUses':
         return {
           ...substance.DrugPublicSafetyUses,
+          formType: settings.formType,
         }
 
       case 'PrescriptionUses':
@@ -127,11 +130,14 @@ const connectSubstanceUseSection = (Component, {
         return {
           ...substance.OrderedCounselings,
           addressBooks,
+          formType: settings.formType,
+          ...selectAlcoholOrderedCounselingParty(state),
         }
 
       case 'VoluntaryCounselings':
         return {
           ...substance.VoluntaryCounselings,
+          formType: settings.formType,
           addressBooks,
         }
 
@@ -161,6 +167,7 @@ const connectSubstanceUseSection = (Component, {
           ...selectDrugWhileSafetySection(state),
           ...selectDrugWithClearanceSection(state),
           ...selectAlcoholSections(state),
+          ...selectAlcoholReceivedCounselingsSection(state),
         }
     }
   }

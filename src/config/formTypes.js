@@ -205,7 +205,6 @@ export const SF85P = [
         subsections: [
           formSections.SUBSTANCE_USE_DRUGS_USAGE,
           formSections.SUBSTANCE_USE_DRUGS_PURCHASE,
-          formSections.SUBSTANCE_USE_DRUGS_CLEARANCE,
           formSections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
           formSections.SUBSTANCE_USE_DRUGS_MISUSE,
           formSections.SUBSTANCE_USE_DRUGS_ORDERED,
@@ -218,7 +217,6 @@ export const SF85P = [
           formSections.SUBSTANCE_USE_ALCOHOL_NEGATIVE,
           formSections.SUBSTANCE_USE_ALCOHOL_ORDERED,
           formSections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
-          formSections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
         ],
       },
       formSections.SUBSTANCE_USE_REVIEW,

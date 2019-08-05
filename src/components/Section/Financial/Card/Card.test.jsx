@@ -9,18 +9,25 @@ describe('The card component', () => {
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
-    createComponent = (expected = {}) =>
+    const store = mockStore({
+      application: {
+        Settings: {
+          formType: 'SF86',
+        },
+      },
+    })
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <Card {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'card-abuse'
+      name: 'card-abuse',
     }
     const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(0)
@@ -30,7 +37,7 @@ describe('The card component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'card-abuse',
-      HasCardAbuse: { value: 'Yes' }
+      HasCardAbuse: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -39,7 +46,7 @@ describe('The card component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'card-abuse',
-      HasCardAbuse: { value: 'No' }
+      HasCardAbuse: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
@@ -51,9 +58,9 @@ describe('The card component', () => {
       name: 'card-abuse',
       HasCardAbuse: { value: 'Yes' },
       List: { branch: { value: 'No' }, items: [{}] },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: () => {
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component

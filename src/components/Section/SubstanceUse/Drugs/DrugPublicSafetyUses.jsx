@@ -1,7 +1,9 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DrugPublicSafetyUseValidator } from 'validators'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -70,6 +72,16 @@ export class DrugPublicSafetyUses extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_PUBLIC_SAFETY_YEARS
+    let branchLabelCopy
+    if (years === 'EVER') {
+      branchLabelCopy = i18n.t('substance.drugs.heading.drugPublicSafetyUses')
+    } else {
+      const numberOfYearsString = getNumberOfYearsString(years)
+      branchLabelCopy = i18n.t('substance.drugs.heading.drugPublicSafetyUsesNum', { numberOfYearsString })
+    }
     return (
       <div
         className="section-content drug-public-safety-uses"
@@ -79,7 +91,7 @@ export class DrugPublicSafetyUses extends Subsection {
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.publicsafety')}</h1>
         <Branch
           name="UsedDrugs"
-          label={i18n.t('substance.drugs.heading.drugPublicSafetyUses')}
+          label={branchLabelCopy}
           labelSize="h4"
           className="used-drugs"
           {...this.props.UsedDrugs}

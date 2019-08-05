@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { GamblingItemValidator } from 'validators'
-
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import Subsection from 'components/Section/shared/Subsection'
@@ -91,6 +92,17 @@ export class Gambling extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.FINANCIAL_RECORD_GAMBLING_YEARS
+    let branchLabelCopy
+    if (years === 'EVER') {
+      branchLabelCopy = i18n.t('financial.gambling.title')
+    } else {
+      const numberOfYearsString = getNumberOfYearsString(years)
+      branchLabelCopy = i18n.t('financial.gambling.titleWithNum', { numberOfYearsString })
+    }
+
     return (
       <div
         className="section-content gambling"
@@ -100,7 +112,7 @@ export class Gambling extends Subsection {
         <h1 className="section-header">{i18n.t('financial.destination.gambling')}</h1>
         <Branch
           name="has_gamblingdebt"
-          label={i18n.t('financial.gambling.title')}
+          label={branchLabelCopy}
           labelSize="h4"
           className="has-gambling-debt"
           {...this.props.HasGamblingDebt}
