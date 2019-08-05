@@ -39,6 +39,7 @@ export const financial = {
   },
   gambling: {
     title: 'Have you ever experienced financial problems due to gambling?',
+    titleWithNum: 'In the last {{numberOfYearsString}} have you ever experienced financial problems due to gambling?',
     branch: {
       help: {
         title: 'Need more information on gambling?',

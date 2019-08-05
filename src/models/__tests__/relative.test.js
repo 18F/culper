@@ -1,8 +1,22 @@
 import { validateModel } from 'models/validate'
+import * as formTypes from 'constants/formTypes'
 import relative, {
-  isCitizen, requireCitizenshipDocumentation, requireResidenceDocumentation,
+  isCitizen,
+  requireCitizenshipDocumentation,
+  requireResidenceDocumentation,
   isLivingNonCitizen,
+  requireRelativeContactDescription,
 } from '../relative'
+
+const sf86Options = {
+  requireRelationshipRelativesForeignBornDoc: true,
+  requireRelationshipRelativesUSResidenceDoc: true,
+}
+
+const sf85pOptions = {
+  requireRelationshipRelativesForeignBornDoc: true,
+  requireRelationshipRelativesUSResidenceDoc: true,
+}
 
 describe('The isCitizen function', () => {
   it('returns false if there is no Citizenship attribute', () => {
@@ -24,11 +38,11 @@ describe('The isCitizen function', () => {
 
 describe('The requireCitizenshipDocumentation function', () => {
   it('returns false if there is no Citizenship attribute', () => {
-    expect(requireCitizenshipDocumentation({})).toEqual(false)
+    expect(requireCitizenshipDocumentation({}, sf86Options)).toEqual(false)
   })
 
   it('returns false if the relation is not a US citizen', () => {
-    expect(requireCitizenshipDocumentation({ Citizenship: { value: ['Canada'] } }))
+    expect(requireCitizenshipDocumentation({ Citizenship: { value: ['Canada'] } }, sf86Options))
       .toEqual(false)
   })
 
@@ -36,7 +50,7 @@ describe('The requireCitizenshipDocumentation function', () => {
     expect(requireCitizenshipDocumentation({
       Citizenship: { value: ['United States', 'Canada'] },
       Birthplace: { country: { value: 'United States' } },
-    }))
+    }, sf86Options))
       .toEqual(false)
   })
 
@@ -44,8 +58,15 @@ describe('The requireCitizenshipDocumentation function', () => {
     expect(requireCitizenshipDocumentation({
       Citizenship: { value: ['United States', 'Canada'] },
       Birthplace: { country: { value: 'Canada' } },
-    }))
+    }, sf86Options))
       .toEqual(true)
+  })
+
+  it('returns false if the form is SF85P', () => {
+    expect(requireCitizenshipDocumentation({
+      Citizenship: { value: ['United States', 'Canada'] },
+      Birthplace: { country: { value: 'Canada' } },
+    }, sf85pOptions))
   })
 })
 
@@ -53,7 +74,11 @@ describe('The requireResidenceDocumentation function', () => {
   it('returns false if the relation is a US citizen', () => {
     expect(requireResidenceDocumentation({
       Citizenship: { value: ['United States', 'Canada'] },
-    })).toEqual(false)
+      Address: {
+        country: 'United States',
+      },
+      IsDeceased: { value: 'No' },
+    }, sf86Options)).toEqual(false)
   })
 
   it('returns false if the relation is not a current US resident', () => {
@@ -62,7 +87,8 @@ describe('The requireResidenceDocumentation function', () => {
       Address: {
         country: 'Canada',
       },
-    })).toEqual(false)
+      IsDeceased: { value: 'No' },
+    }, sf86Options)).toEqual(false)
   })
 
   it('returns false if the relation is deceased', () => {
@@ -70,7 +96,7 @@ describe('The requireResidenceDocumentation function', () => {
       Citizenship: { value: ['Canada'] },
       Address: { country: 'United States' },
       IsDeceased: { value: 'Yes' },
-    })).toEqual(false)
+    }, sf86Options)).toEqual(false)
   })
 
   it('returns true if the relation is a living non-US citizen residing in the US', () => {
@@ -78,7 +104,7 @@ describe('The requireResidenceDocumentation function', () => {
       Citizenship: { value: ['Canada'] },
       Address: { country: 'United States' },
       IsDeceased: { value: 'No' },
-    })).toEqual(true)
+    }, sf86Options)).toEqual(true)
   })
 })
 
@@ -104,12 +130,35 @@ describe('The isLivingNonCitizen function', () => {
   })
 })
 
+describe('The requireRelativeContactDescription', () => {
+  it('returns false if requireRelationshipRelativesUSResidenceDoc is false', () => {
+    expect(
+      requireRelativeContactDescription(
+        {},
+        { requireRelationshipRelativesUSResidenceDoc: false }
+      )
+    ).toEqual(false)
+  })
+
+  it('returns true if is living and not a citizen', () => {
+    expect(
+      requireRelativeContactDescription(
+        {
+          IsDeceased: { value: 'No' },
+          Citizenship: { value: ['Canada'] },
+        },
+        { requireRelationshipRelativesUSResidenceDoc: true }
+      )
+    ).toEqual(true)
+  })
+})
+
 describe('The relative model', () => {
   it('Name is required', () => {
     const testData = {}
     const expectedErrors = ['Name.presence.REQUIRED']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -123,7 +172,7 @@ describe('The relative model', () => {
       'Name.model.last.presence.REQUIRED',
     ]
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -131,7 +180,7 @@ describe('The relative model', () => {
     const testData = {}
     const expectedErrors = ['Relation.presence.REQUIRED']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -141,7 +190,7 @@ describe('The relative model', () => {
     }
     const expectedErrors = ['Relation.hasValue.MISSING_VALUE']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -149,7 +198,7 @@ describe('The relative model', () => {
     const testData = {}
     const expectedErrors = ['Birthdate.presence.REQUIRED']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -162,7 +211,7 @@ describe('The relative model', () => {
       'Birthdate.date.date.datetime.INVALID_DATE',
     ]
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -207,7 +256,7 @@ describe('The relative model', () => {
     const testData = {}
     const expectedErrors = ['Birthplace.presence.REQUIRED']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -220,7 +269,7 @@ describe('The relative model', () => {
       'Birthplace.location.state.presence.REQUIRED',
     ]
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -228,7 +277,7 @@ describe('The relative model', () => {
     const testData = {}
     const expectedErrors = ['Citizenship.presence.REQUIRED']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -238,7 +287,7 @@ describe('The relative model', () => {
     }
     const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -246,7 +295,7 @@ describe('The relative model', () => {
     const testData = {}
     const expectedErrors = ['IsDeceased.presence.REQUIRED']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -256,7 +305,7 @@ describe('The relative model', () => {
     }
     const expectedErrors = ['IsDeceased.hasValue.value.inclusion.INCLUSION']
 
-    expect(validateModel(testData, relative))
+    expect(validateModel(testData, relative, sf86Options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -268,7 +317,7 @@ describe('The relative model', () => {
 
       const expectedErrors = ['MaidenName.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -280,7 +329,7 @@ describe('The relative model', () => {
 
       const expectedErrors = ['MaidenName.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -296,7 +345,7 @@ describe('The relative model', () => {
         'MaidenName.model.last.presence.REQUIRED',
       ]
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
   })
@@ -309,7 +358,7 @@ describe('The relative model', () => {
 
       const expectedErrors = ['MaidenName.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
   })
@@ -322,7 +371,7 @@ describe('The relative model', () => {
 
       const expectedErrors = ['Aliases.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -336,7 +385,7 @@ describe('The relative model', () => {
 
       const expectedErrors = ['Aliases.branchCollection.MISSING_ITEMS']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -353,7 +402,7 @@ describe('The relative model', () => {
 
         const expectedErrors = ['Aliases.branchCollection']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
     })
@@ -374,7 +423,7 @@ describe('The relative model', () => {
           'Aliases.branchCollection.0.Name.model.first.presence.REQUIRED',
         ]
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -405,7 +454,7 @@ describe('The relative model', () => {
           'Aliases.branchCollection.0.Dates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
         ]
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -433,7 +482,7 @@ describe('The relative model', () => {
 
         const expectedErrors = ['Aliases.branchCollection']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -461,7 +510,7 @@ describe('The relative model', () => {
 
           const expectedErrors = ['Aliases.branchCollection']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .not.toEqual(expect.arrayContaining(expectedErrors))
         })
       })
@@ -476,7 +525,7 @@ describe('The relative model', () => {
 
       const expectedErrors = ['Aliases.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -504,7 +553,7 @@ describe('The relative model', () => {
         IsDeceased: { value: 'No' },
       }
 
-      expect(validateModel(testData, relative)).toEqual(true)
+      expect(validateModel(testData, relative, sf86Options)).toEqual(true)
     })
   })
 
@@ -515,7 +564,7 @@ describe('The relative model', () => {
       }
       const expectedErrors = ['Address.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -534,7 +583,7 @@ describe('The relative model', () => {
         IsDeceased: { value: 'Yes' },
       }
 
-      expect(validateModel(testData, relative)).toEqual(true)
+      expect(validateModel(testData, relative, sf86Options)).toEqual(true)
     })
   })
 
@@ -545,7 +594,7 @@ describe('The relative model', () => {
       }
       const expectedErrors = ['Address.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -561,7 +610,7 @@ describe('The relative model', () => {
         'Address.location.zipcode.presence.REQUIRED',
       ]
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -644,7 +693,7 @@ describe('The relative model', () => {
         },
       }
 
-      expect(validateModel(testData, relative)).toEqual(true)
+      expect(validateModel(testData, relative, sf86Options)).toEqual(true)
     })
   })
 
@@ -657,7 +706,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['CitizenshipDocumentation.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -668,7 +717,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['DocumentNumber.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -679,7 +728,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['CourtName.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -690,7 +739,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['CourtAddress.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -719,7 +768,7 @@ describe('The relative model', () => {
           IsDeceased: { value: 'No' },
         }
 
-        expect(validateModel(testData, relative)).toEqual(true)
+        expect(validateModel(testData, relative, sf86Options)).toEqual(true)
       })
     })
 
@@ -731,7 +780,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['CitizenshipDocumentation.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -743,7 +792,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['CitizenshipDocumentation.hasValue.value.inclusion.INCLUSION']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -756,7 +805,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['OtherCitizenshipDocumentation.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -769,7 +818,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['OtherCitizenshipDocumentation.hasValue.MISSING_VALUE']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -805,7 +854,7 @@ describe('The relative model', () => {
             },
           }
 
-          expect(validateModel(testData, relative)).toEqual(true)
+          expect(validateModel(testData, relative, sf86Options)).toEqual(true)
         })
       })
 
@@ -816,7 +865,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['DocumentNumber.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -828,7 +877,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['DocumentNumber.hasValue.MISSING_VALUE']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -839,7 +888,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['CourtName.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -851,7 +900,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['CourtName.hasValue.MISSING_VALUE']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -862,7 +911,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['CourtAddress.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -880,7 +929,7 @@ describe('The relative model', () => {
           'CourtAddress.location.country.inclusion.INCLUSION',
         ]
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -915,7 +964,7 @@ describe('The relative model', () => {
           },
         }
 
-        expect(validateModel(testData, relative)).toEqual(true)
+        expect(validateModel(testData, relative, sf86Options)).toEqual(true)
       })
     })
   })
@@ -928,7 +977,7 @@ describe('The relative model', () => {
       }
       const expectedErrors = ['CitizenshipDocumentation.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -939,7 +988,7 @@ describe('The relative model', () => {
       }
       const expectedErrors = ['DocumentNumber.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -950,7 +999,7 @@ describe('The relative model', () => {
       }
       const expectedErrors = ['CourtName.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -961,7 +1010,7 @@ describe('The relative model', () => {
       }
       const expectedErrors = ['CourtAddress.presence.REQUIRED']
 
-      expect(validateModel(testData, relative))
+      expect(validateModel(testData, relative, sf86Options))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -973,7 +1022,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['FirstContact.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -984,7 +1033,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['LastContact.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -995,7 +1044,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['Methods.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1006,7 +1055,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['Frequency.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1021,7 +1070,7 @@ describe('The relative model', () => {
           IsDeceased: { value: 'Yes' },
         }
 
-        expect(validateModel(testData, relative)).toEqual(true)
+        expect(validateModel(testData, relative, sf86Options)).toEqual(true)
       })
     })
 
@@ -1033,7 +1082,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['FirstContact.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1049,7 +1098,7 @@ describe('The relative model', () => {
           'FirstContact.date.year.presence.REQUIRED',
         ]
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1060,7 +1109,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['LastContact.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1076,7 +1125,7 @@ describe('The relative model', () => {
           'LastContact.date.year.presence.REQUIRED',
         ]
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1089,7 +1138,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['LastContact.date.date.datetime.DATE_TOO_EARLY']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1100,7 +1149,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['Methods.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1112,7 +1161,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['Methods.array.array.length.LENGTH_TOO_SHORT']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1125,7 +1174,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['MethodsComments.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1138,7 +1187,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['MethodsComments.hasValue.MISSING_VALUE']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1174,7 +1223,7 @@ describe('The relative model', () => {
             Frequency: { value: 'Daily' },
           }
 
-          expect(validateModel(testData, relative)).toEqual(true)
+          expect(validateModel(testData, relative, sf86Options)).toEqual(true)
         })
       })
 
@@ -1185,7 +1234,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['Frequency.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1197,7 +1246,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['Frequency.hasValue.MISSING_VALUE']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1232,7 +1281,7 @@ describe('The relative model', () => {
           Frequency: { value: 'Daily' },
         }
 
-        expect(validateModel(testData, relative)).toEqual(true)
+        expect(validateModel(testData, relative, sf86Options)).toEqual(true)
       })
 
       describe('if Frequency is "Other"', () => {
@@ -1244,7 +1293,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['FrequencyComments.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1257,7 +1306,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['FrequencyComments.hasValue.MISSING_VALUE']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1293,7 +1342,7 @@ describe('The relative model', () => {
             FrequencyComments: { value: 'Sometimes' },
           }
 
-          expect(validateModel(testData, relative)).toEqual(true)
+          expect(validateModel(testData, relative, sf86Options)).toEqual(true)
         })
       })
     })
@@ -1306,7 +1355,7 @@ describe('The relative model', () => {
         }
         const expectedErrors = ['Document.presence.REQUIRED']
 
-        expect(validateModel(testData, relative))
+        expect(validateModel(testData, relative, sf86Options))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
 
@@ -1319,7 +1368,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['Employer.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .not.toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1331,7 +1380,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['EmployerAddress.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .not.toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1343,7 +1392,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['EmployerRelationship.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .not.toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1358,7 +1407,7 @@ describe('The relative model', () => {
             IsDeceased: { value: 'Yes' },
           }
 
-          expect(validateModel(testData, relative)).toEqual(true)
+          expect(validateModel(testData, relative, sf86Options)).toEqual(true)
         })
       })
 
@@ -1371,7 +1420,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['Employer.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1384,7 +1433,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['Employer.hasValue.MISSING_VALUE']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1398,7 +1447,7 @@ describe('The relative model', () => {
             }
             const expectedErrors = ['Employer.presence.REQUIRED']
 
-            expect(validateModel(testData, relative))
+            expect(validateModel(testData, relative, sf86Options))
               .not.toEqual(expect.arrayContaining(expectedErrors))
           })
 
@@ -1428,7 +1477,7 @@ describe('The relative model', () => {
               Frequency: { value: 'Daily' },
             }
 
-            expect(validateModel(testData, relative)).toEqual(true)
+            expect(validateModel(testData, relative, sf86Options)).toEqual(true)
           })
         })
 
@@ -1440,7 +1489,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['EmployerAddress.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1457,7 +1506,7 @@ describe('The relative model', () => {
             'EmployerAddress.location.country.presence.REQUIRED',
           ]
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1471,7 +1520,7 @@ describe('The relative model', () => {
             }
             const expectedErrors = ['EmployerAddress.presence.REQUIRED']
 
-            expect(validateModel(testData, relative))
+            expect(validateModel(testData, relative, sf86Options))
               .not.toEqual(expect.arrayContaining(expectedErrors))
           })
 
@@ -1501,7 +1550,7 @@ describe('The relative model', () => {
               Frequency: { value: 'Daily' },
             }
 
-            expect(validateModel(testData, relative)).toEqual(true)
+            expect(validateModel(testData, relative, sf86Options)).toEqual(true)
           })
         })
 
@@ -1513,7 +1562,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['HasAffiliation.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1526,7 +1575,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['HasAffiliation.hasValue.value.inclusion.INCLUSION']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1540,7 +1589,7 @@ describe('The relative model', () => {
             }
             const expectedErrors = ['HasAffiliation.presence.REQUIRED']
 
-            expect(validateModel(testData, relative))
+            expect(validateModel(testData, relative, sf86Options))
               .not.toEqual(expect.arrayContaining(expectedErrors))
           })
 
@@ -1570,7 +1619,7 @@ describe('The relative model', () => {
               Frequency: { value: 'Daily' },
             }
 
-            expect(validateModel(testData, relative)).toEqual(true)
+            expect(validateModel(testData, relative, sf86Options)).toEqual(true)
           })
         })
 
@@ -1584,7 +1633,7 @@ describe('The relative model', () => {
             }
             const expectedErrors = ['EmployerRelationship.presence.REQUIRED']
 
-            expect(validateModel(testData, relative))
+            expect(validateModel(testData, relative, sf86Options))
               .toEqual(expect.arrayContaining(expectedErrors))
           })
 
@@ -1598,7 +1647,7 @@ describe('The relative model', () => {
             }
             const expectedErrors = ['EmployerRelationship.hasValue.MISSING_VALUE']
 
-            expect(validateModel(testData, relative))
+            expect(validateModel(testData, relative, sf86Options))
               .toEqual(expect.arrayContaining(expectedErrors))
           })
 
@@ -1629,7 +1678,7 @@ describe('The relative model', () => {
               Frequency: { value: 'Daily' },
             }
 
-            expect(validateModel(testData, relative)).toEqual(true)
+            expect(validateModel(testData, relative, sf86Options)).toEqual(true)
           })
         })
 
@@ -1643,7 +1692,7 @@ describe('The relative model', () => {
             }
             const expectedErrors = ['EmployerRelationship.presence.REQUIRED']
 
-            expect(validateModel(testData, relative))
+            expect(validateModel(testData, relative, sf86Options))
               .not.toEqual(expect.arrayContaining(expectedErrors))
           })
 
@@ -1677,7 +1726,7 @@ describe('The relative model', () => {
               Frequency: { value: 'Daily' },
             }
 
-            expect(validateModel(testData, relative)).toEqual(true)
+            expect(validateModel(testData, relative, sf86Options)).toEqual(true)
           })
         })
       })
@@ -1694,7 +1743,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['Document.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .not.toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1709,7 +1758,7 @@ describe('The relative model', () => {
             IsDeceased: { value: 'Yes' },
           }
 
-          expect(validateModel(testData, relative)).toEqual(true)
+          expect(validateModel(testData, relative, sf86Options)).toEqual(true)
         })
       })
 
@@ -1723,7 +1772,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['Document.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1737,7 +1786,20 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['Document.hasValue.value.inclusion.INCLUSION']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('HasAffiliation must have a valid value', () => {
+          const testData = {
+            Citizenship: { value: ['Canada'] },
+            Address: { country: 'United States' },
+            IsDeceased: { value: 'No' },
+            HasAffiliation: { value: 'invalid' },
+          }
+          const expectedErrors = ['HasAffiliation.hasValue.value.inclusion.INCLUSION']
+
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1752,7 +1814,7 @@ describe('The relative model', () => {
             }
             const expectedErrors = ['DocumentComments.presence.REQUIRED']
 
-            expect(validateModel(testData, relative))
+            expect(validateModel(testData, relative, sf86Options))
               .toEqual(expect.arrayContaining(expectedErrors))
           })
 
@@ -1767,7 +1829,7 @@ describe('The relative model', () => {
             }
             const expectedErrors = ['DocumentComments.hasValue.MISSING_VALUE']
 
-            expect(validateModel(testData, relative))
+            expect(validateModel(testData, relative, sf86Options))
               .toEqual(expect.arrayContaining(expectedErrors))
           })
         })
@@ -1781,7 +1843,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['ResidenceDocumentNumber.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1795,7 +1857,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['ResidenceDocumentNumber.hasValue.MISSING_VALUE']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1808,7 +1870,7 @@ describe('The relative model', () => {
           }
           const expectedErrors = ['Expiration.presence.REQUIRED']
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1826,7 +1888,7 @@ describe('The relative model', () => {
             'Expiration.date.year.presence.REQUIRED',
           ]
 
-          expect(validateModel(testData, relative))
+          expect(validateModel(testData, relative, sf86Options))
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
@@ -1856,9 +1918,12 @@ describe('The relative model', () => {
             LastContact: { year: 2019, month: 2, day: 10 },
             Methods: { values: ['Telephone'] },
             Frequency: { value: 'Daily' },
+            Employer: { value: 'Boss' },
+            EmployerAddressNotApplicable: { applicable: false },
+            HasAffiliation: { value: 'No' },
           }
 
-          expect(validateModel(testData, relative)).toEqual(true)
+          expect(validateModel(testData, relative, sf86Options)).toEqual(true)
         })
       })
     })

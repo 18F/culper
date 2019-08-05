@@ -7,6 +7,10 @@ import {
   selectForeignActivitiesSection,
   selectForeignBusinessSection,
   selectForeignTravelSection,
+  selectForeignCounterIntelligence,
+  selectForeignExcessiveKnowledge,
+  selectForeignSensitiveInformation,
+  selectForeignThreatened,
 } from 'selectors/branches'
 
 import {
@@ -102,7 +106,13 @@ const connectForeignSection = (Component, {
       case 'Voting':
         return { ...foreign.Voting } || {}
       case 'Travel':
-        return { ...foreign.Travel } || {}
+        return {
+          ...foreign.Travel,
+          ...selectForeignCounterIntelligence(state),
+          ...selectForeignExcessiveKnowledge(state),
+          ...selectForeignSensitiveInformation(state),
+          ...selectForeignThreatened(state),
+        } || {}
       default:
         return {
           Application: app,
@@ -129,6 +139,10 @@ const connectForeignSection = (Component, {
           ...selectForeignActivitiesSection(state),
           ...selectForeignBusinessSection(state),
           ...selectForeignTravelSection(state),
+          ...selectForeignCounterIntelligence(state),
+          ...selectForeignExcessiveKnowledge(state),
+          ...selectForeignSensitiveInformation(state),
+          ...selectForeignThreatened(state),
         }
     }
   }

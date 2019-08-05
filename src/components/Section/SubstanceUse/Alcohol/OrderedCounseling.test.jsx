@@ -10,12 +10,11 @@ describe('The OrderedCounseling component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <OrderedCounseling {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <OrderedCounseling {...expected} />
+      </Provider>
+    )
   })
 
   it('Renders without errors', () => {
@@ -27,8 +26,8 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
@@ -41,9 +40,9 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
-      ActionTaken: { value: 'Yes' }
+      ActionTaken: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
@@ -64,10 +63,10 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       ActionTaken: { value: 'Yes' },
-      CompletedTreatment: { value: 'No' }
+      CompletedTreatment: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
@@ -81,10 +80,10 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       ActionTaken: { value: 'No' },
-      Seekers: { values: ['Employer'] }
+      Seekers: { values: ['Employer'] },
     }
     const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
@@ -99,10 +98,10 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
-        updates++
+        updates += 1
       },
       ActionTaken: { value: 'No' },
-      Seekers: { values: ['Other'] }
+      Seekers: { values: ['Other'] },
     }
     const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)

@@ -557,7 +557,7 @@ export const legal = {
   nonCriminalAction: {
     heading: {
       hasCourtActions:
-        'In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?',
+        'In the last {{numberOfYearsString}}, have you been a party to any public record civil court action not listed elsewhere on this form?',
       civilActionDate: 'Provide the date of the civil action',
       courtName: 'Provide the court name',
       courtAddress: 'Provide the address of the court',

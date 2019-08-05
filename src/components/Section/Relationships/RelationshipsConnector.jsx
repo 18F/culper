@@ -2,6 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import {
+  selectRelationshipMaritalForeignBornDocExpiration,
+  selectRelationshipMaritalDivorcePhoneNumber,
+  selectRelationshipRelativesUSResidenceDoc,
+  selectRelationshipRelativesForeignGovtAffExplanation,
+} from 'selectors/branches'
+
+import {
   updateApplication,
   reportErrors,
 } from 'actions/ApplicationActions'
@@ -65,6 +72,8 @@ const connectRelationshipsSection = (Component, {
           addressBooks: AddressBooks,
           applicantBirthdate,
           currentAddress: History && History.CurrentAddress,
+          ...selectRelationshipMaritalForeignBornDocExpiration(state),
+          ...selectRelationshipMaritalDivorcePhoneNumber(state),
         }
 
       case 'Cohabitants':
@@ -72,6 +81,7 @@ const connectRelationshipsSection = (Component, {
           ...Relationships && Relationships.Cohabitants,
           spouse,
           applicantBirthdate,
+          ...selectRelationshipMaritalForeignBornDocExpiration(state),
         }
 
       case 'People':
@@ -85,6 +95,8 @@ const connectRelationshipsSection = (Component, {
           ...Relationships && Relationships.Relatives,
           applicantBirthdate,
           addressBooks: AddressBooks,
+          ...selectRelationshipRelativesUSResidenceDoc(state),
+          ...selectRelationshipRelativesForeignGovtAffExplanation(state),
         }
 
       default:

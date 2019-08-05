@@ -9,24 +9,23 @@ describe('The relative component', () => {
   const mockStore = configureMockStore()
   const defaultAppState = {
     application: {
-      AddressBooks: {}
-    }
+      AddressBooks: {},
+    },
   }
   let createComponent
 
   beforeEach(() => {
     const store = mockStore(defaultAppState)
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <Relative {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <Relative {...expected} />
+      </Provider>
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'relative'
+      name: 'relative',
     }
 
     const component = createComponent(expected)
@@ -69,7 +68,7 @@ describe('The relative component', () => {
     const expected = {
       name: 'relative',
       Relation: { value: 'Mother' },
-      MaidenSameAsListed: { value: 'No' }
+      MaidenSameAsListed: { value: 'No' },
     }
 
     const component = createComponent(expected)
@@ -81,7 +80,7 @@ describe('The relative component', () => {
   it('display items specific to immediate relationships', () => {
     const expected = {
       name: 'relative',
-      Relation: { value: 'Father' }
+      Relation: { value: 'Father' },
     }
 
     const component = createComponent(expected)
@@ -91,7 +90,7 @@ describe('The relative component', () => {
   it('display address if not deceased', () => {
     const expected = {
       name: 'relative',
-      IsDeceased: { value: 'No' }
+      IsDeceased: { value: 'No' },
     }
 
     const component = createComponent(expected)
@@ -108,15 +107,17 @@ describe('The relative component', () => {
       Birthplace: {
         domestic: 'No',
         city: 'Munich',
-        country: { value: 'Germany' }
+        country: { value: 'Germany' },
       },
-      IsDeceased: { value: 'No' },
+      IsDeceased: { value: 'Yes' },
       Address: {
         street: '1234 Some Rd',
         city: 'Munich',
         country: { value: 'Germany' },
-        layout: Location.ADDRESS
-      }
+        layout: Location.ADDRESS,
+      },
+      requireRelationshipRelativesForeignBornDoc: true,
+      requireRelationshipRelativesUSResidenceDoc: true,
     }
 
     const component = createComponent(expected)
@@ -130,17 +131,17 @@ describe('The relative component', () => {
     const expected = {
       name: 'relative',
       Citizenship: {
-        value: ['Germany']
+        value: ['Germany'],
       },
       Birthplace: {
         city: 'Munich',
         country: { value: 'Germany' },
-        layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+        layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
       },
       IsDeceased: { value: 'No' },
       Address: {
-        country: { value: 'United States' }
-      }
+        country: { value: 'United States' },
+      },
     }
 
     const component = createComponent(expected)
@@ -154,18 +155,18 @@ describe('The relative component', () => {
     const expected = {
       name: 'relative',
       Citizenship: {
-        value: ['Germany']
+        value: ['Germany'],
       },
       Birthplace: {
         city: 'Munich',
         country: { value: 'Germany' },
-        layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+        layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
       },
       IsDeceased: { value: 'No' },
       Address: {
         country: { value: 'Germany' },
-        layout: Location.ADDRESS
-      }
+        layout: Location.ADDRESS,
+      },
     }
 
     const component = createComponent(expected)
@@ -178,19 +179,19 @@ describe('The relative component', () => {
     const expected = {
       name: 'relative',
       Citizenship: {
-        value: ['Germany']
+        value: ['Germany'],
       },
       Birthplace: {
         city: 'Munich',
         country: { value: 'Germany' },
-        layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+        layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
       },
       IsDeceased: { value: 'No' },
       Address: {
         country: { value: 'Germany' },
-        layout: Location.ADDRESS
+        layout: Location.ADDRESS,
       },
-      HasAffiliation: { value: 'Yes' }
+      HasAffiliation: { value: 'Yes' },
     }
 
     const component = createComponent(expected)
@@ -204,7 +205,7 @@ describe('The relative component', () => {
       Relation: { value: 'Mother' },
       Birthplace: { country: { value: 'Germany' } },
       IsDeceased: { value: 'No' },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
     component.find('.relation-mother input').simulate('change')
@@ -225,7 +226,7 @@ describe('The relative component', () => {
       .find('.relative-birthplace .city input')
       .simulate('change', { target: { name: 'city', value: 'Munich' } })
     component.find('.relative-citizenship input').simulate('change', {
-      target: { name: 'country', value: 'United States' }
+      target: { name: 'country', value: 'United States' },
     })
     component.find('.relative-deceased .no input').simulate('change')
     expect(expected.onUpdate.mock.calls.length).toBe(7)
@@ -242,23 +243,23 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        suffix: 'Jr'
+        suffix: 'Jr',
       },
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016'
+        year: '2016',
       },
       Birthplace: {
         domestic: 'Yes',
         city: 'Arlington',
         state: 'Virginia',
-        country: { value: 'United States' }
+        country: { value: 'United States' },
       },
       Citizenship: { value: ['United States'] },
       IsDeceased: { value: 'No' },
       MaidenSameAsListed: { value: 'No' },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
     component.find('.relative-maiden-diff .no input').simulate('change')
@@ -282,26 +283,26 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        suffix: 'Jr'
+        suffix: 'Jr',
       },
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016'
+        year: '2016',
       },
       Birthplace: {
         country: { value: 'United States' },
         city: 'Arlington',
-        state: 'Virginia'
+        state: 'Virginia',
       },
       Citizenship: { value: ['United States'] },
       IsDeceased: { value: 'No' },
       Aliases: {
         items: [
-          { Item: { Has: { value: 'Yes' }, MaidenName: { value: 'No' } } }
-        ]
+          { Item: { Has: { value: 'Yes' }, MaidenName: { value: 'No' } } },
+        ],
       },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
     expect(component.find('.relative-alias .branch').length).toBeGreaterThan(0)
@@ -340,27 +341,27 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        suffix: 'Jr'
+        suffix: 'Jr',
       },
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016'
+        year: '2016',
       },
       Birthplace: {
         city: 'Munich',
         country: { value: 'Germany' },
-        layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+        layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
       },
       Citizenship: { value: ['United States'] },
-      IsDeceased: { value: 'No' },
+      IsDeceased: { value: 'Yes' },
       Address: {
         street: '1234 Some Rd',
         city: 'Munich',
         country: { value: 'Germany' },
-        layout: Location.ADDRESS
+        layout: Location.ADDRESS,
       },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
     component.find('.relative-abroad .abroad-fs input').simulate('change')
@@ -391,18 +392,18 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        suffix: 'Jr'
+        suffix: 'Jr',
       },
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016'
+        year: '2016',
       },
       Birthplace: {
         layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
         city: 'Arlington',
         state: 'Virginia',
-        country: { value: 'United States' }
+        country: { value: 'United States' },
       },
       Citizenship: { value: ['Germany'] },
       IsDeceased: { value: 'No' },
@@ -411,10 +412,10 @@ describe('The relative component', () => {
         address: '1234 Some Rd',
         city: 'Arlington',
         state: 'Virginia',
-        zipcode: '22202'
+        zipcode: '22202',
       },
       Document: { value: 'Other' },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
     expect(component.find('.relative-address').length).toBe(1)
@@ -454,30 +455,30 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        suffix: 'Jr'
+        suffix: 'Jr',
       },
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016'
+        year: '2016',
       },
       Birthplace: {
         domestic: 'Yes',
         city: 'Arlington',
         state: 'Virginia',
-        country: { value: 'United States' }
+        country: { value: 'United States' },
       },
       Citizenship: { value: ['Germany'] },
       IsDeceased: { value: 'No' },
       Address: {
         address: '1234 Some Rd',
         city: 'Munich',
-        country: { value: 'Germany' }
+        country: { value: 'Germany' },
       },
       Methods: { value: ['Telephone'] },
       Frequency: { value: 'Daily' },
       HasAffiliation: { value: 'Yes' },
-      onUpdate: jest.fn()
+      onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)

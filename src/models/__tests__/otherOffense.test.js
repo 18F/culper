@@ -2,6 +2,51 @@ import { validateModel } from 'models/validate'
 import offense from '../otherOffense'
 
 describe('The offense model', () => {
+  describe('SF86 specific fields', () => {
+    const options = {
+      requireLegalPoliceFirearms: true,
+      requireLegalPoliceDrugs: true,
+    }
+
+    it('the InvolvedFirearms field must have a valid value', () => {
+      const testData = { InvolvedFirearms: { value: 'false' } }
+      const expectedErrors = ['InvolvedFirearms.hasValue.value.inclusion.INCLUSION']
+
+      expect(validateModel(testData, offense, options))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('the InvolvedSubstances field must have a valid value', () => {
+      const testData = { InvolvedSubstances: { value: 100 } }
+      const expectedErrors = ['InvolvedSubstances.hasValue.value.inclusion.INCLUSION']
+
+      expect(validateModel(testData, offense, options))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
+  describe('SF85 omitted fields', () => {
+    const options = {
+      requireLegalPoliceFirearms: false,
+      requireLegalPoliceDrugs: false,
+    }
+
+    it('InvolvedFirearms is omitted', () => {
+      const testData = { InvolvedFirearms: { value: 'false' } }
+      const expectedErrors = ['InvolvedFirearms.hasValue.value.inclusion.INCLUSION']
+
+      expect(validateModel(testData, offense, options))
+        .toEqual(expect.not.arrayContaining(expectedErrors))
+    })
+
+    it('InvolvedSubstances is omitted', () => {
+      const testData = { InvolvedSubstances: { value: 100 } }
+      const expectedErrors = ['InvolvedSubstances.hasValue.value.inclusion.INCLUSION']
+
+      expect(validateModel(testData, offense, options))
+        .toEqual(expect.not.arrayContaining(expectedErrors))
+    })
+  })
   it('the Date field is required', () => {
     const testData = {}
     const expectedErrors = ['Date.presence.REQUIRED']
@@ -43,22 +88,6 @@ describe('The offense model', () => {
   it('the InvolvedViolence field must have a valid value', () => {
     const testData = { InvolvedViolence: { value: 'true' } }
     const expectedErrors = ['InvolvedViolence.hasValue.value.inclusion.INCLUSION']
-
-    expect(validateModel(testData, offense))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('the InvolvedFirearms field must have a valid value', () => {
-    const testData = { InvolvedFirearms: { value: 'false' } }
-    const expectedErrors = ['InvolvedFirearms.hasValue.value.inclusion.INCLUSION']
-
-    expect(validateModel(testData, offense))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('the InvolvedSubstances field must have a valid value', () => {
-    const testData = { InvolvedSubstances: { value: 100 } }
-    const expectedErrors = ['InvolvedSubstances.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))

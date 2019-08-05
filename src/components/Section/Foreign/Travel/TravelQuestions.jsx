@@ -7,7 +7,7 @@ import {
   Field,
   Textarea,
   Country,
-  DateRange
+  DateRange,
 } from '../../../Form'
 import TravelDays from './TravelDays'
 import TravelPurpose from './TravelPurpose'
@@ -61,129 +61,136 @@ export default class TravelQuestions extends ValidationElement {
       SensitiveExplanation: this.props.SensitiveExplanation,
       Threatened: this.props.Threatened,
       ThreatenedExplanation: this.props.ThreatenedExplanation,
-      ...queue
+      ...queue,
     })
   }
 
   updateThreatenedExplanation(values) {
     this.update({
-      ThreatenedExplanation: values
+      ThreatenedExplanation: values,
     })
   }
 
   updateThreatened(values) {
     this.update({
-      Threatened: values
+      Threatened: values,
     })
   }
 
   updateSensitiveExplanation(values) {
     this.update({
-      SensitiveExplanation: values
+      SensitiveExplanation: values,
     })
   }
 
   updateSensitive(values) {
     this.update({
-      Sensitive: values
+      Sensitive: values,
     })
   }
 
   updateInterestExplanation(values) {
     this.update({
-      InterestExplanation: values
+      InterestExplanation: values,
     })
   }
 
   updateInterest(values) {
     this.update({
-      Interest: values
+      Interest: values,
     })
   }
 
   updateCounterExplanation(values) {
     this.update({
-      CounterExplanation: values
+      CounterExplanation: values,
     })
   }
 
   updateCounter(values) {
     this.update({
-      Counter: values
+      Counter: values,
     })
   }
 
   updateContactedExplanation(values) {
     this.update({
-      ContactedExplanation: values
+      ContactedExplanation: values,
     })
   }
 
   updateContacted(values) {
     this.update({
-      Contacted: values
+      Contacted: values,
     })
   }
 
   updateEncounterExplanation(values) {
     this.update({
-      EncounterExplanation: values
+      EncounterExplanation: values,
     })
   }
 
   updateEncounter(values) {
     this.update({
-      Encounter: values
+      Encounter: values,
     })
   }
 
   updateQuestionedExplanation(values) {
     this.update({
-      QuestionedExplanation: values
+      QuestionedExplanation: values,
     })
   }
 
   updateQuestioned(values) {
     this.update({
-      Questioned: values
+      Questioned: values,
     })
   }
 
   updatePurpose(values) {
     this.update({
-      Purpose: values
+      Purpose: values,
     })
   }
 
   updateDays(values) {
     this.update({
-      Days: values
+      Days: values,
     })
   }
 
   updateDates(values) {
     this.update({
-      Dates: values
+      Dates: values,
     })
   }
 
   updateCountry(values) {
     this.update({
-      Country: values
+      Country: values,
     })
   }
 
   render() {
+    const {
+      requireForeignCounterIntelligence,
+      requireForeignExcessiveKnowledge,
+      requireForeignSensitiveInformation,
+      requireForeignThreatened,
+    } = this.props
     return (
       <div className="foreign-travel-questions">
         <Field
           title={i18n.t('foreign.travel.heading.country')}
           adjustFor="country"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Country
             name="Country"
             {...this.props.Country}
-            excludeUnitedStates={true}
+            excludeUnitedStates
             className="foreign-travel-country"
             onUpdate={this.updateCountry}
             onError={this.props.onError}
@@ -195,12 +202,13 @@ export default class TravelQuestions extends ValidationElement {
           title={i18n.t('foreign.travel.heading.dates')}
           help="foreign.travel.help.dates"
           adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="Dates"
             {...this.props.Dates}
             className="foreign-travel-dates"
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -211,7 +219,8 @@ export default class TravelQuestions extends ValidationElement {
           title={i18n.t('foreign.travel.heading.days')}
           help="foreign.travel.help.days"
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <TravelDays
             name="Days"
             className="foreign-travel-days"
@@ -226,7 +235,8 @@ export default class TravelQuestions extends ValidationElement {
         <Field
           title={i18n.t('foreign.travel.heading.purpose')}
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('foreign.travel.para.checkall')}
           <TravelPurpose
             name="Purpose"
@@ -259,7 +269,8 @@ export default class TravelQuestions extends ValidationElement {
             title={i18n.t('foreign.travel.heading.explanation')}
             titleSize="label"
             adjustFor="textarea"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="QuestionedExplanation"
               {...this.props.QuestionedExplanation}
@@ -289,7 +300,8 @@ export default class TravelQuestions extends ValidationElement {
             title={i18n.t('foreign.travel.heading.explanation')}
             titleSize="label"
             adjustFor="textarea"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="EncounterExplanation"
               {...this.props.EncounterExplanation}
@@ -319,7 +331,8 @@ export default class TravelQuestions extends ValidationElement {
             title={i18n.t('foreign.travel.heading.explanation')}
             titleSize="label"
             adjustFor="textarea"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="ContactedExplanation"
               {...this.props.ContactedExplanation}
@@ -331,117 +344,137 @@ export default class TravelQuestions extends ValidationElement {
           </Field>
         </Show>
 
-        <Branch
-          label={i18n.t('foreign.travel.heading.counter')}
-          labelSize="h4"
-          name="has_foreign_travel_counter"
-          className={`foreign-travel-counter ${
-            this.props.Counter.value === 'Yes' ? 'no-margin-bottom' : ''
-          }`}
-          {...this.props.Counter}
-          onUpdate={this.updateCounter}
-          required={this.props.required}
-          onError={this.props.onError}
-        />
-        <Show when={(this.props.Counter || {}).value === 'Yes'}>
-          <Field
-            title={i18n.t('foreign.travel.heading.explanation')}
-            titleSize="label"
-            adjustFor="textarea">
-            <Textarea
-              name="CounterExplanation"
-              {...this.props.CounterExplanation}
-              className="foreign-travel-counter-explanation"
-              onUpdate={this.updateCounterExplanation}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </Field>
-        </Show>
+        {requireForeignCounterIntelligence && (
+          <Branch
+            label={i18n.t('foreign.travel.heading.counter')}
+            labelSize="h4"
+            name="has_foreign_travel_counter"
+            className={`foreign-travel-counter ${
+              this.props.Counter.value === 'Yes' ? 'no-margin-bottom' : ''
+            }`}
+            {...this.props.Counter}
+            onUpdate={this.updateCounter}
+            required={this.props.required}
+            onError={this.props.onError}
+          />
+        )}
+        {requireForeignCounterIntelligence && (
+          <Show when={(this.props.Counter || {}).value === 'Yes'}>
+            <Field
+              title={i18n.t('foreign.travel.heading.explanation')}
+              titleSize="label"
+              adjustFor="textarea"
+            >
+              <Textarea
+                name="CounterExplanation"
+                {...this.props.CounterExplanation}
+                className="foreign-travel-counter-explanation"
+                onUpdate={this.updateCounterExplanation}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+          </Show>
+        )}
 
-        <Branch
-          label={i18n.t('foreign.travel.heading.interest')}
-          labelSize="h4"
-          name="has_foreign_travel_interest"
-          className={`foreign-travel-interest ${
-            this.props.Interest.value === 'Yes' ? 'no-margin-bottom' : ''
-          }`}
-          {...this.props.Interest}
-          onUpdate={this.updateInterest}
-          required={this.props.required}
-          onError={this.props.onError}
-        />
-        <Show when={(this.props.Interest || {}).value === 'Yes'}>
-          <Field
-            title={i18n.t('foreign.travel.heading.explanation')}
-            titleSize="label"
-            adjustFor="textarea">
-            <Textarea
-              name="InterestExplanation"
-              {...this.props.InterestExplanation}
-              className="foreign-travel-interest-explanation"
-              onUpdate={this.updateInterestExplanation}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </Field>
-        </Show>
+        {requireForeignExcessiveKnowledge && (
+          <Branch
+            label={i18n.t('foreign.travel.heading.interest')}
+            labelSize="h4"
+            name="has_foreign_travel_interest"
+            className={`foreign-travel-interest ${
+              this.props.Interest.value === 'Yes' ? 'no-margin-bottom' : ''
+            }`}
+            {...this.props.Interest}
+            onUpdate={this.updateInterest}
+            required={this.props.required}
+            onError={this.props.onError}
+          />
+        )}
+        {requireForeignExcessiveKnowledge && (
+          <Show when={(this.props.Interest || {}).value === 'Yes'}>
+            <Field
+              title={i18n.t('foreign.travel.heading.explanation')}
+              titleSize="label"
+              adjustFor="textarea"
+            >
+              <Textarea
+                name="InterestExplanation"
+                {...this.props.InterestExplanation}
+                className="foreign-travel-interest-explanation"
+                onUpdate={this.updateInterestExplanation}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+          </Show>
+        )}
 
-        <Branch
-          label={i18n.t('foreign.travel.heading.sensitive')}
-          labelSize="h4"
-          name="has_foreign_travel_sensitive"
-          className={`foreign-travel-sensitive ${
-            this.props.Sensitive.value === 'Yes' ? 'no-margin-bottom' : ''
-          }`}
-          {...this.props.Sensitive}
-          onUpdate={this.updateSensitive}
-          required={this.props.required}
-          onError={this.props.onError}
-        />
-        <Show when={(this.props.Sensitive || {}).value === 'Yes'}>
-          <Field
-            title={i18n.t('foreign.travel.heading.explanation')}
-            titleSize="label"
-            adjustFor="textarea">
-            <Textarea
-              name="SensitiveExplanation"
-              {...this.props.SensitiveExplanation}
-              className="foreign-travel-sensitive-explanation"
-              onUpdate={this.updateSensitiveExplanation}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </Field>
-        </Show>
+        {requireForeignSensitiveInformation && (
+          <Branch
+            label={i18n.t('foreign.travel.heading.sensitive')}
+            labelSize="h4"
+            name="has_foreign_travel_sensitive"
+            className={`foreign-travel-sensitive ${
+              this.props.Sensitive.value === 'Yes' ? 'no-margin-bottom' : ''
+            }`}
+            {...this.props.Sensitive}
+            onUpdate={this.updateSensitive}
+            required={this.props.required}
+            onError={this.props.onError}
+          />
+        )}
+        {requireForeignSensitiveInformation && (
+          <Show when={(this.props.Sensitive || {}).value === 'Yes'}>
+            <Field
+              title={i18n.t('foreign.travel.heading.explanation')}
+              titleSize="label"
+              adjustFor="textarea"
+            >
+              <Textarea
+                name="SensitiveExplanation"
+                {...this.props.SensitiveExplanation}
+                className="foreign-travel-sensitive-explanation"
+                onUpdate={this.updateSensitiveExplanation}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+          </Show>
+        )}
 
-        <Branch
-          label={i18n.t('foreign.travel.heading.threatened')}
-          labelSize="h4"
-          name="has_foreign_travel_threatened"
-          className={`foreign-travel-threatened ${
-            this.props.Threatened.value === 'Yes' ? 'no-margin-bottom' : ''
-          }`}
-          {...this.props.Threatened}
-          onUpdate={this.updateThreatened}
-          required={this.props.required}
-          onError={this.props.onError}
-        />
-        <Show when={(this.props.Threatened || {}).value === 'Yes'}>
-          <Field
-            title={i18n.t('foreign.travel.heading.explanation')}
-            titleSize="label"
-            adjustFor="textarea">
-            <Textarea
-              name="ThreatenedExplanation"
-              {...this.props.ThreatenedExplanation}
-              className="foreign-travel-threatened-explanation"
-              onUpdate={this.updateThreatenedExplanation}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </Field>
-        </Show>
+        {requireForeignThreatened && (
+          <Branch
+            label={i18n.t('foreign.travel.heading.threatened')}
+            labelSize="h4"
+            name="has_foreign_travel_threatened"
+            className={`foreign-travel-threatened ${
+              this.props.Threatened.value === 'Yes' ? 'no-margin-bottom' : ''
+            }`}
+            {...this.props.Threatened}
+            onUpdate={this.updateThreatened}
+            required={this.props.required}
+            onError={this.props.onError}
+          />
+        )}
+        {requireForeignThreatened && (
+          <Show when={(this.props.Threatened || {}).value === 'Yes'}>
+            <Field
+              title={i18n.t('foreign.travel.heading.explanation')}
+              titleSize="label"
+              adjustFor="textarea"
+            >
+              <Textarea
+                name="ThreatenedExplanation"
+                {...this.props.ThreatenedExplanation}
+                className="foreign-travel-threatened-explanation"
+                onUpdate={this.updateThreatenedExplanation}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+          </Show>
+        )}
       </div>
     )
   }
@@ -466,8 +499,10 @@ TravelQuestions.defaultProps = {
   SensitiveExplanation: {},
   Threatened: {},
   ThreatenedExplanation: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  requireForeignCounterIntelligence: true,
+  requireForeignExcessiveKnowledge: true,
+  requireForeignSensitiveInformation: true,
+  requireForeignThreatened: true,
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

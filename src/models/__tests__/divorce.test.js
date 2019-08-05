@@ -106,9 +106,12 @@ describe('The divorce model', () => {
 
   it('the telephone field is required', () => {
     const testData = {}
+    const options = {
+      requireRelationshipMaritalDivorcePhoneNumber: true,
+    }
     const expectedErrors = ['Telephone.presence.REQUIRED']
 
-    expect(validateModel(testData, divorce))
+    expect(validateModel(testData, divorce, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -116,11 +119,14 @@ describe('The divorce model', () => {
     const testData = {
       Telephone: { number: '123' },
     }
+    const options = {
+      requireRelationshipMaritalDivorcePhoneNumber: true,
+    }
     const expectedErrors = [
       'Telephone.model.timeOfDay.presence.REQUIRED',
     ]
 
-    expect(validateModel(testData, divorce))
+    expect(validateModel(testData, divorce, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -446,6 +452,32 @@ describe('The divorce model', () => {
 
         expect(validateModel(testData, divorce)).toEqual(true)
       })
+    })
+  })
+
+  describe('SF85P', () => {
+    it('does not need a phone number', () => {
+      const testData = {
+        Status: { value: 'Widowed' },
+        Name: { first: 'Person', noMiddleName: true, last: 'Spouse' },
+        Birthdate: { day: 5, month: 10, year: 1980 },
+        BirthPlace: { city: 'New York', state: 'NY', country: 'United States' },
+        Citizenship: { value: ['United States'] },
+        Telephone: {},
+        Recognized: { day: 10, month: 1, year: 2001 },
+        Address: {
+          street: '1 Main St',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10000',
+          country: 'United States',
+        },
+        DateDivorced: { day: 1, month: 1, year: 2010 },
+      }
+      const options = {
+        requireRelationshipMaritalDivorcePhoneNumber: false,
+      }
+      expect(validateModel(testData, divorce, options)).toEqual(true)
     })
   })
 })
