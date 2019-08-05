@@ -3,7 +3,8 @@
 all: clean test build
 
 test:
-	GOLANG_ENV=test go test -coverprofile=coverage.txt -covermode=atomic -cover $(shell go list ./... | grep -v /vendor/)
+	GOLANG_ENV=test go test -coverpkg=./... -coverprofile=coverage-integration.txt -covermode=atomic -cover github.com/18F/e-QIP-prototype/api/integration
+	GOLANG_ENV=test go test -coverprofile=coverage.txt -covermode=atomic -cover $(shell go list ./... | grep -v /vendor/ | grep -v integration)
 
 reset-test-db:
 	go build -o bin/dbmigrate ./cmd/dbmigrate
@@ -13,6 +14,7 @@ reset-test-db:
 
 coverage:
 	# Use -c to remove processed reports so coverage-js won't find it
+	codecov -c -F backend -f coverage-integration.txt -X gcov
 	codecov -c -F backend -f coverage.txt -X gcov
 
 build:

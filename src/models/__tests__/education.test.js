@@ -1,5 +1,42 @@
 import { validateModel } from 'models/validate'
-import education from 'models/education'
+import education, { educationRequiresReference } from 'models/education'
+
+describe('The educationRequiresReference function', () => {
+  it('returns false if the data is invalid', () => {
+    const testData = {
+      from: null,
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(false)
+  })
+
+  it('returns false if the date range is not within 3 years', () => {
+    const testData = {
+      from: { year: 2000, month: 2, day: 10 },
+      to: { year: 2001, month: 5, day: 2 },
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(false)
+  })
+
+  it('returns true if the date range is within 3 years', () => {
+    const testData = {
+      from: { year: 2018, month: 2, day: 10 },
+      to: { year: 20019, month: 5, day: 2 },
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(true)
+  })
+
+  it('returns true if present is true', () => {
+    const testData = {
+      from: { year: 2010, month: 2, day: 10 },
+      present: true,
+    }
+
+    expect(educationRequiresReference(testData)).toEqual(true)
+  })
+})
 
 describe('The education model', () => {
   it('the Dates field is required', () => {
@@ -247,6 +284,32 @@ describe('The education model', () => {
       const expectedErrors = [
         'ReferencePhone.model.timeOfDay.presence.REQUIRED',
         'ReferencePhone.model.number.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, education))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('ReferencePhone number must exist', () => {
+      const testData = {
+        Dates: {
+          from: { year: 2017, month: 9, day: 1 },
+          to: { year: 2019, month: 1, day: 30 },
+        },
+        Address: {
+          street: '40 School St',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10001',
+          country: 'United States',
+        },
+        Name: { value: 'My School' },
+        Type: { value: 'College' },
+        ReferencePhone: { noNumber: true },
+      }
+
+      const expectedErrors = [
+        'ReferencePhone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, education))

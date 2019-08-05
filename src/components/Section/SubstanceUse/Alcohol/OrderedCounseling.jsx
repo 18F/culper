@@ -11,7 +11,7 @@ import {
   Textarea,
   Branch,
   Show,
-  Telephone
+  Telephone,
 } from '../../../Form'
 
 export default class OrderedCounseling extends ValidationElement {
@@ -61,21 +61,19 @@ export default class OrderedCounseling extends ValidationElement {
   }
 
   updateSeekers(values) {
-    let seeker = values.value
+    const seeker = values.value
     let selected = [...((this.props.Seekers || {}).values || [])].filter(
       x => x !== 'NotOrdered'
     )
 
     if (seeker === 'NotOrdered') {
       selected = [seeker]
+    } else if (selected.includes(seeker)) {
+      // Remove the relation if it was previously selected
+      selected.splice(selected.indexOf(seeker), 1)
     } else {
-      if (selected.includes(seeker)) {
-        // Remove the relation if it was previously selected
-        selected.splice(selected.indexOf(seeker), 1)
-      } else {
-        // Add the relation if it wasn't already
-        selected.push(seeker)
-      }
+      // Add the relation if it wasn't already
+      selected.push(seeker)
     }
 
     this.update({ Seekers: { values: selected } })
@@ -125,13 +123,15 @@ export default class OrderedCounseling extends ValidationElement {
           <Field
             title={i18n.t('substance.alcohol.orderedCounseling.heading.seekers')}
             adjustFor="p"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
             <CheckboxGroup
               className="seekers option-list option-list-vertical"
               onError={this.props.onError}
               required={this.props.required}
-              selectedValues={(this.props.Seekers || {}).values || []}>
+              selectedValues={(this.props.Seekers || {}).values || []}
+            >
               <Checkbox
                 name="seekers-employer"
                 label={i18n.m(
@@ -198,8 +198,10 @@ export default class OrderedCounseling extends ValidationElement {
                 onUpdate={this.updateSeekers}
               />
             </CheckboxGroup>
+
             <Show
-              when={((this.props.Seekers || {}).values || []).includes('Other')}>
+              when={((this.props.Seekers || {}).values || []).includes('Other')}
+            >
               <Field
                 title={i18n.t(
                   'substance.alcohol.orderedCounseling.label.otherSeeker'
@@ -241,9 +243,10 @@ export default class OrderedCounseling extends ValidationElement {
               title={i18n.t(
                 'substance.alcohol.orderedCounseling.heading.counselingDates'
               )}
-              help={'substance.alcohol.orderedCounseling.help.counselingDates'}
+              help="substance.alcohol.orderedCounseling.help.counselingDates"
               adjustFor="daterange"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <DateRange
                 name="CounselingDates"
                 className="counseling-dates"
@@ -258,7 +261,8 @@ export default class OrderedCounseling extends ValidationElement {
               title={i18n.t(
                 'substance.alcohol.orderedCounseling.heading.treatmentProviderName'
               )}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Text
                 name="TreatmentProviderName"
                 className="treatment-provider-name"
@@ -273,11 +277,10 @@ export default class OrderedCounseling extends ValidationElement {
                 'substance.alcohol.orderedCounseling.heading.treatmentProviderAddress'
               )}
               optional={true}
-              help={
-                'substance.alcohol.orderedCounseling.help.treatmentProviderAddress'
-              }
+              help="substance.alcohol.orderedCounseling.help.treatmentProviderAddress"
               adjustFor="address"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Location
                 name="TreatmentProviderAddress"
                 className="provider-address"
@@ -297,15 +300,15 @@ export default class OrderedCounseling extends ValidationElement {
               title={i18n.t(
                 'substance.alcohol.orderedCounseling.heading.treatmentProviderTelephone'
               )}
-              help={
-                'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'
-              }
+              help="substance.alcohol.orderedCounseling.help.treatmentProviderTelephone"
               className="override-required"
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Telephone
                 name="TreatmentProviderTelephone"
                 className="provider-telephone"
                 {...this.props.TreatmentProviderTelephone}
+                allowNotApplicable={false}
                 onUpdate={this.updateTreatmentProviderTelephone}
                 onError={this.props.onError}
                 required={this.props.required}
@@ -332,7 +335,8 @@ export default class OrderedCounseling extends ValidationElement {
                   'substance.alcohol.orderedCounseling.heading.noCompletedTreatment'
                 )}
                 titleSize="label"
-                scrollIntoView={this.props.scrollIntoView}>
+                scrollIntoView={this.props.scrollIntoView}
+              >
                 <Textarea
                   name="NoCompletedTreatmentExplanation"
                   className="no-completed-treatment"
@@ -352,7 +356,8 @@ export default class OrderedCounseling extends ValidationElement {
               'substance.alcohol.orderedCounseling.heading.noActionTakenExplanation'
             )}
             titleSize="h4"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="NoActionTakenExplanation"
               {...this.props.NoActionTakenExplanation}

@@ -61,7 +61,7 @@ const supervisor = {
 
     return {}
   },
-  Telephone: { presence: true, model: { validator: phone } },
+  Telephone: { presence: true, model: { validator: phone, requireNumber: true } },
 }
 
 const additional = {
@@ -159,7 +159,7 @@ const employment = {
     if (matchEmploymentActivity(attributes, [UNEMPLOYMENT])) return {}
     return {
       presence: true,
-      model: { validator: phone },
+      model: { validator: phone, requireNumber: true },
     }
   },
 
@@ -283,7 +283,7 @@ const employment = {
     ])) {
       return {
         presence: true,
-        model: { validator: phone },
+        model: { validator: phone, requireNumber: true },
       }
     }
 

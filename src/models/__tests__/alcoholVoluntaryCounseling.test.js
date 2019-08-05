@@ -55,6 +55,18 @@ describe('The alcoholVoluntaryCounseling model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('TreatmentProviderTelephone must exist', () => {
+    const testData = {
+      TreatmentProviderTelephone: { noNumber: true },
+    }
+    const expectedErrors = [
+      'TreatmentProviderTelephone.model.noNumber.inclusion.INCLUSION',
+    ]
+
+    expect(validateModel(testData, alcoholVoluntaryCounseling))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('CounselingDates must be a valid date range', () => {
     const testData = {
       CounselingDates: false,

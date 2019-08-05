@@ -642,14 +642,53 @@
             </EmploymentRecord>
             <Education Version="1" Type="Pooled">
               <AttendedAnySchools>
-                <Answer>No</Answer>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </AttendedAnySchools>
               <ReceivedDegreeOrDiploma>
-                <Answer>No</Answer>
-              </ReceivedDegreeOrDiploma>
-              <SchoolsAttended>
     
-  </SchoolsAttended>
+    
+  </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+                <SchoolAttended ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>College</Type>
+                  <Name>University of California, Berkeley</Name>
+                  <Address>
+                    <Street>120 Sproul Hall</Street>
+                    <City>Berkeley</City>
+                    <State>CA</State>
+                    <ZipCode>94720</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>No</Answer>
+                  </DegreeReceived>
+                  <Verifier>
+                    <LegalName DoNotKnow="True"/>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>5555555555</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>120 Sproul Hall</Street>
+                      <City>Berkeley</City>
+                      <State>CA</State>
+                      <ZipCode>94720</ZipCode>
+                    </Address>
+                  </Verifier>
+                </SchoolAttended>
+              </SchoolsAttended>
             </Education>
             <FormerFederalServiceActivities Version="1" Type="Pooled">
               <HadFormerFederalCivilianEmployment>
