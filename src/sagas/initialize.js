@@ -4,7 +4,7 @@ import {
 
 import * as actionTypes from 'constants/actionTypes'
 
-import { fetchForm } from 'actions/api'
+import { fetchForm, fetchStatus } from 'actions/api'
 
 import { updateApplication, validateFormData } from 'actions/ApplicationActions'
 import { unschema } from 'schema'
@@ -55,7 +55,6 @@ export function* handleInitError(action) {
       case 401:
       case 403:
         yield call(env.History().push, '/login')
-        yield call(authWatcher) // TODO - maybe this should be called on mount of login?
         break
       default:
         yield call(env.History().push, '/error')
@@ -68,11 +67,60 @@ export function* handleInitError(action) {
 
 export function* handleInitSuccess(action, path = '/form/identification/intro') {
   const { response } = action
-  console.log('success', action, path)
+  console.log('init success', action, path)
   yield call(env.History().push, '/loading')
 
   if (response && response.data) {
-    console.log('GO TO', path)
+    // Check to see if the account is locked
+    const status  = response.data
+    if (status.Status == "SUBMITTED") {
+      yield call(env.History().push, '/locked')
+      return
+    }
+    // attempt to load /form
+
+    yield put(fetchForm())
+
+    // watch for success or failure
+    const { data, error } = yield race({
+      data: take(actionTypes.FETCH_FORM_SUCCESS),
+      error: take(actionTypes.FETCH_FORM_ERROR),
+    })
+
+    if (error) {
+      yield call(handleFetchError, error)
+    } else {
+      yield call(handleFetchFormSuccess, data, path)
+    }
+  } else {
+    console.warn('Missing response', response)
+    yield call(env.History().push, '/error')
+  }
+}
+
+/** This is a somewhat generic handler for API fetch failures */
+export function* handleFetchError(action) {
+  const { error } = action
+
+  if (error && error.response) {
+    switch (error.response.status) {
+      case 401:
+      case 403:
+        yield call(env.History().push, '/login')
+        break
+      default:
+        yield call(env.History().push, '/error')
+    }
+  } else {
+    console.warn('Unknown error', error)
+    yield call(env.History().push, '/error')
+  }
+}
+
+export function* handleFetchFormSuccess(action, path) {
+  const { response } = action
+
+  if (response && response.data) {
     const cb = () => { env.History().replace(path) }
     yield put({
       type: actionTypes.SET_FORM_DATA,
@@ -85,24 +133,25 @@ export function* handleInitSuccess(action, path = '/form/identification/intro') 
   }
 }
 
-export function* initializeApp() {
-  const initAction = yield take(actionTypes.INIT_APP)
-  const { path } = initAction
+export function* initializeAppWatcher() {
+  while (true) {
+    const initAction = yield take(actionTypes.INIT_APP)
+    const { path } = initAction
 
-  // TODO - maybe this should be a status call instead (check if locked)
-  // attempt to load the form
-  yield put(fetchForm())
+    // attempt to load /status
+    yield put(fetchStatus())
 
-  // watch for success or failure
-  const { data, error } = yield race({
-    data: take(actionTypes.FETCH_FORM_SUCCESS),
-    error: take(actionTypes.FETCH_FORM_ERROR),
-  })
+    // watch for success or failure
+    const { data, error } = yield race({
+      data: take(actionTypes.FETCH_STATUS_SUCCESS),
+      error: take(actionTypes.FETCH_STATUS_ERROR),
+    })
 
-  if (error) {
-    yield call(handleInitError, error)
-  } else {
-    yield call(handleInitSuccess, data, path)
+    if (error) {
+      yield call(handleInitError, error)
+    } else {
+      yield call(handleInitSuccess, data, path)
+    }
   }
 }
 
@@ -119,21 +168,10 @@ export function* authWatcher() {
       // TODO - handle login/auth errors here
       yield
     } else {
-      // login successful - fetch form again
-      // TODO extract this out
-      yield put(fetchForm())
-
-      // watch for success or failure
-      const { data, error } = yield race({
-        data: take(actionTypes.FETCH_FORM_SUCCESS),
-        error: take(actionTypes.FETCH_FORM_ERROR),
+      // login successful - try and appInit again
+      yield put({
+        type: actionTypes.INIT_APP,
       })
-
-      if (error) {
-        yield call(handleInitError, error)
-      } else {
-        yield call(handleInitSuccess, data)
-      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import { all } from 'redux-saga/effects'
 
 import { apiWatcher } from 'sagas/api'
-import { initializeFormData, initializeApp } from 'sagas/initialize'
+import { initializeFormData, initializeAppWatcher, authWatcher } from 'sagas/initialize'
 import { validateWatcher } from 'sagas/validate'
 import { updateSubsectionWatcher } from 'sagas/form'
 import rootSaga from './index'
@@ -13,10 +13,11 @@ describe.skip('Root saga', () => {
   it('starts the initializeFormData and validateWatcher sagas', () => {
     expect(generator.next().value).toEqual(all([
       apiWatcher(),
-      initializeApp(),
+      initializeAppWatcher(),
       initializeFormData(),
       validateWatcher(),
       updateSubsectionWatcher(),
+      authWatcher(),
     ]))
   })
 })

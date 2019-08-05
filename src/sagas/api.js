@@ -15,6 +15,15 @@ export function* fetchForm() {
   }
 }
 
+export function* fetchStatus() {
+  try {
+    const response = yield call(api.status)
+    yield put({ type: actionTypes.FETCH_STATUS_SUCCESS, response })
+  } catch (error) {
+    yield put({ type: actionTypes.FETCH_STATUS_ERROR, error })
+  }
+}
+
 export function* login({ username, password }) {
   try {
     const response = yield call(api.login, username, password)
@@ -33,9 +42,14 @@ export function* fetchFormWatcher() {
   yield takeLatest(actionTypes.FETCH_FORM, fetchForm)
 }
 
+export function* fetchStatusWatcher() {
+  yield takeLatest(actionTypes.FETCH_STATUS, fetchStatus)
+}
+
 export function* apiWatcher() {
   yield all([
     fetchFormWatcher(),
+    fetchStatusWatcher(),
     loginWatcher(),
   ])
 }

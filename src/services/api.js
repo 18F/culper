@@ -108,7 +108,7 @@ class Api {
     return this.post(env.EndpointSave(), payload)
   }
 
-  status() {
+  status = () => {
     return this.get(env.EndpointStatus())
   }
 

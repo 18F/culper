@@ -1,7 +1,7 @@
 import { all } from 'redux-saga/effects'
 
 import { apiWatcher } from 'sagas/api'
-import { initializeFormData, initializeApp } from 'sagas/initialize'
+import { initializeFormData, initializeAppWatcher, authWatcher } from 'sagas/initialize'
 import { validateWatcher } from 'sagas/validate'
 import { updateSubsectionWatcher } from 'sagas/form'
 
@@ -13,6 +13,7 @@ export default function* rootSaga() {
     validateWatcher(),
     updateSubsectionWatcher(),
     apiWatcher(),
-    initializeApp(),
+    initializeAppWatcher(),
+    authWatcher(),
   ])
 }

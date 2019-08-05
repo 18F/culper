@@ -21,7 +21,7 @@ import {
 
 describe('Initialize app saga', () => {
   describe('if not logged in', () => {
-    const generator = initializeApp()
+    const generator = initializeAppWatcher()
 
     it('responds to the INIT_APP action', () => {
       expect(generator.next().value)
@@ -53,7 +53,7 @@ describe('Initialize app saga', () => {
   })
 
   describe('if logged in', () => {
-    const generator = initializeApp()
+    const generator = initializeAppWatcher()
 
     it('responds to the INIT_APP action', () => {
       expect(generator.next().value)
