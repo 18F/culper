@@ -3,7 +3,6 @@ import { hasYesOrNo } from 'models/validate'
 const sentence = {
   Description: { presence: true, hasValue: true },
   ExceedsYear: (value, attributes, attributeName, options) => {
-    console.log('ExceedsYear options', options)
     if (options.requireLegalOffenseSentenced) {
       return {
         presence: true,
