@@ -1,17 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import App from 'components/Main/App'
-// import AuthenticatedView from 'views/AuthenticatedView'
 import { Form } from 'views'
 
-class AppWithForm extends React.Component {
-  render() {
-    return (
-      <App {...this.props}>
-        <Form {...this.props} />
-      </App>
-    )
+const AppWithForm = props => (
+  <App {...props}>
+    <Form {...props} />
+  </App>
+)
+
+function mapStateToProps(state) {
+  const auth = state.authentication
+  return {
+    application: state.application,
+    authenticated: auth.authenticated,
   }
 }
 
-export default connect()(AppWithForm)
+export default connect(mapStateToProps)(AppWithForm)
