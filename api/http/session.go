@@ -60,14 +60,16 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 	})
 }
 
+// SessionCookieService writes session cookies to a response
 type SessionCookieService struct {
 	secure bool
 	domain string
 }
 
-func NewSessionCookieService(apiBaseUrl string) (SessionCookieService, error) {
+// NewSessionCookieService returns a SessionCookieService
+func NewSessionCookieService(apiBaseURL string) (SessionCookieService, error) {
 	// We use the API Base URL to determine some of the cookie settings.
-	uri, parseErr := url.Parse(apiBaseUrl)
+	uri, parseErr := url.Parse(apiBaseURL)
 	if parseErr != nil {
 		return SessionCookieService{}, parseErr
 	}

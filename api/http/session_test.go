@@ -18,7 +18,7 @@ func TestURIParsing(t *testing.T) {
 		domain string
 	}{
 		{"http://localhost:3000", false, ""},
-		{"http://api:3000", false, "api"},
+		{"http://api:3000", false, ""},
 		{"https://eapp.edu", true, "eapp.edu"},
 	}
 
