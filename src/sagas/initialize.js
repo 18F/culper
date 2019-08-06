@@ -1,5 +1,6 @@
+/* eslint import/no-cycle: 0 */
 import {
-  take, takeLatest, put, all, call, race, spawn,
+  take, put, all, call, race, spawn,
 } from 'redux-saga/effects'
 
 import * as actionTypes from 'constants/actionTypes'
@@ -7,48 +8,12 @@ import { STATUS_SUBMITTED } from 'constants/enums/applicationStatuses'
 
 import { fetchForm, fetchStatus } from 'actions/api'
 
-import { updateApplication, validateFormData } from 'actions/ApplicationActions'
-import { unschema } from 'schema'
+import { updateApplication } from 'actions/ApplicationActions'
 
 import { env } from 'config'
 
 import { validateWatcher } from 'sagas/validate'
-import { updateSubsectionWatcher } from 'sagas/form'
-
-/** Setting form data on login (this might be replaced) */
-export function* updateSectionData(name, data) {
-  try {
-    yield all(Object.keys(data).map(subsection => put(
-      updateApplication(
-        name,
-        subsection,
-        unschema(data[subsection]),
-      )
-    )))
-  } catch (e) {
-    console.warn('failed to update section', name, e)
-    yield call(env.History().push, '/error')
-  }
-}
-
-export function* setFormData(action) {
-  const { data, cb } = action
-
-  try {
-    yield all(Object.keys(data)
-      .map(section => call(updateSectionData, section, data[section])))
-
-    yield put(validateFormData())
-    yield call(cb)
-  } catch (e) {
-    console.warn('failed to set form data', e)
-    yield call(env.History().push, '/error')
-  }
-}
-
-export function* initializeFormData() {
-  yield takeLatest(actionTypes.SET_FORM_DATA, setFormData)
-}
+import { setFormData, updateSubsectionWatcher } from 'sagas/form'
 
 export function* loggedOutWatcher() {
   const { error } = yield race({
@@ -60,7 +25,7 @@ export function* loggedOutWatcher() {
     // Restart the watcher for the next login attempt
     yield call(loggedOutWatcher)
   } else {
-    yield call(initializeApp)
+    yield call(initializeApp) // eslint-disable-line
   }
 }
 
@@ -68,7 +33,6 @@ export function* loggedInWatcher() {
   yield all([
     call(validateWatcher),
     call(updateSubsectionWatcher),
-    call(initializeFormData),
   ])
 }
 
@@ -92,16 +56,12 @@ export function* handleFetchError(action) {
   }
 }
 
-export function* handleFetchFormSuccess(action, path) {
-  const { response } = action
+export function* handleFetchFormSuccess(data, path) {
+  const { response } = data
 
   if (response && response.data) {
-    const cb = () => { env.History().replace(path) }
-    yield put({
-      type: actionTypes.SET_FORM_DATA,
-      data: response.data,
-      cb,
-    })
+    yield call(setFormData, response.data)
+    yield call(env.History().replace, path)
   } else {
     console.warn('Missing response', response)
     yield call(env.History().push, '/error')
@@ -117,6 +77,11 @@ export function* handleInitSuccess(action, path = '/form/identification/intro') 
   const { response } = action
 
   if (response && response.data) {
+    const { Status, Hash } = response.data
+    // TODO - consolidate these into one action
+    yield put(updateApplication('Settings', 'status', Status))
+    yield put(updateApplication('Settings', 'hash', Hash))
+
     // Check to see if the account is locked
     const status = response.data
     if (status.Status === STATUS_SUBMITTED) {
