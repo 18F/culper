@@ -7,11 +7,11 @@ import { HISTORY, HISTORY_EDUCATION } from 'config/formSections/history'
 import schema from 'schema'
 import validate, { EducationItemValidator } from 'validators'
 
-import Subsection from 'components/Section/shared/Subsection'
 import { Accordion } from 'components/Form'
 import { openState } from 'components/Form/Accordion/Accordion'
 
-import connectHistorySection from '../HistoryConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 import { EducationCustomSummary } from '../summaries'
 import EducationItem from './EducationItem'
@@ -130,4 +130,4 @@ Education.defaultProps = {
   validator: data => validate(schema('history.education', data)),
 }
 
-export default connectHistorySection(Education, sectionConfig)
+export default connectSubsection(Education, sectionConfig)
