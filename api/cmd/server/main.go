@@ -57,6 +57,13 @@ func main() {
 	sessionTimeout := time.Duration(settings.Int(api.SessionTimeout)) * time.Minute
 	sessionService := session.NewSessionService(sessionTimeout, store, logger)
 	samlsvc := &saml.Service{Log: logger, Env: settings}
+
+	baseAPIURL := settings.String(api.APIBaseURL)
+	cookieService, cookieErr := http.NewSessionCookieService(baseAPIURL)
+	if cookieErr != nil {
+		logger.WarnError("Error configuring the cookie service", cookieErr, api.LogFields{})
+	}
+
 	api.Geocode = usps.Geocoder{Log: logger, Env: settings}
 
 	flag.Parse()
@@ -76,12 +83,12 @@ func main() {
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
-		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store}.ServeHTTP).Methods("POST")
+		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService}.ServeHTTP).Methods("POST")
 	}
 	if settings.True(api.SamlEnabled) {
 		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
 		o.HandleFunc("/saml_slo", http.SamlSLORequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
-		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService}.ServeHTTP).Methods("POST")
+		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService, Cookie: cookieService}.ServeHTTP).Methods("POST")
 	}
 
 	// Account specific actions

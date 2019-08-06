@@ -96,6 +96,7 @@ type SamlResponseHandler struct {
 	Database api.DatabaseService
 	SAML     api.SamlService
 	Session  api.SessionService
+	Cookie   SessionCookieService
 }
 
 // ServeHTTP is the callback handler for both login and logout SAML Responses.
@@ -157,7 +158,7 @@ func (service SamlResponseHandler) serveAuthnResponse(encodedResponse string, w 
 		return
 	}
 
-	AddSessionKeyToResponse(w, sessionKey)
+	service.Cookie.AddSessionKeyToResponse(w, sessionKey)
 
 	http.Redirect(w, r, redirectTo, http.StatusFound)
 }

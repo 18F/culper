@@ -7,8 +7,10 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
-	"github.com/18F/e-QIP-prototype/api/session"
 )
+
+// SessionCookieName is the name of the cookie that is used to store the session
+const SessionCookieName = "eapp-session-key"
 
 // SessionMiddleware is the session handler.
 type SessionMiddleware struct {
@@ -28,7 +30,7 @@ func NewSessionMiddleware(log api.LogService, session api.SessionService) *Sessi
 func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-		sessionCookie, cookieErr := r.Cookie(session.SessionCookieName)
+		sessionCookie, cookieErr := r.Cookie(SessionCookieName)
 		if cookieErr != nil {
 			service.log.WarnError(api.RequestIsMissingSessionCookie, cookieErr, api.LogFields{})
 			RespondWithStructuredError(w, api.RequestIsMissingSessionCookie, http.StatusUnauthorized)
@@ -58,33 +60,54 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 	})
 }
 
-// AddSessionKeyToResponse adds the session cookie to a response given a valid sessionKey
-func AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
-	// ugh, this should be configured....TODO
-	// cookieDomain = os.Getenv("COOKIE_DOMAIN")
+type SessionCookieService struct {
+	secure bool
+	domain string
+}
 
-	if cookieDomain == "" {
-		// TODO LOOOOG
-		// service.Log.Warn(api.CookieDomainNotSet, api.LogFields{})
-		// Default to frontend host
-		uri, _ := url.Parse(redirectTo)
-		cookieDomain = strings.Split(uri.Host, ":")[0]
+func NewSessionCookieService(apiBaseUrl string) (SessionCookieService, error) {
+	// We use the API Base URL to determine some of the cookie settings.
+	uri, parseErr := url.Parse(apiBaseUrl)
+	if parseErr != nil {
+		return SessionCookieService{}, parseErr
 	}
 
+	secure := uri.Scheme == "https"
+	parts := strings.Split(uri.Host, ":")
+	domain := parts[0]
+
+	if domain == "localhost" {
+		domain = ""
+	}
+
+	return SessionCookieService{
+		secure,
+		domain,
+	}, nil
+}
+
+// AddSessionKeyToResponse adds the session cookie to a response given a valid sessionKey
+func (s SessionCookieService) AddSessionKeyToResponse(w http.ResponseWriter, sessionKey string) {
+	// LESSONS:
+	// The domain must be "" for localhost to work
+	// Safari will fuck up cookies if you have a .local hostname, chrome does fine
+	// Secure must be false for http to work
+
 	cookie := &http.Cookie{
-		Domain:   cookieDomain,
-		Name:     session.SessionCookieName,
+		Secure:   s.secure,
+		Domain:   s.domain,
+		Name:     SessionCookieName,
 		Value:    sessionKey,
 		HttpOnly: true,
-		// Path:     "/",
-		// MaxAge:   60,
-		// Expires:  expiration,
+		Path:     "/",
+		// Omit MaxAge and Expires to make this a session cookie.
 	}
 
 	http.SetCookie(w, cookie)
 
 }
 
+// -- Context Storage
 type authContextKey string
 
 const accountKey authContextKey = "ACCOUNT"

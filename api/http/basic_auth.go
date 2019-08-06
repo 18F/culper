@@ -14,6 +14,7 @@ type BasicAuthHandler struct {
 	Database api.DatabaseService
 	Store    api.StorageService
 	Session  api.SessionService
+	Cookie   SessionCookieService
 }
 
 // ServeHTTP processes a users request to login with a Username and Password
@@ -72,7 +73,7 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	AddSessionKeyToResponse(w, sessionKey)
+	service.Cookie.AddSessionKeyToResponse(w, sessionKey)
 
 	// If we need to flush the storage first then do so now.
 	if service.Env.True(api.FlushStorage) {

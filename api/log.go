@@ -109,6 +109,7 @@ const (
 	SamlValid            = "SAML authentication validated"
 	SessionCreated       = "New Session Created"
 	SessionDestroyed     = "Session Was Destroyed"
+	SessionRefreshed     = "Session was refreshed with the refresh API"
 	StartingServer       = "Starting server"
 	StartingServerTLS    = "Starting server with HTTPS/TLS"
 	StoppingServer       = "Stopping server"
