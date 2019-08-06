@@ -5,7 +5,6 @@ import { Router, Switch, Route } from 'react-router'
 
 import AppWithForm from 'components/Main/AppWithForm'
 import {
-  Login,
   Loading,
   AccessDenied,
   Locked,
@@ -13,6 +12,9 @@ import {
   TokenRefresh,
   Help,
 } from 'views'
+
+import { Login } from 'views/Login'
+
 import { env } from 'config'
 import { initApp } from 'actions/AuthActions'
 
