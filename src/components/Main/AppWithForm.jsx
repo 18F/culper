@@ -10,10 +10,13 @@ const AppWithForm = props => (
 )
 
 function mapStateToProps(state) {
-  const auth = state.authentication
+  const { application, authentication } = state
+  const { authenticated, showSessionWarning } = authentication
+
   return {
-    application: state.application,
-    authenticated: auth.authenticated,
+    application,
+    authenticated,
+    showSessionWarning,
   }
 }
 

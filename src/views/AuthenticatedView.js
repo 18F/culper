@@ -24,7 +24,6 @@ const AuthenticatedView = WrappedComponent => {
 
       checkAuthentication() {
         if (!this.isAuthenticated()) {
-          console.log("NOT AUTHENTICATEVBIEW")
           env.History().push('/login')
         }
       }

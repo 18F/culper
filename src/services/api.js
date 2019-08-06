@@ -94,14 +94,9 @@ class Api {
     false
   )
 
-  // TODO logout calls are failing - does this need to change?
-  logout = () => {
-    return this.get(env.EndpointLogout())
-  }
+  logout = () => this.get(env.EndpointLogout())
 
-  refresh() {
-    return this.post(env.EndpointRefresh())
-  }
+  refresh = () => this.post(env.EndpointRefresh())
 
   /** FORM */
   save(payload) {

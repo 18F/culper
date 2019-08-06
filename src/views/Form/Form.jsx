@@ -132,6 +132,8 @@ class Form extends React.Component {
   }
 
   render() {
+    const { showSessionWarning } = this.props
+
     const params = this.getParams()
     if (!params.section) {
       return null
@@ -145,7 +147,7 @@ class Form extends React.Component {
         <div id="info">
           <Section section={params.section} subsection={subsection} />
           <SavedIndicator interval="30000" />
-          {/* <TimeoutWarning timeout={env.SessionTimeout()} /> */}
+          {showSessionWarning && <TimeoutWarning timeout={env.SessionTimeout()} />}
         </div>
       </div>
     )
