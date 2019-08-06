@@ -36,7 +36,7 @@ func makeAuthenticatedFormRequest(services serviceSet, sessionService *session.S
 
 	if sessionKey != "" {
 		sessionCookie := &gohttp.Cookie{
-			Name:     session.SessionCookieName,
+			Name:     http.SessionCookieName,
 			Value:    sessionKey,
 			HttpOnly: true,
 		}
@@ -137,7 +137,7 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	cookies := response.Cookies()
 	var sessionCookie *gohttp.Cookie
 	for _, cookie := range cookies {
-		if cookie.Name == session.SessionCookieName {
+		if cookie.Name == http.SessionCookieName {
 			sessionCookie = cookie
 			break
 		}
@@ -277,7 +277,7 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 	cookies := response.Cookies()
 	var sessionCookie *gohttp.Cookie
 	for _, cookie := range cookies {
-		if cookie.Name == session.SessionCookieName {
+		if cookie.Name == http.SessionCookieName {
 			sessionCookie = cookie
 			break
 		}

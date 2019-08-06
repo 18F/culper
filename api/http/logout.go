@@ -19,8 +19,8 @@ func (service LogoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	logoutErr := service.Session.UserDidLogout(session.SessionKey)
 	if logoutErr != nil {
-		service.Log.WarnError("Failed to logout user", logoutErr, api.LogFields{})
-		RespondWithStructuredError(w, "Failed to logout user", http.StatusInternalServerError)
+		service.Log.WarnError(api.BasicLogoutFailed, logoutErr, api.LogFields{})
+		RespondWithStructuredError(w, api.BasicLogoutFailed, http.StatusInternalServerError)
 		return
 	}
 

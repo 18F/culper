@@ -214,7 +214,8 @@ func cleanName(nameID string) string {
 
 // CreateSLORequest creates an encoded SAML Logout Request suitable for sending to the identity server
 func (service *Service) CreateSLORequest(username string, sessionIndex string) (string, string, error) {
-	req := newLogoutRequest(service.provider.IDPSSODescriptorURL, username, sessionIndex)
+	service.configure()
+	req := newLogoutRequest(service.provider.IDPSSODescriptorURL, service.provider.IDPSSOURL, username, sessionIndex)
 
 	signedRequest, err := req.signedRequest(service.provider.PublicCertPath, service.provider.PrivateKeyPath)
 	if err != nil {

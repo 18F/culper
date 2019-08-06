@@ -81,18 +81,20 @@ func main() {
 	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP).Methods("GET")
 
 	// Authentication schemes
+	sec := http.NewSessionMiddleware(logger, sessionService)
+
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
 		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService}.ServeHTTP).Methods("POST")
 	}
 	if settings.True(api.SamlEnabled) {
 		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
-		o.HandleFunc("/saml_slo", http.SamlSLORequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
+		// SLO uses the logged in session
+		o.Handle("/saml_slo", sec.Middleware(http.SamlSLORequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService})).Methods("GET")
 		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService, Cookie: cookieService}.ServeHTTP).Methods("POST")
 	}
 
 	// Account specific actions
-	sec := http.NewSessionMiddleware(logger, sessionService)
 	r.Handle("/refresh", sec.Middleware(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
 
 	a := r.PathPrefix("/me").Subrouter()

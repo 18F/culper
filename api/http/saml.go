@@ -164,7 +164,31 @@ func (service SamlResponseHandler) serveAuthnResponse(encodedResponse string, w 
 }
 
 func (service SamlResponseHandler) serveLogoutResponse(encodedResponse string, w http.ResponseWriter, r *http.Request) {
+	// TODO: validate the SAML Logout Response and tie it to a session via the SLO request ID
+
+	// We are not wrapped by the session middleware, so we have to check the cookie on our own
+	sessionCookie, cookieErr := r.Cookie(SessionCookieName)
+	if cookieErr != nil {
+		service.Log.WarnError(api.RequestIsMissingSessionCookie, cookieErr, api.LogFields{})
+		redirectLogoutFailed(w, r)
+		return
+	}
+
+	sessionKey := sessionCookie.Value
+
+	logoutErr := service.Session.UserDidLogout(sessionKey)
+	if logoutErr != nil {
+		service.Log.WarnError(api.SamlSLOLogoutFailed, logoutErr, api.LogFields{})
+		redirectLogoutFailed(w, r)
+		return
+	}
+
 	redirectLogout(w, r)
+}
+
+func redirectLogoutFailed(w http.ResponseWriter, r *http.Request) {
+	url := fmt.Sprintf("%s?error=saml_logout_failed", redirectTo)
+	http.Redirect(w, r, url, http.StatusFound)
 }
 
 func redirectAccessDenied(w http.ResponseWriter, r *http.Request) {

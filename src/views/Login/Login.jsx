@@ -59,6 +59,12 @@ export class Login extends React.Component {
         case 'access_denied':
           this.props.history.push('/accessdenied')
           return
+        case 'saml_logout_failed':
+          this.props.history.push('/error')
+          break
+        default:
+          this.props.history.push('/error')
+          break
       }
     }
   }
