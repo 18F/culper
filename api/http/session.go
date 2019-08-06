@@ -76,7 +76,10 @@ func NewSessionCookieService(apiBaseUrl string) (SessionCookieService, error) {
 	parts := strings.Split(uri.Host, ":")
 	domain := parts[0]
 
-	if domain == "localhost" {
+	// Some browsers (safari for sure) don't handle cookies
+	// with a domain without a "." in them. For example localhost:3000
+	// This is apparently per-spec but Chrome does work
+	if strings.Index(domain, ".") == -1 {
 		domain = ""
 	}
 
