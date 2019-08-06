@@ -16,13 +16,7 @@ type LogoutHandler struct {
 // ServeHTTP will end the user session.
 func (service LogoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
-	// TODO: Maybe we want to have UserDidLogout take an account instead of a sessionKey?
-	// account, _ := AccountAndSessionFromRequestContext(r)
-
-	// we've already fetched the cookie in the auth layer so this really sholuldn't
-	// be able to error.
-	sessionCookie, _ := r.Cookie(session.SessionCookieName)
-	sessionKey := sessionCookie.Value
+	_, sessionKey := AccountAndSessionFromRequestContext(r)
 
 	logoutErr := service.Session.UserDidLogout(sessionKey)
 	if logoutErr != nil {
