@@ -10,7 +10,7 @@ import * as actionTypes from 'constants/actionTypes'
 import { NETWORK_ERROR, UNKNOWN_ERROR } from 'constants/errorCodes'
 
 import { updateApplication } from 'actions/ApplicationActions'
-import { handleLoginSuccess, handleLoginError, tokenError } from 'actions/AuthActions'
+import { handleLoginSuccess, handleLoginError, logout as logoutAction } from 'actions/AuthActions'
 
 export function* fetchForm() {
   try {
@@ -70,9 +70,12 @@ export function* renewSession() {
     yield call(api.refresh)
     yield put(updateApplication('Settings', 'lastRefresh', new Date().getTime()))
   } catch (error) {
-    // TODO logout instead
-    yield put(tokenError())
+    yield put(logoutAction(true))
   }
+}
+
+export function* logout() {
+  yield call(api.logout)
 }
 
 export function* loginWatcher() {
@@ -91,11 +94,16 @@ export function* renewSessionWatcher() {
   yield takeLatest(actionTypes.RENEW_SESSION, renewSession)
 }
 
+export function* logoutWatcher() {
+  yield takeLatest(actionTypes.LOGOUT, logout)
+}
+
 export function* apiWatcher() {
   yield all([
     fetchFormWatcher(),
     fetchStatusWatcher(),
     loginWatcher(),
     renewSessionWatcher(),
+    logoutWatcher(),
   ])
 }

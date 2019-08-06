@@ -47,17 +47,12 @@ export class TimeoutWarning extends React.Component {
 
   tick = () => {
     const { countdown } = this.state
-
     const newCountdown = countdown - 1
 
     if (newCountdown >= 0) {
       this.setState({
         countdown: newCountdown,
       })
-    } else {
-      // TODO logout
-      console.log('LOGOUT')
-      window.clearInterval(this.timer)
     }
   }
 

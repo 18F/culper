@@ -1,19 +1,20 @@
+/* eslint-disable */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
-import { api } from 'services'
 import { saveSection } from 'components/SavedIndicator/persistence-helpers'
 import {
   clearErrors,
-  updateApplication
+  updateApplication,
 } from 'actions/ApplicationActions'
 import { Section, SavedIndicator, TimeoutWarning } from 'components'
 import { env } from 'config'
 import {
   didRouteChange,
   findPosition,
-  parseFormUrl
+  parseFormUrl,
 } from 'components/Navigation/navigation-helpers'
-import { tokenError } from 'actions/AuthActions'
+import { renewSession } from 'actions/AuthActions'
 import { updateSection } from 'actions/SectionActions'
 
 // The concept is that we have three different inputs:
@@ -23,61 +24,78 @@ import { updateSection } from 'actions/SectionActions'
 //  3. The section and subsection are known so the section will
 //     display the subsection only.
 class Form extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { refreshPending: false }
-  }
-
   componentWillMount() {
     this.defaultRedirect()
-  }
-
-  componentDidUpdate(prevProps) {
-    this.defaultRedirect()
-
-    if (didRouteChange(this.props.location, prevProps.location)) {
-      this.onRouteChanged(prevProps.location)
-    }
   }
 
   componentDidMount() {
     this.refreshToken()
   }
 
+  componentDidUpdate(prevProps) {
+    this.defaultRedirect()
+
+    const { location } = this.props
+
+    if (didRouteChange(location, prevProps.location)) {
+      this.onRouteChanged(prevProps.location)
+    }
+  }
+
+  onRouteChanged(prevLocation) {
+    const { dispatch } = this.props
+
+    // update the Redux store with the React Router state
+    const params = this.getParams()
+    dispatch(updateSection(params.section, params.subsection))
+
+    this.clearErrors()
+    this.updateSettings()
+    this.refreshToken()
+
+    const prevLoc = parseFormUrl(prevLocation.pathname)
+    this.save(prevLoc.section, prevLoc.subsection)
+  }
+
   getParams() {
-    return this.props.params || this.props.match.params
+    const { params, match } = this.props
+    return params || match.params
+  }
+
+  getLocation() {
+    const { location } = this.props
+    return parseFormUrl(location.pathname)
   }
 
   defaultRedirect() {
     const params = this.getParams()
     if (!params.section) {
-      this.props.history.push('form/identification/intro')
+      const { history } = this.props
+      history.push('form/identification/intro')
     }
   }
 
-  getLocation() {
-    return parseFormUrl(this.props.location.pathname)
-  }
-
   clearErrors() {
+    const { dispatch } = this.props
     const loc = this.getLocation()
-    this.props.dispatch(clearErrors(loc.section, loc.subsection))
+    dispatch(clearErrors(loc.section, loc.subsection))
   }
 
   updateSettings() {
-    this.props.dispatch(
-      updateApplication('Settings', 'mobileNavigation', false)
-    )
+    const { dispatch } = this.props
+    dispatch(updateApplication('Settings', 'mobileNavigation', false))
   }
 
   save(section, subsection) {
+    const { application, dispatch } = this.props
+
     window.scroll(0, findPosition(document.getElementById('scrollTo')))
     saveSection(
-      this.props.application,
+      application,
       section,
       subsection,
-      this.props.dispatch
-    ).catch(error => {
+      dispatch
+    ).catch((error) => {
       alert(error)
     })
   }
@@ -87,48 +105,8 @@ class Form extends React.Component {
       return
     }
 
-    const token = api.getToken()
-    if (!token) {
-      return
-    }
-
-    // If a refresh is currently pending then wait for it
-    if (this.state.refreshPending) {
-      return
-    }
-
-    this.setState({ refreshPending: true })
-    api
-      .refresh()
-      .then(r => {
-        this.setState({ refreshPending: false })
-        api.setToken(r.data)
-        if (r.data === '') {
-          this.props.dispatch(tokenError())
-        } else {
-          this.props.dispatch(
-            updateApplication('Settings', 'lastRefresh', new Date().getTime())
-          )
-        }
-      })
-      .catch(() => {
-        this.setState({ refreshPending: false })
-        api.setToken('')
-        this.props.dispatch(tokenError())
-      })
-  }
-
-  onRouteChanged(prevLocation) {
-    // update the Redux store with the React Router state
-    const params = this.getParams()
-    this.props.dispatch(updateSection(params.section, params.subsection))
-
-    this.clearErrors()
-    this.updateSettings()
-    this.refreshToken()
-
-    const prevLoc = parseFormUrl(prevLocation.pathname)
-    this.save(prevLoc.section, prevLoc.subsection)
+    const { dispatch } = this.props
+    dispatch(renewSession())
   }
 
   render() {
@@ -153,5 +131,28 @@ class Form extends React.Component {
     )
   }
 }
+
+// TODO for some reason adding these is breaking this page (:
+/*
+Form.propTypes = {
+  location: PropTypes.object,
+  dispatch: PropTypes.func,
+  params: PropTypes.object,
+  match: PropTypes.object,
+  history: PropTypes.object,
+  application: PropTypes.object,
+  showSessionWarning: PropTypes.bool,
+}
+
+Form.defaultProps = {
+  location: {},
+  dispatch: () => {},
+  params: {},
+  match: {},
+  history: {},
+  application: {},
+  showSessionWarning: false,
+}
+*/
 
 export default withRouter(Form)

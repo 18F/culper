@@ -1,14 +1,53 @@
 import {
-  call, race, take, put, takeLatest, delay,
+  call, race, take, put, takeLatest, delay, spawn,
 } from 'redux-saga/effects'
 import { cloneableGenerator } from '@redux-saga/testing-utils'
 
+import { loggedOutWatcher } from 'sagas/initialize'
 import { sessionWatcher, sessionTimeout, handleLogout } from 'sagas/session'
 import * as actionTypes from 'constants/actionTypes'
 
 import { env } from 'config'
 
 const timeoutLength = env.SessionTimeout()
+
+describe('The handleLogout saga', () => {
+  describe('if the user logged out', () => {
+    const generator = handleLogout()
+
+    it('spawns the loggedOutWatcher', () => {
+      expect(generator.next().value)
+        .toEqual(spawn(loggedOutWatcher))
+    })
+
+    it('redirects to the login screen', () => {
+      expect(generator.next().value)
+        .toEqual(call(env.History().push, '/login'))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toEqual(true)
+    })
+  })
+
+  describe('if the session timed out', () => {
+    const generator = handleLogout(true)
+
+    it('spawns the loggedOutWatcher', () => {
+      expect(generator.next().value)
+        .toEqual(spawn(loggedOutWatcher))
+    })
+
+    it('redirects to the token error screen', () => {
+      expect(generator.next().value)
+        .toEqual(call(env.History().push, '/token'))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toEqual(true)
+    })
+  })
+})
 
 describe('The sessionTimeout saga', () => {
   const generator = cloneableGenerator(sessionTimeout)()

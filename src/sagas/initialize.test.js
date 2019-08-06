@@ -1,5 +1,5 @@
 import {
-  take, put, all, call, race, spawn,
+  take, put, call, race, spawn, all,
 } from 'redux-saga/effects'
 import { cloneableGenerator } from '@redux-saga/testing-utils'
 
@@ -11,6 +11,7 @@ import { env } from 'config'
 
 import { validateWatcher } from 'sagas/validate'
 import { setFormData, updateSubsectionWatcher } from 'sagas/form'
+import { handleLogout } from 'sagas/session'
 
 import {
   initializeAppWatcher,
@@ -326,10 +327,24 @@ describe('The loggedOutWatcher', () => {
 describe('The loggedInWatcher', () => {
   const generator = loggedInWatcher()
 
-  it('starts the form data watchers', () => {
-    expect(generator.next().value).toEqual(all([
-      call(validateWatcher),
-      call(updateSubsectionWatcher),
-    ]))
+  it('starts form data watchers until the LOGOUT action', () => {
+    expect(generator.next().value)
+      .toEqual(race({
+        loggedIn: all([
+          call(validateWatcher),
+          call(updateSubsectionWatcher),
+        ]),
+        logout: take(actionTypes.LOGOUT),
+      }))
+  })
+
+  it('calls handleLogout when the user logs out', () => {
+    expect(generator.next({ logout: { type: actionTypes.LOGOUT } }).value)
+      .toEqual(call(handleLogout, undefined))
+  })
+
+  it('is done', () => {
+    expect(generator.next().done)
+      .toBe(true)
   })
 })

@@ -1,16 +1,20 @@
+/* eslint import/no-cycle: 0 */
 import {
-  put, call, race, take, takeLatest, delay,
+  put, call, race, take, takeLatest, delay, spawn,
 } from 'redux-saga/effects'
 
 import * as actionTypes from 'constants/actionTypes'
+import { loggedOutWatcher } from 'sagas/initialize'
 
 import { env } from 'config'
 
 const timeoutLength = env.SessionTimeout() // timeout length in minutes
 const oneMinute = 60000 // milliseconds
 
-export function* handleLogout(tokenError = false) {
-  yield
+export function* handleLogout(timedOut = false) {
+  yield spawn(loggedOutWatcher)
+  const redirectPath = timedOut ? '/token' : '/login'
+  yield call(env.History().push, redirectPath)
 }
 
 export function* sessionTimeout() {

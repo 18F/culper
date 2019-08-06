@@ -7,6 +7,7 @@ export const INIT_APP = 'INIT_APP'
 export const RENEW_SESSION = 'RENEW_SESSION'
 export const SHOW_SESSION_WARNING = 'SHOW_SESSION_WARNING'
 export const HIDE_SESSION_WARNING = 'HIDE_SESSION_WARNING'
+export const LOGOUT = 'LOGOUT'
 
 export const LOGIN = 'LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'

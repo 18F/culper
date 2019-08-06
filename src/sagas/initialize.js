@@ -1,6 +1,6 @@
 /* eslint import/no-cycle: 0 */
 import {
-  take, put, all, call, race, spawn,
+  take, put, call, race, spawn, all,
 } from 'redux-saga/effects'
 
 import * as actionTypes from 'constants/actionTypes'
@@ -14,6 +14,7 @@ import { env } from 'config'
 
 import { validateWatcher } from 'sagas/validate'
 import { setFormData, updateSubsectionWatcher } from 'sagas/form'
+import { handleLogout } from 'sagas/session'
 
 export function* loggedOutWatcher() {
   const { error } = yield race({
@@ -30,10 +31,18 @@ export function* loggedOutWatcher() {
 }
 
 export function* loggedInWatcher() {
-  yield all([
-    call(validateWatcher),
-    call(updateSubsectionWatcher),
-  ])
+  const { logout } = yield race({
+    loggedIn: all([
+      call(validateWatcher),
+      call(updateSubsectionWatcher),
+    ]),
+    logout: take(actionTypes.LOGOUT),
+  })
+
+  if (logout) {
+    const { timedOut } = logout
+    yield call(handleLogout, timedOut)
+  }
 }
 
 /** This is a somewhat generic handler for API fetch failures */
