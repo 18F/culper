@@ -35,7 +35,7 @@ describe('setFormData saga', () => {
       },
     }
 
-    const generator = setFormData({ data: testSections })
+    const generator = setFormData(testSections)
 
     it('sets the formType in the store', () => {
       expect(generator.next().value)
@@ -65,7 +65,7 @@ describe('setFormData saga', () => {
   })
 
   describe('with malformed data', () => {
-    const generator = setFormData({ data: null })
+    const generator = setFormData(null)
 
     it('catches the error', () => {
       expect(generator.next().value)

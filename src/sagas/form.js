@@ -31,9 +31,7 @@ export function* updateSectionDataLegacy(name, data) {
   }
 }
 
-export function* setFormData(action) {
-  const { data } = action
-
+export function* setFormData(data) {
   try {
     const { Metadata = {} } = data
     const formType = window.formType ? window.formType : Metadata.form_type
