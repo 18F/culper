@@ -1,15 +1,21 @@
-import { all } from 'redux-saga/effects'
+import { all, call } from 'redux-saga/effects'
 
 import { apiWatcher } from 'sagas/api'
-import { initializeFormData, initializeAppWatcher, authWatcher } from 'sagas/initialize'
-import { validateWatcher } from 'sagas/validate'
-import { updateSubsectionWatcher } from 'sagas/form'
+import { initializeApp } from 'sagas/initialize'
 import rootSaga from './index'
 
 // Stop testing this until we've introduced canceling via log out
-describe.skip('Root saga', () => {
+describe('Root saga', () => {
   const generator = rootSaga()
 
+  it('starts the apiWatcher and the initializeApp saga', () => {
+    expect(generator.next().value).toEqual(all([
+      call(apiWatcher),
+      call(initializeApp),
+    ]))
+  })
+
+  /*
   it('starts the initializeFormData and validateWatcher sagas', () => {
     expect(generator.next().value).toEqual(all([
       apiWatcher(),
@@ -19,5 +25,5 @@ describe.skip('Root saga', () => {
       updateSubsectionWatcher(),
       authWatcher(),
     ]))
-  })
+  }) */
 })

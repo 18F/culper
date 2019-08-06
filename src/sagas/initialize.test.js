@@ -1,70 +1,137 @@
 import {
   take, takeLatest, put, all, call, race,
 } from 'redux-saga/effects'
+import { cloneableGenerator } from '@redux-saga/testing-utils'
 
 import * as actionTypes from 'constants/actionTypes'
 import { updateApplication, validateFormData } from 'actions/ApplicationActions'
-import { fetchForm } from 'actions/api'
+import { fetchStatus, fetchForm } from 'actions/api'
 
 import { env } from 'config'
 
 import {
   initializeApp,
+  handleFetchError,
   handleInitError,
   handleInitSuccess,
 
   initializeFormData,
   setFormData,
   updateSectionData,
+  handleFetchFormSuccess,
 } from './initialize'
 
 
 describe('Initialize app saga', () => {
+  const generator = cloneableGenerator(initializeApp)()
+  const initAction = {
+    type: actionTypes.INIT_APP,
+    path: '/form/history/employment',
+  }
+
+  it('responds to the INIT_APP action', () => {
+    expect(generator.next().value)
+      .toEqual(take(actionTypes.INIT_APP))
+  })
+
+  it('tries to fetch the status', () => {
+    expect(generator.next(initAction).value)
+      .toEqual(put(fetchStatus()))
+  })
+
+  it('waits for the status fetch to succeed or fail', () => {
+    expect(generator.next().value)
+      .toEqual(race({
+        data: take(actionTypes.FETCH_STATUS_SUCCESS),
+        error: take(actionTypes.FETCH_STATUS_ERROR),
+      }))
+  })
+
   describe('if not logged in', () => {
-    const generator = initializeAppWatcher()
-
-    it('responds to the INIT_APP action', () => {
-      expect(generator.next().value)
-        .toEqual(take(actionTypes.INIT_APP))
-    })
-
-    it('tries to fetch the form', () => {
-      expect(generator.next({ type: actionTypes.INIT_APP }).value)
-        .toEqual(put(fetchForm()))
-    })
-
-    it('waits for the form fetch to succeed or fail', () => {
-      expect(generator.next().value)
-        .toEqual(race({
-          data: take(actionTypes.FETCH_FORM_SUCCESS),
-          error: take(actionTypes.FETCH_FORM_ERROR),
-        }))
-    })
+    const loggedOut = generator.clone()
+    loggedOut.next()
+    loggedOut.next(initAction)
+    loggedOut.next()
 
     it('calls the init error handler', () => {
       const error = { response: { status: 401 } }
-      expect(generator.next({ error }).value)
+      expect(loggedOut.next({ error }).value)
         .toEqual(call(handleInitError, error))
     })
 
     it('is done', () => {
-      expect(generator.next().done).toBe(true)
+      expect(loggedOut.next().done).toBe(true)
     })
   })
 
   describe('if logged in', () => {
-    const generator = initializeAppWatcher()
+    const loggedIn = generator.clone()
+    loggedIn.next()
+    loggedIn.next(initAction)
+    loggedIn.next()
 
-    it('responds to the INIT_APP action', () => {
-      expect(generator.next().value)
-        .toEqual(take(actionTypes.INIT_APP))
+    it('calls the init success handler', () => {
+      const data = { response: { data: { form: 'test data' } } }
+      expect(loggedIn.next({ data }).value)
+        .toEqual(call(handleInitSuccess, data, '/form/history/employment'))
     })
 
-    it('tries to fetch the form', () => {
-      expect(generator.next({
-        type: actionTypes.INIT_APP,
-        path: '/form/history/employment',
-      }).value)
+    it('is done', () => {
+      expect(loggedIn.next().done).toBe(true)
+    })
+  })
+})
+
+describe('handleInitError function', () => {
+  const generator = handleInitError('test action')
+
+  it('calls the handleFetchError function', () => {
+    expect(generator.next().value)
+      .toEqual(call(handleFetchError, 'test action'))
+  })
+})
+
+describe('handleInitSuccess function', () => {
+  describe('if there is no response data', () => {
+    const generator = handleInitSuccess({ type: actionTypes.FETCH_STATUS_SUCCESS })
+
+    it('redirects to the error screen', () => {
+      expect(generator.next().value)
+        .toEqual(call(env.History().push, '/error'))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toBe(true)
+    })
+  })
+
+  describe('if the form is locked', () => {
+    const data = { response: { data: { Status: 'SUBMITTED' } } }
+    const path = '/form/history/employment'
+    const generator = handleInitSuccess(data, path)
+
+    it('redirects to the locked screen', () => {
+      expect(generator.next().value)
+        .toEqual(call(env.History().push, '/locked'))
+    })
+
+    it('is done', () => {
+      expect(generator.next().done).toBe(true)
+    })
+  })
+
+  describe('if the form is not locked', () => {
+    const data = { response: { data: { Status: 'INCOMPLETE' } } }
+    const path = '/form/history/employment'
+    const generator = cloneableGenerator(handleInitSuccess)(data, path)
+
+    it('displays the loader', () => {
+      expect(generator.next().value)
+        .toEqual(call(env.History().push, '/loading'))
+    })
+
+    it('fetches the form data', () => {
+      expect(generator.next().value)
         .toEqual(put(fetchForm()))
     })
 
@@ -76,45 +143,58 @@ describe('Initialize app saga', () => {
         }))
     })
 
-    it('calls the init success handler', () => {
-      const data = { response: { data: { form: 'test data' } } }
-      expect(generator.next({ data }).value)
-        .toEqual(call(handleInitSuccess, data, '/form/history/employment'))
+    describe('if the form fetch succeeds', () => {
+      const formSuccess = generator.clone()
+      const formData = { response: { data: { form: 'test form' } } }
+
+      formSuccess.next()
+      formSuccess.next()
+      formSuccess.next()
+
+      it('calls handleFetchFormSuccess', () => {
+        expect(formSuccess.next({ data: formData }).value)
+          .toEqual(call(handleFetchFormSuccess, formData, path))
+      })
     })
 
-    it('is done', () => {
-      expect(generator.next().done).toBe(true)
+    describe('if the form fetch fails', () => {
+      const formError = generator.clone()
+      const error = { response: { status: 500 } }
+
+      formError.next()
+      formError.next()
+      formError.next()
+
+      it('calls handleFetchError', () => {
+        expect(formError.next({ error }).value)
+          .toEqual(call(handleFetchError, error))
+      })
     })
   })
 })
 
-describe('handleInitSuccess function', () => {
-  const data = { response: { data: { form: 'test data' } } }
-  const path = '/form/history/employment'
-  const generator = handleInitSuccess(data, path)
-
-  it('displays the loader', () => {
-    expect(generator.next().value)
-      .toEqual(call(env.History().push, '/loading'))
-  })
+// TODO
+describe.skip('handleFetchFormSuccess function', () => {
+  /*
+  const generator = handleFetchFormSuccess()
 
   it.skip('calls the setFormData action', () => {
-    // TODO - test failing because of the cb fn. This may be changing anyways
-    const cb = () => { env.History().replace('/form/history/employment') }
+  const cb = () => { env.History().replace('/form/history/employment') }
 
-    expect(generator.next().value)
-      .toEqual(put({
-        type: actionTypes.SET_FORM_DATA,
-        data: { form: 'test data' },
-        cb,
-      }))
+  expect(generator.next().value)
+    .toEqual(put({
+      type: actionTypes.SET_FORM_DATA,
+      data: { form: 'test data' },
+      cb,
+    }))
   })
+  */
 })
 
-describe('handleInitError function', () => {
+describe('handleFetchError function', () => {
   describe('if the error is a 401 or 403', () => {
     const error = { response: { status: 401 } }
-    const generator = handleInitError({ error })
+    const generator = handleFetchError({ error })
 
     it('redirects to the Login page', () => {
       expect(generator.next().value)
@@ -128,7 +208,7 @@ describe('handleInitError function', () => {
 
   describe('if the error status is something else', () => {
     const error = { response: { status: 500 } }
-    const generator = handleInitError({ error })
+    const generator = handleFetchError({ error })
 
     it('redirects to the Error page', () => {
       expect(generator.next().value)
@@ -142,7 +222,7 @@ describe('handleInitError function', () => {
 
   describe('if the error is unknown', () => {
     const error = {}
-    const generator = handleInitError({ error })
+    const generator = handleFetchError({ error })
 
     it('redirects to the Error page', () => {
       expect(generator.next().value)

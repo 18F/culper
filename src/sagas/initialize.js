@@ -3,6 +3,7 @@ import {
 } from 'redux-saga/effects'
 
 import * as actionTypes from 'constants/actionTypes'
+import { STATUS_SUBMITTED } from 'constants/enums/applicationStatuses'
 
 import { fetchForm, fetchStatus } from 'actions/api'
 
@@ -46,58 +47,6 @@ export function* initializeFormData() {
   yield takeLatest(actionTypes.SET_FORM_DATA, setFormData)
 }
 
-/** Initialize app (on page load) */
-export function* handleInitError(action) {
-  const { error } = action
-
-  if (error && error.response) {
-    switch (error.response.status) {
-      case 401:
-      case 403:
-        yield call(env.History().push, '/login')
-        break
-      default:
-        yield call(env.History().push, '/error')
-    }
-  } else {
-    console.warn('Unknown error', error)
-    yield call(env.History().push, '/error')
-  }
-}
-
-export function* handleInitSuccess(action, path = '/form/identification/intro') {
-  const { response } = action
-  console.log('init success', action, path)
-  yield call(env.History().push, '/loading')
-
-  if (response && response.data) {
-    // Check to see if the account is locked
-    const status  = response.data
-    if (status.Status == "SUBMITTED") {
-      yield call(env.History().push, '/locked')
-      return
-    }
-    // attempt to load /form
-
-    yield put(fetchForm())
-
-    // watch for success or failure
-    const { data, error } = yield race({
-      data: take(actionTypes.FETCH_FORM_SUCCESS),
-      error: take(actionTypes.FETCH_FORM_ERROR),
-    })
-
-    if (error) {
-      yield call(handleFetchError, error)
-    } else {
-      yield call(handleFetchFormSuccess, data, path)
-    }
-  } else {
-    console.warn('Missing response', response)
-    yield call(env.History().push, '/error')
-  }
-}
-
 /** This is a somewhat generic handler for API fetch failures */
 export function* handleFetchError(action) {
   const { error } = action
@@ -133,25 +82,65 @@ export function* handleFetchFormSuccess(action, path) {
   }
 }
 
-export function* initializeAppWatcher() {
-  while (true) {
-    const initAction = yield take(actionTypes.INIT_APP)
-    const { path } = initAction
+/** Initialize app (on page load) */
+export function* handleInitError(action) {
+  yield call(handleFetchError, action)
+}
 
-    // attempt to load /status
-    yield put(fetchStatus())
+export function* handleInitSuccess(action, path = '/form/identification/intro') {
+  const { response } = action
+
+  if (response && response.data) {
+    // Check to see if the account is locked
+    const status = response.data
+    if (status.Status === STATUS_SUBMITTED) {
+      yield call(env.History().push, '/locked')
+      return
+    }
+
+    // attempt to load /form
+    yield call(env.History().push, '/loading')
+    yield put(fetchForm())
 
     // watch for success or failure
     const { data, error } = yield race({
-      data: take(actionTypes.FETCH_STATUS_SUCCESS),
-      error: take(actionTypes.FETCH_STATUS_ERROR),
+      data: take(actionTypes.FETCH_FORM_SUCCESS),
+      error: take(actionTypes.FETCH_FORM_ERROR),
     })
 
     if (error) {
-      yield call(handleInitError, error)
+      yield call(handleFetchError, error)
     } else {
-      yield call(handleInitSuccess, data, path)
+      yield call(handleFetchFormSuccess, data, path)
     }
+  } else {
+    console.warn('Missing response', response)
+    yield call(env.History().push, '/error')
+  }
+}
+
+/**
+ * Main saga entry point
+ * kicks off auto-login if logged in
+ * kicks off login screen if not
+ */
+export function* initializeApp() {
+  const initAction = yield take(actionTypes.INIT_APP)
+  const { path } = initAction
+
+  // attempt to load /status
+  yield put(fetchStatus())
+
+  // watch for success or failure
+  const { data, error } = yield race({
+    data: take(actionTypes.FETCH_STATUS_SUCCESS),
+    error: take(actionTypes.FETCH_STATUS_ERROR),
+  })
+
+  if (error) {
+    yield call(handleInitError, error)
+  } else {
+    yield call(handleInitSuccess, data, path)
   }
 }
 

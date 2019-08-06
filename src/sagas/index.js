@@ -1,19 +1,13 @@
-import { all } from 'redux-saga/effects'
+import { all, call } from 'redux-saga/effects'
 
 import { apiWatcher } from 'sagas/api'
-import { initializeFormData, initializeAppWatcher, authWatcher } from 'sagas/initialize'
-import { validateWatcher } from 'sagas/validate'
-import { updateSubsectionWatcher } from 'sagas/form'
+import { initializeApp } from 'sagas/initialize'
 
 export const selectState = state => state
 
 export default function* rootSaga() {
   yield all([
-    initializeFormData(),
-    validateWatcher(),
-    updateSubsectionWatcher(),
-    apiWatcher(),
-    initializeAppWatcher(),
-    authWatcher(),
+    call(apiWatcher),
+    call(initializeApp),
   ])
 }
