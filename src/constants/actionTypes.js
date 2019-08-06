@@ -5,6 +5,9 @@ export const SET_FORM_DATA = 'SET_FORM_DATA'
 
 export const INIT_APP = 'INIT_APP'
 
+export const RENEW_SESSION = 'RENEW_SESSION'
+export const SHOW_SESSION_WARNING = 'SHOW_SESSION_WARNING'
+
 export const LOGIN = 'LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_ERROR = 'LOGIN_ERROR'

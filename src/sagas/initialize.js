@@ -1,5 +1,5 @@
 import {
-  take, takeLatest, put, all, call, race,
+  take, takeLatest, put, all, call, race, spawn,
 } from 'redux-saga/effects'
 
 import * as actionTypes from 'constants/actionTypes'
@@ -11,6 +11,9 @@ import { updateApplication, validateFormData } from 'actions/ApplicationActions'
 import { unschema } from 'schema'
 
 import { env } from 'config'
+
+import { validateWatcher } from 'sagas/validate'
+import { updateSubsectionWatcher } from 'sagas/form'
 
 /** Setting form data on login (this might be replaced) */
 export function* updateSectionData(name, data) {
@@ -47,6 +50,28 @@ export function* initializeFormData() {
   yield takeLatest(actionTypes.SET_FORM_DATA, setFormData)
 }
 
+export function* loggedOutWatcher() {
+  const { error } = yield race({
+    success: take(actionTypes.LOGIN_SUCCESS),
+    error: take(actionTypes.LOGIN_ERROR),
+  })
+
+  if (error) {
+    // Restart the watcher for the next login attempt
+    yield call(loggedOutWatcher)
+  } else {
+    yield call(initializeApp)
+  }
+}
+
+export function* loggedInWatcher() {
+  yield all([
+    call(validateWatcher),
+    call(updateSubsectionWatcher),
+    call(initializeFormData),
+  ])
+}
+
 /** This is a somewhat generic handler for API fetch failures */
 export function* handleFetchError(action) {
   const { error } = action
@@ -55,6 +80,7 @@ export function* handleFetchError(action) {
     switch (error.response.status) {
       case 401:
       case 403:
+        yield spawn(loggedOutWatcher)
         yield call(env.History().push, '/login')
         break
       default:
@@ -98,6 +124,9 @@ export function* handleInitSuccess(action, path = '/form/identification/intro') 
       return
     }
 
+    // start watching for logged in events
+    yield spawn(loggedInWatcher)
+
     // attempt to load /form
     yield call(env.History().push, '/loading')
     yield put(fetchForm())
@@ -119,15 +148,7 @@ export function* handleInitSuccess(action, path = '/form/identification/intro') 
   }
 }
 
-/**
- * Main saga entry point
- * kicks off auto-login if logged in
- * kicks off login screen if not
- */
-export function* initializeApp() {
-  const initAction = yield take(actionTypes.INIT_APP)
-  const { path } = initAction
-
+export function* initializeApp(path) {
   // attempt to load /status
   yield put(fetchStatus())
 
@@ -144,23 +165,13 @@ export function* initializeApp() {
   }
 }
 
-/** Login/logout flow */
-// TODO - need to add session timeout piece
-export function* authWatcher() {
-  while (true) {
-    const { error } = yield race({
-      success: take(actionTypes.LOGIN_SUCCESS),
-      error: take(actionTypes.LOGIN_ERROR),
-    })
-
-    if (error) {
-      // TODO - handle login/auth errors here
-      yield
-    } else {
-      // login successful - try and appInit again
-      yield put({
-        type: actionTypes.INIT_APP,
-      })
-    }
-  }
+/**
+ * Main saga entry point
+ * kicks off auto-login if logged in
+ * kicks off login screen if not
+ */
+export function* initializeAppWatcher() {
+  const initAction = yield take(actionTypes.INIT_APP)
+  const { path } = initAction
+  yield call(initializeApp, path)
 }

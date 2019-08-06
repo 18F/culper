@@ -9,9 +9,7 @@ import { validateSection } from 'helpers/validation'
 import { nestedFormSectionsSelector } from 'selectors/navigation'
 import { formTypeSelector } from 'selectors/formType'
 
-import {
-  selectState,
-} from 'sagas/index'
+import { selectState } from 'sagas/selectors'
 
 export function* updateSectionStatus(section, store = '', state = {}) {
   if (!section.subsections && !section.storeKey) {

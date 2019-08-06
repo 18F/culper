@@ -1,5 +1,5 @@
 import {
-  take, takeLatest, put, all, call, race,
+  take, takeLatest, put, all, call, race, spawn,
 } from 'redux-saga/effects'
 import { cloneableGenerator } from '@redux-saga/testing-utils'
 
@@ -9,11 +9,17 @@ import { fetchStatus, fetchForm } from 'actions/api'
 
 import { env } from 'config'
 
+import { validateWatcher } from 'sagas/validate'
+import { updateSubsectionWatcher } from 'sagas/form'
+
 import {
+  initializeAppWatcher,
   initializeApp,
   handleFetchError,
   handleInitError,
   handleInitSuccess,
+  loggedOutWatcher,
+  loggedInWatcher,
 
   initializeFormData,
   setFormData,
@@ -22,20 +28,35 @@ import {
 } from './initialize'
 
 
-describe('Initialize app saga', () => {
-  const generator = cloneableGenerator(initializeApp)()
+describe('initializeAppWatcher', () => {
+  const generator = initializeAppWatcher()
+
   const initAction = {
     type: actionTypes.INIT_APP,
     path: '/form/history/employment',
   }
 
-  it('responds to the INIT_APP action', () => {
+  it('waits for the INIT_APP action', () => {
     expect(generator.next().value)
       .toEqual(take(actionTypes.INIT_APP))
   })
 
-  it('tries to fetch the status', () => {
+  it('calls the initializeApp saga with the path', () => {
     expect(generator.next(initAction).value)
+      .toEqual(call(initializeApp, '/form/history/employment'))
+  })
+
+  it('is done', () => {
+    expect(generator.next().done).toEqual(true)
+  })
+})
+
+describe('Initialize app saga', () => {
+  const path = '/form/history/employment'
+  const generator = cloneableGenerator(initializeApp)(path)
+
+  it('tries to fetch the status', () => {
+    expect(generator.next().value)
       .toEqual(put(fetchStatus()))
   })
 
@@ -50,7 +71,6 @@ describe('Initialize app saga', () => {
   describe('if not logged in', () => {
     const loggedOut = generator.clone()
     loggedOut.next()
-    loggedOut.next(initAction)
     loggedOut.next()
 
     it('calls the init error handler', () => {
@@ -67,7 +87,6 @@ describe('Initialize app saga', () => {
   describe('if logged in', () => {
     const loggedIn = generator.clone()
     loggedIn.next()
-    loggedIn.next(initAction)
     loggedIn.next()
 
     it('calls the init success handler', () => {
@@ -125,6 +144,11 @@ describe('handleInitSuccess function', () => {
     const path = '/form/history/employment'
     const generator = cloneableGenerator(handleInitSuccess)(data, path)
 
+    it('spawns the loggedInWatcher', () => {
+      expect(generator.next().value)
+        .toEqual(spawn(loggedInWatcher))
+    })
+
     it('displays the loader', () => {
       expect(generator.next().value)
         .toEqual(call(env.History().push, '/loading'))
@@ -150,6 +174,7 @@ describe('handleInitSuccess function', () => {
       formSuccess.next()
       formSuccess.next()
       formSuccess.next()
+      formSuccess.next()
 
       it('calls handleFetchFormSuccess', () => {
         expect(formSuccess.next({ data: formData }).value)
@@ -161,6 +186,7 @@ describe('handleInitSuccess function', () => {
       const formError = generator.clone()
       const error = { response: { status: 500 } }
 
+      formError.next()
       formError.next()
       formError.next()
       formError.next()
@@ -195,6 +221,11 @@ describe('handleFetchError function', () => {
   describe('if the error is a 401 or 403', () => {
     const error = { response: { status: 401 } }
     const generator = handleFetchError({ error })
+
+    it('spawns the loggedOutWatcher', () => {
+      expect(generator.next().value)
+        .toEqual(spawn(loggedOutWatcher))
+    })
 
     it('redirects to the Login page', () => {
       expect(generator.next().value)
@@ -232,6 +263,54 @@ describe('handleFetchError function', () => {
     it('is done', () => {
       expect(generator.next().done).toBe(true)
     })
+  })
+})
+
+describe('The loggedOutWatcher', () => {
+  const generator = cloneableGenerator(loggedOutWatcher)()
+
+  it('waits for a LOGIN_SUCCESS or LOGIN_ERROR', () => {
+    expect(generator.next().value)
+      .toEqual(race({
+        success: take(actionTypes.LOGIN_SUCCESS),
+        error: take(actionTypes.LOGIN_ERROR),
+      }))
+  })
+
+  describe('if login is successful', () => {
+    const success = generator.clone()
+    success.next()
+
+    it('initializes the app', () => {
+      expect(success.next({ success: { type: actionTypes.LOGIN_SUCCESS } }).value)
+        .toEqual(call(initializeApp))
+    })
+  })
+
+  describe('if login fails', () => {
+    const failed = generator.clone()
+    failed.next()
+
+    it('restarts the loggedOutWatcher', () => {
+      expect(failed.next({ error: { type: actionTypes.LOGIN_ERROR } }).value)
+        .toEqual(call(loggedOutWatcher))
+    })
+
+    it('is done', () => {
+      expect(failed.next().done).toEqual(true)
+    })
+  })
+})
+
+describe('The loggedInWatcher', () => {
+  const generator = loggedInWatcher()
+
+  it('starts the form data watchers', () => {
+    expect(generator.next().value).toEqual(all([
+      call(validateWatcher),
+      call(updateSubsectionWatcher),
+      call(initializeFormData),
+    ]))
   })
 })
 

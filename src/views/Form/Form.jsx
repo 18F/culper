@@ -145,7 +145,7 @@ class Form extends React.Component {
         <div id="info">
           <Section section={params.section} subsection={subsection} />
           <SavedIndicator interval="30000" />
-          <TimeoutWarning timeout={env.SessionTimeout()} />
+          {/* <TimeoutWarning timeout={env.SessionTimeout()} /> */}
         </div>
       </div>
     )

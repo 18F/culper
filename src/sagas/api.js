@@ -29,7 +29,6 @@ export function* login({ username, password }) {
     const response = yield call(api.login, username, password)
     yield put(handleLoginSuccess(response))
   } catch (error) {
-    console.log('login failed', error, username, password)
     yield put(handleLoginError(error))
   }
 }
