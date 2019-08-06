@@ -69,7 +69,7 @@ describe('Drug Voluntary Treatment Validation', () => {
                     layout: Location.ADDRESS,
                   },
                   TreatmentProviderTelephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     timeOfDay: 'Both',

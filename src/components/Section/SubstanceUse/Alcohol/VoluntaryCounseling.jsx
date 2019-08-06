@@ -9,7 +9,7 @@ import {
   Textarea,
   Branch,
   Show,
-  Telephone
+  Telephone,
 } from '../../../Form'
 
 export default class VoluntaryCounseling extends ValidationElement {
@@ -43,7 +43,7 @@ export default class VoluntaryCounseling extends ValidationElement {
         CompletedTreatment: this.props.CompletedTreatment,
         NoCompletedTreatmentExplanation: this.props
           .NoCompletedTreatmentExplanation,
-        ...updateValues
+        ...updateValues,
       })
     }
   }
@@ -79,9 +79,10 @@ export default class VoluntaryCounseling extends ValidationElement {
           title={i18n.t(
             'substance.alcohol.voluntaryCounseling.heading.counselingDates'
           )}
-          help={'substance.alcohol.voluntaryCounseling.help.counselingDates'}
+          help="substance.alcohol.voluntaryCounseling.help.counselingDates"
           adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="CounselingDates"
             className="counseling-dates"
@@ -96,7 +97,8 @@ export default class VoluntaryCounseling extends ValidationElement {
           title={i18n.t(
             'substance.alcohol.voluntaryCounseling.heading.treatmentProviderName'
           )}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="TreatmentProviderName"
             className="treatment-provider-name"
@@ -112,10 +114,9 @@ export default class VoluntaryCounseling extends ValidationElement {
           )}
           optional={true}
           adjustFor="address"
-          help={
-            'substance.alcohol.voluntaryCounseling.help.treatmentProviderAddress'
-          }
-          scrollIntoView={this.props.scrollIntoView}>
+          help="substance.alcohol.voluntaryCounseling.help.treatmentProviderAddress"
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="TreatmentProviderAddress"
             className="provider-address"
@@ -135,17 +136,17 @@ export default class VoluntaryCounseling extends ValidationElement {
           title={i18n.t(
             'substance.alcohol.voluntaryCounseling.heading.treatmentProviderTelephone'
           )}
-          help={
-            'substance.alcohol.voluntaryCounseling.help.treatmentProviderTelephone'
-          }
+          help="substance.alcohol.voluntaryCounseling.help.treatmentProviderTelephone"
           className="override-required"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Telephone
             name="TreatmentProviderTelephone"
             className="provider-telephone"
             {...this.props.TreatmentProviderTelephone}
             onUpdate={this.updateTreatmentProviderTelephone}
             onError={this.props.onError}
+            allowNotApplicable={false}
             required={this.props.required}
           />
         </Field>
@@ -170,7 +171,8 @@ export default class VoluntaryCounseling extends ValidationElement {
               'substance.alcohol.voluntaryCounseling.heading.noCompletedTreatment'
             )}
             titleSize="label"
-            scrollIntoView={this.props.scrollIntoView}>
+            scrollIntoView={this.props.scrollIntoView}
+          >
             <Textarea
               name="NoCompletedTreatmentExplanation"
               className="no-completed-treatment"
@@ -189,8 +191,6 @@ export default class VoluntaryCounseling extends ValidationElement {
 VoluntaryCounseling.defaultProps = {
   CompletedTreatment: {},
   addressBooks: {},
-  dispatch: action => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  dispatch: (action) => {},
+  onError: (value, arr) => arr,
 }

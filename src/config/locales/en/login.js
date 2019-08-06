@@ -29,10 +29,10 @@ export const login = {
     }
   },
   denied: {
-    title: "We couldn't log you in",
+    title: "We could not find your application with the information provided.",
     para: [
-      "Looks like your access hasn't been approved for this form.",
-      'If this message was received in error contact [email@gov.gov](mailto:email@gov.gov) or try loggin in again below.'
+      "The email you provided is not associated with an active account.",
+      "Contact the National Background Investigation Service help line at ###-###-#### if you believe this message was received in error or try logging in again below."
     ],
     button: 'Log in'
   },

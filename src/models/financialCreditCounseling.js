@@ -6,7 +6,7 @@ const financialCreditCounseling = {
   Name: { presence: true, hasValue: true },
   Telephone: {
     presence: true,
-    model: { validator: phone },
+    model: { validator: phone, requireNumber: true },
   },
   Location: {
     presence: true,
