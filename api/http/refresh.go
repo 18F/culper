@@ -16,18 +16,7 @@ type RefreshHandler struct {
 // ServeHTTP refreshes a given token.
 func (service RefreshHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
-	// Get account information
-	_, _ = AccountAndSessionFromRequestContext(r)
+	// This API is a no-op but the session middleware will extend the session
+	service.Log.Info(api.SessionRefreshed, api.LogFields{})
 
-	// Generate a new token
-	// signedToken, _, err := service.Token.NewToken(account.ID, service.Token.SessionIndex(r), service.Token.CurrentAudience(r))
-
-	// if err != nil {
-	// 	service.Log.WarnError(api.JWTError, err, api.LogFields{})
-	// 	RespondWithStructuredError(w, api.JWTError, http.StatusInternalServerError)
-	// 	return
-	// }
-
-	// // Send the new token with a more recent expiration
-	// fmt.Fprintf(w, signedToken)
 }
