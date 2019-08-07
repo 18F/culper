@@ -3,12 +3,11 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import Cookies from 'js-cookie'
 
 import i18n from 'util/i18n'
 import { env } from 'config'
-import { api, getQueryValue, deleteCookie } from 'services'
-import { login, handleLoginSuccess } from 'actions/AuthActions'
+import { api, getQueryValue } from 'services'
+import { login } from 'actions/AuthActions'
 import * as errorCodes from 'constants/errorCodes'
 import { Consent } from 'components/Form'
 
@@ -66,23 +65,7 @@ export class Login extends React.Component {
   }
 
   redirect() {
-    const { authenticated, history, dispatch } = this.props
-
-    // If user is authenticated, redirect to home page
-    if (authenticated) {
-      history.push('/loading')
-      return
-    }
-
-    // transfer the token from the cookie to the window - SAML only
-    const token = Cookies.get('token')
-    if (token) {
-      deleteCookie('token')
-      api.setToken(token)
-      dispatch(handleLoginSuccess())
-      history.push('/loading')
-      return
-    }
+    const { history } = this.props
 
     const err = getQueryValue(window.location.search, 'error')
     if (err) {

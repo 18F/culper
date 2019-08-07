@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
 import env from '../config/environment'
 
 const getSplitValue = (key, raw, delim1, delim2) => {
@@ -21,16 +20,6 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 
 export const getQueryValue = (queryString, key) => getSplitValue(key, queryString.substring(1), '&', '=')
 
-export const deleteCookie = (name) => {
-  const domain = process.env.COOKIE_DOMAIN || window.location.hostname
-  Cookies.remove(name, { domain })
-  if (Cookies.get(name)) {
-    console.warn(
-      `${name} cookie couldn't be removed - check that domain matches, etc.`
-    )
-  }
-}
-
 class Api {
   constructor() {
     this.proxy = axios.create({
@@ -40,16 +29,6 @@ class Api {
     })
 
     this.proxy.interceptors.response.use(this.handleResponseSuccess, this.handleResponseError)
-  }
-
-  getToken = () => window.token
-
-  setToken = (token) => {
-    window.token = token
-  }
-
-  bearerToken() {
-    return { Authorization: `Bearer ${this.getToken()}` }
   }
 
   handleResponseSuccess = response => response
@@ -63,25 +42,17 @@ class Api {
     return this.proxy.get('/')
   }
 
-  get(endpoint, secure = true, headers = {}) {
-    const h = secure
-      ? { headers: { ...headers, ...this.bearerToken() } }
-      : headers
-
-    return this.proxy.get(endpoint, h)
+  get(endpoint) {
+    return this.proxy.get(endpoint)
   }
 
-  post(endpoint, params = {}, secure = true, headers = {}) {
-    const h = secure
-      ? { headers: { ...headers, ...this.bearerToken() } }
-      : headers
-
-    return this.proxy.post(endpoint, params, h)
+  post(endpoint, params = {}) {
+    return this.proxy.post(endpoint, params)
   }
 
   /** AUTH */
   saml() {
-    return this.get(env.EndpointSaml(), false)
+    return this.get(env.EndpointSaml())
   }
 
   samlSLO() {
@@ -91,7 +62,6 @@ class Api {
   login = (username, password) => this.post(
     env.EndpointBasicAuthentication(),
     { username, password },
-    false
   )
 
   logout = () => this.get(env.EndpointLogout())
@@ -103,17 +73,13 @@ class Api {
     return this.post(env.EndpointSave(), payload)
   }
 
-  status = () => {
-    return this.get(env.EndpointStatus())
-  }
+  status = () => this.get(env.EndpointStatus())
 
   submit() {
     return this.post(env.EndpointSubmit())
   }
 
-  form = () => {
-    return this.get(env.EndpointForm())
-  }
+  form = () => this.get(env.EndpointForm())
 
   validate(payload) {
     return this.post(env.EndpointValidate(), payload)

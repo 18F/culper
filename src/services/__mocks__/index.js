@@ -1,4 +1,4 @@
-import { getQueryValue, deleteCookie } from '../api'
+import { getQueryValue } from '../api'
 
 const api = {
   listAttachments: () => new Promise(res => res({ data: [] })),
@@ -7,5 +7,4 @@ const api = {
 export {
   api,
   getQueryValue,
-  deleteCookie,
 }

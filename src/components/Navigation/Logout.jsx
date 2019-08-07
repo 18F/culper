@@ -16,7 +16,7 @@ class Logout extends React.Component {
   }
 
   componentWillMount() {
-    if (env.SamlEnabled() && env.SamlSLOEnabled()) {
+    if (env.SamlEnabled()) {
       api.samlSLO().then((response) => {
         this.setState({ saml: response.data || {} })
       })
@@ -69,7 +69,7 @@ class Logout extends React.Component {
   render() {
     const { saml } = this.state
 
-    if (env.SamlEnabled() && !env.SamlSLOEnabled() && saml) {
+    if (env.SamlEnabled() && saml) {
       return this.logoutSAML()
     }
 
