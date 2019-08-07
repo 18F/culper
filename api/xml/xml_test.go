@@ -277,6 +277,7 @@ func TestScenario2(t *testing.T) {
 // * a foreign contact where `I don't know` specified for
 //   birthplace, birthdate, employer, employer address,
 //   affiliations, address
+// * At the end of the form in Review, this test case has additional comments.
 func TestScenario3(t *testing.T) {
 	executeScenario(t, "test3")
 }
