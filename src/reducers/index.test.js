@@ -6,7 +6,6 @@ describe('Root Reducer', () => {
     application: {
       AddressBooks: {},
       Citizenship: {},
-      Comments: {},
       Completed: {},
       Errors: {},
       Financial: {},
@@ -15,6 +14,7 @@ describe('Root Reducer', () => {
       Identification: {},
       Legal: {},
       Military: {},
+      Package: {},
       Psychological: {},
       Relationships: {},
       Settings: {
