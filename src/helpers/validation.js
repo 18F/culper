@@ -90,6 +90,8 @@ import { validateConsultations } from 'validators/consultation'
 import { validateHospitalizations } from 'validators/hospitalization'
 import { validateDiagnoses } from 'validators/diagnoses'
 import { validateExistingConditions } from 'validators/existingconditions'
+// PACKAGE
+import validatePackageComments from 'validators/packagecomments'
 
 // Map sections to their validator classes (temporary)
 export const getValidatorForSection = (section) => {
@@ -330,7 +332,8 @@ export const getValidatorForSection = (section) => {
 
     case sections.PSYCHOLOGICAL_CONDITIONS:
       return validateExistingConditions
-
+    case sections.REVIEW_AND_SUBMIT_COMMENTS:
+      return validatePackageComments
     default:
       console.warn(`Validator for ${section} section not found`)
       return null
