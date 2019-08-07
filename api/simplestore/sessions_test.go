@@ -2,6 +2,7 @@ package simplestore
 
 import (
 	"database/sql"
+	"fmt"
 	"testing"
 	"time"
 
@@ -76,7 +77,7 @@ func TestFetchSessionReturnsAccountAndSessionOnValidSession(t *testing.T) {
 	}
 
 	if actualAccount != account {
-		t.Fatal("actual returned account does not match expected returned account")
+		t.Fatal(fmt.Sprintf("actual returned account does not match expected returned account:\n%v\n%v", actualAccount, account))
 	}
 
 	if !(actualSession.AccountID == account.ID && actualSession.SessionKey == sessionKey && actualSession.SessionIndex == NullString()) {
