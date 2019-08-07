@@ -11,15 +11,26 @@ import SectionNavigation from 'components/Section/shared/SectionNavigation'
 
 const PackageComments = (props) => {
   const {
-    HasComments, Comments, required, dispatch, location,
+    Comments, required, dispatch, location,
   } = props
 
   const updateBranch = (values) => {
-    dispatch(updateApplication('Comments', 'HasComments', values))
+    dispatch(updateApplication(
+      'Package',
+      'Comments',
+      { HasComments: values },
+    ))
   }
 
   const updateComments = (values) => {
-    dispatch(updateApplication('Comments', 'Comments', values))
+    dispatch(updateApplication(
+      'Package',
+      'Comments',
+      {
+        ...Comments,
+        Comments: values,
+      },
+    ))
   }
 
   return (
@@ -32,12 +43,12 @@ const PackageComments = (props) => {
           name="has_comments"
           label={i18n.t('review.commentsBranchLabel')}
           labelSize="h4"
-          {...HasComments}
+          {...Comments.HasComments}
           warning={true}
           required={required}
           onUpdate={updateBranch}
         />
-        <Show when={HasComments && HasComments.value === 'Yes'}>
+        <Show when={Comments.HasComments && Comments.HasComments.value === 'Yes'}>
           <Field
             title={i18n.t('review.commentsTitle')}
             adjustFor="textarea"
@@ -48,7 +59,7 @@ const PackageComments = (props) => {
             </label>
             <Textarea
               name="Comments"
-              {...Comments}
+              {...Comments.Comments}
               required={required}
               onUpdate={updateComments}
             />
@@ -79,9 +90,9 @@ PackageComments.defaultProps = {
 
 const mapStateToProps = (state) => {
   const { application } = state
-  const { Comments } = application
+  const { Package } = application
 
-  return { ...Comments }
+  return { ...Package }
 }
 
 export default connect(mapStateToProps)(PackageComments)

@@ -38,7 +38,7 @@ export default combineReducers({
   Legal: reducer('Legal', {}),
   Psychological: reducer('Psychological', {}),
   Substance: reducer('Substance', {}),
-  Comments: reducer('Comments', {}),
+  Package: reducer('Package', {}),
   Submission: reducer('Submission', {}),
   Completed: errorReducer('Completed', {}),
   Errors: errorReducer('Errors', {}),

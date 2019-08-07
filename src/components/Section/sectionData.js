@@ -885,7 +885,7 @@ const sectionData = (section, subsection, application = {}) => {
       return [
         {
           path: 'package/comments',
-          data: wrap(application.Comments),
+          data: wrap(application.Package).Comments,
         },
       ]
 
