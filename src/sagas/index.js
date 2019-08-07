@@ -1,3 +1,4 @@
+/* eslint import/no-cycle: 0 */
 import { all, call } from 'redux-saga/effects'
 
 import { apiWatcher } from 'sagas/api'

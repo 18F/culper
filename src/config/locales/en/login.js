@@ -3,7 +3,7 @@
 export const login = {
   title: 'Welcome to the Questionnaire for\nNational Background Investigation Services',
   error: {
-    title: "Sorry, but we couldn't log you in!",
+    title: 'Sorry, but we couldn’t log you in!',
     generic: 'The username or password was incorrect.',
     network: 'Sorry, there was a network error during your attempt to login.',
     unknown: 'Sorry, an unknown error {{status}} occurred.',
@@ -34,10 +34,10 @@ export const login = {
     },
   },
   denied: {
-    title: "We could not find your application with the information provided.",
+    title: 'We could not find your application with the information provided.',
     para: [
-      "The email you provided is not associated with an active account.",
-      "Contact the National Background Investigation Service help line at ###-###-#### if you believe this message was received in error or try logging in again below."
+      'The email you provided is not associated with an active account.',
+      'Contact the National Background Investigation Service help line at ###-###-#### if you believe this message was received in error or try logging in again below.',
     ],
     button: 'Log in',
   },

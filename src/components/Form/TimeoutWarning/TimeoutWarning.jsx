@@ -108,7 +108,6 @@ function mapStateToProps(state) {
   return {
     application,
     section,
-    lastRefresh: application.Settings.lastRefresh,
   }
 }
 

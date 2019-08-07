@@ -28,8 +28,7 @@ class Loading extends React.Component {
           { spinner: true, spinnerAction: SpinnerAction.Grow },
           () => {
             timeout(() => {
-              console.log('done')
-              // this.props.history.push('/form/identification/intro')
+              // TODO - push to new route here
             }, 1000)
           }
         )

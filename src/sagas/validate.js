@@ -1,3 +1,4 @@
+/* eslint import/no-cycle: 0 */
 import {
   takeLatest, select, put, all, call,
 } from 'redux-saga/effects'
