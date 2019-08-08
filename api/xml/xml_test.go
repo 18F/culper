@@ -278,6 +278,9 @@ func TestScenario2(t *testing.T) {
 // * a foreign contact where `I don't know` specified for
 //   birthplace, birthdate, employer, employer address,
 //   affiliations, address
+// * #12.4 People Who Knew You - When a education item is
+//   within 3 years, that item needs a reference/verifier.
+//   However, that person does not need a name nor an email.
 // * At the end of the form in Review, this test case has additional comments.
 func TestScenario3(t *testing.T) {
 	executeScenario(t, "test3")

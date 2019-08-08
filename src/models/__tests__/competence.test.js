@@ -5,7 +5,7 @@ describe('The competence model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'IsIncompetent.required',
+      'IsIncompetent.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, competence))
@@ -17,7 +17,7 @@ describe('The competence model', () => {
       IsIncompetent: { value: 'invalid' },
     }
     const expectedErrors = [
-      'IsIncompetent.hasValue',
+      'IsIncompetent.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, competence))
@@ -30,7 +30,7 @@ describe('The competence model', () => {
         IsIncompetent: { value: 'Yes' },
       }
       const expectedErrors = [
-        'List.required',
+        'List.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, competence))
@@ -43,7 +43,7 @@ describe('The competence model', () => {
         List: { test: 'invalid' },
       }
       const expectedErrors = [
-        'List.accordion',
+        'List.accordion.INVALID_BRANCH',
       ]
 
       expect(validateModel(testData, competence))
@@ -65,7 +65,10 @@ describe('The competence model', () => {
         },
       }
       const expectedErrors = [
-        'List.accordion',
+        'List.accordion.0.CourtName.presence.REQUIRED',
+        'List.accordion.0.CourtAddress.presence.REQUIRED',
+        'List.accordion.0.Occurred.presence.REQUIRED',
+        'List.accordion.0.Appeals.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, competence))
@@ -129,7 +132,7 @@ describe('The competence model', () => {
         IsIncompetent: { value: 'No' },
       }
       const expectedErrors = [
-        'List.required',
+        'List.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, competence))

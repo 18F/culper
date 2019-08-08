@@ -6,7 +6,7 @@ describe('The military history model', () => {
     const testData = {
       HasServed: {},
     }
-    const expectedErrors = ['HasServed.required']
+    const expectedErrors = ['HasServed.presence.REQUIRED']
 
     expect(validateModel(testData, militaryHistory))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -18,7 +18,7 @@ describe('The military history model', () => {
         value: 'Yes',
       },
     }
-    const expectedErrors = ['List.required']
+    const expectedErrors = ['List.presence.REQUIRED']
 
     expect(validateModel(testData, militaryHistory))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -30,7 +30,7 @@ describe('The military history model', () => {
         value: 'Yaaas',
       },
     }
-    const expectedErrors = ['HasServed.hasValue']
+    const expectedErrors = ['HasServed.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, militaryHistory))
       .toEqual(expect.arrayContaining(expectedErrors))

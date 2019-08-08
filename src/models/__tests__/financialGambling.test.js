@@ -5,10 +5,10 @@ describe('The financial gambling model', () => {
   it('has required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Dates.required',
-      'Losses.required',
-      'Description.required',
-      'Actions.required',
+      'Dates.presence.REQUIRED',
+      'Losses.presence.REQUIRED',
+      'Description.presence.REQUIRED',
+      'Actions.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, financialGambling))
@@ -22,7 +22,9 @@ describe('The financial gambling model', () => {
       },
     }
 
-    const expectedErrors = ['Losses.hasValue']
+    const expectedErrors = [
+      'Losses.hasValue.value.numericality.INVALID_NUMBER',
+    ]
 
     expect(validateModel(testData, financialGambling))
       .toEqual(expect.arrayContaining(expectedErrors))

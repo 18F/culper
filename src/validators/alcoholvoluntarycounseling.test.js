@@ -1,9 +1,9 @@
 import VoluntaryCounselingsValidator, {
-  VoluntaryCounselingValidator
+  VoluntaryCounselingValidator,
 } from './alcoholvoluntarycounseling'
 import Location from '../components/Form/Location'
 
-describe('ordered counseling component validation', function() {
+describe('ordered counseling component validation', () => {
   it('can validate ordered counseling', () => {
     const tests = [
       {
@@ -12,17 +12,17 @@ describe('ordered counseling component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
+            present: false,
           },
           TreatmentProviderName: {
-            value: 'The name'
+            value: 'The name',
           },
           TreatmentProviderAddress: {
             country: { value: 'United States' },
@@ -30,22 +30,22 @@ describe('ordered counseling component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           TreatmentProviderTelephone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             numberType: 'Home',
             timeOfDay: 'Both',
             type: 'Domestic',
-            extension: ''
+            extension: '',
           },
-          CompletedTreatment: { value: 'Yes' }
+          CompletedTreatment: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new VoluntaryCounselingValidator(test.state).isValid()).toBe(
         test.expected
       )
@@ -56,27 +56,27 @@ describe('ordered counseling component validation', function() {
     const tests = [
       {
         state: {
-          CompletedTreatment: { value: 'Yes' }
+          CompletedTreatment: { value: 'Yes' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           CompletedTreatment: { value: 'No' },
           NoCompletedTreatmentExplanation: {
-            value: 'Foo'
-          }
+            value: 'Foo',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          CompletedTreatment: { value: 'Nope' }
+          CompletedTreatment: { value: 'Nope' },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new VoluntaryCounselingValidator(test.state).validCompletedTreatment()
       ).toBe(test.expected)
@@ -97,17 +97,17 @@ describe('ordered counseling component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   TreatmentProviderName: {
-                    value: 'The name'
+                    value: 'The name',
                   },
                   TreatmentProviderAddress: {
                     country: { value: 'United States' },
@@ -115,62 +115,62 @@ describe('ordered counseling component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   TreatmentProviderTelephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     type: 'Domestic',
                     timeOfDay: 'Both',
-                    extension: ''
+                    extension: '',
                   },
-                  CompletedTreatment: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  CompletedTreatment: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          SoughtTreatment: { value: 'No' }
+          SoughtTreatment: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          SoughtTreatment: { value: 'Yes' },
-          List: {
-            branch: { value: '' },
-            items: []
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           SoughtTreatment: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: [{}]
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
+      },
+      {
+        state: {
+          SoughtTreatment: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}],
+          },
+        },
+        expected: false,
       },
       {
         state: {
           SoughtTreatment: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{ Item: {} }]
-          }
+            items: [{ Item: {} }],
+          },
         },
-        expected: false
-      }
+        expected: false,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new VoluntaryCounselingsValidator(test.state).isValid()).toBe(
         test.expected
       )

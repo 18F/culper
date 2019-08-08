@@ -5,10 +5,10 @@ describe('The manipulatingTech model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Date.required',
-      'Incident.required',
-      'Location.required',
-      'Action.required',
+      'Date.presence.REQUIRED',
+      'Incident.presence.REQUIRED',
+      'Location.presence.REQUIRED',
+      'Action.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, manipulatingTech))
@@ -19,7 +19,11 @@ describe('The manipulatingTech model', () => {
     const testData = {
       Date: 12345,
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = [
+      'Date.date.day.presence.REQUIRED',
+      'Date.date.month.presence.REQUIRED',
+      'Date.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, manipulatingTech))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -29,7 +33,7 @@ describe('The manipulatingTech model', () => {
     const testData = {
       Incident: 'test incident',
     }
-    const expectedErrors = ['Incident.hasValue']
+    const expectedErrors = ['Incident.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, manipulatingTech))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -39,7 +43,11 @@ describe('The manipulatingTech model', () => {
     const testData = {
       Location: '123 Main St',
     }
-    const expectedErrors = ['Location.location']
+    const expectedErrors = [
+      'Location.location.street.presence.REQUIRED',
+      'Location.location.city.presence.REQUIRED',
+      'Location.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, manipulatingTech))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -49,7 +57,7 @@ describe('The manipulatingTech model', () => {
     const testData = {
       Action: 'test',
     }
-    const expectedErrors = ['Action.hasValue']
+    const expectedErrors = ['Action.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, manipulatingTech))
       .toEqual(expect.arrayContaining(expectedErrors))

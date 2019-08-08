@@ -4,7 +4,7 @@ import streetCityCountry from '../streetCityCountry'
 describe('The location/streetCityCountry model', () => {
   it('street is required', () => {
     const testData = { street: '' }
-    const expectedErrors = ['street.required']
+    const expectedErrors = ['street.presence.REQUIRED']
 
     expect(validateModel(testData, streetCityCountry))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -12,7 +12,7 @@ describe('The location/streetCityCountry model', () => {
 
   it('city is required', () => {
     const testData = { city: '' }
-    const expectedErrors = ['city.required']
+    const expectedErrors = ['city.presence.REQUIRED']
 
     expect(validateModel(testData, streetCityCountry))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -20,7 +20,7 @@ describe('The location/streetCityCountry model', () => {
 
   it('country is required', () => {
     const testData = { country: '' }
-    const expectedErrors = ['country.required']
+    const expectedErrors = ['country.presence.REQUIRED']
 
     expect(validateModel(testData, streetCityCountry))
       .toEqual(expect.arrayContaining(expectedErrors))

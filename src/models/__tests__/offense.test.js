@@ -4,7 +4,7 @@ import offense from '../offense'
 describe('The offense model', () => {
   it('the Date field is required', () => {
     const testData = {}
-    const expectedErrors = ['Date.required']
+    const expectedErrors = ['Date.presence.REQUIRED']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,11 @@ describe('The offense model', () => {
     const testData = {
       Date: 'not a date',
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = [
+      'Date.date.day.presence.REQUIRED',
+      'Date.date.month.presence.REQUIRED',
+      'Date.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +26,7 @@ describe('The offense model', () => {
 
   it('the Description field is required', () => {
     const testData = {}
-    const expectedErrors = ['Description.required']
+    const expectedErrors = ['Description.presence.REQUIRED']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -30,7 +34,7 @@ describe('The offense model', () => {
 
   it('the Description field must have a value', () => {
     const testData = { Description: 'something' }
-    const expectedErrors = ['Description.hasValue']
+    const expectedErrors = ['Description.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -38,7 +42,7 @@ describe('The offense model', () => {
 
   it('the InvolvedViolence field must have a valid value', () => {
     const testData = { InvolvedViolence: { value: 'true' } }
-    const expectedErrors = ['InvolvedViolence.hasValue']
+    const expectedErrors = ['InvolvedViolence.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -46,7 +50,7 @@ describe('The offense model', () => {
 
   it('the InvolvedFirearms field must have a valid value', () => {
     const testData = { InvolvedFirearms: { value: 'false' } }
-    const expectedErrors = ['InvolvedFirearms.hasValue']
+    const expectedErrors = ['InvolvedFirearms.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -54,7 +58,7 @@ describe('The offense model', () => {
 
   it('the InvolvedSubstances field must have a valid value', () => {
     const testData = { InvolvedSubstances: { value: 100 } }
-    const expectedErrors = ['InvolvedSubstances.hasValue']
+    const expectedErrors = ['InvolvedSubstances.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -62,7 +66,7 @@ describe('The offense model', () => {
 
   it('the Address field is required', () => {
     const testData = { Address: null }
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -70,7 +74,10 @@ describe('The offense model', () => {
 
   it('the Address field must be a valid address', () => {
     const testData = { Address: { street: '123 Offense St' } }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -78,7 +85,7 @@ describe('The offense model', () => {
 
   it('the WasCited field must have a valid value', () => {
     const testData = { WasCited: { value: true } }
-    const expectedErrors = ['WasCited.hasValue']
+    const expectedErrors = ['WasCited.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -89,7 +96,7 @@ describe('The offense model', () => {
       const testData = {
         WasCited: { value: 'Yes' },
       }
-      const expectedErrors = ['CitedBy.required']
+      const expectedErrors = ['CitedBy.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -100,7 +107,7 @@ describe('The offense model', () => {
         WasCited: { value: 'Yes' },
         CitedBy: 'someone',
       }
-      const expectedErrors = ['CitedBy.hasValue']
+      const expectedErrors = ['CitedBy.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -110,7 +117,7 @@ describe('The offense model', () => {
       const testData = {
         WasCited: { value: 'Yes' },
       }
-      const expectedErrors = ['AgencyAddress.required']
+      const expectedErrors = ['AgencyAddress.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -121,7 +128,11 @@ describe('The offense model', () => {
         WasCited: { value: 'Yes' },
         AgencyAddress: { country: 'United States' },
       }
-      const expectedErrors = ['AgencyAddress.location']
+      const expectedErrors = [
+        'AgencyAddress.location.city.presence.REQUIRED',
+        'AgencyAddress.location.state.presence.REQUIRED',
+        'AgencyAddress.location.zipcode.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -161,7 +172,7 @@ describe('The offense model', () => {
       const testData = {
         WasCited: { value: 'No' },
       }
-      const expectedErrors = ['CitedBy.required']
+      const expectedErrors = ['CitedBy.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -171,7 +182,7 @@ describe('The offense model', () => {
       const testData = {
         WasCited: { value: 'No' },
       }
-      const expectedErrors = ['AgencyAddress.required']
+      const expectedErrors = ['AgencyAddress.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -201,7 +212,7 @@ describe('The offense model', () => {
 
   it('the WasCharged field must have a valid value', () => {
     const testData = { WasCharged: { value: false } }
-    const expectedErrors = ['WasCharged.hasValue']
+    const expectedErrors = ['WasCharged.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -212,7 +223,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['Explanation.required']
+      const expectedErrors = ['Explanation.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -222,7 +233,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['CourtName.required']
+      const expectedErrors = ['CourtName.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -233,7 +244,7 @@ describe('The offense model', () => {
         WasCharged: { value: 'Yes' },
         CourtName: { value: '' },
       }
-      const expectedErrors = ['CourtName.hasValue']
+      const expectedErrors = ['CourtName.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -243,7 +254,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['CourtAddress.required']
+      const expectedErrors = ['CourtAddress.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -254,7 +265,9 @@ describe('The offense model', () => {
         WasCharged: { value: 'Yes' },
         CourtAddress: { city: 'New York', state: 'MA', country: 'United States' },
       }
-      const expectedErrors = ['CourtAddress.location']
+      const expectedErrors = [
+        'CourtAddress.location.zipcode.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -264,7 +277,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['ChargeType.required']
+      const expectedErrors = ['ChargeType.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -275,7 +288,7 @@ describe('The offense model', () => {
         WasCharged: { value: 'Yes' },
         ChargeType: { value: 'Test' },
       }
-      const expectedErrors = ['ChargeType.hasValue']
+      const expectedErrors = ['ChargeType.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -285,7 +298,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['CourtCharge.required']
+      const expectedErrors = ['CourtCharge.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -296,7 +309,7 @@ describe('The offense model', () => {
         WasCharged: { value: 'Yes' },
         CourtCharge: 'invalid',
       }
-      const expectedErrors = ['CourtCharge.hasValue']
+      const expectedErrors = ['CourtCharge.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -306,7 +319,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['CourtOutcome.required']
+      const expectedErrors = ['CourtOutcome.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -317,7 +330,7 @@ describe('The offense model', () => {
         WasCharged: { value: 'Yes' },
         CourtOutcome: [],
       }
-      const expectedErrors = ['CourtOutcome.hasValue']
+      const expectedErrors = ['CourtOutcome.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -327,7 +340,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['CourtDate.required']
+      const expectedErrors = ['CourtDate.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -338,7 +351,7 @@ describe('The offense model', () => {
         WasCharged: { value: 'Yes' },
         CourtDate: { year: 3000, month: 13, day: 2 },
       }
-      const expectedErrors = ['CourtDate.date']
+      const expectedErrors = ['CourtDate.date.date.datetime.INVALID_DATE']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -348,7 +361,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'Yes' },
       }
-      const expectedErrors = ['WasSentenced.required']
+      const expectedErrors = ['WasSentenced.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -359,7 +372,7 @@ describe('The offense model', () => {
         WasCharged: { value: 'Yes' },
         WasSentenced: { value: 'invalid' },
       }
-      const expectedErrors = ['WasSentenced.hasValue']
+      const expectedErrors = ['WasSentenced.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -371,7 +384,7 @@ describe('The offense model', () => {
           WasCharged: { value: 'Yes' },
           WasSentenced: { value: 'Yes' },
         }
-        const expectedErrors = ['Sentence.required']
+        const expectedErrors = ['Sentence.presence.REQUIRED']
 
         expect(validateModel(testData, offense))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -391,7 +404,11 @@ describe('The offense model', () => {
             },
           },
         }
-        const expectedErrors = ['Sentence.model']
+        const expectedErrors = [
+          'Sentence.model.Description.presence.REQUIRED',
+          'Sentence.model.ExceedsYear.hasValue.MISSING_VALUE',
+          'Sentence.model.ProbationDates.presence.REQUIRED',
+        ]
 
         expect(validateModel(testData, offense))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -402,7 +419,7 @@ describe('The offense model', () => {
           WasCharged: { value: 'Yes' },
           WasSentenced: { value: 'Yes' },
         }
-        const expectedErrors = ['AwaitingTrial.required']
+        const expectedErrors = ['AwaitingTrial.presence.REQUIRED']
 
         expect(validateModel(testData, offense))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -413,7 +430,7 @@ describe('The offense model', () => {
           WasCharged: { value: 'Yes' },
           WasSentenced: { value: 'Yes' },
         }
-        const expectedErrors = ['AwaitingTrialExplanation.required']
+        const expectedErrors = ['AwaitingTrialExplanation.presence.REQUIRED']
 
         expect(validateModel(testData, offense))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -478,7 +495,7 @@ describe('The offense model', () => {
           WasCharged: { value: 'Yes' },
           WasSentenced: { value: 'No' },
         }
-        const expectedErrors = ['Sentence.required']
+        const expectedErrors = ['Sentence.presence.REQUIRED']
 
         expect(validateModel(testData, offense))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -489,7 +506,7 @@ describe('The offense model', () => {
           WasCharged: { value: 'Yes' },
           WasSentenced: { value: 'No' },
         }
-        const expectedErrors = ['AwaitingTrial.required']
+        const expectedErrors = ['AwaitingTrial.presence.REQUIRED']
 
         expect(validateModel(testData, offense))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -501,7 +518,7 @@ describe('The offense model', () => {
           WasSentenced: { value: 'No' },
           AwaitingTrial: 'Yes',
         }
-        const expectedErrors = ['AwaitingTrial.hasValue']
+        const expectedErrors = ['AwaitingTrial.hasValue.MISSING_VALUE']
 
         expect(validateModel(testData, offense))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -513,7 +530,7 @@ describe('The offense model', () => {
           WasSentenced: { value: 'No' },
           AwaitingTrialExplanation: undefined,
         }
-        const expectedErrors = ['AwaitingTrialExplanation.required']
+        const expectedErrors = ['AwaitingTrialExplanation.presence.REQUIRED']
 
         expect(validateModel(testData, offense))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -525,7 +542,7 @@ describe('The offense model', () => {
           WasSentenced: { value: 'No' },
           AwaitingTrialExplanation: 'something',
         }
-        const expectedErrors = ['AwaitingTrialExplanation.hasValue']
+        const expectedErrors = ['AwaitingTrialExplanation.hasValue.MISSING_VALUE']
 
         expect(validateModel(testData, offense))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -579,7 +596,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['Explanation.required']
+      const expectedErrors = ['Explanation.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -590,7 +607,7 @@ describe('The offense model', () => {
         WasCharged: { value: 'No' },
         Explanation: 'blah',
       }
-      const expectedErrors = ['Explanation.hasValue']
+      const expectedErrors = ['Explanation.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -600,7 +617,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['CourtName.required']
+      const expectedErrors = ['CourtName.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -610,7 +627,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['CourtAddress.required']
+      const expectedErrors = ['CourtAddress.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -620,7 +637,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['ChargeType.required']
+      const expectedErrors = ['ChargeType.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -630,7 +647,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['CourtCharge.required']
+      const expectedErrors = ['CourtCharge.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -640,7 +657,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['CourtOutcome.required']
+      const expectedErrors = ['CourtOutcome.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -650,7 +667,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['CourtDate.required']
+      const expectedErrors = ['CourtDate.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -660,7 +677,7 @@ describe('The offense model', () => {
       const testData = {
         WasCharged: { value: 'No' },
       }
-      const expectedErrors = ['WasSentenced.required']
+      const expectedErrors = ['WasSentenced.presence.REQUIRED']
 
       expect(validateModel(testData, offense))
         .not.toEqual(expect.arrayContaining(expectedErrors))

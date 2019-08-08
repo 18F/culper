@@ -5,13 +5,13 @@ describe('The foreignBusinessConferences model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Description.required',
-      'Sponsor.required',
-      'City.required',
-      'Country.required',
-      'Dates.required',
-      'Purpose.required',
-      'Contacts.required',
+      'Description.presence.REQUIRED',
+      'Sponsor.presence.REQUIRED',
+      'City.presence.REQUIRED',
+      'Country.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'Purpose.presence.REQUIRED',
+      'Contacts.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -21,7 +21,7 @@ describe('The foreignBusinessConferences model', () => {
     const testData = {
       Description: { values: 'test' },
     }
-    const expectedErrors = ['Description.hasValue']
+    const expectedErrors = ['Description.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -30,7 +30,7 @@ describe('The foreignBusinessConferences model', () => {
     const testData = {
       Sponsor: { values: 'test' },
     }
-    const expectedErrors = ['Sponsor.hasValue']
+    const expectedErrors = ['Sponsor.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -39,7 +39,7 @@ describe('The foreignBusinessConferences model', () => {
     const testData = {
       City: { values: 'test' },
     }
-    const expectedErrors = ['City.hasValue']
+    const expectedErrors = ['City.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -48,7 +48,7 @@ describe('The foreignBusinessConferences model', () => {
     const testData = {
       Country: { values: 'test' },
     }
-    const expectedErrors = ['Country.country']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -57,7 +57,10 @@ describe('The foreignBusinessConferences model', () => {
     const testData = {
       Dates: { year: 500, month: 3, day: 32 },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.presence.REQUIRED',
+      'Dates.daterange.to.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -66,7 +69,7 @@ describe('The foreignBusinessConferences model', () => {
     const testData = {
       Purpose: { values: 'test' },
     }
-    const expectedErrors = ['Purpose.hasValue']
+    const expectedErrors = ['Purpose.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -83,7 +86,7 @@ describe('The foreignBusinessConferences model', () => {
         },
       },
     }
-    const expectedErrors = ['Contacts.model']
+    const expectedErrors = ['Contacts.model.List.branchCollection.INCOMPLETE_COLLECTION']
     expect(validateModel(testData, foreignBusinessConferences))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

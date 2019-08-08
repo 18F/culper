@@ -5,7 +5,7 @@ describe('The diagnoses model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Diagnosed.required',
+      'Diagnosed.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, diagnoses))
@@ -17,7 +17,7 @@ describe('The diagnoses model', () => {
       Diagnosed: { value: 'true' },
     }
     const expectedErrors = [
-      'Diagnosed.hasValue',
+      'Diagnosed.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, diagnoses))
@@ -40,9 +40,9 @@ describe('The diagnoses model', () => {
         Diagnosed: { value: 'Yes' },
       }
       const expectedErrors = [
-        'DidNotConsult.required',
-        'InTreatment.required',
-        'DiagnosisList.required',
+        'DidNotConsult.presence.REQUIRED',
+        'InTreatment.presence.REQUIRED',
+        'DiagnosisList.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, diagnoses))
@@ -55,7 +55,7 @@ describe('The diagnoses model', () => {
         DidNotConsult: { value: 'true' },
       }
       const expectedErrors = [
-        'DidNotConsult.hasValue',
+        'DidNotConsult.hasValue.value.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, diagnoses))
@@ -68,7 +68,7 @@ describe('The diagnoses model', () => {
         InTreatment: { value: 'true' },
       }
       const expectedErrors = [
-        'InTreatment.hasValue',
+        'InTreatment.hasValue.value.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, diagnoses))
@@ -81,7 +81,7 @@ describe('The diagnoses model', () => {
         DiagnosisList: { values: [] },
       }
       const expectedErrors = [
-        'DiagnosisList.accordion',
+        'DiagnosisList.accordion.INVALID_BRANCH',
       ]
 
       expect(validateModel(testData, diagnoses))
@@ -99,7 +99,11 @@ describe('The diagnoses model', () => {
         },
       }
       const expectedErrors = [
-        'DiagnosisList.accordion',
+        'DiagnosisList.accordion.0.Condition.presence.REQUIRED',
+        'DiagnosisList.accordion.0.Diagnosed.presence.REQUIRED',
+        'DiagnosisList.accordion.0.Treatment.presence.REQUIRED',
+        'DiagnosisList.accordion.0.TreatmentFacility.presence.REQUIRED',
+        'DiagnosisList.accordion.0.Effective.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, diagnoses))
@@ -171,7 +175,7 @@ describe('The diagnoses model', () => {
           TreatmentList: { values: [] },
         }
         const expectedErrors = [
-          'TreatmentList.accordion',
+          'TreatmentList.accordion.INVALID_BRANCH',
         ]
 
         expect(validateModel(testData, diagnoses))
@@ -190,7 +194,9 @@ describe('The diagnoses model', () => {
           },
         }
         const expectedErrors = [
-          'TreatmentList.accordion',
+          'TreatmentList.accordion.0.Name.presence.REQUIRED',
+          'TreatmentList.accordion.0.Phone.presence.REQUIRED',
+          'TreatmentList.accordion.0.Address.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, diagnoses))

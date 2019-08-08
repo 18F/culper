@@ -1,5 +1,8 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import financialCardAbuse from 'models/financialCardAbuse'
+import { requireFinancialCardDisciplinaryDate } from 'helpers/branches'
+import store from 'services/store'
+import * as formTypes from 'constants/formTypes'
 
 const cardAbuseModel = {
   HasCardAbuse: {
@@ -18,13 +21,20 @@ const cardAbuseModel = {
   },
 }
 
-export const validateFinancialCardAbuse = data => (
-  validateModel(data, cardAbuseModel) === true
+export const validateFinancialCardAbuse = (data, formType) => (
+  validateModel(
+    data,
+    cardAbuseModel,
+    { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType) },
+  ) === true
 )
 
 export default class CardAbuseValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType = formTypes.SF86 } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   validHasCardAbuse() {
@@ -36,17 +46,24 @@ export default class CardAbuseValidator {
   }
 
   isValid() {
-    return validateFinancialCardAbuse(this.data)
+    return validateFinancialCardAbuse(this.data, this.formType)
   }
 }
 
-const validateCardAbuseItem = data => (
-  validateModel(data, financialCardAbuse) === true
+const validateCardAbuseItem = (data, formType) => (
+  validateModel(
+    data,
+    financialCardAbuse,
+    { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType) },
+  ) === true
 )
 
 export class CardAbuseItemValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType = formTypes.SF86 } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   validAgency() {
@@ -58,7 +75,11 @@ export class CardAbuseItemValidator {
   }
 
   validDate() {
-    return validateModel(this.data, { Date: financialCardAbuse.Date }) === true
+    return validateModel(
+      this.data,
+      { Date: financialCardAbuse.Date },
+      { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(this.formType) },
+    ) === true
   }
 
   validReason() {
@@ -74,6 +95,6 @@ export class CardAbuseItemValidator {
   }
 
   isValid() {
-    return validateCardAbuseItem(this.data)
+    return validateCardAbuseItem(this.data, this.formType)
   }
 }

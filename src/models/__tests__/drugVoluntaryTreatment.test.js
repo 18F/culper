@@ -5,12 +5,12 @@ describe('The drugVoluntaryTreatment model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'DrugType.required',
-      'TreatmentProvider.required',
-      'TreatmentProviderAddress.required',
-      'TreatmentProviderTelephone.required',
-      'TreatmentDates.required',
-      'TreatmentCompleted.required',
+      'DrugType.presence.REQUIRED',
+      'TreatmentProvider.presence.REQUIRED',
+      'TreatmentProviderAddress.presence.REQUIRED',
+      'TreatmentProviderTelephone.presence.REQUIRED',
+      'TreatmentDates.presence.REQUIRED',
+      'TreatmentCompleted.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))
@@ -22,7 +22,7 @@ describe('The drugVoluntaryTreatment model', () => {
       DrugType: { value: 'Other' },
     }
     const expectedErrors = [
-      'DrugType.hasValue',
+      'DrugType.hasValue.value.exclusion.EXCLUSION',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))
@@ -50,7 +50,7 @@ describe('The drugVoluntaryTreatment model', () => {
   it('TreatmentProvider must have a value', () => {
     const testData = {}
     const expectedErrors = [
-      'TreatmentProvider.hasValue',
+      'TreatmentProvider.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))
@@ -62,7 +62,9 @@ describe('The drugVoluntaryTreatment model', () => {
       TreatmentProviderAddress: 'invalid address',
     }
     const expectedErrors = [
-      'TreatmentProviderAddress.location',
+      'TreatmentProviderAddress.location.street.presence.REQUIRED',
+      'TreatmentProviderAddress.location.city.presence.REQUIRED',
+      'TreatmentProviderAddress.location.country.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))
@@ -74,7 +76,20 @@ describe('The drugVoluntaryTreatment model', () => {
       TreatmentProviderTelephone: '1234567890',
     }
     const expectedErrors = [
-      'TreatmentProviderTelephone.model',
+      'TreatmentProviderTelephone.model.timeOfDay.presence.REQUIRED',
+      'TreatmentProviderTelephone.model.number.presence.REQUIRED',
+    ]
+
+    expect(validateModel(testData, drugVoluntaryTreatment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('TreatmentProviderTelephone must exist', () => {
+    const testData = {
+      TreatmentProviderTelephone: { noNumber: true },
+    }
+    const expectedErrors = [
+      'TreatmentProviderTelephone.model.noNumber.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))
@@ -86,7 +101,8 @@ describe('The drugVoluntaryTreatment model', () => {
       TreatmentDates: false,
     }
     const expectedErrors = [
-      'TreatmentDates.daterange',
+      'TreatmentDates.daterange.from.presence.REQUIRED',
+      'TreatmentDates.daterange.to.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))
@@ -98,7 +114,7 @@ describe('The drugVoluntaryTreatment model', () => {
       TreatmentCompleted: { value: 'maybe' },
     }
     const expectedErrors = [
-      'TreatmentCompleted.hasValue',
+      'TreatmentCompleted.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugVoluntaryTreatment))
@@ -139,7 +155,7 @@ describe('The drugVoluntaryTreatment model', () => {
         TreatmentCompleted: { value: 'No' },
       }
       const expectedErrors = [
-        'NoTreatmentExplanation.hasValue',
+        'NoTreatmentExplanation.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, drugVoluntaryTreatment))

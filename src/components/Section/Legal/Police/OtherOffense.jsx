@@ -150,20 +150,25 @@ export default class OtherOffense extends ValidationElement {
   }
 
   render() {
+    const {
+      requireLegalPoliceDrugs,
+      requireLegalPoliceFirearms,
+    } = this.props
+
     return (
       <div className="offense">
         <Field
           title={i18n.t('legal.police.heading.date')}
           help="legal.police.help.date"
           adjustFor="labels"
-          shrink
+          shrink={true}
           scrollIntoView={this.props.scrollIntoView}
         >
           <DateControl
             name="Date"
             {...this.props.Date}
             className="offense-date"
-            minDateEqualTo
+            minDateEqualTo={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}
             required={this.props.required}
@@ -199,29 +204,33 @@ export default class OtherOffense extends ValidationElement {
           {i18n.m('legal.police.label.violence')}
         </Branch>
 
-        <Branch
-          name="involved_firearms"
-          className="offense-firearms no-margin-bottom"
-          {...this.props.InvolvedFirearms}
-          onUpdate={this.updateInvolvedFirearms}
-          required={this.props.required}
-          onError={this.props.onError}
-          scrollIntoView={this.props.scrollIntoView}
-        >
-          {i18n.m('legal.police.label.firearms')}
-        </Branch>
+        {requireLegalPoliceFirearms && (
+          <Branch
+            name="involved_firearms"
+            className="offense-firearms no-margin-bottom"
+            {...this.props.InvolvedFirearms}
+            onUpdate={this.updateInvolvedFirearms}
+            required={this.props.required}
+            onError={this.props.onError}
+            scrollIntoView={this.props.scrollIntoView}
+          >
+            {i18n.m('legal.police.label.firearms')}
+          </Branch>
+        )}
 
-        <Branch
-          name="involved_substances"
-          className="offense-substances"
-          {...this.props.InvolvedSubstances}
-          onUpdate={this.updateInvolvedSubstances}
-          required={this.props.required}
-          onError={this.props.onError}
-          scrollIntoView={this.props.scrollIntoView}
-        >
-          {i18n.m('legal.police.label.substances')}
-        </Branch>
+        {requireLegalPoliceDrugs && (
+          <Branch
+            name="involved_substances"
+            className="offense-substances"
+            {...this.props.InvolvedSubstances}
+            onUpdate={this.updateInvolvedSubstances}
+            required={this.props.required}
+            onError={this.props.onError}
+            scrollIntoView={this.props.scrollIntoView}
+          >
+            {i18n.m('legal.police.label.substances')}
+          </Branch>
+        )}
 
         <Field
           title={i18n.t('legal.police.heading.courtname')}
@@ -241,10 +250,10 @@ export default class OtherOffense extends ValidationElement {
 
         <Field
           title={i18n.t('legal.police.heading.courtaddress')}
-          optional
+          optional={true}
           help="legal.police.help.courtaddress"
           adjustFor="address"
-          shrink
+          shrink={true}
           scrollIntoView={this.props.scrollIntoView}
         >
           <Location
@@ -253,7 +262,7 @@ export default class OtherOffense extends ValidationElement {
             label={i18n.t('legal.police.label.address')}
             className="offense-courtaddress"
             layout={Location.OFFENSE}
-            geocode
+            geocode={true}
             addressBooks={this.props.addressBooks}
             addressBook="Court"
             dispatch={this.props.dispatch}
@@ -334,14 +343,14 @@ export default class OtherOffense extends ValidationElement {
           titleSize="h4"
           help="legal.police.help.courtdate"
           adjustFor="labels"
-          shrink
+          shrink={true}
           scrollIntoView={this.props.scrollIntoView}
         >
           <DateControl
             name="CourtDate"
             {...this.props.CourtDate}
-            hideDay
-            minDateEqualTo
+            hideDay={true}
+            minDateEqualTo={true}
             className="offense-courtdate"
             onUpdate={this.updateCourtDate}
             onError={this.props.onError}
@@ -370,8 +379,8 @@ export default class OtherOffense extends ValidationElement {
               required={this.props.required}
               onUpdate={this.updateSentence}
               scrollIntoView={this.props.scrollIntoView}
-              requireLegalOffenseSentenced
-              requireLegalOffenseIncarcerated
+              requireLegalOffenseSentenced={true}
+              requireLegalOffenseIncarcerated={true}
             />
           </div>
         </Show>
@@ -418,4 +427,6 @@ OtherOffense.defaultProps = {
   dispatch: () => {},
   onUpdate: () => {},
   onError: (value, arr) => arr,
+  requireLegalPoliceDrugs: true,
+  requireLegalPoliceFirearms: true,
 }

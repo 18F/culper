@@ -32,6 +32,7 @@ describe('Root Reducer', () => {
       section: 'identification',
       subsection: '',
     },
+    form: {},
   }
 
   it('should populate the state', () => {
@@ -56,6 +57,7 @@ describe('Root Reducer', () => {
         section: 'identification',
         subsection: '',
       },
+      form: {},
     }
 
     const action = { type: AuthConstants.LOGOUT }

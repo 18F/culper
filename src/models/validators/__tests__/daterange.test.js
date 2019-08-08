@@ -7,7 +7,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData, {})).toBeTruthy()
+    expect(daterange(testData, {})).toEqual(['from.presence.REQUIRED'])
   })
 
   it('fails an invalid date object', () => {
@@ -16,7 +16,15 @@ describe('The date range validator', () => {
       from: { test: 'not a date' },
     }
 
-    expect(daterange(testData, {})).toBeTruthy()
+    expect(daterange(testData, {}))
+      .toEqual([
+        'from.date.day.presence.REQUIRED',
+        'from.date.month.presence.REQUIRED',
+        'from.date.year.presence.REQUIRED',
+        'to.date.day.presence.REQUIRED',
+        'to.date.month.presence.REQUIRED',
+        'to.date.year.presence.REQUIRED',
+      ])
   })
 
   it('fails a date range missing a "to" value and present is false', () => {
@@ -25,7 +33,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData, {})).toBeTruthy()
+    expect(daterange(testData, {})).toEqual(['to.presence.REQUIRED'])
   })
 
   it('fails a date range with an invalid "from" value', () => {
@@ -35,7 +43,11 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData, {})).toBeTruthy()
+    expect(daterange(testData, {})).toEqual([
+      'from.date.day.presence.REQUIRED',
+      'from.date.month.presence.REQUIRED',
+      'from.date.year.presence.REQUIRED',
+    ])
   })
 
   it('fails a date range with an invalid "to" value', () => {
@@ -45,7 +57,12 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData, {})).toBeTruthy()
+    expect(daterange(testData, {})).toEqual([
+      'to.date.day.presence.REQUIRED',
+      'to.date.month.presence.REQUIRED',
+      'to.date.year.presence.REQUIRED',
+      'to.date.date.datetime.INVALID_DATE',
+    ])
   })
 
   it('fails a date range where the "from" value is after the "to" value', () => {
@@ -55,7 +72,7 @@ describe('The date range validator', () => {
       present: false,
     }
 
-    expect(daterange(testData, {})).toBeTruthy()
+    expect(daterange(testData, {})).toEqual('INVALID_DATE_RANGE')
   })
 
   it('fails a date range where the "from" value is in the future', () => {
@@ -64,7 +81,7 @@ describe('The date range validator', () => {
       present: true,
     }
 
-    expect(daterange(testData, {})).toBeTruthy()
+    expect(daterange(testData, {})).toEqual('INVALID_DATE_RANGE')
   })
 
   it('passes a valid date range where present is false', () => {
@@ -95,7 +112,7 @@ describe('The date range validator', () => {
         present: false,
       }
 
-      expect(daterange(testData, { maxDuration: { years: 1 } })).toBeTruthy()
+      expect(daterange(testData, { maxDuration: { years: 1 } })).toEqual('DATE_RANGE_TOO_LONG')
     })
 
     it('passes if the date range diff is less than or equal to the max duration', () => {
@@ -117,7 +134,7 @@ describe('The date range validator', () => {
         present: false,
       }
 
-      expect(daterange(testData, { minDuration: { years: 1 } })).toBeTruthy()
+      expect(daterange(testData, { minDuration: { years: 1 } })).toEqual('DATE_RANGE_TOO_SHORT')
     })
 
     it('passes if the date range diff is greater than or equal to the min duration', () => {

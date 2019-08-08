@@ -4,7 +4,7 @@ import person from '../person'
 describe('The person model', () => {
   it('the name field is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,11 @@ describe('The person model', () => {
     const testData = {
       Name: { first: 'P' },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.length.LENGTH_TOO_SHORT',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +26,7 @@ describe('The person model', () => {
 
   it('the Dates field is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -36,7 +40,11 @@ describe('The person model', () => {
         present: true,
       },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.date.day.presence.REQUIRED',
+      'Dates.daterange.from.date.month.presence.REQUIRED',
+      'Dates.daterange.from.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -44,7 +52,7 @@ describe('The person model', () => {
 
   it('the Rank field is required', () => {
     const testData = {}
-    const expectedErrors = ['Rank.required']
+    const expectedErrors = ['Rank.presence.REQUIRED']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -54,7 +62,7 @@ describe('The person model', () => {
     const testData = {
       Rank: 'none',
     }
-    const expectedErrors = ['Rank.hasValue']
+    const expectedErrors = ['Rank.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -65,7 +73,7 @@ describe('The person model', () => {
       const testData = {
         RankNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Rank.required']
+      const expectedErrors = ['Rank.presence.REQUIRED']
 
       expect(validateModel(testData, person))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -74,7 +82,7 @@ describe('The person model', () => {
 
   it('the Relationship field is required', () => {
     const testData = {}
-    const expectedErrors = ['Relationship.required']
+    const expectedErrors = ['Relationship.presence.REQUIRED']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -86,7 +94,9 @@ describe('The person model', () => {
         values: ['Friend', 'invalid'],
       },
     }
-    const expectedErrors = ['Relationship.array']
+    const expectedErrors = [
+      'Relationship.array.1.value.inclusion.INCLUSION',
+    ]
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -97,7 +107,7 @@ describe('The person model', () => {
       const testData = {
         Relationship: { values: ['Other'] },
       }
-      const expectedErrors = ['RelationshipOther.required']
+      const expectedErrors = ['RelationshipOther.presence.REQUIRED']
 
       expect(validateModel(testData, person))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -108,7 +118,7 @@ describe('The person model', () => {
         Relationship: { values: ['Other'] },
         RelationshipOther: 'something',
       }
-      const expectedErrors = ['RelationshipOther.hasValue']
+      const expectedErrors = ['RelationshipOther.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, person))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -119,7 +129,7 @@ describe('The person model', () => {
     const testData = {
       MobileTelephone: { number: 'abc' },
     }
-    const expectedErrors = ['MobileTelephone.model']
+    const expectedErrors = ['MobileTelephone.model.timeOfDay.presence.REQUIRED']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -129,7 +139,7 @@ describe('The person model', () => {
     const testData = {
       OtherTelephone: { number: 'abc' },
     }
-    const expectedErrors = ['OtherTelephone.model']
+    const expectedErrors = ['OtherTelephone.model.timeOfDay.presence.REQUIRED']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -140,7 +150,10 @@ describe('The person model', () => {
       MobileTelephone: { noNumber: true },
       OtherTelephone: { noNumber: true },
     }
-    const expectedErrors = ['MobileTelephone.model', 'OtherTelephone.model']
+    const expectedErrors = [
+      'MobileTelephone.model.noNumber.inclusion.INCLUSION',
+      'OtherTelephone.model.noNumber.inclusion.INCLUSION',
+    ]
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -148,7 +161,7 @@ describe('The person model', () => {
 
   it('the Email field is required', () => {
     const testData = {}
-    const expectedErrors = ['Email.required']
+    const expectedErrors = ['Email.presence.REQUIRED']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -158,7 +171,7 @@ describe('The person model', () => {
     const testData = {
       Email: { value: 'myemail' },
     }
-    const expectedErrors = ['Email.model']
+    const expectedErrors = ['Email.model.value.email.INVALID_EMAIL']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -169,7 +182,7 @@ describe('The person model', () => {
       const testData = {
         EmailNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Email.required']
+      const expectedErrors = ['Email.presence.REQUIRED']
 
       expect(validateModel(testData, person))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -178,7 +191,7 @@ describe('The person model', () => {
 
   it('the Address field is required', () => {
     const testData = {}
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -188,7 +201,11 @@ describe('The person model', () => {
     const testData = {
       Address: 'address',
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, person))
       .toEqual(expect.arrayContaining(expectedErrors))

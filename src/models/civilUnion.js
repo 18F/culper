@@ -44,7 +44,7 @@ const civilUnion = {
   },
   Telephone: {
     presence: true,
-    model: { validator: phone },
+    model: { validator: phone, requireNumber: true },
   },
   SSN: {
     presence: true,

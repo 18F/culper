@@ -16,6 +16,7 @@ import {
   requireFinancialCreditSection,
   requireFinancialDelinquentSection,
   requireFinancialDelinquentName,
+  requireFinancialCardDisciplinaryDate,
   allowFinancialDelinquentNonFederal,
   requireFinancialNonpaymentSection,
   requireDrugWhileSafetySection,
@@ -31,6 +32,19 @@ import {
   requireLegalOffenseSentenced,
   requireLegalOffenseIncarcerated,
   requireLegalInvestigationClearanceGranted,
+  requireForeignCounterIntelligence,
+  requireForeignExcessiveKnowledge,
+  requireForeignSensitiveInformation,
+  requireForeignThreatened,
+  requireAlcoholOrderedCounselingParty,
+  requireAlcoholReceivedCounselingsSection,
+  requireLegalPoliceFirearms,
+  requireLegalPoliceDrugs,
+  requireRelationshipMaritalForeignBornDocExpiration,
+  requireRelationshipMaritalDivorcePhoneNumber,
+  requireRelationshipRelativesForeignBornDoc,
+  requireRelationshipRelativesUSResidenceDoc,
+  requireRelationshipRelativesForeignGovtAffExplanation,
 } from 'helpers/branches'
 
 import { formTypeSelector } from 'selectors/formType'
@@ -95,6 +109,11 @@ export const selectFinancialDelinquentNonFederal = createSelector(formTypeSelect
 export const selectFinancialNonpaymentSection = createSelector(formTypeSelector,
   formType => ({ requireFinancialNonpaymentSection: requireFinancialNonpaymentSection(formType) }))
 
+export const selectFinancialCardDisciplinaryDate = createSelector(formTypeSelector,
+  formType => ({
+    requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType),
+  }))
+
 export const selectDrugWhileSafetySection = createSelector(formTypeSelector,
   formType => ({ requireDrugWhileSafetySection: requireDrugWhileSafetySection(formType) }))
 
@@ -136,4 +155,69 @@ export const selectLegalOffenseIncarcerated = createSelector(formTypeSelector,
 export const selectLegalInvestigationClearanceGranted = createSelector(formTypeSelector,
   formType => ({
     requireLegalInvestigationClearanceGranted: requireLegalInvestigationClearanceGranted(formType),
+  }))
+
+export const selectForeignCounterIntelligence = createSelector(formTypeSelector,
+  formType => ({
+    requireForeignCounterIntelligence: requireForeignCounterIntelligence(formType),
+  }))
+
+export const selectForeignExcessiveKnowledge = createSelector(formTypeSelector,
+  formType => ({
+    requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(formType),
+  }))
+
+export const selectForeignSensitiveInformation = createSelector(formTypeSelector,
+  formType => ({
+    requireForeignSensitiveInformation: requireForeignSensitiveInformation(formType),
+  }))
+
+export const selectForeignThreatened = createSelector(formTypeSelector,
+  formType => ({
+    requireForeignThreatened: requireForeignThreatened(formType),
+  }))
+
+export const selectAlcoholOrderedCounselingParty = createSelector(formTypeSelector,
+  formType => ({
+    requireAlcoholOrderedCounselingParty: requireAlcoholOrderedCounselingParty(formType),
+  }))
+
+export const selectAlcoholReceivedCounselingsSection = createSelector(formTypeSelector,
+  formType => ({
+    requireAlcoholReceivedCounselingsSection: requireAlcoholReceivedCounselingsSection(formType),
+  }))
+
+export const selectLegalPoliceFirearms = createSelector(formTypeSelector,
+  formType => ({
+    requireLegalPoliceFirearms: requireLegalPoliceFirearms(formType),
+  }))
+
+export const selectLegalPoliceDrugs = createSelector(formTypeSelector,
+  formType => ({
+    requireLegalPoliceDrugs: requireLegalPoliceDrugs(formType),
+  }))
+
+export const selectRelationshipMaritalForeignBornDocExpiration = createSelector(formTypeSelector,
+  formType => ({
+    requireRelationshipMaritalForeignBornDocExpiration: requireRelationshipMaritalForeignBornDocExpiration(formType),
+  }))
+
+export const selectRelationshipMaritalDivorcePhoneNumber = createSelector(formTypeSelector,
+  formType => ({
+    requireRelationshipMaritalDivorcePhoneNumber: requireRelationshipMaritalDivorcePhoneNumber(formType),
+  }))
+
+export const selectRelationshipRelativesForeignBornDoc = createSelector(formTypeSelector,
+  formType => ({
+    requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
+  }))
+
+export const selectRelationshipRelativesUSResidenceDoc = createSelector(formTypeSelector,
+  formType => ({
+    requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
+  }))
+
+export const selectRelationshipRelativesForeignGovtAffExplanation = createSelector(formTypeSelector,
+  formType => ({
+    requireRelationshipRelativesForeignGovtAffExplanation: requireRelationshipRelativesForeignGovtAffExplanation(formType),
   }))

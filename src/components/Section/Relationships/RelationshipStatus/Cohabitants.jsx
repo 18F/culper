@@ -75,6 +75,7 @@ export class Cohabitants extends Subsection {
   }
 
   render() {
+    const { requireRelationshipMaritalForeignBornDocExpiration } = this.props
     return (
       <div
         className="section-content cohabitants"
@@ -123,6 +124,7 @@ export class Cohabitants extends Subsection {
               spouse={this.props.spouse}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireRelationshipMaritalForeignBornDocExpiration={requireRelationshipMaritalForeignBornDocExpiration}
               bind={true}
             />
           </Accordion>
@@ -142,6 +144,7 @@ Cohabitants.defaultProps = {
   defaultState: true,
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,
+  requireRelationshipMaritalForeignBornDocExpiration: true,
 }
 
 export default connectRelationshipsSection(Cohabitants, sectionConfig)
