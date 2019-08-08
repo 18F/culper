@@ -9,10 +9,8 @@ import Subsection from 'components/Section/shared/Subsection'
 import { Accordion, Branch } from 'components/Form'
 import { openState } from 'components/Form/Accordion/Accordion'
 import { newGuid } from 'components/Form/ValidationElement'
-import {
-  today, daysAgo, extractDate, validDate,
-} from 'components/Section/History/dateranges'
-import { InjectGaps, EmploymentCustomSummary } from 'components/Section/History/summaries'
+import { extractDate, validDate } from 'components/Section/History/dateranges'
+import { EmploymentCustomSummary } from 'components/Section/History/summaries'
 import EmploymentItem from 'components/Section/History/Employment/EmploymentItem'
 import { Gap } from 'components/Section/History/Gap'
 
@@ -132,9 +130,7 @@ export class Employment extends Subsection {
 
     this.update({
       List: {
-        items: InjectGaps(items, daysAgo(365 * this.props.totalYears))
-          .sort(this.sort)
-          .filter(item => !item.type || (item.type && item.type !== 'Gap')),
+        items: items.sort(this.sort),
         branch: {},
       },
     })
@@ -160,8 +156,6 @@ export class Employment extends Subsection {
     return callback()
   }
 
-  inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
-
   render() {
     const { recordYears } = this.props
     const recordYearsString = getYearsString(recordYears)
@@ -178,7 +172,6 @@ export class Employment extends Subsection {
           {...this.props.List}
           ref={(el) => { this.employment = el }}
           sort={this.props.sort}
-          inject={this.inject}
           realtime={this.props.realtime}
           onUpdate={(values) => {
             this.update({ List: values })
