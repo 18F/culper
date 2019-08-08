@@ -28,6 +28,9 @@
             <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
           </FormInstanceSpecific>
           <Pooled>
+            <AdditionalComments Version="1" Type="Pooled">
+              <Comment>This is a test.</Comment>
+            </AdditionalComments>
             <IdentifyingInformation Type="Pooled" Version="1">
               <Birth>
                 <Date>

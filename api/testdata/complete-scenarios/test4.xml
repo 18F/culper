@@ -28,6 +28,8 @@
             <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
           </FormInstanceSpecific>
           <Pooled>
+            <AdditionalComments Version="1" Type="Pooled">
+</AdditionalComments>
             <IdentifyingInformation Type="Pooled" Version="1">
               <Birth>
                 <Date>

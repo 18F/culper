@@ -34,6 +34,7 @@
             <ValidationResponses Version="1" Type="FormInstanceSpecific" />
           </FormInstanceSpecific>
           <Pooled>
+            {{tmpl "additional-comments.xml" .Package.Comments}}
             {{tmpl "identification.xml" .}}
             {{tmpl "relationships.xml" .}}
             {{tmpl "history.xml" .}}
