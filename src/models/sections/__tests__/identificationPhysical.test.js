@@ -5,11 +5,11 @@ describe('The identificationPhysical model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Height.required',
-      'Weight.required',
-      'HairColor.required',
-      'EyeColor.required',
-      'Sex.required',
+      'Height.presence.REQUIRED',
+      'Weight.presence.REQUIRED',
+      'HairColor.presence.REQUIRED',
+      'EyeColor.presence.REQUIRED',
+      'Sex.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, identificationPhysical))
@@ -23,7 +23,7 @@ describe('The identificationPhysical model', () => {
         inches: 2,
       },
     }
-    const expectedErrors = ['Height.model']
+    const expectedErrors = ['Height.model.feet.numericality.NUMBER_NOT_GREATER_THAN_OR_EQUAL_TO']
 
     expect(validateModel(testData, identificationPhysical))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -33,7 +33,7 @@ describe('The identificationPhysical model', () => {
     const testData = {
       Weight: { value: -1 },
     }
-    const expectedErrors = ['Weight.hasValue']
+    const expectedErrors = ['Weight.hasValue.value.numericality.NUMBER_NOT_GREATER_THAN_OR_EQUAL_TO']
 
     expect(validateModel(testData, identificationPhysical))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -43,7 +43,7 @@ describe('The identificationPhysical model', () => {
     const testData = {
       HairColor: { value: 'SomethingDifferent' },
     }
-    const expectedErrors = ['HairColor.hasValue']
+    const expectedErrors = ['HairColor.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, identificationPhysical))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -53,7 +53,7 @@ describe('The identificationPhysical model', () => {
     const testData = {
       EyeColor: { value: '' },
     }
-    const expectedErrors = ['EyeColor.hasValue']
+    const expectedErrors = ['EyeColor.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, identificationPhysical))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -63,7 +63,7 @@ describe('The identificationPhysical model', () => {
     const testData = {
       Sex: { value: 'test' },
     }
-    const expectedErrors = ['Sex.hasValue']
+    const expectedErrors = ['Sex.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, identificationPhysical))
       .toEqual(expect.arrayContaining(expectedErrors))

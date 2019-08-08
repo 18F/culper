@@ -4,7 +4,7 @@ import identificationName from 'models/sections/identificationName'
 describe('The identification name section', () => {
   it('requires a name', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
     expect(validateModel(testData, identificationName))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -23,7 +23,13 @@ describe('The identification name section', () => {
         suffixOther: '',
       },
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.first.length.LENGTH_TOO_SHORT',
+      'Name.model.last.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.middle.length.LENGTH_TOO_SHORT',
+    ]
     expect(validateModel(testData, identificationName))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

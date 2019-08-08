@@ -4,7 +4,7 @@ import identifcationDateOfBirth from 'models/sections/identificationDateOfBirth'
 describe('The identification date of birth section', () => {
   it('requires a date of birth', () => {
     const testData = {}
-    const expectedErrors = ['Date.required']
+    const expectedErrors = ['Date.presence.REQUIRED']
 
     expect(validateModel(testData, identifcationDateOfBirth))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +19,7 @@ describe('The identification date of birth section', () => {
         estimated: false,
       },
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.INVALID_DATE']
 
     expect(validateModel(testData, identifcationDateOfBirth))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -36,7 +36,7 @@ describe('The identification date of birth section', () => {
         estimated: false,
       },
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, identifcationDateOfBirth))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -52,7 +52,7 @@ describe('The identification date of birth section', () => {
         estimated: false,
       },
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, identifcationDateOfBirth))
       .toEqual(expect.arrayContaining(expectedErrors))

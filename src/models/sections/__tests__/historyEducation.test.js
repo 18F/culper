@@ -4,7 +4,11 @@ import historyEducation from 'models/sections/historyEducation'
 describe('The history education section model', () => {
   it('requires applicant to answer if theyve attended school', () => {
     const testData = {}
-    const expectedErrors = ['HasAttended.required']
+    const expectedErrors = [
+      'HasAttended.presence.REQUIRED',
+      'HasAttended.hasValue.MISSING_VALUE',
+    ]
+
     expect(validateModel(testData, historyEducation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -13,7 +17,10 @@ describe('The history education section model', () => {
     const testData = {
       HasAttended: { value: 'No' },
     }
-    const expectedErrors = ['HasDegree10.required']
+    const expectedErrors = [
+      'HasDegree10.presence.REQUIRED',
+      'HasDegree10.hasValue.MISSING_VALUE',
+    ]
     expect(validateModel(testData, historyEducation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -22,7 +29,7 @@ describe('The history education section model', () => {
     const testData = {
       HasAttended: { value: 'Yes' },
     }
-    const expectedErrors = ['List.required']
+    const expectedErrors = ['List.presence.REQUIRED']
     expect(validateModel(testData, historyEducation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -31,7 +38,7 @@ describe('The history education section model', () => {
     const testData = {
       HasDegree10: { value: 'Yes' },
     }
-    const expectedErrors = ['List.required']
+    const expectedErrors = ['List.presence.REQUIRED']
     expect(validateModel(testData, historyEducation))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -41,7 +48,7 @@ describe('The history education section model', () => {
       HasAttended: { value: 'No' },
       HasDegree10: { value: 'No' },
     }
-    const expectedErrors = ['List.required']
+    const expectedErrors = ['List.presence.REQUIRED']
     expect(validateModel(testData, historyEducation))
       .toEqual(expect.not.arrayContaining(expectedErrors))
   })

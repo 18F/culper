@@ -1,14 +1,17 @@
 import { validateModel } from 'models/validate'
 import historyEmployment from 'models/sections/historyEmployment'
 
-describe('Thie histry employment subsection', () => {
+describe('Thie history employment subsection', () => {
   describe('EmploymentRecord', () => {
     it('must have a value', () => {
       const testData = {
         EmploymentRecord: {},
         List: {},
       }
-      const expectedErrors = ['EmploymentRecord.hasValue']
+      const expectedErrors = [
+        'EmploymentRecord.presence.REQUIRED',
+        'EmploymentRecord.hasValue.MISSING_VALUE',
+      ]
 
       expect(validateModel(testData, historyEmployment))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +22,7 @@ describe('Thie histry employment subsection', () => {
         EmploymentRecord: { value: 'Invalid' },
         List: {},
       }
-      const expectedErrors = ['EmploymentRecord.hasValue']
+      const expectedErrors = ['EmploymentRecord.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, historyEmployment))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -31,14 +34,15 @@ describe('Thie histry employment subsection', () => {
         List: {},
       }
 
-      expect(validateModel(testData, { EmploymentRecord: historyEmployment.EmploymentRecord })).toEqual(true)
+      expect(validateModel(testData, { EmploymentRecord: historyEmployment.EmploymentRecord }))
+        .toEqual(true)
     })
   })
 
   describe('List', () => {
     it('should fail an empty list', () => {
       const testData = {}
-      const expectedErrors = ['List.required']
+      const expectedErrors = ['List.presence.REQUIRED']
 
       expect(validateModel(testData, historyEmployment))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -462,7 +466,8 @@ describe('Thie histry employment subsection', () => {
         },
       }
 
-      expect(validateModel(testData, { AdditionalActivity: historyEmployment.AdditionalActivity })).toEqual(true)
+      expect(validateModel(testData, { AdditionalActivity: historyEmployment.AdditionalActivity }))
+        .toEqual(true)
     })
 
     it('can validate physical address', () => {
@@ -493,7 +498,8 @@ describe('Thie histry employment subsection', () => {
         },
       }
 
-      expect(validateModel(testData, { PhysicalAddress: historyEmployment.PhysicalAddress })).toEqual(true)
+      expect(validateModel(testData, { PhysicalAddress: historyEmployment.PhysicalAddress }))
+        .toEqual(true)
     })
 
     it('can validate address', () => {
@@ -525,7 +531,6 @@ describe('Thie histry employment subsection', () => {
     })
 
     it('can validate title', () => {
-
       const testData = {
         EmploymentRecord: { value: 'No' },
         List: {

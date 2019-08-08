@@ -5,8 +5,9 @@ describe('The identification other names section', () => {
   it('has required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'HasOtherNames.required',
-      'List.required',
+      'HasOtherNames.presence.REQUIRED',
+      'HasOtherNames.hasValue.MISSING_VALUE',
+      'List.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, identificationOtherNames))
@@ -19,7 +20,7 @@ describe('The identification other names section', () => {
         HasOtherNames: { value: '' },
         List: {},
       }
-      const expectedErrors = ['HasOtherNames.hasValue']
+      const expectedErrors = ['HasOtherNames.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, identificationOtherNames))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -30,7 +31,7 @@ describe('The identification other names section', () => {
         HasOtherNames: { value: 'Invalid' },
         List: {},
       }
-      const expectedErrors = ['HasOtherNames.hasValue']
+      const expectedErrors = ['HasOtherNames.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, identificationOtherNames))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -43,7 +44,7 @@ describe('The identification other names section', () => {
       }
 
       expect(validateModel(testData, identificationOtherNames))
-        .toEqual(expect.not.arrayContaining(['HasOtherNames.hasValue']))
+        .toEqual(expect.not.arrayContaining(['HasOtherNames.hasValue.value.inclusion.INCLUSION']))
     })
   })
 
@@ -56,7 +57,7 @@ describe('The identification other names section', () => {
           items: [],
         },
       }
-      const expectedErrors = ['List.accordion']
+      const expectedErrors = ['List.accordion.MISSING_ITEMS']
 
       expect(validateModel(testData, identificationOtherNames))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -103,7 +104,11 @@ describe('The identification other names section', () => {
           ],
         },
       }
-      const expectedErrors = ['List.accordion']
+      const expectedErrors = [
+        'List.accordion.0.Name.model.first.presence.REQUIRED',
+        'List.accordion.0.Name.model.first.length.LENGTH_TOO_SHORT',
+        'List.accordion.0.MaidenName.hasValue.value.inclusion.INCLUSION',
+      ]
 
       expect(validateModel(testData, identificationOtherNames))
         .toEqual(expect.arrayContaining(expectedErrors))

@@ -6,7 +6,7 @@ describe('The history federal service section model', () => {
     const testData = {
       HasFederalService: { value: 'Yes' },
     }
-    const expectedErrors = ['List.required']
+    const expectedErrors = ['List.presence.REQUIRED']
 
     expect(validateModel(testData, historyFederalService))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -16,7 +16,7 @@ describe('The history federal service section model', () => {
     const testData = {
       HasFederalService: { value: 'No' },
     }
-    const unexpectedErrors = ['List.required']
+    const unexpectedErrors = ['List.presence.REQUIRED']
 
     expect(validateModel(testData, historyFederalService))
       .toEqual(expect.not.arrayContaining(unexpectedErrors))

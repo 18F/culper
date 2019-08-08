@@ -4,7 +4,7 @@ import historyResidence from 'models/sections/historyResidence'
 describe('The history residence section', () => {
   it('should fail an empty list', () => {
     const testData = {}
-    const expectedErrors = ['List.required']
+    const expectedErrors = ['List.presence.REQUIRED']
 
     expect(validateModel(testData, historyResidence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -136,7 +136,7 @@ describe('The history residence section', () => {
         ],
       },
     }
-    const expectedErrors = ['List.accordion']
+    const expectedErrors = ['List.accordion.INVALID_BRANCH']
     expect(validateModel(testData, historyResidence))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

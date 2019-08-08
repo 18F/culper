@@ -4,7 +4,7 @@ import identificationSSN from 'models/sections/identificationSSN'
 describe('The identificationSSN section', () => {
   it('requires a social security number', () => {
     const testData = {}
-    const expectedErrors = ['ssn.required']
+    const expectedErrors = ['ssn.presence.REQUIRED']
 
     expect(validateModel(testData, identificationSSN))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -18,7 +18,10 @@ describe('The identificationSSN section', () => {
         last: '1111',
       },
     }
-    const expectedErrors = ['ssn.ssn']
+    const expectedErrors = [
+      'ssn.ssn.first.format.INVALID_FORMAT',
+      'ssn.ssn.middle.format.INVALID_FORMAT',
+    ]
 
     expect(validateModel(testData, identificationSSN))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -35,7 +38,7 @@ describe('The identificationSSN section', () => {
       verified: false,
     }
 
-    const expectedErrors = ['verified.requireTrue']
+    const expectedErrors = ['verified.requireTrue.VALUE_NOT_TRUE']
 
     expect(validateModel(testData, identificationSSN))
       .toEqual(expect.arrayContaining(expectedErrors))

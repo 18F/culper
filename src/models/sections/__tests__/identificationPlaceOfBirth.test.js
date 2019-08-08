@@ -4,7 +4,7 @@ import identificationPlaceOfBirth from 'models/sections/identificationPlaceOfBir
 describe('The identification place of birth section', () => {
   it('requires a place of birth', () => {
     const testData = {}
-    const expectedErrors = ['Location.required']
+    const expectedErrors = ['Location.presence.REQUIRED']
     expect(validateModel(testData, identificationPlaceOfBirth))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
