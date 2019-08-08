@@ -2,7 +2,6 @@ package http
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -35,8 +34,6 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 			RespondWithStructuredError(w, api.RequestIsMissingSessionCookie, http.StatusUnauthorized)
 			return
 		}
-
-		fmt.Println("GOT A DOMAIN", sessionCookie.Domain)
 
 		sessionKey := sessionCookie.Value
 		account, session, err := service.session.GetAccountIfSessionIsValid(sessionKey)
@@ -91,8 +88,6 @@ func (s SessionCookieService) AddSessionKeyToResponse(w http.ResponseWriter, ses
 		// Omit MaxAge and Expires to make this a session cookie.
 		// Omit domain to default to the full domain
 	}
-
-	fmt.Println("SETTING COOKIE")
 
 	http.SetCookie(w, cookie)
 
