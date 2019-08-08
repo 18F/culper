@@ -26,7 +26,7 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 }
 
 export const deleteCookie = name => {
-  const domain = process.env.COOKIE_DOMAIN || window.location.hostname
+  const domain = window.location.hostname
   Cookies.remove(name, { domain })
   if (Cookies.get(name)) {
     console.warn(

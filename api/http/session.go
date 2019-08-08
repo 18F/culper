@@ -3,8 +3,6 @@ package http
 import (
 	"context"
 	"net/http"
-	"net/url"
-	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
 )
@@ -63,32 +61,13 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 // SessionCookieService writes session cookies to a response
 type SessionCookieService struct {
 	secure bool
-	domain string
 }
 
 // NewSessionCookieService returns a SessionCookieService
-func NewSessionCookieService(apiBaseURL string) (SessionCookieService, error) {
-	// We use the API Base URL to determine some of the cookie settings.
-	uri, parseErr := url.Parse(apiBaseURL)
-	if parseErr != nil {
-		return SessionCookieService{}, parseErr
-	}
-
-	secure := uri.Scheme == "https"
-	parts := strings.Split(uri.Host, ":")
-	domain := parts[0]
-
-	// Some browsers (safari for sure) don't handle cookies
-	// with a domain without a "." in them. For example localhost:3000
-	// This is apparently per-spec but Chrome does work
-	if strings.Index(domain, ".") == -1 {
-		domain = ""
-	}
-
+func NewSessionCookieService(secure bool) SessionCookieService {
 	return SessionCookieService{
 		secure,
-		domain,
-	}, nil
+	}
 }
 
 // AddSessionKeyToResponse adds the session cookie to a response given a valid sessionKey
@@ -100,12 +79,12 @@ func (s SessionCookieService) AddSessionKeyToResponse(w http.ResponseWriter, ses
 
 	cookie := &http.Cookie{
 		Secure:   s.secure,
-		Domain:   s.domain,
 		Name:     SessionCookieName,
 		Value:    sessionKey,
 		HttpOnly: true,
 		Path:     "/",
 		// Omit MaxAge and Expires to make this a session cookie.
+		// Omit domain to default to the full domain
 	}
 
 	http.SetCookie(w, cookie)

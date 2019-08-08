@@ -243,6 +243,7 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 		Database: services.db,
 		Store:    services.store,
 		Session:  sessionService,
+		Cookie:   http.NewSessionCookieService(true),
 	}
 
 	responseWriter := httptest.NewRecorder()
@@ -282,6 +283,8 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 			break
 		}
 	}
+
+	fmt.Println("WHAT NO?", sessionCookie)
 
 	if sessionCookie == nil {
 		t.Fatal("The cookie was not set on the response")
@@ -338,4 +341,6 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 	}
 
 	os.Setenv("BASIC_ENABLED", "")
+
+	t.Fatal("FOOO")
 }

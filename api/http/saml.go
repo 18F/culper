@@ -10,8 +10,7 @@ import (
 )
 
 var (
-	redirectTo   = os.Getenv("API_REDIRECT")
-	cookieDomain = os.Getenv("COOKIE_DOMAIN")
+	redirectTo = os.Getenv("API_REDIRECT")
 )
 
 // SamlRequestHandler is the handler for creating a SAML request.

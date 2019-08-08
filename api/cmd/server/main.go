@@ -58,11 +58,8 @@ func main() {
 	sessionService := session.NewSessionService(sessionTimeout, store, logger)
 	samlsvc := &saml.Service{Log: logger, Env: settings}
 
-	baseAPIURL := settings.String(api.APIBaseURL)
-	cookieService, cookieErr := http.NewSessionCookieService(baseAPIURL)
-	if cookieErr != nil {
-		logger.WarnError("Error configuring the cookie service", cookieErr, api.LogFields{})
-	}
+	secureCookie := !settings.True(api.DevUseInsecureCookie)
+	cookieService := http.NewSessionCookieService(secureCookie)
 
 	api.Geocode = usps.Geocoder{Log: logger, Env: settings}
 
