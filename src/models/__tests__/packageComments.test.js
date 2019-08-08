@@ -5,7 +5,7 @@ describe('The package comments section', () => {
   describe('HasComments', () => {
     it('is required', () => {
       const testData = {}
-      const expectedErrors = ['HasComments.required']
+      const expectedErrors = ['HasComments.presence.REQUIRED']
 
       expect(validateModel(testData, packageComments))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -15,7 +15,7 @@ describe('The package comments section', () => {
       const testData = {
         HasComments: { value: 'Invalid' },
       }
-      const expectedErrors = ['HasComments.hasValue']
+      const expectedErrors = ['HasComments.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, packageComments))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -37,7 +37,7 @@ describe('The package comments section', () => {
         const testData = {
           HasComments: { value: 'Yes' },
         }
-        const expectedErrors = ['Comments.required']
+        const expectedErrors = ['Comments.presence.REQUIRED']
 
         expect(validateModel(testData, packageComments))
           .toEqual(expect.arrayContaining(expectedErrors))
