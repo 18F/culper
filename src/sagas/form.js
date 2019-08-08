@@ -1,7 +1,7 @@
 /* eslint import/no-cycle: 0 */
 
 import {
-  take, select, call, put, all,
+  select, call, put, all, takeEvery,
 } from 'redux-saga/effects'
 
 import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
@@ -79,8 +79,5 @@ export function* handleSubsectionUpdate({ key, data }) {
 }
 
 export function* updateSubsectionWatcher() {
-  while (true) {
-    const action = yield take(HANDLE_SUBSECTION_UPDATE)
-    yield call(handleSubsectionUpdate, action)
-  }
+  yield takeEvery(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate)
 }

@@ -1,5 +1,5 @@
 import {
-  take, select, call, put, all,
+  select, call, put, all, takeEvery,
 } from 'redux-saga/effects'
 
 import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
@@ -118,23 +118,11 @@ describe('The updateSubsection watcher', () => {
 
   it('takes all HANDLE_SUBSECTION_UPDATE actions', () => {
     expect(generator.next().value)
-      .toEqual(take(HANDLE_SUBSECTION_UPDATE))
+      .toEqual(takeEvery(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate))
   })
 
-  it('calls the handleSubsectionUpdate handler', () => {
-    const action = {
-      type: HANDLE_SUBSECTION_UPDATE,
-      key: 'IDENTIFICATION_NAME',
-      field: 'Name',
-      data: { first: 'test data' },
-    }
-
-    expect(generator.next(action).value)
-      .toEqual(call(handleSubsectionUpdate, action))
-  })
-
-  it('is never done', () => {
-    expect(generator.next().done).toBe(false)
+  it('is done', () => {
+    expect(generator.next().done).toBe(true)
   })
 })
 
