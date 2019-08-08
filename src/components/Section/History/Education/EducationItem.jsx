@@ -1,7 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import { nameIsEmpty } from 'validators/helpers'
 import {
   ValidationElement,
   BranchCollection,
@@ -18,14 +17,9 @@ import {
   Email,
 } from 'components/Form'
 
-import { DiplomaItem } from './Diploma'
-import { today, daysAgo, extractDate } from '../dateranges'
+import { educationRequiresReference } from 'models/education'
 
-// We need to determine how far back 3 years ago was
-const threeYearsAgo = daysAgo(today, 365 * 3)
-const withinThreeYears = (from, to, present) => (
-  present || (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
-)
+import { DiplomaItem } from './Diploma'
 
 /**
  * Education item in a collection
@@ -54,21 +48,21 @@ export default class EducationItem extends ValidationElement {
 
   updateDates = (values) => {
     const dates = values || {}
-    const { from, to } = dates
-    const zeroReference = !withinThreeYears(from, to, dates.present)
+    const requireReference = educationRequiresReference(dates)
+
+    const {
+      ReferenceName, ReferenceNameNotApplicable, ReferencePhone, ReferenceEmail,
+      ReferenceEmailNotApplicable, ReferenceAddress,
+    } = this.props
 
     this.update({
       Dates: values,
-      ReferenceName: zeroReference ? {} : this.props.ReferenceName,
-      ReferenceNameNotApplicable: zeroReference
-        ? {}
-        : this.props.ReferenceNameNotApplicable,
-      ReferencePhone: zeroReference ? {} : this.props.ReferencePhone,
-      ReferenceEmail: zeroReference ? {} : this.props.ReferenceEmail,
-      ReferenceEmailNotApplicable: zeroReference
-        ? {}
-        : this.props.ReferenceEmailNotApplicable,
-      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress,
+      ReferenceName: requireReference ? ReferenceName : {},
+      ReferenceNameNotApplicable: requireReference ? ReferenceNameNotApplicable : {},
+      ReferencePhone: requireReference ? ReferencePhone : {},
+      ReferenceEmail: requireReference ? ReferenceEmail : {},
+      ReferenceEmailNotApplicable: requireReference ? ReferenceEmailNotApplicable : {},
+      ReferenceAddress: requireReference ? ReferenceAddress : {},
     })
   }
 
@@ -119,8 +113,8 @@ export default class EducationItem extends ValidationElement {
 
   updateReferenceEmailNotApplicable = (values) => {
     this.update({
-      ReferenceEmailNotApplicable: values,
       ReferenceEmail: values.applicable ? this.props.ReferenceEmail : {},
+      ReferenceEmailNotApplicable: values,
     })
   }
 
@@ -165,9 +159,8 @@ export default class EducationItem extends ValidationElement {
   render() {
     // Certain elements are present if the date range of the attendance was
     // within the last 3 years.
-    const dates = this.props.Dates || {}
-    const from = extractDate(dates.from)
-    const to = extractDate(dates.to)
+    const { Dates = {} } = this.props
+    const requireReference = educationRequiresReference(Dates)
 
     return (
       <div className="education">
@@ -218,6 +211,8 @@ export default class EducationItem extends ValidationElement {
             shrink
             scrollIntoView={this.props.scrollIntoView}
           >
+            {/* eslint jsx-a11y/label-has-associated-control: 0 */}
+            {/* eslint jsx-a11y/label-has-for: 0 */}
             <label className="into-label">
               {i18n.m('history.education.label.addressLink')}
             </label>
@@ -285,7 +280,7 @@ export default class EducationItem extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Show when={withinThreeYears(from, to, dates.present)}>
+          <Show when={requireReference}>
             <div className="reference">
               <Field
                 title={i18n.t('history.education.heading.reference')}
@@ -325,87 +320,85 @@ export default class EducationItem extends ValidationElement {
                 </NotApplicable>
               </Field>
 
-              <Show when={!nameIsEmpty(this.props.ReferenceName)}>
-                <Field
-                  title={i18n.t('reference.heading.correspondence')}
-                  titleSize="h4"
-                  optional
-                  className="no-margin-bottom"
-                  scrollIntoView={this.props.scrollIntoView}
-                >
-                  {i18n.m('reference.para.correspondence')}
-                </Field>
+              <Field
+                title={i18n.t('reference.heading.correspondence')}
+                titleSize="h4"
+                optional
+                className="no-margin-bottom"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                {i18n.m('reference.para.correspondence')}
+              </Field>
 
-                <Field
-                  title={i18n.t('reference.heading.phone.default')}
-                  titleSize="h4"
-                  className="override-required"
-                  help="reference.help.phone"
-                  adjustFor="telephone"
-                  scrollIntoView={this.props.scrollIntoView}
-                >
-                  <Telephone
-                    name="ReferencePhone"
-                    className="reference-phone"
-                    {...this.props.ReferencePhone}
-                    onUpdate={this.updateReferencePhone}
-                    allowNotApplicable={false}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                  />
-                </Field>
+              <Field
+                title={i18n.t('reference.heading.phone.default')}
+                titleSize="h4"
+                className="override-required"
+                help="reference.help.phone"
+                adjustFor="telephone"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <Telephone
+                  name="ReferencePhone"
+                  className="reference-phone"
+                  {...this.props.ReferencePhone}
+                  onUpdate={this.updateReferencePhone}
+                  allowNotApplicable={false}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                />
+              </Field>
 
-                <Field
-                  title={i18n.t('reference.heading.email')}
-                  titleSize="h4"
-                  help="reference.help.email"
-                  adjustFor="label"
-                  scrollIntoView={this.props.scrollIntoView}
+              <Field
+                title={i18n.t('reference.heading.email')}
+                titleSize="h4"
+                help="reference.help.email"
+                adjustFor="label"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <NotApplicable
+                  name="ReferenceEmailNotApplicable"
+                  {...this.props.ReferenceEmailNotApplicable}
+                  label={i18n.t('reference.label.idk')}
+                  or={i18n.m('reference.para.or')}
+                  onUpdate={this.updateReferenceEmailNotApplicable}
+                  onError={this.props.onError}
                 >
-                  <NotApplicable
-                    name="ReferenceEmailNotApplicable"
-                    {...this.props.ReferenceEmailNotApplicable}
-                    label={i18n.t('reference.label.idk')}
-                    or={i18n.m('reference.para.or')}
-                    onUpdate={this.updateReferenceEmailNotApplicable}
-                    onError={this.props.onError}
-                  >
-                    <Email
-                      name="ReferenceEmail"
-                      {...this.props.ReferenceEmail}
-                      className="reference-email"
-                      label={i18n.t('reference.label.email')}
-                      onUpdate={this.updateReferenceEmail}
-                      onError={this.props.onError}
-                    />
-                  </NotApplicable>
-                </Field>
-
-                <Field
-                  title={i18n.t('reference.heading.address')}
-                  titleSize="h4"
-                  optional
-                  help="reference.help.address"
-                  adjustFor="address"
-                  scrollIntoView={this.props.scrollIntoView}
-                >
-                  <p>{i18n.t('reference.para.address')}</p>
-                  <Location
-                    name="ReferenceAddress"
-                    className="reference-address"
-                    {...this.props.ReferenceAddress}
-                    label={i18n.t('reference.label.address')}
-                    layout={Location.ADDRESS}
-                    geocode
-                    addressBooks={this.props.addressBooks}
-                    addressBook="Reference"
-                    showPostOffice
-                    dispatch={this.props.dispatch}
-                    onUpdate={this.updateReferenceAddress}
+                  <Email
+                    name="ReferenceEmail"
+                    {...this.props.ReferenceEmail}
+                    className="reference-email"
+                    label={i18n.t('reference.label.email')}
+                    onUpdate={this.updateReferenceEmail}
                     onError={this.props.onError}
                   />
-                </Field>
-              </Show>
+                </NotApplicable>
+              </Field>
+
+              <Field
+                title={i18n.t('reference.heading.address')}
+                titleSize="h4"
+                optional
+                help="reference.help.address"
+                adjustFor="address"
+                scrollIntoView={this.props.scrollIntoView}
+              >
+                <p>{i18n.t('reference.para.address')}</p>
+                <Location
+                  name="ReferenceAddress"
+                  className="reference-address"
+                  {...this.props.ReferenceAddress}
+                  label={i18n.t('reference.label.address')}
+                  layout={Location.ADDRESS}
+                  geocode
+                  addressBooks={this.props.addressBooks}
+                  addressBook="Reference"
+                  showPostOffice
+                  dispatch={this.props.dispatch}
+                  onUpdate={this.updateReferenceAddress}
+                  onError={this.props.onError}
+                />
+              </Field>
             </div>
           </Show>
 

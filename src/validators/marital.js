@@ -1,7 +1,13 @@
+import store from 'services/store'
+import * as formTypes from 'constants/formTypes'
 import { validateModel } from 'models/validate'
 import civilUnion from 'models/civilUnion'
 import divorce from 'models/divorce'
 import { maritalStatusOptions, marriedOptions, previouslyMarriedOptions } from 'constants/enums/relationshipOptions'
+import {
+  requireRelationshipMaritalForeignBornDocExpiration,
+  requireRelationshipMaritalDivorcePhoneNumber,
+} from 'helpers/branches'
 
 const maritalModel = {
   Status: {
@@ -45,11 +51,23 @@ const maritalModel = {
   },
 }
 
-export const validateMarital = data => validateModel(data, maritalModel) === true
+export const validateMarital = (data, formType = formTypes.SF86) => {
+  const isForeignBornDocExpirationRequired = requireRelationshipMaritalForeignBornDocExpiration(formType)
+  const isDivorceePhoneNumberRequired = requireRelationshipMaritalDivorcePhoneNumber(formType)
+  const options = {
+    requireForeignBornDocExpiration: isForeignBornDocExpirationRequired,
+    requireRelationshipMaritalDivorcePhoneNumber: isDivorceePhoneNumberRequired,
+  }
+  return validateModel(data, maritalModel, options) === true
+}
 
 export default class MaritalValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
+
     this.data = data
+    this.formType = formType
   }
 
   validStatus() {
@@ -63,6 +81,6 @@ export default class MaritalValidator {
   }
 
   isValid() {
-    return validateMarital(this.data)
+    return validateMarital(this.data, this.formType)
   }
 }

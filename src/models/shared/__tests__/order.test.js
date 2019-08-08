@@ -5,9 +5,9 @@ describe('The appeal model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'CourtName.required',
-      'CourtAddress.required',
-      'Disposition.required',
+      'CourtName.presence.REQUIRED',
+      'CourtAddress.presence.REQUIRED',
+      'Disposition.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, appeal))
@@ -16,7 +16,7 @@ describe('The appeal model', () => {
 
   it('CourtName must have a value', () => {
     const testData = { CourtName: 'test court' }
-    const expectedErrors = ['CourtName.hasValue']
+    const expectedErrors = ['CourtName.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, appeal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -24,7 +24,28 @@ describe('The appeal model', () => {
 
   it('CourtAddress must be a valid location', () => {
     const testData = { CourtAddress: { address: 'invalid address' } }
-    const expectedErrors = ['CourtAddress.location']
+    const expectedErrors = [
+      'CourtAddress.location.street.presence.REQUIRED',
+      'CourtAddress.location.city.presence.REQUIRED',
+      'CourtAddress.location.country.presence.REQUIRED',
+    ]
+
+    expect(validateModel(testData, appeal))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('the CourtAddress field cannot be a PO box', () => {
+    const testData = {
+      CourtAddress: {
+        street: 'PO Box 123',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10002',
+        country: 'United States',
+      },
+    }
+
+    const expectedErrors = ['CourtAddress.location.street.format.INVALID_FORMAT']
 
     expect(validateModel(testData, appeal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -32,7 +53,7 @@ describe('The appeal model', () => {
 
   it('Disposition must have a value', () => {
     const testData = { Disposition: 'test' }
-    const expectedErrors = ['Disposition.hasValue']
+    const expectedErrors = ['Disposition.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, appeal))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -59,11 +80,11 @@ describe('The order model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'CourtName.required',
-      'CourtAddress.required',
-      'Disposition.required',
-      'Occurred.required',
-      'Appeals.required',
+      'CourtName.presence.REQUIRED',
+      'CourtAddress.presence.REQUIRED',
+      'Disposition.presence.REQUIRED',
+      'Occurred.presence.REQUIRED',
+      'Appeals.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, order))
@@ -72,7 +93,7 @@ describe('The order model', () => {
 
   it('CourtName must have a value', () => {
     const testData = { CourtName: 'test court' }
-    const expectedErrors = ['CourtName.hasValue']
+    const expectedErrors = ['CourtName.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, order))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -80,7 +101,28 @@ describe('The order model', () => {
 
   it('CourtAddress must be a valid location', () => {
     const testData = { CourtAddress: { address: 'invalid address' } }
-    const expectedErrors = ['CourtAddress.location']
+    const expectedErrors = [
+      'CourtAddress.location.street.presence.REQUIRED',
+      'CourtAddress.location.city.presence.REQUIRED',
+      'CourtAddress.location.country.presence.REQUIRED',
+    ]
+
+    expect(validateModel(testData, order))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('the CourtAddress field cannot be a PO box', () => {
+    const testData = {
+      CourtAddress: {
+        street: 'PO Box 123',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10002',
+        country: 'United States',
+      },
+    }
+
+    const expectedErrors = ['CourtAddress.location.street.format.INVALID_FORMAT']
 
     expect(validateModel(testData, order))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -88,7 +130,10 @@ describe('The order model', () => {
 
   it('Occurred must be a valid month/year', () => {
     const testData = { Occurred: { date: '3/16/00' } }
-    const expectedErrors = ['Occurred.date']
+    const expectedErrors = [
+      'Occurred.date.month.presence.REQUIRED',
+      'Occurred.date.year.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, order))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -96,7 +141,7 @@ describe('The order model', () => {
 
   it('Disposition must have a value', () => {
     const testData = { Disposition: 'test' }
-    const expectedErrors = ['Disposition.hasValue']
+    const expectedErrors = ['Disposition.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, order))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -115,7 +160,7 @@ describe('The order model', () => {
         ],
       },
     }
-    const expectedErrors = ['Appeals.branchCollection']
+    const expectedErrors = ['Appeals.branchCollection.INCOMPLETE_COLLECTION']
 
     expect(validateModel(testData, order))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -124,7 +169,7 @@ describe('The order model', () => {
   describe('if Disposition is not required', () => {
     it('Disposition is not required', () => {
       const testData = {}
-      const expectedErrors = ['Disposition.required']
+      const expectedErrors = ['Disposition.presence.REQUIRED']
 
       expect(validateModel(testData, order, { requireDisposition: false }))
         .not.toEqual(expect.arrayContaining(expectedErrors))

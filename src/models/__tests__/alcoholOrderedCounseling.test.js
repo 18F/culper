@@ -5,7 +5,7 @@ describe('The alcoholOrderedCounseling model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'ActionTaken.required',
+      'ActionTaken.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, alcoholOrderedCounseling))
@@ -19,7 +19,7 @@ describe('The alcoholOrderedCounseling model', () => {
         OtherSeeker: 'test',
       }
       const expectedErrors = [
-        'OtherSeeker.hasValue',
+        'OtherSeeker.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, alcoholOrderedCounseling))
@@ -61,7 +61,7 @@ describe('The alcoholOrderedCounseling model', () => {
       ActionTaken: { value: true },
     }
     const expectedErrors = [
-      'ActionTaken.hasValue',
+      'ActionTaken.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, alcoholOrderedCounseling))
@@ -74,8 +74,8 @@ describe('The alcoholOrderedCounseling model', () => {
         ActionTaken: { value: 'Yes' },
       }
       const expectedErrors = [
-        'TreatmentProviderName.required',
-        'TreatmentProviderName.hasValue',
+        'TreatmentProviderName.presence.REQUIRED',
+        'TreatmentProviderName.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, alcoholOrderedCounseling))
@@ -88,7 +88,9 @@ describe('The alcoholOrderedCounseling model', () => {
         TreatmentProviderAddress: 'invalid address',
       }
       const expectedErrors = [
-        'TreatmentProviderAddress.location',
+        'TreatmentProviderAddress.location.street.presence.REQUIRED',
+        'TreatmentProviderAddress.location.city.presence.REQUIRED',
+        'TreatmentProviderAddress.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, alcoholOrderedCounseling))
@@ -101,7 +103,20 @@ describe('The alcoholOrderedCounseling model', () => {
         TreatmentProviderTelephone: '1234567890',
       }
       const expectedErrors = [
-        'TreatmentProviderTelephone.model',
+        'TreatmentProviderTelephone.model.number.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, alcoholOrderedCounseling))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('TreatmentProviderTelephone must exist', () => {
+      const testData = {
+        ActionTaken: { value: 'Yes' },
+        TreatmentProviderTelephone: { noNumber: true },
+      }
+      const expectedErrors = [
+        'TreatmentProviderTelephone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, alcoholOrderedCounseling))
@@ -114,7 +129,8 @@ describe('The alcoholOrderedCounseling model', () => {
         CounselingDates: false,
       }
       const expectedErrors = [
-        'CounselingDates.daterange',
+        'CounselingDates.daterange.from.presence.REQUIRED',
+        'CounselingDates.daterange.to.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, alcoholOrderedCounseling))
@@ -127,7 +143,7 @@ describe('The alcoholOrderedCounseling model', () => {
         CompletedTreatment: true,
       }
       const expectedErrors = [
-        'CompletedTreatment.hasValue',
+        'CompletedTreatment.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, alcoholOrderedCounseling))
@@ -170,8 +186,8 @@ describe('The alcoholOrderedCounseling model', () => {
           CompletedTreatment: { value: 'No' },
         }
         const expectedErrors = [
-          'NoCompletedTreatmentExplanation.required',
-          'NoCompletedTreatmentExplanation.hasValue',
+          'NoCompletedTreatmentExplanation.presence.REQUIRED',
+          'NoCompletedTreatmentExplanation.hasValue.MISSING_VALUE',
         ]
 
         expect(validateModel(testData, alcoholOrderedCounseling))
@@ -214,8 +230,8 @@ describe('The alcoholOrderedCounseling model', () => {
         ActionTaken: { value: 'No' },
       }
       const expectedErrors = [
-        'NoActionTakenExplanation.required',
-        'NoActionTakenExplanation.hasValue',
+        'NoActionTakenExplanation.presence.REQUIRED',
+        'NoActionTakenExplanation.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, alcoholOrderedCounseling))

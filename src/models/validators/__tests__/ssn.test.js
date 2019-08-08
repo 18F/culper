@@ -8,7 +8,7 @@ describe('The ssn validator', () => {
       last: '9999',
     }
 
-    expect(ssn(testData)).toBeTruthy()
+    expect(ssn(testData)).toEqual('INVALID_SSN')
   })
 
   it('fails an SSN with the value of 123-45-6789', () => {
@@ -18,7 +18,7 @@ describe('The ssn validator', () => {
       last: '6789',
     }
 
-    expect(ssn(testData)).toBeTruthy()
+    expect(ssn(testData)).toEqual('INVALID_SSN')
   })
 
   it('fails if any SSN attributes are missing', () => {
@@ -26,7 +26,10 @@ describe('The ssn validator', () => {
       first: '123',
     }
 
-    expect(ssn(testData)).toBeTruthy()
+    expect(ssn(testData)).toEqual([
+      'middle.presence.REQUIRED',
+      'last.presence.REQUIRED',
+    ])
   })
 
   it('passes if the ssn is not applicable', () => {

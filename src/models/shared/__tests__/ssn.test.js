@@ -7,7 +7,11 @@ describe('The ssn model', () => {
       ssn: '',
     }
 
-    const expectedErrors = ['first.required', 'middle.required', 'last.required']
+    const expectedErrors = [
+      'first.presence.REQUIRED',
+      'middle.presence.REQUIRED',
+      'last.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, ssn))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -18,7 +22,7 @@ describe('The ssn model', () => {
       first: '1234',
     }
 
-    const expectedErrors = ['first.format']
+    const expectedErrors = ['first.format.INVALID_FORMAT']
 
     expect(validateModel(testData, ssn))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -29,7 +33,7 @@ describe('The ssn model', () => {
       middle: 'ab',
     }
 
-    const expectedErrors = ['middle.format']
+    const expectedErrors = ['middle.format.INVALID_FORMAT']
 
     expect(validateModel(testData, ssn))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -40,7 +44,7 @@ describe('The ssn model', () => {
       last: 'CDEF',
     }
 
-    const expectedErrors = ['last.format']
+    const expectedErrors = ['last.format.INVALID_FORMAT']
 
     expect(validateModel(testData, ssn))
       .toEqual(expect.arrayContaining(expectedErrors))

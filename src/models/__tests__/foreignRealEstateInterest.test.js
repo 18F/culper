@@ -5,14 +5,14 @@ describe('The foreignRealEstateInterest model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'InterestTypes.required',
-      'RealEstateType.required',
-      'Address.required',
-      'Acquired.required',
-      'HowAcquired.required',
-      'Cost.required',
-      'Sold.required',
-      'CoOwners.required',
+      'InterestTypes.presence.REQUIRED',
+      'RealEstateType.presence.REQUIRED',
+      'Address.presence.REQUIRED',
+      'Acquired.presence.REQUIRED',
+      'HowAcquired.presence.REQUIRED',
+      'Cost.presence.REQUIRED',
+      'Sold.presence.REQUIRED',
+      'CoOwners.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, foreignRealEstateInterest))
@@ -23,7 +23,7 @@ describe('The foreignRealEstateInterest model', () => {
     const testData = {
       InterestTypes: { values: [] },
     }
-    const expectedErrors = ['InterestTypes.array']
+    const expectedErrors = ['InterestTypes.array.array.length.LENGTH_TOO_SHORT']
     expect(validateModel(testData, foreignRealEstateInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -32,7 +32,7 @@ describe('The foreignRealEstateInterest model', () => {
     const testData = {
       RealEstateType: { value: false },
     }
-    const expectedErrors = ['RealEstateType.hasValue']
+    const expectedErrors = ['RealEstateType.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignRealEstateInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -41,7 +41,10 @@ describe('The foreignRealEstateInterest model', () => {
     const testData = {
       Address: { street: '1 St', country: null },
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignRealEstateInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -50,7 +53,7 @@ describe('The foreignRealEstateInterest model', () => {
     const testData = {
       Acquired: { month: 15, year: 9 },
     }
-    const expectedErrors = ['Acquired.date']
+    const expectedErrors = ['Acquired.date.date.datetime.INVALID_DATE']
     expect(validateModel(testData, foreignRealEstateInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -59,7 +62,7 @@ describe('The foreignRealEstateInterest model', () => {
     const testData = {
       HowAcquired: { value: false },
     }
-    const expectedErrors = ['HowAcquired.hasValue']
+    const expectedErrors = ['HowAcquired.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignRealEstateInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -68,7 +71,7 @@ describe('The foreignRealEstateInterest model', () => {
     const testData = {
       Cost: { value: false },
     }
-    const expectedErrors = ['Cost.hasValue']
+    const expectedErrors = ['Cost.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignRealEstateInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -88,7 +91,7 @@ describe('The foreignRealEstateInterest model', () => {
       },
     }
 
-    const expectedErrors = ['CoOwners.model']
+    const expectedErrors = ['CoOwners.model.List.branchCollection.INCOMPLETE_COLLECTION']
     expect(validateModel(testData, foreignRealEstateInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -97,7 +100,9 @@ describe('The foreignRealEstateInterest model', () => {
     const testData = {
       Sold: { day: 2, month: 10 },
     }
-    const expectedErrors = ['Sold.date']
+    const expectedErrors = [
+      'Sold.date.year.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignRealEstateInterest))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -107,7 +112,7 @@ describe('The foreignRealEstateInterest model', () => {
       const testData = {
         SoldNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Sold.required']
+      const expectedErrors = ['Sold.presence.REQUIRED']
       expect(validateModel(testData, foreignRealEstateInterest))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })

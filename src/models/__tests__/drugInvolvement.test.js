@@ -5,14 +5,14 @@ describe('The drugInvolvement model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'DrugType.required',
-      'FirstInvolvement.required',
-      'RecentInvolvement.required',
-      'NatureOfInvolvement.required',
-      'Reasons.required',
-      'InvolvementWhileEmployed.required',
-      'InvolvementWithClearance.required',
-      'InvolvementInFuture.required',
+      'DrugType.presence.REQUIRED',
+      'FirstInvolvement.presence.REQUIRED',
+      'RecentInvolvement.presence.REQUIRED',
+      'NatureOfInvolvement.presence.REQUIRED',
+      'Reasons.presence.REQUIRED',
+      'InvolvementWhileEmployed.presence.REQUIRED',
+      'InvolvementWithClearance.presence.REQUIRED',
+      'InvolvementInFuture.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -24,7 +24,7 @@ describe('The drugInvolvement model', () => {
       DrugType: { value: 'Other' },
     }
     const expectedErrors = [
-      'DrugType.hasValue',
+      'DrugType.hasValue.value.exclusion.EXCLUSION',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -54,7 +54,7 @@ describe('The drugInvolvement model', () => {
       FirstInvolvement: { day: 5, month: 10 },
     }
     const expectedErrors = [
-      'FirstInvolvement.date',
+      'FirstInvolvement.date.year.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -66,7 +66,7 @@ describe('The drugInvolvement model', () => {
       RecentInvolvement: { day: 5, month: 10 },
     }
     const expectedErrors = [
-      'RecentInvolvement.date',
+      'RecentInvolvement.date.year.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -79,7 +79,7 @@ describe('The drugInvolvement model', () => {
       RecentInvolvement: { month: 5, year: 1990 },
     }
     const expectedErrors = [
-      'RecentInvolvement.date',
+      'RecentInvolvement.date.date.datetime.DATE_TOO_EARLY',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -91,7 +91,7 @@ describe('The drugInvolvement model', () => {
       NatureOfInvolvement: 'testing',
     }
     const expectedErrors = [
-      'NatureOfInvolvement.hasValue',
+      'NatureOfInvolvement.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -103,7 +103,7 @@ describe('The drugInvolvement model', () => {
       Reasons: 'testing',
     }
     const expectedErrors = [
-      'Reasons.hasValue',
+      'Reasons.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -115,7 +115,7 @@ describe('The drugInvolvement model', () => {
       InvolvementWhileEmployed: { value: 'nope' },
     }
     const expectedErrors = [
-      'InvolvementWhileEmployed.hasValue',
+      'InvolvementWhileEmployed.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -127,7 +127,7 @@ describe('The drugInvolvement model', () => {
       InvolvementWithClearance: { value: 'nope' },
     }
     const expectedErrors = [
-      'InvolvementWithClearance.hasValue',
+      'InvolvementWithClearance.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -139,7 +139,7 @@ describe('The drugInvolvement model', () => {
       InvolvementInFuture: { value: 'nope' },
     }
     const expectedErrors = [
-      'InvolvementInFuture.hasValue',
+      'InvolvementInFuture.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugInvolvement))
@@ -152,7 +152,7 @@ describe('The drugInvolvement model', () => {
         InvolvementInFuture: { value: 'Yes' },
       }
       const expectedErrors = [
-        'Explanation.hasValue',
+        'Explanation.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, drugInvolvement))
@@ -180,7 +180,7 @@ describe('The drugInvolvement model', () => {
     it('InvolvementWhileEmployed is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'InvolvementWhileEmployed.required',
+        'InvolvementWhileEmployed.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugInvolvement, { requireInvolvementWhileEmployed: false }))
@@ -208,7 +208,7 @@ describe('The drugInvolvement model', () => {
     it('InvolvementWithClearance is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'InvolvementWithClearance.required',
+        'InvolvementWithClearance.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugInvolvement, { requireInvolvementWithClearance: false }))
@@ -235,7 +235,7 @@ describe('The drugInvolvement model', () => {
     it('InvolvementInFuture is not required', () => {
       const testData = {}
       const expectedErrors = [
-        'InvolvementInFuture.required',
+        'InvolvementInFuture.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugInvolvement, { requireInvolvementInFuture: false }))

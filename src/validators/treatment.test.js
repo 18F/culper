@@ -1,13 +1,13 @@
 import TreatmentValidator from './treatment'
 import Location from '../components/Form/Location'
 
-describe('Treatment validation', function() {
+describe('Treatment validation', () => {
   it('validates treatment', () => {
     const tests = [
       {
         data: {
           Name: {
-            value: 'Circuit Court'
+            value: 'Circuit Court',
           },
           Address: {
             country: { value: 'United States' },
@@ -15,21 +15,21 @@ describe('Treatment validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           Phone: {
-            noNumber: '',
+            noNumber: false,
             number: '7031112222',
             numberType: 'Home',
             timeOfDay: 'Both',
             type: 'Domestic',
-            extension: ''
-          }
+            extension: '',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new TreatmentValidator(test.data).isValid()).toBe(test.expected)
     })
   })

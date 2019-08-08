@@ -87,6 +87,7 @@ xmlsec1
 
 # Test artifacts
 /api/coverage.txt
+api/coverage-integration.txt
 /jest*
 
 # Ignore Mac DS_Store files

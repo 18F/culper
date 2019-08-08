@@ -1,6 +1,8 @@
+import { VALUE_NOT_TRUE } from 'constants/errors'
+
 const requireTrue = (value) => {
   if (value === true) return null
-  return 'Value must be true'
+  return VALUE_NOT_TRUE
 }
 
 export default requireTrue

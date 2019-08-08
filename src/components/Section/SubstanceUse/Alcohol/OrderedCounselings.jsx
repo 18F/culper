@@ -1,7 +1,9 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { OrderedCounselingValidator } from 'validators'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -87,6 +89,17 @@ export class OrderedCounselings extends Subsection {
   }
 
   render() {
+    const { formType, requireAlcoholOrderedCounselingParty } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_ALCOHOL_TREATMENT_YEARS
+    let branchLabelCopy
+    if (years === 'EVER') {
+      branchLabelCopy = i18n.t('substance.alcohol.heading.orderedCounseling')
+    } else {
+      const numberOfYearsString = getNumberOfYearsString(years)
+      branchLabelCopy = i18n.t('substance.alcohol.heading.orderedCounselingNum', { numberOfYearsString })
+    }
+
     return (
       <div
         className="section-content ordered-counselings"
@@ -96,7 +109,7 @@ export class OrderedCounselings extends Subsection {
         <h1 className="section-header">{i18n.t('substance.subsection.alcohol.ordered')}</h1>
         <Branch
           name="HasBeenOrdered"
-          label={i18n.t('substance.alcohol.heading.orderedCounseling')}
+          label={branchLabelCopy}
           labelSize="h4"
           className="has-been-ordered"
           {...this.props.HasBeenOrdered}
@@ -129,6 +142,7 @@ export class OrderedCounselings extends Subsection {
               dispatch={this.props.dispatch}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireAlcoholOrderedCounselingParty={requireAlcoholOrderedCounselingParty}
             />
           </Accordion>
         </Show>
@@ -147,6 +161,7 @@ OrderedCounselings.defaultProps = {
   dispatch: () => {},
   validator: data => validate(schema('substance.alcohol.ordered', data)),
   scrollToBottom: '',
+  requireAlcoholOrderedCounselingParty: true,
 }
 
 export default connectSubstanceUseSection(OrderedCounselings, sectionConfig)

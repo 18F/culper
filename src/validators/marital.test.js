@@ -63,7 +63,7 @@ describe('Marital validation', () => {
                     value: ['Germany'],
                   },
                   Telephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     type: 'Domestic',
@@ -199,7 +199,7 @@ describe('Marital validation', () => {
               layout: Location.ADDRESS,
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '7031112222',
               numberType: 'Home',
               type: 'Domestic',
@@ -290,7 +290,7 @@ describe('Marital validation', () => {
                     value: ['Germany'],
                   },
                   Telephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     type: 'Domestic',
@@ -353,7 +353,7 @@ describe('Marital validation', () => {
               layout: Location.ADDRESS,
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '7031112222',
               numberType: 'Home',
               type: 'Domestic',

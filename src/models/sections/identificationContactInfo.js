@@ -1,5 +1,6 @@
 import phone from 'models/shared/phone'
 import email from 'models/shared/email'
+import { DUPLICATE_PHONE_NUMBER_TYPES } from 'constants/errors'
 
 export const contactPhoneNumber = {
   Telephone: {
@@ -40,7 +41,7 @@ const identificationContactInfo = {
         })
         const unique = [...new Set(numberTypes)]
         if (numberTypes.length === unique.length) return null
-        return 'Duplicate number types'
+        return DUPLICATE_PHONE_NUMBER_TYPES
       },
     },
   },

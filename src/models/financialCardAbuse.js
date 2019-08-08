@@ -6,9 +6,14 @@ const financialCardAbuse = {
     presence: true,
     location: { validator: address },
   },
-  Date: {
-    presence: true,
-    date: { requireDay: false },
+  Date: (value, attributes, attributeName, options) => {
+    if (options.requireFinancialCardDisciplinaryDate) {
+      return {
+        presence: true,
+        date: { requireDay: false },
+      }
+    }
+    return {}
   },
   Reason: { presence: true, hasValue: true },
   Amount: {

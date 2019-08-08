@@ -1,4 +1,5 @@
 import { isZipcodeState, zipcodes } from 'config/zipcodes'
+import { ZIPCODE_STATE_MISMATCH } from 'constants/errors'
 
 const zipcodeValidator = (value, options, key, attributes) => {
   const { state } = attributes
@@ -7,7 +8,7 @@ const zipcodeValidator = (value, options, key, attributes) => {
 
   if (validZipcodeState) return null
 
-  return 'Invalid zipcode'
+  return ZIPCODE_STATE_MISMATCH
 }
 
 export default zipcodeValidator

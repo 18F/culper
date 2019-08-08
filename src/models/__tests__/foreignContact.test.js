@@ -4,7 +4,7 @@ import foreignContact from '../foreignContact'
 describe('The foreignContact model', () => {
   it('Name is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -13,7 +13,11 @@ describe('The foreignContact model', () => {
     const testData = {
       Name: 'My name',
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -23,7 +27,7 @@ describe('The foreignContact model', () => {
       const testData = {
         NameNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Name.required']
+      const expectedErrors = ['Name.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -32,7 +36,7 @@ describe('The foreignContact model', () => {
       const testData = {
         NameNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['NameExplanation.required']
+      const expectedErrors = ['NameExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -42,7 +46,7 @@ describe('The foreignContact model', () => {
         NameNotApplicable: { applicable: false },
         NameExplanation: 'something',
       }
-      const expectedErrors = ['NameExplanation.hasValue']
+      const expectedErrors = ['NameExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -50,7 +54,7 @@ describe('The foreignContact model', () => {
 
   it('FirstContact is required', () => {
     const testData = {}
-    const expectedErrors = ['FirstContact.required']
+    const expectedErrors = ['FirstContact.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -59,14 +63,18 @@ describe('The foreignContact model', () => {
     const testData = {
       FirstContact: '2000/1/2',
     }
-    const expectedErrors = ['FirstContact.date']
+    const expectedErrors = [
+      'FirstContact.date.day.presence.REQUIRED',
+      'FirstContact.date.month.presence.REQUIRED',
+      'FirstContact.date.year.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('LastContact is required', () => {
     const testData = {}
-    const expectedErrors = ['LastContact.required']
+    const expectedErrors = ['LastContact.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -75,7 +83,9 @@ describe('The foreignContact model', () => {
     const testData = {
       LastContact: { year: 2000, month: 2 },
     }
-    const expectedErrors = ['LastContact.date']
+    const expectedErrors = [
+      'LastContact.date.day.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -85,14 +95,14 @@ describe('The foreignContact model', () => {
       FirstContact: { year: 2003, month: 5, day: 2 },
       LastContact: { year: 2000, month: 2, day: 5 },
     }
-    const expectedErrors = ['LastContact.date']
+    const expectedErrors = ['LastContact.date.date.datetime.DATE_TOO_EARLY']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('Methods is required', () => {
     const testData = {}
-    const expectedErrors = ['Methods.required']
+    const expectedErrors = ['Methods.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -101,7 +111,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Methods: { values: [] },
     }
-    const expectedErrors = ['Methods.array']
+    const expectedErrors = ['Methods.array.array.length.LENGTH_TOO_SHORT']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -110,7 +120,10 @@ describe('The foreignContact model', () => {
     const testData = {
       Methods: { values: ['Invalid', 'Testing', 'Telephone'] },
     }
-    const expectedErrors = ['Methods.array']
+    const expectedErrors = [
+      'Methods.array.0.value.inclusion.INCLUSION',
+      'Methods.array.1.value.inclusion.INCLUSION',
+    ]
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -120,7 +133,7 @@ describe('The foreignContact model', () => {
       const testData = {
         Methods: { values: ['Other', 'Telephone'] },
       }
-      const expectedErrors = ['MethodsExplanation.required']
+      const expectedErrors = ['MethodsExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -130,7 +143,7 @@ describe('The foreignContact model', () => {
         Methods: { values: ['Other', 'Telephone'] },
         MethodsExplanation: true,
       }
-      const expectedErrors = ['MethodsExplanation.hasValue']
+      const expectedErrors = ['MethodsExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -138,7 +151,7 @@ describe('The foreignContact model', () => {
 
   it('Frequency is required', () => {
     const testData = {}
-    const expectedErrors = ['Frequency.required']
+    const expectedErrors = ['Frequency.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -147,7 +160,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Frequency: { value: 'Invalid' },
     }
-    const expectedErrors = ['Frequency.hasValue']
+    const expectedErrors = ['Frequency.hasValue.value.inclusion.INCLUSION']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -157,7 +170,7 @@ describe('The foreignContact model', () => {
       const testData = {
         Frequency: { value: 'Other' },
       }
-      const expectedErrors = ['FrequencyExplanation.required']
+      const expectedErrors = ['FrequencyExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -167,7 +180,7 @@ describe('The foreignContact model', () => {
         Frequency: { value: 'Other' },
         FrequencyExplanation: true,
       }
-      const expectedErrors = ['FrequencyExplanation.hasValue']
+      const expectedErrors = ['FrequencyExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -175,7 +188,7 @@ describe('The foreignContact model', () => {
 
   it('Relationship is required', () => {
     const testData = {}
-    const expectedErrors = ['Relationship.required']
+    const expectedErrors = ['Relationship.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -184,7 +197,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Relationship: { values: [] },
     }
-    const expectedErrors = ['Relationship.array']
+    const expectedErrors = ['Relationship.array.array.length.LENGTH_TOO_SHORT']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -193,7 +206,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Relationship: { values: ['Testing'] },
     }
-    const expectedErrors = ['Relationship.array']
+    const expectedErrors = ['Relationship.array.0.value.inclusion.INCLUSION']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -203,7 +216,7 @@ describe('The foreignContact model', () => {
       const testData = {
         Relationship: { values: ['Other'] },
       }
-      const expectedErrors = ['RelationshipExplanation.required']
+      const expectedErrors = ['RelationshipExplanation.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -213,7 +226,7 @@ describe('The foreignContact model', () => {
         Relationship: { values: ['Obligation'] },
         RelationshipExplanation: 12345,
       }
-      const expectedErrors = ['RelationshipExplanation.hasValue']
+      const expectedErrors = ['RelationshipExplanation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -221,7 +234,7 @@ describe('The foreignContact model', () => {
 
   it('Aliases is required', () => {
     const testData = {}
-    const expectedErrors = ['Aliases.required']
+    const expectedErrors = ['Aliases.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -236,14 +249,14 @@ describe('The foreignContact model', () => {
         ],
       },
     }
-    const expectedErrors = ['Aliases.branchCollection']
+    const expectedErrors = ['Aliases.branchCollection.INCOMPLETE_COLLECTION']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('Citizenship is required', () => {
     const testData = {}
-    const expectedErrors = ['Citizenship.required']
+    const expectedErrors = ['Citizenship.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -252,7 +265,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Citizenship: { value: [] },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -261,14 +274,14 @@ describe('The foreignContact model', () => {
     const testData = {
       Citizenship: { value: ['United Kingdom', 'invalid'] },
     }
-    const expectedErrors = ['Citizenship.country']
+    const expectedErrors = ['Citizenship.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('Birthdate is required', () => {
     const testData = {}
-    const expectedErrors = ['Birthdate.required']
+    const expectedErrors = ['Birthdate.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -277,7 +290,11 @@ describe('The foreignContact model', () => {
     const testData = {
       Birthdate: 'invalid date',
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = [
+      'Birthdate.date.day.presence.REQUIRED',
+      'Birthdate.date.month.presence.REQUIRED',
+      'Birthdate.date.year.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -286,7 +303,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 1800 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -296,7 +313,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Birthdate: { day: 2, month: 12, year: 3000 },
     }
-    const expectedErrors = ['Birthdate.date']
+    const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -307,7 +324,7 @@ describe('The foreignContact model', () => {
       const testData = {
         BirthdateNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Birthdate.required']
+      const expectedErrors = ['Birthdate.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -315,7 +332,7 @@ describe('The foreignContact model', () => {
 
   it('Birthplace is required', () => {
     const testData = {}
-    const expectedErrors = ['Birthplace.required']
+    const expectedErrors = ['Birthplace.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -324,7 +341,10 @@ describe('The foreignContact model', () => {
     const testData = {
       Birthplace: 'invalid date',
     }
-    const expectedErrors = ['Birthplace.location']
+    const expectedErrors = [
+      'Birthplace.location.city.presence.REQUIRED',
+      'Birthplace.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -334,7 +354,7 @@ describe('The foreignContact model', () => {
       const testData = {
         BirthplaceNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Birthplace.required']
+      const expectedErrors = ['Birthplace.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -342,7 +362,7 @@ describe('The foreignContact model', () => {
 
   it('Address is required', () => {
     const testData = {}
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -351,7 +371,11 @@ describe('The foreignContact model', () => {
     const testData = {
       Address: 'invalid date',
     }
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -361,7 +385,7 @@ describe('The foreignContact model', () => {
       const testData = {
         AddressNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Address.required']
+      const expectedErrors = ['Address.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -369,7 +393,7 @@ describe('The foreignContact model', () => {
 
   it('AlternateAddress is required', () => {
     const testData = {}
-    const expectedErrors = ['AlternateAddress.required']
+    const expectedErrors = ['AlternateAddress.presence.REQUIRED']
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -381,7 +405,9 @@ describe('The foreignContact model', () => {
         HasDifferentAddress: false,
       },
     }
-    const expectedErrors = ['AlternateAddress.model']
+    const expectedErrors = [
+      'AlternateAddress.model.HasDifferentAddress.hasValue.MISSING_VALUE',
+    ]
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -400,7 +426,9 @@ describe('The foreignContact model', () => {
         },
       },
     }
-    const expectedErrors = ['AlternateAddress.model']
+    const expectedErrors = [
+      'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+    ]
 
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -408,7 +436,7 @@ describe('The foreignContact model', () => {
 
   it('Employer is required', () => {
     const testData = {}
-    const expectedErrors = ['Employer.required']
+    const expectedErrors = ['Employer.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -417,7 +445,7 @@ describe('The foreignContact model', () => {
     const testData = {
       Employer: 'employer',
     }
-    const expectedErrors = ['Employer.hasValue']
+    const expectedErrors = ['Employer.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -427,7 +455,7 @@ describe('The foreignContact model', () => {
       const testData = {
         EmployerNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['Employer.required']
+      const expectedErrors = ['Employer.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -435,7 +463,7 @@ describe('The foreignContact model', () => {
 
   it('EmployerAddress is required', () => {
     const testData = {}
-    const expectedErrors = ['EmployerAddress.required']
+    const expectedErrors = ['EmployerAddress.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -444,7 +472,11 @@ describe('The foreignContact model', () => {
     const testData = {
       EmployerAddress: 'invalid date',
     }
-    const expectedErrors = ['EmployerAddress.location']
+    const expectedErrors = [
+      'EmployerAddress.location.street.presence.REQUIRED',
+      'EmployerAddress.location.city.presence.REQUIRED',
+      'EmployerAddress.location.country.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -454,7 +486,7 @@ describe('The foreignContact model', () => {
       const testData = {
         EmployerAddressNotApplicable: { applicable: false },
       }
-      const expectedErrors = ['EmployerAddress.required']
+      const expectedErrors = ['EmployerAddress.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -462,7 +494,7 @@ describe('The foreignContact model', () => {
 
   it('HasAffiliations is required', () => {
     const testData = {}
-    const expectedErrors = ['HasAffiliations.required']
+    const expectedErrors = ['HasAffiliations.presence.REQUIRED']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -471,7 +503,7 @@ describe('The foreignContact model', () => {
     const testData = {
       HasAffiliations: { value: 'invalid' },
     }
-    const expectedErrors = ['HasAffiliations.hasValue']
+    const expectedErrors = ['HasAffiliations.hasValue.value.inclusion.INCLUSION']
     expect(validateModel(testData, foreignContact))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -481,7 +513,7 @@ describe('The foreignContact model', () => {
       const testData = {
         HasAffiliations: { value: 'Yes' },
       }
-      const expectedErrors = ['Affiliations.required']
+      const expectedErrors = ['Affiliations.presence.REQUIRED']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -491,7 +523,7 @@ describe('The foreignContact model', () => {
         HasAffiliations: { value: 'Yes' },
         Affiliations: 'something',
       }
-      const expectedErrors = ['Affiliations.hasValue']
+      const expectedErrors = ['Affiliations.hasValue.MISSING_VALUE']
       expect(validateModel(testData, foreignContact))
         .toEqual(expect.arrayContaining(expectedErrors))
     })

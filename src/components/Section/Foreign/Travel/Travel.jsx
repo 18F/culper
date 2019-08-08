@@ -73,6 +73,13 @@ export class Travel extends Subsection {
   }
 
   render() {
+    const {
+      requireForeignCounterIntelligence,
+      requireForeignExcessiveKnowledge,
+      requireForeignSensitiveInformation,
+      requireForeignThreatened,
+    } = this.props
+
     return (
       <div
         className="section-content foreign-travel"
@@ -135,6 +142,10 @@ export class Travel extends Subsection {
               bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireForeignCounterIntelligence={requireForeignCounterIntelligence}
+              requireForeignExcessiveKnowledge={requireForeignExcessiveKnowledge}
+              requireForeignSensitiveInformation={requireForeignSensitiveInformation}
+              requireForeignThreatened={requireForeignThreatened}
             />
           </Accordion>
         </Show>
@@ -156,6 +167,10 @@ Travel.defaultProps = {
   validator: data => validate(schema('foreign.travel', data)),
   defaultState: true,
   scrollToBottom: '',
+  requireForeignCounterIntelligence: true,
+  requireForeignExcessiveKnowledge: true,
+  requireForeignSensitiveInformation: true,
+  requireForeignThreatened: true,
 }
 
 export default connectForeignSection(Travel, sectionConfig)

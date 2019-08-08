@@ -60,6 +60,11 @@ export class Introduction extends React.Component {
         acceptancePara = i18n.m('introduction.acceptance.para85')
         break
       }
+      case formTypes.SF85P: {
+        introductionContent = i18n.m('introduction.contents85p')
+        acceptancePara = i18n.m('introduction.acceptance.para85p')
+        break
+      }
       default: {
         introductionContent = i18n.m('introduction.contents')
         acceptancePara = i18n.m('introduction.acceptance.para')
