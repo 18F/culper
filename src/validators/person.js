@@ -1,7 +1,7 @@
 import { validateModel } from 'models/validate'
 import person from 'models/person'
 
-export const validatePerson = data => validateModel(data, person) === true
+export const validatePerson = data => validateModel(data, person)
 
 /** Object Validators (as classes) - legacy */
 export default class PersonValidator {
@@ -44,6 +44,6 @@ export default class PersonValidator {
   }
 
   isValid() {
-    return validatePerson(this.data)
+    return validatePerson(this.data) === true
   }
 }

@@ -32,11 +32,11 @@ const historyEducationModel = {
 }
 
 export const validateEducation = data => (
-  validateModel(data, education) === true
+  validateModel(data, education)
 )
 
 export const validateHistoryEducation = data => (
-  validateModel(data, historyEducationModel) === true
+  validateModel(data, historyEducationModel)
 )
 
 export default class HistoryEducationValidator {
@@ -58,7 +58,7 @@ export default class HistoryEducationValidator {
   }
 
   isValid() {
-    return validateHistoryEducation(this.data)
+    return validateHistoryEducation(this.data) === true
   }
 }
 
@@ -97,6 +97,6 @@ export class EducationItemValidator {
   }
 
   isValid() {
-    return validateEducation(this.data)
+    return validateEducation(this.data) === true
   }
 }

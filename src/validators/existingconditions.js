@@ -2,7 +2,7 @@ import { validateModel } from 'models/validate'
 import existingConditions from 'models/existingConditions'
 
 export const validateExistingConditions = data => (
-  validateModel(data, existingConditions) === true
+  validateModel(data, existingConditions)
 )
 
 export default class ExistingConditionsValidator {
@@ -26,6 +26,6 @@ export default class ExistingConditionsValidator {
   }
 
   isValid() {
-    return validateModel(this.data, existingConditions)
+    return validateModel(this.data, existingConditions) === true
   }
 }

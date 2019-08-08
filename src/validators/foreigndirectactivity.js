@@ -16,7 +16,7 @@ export const validateForeignDirectActivity = (data) => {
     },
   }
 
-  return validateModel(data, foreignDirectActivityModel) === true
+  return validateModel(data, foreignDirectActivityModel)
 }
 
 export default class ForeignDirectActivityValidator {
@@ -25,6 +25,6 @@ export default class ForeignDirectActivityValidator {
   }
 
   isValid() {
-    return validateForeignDirectActivity(this.data)
+    return validateForeignDirectActivity(this.data) === true
   }
 }

@@ -1,7 +1,7 @@
 import { validateModel } from 'models/validate'
 import residence from 'models/residence'
 
-export const validateResidence = data => validateModel(data, residence) === true
+export const validateResidence = data => validateModel(data, residence)
 
 export const validateHistoryResidence = (data) => {
   const historyResidenceModel = {
@@ -11,7 +11,7 @@ export const validateHistoryResidence = (data) => {
     },
   }
 
-  return validateModel(data, historyResidenceModel) === true
+  return validateModel(data, historyResidenceModel)
 }
 
 export class ResidenceValidator {
@@ -20,7 +20,7 @@ export class ResidenceValidator {
   }
 
   isValid() {
-    return validateResidence(this.data)
+    return validateResidence(this.data) === true
   }
 }
 
@@ -30,6 +30,6 @@ export default class HistoryResidenceValidator {
   }
 
   isValid() {
-    return validateHistoryResidence(this.data)
+    return validateHistoryResidence(this.data) === true
   }
 }

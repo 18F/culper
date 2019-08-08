@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignBusinessSponsorship from 'models/foreignBusinessSponsorship'
 
-export const validateSponsorship = data => validateModel(data, foreignBusinessSponsorship) === true
+export const validateSponsorship = data => validateModel(data, foreignBusinessSponsorship)
 
 export const validateForeignBusinessSponsorship = (data) => {
   const foreignBusinessSponsorshipModel = {
@@ -18,7 +18,7 @@ export const validateForeignBusinessSponsorship = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessSponsorshipModel) === true
+  return validateModel(data, foreignBusinessSponsorshipModel)
 }
 
 export default class ForeignBusinessSponsorshipValidator {
@@ -27,7 +27,7 @@ export default class ForeignBusinessSponsorshipValidator {
   }
 
   isValid() {
-    return validateForeignBusinessSponsorship(this.data)
+    return validateForeignBusinessSponsorship(this.data) === true
   }
 }
 
@@ -103,6 +103,6 @@ export class SponsorshipValidator {
   }
 
   isValid() {
-    return validateSponsorship(this.data)
+    return validateSponsorship(this.data) === true
   }
 }

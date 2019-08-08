@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import debarred from 'models/debarred'
 
 export const validateDebarred = data => (
-  validateModel(data, debarred) === true
+  validateModel(data, debarred)
 )
 
 export const validateLegalInvestigationsDebarred = (data) => {
@@ -19,7 +19,7 @@ export const validateLegalInvestigationsDebarred = (data) => {
     },
   }
 
-  return validateModel(data, legalInvestigationsDebarredModel) === true
+  return validateModel(data, legalInvestigationsDebarredModel)
 }
 
 export default class LegalInvestigationsDebarredValidator {
@@ -28,7 +28,7 @@ export default class LegalInvestigationsDebarredValidator {
   }
 
   isValid() {
-    return validateLegalInvestigationsDebarred(this.data)
+    return validateLegalInvestigationsDebarred(this.data) === true
   }
 }
 
@@ -56,6 +56,6 @@ export class DebarredValidator {
   }
 
   isValid() {
-    return validateDebarred(this.data)
+    return validateDebarred(this.data) === true
   }
 }

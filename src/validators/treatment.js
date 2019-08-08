@@ -1,7 +1,7 @@
 import { validateModel } from 'models/validate'
 import treatment from 'models/treatment'
 
-export const validateTreatment = data => validateModel(data, treatment) === true
+export const validateTreatment = data => validateModel(data, treatment)
 
 export default class TreatmentValidator {
   constructor(data = {}) {
@@ -9,6 +9,6 @@ export default class TreatmentValidator {
   }
 
   isValid() {
-    return validateTreatment(this.data)
+    return validateTreatment(this.data) === true
   }
 }

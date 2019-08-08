@@ -19,7 +19,7 @@ export const validateForeignBenefitActivity = (data) => {
     },
   }
 
-  return validateModel(data, foreignBenefitActivityModel) === true
+  return validateModel(data, foreignBenefitActivityModel)
 }
 
 export default class ForeignBenefitActivityValidator {
@@ -28,6 +28,6 @@ export default class ForeignBenefitActivityValidator {
   }
 
   isValid() {
-    return validateForeignBenefitActivity(this.data)
+    return validateForeignBenefitActivity(this.data) === true
   }
 }

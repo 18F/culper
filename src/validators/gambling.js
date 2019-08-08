@@ -19,7 +19,7 @@ const financialGamblingModel = {
 }
 
 export const validateFinancialGambling = data => (
-  validateModel(data, financialGamblingModel) === true
+  validateModel(data, financialGamblingModel)
 )
 
 export default class GamblingValidator {
@@ -44,12 +44,12 @@ export default class GamblingValidator {
    * Validates section of gambling debt
    */
   isValid() {
-    return validateFinancialGambling(this.data)
+    return validateFinancialGambling(this.data) === true
   }
 }
 
 export const validateFinancialGamblingItem = data => (
-  validateModel(data, financialGambling) === true
+  validateModel(data, financialGambling)
 )
 
 export class GamblingItemValidator {
@@ -58,6 +58,6 @@ export class GamblingItemValidator {
   }
 
   isValid() {
-    return validateFinancialGamblingItem(this.data)
+    return validateFinancialGamblingItem(this.data) === true
   }
 }

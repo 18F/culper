@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import drugClearanceUse from 'models/drugClearanceUse'
 
 export const validateDrugClearanceUse = data => (
-  validateModel(data, drugClearanceUse) === true
+  validateModel(data, drugClearanceUse)
 )
 
 export const validateDrugClearanceUses = (data) => {
@@ -19,7 +19,7 @@ export const validateDrugClearanceUses = (data) => {
     },
   }
 
-  return validateModel(data, drugClearanceUsesModel) === true
+  return validateModel(data, drugClearanceUsesModel)
 }
 
 export default class DrugClearanceUsesValidator {
@@ -28,7 +28,7 @@ export default class DrugClearanceUsesValidator {
   }
 
   isValid() {
-    return validateDrugClearanceUses(this.data)
+    return validateDrugClearanceUses(this.data) === true
   }
 }
 
@@ -38,6 +38,6 @@ export class DrugClearanceUseValidator {
   }
 
   isValid() {
-    return validateDrugClearanceUse(this.data)
+    return validateDrugClearanceUse(this.data) === true
   }
 }

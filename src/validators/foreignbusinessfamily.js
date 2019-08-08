@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignBusinessFamily from 'models/foreignBusinessFamily'
 
-export const validateFamily = data => validateModel(data, foreignBusinessFamily) === true
+export const validateFamily = data => validateModel(data, foreignBusinessFamily)
 
 export const validateForeignBusinessFamily = (data) => {
   const foreignBusinessFamilyModel = {
@@ -18,7 +18,7 @@ export const validateForeignBusinessFamily = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessFamilyModel) === true
+  return validateModel(data, foreignBusinessFamilyModel)
 }
 
 export default class ForeignBusinessFamilyValidator {
@@ -27,7 +27,7 @@ export default class ForeignBusinessFamilyValidator {
   }
 
   isValid() {
-    return validateForeignBusinessFamily(this.data)
+    return validateForeignBusinessFamily(this.data) === true
   }
 }
 
@@ -67,6 +67,6 @@ export class FamilyValidator {
   }
 
   isValid() {
-    return validateFamily(this.data)
+    return validateFamily(this.data) === true
   }
 }

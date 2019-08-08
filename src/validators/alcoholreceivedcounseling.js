@@ -10,7 +10,7 @@ export const validateReceivedCounseling = (data) => {
     },
   }
 
-  return validateModel(modelData, alcoholReceivedCounseling) === true
+  return validateModel(modelData, alcoholReceivedCounseling)
 }
 
 export const validateReceivedCounselings = (data) => {
@@ -42,7 +42,7 @@ export const validateReceivedCounselings = (data) => {
     modelData.List.items = newItems
   }
 
-  return validateModel(modelData, receivedCounselingsModel) === true
+  return validateModel(modelData, receivedCounselingsModel)
 }
 
 export default class ReceivedCounselingsValidator {
@@ -51,7 +51,7 @@ export default class ReceivedCounselingsValidator {
   }
 
   isValid() {
-    return validateReceivedCounselings(this.data)
+    return validateReceivedCounselings(this.data) === true
   }
 }
 
@@ -76,6 +76,6 @@ export class ReceivedCounselingValidator {
   }
 
   isValid() {
-    return validateReceivedCounseling(this.data)
+    return validateReceivedCounseling(this.data) === true
   }
 }

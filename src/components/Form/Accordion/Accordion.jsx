@@ -536,8 +536,14 @@ export default class Accordion extends ValidationElement {
    * */
   isValid(item, uuid) {
     if (this.props.required) {
-      return new this.props.validator(item).isValid() && this.hasNoErrors(uuid)
+      try {
+        return this.props.validator(item) === true && this.hasNoErrors(uuid)
+      } catch (e) {
+        // eslint-disable-next-line new-cap
+        return new this.props.validator(item).isValid() === true && this.hasNoErrors(uuid)
+      }
     }
+
     return true
   }
 

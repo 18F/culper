@@ -6,6 +6,8 @@ import height from 'models/shared/height'
 import sex from 'models/shared/sex'
 import weight from 'models/shared/weight'
 
+// TODO
+
 export const validateIdentificationPhysical = (data) => {
   const physicalModel = {
     Height: { presence: true, model: { validator: height } },
@@ -15,7 +17,7 @@ export const validateIdentificationPhysical = (data) => {
     Sex: { presence: true, model: { validator: sex } },
   }
 
-  return validateModel(data, physicalModel) === true
+  return validateModel(data, physicalModel)
 }
 
 /** LEGACY */

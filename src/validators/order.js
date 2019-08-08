@@ -2,7 +2,7 @@ import { validateModel } from 'models/validate'
 import order from 'models/shared/order'
 
 export const validateOrder = (data, requireDisposition = true) => (
-  validateModel(data, order, { requireDisposition }) === true
+  validateModel(data, order, { requireDisposition })
 )
 
 export default class OrderValidator {
@@ -37,7 +37,7 @@ export default class OrderValidator {
   }
 
   isValid() {
-    return validateOrder(this.data, this.prefix !== 'competence')
+    return validateOrder(this.data, this.prefix !== 'competence') === true
   }
 }
 
