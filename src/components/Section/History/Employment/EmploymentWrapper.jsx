@@ -9,10 +9,8 @@ import * as formConfig from 'config/forms'
 import { Field, Show } from 'components/Form'
 import { sectionHasGaps } from 'components/Section/History/helpers'
 
-import ConnectedEmployment from './Employment'
-import EmploymentSummaryProgress from './EmploymentSummaryProgress'
-
-import connectHistorySection from '../HistoryConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -96,4 +94,4 @@ EmploymentWrapper.defaultProps = {
   Birthdate: undefined,
 }
 
-export default connectHistorySection(EmploymentWrapper, sectionConfig)
+export default connectSubsection(EmploymentWrapper, sectionConfig)

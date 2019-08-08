@@ -9,11 +9,10 @@ import schema from 'schema'
 
 import validate, { FederalServiceItemValidator } from 'validators'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
-
-import connectHistorySection from '../HistoryConnector'
 
 import FederalItem from './FederalItem'
 
@@ -144,4 +143,4 @@ Federal.defaultProps = {
   defaultState: true,
 }
 
-export default connectHistorySection(Federal, sectionConfig)
+export default connectSubsection(Federal, sectionConfig)

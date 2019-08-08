@@ -9,9 +9,11 @@ import { sectionHasGaps } from 'components/Section/History/helpers'
 import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
 import * as formConfig from 'config/forms'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
+
 import ConnectedResidence from './Residence'
 import ResidenceSummaryProgress from './ResidenceSummaryProgress'
-import connectHistorySection from '../HistoryConnector'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -97,4 +99,4 @@ ResidenceWrapper.defaultProps = {
   Birthdate: undefined,
 }
 
-export default connectHistorySection(ResidenceWrapper, sectionConfig)
+export default connectSubsection(ResidenceWrapper, sectionConfig)

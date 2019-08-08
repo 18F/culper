@@ -9,6 +9,12 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
+import { selectHistoryFederalSection } from 'selectors/branches'
+
+import { totalYears, sort } from 'components/Section/History/helpers'
+import { utc } from 'components/Section/History/dateranges'
+
+
 const connectSubsection = (Component, {
   key, section, subsection, store, storeKey,
 }) => {
@@ -36,10 +42,15 @@ const connectSubsection = (Component, {
     }
 
     render() {
+      const { Birthdate } = this.props
+      const totalYearsProp = totalYears(Birthdate)
+
       return (
         <Component
           onUpdate={this.handleUpdate}
           onError={this.handleError}
+          totalYears={totalYearsProp}
+          sort={sort}
           {...this.props}
         />
       )
@@ -55,36 +66,36 @@ const connectSubsection = (Component, {
   }
 
   const mapStateToProps = (state) => {
-    const { application } = state
-    const { Identification } = application
+    const { form } = state
+    const sectionData = form[key]
 
-    switch (storeKey) {
-      case 'ApplicantName':
-        return { ...Identification.ApplicantName } || {}
+    const app = state.application || {}
+    const identification = app.Identification || {}
+    const history = app.History || {}
+    const errors = app.Errors || {}
+    const completed = app.Completed || {}
+    const addressBooks = app.AddressBooks || {}
+    const emptyItems = { items: [] }
+    const emptyList = { List: emptyItems }
+    const { formType } = app.Settings
 
-      case 'ApplicantBirthDate':
-        return { ...Identification.ApplicantBirthDate } || {}
+    try {
+      return {
+        ...sectionData.data,
+        ...sectionData,
 
-      case 'ApplicantBirthPlace':
-        return { ...Identification.ApplicantBirthPlace } || {}
+        Birthdate: processDate(identification.ApplicantBirthDate),
+        addressBooks,
+        ...selectHistoryFederalSection(state),
+        formType,
 
-      case 'ApplicantSSN':
-        return { ...Identification.ApplicantSSN } || {}
+      }
+    } catch (e) {
+      console.log(key, e)
 
-      case 'OtherNames':
-        return { ...Identification.OtherNames } || {}
-
-      case 'Contacts':
-        return { ...Identification.Contacts } || {}
-
-      case 'Physical':
-        return { ...Identification.Physical } || {}
-
-      default:
-        return {}
-    }
+      return {}
+    }   
   }
-
   return connect(mapStateToProps)(ConnectedSubsection)
 }
 

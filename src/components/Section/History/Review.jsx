@@ -6,7 +6,9 @@ import * as formConfig from 'config/forms'
 
 import { Show } from 'components/Form'
 
-import connectHistorySection from './HistoryConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
+
 
 import ResidenceSummaryProgress from './Residence/ResidenceSummaryProgress'
 import EmploymentSummaryProgress from './Employment/EmploymentSummaryProgress'
@@ -102,4 +104,4 @@ const Review = (props) => {
   )
 }
 
-export default connectHistorySection(Review, sectionConfig)
+export default connectSubsection(Review, sectionConfig)

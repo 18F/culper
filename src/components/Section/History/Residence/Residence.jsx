@@ -8,14 +8,13 @@ import {
   ResidenceValidator,
 } from 'validators'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { Accordion } from 'components/Form'
 import { newGuid } from 'components/Form/ValidationElement'
 import { openState } from 'components/Form/Accordion/Accordion'
 import { today, daysAgo } from 'components/Section/History/dateranges'
-
-import connectHistorySection from '../HistoryConnector'
 
 import { InjectGaps, ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
@@ -183,4 +182,4 @@ Residence.defaultProps = {
   validator: data => new HistoryResidenceValidator(data).isValid(),
 }
 
-export default connectHistorySection(Residence, sectionConfig)
+export default connectSubsection(Residence, sectionConfig)

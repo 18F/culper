@@ -4,6 +4,7 @@ import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { EmploymentValidator } from 'validators'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 import { Accordion, Branch } from 'components/Form'
 import { openState } from 'components/Form/Accordion/Accordion'
@@ -19,7 +20,6 @@ import { getYearsString } from 'helpers/text'
 
 import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
 
-import connectHistorySection from '../HistoryConnector'
 
 const sectionConfig = {
   key: HISTORY_EMPLOYMENT.key,
@@ -258,4 +258,4 @@ Employment.defaultProps = {
   validator: data => validate(schema('history.employment', data)),
 }
 
-export default connectHistorySection(Employment, sectionConfig)
+export default connectSubsection(Employment, sectionConfig)
