@@ -10,16 +10,6 @@ export const validateOtherNames = data => (
   validateModel(data, identificationOtherNames) === true
 )
 
-export default class OtherNamesValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateOtherNames(this.data)
-  }
-}
-
 /**
  * Validates a single instance of an other name
  */

@@ -1,19 +1,17 @@
+/* eslint-disable import/no-cycle */
 import validate from './validate'
 import DateControlValidator from './datecontrol'
 import DateRangeValidator from './daterange'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
+
 import IdentificationContactInformationValidator, {
   ContactPhoneNumberValidator,
 } from './identificationcontacts'
-import IdentificationValidator from './identification'
-import IdentificationNameValidator from './identificationname'
-import IdentificationBirthDateValidator from './identificationbirthdate'
-import IdentificationBirthPlaceValidator from './identificationbirthplace'
+
 import NameValidator from './name'
-import IdentificationOtherNamesValidator, {
-  OtherNameValidator,
-} from './identificationothernames'
+import { OtherNameValidator } from './identificationothernames'
+
 import PassportValidator from './passport'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
@@ -212,17 +210,12 @@ export default validate
 export {
   DateControlValidator,
   DateRangeValidator,
-  IdentificationNameValidator,
-  IdentificationBirthDateValidator,
-  IdentificationBirthPlaceValidator,
   BankruptcyValidator,
   BankruptcyItemValidator,
   BirthPlaceValidator,
   IdentificationContactInformationValidator,
   ContactPhoneNumberValidator,
-  IdentificationValidator,
   NameValidator,
-  IdentificationOtherNamesValidator,
   OtherNameValidator,
   PassportValidator,
   GamblingValidator,
