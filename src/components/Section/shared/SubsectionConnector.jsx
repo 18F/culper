@@ -9,16 +9,11 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
-import { 
-  selectHistoryFederalSection,
-  selectMultipleCitizenshipRenounced,
-  selectCitizenshipForeignPassportsSection,
-} from 'selectors/branches'
-import { selectValidUSPassport } from 'selectors/misc'
+import { selectHistoryFederalSection } from 'selectors/branches'
 
-import { extractOtherNames } from 'components/Section/extractors'
 import { totalYears, sort } from 'components/Section/History/helpers'
 import { utc } from 'components/Section/History/dateranges'
+
 
 const connectSubsection = (Component, {
   key, section, subsection, store, storeKey,
@@ -77,8 +72,6 @@ const connectSubsection = (Component, {
     const app = state.application || {}
     const identification = app.Identification || {}
     const history = app.History || {}
-    const citizenship = app.Citizenship || {}
-    const foreign = app.Foreign || {}
     const errors = app.Errors || {}
     const completed = app.Completed || {}
     const addressBooks = app.AddressBooks || {}
@@ -95,10 +88,6 @@ const connectSubsection = (Component, {
         addressBooks,
         ...selectHistoryFederalSection(state),
         formType,
-
-        ...selectValidUSPassport(state),
-        ...selectMultipleCitizenshipRenounced(state),
-        ...selectCitizenshipForeignPassportsSection(state),
 
       }
     } catch (e) {

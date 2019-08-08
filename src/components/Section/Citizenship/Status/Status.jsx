@@ -25,7 +25,7 @@ import {
   CITIZENSHIP_STATUS,
 } from 'config/formSections/citizenship'
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
   key: CITIZENSHIP_STATUS.key,
@@ -1118,4 +1118,4 @@ Status.defaultProps = {
   scrollIntoView: false,
 }
 
-export default connectSubsection(Status, sectionConfig)
+export default connectCitizenshipSection(Status, sectionConfig)
