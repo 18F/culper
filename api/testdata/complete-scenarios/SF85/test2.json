@@ -5532,5 +5532,24 @@
         }
       }
     }
+  },
+  "Package": {
+    "Comments": {
+      "type": "package.comments",
+      "props": {
+        "HasComments": {
+          "type": "branch",
+          "props": {
+            "value": "Yes"
+          }
+        },
+        "Comments": {
+          "type": "textarea",
+          "props": {
+            "value": "This is a test additional comment."
+          }
+        }
+      }
+    }
   }
 }
