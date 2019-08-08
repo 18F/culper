@@ -284,8 +284,6 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 		}
 	}
 
-	fmt.Println("WHAT NO?", sessionCookie)
-
 	if sessionCookie == nil {
 		t.Fatal("The cookie was not set on the response")
 	}
@@ -341,6 +339,4 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 	}
 
 	os.Setenv("BASIC_ENABLED", "")
-
-	t.Fatal("FOOO")
 }
