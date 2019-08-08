@@ -14,7 +14,7 @@ import {
 import { FOREIGN } from 'config/formSections/foreign'
 import { CITIZENSHIP, CITIZENSHIP_US_PASSPORT } from 'config/formSections/citizenship'
 import Subsection from 'components/Section/shared/Subsection'
-import connectCitizenshipSection from '../CitizenshipConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import { extractDate } from '../../History/dateranges'
 
 
@@ -308,4 +308,4 @@ UsPassport.defaultProps = {
   validator: data => validate(schema('foreign.passport', data)),
 }
 
-export default connectCitizenshipSection(UsPassport, sectionConfig)
+export default connectSubsection(UsPassport, sectionConfig)
