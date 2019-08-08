@@ -141,7 +141,7 @@ describe('The history residence section', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('should pass a valid list of residences', () => {
+  it('residence list must cover the required duration', () => {
     const testData = {
       List: {
         branch: { value: 'No' },
@@ -160,6 +160,101 @@ describe('The history residence section', () => {
                   year: '2012',
                 },
                 present: false,
+              },
+              Role: {
+                value: 'MilitaryHousing',
+              },
+              Address: {
+                country: { value: 'United States' },
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'VA',
+                zipcode: '22202',
+                layout: Location.ADDRESS,
+              },
+              ReferenceName: {
+                first: 'Foo',
+                firstInitialOnly: false,
+                middle: 'J',
+                middleInitialOnly: true,
+                noMiddleName: false,
+                last: 'Bar',
+                suffix: 'Jr',
+              },
+              ReferenceLastContact: {
+                day: '1',
+                month: '1',
+                year: '2016',
+              },
+              ReferenceRelationshipComments: {
+                value: '',
+              },
+              ReferenceRelationship: {
+                values: ['Friend'],
+              },
+              ReferencePhoneEvening: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferencePhoneDay: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferencePhoneMobile: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferenceEmailNotApplicable: {
+                applicable: true,
+              },
+              ReferenceEmail: {
+                value: 'user@local.dev',
+              },
+              ReferenceAddress: {
+                country: { value: 'United States' },
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'VA',
+                zipcode: '22202',
+                layout: Location.ADDRESS,
+              },
+            },
+          },
+        ],
+      },
+    }
+
+    const expectedErrors = ['List.durationCoverage.INCOMPLETE_DURATION']
+    expect(validateModel(testData, historyResidence))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('should pass a valid list of residences', () => {
+    const testData = {
+      List: {
+        branch: { value: 'No' },
+        items: [
+          {
+            Item: {
+              Dates: {
+                from: {
+                  day: '1',
+                  month: '1',
+                  year: '2005',
+                },
+                present: true,
               },
               Role: {
                 value: 'MilitaryHousing',

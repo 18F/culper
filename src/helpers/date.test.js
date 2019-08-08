@@ -62,36 +62,75 @@ describe('The sortDateRanges function', () => {
 })
 
 describe('The findTimelineGaps function', () => {
-  const testDuration = { years: 3 }
-  const testRanges = [
-    {
-      from: today.minus({ years: 8 }).toObject(),
-      to: today.minus({ years: 6 }).toObject(),
-    },
-    {
-      from: today.minus({ years: 5, months: 8 }).toObject(),
-      to: today.minus({ years: 2, months: 10 }).toObject(),
-    },
-    {
-      from: today.minus({ years: 2, months: 4 }).toObject(),
-      to: today.minus({ years: 1, months: 11 }).toObject(),
-    },
-    {
-      from: today.minus({ months: 6 }).toObject(),
-      present: true,
-    },
-  ]
+  it('returns gaps for ranges that overlap', () => {
+    const testDuration = { years: 3 }
+    const testRanges = [
+      {
+        from: today.minus({ years: 8 }).toObject(),
+        to: today.minus({ years: 6 }).toObject(),
+      },
+      {
+        from: today.minus({ years: 5, months: 8 }).toObject(),
+        to: today.minus({ years: 2, months: 10 }).toObject(),
+      },
+      {
+        from: today.minus({ years: 2, months: 4 }).toObject(),
+        to: today.minus({ years: 1, months: 11 }).toObject(),
+      },
+      {
+        from: today.minus({ months: 6 }).toObject(),
+        present: true,
+      },
+    ]
 
-  const expectedGaps = [
-    {
-      from: today.minus({ years: 2, months: 10 }),
-      to: today.minus({ years: 2, months: 4 }),
-    },
-    {
-      from: today.minus({ years: 1, months: 11 }),
-      to: today.minus({ months: 6 }),
-    },
-  ]
+    const expectedGaps = [
+      {
+        from: today.minus({ years: 2, months: 10 }),
+        to: today.minus({ years: 2, months: 4 }),
+      },
+      {
+        from: today.minus({ years: 1, months: 11 }),
+        to: today.minus({ months: 6 }),
+      },
+    ]
 
-  expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
+    expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
+  })
+
+  it('returns gaps for ranges that are too early', () => {
+    const testDuration = { years: 5 }
+    const testRanges = [
+      {
+        from: today.minus({ years: 8 }).toObject(),
+        to: today.minus({ years: 6 }).toObject(),
+      },
+    ]
+
+    const expectedGaps = [
+      {
+        from: today.minus({ years: 5 }),
+        to: today,
+      },
+    ]
+
+    expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
+  })
+
+  it('returns no gaps if the range is to the present', () => {
+    const testDuration = { years: 5 }
+    const testRanges = [
+      {
+        from: {
+          day: '1',
+          month: '1',
+          year: '2005',
+        },
+        present: true,
+      },
+    ]
+
+    const expectedGaps = []
+
+    expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
+  })
 })

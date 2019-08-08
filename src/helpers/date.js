@@ -98,24 +98,31 @@ export const findTimelineGaps = (coverage, ranges) => {
 
   // the return value
   const gaps = []
+  let rangesOverlap = false
 
   // Point on the timeline we are comparing against (this will change)
   let rightBoundary = requiredRange.from
 
   sortedRanges.forEach((range) => {
     const { from, to } = range
-    if (from <= rightBoundary && to <= rightBoundary) {
+    if (from <= rightBoundary && to < rightBoundary) {
       // range outside boundary, no op
     } else if (from <= rightBoundary) {
       // range contains boundary; no gap. update right boundary
       rightBoundary = to
+      rangesOverlap = true
     } else {
       // range does not contain boundary, we have a gap
       const gap = { from: rightBoundary, to: from }
       gaps.push(gap)
       rightBoundary = to
+      rangesOverlap = true
     }
   })
+
+  if (!rangesOverlap) {
+    gaps.push(requiredRange)
+  }
 
   return gaps
 }
