@@ -243,6 +243,7 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 		Database: services.db,
 		Store:    services.store,
 		Session:  sessionService,
+		Cookie:   http.NewSessionCookieService(true),
 	}
 
 	responseWriter := httptest.NewRecorder()

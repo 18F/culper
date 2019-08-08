@@ -98,7 +98,6 @@ module.exports = {
   plugins: [
     new webpack.EnvironmentPlugin([
       'API_BASE_URL',
-      'COOKIE_DOMAIN',
       'HASH_ROUTING',
       'BASIC_ENABLED',
       'SAML_ENABLED',
