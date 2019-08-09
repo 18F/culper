@@ -133,4 +133,22 @@ describe('The findTimelineGaps function', () => {
 
     expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
   })
+
+  it('returns no gaps that are less than a day in length', () => {
+    const testDuration = { years: 5 }
+    const testRanges = [
+      {
+        from: today.minus({ years: 8 }).toObject(),
+        to: today.minus({ years: 4 }).toObject(),
+      },
+      {
+        from: today.minus({ years: 4 }).plus({ days: 1 }).toObject(),
+        to: today,
+      },
+    ]
+
+    const expectedGaps = []
+
+    expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
+  })
 })
