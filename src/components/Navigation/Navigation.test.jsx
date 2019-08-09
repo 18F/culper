@@ -28,6 +28,7 @@ describe('Navigation component', () => {
         Identification: {},
         Legal: {},
         Military: {},
+        Package: {},
         Psychological: {},
         Relationships: {},
         Substance: {},
