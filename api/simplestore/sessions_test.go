@@ -253,3 +253,21 @@ func TestSessionDBConstraints(t *testing.T) {
 	}
 
 }
+
+func TestDeleteAccountDeletesSession(t *testing.T) {
+	store, account, sessionKey := getTestObjects(t)
+	expirationDuration := -5 * time.Minute
+
+	firstCreateErr := store.CreateSession(account.ID, sessionKey, NullString(), expirationDuration)
+	if firstCreateErr != nil {
+		t.Fatal(firstCreateErr)
+	}
+
+	deleteAccountQuery := `DELETE FROM accounts WHERE id = $1`
+	store.db.MustExec(deleteAccountQuery, account.ID)
+
+	_, fetchErr := store.FetchPossiblyExpiredSession(account.ID)
+	if fetchErr == nil {
+		t.Fatal("Should have failed to find a session matching this account.")
+	}
+}
