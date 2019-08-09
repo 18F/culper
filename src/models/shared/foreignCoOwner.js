@@ -7,10 +7,7 @@ const foreignCoOwner = {
     presence: true,
     location: { validator: address },
   },
-  Countries: {
-    presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
-  },
+  Countries: { presence: true, country: true },
   RelationshipNature: {
     presence: true,
     hasValue: true,

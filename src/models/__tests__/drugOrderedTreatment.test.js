@@ -5,13 +5,44 @@ describe('The drugOrderedTreatment model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Explanation.required',
-      'ActionTaken.required',
-      'OrderedBy.required',
+      'DrugType.presence.REQUIRED',
+      'Explanation.presence.REQUIRED',
+      'ActionTaken.presence.REQUIRED',
+      'OrderedBy.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, drugOrderedTreatment))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('DrugType must have a valid value', () => {
+    const testData = {
+      DrugType: { value: '' },
+    }
+    const expectedErrors = [
+      'DrugType.hasValue.MISSING_VALUE',
+    ]
+
+    expect(validateModel(testData, drugOrderedTreatment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  // TODO this is not how the form works
+  // Right now, Explanation text becomes DrugType.value
+  // So currently, only validation on DrugType is that it can't be "Other"
+  describe.skip('if DrugType is "Other"', () => {
+    it('DrugTypeExplanation must have a value', () => {
+      const testData = {
+        DrugType: { value: 'Other' },
+        DrugTypeExplanation: 'test',
+      }
+      const expectedErrors = [
+        'DrugTypeExplanation.hasValue',
+      ]
+
+      expect(validateModel(testData, drugOrderedTreatment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
   })
 
   it('Explanation must have a value', () => {
@@ -19,7 +50,7 @@ describe('The drugOrderedTreatment model', () => {
       Explanation: 'testing',
     }
     const expectedErrors = [
-      'Explanation.hasValue',
+      'Explanation.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, drugOrderedTreatment))
@@ -31,7 +62,7 @@ describe('The drugOrderedTreatment model', () => {
       OrderedBy: 'testing',
     }
     const expectedErrors = [
-      'OrderedBy.array',
+      'OrderedBy.array.MISSING_ITEMS',
     ]
 
     expect(validateModel(testData, drugOrderedTreatment))
@@ -44,7 +75,7 @@ describe('The drugOrderedTreatment model', () => {
         OrderedBy: { values: ['None', 'Something else'] },
       }
       const expectedErrors = [
-        'OrderedBy.array',
+        'OrderedBy.array.array.length.LENGTH_TOO_LONG',
       ]
 
       expect(validateModel(testData, drugOrderedTreatment))
@@ -53,6 +84,8 @@ describe('The drugOrderedTreatment model', () => {
 
     it('passes a valid drugOrderedTreatment', () => {
       const testData = {
+        DrugType: { value: 'Test drug' },
+        // DrugTypeExplanation: { value: 'Test Drug' },
         Explanation: { value: 'Testing' },
         OrderedBy: { values: ['None'] },
         ActionTaken: { value: 'No' },
@@ -68,7 +101,7 @@ describe('The drugOrderedTreatment model', () => {
       ActionTaken: { value: true },
     }
     const expectedErrors = [
-      'ActionTaken.hasValue',
+      'ActionTaken.hasValue.value.inclusion.INCLUSION',
     ]
 
     expect(validateModel(testData, drugOrderedTreatment))
@@ -81,8 +114,8 @@ describe('The drugOrderedTreatment model', () => {
         ActionTaken: { value: 'Yes' },
       }
       const expectedErrors = [
-        'TreatmentProvider.required',
-        'TreatmentProvider.hasValue',
+        'TreatmentProvider.presence.REQUIRED',
+        'TreatmentProvider.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, drugOrderedTreatment))
@@ -95,7 +128,9 @@ describe('The drugOrderedTreatment model', () => {
         TreatmentProviderAddress: 'invalid address',
       }
       const expectedErrors = [
-        'TreatmentProviderAddress.location',
+        'TreatmentProviderAddress.location.street.presence.REQUIRED',
+        'TreatmentProviderAddress.location.city.presence.REQUIRED',
+        'TreatmentProviderAddress.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugOrderedTreatment))
@@ -108,7 +143,21 @@ describe('The drugOrderedTreatment model', () => {
         TreatmentProviderTelephone: '1234567890',
       }
       const expectedErrors = [
-        'TreatmentProviderTelephone.model',
+        'TreatmentProviderTelephone.model.timeOfDay.presence.REQUIRED',
+        'TreatmentProviderTelephone.model.number.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, drugOrderedTreatment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('TreatmentProviderTelephone must exist', () => {
+      const testData = {
+        ActionTaken: { value: 'Yes' },
+        TreatmentProviderTelephone: { noNumber: true },
+      }
+      const expectedErrors = [
+        'TreatmentProviderTelephone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, drugOrderedTreatment))
@@ -121,7 +170,8 @@ describe('The drugOrderedTreatment model', () => {
         TreatmentDates: false,
       }
       const expectedErrors = [
-        'TreatmentDates.daterange',
+        'TreatmentDates.daterange.from.presence.REQUIRED',
+        'TreatmentDates.daterange.to.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugOrderedTreatment))
@@ -134,7 +184,7 @@ describe('The drugOrderedTreatment model', () => {
         TreatmentCompleted: true,
       }
       const expectedErrors = [
-        'TreatmentCompleted.hasValue',
+        'TreatmentCompleted.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, drugOrderedTreatment))
@@ -144,6 +194,7 @@ describe('The drugOrderedTreatment model', () => {
     describe('if TreatmentCompleted is "Yes"', () => {
       it('passes a valid drugOrderedTreatment', () => {
         const testData = {
+          DrugType: { value: 'THC' },
           Explanation: { value: 'Testing' },
           OrderedBy: { values: ['Test 1', 'Test 2'] },
           ActionTaken: { value: 'Yes' },
@@ -178,8 +229,8 @@ describe('The drugOrderedTreatment model', () => {
           TreatmentCompleted: { value: 'No' },
         }
         const expectedErrors = [
-          'NoTreatmentExplanation.required',
-          'NoTreatmentExplanation.hasValue',
+          'NoTreatmentExplanation.presence.REQUIRED',
+          'NoTreatmentExplanation.hasValue.MISSING_VALUE',
         ]
 
         expect(validateModel(testData, drugOrderedTreatment))
@@ -188,6 +239,7 @@ describe('The drugOrderedTreatment model', () => {
 
       it('passes a valid drugOrderedTreatment', () => {
         const testData = {
+          DrugType: { value: 'THC' },
           Explanation: { value: 'Testing' },
           OrderedBy: { values: ['Test 1', 'Test 2'] },
           ActionTaken: { value: 'Yes' },
@@ -223,8 +275,8 @@ describe('The drugOrderedTreatment model', () => {
         ActionTaken: { value: 'No' },
       }
       const expectedErrors = [
-        'NoActionTakenExplanation.required',
-        'NoActionTakenExplanation.hasValue',
+        'NoActionTakenExplanation.presence.REQUIRED',
+        'NoActionTakenExplanation.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, drugOrderedTreatment))
@@ -233,6 +285,7 @@ describe('The drugOrderedTreatment model', () => {
 
     it('passes a valid drugOrderedTreatment', () => {
       const testData = {
+        DrugType: { value: 'THC' },
         Explanation: { value: 'Testing' },
         OrderedBy: { values: ['Test 1', 'Test 2'] },
         ActionTaken: { value: 'No' },

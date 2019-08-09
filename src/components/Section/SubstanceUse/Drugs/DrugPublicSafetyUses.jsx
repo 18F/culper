@@ -1,7 +1,9 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import schema from 'schema'
 import validate, { DrugPublicSafetyUseValidator } from 'validators'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -13,6 +15,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import DrugPublicSafetyUse from './DrugPublicSafetyUse'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY.name,
@@ -69,6 +72,16 @@ export class DrugPublicSafetyUses extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_PUBLIC_SAFETY_YEARS
+    let branchLabelCopy
+    if (years === 'EVER') {
+      branchLabelCopy = i18n.t('substance.drugs.heading.drugPublicSafetyUses')
+    } else {
+      const numberOfYearsString = getNumberOfYearsString(years)
+      branchLabelCopy = i18n.t('substance.drugs.heading.drugPublicSafetyUsesNum', { numberOfYearsString })
+    }
     return (
       <div
         className="section-content drug-public-safety-uses"
@@ -78,11 +91,11 @@ export class DrugPublicSafetyUses extends Subsection {
         <h1 className="section-header">{i18n.t('substance.subsection.drugs.publicsafety')}</h1>
         <Branch
           name="UsedDrugs"
-          label={i18n.t('substance.drugs.heading.drugPublicSafetyUses')}
+          label={branchLabelCopy}
           labelSize="h4"
           className="used-drugs"
           {...this.props.UsedDrugs}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateUsedDrugs}
@@ -106,7 +119,7 @@ export class DrugPublicSafetyUses extends Subsection {
           >
             <DrugPublicSafetyUse
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

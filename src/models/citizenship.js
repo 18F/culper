@@ -4,7 +4,7 @@ import { hasYesOrNo } from 'models/validate'
 const isUnitedStates = value => value && value.includes('United States')
 
 const citizenship = {
-  Country: { presence: true, hasValue: true },
+  Country: { presence: true, country: true },
   Dates: { presence: true, daterange: true },
   Current: (value, attributes) => (
     (attributes.Dates && !attributes.Dates.present)

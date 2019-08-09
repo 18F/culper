@@ -5,10 +5,10 @@ describe('The domesticViolence model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'CourtAddress.required',
-      'CourtName.required',
-      'Explanation.required',
-      'Issued.required',
+      'CourtAddress.presence.REQUIRED',
+      'CourtName.presence.REQUIRED',
+      'Explanation.presence.REQUIRED',
+      'Issued.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, domesticViolence))
@@ -20,7 +20,8 @@ describe('The domesticViolence model', () => {
       CourtAddress: 'Test address',
     }
     const expectedErrors = [
-      'CourtAddress.location',
+      'CourtAddress.location.city.presence.REQUIRED',
+      'CourtAddress.location.country.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, domesticViolence))
@@ -32,7 +33,7 @@ describe('The domesticViolence model', () => {
       CourtName: 'test',
     }
     const expectedErrors = [
-      'CourtName.hasValue',
+      'CourtName.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, domesticViolence))
@@ -44,7 +45,7 @@ describe('The domesticViolence model', () => {
       Explanation: true,
     }
     const expectedErrors = [
-      'Explanation.hasValue',
+      'Explanation.hasValue.MISSING_VALUE',
     ]
 
     expect(validateModel(testData, domesticViolence))
@@ -56,7 +57,8 @@ describe('The domesticViolence model', () => {
       Issued: { month: 2, day: 100 },
     }
     const expectedErrors = [
-      'Issued.date',
+      'Issued.date.date.datetime.INVALID_DATE',
+      'Issued.date.year.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, domesticViolence))

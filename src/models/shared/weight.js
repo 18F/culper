@@ -3,6 +3,7 @@ const weight = {
     presence: true,
     numericality: {
       greaterThanOrEqualTo: 10,
+      lessThanOrEqualTo: 999,
     },
   },
 }

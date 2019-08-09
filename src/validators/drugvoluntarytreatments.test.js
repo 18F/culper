@@ -1,52 +1,52 @@
 import DrugVoluntaryTreatmentsValidator, {
-  DrugVoluntaryTreatmentValidator
+  DrugVoluntaryTreatmentValidator,
 } from './drugvoluntarytreatments'
 import Location from '../components/Form/Location'
 
-describe('Drug Voluntary Treatment Validation', function() {
-  it('should validate drug ordered treatments', function() {
+describe('Drug Voluntary Treatment Validation', () => {
+  it('should validate drug ordered treatments', () => {
     const tests = [
       {
         state: {
-          TreatmentVoluntary: { value: 'Nope' }
+          TreatmentVoluntary: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
-          TreatmentVoluntary: { value: 'No' }
+          TreatmentVoluntary: { value: 'No' },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
           TreatmentVoluntary: { value: 'Yes' },
           List: {
             branch: { value: '' },
-            items: []
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           TreatmentVoluntary: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{ VoluntaryTreatment: {} }]
-          }
+            items: [{ VoluntaryTreatment: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           TreatmentVoluntary: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{ VoluntaryTreatment: {} }]
-          }
+            items: [{ VoluntaryTreatment: {} }],
+          },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -56,9 +56,9 @@ describe('Drug Voluntary Treatment Validation', function() {
             items: [
               {
                 Item: {
-                  DrugType: 'Cocaine',
+                  DrugType: { value: 'Cocaine' },
                   TreatmentProvider: {
-                    value: 'Provider'
+                    value: 'Provider',
                   },
                   TreatmentProviderAddress: {
                     country: { value: 'United States' },
@@ -66,70 +66,70 @@ describe('Drug Voluntary Treatment Validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   TreatmentProviderTelephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     timeOfDay: 'Both',
                     type: 'Domestic',
-                    extension: ''
+                    extension: '',
                   },
                   TreatmentDates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
-                    }
+                      year: '2012',
+                    },
                   },
-                  TreatmentCompleted: { value: 'Yes' }
-                }
-              }
-            ]
-          }
+                  TreatmentCompleted: { value: 'Yes' },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(new DrugVoluntaryTreatmentsValidator(test.state).isValid()).toBe(
         test.expected
       )
     })
   })
 
-  it('should validate treatment completed', function() {
+  it('should validate treatment completed', () => {
     const tests = [
       {
         state: {
-          TreatmentCompleted: { value: 'Nope' }
+          TreatmentCompleted: { value: 'Nope' },
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           TreatmentCompleted: { value: 'No' },
           NoTreatmentExplanation: {
-            value: 'Nothing'
-          }
+            value: 'Nothing',
+          },
         },
-        expected: true
+        expected: true,
       },
       {
         state: {
-          TreatmentCompleted: { value: 'Yes' }
+          TreatmentCompleted: { value: 'Yes' },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(
         new DrugVoluntaryTreatmentValidator(
           test.state

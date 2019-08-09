@@ -5,7 +5,7 @@ import phone from 'models/shared/phone'
 const alcoholVoluntaryCounseling = {
   TreatmentProviderName: { presence: true, hasValue: true },
   TreatmentProviderAddress: { presence: true, location: { validator: address } },
-  TreatmentProviderTelephone: { presence: true, model: { validator: phone } },
+  TreatmentProviderTelephone: { presence: true, model: { validator: phone, requireNumber: true } },
   CounselingDates: { presence: true, daterange: true },
   CompletedTreatment: { presence: true, hasValue: { validator: hasYesOrNo } },
   NoCompletedTreatmentExplanation: (value, attributes) => {

@@ -63,7 +63,7 @@ describe('Marital validation', () => {
                     value: ['Germany'],
                   },
                   Telephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     type: 'Domestic',
@@ -181,7 +181,7 @@ describe('Marital validation', () => {
             Birthdate: {
               day: '1',
               month: '1',
-              year: '2016',
+              year: '2010',
             },
             BirthPlace: {
               country: { value: 'United States' },
@@ -199,7 +199,7 @@ describe('Marital validation', () => {
               layout: Location.ADDRESS,
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '7031112222',
               numberType: 'Home',
               type: 'Domestic',
@@ -290,7 +290,7 @@ describe('Marital validation', () => {
                     value: ['Germany'],
                   },
                   Telephone: {
-                    noNumber: '',
+                    noNumber: false,
                     number: '7031112222',
                     numberType: 'Home',
                     type: 'Domestic',
@@ -327,7 +327,7 @@ describe('Marital validation', () => {
             Birthdate: {
               day: '1',
               month: '1',
-              year: '2016',
+              year: '2010',
             },
             Location: {
               country: { value: 'United States' },
@@ -343,6 +343,7 @@ describe('Marital validation', () => {
               state: 'VA',
               layout: Location.BIRTHPLACE,
             },
+            EmailNotApplicable: { applicable: false },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -352,7 +353,7 @@ describe('Marital validation', () => {
               layout: Location.ADDRESS,
             },
             Telephone: {
-              noNumber: '',
+              noNumber: false,
               number: '7031112222',
               numberType: 'Home',
               type: 'Domestic',
@@ -364,6 +365,11 @@ describe('Marital validation', () => {
               middle: '11',
               last: '1111',
               applicable: true,
+            },
+            EnteredCivilUnion: {
+              month: '2',
+              day: '2',
+              year: '2016',
             },
             Divorced: { value: 'Yes' },
             Separated: { value: 'No' },

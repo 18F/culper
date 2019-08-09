@@ -3,7 +3,8 @@
 all: clean test build
 
 test:
-	GOLANG_ENV=test go test -coverprofile=coverage.txt -covermode=atomic -cover $(shell go list ./... | grep -v /vendor/)
+	GOLANG_ENV=test go test -coverpkg=./... -coverprofile=coverage-integration.txt -covermode=atomic -cover github.com/18F/e-QIP-prototype/api/integration
+	GOLANG_ENV=test go test -coverprofile=coverage.txt -covermode=atomic -cover $(shell go list ./... | grep -v /vendor/ | grep -v integration)
 
 reset-test-db:
 	go build -o bin/dbmigrate ./cmd/dbmigrate
@@ -13,6 +14,7 @@ reset-test-db:
 
 coverage:
 	# Use -c to remove processed reports so coverage-js won't find it
+	codecov -c -F backend -f coverage-integration.txt -X gcov
 	codecov -c -F backend -f coverage.txt -X gcov
 
 build:
@@ -28,17 +30,20 @@ clean:
 cmd:
 	go build -o bin/compare ./cmd/compare
 	go build -o bin/dbmigrate ./cmd/dbmigrate
+	go build -o bin/dbreset ./cmd/dbreset
 	go build -o bin/flush ./cmd/flush
 	go build -o bin/form ./cmd/form
 	go build -o bin/fuzzer ./cmd/fuzzer
 	go build -o bin/load ./cmd/load
 	go build -o bin/load-scenario ./cmd/load-scenario
-	go build -o bin/transmit ./cmd/transmit
+	go build -o bin/sftype ./cmd/sftype
 	go build -o bin/submit ./cmd/submit
+	go build -o bin/transmit ./cmd/transmit
 	go build -o bin/unlock ./cmd/unlock
 	chown -f 1000:1000 \
-		bin/compare bin/flush bin/form bin/fuzzer bin/load bin/load-scenario \
-		bin/transmit bin/unlock
+		bin/compare bin/dbmigrate bin/dbreset bin/flush \
+		bin/form bin/fuzzer bin/load bin/load-scenario \
+		bin/load-scenario bin/submit bin/transmit bin/unlock
 
 specs: cmd
 	./bin/fuzzer testdata/identification-birthdate.json \

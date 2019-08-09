@@ -2,14 +2,11 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import {
   ValidationElement,
-  Branch,
-  Show,
-  Accordion,
   Field,
   Telephone,
   Text,
   Textarea,
-  Location
+  Location,
 } from '../../../Form'
 
 export default class CreditItem extends ValidationElement {
@@ -30,37 +27,37 @@ export default class CreditItem extends ValidationElement {
       Telephone: this.props.Telephone,
       Location: this.props.Location,
       Description: this.props.Description,
-      ...queue
+      ...queue,
     })
   }
 
   updateExplanation(values) {
     this.update({
-      Explanation: values
+      Explanation: values,
     })
   }
 
   updateName(values) {
     this.update({
-      Name: values
+      Name: values,
     })
   }
 
   updateTelephone(values) {
     this.update({
-      Telephone: values
+      Telephone: values,
     })
   }
 
   updateLocation(values) {
     this.update({
-      Location: values
+      Location: values,
     })
   }
 
   updateDescription(values) {
     this.update({
-      Description: values
+      Description: values,
     })
   }
 
@@ -70,7 +67,8 @@ export default class CreditItem extends ValidationElement {
         <Field
           title={i18n.t('financial.credit.heading.explanation')}
           scrollIntoView={this.props.scrollIntoView}
-          help="financial.credit.help.explanation">
+          help="financial.credit.help.explanation"
+        >
           <Textarea
             name="Explanation"
             {...this.props.Explanation}
@@ -83,7 +81,8 @@ export default class CreditItem extends ValidationElement {
 
         <Field
           title={i18n.t('financial.credit.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Name"
             {...this.props.Name}
@@ -99,12 +98,14 @@ export default class CreditItem extends ValidationElement {
           className="override-required"
           help="financial.credit.help.telephone"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="telephone">
+          adjustFor="telephone"
+        >
           <Telephone
             name="Telephone"
             {...this.props.Telephone}
             className="credit-telephone"
             required={this.props.required}
+            allowNotApplicable={false}
             onUpdate={this.updateTelephone}
             onError={this.props.onError}
           />
@@ -114,7 +115,8 @@ export default class CreditItem extends ValidationElement {
           title={i18n.t('financial.credit.heading.address')}
           help="financial.credit.help.address"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="label">
+          adjustFor="label"
+        >
           <Location
             name="Location"
             {...this.props.Location}
@@ -134,7 +136,8 @@ export default class CreditItem extends ValidationElement {
         <Field
           title={i18n.t('financial.credit.heading.description')}
           scrollIntoView={this.props.scrollIntoView}
-          help="financial.credit.help.description">
+          help="financial.credit.help.description"
+        >
           <Textarea
             name="Description"
             {...this.props.Description}
@@ -150,9 +153,7 @@ export default class CreditItem extends ValidationElement {
 }
 
 CreditItem.defaultProps = {
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  required: false
+  onUpdate: (queue) => {},
+  onError: (value, arr) => arr,
+  required: false,
 }

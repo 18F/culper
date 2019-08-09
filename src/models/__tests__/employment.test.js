@@ -4,7 +4,7 @@ import employment from 'models/employment'
 describe('The employment model', () => {
   it('the EmploymentActivity field is required', () => {
     const testData = {}
-    const expectedErrors = ['EmploymentActivity.required']
+    const expectedErrors = ['EmploymentActivity.presence.REQUIRED']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,15 +14,26 @@ describe('The employment model', () => {
     const testData = {
       EmploymentActivity: 'Some other thing',
     }
-    const expectedErrors = ['EmploymentActivity.hasValue']
+    const expectedErrors = ['EmploymentActivity.model.value.presence.REQUIRED']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  describe('if EmploymentActivity value is "Other"', () => {
+    it('EmploymentActivity.otherExplanation is required', () => {
+      const testData = {
+        EmploymentActivity: { value: 'Other' },
+      }
+      const expectedErrors = ['EmploymentActivity.model.otherExplanation.presence.REQUIRED']
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
   it('the Dates field is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -37,7 +48,7 @@ describe('The employment model', () => {
       },
     }
 
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, employment))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -50,9 +61,9 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.required',
-        'ReferencePhone.required',
-        'ReferenceAddress.required',
+        'ReferenceName.presence.REQUIRED',
+        'ReferencePhone.presence.REQUIRED',
+        'ReferenceAddress.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -68,7 +79,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.model',
+        'ReferenceName.model.first.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -84,7 +95,21 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.model',
+        'ReferencePhone.model.timeOfDay.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('the ReferencePhone must exist', () => {
+      const testData = {
+        EmploymentActivity: { value: 'Unemployment' },
+        ReferencePhone: { noNumber: true },
+      }
+
+      const expectedErrors = [
+        'ReferencePhone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, employment))
@@ -98,11 +123,235 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceAddress.location',
+        'ReferenceAddress.location.street.presence.REQUIRED',
+        'ReferenceAddress.location.city.presence.REQUIRED',
+        'ReferenceAddress.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
         .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('if there is no ReferenceAddress', () => {
+      it('ReferenceAlternateAddress is not required', () => {
+        const testData = {
+          ReferenceAddress: {},
+          ReferenceAlternateAddress: {
+            HasDifferentAddress: {},
+            Address: {},
+            Telephone: {},
+          },
+        }
+
+        const expectedErrors = ['ReferenceAlternateAddress.model']
+
+        expect(validateModel(testData, employment))
+          .not.toEqual(expect.arrayContaining(expectedErrors))
+      })
+    })
+
+    describe('if the ReferenceAddress field is international', () => {
+      it('ReferenceAlternateAddress is required', () => {
+        const testData = {
+          ReferenceAddress: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+        }
+
+        const expectedErrors = ['ReferenceAlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      describe('if HasDifferentAddress is "Yes"', () => {
+        it('ReferenceAlternateAddress must be a PO address', () => {
+          const testData = {
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main St',
+                city: 'New York',
+                state: 'NY',
+                zipcode: '10002',
+                country: 'United States',
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'ReferenceAlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid employment with a reference alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'Unemployment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              to: { year: 2000, month: 12, day: 1 },
+              present: false,
+            },
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferencePhone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+            },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main ST',
+                city: 'FPO',
+                state: 'AA',
+                zipcode: '34035',
+                country: 'POSTOFFICE',
+              },
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+
+      describe('if HasDifferentAddress is "No"', () => {
+        it('passes a valid employment with a reference alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'Unemployment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              to: { year: 2000, month: 12, day: 1 },
+              present: false,
+            },
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferencePhone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+            },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+    })
+
+    describe('if the ReferenceAddress field is a military address', () => {
+      it('ReferenceAlternateAddress is required', () => {
+        const testData = {
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+        }
+
+        const expectedErrors = ['ReferenceAlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('ReferenceAlternateAddress must not be a PO address', () => {
+        const testData = {
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          ReferenceAlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+        }
+
+        const expectedErrors = [
+          'ReferenceAlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+        ]
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid employment with a reference alternate address', () => {
+        const testData = {
+          EmploymentActivity: { value: 'Unemployment' },
+          Dates: {
+            from: { year: 1990, month: 5, day: 12 },
+            to: { year: 2000, month: 12, day: 1 },
+            present: false,
+          },
+          ReferenceName: {
+            first: 'Person',
+            noMiddleName: true,
+            last: 'Name',
+          },
+          ReferencePhone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+          },
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          ReferenceAlternateAddress: {
+            Address: {
+              street: '123 Main ST',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10003',
+              country: 'United States',
+            },
+          },
+        }
+
+        expect(validateModel(testData, employment)).toEqual(true)
+      })
     })
 
     it('passes a valid Employment item', () => {
@@ -147,7 +396,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['Reprimand.required']
+        const expectedErrors = ['Reprimand.presence.REQUIRED']
 
         expect(validateModel(testData, employment))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -164,7 +413,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['Reprimand.required']
+        const expectedErrors = ['Reprimand.presence.REQUIRED']
 
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -180,7 +429,7 @@ describe('The employment model', () => {
           Reprimand: 'invalid',
         }
 
-        const expectedErrors = ['Reprimand.branchCollection']
+        const expectedErrors = ['Reprimand.branchCollection.MISSING_ITEMS']
 
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -200,7 +449,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['Reprimand.branchCollection']
+        const expectedErrors = ['Reprimand.branchCollection.MISSING_ITEMS']
 
         expect(validateModel(testData, employment))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -218,11 +467,15 @@ describe('The employment model', () => {
             Reprimand: {
               items: [
                 { Item: { Has: { value: 'Yes' } } },
+                { Item: { Has: { value: 'No' } } },
               ],
             },
           }
 
-          const expectedErrors = ['Reprimand.branchCollection']
+          const expectedErrors = [
+            'Reprimand.branchCollection.0.Text.presence.REQUIRED',
+            'Reprimand.branchCollection.0.Date.presence.REQUIRED',
+          ]
 
           expect(validateModel(testData, employment))
             .toEqual(expect.arrayContaining(expectedErrors))
@@ -249,7 +502,7 @@ describe('The employment model', () => {
             },
           }
 
-          const expectedErrors = ['Reprimand.branchCollection']
+          const expectedErrors = ['Reprimand.branchCollection.MISSING_ITEMS']
 
           expect(validateModel(testData, employment))
             .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -267,7 +520,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['ReasonLeft.required']
+        const expectedErrors = ['ReasonLeft.presence.REQUIRED']
 
         expect(validateModel(testData, employment))
           .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -285,7 +538,7 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['ReasonLeft.required']
+        const expectedErrors = ['ReasonLeft.presence.REQUIRED']
 
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -304,7 +557,10 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['ReasonLeft.model']
+        const expectedErrors = [
+          'ReasonLeft.model.ReasonDescription.hasValue.MISSING_VALUE',
+          'ReasonLeft.model.Reasons.presence.REQUIRED',
+        ]
 
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -324,7 +580,7 @@ describe('The employment model', () => {
             },
           }
 
-          const expectedErrors = ['ReasonLeft.model']
+          const expectedErrors = ['ReasonLeft.model.Reasons.presence.REQUIRED']
 
           expect(validateModel(testData, employment))
             .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -345,7 +601,7 @@ describe('The employment model', () => {
             },
           }
 
-          const expectedErrors = ['ReasonLeft.model']
+          const expectedErrors = ['ReasonLeft.model.Reasons.presence.REQUIRED']
 
           expect(validateModel(testData, employment))
             .toEqual(expect.arrayContaining(expectedErrors))
@@ -369,7 +625,9 @@ describe('The employment model', () => {
             },
           }
 
-          const expectedErrors = ['ReasonLeft.model']
+          const expectedErrors = [
+            'ReasonLeft.model.Reasons.branchCollection.INCOMPLETE_COLLECTION',
+          ]
 
           expect(validateModel(testData, employment))
             .toEqual(expect.arrayContaining(expectedErrors))
@@ -401,7 +659,9 @@ describe('The employment model', () => {
             },
           }
 
-          const expectedErrors = ['ReasonLeft.model']
+          const expectedErrors = [
+            'ReasonLeft.model.Reasons.branchCollection.INCOMPLETE_COLLECTION',
+          ]
 
           expect(validateModel(testData, employment))
             .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -417,7 +677,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Title.required',
+        'Title.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -430,7 +690,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Status.required',
+        'Status.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -443,7 +703,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.required',
+        'Address.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -457,11 +717,176 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.location',
+        'Address.location.street.presence.REQUIRED',
+        'Address.location.city.presence.REQUIRED',
+        'Address.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
         .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('if the Address field is international', () => {
+      it('AlternateAddress is required', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+        }
+
+        const expectedErrors = ['AlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      describe('if HasDifferentAddress is "Yes"', () => {
+        it('AlternateAddress must be a PO address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Test St',
+                city: 'London',
+                country: { value: 'United Kingdom' },
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid employment item with an alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            Status: 'Full-time',
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main ST',
+                city: 'FPO',
+                state: 'AA',
+                zipcode: '34035',
+                country: 'POSTOFFICE',
+              },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Employment: 'Company',
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferencePhone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+            },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+
+      describe('if HasDifferentAddress is "No"', () => {
+        it('passes a valid employment item with an alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            Status: 'Full-time',
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Employment: 'Company',
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferencePhone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+            },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
     })
 
     it('the PhysicalAddress field is required', () => {
@@ -470,7 +895,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'PhysicalAddress.required',
+        'PhysicalAddress.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -486,11 +911,320 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'PhysicalAddress.model',
+        'PhysicalAddress.model.HasDifferentAddress.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, employment))
         .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('if the PhysicalAddress field is international', () => {
+      it('PhysicalAlternateAddress is required', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+          },
+        }
+
+        const expectedErrors = ['PhysicalAlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      describe('if HasDifferentAddress is "Yes"', () => {
+        it('PhysicalAlternateAddress must be a PO address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Test St',
+                city: 'London',
+                country: { value: 'United Kingdom' },
+              },
+            },
+            PhysicalAlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Test St',
+                city: 'London',
+                country: { value: 'United Kingdom' },
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'PhysicalAlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid employment item with an alternate physical address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            Status: 'Full-time',
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Test St',
+                city: 'London',
+                country: { value: 'United Kingdom' },
+              },
+            },
+            PhysicalAlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main ST',
+                city: 'FPO',
+                state: 'AA',
+                zipcode: '34035',
+                country: 'POSTOFFICE',
+              },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Employment: 'Company',
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferencePhone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+            },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+
+      describe('if HasDifferentAddress is "No"', () => {
+        it('passes a valid employment item with an alternate physical address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            Status: 'Full-time',
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Test St',
+                city: 'London',
+                country: { value: 'United Kingdom' },
+              },
+            },
+            PhysicalAlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Employment: 'Company',
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferencePhone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+            },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+    })
+
+    describe('if the PhysicalAddress field is a military address', () => {
+      it('PhysicalAlternateAddress is required', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+        }
+
+        const expectedErrors = ['PhysicalAlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('PhysicalAlternateAddress must not be a PO address', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+          PhysicalAlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+        }
+
+        const expectedErrors = [
+          'PhysicalAlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+        ]
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid employment item with an alternate physical address', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          Dates: {
+            from: { year: 1990, month: 5, day: 12 },
+            present: true,
+          },
+          Title: 'Manager',
+          Status: 'Full-time',
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+          PhysicalAlternateAddress: {
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+          },
+          Telephone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Day',
+          },
+          Employment: 'Company',
+          ReferenceName: {
+            first: 'Person',
+            noMiddleName: true,
+            last: 'Name',
+          },
+          ReferencePhone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+          },
+          ReferenceAddress: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          ReferenceAlternateAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        expect(validateModel(testData, employment)).toEqual(true)
+      })
     })
 
     it('the Telephone field is required', () => {
@@ -499,7 +1233,21 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.required',
+        'Telephone.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('the Telephone field must exist', () => {
+      const testData = {
+        EmploymentActivity: { value: 'SelfEmployment' },
+        Telephone: { noNumber: true },
+      }
+
+      const expectedErrors = [
+        'Telephone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, employment))
@@ -515,7 +1263,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.model',
+        'Telephone.model.timeOfDay.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -528,7 +1276,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Employment.required',
+        'Employment.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -541,9 +1289,9 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.required',
-        'ReferencePhone.required',
-        'ReferenceAddress.required',
+        'ReferenceName.presence.REQUIRED',
+        'ReferencePhone.presence.REQUIRED',
+        'ReferenceAddress.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -559,7 +1307,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.model',
+        'ReferenceName.model.first.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -575,7 +1323,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferencePhone.model',
+        'ReferencePhone.model.timeOfDay.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -589,11 +1337,287 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceAddress.location',
+        'ReferenceAddress.location.street.presence.REQUIRED',
+        'ReferenceAddress.location.city.presence.REQUIRED',
+        'ReferenceAddress.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
         .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('if the ReferenceAddress field is international', () => {
+      it('ReferenceAlternateAddress is required', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          ReferenceAddress: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+        }
+
+        const expectedErrors = ['ReferenceAlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      describe('if HasDifferentAddress is "Yes"', () => {
+        it('ReferenceAlternateAddress must be a PO address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main St',
+                city: 'New York',
+                state: 'NY',
+                zipcode: '10002',
+                country: 'United States',
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'ReferenceAlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid employment with a reference alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            Status: 'Full-time',
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Employment: 'Company',
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferencePhone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+            },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main ST',
+                city: 'FPO',
+                state: 'AA',
+                zipcode: '34035',
+                country: 'POSTOFFICE',
+              },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+
+      describe('if HasDifferentAddress is "No"', () => {
+        it('passes a valid employment with a reference alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'SelfEmployment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            Status: 'Full-time',
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Employment: 'Company',
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferencePhone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Both',
+            },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+    })
+
+    describe('if the ReferenceAddress field is a military address', () => {
+      it('ReferenceAlternateAddress is required', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+        }
+
+        const expectedErrors = ['ReferenceAlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('ReferenceAlternateAddress must not be a PO address', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          ReferenceAlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+        }
+
+        const expectedErrors = [
+          'ReferenceAlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+        ]
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid employment with a reference alternate address', () => {
+        const testData = {
+          EmploymentActivity: { value: 'SelfEmployment' },
+          Dates: {
+            from: { year: 1990, month: 5, day: 12 },
+            present: true,
+          },
+          Title: 'Manager',
+          Status: 'Full-time',
+          Address: {
+            street: '40 Office St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Telephone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Day',
+          },
+          Employment: 'Company',
+          ReferenceName: {
+            first: 'Person',
+            noMiddleName: true,
+            last: 'Name',
+          },
+          ReferencePhone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+          },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          ReferenceAlternateAddress: {
+            Address: {
+              street: '123 Main ST',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10003',
+              country: 'United States',
+            },
+          },
+        }
+
+        expect(validateModel(testData, employment)).toEqual(true)
+      })
     })
 
     it('passes a valid Employment item', () => {
@@ -720,7 +1744,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Title.required',
+        'Title.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -733,7 +1757,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'DutyStation.required',
+        'DutyStation.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -746,7 +1770,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Status.required',
+        'Status.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -759,7 +1783,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.required',
+        'Address.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -773,11 +1797,272 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.location',
+        'Address.location.street.presence.REQUIRED',
+        'Address.location.city.presence.REQUIRED',
+        'Address.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
         .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('if the Address field is international', () => {
+      it('AlternateAddress is required', () => {
+        const testData = {
+          EmploymentActivity: { value: 'ActiveMilitary' },
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+        }
+
+        const expectedErrors = ['AlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      describe('if HasDifferentAddress is "Yes"', () => {
+        it('AlternateAddress must be a PO address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'ActiveMilitary' },
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Test St',
+                city: 'London',
+                country: { value: 'United Kingdom' },
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid employment item with an alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'ActiveMilitary' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            DutyStation: 'Something',
+            Status: 'Full-time',
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main ST',
+                city: 'FPO',
+                state: 'AA',
+                zipcode: '34035',
+                country: 'POSTOFFICE',
+              },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Supervisor: {
+              SupervisorName: { value: 'Person Supervisor' },
+              Title: { value: 'VP' },
+              EmailNotApplicable: { applicable: false },
+              Address: {
+                street: '40 Office St',
+                city: 'New York',
+                state: 'NY',
+                zipcode: '10001',
+                country: 'United States',
+              },
+              Telephone: {
+                number: '1234567890',
+                type: 'Domestic',
+                timeOfDay: 'Day',
+              },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+
+      describe('if HasDifferentAddress is "No"', () => {
+        it('passes a valid employment item with an alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'ActiveMilitary' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            DutyStation: 'Something',
+            Status: 'Full-time',
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Supervisor: {
+              SupervisorName: { value: 'Person Supervisor' },
+              Title: { value: 'VP' },
+              EmailNotApplicable: { applicable: false },
+              Address: {
+                street: '40 Office St',
+                city: 'New York',
+                state: 'NY',
+                zipcode: '10001',
+                country: 'United States',
+              },
+              Telephone: {
+                number: '1234567890',
+                type: 'Domestic',
+                timeOfDay: 'Day',
+              },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+    })
+
+    describe('if the Address field is a military address', () => {
+      it('AlternateAddress is required', () => {
+        const testData = {
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+        }
+
+        const expectedErrors = ['AlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('AlternateAddress must not be a PO address', () => {
+        const testData = {
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+        }
+
+        const expectedErrors = [
+          'AlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+        ]
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid employment item with an alternate address', () => {
+        const testData = {
+          EmploymentActivity: { value: 'ActiveMilitary' },
+          Dates: {
+            from: { year: 1990, month: 5, day: 12 },
+            present: true,
+          },
+          Title: 'Manager',
+          DutyStation: 'Something',
+          Status: 'Full-time',
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          AlternateAddress: {
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+          },
+          Telephone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Day',
+          },
+          Supervisor: {
+            SupervisorName: { value: 'Person Supervisor' },
+            Title: { value: 'VP' },
+            EmailNotApplicable: { applicable: false },
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+          },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        expect(validateModel(testData, employment)).toEqual(true)
+      })
     })
 
     it('the Telephone field is required', () => {
@@ -786,7 +2071,21 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.required',
+        'Telephone.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('the Telephone field must exist', () => {
+      const testData = {
+        EmploymentActivity: { value: 'USPHS' },
+        Telephone: { noNumber: true },
+      }
+
+      const expectedErrors = [
+        'Telephone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, employment))
@@ -802,7 +2101,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.model',
+        'Telephone.model.timeOfDay.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -815,7 +2114,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.required',
+        'Supervisor.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -831,7 +2130,39 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.model',
+        'Supervisor.model.SupervisorName.hasValue.MISSING_VALUE',
+        'Supervisor.model.Title.presence.REQUIRED',
+        'Supervisor.model.Email.presence.REQUIRED',
+        'Supervisor.model.Address.presence.REQUIRED',
+        'Supervisor.model.Telephone.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('the Supervisor must have a phone number', () => {
+      const testData = {
+        EmploymentActivity: { value: 'NationalGuard' },
+        Supervisor: {
+          SupervisorName: { value: 'Person Supervisor' },
+          Title: { value: 'VP' },
+          EmailNotApplicable: { applicable: false },
+          Address: {
+            street: '40 Office St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          Telephone: {
+            noNumber: true,
+          },
+        },
+      }
+
+      const expectedErrors = [
+        'Supervisor.model.Telephone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, employment))
@@ -895,7 +2226,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Title.required',
+        'Title.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -908,7 +2239,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Employment.required',
+        'Employment.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -921,7 +2252,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Status.required',
+        'Status.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -934,7 +2265,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.required',
+        'Address.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -948,11 +2279,285 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Address.location',
+        'Address.location.street.presence.REQUIRED',
+        'Address.location.city.presence.REQUIRED',
+        'Address.location.country.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
         .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('if the Address field is international', () => {
+      it('AlternateAddress is required', () => {
+        const testData = {
+          EmploymentActivity: { value: 'NonGovernment' },
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+        }
+
+        const expectedErrors = ['AlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      describe('if HasDifferentAddress is "Yes"', () => {
+        it('AlternateAddress must be a PO address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'NonGovernment' },
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Test St',
+                city: 'London',
+                country: { value: 'United Kingdom' },
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid employment item with an alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'NonGovernment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            Employment: 'My Company',
+            Status: 'Full-time',
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main ST',
+                city: 'FPO',
+                state: 'AA',
+                zipcode: '34035',
+                country: 'POSTOFFICE',
+              },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Supervisor: {
+              SupervisorName: { value: 'Person Supervisor' },
+              Title: { value: 'VP' },
+              EmailNotApplicable: { applicable: false },
+              Address: {
+                street: '40 Office St',
+                city: 'New York',
+                state: 'NY',
+                zipcode: '10001',
+                country: 'United States',
+              },
+              Telephone: {
+                number: '1234567890',
+                type: 'Domestic',
+                timeOfDay: 'Day',
+              },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+
+      describe('if HasDifferentAddress is "No"', () => {
+        it('passes a valid employment item with an alternate address', () => {
+          const testData = {
+            EmploymentActivity: { value: 'NonGovernment' },
+            Dates: {
+              from: { year: 1990, month: 5, day: 12 },
+              present: true,
+            },
+            Title: 'Manager',
+            Employment: 'My Company',
+            Status: 'Full-time',
+            Address: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            AlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+            Supervisor: {
+              SupervisorName: { value: 'Person Supervisor' },
+              Title: { value: 'VP' },
+              EmailNotApplicable: { applicable: false },
+              Address: {
+                street: '40 Office St',
+                city: 'New York',
+                state: 'NY',
+                zipcode: '10001',
+                country: 'United States',
+              },
+              Telephone: {
+                number: '1234567890',
+                type: 'Domestic',
+                timeOfDay: 'Day',
+              },
+            },
+            Reprimand: {
+              items: [
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          expect(validateModel(testData, employment)).toEqual(true)
+        })
+      })
+    })
+
+    describe('if the Address field is a military address', () => {
+      it('AlternateAddress is required', () => {
+        const testData = {
+          EmploymentActivity: { value: 'NonGovernment' },
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+        }
+
+        const expectedErrors = ['AlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('AlternateAddress must not be a PO address', () => {
+        const testData = {
+          EmploymentActivity: { value: 'NonGovernment' },
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+        }
+
+        const expectedErrors = [
+          'AlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+        ]
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid employment item with an alternate address', () => {
+        const testData = {
+          EmploymentActivity: { value: 'NonGovernment' },
+          Dates: {
+            from: { year: 1990, month: 5, day: 12 },
+            present: true,
+          },
+          Title: 'Manager',
+          Employment: 'My Company',
+          Status: 'Full-time',
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          AlternateAddress: {
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Telephone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Day',
+          },
+          Supervisor: {
+            SupervisorName: { value: 'Person Supervisor' },
+            Title: { value: 'VP' },
+            EmailNotApplicable: { applicable: false },
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+          },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        expect(validateModel(testData, employment)).toEqual(true)
+      })
     })
 
     it('the Telephone field is required', () => {
@@ -961,7 +2566,19 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.required',
+        'Telephone.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, employment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('the Telephone field must exist', () => {
+      const testData = {
+        Telephone: { noNumber: true },
+      }
+      const expectedErrors = [
+        'Telephone.model.noNumber.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, employment))
@@ -977,7 +2594,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Telephone.model',
+        'Telephone.model.timeOfDay.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -990,7 +2607,7 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.required',
+        'Supervisor.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -1006,7 +2623,11 @@ describe('The employment model', () => {
       }
 
       const expectedErrors = [
-        'Supervisor.model',
+        'Supervisor.model.SupervisorName.hasValue.MISSING_VALUE',
+        'Supervisor.model.Title.presence.REQUIRED',
+        'Supervisor.model.Email.presence.REQUIRED',
+        'Supervisor.model.Address.presence.REQUIRED',
+        'Supervisor.model.Telephone.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, employment))
@@ -1015,7 +2636,10 @@ describe('The employment model', () => {
 
     it('passes a valid Employment item', () => {
       const testData = {
-        EmploymentActivity: { value: 'NonGovernment' },
+        EmploymentActivity: {
+          value: 'Other',
+          otherExplanation: 'Test job',
+        },
         Dates: {
           from: { year: 1990, month: 5, day: 12 },
           present: true,
@@ -1076,7 +2700,8 @@ describe('The employment model', () => {
           },
         }
 
-        const expectedErrors = ['Additional.branchCollection']
+        const expectedErrors = ['Additional.branchCollection.INCOMPLETE_COLLECTION']
+
         expect(validateModel(testData, employment))
           .toEqual(expect.arrayContaining(expectedErrors))
       })

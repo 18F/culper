@@ -5,11 +5,11 @@ describe('The foreignBusinessPolitical model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Position.required',
-      'Dates.required',
-      'Country.required',
-      'Reason.required',
-      'Eligibility.required',
+      'Position.presence.REQUIRED',
+      'Dates.presence.REQUIRED',
+      'Country.presence.REQUIRED',
+      'Reason.presence.REQUIRED',
+      'Eligibility.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignBusinessPolitical))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +19,7 @@ describe('The foreignBusinessPolitical model', () => {
     const testData = {
       Position: { values: 'test' },
     }
-    const expectedErrors = ['Position.hasValue']
+    const expectedErrors = ['Position.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessPolitical))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -28,16 +28,19 @@ describe('The foreignBusinessPolitical model', () => {
     const testData = {
       Dates: 'invalid date',
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.presence.REQUIRED',
+      'Dates.daterange.to.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessPolitical))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Country must have a value', () => {
+  it('Country must have a valid value', () => {
     const testData = {
-      Country: { values: 'test' },
+      Country: { value: 'test' },
     }
-    const expectedErrors = ['Country.hasValue']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessPolitical))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -46,7 +49,7 @@ describe('The foreignBusinessPolitical model', () => {
     const testData = {
       Reason: { values: 'test' },
     }
-    const expectedErrors = ['Reason.hasValue']
+    const expectedErrors = ['Reason.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessPolitical))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -55,7 +58,7 @@ describe('The foreignBusinessPolitical model', () => {
     const testData = {
       Eligibility: { values: 'test' },
     }
-    const expectedErrors = ['Eligibility.hasValue']
+    const expectedErrors = ['Eligibility.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessPolitical))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

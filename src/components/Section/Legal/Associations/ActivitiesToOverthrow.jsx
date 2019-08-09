@@ -13,6 +13,7 @@ import connectLegalSection from '../LegalConnector'
 import ActivitiesToOverthrowItem from './ActivitiesToOverthrowItem'
 
 const sectionConfig = {
+  key: LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW.key,
   section: LEGAL.name,
   store: LEGAL.store,
   subsection: LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW.name,
@@ -82,7 +83,7 @@ export class ActivitiesToOverthrow extends Subsection {
           labelSize="h4"
           className="legal-associations-activities-has-activities"
           {...this.props.HasActivities}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateBranch}
@@ -106,7 +107,7 @@ export class ActivitiesToOverthrow extends Subsection {
           >
             <ActivitiesToOverthrowItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

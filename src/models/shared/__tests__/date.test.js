@@ -16,7 +16,7 @@ describe('The date model', () => {
 
   it('the day field is required', () => {
     const testData = {}
-    const expectedErrors = ['day.required']
+    const expectedErrors = ['day.presence.REQUIRED']
 
     expect(validateModel(testData, date))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -24,7 +24,7 @@ describe('The date model', () => {
 
   it('the month field is required', () => {
     const testData = {}
-    const expectedErrors = ['month.required']
+    const expectedErrors = ['month.presence.REQUIRED']
 
     expect(validateModel(testData, date))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -32,7 +32,7 @@ describe('The date model', () => {
 
   it('the year field is required', () => {
     const testData = {}
-    const expectedErrors = ['year.required']
+    const expectedErrors = ['year.presence.REQUIRED']
 
     expect(validateModel(testData, date))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -40,7 +40,7 @@ describe('The date model', () => {
 
   it('the date field is required', () => {
     const testData = {}
-    const expectedErrors = ['date.required']
+    const expectedErrors = ['date.presence.REQUIRED']
 
     expect(validateModel(testData, date))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -48,7 +48,7 @@ describe('The date model', () => {
 
   it('must have a valid date', () => {
     const testData = { date: 'test' }
-    const expectedErrors = ['date.datetime']
+    const expectedErrors = ['date.datetime.INVALID_DATE']
 
     expect(validateModel(testData, date))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -57,7 +57,7 @@ describe('The date model', () => {
   describe('with SELF birthdate limits', () => {
     it('must be no more than 130 years and 1 day ago', () => {
       const testData = { date: TODAY.minus({ years: 145 }) }
-      const expectedErrors = ['date.datetime']
+      const expectedErrors = ['date.datetime.DATE_TOO_EARLY']
 
       expect(validateModel(testData, date, { ...SELF }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -65,7 +65,7 @@ describe('The date model', () => {
 
     it('must be more than 16 years ago', () => {
       const testData = { date: TODAY.minus({ years: 2 }) }
-      const expectedErrors = ['date.datetime']
+      const expectedErrors = ['date.datetime.DATE_TOO_LATE']
 
       expect(validateModel(testData, date, { ...SELF }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -84,7 +84,7 @@ describe('The date model', () => {
 
     it('must be no more than 200 years and 1 day ago', () => {
       const testData = { date: TODAY.minus({ years: 205 }) }
-      const expectedErrors = ['date.datetime']
+      const expectedErrors = ['date.datetime.DATE_TOO_EARLY']
 
       expect(validateModel(testData, date, { ...parentLimits }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -92,7 +92,7 @@ describe('The date model', () => {
 
     it('must be older than the applicant', () => {
       const testData = { date: TODAY.minus({ years: 2 }) }
-      const expectedErrors = ['date.datetime']
+      const expectedErrors = ['date.datetime.DATE_TOO_LATE']
 
       expect(validateModel(testData, date, { ...parentLimits }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -111,7 +111,7 @@ describe('The date model', () => {
 
     it('must be younger than the applicant', () => {
       const testData = { date: TODAY.minus({ years: 35 }) }
-      const expectedErrors = ['date.datetime']
+      const expectedErrors = ['date.datetime.DATE_TOO_EARLY']
 
       expect(validateModel(testData, date, { ...childLimits }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -119,7 +119,7 @@ describe('The date model', () => {
 
     it('must not be in the future', () => {
       const testData = { date: TODAY.plus({ years: 2 }) }
-      const expectedErrors = ['date.datetime']
+      const expectedErrors = ['date.datetime.DATE_TOO_LATE']
 
       expect(validateModel(testData, date, { ...childLimits }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -135,7 +135,7 @@ describe('The date model', () => {
   describe('with OTHER birthdate limits', () => {
     it('must be no more than 200 years and 1 day ago', () => {
       const testData = { date: TODAY.minus({ years: 205 }) }
-      const expectedErrors = ['date.datetime']
+      const expectedErrors = ['date.datetime.DATE_TOO_EARLY']
 
       expect(validateModel(testData, date, { ...OTHER }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -143,7 +143,7 @@ describe('The date model', () => {
 
     it('must not be in the future', () => {
       const testData = { date: TODAY.plus({ years: 2 }) }
-      const expectedErrors = ['date.datetime']
+      const expectedErrors = ['date.datetime.DATE_TOO_LATE']
 
       expect(validateModel(testData, date, { ...OTHER }))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -163,7 +163,7 @@ describe('The date model', () => {
 
       it('must be no more than 200 years and 1 day ago', () => {
         const testData = { date: TODAY.minus({ years: 205 }) }
-        const expectedErrors = ['date.datetime']
+        const expectedErrors = ['date.datetime.DATE_TOO_EARLY']
 
         expect(validateModel(testData, date, { ...defaultLimits }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -171,7 +171,7 @@ describe('The date model', () => {
 
       it('must be younger than the applicant', () => {
         const testData = { date: TODAY.minus({ years: 35 }) }
-        const expectedErrors = ['date.datetime']
+        const expectedErrors = ['date.datetime.DATE_TOO_EARLY']
 
         expect(validateModel(testData, date, { ...defaultLimits }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -189,7 +189,7 @@ describe('The date model', () => {
 
       it('must be no more than 200 years and 1 day ago', () => {
         const testData = { date: TODAY.minus({ years: 205 }) }
-        const expectedErrors = ['date.datetime']
+        const expectedErrors = ['date.datetime.DATE_TOO_EARLY']
 
         expect(validateModel(testData, date, { ...defaultLimits }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -197,7 +197,7 @@ describe('The date model', () => {
 
       it('must not be in the future', () => {
         const testData = { date: TODAY.plus({ years: 2 }) }
-        const expectedErrors = ['date.datetime']
+        const expectedErrors = ['date.datetime.DATE_TOO_LATE']
 
         expect(validateModel(testData, date, { ...defaultLimits }))
           .toEqual(expect.arrayContaining(expectedErrors))

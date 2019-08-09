@@ -8,8 +8,7 @@ export default class Number extends ValidationElement {
 
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
-      value: isNaN(props.value) ? '' : props.value,
-      max: props.max
+      max: props.max,
     }
 
     this.handleError = this.handleError.bind(this)
@@ -27,8 +26,8 @@ export default class Number extends ValidationElement {
           {
             fake: true,
             target: {
-              name: this.props.name
-            }
+              name: this.props.name,
+            },
           },
           null
         )
@@ -37,39 +36,41 @@ export default class Number extends ValidationElement {
   }
 
   /**
+   * Prevent non-numerical values from being entered
+   */
+  sanitizedInput = (value) => {
+    if (!value.match(/^(\s*|\d+)$/)) {
+      return value.replace(/\D/g, '')
+    }
+    return value
+  }
+
+  /**
    * Handle the change event.
    */
   handleChange(event) {
     event.persist()
 
-    // Prevent non-numerical values from being entered
-    let value = event.target.value
-    if (!value.match(/^(\s*|\d+)$/)) {
-      value = value.replace(/\D/g, '')
+    super.handleChange(event)
+    if (this.props.onUpdate) {
+      this.props.onUpdate({
+        name: this.props.name,
+        value: this.sanitizedInput(event.target.value),
+      })
     }
-
-    this.setState({ value: value }, () => {
-      super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          value: this.state.value
-        })
-      }
-    })
   }
 
   handleError(value, arr) {
-    let errors = arr.concat(
-      this.constructor.errors.map(err => {
-        return {
+    const errors = arr.concat(
+      this.constructor.errors.map(err => (
+        {
           code: !this.props.prefix
             ? err.code
             : `${this.props.prefix}.${err.code}`,
           valid: err.func(value, this.props),
-          uid: this.state.uid
+          uid: this.state.uid,
         }
-      })
+      ))
     )
 
     // Take the original and concatenate our new error values to it
@@ -90,7 +91,7 @@ export default class Number extends ValidationElement {
         pattern={this.props.pattern}
         readonly={this.props.readonly}
         required={this.props.required}
-        value={this.state.value}
+        value={this.props.value}
         onChange={this.handleChange}
         onFocus={this.props.onFocus}
         onBlur={this.props.onBlur}
@@ -116,9 +117,7 @@ Number.defaultProps = {
   prefix: '',
   pattern: '^(\\s*|\\d+)$',
   errorCode: null,
-  onError: (value, arr) => {
-    return arr
-  }
+  onError: (value, arr) => arr,
 }
 
 Number.errors = [
@@ -148,6 +147,6 @@ Number.errors = [
       }
 
       return true
-    }
-  }
+    },
+  },
 ]

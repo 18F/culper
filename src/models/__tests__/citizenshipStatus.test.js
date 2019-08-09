@@ -77,7 +77,7 @@ describe('The documentationIsEmpty function', () => {
 describe('The citizenshipStatus model', () => {
   it('CitizenshipStatus is required', () => {
     const testData = {}
-    const expectedErrors = ['CitizenshipStatus.required']
+    const expectedErrors = ['CitizenshipStatus.presence.REQUIRED']
     expect(validateModel(testData, citizenshipStatus))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -86,7 +86,7 @@ describe('The citizenshipStatus model', () => {
     const testData = {
       CitizenshipStatus: { value: 'invalid' },
     }
-    const expectedErrors = ['CitizenshipStatus.hasValue']
+    const expectedErrors = ['CitizenshipStatus.hasValue.value.inclusion.INCLUSION']
     expect(validateModel(testData, citizenshipStatus))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -105,7 +105,7 @@ describe('The citizenshipStatus model', () => {
       const testData = {
         CitizenshipStatus: { value: 'ForeignBorn' },
       }
-      const expectedErrors = ['BornOnMilitaryInstallation.required']
+      const expectedErrors = ['BornOnMilitaryInstallation.presence.REQUIRED']
       expect(validateModel(testData, citizenshipStatus))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -115,7 +115,7 @@ describe('The citizenshipStatus model', () => {
         CitizenshipStatus: { value: 'ForeignBorn' },
         BornOnMilitaryInstallation: { value: false },
       }
-      const expectedErrors = ['BornOnMilitaryInstallation.hasValue']
+      const expectedErrors = ['BornOnMilitaryInstallation.hasValue.MISSING_VALUE']
       expect(validateModel(testData, citizenshipStatus))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -126,7 +126,7 @@ describe('The citizenshipStatus model', () => {
           CitizenshipStatus: { value: 'ForeignBorn' },
           BornOnMilitaryInstallation: { value: 'No' },
         }
-        const expectedErrors = ['MilitaryBase.required']
+        const expectedErrors = ['MilitaryBase.presence.REQUIRED']
         expect(validateModel(testData, citizenshipStatus))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
@@ -138,7 +138,7 @@ describe('The citizenshipStatus model', () => {
           CitizenshipStatus: { value: 'ForeignBorn' },
           BornOnMilitaryInstallation: { value: 'Yes' },
         }
-        const expectedErrors = ['MilitaryBase.required']
+        const expectedErrors = ['MilitaryBase.presence.REQUIRED']
         expect(validateModel(testData, citizenshipStatus))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
@@ -149,7 +149,7 @@ describe('The citizenshipStatus model', () => {
           BornOnMilitaryInstallation: { value: 'Yes' },
           MilitaryBase: 'testing',
         }
-        const expectedErrors = ['MilitaryBase.hasValue']
+        const expectedErrors = ['MilitaryBase.hasValue.MISSING_VALUE']
         expect(validateModel(testData, citizenshipStatus))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
@@ -161,14 +161,14 @@ describe('The citizenshipStatus model', () => {
           CitizenshipStatus: { value: 'ForeignBorn' },
         }
         const expectedErrors = [
-          'AbroadDocumentation.required',
-          'DocumentNumber.required',
-          'DocumentIssued.required',
-          'PlaceIssued.required',
-          'DocumentName.required',
-          'CertificateNumber.required',
-          'CertificateIssued.required',
-          'CertificateName.required',
+          'AbroadDocumentation.presence.REQUIRED',
+          'DocumentNumber.presence.REQUIRED',
+          'DocumentIssued.presence.REQUIRED',
+          'PlaceIssued.presence.REQUIRED',
+          'DocumentName.presence.REQUIRED',
+          'CertificateNumber.presence.REQUIRED',
+          'CertificateIssued.presence.REQUIRED',
+          'CertificateName.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus, {
@@ -196,14 +196,14 @@ describe('The citizenshipStatus model', () => {
             CitizenshipStatus: { value: 'ForeignBorn' },
           }
           const expectedErrors = [
-            'AbroadDocumentation.required',
-            'DocumentNumber.required',
-            'DocumentIssued.required',
-            'PlaceIssued.required',
-            'DocumentName.required',
-            'CertificateNumber.required',
-            'CertificateIssued.required',
-            'CertificateName.required',
+            'AbroadDocumentation.presence.REQUIRED',
+            'DocumentNumber.presence.REQUIRED',
+            'DocumentIssued.presence.REQUIRED',
+            'PlaceIssued.presence.REQUIRED',
+            'DocumentName.presence.REQUIRED',
+            'CertificateNumber.presence.REQUIRED',
+            'CertificateIssued.presence.REQUIRED',
+            'CertificateName.presence.REQUIRED',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -220,8 +220,8 @@ describe('The citizenshipStatus model', () => {
             CertificateNumber: { value: '123' },
           }
           const expectedErrors = [
-            'CertificateIssued.required',
-            'CertificateName.required',
+            'CertificateIssued.presence.REQUIRED',
+            'CertificateName.presence.REQUIRED',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -236,11 +236,11 @@ describe('The citizenshipStatus model', () => {
             CertificateNumber: { value: '123' },
           }
           const expectedErrors = [
-            'AbroadDocumentation.required',
-            'DocumentNumber.required',
-            'DocumentIssued.required',
-            'PlaceIssued.required',
-            'DocumentName.required',
+            'AbroadDocumentation.presence.REQUIRED',
+            'DocumentNumber.presence.REQUIRED',
+            'DocumentIssued.presence.REQUIRED',
+            'PlaceIssued.presence.REQUIRED',
+            'DocumentName.presence.REQUIRED',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -255,7 +255,7 @@ describe('The citizenshipStatus model', () => {
             CertificateNumber: '123',
           }
           const expectedErrors = [
-            'CertificateNumber.hasValue',
+            'CertificateNumber.hasValue.MISSING_VALUE',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -270,7 +270,8 @@ describe('The citizenshipStatus model', () => {
             CertificateIssued: 'january',
           }
           const expectedErrors = [
-            'CertificateIssued.date',
+            'CertificateIssued.date.day.presence.REQUIRED',
+            'CertificateIssued.date.month.presence.REQUIRED',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -285,7 +286,9 @@ describe('The citizenshipStatus model', () => {
             CertificateName: '123',
           }
           const expectedErrors = [
-            'CertificateName.model',
+            'CertificateName.model.first.presence.REQUIRED',
+            'CertificateName.model.middle.presence.REQUIRED',
+            'CertificateName.model.last.presence.REQUIRED',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -321,9 +324,9 @@ describe('The citizenshipStatus model', () => {
             DocumentNumber: { value: '123' },
           }
           const expectedErrors = [
-            'CertificateNumber.required',
-            'CertificateIssued.required',
-            'CertificateName.required',
+            'CertificateNumber.presence.REQUIRED',
+            'CertificateIssued.presence.REQUIRED',
+            'CertificateName.presence.REQUIRED',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -337,7 +340,7 @@ describe('The citizenshipStatus model', () => {
             CitizenshipStatus: { value: 'ForeignBorn' },
           }
           const expectedErrors = [
-            'AbroadDocumentation.required',
+            'AbroadDocumentation.presence.REQUIRED',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -352,7 +355,7 @@ describe('The citizenshipStatus model', () => {
             AbroadDocumentation: { value: 'blah' },
           }
           const expectedErrors = [
-            'AbroadDocumentation.hasValue',
+            'AbroadDocumentation.hasValue.value.inclusion.INCLUSION',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -368,7 +371,7 @@ describe('The citizenshipStatus model', () => {
               AbroadDocumentation: { value: 'Other' },
             }
             const expectedErrors = [
-              'Explanation.required',
+              'Explanation.presence.REQUIRED',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -383,10 +386,10 @@ describe('The citizenshipStatus model', () => {
               AbroadDocumentation: { value: 'Other' },
             }
             const expectedErrors = [
-              'DocumentNumber.required',
-              'DocumentIssued.required',
-              'PlaceIssued.required',
-              'DocumentName.required',
+              'DocumentNumber.presence.REQUIRED',
+              'DocumentIssued.presence.REQUIRED',
+              'PlaceIssued.presence.REQUIRED',
+              'DocumentName.presence.REQUIRED',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -402,7 +405,7 @@ describe('The citizenshipStatus model', () => {
               Explanation: 'test',
             }
             const expectedErrors = [
-              'Explanation.hasValue',
+              'Explanation.hasValue.MISSING_VALUE',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -432,7 +435,7 @@ describe('The citizenshipStatus model', () => {
               AbroadDocumentation: { value: 'FS-240' },
             }
             const expectedErrors = [
-              'Explanation.required',
+              'Explanation.presence.REQUIRED',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -447,10 +450,10 @@ describe('The citizenshipStatus model', () => {
               AbroadDocumentation: { value: 'FS-240' },
             }
             const expectedErrors = [
-              'DocumentNumber.required',
-              'DocumentIssued.required',
-              'PlaceIssued.required',
-              'DocumentName.required',
+              'DocumentNumber.presence.REQUIRED',
+              'DocumentIssued.presence.REQUIRED',
+              'PlaceIssued.presence.REQUIRED',
+              'DocumentName.presence.REQUIRED',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -466,7 +469,7 @@ describe('The citizenshipStatus model', () => {
               DocumentNumber: { value: '' },
             }
             const expectedErrors = [
-              'DocumentNumber.hasValue',
+              'DocumentNumber.hasValue.MISSING_VALUE',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -482,7 +485,8 @@ describe('The citizenshipStatus model', () => {
               DocumentIssued: { year: '200' },
             }
             const expectedErrors = [
-              'DocumentIssued.date',
+              'DocumentIssued.date.day.presence.REQUIRED',
+              'DocumentIssued.date.month.presence.REQUIRED',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -500,7 +504,7 @@ describe('The citizenshipStatus model', () => {
               },
             }
             const expectedErrors = [
-              'PlaceIssued.location',
+              'PlaceIssued.location.city.presence.REQUIRED',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -516,7 +520,9 @@ describe('The citizenshipStatus model', () => {
               DocumentName: 'My Name',
             }
             const expectedErrors = [
-              'DocumentName.model',
+              'DocumentName.model.first.presence.REQUIRED',
+              'DocumentName.model.middle.presence.REQUIRED',
+              'DocumentName.model.last.presence.REQUIRED',
             ]
 
             expect(validateModel(testData, citizenshipStatus, {
@@ -555,12 +561,12 @@ describe('The citizenshipStatus model', () => {
             DocumentNumber: { value: '123' },
           }
           const expectedErrors = [
-            'AbroadDocumentation.required',
-            'DocumentIssued.required',
-            'PlaceIssued.required',
-            'DocumentName.required',
-            'CertificateIssued.required',
-            'CertificateName.required',
+            'AbroadDocumentation.presence.REQUIRED',
+            'DocumentIssued.presence.REQUIRED',
+            'PlaceIssued.presence.REQUIRED',
+            'DocumentName.presence.REQUIRED',
+            'CertificateIssued.presence.REQUIRED',
+            'CertificateName.presence.REQUIRED',
           ]
 
           expect(validateModel(testData, citizenshipStatus, {
@@ -605,16 +611,16 @@ describe('The citizenshipStatus model', () => {
         CitizenshipStatus: { value: 'Naturalized' },
       }
       const expectedErrors = [
-        'EntryDate.required',
-        'EntryLocation.required',
-        'PriorCitizenship.required',
-        'HasAlienRegistration.required',
-        'CertificateNumber.required',
-        'CertificateCourtName.required',
-        'CertificateCourtAddress.required',
-        'CertificateIssued.required',
-        'CertificateName.required',
-        'Basis.required',
+        'EntryDate.presence.REQUIRED',
+        'EntryLocation.presence.REQUIRED',
+        'PriorCitizenship.presence.REQUIRED',
+        'HasAlienRegistration.presence.REQUIRED',
+        'CertificateNumber.presence.REQUIRED',
+        'CertificateCourtName.presence.REQUIRED',
+        'CertificateCourtAddress.presence.REQUIRED',
+        'CertificateIssued.presence.REQUIRED',
+        'CertificateName.presence.REQUIRED',
+        'Basis.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -627,7 +633,9 @@ describe('The citizenshipStatus model', () => {
         EntryDate: 'May 1',
       }
       const expectedErrors = [
-        'EntryDate.date',
+        'EntryDate.date.day.presence.REQUIRED',
+        'EntryDate.date.month.presence.REQUIRED',
+        'EntryDate.date.year.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -644,7 +652,7 @@ describe('The citizenshipStatus model', () => {
         },
       }
       const expectedErrors = [
-        'EntryLocation.location',
+        'EntryLocation.location.state.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -658,7 +666,21 @@ describe('The citizenshipStatus model', () => {
       }
 
       const expectedErrors = [
-        'PriorCitizenship.hasValue',
+        'PriorCitizenship.country.INVALID_COUNTRY',
+      ]
+
+      expect(validateModel(testData, citizenshipStatus))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('PriorCitizenship values must be valid', () => {
+      const testData = {
+        CitizenshipStatus: { value: 'Naturalized' },
+        PriorCitizenship: { value: ['Germany', 'Invalid country'] },
+      }
+
+      const expectedErrors = [
+        'PriorCitizenship.country.INVALID_COUNTRY',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -671,7 +693,7 @@ describe('The citizenshipStatus model', () => {
         HasAlienRegistration: true,
       }
       const expectedErrors = [
-        'HasAlienRegistration.hasValue',
+        'HasAlienRegistration.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -685,7 +707,7 @@ describe('The citizenshipStatus model', () => {
           HasAlienRegistration: { value: 'No' },
         }
         const expectedErrors = [
-          'AlienRegistrationNumber.required',
+          'AlienRegistrationNumber.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -700,7 +722,7 @@ describe('The citizenshipStatus model', () => {
           HasAlienRegistration: { value: 'Yes' },
         }
         const expectedErrors = [
-          'AlienRegistrationNumber.required',
+          'AlienRegistrationNumber.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -714,7 +736,7 @@ describe('The citizenshipStatus model', () => {
           AlienRegistrationNumber: '123',
         }
         const expectedErrors = [
-          'AlienRegistrationNumber.hasValue',
+          'AlienRegistrationNumber.hasValue.MISSING_VALUE',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -728,7 +750,7 @@ describe('The citizenshipStatus model', () => {
         CertificateNumber: '123',
       }
       const expectedErrors = [
-        'CertificateNumber.hasValue',
+        'CertificateNumber.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -741,7 +763,7 @@ describe('The citizenshipStatus model', () => {
         CertificateCourtName: { name: 'Court' },
       }
       const expectedErrors = [
-        'CertificateCourtName.hasValue',
+        'CertificateCourtName.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -754,7 +776,9 @@ describe('The citizenshipStatus model', () => {
         CertificateCourtAddress: { country: { value: 'Canada' } },
       }
       const expectedErrors = [
-        'CertificateCourtAddress.location',
+        'CertificateCourtAddress.location.street.presence.REQUIRED',
+        'CertificateCourtAddress.location.city.presence.REQUIRED',
+        'CertificateCourtAddress.location.country.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -767,7 +791,7 @@ describe('The citizenshipStatus model', () => {
         CertificateIssued: { day: 1, month: 2 },
       }
       const expectedErrors = [
-        'CertificateIssued.date',
+        'CertificateIssued.date.year.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -780,7 +804,9 @@ describe('The citizenshipStatus model', () => {
         CertificateName: { name: 'Name' },
       }
       const expectedErrors = [
-        'CertificateName.model',
+        'CertificateName.model.first.presence.REQUIRED',
+        'CertificateName.model.middle.presence.REQUIRED',
+        'CertificateName.model.last.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -793,7 +819,7 @@ describe('The citizenshipStatus model', () => {
         Basis: 'something',
       }
       const expectedErrors = [
-        'Basis.hasValue',
+        'Basis.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -807,7 +833,7 @@ describe('The citizenshipStatus model', () => {
           Basis: { value: 'Other' },
         }
         const expectedErrors = [
-          'Explanation.required',
+          'Explanation.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -821,7 +847,7 @@ describe('The citizenshipStatus model', () => {
           Explanation: 'something',
         }
         const expectedErrors = [
-          'Explanation.hasValue',
+          'Explanation.hasValue.MISSING_VALUE',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -860,12 +886,12 @@ describe('The citizenshipStatus model', () => {
         CitizenshipStatus: { value: 'Derived' },
       }
       const expectedErrors = [
-        'PermanentResidentCardNumber.required',
-        'AlienRegistrationNumber.required',
-        'CertificateNumber.required',
-        'CertificateIssued.required',
-        'CertificateName.required',
-        'Basis.required',
+        'PermanentResidentCardNumber.presence.REQUIRED',
+        'AlienRegistrationNumber.presence.REQUIRED',
+        'CertificateNumber.presence.REQUIRED',
+        'CertificateIssued.presence.REQUIRED',
+        'CertificateName.presence.REQUIRED',
+        'Basis.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -878,7 +904,7 @@ describe('The citizenshipStatus model', () => {
         CertificateIssued: { day: 1, month: 2 },
       }
       const expectedErrors = [
-        'CertificateIssued.date',
+        'CertificateIssued.date.year.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -891,7 +917,9 @@ describe('The citizenshipStatus model', () => {
         CertificateName: { name: 'Name' },
       }
       const expectedErrors = [
-        'CertificateName.model',
+        'CertificateName.model.first.presence.REQUIRED',
+        'CertificateName.model.middle.presence.REQUIRED',
+        'CertificateName.model.last.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -904,7 +932,7 @@ describe('The citizenshipStatus model', () => {
         Basis: 'something',
       }
       const expectedErrors = [
-        'Basis.hasValue',
+        'Basis.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -918,7 +946,7 @@ describe('The citizenshipStatus model', () => {
           Basis: { value: 'Other' },
         }
         const expectedErrors = [
-          'Explanation.required',
+          'Explanation.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -932,7 +960,7 @@ describe('The citizenshipStatus model', () => {
           Explanation: 'something',
         }
         const expectedErrors = [
-          'Explanation.hasValue',
+          'Explanation.hasValue.MISSING_VALUE',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -947,7 +975,7 @@ describe('The citizenshipStatus model', () => {
           PermanentResidentCardNumber: { value: '123' },
         }
         const expectedErrors = [
-          'AlienRegistrationNumber.hasValue',
+          'AlienRegistrationNumber.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -960,7 +988,7 @@ describe('The citizenshipStatus model', () => {
           PermanentResidentCardNumber: { value: '123' },
         }
         const expectedErrors = [
-          'CertificateNumber.hasValue',
+          'CertificateNumber.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -987,7 +1015,7 @@ describe('The citizenshipStatus model', () => {
           AlienRegistrationNumber: { value: '123' },
         }
         const expectedErrors = [
-          'PermanentResidentCardNumber.hasValue',
+          'PermanentResidentCardNumber.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -1000,7 +1028,7 @@ describe('The citizenshipStatus model', () => {
           AlienRegistrationNumber: { value: '123' },
         }
         const expectedErrors = [
-          'CertificateNumber.hasValue',
+          'CertificateNumber.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -1027,7 +1055,7 @@ describe('The citizenshipStatus model', () => {
           CertificateNumber: { value: '123' },
         }
         const expectedErrors = [
-          'AlienRegistrationNumber.hasValue',
+          'AlienRegistrationNumber.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -1040,7 +1068,7 @@ describe('The citizenshipStatus model', () => {
           CertificateNumber: { value: '123' },
         }
         const expectedErrors = [
-          'PermanentResidentCardNumber.hasValue',
+          'PermanentResidentCardNumber.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -1067,17 +1095,17 @@ describe('The citizenshipStatus model', () => {
         CitizenshipStatus: { value: 'NotCitizen' },
       }
       const expectedErrors = [
-        'ResidenceStatus.required',
-        'EntryDate.required',
-        'EntryLocation.required',
-        'PriorCitizenship.required',
-        'AlienRegistrationNumber.required',
-        'AlienRegistrationExpiration.required',
-        'DocumentType.required',
-        'DocumentNumber.required',
-        'DocumentName.required',
-        'DocumentIssued.required',
-        'DocumentExpiration.required',
+        'ResidenceStatus.presence.REQUIRED',
+        'EntryDate.presence.REQUIRED',
+        'EntryLocation.presence.REQUIRED',
+        'PriorCitizenship.presence.REQUIRED',
+        'AlienRegistrationNumber.presence.REQUIRED',
+        'AlienRegistrationExpiration.presence.REQUIRED',
+        'DocumentType.presence.REQUIRED',
+        'DocumentNumber.presence.REQUIRED',
+        'DocumentName.presence.REQUIRED',
+        'DocumentIssued.presence.REQUIRED',
+        'DocumentExpiration.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1090,7 +1118,7 @@ describe('The citizenshipStatus model', () => {
         ResidenceStatus: 'something',
       }
       const expectedErrors = [
-        'ResidenceStatus.hasValue',
+        'ResidenceStatus.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1103,7 +1131,9 @@ describe('The citizenshipStatus model', () => {
         EntryDate: 'May 1',
       }
       const expectedErrors = [
-        'EntryDate.date',
+        'EntryDate.date.day.presence.REQUIRED',
+        'EntryDate.date.month.presence.REQUIRED',
+        'EntryDate.date.year.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1120,7 +1150,7 @@ describe('The citizenshipStatus model', () => {
         },
       }
       const expectedErrors = [
-        'EntryLocation.location',
+        'EntryLocation.location.state.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1134,7 +1164,7 @@ describe('The citizenshipStatus model', () => {
       }
 
       const expectedErrors = [
-        'PriorCitizenship.hasValue',
+        'PriorCitizenship.country.INVALID_COUNTRY',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1147,7 +1177,7 @@ describe('The citizenshipStatus model', () => {
         AlienRegistrationNumber: 'something',
       }
       const expectedErrors = [
-        'AlienRegistrationNumber.hasValue',
+        'AlienRegistrationNumber.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1160,7 +1190,9 @@ describe('The citizenshipStatus model', () => {
         AlienRegistrationExpiration: 'something',
       }
       const expectedErrors = [
-        'AlienRegistrationExpiration.date',
+        'AlienRegistrationExpiration.date.day.presence.REQUIRED',
+        'AlienRegistrationExpiration.date.month.presence.REQUIRED',
+        'AlienRegistrationExpiration.date.year.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1173,7 +1205,7 @@ describe('The citizenshipStatus model', () => {
         DocumentType: { value: 'invalid' },
       }
       const expectedErrors = [
-        'DocumentType.hasValue',
+        'DocumentType.hasValue.value.inclusion.INCLUSION',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1187,7 +1219,7 @@ describe('The citizenshipStatus model', () => {
           DocumentType: { value: 'Other' },
         }
         const expectedErrors = [
-          'Explanation.required',
+          'Explanation.presence.REQUIRED',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -1201,7 +1233,7 @@ describe('The citizenshipStatus model', () => {
           Explanation: 'Because',
         }
         const expectedErrors = [
-          'Explanation.hasValue',
+          'Explanation.hasValue.MISSING_VALUE',
         ]
 
         expect(validateModel(testData, citizenshipStatus))
@@ -1215,7 +1247,7 @@ describe('The citizenshipStatus model', () => {
         DocumentNumber: { value: '' },
       }
       const expectedErrors = [
-        'DocumentNumber.hasValue',
+        'DocumentNumber.hasValue.MISSING_VALUE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1228,7 +1260,8 @@ describe('The citizenshipStatus model', () => {
         DocumentIssued: { year: '200' },
       }
       const expectedErrors = [
-        'DocumentIssued.date',
+        'DocumentIssued.date.day.presence.REQUIRED',
+        'DocumentIssued.date.month.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1241,7 +1274,9 @@ describe('The citizenshipStatus model', () => {
         DocumentName: 'My Name',
       }
       const expectedErrors = [
-        'DocumentName.model',
+        'DocumentName.model.first.presence.REQUIRED',
+        'DocumentName.model.middle.presence.REQUIRED',
+        'DocumentName.model.last.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1254,7 +1289,8 @@ describe('The citizenshipStatus model', () => {
         DocumentExpiration: { year: '200' },
       }
       const expectedErrors = [
-        'DocumentExpiration.date',
+        'DocumentExpiration.date.day.presence.REQUIRED',
+        'DocumentExpiration.date.month.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, citizenshipStatus))

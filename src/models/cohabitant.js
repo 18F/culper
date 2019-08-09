@@ -1,10 +1,12 @@
 import name from 'models/shared/name'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import foreignBornDocument from 'models/foreignBornDocument'
+import { OTHER } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
-const otherName = {
+export const otherName = {
   OtherName: {
     presence: true,
     model: { validator: name },
@@ -20,7 +22,7 @@ const cohabitant = {
   },
   Birthdate: {
     presence: true,
-    date: true,
+    date: OTHER,
   },
   BirthPlace: {
     presence: true,
@@ -32,13 +34,22 @@ const cohabitant = {
   },
   Citizenship: {
     presence: true,
-    hasValue: { validator: { length: { minimum: 1 } } },
+    country: true,
   },
-  OtherNames: {
-    presence: true,
-    branchCollection: {
-      validator: otherName,
-    },
+  OtherNames: (value, attributes) => {
+    const dateLimits = { latest: DEFAULT_LATEST }
+    if (attributes.Birthdate) dateLimits.earliest = attributes.Birthdate
+
+    return {
+      presence: true,
+      branchCollection: {
+        validator: otherName,
+        ...dateLimits,
+      },
+    }
+  },
+  CohabitationBegan: {
+    presence: true, date: true,
   },
   ForeignBornDocument: (value, attributes = {}) => {
     if (attributes.BirthPlace

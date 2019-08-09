@@ -1,6 +1,8 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import schema from 'schema'
+import * as formConfig from 'config/forms'
+import { getNumberOfYearsString } from 'helpers/text'
 import validate, { VoluntaryCounselingValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
@@ -13,6 +15,7 @@ import connectSubstanceUseSection from '../SubstanceUseConnector'
 import VoluntaryCounseling from './VoluntaryCounseling'
 
 const sectionConfig = {
+  key: SUBSTANCE_USE_ALCOHOL_VOLUNTARY.key,
   section: SUBSTANCE_USE.name,
   store: SUBSTANCE_USE.store,
   subsection: SUBSTANCE_USE_ALCOHOL_VOLUNTARY.name,
@@ -72,6 +75,16 @@ export class VoluntaryCounselings extends Subsection {
   }
 
   render() {
+    const { formType } = this.props
+    const formTypeConfig = formType && formConfig[formType]
+    const years = formTypeConfig && formTypeConfig.SUBSTANCE_ALCOHOL_TREATMENT_YEARS
+    let branchLabelCopy
+    if (years === 'EVER') {
+      branchLabelCopy = i18n.t('substance.alcohol.heading.voluntaryCounseling')
+    } else {
+      const numberOfYearsString = getNumberOfYearsString(years)
+      branchLabelCopy = i18n.t('substance.alcohol.heading.voluntaryCounselingNum', { numberOfYearsString })
+    }
     return (
       <div
         className="section-content voluntary-counselings"
@@ -81,11 +94,11 @@ export class VoluntaryCounselings extends Subsection {
         <h1 className="section-header">{i18n.t('substance.subsection.alcohol.voluntary')}</h1>
         <Branch
           name="SoughtTreatment"
-          label={i18n.t('substance.alcohol.heading.voluntaryCounseling')}
+          label={branchLabelCopy}
           labelSize="h4"
           className="sought-treatment"
           {...this.props.SoughtTreatment}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           onUpdate={this.updateSoughtTreatment}
@@ -109,7 +122,7 @@ export class VoluntaryCounselings extends Subsection {
           >
             <VoluntaryCounseling
               name="Item"
-              bind
+              bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}
               required={this.props.required}

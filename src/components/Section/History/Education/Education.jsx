@@ -17,6 +17,7 @@ import { EducationCustomSummary } from '../summaries'
 import EducationItem from './EducationItem'
 
 const sectionConfig = {
+  key: HISTORY_EDUCATION.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_EDUCATION.name,
@@ -74,11 +75,7 @@ export class Education extends Subsection {
     const { totalYears } = this.props
 
     return (
-      <div
-        className="section-content education"
-        data-section={HISTORY.key}
-        data-subsection={HISTORY_EDUCATION.key}
-      >
+      <div>
         <Accordion
           scrollToTop={this.props.scrollToTop}
           defaultState={this.props.defaultState}
@@ -102,7 +99,7 @@ export class Education extends Subsection {
           scrollIntoView={this.props.scrollIntoView}
         >
           <EducationItem
-            bind
+            bind={true}
             name="Item"
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}

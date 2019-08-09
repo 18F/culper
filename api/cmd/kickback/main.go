@@ -12,7 +12,7 @@ func main() {
 	cmd.Command(logger, func(context api.DatabaseService, store api.StorageService, account *api.Account) {
 		rejector := admin.NewRejecter(context, store)
 
-		rejectErr := rejector.Reject(*account)
+		rejectErr := rejector.Reject(account)
 		if rejectErr != nil {
 			logger.WarnError("Failed to kickback", rejectErr, api.LogFields{"account": account.Username})
 		} else {

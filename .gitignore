@@ -65,6 +65,7 @@ package-lock.json
 /api/bin/load
 /api/bin/load-scenario
 /api/bin/submit
+/api/bin/sftype
 /api/bin/transmit
 /api/bin/unlock
 /api/bin/dbmigrate
@@ -86,10 +87,8 @@ xmlsec1
 
 # Test artifacts
 /api/coverage.txt
+api/coverage-integration.txt
 /jest*
-/specs/reports
-/specs/screenshots
-/specs/tmp-*/
 
 # Ignore Mac DS_Store files
 .DS_Store

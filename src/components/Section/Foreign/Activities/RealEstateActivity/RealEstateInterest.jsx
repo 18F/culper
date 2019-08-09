@@ -10,28 +10,12 @@ import {
   NotApplicable,
   Checkbox,
   CheckboxGroup,
-  Location
+  Location,
 } from '../../../../Form'
 import CoOwners from '../CoOwners'
 
 export default class RealEstateInterest extends ValidationElement {
-  constructor(props) {
-    super(props)
-
-    this.update = this.update.bind(this)
-    this.updateInterestTypes = this.updateInterestTypes.bind(this)
-    this.updateRealEstateType = this.updateRealEstateType.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateAcquired = this.updateAcquired.bind(this)
-    this.updateHowAcquired = this.updateHowAcquired.bind(this)
-    this.updateCost = this.updateCost.bind(this)
-    this.updateCostEstimated = this.updateCostEstimated.bind(this)
-    this.updateSold = this.updateSold.bind(this)
-    this.updateSoldNotApplicable = this.updateSoldNotApplicable.bind(this)
-    this.updateCoOwners = this.updateCoOwners.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       InterestTypes: this.props.InterestTypes,
       RealEstateType: this.props.RealEstateType,
@@ -43,13 +27,13 @@ export default class RealEstateInterest extends ValidationElement {
       Sold: this.props.Sold,
       SoldNotApplicable: this.props.SoldNotApplicable,
       CoOwners: this.props.CoOwners,
-      ...queue
+      ...queue,
     })
   }
 
-  updateInterestTypes(values) {
-    let interestType = values.value
-    let selected = [...((this.props.InterestTypes || {}).values || [])]
+  updateInterestTypes = (values) => {
+    const interestType = values.value
+    const selected = [...((this.props.InterestTypes || {}).values || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
     } else {
@@ -57,66 +41,67 @@ export default class RealEstateInterest extends ValidationElement {
     }
 
     this.update({
-      InterestTypes: { values: selected }
+      InterestTypes: { values: selected },
     })
   }
 
-  updateRealEstateType(values) {
+  updateRealEstateType = (values) => {
     this.update({
-      RealEstateType: values
+      RealEstateType: values,
     })
   }
 
-  updateAddress(values) {
+  updateAddress = (values) => {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
-  updateAcquired(values) {
+  updateAcquired = (values) => {
     this.update({
-      Acquired: values
+      Acquired: values,
     })
   }
 
-  updateHowAcquired(values) {
+  updateHowAcquired = (values) => {
     this.update({
-      HowAcquired: values
+      HowAcquired: values,
     })
   }
 
-  updateCost(values) {
+  updateCost = (values) => {
     this.update({
-      Cost: values
+      Cost: values,
     })
   }
 
-  updateCostEstimated(values) {
+  updateCostEstimated = (values) => {
     this.update({
-      CostEstimated: values
+      CostEstimated: values,
     })
   }
 
-  updateSold(values) {
+  updateSold = (values) => {
     this.update({
-      Sold: values
+      Sold: values,
     })
   }
 
-  updateSoldNotApplicable(values) {
+  updateSoldNotApplicable = (values) => {
     this.update({
-      SoldNotApplicable: values
+      Sold: values.applicable ? this.props.Sold : {},
+      SoldNotApplicable: values,
     })
   }
 
-  updateCoOwners(values) {
+  updateCoOwners = (values) => {
     this.update({
-      CoOwners: values
+      CoOwners: values,
     })
   }
 
   render() {
-    const prefix = this.props.prefix
+    const { prefix } = this.props
     return (
       <div className="interest">
         <Field
@@ -124,14 +109,16 @@ export default class RealEstateInterest extends ValidationElement {
             'foreign.activities.realestate.interest.heading.interestTypes'
           )}
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.m('foreign.activities.realestate.interest.para.checkAll')}
 
           <CheckboxGroup
             className="interest-types option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
-            selectedValues={(this.props.InterestTypes || {}).values}>
+            selectedValues={(this.props.InterestTypes || {}).values}
+          >
             <Checkbox
               name="interest-type"
               label={i18n.m(
@@ -180,7 +167,8 @@ export default class RealEstateInterest extends ValidationElement {
             'foreign.activities.realestate.interest.heading.realEstateType'
           )}
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.t('foreign.activities.realestate.interest.para.realEstateType')}
           <Text
             name="RealEstateType"
@@ -197,7 +185,8 @@ export default class RealEstateInterest extends ValidationElement {
             'foreign.activities.realestate.interest.heading.address'
           )}
           adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="Address"
             {...this.props.Address}
@@ -217,13 +206,14 @@ export default class RealEstateInterest extends ValidationElement {
             'foreign.activities.realestate.interest.heading.acquired'
           )}
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
             name="Acquired"
             className="acquired"
             {...this.props.Acquired}
-            minDateEqualTo={true}
-            noMaxDate={true}
+            minDateEqualTo
+            noMaxDate
             onUpdate={this.updateAcquired}
             onError={this.props.onError}
             required={this.props.required}
@@ -235,7 +225,8 @@ export default class RealEstateInterest extends ValidationElement {
             'foreign.activities.realestate.interest.heading.howAcquired'
           )}
           adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           {i18n.t('foreign.activities.realestate.interest.para.howAcquired')}
           <Textarea
             name="HowAcquired"
@@ -249,9 +240,10 @@ export default class RealEstateInterest extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.activities.realestate.interest.heading.sold')}
-          help={'foreign.activities.realestate.interest.help.sold'}
+          help="foreign.activities.realestate.interest.help.sold"
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="SoldNotApplicable"
             {...this.props.SoldNotApplicable}
@@ -261,7 +253,8 @@ export default class RealEstateInterest extends ValidationElement {
             or={i18n.m('foreign.activities.realestate.interest.label.or')}
             onError={this.props.onError}
             required={this.props.required}
-            onUpdate={this.updateSoldNotApplicable}>
+            onUpdate={this.updateSoldNotApplicable}
+          >
             <DateControl
               name="Sold"
               className="sold"
@@ -275,8 +268,9 @@ export default class RealEstateInterest extends ValidationElement {
 
         <Field
           title={i18n.t('foreign.activities.realestate.interest.heading.cost')}
-          help={'foreign.activities.realestate.interest.help.cost'}
-          scrollIntoView={this.props.scrollIntoView}>
+          help="foreign.activities.realestate.interest.help.cost"
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Currency
             name="Cost"
             className="cost"
@@ -316,8 +310,6 @@ export default class RealEstateInterest extends ValidationElement {
 RealEstateInterest.defaultProps = {
   SoldNotApplicable: { applicable: true },
   prefix: 'activities.realestate.interest',
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

@@ -27,7 +27,7 @@ export class ForeignServiceValidator {
 
   isValid() {
     return validateModel(this.data, militaryForeign, {
-      requireForeignMilitaryMaintainsContact: requireForeignMilitaryMaintainsContact(this.formType)
+      requireForeignMilitaryMaintainsContact: requireForeignMilitaryMaintainsContact(this.formType),
     }) === true
   }
 }
@@ -41,7 +41,7 @@ const militaryForeignModel = {
   },
 }
 
-const validateMilitaryForeign = (data, formType = formTypes.SF86) => (
+export const validateMilitaryForeign = (data, formType = formTypes.SF86) => (
   validateModel(data, militaryForeignModel, {
     requireForeignMilitaryMaintainsContact: requireForeignMilitaryMaintainsContact(formType),
   }) === true

@@ -19,6 +19,7 @@ import { extractDate } from '../../History/dateranges'
 
 
 const sectionConfig = {
+  key: CITIZENSHIP_US_PASSPORT.key,
   section: CITIZENSHIP.name,
   store: FOREIGN.store,
   subsection: CITIZENSHIP_US_PASSPORT.name,
@@ -38,6 +39,8 @@ export class UsPassport extends Subsection {
     // TODO: Temporary solution to limit risk of changing Redux, backend, and XML changes
     this.store = store
     this.storeKey = storeKey
+
+    this.number = null
   }
 
   update = (queue, fn) => {
@@ -69,8 +72,8 @@ export class UsPassport extends Subsection {
       () => {
         // This allows us to force a blur/validation using
         // the new regular expression
-        this.refs.number.refs.text.refs.input.focus()
-        this.refs.number.refs.text.refs.input.blur()
+        this.number.refs.text.refs.input.focus()
+        this.number.refs.text.refs.input.blur()
       },
     )
   }
@@ -172,7 +175,7 @@ export class UsPassport extends Subsection {
           label={i18n.t('citizenship.usPassport.question.title')}
           labelSize="h4"
           {...this.props.HasPassports}
-          warning
+          warning={true}
           onUpdate={this.updateBranch}
           onError={this.handleError}
           required={this.props.required}
@@ -183,14 +186,14 @@ export class UsPassport extends Subsection {
             <Field
               title={i18n.t('citizenship.usPassport.name')}
               titleSize="h4"
-              optional
+              optional={true}
               className="no-margin-bottom"
             />
             <Suggestions
               show={this.showSuggestions()}
               suggestions={this.props.suggestedNames}
               renderSuggestion={this.renderSuggestion}
-              withSuggestions
+              withSuggestions={true}
               suggestionTitle={i18n.t('suggestions.name.title')}
               suggestionParagraph={i18n.m('suggestions.name.para')}
               suggestionLabel={i18n.t('suggestions.name.label')}
@@ -200,7 +203,7 @@ export class UsPassport extends Subsection {
               onDismiss={this.onDismiss}
             />
             <Field
-              optional
+              optional={true}
               filterErrors={Name.requiredErrorsOnly}
               scrollIntoView={this.props.scrollIntoView}
             >
@@ -218,14 +221,14 @@ export class UsPassport extends Subsection {
               title={i18n.t('citizenship.usPassport.issued')}
               help={i18n.t('citizenship.usPassport.help.issued.message')}
               adjustFor="labels"
-              shrink
+              shrink={true}
               scrollIntoView={this.props.scrollIntoView}
             >
               <DateControl
                 name="issued"
                 className="passport-issued"
                 {...this.props.Issued}
-                minDateEqualTo
+                minDateEqualTo={true}
                 onUpdate={this.updateIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -236,7 +239,7 @@ export class UsPassport extends Subsection {
               title={i18n.t('citizenship.usPassport.expiration')}
               help={i18n.t('citizenship.usPassport.help.expiration.message')}
               adjustFor="labels"
-              shrink
+              shrink={true}
               scrollIntoView={this.props.scrollIntoView}
             >
               <DateControl
@@ -244,8 +247,8 @@ export class UsPassport extends Subsection {
                 className="passport-expiration"
                 {...this.props.Expiration}
                 minDate={this.props.Issued}
-                minDateEqualTo
-                noMaxDate
+                minDateEqualTo={true}
+                noMaxDate={true}
                 prefix="passportInformation"
                 onUpdate={this.updateExpiration}
                 onError={this.handleError}
@@ -258,7 +261,7 @@ export class UsPassport extends Subsection {
               help={i18n.t('citizenship.usPassport.help.number.message')}
               errorPrefix="passport"
               adjustFor="buttons"
-              shrink
+              shrink={true}
               scrollIntoView={this.props.scrollIntoView}
             >
               <div>
@@ -268,7 +271,7 @@ export class UsPassport extends Subsection {
                   pattern={numberRegEx}
                   maxlength={numberLength}
                   className="number passport-number"
-                  ref="number"
+                  ref={(el) => { this.number = el }}
                   prefix="passport"
                   onUpdate={this.updateNumber}
                   onError={this.handleError}

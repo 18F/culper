@@ -14,6 +14,7 @@ import connectFinancialSection from '../FinancialConnector'
 import CardItem from './CardItem'
 
 const sectionConfig = {
+  key: FINANCIAL_CARD.key,
   section: FINANCIAL.name,
   store: FINANCIAL.store,
   subsection: FINANCIAL_CARD.name,
@@ -81,6 +82,7 @@ export class Card extends Subsection {
   }
 
   render() {
+    const { requireFinancialCardDisciplinaryDate } = this.props
     return (
       <div
         className="section-content card-abuse"
@@ -94,7 +96,7 @@ export class Card extends Subsection {
           labelSize="h4"
           className="card-branch"
           {...this.props.HasCardAbuse}
-          warning
+          warning={true}
           onUpdate={this.updateBranch}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -117,11 +119,12 @@ export class Card extends Subsection {
           >
             <CardItem
               name="Item"
-              bind
+              bind={true}
               dispatch={this.props.dispatch}
               addressBooks={this.props.addressBooks}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
+              requireFinancialCardDisciplinaryDate={requireFinancialCardDisciplinaryDate}
             />
           </Accordion>
         </Show>
@@ -139,6 +142,7 @@ Card.defaultProps = {
   validator: data => validate(schema('financial.card', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
+  requireFinancialCardDisciplinaryDate: true,
 }
 
 export default connectFinancialSection(Card, sectionConfig)

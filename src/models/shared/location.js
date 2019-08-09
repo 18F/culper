@@ -61,7 +61,23 @@ const location = {
 
     return { requireEmpty: true }
   },
-  country: { presence: true },
+  country: (value, attributes, attributeName, options) => {
+    if (options.militaryAddress === true) {
+      return {
+        presence: true,
+        inclusion: ['POSTOFFICE'],
+      }
+    }
+
+    if (options.militaryAddress === false) {
+      return {
+        presence: true,
+        exclusion: ['POSTOFFICE'],
+      }
+    }
+
+    return { presence: true }
+  },
   county: (value, attributes = {}) => {
     if (!isInternational(attributes)) {
       return { presence: true }

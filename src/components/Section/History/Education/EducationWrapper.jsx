@@ -85,7 +85,11 @@ class EducationWrapper extends React.Component {
     }
 
     return (
-      <div>
+      <div
+        className="section-content education"
+        data-section={HISTORY.key}
+        data-subsection={HISTORY_EDUCATION.key}
+      >
         {!inReview && (
           <h1 className="section-header">
             {i18n.t('history.education.summary.title')}
@@ -95,7 +99,7 @@ class EducationWrapper extends React.Component {
         <Field
           title={i18n.t('history.education.title')}
           titleSize={inReview ? 'h4' : 'h3'}
-          optional
+          optional={true}
           className="no-margin-bottom"
         >
           {i18n.m('history.education.info')}
@@ -108,8 +112,9 @@ class EducationWrapper extends React.Component {
           helpMessage={i18n.m('history.education.help.attendance.message', { years })}
           label={i18n.t('history.education.label.attendance', { years })}
           labelSize={inReview ? 'h3' : 'h4'}
-          warning
+          warning={true}
           onUpdate={this.updateBranchAttendance}
+          required={inReview}
         />
 
         <Show when={Education.HasAttended.value === 'No'}>
@@ -119,8 +124,9 @@ class EducationWrapper extends React.Component {
             help="history.education.help.degree10"
             label={i18n.t('history.education.label.degree10', { years })}
             labelSize={inReview ? 'h3' : 'h4'}
-            warning
+            warning={true}
             onUpdate={this.updateBranchDegree10}
+            required={inReview}
           />
         </Show>
 
@@ -154,6 +160,8 @@ EducationWrapper.propTypes = {
   Birthdate: PropTypes.any,
   formType: PropTypes.string.isRequired,
   inReview: PropTypes.bool,
+  onUpdate: PropTypes.func,
+  dispatch: PropTypes.func,
 }
 
 EducationWrapper.defaultProps = {
@@ -164,6 +172,8 @@ EducationWrapper.defaultProps = {
   },
   Birthdate: {},
   inReview: false,
+  onUpdate: () => {},
+  dispatch: () => {},
 }
 
 export default connectHistorySection(EducationWrapper, sectionConfig)

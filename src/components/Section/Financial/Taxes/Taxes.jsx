@@ -18,6 +18,7 @@ import connectFinancialSection from '../FinancialConnector'
 import TaxesItem from './TaxesItem'
 
 const sectionConfig = {
+  key: FINANCIAL_TAXES.key,
   section: FINANCIAL.name,
   store: FINANCIAL.store,
   subsection: FINANCIAL_TAXES.name,
@@ -104,7 +105,7 @@ export class Taxes extends Subsection {
           labelSize="h4"
           className="taxes-branch"
           {...this.props.HasTaxes}
-          warning
+          warning={true}
           onUpdate={this.updateBranch}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -127,7 +128,7 @@ export class Taxes extends Subsection {
           >
             <TaxesItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

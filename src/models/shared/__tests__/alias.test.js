@@ -4,7 +4,7 @@ import alias from '../alias'
 describe('The alias model', () => {
   it('name is required', () => {
     const testData = {}
-    const expectedErrors = ['Name.required']
+    const expectedErrors = ['Name.presence.REQUIRED']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -14,7 +14,11 @@ describe('The alias model', () => {
     const testData = {
       Name: 'My Name',
     }
-    const expectedErrors = ['Name.model']
+    const expectedErrors = [
+      'Name.model.first.presence.REQUIRED',
+      'Name.model.last.presence.REQUIRED',
+      'Name.model.middle.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -22,7 +26,7 @@ describe('The alias model', () => {
 
   it('maiden name is required', () => {
     const testData = {}
-    const expectedErrors = ['MaidenName.required']
+    const expectedErrors = ['MaidenName.presence.REQUIRED']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -32,7 +36,7 @@ describe('The alias model', () => {
     const testData = {
       MaidenName: { value: 'something' },
     }
-    const expectedErrors = ['MaidenName.hasValue']
+    const expectedErrors = ['MaidenName.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -40,7 +44,7 @@ describe('The alias model', () => {
 
   it('dates is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -49,19 +53,51 @@ describe('The alias model', () => {
   it('dates must be a valid date range', () => {
     const testData = {
       Dates: {
-        from: { year: 2030, month: 5, day: 1 },
-        present: true,
+        from: { year: 2010, month: 5, day: 1 },
+        to: { year: 2001, month: 5, day: 1 },
       },
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('dates must not be in the future', () => {
+    const testData = {
+      Dates: {
+        from: { year: 2030, month: 5, day: 1 },
+        to: { year: 2050, month: 2, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Dates.daterange.from.date.date.datetime.DATE_TOO_LATE',
+      'Dates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, alias))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('dates must be after the "earliest" option', () => {
+    const testData = {
+      Dates: {
+        from: { year: 1990, month: 5, day: 1 },
+        present: true,
+      },
+    }
+    const expectedErrors = ['Dates.daterange.from.date.date.datetime.DATE_TOO_EARLY']
+    const options = {
+      earliest: { year: 2010, month: 2, day: 3 },
+    }
+
+    expect(validateModel(testData, alias, options))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('reason is required', () => {
     const testData = {}
-    const expectedErrors = ['Reason.required']
+    const expectedErrors = ['Reason.presence.REQUIRED']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -71,7 +107,7 @@ describe('The alias model', () => {
     const testData = {
       Reason: true,
     }
-    const expectedErrors = ['Reason.hasValue']
+    const expectedErrors = ['Reason.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, alias))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -94,7 +130,7 @@ describe('The alias model', () => {
   describe('if maiden name is hidden', () => {
     it('maiden name is not required', () => {
       const testData = {}
-      const expectedErrors = ['MaidenName.required']
+      const expectedErrors = ['MaidenName.presence.REQUIRED']
 
       expect(validateModel(testData, alias, { hideMaiden: true }))
         .not.toEqual(expect.arrayContaining(expectedErrors))

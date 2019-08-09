@@ -4,6 +4,7 @@ import {
 
 import * as actionTypes from 'constants/actionTypes'
 import { nestedFormSectionsSelector } from 'selectors/navigation'
+import { formTypeSelector } from 'selectors/formType'
 import { validateSection } from 'helpers/validation'
 import { reportCompletion } from 'actions/ApplicationActions'
 
@@ -120,12 +121,17 @@ describe('updateSectionStatus saga', () => {
       testState
     )
 
-    it('calls validateSection with the section data', () => {
+    it('selects the formType for validation', () => {
       expect(generator.next().value)
+        .toEqual(select(formTypeSelector))
+    })
+
+    it('calls validateSection with the section data', () => {
+      expect(generator.next('SF86').value)
         .toEqual(call(validateSection, {
           ...testSection.subsections[0],
           data: { data: 'my data' },
-        }))
+        }, 'SF86'))
     })
 
     it('dispatches reportCompletion for the subsection', () => {

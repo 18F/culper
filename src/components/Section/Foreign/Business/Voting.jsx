@@ -10,6 +10,7 @@ import connectForeignSection from '../ForeignConnector'
 import VotingItem from './VotingItem'
 
 const sectionConfig = {
+  key: FOREIGN_BUSINESS_VOTING.key,
   section: FOREIGN.name,
   store: FOREIGN.store,
   subsection: FOREIGN_BUSINESS_VOTING.name,
@@ -80,7 +81,7 @@ export class Voting extends Subsection {
           label={i18n.t('foreign.business.voting.heading.title')}
           labelSize="h4"
           {...this.props.HasForeignVoting}
-          warning
+          warning={true}
           onUpdate={this.updateHasForeignVoting}
           required={this.props.required}
           onError={this.handleError}
@@ -104,7 +105,7 @@ export class Voting extends Subsection {
           >
             <VotingItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

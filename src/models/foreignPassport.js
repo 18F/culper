@@ -4,7 +4,7 @@ import name from 'models/shared/name'
 import foreignPassportTravel from 'models/foreignPassportTravel'
 
 const foreignPassport = {
-  Country: { presence: true, hasValue: true },
+  Country: { presence: true, country: true },
   Issued: { presence: true, date: true },
   Location: {
     presence: true,
@@ -15,7 +15,11 @@ const foreignPassport = {
     model: { validator: name },
   },
   Number: { presence: true, hasValue: true },
-  Expiration: { presence: true, date: true },
+  Expiration: (value, attributes) => {
+    const dateLimits = {}
+    if (attributes.Issued) dateLimits.earliest = attributes.Issued
+    return { presence: true, date: dateLimits }
+  },
   Used: { presence: true, hasValue: { validator: hasYesOrNo } },
   Countries: (value, attributes) => (
     checkValue(attributes.Used, 'Yes')

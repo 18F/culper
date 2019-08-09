@@ -4,7 +4,7 @@ import residence from 'models/residence'
 describe('The residence model', () => {
   it('the Dates field is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -19,7 +19,7 @@ describe('The residence model', () => {
       },
     }
 
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = ['Dates.daterange.INVALID_DATE_RANGE']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -27,7 +27,7 @@ describe('The residence model', () => {
 
   it('the Address field is required', () => {
     const testData = {}
-    const expectedErrors = ['Address.required']
+    const expectedErrors = ['Address.presence.REQUIRED']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -38,15 +38,270 @@ describe('The residence model', () => {
       Address: 'Not a valid address',
     }
 
-    const expectedErrors = ['Address.location']
+    const expectedErrors = [
+      'Address.location.street.presence.REQUIRED',
+      'Address.location.city.presence.REQUIRED',
+      'Address.location.country.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('the Address field cannot be a PO box', () => {
+    const testData = {
+      Address: {
+        street: 'PO Box 123',
+        city: 'New York',
+        state: 'NY',
+        zipcode: '10002',
+        country: 'United States',
+      },
+    }
+
+    const expectedErrors = ['Address.location.street.format.INVALID_FORMAT']
+
+    expect(validateModel(testData, residence))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  describe('if the Address field is international', () => {
+    it('AlternateAddress is required', () => {
+      const testData = {
+        Address: {
+          street: '123 Test St',
+          city: 'London',
+          country: { value: 'United Kingdom' },
+        },
+      }
+
+      const expectedErrors = ['AlternateAddress.presence.REQUIRED']
+
+      expect(validateModel(testData, residence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('if HasDifferentAddress is "Yes"', () => {
+      it('AlternateAddress must be a PO address', () => {
+        const testData = {
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10002',
+              country: 'United States',
+            },
+          },
+        }
+
+        const expectedErrors = [
+          'AlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+        ]
+
+        expect(validateModel(testData, residence))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('AlternateAddress may not be a PO box', () => {
+        const testData = {
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: 'P.O. Box 234',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+          Dates: {
+            from: { year: 2000, month: 1, day: 1 },
+            to: { year: 2001, month: 1, day: 1 },
+          },
+          Role: { value: 'Own' },
+        }
+
+        const expectedErrors = ['AlternateAddress.model.Address.location.street.format.INVALID_FORMAT']
+
+        expect(validateModel(testData, residence))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid residence with an alternate address', () => {
+        const testData = {
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+          Dates: {
+            from: { year: 2000, month: 1, day: 1 },
+            to: { year: 2001, month: 1, day: 1 },
+          },
+          Role: { value: 'Own' },
+        }
+
+        expect(validateModel(testData, residence)).toEqual(true)
+      })
+    })
+
+    describe('if HasDifferentAddress is "No"', () => {
+      it('passes a valid residence with an alternate address', () => {
+        const testData = {
+          Address: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+          AlternateAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Dates: {
+            from: { year: 2000, month: 1, day: 1 },
+            to: { year: 2001, month: 1, day: 1 },
+          },
+          Role: { value: 'Own' },
+        }
+
+        expect(validateModel(testData, residence)).toEqual(true)
+      })
+    })
+  })
+
+  describe('if the Address field is a military address', () => {
+    it('AlternateAddress is required', () => {
+      const testData = {
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+      }
+
+      const expectedErrors = ['AlternateAddress.presence.REQUIRED']
+
+      expect(validateModel(testData, residence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('AlternateAddress must not be a PO address', () => {
+      const testData = {
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+        AlternateAddress: {
+          HasDifferentAddress: { value: 'Yes' },
+          Address: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+        },
+      }
+
+      const expectedErrors = [
+        'AlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+      ]
+
+      expect(validateModel(testData, residence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('AlternateAddress may not be a PO box', () => {
+      const testData = {
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+        AlternateAddress: {
+          Address: {
+            street: 'PO Box 123',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10003',
+            country: 'United States',
+          },
+        },
+        Dates: {
+          from: { year: 2000, month: 1, day: 1 },
+          to: { year: 2001, month: 1, day: 1 },
+        },
+        Role: { value: 'Own' },
+      }
+
+      const expectedErrors = [
+        'AlternateAddress.model.Address.location.street.format.INVALID_FORMAT',
+      ]
+
+      expect(validateModel(testData, residence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('passes a valid residence with an alternate address', () => {
+      const testData = {
+        Address: {
+          street: '123 Main ST',
+          city: 'FPO',
+          state: 'AA',
+          zipcode: '34035',
+          country: 'POSTOFFICE',
+        },
+        AlternateAddress: {
+          Address: {
+            street: '123 Main ST',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10003',
+            country: 'United States',
+          },
+        },
+        Dates: {
+          from: { year: 2000, month: 1, day: 1 },
+          to: { year: 2001, month: 1, day: 1 },
+        },
+        Role: { value: 'Own' },
+      }
+
+      expect(validateModel(testData, residence)).toEqual(true)
+    })
+  })
+
   it('the Role field is required', () => {
     const testData = { Role: '' }
-    const expectedErrors = ['Role.required']
+    const expectedErrors = ['Role.presence.REQUIRED']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -57,7 +312,7 @@ describe('The residence model', () => {
       Role: { value: 'Blah' },
     }
 
-    const expectedErrors = ['Role.hasValue']
+    const expectedErrors = ['Role.hasValue.value.inclusion.INCLUSION']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -69,7 +324,7 @@ describe('The residence model', () => {
       RoleOther: undefined,
     }
 
-    const expectedErrors = ['RoleOther.required']
+    const expectedErrors = ['RoleOther.presence.REQUIRED']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -81,7 +336,7 @@ describe('The residence model', () => {
       RoleOther: { value: null },
     }
 
-    const expectedErrors = ['RoleOther.hasValue']
+    const expectedErrors = ['RoleOther.hasValue.MISSING_VALUE']
 
     expect(validateModel(testData, residence))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -96,7 +351,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferenceName.required']
+      const expectedErrors = ['ReferenceName.presence.REQUIRED']
 
       expect(validateModel(testData, residence))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -140,14 +395,14 @@ describe('The residence model', () => {
       }
 
       const expectedErrors = [
-        'ReferenceName.required',
-        'ReferenceLastContact.required',
-        'ReferencePhoneEvening.required',
-        'ReferencePhoneDay.required',
-        'ReferencePhoneMobile.required',
-        'ReferenceRelationship.required',
-        'ReferenceEmail.required',
-        'ReferenceAddress.required',
+        'ReferenceName.presence.REQUIRED',
+        'ReferenceLastContact.presence.REQUIRED',
+        'ReferencePhoneEvening.presence.REQUIRED',
+        'ReferencePhoneDay.presence.REQUIRED',
+        'ReferencePhoneMobile.presence.REQUIRED',
+        'ReferenceRelationship.presence.REQUIRED',
+        'ReferenceEmail.presence.REQUIRED',
+        'ReferenceAddress.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, residence))
@@ -165,7 +420,10 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferenceName.model']
+      const expectedErrors = [
+        'ReferenceName.model.first.presence.REQUIRED',
+        'ReferenceName.model.middle.presence.REQUIRED',
+      ]
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -179,7 +437,11 @@ describe('The residence model', () => {
         ReferenceLastContact: ['not', 'a', 'date'],
       }
 
-      const expectedErrors = ['ReferenceLastContact.date']
+      const expectedErrors = [
+        'ReferenceLastContact.date.day.presence.REQUIRED',
+        'ReferenceLastContact.date.month.presence.REQUIRED',
+        'ReferenceLastContact.date.year.presence.REQUIRED',
+      ]
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -195,7 +457,9 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneEvening.model']
+      const expectedErrors = [
+        'ReferencePhoneEvening.model.timeOfDay.presence.REQUIRED',
+      ]
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -211,7 +475,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneDay.model']
+      const expectedErrors = ['ReferencePhoneDay.model.timeOfDay.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -227,7 +491,7 @@ describe('The residence model', () => {
         },
       }
 
-      const expectedErrors = ['ReferencePhoneMobile.model']
+      const expectedErrors = ['ReferencePhoneMobile.model.timeOfDay.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -241,7 +505,7 @@ describe('The residence model', () => {
         ReferenceRelationship: { values: [] },
       }
 
-      const expectedErrors = ['ReferenceRelationship.array']
+      const expectedErrors = ['ReferenceRelationship.array.array.length.LENGTH_TOO_SHORT']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -255,7 +519,11 @@ describe('The residence model', () => {
         ReferenceRelationship: { values: ['blah', 'test', 'x'] },
       }
 
-      const expectedErrors = ['ReferenceRelationship.array']
+      const expectedErrors = [
+        'ReferenceRelationship.array.0.value.inclusion.INCLUSION',
+        'ReferenceRelationship.array.1.value.inclusion.INCLUSION',
+        'ReferenceRelationship.array.2.value.inclusion.INCLUSION',
+      ]
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -269,7 +537,7 @@ describe('The residence model', () => {
         ReferenceRelationship: { values: ['Neighbor', 'Friend'] },
       }
 
-      const expectedErrors = ['ReferenceRelationshipOther.required']
+      const expectedErrors = ['ReferenceRelationshipOther.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .not.toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -283,7 +551,7 @@ describe('The residence model', () => {
         ReferenceRelationship: { values: ['Neighbor', 'Other'] },
       }
 
-      const expectedErrors = ['ReferenceRelationshipOther.required']
+      const expectedErrors = ['ReferenceRelationshipOther.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -298,7 +566,7 @@ describe('The residence model', () => {
         ReferenceRelationshipOther: { value: '' },
       }
 
-      const expectedErrors = ['ReferenceRelationshipOther.hasValue']
+      const expectedErrors = ['ReferenceRelationshipOther.hasValue.MISSING_VALUE']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -312,7 +580,7 @@ describe('The residence model', () => {
         ReferenceEmail: 'notanemail',
       }
 
-      const expectedErrors = ['ReferenceEmail.model']
+      const expectedErrors = ['ReferenceEmail.model.value.presence.REQUIRED']
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -327,7 +595,7 @@ describe('The residence model', () => {
           ReferenceEmailNotApplicable: { applicable: true },
         }
 
-        const expectedErrors = ['ReferenceEmail.required']
+        const expectedErrors = ['ReferenceEmail.presence.REQUIRED']
         expect(validateModel(testData, residence))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
@@ -343,7 +611,7 @@ describe('The residence model', () => {
           ReferenceEmailNotApplicable: { applicable: false },
         }
 
-        const expectedErrors = ['ReferenceEmail.required']
+        const expectedErrors = ['ReferenceEmail.presence.REQUIRED']
         expect(validateModel(testData, residence))
           .not.toEqual(expect.arrayContaining(expectedErrors))
       })
@@ -358,7 +626,11 @@ describe('The residence model', () => {
         ReferenceAddress: 'Not a valid address',
       }
 
-      const expectedErrors = ['ReferenceAddress.location']
+      const expectedErrors = [
+        'ReferenceAddress.location.street.presence.REQUIRED',
+        'ReferenceAddress.location.city.presence.REQUIRED',
+        'ReferenceAddress.location.country.presence.REQUIRED',
+      ]
 
       expect(validateModel(testData, residence))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -399,6 +671,238 @@ describe('The residence model', () => {
       }
 
       expect(validateModel(testData, residence)).toEqual(true)
+    })
+
+    describe('if the ReferenceAddress field is international', () => {
+      it('ReferenceAlternateAddress is required', () => {
+        const testData = {
+          ReferenceAddress: {
+            street: '123 Test St',
+            city: 'London',
+            country: { value: 'United Kingdom' },
+          },
+        }
+
+        const expectedErrors = ['ReferenceAlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, residence))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      describe('if HasDifferentAddress is "Yes"', () => {
+        it('ReferenceAlternateAddress must be a PO address', () => {
+          const testData = {
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main St',
+                city: 'New York',
+                state: 'NY',
+                zipcode: '10002',
+                country: 'United States',
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'ReferenceAlternateAddress.model.Address.location.country.inclusion.INCLUSION',
+          ]
+
+          expect(validateModel(testData, residence))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('passes a valid residence with an alternate address', () => {
+          const testData = {
+            Dates: {
+              from: { year: 2015, month: 1, day: 1 },
+              present: true,
+            },
+            Address: {
+              street: '123 Main St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10002',
+              country: 'United States',
+            },
+            Role: { value: 'Own' },
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferenceLastContact: { year: '2019', month: '01', day: '01' },
+            ReferencePhoneEvening: { number: '1234567890', type: 'Domestic', timeOfDay: 'NA' },
+            ReferencePhoneDay: { noNumber: true },
+            ReferencePhoneMobile: { number: '1234567890', type: 'Domestic', timeOfDay: 'NA' },
+            ReferenceRelationship: { values: ['Friend', 'Neighbor'] },
+            ReferenceEmail: { value: 'myfriend@gmail.com' },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'Yes' },
+              Address: {
+                street: '123 Main ST',
+                city: 'FPO',
+                state: 'AA',
+                zipcode: '34035',
+                country: 'POSTOFFICE',
+              },
+            },
+          }
+
+          expect(validateModel(testData, residence)).toEqual(true)
+        })
+      })
+
+      describe('if HasDifferentAddress is "No"', () => {
+        it('passes a valid residence with an alternate address', () => {
+          const testData = {
+            Dates: {
+              from: { year: 2015, month: 1, day: 1 },
+              present: true,
+            },
+            Address: {
+              street: '123 Main St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10002',
+              country: 'United States',
+            },
+            Role: { value: 'Own' },
+            ReferenceName: {
+              first: 'Person',
+              noMiddleName: true,
+              last: 'Name',
+            },
+            ReferenceLastContact: { year: '2019', month: '01', day: '01' },
+            ReferencePhoneEvening: { number: '1234567890', type: 'Domestic', timeOfDay: 'NA' },
+            ReferencePhoneDay: { noNumber: true },
+            ReferencePhoneMobile: { number: '1234567890', type: 'Domestic', timeOfDay: 'NA' },
+            ReferenceRelationship: { values: ['Friend', 'Neighbor'] },
+            ReferenceEmail: { value: 'myfriend@gmail.com' },
+            ReferenceAddress: {
+              street: '123 Test St',
+              city: 'London',
+              country: { value: 'United Kingdom' },
+            },
+            ReferenceAlternateAddress: {
+              HasDifferentAddress: { value: 'No' },
+              Address: {
+                street: '123 Main ST',
+                city: 'FPO',
+                state: 'AA',
+                zipcode: '34035',
+                country: 'POSTOFFICE',
+              },
+            },
+          }
+
+          expect(validateModel(testData, residence)).toEqual(true)
+        })
+      })
+    })
+
+    describe('if the ReferenceAddress field is a military address', () => {
+      it('ReferenceAlternateAddress is required', () => {
+        const testData = {
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+        }
+
+        const expectedErrors = ['ReferenceAlternateAddress.presence.REQUIRED']
+
+        expect(validateModel(testData, residence))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('ReferenceAlternateAddress must not be a PO address', () => {
+        const testData = {
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          ReferenceAlternateAddress: {
+            HasDifferentAddress: { value: 'Yes' },
+            Address: {
+              street: '123 Main ST',
+              city: 'FPO',
+              state: 'AA',
+              zipcode: '34035',
+              country: 'POSTOFFICE',
+            },
+          },
+        }
+
+        const expectedErrors = [
+          'ReferenceAlternateAddress.model.Address.location.country.exclusion.EXCLUSION',
+        ]
+
+        expect(validateModel(testData, residence))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid residence with an alternate address', () => {
+        const testData = {
+          Dates: {
+            from: { year: 2015, month: 1, day: 1 },
+            present: true,
+          },
+          Address: {
+            street: '123 Main St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10002',
+            country: 'United States',
+          },
+          Role: { value: 'Own' },
+          ReferenceName: {
+            first: 'Person',
+            noMiddleName: true,
+            last: 'Name',
+          },
+          ReferenceLastContact: { year: '2019', month: '01', day: '01' },
+          ReferencePhoneEvening: { number: '1234567890', type: 'Domestic', timeOfDay: 'NA' },
+          ReferencePhoneDay: { noNumber: true },
+          ReferencePhoneMobile: { number: '1234567890', type: 'Domestic', timeOfDay: 'NA' },
+          ReferenceRelationship: { values: ['Friend', 'Neighbor'] },
+          ReferenceEmail: { value: 'myfriend@gmail.com' },
+          ReferenceAddress: {
+            street: '123 Main ST',
+            city: 'FPO',
+            state: 'AA',
+            zipcode: '34035',
+            country: 'POSTOFFICE',
+          },
+          ReferenceAlternateAddress: {
+            Address: {
+              street: '123 Main ST',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10003',
+              country: 'United States',
+            },
+          },
+        }
+
+        expect(validateModel(testData, residence)).toEqual(true)
+      })
     })
   })
 })

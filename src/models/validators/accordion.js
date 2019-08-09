@@ -1,34 +1,53 @@
 import { validate } from 'validate.js'
 import { validateModel } from 'models/validate'
+import {
+  MISSING_ITEMS, INVALID_BRANCH, INVALID_VALIDATOR, INVALID_ITEM,
+} from 'constants/errors'
+import { NO } from 'constants/values'
 
-const accordionValidator = (value, options = {}) => {
+/**
+ * Accordion:
+ * {
+ *  items: [
+ *  {
+ *    Item: {},
+ *   }
+ * ],
+ *  branch: { value: 'No' },
+ * }
+*/
+
+const accordionValidator = (value, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
 
   const { validator, length, ignoreBranch } = options
-  if (!validator) return 'Invalid validator'
+  if (!validator) return INVALID_VALIDATOR
 
   const { items, branch } = value
   // Validate branch
-  if (!ignoreBranch && (!branch || !branch.value || branch.value !== 'No')) {
-    return 'Invalid branch'
+  if (!ignoreBranch && (!branch || !branch.value || branch.value !== NO)) {
+    return INVALID_BRANCH
   }
 
-  if (!items || (items && items.length < 1)) return 'No items'
+  if (!items || (items && items.length < 1)) return MISSING_ITEMS
 
   // Validate item length
   if (length) {
-    const lengthErrors = validateModel({ items }, { items: { length } })
+    const lengthErrors = validateModel({ items }, { items: { length } }, { ...globalOptions })
     if (lengthErrors !== true) return lengthErrors
   }
 
-  let itemErrors
+  let itemsErrors = []
   for (let i = 0; i < items.length; i += 1) {
-    const { Item } = items[i]
-    if (!Item) return 'No item'
+    const { Item, uuid } = items[i]
+    const itemId = uuid || i
+    if (!Item) return INVALID_ITEM
 
-    itemErrors = validateModel(Item, validator, options)
-    if (itemErrors !== true) return itemErrors
+    const itemErrors = validateModel(Item, validator, { ...globalOptions, ...options })
+    if (itemErrors !== true) itemsErrors = itemsErrors.concat(itemErrors.map(e => `${itemId}.${e}`))
   }
+
+  if (itemsErrors.length) return itemsErrors
 
   return null
 }

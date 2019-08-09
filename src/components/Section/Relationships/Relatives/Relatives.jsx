@@ -17,6 +17,7 @@ import connectRelationshipsSection from '../RelationshipsConnector'
 import Relative from './Relative'
 
 const sectionConfig = {
+  key: RELATIONSHIPS_RELATIVES.key,
   section: RELATIONSHIPS.name,
   store: RELATIONSHIPS.store,
   subsection: RELATIONSHIPS_RELATIVES.name,
@@ -75,6 +76,10 @@ export class Relatives extends Subsection {
   validRelations = () => new RelativesValidator(this.props).validMinimumRelations()
 
   render() {
+    const {
+      requireRelationshipRelativesUSResidenceDoc,
+      requireRelationshipRelativesForeignGovtAffExplanation,
+    } = this.props
     return (
       <div
         className="section-content relatives"
@@ -86,7 +91,7 @@ export class Relatives extends Subsection {
         <Field
           title={i18n.t('relationships.relatives.heading.title')}
           titleSize="h3"
-          optional
+          optional={true}
           className="no-margin-bottom"
         >
           {i18n.m('relationships.relatives.para.opportunity')}
@@ -128,9 +133,11 @@ export class Relatives extends Subsection {
             applicantBirthdate={this.props.applicantBirthdate}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
-            bind
+            bind={true}
             scrollIntoView={this.props.scrollIntoView}
             required={this.props.required}
+            requireRelationshipRelativesForeignGovtAffExplanation={requireRelationshipRelativesForeignGovtAffExplanation}
+            requireRelationshipRelativesUSResidenceDoc={requireRelationshipRelativesUSResidenceDoc}
           />
         </Accordion>
       </div>

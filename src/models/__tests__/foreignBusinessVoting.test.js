@@ -5,10 +5,10 @@ describe('The foreignBusinessVoting model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'Date.required',
-      'Country.required',
-      'Reason.required',
-      'Eligibility.required',
+      'Date.presence.REQUIRED',
+      'Country.presence.REQUIRED',
+      'Reason.presence.REQUIRED',
+      'Eligibility.presence.REQUIRED',
     ]
     expect(validateModel(testData, foreignBusinessVoting))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -18,16 +18,20 @@ describe('The foreignBusinessVoting model', () => {
     const testData = {
       Date: 'invalid date',
     }
-    const expectedErrors = ['Date.date']
+    const expectedErrors = [
+      'Date.date.day.presence.REQUIRED',
+      'Date.date.month.presence.REQUIRED',
+      'Date.date.year.presence.REQUIRED',
+    ]
     expect(validateModel(testData, foreignBusinessVoting))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Country must have a value', () => {
+  it('Country must have a valid value', () => {
     const testData = {
       Country: { values: 'test' },
     }
-    const expectedErrors = ['Country.hasValue']
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
     expect(validateModel(testData, foreignBusinessVoting))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -36,7 +40,7 @@ describe('The foreignBusinessVoting model', () => {
     const testData = {
       Reason: { values: 'test' },
     }
-    const expectedErrors = ['Reason.hasValue']
+    const expectedErrors = ['Reason.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVoting))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -45,7 +49,7 @@ describe('The foreignBusinessVoting model', () => {
     const testData = {
       Eligibility: { values: 'test' },
     }
-    const expectedErrors = ['Eligibility.hasValue']
+    const expectedErrors = ['Eligibility.hasValue.MISSING_VALUE']
     expect(validateModel(testData, foreignBusinessVoting))
       .toEqual(expect.arrayContaining(expectedErrors))
   })

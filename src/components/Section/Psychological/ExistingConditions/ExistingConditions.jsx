@@ -25,6 +25,7 @@ import connectPsychologicalSection from '../PsychologicalConnector'
 import Diagnosis from '../Diagnoses/Diagnosis'
 
 const sectionConfig = {
+  key: PSYCHOLOGICAL_CONDITIONS.key,
   section: PSYCHOLOGICAL.name,
   store: PSYCHOLOGICAL.store,
   subsection: PSYCHOLOGICAL_CONDITIONS.name,
@@ -141,7 +142,7 @@ export class ExistingConditions extends Subsection {
           labelSize="h4"
           className="eapp-field-wrap hascondition"
           {...this.props.HasCondition}
-          warning
+          warning={true}
           onError={this.handleError}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
@@ -247,7 +248,7 @@ export class ExistingConditions extends Subsection {
                   prefix="existingConditions.diagnosis"
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
-                  bind
+                  bind={true}
                 />
               </Accordion>
             </Show>

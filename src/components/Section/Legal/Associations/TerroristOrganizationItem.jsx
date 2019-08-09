@@ -7,28 +7,11 @@ import {
   Location,
   Text,
   Textarea,
-  NotApplicable
+  NotApplicable,
 } from '../../../Form'
 
 export default class TerroristOrganizationItem extends ValidationElement {
-  constructor(props) {
-    super(props)
-    this.update = this.update.bind(this)
-    this.updateOrganization = this.updateOrganization.bind(this)
-    this.updateAddress = this.updateAddress.bind(this)
-    this.updateDates = this.updateDates.bind(this)
-    this.updatePositionsNotApplicable = this.updatePositionsNotApplicable.bind(
-      this
-    )
-    this.updatePositions = this.updatePositions.bind(this)
-    this.updateContributionsNotApplicable = this.updateContributionsNotApplicable.bind(
-      this
-    )
-    this.updateContributions = this.updateContributions.bind(this)
-    this.updateReasons = this.updateReasons.bind(this)
-  }
-
-  update(queue) {
+  update = (queue) => {
     this.props.onUpdate({
       Organization: this.props.Organization,
       Address: this.props.Address,
@@ -38,55 +21,57 @@ export default class TerroristOrganizationItem extends ValidationElement {
       ContributionsNotApplicable: this.props.ContributionsNotApplicable,
       Contributions: this.props.Contributions,
       Reasons: this.props.Reasons,
-      ...queue
+      ...queue,
     })
   }
 
-  updateOrganization(values) {
+  updateOrganization = (values) => {
     this.update({
-      Organization: values
+      Organization: values,
     })
   }
 
-  updateAddress(values) {
+  updateAddress = (values) => {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
-  updateDates(values) {
+  updateDates = (values) => {
     this.update({
-      Dates: values
+      Dates: values,
     })
   }
 
-  updatePositionsNotApplicable(values) {
+  updatePositionsNotApplicable = (values) => {
     this.update({
-      PositionsNotApplicable: values
+      Positions: values.applicable ? this.props.Positions : {},
+      PositionsNotApplicable: values,
     })
   }
 
-  updatePositions(values) {
+  updatePositions = (values) => {
     this.update({
-      Positions: values
+      Positions: values,
     })
   }
 
-  updateContributionsNotApplicable(values) {
+  updateContributionsNotApplicable = (values) => {
     this.update({
-      ContributionsNotApplicable: values
+      Contributions: values.applicable ? this.props.Contributions : {},
+      ContributionsNotApplicable: values,
     })
   }
 
-  updateContributions(values) {
+  updateContributions = (values) => {
     this.update({
-      Contributions: values
+      Contributions: values,
     })
   }
 
-  updateReasons(values) {
+  updateReasons = (values) => {
     this.update({
-      Reasons: values
+      Reasons: values,
     })
   }
 
@@ -96,7 +81,8 @@ export default class TerroristOrganizationItem extends ValidationElement {
         <Field
           title={i18n.t('legal.associations.terrorist.heading.organization')}
           adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Organization"
             {...this.props.Organization}
@@ -109,10 +95,11 @@ export default class TerroristOrganizationItem extends ValidationElement {
 
         <Field
           title={i18n.t('legal.associations.terrorist.heading.address')}
-          optional={true}
+          optional
           help="legal.associations.terrorist.help.address"
           adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="Address"
             {...this.props.Address}
@@ -120,7 +107,7 @@ export default class TerroristOrganizationItem extends ValidationElement {
             onError={this.props.onError}
             className="legal-associations-terrorist-address"
             layout={Location.ADDRESS}
-            geocode={true}
+            geocode
             addressBooks={this.props.addressBooks}
             addressBook="Organization"
             dispatch={this.props.dispatch}
@@ -132,13 +119,14 @@ export default class TerroristOrganizationItem extends ValidationElement {
           title={i18n.t('legal.associations.terrorist.heading.dates')}
           help="legal.associations.terrorist.help.dates"
           adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateRange
             name="Dates"
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}
-            minDateEqualTo={true}
+            minDateEqualTo
             className="legal-associations-terrorist-dates"
             required={this.props.required}
           />
@@ -147,7 +135,8 @@ export default class TerroristOrganizationItem extends ValidationElement {
         <Field
           title={i18n.t('legal.associations.terrorist.heading.positions')}
           adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="PositionsNotApplicable"
             {...this.props.PositionsNotApplicable}
@@ -156,7 +145,8 @@ export default class TerroristOrganizationItem extends ValidationElement {
             onError={this.props.onError}
             or={i18n.m('legal.associations.terrorist.para.or')}
             label={i18n.t('legal.associations.terrorist.label.noposition')}
-            required={this.props.required}>
+            required={this.props.required}
+          >
             <Text
               name="Positions"
               {...this.props.Positions}
@@ -171,7 +161,8 @@ export default class TerroristOrganizationItem extends ValidationElement {
         <Field
           title={i18n.t('legal.associations.terrorist.heading.contributions')}
           adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <NotApplicable
             name="ContributionsNotApplicable"
             {...this.props.ContributionsNotApplicable}
@@ -180,7 +171,8 @@ export default class TerroristOrganizationItem extends ValidationElement {
             onError={this.props.onError}
             or={i18n.m('legal.associations.terrorist.para.or')}
             label={i18n.t('legal.associations.terrorist.label.nocontribs')}
-            required={this.props.required}>
+            required={this.props.required}
+          >
             <Text
               name="Contributions"
               {...this.props.Contributions}
@@ -195,7 +187,8 @@ export default class TerroristOrganizationItem extends ValidationElement {
         <Field
           title={i18n.t('legal.associations.terrorist.heading.reasons')}
           adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="Reasons"
             {...this.props.Reasons}
@@ -213,8 +206,6 @@ export default class TerroristOrganizationItem extends ValidationElement {
 TerroristOrganizationItem.defaultProps = {
   PositionsNotApplicable: { applicable: true },
   ContributionsNotApplicable: { applicable: true },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

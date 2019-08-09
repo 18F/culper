@@ -68,7 +68,7 @@ describe('OtherNames validation', () => {
                     suffix: 'Jr',
                   },
                   MaidenName: {
-                    value: 'Foo',
+                    value: 'Yes',
                   },
                   DatesUsed: {
                     from: {
@@ -110,7 +110,7 @@ describe('OtherNames validation', () => {
                     suffix: 'Jr',
                   },
                   MaidenName: {
-                    value: 'Foo',
+                    value: 'No',
                   },
                   DatesUsed: {
                     from: {
@@ -184,7 +184,7 @@ describe('OtherNames validation', () => {
       {
         state: {
           MaidenName: {
-            value: 'Foo',
+            value: 'Yes',
           },
         },
         expected: true,
@@ -287,7 +287,7 @@ describe('OtherNames validation', () => {
             suffix: 'Jr',
           },
           MaidenName: {
-            value: 'Foo',
+            value: 'No',
           },
           DatesUsed: {
             from: {

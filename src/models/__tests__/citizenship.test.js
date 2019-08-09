@@ -4,15 +4,15 @@ import citizenship from '../citizenship'
 describe('The citizenship model', () => {
   it('Country is required', () => {
     const testData = {}
-    const expectedErrors = ['Country.required']
+    const expectedErrors = ['Country.presence.REQUIRED']
 
     expect(validateModel(testData, citizenship))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('Country must have a value', () => {
-    const testData = { Country: 'Place' }
-    const expectedErrors = ['Country.hasValue']
+  it('Country must have a valid value', () => {
+    const testData = { Country: { value: 'Place' } }
+    const expectedErrors = ['Country.country.INVALID_COUNTRY']
 
     expect(validateModel(testData, citizenship))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -20,7 +20,7 @@ describe('The citizenship model', () => {
 
   it('Dates is required', () => {
     const testData = {}
-    const expectedErrors = ['Dates.required']
+    const expectedErrors = ['Dates.presence.REQUIRED']
 
     expect(validateModel(testData, citizenship))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -30,7 +30,10 @@ describe('The citizenship model', () => {
     const testData = {
       Dates: ['January', 'February'],
     }
-    const expectedErrors = ['Dates.daterange']
+    const expectedErrors = [
+      'Dates.daterange.from.presence.REQUIRED',
+      'Dates.daterange.to.presence.REQUIRED',
+    ]
 
     expect(validateModel(testData, citizenship))
       .toEqual(expect.arrayContaining(expectedErrors))
@@ -43,7 +46,7 @@ describe('The citizenship model', () => {
           present: true,
         },
       }
-      const expectedErrors = ['Current.required']
+      const expectedErrors = ['Current.presence.REQUIRED']
 
       expect(validateModel(testData, citizenship))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -53,7 +56,7 @@ describe('The citizenship model', () => {
   describe('if Dates exists and does not include the present', () => {
     it('Current is required', () => {
       const testData = { Dates: { present: false } }
-      const expectedErrors = ['Current.required']
+      const expectedErrors = ['Current.presence.REQUIRED']
 
       expect(validateModel(testData, citizenship))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -64,7 +67,7 @@ describe('The citizenship model', () => {
         Dates: { present: false },
         Current: { value: true },
       }
-      const expectedErrors = ['Current.hasValue']
+      const expectedErrors = ['Current.hasValue.value.inclusion.INCLUSION']
 
       expect(validateModel(testData, citizenship))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -75,7 +78,7 @@ describe('The citizenship model', () => {
         Dates: { present: false },
         Current: { value: 'No' },
       }
-      const expectedErrors = ['CurrentExplanation.required']
+      const expectedErrors = ['CurrentExplanation.presence.REQUIRED']
 
       expect(validateModel(testData, citizenship))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -87,7 +90,7 @@ describe('The citizenship model', () => {
         Current: { value: 'Yes' },
         CurrentExplanation: { value: '' },
       }
-      const expectedErrors = ['CurrentExplanation.hasValue']
+      const expectedErrors = ['CurrentExplanation.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, citizenship))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -99,7 +102,7 @@ describe('The citizenship model', () => {
       const testData = {
         Country: { value: 'United States' },
       }
-      const expectedErrors = ['How.required']
+      const expectedErrors = ['How.presence.REQUIRED']
 
       expect(validateModel(testData, citizenship))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -109,7 +112,7 @@ describe('The citizenship model', () => {
       const testData = {
         Country: { value: 'United States' },
       }
-      const expectedErrors = ['Renounced.required']
+      const expectedErrors = ['Renounced.presence.REQUIRED']
 
       expect(validateModel(testData, citizenship))
         .not.toEqual(expect.arrayContaining(expectedErrors))
@@ -133,7 +136,7 @@ describe('The citizenship model', () => {
       const testData = {
         Country: { value: 'Canada' },
       }
-      const expectedErrors = ['How.required']
+      const expectedErrors = ['How.presence.REQUIRED']
 
       expect(validateModel(testData, citizenship))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -144,7 +147,7 @@ describe('The citizenship model', () => {
         Country: { value: 'Canada' },
         How: { test: 'thing' },
       }
-      const expectedErrors = ['How.hasValue']
+      const expectedErrors = ['How.hasValue.MISSING_VALUE']
 
       expect(validateModel(testData, citizenship))
         .toEqual(expect.arrayContaining(expectedErrors))
@@ -155,7 +158,7 @@ describe('The citizenship model', () => {
         const testData = {
           Country: { value: 'Canada' },
         }
-        const expectedErrors = ['Renounced.required']
+        const expectedErrors = ['Renounced.presence.REQUIRED']
 
         expect(validateModel(testData, citizenship, { requireCitizenshipRenounced: true }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -164,9 +167,9 @@ describe('The citizenship model', () => {
       it('Renounced must have a valid value', () => {
         const testData = {
           Country: { value: 'Canada' },
-          Renounced: false,
+          Renounced: { value: 'false' },
         }
-        const expectedErrors = ['Renounced.hasValue']
+        const expectedErrors = ['Renounced.hasValue.value.inclusion.INCLUSION']
 
         expect(validateModel(testData, citizenship, { requireCitizenshipRenounced: true }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -177,7 +180,7 @@ describe('The citizenship model', () => {
           Country: { value: 'Canada' },
           Renounced: { value: 'No' },
         }
-        const expectedErrors = ['RenouncedExplanation.required']
+        const expectedErrors = ['RenouncedExplanation.presence.REQUIRED']
 
         expect(validateModel(testData, citizenship, { requireCitizenshipRenounced: true }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -189,7 +192,7 @@ describe('The citizenship model', () => {
           Renounced: { value: 'Yes' },
           RenouncedExplanation: ['some reason'],
         }
-        const expectedErrors = ['RenouncedExplanation.hasValue']
+        const expectedErrors = ['RenouncedExplanation.hasValue.MISSING_VALUE']
 
         expect(validateModel(testData, citizenship, { requireCitizenshipRenounced: true }))
           .toEqual(expect.arrayContaining(expectedErrors))
@@ -217,7 +220,7 @@ describe('The citizenship model', () => {
         const testData = {
           Country: { value: 'Canada' },
         }
-        const expectedErrors = ['Renounced.required']
+        const expectedErrors = ['Renounced.presence.REQUIRED']
 
         expect(validateModel(testData, citizenship, { requireCitizenshipRenounced: false }))
           .not.toEqual(expect.arrayContaining(expectedErrors))

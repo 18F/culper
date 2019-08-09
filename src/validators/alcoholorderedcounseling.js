@@ -1,11 +1,20 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
+import * as formTypes from 'constants/formTypes'
 import alcoholOrderedCounseling from 'models/alcoholOrderedCounseling'
+import { requireAlcoholOrderedCounselingParty } from 'helpers/branches'
+import store from 'services/store'
 
-export const validateOrderedCounseling = data => (
-  validateModel(data, alcoholOrderedCounseling) === true
-)
+export const validateOrderedCounseling = (data, formType = formTypes.SF86) => {
+  const options = {
+    requireAlcoholOrderedCounselingParty: requireAlcoholOrderedCounselingParty(formType),
+  }
+  return validateModel(data, alcoholOrderedCounseling, options) === true
+}
 
-export const validateOrderedCounselings = (data) => {
+export const validateOrderedCounselings = (data, formType = formTypes.SF86) => {
+  const options = {
+    requireAlcoholOrderedCounselingParty: requireAlcoholOrderedCounselingParty(formType),
+  }
   const orderedCounselingsModel = {
     HasBeenOrdered: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -17,22 +26,28 @@ export const validateOrderedCounselings = (data) => {
     },
   }
 
-  return validateModel(data, orderedCounselingsModel) === true
+  return validateModel(data, orderedCounselingsModel, options) === true
 }
 
 export default class OrderedCounselingsValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   isValid() {
-    return validateOrderedCounselings(this.data)
+    return validateOrderedCounselings(this.data, this.formType)
   }
 }
 
 export class OrderedCounselingValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType
   }
 
   validCompletedTreatment() {
@@ -43,6 +58,6 @@ export class OrderedCounselingValidator {
   }
 
   isValid() {
-    return validateOrderedCounseling(this.data)
+    return validateOrderedCounseling(this.data, this.formType)
   }
 }

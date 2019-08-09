@@ -5,7 +5,7 @@ const phone = {
   noNumber: (value, attributes, attributeName, options) => {
     if (options.requireNumber) {
       return {
-        inclusion: [false],
+        inclusion: [false, ''],
       }
     }
 
