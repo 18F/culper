@@ -1,17 +1,7 @@
-import { env } from 'config'
-import { api } from 'services'
-import { STATUS_SUBMITTED } from 'constants/enums/applicationStatuses'
-
 import * as actionTypes from 'constants/actionTypes'
 
 export const validateFormData = () => ({
   type: actionTypes.VALIDATE_FORM_DATA,
-})
-
-export const setFormData = (data, cb = () => {}) => ({
-  type: actionTypes.SET_FORM_DATA,
-  data,
-  cb,
 })
 
 export function updateApplication(section, property, values) {
@@ -20,44 +10,6 @@ export function updateApplication(section, property, values) {
     section,
     property,
     values,
-  }
-}
-
-export function getApplicationState(done) {
-  return (dispatch) => {
-    let locked = false
-    let formData = {}
-    api
-      .status()
-      .then((r) => {
-        const statusData = (r || {}).data || {}
-        dispatch(updateApplication('Settings', 'status', statusData.Status))
-        dispatch(updateApplication('Settings', 'hash', statusData.Hash))
-
-        if (statusData.Status === STATUS_SUBMITTED) {
-          locked = true
-          env.History().push('/locked')
-        }
-      })
-      .then(() => {
-        if (locked) {
-          return
-        }
-
-        api
-          .form()
-          .then((r) => {
-            formData = r.data
-            const formType = window.formType ? window.formType : formData.Metadata.form_type
-
-            dispatch(updateApplication('Settings', 'formType', formType))
-            dispatch(updateApplication('Settings', 'formVersion', formData.Metadata.form_version))
-            dispatch(setFormData(formData, done))
-          })
-      })
-      .catch(() => {
-        env.History().push('/error')
-      })
   }
 }
 

@@ -82,7 +82,7 @@ func main() {
 
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
-		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService}.ServeHTTP).Methods("POST")
+		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService, Session: sessionService}.ServeHTTP).Methods("POST")
 	}
 	if settings.True(api.SamlEnabled) {
 		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
@@ -95,7 +95,7 @@ func main() {
 	r.Handle("/refresh", sec.Middleware(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
 
 	a := r.PathPrefix("/me").Subrouter()
-	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Log: logger})).Methods("GET")
+	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Log: logger, Session: sessionService})).Methods("GET")
 	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
 	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
 	a.Handle("/validate", sec.Middleware(http.ValidateHandler{Log: logger})).Methods("POST")

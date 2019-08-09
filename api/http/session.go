@@ -41,10 +41,12 @@ func (service SessionMiddleware) Middleware(next http.Handler) http.Handler {
 			if err == api.ErrValidSessionNotFound {
 				service.log.WarnError(api.SessionDoesNotExist, err, api.LogFields{})
 				RespondWithStructuredError(w, api.SessionDoesNotExist, http.StatusUnauthorized)
+				return
 			}
 			if err == api.ErrSessionExpired {
 				service.log.WarnError(api.SessionExpired, err, api.LogFields{})
 				RespondWithStructuredError(w, api.SessionExpired, http.StatusUnauthorized)
+				return
 			}
 			service.log.WarnError(api.SessionUnexpectedError, err, api.LogFields{})
 			RespondWithStructuredError(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)

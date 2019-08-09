@@ -1,5 +1,5 @@
+import { LOGOUT } from 'constants/actionTypes'
 import rootReducer from './index'
-import AuthConstants from '../actions/AuthConstants'
 
 describe('Root Reducer', () => {
   const defaultState = {
@@ -26,6 +26,8 @@ describe('Root Reducer', () => {
     authentication: {
       authenticated: false,
       token: null,
+      error: null,
+      showSessionWarning: false,
     },
     section: {
       section: 'identification',
@@ -59,7 +61,7 @@ describe('Root Reducer', () => {
       form: {},
     }
 
-    const action = { type: AuthConstants.LOGOUT }
+    const action = { type: LOGOUT }
     expect(rootReducer(startState, action)).toEqual(defaultState)
   })
 })

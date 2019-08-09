@@ -89,7 +89,7 @@ func areEqualJSON(t *testing.T, s1, s2 []byte) bool {
 func CreateTestAccount(t *testing.T, store SimpleStore) api.Account {
 	t.Helper()
 
-	createQuery := `INSERT INTO accounts (username, email, status, form_type, form_version, external_id) VALUES ($1, $1, $2, $3, $4, $5) RETURNING id, username, email, form_type, form_version, external_id`
+	createQuery := `INSERT INTO accounts (username, email, status, form_type, form_version, external_id) VALUES ($1, $1, $2, $3, $4, $5) RETURNING id, username, email, status, form_type, form_version, external_id`
 
 	email := randomEmail()
 

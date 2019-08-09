@@ -1,64 +1,57 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { i18n, env } from '../../config'
-import { logout } from '../../actions/AuthActions'
-import { api } from '../../services'
-import { saveSection } from '../SavedIndicator/persistence-helpers'
 
-class Logout extends React.Component {
+import { i18n, env } from 'config'
+import { logout } from 'actions/AuthActions'
+import { api } from 'services'
+import { saveSection } from 'components/SavedIndicator/persistence-helpers'
+
+export class Logout extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
-
-    this.logout = this.logout.bind(this)
-    this.logoutSAML = this.logoutSAML.bind(this)
+    this.state = {
+      saml: false,
+    }
   }
 
   componentWillMount() {
-    if (env.SamlEnabled() && env.SamlSLOEnabled()) {
-      api.samlSLO().then(response => {
+    if (env.SamlEnabled()) {
+      api.samlSLO().then((response) => {
         this.setState({ saml: response.data || {} })
       })
     }
   }
 
-  logout() {
-    const application = this.props.app
-    const section = this.props.section.section
-    const subsection = this.props.section.subsection
+  logout = () => {
+    const { application, section, dispatch } = this.props
 
-    saveSection(application, section, subsection, this.props.dispatch)
+    saveSection(application, section.section, section.subsection, dispatch)
       .then(() => {
-        this.props.dispatch(logout())
+        dispatch(logout())
       })
-      .catch(error => {
+      .catch((error) => {
         alert(error)
       })
   }
 
   logoutSAML() {
-    if (!env.SamlEnabled() && env.SamlSLOEnabled()) {
-      return null
-    }
-
-    if (!this.state.saml) {
-      return null;
-    }
+    const { saml } = this.state
 
     return (
-        <div id="saml" className="auth saml">
-          <form method="post" action={this.state.saml.URL}>
-            <input
-              type="hidden"
-              name="SAMLRequest"
-              value={this.state.saml.Base64XML}
-            />
-            <button type="submit" className="usa-button-big">
-              <span>{i18n.t('app.logout')}</span>
-            </button>
-          </form>
-        </div>
-      )
+      <div id="saml" className="auth saml">
+        <form method="post" action={saml.URL}>
+          <input
+            type="hidden"
+            name="SAMLRequest"
+            value={saml.Base64XML}
+          />
+          <button type="submit" className="usa-button-big">
+            <span>{i18n.t('app.logout')}</span>
+          </button>
+        </form>
+      </div>
+    )
   }
 
   logoutBasic() {
@@ -67,21 +60,41 @@ class Logout extends React.Component {
     }
 
     return (
-      <a href="#" onClick={this.logout} className="logout">
+      <button type="button" onClick={this.logout} className="logout">
         {i18n.t('app.logout')}
-      </a>
+      </button>
     )
   }
 
   render() {
-    return this.logoutSAML() || this.logoutBasic()
+    const { saml } = this.state
+
+    if (env.SamlEnabled() && saml) {
+      return this.logoutSAML()
+    }
+
+    return this.logoutBasic()
   }
 }
 
-function mapStateToProps({ section = {}, application = {} }) {
+Logout.propTypes = {
+  section: PropTypes.object,
+  application: PropTypes.object,
+  dispatch: PropTypes.func,
+}
+
+Logout.defaultProps = {
+  section: {},
+  application: {},
+  dispatch: () => {},
+}
+
+function mapStateToProps(state) {
+  const { section, application } = state
+
   return {
     section,
-    app: application
+    application,
   }
 }
 

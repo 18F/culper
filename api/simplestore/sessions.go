@@ -78,7 +78,7 @@ func (s SimpleStore) ExtendAndFetchSessionAccount(sessionKey string, expirationD
 				RETURNING
 					sessions.session_key, sessions.account_id, sessions.expiration_date, sessions.session_index,
 					accounts.id, accounts.form_version, accounts.form_type, accounts.username,
-					accounts.email, accounts.external_id`
+					accounts.email, accounts.external_id, accounts.status`
 
 	row := sessionAccountRow{}
 	selectErr := s.db.Get(&row, fetchQuery, expirationDate, sessionKey, time.Now().UTC())
