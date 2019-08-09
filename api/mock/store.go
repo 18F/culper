@@ -56,8 +56,13 @@ func (s *StorageService) DeleteAttachment(accountID int, attachmentID int) error
 }
 
 // CreateOrUpdateSession creates a new session record in the db
-func (s *StorageService) CreateOrUpdateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationduration time.Duration) error {
+func (s *StorageService) CreateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationduration time.Duration) error {
 	return nil
+}
+
+// FetchPossiblyExpiredSession retrieves a session
+func (s *StorageService) FetchPossiblyExpiredSession(accountID int) (api.Session, error) {
+	return api.Session{}, nil
 }
 
 // DeleteSession removes a session record from the db

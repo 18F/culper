@@ -33,7 +33,7 @@ func TestSamlResponse(t *testing.T) {
 		SigningKey:     "testdata/test_key.pem",
 		IDPIssuerURL:   "http://localhost:8080",
 		SSODescription: "http://localhost:8080",
-		CallbackURL:    "/auth/saml/callback",
+		CallbackURL:    service.Env.String(api.APIBaseURL) + "/auth/saml/callback",
 	}
 	encodedResponse := CreateSamlTestResponse(t, conf)
 

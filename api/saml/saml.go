@@ -151,7 +151,7 @@ func (service *Service) validate(response *saml.Response, original string) error
 	}
 
 	if response.Destination != service.provider.AssertionConsumerServiceURL {
-		return errors.New("destination mismath expected: " + service.provider.AssertionConsumerServiceURL + " not " + response.Destination)
+		return errors.New("destination mismatch exception: " + service.provider.AssertionConsumerServiceURL + " not " + response.Destination)
 	}
 
 	if response.Assertion.Subject.SubjectConfirmation.Method != "urn:oasis:names:tc:SAML:2.0:cm:bearer" {

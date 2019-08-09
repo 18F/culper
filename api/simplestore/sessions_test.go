@@ -27,11 +27,11 @@ func timeIsCloseToTime(test time.Time, expected time.Time, diff time.Duration) b
 	return true
 }
 
-func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
+func TestFetchExistingSessionToOverwrite(t *testing.T) {
 	store, account, firstSessionKey := getTestObjects(t)
 	expirationDuration := 5 * time.Minute
 
-	firstCreateErr := store.CreateOrUpdateSession(account.ID, firstSessionKey, NullString(), expirationDuration)
+	firstCreateErr := store.CreateSession(account.ID, firstSessionKey, NullString(), expirationDuration)
 	if firstCreateErr != nil {
 		t.Fatal(firstCreateErr)
 	}
@@ -41,8 +41,23 @@ func TestCreateSessionOverwritesPreviousRecord(t *testing.T) {
 		t.Fatal(fetchErr)
 	}
 
+	// Duplicate what we do in Sessions.UserDidAuth
+	fetchedSession, fetchErr := store.FetchPossiblyExpiredSession(account.ID)
+	if fetchErr != nil {
+		t.Fatal(fetchErr)
+	}
+
+	if fetchedSession.SessionKey != firstSessionKey {
+		t.Fatal("Didn't get the same session back!")
+	}
+
+	delErr := store.DeleteSession(firstSessionKey)
+	if delErr != nil {
+		t.Fatal(delErr)
+	}
+
 	secondSessionKey := uuid.New().String()
-	secondCreateErr := store.CreateOrUpdateSession(account.ID, secondSessionKey, NullString(), expirationDuration)
+	secondCreateErr := store.CreateSession(account.ID, secondSessionKey, NullString(), expirationDuration)
 	if secondCreateErr != nil {
 		t.Fatal(secondCreateErr)
 	}
@@ -66,7 +81,7 @@ func TestFetchSessionReturnsAccountAndSessionOnValidSession(t *testing.T) {
 	store, account, sessionKey := getTestObjects(t)
 	expirationDuration := 5 * time.Minute
 
-	createErr := store.CreateOrUpdateSession(account.ID, sessionKey, NullString(), expirationDuration)
+	createErr := store.CreateSession(account.ID, sessionKey, NullString(), expirationDuration)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
@@ -96,7 +111,7 @@ func TestFetchSessionExtendsValidSession(t *testing.T) {
 
 	shortInitialDuration := 5 * time.Minute
 
-	createErr := store.CreateOrUpdateSession(account.ID, sessionKey, NullString(), shortInitialDuration)
+	createErr := store.CreateSession(account.ID, sessionKey, NullString(), shortInitialDuration)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
@@ -128,7 +143,7 @@ func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
 	store, account, sessionKey := getTestObjects(t)
 	expirationDuration := -10 * time.Minute
 
-	createErr := store.CreateOrUpdateSession(account.ID, sessionKey, NullString(), expirationDuration)
+	createErr := store.CreateSession(account.ID, sessionKey, NullString(), expirationDuration)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
@@ -142,7 +157,7 @@ func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
 func TestDeleteSessionRemovesRecord(t *testing.T) {
 	store, account, sessionKey := getTestObjects(t)
 	expirationDuration := 5 * time.Minute
-	store.CreateOrUpdateSession(account.ID, sessionKey, NullString(), expirationDuration)
+	store.CreateSession(account.ID, sessionKey, NullString(), expirationDuration)
 
 	fetchQuery := `SELECT * FROM sessions WHERE session_key = $1`
 	row := api.Session{}
