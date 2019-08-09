@@ -19,18 +19,20 @@ describe('The sentence model', () => {
   })
 
   it('the ExceedsYear field must have a valid value', () => {
+    const options = { requireLegalOffenseSentenced: true }
     const testData = { ExceedsYear: { value: 'true' } }
     const expectedErrors = ['ExceedsYear.hasValue.value.inclusion.INCLUSION']
 
-    expect(validateModel(testData, sentence))
+    expect(validateModel(testData, sentence, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('the Incarcerated field must have a valid value', () => {
+    const options = { requireLegalOffenseIncarcerated: true }
     const testData = { Incarcerated: { value: 'false' } }
     const expectedErrors = ['Incarcerated.hasValue.value.inclusion.INCLUSION']
 
-    expect(validateModel(testData, sentence))
+    expect(validateModel(testData, sentence, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -218,6 +220,28 @@ describe('The sentence model', () => {
       }
 
       expect(validateModel(testData, sentence)).toEqual(true)
+    })
+  })
+
+  describe('requireLegalOffenseSentenced is false', () => {
+    it('the ExceedsYear is not required', () => {
+      const options = { requireLegalOffenseSentenced: false }
+      const testData = { ExceedsYear: { value: 'true' } }
+      const expectedErrors = ['ExceedsYear.hasValue.value.inclusion.INCLUSION']
+
+      expect(validateModel(testData, sentence, options))
+        .toEqual(expect.not.arrayContaining(expectedErrors))
+    })
+  })
+
+  describe('requireLegalOffenseIncarcerated is false', () => {
+    it('the Incarcerated field is not required', () => {
+      const options = { requireLegalOffenseIncarcerated: false }
+      const testData = { Incarcerated: { value: 'false' } }
+      const expectedErrors = ['Incarcerated.hasValue.value.inclusion.INCLUSION']
+
+      expect(validateModel(testData, sentence, options))
+        .toEqual(expect.not.arrayContaining(expectedErrors))
     })
   })
 })

@@ -10,13 +10,23 @@ const offense = {
     presence: true,
     hasValue: { validator: hasYesOrNo },
   },
-  InvolvedFirearms: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
+  InvolvedFirearms: (value, attributes, attributeName, options) => {
+    if (options.requireLegalPoliceFirearms) {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+    return {}
   },
-  InvolvedSubstances: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
+  InvolvedSubstances: (value, attributes, attributeName, options) => {
+    if (options.requireLegalPoliceDrugs) {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+    return {}
   },
   CourtName: { presence: true, hasValue: true },
   CourtAddress: {

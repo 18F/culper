@@ -1,94 +1,109 @@
+import store from 'services/store'
+import * as formTypes from 'constants/formTypes'
 import { validateModel } from 'models/validate'
 import otherOffense from 'models/otherOffense'
+import { requireLegalPoliceFirearms, requireLegalPoliceDrugs } from 'helpers/branches'
 
-export const validateOtherOffense = data => validateModel(data, otherOffense) === true
+const options = formType => (
+  {
+    requireLegalPoliceFirearms: requireLegalPoliceFirearms(formType),
+    requireLegalPoliceDrugs: requireLegalPoliceDrugs(formType),
+  }
+)
+
+export const validateOtherOffense = (data, formType) => (
+  validateModel(data, otherOffense, options(formType)) === true
+)
 
 export default class OtherOffenseValidator {
   constructor(data = {}) {
+    const state = store.getState()
+    const { formType } = state.application.Settings
     this.data = data
+    this.formType = formType || formTypes.SF86
   }
 
   validDate() {
     return validateModel(this.data, {
       Date: otherOffense.Date,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validDescription() {
     return validateModel(this.data, {
       Description: otherOffense.Description,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validViolence() {
     return validateModel(this.data, {
       InvolvedViolence: otherOffense.InvolvedViolence,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validFirearms() {
     return validateModel(this.data, {
       InvolvedFirearms: otherOffense.InvolvedFirearms,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validSubstances() {
     return validateModel(this.data, {
       InvolvedSubstances: otherOffense.InvolvedSubstances,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validCourtName() {
     return validateModel(this.data, {
       CourtName: otherOffense.CourtName,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validCourtAddress() {
     return validateModel(this.data, {
       CourtAddress: otherOffense.CourtAddress,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validChargeType() {
     return validateModel(this.data, {
       ChargeType: otherOffense.ChargeType,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validCourtCharge() {
     return validateModel(this.data, {
       CourtCharge: otherOffense.CourtCharge,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validCourtOutcome() {
     return validateModel(this.data, {
       CourtOutcome: otherOffense.CourtOutcome,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validCourtDate() {
     return validateModel(this.data, {
       CourtDate: otherOffense.CourtDate,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   validSentenced() {
     return validateModel(this.data, {
       WasSentenced: otherOffense.WasSentenced,
       Sentence: otherOffense.Sentence,
-    }) === true
+    }, options) === true
   }
 
   validAwaitingTrial() {
     return validateModel(this.data, {
       AwaitingTrial: otherOffense.AwaitingTrial,
       AwaitingTrialExplanation: otherOffense.AwaitingTrialExplanation,
-    }) === true
+    }, options(this.formType)) === true
   }
 
   isValid() {
-    return validateOtherOffense(this.data)
+    return validateOtherOffense(this.data, this.formType)
   }
 }

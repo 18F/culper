@@ -8,7 +8,7 @@ import {
   Field,
   Text,
   Textarea,
-  Location
+  Location,
 } from '../../../Form'
 
 export default class CardItem extends ValidationElement {
@@ -33,58 +33,60 @@ export default class CardItem extends ValidationElement {
       Amount: this.props.Amount,
       AmountEstimated: this.props.AmountEstimated,
       Description: this.props.Description,
-      ...queue
+      ...queue,
     })
   }
 
   updateAgency(values) {
     this.update({
-      Agency: values
+      Agency: values,
     })
   }
 
   updateAddress(values) {
     this.update({
-      Address: values
+      Address: values,
     })
   }
 
   updateDate(values) {
     this.update({
-      Date: values
+      Date: values,
     })
   }
 
   updateReason(values) {
     this.update({
-      Reason: values
+      Reason: values,
     })
   }
 
   updateAmount(values) {
     this.update({
-      Amount: values
+      Amount: values,
     })
   }
 
   updateAmountEstimated(values) {
     this.update({
-      AmountEstimated: values
+      AmountEstimated: values,
     })
   }
 
   updateDescription(values) {
     this.update({
-      Description: values
+      Description: values,
     })
   }
 
   render() {
+    const { requireFinancialCardDisciplinaryDate } = this.props
     return (
       <div className="card-item">
         <Field
           title={i18n.t('financial.card.heading.agency')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Agency"
             {...this.props.Agency}
@@ -97,16 +99,17 @@ export default class CardItem extends ValidationElement {
 
         <Field
           title={i18n.t('financial.card.heading.address')}
-          optional={true}
+          optional
           help="financial.card.help.address"
           scrollIntoView={this.props.scrollIntoView}
-          adjustFor="address">
+          adjustFor="address"
+        >
           <Location
             name="Address"
             {...this.props.Address}
             className="card-address"
             layout={Location.ADDRESS}
-            geocode={true}
+            geocode
             dispatch={this.props.dispatch}
             addressBooks={this.props.addressBooks}
             addressBook="Agency"
@@ -115,27 +118,30 @@ export default class CardItem extends ValidationElement {
             onError={this.props.onError}
           />
         </Field>
-
-        <Field
-          title={i18n.t('financial.card.heading.date')}
-          adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
-          <DateControl
-            name="Date"
-            {...this.props.Date}
-            className="card-date"
-            hideDay={true}
-            minDateEqualTo={true}
-            required={this.props.required}
-            onUpdate={this.updateDate}
-            onError={this.props.onError}
-          />
-        </Field>
+        {requireFinancialCardDisciplinaryDate && (
+          <Field
+            title={i18n.t('financial.card.heading.date')}
+            adjustFor="labels"
+            scrollIntoView={this.props.scrollIntoView}
+            shrink
+          >
+            <DateControl
+              name="Date"
+              {...this.props.Date}
+              className="card-date"
+              hideDay
+              minDateEqualTo
+              required={this.props.required}
+              onUpdate={this.updateDate}
+              onError={this.props.onError}
+            />
+          </Field>
+        )}
 
         <Field
           title={i18n.t('financial.card.heading.reason')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Textarea
             name="Reason"
             {...this.props.Reason}
@@ -148,7 +154,8 @@ export default class CardItem extends ValidationElement {
 
         <Field
           title={i18n.t('financial.card.heading.amount')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <div>
             <Currency
               name="Amount"
@@ -177,7 +184,8 @@ export default class CardItem extends ValidationElement {
         <Field
           title={i18n.t('financial.card.heading.description')}
           scrollIntoView={this.props.scrollIntoView}
-          help="financial.card.help.description">
+          help="financial.card.help.description"
+        >
           <Textarea
             name="Description"
             {...this.props.Description}
@@ -193,9 +201,8 @@ export default class CardItem extends ValidationElement {
 }
 
 CardItem.defaultProps = {
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  required: false
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  required: false,
+  requireFinancialCardDisciplinaryDate: true,
 }
