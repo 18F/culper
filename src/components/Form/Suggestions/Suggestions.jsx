@@ -1,60 +1,63 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { newGuid } from '../ValidationElement'
 import Modal from '../Modal'
 
 export default class Suggestions extends React.Component {
-  constructor(props) {
-    super(props)
-    this.dismissSuggestions = this.dismissSuggestions.bind(this)
-  }
-
   /**
    * Use a suggestion given.
    */
-  useSuggestion(suggestion) {
-    this.props.onSuggestion(suggestion)
+  useSuggestion = (suggestion) => {
+    const { onSuggestion } = this.props
+    onSuggestion(suggestion)
   }
 
   /**
    * This allows the user to bypass the suggestions and add something else
    * we have never seen before.
    */
-  dismissSuggestions(action = 'dismiss') {
-    this.props.onDismiss(action)
+  dismissSuggestions = (action = 'dismiss') => {
+    const { onDismiss } = this.props
+    onDismiss(action)
   }
 
   /**
    * Return the possible suggestions or an empty value if there is nothing to present.
    */
-  suggestions() {
-    return this.props.suggestions.map(suggestion => {
-      return (
-        <div className="suggestion" key={newGuid()}>
-          <div className="value">
-            <h5>{this.props.suggestionLabel}</h5>
-            {this.props.renderSuggestion(suggestion)}
-          </div>
-          <div className="action">
-            <button
-              className="suggestion-btn"
-              onClick={this.useSuggestion.bind(this, suggestion)}>
-              <span>{this.props.suggestionUseLabel}</span>
-              <i className="fa fa-arrow-circle-right" />
-            </button>
-          </div>
+  suggestions = () => {
+    const {
+      suggestions, suggestionLabel, renderSuggestion, suggestionUseLabel,
+    } = this.props
+    return suggestions.map(suggestion => (
+      <div className="suggestion" key={newGuid()}>
+        <div className="value">
+          <h5>{suggestionLabel}</h5>
+          {renderSuggestion(suggestion)}
         </div>
-      )
-    })
+        <div className="action">
+          <button
+            type="button"
+            className="suggestion-btn"
+            onClick={this.useSuggestion}
+          >
+            <span>{suggestionUseLabel}</span>
+            <i className="fa fa-arrow-circle-right" />
+          </button>
+        </div>
+      </div>
+    ))
   }
 
-  alternate() {
-    if (this.props.suggestionDismissAlternate) {
+  alternate = () => {
+    const { suggestionDismissAlternate } = this.props
+    if (suggestionDismissAlternate) {
       return (
         <a
-          href="javascript:;;"
+          href="javascript:;;;"
           className="right"
-          onClick={this.dismissSuggestions.bind(this, 'alternate')}>
-          <span>{this.props.suggestionDismissAlternate}</span>
+          onClick={() => this.dismissSuggestions('alternate')}
+        >
+          <span>{suggestionDismissAlternate}</span>
           <i className="fa fa-arrow-circle-right" />
         </a>
       )
@@ -64,27 +67,29 @@ export default class Suggestions extends React.Component {
   }
 
   render() {
-    // Append on any classes passed down
-    const klass = `${this.props.className}`.trim()
+    const {
+      className, show, suggestionTitle, suggestionParagraph, suggestionDismissContent, suggestionDismissLabel,
+    } = this.props
 
-    // When there is nothing special do the status quo
     return (
       <Modal
-        show={this.props.show}
+        show={show}
         closeable={true}
-        onDismiss={this.dismissSuggestions.bind(this, 'modal')}
-        className="suggestions">
-        <h3>{this.props.suggestionTitle}</h3>
-        {this.props.suggestionParagraph}
+        onDismiss={() => this.dismissSuggestions('modal')}
+        className="suggestions"
+      >
+        <h3>{suggestionTitle}</h3>
+        {suggestionParagraph}
 
-        <div className={klass}>
+        <div className={className}>
           {this.suggestions()}
           <div className="dismiss">
-            {this.props.suggestionDismissContent}
+            {suggestionDismissContent}
             <a
-              href="javascript:;;"
-              onClick={this.dismissSuggestions.bind(this, 'dismiss')}>
-              <span>{this.props.suggestionDismissLabel}</span>
+              href="javascript:;;;"
+              onClick={() => this.dismissSuggestions('dismiss')}
+            >
+              <span>{suggestionDismissLabel}</span>
               <i className="fa fa-arrow-circle-right" />
             </a>
             {this.alternate()}
@@ -95,17 +100,34 @@ export default class Suggestions extends React.Component {
   }
 }
 
+Suggestions.propTypes = {
+  suggestions: PropTypes.array,
+  suggestionTitle: PropTypes.string,
+  suggestionParagraph: PropTypes.string,
+  suggestionLabel: PropTypes.string,
+  suggestionDismissLabel: PropTypes.string,
+  suggestionDismissContent: PropTypes.string,
+  suggestionDismissAlternate: PropTypes.string,
+  suggestionUseLabel: PropTypes.string,
+  className: PropTypes.string,
+  show: PropTypes.bool,
+  renderSuggestion: PropTypes.func,
+  onSuggestion: PropTypes.func,
+  onDismiss: PropTypes.func,
+}
+
 Suggestions.defaultProps = {
+  suggestions: [],
   suggestionTitle: '',
-  suggestionParagrah: '',
+  suggestionParagraph: '',
   suggestionLabel: '',
   suggestionDismissLabel: '',
+  suggestionDismissContent: '',
   suggestionDismissAlternate: '',
   suggestionUseLabel: '',
-  suggestions: [],
   className: '',
   show: false,
-  renderSuggestion: suggestion => {},
-  onSuggestion: suggestion => {},
-  onDismiss: () => {}
+  renderSuggestion: () => {},
+  onSuggestion: () => {},
+  onDismiss: () => {},
 }
