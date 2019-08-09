@@ -28,10 +28,6 @@ class Form extends React.Component {
     this.defaultRedirect()
   }
 
-  componentDidMount() {
-    this.refreshToken()
-  }
-
   componentDidUpdate(prevProps) {
     this.defaultRedirect()
 
@@ -51,7 +47,6 @@ class Form extends React.Component {
 
     this.clearErrors()
     this.updateSettings()
-    this.refreshToken()
 
     const prevLoc = parseFormUrl(prevLocation.pathname)
     this.save(prevLoc.section, prevLoc.subsection)
@@ -98,15 +93,6 @@ class Form extends React.Component {
     ).catch((error) => {
       alert(error)
     })
-  }
-
-  refreshToken() {
-    if (env.IsTest()) {
-      return
-    }
-
-    const { dispatch } = this.props
-    dispatch(renewSession())
   }
 
   render() {
