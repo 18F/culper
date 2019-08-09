@@ -9,7 +9,7 @@ class Loading extends React.Component {
 
     this.state = {
       spinner: false,
-      spinnerAction: SpinnerAction.ACTION_SPIN,
+      spinnerAction: SpinnerAction.Spin,
     }
   }
 
@@ -48,10 +48,6 @@ class Loading extends React.Component {
       </div>
     )
   }
-}
-
-Loading.defaultProps = {
-  spinner: false,
 }
 
 export default Loading

@@ -7,7 +7,7 @@ import { logout } from 'actions/AuthActions'
 import { api } from 'services'
 import { saveSection } from 'components/SavedIndicator/persistence-helpers'
 
-class Logout extends React.Component {
+export class Logout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
