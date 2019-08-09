@@ -164,6 +164,51 @@ func TestLogSessionExpired(t *testing.T) {
 		t.Fatal("We logged the actual session key!")
 	}
 
+	// make sure you can re-auth after ending a session
+	_, newAuthErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	if newAuthErr != nil {
+		t.Fatal(newAuthErr)
+	}
+
+}
+
+// TestLogConcurrentSession tests that if you create a session, then create a new session over it, we log something.
+func TestLogConcurrentSession(t *testing.T) {
+
+	timeout := 5 * time.Second
+	store := getSimpleStore()
+	sessionLog := &logRecorder{}
+
+	session := NewSessionService(timeout, store, sessionLog)
+
+	account := simplestore.CreateTestAccount(t, store.(simplestore.SimpleStore))
+
+	_, authErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	if authErr != nil {
+		t.Fatal(authErr)
+	}
+
+	_, logCreateErr := sessionLog.getOnlyMatchingMessage(api.SessionCreated)
+	if logCreateErr != nil {
+		t.Fatal(logCreateErr)
+	}
+
+	// Now login again:
+	_, authAgainErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	if authAgainErr != nil {
+		t.Fatal(authAgainErr)
+	}
+
+	createMessages := sessionLog.matchingMessages(api.SessionCreated)
+	if len(createMessages) != 2 {
+		t.Fatal("Should have 2 create messages now")
+	}
+
+	_, logConcurrentErr := sessionLog.getOnlyMatchingMessage(api.SessionConcurrentLogin)
+	if logConcurrentErr != nil {
+		t.Fatal(logConcurrentErr)
+	}
+
 }
 
 // Log Recorder

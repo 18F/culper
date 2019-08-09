@@ -4,6 +4,7 @@ import (
 	"crypto/sha512"
 	"database/sql"
 	"encoding/hex"
+	"fmt"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -53,13 +54,38 @@ func (s Service) UserDidAuthenticate(accountID int, sessionIndex sql.NullString)
 		return "", keyErr
 	}
 
-	createErr := s.store.CreateOrUpdateSession(accountID, sessionKey, sessionIndex, s.timeout)
+	// First, check to see if there is an extant session in the DB, expired or otherwise
+	extantSession, fetchErr := s.store.FetchPossiblyExpiredSession(accountID)
+	// Little uncommon Go logic here. First, return the error if it wasn't a Not Found error
+	if fetchErr != nil && fetchErr != sql.ErrNoRows {
+		return "", fetchErr
+	}
+	// Then, if we sucessfully got a session back, deal with that. If we got ErrNoRows, we just want to skip this part.
+	if fetchErr == nil {
+		if extantSession.ExpirationDate.Before(time.Now().UTC()) {
+			// If the session is expired, delete it.
+			s.log.Info(fmt.Sprintf("Creating new Session: Previous session expired at %s", extantSession.ExpirationDate), api.LogFields{"account_id": accountID})
+			delErr := s.store.DeleteSession(extantSession.SessionKey)
+			if delErr != nil {
+				s.log.WarnError("Unexpectedly failed to delete an expired session during authentication", delErr, api.LogFields{"account_id": accountID})
+				// We will continue and attempt to create the new session here, anyway.
+			}
+		} else {
+			// If the session is valid, log that this is a concurrent login, and then delete it.
+			s.log.Info(api.SessionConcurrentLogin, api.LogFields{"prev_session_hash": hashSessionKey(extantSession.SessionKey)})
+			delErr := s.store.DeleteSession(extantSession.SessionKey)
+			if delErr != nil {
+				s.log.WarnError("Unexpectedly failed to delete an expired session during authentication", delErr, api.LogFields{"account_id": accountID})
+				// We will continue and attempt to create the new session here, anyway.
+			}
+		}
+	}
+
+	createErr := s.store.CreateSession(accountID, sessionKey, sessionIndex, s.timeout)
 	if createErr != nil {
 		return "", createErr
 	}
-	hashedSessionKey := hashSessionKey(sessionKey)
-	s.log.AddField("session_hash", hashedSessionKey)
-	s.log.Info(api.SessionCreated, api.LogFields{})
+	s.log.Info(api.SessionCreated, api.LogFields{"session_hash": hashSessionKey(sessionKey)})
 
 	return sessionKey, createErr
 }
@@ -69,9 +95,9 @@ func (s Service) GetAccountIfSessionIsValid(sessionKey string) (api.Account, api
 	account, session, fetchErr := s.store.ExtendAndFetchSessionAccount(sessionKey, s.timeout)
 	if fetchErr != nil {
 		if fetchErr == api.ErrSessionExpired {
-			s.log.Info(api.SessionExpired, api.LogFields{})
+			s.log.Info(api.SessionExpired, api.LogFields{"session_hash": hashSessionKey(sessionKey)})
 		} else if fetchErr == api.ErrValidSessionNotFound {
-			s.log.Info(api.SessionDoesNotExist, api.LogFields{})
+			s.log.Info(api.SessionDoesNotExist, api.LogFields{"session_hash": hashSessionKey(sessionKey)})
 		}
 
 		return api.Account{}, api.Session{}, fetchErr
@@ -87,7 +113,7 @@ func (s Service) UserDidLogout(sessionKey string) error {
 		return delErr
 	}
 
-	s.log.Info(api.SessionDestroyed, api.LogFields{})
+	s.log.Info(api.SessionDestroyed, api.LogFields{"session_hash": hashSessionKey(sessionKey)})
 
 	return nil
 }

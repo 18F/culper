@@ -9,21 +9,39 @@ import (
 	"github.com/pkg/errors"
 )
 
-// CreateOrUpdateSession returns session key or error
-func (s SimpleStore) CreateOrUpdateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationDuration time.Duration) error {
+// CreateSession creates a new session. It errors if a valid session already exists.
+func (s SimpleStore) CreateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationDuration time.Duration) error {
 	expirationDate := time.Now().UTC().Add(expirationDuration)
 
-	createQuery := `INSERT INTO Sessions (session_key, account_id, session_index, expiration_date)
-		VALUES ($1, $2, $3, $4)
-		ON CONFLICT (account_id) DO UPDATE
-		SET session_key = $1, session_index = $3, expiration_date = $4`
+	createQuery := `INSERT INTO sessions (session_key, account_id, session_index, expiration_date)
+		VALUES ($1, $2, $3, $4)`
 
 	_, createErr := s.db.Exec(createQuery, sessionKey, accountID, sessionIndex, expirationDate)
 	if createErr != nil {
-		return errors.Wrap(createErr, "Failed to create or update session")
+
+		return errors.Wrap(createErr, "Unexpectedly failed to create a session")
 	}
 
 	return nil
+}
+
+// FetchPossiblyExpiredSession returns a session row by account ID regardless of wether it is expired
+// This is potentially dangerous, it is only intended to be used during the new login flow, never to check
+// on a valid session for authentication purposes.
+func (s SimpleStore) FetchPossiblyExpiredSession(accountID int) (api.Session, error) {
+	fetchQuery := `SELECT * FROM sessions WHERE account_id = $1`
+
+	session := api.Session{}
+	selectErr := s.db.Get(&session, fetchQuery, accountID)
+	if selectErr != nil {
+		if selectErr == sql.ErrNoRows {
+			return api.Session{}, sql.ErrNoRows
+		}
+		return api.Session{}, errors.Wrap(selectErr, "Failed to fetch a session row")
+	}
+
+	return session, nil
+
 }
 
 // DeleteSession removes a session record from the db
