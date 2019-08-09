@@ -332,8 +332,10 @@ export const getValidatorForSection = (section) => {
 
     case sections.PSYCHOLOGICAL_CONDITIONS:
       return validateExistingConditions
+
     case sections.REVIEW_AND_SUBMIT_COMMENTS:
       return validatePackageComments
+
     default:
       console.warn(`Validator for ${section} section not found`)
       return null

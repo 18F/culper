@@ -3,33 +3,60 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import i18n from 'util/i18n'
-import { updateApplication } from 'actions/ApplicationActions'
+import { validateSection } from 'helpers/validation'
+import { updateApplication, reportCompletion } from 'actions/ApplicationActions'
+import { REVIEW_AND_SUBMIT, REVIEW_AND_SUBMIT_COMMENTS } from 'config/formSections/review'
 import {
   Branch, Show, Field, Textarea,
 } from 'components/Form'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'
 
+const sectionConfig = {
+  key: REVIEW_AND_SUBMIT_COMMENTS.key,
+  section: REVIEW_AND_SUBMIT.name,
+  store: REVIEW_AND_SUBMIT.store,
+  subsection: REVIEW_AND_SUBMIT_COMMENTS.name,
+  storeKey: REVIEW_AND_SUBMIT_COMMENTS.storeKey,
+}
+
 const PackageComments = (props) => {
   const {
-    Comments, required, dispatch, location,
+    HasComments, Comments, required, dispatch, location,
   } = props
 
   const updateBranch = (values) => {
+    const updatedValues = { HasComments: values }
     dispatch(updateApplication(
-      'Package',
-      'Comments',
-      { HasComments: values },
+      sectionConfig.store,
+      sectionConfig.storeKey,
+      updatedValues,
+    ))
+
+    dispatch(reportCompletion(
+      sectionConfig.section,
+      sectionConfig.subsection,
+      validateSection({
+        data: { HasComments, Comments, ...updatedValues },
+        key: sectionConfig.key,
+      }) === true
     ))
   }
 
   const updateComments = (values) => {
+    const updatedValues = { Comments: values }
     dispatch(updateApplication(
-      'Package',
-      'Comments',
-      {
-        ...Comments,
-        Comments: values,
-      },
+      sectionConfig.store,
+      sectionConfig.storeKey,
+      { HasComments, ...updatedValues },
+    ))
+
+    dispatch(reportCompletion(
+      sectionConfig.section,
+      sectionConfig.subsection,
+      validateSection({
+        data: { HasComments, Comments, ...updatedValues },
+        key: sectionConfig.key,
+      }) === true
     ))
   }
 
@@ -43,12 +70,12 @@ const PackageComments = (props) => {
           name="has_comments"
           label={i18n.t('review.commentsBranchLabel')}
           labelSize="h4"
-          {...Comments.HasComments}
+          {...HasComments}
           warning={true}
           required={required}
           onUpdate={updateBranch}
         />
-        <Show when={Comments.HasComments && Comments.HasComments.value === 'Yes'}>
+        <Show when={HasComments && HasComments.value === 'Yes'}>
           <Field
             title={i18n.t('review.commentsTitle')}
             adjustFor="textarea"
@@ -59,7 +86,7 @@ const PackageComments = (props) => {
             </label>
             <Textarea
               name="Comments"
-              {...Comments.Comments}
+              {...Comments}
               required={required}
               onUpdate={updateComments}
             />
@@ -92,7 +119,10 @@ const mapStateToProps = (state) => {
   const { application } = state
   const { Package } = application
 
-  return { ...Package }
+  return {
+    HasComments: Package.Comments.HasComments,
+    Comments: Package.Comments.Comments,
+  }
 }
 
 export default connect(mapStateToProps)(PackageComments)

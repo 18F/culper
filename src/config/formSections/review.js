@@ -4,6 +4,7 @@ export const REVIEW_AND_SUBMIT = {
   key: sections.REVIEW_AND_SUBMIT,
   name: 'review',
   path: 'package',
+  store: 'Package',
   label: 'Review and submit',
 }
 
@@ -11,6 +12,7 @@ export const REVIEW_AND_SUBMIT_COMMENTS = {
   key: sections.REVIEW_AND_SUBMIT_COMMENTS,
   name: 'comments',
   path: 'comments',
+  storeKey: 'Comments',
   label: 'Additional Comments',
 }
 
