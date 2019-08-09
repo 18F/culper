@@ -9,7 +9,24 @@ import {
   reportErrors,
 } from 'actions/ApplicationActions'
 
-import { selectHistoryFederalSection } from 'selectors/branches'
+import {
+  selectHistoryFederalSection,
+  selectMultipleCitizenshipRenounced,
+  selectCitizenshipForeignPassportsSection,
+  selectFinancialBankruptcySection, // fail
+  selectFinancialGamblingSection, // fail
+  selectFinancialTaxesSection,
+  selectFinancialCardSection, // fail
+  selectFinancialCreditSection,
+  selectFinancialDelinquentSection,
+  selectFinancialDelinquentName,
+  selectFinancialDelinquentNonFederal,
+  selectFinancialNonpaymentSection, // fail
+  selectFinancialCardDisciplinaryDate,
+} from 'selectors/branches'
+import { selectValidUSPassport } from 'selectors/misc'
+
+import { extractOtherNames } from 'components/Section/extractors'
 
 import { totalYears, sort } from 'components/Section/History/helpers'
 import { utc } from 'components/Section/History/dateranges'
@@ -78,6 +95,11 @@ const connectSubsection = (Component, {
     const emptyItems = { items: [] }
     const emptyList = { List: emptyItems }
     const { formType } = app.Settings
+    const settings = app.Settings || {}
+
+    const names = extractOtherNames(app)
+
+    const financial = app.Financial || {}
 
     try {
       return {
@@ -89,12 +111,26 @@ const connectSubsection = (Component, {
         ...selectHistoryFederalSection(state),
         formType,
 
+        ...selectValidUSPassport(state),
+        ...selectMultipleCitizenshipRenounced(state),
+        ...selectCitizenshipForeignPassportsSection(state),
+
+        ...selectFinancialDelinquentName(state),
+        ...selectFinancialBankruptcySection(state),
+        ...selectFinancialGamblingSection(state),
+        ...selectFinancialTaxesSection(state),
+        ...selectFinancialCardSection(state),
+        ...selectFinancialCreditSection(state),
+        ...selectFinancialDelinquentSection(state),
+        ...selectFinancialNonpaymentSection(state),
+        ...selectFinancialCardDisciplinaryDate(state),
+
       }
     } catch (e) {
       console.log(key, e)
 
       return {}
-    }   
+    }
   }
   return connect(mapStateToProps)(ConnectedSubsection)
 }

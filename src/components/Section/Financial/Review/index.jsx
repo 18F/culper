@@ -10,7 +10,8 @@ import Credit from 'components/Section/Financial/Credit'
 import Delinquent from 'components/Section/Financial/Delinquent'
 import Nonpayment from 'components/Section/Financial/Nonpayment'
 
-import connectFinancialSection from '../FinancialConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 const sectionConfig = {
   section: FINANCIAL.name,
@@ -90,4 +91,4 @@ const Review = ({
   )
 }
 
-export default connectFinancialSection(Review, sectionConfig)
+export default connectSubsection(Review, sectionConfig)

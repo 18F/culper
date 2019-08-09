@@ -6,10 +6,10 @@ import validate, { NonpaymentItemValidator } from 'validators'
 
 import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_NONPAYMENT } from 'config/formSections/financial'
-import connectFinancialSection from '../FinancialConnector'
 
 import NonpaymentItem from './NonpaymentItem'
 
@@ -169,4 +169,4 @@ Nonpayment.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectFinancialSection(Nonpayment, sectionConfig)
+export default connectSubsection(Nonpayment, sectionConfig)
