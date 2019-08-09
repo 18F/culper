@@ -55,7 +55,7 @@ func (s *StorageService) DeleteAttachment(accountID int, attachmentID int) error
 	return nil
 }
 
-// CreateOrUpdateSession creates a new session record in the db
+// CreateSession creates a new session record in the db
 func (s *StorageService) CreateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationduration time.Duration) error {
 	return nil
 }
