@@ -1,6 +1,6 @@
 # SAML
 
-The eQIP prototype uses wso2 identity server as its SAML provider. The exact distribution used is only currently available to folks within GSA, but for development purposes a fresh install of wso2is 5.8.0 will suffice.
+For historical reasons, [WSO2 Identity Server](https://wso2.com/identity-and-access-management/) is used to test SAML workflows with eApp. These instructions were written against WSO2 IAM 5.8.0, but generally any SAML 2.0 identity provider (IdP) supporting the [Web Browser SSO profile and HTTP redirect/HTTP POST bindings](https://en.wikipedia.org/wiki/SAML_2.0#SP_Redirect_Request;_IdP_POST_Response) for the service provider and identity provider respectively, should work.
 
 ## Setting up SAML
 
