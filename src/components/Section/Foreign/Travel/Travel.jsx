@@ -6,7 +6,7 @@ import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_TRAVEL } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import TravelQuestions from './TravelQuestions'
 
 const sectionConfig = {
@@ -173,4 +173,4 @@ Travel.defaultProps = {
   requireForeignThreatened: true,
 }
 
-export default connectForeignSection(Travel, sectionConfig)
+export default connectSubsection(Travel, sectionConfig)

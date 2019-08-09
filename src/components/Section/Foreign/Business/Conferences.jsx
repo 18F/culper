@@ -6,7 +6,7 @@ import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_CONFERENCES } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import ConferencesItem from './ConferencesItem'
 
 const sectionConfig = {
@@ -134,4 +134,4 @@ Conferences.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(Conferences, sectionConfig)
+export default connectSubsection(Conferences, sectionConfig)

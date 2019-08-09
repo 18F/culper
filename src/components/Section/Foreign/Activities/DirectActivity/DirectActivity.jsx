@@ -6,7 +6,7 @@ import { Summary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_DIRECT } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import DirectInterest from './DirectInterest'
 
 const sectionConfig = {
@@ -141,4 +141,4 @@ DirectActivity.defaultProps = {
   validator: data => validate(schema('foreign.activities.direct', data)),
 }
 
-export default connectForeignSection(DirectActivity, sectionConfig)
+export default connectSubsection(DirectActivity, sectionConfig)

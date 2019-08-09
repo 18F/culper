@@ -23,6 +23,14 @@ import {
   selectFinancialDelinquentNonFederal,
   selectFinancialNonpaymentSection, // fail
   selectFinancialCardDisciplinaryDate,
+  selectForeignContactsSection,
+  selectForeignActivitiesSection,
+  selectForeignBusinessSection,
+  selectForeignTravelSection,
+  selectForeignCounterIntelligence,
+  selectForeignExcessiveKnowledge,
+  selectForeignSensitiveInformation,
+  selectForeignThreatened,
 } from 'selectors/branches'
 import { selectValidUSPassport } from 'selectors/misc'
 
@@ -101,6 +109,9 @@ const connectSubsection = (Component, {
 
     const financial = app.Financial || {}
 
+    const foreign = app.Foreign || {}
+    const applicantBirthdate = (identification.ApplicantBirthDate || {}).Date
+
     try {
       return {
         ...sectionData.data,
@@ -124,6 +135,18 @@ const connectSubsection = (Component, {
         ...selectFinancialDelinquentSection(state),
         ...selectFinancialNonpaymentSection(state),
         ...selectFinancialCardDisciplinaryDate(state),
+
+        ...selectForeignCounterIntelligence(state),
+        ...selectForeignExcessiveKnowledge(state),
+        ...selectForeignSensitiveInformation(state),
+        ...selectForeignThreatened(state),
+        ...selectForeignContactsSection(state),
+        ...selectForeignActivitiesSection(state),
+        ...selectForeignBusinessSection(state),
+        ...selectForeignTravelSection(state),
+        ...selectForeignCounterIntelligence(state),
+        ...selectForeignSensitiveInformation(state),
+        ...selectForeignThreatened(state),
 
       }
     } catch (e) {

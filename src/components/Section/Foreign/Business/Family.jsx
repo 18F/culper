@@ -6,7 +6,7 @@ import { Summary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_FAMILY } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import FamilyItem from './FamilyItem'
 
 const sectionConfig = {
@@ -134,4 +134,4 @@ Family.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(Family, sectionConfig)
+export default connectSubsection(Family, sectionConfig)

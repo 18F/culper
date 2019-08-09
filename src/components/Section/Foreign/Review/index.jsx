@@ -2,6 +2,9 @@ import React from 'react'
 
 import { FOREIGN, FOREIGN_REVIEW } from 'config/formSections/foreign'
 
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import Contacts from '../Contacts'
 import {
   DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support,
@@ -11,7 +14,6 @@ import {
 } from '../Business'
 import Travel from '../Travel'
 
-import connectForeignSection from '../ForeignConnector'
 
 const sectionConfig = {
   section: FOREIGN.name,
@@ -87,4 +89,4 @@ export const Review = ({
   )
 }
 
-export default connectForeignSection(Review, sectionConfig)
+export default connectSubsection(Review, sectionConfig)
