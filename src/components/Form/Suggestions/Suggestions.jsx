@@ -28,8 +28,10 @@ export default class Suggestions extends React.Component {
     const {
       suggestions, suggestionLabel, renderSuggestion, suggestionUseLabel,
     } = this.props
-    return suggestions.map(suggestion => (
-      <div className="suggestion" key={newGuid()}>
+    return suggestions.map((suggestion, i) => (
+      <div
+        className="suggestion" key={`suggestion-${i}`}
+      >
         <div className="value">
           <h5>{suggestionLabel}</h5>
           {renderSuggestion(suggestion)}
@@ -38,7 +40,7 @@ export default class Suggestions extends React.Component {
           <button
             type="button"
             className="suggestion-btn"
-            onClick={this.useSuggestion}
+            onClick={() => this.useSuggestion(suggestion)}
           >
             <span>{suggestionUseLabel}</span>
             <i className="fa fa-arrow-circle-right" />
@@ -80,7 +82,6 @@ export default class Suggestions extends React.Component {
       >
         <h3>{suggestionTitle}</h3>
         {suggestionParagraph}
-
         <div className={className}>
           {this.suggestions()}
           <div className="dismiss">

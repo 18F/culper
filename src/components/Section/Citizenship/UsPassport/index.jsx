@@ -127,6 +127,8 @@ export class UsPassport extends Subsection {
     this.update({
       Name: suggestion,
     })
+
+    this.setState({ showSuggestionsModal: false })
   }
 
   onDismiss = () => {
