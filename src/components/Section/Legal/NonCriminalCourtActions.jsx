@@ -11,7 +11,7 @@ import {
   LEGAL_COURT,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from './LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import NonCriminalCourtAction from './NonCriminalCourtAction'
 
 const sectionConfig = {
@@ -140,4 +140,4 @@ NonCriminalCourtActions.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(NonCriminalCourtActions, sectionConfig)
+export default connectSubsection(NonCriminalCourtActions, sectionConfig)

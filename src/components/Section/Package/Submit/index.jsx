@@ -16,6 +16,9 @@ import { Show } from 'components/Form'
 import { SpinnerAction } from 'components/Form/Spinner'
 import wait from 'util/wait'
 
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import FormStatus from '../FormStatus'
 import BasicAccordion from '../BasicAccordion'
 import AdditionalComments from '../AdditionalComments'
@@ -25,7 +28,6 @@ import Medical from '../Medical'
 import Credit from '../Credit'
 import SubmitConfirmationModal from '../SubmitConfirmationModal'
 
-import connectPackageSection from '../PackageConnector'
 
 const signatureValid = data => new SignatureValidator(data).isValid()
 
@@ -401,4 +403,4 @@ PackageSubmit.defaultProps = {
   Settings: { formType: '' },
 }
 
-export default connectPackageSection(PackageSubmit)
+export default connectSubsection(PackageSubmit)

@@ -9,7 +9,7 @@ import {
   LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import MembershipViolenceItem from './MembershipViolenceItem'
 
 const sectionConfig = {
@@ -139,4 +139,4 @@ MembershipViolence.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(MembershipViolence, sectionConfig)
+export default connectSubsection(MembershipViolence, sectionConfig)

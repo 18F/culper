@@ -22,7 +22,8 @@ import SubstanceUseReview from 'components/Section/SubstanceUse/Review'
 import LegalReview from 'components/Section/Legal/Review'
 import PsychologicalReview from 'components/Section/Psychological/Review'
 
-import connectPackageSection from '../PackageConnector'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const blobFromBase64 = (base64, contentType = '', size = 512) => {
   const binary = window.atob(base64)
@@ -256,4 +257,4 @@ PackagePrint.defaultProps = {
   formSections: [],
 }
 
-export default connectPackageSection(PackagePrint)
+export default connectSubsection(PackagePrint)

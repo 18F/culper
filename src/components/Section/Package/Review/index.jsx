@@ -5,8 +5,10 @@ import queryString from 'query-string'
 import i18n from 'util/i18n'
 import { env } from 'config'
 
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import FormStatus from '../FormStatus'
-import connectPackageSection from '../PackageConnector'
 
 export class PackageReview extends React.Component {
   constructor(props) {
@@ -68,4 +70,4 @@ PackageReview.defaultProps = {
   formIsValid: false,
 }
 
-export default connectPackageSection(PackageReview)
+export default connectSubsection(PackageReview)

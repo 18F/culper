@@ -6,10 +6,11 @@ import i18n from 'util/i18n'
 
 import { sectionIsInvalid } from 'helpers/validation'
 
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import FormStatus from '../FormStatus'
 import InvalidSection from '../InvalidSection'
-
-import connectPackageSection from '../PackageConnector'
 
 export const PackageErrors = ({ formSections }) => {
   const classes = classnames(
@@ -45,4 +46,4 @@ PackageErrors.defaultProps = {
   formSections: [],
 }
 
-export default connectPackageSection(PackageErrors)
+export default connectSubsection(PackageErrors)

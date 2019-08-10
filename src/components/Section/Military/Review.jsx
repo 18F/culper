@@ -7,7 +7,8 @@ import History from 'components/Section/Military/History'
 import Disciplinary from 'components/Section/Military/Disciplinary'
 import Foreign from 'components/Section/Military/Foreign'
 
-import connectMilitarySection from './MilitaryConnector'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   section: MILITARY.name,
@@ -47,4 +48,4 @@ Review.defaultProps = {
   showDisciplinaryProcedures: false,
 }
 
-export default connectMilitarySection(Review, sectionConfig)
+export default connectSubsection(Review, sectionConfig)

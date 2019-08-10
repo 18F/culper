@@ -31,8 +31,23 @@ import {
   selectForeignExcessiveKnowledge,
   selectForeignSensitiveInformation,
   selectForeignThreatened,
+  selectLegalOtherOffensesSection,
+  selectLegalNonCriminalCourtSection,
+  selectLegalTechnologySection,
+  selectLegalOffenseInvolvements,
+  selectLegalOffenseSentenced,
+  selectLegalOffenseIncarcerated,
+  selectLegalInvestigationClearanceGranted,
+  selectLegalPoliceFirearms,
+  selectLegalPoliceDrugs,
+  selectForeignMilitaryMaintainsContact,
 } from 'selectors/branches'
 import { selectValidUSPassport } from 'selectors/misc'
+import {
+  hideSelectiveServiceSelector,
+  hideDisciplinaryProceduresSelector,
+} from 'selectors/navigation'
+import { formStatusSelector } from 'selectors/validation'
 
 import { extractOtherNames } from 'components/Section/extractors'
 
@@ -112,6 +127,10 @@ const connectSubsection = (Component, {
     const foreign = app.Foreign || {}
     const applicantBirthdate = (identification.ApplicantBirthDate || {}).Date
 
+    const legal = app.Legal || {}
+
+    const military = app.Military || {}
+
     try {
       return {
         ...sectionData.data,
@@ -147,6 +166,22 @@ const connectSubsection = (Component, {
         ...selectForeignCounterIntelligence(state),
         ...selectForeignSensitiveInformation(state),
         ...selectForeignThreatened(state),
+
+        ...selectLegalOffenseInvolvements(state),
+        ...selectLegalOffenseSentenced(state),
+        ...selectLegalOffenseIncarcerated(state),
+        ...selectLegalPoliceFirearms(state),
+        ...selectLegalPoliceDrugs(state),
+        ...selectLegalInvestigationClearanceGranted(state),
+        ...selectLegalOtherOffensesSection(state),
+        ...selectLegalNonCriminalCourtSection(state),
+        ...selectLegalTechnologySection(state),
+
+        ...selectForeignMilitaryMaintainsContact(state),
+        showSelectiveService: !hideSelectiveServiceSelector(state),
+        showDisciplinaryProcedures: !hideDisciplinaryProceduresSelector(state),
+
+        ...formStatusSelector(state),
 
       }
     } catch (e) {

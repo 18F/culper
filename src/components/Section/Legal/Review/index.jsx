@@ -2,6 +2,9 @@ import React from 'react'
 
 import { LEGAL, LEGAL_REVIEW } from 'config/formSections/legal'
 
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import ConnectedOffenses from '../Police/Offenses'
 import ConnectedOtherOffenses from '../Police/OtherOffenses'
 import ConnectedDomesticViolenceList from '../Police/DomesticViolenceList'
@@ -17,8 +20,6 @@ import {
   ActivitiesToOverthrow,
   TerrorismAssociation,
 } from '../Associations'
-
-import connectLegalSection from '../LegalConnector'
 
 const sectionConfig = {
   section: LEGAL.name,
@@ -97,4 +98,4 @@ export const Review = ({
   )
 }
 
-export default connectLegalSection(Review, sectionConfig)
+export default connectSubsection(Review, sectionConfig)
