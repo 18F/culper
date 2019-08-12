@@ -1,146 +1,84 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
-import { api } from '../../../services'
-import { updateApplication } from '../../../actions/ApplicationActions'
-import { tokenError } from '../../../actions/AuthActions'
-import { saveSection } from '../../SavedIndicator/persistence-helpers'
-import Modal from '../Modal'
-import Svg from '../Svg'
 
-export const roundUp = (num, precision) => {
-  return Math.ceil(num * precision) / precision
-}
+import { i18n } from 'config'
 
-export const minutes = ms => {
-  return parseInt(roundUp(ms / (60 * 1000), 1), 10)
-}
+import { renewSession } from 'actions/AuthActions'
 
-export const seconds = ms => {
-  return parseInt(roundUp(ms / 1000, 1), 10)
-}
+import { saveSection } from 'components/SavedIndicator/persistence-helpers'
+
+import Modal from 'components/Form/Modal'
+import Svg from 'components/Form/Svg'
 
 export class TimeoutWarning extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      showWarning: this.props.showWarning,
-      interval: props.interval || 60 * 1000,
-      countdown: 60
+      countdown: 60,
     }
-    this.onDismiss = this.onDismiss.bind(this)
-    this.onClick = this.onClick.bind(this)
-    this.tick = this.tick.bind(this)
+
+    this.interval = 1000 // tick every second
     this.timer = null
   }
 
   componentDidMount() {
     this.resetInterval()
+    this.autosave()
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timer)
   }
 
-  tick() {
-    const now = new Date().getTime()
-    const last = this.props.lastRefresh
-    const timeoutInMilliseconds = this.props.timeout * 60 * 1000
-    const diff = now - last
-    if (seconds(diff) >= seconds(timeoutInMilliseconds)) {
-      // Session has expired
-      this.props.dispatch(tokenError())
-    } else if (this.state.showWarning) {
-      // Ticks are to count down by seconds now
-      this.setState({ countdown: seconds(timeoutInMilliseconds - diff) })
-    } else {
-      // Ticks should be checking if in the last minute of the session
-      if (minutes(diff) >= this.props.timeout - 1) {
-        const application = this.props.app
-        const section = this.props.section.section
-        const subsection = this.props.section.subsection
-        const dispatcher = this.props.dispatch
-        this.setState(
-          {
-            showWarning: true,
-            interval: 1000,
-            countdown: seconds(timeoutInMilliseconds - diff)
-          },
-          () => {
-            // Save the form
-            saveSection(application, section, subsection, dispatcher).catch(
-              error => {
-                alert(error)
-              }
-            )
-            // Change the timer interval
-            this.resetInterval()
-          }
-        )
-      }
+  onClick = () => {
+    const { dispatch } = this.props
+    dispatch(renewSession())
+  }
+
+  autosave = () => {
+    const { application, section, dispatch } = this.props
+
+    // Save the form
+    saveSection(application, section.section, section.subsection, dispatch)
+    // TODO error handling
+  }
+
+  tick = () => {
+    const { countdown } = this.state
+    const newCountdown = countdown - 1
+
+    if (newCountdown >= 0) {
+      this.setState({
+        countdown: newCountdown,
+      })
     }
   }
 
-  onDismiss() {
-    this.refreshToken()
-  }
-
-  onClick() {
-    this.setState(
-      { showWarning: false, interval: 60 * 1000, countdown: 60 },
-      () => {
-        // Change the timer interval
-        this.resetInterval()
-        // Refresh the token
-        this.refreshToken()
-      }
-    )
-  }
-
-  resetInterval() {
-    if (this.timer) {
-      window.clearInterval(this.timer)
-    }
-    this.timer = window.setInterval(this.tick, this.state.interval)
-  }
-
-  refreshToken() {
-    const self = this
-    api
-      .refresh()
-      .then(r => {
-        api.setToken(r.data)
-        if (r.data === '') {
-          self.props.dispatch(tokenError())
-        } else {
-          self.props.dispatch(
-            updateApplication('Settings', 'lastRefresh', new Date().getTime())
-          )
-        }
-      })
-      .catch(() => {
-        api.setToken('')
-        self.props.dispatch(tokenError())
-      })
-  }
-
-  message() {
-    return i18n
-      .t('application.timeout.message')
-      .replace('{time}', this.state.countdown)
+  resetInterval = () => {
+    if (this.timer) window.clearInterval(this.timer)
+    this.timer = window.setInterval(this.tick, this.interval)
   }
 
   render() {
+    const { countdown } = this.state
+
+    const message = i18n.t('application.timeout.message')
+      .replace('{time}', countdown)
+
     return (
       <div className="timeout-warning">
-        <Modal show={this.state.showWarning} onDismiss={this.onDismiss}>
+        <Modal show={true}>
           <Svg src="/img/timeout-icon.svg" />
           <h2>{i18n.t('application.timeout.title')}</h2>
-          <p>{this.message()}</p>
+          <p>{message}</p>
           <button
+            type="button"
             title={i18n.t('application.timeout.button')}
             aria-label={i18n.t('application.timeout.button')}
-            onClick={this.onClick}>
+            onClick={this.onClick}
+          >
             <div>
               <span>{i18n.t('application.timeout.button')}</span>
               <i className="fa fa-arrow-circle-right" aria-hidden="true" />
@@ -152,21 +90,24 @@ export class TimeoutWarning extends React.Component {
   }
 }
 
+TimeoutWarning.propTypes = {
+  application: PropTypes.object,
+  section: PropTypes.object,
+  dispatch: PropTypes.func,
+}
+
 TimeoutWarning.defaultProps = {
-  lastRefresh: null,
-  showWarning: false,
-  timeout: 15,
-  dispatch: action => {}
+  application: {},
+  section: {},
+  dispatch: () => {},
 }
 
 function mapStateToProps(state) {
-  const section = state.section || {}
-  const app = state.application || {}
-  const settings = app.Settings || {}
+  const { application, section } = state
+
   return {
-    section: section,
-    app: app,
-    lastRefresh: settings.lastRefresh
+    application,
+    section,
   }
 }
 

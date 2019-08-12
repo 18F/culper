@@ -345,4 +345,10 @@ const (
 	// Target: Front-end (web), Back-end (api)
 	// Default: ".tiff;.png;.pdf"
 	FileTypes = "FILE_TYPES"
+
+	// DevUseInsecureCookie wether to use a cookie with Secure set to false in development.
+	//
+	// Target: Back-end (api)
+	// Default: ""
+	DevUseInsecureCookie = "DEV_USE_INSECURE_COOKIE"
 )

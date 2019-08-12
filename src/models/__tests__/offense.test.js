@@ -41,26 +41,29 @@ describe('The offense model', () => {
   })
 
   it('the InvolvedViolence field must have a valid value', () => {
+    const options = { requireLegalOffenseInvolvements: true }
     const testData = { InvolvedViolence: { value: 'true' } }
     const expectedErrors = ['InvolvedViolence.hasValue.value.inclusion.INCLUSION']
 
-    expect(validateModel(testData, offense))
+    expect(validateModel(testData, offense, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('the InvolvedFirearms field must have a valid value', () => {
+    const options = { requireLegalOffenseInvolvements: true }
     const testData = { InvolvedFirearms: { value: 'false' } }
     const expectedErrors = ['InvolvedFirearms.hasValue.value.inclusion.INCLUSION']
 
-    expect(validateModel(testData, offense))
+    expect(validateModel(testData, offense, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
   it('the InvolvedSubstances field must have a valid value', () => {
+    const options = { requireLegalOffenseInvolvements: true }
     const testData = { InvolvedSubstances: { value: 100 } }
     const expectedErrors = ['InvolvedSubstances.hasValue.value.inclusion.INCLUSION']
 
-    expect(validateModel(testData, offense))
+    expect(validateModel(testData, offense, options))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -391,6 +394,10 @@ describe('The offense model', () => {
       })
 
       it('the Sentence field must be a valid Sentence', () => {
+        const options = {
+          requireLegalOffenseSentenced: true,
+          requireLegalOffenseIncarcerated: true,
+        }
         const testData = {
           WasCharged: { value: 'Yes' },
           WasSentenced: { value: 'Yes' },
@@ -410,7 +417,7 @@ describe('The offense model', () => {
           'Sentence.model.ProbationDates.presence.REQUIRED',
         ]
 
-        expect(validateModel(testData, offense))
+        expect(validateModel(testData, offense, options))
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 

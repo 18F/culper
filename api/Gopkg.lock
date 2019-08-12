@@ -100,6 +100,14 @@
   version = "v1.6.2"
 
 [[projects]]
+  digest = "1:e72d1ebb8d395cf9f346fd9cbc652e5ae222dd85e0ac842dc57f175abed6d195"
+  name = "github.com/gorilla/securecookie"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "e59506cc896acb7f7bf732d4fdf5e25f7ccd8983"
+  version = "v1.1.1"
+
+[[projects]]
   branch = "master"
   digest = "1:fd97437fbb6b7dce04132cf06775bd258cce305c44add58eb55ca86c6c325160"
   name = "github.com/jinzhu/inflection"
@@ -292,6 +300,7 @@
     "github.com/go-pg/pg",
     "github.com/google/uuid",
     "github.com/gorilla/mux",
+    "github.com/gorilla/securecookie",
     "github.com/jmoiron/sqlx",
     "github.com/lib/pq",
     "github.com/nsf/jsondiff",

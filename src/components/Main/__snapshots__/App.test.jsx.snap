@@ -837,13 +837,13 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
-                  <a
+                  <button
                     className="logout"
-                    href="#"
                     onClick={[Function]}
+                    type="button"
                   >
                     Logout
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -3044,13 +3044,13 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
-                  <a
+                  <button
                     className="logout"
-                    href="#"
                     onClick={[Function]}
+                    type="button"
                   >
                     Logout
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -5777,13 +5777,13 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
-                  <a
+                  <button
                     className="logout"
-                    href="#"
                     onClick={[Function]}
+                    type="button"
                   >
                     Logout
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
