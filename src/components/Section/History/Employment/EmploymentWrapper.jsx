@@ -12,6 +12,9 @@ import { sectionHasGaps } from 'components/Section/History/helpers'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
+import ConnectedEmployment from './Employment'
+import EmploymentSummaryProgress from './EmploymentSummaryProgress'
+
 const sectionConfig = {
   section: HISTORY.name,
   subsection: HISTORY_EMPLOYMENT.name,
