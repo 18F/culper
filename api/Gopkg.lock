@@ -92,6 +92,14 @@
   version = "v1.1.1"
 
 [[projects]]
+  digest = "1:ee7b499231ce18a66ff7af428ea13fc10db4430d84836c7bc3b3138ffb20a985"
+  name = "github.com/gorilla/csrf"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "38c9e4619f0d5d8ff3fb574fc6260901f2495776"
+  version = "v1.6.0"
+
+[[projects]]
   digest = "1:e73f5b0152105f18bc131fba127d9949305c8693f8a762588a82a48f61756f5f"
   name = "github.com/gorilla/mux"
   packages = ["."]
@@ -299,6 +307,7 @@
     "github.com/dgrijalva/jwt-go",
     "github.com/go-pg/pg",
     "github.com/google/uuid",
+    "github.com/gorilla/csrf",
     "github.com/gorilla/mux",
     "github.com/gorilla/securecookie",
     "github.com/jmoiron/sqlx",
