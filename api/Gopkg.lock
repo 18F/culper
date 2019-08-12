@@ -53,14 +53,6 @@
   version = "v1.17.0"
 
 [[projects]]
-  digest = "1:d912bf9afc98bbb6539ea99c9ac3e83119853310dd1a3aec1583d76f340ece27"
-  name = "github.com/dgrijalva/jwt-go"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "d2709f9f1f31ebcda9651b03077758c1f3a0018c"
-  version = "v3.0.0"
-
-[[projects]]
   digest = "1:0a2260bcfa15237979ef496f03fb6af215c247ad998881a4d039992228876ae3"
   name = "github.com/go-pg/pg"
   packages = [
@@ -304,7 +296,6 @@
     "github.com/antchfx/xmlquery",
     "github.com/benbjohnson/clock",
     "github.com/cloudfoundry-community/go-cfenv",
-    "github.com/dgrijalva/jwt-go",
     "github.com/go-pg/pg",
     "github.com/google/uuid",
     "github.com/gorilla/csrf",
