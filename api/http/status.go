@@ -60,7 +60,7 @@ func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Get the CSRF token and add it as a header
-	AddCSRFTokenHeader(&w, r)
+	AddCSRFTokenHeader(w, r)
 
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, string(statusBytes))

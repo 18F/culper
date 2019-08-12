@@ -1,8 +1,12 @@
 package http
 
 import (
+	"crypto/rand"
+	"encoding/base64"
+	"errors"
 	"net/http"
 
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/gorilla/csrf"
 )
 
@@ -15,12 +19,24 @@ type CSRFMiddleware struct {
 }
 
 // NewCSRFMiddleware returns a configured CSRFMiddleware
-func NewCSRFMiddleware(authKey []byte, useSecureCookie bool) *CSRFMiddleware {
+func NewCSRFMiddleware(log api.LogService, authKey []byte, useSecureCookie bool) (*CSRFMiddleware, error) {
+	if len(authKey) == 0 {
+		log.Warn("CSRF_SECRET is not set. A random secret is being generated. This should be set in production so that restarting the server doesn't break CSRF protection", api.LogFields{})
+		// Generate a random 32 byte secret for CSRF
+		b := make([]byte, 32)
+		_, err := rand.Read(b)
+		if err != nil {
+			return nil, errors.New("Failed to generate temporary random CSRF secret")
+		}
+
+		authKey = []byte(base64.StdEncoding.EncodeToString(b))
+	}
+
 	gorillaMiddleware := csrf.Protect(authKey, csrf.Secure(useSecureCookie))
 
 	return &CSRFMiddleware{
 		gorillaMiddleware,
-	}
+	}, nil
 }
 
 // Middleware for verifying the CSRF token
@@ -29,9 +45,8 @@ func (m CSRFMiddleware) Middleware(next http.Handler) http.Handler {
 }
 
 // AddCSRFTokenHeader adds the current token header to the response
-// Strangely, in test, at least, if this isn't passed explicitly as a pointer it doesn't pass by refrence correctly.
-// even though the writer instance is a pointer already
-func AddCSRFTokenHeader(w *http.ResponseWriter, r *http.Request) {
+func AddCSRFTokenHeader(w http.ResponseWriter, r *http.Request) {
+	// if CSRF middleware has not been engaged, then Token() returns the empty string
 	token := csrf.Token(r)
-	(*w).Header()[tokenHeaderName] = []string{token}
+	w.Header()[tokenHeaderName] = []string{token}
 }

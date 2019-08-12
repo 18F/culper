@@ -20,7 +20,10 @@ func TestCSRFTokenExists(t *testing.T) {
 	}
 
 	authKey := []byte("123456789012345678901234567890")
-	csrfMiddleware := http.NewCSRFMiddleware(authKey, true)
+	csrfMiddleware, csrfErr := http.NewCSRFMiddleware(services.log, authKey, true)
+	if csrfErr != nil {
+		t.Fatal(csrfErr)
+	}
 
 	wrappedHandler := csrfMiddleware.Middleware(statusHandler)
 

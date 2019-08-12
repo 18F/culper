@@ -80,6 +80,14 @@ func main() {
 	// Authentication schemes
 	sec := http.NewSessionMiddleware(logger, sessionService)
 
+	// CSRF
+	csrfSecret := settings.String(api.CSRFSecret)
+	csrf, csrfErr := http.NewCSRFMiddleware(logger, []byte(csrfSecret), secureCookie)
+	if csrfErr != nil {
+		logger.WarnError("Error configuring CSRF", csrfErr, api.LogFields{})
+		return
+	}
+
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
 		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService, Session: sessionService}.ServeHTTP).Methods("POST")
@@ -95,9 +103,9 @@ func main() {
 	r.Handle("/refresh", sec.Middleware(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
 
 	a := r.PathPrefix("/me").Subrouter()
-	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Log: logger, Session: sessionService})).Methods("GET")
+	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Log: logger, Session: sessionService})).Methods("POST")
 	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
-	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
+	a.Handle("/status", csrf.Middleware(sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Database: database, Store: store}))).Methods("GET")
 	a.Handle("/validate", sec.Middleware(http.ValidateHandler{Log: logger})).Methods("POST")
 	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
 	a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Database: database, Store: store, Submitter: submitter})).Methods("POST")
