@@ -7,7 +7,7 @@ import i18n from 'util/i18n'
 import { sectionIsInvalid } from 'helpers/validation'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import connectPackageSection from '../PackageConnector'
 
 import FormStatus from '../FormStatus'
 import InvalidSection from '../InvalidSection'
@@ -46,4 +46,4 @@ PackageErrors.defaultProps = {
   formSections: [],
 }
 
-export default connectSubsection(PackageErrors)
+export default connectPackageSection(PackageErrors)

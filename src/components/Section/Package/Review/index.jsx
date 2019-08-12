@@ -6,7 +6,7 @@ import i18n from 'util/i18n'
 import { env } from 'config'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import connectPackageSection from '../PackageConnector'
 
 import FormStatus from '../FormStatus'
 
@@ -70,4 +70,4 @@ PackageReview.defaultProps = {
   formIsValid: false,
 }
 
-export default connectSubsection(PackageReview)
+export default connectPackageSection(PackageReview)

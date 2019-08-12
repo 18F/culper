@@ -118,7 +118,29 @@ const connectSubsection = (Component, {
     dispatch: () => {},
   }
 
+  const processDate = (date) => {
+    if (!date) {
+      return null
+    }
+
+    let d = null
+    const { month, day, year } = date.Date
+    if (month && day && year) {
+      d = utc(new Date(year, month - 1, day))
+    }
+    return d
+  }
+
+  const extractSpouse = (marital) => {
+    if (!marital || !marital.CivilUnion || !marital.CivilUnion.Name) {
+      return null
+    }
+
+    return marital.CivilUnion.Name
+  }
+
   const mapStateToProps = (state) => {
+    console.log('state: ', state)
     const { form } = state
     const sectionData = form[key]
 
@@ -147,7 +169,7 @@ const connectSubsection = (Component, {
     const psychological = app.Psychological
 
     const relationships = app.Relationships
-    const spouse = Relationships && extractSpouse(Relationships.Marital)
+    const spouse = relationships && extractSpouse(relationships.Marital)
 
     const substance = app.Substance || {}
 

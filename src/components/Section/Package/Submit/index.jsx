@@ -17,7 +17,7 @@ import { SpinnerAction } from 'components/Form/Spinner'
 import wait from 'util/wait'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import connectPackageSection from '../PackageConnector'
 
 import FormStatus from '../FormStatus'
 import BasicAccordion from '../BasicAccordion'
@@ -403,4 +403,4 @@ PackageSubmit.defaultProps = {
   Settings: { formType: '' },
 }
 
-export default connectSubsection(PackageSubmit)
+export default connectPackageSection(PackageSubmit)
