@@ -12,8 +12,8 @@ import {
   IDENTIFICATION_BIRTH_DATE,
 } from 'config/formSections/identification'
 
-import connectIdentificationSection from '../IdentificationConnector'
 import Subsection from '../../shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   key: IDENTIFICATION_BIRTH_DATE.key,
@@ -168,4 +168,4 @@ ApplicantBirthDate.defaultProps = {
   validator: data => validate(schema('identification.birthdate', data)),
 }
 
-export default connectIdentificationSection(ApplicantBirthDate, sectionConfig)
+export default connectSubsection(ApplicantBirthDate, sectionConfig)

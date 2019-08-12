@@ -14,7 +14,7 @@ import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import PrescriptionUse from './PrescriptionUse'
 
 const sectionConfig = {
@@ -141,4 +141,4 @@ PrescriptionUses.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectSubstanceUseSection(PrescriptionUses, sectionConfig)
+export default connectSubsection(PrescriptionUses, sectionConfig)

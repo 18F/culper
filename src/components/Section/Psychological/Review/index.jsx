@@ -8,7 +8,8 @@ import ConnectedHospitalizations from '../Hospitalizations/Hospitalizations'
 import ConnectedDiagnoses from '../Diagnoses/Diagnoses'
 import ConnectedExistingConditions from '../ExistingConditions/ExistingConditions'
 
-import connectPsychologicalSection from '../PsychologicalConnector'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   section: PSYCHOLOGICAL.name,
@@ -43,4 +44,4 @@ const Review = ({ showExistingConditions = true }) => {
   )
 }
 
-export default connectPsychologicalSection(Review, sectionConfig)
+export default connectSubsection(Review, sectionConfig)

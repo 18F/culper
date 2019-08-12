@@ -9,7 +9,7 @@ import {
   SUBSTANCE_USE_DRUGS_CLEARANCE,
 } from 'config/formSections/substanceUse'
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import DrugClearanceUse from './DrugClearanceUse'
 
 const sectionConfig = {
@@ -129,4 +129,4 @@ DrugClearanceUses.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectSubstanceUseSection(DrugClearanceUses, sectionConfig)
+export default connectSubsection(DrugClearanceUses, sectionConfig)

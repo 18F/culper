@@ -11,13 +11,14 @@ import {
   Branch,
   Show,
 } from 'components/Form'
+
+import Subsection from '../../shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import { Summary, NameSummary, DateSummary } from 'components/Summary'
 import { IDENTIFICATION, IDENTIFICATION_OTHER_NAMES } from 'config/formSections/identification'
 
 import OtherNameItem from './OtherNameItem'
-
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
 
 const sectionConfig = {
   key: IDENTIFICATION_OTHER_NAMES.key,
@@ -157,4 +158,4 @@ OtherNames.defaultProps = {
   required: false,
 }
 
-export default connectIdentificationSection(OtherNames, sectionConfig)
+export default connectSubsection(OtherNames, sectionConfig)

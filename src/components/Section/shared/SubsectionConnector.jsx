@@ -41,11 +41,24 @@ import {
   selectLegalPoliceFirearms,
   selectLegalPoliceDrugs,
   selectForeignMilitaryMaintainsContact,
+  selectRelationshipMaritalForeignBornDocExpiration,
+  selectRelationshipMaritalDivorcePhoneNumber,
+  selectRelationshipRelativesUSResidenceDoc,
+  selectRelationshipRelativesForeignGovtAffExplanation,
+  selectDrugWhileSafetySection,
+  selectDrugWithClearanceSection,
+  selectAlcoholSections,
+  selectDrugWhileSafety,
+  selectDrugWithClearance,
+  selectDrugInFuture,
+  selectAlcoholOrderedCounselingParty,
+  selectAlcoholReceivedCounselingsSection,
 } from 'selectors/branches'
 import { selectValidUSPassport } from 'selectors/misc'
 import {
   hideSelectiveServiceSelector,
   hideDisciplinaryProceduresSelector,
+  hideExistingConditionsSelector,
 } from 'selectors/navigation'
 import { formStatusSelector } from 'selectors/validation'
 
@@ -131,6 +144,14 @@ const connectSubsection = (Component, {
 
     const military = app.Military || {}
 
+    const psychological = app.Psychological
+
+    const relationships = app.Relationships
+    const spouse = Relationships && extractSpouse(Relationships.Marital)
+
+    const substance = app.Substance || {}
+
+
     try {
       return {
         ...sectionData.data,
@@ -182,6 +203,20 @@ const connectSubsection = (Component, {
         showDisciplinaryProcedures: !hideDisciplinaryProceduresSelector(state),
 
         ...formStatusSelector(state),
+
+        showExistingConditions: !hideExistingConditionsSelector(state),
+
+        ...selectRelationshipMaritalForeignBornDocExpiration(state),
+        ...selectRelationshipMaritalDivorcePhoneNumber(state),
+        ...selectRelationshipRelativesUSResidenceDoc(state),
+        ...selectRelationshipRelativesForeignGovtAffExplanation(state),
+
+        ...selectDrugWhileSafety(state),
+        ...selectDrugWithClearance(state),
+        ...selectDrugInFuture(state),
+        ...selectAlcoholOrderedCounselingParty(state),
+        ...selectAlcoholSections(state),
+        ...selectAlcoholReceivedCounselingsSection(state),
 
       }
     } catch (e) {

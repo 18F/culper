@@ -15,9 +15,9 @@ import {
 } from 'components/Form'
 
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import { PSYCHOLOGICAL, PSYCHOLOGICAL_DIAGNOSES } from 'config/formSections/psychological'
-import connectPsychologicalSection from '../PsychologicalConnector'
 
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
@@ -263,4 +263,4 @@ Diagnoses.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectPsychologicalSection(Diagnoses, sectionConfig)
+export default connectSubsection(Diagnoses, sectionConfig)
