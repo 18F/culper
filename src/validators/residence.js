@@ -9,6 +9,7 @@ export const validateResidence = data => (
 )
 
 export const validateHistoryResidence = (data, formType = formTypes.SF86) => {
+  // TODO years requirement is not enforced by validator yet
   const years = formType
     && formConfig[formType]
     && formConfig[formType].HISTORY_RESIDENCE_YEARS

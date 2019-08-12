@@ -4,6 +4,8 @@ const historyResidence = {
   List: {
     presence: true,
     accordion: { validator: residence },
+    // TODO add the below when we have access to birthdate
+    /*
     durationCoverage: (value, attributes, attributeName, options) => {
       const { requireYears } = options
 
@@ -11,6 +13,7 @@ const historyResidence = {
         requiredDuration: { years: requireYears },
       }
     },
+    */
   },
 }
 

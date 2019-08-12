@@ -10,16 +10,6 @@ export const validateHistoryFederal = data => (
   validateModel(data, historyFederal) === true
 )
 
-export default class FederalServiceValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateHistoryFederal(this.data)
-  }
-}
-
 export class FederalServiceItemValidator {
   constructor(data = {}) {
     this.data = data

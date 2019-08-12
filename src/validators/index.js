@@ -15,11 +15,9 @@ import { OtherNameValidator } from './identificationothernames'
 import PassportValidator from './passport'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
-import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
-import HistoryEducationValidator, { EducationItemValidator } from './education'
-import FederalServiceValidator, {
-  FederalServiceItemValidator,
-} from './federalservice'
+import { EmploymentValidator } from './employment'
+import { EducationItemValidator } from './education'
+import { FederalServiceItemValidator } from './federalservice'
 import SelectiveServiceValidator, {
   hideSelectiveService,
 } from './selectiveservice'
@@ -222,9 +220,7 @@ export {
   GamblingItemValidator,
   HistoryResidenceValidator,
   ResidenceValidator,
-  HistoryEmploymentValidator,
   EmploymentValidator,
-  HistoryEducationValidator,
   EducationItemValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
@@ -240,7 +236,6 @@ export {
   DomesticViolenceValidator,
   DomesticViolenceItem,
   OffenseValidator,
-  FederalServiceValidator,
   FederalServiceItemValidator,
   RelativesValidator,
   RelativeValidator,

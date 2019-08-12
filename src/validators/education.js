@@ -10,29 +10,6 @@ export const validateHistoryEducation = data => (
   validateModel(data, historyEducation) === true
 )
 
-export default class HistoryEducationValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validAttendance() {
-    return validateModel(this.data, {
-      HasAttended: historyEducation.HasAttended,
-      HasDegree10: historyEducation.HasDegree10,
-    }) === true
-  }
-
-  validList() {
-    return validateModel(this.data, {
-      List: historyEducation.List,
-    }) === true
-  }
-
-  isValid() {
-    return validateHistoryEducation(this.data)
-  }
-}
-
 export class EducationItemValidator {
   constructor(data = {}) {
     this.data = data
