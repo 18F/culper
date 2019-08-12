@@ -111,8 +111,8 @@ const connectSubsection = (Component, {
   }
 
   ConnectedSubsection.propTypes = {
-    dispatch: propType,
-    Birthdate: propType.instanceOf(Date),
+    dispatch: PropType,
+    Birthdate: PropType.instanceOf(Date),
   }
 
   ConnectedSubsection.defaultProps = {
