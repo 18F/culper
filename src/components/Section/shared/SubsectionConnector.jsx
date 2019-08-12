@@ -13,15 +13,15 @@ import {
   selectHistoryFederalSection,
   selectMultipleCitizenshipRenounced,
   selectCitizenshipForeignPassportsSection,
-  selectFinancialBankruptcySection, // fail
-  selectFinancialGamblingSection, // fail
+  selectFinancialBankruptcySection, 
+  selectFinancialGamblingSection, 
   selectFinancialTaxesSection,
-  selectFinancialCardSection, // fail
+  selectFinancialCardSection, 
   selectFinancialCreditSection,
   selectFinancialDelinquentSection,
   selectFinancialDelinquentName,
   selectFinancialDelinquentNonFederal,
-  selectFinancialNonpaymentSection, // fail
+  selectFinancialNonpaymentSection, 
   selectFinancialCardDisciplinaryDate,
   selectForeignContactsSection,
   selectForeignActivitiesSection,
@@ -111,11 +111,13 @@ const connectSubsection = (Component, {
   }
 
   ConnectedSubsection.propTypes = {
-    dispatch: PropTypes.func,
+    dispatch: PropType,
+    Birthdate: PropType.instanceOf(Date),
   }
 
   ConnectedSubsection.defaultProps = {
     dispatch: () => {},
+    Birthdate: null,
   }
 
   const processDate = (date) => {
