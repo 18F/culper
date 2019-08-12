@@ -117,11 +117,12 @@ PackageComments.defaultProps = {
 
 const mapStateToProps = (state) => {
   const { application } = state
-  const { Package } = application
+  const { Package = {} } = application
+  const { Comments = {} } = Package
 
   return {
-    HasComments: Package.Comments.HasComments,
-    Comments: Package.Comments.Comments,
+    HasComments: Comments.HasComments,
+    Comments: Comments.Comments,
   }
 }
 
