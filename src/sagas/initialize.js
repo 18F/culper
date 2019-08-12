@@ -91,6 +91,14 @@ export function* handleInitSuccess(action, path = '/form/identification/intro') 
     yield put(updateApplication('Settings', 'status', Status))
     yield put(updateApplication('Settings', 'hash', Hash))
 
+    const headers = response.headers
+    const csrfToken = headers['x-csrf-token']
+
+    if (csrfToken == "") {
+      console.error("No CSRF Token sent with /status. /save calls are going to fail.")
+    }
+    window.csrfToken = csrfToken
+
     // Check to see if the account is locked
     const status = response.data
     if (status.Status === STATUS_SUBMITTED) {

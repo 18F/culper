@@ -47,7 +47,15 @@ class Api {
   }
 
   post(endpoint, params = {}) {
-    return this.proxy.post(endpoint, params)
+    const csrfToken = window.csrfToken
+    let headers = {}
+    if (!csrfToken) {
+      console.error("Attempting to make a POST without a CSRF Token set.", endpoint)
+    } else {
+      headers['X-CSRF-Token'] = csrfToken
+    }
+
+    return this.proxy.post(endpoint, params, { headers: headers })
   }
 
   /** AUTH */
