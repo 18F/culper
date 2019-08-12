@@ -1,4 +1,4 @@
-# Instructions on running eapp over SSL in dev
+# Instructions on running eapp over SSL – for local development only
 
 1. Configure the api server to use SSL: 
 
