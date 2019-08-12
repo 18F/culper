@@ -1,35 +1,64 @@
+import {
+  handleLoginError,
+  handleLoginSuccess,
+  showSessionWarning,
+  hideSessionWarning,
+} from 'actions/AuthActions'
+
 import authentication from './authentication'
-import { handleLoginError, handleLoginSuccess } from '../actions/AuthActions'
 
 describe('Authentication Reducer', () => {
   const defaultState = {
     authenticated: false,
     token: null,
+    error: null,
+    showSessionWarning: false,
   }
 
   it('should return the initial state', () => {
     expect(authentication(undefined, {})).toEqual(defaultState)
   })
 
-  it('should handle login success', () => {
+  it('should handle showing the session warning', () => {
     const expectedState = {
-      authenticated: true,
-      token: 'faketoken',
-      error: '',
+      ...defaultState,
+      showSessionWarning: true,
     }
 
-    const action = handleLoginSuccess('faketoken')
+    const action = showSessionWarning()
+    expect(authentication(defaultState, action)).toEqual(expectedState)
+  })
+
+  it('should handle hiding the session warning', () => {
+    const expectedState = {
+      ...defaultState,
+      showSessionWarning: false,
+    }
+
+    const action = hideSessionWarning()
+    expect(authentication({ ...defaultState, showSessionWarning: true }, action))
+      .toEqual(expectedState)
+  })
+
+  it('should handle login success', () => {
+    const expectedState = {
+      ...defaultState,
+      authenticated: true,
+      error: null,
+    }
+
+    const action = handleLoginSuccess()
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 
   it('should handle login error', () => {
     const expectedState = {
+      ...defaultState,
       authenticated: false,
-      token: null,
-      error: undefined,
+      error: 'testError',
     }
 
-    const action = handleLoginError()
+    const action = handleLoginError('testError')
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 })

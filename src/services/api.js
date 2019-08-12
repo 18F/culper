@@ -1,130 +1,91 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
 import env from '../config/environment'
-
-export const getQueryValue = (queryString, key) => {
-  return getSplitValue(key, queryString.substring(1), '&', '=')
-}
 
 const getSplitValue = (key, raw, delim1, delim2) => {
   const vars = raw.split(delim1)
 
-  for (let i = 0; i < vars.length; i++) {
+  for (let i = 0; i < vars.length; i += 1) {
     const pair = vars[i].split(delim2)
-    if (pair.length !== 2) {
-      continue
-    }
-
-    const pairKey = pair[0].trim()
-    const pairValue = pair[1].trim()
-    if (pairKey === key && pairValue) {
-      return pairValue
+    if (pair.length === 2) {
+      const pairKey = pair[0].trim()
+      const pairValue = pair[1].trim()
+      if (pairKey === key && pairValue) {
+        return pairValue
+      }
     }
   }
 
   return null
 }
 
-export const deleteCookie = name => {
-  const domain = process.env.COOKIE_DOMAIN || window.location.hostname
-  Cookies.remove(name, { domain })
-  if (Cookies.get(name)) {
-    console.warn(
-      `${name} cookie couldn't be removed - check that domain matches, etc.`
-    )
-  }
-}
+export const getQueryValue = (queryString, key) => getSplitValue(key, queryString.substring(1), '&', '=')
 
 class Api {
   constructor() {
     this.proxy = axios.create({
       baseURL: env ? env.ApiBaseURL() : '/api',
-      timeout: 30000
+      timeout: 30000,
+      withCredentials: true,
     })
+
+    this.proxy.interceptors.response.use(this.handleResponseSuccess, this.handleResponseError)
   }
 
-  getToken() {
-    return window.token
-  }
+  handleResponseSuccess = response => response
 
-  setToken(token) {
-    window.token = token
-  }
-
-  bearerToken() {
-    return { Authorization: `Bearer ${this.getToken()}` }
+  handleResponseError = (error) => {
+    console.warn(`API request failed: ${error.message}`)
+    return Promise.reject(error)
   }
 
   information() {
     return this.proxy.get('/')
   }
 
-  get(endpoint, secure = true, headers = {}) {
-    const h = secure
-      ? { headers: { ...headers, ...this.bearerToken() } }
-      : headers
-    return this.proxy.get(endpoint, h)
+  get(endpoint) {
+    return this.proxy.get(endpoint)
   }
 
-  post(endpoint, params = {}, secure = true, headers = {}) {
-    const h = secure
-      ? { headers: { ...headers, ...this.bearerToken() } }
-      : headers
-    return this.proxy.post(endpoint, params, h)
+  post(endpoint, params = {}) {
+    return this.proxy.post(endpoint, params)
   }
 
+  /** AUTH */
   saml() {
-    return this.get(env.EndpointSaml(), false)
+    return this.get(env.EndpointSaml())
   }
 
   samlSLO() {
     return this.get(env.EndpointSamlSLO())
   }
 
-  login(username, password) {
-    return this.post(
-      env.EndpointBasicAuthentication(),
-      { username: username, password: password },
-      false
-    )
-  }
+  login = (username, password) => this.post(
+    env.EndpointBasicAuthentication(),
+    { username, password },
+  )
 
-  logout() {
-    return this.get(env.EndpointLogout())
-  }
+  logout = () => this.get(env.EndpointLogout())
 
-  refresh() {
-    return this.post(env.EndpointRefresh())
-  }
+  refresh = () => this.post(env.EndpointRefresh())
 
+  /** FORM */
   save(payload) {
     return this.post(env.EndpointSave(), payload)
   }
 
-  section(type) {
-    return this.get(env.EndpointSection(type))
-  }
-
-  status() {
-    return this.get(env.EndpointStatus())
-  }
+  status = () => this.get(env.EndpointStatus())
 
   submit() {
     return this.post(env.EndpointSubmit())
   }
 
-  form() {
-    return this.get(env.EndpointForm())
-  }
-
-  hash() {
-    return this.get(env.EndpointFormHash())
-  }
+  form = () => this.get(env.EndpointForm())
 
   validate(payload) {
     return this.post(env.EndpointValidate(), payload)
   }
 
+  /** ATTACHMENTS */
   listAttachments() {
     return this.get(env.EndpointAttachment())
   }
@@ -135,7 +96,7 @@ class Api {
 
   updateAttachment(id, description) {
     return this.post(env.EndpointAttachmentUpdate(id), {
-      description: description
+      description,
     })
   }
 
@@ -149,4 +110,5 @@ class Api {
 }
 
 const api = new Api()
+
 export { api }

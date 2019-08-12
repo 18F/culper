@@ -1,6 +1,7 @@
 package api
 
 import (
+	"database/sql"
 	"time"
 
 	"github.com/pkg/errors"
@@ -40,10 +41,14 @@ type StorageService interface {
 	// DeleteAttachment deletes an attachment for the given account
 	DeleteAttachment(accountID int, attachmentID int) error
 
-	// CreateOrUpdateSession creates a new session record in the db
-	CreateOrUpdateSession(accountID int, sessionKey string, expirationDate time.Time) error
+	// CreateSession creates a new session record in the db
+	CreateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationDuration time.Duration) error
+	// FetchPossiblyExpiredSession returns a session row by account ID regardless of wether it is expired
+	// This is potentially dangerous, it is only intended to be used during the new login flow, never to check
+	// on a valid session for authentication purposes.
+	FetchPossiblyExpiredSession(accountID int) (Session, error)
 	// DeleteSession removes a session record from the db
 	DeleteSession(sessionKey string) error
-	// FetchSessionAccount fetches an account and session data from the db
-	FetchSessionAccount(sessionKey string) (Account, error)
+	// ExtendAndFetchSessionAccount fetches an account and session data from the db
+	ExtendAndFetchSessionAccount(sessionKey string, expirationDuration time.Duration) (Account, Session, error)
 }

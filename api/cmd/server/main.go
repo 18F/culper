@@ -4,17 +4,18 @@ import (
 	"flag"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/admin"
 	"github.com/18F/e-QIP-prototype/api/cloudfoundry"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/http"
-	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/log"
 	"github.com/18F/e-QIP-prototype/api/pdf"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/saml"
+	"github.com/18F/e-QIP-prototype/api/session"
 	"github.com/18F/e-QIP-prototype/api/simplestore"
 	"github.com/18F/e-QIP-prototype/api/usps"
 	"github.com/18F/e-QIP-prototype/api/xml"
@@ -53,8 +54,13 @@ func main() {
 	pdfsvc := pdf.NewPDFService(pdfTemplatePath)
 	submitter := admin.NewSubmitter(database, store, xmlsvc, pdfsvc)
 
-	token := jwt.Service{Env: settings}
+	sessionTimeout := time.Duration(settings.Int(api.SessionTimeout)) * time.Minute
+	sessionService := session.NewSessionService(sessionTimeout, store, logger)
 	samlsvc := &saml.Service{Log: logger, Env: settings}
+
+	secureCookie := !settings.True(api.DevUseInsecureCookie)
+	cookieService := http.NewSessionCookieService(secureCookie)
+
 	api.Geocode = usps.Geocoder{Log: logger, Env: settings}
 
 	flag.Parse()
@@ -67,44 +73,39 @@ func main() {
 		}
 	}
 
-	// Make sure the JWT are properly configured
-	if err := token.ConfigureEnvironment(256); err != nil {
-		logger.WarnError(api.JWTSecretNotSet, err, api.LogFields{})
-	} else {
-		logger.Info(api.JWTSecretSet, api.LogFields{})
-	}
-
 	// Declare a new router with any middleware injected
 	r := mux.NewRouter()
 	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP).Methods("GET")
 
 	// Authentication schemes
+	sec := http.NewSessionMiddleware(logger, sessionService)
+
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
-		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store}.ServeHTTP).Methods("POST")
+		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService, Session: sessionService}.ServeHTTP).Methods("POST")
 	}
 	if settings.True(api.SamlEnabled) {
-		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Token: token, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
-		o.HandleFunc("/saml_slo", http.SamlSLORequestHandler{Env: settings, Log: logger, Token: token, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
-		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, Token: token, Database: database, SAML: samlsvc}.ServeHTTP).Methods("POST")
+		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
+		// SLO uses the logged in session
+		o.Handle("/saml_slo", sec.Middleware(http.SamlSLORequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService})).Methods("GET")
+		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService, Cookie: cookieService}.ServeHTTP).Methods("POST")
 	}
 
 	// Account specific actions
-	sec := http.JWTHandler{Log: logger, Token: token}
-	r.Handle("/refresh", sec.Middleware(http.RefreshHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST")
+	r.Handle("/refresh", sec.Middleware(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
 
 	a := r.PathPrefix("/me").Subrouter()
-	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
-	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("POST", "PUT")
-	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
+	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Log: logger, Session: sessionService})).Methods("GET")
+	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
+	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
 	a.Handle("/validate", sec.Middleware(http.ValidateHandler{Log: logger})).Methods("POST")
-	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
+	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
 	a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Database: database, Store: store, Submitter: submitter})).Methods("POST")
-	a.Handle("/attachment", sec.Middleware(http.AttachmentListHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
-	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("GET")
+	a.Handle("/attachment", sec.Middleware(http.AttachmentListHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
+	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
 	if settings.True(api.AttachmentsEnabled) {
-		a.Handle("/attachment", sec.Middleware(http.AttachmentSaveHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("POST", "PUT")
-		a.Handle("/attachment/{id}/delete", sec.Middleware(http.AttachmentDeleteHandler{Env: settings, Log: logger, Token: token, Database: database, Store: store})).Methods("POST", "DELETE")
+		a.Handle("/attachment", sec.Middleware(http.AttachmentSaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
+		a.Handle("/attachment/{id}/delete", sec.Middleware(http.AttachmentDeleteHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "DELETE")
 	}
 
 	// Inject middleware

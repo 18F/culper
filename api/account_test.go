@@ -1,6 +1,7 @@
 package api
 
 import (
+	"database/sql"
 	"fmt"
 	"testing"
 	"time"
@@ -37,7 +38,7 @@ func TestValidFormType(t *testing.T) {
 
 	account := &Account{
 		Username:    "glarbal@example.com",
-		Email:       "glarbal@example.com",
+		Email:       sql.NullString{},
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 	}
