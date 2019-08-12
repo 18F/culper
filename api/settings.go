@@ -189,12 +189,6 @@ const (
 	// Default: *not enabled*
 	UspsAPIKey = "USPS_API_API_KEY"
 
-	// JwtSecret The HS512 algorithm is used to sign each JavaScript Web Token using a secret random key of at least 512-bits. For example, `openssl rand 64 | base64 --wrap=0` generates an appropriate key. If this value is not specified, one will be automatically generated unique to the instance.
-	//
-	// Target: Back-end (api)
-	// Default: *none*
-	JwtSecret = "JWT_SECRET"
-
 	// BasicEnabled Flag to enable basic username and password authentication.
 	//
 	// Target: Front-end (web), Back-end (api)
