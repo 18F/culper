@@ -13,15 +13,15 @@ import {
   selectHistoryFederalSection,
   selectMultipleCitizenshipRenounced,
   selectCitizenshipForeignPassportsSection,
-  selectFinancialBankruptcySection, 
-  selectFinancialGamblingSection, 
+  selectFinancialBankruptcySection,
+  selectFinancialGamblingSection,
   selectFinancialTaxesSection,
-  selectFinancialCardSection, 
+  selectFinancialCardSection,
   selectFinancialCreditSection,
   selectFinancialDelinquentSection,
   selectFinancialDelinquentName,
   selectFinancialDelinquentNonFederal,
-  selectFinancialNonpaymentSection, 
+  selectFinancialNonpaymentSection,
   selectFinancialCardDisciplinaryDate,
   selectForeignContactsSection,
   selectForeignActivitiesSection,
@@ -111,8 +111,8 @@ const connectSubsection = (Component, {
   }
 
   ConnectedSubsection.propTypes = {
-    dispatch: PropType,
-    Birthdate: PropType.instanceOf(Date),
+    dispatch: PropTypes.func,
+    Birthdate: PropTypes.instanceOf(Date),
   }
 
   ConnectedSubsection.defaultProps = {
@@ -142,8 +142,7 @@ const connectSubsection = (Component, {
   }
 
   const mapStateToProps = (state) => {
-    console.log('state: ', state)
-    const { form } = state
+    const { form = {} } = state
     const sectionData = form[key]
 
     const app = state.application || {}
@@ -154,8 +153,8 @@ const connectSubsection = (Component, {
     const addressBooks = app.AddressBooks || {}
     const emptyItems = { items: [] }
     const emptyList = { List: emptyItems }
-    const { formType } = app.Settings
     const settings = app.Settings || {}
+    const { formType } = settings
 
     const names = extractOtherNames(app)
 

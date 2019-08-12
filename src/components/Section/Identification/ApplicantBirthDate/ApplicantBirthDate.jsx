@@ -7,13 +7,13 @@ import {
   Field, DateControl, Show, Checkbox,
 } from 'components/Form'
 
+import Subsection from '../../shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import {
   IDENTIFICATION,
   IDENTIFICATION_BIRTH_DATE,
 } from 'config/formSections/identification'
-
-import Subsection from '../../shared/Subsection'
-import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   key: IDENTIFICATION_BIRTH_DATE.key,
