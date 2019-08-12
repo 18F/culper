@@ -28,9 +28,6 @@
             <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
           </FormInstanceSpecific>
           <Pooled>
-            <AdditionalComments Version="1" Type="Pooled">
-              <Comment>This is a test.</Comment>
-            </AdditionalComments>
             <IdentifyingInformation Type="Pooled" Version="1">
               <Birth>
                 <Date>
@@ -2250,6 +2247,9 @@
                 <Answer>No</Answer>
               </AdverselyAffected>
             </MedicalRecord2>
+            <AdditionalComments Version="1" Type="Pooled">
+              <Comment>This is a test.</Comment>
+            </AdditionalComments>
             <FormInstructions Type="Pooled" Version="1">
               <ReadAndUnderstoodStatementOfUnderstanding>
                 <Answer>Yes</Answer>
