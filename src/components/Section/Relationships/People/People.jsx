@@ -121,7 +121,7 @@ export class People extends Subsection {
 
   peopleSummaryList = () => (
     this.excludeGaps(this.props.List.items).reduce((dates, item) => {
-      if (!item || !new PersonValidator(item.Item).isValid() === true) {
+      if (!item || new PersonValidator(item.Item).isValid() !== true) {
         return dates
       }
 

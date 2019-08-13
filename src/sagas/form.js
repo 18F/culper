@@ -6,10 +6,13 @@ import {
 
 import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
 
-import { updateSubsection } from 'actions/FormActions'
+import {
+  updateSubsection, handleSubsectionUpdate as handleSubsectionUpdateAction,
+} from 'actions/FormActions'
 import { updateApplication, validateFormData } from 'actions/ApplicationActions'
 
 import { validateSection } from 'helpers/validation'
+import sectionKeys from 'helpers/sectionKeys'
 import { unschema } from 'schema'
 import { env } from 'config'
 import { selectSubsection, formTypeSelector } from './selectors'
@@ -18,13 +21,15 @@ import { selectSubsection, formTypeSelector } from './selectors'
 /** Setting form data on login (this might be replaced) */
 export function* updateSectionDataLegacy(name, data) {
   try {
-    yield all(Object.keys(data).map(subsection => put(
-      updateApplication(
-        name,
-        subsection,
-        unschema(data[subsection]),
-      )
-    )))
+    yield all(Object.keys(data).map((subsection) => {
+      const sectionKey = sectionKeys[`${name}.${subsection}`]
+      const sectionData = unschema(data[subsection])
+
+      return all([
+        put(updateApplication(name, subsection, sectionData)),
+        put(handleSubsectionUpdateAction(sectionKey, undefined, sectionData)),
+      ])
+    }))
   } catch (e) {
     console.warn('failed to update section', name, e)
     yield call(env.History().push, '/error')

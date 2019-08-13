@@ -3,12 +3,16 @@ import {
 } from 'redux-saga/effects'
 
 import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
-import { updateSubsection } from 'actions/FormActions'
+import {
+  updateSubsection, handleSubsectionUpdate as handleSubsectionUpdateAction,
+} from 'actions/FormActions'
 import { updateApplication, validateFormData } from 'actions/ApplicationActions'
 
 import { env } from 'config'
 
 import { validateSection } from 'helpers/validation'
+import sectionKeys from 'helpers/sectionKeys'
+
 import { selectSubsection, formTypeSelector } from './selectors'
 
 import {
@@ -86,13 +90,15 @@ describe('updateSectionDataLegacy saga', () => {
 
     it('puts the updateApplication action for each subsection', () => {
       expect(generator.next().value).toEqual(
-        all(['Multiple', 'Passports', 'Status'].map(s => put(
-          updateApplication(
-            'Citizenship',
-            s,
-            testSectionData[s],
-          )
-        )))
+        all(['Multiple', 'Passports', 'Status'].map((s) => {
+          const sectionKey = sectionKeys[`Citizenship.${s}`]
+          const sectionData = testSectionData[s]
+
+          return all([
+            put(updateApplication('Citizenship', s, sectionData)),
+            put(handleSubsectionUpdateAction(sectionKey, undefined, sectionData)),
+          ])
+        }))
       )
     })
 

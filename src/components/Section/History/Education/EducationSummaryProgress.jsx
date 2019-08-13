@@ -30,7 +30,7 @@ const diplomasRangesList = (items) => {
   items.forEach((i) => {
     if (!i.Item) { return }
 
-    if (!new EducationItemValidator(i.Item).isValid() === true) {
+    if (new EducationItemValidator(i.Item).isValid() !== true) {
       return
     }
 
