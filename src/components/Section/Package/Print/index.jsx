@@ -22,7 +22,6 @@ import SubstanceUseReview from 'components/Section/SubstanceUse/Review'
 import LegalReview from 'components/Section/Legal/Review'
 import PsychologicalReview from 'components/Section/Psychological/Review'
 
-import Subsection from 'components/Section/shared/Subsection'
 import connectPackageSection from '../PackageConnector'
 
 const blobFromBase64 = (base64, contentType = '', size = 512) => {
@@ -237,7 +236,7 @@ export class PackagePrint extends React.Component {
             return (
               <div className="section-print-container" key={`print-section-${section.key}`}>
                 <h3 className="section-print-header">{section.label}</h3>
-                <SectionComponent forPrint />
+                <SectionComponent forPrint={true} />
               </div>
             )
           })}

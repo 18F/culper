@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { CITIZENSHIP, CITIZENSHIP_REVIEW } from 'config/formSections/citizenship'
 
-import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import ConnectedUsPassport from '../UsPassport'

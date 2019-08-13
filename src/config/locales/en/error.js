@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 export const error = {
   name: {
     last: {
@@ -953,14 +955,6 @@ export const error = {
       min: {
         title: 'There is a problem with the date',
         message: 'The date should be after the passport was issued.',
-      },
-    },
-  },
-  divorce: {
-    date: {
-      min: {
-        title: 'There is a problem with the date',
-        message: 'The date should be after the date your civil marriage, civil union, or domestic partnership was legally recognized.',
       },
     },
   },

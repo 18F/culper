@@ -10,7 +10,6 @@ import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
 import * as formConfig from 'config/forms'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
-import Subsection from 'components/Section/shared/Subsection'
 
 import ConnectedResidence from './Residence'
 import ResidenceSummaryProgress from './ResidenceSummaryProgress'
@@ -45,7 +44,7 @@ const ResidenceWrapper = (props) => {
       <Field
         title={i18n.t('history.residence.info', { years })}
         titleSize="h3"
-        optional
+        optional={true}
         className="no-margin-bottom"
       >
         {i18n.m('history.residence.info2')}
@@ -64,7 +63,7 @@ const ResidenceWrapper = (props) => {
       />
 
       <ConnectedResidence
-        realtime
+        realtime={true}
         scrollToTop="scrollToHistory"
         totalYears={years}
       />
@@ -76,7 +75,7 @@ const ResidenceWrapper = (props) => {
           <Field
             title={i18n.t('history.residence.heading.exiting')}
             titleSize="h4"
-            optional
+            optional={true}
             className="no-margin-bottom"
           >
             {i18n.m('history.residence.para.exiting', { years, formName })}
