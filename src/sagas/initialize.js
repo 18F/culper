@@ -9,6 +9,7 @@ import { STATUS_SUBMITTED } from 'constants/enums/applicationStatuses'
 import { fetchForm, fetchStatus } from 'actions/api'
 
 import { updateApplication } from 'actions/ApplicationActions'
+import { setCSRFToken } from 'actions/AuthActions'
 
 import { env } from 'config'
 
@@ -91,13 +92,13 @@ export function* handleInitSuccess(action, path = '/form/identification/intro') 
     yield put(updateApplication('Settings', 'status', Status))
     yield put(updateApplication('Settings', 'hash', Hash))
 
-    const headers = response.headers
+    const { headers } = response
     const csrfToken = headers['x-csrf-token']
 
-    if (csrfToken == "") {
-      console.error("No CSRF Token sent with /status. /save calls are going to fail.")
+    if (csrfToken === '') {
+      console.error('No CSRF Token sent with /status. /save calls are going to fail.')
     }
-    window.csrfToken = csrfToken
+    yield put(setCSRFToken(csrfToken))
 
     // Check to see if the account is locked
     const status = response.data

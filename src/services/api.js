@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from 'services/store'
 import env from '../config/environment'
 
 const getSplitValue = (key, raw, delim1, delim2) => {
@@ -19,6 +20,11 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 }
 
 export const getQueryValue = (queryString, key) => getSplitValue(key, queryString.substring(1), '&', '=')
+
+function getCSRFToken() {
+  const state = store.getState()
+  return state.authentication.csrfToken
+}
 
 class Api {
   constructor() {
@@ -47,15 +53,15 @@ class Api {
   }
 
   post(endpoint, params = {}) {
-    const csrfToken = window.csrfToken
-    let headers = {}
+    const csrfToken = getCSRFToken()
+    const headers = {}
     if (!csrfToken) {
-      console.error("Attempting to make a POST without a CSRF Token set.", endpoint)
+      console.error('Attempting to make a POST without a CSRF Token set.', endpoint)
     } else {
       headers['X-CSRF-Token'] = csrfToken
     }
 
-    return this.proxy.post(endpoint, params, { headers: headers })
+    return this.proxy.post(endpoint, params, { headers })
   }
 
   /** AUTH */

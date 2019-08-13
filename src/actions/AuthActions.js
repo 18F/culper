@@ -36,3 +36,8 @@ export const logout = (timedOut = false) => ({
   type: actionTypes.LOGOUT,
   timedOut,
 })
+
+export const setCSRFToken = csrfToken => ({
+  type: actionTypes.SET_CSRF_TOKEN,
+  csrfToken,
+})
