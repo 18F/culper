@@ -91,7 +91,7 @@ ApplicantName.defaultProps = {
   onError: (value, arr) => arr,
   dispatch: () => {},
   required: false,
-  validator: data => validate(schema('identification.name', data)),
+  validator: data => validate(schema('identification.name', data)) === true,
 }
 
 ApplicantName.errors = []

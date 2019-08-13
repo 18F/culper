@@ -30,7 +30,7 @@ export default class PhysicalValidator {
    * Validates all physical attributes
    */
   isValid() {
-    return validateIdentificationPhysical(this.data)
+    return validateIdentificationPhysical(this.data) === true
   }
 
   validHeight() {

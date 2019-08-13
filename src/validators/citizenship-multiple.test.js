@@ -67,7 +67,11 @@ describe('validateCitizenshipMultiple function', () => {
         },
       }
 
-      expect(validateCitizenshipMultiple(testData, 'SF86')).toEqual(false)
+      expect(validateCitizenshipMultiple(testData, 'SF86'))
+        .toEqual(expect.arrayContaining([
+          'List.accordion.1.Renounced.presence.REQUIRED',
+          'List.accordion.1.RenouncedExplanation.presence.REQUIRED',
+        ]))
     })
 
     it('passes valid citizenships', () => {

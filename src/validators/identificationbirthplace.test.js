@@ -76,6 +76,11 @@ describe('The validateIdentificationBirthPlace function', () => {
       },
     }
 
-    expect(validateIdentificationBirthPlace(testData)).toBe(false)
+    expect(validateIdentificationBirthPlace(testData))
+      .toEqual(expect.arrayContaining([
+        'Location.location.city.presence.REQUIRED',
+        'Location.location.country.presence.REQUIRED',
+        'Location.location.county.presence.REQUIRED',
+      ]))
   })
 })

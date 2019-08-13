@@ -37,7 +37,12 @@ describe('validateDrugUses function', () => {
         },
       }
 
-      expect(validateDrugUses(testData, 'SF86')).toEqual(false)
+      expect(validateDrugUses(testData, 'SF86'))
+        .toEqual(expect.arrayContaining([
+          'List.accordion.0.UseWhileEmployed.presence.REQUIRED',
+          'List.accordion.0.UseWithClearance.presence.REQUIRED',
+          'List.accordion.0.UseInFuture.presence.REQUIRED',
+        ]))
     })
 
     it('passes valid data', () => {
@@ -106,7 +111,11 @@ describe('validateDrugUses function', () => {
         },
       }
 
-      expect(validateDrugUses(testData, 'SF85')).toEqual(false)
+      expect(validateDrugUses(testData, 'SF85'))
+        .toEqual(expect.arrayContaining([
+          'List.accordion.0.DrugType.presence.REQUIRED',
+          'List.accordion.0.FirstUse.presence.REQUIRED',
+        ]))
     })
 
     it('passes valid data', () => {

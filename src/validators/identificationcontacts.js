@@ -66,7 +66,7 @@ export default class IdentificationContactInformationValidator {
    * Validates emails and phone numbers
    */
   isValid() {
-    return validateIdentificationContactInformation(this.data)
+    return validateIdentificationContactInformation(this.data) === true
   }
 }
 
@@ -76,6 +76,6 @@ export class ContactPhoneNumberValidator {
   }
 
   isValid() {
-    return validateContactPhoneNumber(this.data)
+    return validateContactPhoneNumber(this.data) === true
   }
 }
