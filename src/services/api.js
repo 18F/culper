@@ -1,3 +1,4 @@
+/* eslint import/no-cycle: 0 */
 import axios from 'axios'
 import store from 'services/store'
 import env from '../config/environment'
