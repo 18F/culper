@@ -72,7 +72,7 @@ class Api {
     { username, password },
   )
 
-  logout = () => this.get(env.EndpointLogout())
+  logout = () => this.post(env.EndpointLogout())
 
   refresh = () => this.post(env.EndpointRefresh())
 
