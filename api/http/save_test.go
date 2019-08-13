@@ -126,7 +126,7 @@ func TestSaveHandlerBadEntity(t *testing.T) {
     // Check the status code is what we expect.
     if status := rr.Code; status != http.StatusBadRequest {
         t.Errorf("handler returned wrong status code: got %v want %v",
-            status, http.StatusOK)
+            status, http.StatusBadRequest)
     }
 
     // Check the response body is what we expect.
@@ -135,4 +135,70 @@ func TestSaveHandlerBadEntity(t *testing.T) {
         t.Errorf("handler returned unexpected body: got %v want %v",
             rr.Body.String(), expected)
     }
+}
+
+func TestSaveHandlerLockedAccount(t *testing.T) {
+
+	var mockDB mock.DatabaseService
+
+	var mockStore saveStore
+
+	var mockLog mock.LogService
+
+	handler := SaveHandler{
+		Env:      nil,
+		Log:      &mockLog,
+		Database: &mockDB,
+		Store:    &mockStore,
+	}
+
+	requestJSON := `
+    {
+       "type":"identification.name",
+       "props":{
+          "Name":{
+             "type":"name",
+             "props":{
+                "first":"MacRae",
+                "firstInitialOnly":false,
+                "last":"Fenton",
+                "lastInitialOnly":false,
+                "middle":"William",
+                "middleInitialOnly":false,
+                "noMiddleName":false,
+                "suffix":"",
+                "suffixOther":""
+             }
+          }
+       }
+    }`
+	reqBody := strings.NewReader(requestJSON)
+
+	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
+	// pass 'nil' as the third parameter.
+	req := httptest.NewRequest("POST", "/me/save", reqBody)
+	// This account has already has a submission
+	account := api.Account{
+		ID:     1,
+		Status: api.StatusSubmitted,
+	}
+	req = req.WithContext(SetAccountAndSessionInRequestContext(req, account, api.Session{}))
+	// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
+	rr := httptest.NewRecorder()
+	// Our handlers satisfy http.Handler, so we can call their ServeHTTP method
+	// directly and pass in our Request and ResponseRecorder.
+	handler.ServeHTTP(rr, req)
+
+	// Check the status code is what we expect.
+	if status := rr.Code; status != http.StatusForbidden {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusForbidden)
+	}
+
+	// Check the response body is what we expect.
+	expected := `{"errors":[{"message":"The account is currently locked"}]}` + "\n"
+	if rr.Body.String() != expected {
+		t.Errorf("handler returned unexpected body: got %v want %v",
+			rr.Body.String(), expected)
+	}
 }
