@@ -15,7 +15,7 @@ const dateRangeList = (items) => {
   items.forEach((i) => {
     if (!i.Item) { return }
 
-    if (new ResidenceValidator(i.Item).isValid()) {
+    if (new ResidenceValidator(i.Item).isValid() === true) {
       dates.push(i.Item.Dates)
     }
   })

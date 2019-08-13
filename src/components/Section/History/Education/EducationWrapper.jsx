@@ -35,7 +35,7 @@ class EducationWrapper extends React.Component {
       reportCompletion(
         'history',
         'education',
-        new HistoryEducationValidator(education, education).isValid(),
+        new HistoryEducationValidator(education, education).isValid() === true,
       ),
     )
   }
@@ -51,7 +51,7 @@ class EducationWrapper extends React.Component {
       reportCompletion(
         'history',
         'education',
-        new HistoryEducationValidator(education, education).isValid(),
+        new HistoryEducationValidator(education, education).isValid() === true,
       ),
     )
   }

@@ -67,7 +67,7 @@ export class Education extends Subsection {
       overrideInitial,
       'history.education.collection.school.summary.incomplete',
       this.props.required,
-      i => new EducationItemValidator(i).isValid(),
+      i => new EducationItemValidator(i).isValid() === true,
     )
   }
 

@@ -75,7 +75,7 @@ export class Residence extends Subsection {
       overrideInitial,
       'history.residence.collection.summary.incomplete',
       this.props.required,
-      i => new ResidenceValidator(i, null).isValid(),
+      i => new ResidenceValidator(i, null).isValid() === true,
     )
   }
 
@@ -179,7 +179,7 @@ Residence.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => new HistoryResidenceValidator(data).isValid(),
+  validator: data => new HistoryResidenceValidator(data).isValid() === true,
 }
 
 export default connectSubsection(Residence, sectionConfig)
