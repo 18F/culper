@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { FINANCIAL, FINANCIAL_REVIEW } from 'config/formSections/financial'
 
@@ -11,7 +12,6 @@ import Delinquent from 'components/Section/Financial/Delinquent'
 import Nonpayment from 'components/Section/Financial/Nonpayment'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
-import Subsection from 'components/Section/shared/Subsection'
 
 const sectionConfig = {
   section: FINANCIAL.name,
@@ -89,6 +89,26 @@ const Review = ({
       )}
     </div>
   )
+}
+
+Review.propTypes = {
+  requireFinancialBankruptcySection: PropTypes.bool,
+  requireFinancialGamblingSection: PropTypes.bool,
+  requireFinancialTaxesSection: PropTypes.bool,
+  requireFinancialCardSection: PropTypes.bool,
+  requireFinancialCreditSection: PropTypes.bool,
+  requireFinancialDelinquentSection: PropTypes.bool,
+  requireFinancialNonpaymentSection: PropTypes.bool,
+}
+
+Review.defaultProps = {
+  requireFinancialBankruptcySection: true,
+  requireFinancialGamblingSection: true,
+  requireFinancialTaxesSection: true,
+  requireFinancialCardSection: true,
+  requireFinancialCreditSection: true,
+  requireFinancialDelinquentSection: true,
+  requireFinancialNonpaymentSection: true,
 }
 
 export default connectSubsection(Review, sectionConfig)

@@ -69,7 +69,7 @@ import { utc } from 'components/Section/History/dateranges'
 
 
 const connectSubsection = (Component, {
-  key, section, subsection, store, storeKey,
+  key, section, subsection, store,
 }) => {
   class ConnectedSubsection extends React.Component {
     constructor(props) {
@@ -142,54 +142,52 @@ const connectSubsection = (Component, {
   }
 
   const mapStateToProps = (state) => {
-    const { form = {} } = state
+    const { form = {}, application = {} } = state
+
+    // New section data & errors (state.form)
     const sectionData = form[key]
 
-    const app = state.application || {}
-    const identification = app.Identification || {}
-    const history = app.History || {}
-    const errors = app.Errors || {}
-    const completed = app.Completed || {}
-    const addressBooks = app.AddressBooks || {}
-    const emptyItems = { items: [] }
-    const emptyList = { List: emptyItems }
-    const settings = app.Settings || {}
-    const { formType } = settings
+    // Legacy form data (state.application)
+    const {
+      AddressBooks = {},
+      Identification = {},
+      History = {},
+      Settings = {},
+      Relationships = {},
+    } = application
 
-    const names = extractOtherNames(app)
+    const { formType } = Settings
+    const names = extractOtherNames(application)
+    const applicantBirthdate = (Identification.ApplicantBirthDate || {}).Date
+    const spouse = Relationships && extractSpouse(Relationships.Marital)
 
-    const financial = app.Financial || {}
-
-    const foreign = app.Foreign || {}
-    const applicantBirthdate = (identification.ApplicantBirthDate || {}).Date
-
-    const legal = app.Legal || {}
-
-    const military = app.Military || {}
-
-    const psychological = app.Psychological
-
-    const relationships = app.Relationships
-    const spouse = relationships && extractSpouse(relationships.Marital)
-
-    const substance = app.Substance || {}
-
+    // TODO check connectors needed for Review sections
 
     try {
       return {
+        // Section data
         ...sectionData.data,
         ...sectionData,
 
-        Birthdate: processDate(identification.ApplicantBirthDate),
-        addressBooks,
-        ...selectHistoryFederalSection(state),
+        // General/misc data
+        Birthdate: processDate(Identification.ApplicantBirthDate),
+        applicantBirthdate,
+        addressBooks: AddressBooks,
+        suggestedNames: names,
         formType,
+        ...formStatusSelector(state),
 
+        // History
+        ...selectHistoryFederalSection(state),
+
+        // Citizenship
         ...selectValidUSPassport(state),
         ...selectMultipleCitizenshipRenounced(state),
         ...selectCitizenshipForeignPassportsSection(state),
 
+        // Financial
         ...selectFinancialDelinquentName(state),
+        ...selectFinancialDelinquentNonFederal(state),
         ...selectFinancialBankruptcySection(state),
         ...selectFinancialGamblingSection(state),
         ...selectFinancialTaxesSection(state),
@@ -199,6 +197,7 @@ const connectSubsection = (Component, {
         ...selectFinancialNonpaymentSection(state),
         ...selectFinancialCardDisciplinaryDate(state),
 
+        // Foreign
         ...selectForeignCounterIntelligence(state),
         ...selectForeignExcessiveKnowledge(state),
         ...selectForeignSensitiveInformation(state),
@@ -207,10 +206,8 @@ const connectSubsection = (Component, {
         ...selectForeignActivitiesSection(state),
         ...selectForeignBusinessSection(state),
         ...selectForeignTravelSection(state),
-        ...selectForeignCounterIntelligence(state),
-        ...selectForeignSensitiveInformation(state),
-        ...selectForeignThreatened(state),
 
+        // Legal
         ...selectLegalOffenseInvolvements(state),
         ...selectLegalOffenseSentenced(state),
         ...selectLegalOffenseIncarcerated(state),
@@ -221,33 +218,41 @@ const connectSubsection = (Component, {
         ...selectLegalNonCriminalCourtSection(state),
         ...selectLegalTechnologySection(state),
 
+        // Military
         ...selectForeignMilitaryMaintainsContact(state),
         showSelectiveService: !hideSelectiveServiceSelector(state),
         showDisciplinaryProcedures: !hideDisciplinaryProceduresSelector(state),
 
-        ...formStatusSelector(state),
-
+        // Psychological
         showExistingConditions: !hideExistingConditionsSelector(state),
 
+        // Relationships
+        spouse,
+        currentAddress: History && History.CurrentAddress,
         ...selectRelationshipMaritalForeignBornDocExpiration(state),
         ...selectRelationshipMaritalDivorcePhoneNumber(state),
         ...selectRelationshipRelativesUSResidenceDoc(state),
         ...selectRelationshipRelativesForeignGovtAffExplanation(state),
 
+        // Substance use
         ...selectDrugWhileSafety(state),
         ...selectDrugWithClearance(state),
         ...selectDrugInFuture(state),
         ...selectAlcoholOrderedCounselingParty(state),
         ...selectAlcoholSections(state),
         ...selectAlcoholReceivedCounselingsSection(state),
+        ...selectDrugWhileSafetySection(state),
+        ...selectDrugWithClearanceSection(state),
+
 
       }
     } catch (e) {
-      console.log(key, e)
-
-      return {}
+      console.warn(`Unable to connect subsection ${key}`, e)
     }
+
+    return {}
   }
+
   return connect(mapStateToProps)(ConnectedSubsection)
 }
 

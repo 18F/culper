@@ -1,8 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { FOREIGN, FOREIGN_REVIEW } from 'config/formSections/foreign'
 
-import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import Contacts from '../Contacts'
@@ -87,6 +87,20 @@ export const Review = ({
       )}
     </div>
   )
+}
+
+Review.propTypes = {
+  requireForeignContactsSection: PropTypes.bool,
+  requireForeignActivitiesSection: PropTypes.bool,
+  requireForeignBusinessSection: PropTypes.bool,
+  requireForeignTravelSection: PropTypes.bool,
+}
+
+Review.defaultProps = {
+  requireForeignContactsSection: true,
+  requireForeignActivitiesSection: true,
+  requireForeignBusinessSection: true,
+  requireForeignTravelSection: true,
 }
 
 export default connectSubsection(Review, sectionConfig)

@@ -1,15 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { PSYCHOLOGICAL, PSYCHOLOGICAL_REVIEW } from 'config/formSections/psychological'
+
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import ConnectedCompetence from '../Competence/Competence'
 import ConnectedConsultation from '../Consultation/Consultation'
 import ConnectedHospitalizations from '../Hospitalizations/Hospitalizations'
 import ConnectedDiagnoses from '../Diagnoses/Diagnoses'
 import ConnectedExistingConditions from '../ExistingConditions/ExistingConditions'
-
-import Subsection from 'components/Section/shared/Subsection'
-import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   section: PSYCHOLOGICAL.name,
@@ -42,6 +42,14 @@ const Review = ({ showExistingConditions = true }) => {
       {showExistingConditions && <ConnectedExistingConditions {...subsectionProps} />}
     </div>
   )
+}
+
+Review.propTypes = {
+  showExistingConditions: PropTypes.bool,
+}
+
+Review.defaultProps = {
+  showExistingConditions: true,
 }
 
 export default connectSubsection(Review, sectionConfig)

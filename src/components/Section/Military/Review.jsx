@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { MILITARY, MILITARY_REVIEW } from 'config/formSections/military'
 
@@ -7,7 +8,6 @@ import History from 'components/Section/Military/History'
 import Disciplinary from 'components/Section/Military/Disciplinary'
 import Foreign from 'components/Section/Military/Foreign'
 
-import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
@@ -40,6 +40,12 @@ const Review = ({ AddressBooks, showSelectiveService, showDisciplinaryProcedures
       />
     </div>
   )
+}
+
+Review.propTypes = {
+  AddressBooks: PropTypes.object,
+  showSelectiveService: PropTypes.bool,
+  showDisciplinaryProcedures: PropTypes.bool,
 }
 
 Review.defaultProps = {

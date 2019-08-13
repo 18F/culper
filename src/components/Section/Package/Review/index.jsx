@@ -5,10 +5,8 @@ import queryString from 'query-string'
 import i18n from 'util/i18n'
 import { env } from 'config'
 
-import Subsection from 'components/Section/shared/Subsection'
-import connectPackageSection from '../PackageConnector'
-
 import FormStatus from '../FormStatus'
+import connectPackageSection from '../PackageConnector'
 
 export class PackageReview extends React.Component {
   constructor(props) {
@@ -51,7 +49,7 @@ export class PackageReview extends React.Component {
       <div className="submission-status">
         {i18n.m('application.submissionStatus.validating')}
         <FormStatus
-          isTransitioning
+          isTransitioning={true}
           progressWidth={width}
           onTransitionEnd={this.onTransitionEnd}
         />

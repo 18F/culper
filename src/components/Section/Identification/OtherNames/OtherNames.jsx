@@ -12,7 +12,7 @@ import {
   Show,
 } from 'components/Form'
 
-import Subsection from '../../shared/Subsection'
+import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import { Summary, NameSummary, DateSummary } from 'components/Summary'

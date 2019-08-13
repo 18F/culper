@@ -12,7 +12,6 @@ import { reportCompletion } from 'actions/ApplicationActions'
 import { HistoryEducationValidator } from 'validators'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
-import Subsection from 'components/Section/shared/Subsection'
 
 import ConnectedEducation from './Education'
 import EducationSummaryProgress from './EducationSummaryProgress'

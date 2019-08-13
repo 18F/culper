@@ -1,6 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { SUBSTANCE_USE, SUBSTANCE_USE_REVIEW } from 'config/formSections/substanceUse'
+
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import ConnectedNegativeImpacts from '../Alcohol/NegativeImpacts'
 import ConnectedOrderedCounselings from '../Alcohol/OrderedCounselings'
@@ -13,9 +16,6 @@ import ConnectedDrugPublicSafetyUses from '../Drugs/DrugPublicSafetyUses'
 import ConnectedPrescriptionUses from '../Drugs/PrescriptionUses'
 import ConnectedOrderedTreatments from '../Drugs/OrderedTreatments'
 import ConnectedVoluntaryTreatments from '../Drugs/VoluntaryTreatments'
-
-import Subsection from 'components/Section/shared/Subsection'
-import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   section: SUBSTANCE_USE.name,
@@ -81,6 +81,20 @@ export const Review = ({
       )}
     </div>
   )
+}
+
+Review.propTypes = {
+  requireDrugWhileSafetySection: PropTypes.bool,
+  requireDrugWithClearanceSection: PropTypes.bool,
+  requireAlcoholSections: PropTypes.bool,
+  requireAlcoholReceivedCounselingsSection: PropTypes.bool,
+}
+
+Review.defaultProps = {
+  requireDrugWhileSafetySection: true,
+  requireDrugWithClearanceSection: true,
+  requireAlcoholSections: true,
+  requireAlcoholReceivedCounselingsSection: true,
 }
 
 export default connectSubsection(Review, sectionConfig)

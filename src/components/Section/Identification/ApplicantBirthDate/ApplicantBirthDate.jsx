@@ -7,7 +7,7 @@ import {
   Field, DateControl, Show, Checkbox,
 } from 'components/Form'
 
-import Subsection from '../../shared/Subsection'
+import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import {
