@@ -161,24 +161,32 @@ const connectSubsection = (Component, {
     const applicantBirthdate = (Identification.ApplicantBirthDate || {}).Date
     const spouse = Relationships && extractSpouse(Relationships.Marital)
 
-    // TODO check connectors needed for Review sections
+    const {
+      Education = { HasAttended: '', HasDegree10: '', List: { items: [] } },
+      Residence = { List: { items: [] } },
+      Employment = { List: { items: [] } },
+    } = History
 
     try {
       return {
-        // Section data
+        // Section-specific data
         ...sectionData.data,
         ...sectionData,
 
-        // General/misc data
+        // General data
         Birthdate: processDate(Identification.ApplicantBirthDate),
         applicantBirthdate,
         addressBooks: AddressBooks,
+        AddressBooks,
         suggestedNames: names,
         formType,
         ...formStatusSelector(state),
 
         // History
         ...selectHistoryFederalSection(state),
+        Education,
+        Residence,
+        Employment,
 
         // Citizenship
         ...selectValidUSPassport(state),
@@ -243,8 +251,6 @@ const connectSubsection = (Component, {
         ...selectAlcoholReceivedCounselingsSection(state),
         ...selectDrugWhileSafetySection(state),
         ...selectDrugWithClearanceSection(state),
-
-
       }
     } catch (e) {
       console.warn(`Unable to connect subsection ${key}`, e)
