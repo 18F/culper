@@ -1,9 +1,82 @@
+import {
+  SF85, SF85P, SF86, reduceSubsections,
+} from 'config/formTypes'
+
+const wrap = obj => obj || {}
+
+/**
+ * A function to get the correct formType config
+ */
+export const getForm = (settings) => {
+  if (settings && settings.formType) {
+    switch (settings.formType) {
+      case 'SF85':
+        return SF85
+      case 'SF85P':
+        return SF85P
+      case 'SF86':
+        return SF86
+      default:
+        return SF86
+    }
+  }
+  return SF86
+}
+
+/**
+ * A generic function to get all the subsection data for a specific section
+ */
+export const getSubsections = (section, application) => {
+  const form = getForm(application.Settings)
+  const sectionData = form.find(sectionName => sectionName.name === section.toLowerCase())
+  const reducedSubsections = reduceSubsections(sectionData.subsections)
+  return (
+    reducedSubsections
+      .filter(subsection => subsection.storeKey)
+      .map((subsection) => {
+        // TODO HACK: there are inconsistencies for which section U.S. Passport
+        // is in. We want it to eventually be in Citizenship from Foreign.
+        if (section === 'citizenship' && subsection.name === 'passport') {
+          return {
+            path: 'foreign/passport',
+            data: wrap(application.Foreign).Passport,
+          }
+        }
+
+        return {
+          path: `${section}/${subsection.name}`,
+          data: wrap(application[sectionData.store])[subsection.storeKey],
+        }
+      })
+  )
+}
+
+/**
+ * A function to get the Legal Police nested subsection
+ * This is a one-off use case that cannot be captured by getSubsections
+ * because it's a nested subsection.
+ */
+export const getLegalPoliceSubsections = (application) => {
+  const form = getForm(application.Settings)
+  const legalSubsection = form.find(sectionName => sectionName.name === 'legal')
+  const policeSubsections = legalSubsection.subsections.find(subsection => subsection.name === 'police')
+
+  return (
+    policeSubsections.subsections
+      .filter(subsection => subsection.storeKey)
+      .map(subsection => (
+        {
+          path: `${legalSubsection.name}/${subsection.name}`,
+          data: wrap(application[legalSubsection.store])[subsection.storeKey],
+        }
+      ))
+  )
+}
+
 const sectionData = (section, subsection, application = {}) => {
   if (!section || !subsection || !application) {
     return []
   }
-
-  const wrap = obj => obj || {}
 
   switch (`${section.toLowerCase()}/${subsection.toLowerCase()}`) {
     case 'identification/birthdate':
@@ -57,36 +130,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'identification/intro':
     case 'identification/review':
-      return [
-        {
-          path: 'identification/birthdate',
-          data: wrap(application.Identification).ApplicantBirthDate,
-        },
-        {
-          path: 'identification/birthplace',
-          data: wrap(application.Identification).ApplicantBirthPlace,
-        },
-        {
-          path: 'identification/contacts',
-          data: wrap(application.Identification).Contacts,
-        },
-        {
-          path: 'identification/name',
-          data: wrap(application.Identification).ApplicantName,
-        },
-        {
-          path: 'identification/othernames',
-          data: wrap(application.Identification).OtherNames,
-        },
-        {
-          path: 'identification/physical',
-          data: wrap(application.Identification).Physical,
-        },
-        {
-          path: 'identification/ssn',
-          data: wrap(application.Identification).ApplicantSSN,
-        },
-      ]
+      return getSubsections('identification', application)
 
     case 'financial/bankruptcy':
       return [
@@ -130,27 +174,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'financial/intro':
     case 'financial/review':
-      return [
-        {
-          path: 'financial/bankruptcy',
-          data: wrap(application.Financial).Bankruptcy,
-        },
-        {
-          path: 'financial/gambling',
-          data: wrap(application.Financial).Gambling,
-        },
-        { path: 'financial/taxes', data: wrap(application.Financial).Taxes },
-        { path: 'financial/card', data: wrap(application.Financial).Card },
-        { path: 'financial/credit', data: wrap(application.Financial).Credit },
-        {
-          path: 'financial/delinquent',
-          data: wrap(application.Financial).Delinquent,
-        },
-        {
-          path: 'financial/nonpayment',
-          data: wrap(application.Financial).Nonpayment,
-        },
-      ]
+      return getSubsections('financial', application)
 
     case 'history/education':
       return [
@@ -173,21 +197,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'history/intro':
     case 'history/review':
-      return [
-        {
-          path: 'history/education',
-          data: wrap(application.History).Education,
-        },
-        {
-          path: 'history/employment',
-          data: wrap(application.History).Employment,
-        },
-        { path: 'history/federal', data: wrap(application.History).Federal },
-        {
-          path: 'history/residence',
-          data: wrap(application.History).Residence,
-        },
-      ]
+      return getSubsections('history', application)
 
     case 'relationships/status/marital':
       return [
@@ -219,24 +229,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'relationships/intro':
     case 'relationships/review':
-      return [
-        {
-          path: 'relationships/status/marital',
-          data: wrap(application.Relationships).Marital,
-        },
-        {
-          path: 'relationships/status/cohabitant',
-          data: wrap(application.Relationships).Cohabitants,
-        },
-        {
-          path: 'relationships/people',
-          data: wrap(application.Relationships).People,
-        },
-        {
-          path: 'relationships/relatives',
-          data: wrap(application.Relationships).Relatives,
-        },
-      ]
+      return getSubsections('relationships', application)
     // TODO: there are inconsistencies for which section U.S. Passport
     // is in. We want it to eventually be in Citizenship from Foreign.
     case 'citizenship/passport':
@@ -266,20 +259,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'citizenship/intro':
     case 'citizenship/review':
-      return [
-        {
-          path: 'citizenship/multiple',
-          data: wrap(application.Citizenship).Multiple,
-        },
-        {
-          path: 'citizenship/passports',
-          data: wrap(application.Citizenship).Passports,
-        },
-        {
-          path: 'citizenship/status',
-          data: wrap(application.Citizenship).Status,
-        },
-      ]
+      return getSubsections('citizenship', application)
 
     case 'military/selective':
       return [
@@ -305,18 +285,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'military/intro':
     case 'military/review':
-      return [
-        {
-          path: 'military/selective',
-          data: wrap(application.Military).Selective,
-        },
-        { path: 'military/history', data: wrap(application.Military).History },
-        {
-          path: 'military/disciplinary',
-          data: wrap(application.Military).Disciplinary,
-        },
-        { path: 'military/foreign', data: wrap(application.Military).Foreign },
-      ]
+      return getSubsections('military', application)
 
     case 'foreign/activities/benefits':
       return [
@@ -426,67 +395,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'foreign/intro':
     case 'foreign/review':
-      return [
-        {
-          path: 'foreign/activities/benefits',
-          data: wrap(application.Foreign).BenefitActivity,
-        },
-        {
-          path: 'foreign/activities/direct',
-          data: wrap(application.Foreign).DirectActivity,
-        },
-        {
-          path: 'foreign/activities/indirect',
-          data: wrap(application.Foreign).IndirectActivity,
-        },
-        {
-          path: 'foreign/activities/realestate',
-          data: wrap(application.Foreign).RealEstateActivity,
-        },
-        {
-          path: 'foreign/activities/support',
-          data: wrap(application.Foreign).Support,
-        },
-        {
-          path: 'foreign/business/advice',
-          data: wrap(application.Foreign).Advice,
-        },
-        {
-          path: 'foreign/business/conferences',
-          data: wrap(application.Foreign).Conferences,
-        },
-        {
-          path: 'foreign/business/contact',
-          data: wrap(application.Foreign).Contact,
-        },
-        {
-          path: 'foreign/business/employment',
-          data: wrap(application.Foreign).Employment,
-        },
-        {
-          path: 'foreign/business/family',
-          data: wrap(application.Foreign).Family,
-        },
-        {
-          path: 'foreign/business/political',
-          data: wrap(application.Foreign).Political,
-        },
-        {
-          path: 'foreign/business/sponsorship',
-          data: wrap(application.Foreign).Sponsorship,
-        },
-        {
-          path: 'foreign/business/ventures',
-          data: wrap(application.Foreign).Ventures,
-        },
-        {
-          path: 'foreign/business/voting',
-          data: wrap(application.Foreign).Voting,
-        },
-        { path: 'foreign/contacts', data: wrap(application.Foreign).Contacts },
-        { path: 'foreign/passport', data: wrap(application.Foreign).Passport },
-        { path: 'foreign/travel', data: wrap(application.Foreign).Travel },
-      ]
+      return getSubsections('foreign', application)
 
     case 'substance/alcohol/additional':
       return [
@@ -567,52 +476,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'substance/intro':
     case 'substance/review':
-      return [
-        {
-          path: 'substance/alcohol/additional',
-          data: wrap(application.Substance).ReceivedCounselings,
-        },
-        {
-          path: 'substance/alcohol/negative',
-          data: wrap(application.Substance).NegativeImpacts,
-        },
-        {
-          path: 'substance/alcohol/ordered',
-          data: wrap(application.Substance).OrderedCounselings,
-        },
-        {
-          path: 'substance/alcohol/voluntary',
-          data: wrap(application.Substance).VoluntaryCounselings,
-        },
-        {
-          path: 'substance/drugs/clearance',
-          data: wrap(application.Substance).DrugClearanceUses,
-        },
-        {
-          path: 'substance/drugs/misuse',
-          data: wrap(application.Substance).PrescriptionUses,
-        },
-        {
-          path: 'substance/drugs/ordered',
-          data: wrap(application.Substance).OrderedTreatments,
-        },
-        {
-          path: 'substance/drugs/publicsafety',
-          data: wrap(application.Substance).DrugPublicSafetyUses,
-        },
-        {
-          path: 'substance/drugs/purchase',
-          data: wrap(application.Substance).DrugInvolvements,
-        },
-        {
-          path: 'substance/drugs/usage',
-          data: wrap(application.Substance).DrugUses,
-        },
-        {
-          path: 'substance/drugs/voluntary',
-          data: wrap(application.Substance).VoluntaryTreatments,
-        },
-      ]
+      return getSubsections('substance', application)
 
     case 'legal/associations/activities-to-overthrow':
       return [
@@ -734,92 +598,10 @@ const sectionData = (section, subsection, application = {}) => {
         },
       ]
     case 'legal/police/intro':
-      return [
-        {
-          path: 'legal/police/additionaloffenses',
-          data: wrap(application.Legal).PoliceOtherOffenses,
-        },
-        {
-          path: 'legal/police/domesticviolence',
-          data: wrap(application.Legal).PoliceDomesticViolence,
-        },
-        {
-          path: 'legal/police/offenses',
-          data: wrap(application.Legal).PoliceOffenses,
-        },
-      ]
+      return getLegalPoliceSubsections(application)
     case 'legal/intro':
     case 'legal/review':
-      return [
-        {
-          path: 'legal/associations/activities-to-overthrow',
-          data: wrap(application.Legal).ActivitiesToOverthrow,
-        },
-        {
-          path: 'legal/associations/advocating',
-          data: wrap(application.Legal).Advocating,
-        },
-        {
-          path: 'legal/associations/engaged-in-terrorism',
-          data: wrap(application.Legal).EngagedInTerrorism,
-        },
-        {
-          path: 'legal/associations/membership-overthrow',
-          data: wrap(application.Legal).MembershipOverthrow,
-        },
-        {
-          path: 'legal/associations/membership-violence-or-force',
-          data: wrap(application.Legal).MembershipViolence,
-        },
-        {
-          path: 'legal/associations/terrorism-association',
-          data: wrap(application.Legal).TerrorismAssociation,
-        },
-        {
-          path: 'legal/associations/terrorist-organization',
-          data: wrap(application.Legal).TerroristOrganization,
-        },
-        {
-          path: 'legal/court',
-          data: wrap(application.Legal).NonCriminalCourtActions,
-        },
-        {
-          path: 'legal/investigations/debarred',
-          data: wrap(application.Legal).Debarred,
-        },
-        {
-          path: 'legal/investigations/history',
-          data: wrap(application.Legal).History,
-        },
-        {
-          path: 'legal/investigations/revoked',
-          data: wrap(application.Legal).Revoked,
-        },
-        {
-          path: 'legal/police/additionaloffenses',
-          data: wrap(application.Legal).PoliceOtherOffenses,
-        },
-        {
-          path: 'legal/police/domesticviolence',
-          data: wrap(application.Legal).PoliceDomesticViolence,
-        },
-        {
-          path: 'legal/police/offenses',
-          data: wrap(application.Legal).PoliceOffenses,
-        },
-        {
-          path: 'legal/technology/manipulating',
-          data: wrap(application.Legal).Manipulating,
-        },
-        {
-          path: 'legal/technology/unauthorized',
-          data: wrap(application.Legal).Unauthorized,
-        },
-        {
-          path: 'legal/technology/unlawful',
-          data: wrap(application.Legal).Unlawful,
-        },
-      ]
+      return getSubsections('legal', application)
 
     case 'psychological/competence':
       return [
@@ -858,28 +640,7 @@ const sectionData = (section, subsection, application = {}) => {
       ]
     case 'psychological/intro':
     case 'psychological/review':
-      return [
-        {
-          path: 'psychological/competence',
-          data: wrap(application.Psychological).Competence,
-        },
-        {
-          path: 'psychological/conditions',
-          data: wrap(application.Psychological).ExistingConditions,
-        },
-        {
-          path: 'psychological/consultations',
-          data: wrap(application.Psychological).Consultations,
-        },
-        {
-          path: 'psychological/diagnoses',
-          data: wrap(application.Psychological).Diagnoses,
-        },
-        {
-          path: 'psychological/hospitalizations',
-          data: wrap(application.Psychological).Hospitalizations,
-        },
-      ]
+      return getSubsections('psychological', application)
 
     case 'submission/releases':
       return [

@@ -40,7 +40,7 @@ export const LEGAL_POLICE_OFFENSES = {
 
 export const LEGAL_POLICE_ADDITIONAL_OFFENSES = {
   key: sections.LEGAL_POLICE_ADDITIONAL_OFFENSES,
-  name: 'police/additionalOffenses',
+  name: 'police/additionaloffenses',
   path: 'additionaloffenses',
   storeKey: 'PoliceOtherOffenses',
   label: i18n.t('legal.subsection.police.additionalOffenses'),
@@ -48,7 +48,7 @@ export const LEGAL_POLICE_ADDITIONAL_OFFENSES = {
 
 export const LEGAL_POLICE_DOMESTIC_VIOLENCE = {
   key: sections.LEGAL_POLICE_DOMESTIC_VIOLENCE,
-  name: 'police/domesticViolence',
+  name: 'police/domesticviolence',
   path: 'domesticviolence',
   storeKey: 'PoliceDomesticViolence',
   label: i18n.t('legal.subsection.police.domesticViolence'),

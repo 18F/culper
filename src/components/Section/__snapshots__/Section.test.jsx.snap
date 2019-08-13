@@ -24903,7 +24903,7 @@ exports[`The section component renders LEGAL_POLICE_ADDITIONAL_OFFENSES 1`] = `
     className="section-view"
   >
     <div
-      className="view view-police/additionalOffenses"
+      className="view view-police/additionaloffenses"
     >
       <div
         className="section-content police-other-offenses"
@@ -25175,7 +25175,7 @@ exports[`The section component renders LEGAL_POLICE_DOMESTIC_VIOLENCE 1`] = `
     className="section-view"
   >
     <div
-      className="view view-police/domesticViolence"
+      className="view view-police/domesticviolence"
     >
       <div
         className="section-content domestic-violence-list"

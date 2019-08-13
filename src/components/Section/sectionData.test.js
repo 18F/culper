@@ -1,4 +1,5 @@
-import sectionData from './sectionData'
+import { SF85, SF85P, SF86 } from 'config/formTypes'
+import sectionData, { getForm, getSubsections, getLegalPoliceSubsections } from './sectionData'
 
 describe('Retrieving section data', () => {
   it('can get section data', () => {
@@ -514,6 +515,50 @@ describe('Retrieving section data', () => {
         }
         expect(r.data).toBe(true)
       }
+    })
+  })
+})
+
+describe('getForm', () => {
+  it('gets the correct form', () => {
+    expect(getForm({ formType: 'SF86' })).toEqual(SF86)
+    expect(getForm({ formType: 'SF85P' })).toEqual(SF85P)
+    expect(getForm({ formType: 'SF85' })).toEqual(SF85)
+  })
+
+  it('defaults to the SF86', () => {
+    expect(getForm({ formType: '' })).toEqual(SF86)
+  })
+})
+
+describe('getSubsections', () => {
+  describe('SF86', () => {
+    it('filters down to only get the correct subsections', () => {
+      expect(getSubsections('financial', { Settings: { formType: 'SF86' } }).length)
+        .toEqual(7)
+    })
+  })
+
+  describe('SF85', () => {
+    it('filters down to only get the correct subsections', () => {
+      expect(getSubsections('financial', { Settings: { formType: 'SF85' } }).length)
+        .toEqual(2)
+    })
+  })
+})
+
+describe('getLegalPoliceSubsections', () => {
+  describe('SF86', () => {
+    it('filters down to only get the correct subsections', () => {
+      expect(getLegalPoliceSubsections({ Settings: { formType: 'SF86' } }).length)
+        .toEqual(3)
+    })
+  })
+
+  describe('SF85', () => {
+    it('filters down to only get the correct subsections', () => {
+      expect(getLegalPoliceSubsections({ Settings: { formType: 'SF85' } }).length)
+        .toEqual(2)
     })
   })
 })
