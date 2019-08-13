@@ -36,6 +36,8 @@ const (
 	SessionExpired                             = "Auth failed because of an expired session"
 	SessionDoesNotExist                        = "Auth failed because of an invalid session"
 	SessionUnexpectedError                     = "An unexpected error occured while checking the session."
+	CSRFTokenMissing                           = "The state modifying request is missing a CSRF Token"
+	CSRFTokenInvalid                           = "The state modifying request has an invalid CSRF Token"
 	RequestIsMissingSessionCookie              = "Unauthorized: Request is missing a session cookie"
 	CORSDenied                                 = "CORS request denied"
 	CookieDomainNotSet                         = "Cookie Domain is not set"

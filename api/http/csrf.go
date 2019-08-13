@@ -32,7 +32,9 @@ func NewCSRFMiddleware(log api.LogService, authKey []byte, useSecureCookie bool)
 		authKey = []byte(base64.StdEncoding.EncodeToString(b))
 	}
 
-	gorillaMiddleware := csrf.Protect(authKey, csrf.Secure(useSecureCookie))
+	errorHandler := newCSRFErrorHandler(log)
+
+	gorillaMiddleware := csrf.Protect(authKey, csrf.Secure(useSecureCookie), csrf.ErrorHandler(errorHandler))
 
 	return &CSRFMiddleware{
 		gorillaMiddleware,
@@ -42,6 +44,31 @@ func NewCSRFMiddleware(log api.LogService, authKey []byte, useSecureCookie bool)
 // Middleware for verifying the CSRF token
 func (m CSRFMiddleware) Middleware(next http.Handler) http.Handler {
 	return m.gorillaMiddleware(next)
+}
+
+// crsfErrorHandler gets called whenever gorilla detects a CSRF error
+type crsfErrorHandler struct {
+	log api.LogService
+}
+
+func newCSRFErrorHandler(log api.LogService) crsfErrorHandler {
+	return crsfErrorHandler{
+		log,
+	}
+}
+
+// csrfErrorHandler renders an error if the CSRF middleware fails
+func (e crsfErrorHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	token := r.Header.Get(tokenHeaderName)
+
+	if token == "" {
+		e.log.Warn(api.CSRFTokenMissing, api.LogFields{})
+		RespondWithStructuredError(w, api.CSRFTokenMissing, http.StatusForbidden)
+	} else {
+		e.log.Warn(api.CSRFTokenInvalid, api.LogFields{})
+		RespondWithStructuredError(w, api.CSRFTokenInvalid, http.StatusForbidden)
+	}
+
 }
 
 // AddCSRFTokenHeader adds the current token header to the response
