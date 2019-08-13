@@ -6,7 +6,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
-// RefreshHandler is the handler for refreshing JWTs.
+// RefreshHandler is the handler for refreshing the session
 type RefreshHandler struct {
 	Env      api.Settings
 	Log      api.LogService
