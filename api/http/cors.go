@@ -44,6 +44,7 @@ func (service CORSHandler) Middleware(next http.Handler) http.Handler {
 			w.Header().Set("Access-Control-Allow-Headers",
 				"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 			w.Header().Set("Access-Control-Allow-Credentials", "true")
+			w.Header().Set("Access-Control-Expose-Headers", "X-CSRF-Token")
 
 			maxAge := defaultMaxAge
 			if service.Env.Has(api.CORSMaxAge) {
