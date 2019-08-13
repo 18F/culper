@@ -60,7 +60,6 @@ import {
   hideDisciplinaryProceduresSelector,
   hideExistingConditionsSelector,
 } from 'selectors/navigation'
-import { formStatusSelector } from 'selectors/validation'
 
 import { extractOtherNames } from 'components/Section/extractors'
 
@@ -170,7 +169,7 @@ const connectSubsection = (Component, {
     try {
       return {
         // Section-specific data
-        ...sectionData.data,
+        ...sectionData && sectionData.data,
         ...sectionData,
 
         // General data
@@ -180,7 +179,6 @@ const connectSubsection = (Component, {
         AddressBooks,
         suggestedNames: names,
         formType,
-        ...formStatusSelector(state),
 
         // History
         ...selectHistoryFederalSection(state),

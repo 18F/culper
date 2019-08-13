@@ -24,6 +24,7 @@ describe('The section component', () => {
 
   it('is visible', () => {
     const store = mockStore({
+      form: {},
       application: {
         Settings: {
           formType: 'SF86',
@@ -50,6 +51,13 @@ describe('The section component', () => {
         },
         section: {
           subsection: section.name,
+        },
+        form: {
+          MILITARY_HISTORY: { data: { HasServed: { value: 'Yes' } } },
+          PSYCHOLOGICAL_COMPETENCE: { data: { IsIncompetent: { value: 'No' } } },
+          PSYCHOLOGICAL_CONSULTATIONS: { data: { Consulted: { value: 'No' } } },
+          PSYCHOLOGICAL_DIAGNOSES: { data: { Diagnosed: { value: 'No' } } },
+          PSYCHOLOGICAL_HOSPITALIZATIONS: { data: { Hospitalized: { value: 'No' } } },
         },
         application: {
           Identification: {},
