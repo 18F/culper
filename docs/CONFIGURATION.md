@@ -268,7 +268,10 @@ United States Postal Service (USPS) API key for address validation.
 
 ## `CSRF_SECRET`
 
-Random tokens used for CSRF protection are generated using a secret random key of at least 256-bits. For example, `openssl rand -base64 32` generates an appropriate key. If this value is not specified, one will be automatically generated unique to the instance.
+Tokens generated for CSRF protection are digitally signed using a secret random key of at least 256-bits.
+For example, `openssl rand -base64 32` generates an appropriate key. If this value is not specified, 
+one will be automatically generated unique to the instance, but then different instances will not be able to read 
+each other's cookies. 
 
 **Target** - Back-end (api)<br>
 **Default** - *none*<br>
