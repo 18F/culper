@@ -41,6 +41,9 @@ export class UsPassport extends Subsection {
     this.storeKey = storeKey
 
     this.number = null
+    this.state = {
+      showSuggestionsModal: this.showSuggestions(),
+    }
   }
 
   update = (queue, fn) => {
@@ -123,14 +126,13 @@ export class UsPassport extends Subsection {
   onSuggestion = (suggestion) => {
     this.update({
       Name: suggestion,
-      suggestedNames: [],
     })
+
+    this.setState({ showSuggestionsModal: false })
   }
 
   onDismiss = () => {
-    this.update({
-      suggestedNames: [],
-    })
+    this.setState({ showSuggestionsModal: false })
   }
 
   showSuggestions = () => {
@@ -140,7 +142,7 @@ export class UsPassport extends Subsection {
     }
 
     // If we have suggestions, show them
-    return this.props.suggestedNames.length
+    return !!this.props.suggestedNames.length
   }
 
   passportBeforeCutoff = () => {
@@ -157,6 +159,7 @@ export class UsPassport extends Subsection {
   }
 
   render() {
+    const { showSuggestionsModal } = this.state
     const numberLength = this.passportBeforeCutoff() ? '255' : '9'
     const numberRegEx = this.passportBeforeCutoff()
       ? '^[a-zA-Z0-9]*$'
@@ -190,7 +193,7 @@ export class UsPassport extends Subsection {
               className="no-margin-bottom"
             />
             <Suggestions
-              show={this.showSuggestions()}
+              show={showSuggestionsModal}
               suggestions={this.props.suggestedNames}
               renderSuggestion={this.renderSuggestion}
               withSuggestions={true}
