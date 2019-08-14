@@ -151,7 +151,7 @@ func (service *Service) validate(response *saml.Response, original string) error
 	}
 
 	if response.Destination != service.provider.AssertionConsumerServiceURL {
-		return errors.New("destination mismath expected: " + service.provider.AssertionConsumerServiceURL + " not " + response.Destination)
+		return errors.New("destination mismatch exception: " + service.provider.AssertionConsumerServiceURL + " not " + response.Destination)
 	}
 
 	if response.Assertion.Subject.SubjectConfirmation.Method != "urn:oasis:names:tc:SAML:2.0:cm:bearer" {
@@ -214,7 +214,8 @@ func cleanName(nameID string) string {
 
 // CreateSLORequest creates an encoded SAML Logout Request suitable for sending to the identity server
 func (service *Service) CreateSLORequest(username string, sessionIndex string) (string, string, error) {
-	req := newLogoutRequest(service.provider.IDPSSODescriptorURL, username, sessionIndex)
+	service.configure()
+	req := newLogoutRequest(service.provider.IDPSSODescriptorURL, service.provider.IDPSSOURL, username, sessionIndex)
 
 	signedRequest, err := req.signedRequest(service.provider.PublicCertPath, service.provider.PrivateKeyPath)
 	if err != nil {

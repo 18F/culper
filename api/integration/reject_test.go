@@ -35,7 +35,7 @@ func TestDeleteSingaturePDFs(t *testing.T) {
 
 	certificationBytes := readTestData(t, certificationPath)
 
-	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes, account.ID)
+	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes, account)
 
 	w := httptest.NewRecorder()
 
@@ -59,17 +59,17 @@ func TestDeleteSingaturePDFs(t *testing.T) {
 	// Now submit, which will generate signatures.
 	// Setup a test scenario
 	form := readTestData(t, "../testdata/complete-scenarios/test1.json")
-	saveFormJSON(t, services, form, account.ID)
+	saveFormJSON(t, services, form, account)
 	// in addition to the base form data, we need submission data to get the date signed
 	submissionJSON := readTestData(t, "../testdata/submission-test1.json")
-	saveResp := saveJSON(services, submissionJSON, account.ID)
+	saveResp := saveJSON(services, submissionJSON, account)
 	if saveResp.StatusCode != 200 {
 		t.Fatal("Didn't save the submission section")
 	}
 
 	// call the /form/submit handler. It's a dummy handler that just returns
 	// the XML on success.
-	w, submitReq := standardResponseAndRequest("POST", "/me/form/submit", nil, account.ID)
+	w, submitReq := standardResponseAndRequest("POST", "/me/form/submit", nil, account)
 	submitHandler.ServeHTTP(w, submitReq)
 
 	submitResp := w.Result()
@@ -99,7 +99,7 @@ func TestDeleteSingaturePDFs(t *testing.T) {
 		Store:    services.store,
 	}
 
-	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account.ID)
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 

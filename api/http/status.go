@@ -12,7 +12,6 @@ import (
 type StatusHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -27,16 +26,8 @@ type formStatusInfo struct {
 // ServeHTTP returns the accounts current state.
 func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
-
-	// Get the account information from the data store
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusInternalServerError)
-		return
-	}
+	// Get account information
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	application, fetchErr := service.Store.LoadApplication(account.ID)
 	if fetchErr != nil {
@@ -67,6 +58,9 @@ func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		RespondWithStructuredError(w, api.StatusError, http.StatusInternalServerError)
 		return
 	}
+
+	// Get the CSRF token and add it as a header
+	AddCSRFTokenHeader(w, r)
 
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, string(statusBytes))

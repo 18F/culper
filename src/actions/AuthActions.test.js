@@ -1,79 +1,87 @@
-import { api } from 'services/api'
-import MockAdapter from 'axios-mock-adapter'
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import {
+  INIT_APP, LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, SHOW_SESSION_WARNING,
+  HIDE_SESSION_WARNING, RENEW_SESSION, LOGOUT,
+} from 'constants/actionTypes'
+
 import {
   login,
   logout,
   handleLoginSuccess,
   handleLoginError,
+  initApp,
+  showSessionWarning,
+  hideSessionWarning,
+  renewSession,
 } from './AuthActions'
-import AuthConstants from './AuthConstants'
-
-const middlewares = [thunk]
-const mockStore = configureMockStore(middlewares)
 
 describe('Auth actions', () => {
+  it('should create an action to initialize the app (auto login)', () => {
+    const expectedAction = {
+      type: INIT_APP,
+      path: '/form/history/employment',
+    }
+
+    expect(initApp('/form/history/employment')).toEqual(expectedAction)
+  })
+
   it('should create an action to login using username and password', () => {
-    // Mock POST response
-    const mock = new MockAdapter(api.proxy)
-    mock.onPost('/auth/basic').reply(200, 'faketoken')
+    const expectedAction = {
+      type: LOGIN,
+      username: 'test01',
+      password: 'password01',
+    }
 
-    const expectedActions = [
-      {
-        type: AuthConstants.LOGIN_SUCCESS,
-        token: 'faketoken',
-      },
-    ]
-
-    const store = mockStore({ authentication: [] })
-
-    return store.dispatch(login('john', 'admin')).then(() => {
-      expect(store.getActions()).toEqual(expectedActions)
-    })
+    expect(login('test01', 'password01')).toEqual(expectedAction)
   })
 
   it('should create an action to handle a successful login', () => {
-    const token = 'faketoken'
     const expectedAction = {
-      type: AuthConstants.LOGIN_SUCCESS,
-      token,
+      type: LOGIN_SUCCESS,
     }
-    expect(handleLoginSuccess(token)).toEqual(expectedAction)
+
+    expect(handleLoginSuccess()).toEqual(expectedAction)
   })
 
   it('should create an action to handle logout', () => {
-    const mock = new MockAdapter(api.proxy)
-    mock.onGet('/me/logout').reply(200)
+    const expectedAction = {
+      type: LOGOUT,
+      timedOut: false,
+    }
 
-    const store = mockStore({ authentication: [] })
-    const expectedAction = [{ type: AuthConstants.LOGOUT }]
-    store.dispatch(logout()).then(() => {
-      expect(store.getActions()).toEqual(expectedAction)
-    })
+    expect(logout()).toEqual(expectedAction)
   })
 
-  it('should create an action an unsuccessful login action', () => {
+  it('should create an action to handle an unsuccessful login', () => {
     const error = 'Invalid account'
     const expectedAction = {
-      type: AuthConstants.LOGIN_ERROR,
+      type: LOGIN_ERROR,
       error: 'Invalid account',
     }
+
     expect(handleLoginError(error)).toEqual(expectedAction)
   })
 
-  it('should create an action to handle unsuccessful login when login credentials fail', () => {
-    const mock = new MockAdapter(api.proxy)
-    mock.onPost('/auth/basic').reply(500, 'Invalid account')
-    const store = mockStore({ authentication: {} })
-    const expectedAction = [
-      {
-        error: 'Invalid account',
-        type: AuthConstants.LOGIN_ERROR,
-      },
-    ]
-    return store.dispatch(login('john', 'doe')).then(() => {
-      expect(store.getActions()).toEqual(expectedAction)
-    })
+  it('should create an action to show the session warning', () => {
+    const expectedAction = {
+      type: SHOW_SESSION_WARNING,
+    }
+
+    expect(showSessionWarning()).toEqual(expectedAction)
+  })
+
+  it('should create an action to hide the session warning', () => {
+    const expectedAction = {
+      type: HIDE_SESSION_WARNING,
+    }
+
+    expect(hideSessionWarning()).toEqual(expectedAction)
+  })
+
+  it('should create an action to renew the session', () => {
+    const expectedAction = {
+      type: RENEW_SESSION,
+    }
+
+    expect(renewSession()).toEqual(expectedAction)
   })
 })

@@ -12,7 +12,7 @@ import (
 // TestBasicRequestFormat just tests that NewLogoutRequest can run without generating any errors.
 func TestBasicRequestFormat(t *testing.T) {
 
-	req := newLogoutRequest("localhost", "admin", "session-id")
+	req := newLogoutRequest("localhost", "https://localhost:9443/samlsso", "admin", "session-id")
 
 	output, err := req.xml()
 	if err != nil {
@@ -26,7 +26,9 @@ func TestBasicRequestFormat(t *testing.T) {
 
 func TestRequestSignature(t *testing.T) {
 
-	req := newLogoutRequest("localhost", "admin", "b96e355b-256a-46b2-ba42-9d140effefcb")
+	destination := "https://localhost:9443/samlsso"
+
+	req := newLogoutRequest("localhost", destination, "admin", "b96e355b-256a-46b2-ba42-9d140effefcb")
 
 	req.ID = "_784652ff-d59b-4778-a4a6-fc8d9cc502dc"
 	req.IssueInstant = time.Date(2018, time.November, 27, 23, 37, 46, 952062600, time.UTC)
@@ -45,12 +47,12 @@ func TestRequestSignature(t *testing.T) {
 	}
 
 	// check that the correct digest value is present
-	if !strings.Contains(signedRequest, "K4BHZC12Eg+0ROvekIVi4ZUrG7g=") {
+	if !strings.Contains(signedRequest, "efR71SxNTCF2LMtjRSjCt9r2Vww=") {
 		t.Fatal("Incorrect or missing Digest")
 	}
 
 	// check that a part of the signature is there
-	if !strings.Contains(signedRequest, "qjSm3XMvuvShKlA674D/inGSqqnea8tMBCzXK771IKBkLc5i0oiW39zx4XaKDOzT") {
+	if !strings.Contains(signedRequest, "swE0CJLPMEuasUpwHpe8ElQykEY5Q6BW3kT8b5AE6sGJv4eGPI+MngOIEn66iG55") {
 		t.Fatal("Incorrect or missing Signature")
 	}
 
@@ -58,7 +60,7 @@ func TestRequestSignature(t *testing.T) {
 
 func TestRequestXSD(t *testing.T) {
 
-	req := newLogoutRequest("localhost", "admin", "b96e355b-256a-46b2-ba42-9d140effefcb")
+	req := newLogoutRequest("localhost", "https://localhost:9443/samlsso", "admin", "b96e355b-256a-46b2-ba42-9d140effefcb")
 
 	testCrtFile := "testdata/test_cert.pem"
 	testKeyFile := "testdata/test_key.pem"

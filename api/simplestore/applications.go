@@ -72,7 +72,6 @@ func (s SimpleStore) SaveSection(section api.Section, accountID int) error {
 
 	app, loadErr := runLoadApplication(tx, s.serializer, accountID, true)
 	if loadErr != nil {
-		s.logger.WarnError("Unable to load the application before saving", loadErr, api.LogFields{"accountID": accountID})
 		rollErr := tx.Rollback()
 		if rollErr != nil {
 			s.logger.WarnError("DB error trying to roll back the transaction", rollErr, api.LogFields{"accountID": accountID})

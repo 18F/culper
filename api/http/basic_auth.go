@@ -4,15 +4,17 @@ import (
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 // BasicAuthHandler is the handler for basic authentication.
 type BasicAuthHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
+	Session  api.SessionService
+	Cookie   SessionCookieService
 }
 
 // ServeHTTP processes a users request to login with a Username and Password
@@ -34,15 +36,20 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	errors := structuredErrors{}
+
 	if respBody.Username == "" {
 		service.Log.Warn(api.BasicAuthMissingUsername, api.LogFields{})
-		RespondWithStructuredError(w, api.BasicAuthMissingUsername, http.StatusBadRequest)
-		return
+		errors.addError("USERNAME_MISSING", api.BasicAuthMissingUsername)
 	}
 
 	if respBody.Password == "" {
 		service.Log.Warn(api.BasicAuthMissingPassword, api.LogFields{})
-		RespondWithStructuredError(w, api.BasicAuthMissingPassword, http.StatusBadRequest)
+		errors.addError("PASSWORD_MISSING", api.BasicAuthMissingPassword)
+	}
+
+	if errors.hasErrors() {
+		RespondWithErrors(w, errors, http.StatusBadRequest)
 		return
 	}
 
@@ -64,13 +71,14 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	// Generate jwt token
-	signedToken, _, err := service.Token.NewToken(account.ID, "basic-session", api.BasicAuthAudience)
-	if err != nil {
-		service.Log.WarnError(api.JWTError, err, api.LogFields{"account": account.ID})
-		RespondWithStructuredError(w, api.JWTError, http.StatusInternalServerError)
+	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	if authErr != nil {
+		service.Log.WarnError("bad session get", authErr, api.LogFields{"account": account.ID})
+		RespondWithStructuredError(w, "bad session get", http.StatusInternalServerError)
 		return
 	}
+
+	service.Cookie.AddSessionKeyToResponse(w, sessionKey)
 
 	// If we need to flush the storage first then do so now.
 	if service.Env.True(api.FlushStorage) {
@@ -82,5 +90,4 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	}
 
 	service.Log.Info(api.BasicAuthValid, api.LogFields{"account": account.ID})
-	EncodeJSON(w, signedToken)
 }
