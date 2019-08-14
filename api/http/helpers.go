@@ -5,6 +5,27 @@ import (
 	"testing"
 )
 
+const validJSON = `
+    {
+       "type":"identification.name",
+       "props":{
+          "Name":{
+             "type":"name",
+             "props":{
+                "first":"MacRae",
+                "firstInitialOnly":false,
+                "last":"Fenton",
+                "lastInitialOnly":false,
+                "middle":"William",
+                "middleInitialOnly":false,
+                "noMiddleName":false,
+                "suffix":"",
+                "suffixOther":""
+             }
+          }
+       }
+    }`
+
 func confirmErrorMsg(t *testing.T, responseJSON []byte, expectedErr string) {
 	t.Helper()
 	var errorsJSON map[string][]map[string]string
