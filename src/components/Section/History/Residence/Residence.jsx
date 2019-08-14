@@ -14,9 +14,8 @@ import Subsection from 'components/Section/shared/Subsection'
 import { Accordion } from 'components/Form'
 import { newGuid } from 'components/Form/ValidationElement'
 import { openState } from 'components/Form/Accordion/Accordion'
-import { today, daysAgo } from 'components/Section/History/dateranges'
 
-import { InjectGaps, ResidenceCustomSummary } from '../summaries'
+import { ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
 
@@ -116,14 +115,10 @@ export class Residence extends Subsection {
     })
 
     this.handleUpdate({
-      items: InjectGaps(items, daysAgo(365 * this.props.totalYears))
-        .sort(this.sort)
-        .filter(item => !item.type || (item.type && item.type !== 'Gap')),
+      items: items.sort(this.sort),
       branch: {},
     })
   }
-
-  inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
     return (
@@ -137,7 +132,6 @@ export class Residence extends Subsection {
           defaultState={this.props.defaultState}
           {...this.props.List}
           sort={this.props.sort}
-          inject={this.inject}
           realtime={this.props.realtime}
           onUpdate={this.handleUpdate}
           onError={this.handleError}
