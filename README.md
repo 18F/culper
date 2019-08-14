@@ -148,4 +148,3 @@ Please refer to the [contributing documentation][18].
 [22]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
 [23]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
-[25]: https://codecov.io/gh/truetandem/e-QIP-prototype
