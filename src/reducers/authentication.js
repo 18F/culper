@@ -3,7 +3,6 @@ import {
   LOGIN_ERROR,
   SHOW_SESSION_WARNING,
   HIDE_SESSION_WARNING,
-  SET_CSRF_TOKEN,
 } from 'constants/actionTypes'
 
 const defaultState = {
@@ -40,12 +39,6 @@ const authentication = (state = defaultState, action) => {
         ...state,
         authenticated: false,
         error: action.error,
-      }
-
-    case SET_CSRF_TOKEN:
-      return {
-        ...state,
-        csrfToken: action.csrfToken,
       }
     default:
       return state

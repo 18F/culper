@@ -3,7 +3,6 @@ import {
   handleLoginSuccess,
   showSessionWarning,
   hideSessionWarning,
-  setCSRFToken,
 } from 'actions/AuthActions'
 
 import authentication from './authentication'
@@ -60,16 +59,6 @@ describe('Authentication Reducer', () => {
     }
 
     const action = handleLoginError('testError')
-    expect(authentication(defaultState, action)).toEqual(expectedState)
-  })
-
-  it('should handle set CSRF Token', () => {
-    const expectedState = {
-      ...defaultState,
-      csrfToken: 'dumb-token',
-    }
-
-    const action = setCSRFToken('dumb-token')
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 })
