@@ -9,6 +9,9 @@ import {
 } from 'validators'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import { findTimelineGaps } from 'helpers/date'
+import { validateModel } from 'models/validate'
+
 import Subsection from 'components/Section/shared/Subsection'
 
 import { Accordion } from 'components/Form'
@@ -121,6 +124,26 @@ export class Residence extends Subsection {
   }
 
   render() {
+    const { List } = this.props
+    const { items, branch } = List
+
+    const requiredDuration = { years: 10 }
+
+    const dateRanges = items
+      .filter(i => i.Item && i.Item.Dates && validateModel(
+        { Dates: i.Item.Dates },
+        { Dates: { presence: true, daterange: true } }
+      ) === true)
+      .map(i => i.Item.Dates)
+
+    console.log('find gaps in', dateRanges)
+
+    const gaps = findTimelineGaps(requiredDuration, dateRanges)
+
+    console.log('FOUND GAPS', gaps)
+
+    const showGapError = branch && branch.value === 'No' && gaps.length > 0
+
     return (
       <div
         className="section-content residence"
@@ -154,6 +177,8 @@ export class Residence extends Subsection {
             scrollIntoView={this.props.scrollIntoView}
           />
         </Accordion>
+
+        {showGapError && (<p>Gap error!</p>)}
       </div>
     )
   }
