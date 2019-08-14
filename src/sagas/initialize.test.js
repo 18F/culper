@@ -121,7 +121,7 @@ describe('handleInitSuccess function', () => {
   })
 
   describe('if the form is locked', () => {
-    const data = { data: { Status: 'SUBMITTED' } }
+    const data = { response: { data: { Status: 'SUBMITTED' } } }
     const path = '/form/history/employment'
     const generator = handleInitSuccess(data, path)
 
@@ -146,7 +146,7 @@ describe('handleInitSuccess function', () => {
   })
 
   describe('if the form is not locked', () => {
-    const data = { data: { Status: 'INCOMPLETE' } }
+    const data = { response: { data: { Status: 'INCOMPLETE' } } }
     const path = '/form/history/employment'
     const generator = cloneableGenerator(handleInitSuccess)(data, path)
 

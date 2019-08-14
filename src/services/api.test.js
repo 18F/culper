@@ -1,6 +1,8 @@
 import MockAdapter from 'axios-mock-adapter'
 import { api, getQueryValue } from './api'
 
+api.csrfToken = 'mock-token'
+
 describe('The API', () => {
   it('can get information on version and endpoints', () => {
     const expected = {}
