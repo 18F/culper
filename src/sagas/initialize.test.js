@@ -5,7 +5,6 @@ import { cloneableGenerator } from '@redux-saga/testing-utils'
 
 import * as actionTypes from 'constants/actionTypes'
 import { updateApplication } from 'actions/ApplicationActions'
-import { setCSRFToken } from 'actions/AuthActions'
 import { fetchStatus, fetchForm } from 'actions/api'
 
 import { env } from 'config'
@@ -122,9 +121,7 @@ describe('handleInitSuccess function', () => {
   })
 
   describe('if the form is locked', () => {
-    const data = {
-      response: { data: { Status: 'SUBMITTED' }, headers: { 'x-csrf-token': 'fake-token' } },
-    }
+    const data = { data: { Status: 'SUBMITTED' } }
     const path = '/form/history/employment'
     const generator = handleInitSuccess(data, path)
 
@@ -138,11 +135,6 @@ describe('handleInitSuccess function', () => {
         .toEqual(put(updateApplication('Settings', 'hash', undefined)))
     })
 
-    it('sets the CSRF token', () => {
-      expect(generator.next().value)
-        .toEqual(put(setCSRFToken('fake-token')))
-    })
-
     it('redirects to the locked screen', () => {
       expect(generator.next().value)
         .toEqual(call(env.History().push, '/locked'))
@@ -154,9 +146,7 @@ describe('handleInitSuccess function', () => {
   })
 
   describe('if the form is not locked', () => {
-    const data = {
-      response: { data: { Status: 'INCOMPLETE' }, headers: { 'x-csrf-token': 'fake-token' } },
-    }
+    const data = { data: { Status: 'INCOMPLETE' } }
     const path = '/form/history/employment'
     const generator = cloneableGenerator(handleInitSuccess)(data, path)
 
@@ -168,11 +158,6 @@ describe('handleInitSuccess function', () => {
     it('sets the Hash in the store', () => {
       expect(generator.next().value)
         .toEqual(put(updateApplication('Settings', 'hash', undefined)))
-    })
-
-    it('sets the CSRF token', () => {
-      expect(generator.next().value)
-        .toEqual(put(setCSRFToken('fake-token')))
     })
 
     it('spawns the loggedInWatcher', () => {
@@ -208,7 +193,6 @@ describe('handleInitSuccess function', () => {
       formSuccess.next()
       formSuccess.next()
       formSuccess.next()
-      formSuccess.next()
 
       it('calls handleFetchFormSuccess', () => {
         expect(formSuccess.next({ data: formData }).value)
@@ -220,7 +204,6 @@ describe('handleInitSuccess function', () => {
       const formError = generator.clone()
       const error = { response: { status: 500 } }
 
-      formError.next()
       formError.next()
       formError.next()
       formError.next()
