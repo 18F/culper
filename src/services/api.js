@@ -1,6 +1,5 @@
 /* eslint import/no-cycle: 0 */
 import axios from 'axios'
-import store from 'services/store'
 import env from '../config/environment'
 
 const getSplitValue = (key, raw, delim1, delim2) => {
@@ -22,11 +21,6 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 
 export const getQueryValue = (queryString, key) => getSplitValue(key, queryString.substring(1), '&', '=')
 
-function getCSRFToken() {
-  const state = store.getState()
-  return state.authentication.csrfToken
-}
-
 class Api {
   constructor() {
     this.proxy = axios.create({
@@ -38,7 +32,13 @@ class Api {
     this.proxy.interceptors.response.use(this.handleResponseSuccess, this.handleResponseError)
   }
 
-  handleResponseSuccess = response => response
+  handleResponseSuccess = (response) => {
+    // On a successful /status call, stash the CSRF token for later use.
+    if (response.config.url.endsWith(env.EndpointStatus())) {
+      this.csrfToken = response.headers['x-csrf-token']
+    }
+    return response
+  }
 
   handleResponseError = (error) => {
     console.warn(`API request failed: ${error.message}`)
@@ -53,10 +53,10 @@ class Api {
     return this.proxy.get(endpoint)
   }
 
-  post(endpoint, params = {}) {
-    const csrfToken = getCSRFToken()
+  post(endpoint, params = {}, ignoreCSRF = false) {
+    const { csrfToken } = this
     const headers = {}
-    if (!csrfToken) {
+    if (!ignoreCSRF && !csrfToken) {
       console.error('Attempting to make a POST without a CSRF Token set.', endpoint)
     } else {
       headers['X-CSRF-Token'] = csrfToken
@@ -77,9 +77,10 @@ class Api {
   login = (username, password) => this.post(
     env.EndpointBasicAuthentication(),
     { username, password },
+    true,
   )
 
-  logout = () => this.post(env.EndpointLogout())
+  logout = () => this.post(env.EndpointLogout(), {}, true)
 
   refresh = () => this.post(env.EndpointRefresh())
 
