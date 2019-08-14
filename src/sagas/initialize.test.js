@@ -123,7 +123,7 @@ describe('handleInitSuccess function', () => {
 
   describe('if the form is locked', () => {
     const data = {
-      response: { data: { Status: 'SUBMITTED' }, headers: { 'x-csrf-token': 'fake-token' } }
+      response: { data: { Status: 'SUBMITTED' }, headers: { 'x-csrf-token': 'fake-token' } },
     }
     const path = '/form/history/employment'
     const generator = handleInitSuccess(data, path)
@@ -155,7 +155,7 @@ describe('handleInitSuccess function', () => {
 
   describe('if the form is not locked', () => {
     const data = {
-      response: { data: { Status: 'INCOMPLETE' }, headers: { 'x-csrf-token': 'fake-token' } }
+      response: { data: { Status: 'INCOMPLETE' }, headers: { 'x-csrf-token': 'fake-token' } },
     }
     const path = '/form/history/employment'
     const generator = cloneableGenerator(handleInitSuccess)(data, path)
