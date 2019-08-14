@@ -25,10 +25,13 @@ export function* updateSectionDataLegacy(name, data) {
       const sectionKey = sectionKeys[`${name}.${subsection}`]
       const sectionData = unschema(data[subsection])
 
-      return all([
-        put(updateApplication(name, subsection, sectionData)),
-        put(handleSubsectionUpdateAction(sectionKey, undefined, sectionData)),
-      ])
+      const updateActions = [put(updateApplication(name, subsection, sectionData))]
+
+      if (sectionKey) {
+        updateActions.push(put(handleSubsectionUpdateAction(sectionKey, undefined, sectionData)))
+      }
+
+      return all(updateActions)
     }))
   } catch (e) {
     console.warn('failed to update section', name, e)
