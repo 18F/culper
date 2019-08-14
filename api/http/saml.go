@@ -182,6 +182,8 @@ func (service SamlResponseHandler) serveLogoutResponse(encodedResponse string, w
 		return
 	}
 
+	DeleteSessionCookie(w)
+
 	redirectLogout(w, r)
 }
 

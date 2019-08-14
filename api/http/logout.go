@@ -24,5 +24,7 @@ func (service LogoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	DeleteSessionCookie(w)
+
 	service.Log.Info(api.LoggedOut, api.LogFields{})
 }
