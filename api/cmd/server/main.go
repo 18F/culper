@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	gohttp "net/http"
 	"os"
 	"path/filepath"
 	"time"
@@ -78,7 +79,18 @@ func main() {
 	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP).Methods("GET")
 
 	// Authentication schemes
-	sec := http.NewSessionMiddleware(logger, sessionService)
+	session := http.NewSessionMiddleware(logger, sessionService)
+
+	// CSRF
+	csrfSecret := settings.String(api.CSRFSecret)
+	csrf, csrfErr := http.NewCSRFMiddleware(logger, []byte(csrfSecret), secureCookie)
+	if csrfErr != nil {
+		logger.WarnError("Error configuring CSRF", csrfErr, api.LogFields{})
+		return
+	}
+
+	// everything that is secured is wrapped in CSRF and the Session middleware
+	sec := func(handler gohttp.Handler) gohttp.Handler { return csrf.Middleware(session.Middleware(handler)) }
 
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
@@ -87,25 +99,25 @@ func main() {
 	if settings.True(api.SamlEnabled) {
 		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
 		// SLO uses the logged in session
-		o.Handle("/saml_slo", sec.Middleware(http.SamlSLORequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService})).Methods("GET")
+		o.Handle("/saml_slo", sec(http.SamlSLORequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService})).Methods("GET")
 		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService, Cookie: cookieService}.ServeHTTP).Methods("POST")
 	}
 
 	// Account specific actions
-	r.Handle("/refresh", sec.Middleware(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
+	r.Handle("/refresh", sec(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
 
 	a := r.PathPrefix("/me").Subrouter()
-	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Log: logger, Session: sessionService})).Methods("GET")
-	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
-	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
-	a.Handle("/validate", sec.Middleware(http.ValidateHandler{Log: logger})).Methods("POST")
-	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
-	a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Database: database, Store: store, Submitter: submitter})).Methods("POST")
-	a.Handle("/attachment", sec.Middleware(http.AttachmentListHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
-	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
+	a.Handle("/logout", sec(http.LogoutHandler{Log: logger, Session: sessionService})).Methods("POST")
+	a.Handle("/save", sec(http.SaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
+	a.Handle("/status", sec(http.StatusHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
+	a.Handle("/validate", sec(http.ValidateHandler{Log: logger})).Methods("POST")
+	a.Handle("/form", sec(http.FormHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
+	a.Handle("/form/submit", sec(http.SubmitHandler{Env: settings, Log: logger, Database: database, Store: store, Submitter: submitter})).Methods("POST")
+	a.Handle("/attachment", sec(http.AttachmentListHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
+	a.Handle("/attachment/{id}", sec(http.AttachmentGetHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
 	if settings.True(api.AttachmentsEnabled) {
-		a.Handle("/attachment", sec.Middleware(http.AttachmentSaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
-		a.Handle("/attachment/{id}/delete", sec.Middleware(http.AttachmentDeleteHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "DELETE")
+		a.Handle("/attachment", sec(http.AttachmentSaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
+		a.Handle("/attachment/{id}/delete", sec(http.AttachmentDeleteHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "DELETE")
 	}
 
 	// Inject middleware

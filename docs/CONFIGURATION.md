@@ -37,6 +37,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`CORS_MAX_AGE`](#cors_max_age)                    |                 |                        | X                     |
 | [`FLUSH_STORAGE`](#flush_storage)                       |                 |                        | X                     |
 | [`USPS_API_API_KEY`](#usps_api_api_key)                    |                 |                        | X                     |
+| [`CSRF_SECRET`](#csrf_secret)                          | X               |                        | X                     |
 | [`BASIC_ENABLED`](#basic_enabled)                       |                 | X                      | X                     |
 | [`SAML_ENABLED`](#saml_enabled)                        |                 | X                      | X                     |
 | [`SAML_SLO_ENABLED`](#saml_slo_enabled)                        |                 | X                      | X                     |
@@ -264,6 +265,16 @@ United States Postal Service (USPS) API key for address validation.
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
+
+## `CSRF_SECRET`
+
+Tokens generated for CSRF protection are digitally signed using a secret random key of at least 256-bits.
+For example, `openssl rand -base64 32` generates an appropriate key. If this value is not specified, 
+one will be automatically generated unique to the instance, but then different instances will not be able to read 
+each other's cookies. 
+
+**Target** - Back-end (api)<br>
+**Default** - *none*<br>
 
 ## `BASIC_ENABLED`
 

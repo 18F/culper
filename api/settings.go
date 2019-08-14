@@ -189,6 +189,12 @@ const (
 	// Default: *not enabled*
 	UspsAPIKey = "USPS_API_API_KEY"
 
+	// CSRFSecret Random tokens used for CSRF digitally signed using a secret random key of at least 256-bits.
+	//
+	// Target: Back-end (api)
+	// Default: *none*
+	CSRFSecret = "CSRF_SECRET"
+
 	// BasicEnabled Flag to enable basic username and password authentication.
 	//
 	// Target: Front-end (web), Back-end (api)

@@ -31,7 +31,13 @@ class Api {
     this.proxy.interceptors.response.use(this.handleResponseSuccess, this.handleResponseError)
   }
 
-  handleResponseSuccess = response => response
+  handleResponseSuccess = (response) => {
+    // On a successful /status call, stash the CSRF token for later use.
+    if (response.config.url.endsWith(env.EndpointStatus())) {
+      this.csrfToken = response.headers['x-csrf-token']
+    }
+    return response
+  }
 
   handleResponseError = (error) => {
     console.warn(`API request failed: ${error.message}`)
@@ -46,8 +52,16 @@ class Api {
     return this.proxy.get(endpoint)
   }
 
-  post(endpoint, params = {}) {
-    return this.proxy.post(endpoint, params)
+  post(endpoint, params = {}, ignoreCSRF = false) {
+    const { csrfToken } = this
+    const headers = {}
+    if (!ignoreCSRF && !csrfToken) {
+      console.error('Attempting to make a POST without a CSRF Token set.', endpoint)
+    } else {
+      headers['X-CSRF-Token'] = csrfToken
+    }
+
+    return this.proxy.post(endpoint, params, { headers })
   }
 
   /** AUTH */
@@ -62,9 +76,10 @@ class Api {
   login = (username, password) => this.post(
     env.EndpointBasicAuthentication(),
     { username, password },
+    true,
   )
 
-  logout = () => this.get(env.EndpointLogout())
+  logout = () => this.post(env.EndpointLogout(), {}, true)
 
   refresh = () => this.post(env.EndpointRefresh())
 

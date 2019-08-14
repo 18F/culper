@@ -93,6 +93,15 @@ func (s SessionCookieService) AddSessionKeyToResponse(w http.ResponseWriter, ses
 
 }
 
+// DeleteSessionCookie removes the session cookie
+func DeleteSessionCookie(w http.ResponseWriter) {
+	cookie := &http.Cookie{
+		Name:   SessionCookieName,
+		MaxAge: -1,
+	}
+	http.SetCookie(w, cookie)
+}
+
 // -- Context Storage
 type authContextKey string
 
