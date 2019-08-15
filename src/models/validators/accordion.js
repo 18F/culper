@@ -41,7 +41,7 @@ const accordionValidator = (value, options, key, attributes, globalOptions) => {
   for (let i = 0; i < items.length; i += 1) {
     const { Item, uuid } = items[i]
     const itemId = uuid || i
-    if (!Item) return INVALID_ITEM
+    if (!Item) itemsErrors = itemsErrors.concat(`${itemId}.${INVALID_ITEM}`)
 
     const itemErrors = validateModel(Item, validator, { ...globalOptions, ...options })
     if (itemErrors !== true) itemsErrors = itemsErrors.concat(itemErrors.map(e => `${itemId}.${e}`))

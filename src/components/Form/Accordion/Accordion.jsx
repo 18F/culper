@@ -73,7 +73,6 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
-    this.isValid = this.isValid.bind(this)
 
     // Instance variable. Not stored in state to prevent re-renders and it's not going to
     // be used in the UI.
@@ -362,7 +361,8 @@ export default class Accordion extends ValidationElement {
     }
 
     const closedAndIncomplete =
-      !item.open && !this.isValid(this.props.transformer(item), item.uuid)
+      !item.open && !this.isValid(item.uuid)
+
     const svg = closedAndIncomplete ? (
       <Svg
         src="/img/exclamation-point.svg"
@@ -540,25 +540,19 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
-   * Determines if current item is valid. By default, this
-   * utilizes the validator that is passed in.
+   * Determines if given item is valid.
    * */
-  isValid(item, uuid) {
-    if (this.props.required) {
-      return new this.props.validator(item).isValid() === true && this.hasNoErrors(uuid)
-    }
+  isValid(uuid) {
+    const { required } = this.props
 
-    return true
+    return required
+      ? this.hasNoErrors(uuid)
+      : true
   }
 
   hasNoErrors(uuid) {
-    const el = document.getElementById(uuid)
-    if (!el) {
-      return true
-    }
-    const errors = el.querySelectorAll('.field .messages .message.error')
-
-    return errors.length < 1
+    const { errors } = this.props
+    return errors.filter(e => e.indexOf(uuid) > -1).length < 1
   }
 
   render() {
@@ -602,6 +596,7 @@ Accordion.defaultProps = {
   timeout: 500,
   sort: null,
   realtime: true,
+  errors: [],
   inject: items => {
     return items
   },
@@ -615,13 +610,6 @@ Accordion.defaultProps = {
         <strong>Warning:</strong> Item summary not implemented
       </span>
     )
-  },
-  validator: item => {
-    return class {
-      isValid() {
-        return true
-      }
-    }
   },
   transformer: item => {
     return item && item.Item ? item.Item : item
