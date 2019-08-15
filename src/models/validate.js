@@ -2,7 +2,7 @@
 import { YES, NO } from 'constants/values'
 import validate from './validateConfig'
 
-export const validateModel = (data, model, options) => {
+export const validateModel = (data = {}, model, options) => {
   const errors = options
     ? validate(data, model, options)
     : validate(data, model)
