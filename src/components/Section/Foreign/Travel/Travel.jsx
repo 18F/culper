@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { TravelValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_TRAVEL } from 'config/formSections/foreign'
@@ -78,7 +76,10 @@ export class Travel extends Subsection {
       requireForeignExcessiveKnowledge,
       requireForeignSensitiveInformation,
       requireForeignThreatened,
+      errors,
     } = this.props
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -129,7 +130,7 @@ export class Travel extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={TravelValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.travel.collection.summary.title')}
             appendTitle={i18n.t('foreign.travel.collection.appendTitle')}
@@ -164,13 +165,13 @@ Travel.defaultProps = {
   section: 'foreign',
   subsection: 'travel',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.travel', data)),
   defaultState: true,
   scrollToBottom: '',
   requireForeignCounterIntelligence: true,
   requireForeignExcessiveKnowledge: true,
   requireForeignSensitiveInformation: true,
   requireForeignThreatened: true,
+  errors: [],
 }
 
 export default connectSubsection(Travel, sectionConfig)

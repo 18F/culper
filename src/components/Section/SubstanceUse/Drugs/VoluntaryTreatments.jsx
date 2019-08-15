@@ -1,8 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { DrugVoluntaryTreatmentValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 
@@ -77,7 +75,7 @@ export class VoluntaryTreatments extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_TREATMENT_YEARS
 
@@ -91,6 +89,8 @@ export class VoluntaryTreatments extends Subsection {
       branchLabelCopy = i18n.t('substance.drugs.heading.voluntaryTreatments', { numberOfYearsString })
       appendTitleCopy = i18n.t('substance.drugs.voluntary.collection.appendTitle', { numberOfYearsString })
     }
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -120,7 +120,7 @@ export class VoluntaryTreatments extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DrugVoluntaryTreatmentValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.drugs.voluntary.collection.description')}
             appendTitle={appendTitleCopy}
             appendLabel={i18n.t('substance.drugs.voluntary.collection.appendLabel')}
@@ -150,8 +150,8 @@ VoluntaryTreatments.defaultProps = {
   subsection: 'drugs/voluntary',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('substance.drugs.voluntary', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(VoluntaryTreatments, sectionConfig)

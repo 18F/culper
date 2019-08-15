@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ForeignRealEstateInterestValidator } from 'validators'
 import { Summary, AddressSummary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_REAL_ESTATE } from 'config/formSections/foreign'
@@ -78,6 +76,9 @@ export class RealEstateActivity extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content realestate"
@@ -105,7 +106,7 @@ export class RealEstateActivity extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ForeignRealEstateInterestValidator}
+            errors={accordionErrors}
             description={i18n.t('foreign.activities.realestate.collection.description')}
             appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
             appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}
@@ -135,8 +136,8 @@ RealEstateActivity.defaultProps = {
   section: 'foreign',
   subsection: 'activities/realestate',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.activities.realestate', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(RealEstateActivity, sectionConfig)

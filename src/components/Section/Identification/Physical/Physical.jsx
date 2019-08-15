@@ -1,8 +1,6 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 
 import {
   Field, Height, Weight, HairColor, EyeColor, Sex,
@@ -155,9 +153,6 @@ Physical.defaultProps = {
   Comments: {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => (
-    validate(schema('identification.physical', data))
-  ),
   required: false,
 }
 

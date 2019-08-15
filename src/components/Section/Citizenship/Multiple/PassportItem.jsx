@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+import i18n from 'util/i18n'
 import {
   ValidationElement,
   Field,
@@ -10,11 +10,10 @@ import {
   Location,
   Name,
   Text,
-  Accordion
-} from '../../../Form'
-import { Summary, DateSummary } from '../../../Summary'
+  Accordion,
+} from 'components/Form'
+import { Summary, DateSummary } from 'components/Summary'
 import TravelItem from './TravelItem'
-import { TravelItemValidator } from '../../../../validators'
 
 export default class PassportItem extends ValidationElement {
   constructor(props) {
@@ -41,83 +40,86 @@ export default class PassportItem extends ValidationElement {
       Expiration: this.props.Expiration,
       Used: this.props.Used,
       Countries: this.props.Countries,
-      ...queue
+      ...queue,
     })
   }
 
   updateCountry(values) {
     this.update({
-      Country: values
+      Country: values,
     })
   }
 
   updateIssued(values) {
     this.update({
-      Issued: values
+      Issued: values,
     })
   }
 
   updateLocation(values) {
     this.update({
-      Location: values
+      Location: values,
     })
   }
 
   updateName(values) {
     this.update({
-      Name: values
+      Name: values,
     })
   }
 
   updateNumber(values) {
     this.update({
-      Number: values
+      Number: values,
     })
   }
 
   updateExpiration(values) {
     this.update({
-      Expiration: values
+      Expiration: values,
     })
   }
 
   updateUsed(values) {
     this.update({
-      Used: values
+      Used: values,
     })
   }
 
   updateCountries(values) {
     this.update({
-      Countries: values
+      Countries: values,
     })
   }
 
-  summary(item, index) {
+  summary = (item, index) => {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Dates)
-    const country =
-      itemProperties.Country && itemProperties.Country.value
-        ? itemProperties.Country.value
-        : ''
+    const country = itemProperties.Country && itemProperties.Country.value
+      ? itemProperties.Country.value
+      : ''
 
     return Summary({
       type: i18n.t('citizenship.multiple.collection.travel.summary.item'),
-      index: index,
+      index,
       left: country,
       right: dates,
       placeholder: i18n.t(
         'citizenship.multiple.collection.travel.summary.unknown'
-      )
+      ),
     })
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('Countries.accordion') === 0)
+
     return (
       <div className="passport-item">
         <Field
           title={i18n.t('citizenship.multiple.heading.passport.country')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Country
             name="Country"
             className="passport-country"
@@ -132,7 +134,8 @@ export default class PassportItem extends ValidationElement {
           title={i18n.t('citizenship.multiple.heading.passport.issued')}
           adjustFor="labels"
           shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
             name="Issued"
             {...this.props.Issued}
@@ -147,7 +150,8 @@ export default class PassportItem extends ValidationElement {
         <Field
           title={i18n.t('citizenship.multiple.heading.passport.location')}
           adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Location
             name="Location"
             {...this.props.Location}
@@ -163,7 +167,8 @@ export default class PassportItem extends ValidationElement {
           title={i18n.t('citizenship.multiple.heading.passport.name')}
           optional={true}
           filterErrors={Name.requiredErrorsOnly}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Name
             name="Name"
             {...this.props.Name}
@@ -177,7 +182,8 @@ export default class PassportItem extends ValidationElement {
 
         <Field
           title={i18n.t('citizenship.multiple.heading.passport.number')}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <Text
             name="Number"
             {...this.props.Number}
@@ -192,7 +198,8 @@ export default class PassportItem extends ValidationElement {
           title={i18n.t('citizenship.multiple.heading.passport.expiration')}
           adjustFor="labels"
           shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+          scrollIntoView={this.props.scrollIntoView}
+        >
           <DateControl
             name="Expiration"
             {...this.props.Expiration}
@@ -231,11 +238,12 @@ export default class PassportItem extends ValidationElement {
               'citizenship.multiple.collection.travel.summary.title'
             )}
             required={this.props.required}
-            validator={TravelItemValidator}
+            errors={accordionErrors}
             scrollIntoView={this.props.scrollIntoView}
             appendLabel={i18n.t(
               'citizenship.multiple.collection.travel.append'
-            )}>
+            )}
+          >
             <TravelItem
               name="Item"
               bind={true}
@@ -258,9 +266,7 @@ PassportItem.defaultProps = {
   Expiration: {},
   Used: {},
   Countries: {},
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  },
-  defaultState: true
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
+  defaultState: true,
 }

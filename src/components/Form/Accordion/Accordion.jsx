@@ -552,7 +552,7 @@ export default class Accordion extends ValidationElement {
 
   hasNoErrors(uuid) {
     const { errors } = this.props
-    return errors.filter(e => e.indexOf(uuid) > -1).length < 1
+    return errors && errors.filter(e => e.indexOf(uuid) > -1).length < 1
   }
 
   render() {

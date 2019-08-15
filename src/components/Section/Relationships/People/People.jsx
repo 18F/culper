@@ -2,8 +2,7 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { PersonValidator } from 'validators'
+import { PersonValidator } from 'validators'
 
 import { RELATIONSHIPS, RELATIONSHIPS_PEOPLE } from 'config/formSections/relationships'
 
@@ -139,6 +138,9 @@ export class People extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content people"
@@ -182,7 +184,7 @@ export class People extends Subsection {
           inject={this.inject}
           summary={this.summary}
           customDetails={this.customDetails}
-          validator={PersonValidator}
+          errors={accordionErrors}
           onUpdate={this.updateList}
           onError={this.handleError}
           required={this.props.required}
@@ -211,11 +213,11 @@ People.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('relationships.people', data)),
   defaultState: true,
   totalYears: 7,
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,
+  errors: [],
 }
 
 export default connectSubsection(People, sectionConfig)

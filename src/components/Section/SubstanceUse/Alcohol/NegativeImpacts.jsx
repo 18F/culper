@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { NegativeImpactValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -69,6 +67,9 @@ export class NegativeImpacts extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content negative-impacts"
@@ -97,7 +98,7 @@ export class NegativeImpacts extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={NegativeImpactValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.alcohol.negativeImpact.collection.description')}
             appendTitle={i18n.t('substance.alcohol.negativeImpact.collection.appendTitle')}
             appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}
@@ -124,8 +125,8 @@ NegativeImpacts.defaultProps = {
   section: 'substance',
   subsection: 'alcohol/negative',
   dispatch: () => {},
-  validator: data => validate(schema('substance.alcohol.negative', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(NegativeImpacts, sectionConfig)

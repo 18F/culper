@@ -4,8 +4,7 @@ import i18n from 'util/i18n'
 
 import { HISTORY, HISTORY_EDUCATION } from 'config/formSections/history'
 
-import schema from 'schema'
-import validate, { EducationItemValidator } from 'validators'
+import { EducationItemValidator } from 'validators'
 
 import { Accordion } from 'components/Form'
 import { openState } from 'components/Form/Accordion/Accordion'
@@ -72,7 +71,8 @@ export class Education extends Subsection {
   }
 
   render() {
-    const { totalYears } = this.props
+    const { totalYears, errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div>
@@ -97,6 +97,7 @@ export class Education extends Subsection {
           appendLabel={i18n.t('history.education.collection.school.append')}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
+          errors={accordionErrors}
         >
           <EducationItem
             bind={true}
@@ -127,7 +128,7 @@ Education.defaultProps = {
   section: 'history',
   subsection: 'education',
   dispatch: () => {},
-  validator: data => validate(schema('history.education', data)),
+  errors: [],
 }
 
 export default connectSubsection(Education, sectionConfig)

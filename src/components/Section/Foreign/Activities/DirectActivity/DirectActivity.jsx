@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ForeignDirectInterestValidator } from 'validators'
 import { Summary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_DIRECT } from 'config/formSections/foreign'
@@ -75,6 +73,9 @@ export class DirectActivity extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content direct"
@@ -105,7 +106,7 @@ export class DirectActivity extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ForeignDirectInterestValidator}
+            errors={accordionErrors}
             description={i18n.t('foreign.activities.direct.collection.description')}
             appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
             appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}
@@ -138,7 +139,7 @@ DirectActivity.defaultProps = {
   subsection: 'activities/direct',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('foreign.activities.direct', data)),
+  errors: [],
 }
 
 export default connectSubsection(DirectActivity, sectionConfig)

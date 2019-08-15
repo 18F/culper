@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { VotingValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_VOTING } from 'config/formSections/foreign'
@@ -69,6 +67,9 @@ export class Voting extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-business-voting"
@@ -95,7 +96,7 @@ export class Voting extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={VotingValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.business.voting.collection.summary.title')}
             appendTitle={i18n.t('foreign.business.voting.collection.appendTitle')}
@@ -125,9 +126,9 @@ Voting.defaultProps = {
   section: 'foreign',
   subsection: 'business/voting',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.business.voting', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Voting, sectionConfig)

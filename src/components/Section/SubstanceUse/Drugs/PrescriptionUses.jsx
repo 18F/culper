@@ -1,8 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { DrugPrescriptionUseValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 
@@ -75,10 +73,15 @@ export class PrescriptionUses extends Subsection {
   }
 
   render() {
-    const { formType, requireDrugWhileSafety, requireDrugWithClearance } = this.props
+    const {
+      formType, requireDrugWhileSafety, requireDrugWithClearance, errors,
+    } = this.props
+
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_USE_YEARS
     const numberOfYearsString = getNumberOfYearsString(years)
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -108,7 +111,7 @@ export class PrescriptionUses extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DrugPrescriptionUseValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.drugs.prescription.collection.description')}
             appendTitle={i18n.t('substance.drugs.prescription.collection.appendTitle', { numberOfYearsString })}
             appendLabel={i18n.t('substance.drugs.prescription.collection.appendLabel')}
@@ -137,8 +140,8 @@ PrescriptionUses.defaultProps = {
   section: 'substance',
   subsection: 'drugs/misuse',
   dispatch: () => {},
-  validator: data => validate(schema('substance.drugs.misuse', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(PrescriptionUses, sectionConfig)

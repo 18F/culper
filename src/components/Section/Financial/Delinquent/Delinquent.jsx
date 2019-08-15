@@ -1,8 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { DelinquentItemValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
@@ -88,11 +86,13 @@ export class Delinquent extends Subsection {
 
   render() {
     const {
-      formType, allowFinancialDelinquentNonFederal, requireFinancialDelinquentName,
+      formType, allowFinancialDelinquentNonFederal, requireFinancialDelinquentName, errors,
     } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.FINANCIAL_RECORD_DELINQUENT_YEARS
     const yearsString = getYearsString(years)
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     const descriptionMessage = allowFinancialDelinquentNonFederal
       ? (
@@ -145,7 +145,7 @@ export class Delinquent extends Subsection {
             )}
             appendTitle={i18n.t('financial.delinquent.collection.appendTitle')}
             appendMessage={descriptionMessage}
-            validator={DelinquentItemValidator}
+            errors={accordionErrors}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
             appendLabel={i18n.t('financial.delinquent.collection.append')}
@@ -175,9 +175,9 @@ Delinquent.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('financial.delinquent', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
 export default connectSubsection(Delinquent, sectionConfig)

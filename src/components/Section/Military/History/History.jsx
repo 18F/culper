@@ -1,8 +1,6 @@
 import React from 'react'
 import { MILITARY, MILITARY_HISTORY } from 'config/formSections/military'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { MilitaryServiceValidator } from 'validators'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import MilitaryService from 'components/Section/Military/History/MilitaryService'
@@ -102,6 +100,9 @@ class History extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content military-history"
@@ -134,7 +135,7 @@ class History extends Subsection {
             description={i18n.t('military.history.collection.summary.title')}
             appendTitle={i18n.t('military.history.collection.appendTitle')}
             appendLabel={i18n.t('military.history.collection.append')}
-            validator={MilitaryServiceValidator}
+            errors={accordionErrors}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           >
@@ -160,9 +161,9 @@ History.defaultProps = {
   subsection: 'history',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('military.history', data)),
   defaultState: true,
   required: false,
+  errors: [],
 }
 
 export default connectSubsection(History, sectionConfig)

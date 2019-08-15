@@ -11,8 +11,8 @@ describe('The ApplicantName component', () => {
       label: 'Text input focused',
       value: '',
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = mount(<ApplicantName {...expected} />)
     component.find('.first input').simulate('change')
@@ -21,7 +21,6 @@ describe('The ApplicantName component', () => {
 
   it('defaults behave as expected', () => {
     expect(ApplicantName.defaultProps.onError(0, [])).toEqual([])
-    expect(ApplicantName.defaultProps.validator()).toBe(false)
     expect(ApplicantName.defaultProps.onUpdate()).toBe(undefined)
     expect(ApplicantName.defaultProps.dispatch()).toBe(undefined)
   })

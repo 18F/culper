@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { UnlawfulValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import {
@@ -70,6 +68,9 @@ export class Unlawful extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content legal-technology-unlawful"
@@ -98,7 +99,7 @@ export class Unlawful extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={UnlawfulValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.technology.unlawful.collection.description')}
             appendTitle={i18n.t('legal.technology.unlawful.collection.appendTitle')}
             appendLabel={i18n.t('legal.technology.unlawful.collection.appendLabel')}
@@ -131,8 +132,8 @@ Unlawful.defaultProps = {
   subsection: 'technology/unlawful',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('legal.technology.unlawful', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Unlawful, sectionConfig)
