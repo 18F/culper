@@ -1,7 +1,7 @@
 import { validate } from 'validate.js'
 import { validateModel } from 'models/validate'
 import {
-  MISSING_ITEMS, INVALID_BRANCH, INVALID_VALIDATOR, INVALID_ITEM, INVALID_ITEMS
+  MISSING_ITEMS, INVALID_BRANCH, INVALID_VALIDATOR, INVALID_ITEM,
 } from 'constants/errors'
 import { NO } from 'constants/values'
 

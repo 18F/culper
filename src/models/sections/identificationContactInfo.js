@@ -13,14 +13,24 @@ export const contactPhoneNumber = {
 
 const identificationContactInfo = {
   HomeEmail: (value, attributes) => {
-    if (attributes.WorkEmail && attributes.WorkEmail.value) return {}
+    if (attributes.WorkEmail && attributes.WorkEmail.value) {
+      return {
+        model: { validator: email },
+      }
+    }
+
     return {
       presence: true,
       model: { validator: email },
     }
   },
   WorkEmail: (value, attributes) => {
-    if (attributes.HomeEmail && attributes.HomeEmail.value) return {}
+    if (attributes.HomeEmail && attributes.HomeEmail.value) {
+      return {
+        model: { validator: email },
+      }
+    }
+
     return {
       presence: true,
       model: { validator: email },
