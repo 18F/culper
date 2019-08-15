@@ -2,7 +2,7 @@ import { validateModel } from 'models/validate'
 import employment from 'models/employment'
 
 export const validateEmployment = data => (
-  validateModel(data, employment) === true
+  validateModel(data, employment)
 )
 
 export const validateHistoryEmployment = (data) => {
@@ -19,7 +19,7 @@ export const validateHistoryEmployment = (data) => {
     },
   }
 
-  return validateModel(data, historyEmploymentModel) === true
+  return validateModel(data, historyEmploymentModel)
 }
 
 export default class HistoryEmploymentValidator {
@@ -28,7 +28,7 @@ export default class HistoryEmploymentValidator {
   }
 
   isValid() {
-    return validateHistoryEmployment(this.data)
+    return validateHistoryEmployment(this.data) === true
   }
 }
 
@@ -74,6 +74,6 @@ export class EmploymentValidator {
   }
 
   isValid() {
-    return validateEmployment(this.data)
+    return validateEmployment(this.data) === true
   }
 }

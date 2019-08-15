@@ -49,7 +49,7 @@ export class PackageReview extends React.Component {
       <div className="submission-status">
         {i18n.m('application.submissionStatus.validating')}
         <FormStatus
-          isTransitioning
+          isTransitioning={true}
           progressWidth={width}
           onTransitionEnd={this.onTransitionEnd}
         />

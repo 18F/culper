@@ -38,7 +38,12 @@ describe('validateDrugInvolvements function', () => {
         },
       }
 
-      expect(validateDrugInvolvements(testData, 'SF86')).toEqual(false)
+      expect(validateDrugInvolvements(testData, 'SF86'))
+        .toEqual(expect.arrayContaining([
+          'List.accordion.0.InvolvementWhileEmployed.presence.REQUIRED',
+          'List.accordion.0.InvolvementWithClearance.presence.REQUIRED',
+          'List.accordion.0.InvolvementInFuture.presence.REQUIRED',
+        ]))
     })
 
     it('passes valid data', () => {
@@ -114,7 +119,10 @@ describe('validateDrugInvolvements function', () => {
         },
       }
 
-      expect(validateDrugInvolvements(testData, 'SF85')).toEqual(false)
+      expect(validateDrugInvolvements(testData, 'SF85'))
+        .toEqual(expect.arrayContaining([
+          'List.accordion.INVALID_BRANCH',
+        ]))
     })
 
     it('passes valid data', () => {

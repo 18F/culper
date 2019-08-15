@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import cohabitant from 'models/cohabitant'
 
-export const validateCohabitant = data => validateModel(data, cohabitant) === true
+export const validateCohabitant = data => validateModel(data, cohabitant)
 
 export const validateCohabitants = (data) => {
   const cohabitantsModel = {
@@ -21,7 +21,7 @@ export const validateCohabitants = (data) => {
     },
   }
 
-  return validateModel(data, cohabitantsModel) === true
+  return validateModel(data, cohabitantsModel)
 }
 
 export default class CohabitantsValidator {
@@ -75,6 +75,6 @@ export class CohabitantValidator {
   }
 
   isValid() {
-    return validateCohabitant(this.data)
+    return validateCohabitant(this.data) === true
   }
 }

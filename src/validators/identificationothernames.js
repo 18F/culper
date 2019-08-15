@@ -26,11 +26,11 @@ const otherNamesModel = {
 }
 
 export const validateOtherName = data => (
-  validateModel(data, otherNameModel) === true
+  validateModel(data, otherNameModel)
 )
 
 export const validateOtherNames = data => (
-  validateModel(data, otherNamesModel) === true
+  validateModel(data, otherNamesModel)
 )
 
 export default class OtherNamesValidator {
@@ -58,7 +58,7 @@ export default class OtherNamesValidator {
    * Validates the branching hasOtherNames property and all other name values
    */
   isValid() {
-    return validateOtherNames(this.data)
+    return validateOtherNames(this.data) === true
   }
 }
 
@@ -99,6 +99,6 @@ export class OtherNameValidator {
    * Validates all portions of an other name
    */
   isValid() {
-    return validateOtherName(this.data)
+    return validateOtherName(this.data) === true
   }
 }

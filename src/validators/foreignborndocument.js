@@ -10,7 +10,7 @@ export const validateForeignBornDocument = (data, formType = formTypes.SF86) => 
     data,
     foreignBornDocument,
     { requireForeignBornDocExpiration: isForeignBornDocExpirationRequired }
-  ) === true
+  )
 }
 
 export default class ForeignBornDocumentValidator {
@@ -41,6 +41,6 @@ export default class ForeignBornDocumentValidator {
   }
 
   isValid() {
-    return validateForeignBornDocument(this.data, this.formType)
+    return validateForeignBornDocument(this.data, this.formType) === true
   }
 }

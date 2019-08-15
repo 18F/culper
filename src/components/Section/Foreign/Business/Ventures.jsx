@@ -6,7 +6,7 @@ import { Summary, DateSummary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_VENTURES } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import VenturesItem from './VenturesItem'
 
 const sectionConfig = {
@@ -135,4 +135,4 @@ Ventures.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(Ventures, sectionConfig)
+export default connectSubsection(Ventures, sectionConfig)

@@ -71,6 +71,7 @@ describe('The financial section', () => {
 
   it('renders the FinancialSections component', () => {
     const store = mockStore({
+      form: {},
       application: {
         Settings: {
           formType: 'SF86',

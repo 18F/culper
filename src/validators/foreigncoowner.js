@@ -8,8 +8,8 @@ export const foreignCoOwnersModel = {
   },
 }
 
-export const validateForeignCoOwner = data => validateModel(data, foreignCoOwner) === true
-export const validateForeignCoOwners = data => validateModel(data, foreignCoOwnersModel) === true
+export const validateForeignCoOwner = data => validateModel(data, foreignCoOwner)
+export const validateForeignCoOwners = data => validateModel(data, foreignCoOwnersModel)
 
 export default class ForeignCoOwnersValidator {
   constructor(data = {}) {
@@ -17,7 +17,7 @@ export default class ForeignCoOwnersValidator {
   }
 
   isValid() {
-    return validateForeignCoOwners(this.data)
+    return validateForeignCoOwners(this.data) === true
   }
 }
 
@@ -33,6 +33,6 @@ export class ForeignCoOwnerValidator {
   }
 
   isValid() {
-    return validateForeignCoOwner(this.data)
+    return validateForeignCoOwner(this.data) === true
   }
 }

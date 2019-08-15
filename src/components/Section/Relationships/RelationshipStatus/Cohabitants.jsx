@@ -8,10 +8,10 @@ import validate, { CohabitantValidator } from 'validators'
 import { RELATIONSHIPS, RELATIONSHIPS_STATUS_COHABITANTS } from 'config/formSections/relationships'
 
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, NameSummary, DateSummary } from 'components/Summary'
-
-import connectRelationshipsSection from '../RelationshipsConnector'
 
 import Cohabitant from './Cohabitant'
 
@@ -147,4 +147,4 @@ Cohabitants.defaultProps = {
   requireRelationshipMaritalForeignBornDocExpiration: true,
 }
 
-export default connectRelationshipsSection(Cohabitants, sectionConfig)
+export default connectSubsection(Cohabitants, sectionConfig)

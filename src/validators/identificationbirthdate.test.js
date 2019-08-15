@@ -60,7 +60,10 @@ describe('The validateIdentificationBirthdate function', () => {
       },
     }
 
-    expect(validateIdentificationBirthDate(testData)).toBe(false)
+    expect(validateIdentificationBirthDate(testData))
+      .toEqual(expect.arrayContaining([
+        'Date.date.month.presence.REQUIRED',
+      ]))
   })
 
   it('should fail a birthdate that is too young', () => {
@@ -72,6 +75,9 @@ describe('The validateIdentificationBirthdate function', () => {
       },
     }
 
-    expect(validateIdentificationBirthDate(testData)).toBe(false)
+    expect(validateIdentificationBirthDate(testData))
+      .toEqual(expect.arrayContaining([
+        'Date.date.date.datetime.DATE_TOO_LATE',
+      ]))
   })
 })

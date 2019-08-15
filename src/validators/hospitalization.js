@@ -15,11 +15,11 @@ const hospitalizationsModel = {
 }
 
 export const validateHospitalization = data => (
-  validateModel(data, hospitalization) === true
+  validateModel(data, hospitalization)
 )
 
 export const validateHospitalizations = data => (
-  validateModel(data, hospitalizationsModel) === true
+  validateModel(data, hospitalizationsModel)
 )
 
 export default class HospitalizationsValidator {
@@ -34,7 +34,7 @@ export default class HospitalizationsValidator {
   }
 
   isValid() {
-    return validateHospitalizations(this.data)
+    return validateHospitalizations(this.data) === true
   }
 }
 
@@ -51,6 +51,6 @@ export class HospitalizationValidator {
   }
 
   isValid() {
-    return validateHospitalization(this.data)
+    return validateHospitalization(this.data) === true
   }
 }

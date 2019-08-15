@@ -6,7 +6,7 @@ import { Summary, NameSummary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_SPONSORSHIP } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import SponsorshipItem from './SponsorshipItem'
 
 const sectionConfig = {
@@ -133,4 +133,4 @@ Sponsorship.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(Sponsorship, sectionConfig)
+export default connectSubsection(Sponsorship, sectionConfig)

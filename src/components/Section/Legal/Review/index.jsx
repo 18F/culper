@@ -1,6 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { LEGAL, LEGAL_REVIEW } from 'config/formSections/legal'
+
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import ConnectedOffenses from '../Police/Offenses'
 import ConnectedOtherOffenses from '../Police/OtherOffenses'
@@ -17,8 +20,6 @@ import {
   ActivitiesToOverthrow,
   TerrorismAssociation,
 } from '../Associations'
-
-import connectLegalSection from '../LegalConnector'
 
 const sectionConfig = {
   section: LEGAL.name,
@@ -97,4 +98,16 @@ export const Review = ({
   )
 }
 
-export default connectLegalSection(Review, sectionConfig)
+Review.propTypes = {
+  requireLegalOtherOffensesSection: PropTypes.bool,
+  requireLegalNonCriminalCourtSection: PropTypes.bool,
+  requireLegalTechnologySection: PropTypes.bool,
+}
+
+Review.defaultProps = {
+  requireLegalOtherOffensesSection: true,
+  requireLegalNonCriminalCourtSection: true,
+  requireLegalTechnologySection: true,
+}
+
+export default connectSubsection(Review, sectionConfig)

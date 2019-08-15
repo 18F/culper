@@ -1,14 +1,18 @@
 import {
-  take, select, call, put, all,
+  select, call, put, all, takeEvery,
 } from 'redux-saga/effects'
 
 import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
-import { updateSubsection } from 'actions/FormActions'
+import {
+  updateSubsection, handleSubsectionUpdate as handleSubsectionUpdateAction,
+} from 'actions/FormActions'
 import { updateApplication, validateFormData } from 'actions/ApplicationActions'
 
 import { env } from 'config'
 
 import { validateSection } from 'helpers/validation'
+import sectionKeys from 'helpers/sectionKeys'
+
 import { selectSubsection, formTypeSelector } from './selectors'
 
 import {
@@ -86,13 +90,15 @@ describe('updateSectionDataLegacy saga', () => {
 
     it('puts the updateApplication action for each subsection', () => {
       expect(generator.next().value).toEqual(
-        all(['Multiple', 'Passports', 'Status'].map(s => put(
-          updateApplication(
-            'Citizenship',
-            s,
-            testSectionData[s],
-          )
-        )))
+        all(['Multiple', 'Passports', 'Status'].map((s) => {
+          const sectionKey = sectionKeys[`Citizenship.${s}`]
+          const sectionData = testSectionData[s]
+
+          return all([
+            put(updateApplication('Citizenship', s, sectionData)),
+            put(handleSubsectionUpdateAction(sectionKey, undefined, sectionData)),
+          ])
+        }))
       )
     })
 
@@ -118,23 +124,11 @@ describe('The updateSubsection watcher', () => {
 
   it('takes all HANDLE_SUBSECTION_UPDATE actions', () => {
     expect(generator.next().value)
-      .toEqual(take(HANDLE_SUBSECTION_UPDATE))
+      .toEqual(takeEvery(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate))
   })
 
-  it('calls the handleSubsectionUpdate handler', () => {
-    const action = {
-      type: HANDLE_SUBSECTION_UPDATE,
-      key: 'IDENTIFICATION_NAME',
-      field: 'Name',
-      data: { first: 'test data' },
-    }
-
-    expect(generator.next(action).value)
-      .toEqual(call(handleSubsectionUpdate, action))
-  })
-
-  it('is never done', () => {
-    expect(generator.next().done).toBe(false)
+  it('is done', () => {
+    expect(generator.next().done).toBe(true)
   })
 })
 

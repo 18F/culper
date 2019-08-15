@@ -2,14 +2,16 @@ import React from 'react'
 import { i18n } from 'config'
 import schema from 'schema'
 import validate from 'validators'
-import Subsection from 'components/Section/shared/Subsection'
 import { BranchCollection } from 'components/Form'
 import {
   CITIZENSHIP,
   CITIZENSHIP_PASSPORTS,
 } from 'config/formSections/citizenship'
+
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import PassportItem from './PassportItem'
-import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
   key: CITIZENSHIP_PASSPORTS.key,
@@ -90,4 +92,4 @@ Passports.defaultProps = {
   scrollIntoView: false,
 }
 
-export default connectCitizenshipSection(Passports, sectionConfig)
+export default connectSubsection(Passports, sectionConfig)

@@ -9,7 +9,7 @@ export const validateIdentificationBirthDate = (data) => {
     },
   }
 
-  return validateModel(data, applicantBirthDateModel) === true
+  return validateModel(data, applicantBirthDateModel)
 }
 
 export default class IdentificationBirthDateValidator {
@@ -18,6 +18,6 @@ export default class IdentificationBirthDateValidator {
   }
 
   isValid() {
-    return validateIdentificationBirthDate(this.data)
+    return validateIdentificationBirthDate(this.data) === true
   }
 }

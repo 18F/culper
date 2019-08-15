@@ -21,7 +21,7 @@ export const validatePoliceOtherOffenses = (data, formType) => {
     ),
   }
 
-  return validateModel(data, policeOtherOffensesModel, options) === true
+  return validateModel(data, policeOtherOffensesModel, options)
 }
 
 export default class PoliceOtherOffensesValidator {
@@ -33,6 +33,6 @@ export default class PoliceOtherOffensesValidator {
   }
 
   isValid() {
-    return validatePoliceOtherOffenses(this.data, this.formType)
+    return validatePoliceOtherOffenses(this.data, this.formType) === true
   }
 }

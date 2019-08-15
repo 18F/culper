@@ -17,7 +17,7 @@ export const validateTravel = (data, formType = formTypes.SF86) => {
     requireForeignSensitiveInformation: requireForeignSensitiveInformation(formType),
     requireForeignThreatened: requireForeignThreatened(formType),
   }
-  return validateModel(data, foreignTravel, options) === true
+  return validateModel(data, foreignTravel, options)
 }
 
 export const validateForeignTravel = (data, formType) => {
@@ -51,7 +51,7 @@ export const validateForeignTravel = (data, formType) => {
     },
   }
 
-  return validateModel(data, foreignTravelModel, options) === true
+  return validateModel(data, foreignTravelModel, options)
 }
 
 export default class ForeignTravelValidator {
@@ -63,7 +63,7 @@ export default class ForeignTravelValidator {
   }
 
   isValid() {
-    return validateForeignTravel(this.data, this.formType)
+    return validateForeignTravel(this.data, this.formType) === true
   }
 }
 
@@ -157,6 +157,6 @@ export class TravelValidator {
   }
 
   isValid() {
-    return validateTravel(this.data, this.formType)
+    return validateTravel(this.data, this.formType) === true
   }
 }

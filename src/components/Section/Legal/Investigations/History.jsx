@@ -9,7 +9,7 @@ import {
   LEGAL_INVESTIGATIONS_HISTORY,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import HistoryItem from './HistoryItem'
 
 const sectionConfig = {
@@ -135,4 +135,4 @@ History.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(History, sectionConfig)
+export default connectSubsection(History, sectionConfig)

@@ -6,14 +6,13 @@ import validate, { DelinquentItemValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_DELINQUENT } from 'config/formSections/financial'
 import * as formConfig from 'config/forms'
 
 import { getYearsString } from 'helpers/text'
-
-import connectFinancialSection from '../FinancialConnector'
 
 import DelinquentItem from './DelinquentItem'
 
@@ -181,4 +180,4 @@ Delinquent.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectFinancialSection(Delinquent, sectionConfig)
+export default connectSubsection(Delinquent, sectionConfig)

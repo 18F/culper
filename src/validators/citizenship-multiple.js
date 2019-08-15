@@ -27,7 +27,7 @@ const citizenshipMultipleModel = {
 
 export const validateCitizenshipMultiple = (data = {}, formType = formTypes.SF86) => {
   const requireCitizenshipRenounced = requireMultipleCitizenshipRenounced(formType)
-  return validateModel(data, citizenshipMultipleModel, { requireCitizenshipRenounced }) === true
+  return validateModel(data, citizenshipMultipleModel, { requireCitizenshipRenounced })
 }
 
 /** Object Validators (as classes) - legacy */
@@ -69,7 +69,7 @@ export default class CitizenshipMultipleValidator {
   }
 
   isValid() {
-    return validateCitizenshipMultiple(this.data, this.formType)
+    return validateCitizenshipMultiple(this.data, this.formType) === true
   }
 }
 
@@ -114,6 +114,6 @@ export class CitizenshipItemValidator {
   }
 
   isValid() {
-    return validateCitizenship(this.data, this.formType)
+    return validateCitizenship(this.data, this.formType) === true
   }
 }

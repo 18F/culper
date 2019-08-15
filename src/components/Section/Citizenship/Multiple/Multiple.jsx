@@ -13,13 +13,15 @@ import {
   Accordion,
 } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import {
   CITIZENSHIP,
   CITIZENSHIP_MULTIPLE,
 } from 'config/formSections/citizenship'
 import CitizenshipItem from './CitizenshipItem'
-import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
   key: CITIZENSHIP_MULTIPLE.key,
@@ -154,4 +156,4 @@ Multiple.defaultProps = {
   requireMultipleCitizenshipRenounced: true,
 }
 
-export default connectCitizenshipSection(Multiple, sectionConfig)
+export default connectSubsection(Multiple, sectionConfig)

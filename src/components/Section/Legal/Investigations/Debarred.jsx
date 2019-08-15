@@ -14,7 +14,7 @@ import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import DebarredItem from './DebarredItem'
 
 const sectionConfig = {
@@ -146,4 +146,4 @@ Debarred.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(Debarred, sectionConfig)
+export default connectSubsection(Debarred, sectionConfig)
