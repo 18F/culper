@@ -17,6 +17,7 @@ import ConnectedEducation from './Education'
 import EducationSummaryProgress from './EducationSummaryProgress'
 
 const sectionConfig = {
+  key: HISTORY_EDUCATION.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_EDUCATION.name,
