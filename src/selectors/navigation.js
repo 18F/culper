@@ -43,7 +43,8 @@ const getSectionCompleted = (state, props) => {
   if (section.subsections) {
     // Check complete status of each subsection
     const flatSections = reduceSubsections(section.subsections)
-    return flatSections.filter(s => !!s.storeKey).every((s) => {
+    const sectionsWithData = flatSections.filter(s => !!s.storeKey)
+    return sectionsWithData.length > 0 && sectionsWithData.every((s) => {
       const sectionData = form && form[s.key]
       return sectionData && sectionData.complete === true
     })
