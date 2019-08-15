@@ -65,11 +65,6 @@ func (entity *AdditionalComments) Valid() (bool, error) {
 
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *AdditionalComments) ClearNoBranches() error {
-	if entity.HasComments != nil {
-		entity.HasComments.Value = ""
-	}
-
 	entity.HasComments.ClearNo()
-
 	return nil
 }
