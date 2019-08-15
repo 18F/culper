@@ -141,7 +141,8 @@ describe('The history residence section', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('residence list must cover the required duration', () => {
+  it.skip('residence list must cover the required duration', () => {
+    // TODO - add this once EN-3872 is completed
     const testData = {
       List: {
         branch: { value: 'No' },
