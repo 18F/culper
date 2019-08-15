@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import update from 'immutability-helper'
 import { createSelector } from 'reselect'
 
@@ -36,26 +37,21 @@ const getSectionErrors = (state, props) => {
 }
 
 const getSectionCompleted = (state, props) => {
-  const { application } = state
-  const { Completed } = application
+  const { form } = state
+  const { section } = props
 
-  const { topSection, section } = props
-
-  const sectionCompleted = topSection
-    ? Completed[topSection]
-    : Completed[section.name]
-
-  if (!sectionCompleted) { return [] }
-
-  if (!section.subsections) {
-    return sectionCompleted.filter(s => s.subsection === section.name)
+  if (section.subsections) {
+    // Check complete status of each subsection
+    const flatSections = reduceSubsections(section.subsections)
+    return flatSections.filter(s => !!s.storeKey).every((s) => {
+      const sectionData = form && form[s.key]
+      return sectionData && sectionData.complete === true
+    })
   }
 
-  const flatSections = reduceSubsections(section.subsections)
-
-  return sectionCompleted.filter(s => (
-    flatSections.find(i => i.name === s.subsection)
-  ))
+  const sectionData = form && form[section.key]
+  if (!sectionData) return false
+  return sectionData.complete === true
 }
 
 const getSectionLocked = (state, props) => {
@@ -85,9 +81,7 @@ export const sectionHasErrorsSelector = createSelector(
 
 export const sectionIsValidSelector = createSelector(
   getSectionCompleted,
-  (completed = []) => ({
-    completed: completed.length > 0 && completed.every(c => c.valid),
-  })
+  completed => ({ completed })
 )
 
 export const sectionIsLockedSelector = createSelector(
