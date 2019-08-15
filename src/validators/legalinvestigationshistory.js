@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import investigation from 'models/investigation'
 
 export const validateInvestigation = data => (
-  validateModel(data, investigation) === true
+  validateModel(data, investigation)
 )
 
 export const validateLegalInvestigationsHistory = (data) => {
@@ -19,7 +19,7 @@ export const validateLegalInvestigationsHistory = (data) => {
     },
   }
 
-  return validateModel(data, legalInvestigationsHistoryModel) === true
+  return validateModel(data, legalInvestigationsHistoryModel)
 }
 
 export default class LegalInvestigationsHistoryValidator {
@@ -30,7 +30,7 @@ export default class LegalInvestigationsHistoryValidator {
   }
 
   isValid() {
-    return validateLegalInvestigationsHistory(this.data)
+    return validateLegalInvestigationsHistory(this.data) === true
   }
 }
 
@@ -65,6 +65,6 @@ export class HistoryValidator {
   }
 
   isValid() {
-    return validateInvestigation(this.data)
+    return validateInvestigation(this.data) === true
   }
 }

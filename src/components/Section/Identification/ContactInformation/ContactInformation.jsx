@@ -235,7 +235,7 @@ ContactInformation.defaultProps = {
   onError: (value, arr) => arr,
   dispatch: () => {},
   validator: data => (
-    new IdentificationContactInformationValidator(data).isValid()
+    new IdentificationContactInformationValidator(data).isValid() === true
   ),
   defaultState: true,
   isReview: false,

@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import terrorist from 'models/terrorist'
 
 export const validateTerrorist = data => (
-  validateModel(data, terrorist) === true
+  validateModel(data, terrorist)
 )
 
 export const validateLegalTerrorist = (data) => {
@@ -19,7 +19,7 @@ export const validateLegalTerrorist = (data) => {
     },
   }
 
-  return validateModel(data, legalTerroristModel) === true
+  return validateModel(data, legalTerroristModel)
 }
 
 export default class LegalTerroristValidator {
@@ -28,7 +28,7 @@ export default class LegalTerroristValidator {
   }
 
   isValid() {
-    return validateLegalTerrorist(this.data)
+    return validateLegalTerrorist(this.data) === true
   }
 }
 
@@ -74,6 +74,6 @@ export class TerroristValidator {
   }
 
   isValid() {
-    return validateTerrorist(this.data)
+    return validateTerrorist(this.data) === true
   }
 }

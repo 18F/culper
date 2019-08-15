@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import federal from 'models/federal'
 
 export const validateFederalServiceItem = data => (
-  validateModel(data, federal) === true
+  validateModel(data, federal)
 )
 
 export const validateHistoryFederal = (data) => {
@@ -24,7 +24,7 @@ export const validateHistoryFederal = (data) => {
     },
   }
 
-  return validateModel(data, historyFederalModel) === true
+  return validateModel(data, historyFederalModel)
 }
 
 export default class FederalServiceValidator {
@@ -33,7 +33,7 @@ export default class FederalServiceValidator {
   }
 
   isValid() {
-    return validateHistoryFederal(this.data)
+    return validateHistoryFederal(this.data) === true
   }
 }
 
@@ -43,6 +43,6 @@ export class FederalServiceItemValidator {
   }
 
   isValid() {
-    return validateFederalServiceItem(this.data)
+    return validateFederalServiceItem(this.data) === true
   }
 }

@@ -15,7 +15,7 @@ const dateRangeList = (items) => {
   items.forEach((i) => {
     if (!i.Item) { return }
 
-    if (new EmploymentValidator(i.Item).isValid()) {
+    if (new EmploymentValidator(i.Item).isValid() === true) {
       dates.push(i.Item.Dates)
     }
   })

@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import alcoholNegativeImpact from 'models/alcoholNegativeImpact'
 
 export const validateNegativeImpact = data => (
-  validateModel(data, alcoholNegativeImpact) === true
+  validateModel(data, alcoholNegativeImpact)
 )
 
 export const validateNegativeImpacts = (data) => {
@@ -16,7 +16,7 @@ export const validateNegativeImpacts = (data) => {
     },
   }
 
-  return validateModel(data, negativeImpactsModel) === true
+  return validateModel(data, negativeImpactsModel)
 }
 
 export default class NegativeImpactsValidator {
@@ -25,7 +25,7 @@ export default class NegativeImpactsValidator {
   }
 
   isValid() {
-    return validateNegativeImpacts(this.data)
+    return validateNegativeImpacts(this.data) === true
   }
 }
 
@@ -35,6 +35,6 @@ export class NegativeImpactValidator {
   }
 
   isValid() {
-    return validateNegativeImpact(this.data)
+    return validateNegativeImpact(this.data) === true
   }
 }

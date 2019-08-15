@@ -73,7 +73,7 @@ export class Employment extends Subsection {
       overrideInitial,
       'history.employment.default.collection.summary.incomplete',
       this.props.required,
-      i => new EmploymentValidator(i).isValid(),
+      i => new EmploymentValidator(i).isValid() === true,
     )
   }
 
