@@ -19,7 +19,7 @@ const financialTaxesModel = {
 }
 
 export const validateFinancialTaxes = data => (
-  validateModel(data, financialTaxesModel) === true
+  validateModel(data, financialTaxesModel)
 )
 
 export default class TaxesValidator {
@@ -36,7 +36,7 @@ export default class TaxesValidator {
   }
 
   isValid() {
-    return validateFinancialTaxes(this.data)
+    return validateFinancialTaxes(this.data) === true
   }
 }
 
@@ -82,6 +82,6 @@ export class TaxValidator {
   }
 
   isValid() {
-    return validateTaxItem(this.data)
+    return validateTaxItem(this.data) === true
   }
 }

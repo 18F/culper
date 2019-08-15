@@ -6,14 +6,13 @@ import validate, { BankruptcyItemValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, AddressSummary, DateSummary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
-
 import {
   FINANCIAL,
   FINANCIAL_BANKRUPTCY,
 } from 'config/formSections/financial'
 
-import connectFinancialSection from '../FinancialConnector'
 import Bankruptcy from './Bankruptcy'
 
 const sectionConfig = {
@@ -143,4 +142,4 @@ Bankruptcies.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectFinancialSection(Bankruptcies, sectionConfig)
+export default connectSubsection(Bankruptcies, sectionConfig)

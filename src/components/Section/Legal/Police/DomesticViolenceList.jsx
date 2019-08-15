@@ -9,7 +9,7 @@ import {
   LEGAL_POLICE_DOMESTIC_VIOLENCE,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import DomesticViolence from './DomesticViolence'
 
 const sectionConfig = {
@@ -136,4 +136,4 @@ DomesticViolenceList.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(DomesticViolenceList, sectionConfig)
+export default connectSubsection(DomesticViolenceList, sectionConfig)

@@ -236,7 +236,7 @@ export class PackagePrint extends React.Component {
             return (
               <div className="section-print-container" key={`print-section-${section.key}`}>
                 <h3 className="section-print-header">{section.label}</h3>
-                <SectionComponent forPrint />
+                <SectionComponent forPrint={true} />
               </div>
             )
           })}

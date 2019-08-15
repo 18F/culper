@@ -8,6 +8,7 @@ import validate, { PersonValidator } from 'validators'
 import { RELATIONSHIPS, RELATIONSHIPS_PEOPLE } from 'config/formSections/relationships'
 
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import { Accordion, Svg } from 'components/Form'
 import { newGuid } from 'components/Form/ValidationElement'
 import { Summary, DateSummary, NameSummary } from 'components/Summary'
@@ -16,8 +17,6 @@ import { extractDate, today, daysAgo } from 'components/Section/History/daterang
 import { InjectGaps } from 'components/Section/History/summaries'
 import { Gap } from 'components/Section/History/Gap'
 import { sort } from 'components/Section/History/helpers'
-
-import connectRelationshipsSection from '../RelationshipsConnector'
 
 import Person from './Person'
 
@@ -122,7 +121,7 @@ export class People extends Subsection {
 
   peopleSummaryList = () => (
     this.excludeGaps(this.props.List.items).reduce((dates, item) => {
-      if (!item || !new PersonValidator(item.Item).isValid()) {
+      if (!item || new PersonValidator(item.Item).isValid() !== true) {
         return dates
       }
 
@@ -219,4 +218,4 @@ People.defaultProps = {
   scrollIntoView: false,
 }
 
-export default connectRelationshipsSection(People, sectionConfig)
+export default connectSubsection(People, sectionConfig)

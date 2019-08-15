@@ -1,6 +1,7 @@
 package api
 
 import (
+	"database/sql"
 	"fmt"
 
 	"github.com/pkg/errors"
@@ -46,7 +47,7 @@ type Account struct {
 	Lastname    string
 	Token       string
 	TokenUsed   bool
-	Email       string
+	Email       sql.NullString
 	Status      string
 	FormType    string `db:"form_type"`
 	FormVersion string `db:"form_version"`

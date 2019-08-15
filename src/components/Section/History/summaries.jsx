@@ -121,7 +121,7 @@ export const ResidenceCustomSummary = (
 ) => {
   return CustomSummary(
     x => {
-      return new ResidenceValidator(x, null).isValid()
+      return new ResidenceValidator(x, null).isValid() === true
     },
     (x, e) => {
       return ResidenceSummary(x, index, e, item.open)
@@ -235,7 +235,7 @@ export const EmploymentCustomSummary = (
 ) => {
   return CustomSummary(
     x => {
-      return new EmploymentValidator(x).isValid()
+      return new EmploymentValidator(x).isValid() === true
     },
     (x, e) => {
       return EmploymentSummary(x, index, e, item.open)
@@ -321,7 +321,7 @@ export const EducationCustomSummary = (
 ) => {
   return CustomSummary(
     x => {
-      return new EducationItemValidator(x).isValid()
+      return new EducationItemValidator(x).isValid() === true
     },
     (x, e) => {
       return EducationSummary(x, index, e, item.open)

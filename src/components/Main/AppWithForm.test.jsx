@@ -59,8 +59,4 @@ describe('AppWithForm', () => {
     expect(component.find('Form').length).toBe(1)
     expect(component.find('Form').props().example).toBe('MyProperty')
   })
-
-  it('is wrapped with AuthenticatedView', () => {
-    expect(component.find('Connect(RequiresAuth)').length).toBe(1)
-  })
 })

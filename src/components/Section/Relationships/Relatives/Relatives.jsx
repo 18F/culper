@@ -11,8 +11,7 @@ import { Summary, NameSummary } from 'components/Summary'
 import { Field, Accordion } from 'components/Form'
 
 import Subsection from 'components/Section/shared/Subsection'
-
-import connectRelationshipsSection from '../RelationshipsConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import Relative from './Relative'
 
@@ -159,4 +158,4 @@ Relatives.defaultProps = {
   scrollIntoView: false,
 }
 
-export default connectRelationshipsSection(Relatives, sectionConfig)
+export default connectSubsection(Relatives, sectionConfig)

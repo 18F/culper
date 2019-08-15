@@ -4,11 +4,11 @@ import identificationContactInfo, {
 } from 'models/sections/identificationContactInfo'
 
 export const validateContactPhoneNumber = data => (
-  validateModel(data, contactPhoneNumber) === true
+  validateModel(data, contactPhoneNumber)
 )
 
 export const validateIdentificationContactInformation = data => (
-  validateModel(data, identificationContactInfo) === true
+  validateModel(data, identificationContactInfo)
 )
 
 /** LEGACY */
@@ -24,7 +24,7 @@ export default class IdentificationContactInformationValidator {
   }
 
   isValid() {
-    return validateIdentificationContactInformation(this.data)
+    return validateIdentificationContactInformation(this.data) === true
   }
 }
 
@@ -34,6 +34,6 @@ export class ContactPhoneNumberValidator {
   }
 
   isValid() {
-    return validateContactPhoneNumber(this.data)
+    return validateContactPhoneNumber(this.data) === true
   }
 }

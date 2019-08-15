@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignBusinessEmployment from 'models/foreignBusinessEmployment'
 
 export const validateForeignBusinessEmploymentItem = data => (
-  validateModel(data, foreignBusinessEmployment) === true
+  validateModel(data, foreignBusinessEmployment)
 )
 
 export const validateForeignBusinessEmployment = (data) => {
@@ -20,7 +20,7 @@ export const validateForeignBusinessEmployment = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessEmploymentModel) === true
+  return validateModel(data, foreignBusinessEmploymentModel)
 }
 
 export default class ForeignBusinessEmploymentValidator {
@@ -29,7 +29,7 @@ export default class ForeignBusinessEmploymentValidator {
   }
 
   isValid() {
-    return validateForeignBusinessEmployment(this.data)
+    return validateForeignBusinessEmployment(this.data) === true
   }
 }
 
@@ -70,6 +70,6 @@ export class ForeignBusinessEmploymentItemValidator {
   }
 
   isValid() {
-    return validateForeignBusinessEmploymentItem(this.data)
+    return validateForeignBusinessEmploymentItem(this.data) === true
   }
 }

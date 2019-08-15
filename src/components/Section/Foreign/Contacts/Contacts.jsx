@@ -6,7 +6,7 @@ import { Summary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_CONTACTS } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import ForeignNational from './ForeignNational'
 
 const sectionConfig = {
@@ -132,4 +132,4 @@ Contacts.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(Contacts, sectionConfig)
+export default connectSubsection(Contacts, sectionConfig)

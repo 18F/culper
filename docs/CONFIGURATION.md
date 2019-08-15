@@ -37,7 +37,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`CORS_MAX_AGE`](#cors_max_age)                    |                 |                        | X                     |
 | [`FLUSH_STORAGE`](#flush_storage)                       |                 |                        | X                     |
 | [`USPS_API_API_KEY`](#usps_api_api_key)                    |                 |                        | X                     |
-| [`JWT_SECRET`](#jwt_secret)                          | X               |                        | X                     |
+| [`CSRF_SECRET`](#csrf_secret)                          | X               |                        | X                     |
 | [`BASIC_ENABLED`](#basic_enabled)                       |                 | X                      | X                     |
 | [`SAML_ENABLED`](#saml_enabled)                        |                 | X                      | X                     |
 | [`SAML_SLO_ENABLED`](#saml_slo_enabled)                        |                 | X                      | X                     |
@@ -61,7 +61,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`ATTACHMENTS_ENABLED`](#attachments_enabled)                          |                 | X                      | X                     |
 | [`FILE_MAXIMUM_SIZE`](#file_maximum_size)                   |                 | X                      | X                     |
 | [`FILE_TYPES`](#file_types)                          |                 | X                      | X                     |
-| [`COOKIE_DOMAIN`](#cookie_domain)                    |                 |                        | X                     |
+| [`DEV_USE_INSECURE_COOKIE`](#dev_use_insecure_cookie)                    |                 |                        | X                     |
 
 ## `NODE_ENV`
 
@@ -266,9 +266,12 @@ United States Postal Service (USPS) API key for address validation.
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
 
-## `JWT_SECRET`
+## `CSRF_SECRET`
 
-The HS256 algorithm is used to sign each JavaScript Web Token using a secret random key of at least 256-bits. For example, `openssl rand -base64 32` generates an appropriate key. If this value is not specified, one will be automatically generated unique to the instance.
+Tokens generated for CSRF protection are digitally signed using a secret random key of at least 256-bits.
+For example, `openssl rand -base64 32` generates an appropriate key. If this value is not specified, 
+one will be automatically generated unique to the instance, but then different instances will not be able to read 
+each other's cookies. 
 
 **Target** - Back-end (api)<br>
 **Default** - *none*<br>
@@ -441,9 +444,10 @@ Allowed file extensions for attachments.
 **Target** - Front-end (web), Back-end (api)<br>
 **Default** - `.tiff;.png;.pdf`<br>
 
-## `COOKIE_DOMAIN`
+## `DEV_USE_INSECURE_COOKIE`
 
-The domain to scope the SAML authentication cookie to. Must be setable by the backend and readable by the frontend. A leading `.` indicates that any subdomains are in scope. For example, `.eapp.example.com` would allow `backend.eapp.example.com` to set the cookie and `frontend.eapp.example.com` to read it.
+For local development without SSL enabled, set the cookie to be Secure: false so it will be transmitted over http
 
 **Target** - Back-end (api)<br>
-**Default** - The host component of the `API_REDIRECT` value<br>
+**Default** - False: *empty*<br>
+**Values** - True: `1`, False: *empty*<br>

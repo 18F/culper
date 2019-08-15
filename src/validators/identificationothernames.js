@@ -3,11 +3,11 @@ import identificationOtherNames from 'models/sections/identificationOtherNames'
 import identificationOtherName from 'models/identificationOtherName'
 
 export const validateOtherName = data => (
-  validateModel(data, identificationOtherName) === true
+  validateModel(data, identificationOtherName)
 )
 
 export const validateOtherNames = data => (
-  validateModel(data, identificationOtherNames) === true
+  validateModel(data, identificationOtherNames)
 )
 
 /**
@@ -19,6 +19,6 @@ export class OtherNameValidator {
   }
 
   isValid() {
-    return validateOtherName(this.data)
+    return validateOtherName(this.data) === true
   }
 }

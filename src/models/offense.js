@@ -6,17 +6,32 @@ import { offenseChargeTypes } from 'constants/enums/legalOptions'
 const offense = {
   Date: { presence: true, date: true },
   Description: { presence: true, hasValue: true },
-  InvolvedViolence: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
+  InvolvedViolence: (value, attributes, attributeName, options) => {
+    if (options.requireLegalOffenseInvolvements) {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+    return {}
   },
-  InvolvedFirearms: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
+  InvolvedFirearms: (value, attributes, attributeName, options) => {
+    if (options.requireLegalOffenseInvolvements) {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+    return {}
   },
-  InvolvedSubstances: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
+  InvolvedSubstances: (value, attributes, attributeName, options) => {
+    if (options.requireLegalOffenseInvolvements) {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+    return {}
   },
   Address: {
     presence: true,

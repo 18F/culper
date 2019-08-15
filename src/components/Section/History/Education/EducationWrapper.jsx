@@ -11,12 +11,13 @@ import { Field, Show, Branch } from 'components/Form'
 import { reportCompletion } from 'actions/ApplicationActions'
 import { validateHistoryEducation } from 'validators/education'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import ConnectedEducation from './Education'
 import EducationSummaryProgress from './EducationSummaryProgress'
 
-import connectHistorySection from '../HistoryConnector'
-
 const sectionConfig = {
+  key: HISTORY_EDUCATION.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_EDUCATION.name,
@@ -176,4 +177,4 @@ EducationWrapper.defaultProps = {
   dispatch: () => {},
 }
 
-export default connectHistorySection(EducationWrapper, sectionConfig)
+export default connectSubsection(EducationWrapper, sectionConfig)

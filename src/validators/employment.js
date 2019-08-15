@@ -5,7 +5,7 @@ import * as formTypes from 'constants/formTypes'
 import * as formConfig from 'config/forms'
 
 export const validateEmployment = data => (
-  validateModel(data, employment) === true
+  validateModel(data, employment)
 )
 
 export const validateHistoryEmployment = (data, formType = formTypes.SF86) => {
@@ -14,7 +14,7 @@ export const validateHistoryEmployment = (data, formType = formTypes.SF86) => {
     && formConfig[formType]
     && formConfig[formType].HISTORY_EMPLOYMENT_YEARS
 
-  return validateModel(data, historyEmployment, { requireYears: years }) === true
+  return validateModel(data, historyEmployment, { requireYears: years })
 }
 
 export class EmploymentValidator {
@@ -59,6 +59,6 @@ export class EmploymentValidator {
   }
 
   isValid() {
-    return validateEmployment(this.data)
+    return validateEmployment(this.data) === true
   }
 }

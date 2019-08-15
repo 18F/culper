@@ -3,5 +3,5 @@ import { validateModel } from 'models/validate'
 import identificationPhysical from 'models/sections/identificationPhysical'
 
 export const validateIdentificationPhysical = data => (
-  validateModel(data, identificationPhysical) === true
+  validateModel(data, identificationPhysical)
 )

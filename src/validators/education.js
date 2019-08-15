@@ -3,11 +3,11 @@ import education from 'models/education'
 import historyEducation from 'models/sections/historyEducation'
 
 export const validateEducation = data => (
-  validateModel(data, education) === true
+  validateModel(data, education)
 )
 
 export const validateHistoryEducation = data => (
-  validateModel(data, historyEducation) === true
+  validateModel(data, historyEducation)
 )
 
 export class EducationItemValidator {
@@ -45,6 +45,6 @@ export class EducationItemValidator {
   }
 
   isValid() {
-    return validateEducation(this.data)
+    return validateEducation(this.data) === true
   }
 }

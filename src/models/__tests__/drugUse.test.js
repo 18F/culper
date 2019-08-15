@@ -206,10 +206,11 @@ describe('The drugUse model', () => {
       const testData = {}
       const expectedErrors = [
         'UseInFuture.presence.REQUIRED',
+        'Explanation.presence.REQUIRED',
       ]
 
       expect(validateModel(testData, drugUse, { requireUseInFuture: false }))
-        .not.toEqual(expect.arrayContaining(expectedErrors))
+        .toEqual(expect.not.arrayContaining(expectedErrors))
     })
 
     it('passes a valid drugUse', () => {
@@ -220,7 +221,6 @@ describe('The drugUse model', () => {
         NatureOfUse: { value: 'Testing' },
         UseWithClearance: { value: 'No' },
         UseWhileEmployed: { value: 'Yes' },
-        Explanation: { value: 'testing' },
       }
 
       expect(validateModel(testData, drugUse, { requireUseInFuture: false }))

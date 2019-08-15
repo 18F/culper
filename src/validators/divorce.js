@@ -1,7 +1,7 @@
 import { validateModel } from 'models/validate'
 import divorce from 'models/divorce'
 
-export const validateDivorce = data => validateModel(data, divorce) === true
+export const validateDivorce = data => validateModel(data, divorce)
 
 export default class DivorceValidator {
   constructor(data = {}) {
@@ -28,6 +28,6 @@ export default class DivorceValidator {
   }
 
   isValid() {
-    return validateDivorce(this.data)
+    return validateDivorce(this.data) === true
   }
 }

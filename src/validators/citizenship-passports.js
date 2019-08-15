@@ -3,10 +3,12 @@ import foreignPassport from 'models/foreignPassport'
 import foreignPassportTravel from 'models/foreignPassportTravel'
 
 export const validateForeignPassportTravel = data => (
-  validateModel(data, foreignPassportTravel) === true)
+  validateModel(data, foreignPassportTravel)
+)
 
 export const validateForeignPassport = data => (
-  validateModel(data, foreignPassport) === true)
+  validateModel(data, foreignPassport)
+)
 
 export const validateCitizenshipPassports = (data) => {
   const citizenshipPassportsModel = {
@@ -18,7 +20,7 @@ export const validateCitizenshipPassports = (data) => {
     },
   }
 
-  return validateModel(data, citizenshipPassportsModel) === true
+  return validateModel(data, citizenshipPassportsModel)
 }
 
 export default class CitizenshipPassportsValidator {
@@ -27,7 +29,7 @@ export default class CitizenshipPassportsValidator {
   }
 
   isValid() {
-    return validateCitizenshipPassports(this.data)
+    return validateCitizenshipPassports(this.data) === true
   }
 }
 
@@ -86,7 +88,7 @@ export class PassportItemValidator {
   }
 
   isValid() {
-    return validateForeignPassport(this.data)
+    return validateForeignPassport(this.data) === true
   }
 }
 
@@ -108,6 +110,6 @@ export class TravelItemValidator {
   }
 
   isValid() {
-    return validateForeignPassportTravel(this.data)
+    return validateForeignPassportTravel(this.data) === true
   }
 }
