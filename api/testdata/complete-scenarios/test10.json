@@ -6543,6 +6543,25 @@
       }
     }
   },
+  "Package": {
+    "Comments": {
+      "type": "package.comments",
+      "props": {
+        "HasComments": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "Comments": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    }
+  },
   "Psychological": {
     "Competence": {
       "type": "psychological.competence",

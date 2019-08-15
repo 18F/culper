@@ -111,6 +111,7 @@ const transform = {
   'psychological.diagnoses': data => section.psychologicalDiagnoses(data),
   'psychological.hospitalizations': data => section.psychologicalHospitalizations(data),
   'psychological.treatment': data => form.treatment(data),
+  'package.comments': data => section.comments(data),
   'package.submit': data => section.submission(data),
 }
 
@@ -150,13 +151,9 @@ export const unschema = (data) => {
 
     const outputObj = {}
 
-    for (const property in data) {
-      // When the property is not specific to this instance
-      // skip it and go to the next.
-      if (!data.hasOwnProperty(property)) {
-        continue
-      }
-
+    const properties = Object.keys(data)
+    for (let i = 0; i < properties.length; i += 1) {
+      const property = properties[i]
       outputObj[property] = unschema(data[property])
     }
 

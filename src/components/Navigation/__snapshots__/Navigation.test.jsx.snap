@@ -2289,6 +2289,23 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={null}
               className="section-link"
+              href="/form/package/comments"
+              onClick={[Function]}
+            >
+              <span
+                className="section-name"
+              >
+                Additional Comments
+              </span>
+              <span
+                className="eapp-status-icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              aria-current={null}
+              className="section-link"
               href="/form/package/review"
               onClick={[Function]}
             >

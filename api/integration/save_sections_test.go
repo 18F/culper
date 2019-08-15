@@ -108,6 +108,8 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/psychological/psychological-conditions.json", "Psychological", "ExistingConditions"},
 		{"../testdata/psychological/psychological-hospitalizations.json", "Psychological", "Hospitalizations"},
 
+		{"../testdata/package/comments.json", "Package", "Comments"},
+
 		{"../testdata/submission.json", "Submission", "Releases"},
 	}
 

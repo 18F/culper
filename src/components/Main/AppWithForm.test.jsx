@@ -27,6 +27,7 @@ describe('AppWithForm', () => {
       Identification: {},
       Legal: {},
       Military: {},
+      Package: {},
       Psychological: {},
       Relationships: {},
       Substance: {},

@@ -2,9 +2,11 @@ import React from 'react'
 import { i18n } from '../../../config'
 import SubsectionElement from '../SubsectionElement'
 import { SignatureValidator } from '../../../validators'
-import { Field } from '../../Form'
 import Signature from './Signature'
 
+// TODO: Rename this component and relevant references (frontend and backend)
+// This section of the application was improperly named and never got fixed.
+// See https://github.com/ryanhofdotgov/e-QIP-prototype-truetandem/issues/657#issuecomment-349350305
 export default class AdditionalComments extends SubsectionElement {
   constructor(props) {
     super(props)
@@ -16,7 +18,7 @@ export default class AdditionalComments extends SubsectionElement {
   update(queue) {
     this.props.onUpdate({
       Signature: this.props.Signature,
-      ...queue
+      ...queue,
     })
   }
 
@@ -45,11 +47,7 @@ AdditionalComments.defaultProps = {
   section: 'releases',
   subsection: 'comments',
   dispatch: () => {},
-  validator: data => {
-    return new SignatureValidator(data).isValid()
-  },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  validator: data => new SignatureValidator(data).isValid(),
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }
