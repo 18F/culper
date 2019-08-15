@@ -11,4 +11,7 @@ FLAT_SF86.filter(s => s.storeKey && s.parentStore)
     sectionKeyMap[`${s.parentStore}.${s.storeKey}`] = s.key
   })
 
+// special case
+sectionKeyMap['Foreign.Passport'] = 'CITIZENSHIP_US_PASSPORT'
+
 export default sectionKeyMap
