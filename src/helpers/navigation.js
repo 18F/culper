@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import i18n from 'util/i18n'
 
 import {
@@ -62,26 +63,19 @@ export const totalSections = (state) => {
 }
 
 export const completedSections = (state) => {
-  const { application } = state
-  const { Completed } = application
-
+  const { form } = state
   const formSections = nestedFormSectionsSelector(state)
 
   let completedCount = 0
 
   formSections.forEach((s) => {
     const { subsections } = s
-    const completedSection = Completed[s.name] || []
 
     const flatSections = reduceSubsections(subsections)
-
-    const completedSubsections = completedSection.filter(ss => (
-      flatSections.find(i => i.name === ss.subsection)
-    ))
-
-    if (completedSubsections.length && completedSubsections.every(i => (
-      i.valid
-    ))) {
+    if (flatSections.filter(ss => !!ss.storeKey).every((ss) => {
+      const sectionData = form && form[ss.key]
+      return sectionData && sectionData.complete === true
+    })) {
       completedCount += 1
     }
   })
