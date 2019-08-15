@@ -1,7 +1,5 @@
 import React from 'react'
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate from 'validators'
 import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
@@ -161,7 +159,6 @@ OrderedCounselings.defaultProps = {
   subsection: 'alcohol/ordered',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('substance.alcohol.ordered', data)),
   scrollToBottom: '',
   requireAlcoholOrderedCounselingParty: true,
   errors: [],

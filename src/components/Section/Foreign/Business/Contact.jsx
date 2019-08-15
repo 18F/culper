@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ContactValidator } from 'validators'
 import { Summary, NameText, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_CONTACT } from 'config/formSections/foreign'
@@ -83,6 +81,9 @@ export class Contact extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-business-contact"
@@ -112,7 +113,7 @@ export class Contact extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ContactValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.business.contact.collection.summary.title')}
             appendTitle={i18n.t('foreign.business.contact.collection.appendTitle')}
@@ -144,9 +145,9 @@ Contact.defaultProps = {
   subsection: 'business/contact',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('foreign.business.contact', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Contact, sectionConfig)

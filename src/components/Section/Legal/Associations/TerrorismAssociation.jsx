@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import {
   Branch,
   Show,
@@ -109,7 +107,7 @@ TerrorismAssociation.defaultProps = {
   section: 'legal',
   subsection: 'associations/terrorism-association',
   dispatch: () => {},
-  validator: data => validate(schema('legal.associations.terrorism-association', data)),
+  errors: [],
 }
 
 export default connectSubsection(TerrorismAssociation, sectionConfig)

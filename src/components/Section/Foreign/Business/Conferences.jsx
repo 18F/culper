@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ConferencesValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_CONFERENCES } from 'config/formSections/foreign'
@@ -69,6 +67,9 @@ export class Conferences extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-business-conferences"
@@ -98,7 +99,7 @@ export class Conferences extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ConferencesValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.business.conferences.collection.summary.title')}
             appendTitle={i18n.t('foreign.business.conferences.collection.appendTitle')}
@@ -129,9 +130,9 @@ Conferences.defaultProps = {
   section: 'foreign',
   subsection: 'business/conferences',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.business.conferences', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Conferences, sectionConfig)

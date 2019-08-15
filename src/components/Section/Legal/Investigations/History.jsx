@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { HistoryValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import {
@@ -70,7 +68,8 @@ export class History extends Subsection {
   }
 
   render() {
-    const { requireLegalInvestigationClearanceGranted } = this.props
+    const { requireLegalInvestigationClearanceGranted, errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -100,7 +99,7 @@ export class History extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={HistoryValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.investigations.history.collection.description')}
             appendTitle={i18n.t('legal.investigations.history.collection.appendTitle')}
             appendLabel={i18n.t('legal.investigations.history.collection.appendLabel')}
@@ -131,8 +130,8 @@ History.defaultProps = {
   section: 'legal',
   subsection: 'investigations/history',
   dispatch: () => {},
-  validator: data => validate(schema('legal.investigations.history', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(History, sectionConfig)

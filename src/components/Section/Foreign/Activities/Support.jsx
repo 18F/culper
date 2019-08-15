@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { SupportValidator } from 'validators'
 import { Summary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_SUPPORT } from 'config/formSections/foreign'
@@ -63,6 +61,9 @@ export class Support extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-activities-support"
@@ -88,7 +89,7 @@ export class Support extends Subsection {
             defaultState={this.props.defaultState}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={SupportValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.activities.support.collection.summary.title')}
             appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
@@ -122,8 +123,8 @@ Support.defaultProps = {
   subsection: 'activities/support',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('foreign.activities.support', data)),
   defaultState: true,
+  errors: [],
 }
 
 export default connectSubsection(Support, sectionConfig)

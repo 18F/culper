@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import { BranchCollection } from 'components/Form'
 import {
   CITIZENSHIP,
@@ -85,11 +83,11 @@ Passports.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('citizenship.passports', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
   required: false,
   scrollIntoView: false,
+  errors: [],
 }
 
 export default connectSubsection(Passports, sectionConfig)

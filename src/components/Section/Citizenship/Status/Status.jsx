@@ -1,8 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
 import { alphaNumericRegEx, validGenericTextfield } from 'validators/helpers'
-import schema from 'schema'
-import validate from 'validators'
 import { isDocumentRequired, isCertificateRequired } from 'validators/citizenship'
 import {
   Branch,
@@ -1114,8 +1112,8 @@ Status.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('citizenship.status', data)),
   scrollIntoView: false,
+  errors: [],
 }
 
 export default connectSubsection(Status, sectionConfig)

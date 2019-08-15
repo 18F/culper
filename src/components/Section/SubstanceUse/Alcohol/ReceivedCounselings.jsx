@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ReceivedCounselingValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -75,6 +73,9 @@ export class ReceivedCounselings extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content received-counselings"
@@ -103,7 +104,7 @@ export class ReceivedCounselings extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ReceivedCounselingValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.alcohol.receivedCounseling.collection.description')}
             appendTitle={i18n.t('substance.alcohol.receivedCounseling.collection.appendTitle')}
             appendLabel={i18n.t('substance.alcohol.receivedCounseling.collection.appendLabel')}
@@ -130,8 +131,8 @@ ReceivedCounselings.defaultProps = {
   section: 'substance',
   subsection: 'alcohol/additional',
   dispatch: () => {},
-  validator: data => validate(schema('substance.alcohol.additional', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(ReceivedCounselings, sectionConfig)

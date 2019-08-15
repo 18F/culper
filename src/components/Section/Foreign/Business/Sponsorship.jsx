@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { SponsorshipValidator } from 'validators'
 import { Summary, NameSummary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_SPONSORSHIP } from 'config/formSections/foreign'
@@ -69,6 +67,9 @@ export class Sponsorship extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-business-sponsorship"
@@ -96,7 +97,7 @@ export class Sponsorship extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={SponsorshipValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.business.sponsorship.collection.summary.title')}
             appendTitle={i18n.t('foreign.business.sponsorship.collection.appendTitle')}
@@ -128,9 +129,9 @@ Sponsorship.defaultProps = {
   subsection: 'business/sponsorship',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('foreign.business.sponsorship', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Sponsorship, sectionConfig)

@@ -187,7 +187,6 @@ ApplicantSSN.defaultProps = {
   onError: (value, arr) => arr,
   dispatch: () => {},
   required: false,
-  validator: data => validate(schema('identification.ssn', data)),
 }
 
 ApplicantSSN.errors = [

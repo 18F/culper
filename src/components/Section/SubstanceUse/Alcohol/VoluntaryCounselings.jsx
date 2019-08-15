@@ -1,9 +1,7 @@
 import React from 'react'
 import i18n from 'util/i18n'
-import schema from 'schema'
 import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
-import validate, { VoluntaryCounselingValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -75,7 +73,7 @@ export class VoluntaryCounselings extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.SUBSTANCE_ALCOHOL_TREATMENT_YEARS
     let branchLabelCopy
@@ -85,6 +83,9 @@ export class VoluntaryCounselings extends Subsection {
       const numberOfYearsString = getNumberOfYearsString(years)
       branchLabelCopy = i18n.t('substance.alcohol.heading.voluntaryCounselingNum', { numberOfYearsString })
     }
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content voluntary-counselings"
@@ -113,7 +114,7 @@ export class VoluntaryCounselings extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={VoluntaryCounselingValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
             appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
             appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}
@@ -143,8 +144,8 @@ VoluntaryCounselings.defaultProps = {
   subsection: 'alcohol/voluntary',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('substance.alcohol.voluntary', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(VoluntaryCounselings, sectionConfig)

@@ -5,9 +5,6 @@ import i18n from 'util/i18n'
 import { MILITARY, MILITARY_DISCIPLINARY } from 'config/formSections/military'
 import * as formConfig from 'config/forms'
 
-import schema from 'schema'
-import validate, { ProcedureValidator } from 'validators'
-
 import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import Procedure from 'components/Section/Military/Disciplinary/Procedure'
@@ -83,9 +80,10 @@ class Disciplinary extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.MILITARY_DISCIPLINARY_RECORD_YEARS
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -113,7 +111,7 @@ class Disciplinary extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ProcedureValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t(
               'military.disciplinary.collection.summary.title',
@@ -144,8 +142,8 @@ Disciplinary.defaultProps = {
   section: 'military',
   subsection: 'disciplinary',
   dispatch: () => {},
-  validator: data => validate(schema('military.disciplinary', data)),
   defaultState: true,
+  errors: [],
 }
 
 export default connectSubsection(Disciplinary, sectionConfig)

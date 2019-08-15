@@ -1,8 +1,7 @@
 import React from 'react'
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { EmploymentValidator } from 'validators'
+import { EmploymentValidator } from 'validators'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
@@ -163,8 +162,9 @@ export class Employment extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
-    const { recordYears } = this.props
+    const { recordYears, errors } = this.props
     const recordYearsString = getYearsString(recordYears)
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -198,6 +198,7 @@ export class Employment extends Subsection {
           appendClass="no-margin-bottom"
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
+          errors={accordionErrors}
         >
           <EmploymentItem
             bind={true}
@@ -255,7 +256,7 @@ Employment.defaultProps = {
   subsection: 'employment',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('history.employment', data)),
+  errors: [],
 }
 
 export default connectSubsection(Employment, sectionConfig)

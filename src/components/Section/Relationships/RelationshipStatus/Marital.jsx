@@ -2,9 +2,6 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { DivorceValidator } from 'validators'
-
 import { RELATIONSHIPS, RELATIONSHIPS_STATUS_MARITAL } from 'config/formSections/relationships'
 
 import Subsection from 'components/Section/shared/Subsection'
@@ -107,7 +104,11 @@ export class Marital extends Subsection {
     const {
       requireRelationshipMaritalForeignBornDocExpiration,
       requireRelationshipMaritalDivorcePhoneNumber,
+      errors,
     } = this.props
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('DivorcedList.accordion') === 0)
+
     return (
       <div
         className="section-content marital"
@@ -186,7 +187,8 @@ export class Marital extends Subsection {
             defaultState={this.props.defaultState}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
-            requireRelationshipMaritalForeignBornDocExpiration={requireRelationshipMaritalForeignBornDocExpiration}
+            requireRelationshipMaritalForeignBornDocExpiration={
+              requireRelationshipMaritalForeignBornDocExpiration}
           />
         </Show>
         <Show when={this.showDivorce()}>
@@ -199,7 +201,7 @@ export class Marital extends Subsection {
             onUpdate={this.updateDivorcedList}
             onError={this.handleError}
             required={this.props.required}
-            validator={DivorceValidator}
+            errors={accordionErrors}
             scrollIntoView={this.props.scrollIntoView}
             summary={this.divorceSummary}
             description={i18n.t('relationships.civilUnion.divorce.collection.description')}
@@ -212,7 +214,8 @@ export class Marital extends Subsection {
               applicantBirthdate={this.props.applicantBirthdate}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              requireRelationshipMaritalDivorcePhoneNumber={requireRelationshipMaritalDivorcePhoneNumber}
+              requireRelationshipMaritalDivorcePhoneNumber={
+                requireRelationshipMaritalDivorcePhoneNumber}
             />
           </Accordion>
         </Show>
@@ -229,7 +232,6 @@ Marital.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('relationships.status.marital', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,

@@ -1,8 +1,6 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { NonpaymentItemValidator } from 'validators'
 
 import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
@@ -98,6 +96,9 @@ export class Nonpayment extends Subsection {
   )
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content nonpayment"
@@ -141,7 +142,7 @@ export class Nonpayment extends Subsection {
             )}
             appendTitle={i18n.t('financial.nonpayment.collection.appendTitle')}
             required={this.props.required}
-            validator={NonpaymentItemValidator}
+            errors={accordionErrors}
             scrollIntoView={this.props.scrollIntoView}
             appendMessage={this.message()}
             appendLabel={i18n.t('financial.nonpayment.collection.append')}
@@ -165,8 +166,8 @@ Nonpayment.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('financial.nonpayment', data)),
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
 export default connectSubsection(Nonpayment, sectionConfig)

@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ManipulatingValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import {
@@ -71,6 +69,9 @@ export class Manipulating extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content legal-technology-manipulating"
@@ -99,7 +100,7 @@ export class Manipulating extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ManipulatingValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.technology.manipulating.collection.description')}
             appendTitle={i18n.t('legal.technology.manipulating.collection.appendTitle')}
             appendLabel={i18n.t('legal.technology.manipulating.collection.appendLabel')}
@@ -132,8 +133,8 @@ Manipulating.defaultProps = {
   subsection: 'technology/manipulating',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('legal.technology.manipulating', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Manipulating, sectionConfig)

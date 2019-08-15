@@ -1,8 +1,6 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { CardAbuseItemValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
@@ -82,7 +80,10 @@ export class Card extends Subsection {
   }
 
   render() {
-    const { requireFinancialCardDisciplinaryDate } = this.props
+    const { errors, requireFinancialCardDisciplinaryDate } = this.props
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content card-abuse"
@@ -112,7 +113,7 @@ export class Card extends Subsection {
             summary={this.summary}
             description={i18n.t('financial.card.collection.summary.title')}
             required={this.props.required}
-            validator={CardAbuseItemValidator}
+            errors={accordionErrors}
             scrollIntoView={this.props.scrollIntoView}
             appendTitle={i18n.t('financial.card.collection.appendTitle')}
             appendLabel={i18n.t('financial.card.collection.append')}
@@ -139,10 +140,10 @@ Card.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('financial.card', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
   requireFinancialCardDisciplinaryDate: true,
+  errors: [],
 }
 
 export default connectSubsection(Card, sectionConfig)

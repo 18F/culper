@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { AdvocatingValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import {
@@ -70,6 +68,9 @@ export class Advocating extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content legal-associations-advocating"
@@ -98,7 +99,7 @@ export class Advocating extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={AdvocatingValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.associations.advocating.collection.description')}
             appendTitle={i18n.t('legal.associations.advocating.collection.appendTitle')}
             appendLabel={i18n.t('legal.associations.advocating.collection.appendLabel')}
@@ -128,8 +129,8 @@ Advocating.defaultProps = {
   section: 'legal',
   subsection: 'associations/advocating',
   dispatch: () => {},
-  validator: data => validate(schema('legal.associations.advocating', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Advocating, sectionConfig)

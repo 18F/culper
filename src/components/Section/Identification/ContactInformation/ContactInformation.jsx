@@ -4,7 +4,6 @@ import { i18n } from 'config'
 
 import {
   IdentificationContactInformationValidator,
-  ContactPhoneNumberValidator,
 } from 'validators'
 
 import {
@@ -99,9 +98,13 @@ export class ContactInformation extends Subsection {
   }
 
   render() {
-    const { HomeEmail = {}, WorkEmail = {}, isReview } = this.props
+    const {
+      HomeEmail = {}, WorkEmail = {}, isReview, errors,
+    } = this.props
     const klass = `${this.props.className || ''}`.trim()
     const phoneNumbers = this.props.PhoneNumbers
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     if (this.props.shouldFilterEmptyItems) {
       let filtered = phoneNumbers.items.length
@@ -198,7 +201,7 @@ export class ContactInformation extends Subsection {
             onError={this.handleError}
             required={this.props.required}
             customDetails={this.firstItemRequired}
-            validator={ContactPhoneNumberValidator}
+            errors={accordionErrors}
             summary={this.phoneNumberSummary}
             description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
             appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}
@@ -234,9 +237,7 @@ ContactInformation.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => (
-    new IdentificationContactInformationValidator(data).isValid() === true
-  ),
+  errors: [],
   defaultState: true,
   isReview: false,
 }

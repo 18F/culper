@@ -4,7 +4,6 @@ import i18n from 'util/i18n'
 import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
 
 import {
-  HistoryResidenceValidator,
   ResidenceValidator,
 } from 'validators'
 
@@ -126,6 +125,9 @@ export class Residence extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content residence"
@@ -150,6 +152,7 @@ export class Residence extends Subsection {
           appendLabel={i18n.t('history.residence.collection.append')}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
+          errors={accordionErrors}
         >
           <ResidenceItem
             bind={true}
@@ -179,7 +182,7 @@ Residence.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => new HistoryResidenceValidator(data).isValid() === true,
+  errors: [],
 }
 
 export default connectSubsection(Residence, sectionConfig)
