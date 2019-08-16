@@ -19,13 +19,14 @@ func main() {
 	wccFlags := cmd.SetupWebClientFlags("load-scenario", "test-case.json")
 
 	flag.Parse()
-	webclient := wccFlags.Parse()
 
 	if len(flag.Args()) != 1 {
 		flag.Usage()
 		// Mimick flag.ExitOnError
 		os.Exit(2)
 	}
+
+	webclient := wccFlags.ConfiguredClient()
 
 	form, err := cmd.ReadSectionData(flag.Arg(0))
 	if err != nil {

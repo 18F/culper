@@ -119,8 +119,8 @@ type WebClientConfigFlags struct {
 	UseSessionToken *bool
 }
 
-// Parse parses the flags and creates a NewWebClient configured accordingly
-func (f WebClientConfigFlags) Parse() *WebClient {
+// ConfiguredClient takes the parsed flags and creates a NewWebClient configured accordingly
+func (f WebClientConfigFlags) ConfiguredClient() *WebClient {
 	if *f.Username != "" && *f.UseSessionToken {
 		fmt.Println("Using -U and -useSessionToken are mutually exclusive.\n",
 			"If you want to be prompted for a session token, only use -useSessionToken.\n",
