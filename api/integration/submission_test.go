@@ -142,6 +142,8 @@ func TestSubmitter(t *testing.T) {
 		Store:    services.store,
 	}
 
+	// Enable Attachments
+	os.Setenv(api.AttachmentsEnabled, "1")
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 

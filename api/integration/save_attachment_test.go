@@ -4,10 +4,12 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"mime/multipart"
 	gohttp "net/http"
 	"net/http/httptest"
+	"os"
 	"path"
 	"strconv"
 	"testing"
@@ -16,7 +18,16 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/http"
+	"github.com/18F/e-QIP-prototype/api/mock"
 )
+
+type errorAttachmentStore struct {
+	mock.StorageService
+}
+
+func (s *errorAttachmentStore) ListAttachmentsMetadata(accountID int) ([]api.Attachment, error) {
+	return []api.Attachment{}, errors.New("attachment error")
+}
 
 func postAttachmentRequest(t *testing.T, filename string, filebytes []byte, account api.Account) *gohttp.Request {
 	t.Helper()
@@ -120,8 +131,44 @@ func TestSaveAttachment(t *testing.T) {
 		t.Fatal("The returned attachment is not the same as the sent one")
 	}
 }
+func TestSaveAttachmentDisabled(t *testing.T) {
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	saveAttachmentHandler := http.AttachmentSaveHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
+
+	// Attachments not enabled
+	os.Setenv(api.AttachmentsEnabled, "0")
+	saveAttachmentHandler.ServeHTTP(w, indexReq)
+
+	resp := w.Result()
+
+	if resp.StatusCode != gohttp.StatusInternalServerError {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			resp.StatusCode, gohttp.StatusInternalServerError)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, "Attachments is not implemented")
+}
 
 func TestListNoAttachments(t *testing.T) {
+	// Attachments enabled
+	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
@@ -158,7 +205,8 @@ func TestListNoAttachments(t *testing.T) {
 }
 
 func TestListAttachments(t *testing.T) {
-
+	// Attachments enabled
+	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
@@ -267,8 +315,80 @@ func TestListAttachments(t *testing.T) {
 
 }
 
-func TestDeleteAttachment(t *testing.T) {
+func TestListAttachmentDisabled(t *testing.T) {
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
 
+	listAttachmentHandler := http.AttachmentListHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
+
+	// Attachments not enabled
+	os.Setenv(api.AttachmentsEnabled, "0")
+	listAttachmentHandler.ServeHTTP(w, indexReq)
+
+	resp := w.Result()
+
+	if resp.StatusCode != gohttp.StatusInternalServerError {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			resp.StatusCode, gohttp.StatusInternalServerError)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, "Attachments is not implemented")
+}
+
+func TestListAttachmentError(t *testing.T) {
+	var mockStore errorAttachmentStore
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	listAttachmentHandler := http.AttachmentListHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    &mockStore,
+	}
+
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
+
+	// Attachments not enabled
+	os.Setenv(api.AttachmentsEnabled, "1")
+	listAttachmentHandler.ServeHTTP(w, indexReq)
+
+	resp := w.Result()
+
+	if resp.StatusCode != gohttp.StatusInternalServerError {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			resp.StatusCode, gohttp.StatusInternalServerError)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, "Attachment file not found")
+}
+
+func TestDeleteAttachment(t *testing.T) {
+	// Attachments enabled
+	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
@@ -360,5 +480,4 @@ func TestDeleteAttachment(t *testing.T) {
 		t.Log("Got an error back from GetApplication")
 		t.Fail()
 	}
-
 }
