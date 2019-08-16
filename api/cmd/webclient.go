@@ -66,6 +66,8 @@ type WebClient struct {
 	UseSessionToken bool
 	SessionToken    string
 	sessionCookie   *http.Cookie
+	csrfToken       string
+	csrfCookie      *http.Cookie
 }
 
 // WebClientConfig is used to configure a web client.
@@ -249,33 +251,39 @@ func (wc *WebClient) WithAuth(authedFunc func()) {
 
 // GetCSRFToken calls /status and returns the csrf token
 func (wc *WebClient) addCSRF(r *http.Request) {
-	req, err := http.NewRequest("GET", wc.Address+"/me/status", nil)
-	if err != nil {
-		log.Fatalln("Error creating request for getting status.", err)
-	}
-	req.AddCookie(wc.sessionCookie)
-
-	resp, err := wc.client.Do(req)
-	if err != nil || resp.StatusCode != 200 {
-		log.Fatalln("Error or bad response while saving payload.", err, resp.StatusCode)
-	}
-	defer resp.Body.Close()
-
-	csrfToken := resp.Header.Get("X-CSRF-Token")
-
-	var csrfCookie *http.Cookie
-	for _, cookie := range resp.Cookies() {
-		if cookie.Name == "_gorilla_csrf" {
-			csrfCookie = cookie
-			break
+	if wc.csrfCookie == nil {
+		req, err := http.NewRequest("GET", wc.Address+"/me/status", nil)
+		if err != nil {
+			log.Fatalln("Error creating request for getting status.", err)
 		}
-	}
-	if csrfCookie.Name == "" {
-		log.Fatal("No CSRF cookie returned by request")
+		req.AddCookie(wc.sessionCookie)
+
+		resp, err := wc.client.Do(req)
+		if err != nil || resp.StatusCode != 200 {
+			log.Fatalln("Error or bad response while saving payload.", err, resp.StatusCode)
+		}
+		defer resp.Body.Close()
+
+		csrfToken := resp.Header.Get("X-CSRF-Token")
+
+		var csrfCookie *http.Cookie
+		for _, cookie := range resp.Cookies() {
+			if cookie.Name == "_gorilla_csrf" {
+				csrfCookie = cookie
+				break
+			}
+		}
+		if csrfCookie.Name == "" {
+			log.Fatal("No CSRF cookie returned by request")
+		}
+
+		wc.csrfToken = csrfToken
+		wc.csrfCookie = csrfCookie
+
 	}
 
-	r.AddCookie(csrfCookie)
-	r.Header.Set("X-CSRF-Token", csrfToken)
+	r.AddCookie(wc.csrfCookie)
+	r.Header.Set("X-CSRF-Token", wc.csrfToken)
 
 }
 
