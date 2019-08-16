@@ -13,15 +13,32 @@ import (
 	"strings"
 	"syscall"
 	"unsafe"
+
+	eapphttp "github.com/18F/e-QIP-prototype/api/http"
 )
 
 // WebClient is a basic web client to be used with various utility functionality.
 type WebClient struct {
-	Client        *http.Client
-	Address       string
-	Username      string
-	Password      string
-	SessionCookie *http.Cookie
+	Client          *http.Client
+	Address         string
+	Username        string
+	Password        string
+	UseSessionToken bool
+	SessionToken    string
+	SessionCookie   *http.Cookie
+}
+
+// createSessionCookie sets a session cookie
+func (wc *WebClient) createSessionCookie() {
+	wc.SessionCookie = &http.Cookie{
+		Secure:   false,
+		Name:     eapphttp.SessionCookieName,
+		Value:    wc.SessionToken,
+		HttpOnly: true,
+		Path:     "/",
+		// Omit MaxAge and Expires to make this a session cookie.
+		// Omit domain to default to the full domain
+	}
 }
 
 // GetInformation will ask for more information if not already known.
@@ -31,13 +48,21 @@ func (wc *WebClient) GetInformation() {
 		emptyline = true
 		wc.Address = readline("API address: ", false)
 	}
-	if wc.Username == "" {
-		emptyline = true
-		wc.Username = readline("Username: ", false)
-	}
-	if wc.Password == "" {
-		emptyline = true
-		wc.Password = readline("Password: ", true)
+	if wc.UseSessionToken {
+		if wc.SessionToken == "" {
+			emptyline = true
+			wc.SessionToken = readline("Session Token: ", false)
+		}
+		wc.createSessionCookie()
+	} else {
+		if wc.Username == "" {
+			emptyline = true
+			wc.Username = readline("Username: ", false)
+		}
+		if wc.Password == "" {
+			emptyline = true
+			wc.Password = readline("Password: ", true)
+		}
 	}
 	if emptyline {
 		fmt.Printf("\n\n")
@@ -48,7 +73,9 @@ func (wc *WebClient) preflight() {
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	if wc.SessionCookie == nil {
 		wc.GetInformation()
-		wc.Authenticate()
+		if wc.SessionCookie == nil {
+			wc.Authenticate()
+		}
 	}
 }
 
@@ -78,7 +105,7 @@ func (wc *WebClient) Authenticate() {
 
 	var sessionCookie *http.Cookie
 	for _, cookie := range resp.Cookies() {
-		if cookie.Name == "eapp-session-key" {
+		if cookie.Name == eapphttp.SessionCookieName {
 			sessionCookie = cookie
 			break
 		}

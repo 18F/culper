@@ -19,9 +19,9 @@ import (
 const passwordFilename = ".eapass"
 const bearerTokenPrefix = "Bearer "
 
-// readPasswordFile searches `~/.eapass` and returns the password or bearer
-// token corresponding to the username specified. This file should contain lines
-// in one of the following colon-delimited formats:
+// If a username is specified, readPasswordFile searches `~/.eapass` and returns the
+// password or bearer token corresponding to that username. This file should
+// contain lines in one of the following colon-delimited formats:
 // 1) username:password
 // 2) username:Bearer token-value
 //
@@ -63,11 +63,12 @@ func readPasswordFile(username string) string {
 func main() {
 	username := flag.String("U", "", "username to access API")
 	url := flag.String("url", "", "URL of API endpoint")
+	useSesssionToken := flag.Bool("useSessionToken", false, "wether to use a valid session token instead of a username/password for auth")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr,
-			"usage: load-scenario [-url URL | -U USERNAME] test-case.json\n"+
-				"~/.eapass may be used to specify the password or bearer token to use; \n"+
+			"usage: load-scenario [-url URL | -U USERNAME | -useSessionToken] test-case.json\n"+
+				"~/.eapass may be used to specify the password or session token to use; \n"+
 				"see comments on readPasswordFile() for details.\n")
 	}
 
@@ -76,6 +77,14 @@ func main() {
 	if len(flag.Args()) != 1 {
 		flag.Usage()
 		// Mimick flag.ExitOnError
+		os.Exit(2)
+	}
+
+	if *username != "" && *useSesssionToken {
+		fmt.Println("Using -U and -useSessionToken are mutually exclusive.\n",
+			"If you want to be prompted for a session token, only use -useSessionToken.\n",
+			"If you want to read creds from a ~/.eapass file, only use -U")
+		flag.Usage()
 		os.Exit(2)
 	}
 
@@ -90,12 +99,14 @@ func main() {
 	}
 	webclient.Username = *username
 	webclient.Address = *url
+	webclient.UseSessionToken = *useSesssionToken
 
 	credential := readPasswordFile(*username)
 	if credential != "" {
 		if strings.HasPrefix(credential, bearerTokenPrefix) {
-			// webclient.Token = strings.TrimPrefix(credential, bearerTokenPrefix)
-			log.Fatal("Not Using bearer token from ~/" + passwordFilename)
+			webclient.SessionToken = strings.TrimPrefix(credential, bearerTokenPrefix)
+			webclient.UseSessionToken = true
+			log.Printf("Using bearer token from ~/" + passwordFilename)
 		} else {
 			webclient.Password = credential
 			log.Printf("Using password from ~/" + passwordFilename)
