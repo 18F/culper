@@ -94,8 +94,8 @@ func main() {
 	credential := readPasswordFile(*username)
 	if credential != "" {
 		if strings.HasPrefix(credential, bearerTokenPrefix) {
-			webclient.Token = strings.TrimPrefix(credential, bearerTokenPrefix)
-			log.Printf("Using bearer token from ~/" + passwordFilename + " " + webclient.Token)
+			// webclient.Token = strings.TrimPrefix(credential, bearerTokenPrefix)
+			log.Fatal("Not Using bearer token from ~/" + passwordFilename)
 		} else {
 			webclient.Password = credential
 			log.Printf("Using password from ~/" + passwordFilename)

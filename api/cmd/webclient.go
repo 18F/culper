@@ -17,11 +17,11 @@ import (
 
 // WebClient is a basic web client to be used with various utility functionality.
 type WebClient struct {
-	Client   *http.Client
-	Address  string
-	Username string
-	Password string
-	Token    string
+	Client        *http.Client
+	Address       string
+	Username      string
+	Password      string
+	SessionCookie *http.Cookie
 }
 
 // GetInformation will ask for more information if not already known.
@@ -46,7 +46,7 @@ func (wc *WebClient) GetInformation() {
 
 func (wc *WebClient) preflight() {
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-	if wc.Token == "" {
+	if wc.SessionCookie == nil {
 		wc.GetInformation()
 		wc.Authenticate()
 	}
@@ -67,30 +67,76 @@ func (wc *WebClient) Authenticate() {
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalf("Bad response code: %d", resp.StatusCode)
-	}
-
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
-	wc.Token = strings.Trim(strings.TrimSpace(string(body)), "\"")
+
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
+		log.Fatalf("Bad response code: %d :: %s", resp.StatusCode, string(body))
+	}
+
+	var sessionCookie *http.Cookie
+	for _, cookie := range resp.Cookies() {
+		if cookie.Name == "eapp-session-key" {
+			sessionCookie = cookie
+			break
+		}
+	}
+	if sessionCookie.Name == "" {
+		log.Fatal("No session cookie returned by request")
+	}
+
+	wc.SessionCookie = sessionCookie
+}
+
+// GetCSRFToken calls /status and returns the csrf token
+func (wc *WebClient) addCSRF(r *http.Request) {
+	req, err := http.NewRequest("GET", wc.Address+"/me/status", nil)
+	if err != nil {
+		log.Fatalln("Error creating request for getting status.", err)
+	}
+	req.AddCookie(wc.SessionCookie)
+
+	resp, err := wc.Client.Do(req)
+	if err != nil || resp.StatusCode != 200 {
+		log.Fatalln("Error or bad response while saving payload.", err, resp.StatusCode)
+	}
+	defer resp.Body.Close()
+
+	csrfToken := resp.Header.Get("X-CSRF-Token")
+
+	var csrfCookie *http.Cookie
+	for _, cookie := range resp.Cookies() {
+		if cookie.Name == "_gorilla_csrf" {
+			csrfCookie = cookie
+			break
+		}
+	}
+	if csrfCookie.Name == "" {
+		log.Fatal("No CSRF cookie returned by request")
+	}
+
+	r.AddCookie(csrfCookie)
+	r.Header.Set("X-CSRF-Token", csrfToken)
+
 }
 
 // Save a JSON structure to the RESTful service.
 func (wc *WebClient) Save(payload json.RawMessage) {
 	wc.preflight()
+
 	req, err := http.NewRequest("POST", wc.Address+"/me/save", bytes.NewBuffer(payload))
 	if err != nil {
 		log.Fatalln("Error creating request for saving payload.", err)
 	}
-	req.Header.Add("Authorization", "Bearer "+wc.Token)
+	wc.addCSRF(req)
+	req.AddCookie(wc.SessionCookie)
 	req.Header.Add("Content-Type", "application/json")
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalln("Error or bad response while saving payload.", err)
+		log.Fatalln("Error or bad response while saving payload.", err, resp.StatusCode)
 	}
 	defer resp.Body.Close()
 }
@@ -102,7 +148,7 @@ func (wc *WebClient) Form() json.RawMessage {
 	if err != nil {
 		log.Fatalln("Error creating request for submitting application.", err)
 	}
-	req.Header.Add("Authorization", "Bearer "+wc.Token)
+	req.AddCookie(wc.SessionCookie)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
@@ -120,11 +166,12 @@ func (wc *WebClient) Form() json.RawMessage {
 // Submit will submit an application through the RESTful service.
 func (wc *WebClient) Submit() {
 	wc.preflight()
-	req, err := http.NewRequest("GET", wc.Address+"/me/form/submit", nil)
+	req, err := http.NewRequest("POST", wc.Address+"/me/form/submit", nil)
 	if err != nil {
 		log.Fatalln("Error creating request for submitting application.", err)
 	}
-	req.Header.Add("Authorization", "Bearer "+wc.Token)
+	wc.addCSRF(req)
+	req.AddCookie(wc.SessionCookie)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
@@ -136,15 +183,16 @@ func (wc *WebClient) Submit() {
 // Logout will end a session.
 func (wc *WebClient) Logout() {
 	wc.preflight()
-	req, err := http.NewRequest("GET", wc.Address+"/me/logout", nil)
+	req, err := http.NewRequest("POST", wc.Address+"/me/logout", nil)
 	if err != nil {
 		log.Fatalln("Error creating request for logging out.", err)
 	}
-	req.Header.Add("Authorization", "Bearer "+wc.Token)
+	wc.addCSRF(req)
+	req.AddCookie(wc.SessionCookie)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalln("Error or bad response while logging out.", err)
+		log.Fatalln("Error or bad response while logging out.", err, resp.StatusCode)
 	}
 	defer resp.Body.Close()
 }
