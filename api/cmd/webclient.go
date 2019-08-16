@@ -5,17 +5,59 @@ import (
 	"bytes"
 	"crypto/tls"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"os/user"
+	"path/filepath"
 	"strings"
 	"syscall"
 	"unsafe"
 
 	eapphttp "github.com/18F/e-QIP-prototype/api/http"
 )
+
+const passwordFilename = ".eapass"
+const bearerTokenPrefix = "Bearer "
+
+// If a username is specified, readPasswordFile searches `~/.eapass` and returns the
+// password or bearer token corresponding to that username. This file should
+// contain lines in one of the following colon-delimited formats:
+// 1) username:password
+// 2) username:Bearer token-value
+//
+// The first match is returned if found, otherwise the empty string.
+// The literal string `Bearer ` must preceed a bearer token value.
+//
+// By reading credentials from a file we avoid passing secrets on the
+// command-line, which are available to all system users in the process
+// listing.
+func readPasswordFile(username string) string {
+	usr, _ := user.Current()
+	dir := usr.HomeDir
+	path := filepath.Join(dir, passwordFilename)
+
+	if _, err := os.Stat(path); err == nil {
+		file, err := os.Open(path)
+		if err == nil {
+			scanner := bufio.NewScanner(file)
+			for scanner.Scan() {
+				line := scanner.Text()
+				fields := strings.SplitN(line, ":", 2)
+				// username:value
+				if len(fields) == 2 && fields[0] == username {
+					return fields[1]
+				}
+			}
+		}
+		defer file.Close()
+	}
+
+	return ""
+}
 
 // WebClient is a basic web client to be used with various utility functionality.
 type WebClient struct {
@@ -28,6 +70,86 @@ type WebClient struct {
 	SessionCookie   *http.Cookie
 }
 
+// WebClientConfig is used to configure a web client.
+type WebClientConfig struct {
+	Address         string
+	Username        string
+	UseSessionToken bool
+}
+
+// NewWebClient returns a configured web client.
+func NewWebClient(config WebClientConfig) *WebClient {
+	client := &WebClient{
+		Client:          &http.Client{},
+		Address:         config.Address,
+		Username:        config.Username,
+		UseSessionToken: config.UseSessionToken,
+	}
+
+	// Pull credentials from the password file if they exist
+	credential := readPasswordFile(config.Username)
+	if credential != "" {
+		if strings.HasPrefix(credential, bearerTokenPrefix) {
+			client.SessionToken = strings.TrimPrefix(credential, bearerTokenPrefix)
+			client.UseSessionToken = true
+			log.Printf("Using bearer token from ~/" + passwordFilename)
+		} else {
+			client.Password = credential
+			log.Printf("Using password from ~/" + passwordFilename)
+		}
+	}
+
+	return client
+}
+
+// WebClientConfigFlags is a struct used for configuring flags the same across
+// different binaries. By calling
+// SetupWebClientFlags() followed by flag.Parse() followed by wccFlags.Parse()
+// we can use the same flags to configure several binaries that are using
+type WebClientConfigFlags struct {
+	Address         *string
+	Username        *string
+	UseSessionToken *bool
+}
+
+// Parse parses the flags and creates a NewWebClient configured accordingly
+func (f WebClientConfigFlags) Parse() *WebClient {
+	if *f.Username != "" && *f.UseSessionToken {
+		fmt.Println("Using -U and -useSessionToken are mutually exclusive.\n",
+			"If you want to be prompted for a session token, only use -useSessionToken.\n",
+			"If you want to read creds from a ~/.eapass file, only use -U")
+		flag.Usage()
+		os.Exit(2)
+	}
+
+	config := WebClientConfig{
+		Address:         *f.Address,
+		Username:        *f.Username,
+		UseSessionToken: *f.UseSessionToken,
+	}
+	return NewWebClient(config)
+}
+
+// SetupWebClientFlags configures the flags package for the flags common to all binaries
+// using WebClient. It also sets the usage, pass in any extra usage that needs to be inserted.
+// It must be called in main() before flag.Parse has been called.
+// Then, after flag.Parse() has been called, you can call Parse() on the returned configFlags
+func SetupWebClientFlags(cmdName string, usage string) WebClientConfigFlags {
+	usageFmt := "usage: %s [-url URL | -U USERNAME | -useSessionToken] %s\n" +
+		"~/.eapass may be used to specify the password or session token to use; \n" +
+		"see comments on readPasswordFile() for details.\n"
+
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, usageFmt, cmdName, usage)
+	}
+
+	return WebClientConfigFlags{
+		Address:         flag.String("url", "", "URL of API endpoint"),
+		Username:        flag.String("U", "", "username to access API"),
+		UseSessionToken: flag.Bool("useSessionToken", false, "wether to use a valid session token instead of a username/password for auth"),
+	}
+}
+
 // createSessionCookie sets a session cookie
 func (wc *WebClient) createSessionCookie() {
 	wc.SessionCookie = &http.Cookie{
@@ -36,8 +158,6 @@ func (wc *WebClient) createSessionCookie() {
 		Value:    wc.SessionToken,
 		HttpOnly: true,
 		Path:     "/",
-		// Omit MaxAge and Expires to make this a session cookie.
-		// Omit domain to default to the full domain
 	}
 }
 
