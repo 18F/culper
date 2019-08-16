@@ -32,30 +32,31 @@ func main() {
 		log.Fatalln("error reading from file:", err)
 	}
 
-	for _, v := range api.Catalogue() {
-		// If the source data represents a scenario that has been submitted
-		// to e-QIP, etc. already, do not re-load that meta-data
-		if v.Payload == "submission.releases" {
-			log.Printf("Skipping `%s:%s`\n", v.Name, v.Subsection)
-			continue
-		}
+	webclient.WithAuth(func() {
+		for _, v := range api.Catalogue() {
+			// If the source data represents a scenario that has been submitted
+			// to e-QIP, etc. already, do not re-load that meta-data
+			if v.Payload == "submission.releases" {
+				log.Printf("Skipping `%s:%s`\n", v.Name, v.Subsection)
+				continue
+			}
 
-		val, ok := form[v.Name].(map[string]interface{})
-		if !ok {
-			log.Fatalf("`%s` is not found\n", v.Name)
-		}
+			val, ok := form[v.Name].(map[string]interface{})
+			if !ok {
+				log.Fatalf("`%s` is not found\n", v.Name)
+			}
 
-		js, ok := val[v.Subsection].(map[string]interface{})
-		if !ok {
-			log.Fatalf("`%s:%s` is not found\n", v.Name, v.Subsection)
-		}
+			js, ok := val[v.Subsection].(map[string]interface{})
+			if !ok {
+				log.Fatalf("`%s:%s` is not found\n", v.Name, v.Subsection)
+			}
 
-		jsonString, err := json.Marshal(js)
-		if err != nil {
-			log.Fatalf("Could not marshal json for `%s:%s`\n", v.Name, v.Subsection)
+			jsonString, err := json.Marshal(js)
+			if err != nil {
+				log.Fatalf("Could not marshal json for `%s:%s`\n", v.Name, v.Subsection)
+			}
+			log.Printf("Saving `%s:%s`\n", v.Name, v.Subsection)
+			webclient.Save(jsonString)
 		}
-		log.Printf("Saving `%s:%s`\n", v.Name, v.Subsection)
-		webclient.Save(jsonString)
-	}
-	webclient.Logout()
+	})
 }

@@ -16,8 +16,6 @@ import (
 	"strings"
 	"syscall"
 	"unsafe"
-
-	eapphttp "github.com/18F/e-QIP-prototype/api/http"
 )
 
 const passwordFilename = ".eapass"
@@ -61,13 +59,13 @@ func readPasswordFile(username string) string {
 
 // WebClient is a basic web client to be used with various utility functionality.
 type WebClient struct {
-	Client          *http.Client
+	client          *http.Client
 	Address         string
 	Username        string
 	Password        string
 	UseSessionToken bool
 	SessionToken    string
-	SessionCookie   *http.Cookie
+	sessionCookie   *http.Cookie
 }
 
 // WebClientConfig is used to configure a web client.
@@ -80,17 +78,22 @@ type WebClientConfig struct {
 // NewWebClient returns a configured web client.
 func NewWebClient(config WebClientConfig) *WebClient {
 	client := &WebClient{
-		Client:          &http.Client{},
+		client: &http.Client{
+			Transport: http.DefaultTransport,
+		},
 		Address:         config.Address,
 		Username:        config.Username,
 		UseSessionToken: config.UseSessionToken,
 	}
+
+	client.client.Transport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 
 	// Pull credentials from the password file if they exist
 	credential := readPasswordFile(config.Username)
 	if credential != "" {
 		if strings.HasPrefix(credential, bearerTokenPrefix) {
 			client.SessionToken = strings.TrimPrefix(credential, bearerTokenPrefix)
+			client.createsessionCookie()
 			client.UseSessionToken = true
 			log.Printf("Using bearer token from ~/" + passwordFilename)
 		} else {
@@ -98,6 +101,8 @@ func NewWebClient(config WebClientConfig) *WebClient {
 			log.Printf("Using password from ~/" + passwordFilename)
 		}
 	}
+
+	client.GetInformation()
 
 	return client
 }
@@ -150,11 +155,11 @@ func SetupWebClientFlags(cmdName string, usage string) WebClientConfigFlags {
 	}
 }
 
-// createSessionCookie sets a session cookie
-func (wc *WebClient) createSessionCookie() {
-	wc.SessionCookie = &http.Cookie{
+// createsessionCookie sets a session cookie
+func (wc *WebClient) createsessionCookie() {
+	wc.sessionCookie = &http.Cookie{
 		Secure:   false,
-		Name:     eapphttp.SessionCookieName,
+		Name:     "eapp-session-key",
 		Value:    wc.SessionToken,
 		HttpOnly: true,
 		Path:     "/",
@@ -173,7 +178,7 @@ func (wc *WebClient) GetInformation() {
 			emptyline = true
 			wc.SessionToken = readline("Session Token: ", false)
 		}
-		wc.createSessionCookie()
+		wc.createsessionCookie()
 	} else {
 		if wc.Username == "" {
 			emptyline = true
@@ -189,16 +194,6 @@ func (wc *WebClient) GetInformation() {
 	}
 }
 
-func (wc *WebClient) preflight() {
-	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-	if wc.SessionCookie == nil {
-		wc.GetInformation()
-		if wc.SessionCookie == nil {
-			wc.Authenticate()
-		}
-	}
-}
-
 // Authenticate against the RESTful service with basic authentication.
 func (wc *WebClient) Authenticate() {
 	data := json.RawMessage(`{ "username": "` + wc.Username + `", "password": "` + wc.Password + `" }`)
@@ -208,7 +203,7 @@ func (wc *WebClient) Authenticate() {
 	}
 	req.Header.Add("Content-Type", "application/json")
 
-	resp, err := wc.Client.Do(req)
+	resp, err := wc.client.Do(req)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -225,7 +220,7 @@ func (wc *WebClient) Authenticate() {
 
 	var sessionCookie *http.Cookie
 	for _, cookie := range resp.Cookies() {
-		if cookie.Name == eapphttp.SessionCookieName {
+		if cookie.Name == "eapp-session-key" {
 			sessionCookie = cookie
 			break
 		}
@@ -234,7 +229,22 @@ func (wc *WebClient) Authenticate() {
 		log.Fatal("No session cookie returned by request")
 	}
 
-	wc.SessionCookie = sessionCookie
+	wc.sessionCookie = sessionCookie
+}
+
+// WithAuth executes the passed in function surrounded by Login and Logout if neccecary to authenticate
+func (wc *WebClient) WithAuth(authedFunc func()) {
+	didLogin := false
+	if wc.sessionCookie == nil {
+		wc.Authenticate()
+		didLogin = true
+	}
+	authedFunc()
+
+	if didLogin {
+		wc.Logout()
+	}
+
 }
 
 // GetCSRFToken calls /status and returns the csrf token
@@ -243,9 +253,9 @@ func (wc *WebClient) addCSRF(r *http.Request) {
 	if err != nil {
 		log.Fatalln("Error creating request for getting status.", err)
 	}
-	req.AddCookie(wc.SessionCookie)
+	req.AddCookie(wc.sessionCookie)
 
-	resp, err := wc.Client.Do(req)
+	resp, err := wc.client.Do(req)
 	if err != nil || resp.StatusCode != 200 {
 		log.Fatalln("Error or bad response while saving payload.", err, resp.StatusCode)
 	}
@@ -271,17 +281,15 @@ func (wc *WebClient) addCSRF(r *http.Request) {
 
 // Save a JSON structure to the RESTful service.
 func (wc *WebClient) Save(payload json.RawMessage) {
-	wc.preflight()
-
 	req, err := http.NewRequest("POST", wc.Address+"/me/save", bytes.NewBuffer(payload))
 	if err != nil {
 		log.Fatalln("Error creating request for saving payload.", err)
 	}
 	wc.addCSRF(req)
-	req.AddCookie(wc.SessionCookie)
+	req.AddCookie(wc.sessionCookie)
 	req.Header.Add("Content-Type", "application/json")
 
-	resp, err := wc.Client.Do(req)
+	resp, err := wc.client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
 		log.Fatalln("Error or bad response while saving payload.", err, resp.StatusCode)
 	}
@@ -290,14 +298,13 @@ func (wc *WebClient) Save(payload json.RawMessage) {
 
 // Form returns the entire application as a JSON structure.
 func (wc *WebClient) Form() json.RawMessage {
-	wc.preflight()
 	req, err := http.NewRequest("GET", wc.Address+"/me/form", nil)
 	if err != nil {
 		log.Fatalln("Error creating request for submitting application.", err)
 	}
-	req.AddCookie(wc.SessionCookie)
+	req.AddCookie(wc.sessionCookie)
 
-	resp, err := wc.Client.Do(req)
+	resp, err := wc.client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
 		log.Fatalln("Error or bad response while submitting application.", err)
 	}
@@ -312,15 +319,14 @@ func (wc *WebClient) Form() json.RawMessage {
 
 // Submit will submit an application through the RESTful service.
 func (wc *WebClient) Submit() {
-	wc.preflight()
 	req, err := http.NewRequest("POST", wc.Address+"/me/form/submit", nil)
 	if err != nil {
 		log.Fatalln("Error creating request for submitting application.", err)
 	}
 	wc.addCSRF(req)
-	req.AddCookie(wc.SessionCookie)
+	req.AddCookie(wc.sessionCookie)
 
-	resp, err := wc.Client.Do(req)
+	resp, err := wc.client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
 		log.Fatalln("Error or bad response while submitting application.", err, resp.StatusCode)
 	}
@@ -329,15 +335,14 @@ func (wc *WebClient) Submit() {
 
 // Logout will end a session.
 func (wc *WebClient) Logout() {
-	wc.preflight()
 	req, err := http.NewRequest("POST", wc.Address+"/me/logout", nil)
 	if err != nil {
 		log.Fatalln("Error creating request for logging out.", err)
 	}
 	wc.addCSRF(req)
-	req.AddCookie(wc.SessionCookie)
+	req.AddCookie(wc.sessionCookie)
 
-	resp, err := wc.Client.Do(req)
+	resp, err := wc.client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
 		log.Fatalln("Error or bad response while logging out.", err, resp.StatusCode)
 	}
