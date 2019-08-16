@@ -13,6 +13,7 @@ import {
   Accordion,
 } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+import ErrorMessage from 'components/ErrorMessage'
 
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
@@ -83,7 +84,25 @@ export class Multiple extends Subsection {
     new CitizenshipMultipleValidator(this.props).validMinimumCitizenships()
   )
 
+  getSectionErrors = (errorKey) => {
+    const { HasMultiple = {}, List = {} } = this.props
+    const errorList = {
+      'List.accordion.items.length.LENGTH_TOO_SHORT': {
+        title: 'There is a problem with your entry',
+        message: 'Please provide a minimum of two countries.',
+        shouldDisplayError: () => (
+          HasMultiple.value === 'Yes'
+          && List.branch
+          && List.branch.value === 'No'
+        ),
+      },
+    }
+
+    return errorList[errorKey] || ''
+  }
+
   render() {
+    const { errors = [] } = this.props
     return (
       <div
         className="section-content multiple"
@@ -105,15 +124,20 @@ export class Multiple extends Subsection {
         />
 
         <Show when={this.props.HasMultiple.value === 'Yes'}>
-          <Field
-            errors={[
-              {
-                code: 'validMinimumCitizenships',
-                valid: this.validMinimumCitizenships(),
-              },
-            ]}
-            className={this.validMinimumCitizenships() && 'hidden'}
-          />
+          {errors.map((error) => {
+            const errorItem = this.getSectionErrors(error)
+            if (errorItem && errorItem.shouldDisplayError()) {
+              return (
+                <ErrorMessage
+                  key={errorItem.key}
+                  title={errorItem.title}
+                  message={errorItem.message}
+                  note={errorItem.note}
+                />
+              )
+            }
+            return null
+          })}
 
           <Accordion
             {...this.props.List}
