@@ -121,7 +121,7 @@ export class Multiple extends Subsection {
             if (errorItem && errorItem.shouldDisplayError()) {
               return (
                 <ErrorMessage
-                  key={errorKey}
+                  errorKey={errorKey}
                   title={errorItem.title}
                   message={errorItem.message}
                   note={errorItem.note}

@@ -10,17 +10,16 @@ describe('The multiple component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
-      mount(
-        <Provider store={store}>
-          <Multiple {...expected} />
-        </Provider>
-      )
+    createComponent = (expected = {}) => mount(
+      <Provider store={store}>
+        <Multiple {...expected} />
+      </Provider>
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'multiple'
+      name: 'multiple',
     }
     const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(0)
@@ -30,7 +29,7 @@ describe('The multiple component', () => {
   it('displays accordion for citizenships', () => {
     const expected = {
       name: 'multiple',
-      HasMultiple: { value: 'Yes' }
+      HasMultiple: { value: 'Yes' },
     }
     const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
@@ -43,8 +42,8 @@ describe('The multiple component', () => {
       HasMultiple: { value: 'Yes' },
       List: { items: [{}] },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     updates = 0
@@ -64,21 +63,21 @@ describe('The multiple component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2000'
+                  year: '2000',
                 },
                 to: {
                   month: '4',
                   day: '1',
-                  year: '2010'
-                }
+                  year: '2010',
+                },
               },
               Country: {
-                value: ['United States']
-              }
-            }
-          }
-        ]
-      }
+                value: ['United States'],
+              },
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(props)
     expect(component.find('.summary .left .context').text()).toBe(
@@ -87,5 +86,25 @@ describe('The multiple component', () => {
     expect(component.find('.summary .left .dates').text()).toBe(
       '1/2000 - 4/2010'
     )
+  })
+
+  it('displays minimum citizenships required error', () => {
+    const fixture = 'List.accordion.items.length.LENGTH_TOO_SHORT'
+    const props = {
+      HasMultiple: { value: 'Yes' },
+      List: {
+        branch: { value: 'No' },
+        items: [
+          {
+            Item: {},
+          },
+        ],
+      },
+      errors: [fixture],
+    }
+
+    const component = createComponent(props)
+    expect(component.find(`[data-testid="${fixture}"]`).length)
+      .toEqual(1)
   })
 })
