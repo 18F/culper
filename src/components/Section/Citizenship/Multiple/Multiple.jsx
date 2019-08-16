@@ -1,13 +1,9 @@
 import React from 'react'
 import { i18n } from 'config'
 import schema from 'schema'
-import validate, {
-  CitizenshipMultipleValidator,
-  CitizenshipItemValidator,
-} from 'validators'
+import validate, { CitizenshipItemValidator } from 'validators'
 import { countryString } from 'validators/location'
 import {
-  Field,
   Branch,
   Show,
   Accordion,
@@ -80,16 +76,12 @@ export class Multiple extends Subsection {
     })
   }
 
-  validMinimumCitizenships = () => (
-    new CitizenshipMultipleValidator(this.props).validMinimumCitizenships()
-  )
-
   getSectionErrors = (errorKey) => {
     const { HasMultiple = {}, List = {} } = this.props
     const errorList = {
       'List.accordion.items.length.LENGTH_TOO_SHORT': {
-        title: 'There is a problem with your entry',
-        message: 'Please provide a minimum of two countries.',
+        title: i18n.t('error.validMinimumCitizenships.title'),
+        message: i18n.t('error.validMinimumCitizenships.message'),
         shouldDisplayError: () => (
           HasMultiple.value === 'Yes'
           && List.branch
@@ -98,7 +90,7 @@ export class Multiple extends Subsection {
       },
     }
 
-    return errorList[errorKey] || ''
+    return errorList[errorKey]
   }
 
   render() {
@@ -124,12 +116,12 @@ export class Multiple extends Subsection {
         />
 
         <Show when={this.props.HasMultiple.value === 'Yes'}>
-          {errors.map((error) => {
-            const errorItem = this.getSectionErrors(error)
+          {errors.map((errorKey) => {
+            const errorItem = this.getSectionErrors(errorKey)
             if (errorItem && errorItem.shouldDisplayError()) {
               return (
                 <ErrorMessage
-                  key={errorItem.key}
+                  key={errorKey}
                   title={errorItem.title}
                   message={errorItem.message}
                   note={errorItem.note}
