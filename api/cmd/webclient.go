@@ -19,16 +19,16 @@ import (
 )
 
 const passwordFilename = ".eapass"
-const bearerTokenPrefix = "Bearer "
+const tokenPrefix = "Token "
 
 // If a username is specified, readPasswordFile searches `~/.eapass` and returns the
-// password or bearer token corresponding to that username. This file should
+// password or session token corresponding to that username. This file should
 // contain lines in one of the following colon-delimited formats:
 // 1) username:password
-// 2) username:Bearer token-value
+// 2) username:Token token-value
 //
 // The first match is returned if found, otherwise the empty string.
-// The literal string `Bearer ` must preceed a bearer token value.
+// The literal string `Token ` must preceed a session token value.
 //
 // By reading credentials from a file we avoid passing secrets on the
 // command-line, which are available to all system users in the process
@@ -93,11 +93,11 @@ func NewWebClient(config WebClientConfig) *WebClient {
 	// Pull credentials from the password file if they exist
 	credential := readPasswordFile(config.Username)
 	if credential != "" {
-		if strings.HasPrefix(credential, bearerTokenPrefix) {
-			client.SessionToken = strings.TrimPrefix(credential, bearerTokenPrefix)
+		if strings.HasPrefix(credential, tokenPrefix) {
+			client.SessionToken = strings.TrimPrefix(credential, tokenPrefix)
 			client.createsessionCookie()
 			client.UseSessionToken = true
-			log.Printf("Using bearer token from ~/" + passwordFilename)
+			log.Printf("Using session token from ~/" + passwordFilename)
 		} else {
 			client.Password = credential
 			log.Printf("Using password from ~/" + passwordFilename)
