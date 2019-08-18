@@ -128,7 +128,7 @@ For command-line alternatives there are the following:
 Please refer to the [contributing documentation][18].
 
 [badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
-[badge_ci_18f]: https://circleci.com/gh/18F/e-QIP-prototype.svg?style=shield
+[badge_ci_18f]: https://circleci.com/gh/18F/culper.svg?style=shield
 [badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
 [badge_cov_18f]: https://codecov.io/gh/18F/e-QIP-prototype/branch/master/graph/badge.svg
 [badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
