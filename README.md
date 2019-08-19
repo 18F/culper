@@ -129,16 +129,12 @@ Please refer to the [contributing documentation][18].
 
 [badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
 [badge_ci_18f]: https://circleci.com/gh/18F/culper.svg?style=shield
-[badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
-[badge_cov_18f]: https://codecov.io/gh/18F/e-QIP-prototype/branch/master/graph/badge.svg
-[badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
+[badge_cc_18f]: https://codeclimate.com/github/18F/culper/badges/gpa.svg
+[badge_cov_18f]: https://codecov.io/gh/18F/culper/branch/master/graph/badge.svg
+[badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/culper
 [1]: https://gsa-tts.slack.com/messages/acq-e-qip-vendor
-[2]: https://circleci.com/gh/18F/e-QIP-prototype
-[3]: https://codeclimate.com/github/18F/e-QIP-prototype
-[4]: https://continua11y.18f.gov/18F/e-QIP-prototype
-[5]: https://circleci.com/gh/18F/e-QIP-prototype
-[6]: https://codeclimate.com/github/18F/e-QIP-prototype
-[7]: https://continua11y.18f.gov/truetandem/e-QIP-prototype
+[2]: https://circleci.com/gh/18F/culper
+[3]: https://codeclimate.com/github/18F/culper
 [8]: https://playbook.cio.gov/#plays_index_anchor
 [9]: https://help.github.com/articles/tracking-the-progress-of-your-work-with-projects
 [14]: http://jshint.com
@@ -148,9 +144,8 @@ Please refer to the [contributing documentation][18].
 [19]: https://yarnpkg.com
 [20]: https://docs.docker.com/compose
 [21]: https://docker.com
-[22]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
-[23]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
-[24]: https://codecov.io/gh/18F/e-QIP-prototype
+[22]: https://goreportcard.com/report/github.com/18F/culper
+[24]: https://codecov.io/gh/18F/culper
 [25]: https://disa.mil/NewsandEvents/2018/security_clearance_investigations
 [26]: https://www.gsa.gov/forms-library/questionnaire-national-security-positions
 [27]: https://www.gsa.gov/forms-library/questionnaire-non-sensitive-positions
