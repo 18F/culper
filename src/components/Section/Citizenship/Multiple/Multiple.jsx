@@ -77,16 +77,10 @@ export class Multiple extends Subsection {
   }
 
   getSectionErrors = (errorKey) => {
-    const { HasMultiple = {}, List = {} } = this.props
     const errorList = {
       'List.accordion.items.length.LENGTH_TOO_SHORT': {
         title: i18n.t('error.validMinimumCitizenships.title'),
         message: i18n.t('error.validMinimumCitizenships.message'),
-        shouldDisplayError: () => (
-          HasMultiple.value === 'Yes'
-          && List.branch
-          && List.branch.value === 'No'
-        ),
       },
     }
 
@@ -94,7 +88,7 @@ export class Multiple extends Subsection {
   }
 
   render() {
-    const { errors = [] } = this.props
+    const { List, errors = [] } = this.props
     return (
       <div
         className="section-content multiple"
@@ -116,20 +110,22 @@ export class Multiple extends Subsection {
         />
 
         <Show when={this.props.HasMultiple.value === 'Yes'}>
-          {errors.map((errorKey) => {
-            const errorItem = this.getSectionErrors(errorKey)
-            if (errorItem && errorItem.shouldDisplayError()) {
-              return (
-                <ErrorMessage
-                  errorKey={errorKey}
-                  title={errorItem.title}
-                  message={errorItem.message}
-                  note={errorItem.note}
-                />
-              )
-            }
-            return null
-          })}
+          {List.branch && List.branch.value === 'No' && (
+            errors.map((errorKey) => {
+              const errorItem = this.getSectionErrors(errorKey)
+              if (errorItem) {
+                return (
+                  <ErrorMessage
+                    errorKey={errorKey}
+                    title={errorItem.title}
+                    message={errorItem.message}
+                    note={errorItem.note}
+                  />
+                )
+              }
+              return null
+            })
+          )}
 
           <Accordion
             {...this.props.List}
