@@ -55,6 +55,20 @@ describe('The relatives component', () => {
     expect(expected.onUpdate.mock.calls.length).toEqual(4)
   })
 
+  it('displays mother/father error message', () => {
+    const expected = {
+      List: {
+        branch: { value: 'No' },
+        items: [{}],
+      },
+      errors: ['List.containsRequiredItems.REQUIREMENT_NOT_MET'],
+    }
+
+    const component = createComponent(expected)
+    expect(component.find("[data-testid='relatives-mother-father-required-error']").length)
+      .toEqual(1)
+  })
+
   const relativeDatesSetup = {
     name: 'relatives',
     applicantBirthdate: {
@@ -136,6 +150,27 @@ describe('The relatives component', () => {
       ).toEqual(
         `${i18n.t('error.date.min.title')}${i18n.t('error.date.min.message')}`
       )
+    })
+  })
+
+  describe('applicant is married', () => {
+    it('displays mother/father error message', () => {
+      const expected = {
+        List: {
+          branch: { value: 'No' },
+          items: [{}],
+        },
+        maritalStatus: 'Married',
+        errors: ['List.containsRequiredItems.REQUIREMENT_NOT_MET'],
+      }
+
+      const component = createComponent(expected)
+
+      expect(component.find("[data-testid='relatives-mil-fil-required-error']").length)
+        .toEqual(1)
+
+      expect(component.find("[data-testid='relatives-mother-father-required-error']").length)
+        .toEqual(1)
     })
   })
 })

@@ -3,10 +3,11 @@ import React from 'react'
 import i18n from 'util/i18n'
 
 import schema from 'schema'
-import validate, { RelativesValidator, RelativeValidator } from 'validators'
+import validate, { RelativeValidator } from 'validators'
 
 import { RELATIONSHIPS, RELATIONSHIPS_RELATIVES } from 'config/formSections/relationships'
-
+import { MARRIED, SEPARATED } from 'constants/enums/relationshipOptions'
+import ErrorMessage from 'components/ErrorMessage'
 import { Summary, NameSummary } from 'components/Summary'
 import { Field, Accordion } from 'components/Form'
 
@@ -35,6 +36,31 @@ export class Relatives extends Subsection {
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
+  }
+
+  getSectionErrors = (errorKey) => {
+    const { maritalStatus } = this.props
+    const errorList = {
+      'List.containsRequiredItems.REQUIREMENT_NOT_MET': {
+        errors: [
+          {
+            key: 'relatives-mother-father-required-error',
+            title: i18n.t('error.validRelation.title'),
+            message: i18n.t('error.validRelation.message'),
+            shouldDisplayError: () => true,
+          },
+          {
+            key: 'relatives-mil-fil-required-error',
+            title: i18n.t('error.validMaritalRelation.title'),
+            message: i18n.t('error.validMaritalRelation.message'),
+            shouldDisplayError: () => (
+              [MARRIED, SEPARATED].includes(maritalStatus)
+            ),
+          },
+        ],
+      },
+    }
+    return errorList[errorKey]
   }
 
   update = (queue) => {
@@ -70,12 +96,10 @@ export class Relatives extends Subsection {
     })
   }
 
-  validMaritalRelations = () => new RelativesValidator(this.props).validMaritalRelations()
-
-  validRelations = () => new RelativesValidator(this.props).validMinimumRelations()
-
   render() {
     const {
+      errors = [],
+      List,
       requireRelationshipRelativesUSResidenceDoc,
       requireRelationshipRelativesForeignGovtAffExplanation,
     } = this.props
@@ -96,20 +120,27 @@ export class Relatives extends Subsection {
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
 
-        <Field
-          errors={[{ code: 'validRelation', valid: this.validRelations() }]}
-          className={this.validRelations() && 'hidden'}
-        />
-
-        <Field
-          errors={[
-            {
-              code: 'validMaritalRelation',
-              valid: this.validMaritalRelations(),
-            },
-          ]}
-          className={this.validMaritalRelations() && 'hidden'}
-        />
+        {List.branch && List.branch.value === 'No' && (
+          errors.map((errorKey) => {
+            const errorItem = this.getSectionErrors(errorKey)
+            if (errorItem) {
+              return errorItem.errors.map((error) => {
+                if (error.shouldDisplayError()) {
+                  return (
+                    <ErrorMessage
+                      errorKey={error.key || errorKey}
+                      title={error.title}
+                      message={error.message}
+                      note={error.note}
+                    />
+                  )
+                }
+                return null
+              })
+            }
+            return null
+          })
+        )}
 
         <Accordion
           {...this.props.List}

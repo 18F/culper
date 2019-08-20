@@ -158,6 +158,11 @@ const connectSubsection = (Component, {
     const { formType } = Settings
     const names = extractOtherNames(application)
     const applicantBirthdate = (Identification.ApplicantBirthDate || {}).Date
+    const maritalStatus = (
+      Relationships.Marital
+      && Relationships.Marital.Status
+      && Relationships.Marital.Status.value
+    )
     const spouse = Relationships && extractSpouse(Relationships.Marital)
 
     const {
@@ -233,6 +238,7 @@ const connectSubsection = (Component, {
         showExistingConditions: !hideExistingConditionsSelector(state),
 
         // Relationships
+        maritalStatus,
         spouse,
         currentAddress: History && History.CurrentAddress,
         ...selectRelationshipMaritalForeignBornDocExpiration(state),
