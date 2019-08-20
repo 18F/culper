@@ -106,6 +106,49 @@ type CollectionItem struct {
 	ItemID int    `json:"-"`
 }
 
+// MarshalJSON implements json.Marshaller
+// This implementation of MarshalJSON ensures that the values in Item have actually
+// been turned into their Go representation at some point instead of just storing whatever
+// is sent in /save
+// This fixes a bug introduced by simplestorage where json objets with no correspondence to
+// their go represenations would end up stored in collections and break XML generation
+func (ci CollectionItem) MarshalJSON() ([]byte, error) {
+	itemMap := make(map[string]interface{})
+
+	eachErr := ci.Each(func(name, entityType string, entity Entity, innerErr error) error {
+		if innerErr != nil {
+			return innerErr
+		}
+
+		payload := MarshalPayloadEntity(entityType, entity)
+
+		itemMap[name] = payload
+		return nil
+	})
+	if eachErr != nil {
+		return []byte{}, eachErr
+	}
+
+	ciMap := make(map[string]interface{})
+	ciMap["Item"] = itemMap
+
+	return json.Marshal(ciMap)
+
+}
+
+// UnmarshalJSON implements json.Unmarshaller
+func (ci *CollectionItem) UnmarshalJSON(bytes []byte) error {
+	var ciMap map[string]map[string]json.RawMessage
+
+	jsonErr := json.Unmarshal(bytes, &ciMap)
+	if jsonErr != nil {
+		return jsonErr
+	}
+
+	ci.Item = ciMap["Item"]
+	return nil
+}
+
 // Valid iterates through each named property of an item validating
 // each payload.
 func (ci *CollectionItem) Valid() (bool, error) {
