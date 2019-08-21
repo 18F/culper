@@ -9,10 +9,10 @@ import * as formConfig from 'config/forms'
 import { Field, Show } from 'components/Form'
 import { sectionHasGaps } from 'components/Section/History/helpers'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import ConnectedEmployment from './Employment'
 import EmploymentSummaryProgress from './EmploymentSummaryProgress'
-
-import connectHistorySection from '../HistoryConnector'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -45,7 +45,7 @@ const EmploymentWrapper = (props) => {
       <Field
         title={i18n.t('history.employment.heading.employment')}
         titleSize="h3"
-        optional
+        optional={true}
         className="no-margin-bottom"
       >
         {i18n.m('history.employment.para.employment', { years })}
@@ -73,7 +73,7 @@ const EmploymentWrapper = (props) => {
           <Field
             title={i18n.t('history.employment.heading.exiting')}
             titleSize="h4"
-            optional
+            optional={true}
             className="no-margin-bottom"
           >
             {i18n.m('history.employment.para.exiting', { years, formName })}
@@ -96,4 +96,4 @@ EmploymentWrapper.defaultProps = {
   Birthdate: undefined,
 }
 
-export default connectHistorySection(EmploymentWrapper, sectionConfig)
+export default connectSubsection(EmploymentWrapper, sectionConfig)

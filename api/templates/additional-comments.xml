@@ -1,0 +1,5 @@
+{{- if branch .props.HasComments | eq "Yes"}}
+<AdditionalComments Version="1" Type="Pooled">
+  <Comment>{{text .props.Comments}}</Comment>
+</AdditionalComments>
+{{end}}

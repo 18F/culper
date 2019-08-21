@@ -2,6 +2,7 @@
 
 export const application = {
   destination: {
+    comments: 'Additional Comments',
     attachments: 'Attachments',
     submit: 'Submit',
     review: 'Submit',

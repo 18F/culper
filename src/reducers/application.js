@@ -4,14 +4,14 @@ import historyReducer from './history'
 import errorReducer from './error'
 
 // Defines the authentication sub-state for the application.
-export const reducer = function (sectionName, defaultState) {
-  return function(state = defaultState, action) {
+export const reducer = (sectionName, defaultState) => (
+  (state = defaultState, action) => {
     // Check that section matches intended section reducer. This is to prevent
     // merging of everything every time an action is dispatched. We only
     // perform for the relevant section
     if (action.section === sectionName) {
       // copy current state
-      let updated = { ...state }
+      const updated = { ...state }
 
       // Override all values for the particular reducer key
       updated[action.property] = action.values
@@ -20,7 +20,7 @@ export const reducer = function (sectionName, defaultState) {
 
     return state
   }
-}
+)
 
 // High level pre-defined sub-state tree
 export default combineReducers({
@@ -38,6 +38,7 @@ export default combineReducers({
   Legal: reducer('Legal', {}),
   Psychological: reducer('Psychological', {}),
   Substance: reducer('Substance', {}),
+  Package: reducer('Package', {}),
   Submission: reducer('Submission', {}),
   Completed: errorReducer('Completed', {}),
   Errors: errorReducer('Errors', {}),

@@ -16,7 +16,7 @@ import {
 } from 'config/formSections/legal'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import TerroristOrganizationItem from './TerroristOrganizationItem'
 
 const sectionConfig = {
@@ -149,4 +149,4 @@ TerroristOrganization.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(TerroristOrganization, sectionConfig)
+export default connectSubsection(TerroristOrganization, sectionConfig)

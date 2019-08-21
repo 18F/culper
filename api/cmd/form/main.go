@@ -1,8 +1,9 @@
 package main
 
 import (
+	"encoding/json"
+	"flag"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/18F/e-QIP-prototype/api/cmd"
@@ -14,26 +15,31 @@ import (
 //
 // See api/testdata/complete-scenarios/*.json for examples.
 func main() {
-	if len(os.Args) != 2 {
-		log.Fatal("usage: form output.json")
+	wccFlags := cmd.SetupWebClientFlags("form", "output.json")
+	flag.Parse()
+
+	if len(flag.Args()) != 1 {
+		flag.Usage()
+		// Mimick flag.ExitOnError
+		os.Exit(2)
 	}
 
-	// Create a web client to interface with the RESTful API.
-	webclient := &cmd.WebClient{
-		Client: &http.Client{},
-	}
+	webclient := wccFlags.ConfiguredClient()
 
-	js := webclient.Form()
-	webclient.Logout()
+	var formJS json.RawMessage
+	webclient.WithAuth(func() {
+		formJS = webclient.Form()
+	})
 
-	f, err := os.Create(os.Args[1])
+	f, err := os.Create(flag.Args()[0])
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer f.Close()
 
-	_, err = f.WriteString(string(js))
+	_, err = f.WriteString(string(formJS))
 	if err != nil {
 		log.Fatal(err)
 	}
+
 }

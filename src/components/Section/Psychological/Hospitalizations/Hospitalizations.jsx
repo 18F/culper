@@ -10,9 +10,9 @@ import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import { PSYCHOLOGICAL, PSYCHOLOGICAL_HOSPITALIZATIONS } from 'config/formSections/psychological'
-import connectPsychologicalSection from '../PsychologicalConnector'
 
 import Hospitalization from './Hospitalization'
 
@@ -139,4 +139,4 @@ Hospitalizations.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectPsychologicalSection(Hospitalizations, sectionConfig)
+export default connectSubsection(Hospitalizations, sectionConfig)

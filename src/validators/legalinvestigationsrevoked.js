@@ -3,7 +3,7 @@ import revoked from 'models/revoked'
 
 
 export const validateLegalInvestigationsRevokedItem = data => (
-  validateModel(data, revoked) === true
+  validateModel(data, revoked)
 )
 
 export const validateLegalInvestigationsRevoked = (data) => {
@@ -25,7 +25,7 @@ export const validateLegalInvestigationsRevoked = (data) => {
     },
   }
 
-  return validateModel(data, revokedModel) === true
+  return validateModel(data, revokedModel)
 }
 
 export default class LegalInvestigationsRevokedValidator {
@@ -34,7 +34,7 @@ export default class LegalInvestigationsRevokedValidator {
   }
 
   isValid() {
-    return validateLegalInvestigationsRevoked(this.data)
+    return validateLegalInvestigationsRevoked(this.data) === true
   }
 }
 
@@ -44,6 +44,6 @@ export class RevokedItemValidator {
   }
 
   isValid() {
-    return validateLegalInvestigationsRevokedItem(this.data)
+    return validateLegalInvestigationsRevokedItem(this.data) === true
   }
 }

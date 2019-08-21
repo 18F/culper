@@ -6,7 +6,7 @@ import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_VOTING } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import VotingItem from './VotingItem'
 
 const sectionConfig = {
@@ -130,4 +130,4 @@ Voting.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(Voting, sectionConfig)
+export default connectSubsection(Voting, sectionConfig)

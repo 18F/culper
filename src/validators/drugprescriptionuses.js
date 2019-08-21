@@ -13,7 +13,7 @@ export const validateDrugPrescriptionUse = (data = {}, formType = formTypes.SF86
   validateModel(data, drugPrescriptionUse, {
     requireUseWhileEmployed: requireDrugWhileSafety(formType),
     requireUseWithClearance: requireDrugWithClearance(formType),
-  }) === true
+  })
 )
 
 export const validateDrugPrescriptionUses = (data = {}, formType = formTypes.SF86) => {
@@ -34,7 +34,7 @@ export const validateDrugPrescriptionUses = (data = {}, formType = formTypes.SF8
     },
   }
 
-  return validateModel(data, drugUsesModel) === true
+  return validateModel(data, drugUsesModel)
 }
 
 /** Object Validators (as classes) - legacy */
@@ -47,7 +47,7 @@ export default class DrugPrescriptionUsesValidator {
   }
 
   isValid() {
-    return validateDrugPrescriptionUses(this.data, this.formType)
+    return validateDrugPrescriptionUses(this.data, this.formType) === true
   }
 }
 
@@ -60,6 +60,6 @@ export class DrugPrescriptionUseValidator {
   }
 
   isValid() {
-    return validateDrugPrescriptionUse(this.data, this.formType)
+    return validateDrugPrescriptionUse(this.data, this.formType) === true
   }
 }

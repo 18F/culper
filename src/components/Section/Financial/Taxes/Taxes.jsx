@@ -6,14 +6,13 @@ import validate, { TaxValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_TAXES } from 'config/formSections/financial'
 import * as formConfig from 'config/forms'
 
 import { getYearsString } from 'helpers/text'
-
-import connectFinancialSection from '../FinancialConnector'
 
 import TaxesItem from './TaxesItem'
 
@@ -150,4 +149,4 @@ Taxes.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectFinancialSection(Taxes, sectionConfig)
+export default connectSubsection(Taxes, sectionConfig)
