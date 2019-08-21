@@ -120,7 +120,7 @@ func (ci CollectionItem) MarshalJSON() ([]byte, error) {
 			return innerErr
 		}
 
-		payload := MarshalPayloadEntity(entityType, entity)
+		payload := entity.Marshal()
 
 		itemMap[name] = payload
 		return nil
