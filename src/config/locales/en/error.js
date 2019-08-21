@@ -979,13 +979,13 @@ export const error = {
         pattern: {
           title: 'There is a problem with the area code',
           message:
-            'The area code should be 3 numbers long and between 0 and 9.',
+            'The area code should be 3 numbers long and between 1 and 9.',
           note: '',
         },
         length: {
           title: 'There is a problem with the area code',
           message:
-            'The area code should be 3 numbers long and between 0 and 9.',
+            'The area code should be 3 numbers long and between 1 and 9.',
           note: '',
         },
         required: {

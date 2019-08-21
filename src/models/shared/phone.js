@@ -33,7 +33,7 @@ const phone = {
       case 'Domestic':
         return {
           presence: true,
-          format: { pattern: /^\d{10}$/ },
+          format: { pattern: /^((?!(0))[0-9]{10})$/ },
         }
       case 'DSN':
         return {
