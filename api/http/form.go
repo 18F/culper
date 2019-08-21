@@ -42,11 +42,24 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	jsonBytes, jsonErr := json.Marshal(app)
-	if jsonErr != nil {
-		service.Log.WarnError(api.FormDecodingError, jsonErr, api.LogFields{})
-		RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
-		return
+	var jsonBytes []byte
+
+	if service.Env.True(api.IndentJSON) {
+		var jsonErr error
+		jsonBytes, jsonErr = json.MarshalIndent(app, "", "  ")
+		if jsonErr != nil {
+			service.Log.WarnError(api.FormDecodingError, jsonErr, api.LogFields{})
+			RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
+			return
+		}
+	} else {
+		var jsonErr error
+		jsonBytes, jsonErr = json.Marshal(app)
+		if jsonErr != nil {
+			service.Log.WarnError(api.FormDecodingError, jsonErr, api.LogFields{})
+			RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
+			return
+		}
 	}
 
 	fmt.Fprint(w, string(jsonBytes))

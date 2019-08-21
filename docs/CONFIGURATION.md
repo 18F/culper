@@ -61,6 +61,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`ATTACHMENTS_ENABLED`](#attachments_enabled)                          |                 | X                      | X                     |
 | [`FILE_MAXIMUM_SIZE`](#file_maximum_size)                   |                 | X                      | X                     |
 | [`FILE_TYPES`](#file_types)                          |                 | X                      | X                     |
+| [`INDENT_JSON`](#indent_json)                    |                 |                        | X                     |
 | [`DEV_USE_INSECURE_COOKIE`](#dev_use_insecure_cookie)                    |                 |                        | X                     |
 
 ## `NODE_ENV`
@@ -443,6 +444,14 @@ Allowed file extensions for attachments.
 
 **Target** - Front-end (web), Back-end (api)<br>
 **Default** - `.tiff;.png;.pdf`<br>
+
+## `INDENT_JSON`
+
+Set this to indent the JSON response to /form
+
+**Target** - Back-end (api)<br>
+**Default** - False: *empty*<br>
+**Values** - True: `1`, False: *empty*<br>
 
 ## `DEV_USE_INSECURE_COOKIE`
 

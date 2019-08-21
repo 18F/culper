@@ -44,6 +44,7 @@ func cleanTestServices(t *testing.T) serviceSet {
 
 	env := &env.Native{}
 	os.Setenv(api.LogLevel, "info")
+	os.Setenv(api.IndentJSON, "1")
 	env.Configure()
 
 	log := &log.Service{Log: log.NewLogger()}
@@ -284,26 +285,13 @@ func compareGoldenJSON(t *testing.T, testJSON []byte, goldenPath string) {
 	t.Helper()
 
 	if *updateGolden {
-
-		// To get the format right, we unmarshal then marshal indent whatever we are comparing
-		var parsed interface{}
-		unmarshalErr := json.Unmarshal(testJSON, &parsed)
-		if unmarshalErr != nil {
-			t.Fatal(unmarshalErr)
-		}
-		prettyJSON, marshalErr := json.MarshalIndent(parsed, "", "  ")
-		if marshalErr != nil {
-			t.Fatal(marshalErr)
-		}
-
-		writeErr := ioutil.WriteFile(goldenPath, prettyJSON, 0644)
+		writeErr := ioutil.WriteFile(goldenPath, testJSON, 0644)
 		if writeErr != nil {
 			t.Fatal(writeErr)
 		}
 
 		t.Log("Wrote new Golden File for ", goldenPath)
 		t.Fail()
-
 	}
 
 	expectedJSON, readErr := ioutil.ReadFile(goldenPath)
