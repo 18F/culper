@@ -288,14 +288,3 @@ func getItemEntity(raw json.RawMessage) (string, Entity, error) {
 	entity, err := payload.Entity()
 	return payload.Type, entity, err
 }
-
-// getItemPropertyNames retrieves the number of items in the collection item and assigns
-// property names so they may be filled.
-func (ci *CollectionItem) getItemPropertyNames(context DatabaseService) {
-	propertyNames := []string{}
-	context.Array(&CollectionItem{}, "array_agg(name)", &propertyNames, "id = ?", ci.ID)
-	ci.Item = make(map[string]json.RawMessage)
-	for _, propertyName := range propertyNames {
-		ci.Item[propertyName] = []byte{}
-	}
-}
