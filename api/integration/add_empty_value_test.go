@@ -25,13 +25,17 @@ func TestAddEmptyValue(t *testing.T) {
 
 	fmt.Println("GOT", body)
 
-	if strings.Contains(body, `"Status":{"type":"radio","props":{}}`) {
+	strippedBody := strings.ReplaceAll(body, "\n", "")
+	strippedBody = strings.ReplaceAll(strippedBody, "\t", "")
+	strippedBody = strings.ReplaceAll(strippedBody, " ", "")
+
+	fmt.Println("GREET", strippedBody)
+
+	if strings.Contains(strippedBody, `"Status":{"type":"radio","props":{}}`) {
 		t.Fatal("still giving it")
 	}
 
-	if !strings.Contains(body, `"Status":{"type":"radio","props":{"value":""}}`) {
+	if !strings.Contains(strippedBody, `"Status":{"type":"radio","props":{"value":""}}`) {
 		t.Fatal("Not doing it right")
 	}
-
-	t.Fatal("STILL ADDING VALUE")
 }

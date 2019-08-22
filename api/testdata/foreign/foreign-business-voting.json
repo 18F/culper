@@ -10,29 +10,30 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
+              "Country": {
+                "type": "country",
+                "props": {
+                  "value": [
+                    "Germany"
+                  ]
+                }
+              },
               "Date": {
                 "type": "datecontrol",
                 "props": {
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "Country": {
-                "type": "country",
-                "props": {
-                  "value": ["Germany"]
-                }
-              },
-              "Reason": {
-                "type": "textarea",
-                "props": {
-                  "value": "my reason"
+                  "estimated": false
                 }
               },
               "Eligibility": {
@@ -40,16 +41,16 @@
                 "props": {
                   "value": "my elig"
                 }
+              },
+              "Reason": {
+                "type": "textarea",
+                "props": {
+                  "value": "my reason"
+                }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

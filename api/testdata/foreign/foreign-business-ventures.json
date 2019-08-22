@@ -10,52 +10,44 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
-              "Name": {
-                "type": "name",
-                "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
-                }
-              },
               "Address": {
                 "type": "location",
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
+                }
+              },
+              "Association": {
+                "type": "textarea",
+                "props": {
+                  "value": "my association"
                 }
               },
               "Citizenship": {
                 "type": "country",
                 "props": {
-                  "value": ["Germany"]
+                  "value": [
+                    "Germany"
+                  ]
                 }
               },
-              "Description": {
+              "Compensation": {
                 "type": "textarea",
                 "props": {
-                  "value": "my description"
-                }
-              },
-              "Relationship": {
-                "type": "textarea",
-                "props": {
-                  "value": "my relationship"
+                  "value": "my compensation"
                 }
               },
               "Dates": {
@@ -67,8 +59,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -77,23 +68,41 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
                 }
               },
-              "Association": {
+              "Description": {
                 "type": "textarea",
                 "props": {
-                  "value": "my association"
+                  "value": "my description"
+                }
+              },
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
                 }
               },
               "Position": {
                 "type": "text",
                 "props": {
                   "value": "my position"
+                }
+              },
+              "Relationship": {
+                "type": "textarea",
+                "props": {
+                  "value": "my relationship"
                 }
               },
               "Service": {
@@ -107,22 +116,10 @@
                 "props": {
                   "value": "my support"
                 }
-              },
-              "Compensation": {
-                "type": "textarea",
-                "props": {
-                  "value": "my compensation"
-                }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

@@ -10,9 +10,31 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
+              "CourtAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Offense",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
+              "CourtName": {
+                "type": "text",
+                "props": {
+                  "value": "my court name"
+                }
+              },
               "Explanation": {
                 "type": "textarea",
                 "props": {
@@ -25,37 +47,12 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "CourtName": {
-                "type": "text",
-                "props": {
-                  "value": "my court name"
-                }
-              },
-              "CourtAddress": {
-                "type": "location",
-                "props": {
-                  "layout": "Offense",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "estimated": false
                 }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

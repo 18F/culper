@@ -26,30 +26,25 @@
                   "checked": true
                 }
               },
+              "Explanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "the explanation"
+                }
+              },
               "FirstInvolvement": {
                 "type": "datecontrol",
                 "props": {
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
+                  "estimated": false
                 }
               },
-              "RecentInvolvement": {
-                "type": "datecontrol",
+              "InvolvementInFuture": {
+                "type": "branch",
                 "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "NatureOfInvolvement": {
-                "type": "textarea",
-                "props": {
-                  "value": "the nature of involvement"
+                  "value": "No"
                 }
               },
               "InvolvementWhileEmployed": {
@@ -64,10 +59,10 @@
                   "value": "No"
                 }
               },
-              "InvolvementInFuture": {
-                "type": "branch",
+              "NatureOfInvolvement": {
+                "type": "textarea",
                 "props": {
-                  "value": "No"
+                  "value": "the nature of involvement"
                 }
               },
               "Reasons": {
@@ -76,10 +71,13 @@
                   "value": "the reasons"
                 }
               },
-              "Explanation": {
-                "type": "textarea",
+              "RecentInvolvement": {
+                "type": "datecontrol",
                 "props": {
-                  "value": "the explanation"
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
                 }
               }
             }
