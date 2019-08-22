@@ -134,6 +134,7 @@ func TestSaveAttachmentDisabled(t *testing.T) {
 		Store:    services.store,
 	}
 
+	// Don't need real file to upload since we expect error first
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 
 	saveAttachmentHandler.ServeHTTP(w, indexReq)
@@ -157,6 +158,8 @@ func TestSaveAttachmentDisabled(t *testing.T) {
 }
 
 func TestSaveAttachmentLockedAccount(t *testing.T) {
+	// Attachments enabled
+	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 	// Lock account
@@ -169,10 +172,9 @@ func TestSaveAttachmentLockedAccount(t *testing.T) {
 		Store:    services.store,
 	}
 
+	// Don't need file to upload since we expect to error first
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 
-	// Attachments enabled
-	os.Setenv(api.AttachmentsEnabled, "1")
 	saveAttachmentHandler.ServeHTTP(w, indexReq)
 
 	resp := w.Result()
@@ -191,6 +193,84 @@ func TestSaveAttachmentLockedAccount(t *testing.T) {
 	}
 	// Check the error message is what we expect
 	confirmErrorMsg(t, responseJSON, "The account is currently locked")
+}
+
+func TestSaveAttachmentNoFile(t *testing.T) {
+	// Attachments enabled
+	os.Setenv(api.AttachmentsEnabled, "1")
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	saveAttachmentHandler := http.AttachmentSaveHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
+
+	saveAttachmentHandler.ServeHTTP(w, indexReq)
+
+	resp := w.Result()
+
+	if resp.StatusCode != gohttp.StatusBadRequest {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			resp.StatusCode, gohttp.StatusBadRequest)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, "No attachment file found in multipart form data")
+}
+
+func TestSaveAttachmentTooBig(t *testing.T) {
+	// Set FileMaximumSize very small
+	os.Setenv(api.FileMaximumSize, "1")
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	certificationPath := "../testdata/attachments/signature-form.pdf"
+
+	certificationBytes := readTestData(t, certificationPath)
+
+	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes, account)
+
+	w := httptest.NewRecorder()
+
+	createAttachmentHandler := http.AttachmentSaveHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	createAttachmentHandler.ServeHTTP(w, req)
+
+	resp := w.Result()
+
+	if resp.StatusCode != gohttp.StatusInternalServerError {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			resp.StatusCode, gohttp.StatusInternalServerError)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, "Attachment file size exceeded maximum allowed")
+	// Set FileMaximumSize back to default
+	os.Setenv(api.FileMaximumSize, "5000000")
 }
 
 type errorCreateAttachmentStore struct {
