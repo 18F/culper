@@ -11,14 +11,8 @@ import (
 type Collection struct {
 	PayloadBranch Payload `json:"branch" sql:"-"`
 
-	// Validator specific fields
 	Branch *Branch           `json:"-" sql:"-"`
 	Items  []*CollectionItem `json:"items" sql:"-"`
-
-	// Persister specific fields
-	ID        int `json:"-"`
-	AccountID int `json:"-"`
-	BranchID  int `json:"-" pg:",fk:Branch"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -45,56 +39,6 @@ func (entity *Collection) Marshal() Payload {
 	return MarshalPayloadEntity("collection", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *Collection) Valid() (bool, error) {
-	var stack ErrorStack
-
-	// Iterate through each property in `Items` validating them as we go.
-	for _, item := range entity.Items {
-		if ok, err := item.Valid(); !ok {
-			stack.Append("Item", err)
-		}
-	}
-
-	// Custom errors
-	if entity.PayloadBranch.Type != "" {
-		if ok, err := entity.Branch.Valid(); !ok {
-			stack.Append("Item", err)
-		} else {
-			if entity.Branch.Value != "No" {
-				stack.Append("Collection", ErrFieldInvalid{"Collection branch value is required"})
-			}
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
-// collectionItemIDs the Collection item identifiers.
-func (entity *Collection) collectionItemIDs(context DatabaseService) {
-	var count int
-	context.CountExpr(&CollectionItem{}, "max(index) as max", &count, "id = ?", entity.ID)
-	entity.Items = []*CollectionItem{}
-	for i := 0; i < count; i++ {
-		entity.Items = append(entity.Items, &CollectionItem{ID: entity.ID, Index: i + 1})
-	}
-}
-
-// Find the previous entity stored if one is available.
-func (entity *Collection) Find(context DatabaseService) error {
-	context.Find(&Collection{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
-		previous := result.(*Collection)
-		if previous.BranchID != 0 {
-			if entity.Branch == nil {
-				entity.Branch = &Branch{}
-			}
-			entity.Branch.ID = previous.BranchID
-			entity.BranchID = previous.BranchID
-		}
-	})
-	return nil
-}
-
 // CollectionItem is an item of named payloads directly used in a `Collection`.
 type CollectionItem struct {
 	Item map[string]json.RawMessage `json:"Item" sql:"-"`
@@ -104,21 +48,6 @@ type CollectionItem struct {
 	Name   string `json:"-" sql:",pk"`
 	Type   string `json:"-"`
 	ItemID int    `json:"-"`
-}
-
-// Valid iterates through each named property of an item validating
-// each payload.
-func (ci *CollectionItem) Valid() (bool, error) {
-	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
-		if err != nil {
-			return err
-		}
-
-		_, err = entity.Valid()
-		return err
-	})
-
-	return err != nil, err
 }
 
 // Each loops through each entity in the collection item performing a given action
