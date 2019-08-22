@@ -18,8 +18,3 @@ func (entity *Radio) Unmarshal(raw []byte) error {
 func (entity *Radio) Marshal() Payload {
 	return MarshalPayloadEntity("radio", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Radio) Valid() (bool, error) {
-	return true, nil
-}

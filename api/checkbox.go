@@ -18,8 +18,3 @@ func (entity *Checkbox) Unmarshal(raw []byte) error {
 func (entity *Checkbox) Marshal() Payload {
 	return MarshalPayloadEntity("checkbox", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Checkbox) Valid() (bool, error) {
-	return true, nil
-}

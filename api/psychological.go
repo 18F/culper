@@ -9,14 +9,8 @@ type PsychologicalCompetence struct {
 	PayloadIsIncompetent Payload `json:"IsIncompetent" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	IsIncompetent *Branch     `json:"-"`
 	List          *Collection `json:"-"`
-
-	// Persister specific fields
-	ID              int `json:"-"`
-	IsIncompetentID int `json:"-" pg:", fk:IsIncompetent"`
-	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -52,23 +46,6 @@ func (entity *PsychologicalCompetence) Marshal() Payload {
 	return MarshalPayloadEntity("psychological.competence", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalCompetence) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.IsIncompetent.Valid(); !ok {
-		stack.Append("PsychologicalCompetence", err)
-	}
-
-	if entity.IsIncompetent.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("PsychologicalCompetence", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *PsychologicalCompetence) ClearNoBranches() error {
 	entity.IsIncompetent.ClearNo()
@@ -87,14 +64,8 @@ type PsychologicalConsultations struct {
 	PayloadConsulted Payload `json:"Consulted" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	Consulted *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	ConsultedID int `json:"-" pg:", fk:Consulted"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -130,23 +101,6 @@ func (entity *PsychologicalConsultations) Marshal() Payload {
 	return MarshalPayloadEntity("psychological.consultations", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalConsultations) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Consulted.Valid(); !ok {
-		stack.Append("PsychologicalConsultations", err)
-	}
-
-	if entity.Consulted.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("PsychologicalConsultations", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *PsychologicalConsultations) ClearNoBranches() error {
 	entity.Consulted.ClearNo()
@@ -168,20 +122,11 @@ type PsychologicalDiagnoses struct {
 	PayloadInTreatment   Payload `json:"InTreatment" sql:"-"`
 	PayloadTreatmentList Payload `json:"TreatmentList" sql:"-"`
 
-	// Validator specific fields
 	Diagnosed     *Branch     `json:"-"`
 	DidNotConsult *Branch     `json:"-"`
 	DiagnosisList *Collection `json:"-"`
 	InTreatment   *Branch     `json:"-"`
 	TreatmentList *Collection `json:"-"`
-
-	// Persister specific fields
-	ID              int `json:"-"`
-	DiagnosedID     int `json:"-" pg:", fk:Diagnosed"`
-	DidNotConsultID int `json:"-" pg:", fk:DidNotConsult"`
-	DiagnosisListID int `json:"-" pg:", fk:DiagnosisList"`
-	InTreatmentID   int `json:"-" pg:", fk:InTreatment"`
-	TreatmentListID int `json:"-" pg:", fk:TreatmentList"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -244,37 +189,6 @@ func (entity *PsychologicalDiagnoses) Marshal() Payload {
 	return MarshalPayloadEntity("psychological.diagnoses", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Diagnosed.Valid(); !ok {
-		stack.Append("PsychologicalDiagnoses", err)
-	}
-
-	if entity.Diagnosed.Value == "Yes" {
-		if ok, err := entity.DiagnosisList.Valid(); !ok {
-			stack.Append("PsychologicalDiagnoses", err)
-		}
-	}
-
-	if ok, err := entity.DidNotConsult.Valid(); !ok {
-		stack.Append("PsychologicalDiagnoses", err)
-	}
-
-	if ok, err := entity.InTreatment.Valid(); !ok {
-		stack.Append("PsychologicalDiagnoses", err)
-	}
-
-	if entity.InTreatment.Value == "Yes" {
-		if ok, err := entity.TreatmentList.Valid(); !ok {
-			stack.Append("PsychologicalDiagnoses", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *PsychologicalDiagnoses) ClearNoBranches() error {
 	entity.Diagnosed.ClearNo()
@@ -290,14 +204,8 @@ type PsychologicalHospitalizations struct {
 	PayloadHospitalized Payload `json:"Hospitalized" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	Hospitalized *Branch     `json:"-"`
 	List         *Collection `json:"-"`
-
-	// Persister specific fields
-	ID             int `json:"-"`
-	HospitalizedID int `json:"-" pg:", fk:Hospitalized"`
-	ListID         int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -333,23 +241,6 @@ func (entity *PsychologicalHospitalizations) Marshal() Payload {
 	return MarshalPayloadEntity("psychological.hospitalizations", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Hospitalized.Valid(); !ok {
-		stack.Append("PsychologicalHospitalizations", err)
-	}
-
-	if entity.Hospitalized.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("PsychologicalHospitalizations", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *PsychologicalHospitalizations) ClearNoBranches() error {
 	entity.Hospitalized.ClearNo()
@@ -366,22 +257,12 @@ type PsychologicalExisting struct {
 	PayloadDidNotFollow            Payload `json:"DidNotFollow" sql:"-"`
 	PayloadDidNotFollowExplanation Payload `json:"DidNotFollowExplanation" sql:"-"`
 
-	// Validator specific fields
 	HasCondition            *Branch     `json:"-"`
 	ReceivedTreatment       *Radio      `json:"-"`
 	Explanation             *Textarea   `json:"-"`
 	TreatmentList           *Collection `json:"-"`
 	DidNotFollow            *Branch     `json:"-"`
 	DidNotFollowExplanation *Textarea   `json:"-"`
-
-	// Persister specific fields
-	ID                        int `json:"-"`
-	HasConditionID            int `json:"-" pg:", fk:HasCondition"`
-	ReceivedTreatmentID       int `json:"-" pg:", fk:ReceivedTreatment"`
-	ExplanationID             int `json:"-" pg:", fk:Explanation"`
-	TreatmentListID           int `json:"-" pg:", fk:TreatmentList"`
-	DidNotFollowID            int `json:"-" pg:", fk:DidNotFollow"`
-	DidNotFollowExplanationID int `json:"-" pg:", fk:DidNotFollowExplanation"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -451,43 +332,4 @@ func (entity *PsychologicalExisting) Marshal() Payload {
 		entity.PayloadDidNotFollowExplanation = entity.DidNotFollowExplanation.Marshal()
 	}
 	return MarshalPayloadEntity("psychological.conditions", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalExisting) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasCondition.Valid(); !ok {
-		stack.Append("PsychologicalExisting", err)
-	}
-
-	if entity.HasCondition.Value == "No" {
-		return !stack.HasErrors(), stack
-	}
-
-	if ok, err := entity.ReceivedTreatment.Valid(); !ok {
-		stack.Append("PsychologicalExisting", err)
-	}
-
-	if entity.ReceivedTreatment.Value == "Yes" {
-		if ok, err := entity.TreatmentList.Valid(); !ok {
-			stack.Append("PsychologicalExisting", err)
-		}
-	} else if entity.ReceivedTreatment.Value == "No" {
-		if ok, err := entity.Explanation.Valid(); !ok {
-			stack.Append("PsychologicalExisting", err)
-		}
-	}
-
-	if ok, err := entity.DidNotFollow.Valid(); !ok {
-		stack.Append("PsychologicalExisting", err)
-	}
-
-	if entity.DidNotFollow.Value == "Yes" {
-		if ok, err := entity.DidNotFollowExplanation.Valid(); !ok {
-			stack.Append("PsychologicalExisting", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }

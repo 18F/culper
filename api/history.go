@@ -8,12 +8,7 @@ import (
 type HistoryResidence struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	List *Collection `json:"-"`
-
-	// Persister specific fields
-	ID     int `json:"-"`
-	ListID int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -40,11 +35,6 @@ func (entity *HistoryResidence) Marshal() Payload {
 	return MarshalPayloadEntity("history.residence", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *HistoryResidence) Valid() (bool, error) {
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *HistoryResidence) ClearNoBranches() error {
 	entity.List.ClearBranchNo()
@@ -57,14 +47,8 @@ type HistoryEmployment struct {
 	PayloadList             Payload `json:"List" sql:"-"`
 	PayloadEmploymentRecord Payload `json:"EmploymentRecord" sql:"-"`
 
-	// Validator specific fields
 	List             *Collection `json:"-"`
 	EmploymentRecord *Branch     `json:"-"`
-
-	// Persister specific fields
-	ID                 int `json:"-"`
-	ListID             int `json:"-" pg:", fk:List"`
-	EmploymentRecordID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -100,17 +84,6 @@ func (entity *HistoryEmployment) Marshal() Payload {
 	return MarshalPayloadEntity("history.employment", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *HistoryEmployment) Valid() (bool, error) {
-	if ok, err := entity.List.Valid(); !ok {
-		return false, err
-	}
-	if ok, err := entity.EmploymentRecord.Valid(); !ok {
-		return false, err
-	}
-	return true, nil
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *HistoryEmployment) ClearNoBranches() error {
 	entity.EmploymentRecord.ClearNo()
@@ -130,16 +103,9 @@ type HistoryEducation struct {
 	PayloadHasDegree10 Payload `json:"HasDegree10" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasAttended *Branch     `json:"-" sql:"-"`
 	HasDegree10 *Branch     `json:"-" sql:"-"`
 	List        *Collection `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID            int `json:"-"`
-	HasAttendedID int `json:"-" pg:", fk:HasAttended"`
-	HasDegree10ID int `json:"-" pg:", fk:HasDegree10" sql:"has_degree10_id"`
-	ListID        int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -184,15 +150,6 @@ func (entity *HistoryEducation) Marshal() Payload {
 	return MarshalPayloadEntity("history.education", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *HistoryEducation) Valid() (bool, error) {
-	if entity.HasAttended.Value == "Yes" || entity.HasDegree10.Value == "Yes" {
-		return entity.List.Valid()
-	}
-
-	return true, nil
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *HistoryEducation) ClearNoBranches() error {
 
@@ -209,14 +166,8 @@ type HistoryFederal struct {
 	PayloadHasFederalService Payload `json:"HasFederalService" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasFederalService *Branch     `json:"-"`
 	List              *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                  int `json:"-"`
-	HasFederalServiceID int `json:"-" pg:", fk:HasFederalService"`
-	ListID              int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -250,15 +201,6 @@ func (entity *HistoryFederal) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("history.federal", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *HistoryFederal) Valid() (bool, error) {
-	if entity.HasFederalService.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears any questions answered nos on a kickback
