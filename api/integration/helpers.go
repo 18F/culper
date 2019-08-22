@@ -45,7 +45,6 @@ func cleanTestServices(t *testing.T) serviceSet {
 
 	env := &env.Native{}
 	os.Setenv(api.LogLevel, "info")
-	os.Setenv(api.IndentJSON, "1")
 	env.Configure()
 
 	log := &log.Service{Log: log.NewLogger()}

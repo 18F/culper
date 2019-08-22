@@ -32,6 +32,4 @@ func TestAddEmptyValue(t *testing.T) {
 	if !strings.Contains(body, `"Status":{"type":"radio","props":{"value":""}}`) {
 		t.Fatal("Not doing it right")
 	}
-
-	t.Fatal("STILL ADDING VALUE")
 }
