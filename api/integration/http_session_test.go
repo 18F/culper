@@ -219,7 +219,7 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 }
 
 func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
-	os.Setenv("BASIC_ENABLED", "1")
+	os.Setenv(api.BasicEnabled, "1")
 	services := cleanTestServices(t)
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
