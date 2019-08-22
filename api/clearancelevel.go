@@ -52,18 +52,3 @@ func (entity *ClearanceLevel) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("clearancelevel", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ClearanceLevel) Valid() (bool, error) {
-	if ok, err := entity.Level.Valid(); !ok {
-		return false, err
-	}
-
-	if entity.Level.Value == "Other" {
-		if ok, err := entity.Explanation.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return true, nil
-}

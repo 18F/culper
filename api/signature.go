@@ -52,18 +52,3 @@ func (entity *Signature) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("signature", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Signature) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Name.Valid(); !ok {
-		stack.Append("Name", err)
-	}
-
-	if ok, err := entity.Date.Valid(); !ok {
-		stack.Append("Date", err)
-	}
-
-	return !stack.HasErrors(), stack
-}

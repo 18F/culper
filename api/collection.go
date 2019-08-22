@@ -45,31 +45,6 @@ func (entity *Collection) Marshal() Payload {
 	return MarshalPayloadEntity("collection", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *Collection) Valid() (bool, error) {
-	var stack ErrorStack
-
-	// Iterate through each property in `Items` validating them as we go.
-	for _, item := range entity.Items {
-		if ok, err := item.Valid(); !ok {
-			stack.Append("Item", err)
-		}
-	}
-
-	// Custom errors
-	if entity.PayloadBranch.Type != "" {
-		if ok, err := entity.Branch.Valid(); !ok {
-			stack.Append("Item", err)
-		} else {
-			if entity.Branch.Value != "No" {
-				stack.Append("Collection", ErrFieldInvalid{"Collection branch value is required"})
-			}
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // collectionItemIDs the Collection item identifiers.
 func (entity *Collection) collectionItemIDs(context DatabaseService) {
 	var count int
@@ -104,21 +79,6 @@ type CollectionItem struct {
 	Name   string `json:"-" sql:",pk"`
 	Type   string `json:"-"`
 	ItemID int    `json:"-"`
-}
-
-// Valid iterates through each named property of an item validating
-// each payload.
-func (ci *CollectionItem) Valid() (bool, error) {
-	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
-		if err != nil {
-			return err
-		}
-
-		_, err = entity.Valid()
-		return err
-	})
-
-	return err != nil, err
 }
 
 // Each loops through each entity in the collection item performing a given action

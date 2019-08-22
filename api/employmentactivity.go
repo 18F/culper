@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"strings"
 )
 
 // EmploymentActivity is a basic input.
@@ -20,22 +19,4 @@ func (entity *EmploymentActivity) Unmarshal(raw []byte) error {
 // Marshal to payload structure
 func (entity *EmploymentActivity) Marshal() Payload {
 	return MarshalPayloadEntity("employmentactivity", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *EmploymentActivity) Valid() (bool, error) {
-	var stack ErrorStack
-
-	v := strings.TrimSpace(string(entity.Value))
-	if v == "" {
-		stack.Append("EmploymentActivity", ErrFieldRequired{"Value is required"})
-	}
-
-	if v == "Other" {
-		if strings.TrimSpace(string(entity.OtherExplanation)) == "" {
-			stack.Append("EmploymentActivity", ErrFieldRequired{"Other explanation is required"})
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }

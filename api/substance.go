@@ -50,23 +50,6 @@ func (entity *SubstanceDrugUsage) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.usage", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugUsage) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.UsedDrugs.Valid(); !ok {
-		stack.Append("DrugUsage", err)
-	}
-
-	if entity.UsedDrugs.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugUsage", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugUsage) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
@@ -120,23 +103,6 @@ func (entity *SubstanceDrugPurchase) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("substance.drugs.purchase", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Involved.Valid(); !ok {
-		stack.Append("DrugPurchase", err)
-	}
-
-	if entity.Involved.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugPurchase", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -200,23 +166,6 @@ func (entity *SubstanceDrugClearance) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.clearance", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugClearance) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.UsedDrugs.Valid(); !ok {
-		stack.Append("DrugClearance", err)
-	}
-
-	if entity.UsedDrugs.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugClearance", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugClearance) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
@@ -270,23 +219,6 @@ func (entity *SubstanceDrugPublicSafety) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("substance.drugs.publicsafety", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugPublicSafety) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.UsedDrugs.Valid(); !ok {
-		stack.Append("PublicSafety", err)
-	}
-
-	if entity.UsedDrugs.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("PublicSafety", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -344,23 +276,6 @@ func (entity *SubstanceDrugMisuse) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.misuse", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugMisuse) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.UsedDrugs.Valid(); !ok {
-		stack.Append("DrugMisuse", err)
-	}
-
-	if entity.UsedDrugs.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugMisuse", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugMisuse) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
@@ -414,23 +329,6 @@ func (entity *SubstanceDrugOrdered) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("substance.drugs.ordered", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.TreatmentOrdered.Valid(); !ok {
-		stack.Append("DrugOrdered", err)
-	}
-
-	if entity.TreatmentOrdered.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugOrdered", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -492,23 +390,6 @@ func (entity *SubstanceDrugVoluntary) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.voluntary", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugVoluntary) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.TreatmentVoluntary.Valid(); !ok {
-		stack.Append("DrugVoluntary", err)
-	}
-
-	if entity.TreatmentVoluntary.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugVoluntary", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugVoluntary) ClearNoBranches() error {
 	entity.TreatmentVoluntary.ClearNo()
@@ -568,23 +449,6 @@ func (entity *SubstanceAlcoholNegative) Marshal() Payload {
 	return MarshalPayloadEntity("substance.alcohol.negative", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceAlcoholNegative) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasImpacts.Valid(); !ok {
-		stack.Append("AlcoholNegative", err)
-	}
-
-	if entity.HasImpacts.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("AlcoholNegative", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceAlcoholNegative) ClearNoBranches() error {
 	entity.HasImpacts.ClearNo()
@@ -638,23 +502,6 @@ func (entity *SubstanceAlcoholOrdered) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("substance.alcohol.ordered", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasBeenOrdered.Valid(); !ok {
-		stack.Append("AlcoholOrdered", err)
-	}
-
-	if entity.HasBeenOrdered.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("AlcoholOrdered", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -718,23 +565,6 @@ func (entity *SubstanceAlcoholVoluntary) Marshal() Payload {
 	return MarshalPayloadEntity("substance.alcohol.voluntary", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceAlcoholVoluntary) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.SoughtTreatment.Valid(); !ok {
-		stack.Append("AlcoholVoluntary", err)
-	}
-
-	if entity.SoughtTreatment.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("AlcoholVoluntary", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceAlcoholVoluntary) ClearNoBranches() error {
 	entity.SoughtTreatment.ClearNo()
@@ -794,23 +624,6 @@ func (entity *SubstanceAlcoholAdditional) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("substance.alcohol.additional", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceAlcoholAdditional) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.ReceivedTreatment.Valid(); !ok {
-		stack.Append("AlcoholAdditional", err)
-	}
-
-	if entity.ReceivedTreatment.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("AlcoholAdditional", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection

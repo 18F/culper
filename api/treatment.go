@@ -63,22 +63,3 @@ func (entity *Treatment) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("psychological.treatment", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Treatment) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Name.Valid(); !ok {
-		stack.Append("Treatment", err)
-	}
-
-	if ok, err := entity.Phone.Valid(); !ok {
-		stack.Append("Treatment", err)
-	}
-
-	if ok, err := entity.Address.Valid(); !ok {
-		stack.Append("Treatment", err)
-	}
-
-	return !stack.HasErrors(), stack
-}

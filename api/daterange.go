@@ -51,22 +51,3 @@ func (entity *DateRange) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("daterange", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *DateRange) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.From.Valid(); !ok {
-		stack.Append("From", err)
-	}
-
-	if ok, err := entity.To.Valid(); !ok {
-		stack.Append("To", err)
-	}
-
-	if !stack.HasErrors() && entity.From.Date().After(entity.To.Date()) {
-		stack.Append("Range", ErrFieldRequired{"Date range is out of order"})
-	}
-
-	return !stack.HasErrors(), stack
-}

@@ -52,23 +52,6 @@ func (entity *FinancialBankruptcy) Marshal() Payload {
 	return MarshalPayloadEntity("financial.bankruptcy", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *FinancialBankruptcy) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasBankruptcy.Valid(); !ok {
-		stack.Append("Bankruptcy", err)
-	}
-
-	if entity.HasBankruptcy.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("Bankruptcy", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *FinancialBankruptcy) ClearNoBranches() error {
 	entity.HasBankruptcy.ClearNo()
@@ -130,23 +113,6 @@ func (entity *FinancialGambling) Marshal() Payload {
 	return MarshalPayloadEntity("financial.gambling", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *FinancialGambling) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasGamblingDebt.Valid(); !ok {
-		stack.Append("Gambling", err)
-	}
-
-	if entity.HasGamblingDebt.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("Gambling", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *FinancialGambling) ClearNoBranches() error {
 	entity.HasGamblingDebt.ClearNo()
@@ -200,23 +166,6 @@ func (entity *FinancialTaxes) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("financial.taxes", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *FinancialTaxes) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasTaxes.Valid(); !ok {
-		stack.Append("Taxes", err)
-	}
-
-	if entity.HasTaxes.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("Taxes", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -274,23 +223,6 @@ func (entity *FinancialCard) Marshal() Payload {
 	return MarshalPayloadEntity("financial.card", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *FinancialCard) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasCardAbuse.Valid(); !ok {
-		stack.Append("CardAbuse", err)
-	}
-
-	if entity.HasCardAbuse.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("CardAbuse", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *FinancialCard) ClearNoBranches() error {
 	entity.HasCardAbuse.ClearNo()
@@ -344,23 +276,6 @@ func (entity *FinancialCredit) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("financial.credit", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *FinancialCredit) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasCreditCounseling.Valid(); !ok {
-		stack.Append("CreditCounseling", err)
-	}
-
-	if entity.HasCreditCounseling.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("CreditCounseling", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -418,23 +333,6 @@ func (entity *FinancialDelinquent) Marshal() Payload {
 	return MarshalPayloadEntity("financial.delinquent", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *FinancialDelinquent) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasDelinquent.Valid(); !ok {
-		stack.Append("Delinquent", err)
-	}
-
-	if entity.HasDelinquent.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("Delinquent", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *FinancialDelinquent) ClearNoBranches() error {
 	entity.HasDelinquent.ClearNo()
@@ -488,23 +386,6 @@ func (entity *FinancialNonpayment) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("financial.nonpayment", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *FinancialNonpayment) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasNonpayment.Valid(); !ok {
-		stack.Append("Nonpayment", err)
-	}
-
-	if entity.HasNonpayment.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("Nonpayment", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection

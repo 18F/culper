@@ -66,32 +66,6 @@ func (entity *RelationshipsMarital) Marshal() Payload {
 	return MarshalPayloadEntity("relationships.status.marital", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *RelationshipsMarital) Valid() (bool, error) {
-	var stack ErrorStack
-
-	sv := entity.Status.Value
-	switch {
-	case sv == "Married" || sv == "Separated":
-		// Check if the civil union information is valid
-		if ok, err := entity.CivilUnion.Valid(); !ok {
-			stack.Append("CitizenshipMarital", err)
-		}
-		if entity.CivilUnion.Divorced.Value == "Yes" {
-			if ok, err := entity.DivorcedList.Valid(); !ok {
-				stack.Append("CitizenshipMarital", err)
-			}
-		}
-
-	case sv == "Annulled" || sv == "Divorced" || sv == "Widowed":
-		if ok, err := entity.DivorcedList.Valid(); !ok {
-			stack.Append("CitizenshipMarital", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *RelationshipsMarital) ClearNoBranches() error {
 
@@ -173,15 +147,6 @@ func (entity *RelationshipsCohabitants) Marshal() Payload {
 	return MarshalPayloadEntity("relationships.status.cohabitant", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *RelationshipsCohabitants) Valid() (bool, error) {
-	if entity.HasCohabitant.Value == "No" {
-		return true, nil
-	}
-
-	return entity.CohabitantList.Valid()
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *RelationshipsCohabitants) ClearNoBranches() error {
 
@@ -229,11 +194,6 @@ func (entity *RelationshipsPeople) Marshal() Payload {
 	return MarshalPayloadEntity("relationships.people", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *RelationshipsPeople) Valid() (bool, error) {
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *RelationshipsPeople) ClearNoBranches() error {
 
@@ -276,11 +236,6 @@ func (entity *RelationshipsRelatives) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("relationships.relatives", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *RelationshipsRelatives) Valid() (bool, error) {
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears any questions answered nos on a kickback

@@ -184,30 +184,3 @@ func (entity *Benefit) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("benefit", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Benefit) Valid() (bool, error) {
-	if ok, err := entity.Country.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Value.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Reason.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Obligated.Valid(); !ok {
-		return false, err
-	}
-
-	if entity.Obligated.Value == "Yes" {
-		if ok, err := entity.ObligatedExplanation.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return true, nil
-}

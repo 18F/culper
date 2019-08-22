@@ -62,18 +62,3 @@ func (entity *PhysicalAddress) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("physicaladdress", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *PhysicalAddress) Valid() (bool, error) {
-	if entity.HasDifferentAddress.Value == "Yes" {
-		if ok, err := entity.Address.Valid(); !ok {
-			return false, err
-		}
-
-		if ok, err := entity.Telephone.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return true, nil
-}

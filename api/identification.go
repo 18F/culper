@@ -8,12 +8,7 @@ import (
 type IdentificationName struct {
 	PayloadName Payload `json:"Name" sql:"-"`
 
-	// Validator specific fields
 	Name *Name `json:"-"`
-
-	// Persister specific fields
-	ID     int `json:"-"`
-	NameID int `json:"-" pg:", fk:Name"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -38,11 +33,6 @@ func (entity *IdentificationName) Marshal() Payload {
 		entity.PayloadName = entity.Name.Marshal()
 	}
 	return MarshalPayloadEntity("identification.name", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *IdentificationName) Valid() (bool, error) {
-	return entity.Name.Valid()
 }
 
 // IdentificationBirthPlace represents the payload for the identification birth place section.
@@ -79,11 +69,6 @@ func (entity *IdentificationBirthPlace) Marshal() Payload {
 		entity.Payload = entity.Location.Marshal()
 	}
 	return MarshalPayloadEntity("identification.birthplace", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *IdentificationBirthPlace) Valid() (bool, error) {
-	return entity.Location.Valid()
 }
 
 // IdentificationBirthDate represents the payload for the identification birth date section.
@@ -134,11 +119,6 @@ func (entity *IdentificationBirthDate) Marshal() Payload {
 	return MarshalPayloadEntity("identification.birthdate", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *IdentificationBirthDate) Valid() (bool, error) {
-	return entity.Date.Valid()
-}
-
 // IdentificationSSN represents the payload for the identification SSN section.
 type IdentificationSSN struct {
 	Payload Payload `json:"ssn" sql:"-"`
@@ -174,20 +154,6 @@ func (entity *IdentificationSSN) Marshal() Payload {
 		entity.Payload = entity.SSN.Marshal()
 	}
 	return MarshalPayloadEntity("identification.ssn", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *IdentificationSSN) Valid() (bool, error) {
-	if ok, err := entity.SSN.Valid(); !ok {
-		return ok, err
-	}
-
-	var stack ErrorStack
-	if !entity.Verified {
-		stack.Append("ApplicantSSN", ErrFieldInvalid{"SSN has not been verified"})
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // IdentificationContacts represents the payload for the identification contact information section.
@@ -250,25 +216,6 @@ func (entity *IdentificationContacts) Marshal() Payload {
 	return MarshalPayloadEntity("identification.contacts", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *IdentificationContacts) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HomeEmail.Valid(); !ok {
-		stack.Append("HomeEmail", err)
-	}
-
-	if ok, err := entity.WorkEmail.Valid(); !ok {
-		stack.Append("WorkEmail", err)
-	}
-
-	if ok, err := entity.PhoneNumbers.Valid(); !ok {
-		stack.Append("PhoneNumbers", err)
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // IdentificationOtherNames represents the payload for the identification other names section.
 type IdentificationOtherNames struct {
 	PayloadHasOtherNames Payload `json:"HasOtherNames" sql:"-"`
@@ -317,23 +264,6 @@ func (entity *IdentificationOtherNames) Marshal() Payload {
 	return MarshalPayloadEntity("identification.othernames", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *IdentificationOtherNames) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasOtherNames.Valid(); !ok {
-		stack.Append("OtherNames", err)
-	}
-
-	if entity.HasOtherNames.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("OtherNames", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches Implements the Rejector interface and clears any nos on applicaiton kickback
 func (entity *IdentificationOtherNames) ClearNoBranches() error {
 
@@ -352,22 +282,12 @@ type IdentificationPhysical struct {
 	PayloadSex       Payload `json:"Sex" sql:"-"`
 	PayloadWeight    Payload `json:"Weight" sql:"-"`
 
-	// Validator specific fields
 	Comments  *Textarea `json:"-"`
 	EyeColor  *Text     `json:"-"`
 	HairColor *Text     `json:"-"`
 	Sex       *Text     `json:"-"`
 	Height    *Height   `json:"-"`
 	Weight    *Number   `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	CommentsID  int `json:"-" pg:", fk:Comments"`
-	EyeColorID  int `json:"-" pg:", fk:EyeColor"`
-	HairColorID int `json:"-" pg:", fk:HairColor"`
-	SexID       int `json:"-" pg:", fk:Sex"`
-	HeightID    int `json:"-" pg:", fk:Height"`
-	WeightID    int `json:"-" pg:", fk:Weight"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -437,31 +357,4 @@ func (entity *IdentificationPhysical) Marshal() Payload {
 		entity.PayloadWeight = entity.Weight.Marshal()
 	}
 	return MarshalPayloadEntity("identification.physical", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *IdentificationPhysical) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.EyeColor.Valid(); !ok {
-		stack.Append("ApplicantPhysical", err)
-	}
-
-	if ok, err := entity.HairColor.Valid(); !ok {
-		stack.Append("ApplicantPhysical", err)
-	}
-
-	if ok, err := entity.Sex.Valid(); !ok {
-		stack.Append("ApplicantPhysical", err)
-	}
-
-	if ok, err := entity.Height.Valid(); !ok {
-		stack.Append("ApplicantPhysical", err)
-	}
-
-	if ok, err := entity.Weight.Valid(); !ok {
-		stack.Append("ApplicantPhysical", err)
-	}
-
-	return !stack.HasErrors(), stack
 }

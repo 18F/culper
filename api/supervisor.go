@@ -98,30 +98,3 @@ func (entity *Supervisor) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("supervisor", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Supervisor) Valid() (bool, error) {
-	if ok, err := entity.SupervisorName.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Title.Valid(); !ok {
-		return false, err
-	}
-
-	if entity.EmailNotApplicable.Applicable {
-		if ok, err := entity.Email.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	if ok, err := entity.Address.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Telephone.Valid(); !ok {
-		return false, err
-	}
-
-	return true, nil
-}

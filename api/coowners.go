@@ -40,8 +40,3 @@ func (entity *CoOwners) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("coowners", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *CoOwners) Valid() (bool, error) {
-	return entity.List.Valid()
-}

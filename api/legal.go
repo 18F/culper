@@ -50,15 +50,6 @@ func (entity *LegalCourt) Marshal() Payload {
 	return MarshalPayloadEntity("legal.court", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalCourt) Valid() (bool, error) {
-	if entity.HasCourtActions.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalCourt) ClearNoBranches() error {
 	entity.HasCourtActions.ClearNo()
@@ -112,15 +103,6 @@ func (entity *LegalPoliceOffenses) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("legal.police.offenses", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalPoliceOffenses) Valid() (bool, error) {
-	if entity.HasOffenses.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -184,15 +166,6 @@ func (entity *LegalPoliceAdditionalOffenses) Marshal() Payload {
 	return MarshalPayloadEntity("legal.police.additionaloffenses", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalPoliceAdditionalOffenses) Valid() (bool, error) {
-	if entity.HasOtherOffenses.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalPoliceAdditionalOffenses) ClearNoBranches() error {
 	entity.HasOtherOffenses.ClearNo()
@@ -254,14 +227,6 @@ func (entity *LegalPoliceDomesticViolence) Marshal() Payload {
 	return MarshalPayloadEntity("legal.police.domesticviolence", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalPoliceDomesticViolence) Valid() (bool, error) {
-	if entity.HasDomesticViolence.Value == "No" {
-		return true, nil
-	}
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalPoliceDomesticViolence) ClearNoBranches() error {
 	entity.HasDomesticViolence.ClearNo()
@@ -315,15 +280,6 @@ func (entity *LegalInvestigationsDebarred) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("legal.investigations.debarred", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalInvestigationsDebarred) Valid() (bool, error) {
-	if entity.HasDebarment.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -381,15 +337,6 @@ func (entity *LegalInvestigationsHistory) Marshal() Payload {
 	return MarshalPayloadEntity("legal.investigations.history", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalInvestigationsHistory) Valid() (bool, error) {
-	if entity.HasHistory.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalInvestigationsHistory) ClearNoBranches() error {
 	entity.HasHistory.ClearNo()
@@ -443,15 +390,6 @@ func (entity *LegalInvestigationsRevoked) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("legal.investigations.revoked", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalInvestigationsRevoked) Valid() (bool, error) {
-	if entity.HasRevocations.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -509,15 +447,6 @@ func (entity *LegalTechnologyManipulating) Marshal() Payload {
 	return MarshalPayloadEntity("legal.technology.manipulating", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalTechnologyManipulating) Valid() (bool, error) {
-	if entity.HasManipulating.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalTechnologyManipulating) ClearNoBranches() error {
 	entity.HasManipulating.ClearNo()
@@ -571,15 +500,6 @@ func (entity *LegalTechnologyUnauthorized) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("legal.technology.unauthorized", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalTechnologyUnauthorized) Valid() (bool, error) {
-	if entity.HasUnauthorized.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -637,15 +557,6 @@ func (entity *LegalTechnologyUnlawful) Marshal() Payload {
 	return MarshalPayloadEntity("legal.technology.unlawful", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalTechnologyUnlawful) Valid() (bool, error) {
-	if entity.HasUnlawful.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalTechnologyUnlawful) ClearNoBranches() error {
 	entity.HasUnlawful.ClearNo()
@@ -699,15 +610,6 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("legal.associations.activities-to-overthrow", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalAssociationsActivitiesToOverthrow) Valid() (bool, error) {
-	if entity.HasActivities.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -765,15 +667,6 @@ func (entity *LegalAssociationsAdvocating) Marshal() Payload {
 	return MarshalPayloadEntity("legal.associations.advocating", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalAssociationsAdvocating) Valid() (bool, error) {
-	if entity.HasAdvocated.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalAssociationsAdvocating) ClearNoBranches() error {
 	entity.HasAdvocated.ClearNo()
@@ -827,15 +720,6 @@ func (entity *LegalAssociationsEngagedInTerrorism) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("legal.associations.engaged-in-terrorism", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalAssociationsEngagedInTerrorism) Valid() (bool, error) {
-	if entity.HasEngaged.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -893,15 +777,6 @@ func (entity *LegalAssociationsMembershipOverthrow) Marshal() Payload {
 	return MarshalPayloadEntity("legal.associations.membership-overthrow", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalAssociationsMembershipOverthrow) Valid() (bool, error) {
-	if entity.HasOverthrow.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalAssociationsMembershipOverthrow) ClearNoBranches() error {
 	entity.HasOverthrow.ClearNo()
@@ -955,15 +830,6 @@ func (entity *LegalAssociationsMembershipViolence) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("legal.associations.membership-violence-or-force", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalAssociationsMembershipViolence) Valid() (bool, error) {
-	if entity.HasViolence.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -1021,15 +887,6 @@ func (entity *LegalAssociationsTerrorismAssociation) Marshal() Payload {
 	return MarshalPayloadEntity("legal.associations.terrorism-association", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalAssociationsTerrorismAssociation) Valid() (bool, error) {
-	if entity.HasTerrorism.Value == "No" {
-		return true, nil
-	}
-
-	return entity.Explanation.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalAssociationsTerrorismAssociation) ClearNoBranches() error {
 	entity.HasTerrorism.ClearNo()
@@ -1082,15 +939,6 @@ func (entity *LegalAssociationsTerroristOrganization) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("legal.associations.terrorist-organization", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *LegalAssociationsTerroristOrganization) Valid() (bool, error) {
-	if entity.HasTerrorist.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection

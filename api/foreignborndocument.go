@@ -86,20 +86,3 @@ func (entity *ForeignBornDocument) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("foreignborndocument", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBornDocument) Valid() (bool, error) {
-	if entity.DocumentType.Value == "Other" {
-		if ok, err := entity.OtherExplanation.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	if entity.DocumentExpirationNotApplicable.Applicable {
-		if ok, err := entity.DocumentNumber.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return true, nil
-}

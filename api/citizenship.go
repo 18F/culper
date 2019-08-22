@@ -330,115 +330,6 @@ func (entity *CitizenshipStatus) Marshal() Payload {
 	return MarshalPayloadEntity("citizenship.status", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *CitizenshipStatus) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.CitizenshipStatus.Valid(); !ok {
-		stack.Append("CitizenshipStatus", err)
-	}
-
-	switch entity.CitizenshipStatus.Value {
-	case "Citizen":
-	case "ForeignBorn":
-		if ok, err := entity.DocumentNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.PlaceIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-	case "Naturalized":
-		if ok, err := entity.EntryDate.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.EntryLocation.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.PriorCitizenship.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateCourtName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateCourtAddress.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-	case "Derived":
-		if ok, err := entity.AlienRegistrationNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.PermanentResidentCardNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-	case "NotCitizen":
-		if ok, err := entity.ResidenceStatus.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.EntryDate.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.EntryLocation.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.PriorCitizenship.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.AlienRegistrationNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.AlienRegistrationExpiration.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentExpiration.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *CitizenshipStatus) ClearNoBranches() error {
 
@@ -499,23 +390,6 @@ func (entity *CitizenshipMultiple) Marshal() Payload {
 	return MarshalPayloadEntity("citizenship.multiple", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *CitizenshipMultiple) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasMultiple.Valid(); !ok {
-		stack.Append("CitizenshipMultiple", err)
-	}
-
-	if entity.HasMultiple.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("CitizenshipMultiple", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *CitizenshipMultiple) ClearNoBranches() error {
 
@@ -566,11 +440,6 @@ func (entity *CitizenshipPassports) Marshal() Payload {
 		entity.PayloadPassports = entity.Passports.Marshal()
 	}
 	return MarshalPayloadEntity("citizenship.passports", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *CitizenshipPassports) Valid() (bool, error) {
-	return entity.Passports.Valid()
 }
 
 // ClearNoBranches clears any questions answered nos on a kickback

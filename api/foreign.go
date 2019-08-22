@@ -121,37 +121,6 @@ func (entity *ForeignPassport) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.passport", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignPassport) Valid() (bool, error) {
-	if entity.HasPassports.Value == "No" {
-		return true, nil
-	}
-
-	if ok, err := entity.Name.Valid(); !ok {
-		return false, err
-	}
-
-	if entity.Card.Value == "Book" {
-		if ok := formatPassportBook.MatchString(entity.Number.Value); !ok {
-			return false, errors.New("Invalid format for passport book")
-		}
-	} else if entity.Card.Value == "Card" {
-		if ok := formatPassportCard.MatchString(entity.Number.Value); !ok {
-			return false, errors.New("Invalid format for passport card")
-		}
-	}
-
-	if ok, err := entity.Issued.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Expiration.Valid(); !ok {
-		return false, err
-	}
-
-	return true, nil
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignPassport) ClearNoBranches() error {
 	entity.HasPassports.ClearNo()
@@ -205,15 +174,6 @@ func (entity *ForeignContacts) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.contacts", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignContacts) Valid() (bool, error) {
-	if entity.HasForeignContacts.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -290,19 +250,6 @@ func (entity *ForeignTravel) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.travel", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignTravel) Valid() (bool, error) {
-	if entity.HasForeignTravelOutside.Value == "No" {
-		return true, nil
-	}
-
-	if entity.HasForeignTravelOfficial.Value == "Yes" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignTravel) ClearNoBranches() error {
 	entity.HasForeignTravelOutside.ClearNo()
@@ -368,15 +315,6 @@ func (entity *ForeignActivitiesBenefits) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.activities.benefits", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesBenefits) Valid() (bool, error) {
-	if entity.HasBenefits.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -462,15 +400,6 @@ func (entity *ForeignActivitiesDirect) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.activities.direct", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesDirect) Valid() (bool, error) {
-	if entity.HasInterests.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignActivitiesDirect) ClearNoBranches() error {
 
@@ -549,15 +478,6 @@ func (entity *ForeignActivitiesIndirect) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.activities.indirect", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesIndirect) Valid() (bool, error) {
-	if entity.HasInterests.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignActivitiesIndirect) ClearNoBranches() error {
 
@@ -615,15 +535,6 @@ func (entity *ForeignActivitiesRealEstate) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.activities.realestate", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesRealEstate) Valid() (bool, error) {
-	if entity.HasInterests.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -685,15 +596,6 @@ func (entity *ForeignActivitiesSupport) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.activities.support", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesSupport) Valid() (bool, error) {
-	if entity.HasForeignSupport.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignActivitiesSupport) ClearNoBranches() error {
 
@@ -753,15 +655,6 @@ func (entity *ForeignBusinessAdvice) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.advice", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessAdvice) Valid() (bool, error) {
-	if entity.HasForeignAdvice.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessAdvice) ClearNoBranches() error {
 	entity.HasForeignAdvice.ClearNo()
@@ -815,15 +708,6 @@ func (entity *ForeignBusinessConferences) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.business.conferences", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessConferences) Valid() (bool, error) {
-	if entity.HasForeignConferences.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -900,15 +784,6 @@ func (entity *ForeignBusinessContact) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.contact", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessContact) Valid() (bool, error) {
-	if entity.HasForeignContact.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessContact) ClearNoBranches() error {
 	entity.HasForeignContact.ClearNo()
@@ -983,15 +858,6 @@ func (entity *ForeignBusinessEmployment) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.employment", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessEmployment) Valid() (bool, error) {
-	if entity.HasForeignEmployment.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessEmployment) ClearNoBranches() error {
 	entity.HasForeignEmployment.ClearNo()
@@ -1045,15 +911,6 @@ func (entity *ForeignBusinessFamily) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.business.family", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessFamily) Valid() (bool, error) {
-	if entity.HasForeignFamily.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -1111,15 +968,6 @@ func (entity *ForeignBusinessPolitical) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.political", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessPolitical) Valid() (bool, error) {
-	if entity.HasForeignPolitical.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessPolitical) ClearNoBranches() error {
 	entity.HasForeignPolitical.ClearNo()
@@ -1173,15 +1021,6 @@ func (entity *ForeignBusinessSponsorship) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.business.sponsorship", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessSponsorship) Valid() (bool, error) {
-	if entity.HasForeignSponsorship.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -1239,15 +1078,6 @@ func (entity *ForeignBusinessVentures) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.ventures", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessVentures) Valid() (bool, error) {
-	if entity.HasForeignVentures.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessVentures) ClearNoBranches() error {
 	entity.HasForeignVentures.ClearNo()
@@ -1301,15 +1131,6 @@ func (entity *ForeignBusinessVoting) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.business.voting", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessVoting) Valid() (bool, error) {
-	if entity.HasForeignVoting.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection

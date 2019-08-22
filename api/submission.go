@@ -89,29 +89,6 @@ func (entity *Submission) Marshal() Payload {
 	return MarshalPayloadEntity("submission.releases", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *Submission) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.AdditionalComments.Valid(); !ok {
-		stack.Append("AdditionalComments", err)
-	}
-	if ok, err := entity.General.Valid(); !ok {
-		stack.Append("General", err)
-	}
-	if ok, err := entity.Medical.Valid(); !ok {
-		stack.Append("Medical", err)
-	}
-	if ok, err := entity.Credit.Valid(); !ok {
-		stack.Append("Credit", err)
-	}
-	if ok, err := entity.Attachments.Valid(); !ok {
-		stack.Append("Attachments", err)
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // SubmissionAdditionalComments represents the payload for the submission additional comments section.
 type SubmissionAdditionalComments struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
@@ -146,17 +123,6 @@ func (entity *SubmissionAdditionalComments) Marshal() Payload {
 		entity.PayloadSignature = entity.Signature.Marshal()
 	}
 	return MarshalPayloadEntity("submission.additionalcomments", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubmissionAdditionalComments) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Signature.Valid(); !ok {
-		stack.Append("Signature", err)
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // SubmissionGeneral represents the payload for the submission general release section.
@@ -195,17 +161,6 @@ func (entity *SubmissionGeneral) Marshal() Payload {
 	return MarshalPayloadEntity("submission.general", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubmissionGeneral) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Signature.Valid(); !ok {
-		stack.Append("Signature", err)
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // SubmissionMedical represents the payload for the submission medical release section.
 type SubmissionMedical struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
@@ -240,17 +195,6 @@ func (entity *SubmissionMedical) Marshal() Payload {
 		entity.PayloadSignature = entity.Signature.Marshal()
 	}
 	return MarshalPayloadEntity("submission.medical", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubmissionMedical) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Signature.Valid(); !ok {
-		stack.Append("Signature", err)
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // SubmissionCredit represents the payload for the submission credit release section.
@@ -289,17 +233,6 @@ func (entity *SubmissionCredit) Marshal() Payload {
 	return MarshalPayloadEntity("submission.credit", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubmissionCredit) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Signature.Valid(); !ok {
-		stack.Append("Signature", err)
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // SubmissionAttachments represents the payload for the submission attachments section.
 type SubmissionAttachments struct {
 	PayloadMethod Payload `json:"Method" sql:"-"`
@@ -334,15 +267,4 @@ func (entity *SubmissionAttachments) Marshal() Payload {
 		entity.PayloadMethod = entity.Method.Marshal()
 	}
 	return MarshalPayloadEntity("submission.attachments", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubmissionAttachments) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Method.Valid(); !ok {
-		stack.Append("Method", err)
-	}
-
-	return !stack.HasErrors(), stack
 }

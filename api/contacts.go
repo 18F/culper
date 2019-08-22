@@ -40,8 +40,3 @@ func (entity *Contacts) Marshal() Payload {
 	}
 	return MarshalPayloadEntity("contacts", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Contacts) Valid() (bool, error) {
-	return entity.List.Valid()
-}

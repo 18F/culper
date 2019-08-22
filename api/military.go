@@ -90,39 +90,6 @@ func (entity *MilitarySelective) Marshal() Payload {
 	return MarshalPayloadEntity("military.selective", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *MilitarySelective) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.WasBornAfter.Valid(); !ok {
-		stack.Append("MilitarySelective", err)
-	}
-
-	if entity.WasBornAfter.Value == "Yes" {
-		if ok, err := entity.HasRegistered.Valid(); !ok {
-			stack.Append("MilitarySelective", err)
-		} else {
-			if entity.HasRegistered.Value == "Yes" {
-				if ok, err := entity.RegistrationNumber.Valid(); !ok {
-					stack.Append("MilitarySelective", err)
-				}
-			} else if entity.HasRegistered.Value == "No" {
-				if ok, err := entity.Explanation.Valid(); !ok {
-					stack.Append("MilitarySelective", err)
-				}
-			}
-		}
-	}
-
-	if entity.HasRegisteredNotApplicable != nil {
-		if ok, err := entity.HasRegisteredNotApplicable.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *MilitarySelective) ClearNoBranches() error {
 
@@ -177,23 +144,6 @@ func (entity *MilitaryHistory) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("military.history", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *MilitaryHistory) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasServed.Valid(); !ok {
-		stack.Append("MilitaryHistory", err)
-	}
-
-	if entity.HasServed.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("MilitaryHistory", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears any questions answered nos on a kickback
@@ -259,23 +209,6 @@ func (entity *MilitaryDisciplinary) Marshal() Payload {
 	return MarshalPayloadEntity("military.disciplinary", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *MilitaryDisciplinary) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasDisciplinary.Valid(); !ok {
-		stack.Append("MilitaryDisciplinary", err)
-	}
-
-	if entity.HasDisciplinary.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("MilitaryDisciplinary", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *MilitaryDisciplinary) ClearNoBranches() error {
 
@@ -320,17 +253,6 @@ func (entity *MilitaryForeign) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("military.foreign", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *MilitaryForeign) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.List.Valid(); !ok {
-		stack.Append("MilitaryForeign", err)
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears any questions answered nos on a kickback

@@ -52,23 +52,6 @@ func (entity *PsychologicalCompetence) Marshal() Payload {
 	return MarshalPayloadEntity("psychological.competence", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalCompetence) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.IsIncompetent.Valid(); !ok {
-		stack.Append("PsychologicalCompetence", err)
-	}
-
-	if entity.IsIncompetent.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("PsychologicalCompetence", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *PsychologicalCompetence) ClearNoBranches() error {
 	entity.IsIncompetent.ClearNo()
@@ -128,23 +111,6 @@ func (entity *PsychologicalConsultations) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("psychological.consultations", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalConsultations) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Consulted.Valid(); !ok {
-		stack.Append("PsychologicalConsultations", err)
-	}
-
-	if entity.Consulted.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("PsychologicalConsultations", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -244,37 +210,6 @@ func (entity *PsychologicalDiagnoses) Marshal() Payload {
 	return MarshalPayloadEntity("psychological.diagnoses", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Diagnosed.Valid(); !ok {
-		stack.Append("PsychologicalDiagnoses", err)
-	}
-
-	if entity.Diagnosed.Value == "Yes" {
-		if ok, err := entity.DiagnosisList.Valid(); !ok {
-			stack.Append("PsychologicalDiagnoses", err)
-		}
-	}
-
-	if ok, err := entity.DidNotConsult.Valid(); !ok {
-		stack.Append("PsychologicalDiagnoses", err)
-	}
-
-	if ok, err := entity.InTreatment.Valid(); !ok {
-		stack.Append("PsychologicalDiagnoses", err)
-	}
-
-	if entity.InTreatment.Value == "Yes" {
-		if ok, err := entity.TreatmentList.Valid(); !ok {
-			stack.Append("PsychologicalDiagnoses", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *PsychologicalDiagnoses) ClearNoBranches() error {
 	entity.Diagnosed.ClearNo()
@@ -331,23 +266,6 @@ func (entity *PsychologicalHospitalizations) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("psychological.hospitalizations", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Hospitalized.Valid(); !ok {
-		stack.Append("PsychologicalHospitalizations", err)
-	}
-
-	if entity.Hospitalized.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("PsychologicalHospitalizations", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -451,43 +369,4 @@ func (entity *PsychologicalExisting) Marshal() Payload {
 		entity.PayloadDidNotFollowExplanation = entity.DidNotFollowExplanation.Marshal()
 	}
 	return MarshalPayloadEntity("psychological.conditions", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *PsychologicalExisting) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasCondition.Valid(); !ok {
-		stack.Append("PsychologicalExisting", err)
-	}
-
-	if entity.HasCondition.Value == "No" {
-		return !stack.HasErrors(), stack
-	}
-
-	if ok, err := entity.ReceivedTreatment.Valid(); !ok {
-		stack.Append("PsychologicalExisting", err)
-	}
-
-	if entity.ReceivedTreatment.Value == "Yes" {
-		if ok, err := entity.TreatmentList.Valid(); !ok {
-			stack.Append("PsychologicalExisting", err)
-		}
-	} else if entity.ReceivedTreatment.Value == "No" {
-		if ok, err := entity.Explanation.Valid(); !ok {
-			stack.Append("PsychologicalExisting", err)
-		}
-	}
-
-	if ok, err := entity.DidNotFollow.Valid(); !ok {
-		stack.Append("PsychologicalExisting", err)
-	}
-
-	if entity.DidNotFollow.Value == "Yes" {
-		if ok, err := entity.DidNotFollowExplanation.Valid(); !ok {
-			stack.Append("PsychologicalExisting", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
