@@ -318,3 +318,75 @@ func TestGetAttachmentsDisabled(t *testing.T) {
 	// Check the error message is what we expect
 	confirmErrorMsg(t, responseJSON, "Attachments is not implemented")
 }
+
+func TestGetAttachmentBadID(t *testing.T) {
+	// Attachments enabled
+	os.Setenv(api.AttachmentsEnabled, "1")
+
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	certificationPath := "../testdata/attachments/signature-form.pdf"
+
+	certificationBytes := readTestData(t, certificationPath)
+
+	req := postAttachmentRequest(t, "signature-form.pdf", certificationBytes, account)
+
+	w := httptest.NewRecorder()
+
+	createAttachmentHandler := http.AttachmentSaveHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	createAttachmentHandler.ServeHTTP(w, req)
+
+	resp := w.Result()
+
+	if resp.StatusCode != 200 {
+		t.Fatal("Got an error back from CreateAttachment")
+	}
+
+	_, readErr := ioutil.ReadAll(resp.Body)
+	if readErr != nil {
+		t.Fatal(readErr)
+	}
+
+	// Use invalid number
+	attachmentID := "NaN"
+
+	// -- now try to get it back
+	getW, getReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
+
+	getReq = mux.SetURLVars(getReq, map[string]string{
+		"id": attachmentID,
+	})
+
+	getAttachmentHandler := http.AttachmentGetHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	getAttachmentHandler.ServeHTTP(getW, getReq)
+
+	getResp := getW.Result()
+
+	if getResp.StatusCode != gohttp.StatusBadRequest {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			resp.StatusCode, gohttp.StatusBadRequest)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(getResp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, "No identifier for attachment provided")
+}

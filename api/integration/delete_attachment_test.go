@@ -241,13 +241,68 @@ func TestDeleteAttachmentError(t *testing.T) {
 		Store:    &mockStore,
 	}
 
-	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
+	attachmentID := "121342"
+
+	if attachmentID == "0" {
+		t.Fatal("Should have gotten a real ID back instead of nothing")
+	}
+
+	// -- now try to delete it
+	delW, delReq := standardResponseAndRequest("DELETE", "/me/attachments/"+attachmentID+"/delete", nil, account)
+	delReq = mux.SetURLVars(delReq, map[string]string{
+		"id": attachmentID,
+	})
 
 	// Attachments enabled
 	os.Setenv(api.AttachmentsEnabled, "1")
-	delAttachmentHandler.ServeHTTP(w, indexReq)
+	delAttachmentHandler.ServeHTTP(delW, delReq)
 
-	resp := w.Result()
+	resp := delW.Result()
+
+	if resp.StatusCode != gohttp.StatusInternalServerError {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			resp.StatusCode, gohttp.StatusInternalServerError)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, "Attachment file failed to delete")
+}
+
+func TestDeleteAttachmentBadID(t *testing.T) {
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	delAttachmentHandler := http.AttachmentDeleteHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	attachmentID := "NaN"
+
+	if attachmentID == "0" {
+		t.Fatal("Should have gotten a real ID back instead of nothing")
+	}
+
+	// -- now try to delete it
+	delW, delReq := standardResponseAndRequest("DELETE", "/me/attachments/"+attachmentID+"/delete", nil, account)
+	delReq = mux.SetURLVars(delReq, map[string]string{
+		"id": attachmentID,
+	})
+
+	// Attachments enabled
+	os.Setenv(api.AttachmentsEnabled, "1")
+	delAttachmentHandler.ServeHTTP(delW, delReq)
+
+	resp := delW.Result()
 
 	if resp.StatusCode != gohttp.StatusBadRequest {
 		t.Errorf("handler returned wrong status code: got %v want %v",
