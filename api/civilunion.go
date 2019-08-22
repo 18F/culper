@@ -25,7 +25,6 @@ type CivilUnion struct {
 	PayloadTelephone                     Payload `json:"Telephone" sql:"-"`
 	PayloadUseCurrentAddress             Payload `json:"UseCurrentAddress" sql:"-"`
 
-	// Validator specific fields
 	Address                       *Location            `json:"-"`
 	AddressSeparated              *Location            `json:"-"`
 	AddressSeparatedNotApplicable *NotApplicable       `json:"-"`
@@ -46,30 +45,6 @@ type CivilUnion struct {
 	Separated                     *Branch              `json:"-"`
 	Telephone                     *Telephone           `json:"-"`
 	UseCurrentAddress             *NotApplicable       `json:"-"`
-
-	// Persister specific fields
-	ID                              int `json:"-" sql:",pk"`
-	AccountID                       int `json:"-" sql:",pk"`
-	AddressID                       int `json:"-"`
-	AddressSeparatedID              int `json:"-"`
-	AddressSeparatedNotApplicableID int `json:"-"`
-	AlternateAddressID              int `json:"-"`
-	BirthPlaceID                    int `json:"-"`
-	BirthdateID                     int `json:"-"`
-	CitizenshipID                   int `json:"-"`
-	DateSeparatedID                 int `json:"-"`
-	DivorcedID                      int `json:"-"`
-	EmailID                         int `json:"-"`
-	EmailNotApplicableID            int `json:"-"`
-	EnteredCivilUnionID             int `json:"-"`
-	ForeignBornDocumentID           int `json:"-"`
-	LocationID                      int `json:"-"`
-	NameID                          int `json:"-"`
-	OtherNamesID                    int `json:"-"`
-	SSNID                           int `json:"-"`
-	SeparatedID                     int `json:"-"`
-	TelephoneID                     int `json:"-"`
-	UseCurrentAddressID             int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

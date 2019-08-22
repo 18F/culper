@@ -11,14 +11,8 @@ import (
 type Collection struct {
 	PayloadBranch Payload `json:"branch" sql:"-"`
 
-	// Validator specific fields
 	Branch *Branch           `json:"-" sql:"-"`
 	Items  []*CollectionItem `json:"items" sql:"-"`
-
-	// Persister specific fields
-	ID        int `json:"-"`
-	AccountID int `json:"-"`
-	BranchID  int `json:"-" pg:",fk:Branch"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -43,31 +37,6 @@ func (entity *Collection) Marshal() Payload {
 		entity.PayloadBranch = entity.Branch.Marshal()
 	}
 	return MarshalPayloadEntity("collection", entity)
-}
-
-// collectionItemIDs the Collection item identifiers.
-func (entity *Collection) collectionItemIDs(context DatabaseService) {
-	var count int
-	context.CountExpr(&CollectionItem{}, "max(index) as max", &count, "id = ?", entity.ID)
-	entity.Items = []*CollectionItem{}
-	for i := 0; i < count; i++ {
-		entity.Items = append(entity.Items, &CollectionItem{ID: entity.ID, Index: i + 1})
-	}
-}
-
-// Find the previous entity stored if one is available.
-func (entity *Collection) Find(context DatabaseService) error {
-	context.Find(&Collection{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
-		previous := result.(*Collection)
-		if previous.BranchID != 0 {
-			if entity.Branch == nil {
-				entity.Branch = &Branch{}
-			}
-			entity.Branch.ID = previous.BranchID
-			entity.BranchID = previous.BranchID
-		}
-	})
-	return nil
 }
 
 // CollectionItem is an item of named payloads directly used in a `Collection`.

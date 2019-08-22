@@ -9,15 +9,8 @@ type Signature struct {
 	PayloadName Payload `json:"Name" sql:"-"`
 	PayloadDate Payload `json:"Date" sql:"-"`
 
-	// Validator specific fields
 	Name *Text        `json:"-" sql:"-"`
 	Date *DateControl `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID        int `json:"-"`
-	AccountID int `json:"-"`
-	NameID    int `json:"-"`
-	DateID    int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

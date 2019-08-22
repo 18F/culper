@@ -7,14 +7,8 @@ type SubstanceDrugUsage struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	UsedDrugs *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -62,14 +56,8 @@ type SubstanceDrugPurchase struct {
 	PayloadInvolved Payload `json:"Involved" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	Involved *Branch     `json:"-"`
 	List     *Collection `json:"-"`
-
-	// Persister specific fields
-	ID         int `json:"-"`
-	InvolvedID int `json:"-" pg:", fk:Involved"`
-	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -123,14 +111,8 @@ type SubstanceDrugClearance struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	UsedDrugs *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -178,14 +160,8 @@ type SubstanceDrugPublicSafety struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	UsedDrugs *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -233,14 +209,8 @@ type SubstanceDrugMisuse struct {
 	PayloadUsedDrugs Payload `json:"MisusedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	UsedDrugs *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:MisusedDrugs"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -288,14 +258,8 @@ type SubstanceDrugOrdered struct {
 	PayloadTreatmentOrdered Payload `json:"TreatmentOrdered" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	TreatmentOrdered *Branch     `json:"-"`
 	List             *Collection `json:"-"`
-
-	// Persister specific fields
-	ID         int `json:"-"`
-	InvolvedID int `json:"-" pg:", fk:TreatmentOrdered"`
-	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -347,14 +311,8 @@ type SubstanceDrugVoluntary struct {
 	PayloadTreatmentVoluntary Payload `json:"TreatmentVoluntary" sql:"-"`
 	PayloadList               Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	TreatmentVoluntary *Branch     `json:"-"`
 	List               *Collection `json:"-"`
-
-	// Persister specific fields
-	ID         int `json:"-"`
-	InvolvedID int `json:"-" pg:", fk:TreatmentVoluntary"`
-	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -406,14 +364,8 @@ type SubstanceAlcoholNegative struct {
 	PayloadHasImpacts Payload `json:"HasImpacts" sql:"-"`
 	PayloadList       Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasImpacts *Branch     `json:"-"`
 	List       *Collection `json:"-"`
-
-	// Persister specific fields
-	ID           int `json:"-"`
-	HasImpactsID int `json:"-" pg:", fk:HasImpacts"`
-	ListID       int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -461,14 +413,8 @@ type SubstanceAlcoholOrdered struct {
 	PayloadHasBeenOrdered Payload `json:"HasBeenOrdered" sql:"-"`
 	PayloadList           Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasBeenOrdered *Branch     `json:"-"`
 	List           *Collection `json:"-"`
-
-	// Persister specific fields
-	ID               int `json:"-"`
-	HasBeenOrderedID int `json:"-" pg:", fk:HasBeenOrdered"`
-	ListID           int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -522,14 +468,8 @@ type SubstanceAlcoholVoluntary struct {
 	PayloadSoughtTreatment Payload `json:"SoughtTreatment" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	SoughtTreatment *Branch     `json:"-"`
 	List            *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                int `json:"-"`
-	SoughtTreatmentID int `json:"-" pg:", fk:SoughtTreatment"`
-	ListID            int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -583,14 +523,8 @@ type SubstanceAlcoholAdditional struct {
 	PayloadReceivedTreatment Payload `json:"ReceivedTreatment" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	ReceivedTreatment *Branch     `json:"-"`
 	List              *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                  int `json:"-"`
-	ReceivedTreatmentID int `json:"-" pg:", fk:ReceivedTreatment"`
-	ListID              int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.

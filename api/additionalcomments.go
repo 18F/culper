@@ -7,7 +7,6 @@ type AdditionalComments struct {
 	PayloadHasComments Payload `json:"HasComments" sql:"-"`
 	PayloadComments    Payload `json:"Comments" sql:"-"`
 
-	// Validator specific fields
 	HasComments *Branch   `json:"-"`
 	Comments    *Textarea `json:"-"`
 }

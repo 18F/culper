@@ -12,21 +12,11 @@ type Submission struct {
 	PayloadCredit             Payload `json:"Credit" sql:"-"`
 	PayloadAttachments        Payload `json:"Attachments" sql:"-"`
 
-	// Validator specific fields
 	AdditionalComments *SubmissionAdditionalComments `json:"-" sql:"-"`
 	General            *SubmissionGeneral            `json:"-" sql:"-"`
 	Medical            *SubmissionMedical            `json:"-" sql:"-"`
 	Credit             *SubmissionCredit             `json:"-" sql:"-"`
 	Attachments        *SubmissionAttachments        `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID                   int    `json:"-"`
-	AdditionalCommentsID int    `json:"-"`
-	GeneralID            int    `json:"-"`
-	MedicalID            int    `json:"-"`
-	CreditID             int    `json:"-"`
-	AttachmentsID        int    `json:"-"`
-	Hash                 string `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -93,12 +83,7 @@ func (entity *Submission) Marshal() Payload {
 type SubmissionAdditionalComments struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
 
-	// Validator specific fields
 	Signature *Signature `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	SignatureID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -129,12 +114,7 @@ func (entity *SubmissionAdditionalComments) Marshal() Payload {
 type SubmissionGeneral struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
 
-	// Validator specific fields
 	Signature *Signature `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	SignatureID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -165,12 +145,7 @@ func (entity *SubmissionGeneral) Marshal() Payload {
 type SubmissionMedical struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
 
-	// Validator specific fields
 	Signature *Signature `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	SignatureID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -201,12 +176,7 @@ func (entity *SubmissionMedical) Marshal() Payload {
 type SubmissionCredit struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
 
-	// Validator specific fields
 	Signature *Signature `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	SignatureID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -237,12 +207,7 @@ func (entity *SubmissionCredit) Marshal() Payload {
 type SubmissionAttachments struct {
 	PayloadMethod Payload `json:"Method" sql:"-"`
 
-	// Validator specific fields
 	Method *Text `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID       int `json:"-"`
-	MethodID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

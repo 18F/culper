@@ -8,15 +8,8 @@ type DateRange struct {
 	PayloadTo   Payload `json:"to" sql:"-"`
 	Present     bool    `json:"present"`
 
-	// Validator specific fields
 	From *DateControl `json:"-"`
 	To   *DateControl `json:"-"`
-
-	// Persister specific fields
-	ID        int `json:"-"`
-	AccountID int `json:"-"`
-	FromID    int `json:"-"`
-	ToID      int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

@@ -39,12 +39,7 @@ func (entity *IdentificationName) Marshal() Payload {
 type IdentificationBirthPlace struct {
 	Payload Payload `json:"Location" sql:"-"`
 
-	// Validator specific fields
 	Location *Location `json:"-"`
-
-	// Persister specific fields
-	ID         int `json:"-"`
-	LocationID int `json:"-" pg:", fk:Location"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -76,14 +71,8 @@ type IdentificationBirthDate struct {
 	PayloadDate      Payload `json:"Date" sql:"-"`
 	PayloadConfirmed Payload `json:"Confirmed" sql:"-"`
 
-	// Validator specific fields
 	Date      *DateControl `json:"-"`
 	Confirmed *Checkbox    `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	DateID      int `json:"-" pg:", fk:Date"`
-	ConfirmedID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -123,13 +112,8 @@ func (entity *IdentificationBirthDate) Marshal() Payload {
 type IdentificationSSN struct {
 	Payload Payload `json:"ssn" sql:"-"`
 
-	// Validator specific fields
 	Verified bool `json:"verified"`
 	SSN      *SSN `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID    int `json:"-"`
-	SSNID int `json:"-" pg:", fk:SSN"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -162,16 +146,9 @@ type IdentificationContacts struct {
 	PayloadWorkEmail    Payload `json:"WorkEmail" sql:"-"`
 	PayloadPhoneNumbers Payload `json:"PhoneNumbers" sql:"-"`
 
-	// Validator specific fields
 	HomeEmail    *Email      `json:"-"`
 	WorkEmail    *Email      `json:"-"`
 	PhoneNumbers *Collection `json:"-"`
-
-	// Persister specific fields
-	ID             int `json:"-"`
-	HomeEmailID    int `json:"-" pg:", fk:HomeEmail"`
-	WorkEmailID    int `json:"-" pg:", fk:WorkEmail"`
-	PhoneNumbersID int `json:"-" pg:", fk:PhoneNumbers"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -221,14 +198,8 @@ type IdentificationOtherNames struct {
 	PayloadHasOtherNames Payload `json:"HasOtherNames" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasOtherNames *Branch     `json:"-"`
 	List          *Collection `json:"-"`
-
-	// Persister specific fields
-	ID              int `json:"-"`
-	HasOtherNamesID int `json:"-" pg:", fk:HasOtherNames"`
-	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.

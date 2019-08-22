@@ -12,7 +12,6 @@ type Sentence struct {
 	PayloadProbationDates       Payload `json:"ProbationDates" sql:"-"`
 	PayloadProbationDatesNA     Payload `json:"ProbationDatesNA" sql:"-"`
 
-	// Validator specific fields
 	Description          *Textarea      `json:"-" sql:"-"`
 	ExceedsYear          *Branch        `json:"-" sql:"-"`
 	Incarcerated         *Branch        `json:"-" sql:"-"`
@@ -20,17 +19,6 @@ type Sentence struct {
 	IncarcerationDatesNA *NotApplicable `json:"-" sql:"-"`
 	ProbationDates       *DateRange     `json:"-" sql:"-"`
 	ProbationDatesNA     *NotApplicable `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID                     int `json:"-"`
-	AccountID              int `json:"-"`
-	DescriptionID          int `json:"-"`
-	ExceedsYearID          int `json:"-"`
-	IncarceratedID         int `json:"-"`
-	IncarcerationDatesID   int `json:"-"`
-	IncarcerationDatesNAID int `json:"-"`
-	ProbationDatesID       int `json:"-"`
-	ProbationDatesNAID     int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
